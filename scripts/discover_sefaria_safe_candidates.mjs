@@ -81,6 +81,7 @@ function libraryLaneForCategories(categories) {
   if (lower.includes('tosefta')) return 'tosefta';
   if (lower.includes('mishnah')) return 'mishnah';
   if (lower.includes('kabbalah')) return 'kabbalah';
+  if (lower.includes('chasidut')) return 'chasidut';
   if (lower.includes('halakhah')) return 'halakhah';
   if (lower.includes('musar')) return 'musar';
   if (lower.includes('philosophy')) return 'philosophy';

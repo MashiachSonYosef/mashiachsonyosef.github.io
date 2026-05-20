@@ -1,0 +1,1276 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 1:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 1:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 1:3 | sod-yesharim-rosh-hashanah-rosh-hashanah-1-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 1:4 | sod-yesharim-rosh-hashanah-rosh-hashanah-1-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 1:5 | sod-yesharim-rosh-hashanah-rosh-hashanah-1-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 2:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 3:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 4:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 5:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 6:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 6:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-6-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 7:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 8:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 9:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 10:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 11:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 11:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 11:3 | sod-yesharim-rosh-hashanah-rosh-hashanah-11-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 12:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 13:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 14:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 15:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 16:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 17:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 18:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 18:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-18-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 19:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 20:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 21:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 22:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 22:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-22-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 23:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 24:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 24:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-24-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 25:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 25:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-25-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 25:3 | sod-yesharim-rosh-hashanah-rosh-hashanah-25-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 26:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 26:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-26-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 27:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 27:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-27-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 28:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 29:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 30:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 31:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 31:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-31-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 32:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 33:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 33:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-33-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 34:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 35:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-35-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 35:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-35-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 36:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-36-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 36:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-36-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 37:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-37-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 38:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-38-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 38:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-38-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 38:3 | sod-yesharim-rosh-hashanah-rosh-hashanah-38-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 39:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-39-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 39:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-39-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 40:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-40-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 41:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-41-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 42:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-42-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 43:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-43-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 44:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-44-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 44:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-44-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 44:3 | sod-yesharim-rosh-hashanah-rosh-hashanah-44-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 44:4 | sod-yesharim-rosh-hashanah-rosh-hashanah-44-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 45:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-45-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 46:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-46-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 46:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-46-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 47:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-47-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 47:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-47-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 48:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-48-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 49:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-49-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 50:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-50-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 51:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-51-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 51:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-51-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 52:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-52-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 53:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-53-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 54:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-54-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 55:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-55-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 56:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-56-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 57:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-57-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 58:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-58-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 59:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-59-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 59:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-59-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 60:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-60-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 60:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-60-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:3 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:4 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:5 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:6 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:7 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:8 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-8 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 61:9 | sod-yesharim-rosh-hashanah-rosh-hashanah-61-9 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 62:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-62-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 62:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-62-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 63:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-63-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 64:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-64-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 65:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-65-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 66:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-66-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 67:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-67-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 68:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-68-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 69:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-69-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 70:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-70-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 71:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-71-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 72:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-72-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 73:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-73-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 74:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-74-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 75:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-75-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 76:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-76-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 77:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-77-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 78:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-78-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 78:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-78-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 79:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-79-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 80:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-80-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 81:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-81-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 82:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-82-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 83:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-83-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 84:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-84-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 84:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-84-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 85:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-85-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 85:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-85-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 85:3 | sod-yesharim-rosh-hashanah-rosh-hashanah-85-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 85:4 | sod-yesharim-rosh-hashanah-rosh-hashanah-85-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 86:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-86-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 87:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-87-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 88:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-88-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 88:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-88-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 89:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-89-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 89:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-89-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 90:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-90-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 90:2 | sod-yesharim-rosh-hashanah-rosh-hashanah-90-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 91:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-91-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 92:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-92-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 93:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-93-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 94:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-94-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Rosh Hashanah 95:1 | sod-yesharim-rosh-hashanah-rosh-hashanah-95-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 1:1 | sod-yesharim-yom-kippur-yom-kippur-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 1:2 | sod-yesharim-yom-kippur-yom-kippur-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 1:3 | sod-yesharim-yom-kippur-yom-kippur-1-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 2:1 | sod-yesharim-yom-kippur-yom-kippur-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 3:1 | sod-yesharim-yom-kippur-yom-kippur-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 4:1 | sod-yesharim-yom-kippur-yom-kippur-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 5:1 | sod-yesharim-yom-kippur-yom-kippur-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 6:1 | sod-yesharim-yom-kippur-yom-kippur-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 7:1 | sod-yesharim-yom-kippur-yom-kippur-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 8:1 | sod-yesharim-yom-kippur-yom-kippur-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 9:1 | sod-yesharim-yom-kippur-yom-kippur-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 10:1 | sod-yesharim-yom-kippur-yom-kippur-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 11:1 | sod-yesharim-yom-kippur-yom-kippur-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 12:1 | sod-yesharim-yom-kippur-yom-kippur-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 13:1 | sod-yesharim-yom-kippur-yom-kippur-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 14:1 | sod-yesharim-yom-kippur-yom-kippur-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 15:1 | sod-yesharim-yom-kippur-yom-kippur-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 16:1 | sod-yesharim-yom-kippur-yom-kippur-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 17:1 | sod-yesharim-yom-kippur-yom-kippur-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 18:1 | sod-yesharim-yom-kippur-yom-kippur-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 19:1 | sod-yesharim-yom-kippur-yom-kippur-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 20:1 | sod-yesharim-yom-kippur-yom-kippur-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 21:1 | sod-yesharim-yom-kippur-yom-kippur-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 22:1 | sod-yesharim-yom-kippur-yom-kippur-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 23:1 | sod-yesharim-yom-kippur-yom-kippur-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 24:1 | sod-yesharim-yom-kippur-yom-kippur-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 25:1 | sod-yesharim-yom-kippur-yom-kippur-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 26:1 | sod-yesharim-yom-kippur-yom-kippur-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 27:1 | sod-yesharim-yom-kippur-yom-kippur-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 28:1 | sod-yesharim-yom-kippur-yom-kippur-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 29:1 | sod-yesharim-yom-kippur-yom-kippur-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 30:1 | sod-yesharim-yom-kippur-yom-kippur-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 31:1 | sod-yesharim-yom-kippur-yom-kippur-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 32:1 | sod-yesharim-yom-kippur-yom-kippur-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 33:1 | sod-yesharim-yom-kippur-yom-kippur-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 34:1 | sod-yesharim-yom-kippur-yom-kippur-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 35:1 | sod-yesharim-yom-kippur-yom-kippur-35-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 36:1 | sod-yesharim-yom-kippur-yom-kippur-36-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 37:1 | sod-yesharim-yom-kippur-yom-kippur-37-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 38:1 | sod-yesharim-yom-kippur-yom-kippur-38-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 39:1 | sod-yesharim-yom-kippur-yom-kippur-39-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 40:1 | sod-yesharim-yom-kippur-yom-kippur-40-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 41:1 | sod-yesharim-yom-kippur-yom-kippur-41-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 41:2 | sod-yesharim-yom-kippur-yom-kippur-41-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 42:1 | sod-yesharim-yom-kippur-yom-kippur-42-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 43:1 | sod-yesharim-yom-kippur-yom-kippur-43-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 43:2 | sod-yesharim-yom-kippur-yom-kippur-43-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 43:3 | sod-yesharim-yom-kippur-yom-kippur-43-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 44:1 | sod-yesharim-yom-kippur-yom-kippur-44-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 45:1 | sod-yesharim-yom-kippur-yom-kippur-45-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 46:1 | sod-yesharim-yom-kippur-yom-kippur-46-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 47:1 | sod-yesharim-yom-kippur-yom-kippur-47-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 48:1 | sod-yesharim-yom-kippur-yom-kippur-48-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 48:2 | sod-yesharim-yom-kippur-yom-kippur-48-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Yom Kippur 49:1 | sod-yesharim-yom-kippur-yom-kippur-49-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:1 | sod-yesharim-sukkot-sukkot-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:2 | sod-yesharim-sukkot-sukkot-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:3 | sod-yesharim-sukkot-sukkot-1-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:4 | sod-yesharim-sukkot-sukkot-1-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:5 | sod-yesharim-sukkot-sukkot-1-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:6 | sod-yesharim-sukkot-sukkot-1-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:7 | sod-yesharim-sukkot-sukkot-1-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 1:8 | sod-yesharim-sukkot-sukkot-1-8 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 2:1 | sod-yesharim-sukkot-sukkot-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 3:1 | sod-yesharim-sukkot-sukkot-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 4:1 | sod-yesharim-sukkot-sukkot-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 5:1 | sod-yesharim-sukkot-sukkot-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 6:1 | sod-yesharim-sukkot-sukkot-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 7:1 | sod-yesharim-sukkot-sukkot-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 8:1 | sod-yesharim-sukkot-sukkot-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 9:1 | sod-yesharim-sukkot-sukkot-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 10:1 | sod-yesharim-sukkot-sukkot-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 11:1 | sod-yesharim-sukkot-sukkot-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 12:1 | sod-yesharim-sukkot-sukkot-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 13:1 | sod-yesharim-sukkot-sukkot-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 14:1 | sod-yesharim-sukkot-sukkot-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 15:1 | sod-yesharim-sukkot-sukkot-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 16:1 | sod-yesharim-sukkot-sukkot-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 17:1 | sod-yesharim-sukkot-sukkot-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 18:1 | sod-yesharim-sukkot-sukkot-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 18:2 | sod-yesharim-sukkot-sukkot-18-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 19:1 | sod-yesharim-sukkot-sukkot-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 20:1 | sod-yesharim-sukkot-sukkot-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 21:1 | sod-yesharim-sukkot-sukkot-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 22:1 | sod-yesharim-sukkot-sukkot-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 23:1 | sod-yesharim-sukkot-sukkot-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 23:2 | sod-yesharim-sukkot-sukkot-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 24:1 | sod-yesharim-sukkot-sukkot-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 24:2 | sod-yesharim-sukkot-sukkot-24-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 24:3 | sod-yesharim-sukkot-sukkot-24-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 25:1 | sod-yesharim-sukkot-sukkot-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 26:1 | sod-yesharim-sukkot-sukkot-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 27:1 | sod-yesharim-sukkot-sukkot-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 28:1 | sod-yesharim-sukkot-sukkot-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 29:1 | sod-yesharim-sukkot-sukkot-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 30:1 | sod-yesharim-sukkot-sukkot-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 31:1 | sod-yesharim-sukkot-sukkot-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 32:1 | sod-yesharim-sukkot-sukkot-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 33:1 | sod-yesharim-sukkot-sukkot-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 33:2 | sod-yesharim-sukkot-sukkot-33-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 34:1 | sod-yesharim-sukkot-sukkot-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 34:2 | sod-yesharim-sukkot-sukkot-34-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 35:1 | sod-yesharim-sukkot-sukkot-35-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 35:2 | sod-yesharim-sukkot-sukkot-35-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 35:3 | sod-yesharim-sukkot-sukkot-35-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 35:4 | sod-yesharim-sukkot-sukkot-35-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 36:1 | sod-yesharim-sukkot-sukkot-36-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 36:2 | sod-yesharim-sukkot-sukkot-36-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 37:1 | sod-yesharim-sukkot-sukkot-37-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 38:1 | sod-yesharim-sukkot-sukkot-38-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 38:2 | sod-yesharim-sukkot-sukkot-38-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 38:3 | sod-yesharim-sukkot-sukkot-38-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 38:4 | sod-yesharim-sukkot-sukkot-38-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 38:5 | sod-yesharim-sukkot-sukkot-38-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 39:1 | sod-yesharim-sukkot-sukkot-39-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 40:1 | sod-yesharim-sukkot-sukkot-40-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 40:2 | sod-yesharim-sukkot-sukkot-40-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 40:3 | sod-yesharim-sukkot-sukkot-40-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 40:4 | sod-yesharim-sukkot-sukkot-40-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 41:1 | sod-yesharim-sukkot-sukkot-41-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 41:2 | sod-yesharim-sukkot-sukkot-41-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 42:1 | sod-yesharim-sukkot-sukkot-42-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 42:2 | sod-yesharim-sukkot-sukkot-42-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 43:1 | sod-yesharim-sukkot-sukkot-43-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 44:1 | sod-yesharim-sukkot-sukkot-44-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 45:1 | sod-yesharim-sukkot-sukkot-45-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 45:2 | sod-yesharim-sukkot-sukkot-45-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 46:1 | sod-yesharim-sukkot-sukkot-46-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 47:1 | sod-yesharim-sukkot-sukkot-47-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 48:1 | sod-yesharim-sukkot-sukkot-48-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 49:1 | sod-yesharim-sukkot-sukkot-49-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 50:1 | sod-yesharim-sukkot-sukkot-50-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 50:2 | sod-yesharim-sukkot-sukkot-50-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 51:1 | sod-yesharim-sukkot-sukkot-51-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 52:1 | sod-yesharim-sukkot-sukkot-52-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 53:1 | sod-yesharim-sukkot-sukkot-53-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 54:1 | sod-yesharim-sukkot-sukkot-54-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 55:1 | sod-yesharim-sukkot-sukkot-55-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 55:2 | sod-yesharim-sukkot-sukkot-55-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 55:3 | sod-yesharim-sukkot-sukkot-55-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 56:1 | sod-yesharim-sukkot-sukkot-56-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 57:1 | sod-yesharim-sukkot-sukkot-57-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 57:2 | sod-yesharim-sukkot-sukkot-57-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 58:1 | sod-yesharim-sukkot-sukkot-58-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 59:1 | sod-yesharim-sukkot-sukkot-59-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 60:1 | sod-yesharim-sukkot-sukkot-60-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 61:1 | sod-yesharim-sukkot-sukkot-61-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 62:1 | sod-yesharim-sukkot-sukkot-62-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 62:2 | sod-yesharim-sukkot-sukkot-62-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 63:1 | sod-yesharim-sukkot-sukkot-63-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 64:1 | sod-yesharim-sukkot-sukkot-64-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 65:1 | sod-yesharim-sukkot-sukkot-65-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 65:2 | sod-yesharim-sukkot-sukkot-65-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 66:1 | sod-yesharim-sukkot-sukkot-66-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 66:2 | sod-yesharim-sukkot-sukkot-66-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 66:3 | sod-yesharim-sukkot-sukkot-66-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 67:1 | sod-yesharim-sukkot-sukkot-67-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 68:1 | sod-yesharim-sukkot-sukkot-68-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 68:2 | sod-yesharim-sukkot-sukkot-68-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 69:1 | sod-yesharim-sukkot-sukkot-69-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 70:1 | sod-yesharim-sukkot-sukkot-70-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 70:2 | sod-yesharim-sukkot-sukkot-70-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 71:1 | sod-yesharim-sukkot-sukkot-71-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 72:1 | sod-yesharim-sukkot-sukkot-72-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 73:1 | sod-yesharim-sukkot-sukkot-73-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 74:1 | sod-yesharim-sukkot-sukkot-74-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 75:1 | sod-yesharim-sukkot-sukkot-75-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 76:1 | sod-yesharim-sukkot-sukkot-76-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 77:1 | sod-yesharim-sukkot-sukkot-77-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 78:1 | sod-yesharim-sukkot-sukkot-78-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 78:2 | sod-yesharim-sukkot-sukkot-78-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 79:1 | sod-yesharim-sukkot-sukkot-79-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 80:1 | sod-yesharim-sukkot-sukkot-80-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 81:1 | sod-yesharim-sukkot-sukkot-81-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 82:1 | sod-yesharim-sukkot-sukkot-82-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 83:1 | sod-yesharim-sukkot-sukkot-83-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 84:1 | sod-yesharim-sukkot-sukkot-84-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 85:1 | sod-yesharim-sukkot-sukkot-85-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 86:1 | sod-yesharim-sukkot-sukkot-86-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 87:1 | sod-yesharim-sukkot-sukkot-87-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 88:1 | sod-yesharim-sukkot-sukkot-88-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 89:1 | sod-yesharim-sukkot-sukkot-89-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 90:1 | sod-yesharim-sukkot-sukkot-90-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 90:2 | sod-yesharim-sukkot-sukkot-90-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 91:1 | sod-yesharim-sukkot-sukkot-91-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 92:1 | sod-yesharim-sukkot-sukkot-92-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 93:1 | sod-yesharim-sukkot-sukkot-93-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 93:2 | sod-yesharim-sukkot-sukkot-93-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 94:1 | sod-yesharim-sukkot-sukkot-94-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 95:1 | sod-yesharim-sukkot-sukkot-95-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 96:1 | sod-yesharim-sukkot-sukkot-96-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 96:2 | sod-yesharim-sukkot-sukkot-96-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 96:3 | sod-yesharim-sukkot-sukkot-96-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 96:4 | sod-yesharim-sukkot-sukkot-96-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 97:1 | sod-yesharim-sukkot-sukkot-97-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 98:1 | sod-yesharim-sukkot-sukkot-98-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 98:2 | sod-yesharim-sukkot-sukkot-98-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 99:1 | sod-yesharim-sukkot-sukkot-99-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 99:2 | sod-yesharim-sukkot-sukkot-99-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Sukkot 99:3 | sod-yesharim-sukkot-sukkot-99-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 1:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 1:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 1:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-1-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 1:4 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-1-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 1:5 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-1-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 1:6 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-1-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 1:7 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-1-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 2:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 2:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 3:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 3:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 3:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-3-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 3:4 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-3-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 4:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 4:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 5:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 6:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 6:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-6-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 7:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 8:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 9:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 9:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-9-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 10:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 11:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 11:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 11:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-11-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 12:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 12:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-12-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 13:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 13:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-13-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 13:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-13-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 13:4 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-13-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 13:5 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-13-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 14:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 15:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 15:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 15:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-15-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 15:4 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-15-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 16:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 17:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 18:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 19:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 20:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 20:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-20-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 20:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-20-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 20:4 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-20-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 21:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 22:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 23:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 24:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 25:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 25:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-25-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 26:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 27:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 28:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 28:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-28-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 29:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 29:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-29-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 29:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-29-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 30:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 30:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-30-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 30:3 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-30-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 31:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 32:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 32:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-32-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 33:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 33:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-33-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 34:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 35:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-35-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 36:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-36-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 37:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-37-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 37:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-37-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 38:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-38-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 39:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-39-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 40:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-40-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 40:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-40-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 41:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-41-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 41:2 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-41-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 42:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-42-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Sukkot 43:1 | sod-yesharim-shabbat-chol-hamoed-sukkot-shabbat-chol-hamoed-sukkot-43-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 1:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 1:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 2:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 3:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 4:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 4:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 4:3 | sod-yesharim-hoshana-rabba-hoshana-rabba-4-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 4:4 | sod-yesharim-hoshana-rabba-hoshana-rabba-4-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 5:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 6:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 7:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 8:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 9:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 9:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-9-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 9:3 | sod-yesharim-hoshana-rabba-hoshana-rabba-9-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 10:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 10:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 11:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 11:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 12:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 13:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 13:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-13-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 14:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 14:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-14-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 15:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 15:2 | sod-yesharim-hoshana-rabba-hoshana-rabba-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 15:3 | sod-yesharim-hoshana-rabba-hoshana-rabba-15-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 16:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 17:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 18:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Hoshana Rabba 19:1 | sod-yesharim-hoshana-rabba-hoshana-rabba-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 1:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 1:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 2:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 3:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 4:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 5:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 5:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 6:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 7:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 8:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 8:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-8-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 8:3 | sod-yesharim-shemini-atzeret-shemini-atzeret-8-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 9:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 9:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-9-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 10:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 10:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 10:3 | sod-yesharim-shemini-atzeret-shemini-atzeret-10-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 10:4 | sod-yesharim-shemini-atzeret-shemini-atzeret-10-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 10:5 | sod-yesharim-shemini-atzeret-shemini-atzeret-10-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 11:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 12:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 13:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 14:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 14:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-14-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 15:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 15:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 16:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 17:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 17:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-17-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 17:3 | sod-yesharim-shemini-atzeret-shemini-atzeret-17-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 18:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 18:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-18-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 18:3 | sod-yesharim-shemini-atzeret-shemini-atzeret-18-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 19:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 20:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 21:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 21:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-21-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 22:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 23:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 24:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 25:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 26:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 26:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-26-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 27:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 27:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-27-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 27:3 | sod-yesharim-shemini-atzeret-shemini-atzeret-27-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 27:4 | sod-yesharim-shemini-atzeret-shemini-atzeret-27-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 27:5 | sod-yesharim-shemini-atzeret-shemini-atzeret-27-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 28:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 29:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 29:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-29-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 30:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 31:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 31:2 | sod-yesharim-shemini-atzeret-shemini-atzeret-31-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 32:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 33:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shemini Atzeret 34:1 | sod-yesharim-shemini-atzeret-shemini-atzeret-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 1:1 | sod-yesharim-simchat-torah-simchat-torah-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 1:2 | sod-yesharim-simchat-torah-simchat-torah-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 1:3 | sod-yesharim-simchat-torah-simchat-torah-1-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 2:1 | sod-yesharim-simchat-torah-simchat-torah-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 3:1 | sod-yesharim-simchat-torah-simchat-torah-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 4:1 | sod-yesharim-simchat-torah-simchat-torah-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 5:1 | sod-yesharim-simchat-torah-simchat-torah-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 6:1 | sod-yesharim-simchat-torah-simchat-torah-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 7:1 | sod-yesharim-simchat-torah-simchat-torah-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 8:1 | sod-yesharim-simchat-torah-simchat-torah-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 9:1 | sod-yesharim-simchat-torah-simchat-torah-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 10:1 | sod-yesharim-simchat-torah-simchat-torah-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 11:1 | sod-yesharim-simchat-torah-simchat-torah-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 12:1 | sod-yesharim-simchat-torah-simchat-torah-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 13:1 | sod-yesharim-simchat-torah-simchat-torah-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 14:1 | sod-yesharim-simchat-torah-simchat-torah-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 15:1 | sod-yesharim-simchat-torah-simchat-torah-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 16:1 | sod-yesharim-simchat-torah-simchat-torah-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 17:1 | sod-yesharim-simchat-torah-simchat-torah-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 18:1 | sod-yesharim-simchat-torah-simchat-torah-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 19:1 | sod-yesharim-simchat-torah-simchat-torah-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 20:1 | sod-yesharim-simchat-torah-simchat-torah-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 21:1 | sod-yesharim-simchat-torah-simchat-torah-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 22:1 | sod-yesharim-simchat-torah-simchat-torah-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 23:1 | sod-yesharim-simchat-torah-simchat-torah-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 24:1 | sod-yesharim-simchat-torah-simchat-torah-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 25:1 | sod-yesharim-simchat-torah-simchat-torah-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 26:1 | sod-yesharim-simchat-torah-simchat-torah-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 27:1 | sod-yesharim-simchat-torah-simchat-torah-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 28:1 | sod-yesharim-simchat-torah-simchat-torah-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 29:1 | sod-yesharim-simchat-torah-simchat-torah-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 30:1 | sod-yesharim-simchat-torah-simchat-torah-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 31:1 | sod-yesharim-simchat-torah-simchat-torah-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 32:1 | sod-yesharim-simchat-torah-simchat-torah-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 33:1 | sod-yesharim-simchat-torah-simchat-torah-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 34:1 | sod-yesharim-simchat-torah-simchat-torah-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 35:1 | sod-yesharim-simchat-torah-simchat-torah-35-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 36:1 | sod-yesharim-simchat-torah-simchat-torah-36-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 37:1 | sod-yesharim-simchat-torah-simchat-torah-37-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 38:1 | sod-yesharim-simchat-torah-simchat-torah-38-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 39:1 | sod-yesharim-simchat-torah-simchat-torah-39-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 39:2 | sod-yesharim-simchat-torah-simchat-torah-39-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 40:1 | sod-yesharim-simchat-torah-simchat-torah-40-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 41:1 | sod-yesharim-simchat-torah-simchat-torah-41-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 42:1 | sod-yesharim-simchat-torah-simchat-torah-42-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 43:1 | sod-yesharim-simchat-torah-simchat-torah-43-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 44:1 | sod-yesharim-simchat-torah-simchat-torah-44-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 46:1 | sod-yesharim-simchat-torah-simchat-torah-46-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 47:1 | sod-yesharim-simchat-torah-simchat-torah-47-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 48:1 | sod-yesharim-simchat-torah-simchat-torah-48-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 49:1 | sod-yesharim-simchat-torah-simchat-torah-49-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 50:1 | sod-yesharim-simchat-torah-simchat-torah-50-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 51:1 | sod-yesharim-simchat-torah-simchat-torah-51-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 52:1 | sod-yesharim-simchat-torah-simchat-torah-52-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 52:2 | sod-yesharim-simchat-torah-simchat-torah-52-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 53:1 | sod-yesharim-simchat-torah-simchat-torah-53-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 53:2 | sod-yesharim-simchat-torah-simchat-torah-53-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 54:1 | sod-yesharim-simchat-torah-simchat-torah-54-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 55:1 | sod-yesharim-simchat-torah-simchat-torah-55-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 56:1 | sod-yesharim-simchat-torah-simchat-torah-56-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 59:1 | sod-yesharim-simchat-torah-simchat-torah-59-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 59:2 | sod-yesharim-simchat-torah-simchat-torah-59-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 60:1 | sod-yesharim-simchat-torah-simchat-torah-60-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 60:2 | sod-yesharim-simchat-torah-simchat-torah-60-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 61:1 | sod-yesharim-simchat-torah-simchat-torah-61-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 62:1 | sod-yesharim-simchat-torah-simchat-torah-62-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 63:1 | sod-yesharim-simchat-torah-simchat-torah-63-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 64:1 | sod-yesharim-simchat-torah-simchat-torah-64-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 65:1 | sod-yesharim-simchat-torah-simchat-torah-65-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 66:1 | sod-yesharim-simchat-torah-simchat-torah-66-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 67:1 | sod-yesharim-simchat-torah-simchat-torah-67-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 68:1 | sod-yesharim-simchat-torah-simchat-torah-68-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 69:1 | sod-yesharim-simchat-torah-simchat-torah-69-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 70:1 | sod-yesharim-simchat-torah-simchat-torah-70-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Simchat Torah 71:1 | sod-yesharim-simchat-torah-simchat-torah-71-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 1:1 | sod-yesharim-parashat-shekalim-parashat-shekalim-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 1:2 | sod-yesharim-parashat-shekalim-parashat-shekalim-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 2:1 | sod-yesharim-parashat-shekalim-parashat-shekalim-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 2:2 | sod-yesharim-parashat-shekalim-parashat-shekalim-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 3:1 | sod-yesharim-parashat-shekalim-parashat-shekalim-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 3:2 | sod-yesharim-parashat-shekalim-parashat-shekalim-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 4:1 | sod-yesharim-parashat-shekalim-parashat-shekalim-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 4:2 | sod-yesharim-parashat-shekalim-parashat-shekalim-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Shekalim 4:3 | sod-yesharim-parashat-shekalim-parashat-shekalim-4-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 1:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 1:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 1:3 | sod-yesharim-parashat-zakhor-parashat-zakhor-1-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 2:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 3:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 4:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 5:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 5:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 6:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 6:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-6-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 7:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 7:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-7-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 7:3 | sod-yesharim-parashat-zakhor-parashat-zakhor-7-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 8:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 8:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-8-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 9:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 9:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-9-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 10:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 10:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 11:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 11:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 11:3 | sod-yesharim-parashat-zakhor-parashat-zakhor-11-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 11:4 | sod-yesharim-parashat-zakhor-parashat-zakhor-11-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 11:5 | sod-yesharim-parashat-zakhor-parashat-zakhor-11-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 11:6 | sod-yesharim-parashat-zakhor-parashat-zakhor-11-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 11:7 | sod-yesharim-parashat-zakhor-parashat-zakhor-11-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 12:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 13:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 13:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-13-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 13:3 | sod-yesharim-parashat-zakhor-parashat-zakhor-13-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 13:4 | sod-yesharim-parashat-zakhor-parashat-zakhor-13-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 14:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 14:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-14-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 15:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 15:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 16:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 16:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-16-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 17:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 17:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-17-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 18:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 19:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 20:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 20:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-20-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 21:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 22:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 22:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-22-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 23:1 | sod-yesharim-parashat-zakhor-parashat-zakhor-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Zakhor 23:2 | sod-yesharim-parashat-zakhor-parashat-zakhor-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 1:1 | sod-yesharim-purim-purim-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 1:2 | sod-yesharim-purim-purim-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 1:3 | sod-yesharim-purim-purim-1-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 2:1 | sod-yesharim-purim-purim-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 2:2 | sod-yesharim-purim-purim-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 2:3 | sod-yesharim-purim-purim-2-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 3:1 | sod-yesharim-purim-purim-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 3:2 | sod-yesharim-purim-purim-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 4:1 | sod-yesharim-purim-purim-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 4:2 | sod-yesharim-purim-purim-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 4:3 | sod-yesharim-purim-purim-4-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 5:1 | sod-yesharim-purim-purim-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 5:2 | sod-yesharim-purim-purim-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 5:3 | sod-yesharim-purim-purim-5-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 5:4 | sod-yesharim-purim-purim-5-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 6:1 | sod-yesharim-purim-purim-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 6:2 | sod-yesharim-purim-purim-6-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 6:3 | sod-yesharim-purim-purim-6-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 7:1 | sod-yesharim-purim-purim-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 7:2 | sod-yesharim-purim-purim-7-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 7:3 | sod-yesharim-purim-purim-7-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 7:4 | sod-yesharim-purim-purim-7-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 8:1 | sod-yesharim-purim-purim-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 8:2 | sod-yesharim-purim-purim-8-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 8:3 | sod-yesharim-purim-purim-8-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 9:1 | sod-yesharim-purim-purim-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 9:2 | sod-yesharim-purim-purim-9-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 10:1 | sod-yesharim-purim-purim-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 10:2 | sod-yesharim-purim-purim-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 11:1 | sod-yesharim-purim-purim-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 11:2 | sod-yesharim-purim-purim-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 11:3 | sod-yesharim-purim-purim-11-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 11:4 | sod-yesharim-purim-purim-11-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 12:1 | sod-yesharim-purim-purim-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 12:2 | sod-yesharim-purim-purim-12-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 12:3 | sod-yesharim-purim-purim-12-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 12:4 | sod-yesharim-purim-purim-12-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 13:1 | sod-yesharim-purim-purim-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 13:2 | sod-yesharim-purim-purim-13-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 13:3 | sod-yesharim-purim-purim-13-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 13:4 | sod-yesharim-purim-purim-13-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 14:1 | sod-yesharim-purim-purim-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 14:2 | sod-yesharim-purim-purim-14-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 14:3 | sod-yesharim-purim-purim-14-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 14:4 | sod-yesharim-purim-purim-14-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 14:5 | sod-yesharim-purim-purim-14-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 15:1 | sod-yesharim-purim-purim-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 15:2 | sod-yesharim-purim-purim-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 15:3 | sod-yesharim-purim-purim-15-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 15:4 | sod-yesharim-purim-purim-15-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 15:5 | sod-yesharim-purim-purim-15-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 16:1 | sod-yesharim-purim-purim-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 16:2 | sod-yesharim-purim-purim-16-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 17:1 | sod-yesharim-purim-purim-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 17:2 | sod-yesharim-purim-purim-17-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 17:3 | sod-yesharim-purim-purim-17-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 17:4 | sod-yesharim-purim-purim-17-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 18:1 | sod-yesharim-purim-purim-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 18:2 | sod-yesharim-purim-purim-18-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 18:3 | sod-yesharim-purim-purim-18-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 19:1 | sod-yesharim-purim-purim-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 20:1 | sod-yesharim-purim-purim-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 21:1 | sod-yesharim-purim-purim-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 21:2 | sod-yesharim-purim-purim-21-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 21:3 | sod-yesharim-purim-purim-21-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 21:4 | sod-yesharim-purim-purim-21-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 22:1 | sod-yesharim-purim-purim-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 22:2 | sod-yesharim-purim-purim-22-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 22:3 | sod-yesharim-purim-purim-22-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 23:1 | sod-yesharim-purim-purim-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 23:2 | sod-yesharim-purim-purim-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 23:3 | sod-yesharim-purim-purim-23-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 24:1 | sod-yesharim-purim-purim-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 25:1 | sod-yesharim-purim-purim-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 26:1 | sod-yesharim-purim-purim-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 26:2 | sod-yesharim-purim-purim-26-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 26:3 | sod-yesharim-purim-purim-26-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 27:1 | sod-yesharim-purim-purim-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 27:2 | sod-yesharim-purim-purim-27-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 27:3 | sod-yesharim-purim-purim-27-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 27:4 | sod-yesharim-purim-purim-27-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 28:1 | sod-yesharim-purim-purim-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 28:2 | sod-yesharim-purim-purim-28-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 29:1 | sod-yesharim-purim-purim-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 30:1 | sod-yesharim-purim-purim-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 30:2 | sod-yesharim-purim-purim-30-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 30:3 | sod-yesharim-purim-purim-30-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 30:4 | sod-yesharim-purim-purim-30-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 31:1 | sod-yesharim-purim-purim-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 32:1 | sod-yesharim-purim-purim-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 32:2 | sod-yesharim-purim-purim-32-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 32:3 | sod-yesharim-purim-purim-32-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 32:4 | sod-yesharim-purim-purim-32-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 33:1 | sod-yesharim-purim-purim-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 33:2 | sod-yesharim-purim-purim-33-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 33:3 | sod-yesharim-purim-purim-33-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 33:4 | sod-yesharim-purim-purim-33-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 34:1 | sod-yesharim-purim-purim-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 34:2 | sod-yesharim-purim-purim-34-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 35:1 | sod-yesharim-purim-purim-35-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 35:2 | sod-yesharim-purim-purim-35-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 36:1 | sod-yesharim-purim-purim-36-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 37:1 | sod-yesharim-purim-purim-37-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 38:1 | sod-yesharim-purim-purim-38-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 39:1 | sod-yesharim-purim-purim-39-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 40:1 | sod-yesharim-purim-purim-40-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 41:1 | sod-yesharim-purim-purim-41-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 41:2 | sod-yesharim-purim-purim-41-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 41:3 | sod-yesharim-purim-purim-41-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 42:1 | sod-yesharim-purim-purim-42-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 42:2 | sod-yesharim-purim-purim-42-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 42:3 | sod-yesharim-purim-purim-42-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Purim 42:4 | sod-yesharim-purim-purim-42-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 1:1 | sod-yesharim-parashat-parah-parashat-parah-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 1:2 | sod-yesharim-parashat-parah-parashat-parah-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 2:1 | sod-yesharim-parashat-parah-parashat-parah-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 2:2 | sod-yesharim-parashat-parah-parashat-parah-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 3:1 | sod-yesharim-parashat-parah-parashat-parah-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 3:2 | sod-yesharim-parashat-parah-parashat-parah-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 4:1 | sod-yesharim-parashat-parah-parashat-parah-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 5:1 | sod-yesharim-parashat-parah-parashat-parah-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 6:1 | sod-yesharim-parashat-parah-parashat-parah-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 7:1 | sod-yesharim-parashat-parah-parashat-parah-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 8:1 | sod-yesharim-parashat-parah-parashat-parah-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 9:1 | sod-yesharim-parashat-parah-parashat-parah-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 10:1 | sod-yesharim-parashat-parah-parashat-parah-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 11:1 | sod-yesharim-parashat-parah-parashat-parah-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 11:2 | sod-yesharim-parashat-parah-parashat-parah-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 11:3 | sod-yesharim-parashat-parah-parashat-parah-11-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat Parah 12:1 | sod-yesharim-parashat-parah-parashat-parah-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat HaChodesh 1:1 | sod-yesharim-parashat-hachodesh-parashat-hachodesh-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat HaChodesh 1:2 | sod-yesharim-parashat-hachodesh-parashat-hachodesh-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat HaChodesh 2:1 | sod-yesharim-parashat-hachodesh-parashat-hachodesh-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat HaChodesh 2:2 | sod-yesharim-parashat-hachodesh-parashat-hachodesh-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat HaChodesh 2:3 | sod-yesharim-parashat-hachodesh-parashat-hachodesh-2-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Parashat HaChodesh 2:4 | sod-yesharim-parashat-hachodesh-parashat-hachodesh-2-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 1:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 1:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 2:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 3:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 3:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 4:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 4:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 4:3 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-4-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 4:4 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-4-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 5:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 5:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 6:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 6:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-6-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 6:3 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-6-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 7:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 7:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-7-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 8:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 8:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-8-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 8:3 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-8-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 8:4 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-8-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 8:5 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-8-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 9:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 9:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-9-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 9:3 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-9-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 10:1 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat HaGadol 10:2 | sod-yesharim-shabbat-hagadol-shabbat-hagadol-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 1:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 2:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 2:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 2:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-2-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 2:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-2-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 2:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-2-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 2:6 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-2-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 2:7 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-2-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 3:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 4:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 4:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 5:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 5:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 6:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 6:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-6-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 6:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-6-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 7:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 7:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-7-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 8:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 8:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-8-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 8:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-8-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 8:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-8-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 8:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-8-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 9:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 9:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-9-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 9:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-9-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 9:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-9-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 9:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-9-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 9:6 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-9-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 9:7 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-9-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 10:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 10:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 11:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 11:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 12:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 12:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-12-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 12:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-12-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 12:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-12-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 12:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-12-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 12:6 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-12-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 13:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 13:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-13-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 13:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-13-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 13:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-13-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 13:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-13-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 14:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 14:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-14-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 15:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 15:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 16:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 17:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 18:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 19:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 19:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-19-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 19:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-19-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 20:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 21:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 21:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-21-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 21:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-21-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 22:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 22:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-22-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 22:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-22-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 22:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-22-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 23:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 23:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 23:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-23-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 23:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-23-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 23:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-23-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 23:6 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-23-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 23:7 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-23-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 24:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 24:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-24-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 24:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-24-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 25:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 25:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-25-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 25:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-25-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 26:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 26:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-26-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 26:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-26-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 26:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-26-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 26:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-26-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 27:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 27:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-27-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 27:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-27-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 27:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-27-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 28:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 29:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 29:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-29-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 30:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 30:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-30-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 31:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 31:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-31-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 31:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-31-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 31:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-31-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 32:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 32:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-32-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 32:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-32-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 32:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-32-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 33:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 33:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-33-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 34:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 34:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-34-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 35:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-35-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 36:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-36-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 36:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-36-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 37:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-37-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 37:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-37-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 37:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-37-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 38:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-38-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 39:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-39-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 39:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-39-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 40:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-40-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 41:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-41-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 41:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-41-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 42:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-42-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 42:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-42-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 42:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-42-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 42:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-42-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 43:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-43-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 43:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-43-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 44:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-44-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 45:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-45-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 45:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-45-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 46:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-46-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 47:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-47-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 48:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-48-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 49:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-49-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 50:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-50-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 50:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-50-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 50:3 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-50-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 50:4 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-50-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 50:5 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-50-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 51:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-51-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 52:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-52-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 53:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-53-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 54:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-54-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 55:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-55-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 56:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-56-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 57:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-57-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 58:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-58-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 59:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-59-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 60:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-60-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 61:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-61-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 61:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-61-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 62:1 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-62-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Night of Pesach 62:2 | sod-yesharim-the-first-night-of-pesach-the-first-night-of-pesach-62-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 1:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 1:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 2:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 3:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 3:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 4:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 4:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 5:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 5:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 6:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 6:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-6-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 7:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 8:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 8:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-8-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 9:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 10:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 10:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 11:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 12:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 13:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 14:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 15:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 15:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 15:3 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-15-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 16:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 17:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 18:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 19:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 19:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-19-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 19:3 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-19-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 20:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 21:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 22:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 23:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 23:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 23:3 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-23-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 24:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 24:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-24-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 25:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 25:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-25-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 25:3 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-25-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 26:1 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 26:2 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-26-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 26:3 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-26-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The First Day of Pesach 26:4 | sod-yesharim-the-first-day-of-pesach-the-first-day-of-pesach-26-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 1:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 1:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 2:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 3:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 4:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 5:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 6:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 7:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 7:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-7-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 8:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 8:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-8-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 9:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 10:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 11:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 12:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 13:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 14:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 15:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 15:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 16:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 17:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 18:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 18:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-18-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 18:3 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-18-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 19:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 20:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 20:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-20-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 20:3 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-20-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 20:4 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-20-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 21:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 21:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-21-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 21:3 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-21-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 21:4 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-21-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 21:5 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-21-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 22:1 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 22:2 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-22-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 22:3 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-22-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Second Day of Pesach 22:4 | sod-yesharim-the-second-day-of-pesach-the-second-day-of-pesach-22-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 1:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 1:2 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 2:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 3:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 3:2 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 4:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 5:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 6:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 7:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 8:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 9:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 10:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 10:2 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-10-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 11:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 11:2 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 12:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 13:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 14:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 15:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 15:2 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Night of Shabbat Chol HaMoed Pesach 16:1 | sod-yesharim-the-night-of-shabbat-chol-hamoed-pesach-the-night-of-shabbat-chol-hamoed-pesach-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 1:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 1:2 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 2:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 2:2 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 2:3 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-2-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 2:4 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-2-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 3:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 4:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 5:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 5:2 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 6:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 7:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 8:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 9:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 10:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 11:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 11:2 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 11:3 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-11-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 12:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 12:2 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-12-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 13:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 14:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 14:2 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-14-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 14:3 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-14-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 14:4 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-14-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, Shabbat Chol HaMoed Pesach 15:1 | sod-yesharim-shabbat-chol-hamoed-pesach-shabbat-chol-hamoed-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 1:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 1:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 2:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 3:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 4:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 5:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 6:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 7:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 8:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 9:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 10:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 11:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 11:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-11-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 12:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 13:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 14:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 15:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 16:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 17:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 17:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-17-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 18:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 19:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 20:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 20:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-20-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 20:3 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-20-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 21:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 22:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 23:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 23:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 24:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 25:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 26:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 27:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 28:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 29:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 29:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-29-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 30:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 31:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 31:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-31-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 32:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 33:1 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 33:2 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-33-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 33:3 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-33-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 33:4 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-33-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 33:5 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-33-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 33:6 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-33-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Night of Pesach 33:7 | sod-yesharim-the-seventh-night-of-pesach-the-seventh-night-of-pesach-33-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 1:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 1:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-1-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 2:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 2:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-2-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 2:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-2-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 2:4 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-2-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 3:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 3:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-3-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 3:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-3-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 4:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 4:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 5:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 5:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-5-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 6:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 7:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 8:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 9:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 10:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 11:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 12:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 13:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 14:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 15:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 15:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 16:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 17:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 17:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-17-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 18:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 18:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-18-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 19:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 19:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-19-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 19:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-19-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 19:4 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-19-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 20:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 20:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-20-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 20:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-20-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 20:4 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-20-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 20:5 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-20-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 20:6 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-20-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 20:7 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-20-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 21:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 21:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-21-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 21:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-21-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 22:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 23:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 23:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 23:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-23-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 23:4 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-23-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 23:5 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-23-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 24:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 24:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-24-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 25:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 25:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-25-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 25:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-25-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 25:4 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-25-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 25:5 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-25-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 25:6 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-25-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 25:7 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-25-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 26:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 26:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-26-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 26:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-26-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 26:4 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-26-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 26:5 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-26-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 26:6 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-26-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 27:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 27:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-27-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 28:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 28:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-28-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 28:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-28-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 29:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 29:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-29-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 30:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-30-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 31:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-31-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 31:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-31-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 31:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-31-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 32:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-32-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 33:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-33-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 34:1 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-34-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 34:2 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-34-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 34:3 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-34-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Seventh Day of Pesach 34:4 | sod-yesharim-the-seventh-day-of-pesach-the-seventh-day-of-pesach-34-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 1:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-1-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 2:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-2-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 3:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-3-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 4:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-4-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 4:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-4-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 5:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-5-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 6:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-6-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 7:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-7-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 8:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-8-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 9:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-9-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 10:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-10-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 11:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-11-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 12:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-12-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 13:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-13-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 14:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-14-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 15:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-15-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 15:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-15-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 16:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-16-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 17:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-17-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 18:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-18-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 19:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-19-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 20:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-20-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 21:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-21-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 22:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-22-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 22:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-22-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:3 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:4 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:5 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:6 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:7 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:8 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-8 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:9 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-9 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 23:10 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-23-10 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:3 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:4 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:5 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:6 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:7 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:8 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-8 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 24:9 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-24-9 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 25:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-25-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 26:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-26-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:3 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:4 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:5 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:6 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:7 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 27:8 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-27-8 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:3 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:4 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-4 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:5 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-5 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:6 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-6 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:7 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-7 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:8 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-8 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 28:9 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-28-9 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 29:1 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-29-1 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 29:2 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-29-2 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 29:3 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-29-3 |  |  | not_done |  |
+| sod-yesharim | Sod Yesharim | Sod Yesharim, The Eighth Day of Pesach 29:4 | sod-yesharim-the-eighth-day-of-pesach-the-eighth-day-of-pesach-29-4 |  |  | not_done |  |

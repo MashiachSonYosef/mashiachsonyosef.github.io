@@ -1,0 +1,7084 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 1:1 | sefat-emet-genesis-bereshit-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 1:2 | sefat-emet-genesis-bereshit-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 1:3 | sefat-emet-genesis-bereshit-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 1:4 | sefat-emet-genesis-bereshit-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 1:5 | sefat-emet-genesis-bereshit-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 1:6 | sefat-emet-genesis-bereshit-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 2:1 | sefat-emet-genesis-bereshit-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 2:2 | sefat-emet-genesis-bereshit-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 2:3 | sefat-emet-genesis-bereshit-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 3:1 | sefat-emet-genesis-bereshit-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 3:2 | sefat-emet-genesis-bereshit-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 3:3 | sefat-emet-genesis-bereshit-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 3:4 | sefat-emet-genesis-bereshit-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 4:1 | sefat-emet-genesis-bereshit-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 4:2 | sefat-emet-genesis-bereshit-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 4:3 | sefat-emet-genesis-bereshit-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 5:1 | sefat-emet-genesis-bereshit-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 5:2 | sefat-emet-genesis-bereshit-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 5:3 | sefat-emet-genesis-bereshit-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 5:4 | sefat-emet-genesis-bereshit-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 6:1 | sefat-emet-genesis-bereshit-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 6:2 | sefat-emet-genesis-bereshit-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 6:3 | sefat-emet-genesis-bereshit-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 7:1 | sefat-emet-genesis-bereshit-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 7:2 | sefat-emet-genesis-bereshit-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 7:3 | sefat-emet-genesis-bereshit-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 7:4 | sefat-emet-genesis-bereshit-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 8:1 | sefat-emet-genesis-bereshit-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 8:2 | sefat-emet-genesis-bereshit-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 9:1 | sefat-emet-genesis-bereshit-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 9:2 | sefat-emet-genesis-bereshit-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 9:3 | sefat-emet-genesis-bereshit-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 9:4 | sefat-emet-genesis-bereshit-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 10:1 | sefat-emet-genesis-bereshit-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 10:2 | sefat-emet-genesis-bereshit-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 10:3 | sefat-emet-genesis-bereshit-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 11:1 | sefat-emet-genesis-bereshit-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 11:2 | sefat-emet-genesis-bereshit-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 11:3 | sefat-emet-genesis-bereshit-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 12:1 | sefat-emet-genesis-bereshit-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 12:2 | sefat-emet-genesis-bereshit-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 12:3 | sefat-emet-genesis-bereshit-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 13:1 | sefat-emet-genesis-bereshit-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 13:2 | sefat-emet-genesis-bereshit-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 13:3 | sefat-emet-genesis-bereshit-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 14:1 | sefat-emet-genesis-bereshit-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 14:2 | sefat-emet-genesis-bereshit-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 15:1 | sefat-emet-genesis-bereshit-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 15:2 | sefat-emet-genesis-bereshit-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 15:3 | sefat-emet-genesis-bereshit-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 15:4 | sefat-emet-genesis-bereshit-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 16:1 | sefat-emet-genesis-bereshit-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 16:2 | sefat-emet-genesis-bereshit-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 16:3 | sefat-emet-genesis-bereshit-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 16:4 | sefat-emet-genesis-bereshit-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 17:1 | sefat-emet-genesis-bereshit-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 17:2 | sefat-emet-genesis-bereshit-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 17:3 | sefat-emet-genesis-bereshit-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 17:4 | sefat-emet-genesis-bereshit-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 18:1 | sefat-emet-genesis-bereshit-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 18:2 | sefat-emet-genesis-bereshit-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 18:3 | sefat-emet-genesis-bereshit-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 19:1 | sefat-emet-genesis-bereshit-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 19:2 | sefat-emet-genesis-bereshit-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 19:3 | sefat-emet-genesis-bereshit-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 19:4 | sefat-emet-genesis-bereshit-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 19:5 | sefat-emet-genesis-bereshit-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 19:6 | sefat-emet-genesis-bereshit-19-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 20:1 | sefat-emet-genesis-bereshit-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 20:2 | sefat-emet-genesis-bereshit-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 20:3 | sefat-emet-genesis-bereshit-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 20:4 | sefat-emet-genesis-bereshit-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 21:1 | sefat-emet-genesis-bereshit-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 21:2 | sefat-emet-genesis-bereshit-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 21:3 | sefat-emet-genesis-bereshit-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 21:4 | sefat-emet-genesis-bereshit-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 22:1 | sefat-emet-genesis-bereshit-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 22:2 | sefat-emet-genesis-bereshit-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 22:3 | sefat-emet-genesis-bereshit-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 22:4 | sefat-emet-genesis-bereshit-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 22:5 | sefat-emet-genesis-bereshit-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 23:1 | sefat-emet-genesis-bereshit-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 23:2 | sefat-emet-genesis-bereshit-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 23:3 | sefat-emet-genesis-bereshit-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 24:1 | sefat-emet-genesis-bereshit-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 24:2 | sefat-emet-genesis-bereshit-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 24:3 | sefat-emet-genesis-bereshit-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 25:1 | sefat-emet-genesis-bereshit-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 25:2 | sefat-emet-genesis-bereshit-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 25:3 | sefat-emet-genesis-bereshit-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 25:4 | sefat-emet-genesis-bereshit-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 26:1 | sefat-emet-genesis-bereshit-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 26:2 | sefat-emet-genesis-bereshit-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 26:3 | sefat-emet-genesis-bereshit-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 26:4 | sefat-emet-genesis-bereshit-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 26:5 | sefat-emet-genesis-bereshit-26-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 26:6 | sefat-emet-genesis-bereshit-26-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 27:1 | sefat-emet-genesis-bereshit-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 27:2 | sefat-emet-genesis-bereshit-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 27:3 | sefat-emet-genesis-bereshit-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 27:4 | sefat-emet-genesis-bereshit-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 28:1 | sefat-emet-genesis-bereshit-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 28:2 | sefat-emet-genesis-bereshit-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 28:3 | sefat-emet-genesis-bereshit-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 29:1 | sefat-emet-genesis-bereshit-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 29:2 | sefat-emet-genesis-bereshit-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Bereshit 29:3 | sefat-emet-genesis-bereshit-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 1:1 | sefat-emet-genesis-noach-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 1:2 | sefat-emet-genesis-noach-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 1:3 | sefat-emet-genesis-noach-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 1:4 | sefat-emet-genesis-noach-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 1:5 | sefat-emet-genesis-noach-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 2:1 | sefat-emet-genesis-noach-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 2:2 | sefat-emet-genesis-noach-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 2:3 | sefat-emet-genesis-noach-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 2:4 | sefat-emet-genesis-noach-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 3:1 | sefat-emet-genesis-noach-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 3:2 | sefat-emet-genesis-noach-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 3:3 | sefat-emet-genesis-noach-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 3:4 | sefat-emet-genesis-noach-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 4:1 | sefat-emet-genesis-noach-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 4:2 | sefat-emet-genesis-noach-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 4:3 | sefat-emet-genesis-noach-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 4:4 | sefat-emet-genesis-noach-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 4:5 | sefat-emet-genesis-noach-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 4:6 | sefat-emet-genesis-noach-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 5:1 | sefat-emet-genesis-noach-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 5:2 | sefat-emet-genesis-noach-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 5:3 | sefat-emet-genesis-noach-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 5:4 | sefat-emet-genesis-noach-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 5:5 | sefat-emet-genesis-noach-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 6:1 | sefat-emet-genesis-noach-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 6:2 | sefat-emet-genesis-noach-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 6:3 | sefat-emet-genesis-noach-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 6:4 | sefat-emet-genesis-noach-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 6:5 | sefat-emet-genesis-noach-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 7:1 | sefat-emet-genesis-noach-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 7:2 | sefat-emet-genesis-noach-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 7:3 | sefat-emet-genesis-noach-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 7:4 | sefat-emet-genesis-noach-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 7:5 | sefat-emet-genesis-noach-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 8:1 | sefat-emet-genesis-noach-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 8:2 | sefat-emet-genesis-noach-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 8:3 | sefat-emet-genesis-noach-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 9:1 | sefat-emet-genesis-noach-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 9:2 | sefat-emet-genesis-noach-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 9:3 | sefat-emet-genesis-noach-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 9:4 | sefat-emet-genesis-noach-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 9:5 | sefat-emet-genesis-noach-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 10:1 | sefat-emet-genesis-noach-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 10:2 | sefat-emet-genesis-noach-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 10:3 | sefat-emet-genesis-noach-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 10:4 | sefat-emet-genesis-noach-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 11:1 | sefat-emet-genesis-noach-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 11:2 | sefat-emet-genesis-noach-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 11:3 | sefat-emet-genesis-noach-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 11:4 | sefat-emet-genesis-noach-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 11:5 | sefat-emet-genesis-noach-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 12:1 | sefat-emet-genesis-noach-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 12:2 | sefat-emet-genesis-noach-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 12:3 | sefat-emet-genesis-noach-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 12:4 | sefat-emet-genesis-noach-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 12:5 | sefat-emet-genesis-noach-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 13:1 | sefat-emet-genesis-noach-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 13:2 | sefat-emet-genesis-noach-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 13:3 | sefat-emet-genesis-noach-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 14:1 | sefat-emet-genesis-noach-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 14:2 | sefat-emet-genesis-noach-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 14:3 | sefat-emet-genesis-noach-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 14:4 | sefat-emet-genesis-noach-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 14:5 | sefat-emet-genesis-noach-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 15:1 | sefat-emet-genesis-noach-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 15:2 | sefat-emet-genesis-noach-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 15:3 | sefat-emet-genesis-noach-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 15:4 | sefat-emet-genesis-noach-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 16:1 | sefat-emet-genesis-noach-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 16:2 | sefat-emet-genesis-noach-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 16:3 | sefat-emet-genesis-noach-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 16:4 | sefat-emet-genesis-noach-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 17:1 | sefat-emet-genesis-noach-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 17:2 | sefat-emet-genesis-noach-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 17:3 | sefat-emet-genesis-noach-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 17:4 | sefat-emet-genesis-noach-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 18:1 | sefat-emet-genesis-noach-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 18:2 | sefat-emet-genesis-noach-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 18:3 | sefat-emet-genesis-noach-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 18:4 | sefat-emet-genesis-noach-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 18:5 | sefat-emet-genesis-noach-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 19:1 | sefat-emet-genesis-noach-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 19:2 | sefat-emet-genesis-noach-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 19:3 | sefat-emet-genesis-noach-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 20:1 | sefat-emet-genesis-noach-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 20:2 | sefat-emet-genesis-noach-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 20:3 | sefat-emet-genesis-noach-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 21:1 | sefat-emet-genesis-noach-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 21:2 | sefat-emet-genesis-noach-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 21:3 | sefat-emet-genesis-noach-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 21:4 | sefat-emet-genesis-noach-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 22:1 | sefat-emet-genesis-noach-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 22:2 | sefat-emet-genesis-noach-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 22:3 | sefat-emet-genesis-noach-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 22:4 | sefat-emet-genesis-noach-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 22:5 | sefat-emet-genesis-noach-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 23:1 | sefat-emet-genesis-noach-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 23:2 | sefat-emet-genesis-noach-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 23:3 | sefat-emet-genesis-noach-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 24:1 | sefat-emet-genesis-noach-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 24:2 | sefat-emet-genesis-noach-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 24:3 | sefat-emet-genesis-noach-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 24:4 | sefat-emet-genesis-noach-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 25:1 | sefat-emet-genesis-noach-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 25:2 | sefat-emet-genesis-noach-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 25:3 | sefat-emet-genesis-noach-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 25:4 | sefat-emet-genesis-noach-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 26:1 | sefat-emet-genesis-noach-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 26:2 | sefat-emet-genesis-noach-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 26:3 | sefat-emet-genesis-noach-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 26:4 | sefat-emet-genesis-noach-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 27:1 | sefat-emet-genesis-noach-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 27:2 | sefat-emet-genesis-noach-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 27:3 | sefat-emet-genesis-noach-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 27:4 | sefat-emet-genesis-noach-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 28:1 | sefat-emet-genesis-noach-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 28:2 | sefat-emet-genesis-noach-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 28:3 | sefat-emet-genesis-noach-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 29:1 | sefat-emet-genesis-noach-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 29:2 | sefat-emet-genesis-noach-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 29:3 | sefat-emet-genesis-noach-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 29:4 | sefat-emet-genesis-noach-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 29:5 | sefat-emet-genesis-noach-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 30:1 | sefat-emet-genesis-noach-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 30:2 | sefat-emet-genesis-noach-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 30:3 | sefat-emet-genesis-noach-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 31:1 | sefat-emet-genesis-noach-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 31:2 | sefat-emet-genesis-noach-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 31:3 | sefat-emet-genesis-noach-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 31:4 | sefat-emet-genesis-noach-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 32:1 | sefat-emet-genesis-noach-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 32:2 | sefat-emet-genesis-noach-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 32:3 | sefat-emet-genesis-noach-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 32:4 | sefat-emet-genesis-noach-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 32:5 | sefat-emet-genesis-noach-32-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 33:1 | sefat-emet-genesis-noach-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 33:2 | sefat-emet-genesis-noach-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 33:3 | sefat-emet-genesis-noach-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 33:4 | sefat-emet-genesis-noach-33-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 33:5 | sefat-emet-genesis-noach-33-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 34:1 | sefat-emet-genesis-noach-34-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 34:2 | sefat-emet-genesis-noach-34-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Noach 34:3 | sefat-emet-genesis-noach-34-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 1:1 | sefat-emet-genesis-lech-lecha-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 1:2 | sefat-emet-genesis-lech-lecha-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 1:3 | sefat-emet-genesis-lech-lecha-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 1:4 | sefat-emet-genesis-lech-lecha-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 1:5 | sefat-emet-genesis-lech-lecha-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 2:1 | sefat-emet-genesis-lech-lecha-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 2:2 | sefat-emet-genesis-lech-lecha-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 2:3 | sefat-emet-genesis-lech-lecha-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 2:4 | sefat-emet-genesis-lech-lecha-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 2:5 | sefat-emet-genesis-lech-lecha-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 2:6 | sefat-emet-genesis-lech-lecha-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 3:1 | sefat-emet-genesis-lech-lecha-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 3:2 | sefat-emet-genesis-lech-lecha-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 3:3 | sefat-emet-genesis-lech-lecha-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 3:4 | sefat-emet-genesis-lech-lecha-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 3:5 | sefat-emet-genesis-lech-lecha-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 3:6 | sefat-emet-genesis-lech-lecha-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 4:1 | sefat-emet-genesis-lech-lecha-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 4:2 | sefat-emet-genesis-lech-lecha-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 4:3 | sefat-emet-genesis-lech-lecha-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 4:4 | sefat-emet-genesis-lech-lecha-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 4:5 | sefat-emet-genesis-lech-lecha-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 4:6 | sefat-emet-genesis-lech-lecha-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:1 | sefat-emet-genesis-lech-lecha-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:2 | sefat-emet-genesis-lech-lecha-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:3 | sefat-emet-genesis-lech-lecha-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:4 | sefat-emet-genesis-lech-lecha-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:5 | sefat-emet-genesis-lech-lecha-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:6 | sefat-emet-genesis-lech-lecha-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:7 | sefat-emet-genesis-lech-lecha-5-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 5:8 | sefat-emet-genesis-lech-lecha-5-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 6:1 | sefat-emet-genesis-lech-lecha-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 6:2 | sefat-emet-genesis-lech-lecha-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 6:3 | sefat-emet-genesis-lech-lecha-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 6:4 | sefat-emet-genesis-lech-lecha-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 6:5 | sefat-emet-genesis-lech-lecha-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 7:1 | sefat-emet-genesis-lech-lecha-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 7:2 | sefat-emet-genesis-lech-lecha-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 7:3 | sefat-emet-genesis-lech-lecha-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 7:4 | sefat-emet-genesis-lech-lecha-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 8:1 | sefat-emet-genesis-lech-lecha-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 8:2 | sefat-emet-genesis-lech-lecha-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 8:3 | sefat-emet-genesis-lech-lecha-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 9:1 | sefat-emet-genesis-lech-lecha-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 9:2 | sefat-emet-genesis-lech-lecha-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 9:3 | sefat-emet-genesis-lech-lecha-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 9:4 | sefat-emet-genesis-lech-lecha-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 9:5 | sefat-emet-genesis-lech-lecha-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 10:1 | sefat-emet-genesis-lech-lecha-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 10:2 | sefat-emet-genesis-lech-lecha-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 10:3 | sefat-emet-genesis-lech-lecha-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 10:4 | sefat-emet-genesis-lech-lecha-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 10:5 | sefat-emet-genesis-lech-lecha-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 11:1 | sefat-emet-genesis-lech-lecha-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 11:2 | sefat-emet-genesis-lech-lecha-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 11:3 | sefat-emet-genesis-lech-lecha-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 12:1 | sefat-emet-genesis-lech-lecha-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 12:2 | sefat-emet-genesis-lech-lecha-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 12:3 | sefat-emet-genesis-lech-lecha-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 12:4 | sefat-emet-genesis-lech-lecha-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 12:5 | sefat-emet-genesis-lech-lecha-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 13:1 | sefat-emet-genesis-lech-lecha-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 13:2 | sefat-emet-genesis-lech-lecha-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 13:3 | sefat-emet-genesis-lech-lecha-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 13:4 | sefat-emet-genesis-lech-lecha-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 14:1 | sefat-emet-genesis-lech-lecha-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 14:2 | sefat-emet-genesis-lech-lecha-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 14:3 | sefat-emet-genesis-lech-lecha-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 14:4 | sefat-emet-genesis-lech-lecha-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 14:5 | sefat-emet-genesis-lech-lecha-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 14:6 | sefat-emet-genesis-lech-lecha-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 15:1 | sefat-emet-genesis-lech-lecha-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 15:2 | sefat-emet-genesis-lech-lecha-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 15:3 | sefat-emet-genesis-lech-lecha-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 15:4 | sefat-emet-genesis-lech-lecha-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 15:5 | sefat-emet-genesis-lech-lecha-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 15:6 | sefat-emet-genesis-lech-lecha-15-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 16:1 | sefat-emet-genesis-lech-lecha-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 16:2 | sefat-emet-genesis-lech-lecha-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 16:3 | sefat-emet-genesis-lech-lecha-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 16:4 | sefat-emet-genesis-lech-lecha-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 16:5 | sefat-emet-genesis-lech-lecha-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 17:1 | sefat-emet-genesis-lech-lecha-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 17:2 | sefat-emet-genesis-lech-lecha-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 17:3 | sefat-emet-genesis-lech-lecha-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 17:4 | sefat-emet-genesis-lech-lecha-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 17:5 | sefat-emet-genesis-lech-lecha-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 17:6 | sefat-emet-genesis-lech-lecha-17-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 18:1 | sefat-emet-genesis-lech-lecha-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 18:2 | sefat-emet-genesis-lech-lecha-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 18:3 | sefat-emet-genesis-lech-lecha-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 19:1 | sefat-emet-genesis-lech-lecha-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 19:2 | sefat-emet-genesis-lech-lecha-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 19:3 | sefat-emet-genesis-lech-lecha-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 19:4 | sefat-emet-genesis-lech-lecha-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 20:1 | sefat-emet-genesis-lech-lecha-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 20:2 | sefat-emet-genesis-lech-lecha-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 20:3 | sefat-emet-genesis-lech-lecha-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 20:4 | sefat-emet-genesis-lech-lecha-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 21:1 | sefat-emet-genesis-lech-lecha-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 21:2 | sefat-emet-genesis-lech-lecha-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 21:3 | sefat-emet-genesis-lech-lecha-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 21:4 | sefat-emet-genesis-lech-lecha-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 21:5 | sefat-emet-genesis-lech-lecha-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 22:1 | sefat-emet-genesis-lech-lecha-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 22:2 | sefat-emet-genesis-lech-lecha-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 22:3 | sefat-emet-genesis-lech-lecha-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 22:4 | sefat-emet-genesis-lech-lecha-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 23:1 | sefat-emet-genesis-lech-lecha-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 23:2 | sefat-emet-genesis-lech-lecha-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 23:3 | sefat-emet-genesis-lech-lecha-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 23:4 | sefat-emet-genesis-lech-lecha-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 23:5 | sefat-emet-genesis-lech-lecha-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 24:1 | sefat-emet-genesis-lech-lecha-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 24:2 | sefat-emet-genesis-lech-lecha-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 24:3 | sefat-emet-genesis-lech-lecha-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 24:4 | sefat-emet-genesis-lech-lecha-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 25:1 | sefat-emet-genesis-lech-lecha-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 25:2 | sefat-emet-genesis-lech-lecha-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 25:3 | sefat-emet-genesis-lech-lecha-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 25:4 | sefat-emet-genesis-lech-lecha-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 25:5 | sefat-emet-genesis-lech-lecha-25-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 26:1 | sefat-emet-genesis-lech-lecha-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 26:2 | sefat-emet-genesis-lech-lecha-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 26:3 | sefat-emet-genesis-lech-lecha-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 26:4 | sefat-emet-genesis-lech-lecha-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 27:1 | sefat-emet-genesis-lech-lecha-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 27:2 | sefat-emet-genesis-lech-lecha-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 27:3 | sefat-emet-genesis-lech-lecha-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 27:4 | sefat-emet-genesis-lech-lecha-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 28:1 | sefat-emet-genesis-lech-lecha-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 28:2 | sefat-emet-genesis-lech-lecha-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 28:3 | sefat-emet-genesis-lech-lecha-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 28:4 | sefat-emet-genesis-lech-lecha-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 29:1 | sefat-emet-genesis-lech-lecha-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 29:2 | sefat-emet-genesis-lech-lecha-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 29:3 | sefat-emet-genesis-lech-lecha-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 29:4 | sefat-emet-genesis-lech-lecha-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 29:5 | sefat-emet-genesis-lech-lecha-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 29:6 | sefat-emet-genesis-lech-lecha-29-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 30:1 | sefat-emet-genesis-lech-lecha-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 30:2 | sefat-emet-genesis-lech-lecha-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 30:3 | sefat-emet-genesis-lech-lecha-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 31:1 | sefat-emet-genesis-lech-lecha-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 31:2 | sefat-emet-genesis-lech-lecha-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 31:3 | sefat-emet-genesis-lech-lecha-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 31:4 | sefat-emet-genesis-lech-lecha-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 32:1 | sefat-emet-genesis-lech-lecha-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 32:2 | sefat-emet-genesis-lech-lecha-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 32:3 | sefat-emet-genesis-lech-lecha-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Lech Lecha 32:4 | sefat-emet-genesis-lech-lecha-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 1:1 | sefat-emet-genesis-vayera-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 1:2 | sefat-emet-genesis-vayera-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 1:3 | sefat-emet-genesis-vayera-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 1:4 | sefat-emet-genesis-vayera-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 2:1 | sefat-emet-genesis-vayera-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 2:2 | sefat-emet-genesis-vayera-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 2:3 | sefat-emet-genesis-vayera-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 3:1 | sefat-emet-genesis-vayera-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 3:2 | sefat-emet-genesis-vayera-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 3:3 | sefat-emet-genesis-vayera-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 3:4 | sefat-emet-genesis-vayera-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 3:5 | sefat-emet-genesis-vayera-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 3:6 | sefat-emet-genesis-vayera-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 4:1 | sefat-emet-genesis-vayera-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 4:2 | sefat-emet-genesis-vayera-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 4:3 | sefat-emet-genesis-vayera-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 4:4 | sefat-emet-genesis-vayera-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 5:1 | sefat-emet-genesis-vayera-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 5:2 | sefat-emet-genesis-vayera-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 5:3 | sefat-emet-genesis-vayera-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 5:4 | sefat-emet-genesis-vayera-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 5:5 | sefat-emet-genesis-vayera-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 5:6 | sefat-emet-genesis-vayera-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 6:1 | sefat-emet-genesis-vayera-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 6:2 | sefat-emet-genesis-vayera-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 6:3 | sefat-emet-genesis-vayera-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 6:4 | sefat-emet-genesis-vayera-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 7:1 | sefat-emet-genesis-vayera-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 7:2 | sefat-emet-genesis-vayera-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 7:3 | sefat-emet-genesis-vayera-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 7:4 | sefat-emet-genesis-vayera-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 7:5 | sefat-emet-genesis-vayera-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 8:1 | sefat-emet-genesis-vayera-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 8:2 | sefat-emet-genesis-vayera-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 8:3 | sefat-emet-genesis-vayera-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 8:4 | sefat-emet-genesis-vayera-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 8:5 | sefat-emet-genesis-vayera-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 9:1 | sefat-emet-genesis-vayera-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 9:2 | sefat-emet-genesis-vayera-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 9:3 | sefat-emet-genesis-vayera-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 9:4 | sefat-emet-genesis-vayera-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 10:1 | sefat-emet-genesis-vayera-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 10:2 | sefat-emet-genesis-vayera-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 10:3 | sefat-emet-genesis-vayera-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 10:4 | sefat-emet-genesis-vayera-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 10:5 | sefat-emet-genesis-vayera-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 10:6 | sefat-emet-genesis-vayera-10-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 10:7 | sefat-emet-genesis-vayera-10-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 11:1 | sefat-emet-genesis-vayera-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 11:2 | sefat-emet-genesis-vayera-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 11:3 | sefat-emet-genesis-vayera-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 11:4 | sefat-emet-genesis-vayera-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 12:1 | sefat-emet-genesis-vayera-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 12:2 | sefat-emet-genesis-vayera-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 12:3 | sefat-emet-genesis-vayera-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 12:4 | sefat-emet-genesis-vayera-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 12:5 | sefat-emet-genesis-vayera-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 13:1 | sefat-emet-genesis-vayera-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 13:2 | sefat-emet-genesis-vayera-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 13:3 | sefat-emet-genesis-vayera-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 13:4 | sefat-emet-genesis-vayera-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 14:1 | sefat-emet-genesis-vayera-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 14:2 | sefat-emet-genesis-vayera-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 14:3 | sefat-emet-genesis-vayera-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 14:4 | sefat-emet-genesis-vayera-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 14:5 | sefat-emet-genesis-vayera-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 15:1 | sefat-emet-genesis-vayera-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 15:2 | sefat-emet-genesis-vayera-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 15:3 | sefat-emet-genesis-vayera-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 15:4 | sefat-emet-genesis-vayera-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 15:5 | sefat-emet-genesis-vayera-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 16:1 | sefat-emet-genesis-vayera-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 16:2 | sefat-emet-genesis-vayera-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 16:3 | sefat-emet-genesis-vayera-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 17:1 | sefat-emet-genesis-vayera-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 17:2 | sefat-emet-genesis-vayera-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 17:3 | sefat-emet-genesis-vayera-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 17:4 | sefat-emet-genesis-vayera-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 17:5 | sefat-emet-genesis-vayera-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 18:1 | sefat-emet-genesis-vayera-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 18:2 | sefat-emet-genesis-vayera-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 18:3 | sefat-emet-genesis-vayera-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 18:4 | sefat-emet-genesis-vayera-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 19:1 | sefat-emet-genesis-vayera-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 19:2 | sefat-emet-genesis-vayera-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 19:3 | sefat-emet-genesis-vayera-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 20:1 | sefat-emet-genesis-vayera-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 20:2 | sefat-emet-genesis-vayera-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 20:3 | sefat-emet-genesis-vayera-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 20:4 | sefat-emet-genesis-vayera-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 21:1 | sefat-emet-genesis-vayera-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 21:2 | sefat-emet-genesis-vayera-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 21:3 | sefat-emet-genesis-vayera-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 21:4 | sefat-emet-genesis-vayera-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 21:5 | sefat-emet-genesis-vayera-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 22:1 | sefat-emet-genesis-vayera-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 22:2 | sefat-emet-genesis-vayera-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 22:3 | sefat-emet-genesis-vayera-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 22:4 | sefat-emet-genesis-vayera-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 22:5 | sefat-emet-genesis-vayera-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 23:1 | sefat-emet-genesis-vayera-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 23:2 | sefat-emet-genesis-vayera-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 23:3 | sefat-emet-genesis-vayera-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 23:4 | sefat-emet-genesis-vayera-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 24:1 | sefat-emet-genesis-vayera-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 24:2 | sefat-emet-genesis-vayera-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 24:3 | sefat-emet-genesis-vayera-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 24:4 | sefat-emet-genesis-vayera-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 25:1 | sefat-emet-genesis-vayera-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 25:2 | sefat-emet-genesis-vayera-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 25:3 | sefat-emet-genesis-vayera-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 25:4 | sefat-emet-genesis-vayera-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 26:1 | sefat-emet-genesis-vayera-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 26:2 | sefat-emet-genesis-vayera-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 26:3 | sefat-emet-genesis-vayera-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 26:4 | sefat-emet-genesis-vayera-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 27:1 | sefat-emet-genesis-vayera-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 27:2 | sefat-emet-genesis-vayera-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 27:3 | sefat-emet-genesis-vayera-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 27:4 | sefat-emet-genesis-vayera-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 28:1 | sefat-emet-genesis-vayera-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 28:2 | sefat-emet-genesis-vayera-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 28:3 | sefat-emet-genesis-vayera-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 28:4 | sefat-emet-genesis-vayera-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 28:5 | sefat-emet-genesis-vayera-28-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 29:1 | sefat-emet-genesis-vayera-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 29:2 | sefat-emet-genesis-vayera-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 29:3 | sefat-emet-genesis-vayera-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 29:4 | sefat-emet-genesis-vayera-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 30:1 | sefat-emet-genesis-vayera-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 30:2 | sefat-emet-genesis-vayera-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 30:3 | sefat-emet-genesis-vayera-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 30:4 | sefat-emet-genesis-vayera-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 30:5 | sefat-emet-genesis-vayera-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 31:1 | sefat-emet-genesis-vayera-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 31:2 | sefat-emet-genesis-vayera-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 31:3 | sefat-emet-genesis-vayera-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 31:4 | sefat-emet-genesis-vayera-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 31:5 | sefat-emet-genesis-vayera-31-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 32:1 | sefat-emet-genesis-vayera-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 32:2 | sefat-emet-genesis-vayera-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 32:3 | sefat-emet-genesis-vayera-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 32:4 | sefat-emet-genesis-vayera-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 32:5 | sefat-emet-genesis-vayera-32-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 33:1 | sefat-emet-genesis-vayera-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 33:2 | sefat-emet-genesis-vayera-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 33:3 | sefat-emet-genesis-vayera-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 34:1 | sefat-emet-genesis-vayera-34-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 34:2 | sefat-emet-genesis-vayera-34-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 34:3 | sefat-emet-genesis-vayera-34-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayera 34:4 | sefat-emet-genesis-vayera-34-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 1:1 | sefat-emet-genesis-chayei-sara-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 1:2 | sefat-emet-genesis-chayei-sara-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 1:3 | sefat-emet-genesis-chayei-sara-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 1:4 | sefat-emet-genesis-chayei-sara-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 1:5 | sefat-emet-genesis-chayei-sara-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 1:6 | sefat-emet-genesis-chayei-sara-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 1:7 | sefat-emet-genesis-chayei-sara-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 2:1 | sefat-emet-genesis-chayei-sara-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 2:2 | sefat-emet-genesis-chayei-sara-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 2:3 | sefat-emet-genesis-chayei-sara-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 2:4 | sefat-emet-genesis-chayei-sara-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 2:5 | sefat-emet-genesis-chayei-sara-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 2:6 | sefat-emet-genesis-chayei-sara-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 3:1 | sefat-emet-genesis-chayei-sara-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 3:2 | sefat-emet-genesis-chayei-sara-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 3:3 | sefat-emet-genesis-chayei-sara-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 3:4 | sefat-emet-genesis-chayei-sara-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 3:5 | sefat-emet-genesis-chayei-sara-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 4:1 | sefat-emet-genesis-chayei-sara-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 4:2 | sefat-emet-genesis-chayei-sara-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 4:3 | sefat-emet-genesis-chayei-sara-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 4:4 | sefat-emet-genesis-chayei-sara-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 4:5 | sefat-emet-genesis-chayei-sara-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 4:6 | sefat-emet-genesis-chayei-sara-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 4:7 | sefat-emet-genesis-chayei-sara-4-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 5:1 | sefat-emet-genesis-chayei-sara-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 5:2 | sefat-emet-genesis-chayei-sara-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 5:3 | sefat-emet-genesis-chayei-sara-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 5:4 | sefat-emet-genesis-chayei-sara-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 5:5 | sefat-emet-genesis-chayei-sara-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 5:6 | sefat-emet-genesis-chayei-sara-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 6:1 | sefat-emet-genesis-chayei-sara-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 6:2 | sefat-emet-genesis-chayei-sara-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 6:3 | sefat-emet-genesis-chayei-sara-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 6:4 | sefat-emet-genesis-chayei-sara-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 7:1 | sefat-emet-genesis-chayei-sara-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 7:2 | sefat-emet-genesis-chayei-sara-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 7:3 | sefat-emet-genesis-chayei-sara-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 7:4 | sefat-emet-genesis-chayei-sara-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 7:5 | sefat-emet-genesis-chayei-sara-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 7:6 | sefat-emet-genesis-chayei-sara-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 8:1 | sefat-emet-genesis-chayei-sara-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 8:2 | sefat-emet-genesis-chayei-sara-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 8:3 | sefat-emet-genesis-chayei-sara-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 8:4 | sefat-emet-genesis-chayei-sara-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 8:5 | sefat-emet-genesis-chayei-sara-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 8:6 | sefat-emet-genesis-chayei-sara-8-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 9:1 | sefat-emet-genesis-chayei-sara-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 9:2 | sefat-emet-genesis-chayei-sara-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 9:3 | sefat-emet-genesis-chayei-sara-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 9:4 | sefat-emet-genesis-chayei-sara-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 9:5 | sefat-emet-genesis-chayei-sara-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 9:6 | sefat-emet-genesis-chayei-sara-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 10:1 | sefat-emet-genesis-chayei-sara-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 10:2 | sefat-emet-genesis-chayei-sara-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 10:3 | sefat-emet-genesis-chayei-sara-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 10:4 | sefat-emet-genesis-chayei-sara-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 11:1 | sefat-emet-genesis-chayei-sara-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 11:2 | sefat-emet-genesis-chayei-sara-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 11:3 | sefat-emet-genesis-chayei-sara-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 11:4 | sefat-emet-genesis-chayei-sara-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 11:5 | sefat-emet-genesis-chayei-sara-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 11:6 | sefat-emet-genesis-chayei-sara-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 12:1 | sefat-emet-genesis-chayei-sara-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 12:2 | sefat-emet-genesis-chayei-sara-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 12:3 | sefat-emet-genesis-chayei-sara-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 12:4 | sefat-emet-genesis-chayei-sara-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 12:5 | sefat-emet-genesis-chayei-sara-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 13:1 | sefat-emet-genesis-chayei-sara-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 13:2 | sefat-emet-genesis-chayei-sara-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 13:3 | sefat-emet-genesis-chayei-sara-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 13:4 | sefat-emet-genesis-chayei-sara-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 13:5 | sefat-emet-genesis-chayei-sara-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 14:1 | sefat-emet-genesis-chayei-sara-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 14:2 | sefat-emet-genesis-chayei-sara-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 14:3 | sefat-emet-genesis-chayei-sara-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 14:4 | sefat-emet-genesis-chayei-sara-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 15:1 | sefat-emet-genesis-chayei-sara-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 15:2 | sefat-emet-genesis-chayei-sara-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 15:3 | sefat-emet-genesis-chayei-sara-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 15:4 | sefat-emet-genesis-chayei-sara-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 15:5 | sefat-emet-genesis-chayei-sara-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 16:1 | sefat-emet-genesis-chayei-sara-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 16:2 | sefat-emet-genesis-chayei-sara-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 16:3 | sefat-emet-genesis-chayei-sara-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 17:1 | sefat-emet-genesis-chayei-sara-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 17:2 | sefat-emet-genesis-chayei-sara-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 17:3 | sefat-emet-genesis-chayei-sara-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 17:4 | sefat-emet-genesis-chayei-sara-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 17:5 | sefat-emet-genesis-chayei-sara-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 18:1 | sefat-emet-genesis-chayei-sara-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 18:2 | sefat-emet-genesis-chayei-sara-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 18:3 | sefat-emet-genesis-chayei-sara-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 18:4 | sefat-emet-genesis-chayei-sara-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 18:5 | sefat-emet-genesis-chayei-sara-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 18:6 | sefat-emet-genesis-chayei-sara-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 19:1 | sefat-emet-genesis-chayei-sara-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 19:2 | sefat-emet-genesis-chayei-sara-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 19:3 | sefat-emet-genesis-chayei-sara-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 19:4 | sefat-emet-genesis-chayei-sara-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 20:1 | sefat-emet-genesis-chayei-sara-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 20:2 | sefat-emet-genesis-chayei-sara-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 20:3 | sefat-emet-genesis-chayei-sara-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 21:1 | sefat-emet-genesis-chayei-sara-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 21:2 | sefat-emet-genesis-chayei-sara-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 21:3 | sefat-emet-genesis-chayei-sara-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 21:4 | sefat-emet-genesis-chayei-sara-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 21:5 | sefat-emet-genesis-chayei-sara-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 22:1 | sefat-emet-genesis-chayei-sara-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 22:2 | sefat-emet-genesis-chayei-sara-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 22:3 | sefat-emet-genesis-chayei-sara-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 22:4 | sefat-emet-genesis-chayei-sara-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 23:1 | sefat-emet-genesis-chayei-sara-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 23:2 | sefat-emet-genesis-chayei-sara-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 23:3 | sefat-emet-genesis-chayei-sara-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 23:4 | sefat-emet-genesis-chayei-sara-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 23:5 | sefat-emet-genesis-chayei-sara-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 24:1 | sefat-emet-genesis-chayei-sara-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 24:2 | sefat-emet-genesis-chayei-sara-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 24:3 | sefat-emet-genesis-chayei-sara-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 24:4 | sefat-emet-genesis-chayei-sara-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 24:5 | sefat-emet-genesis-chayei-sara-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 25:1 | sefat-emet-genesis-chayei-sara-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 25:2 | sefat-emet-genesis-chayei-sara-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 25:3 | sefat-emet-genesis-chayei-sara-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 25:4 | sefat-emet-genesis-chayei-sara-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 26:1 | sefat-emet-genesis-chayei-sara-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 26:2 | sefat-emet-genesis-chayei-sara-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 26:3 | sefat-emet-genesis-chayei-sara-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 27:1 | sefat-emet-genesis-chayei-sara-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 27:2 | sefat-emet-genesis-chayei-sara-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 27:3 | sefat-emet-genesis-chayei-sara-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 27:4 | sefat-emet-genesis-chayei-sara-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 28:1 | sefat-emet-genesis-chayei-sara-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 28:2 | sefat-emet-genesis-chayei-sara-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 28:3 | sefat-emet-genesis-chayei-sara-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 28:4 | sefat-emet-genesis-chayei-sara-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 29:1 | sefat-emet-genesis-chayei-sara-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 29:2 | sefat-emet-genesis-chayei-sara-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 29:3 | sefat-emet-genesis-chayei-sara-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 29:4 | sefat-emet-genesis-chayei-sara-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:1 | sefat-emet-genesis-chayei-sara-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:2 | sefat-emet-genesis-chayei-sara-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:3 | sefat-emet-genesis-chayei-sara-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:4 | sefat-emet-genesis-chayei-sara-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:5 | sefat-emet-genesis-chayei-sara-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:6 | sefat-emet-genesis-chayei-sara-30-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:7 | sefat-emet-genesis-chayei-sara-30-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 30:8 | sefat-emet-genesis-chayei-sara-30-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 31:1 | sefat-emet-genesis-chayei-sara-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 31:2 | sefat-emet-genesis-chayei-sara-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 31:3 | sefat-emet-genesis-chayei-sara-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Chayei Sara 31:4 | sefat-emet-genesis-chayei-sara-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 1:1 | sefat-emet-genesis-toldot-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 1:2 | sefat-emet-genesis-toldot-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 1:3 | sefat-emet-genesis-toldot-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 1:4 | sefat-emet-genesis-toldot-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 1:5 | sefat-emet-genesis-toldot-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 2:1 | sefat-emet-genesis-toldot-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 2:2 | sefat-emet-genesis-toldot-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 2:3 | sefat-emet-genesis-toldot-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 2:4 | sefat-emet-genesis-toldot-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 2:5 | sefat-emet-genesis-toldot-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 2:6 | sefat-emet-genesis-toldot-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 3:1 | sefat-emet-genesis-toldot-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 3:2 | sefat-emet-genesis-toldot-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 3:3 | sefat-emet-genesis-toldot-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 3:4 | sefat-emet-genesis-toldot-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 3:5 | sefat-emet-genesis-toldot-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 3:6 | sefat-emet-genesis-toldot-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 4:1 | sefat-emet-genesis-toldot-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 4:2 | sefat-emet-genesis-toldot-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 4:3 | sefat-emet-genesis-toldot-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 4:4 | sefat-emet-genesis-toldot-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 4:5 | sefat-emet-genesis-toldot-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 4:6 | sefat-emet-genesis-toldot-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 5:1 | sefat-emet-genesis-toldot-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 5:2 | sefat-emet-genesis-toldot-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 5:3 | sefat-emet-genesis-toldot-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 5:4 | sefat-emet-genesis-toldot-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 6:1 | sefat-emet-genesis-toldot-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 6:2 | sefat-emet-genesis-toldot-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 6:3 | sefat-emet-genesis-toldot-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 6:4 | sefat-emet-genesis-toldot-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 6:5 | sefat-emet-genesis-toldot-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 6:6 | sefat-emet-genesis-toldot-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 6:7 | sefat-emet-genesis-toldot-6-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 7:1 | sefat-emet-genesis-toldot-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 7:2 | sefat-emet-genesis-toldot-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 7:3 | sefat-emet-genesis-toldot-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 7:4 | sefat-emet-genesis-toldot-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 7:5 | sefat-emet-genesis-toldot-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 7:6 | sefat-emet-genesis-toldot-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 8:1 | sefat-emet-genesis-toldot-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 8:2 | sefat-emet-genesis-toldot-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 8:3 | sefat-emet-genesis-toldot-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 8:4 | sefat-emet-genesis-toldot-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 8:5 | sefat-emet-genesis-toldot-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 9:1 | sefat-emet-genesis-toldot-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 9:2 | sefat-emet-genesis-toldot-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 9:3 | sefat-emet-genesis-toldot-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 10:1 | sefat-emet-genesis-toldot-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 10:2 | sefat-emet-genesis-toldot-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 10:3 | sefat-emet-genesis-toldot-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 10:4 | sefat-emet-genesis-toldot-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 10:5 | sefat-emet-genesis-toldot-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 10:6 | sefat-emet-genesis-toldot-10-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 11:1 | sefat-emet-genesis-toldot-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 11:2 | sefat-emet-genesis-toldot-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 11:3 | sefat-emet-genesis-toldot-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 11:4 | sefat-emet-genesis-toldot-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 11:5 | sefat-emet-genesis-toldot-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 11:6 | sefat-emet-genesis-toldot-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 12:1 | sefat-emet-genesis-toldot-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 12:2 | sefat-emet-genesis-toldot-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 12:3 | sefat-emet-genesis-toldot-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 12:4 | sefat-emet-genesis-toldot-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 12:5 | sefat-emet-genesis-toldot-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 13:1 | sefat-emet-genesis-toldot-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 13:2 | sefat-emet-genesis-toldot-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 13:3 | sefat-emet-genesis-toldot-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 13:4 | sefat-emet-genesis-toldot-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 14:1 | sefat-emet-genesis-toldot-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 14:2 | sefat-emet-genesis-toldot-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 14:3 | sefat-emet-genesis-toldot-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 14:4 | sefat-emet-genesis-toldot-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 14:5 | sefat-emet-genesis-toldot-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 14:6 | sefat-emet-genesis-toldot-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 15:1 | sefat-emet-genesis-toldot-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 15:2 | sefat-emet-genesis-toldot-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 15:3 | sefat-emet-genesis-toldot-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 15:4 | sefat-emet-genesis-toldot-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 15:5 | sefat-emet-genesis-toldot-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 16:1 | sefat-emet-genesis-toldot-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 16:2 | sefat-emet-genesis-toldot-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 16:3 | sefat-emet-genesis-toldot-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 16:4 | sefat-emet-genesis-toldot-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 17:1 | sefat-emet-genesis-toldot-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 17:2 | sefat-emet-genesis-toldot-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 17:3 | sefat-emet-genesis-toldot-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 17:4 | sefat-emet-genesis-toldot-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 17:5 | sefat-emet-genesis-toldot-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 18:1 | sefat-emet-genesis-toldot-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 18:2 | sefat-emet-genesis-toldot-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 18:3 | sefat-emet-genesis-toldot-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 18:4 | sefat-emet-genesis-toldot-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 18:5 | sefat-emet-genesis-toldot-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 18:6 | sefat-emet-genesis-toldot-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 19:1 | sefat-emet-genesis-toldot-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 19:2 | sefat-emet-genesis-toldot-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 19:3 | sefat-emet-genesis-toldot-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 19:4 | sefat-emet-genesis-toldot-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 19:5 | sefat-emet-genesis-toldot-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 20:1 | sefat-emet-genesis-toldot-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 20:2 | sefat-emet-genesis-toldot-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 20:3 | sefat-emet-genesis-toldot-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 20:4 | sefat-emet-genesis-toldot-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 21:1 | sefat-emet-genesis-toldot-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 21:2 | sefat-emet-genesis-toldot-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 21:3 | sefat-emet-genesis-toldot-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 21:4 | sefat-emet-genesis-toldot-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 21:5 | sefat-emet-genesis-toldot-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 22:1 | sefat-emet-genesis-toldot-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 22:2 | sefat-emet-genesis-toldot-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 22:3 | sefat-emet-genesis-toldot-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 22:4 | sefat-emet-genesis-toldot-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 23:1 | sefat-emet-genesis-toldot-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 23:2 | sefat-emet-genesis-toldot-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 23:3 | sefat-emet-genesis-toldot-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 23:4 | sefat-emet-genesis-toldot-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 23:5 | sefat-emet-genesis-toldot-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 24:1 | sefat-emet-genesis-toldot-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 24:2 | sefat-emet-genesis-toldot-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 24:3 | sefat-emet-genesis-toldot-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 25:1 | sefat-emet-genesis-toldot-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 25:2 | sefat-emet-genesis-toldot-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 25:3 | sefat-emet-genesis-toldot-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 25:4 | sefat-emet-genesis-toldot-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 26:1 | sefat-emet-genesis-toldot-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 26:2 | sefat-emet-genesis-toldot-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 26:3 | sefat-emet-genesis-toldot-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 27:1 | sefat-emet-genesis-toldot-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 27:2 | sefat-emet-genesis-toldot-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 27:3 | sefat-emet-genesis-toldot-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 27:4 | sefat-emet-genesis-toldot-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 27:5 | sefat-emet-genesis-toldot-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 28:1 | sefat-emet-genesis-toldot-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 28:2 | sefat-emet-genesis-toldot-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 28:3 | sefat-emet-genesis-toldot-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 28:4 | sefat-emet-genesis-toldot-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 28:5 | sefat-emet-genesis-toldot-28-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 29:1 | sefat-emet-genesis-toldot-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 29:2 | sefat-emet-genesis-toldot-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 29:3 | sefat-emet-genesis-toldot-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 29:4 | sefat-emet-genesis-toldot-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 29:5 | sefat-emet-genesis-toldot-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 30:1 | sefat-emet-genesis-toldot-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 30:2 | sefat-emet-genesis-toldot-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 30:3 | sefat-emet-genesis-toldot-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 30:4 | sefat-emet-genesis-toldot-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 30:5 | sefat-emet-genesis-toldot-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 31:1 | sefat-emet-genesis-toldot-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 31:2 | sefat-emet-genesis-toldot-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 31:3 | sefat-emet-genesis-toldot-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 31:4 | sefat-emet-genesis-toldot-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Toldot 31:5 | sefat-emet-genesis-toldot-31-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 1:1 | sefat-emet-genesis-vayetzei-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 1:2 | sefat-emet-genesis-vayetzei-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 1:3 | sefat-emet-genesis-vayetzei-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 1:4 | sefat-emet-genesis-vayetzei-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 1:5 | sefat-emet-genesis-vayetzei-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 2:1 | sefat-emet-genesis-vayetzei-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 2:2 | sefat-emet-genesis-vayetzei-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 2:3 | sefat-emet-genesis-vayetzei-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 2:4 | sefat-emet-genesis-vayetzei-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 2:5 | sefat-emet-genesis-vayetzei-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 2:6 | sefat-emet-genesis-vayetzei-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 2:7 | sefat-emet-genesis-vayetzei-2-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 3:1 | sefat-emet-genesis-vayetzei-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 3:2 | sefat-emet-genesis-vayetzei-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 3:3 | sefat-emet-genesis-vayetzei-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 3:4 | sefat-emet-genesis-vayetzei-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 4:1 | sefat-emet-genesis-vayetzei-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 4:2 | sefat-emet-genesis-vayetzei-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 4:3 | sefat-emet-genesis-vayetzei-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 4:4 | sefat-emet-genesis-vayetzei-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 4:5 | sefat-emet-genesis-vayetzei-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 4:6 | sefat-emet-genesis-vayetzei-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 4:7 | sefat-emet-genesis-vayetzei-4-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 5:1 | sefat-emet-genesis-vayetzei-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 5:2 | sefat-emet-genesis-vayetzei-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 5:3 | sefat-emet-genesis-vayetzei-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 5:4 | sefat-emet-genesis-vayetzei-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 5:5 | sefat-emet-genesis-vayetzei-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 6:1 | sefat-emet-genesis-vayetzei-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 6:2 | sefat-emet-genesis-vayetzei-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 6:3 | sefat-emet-genesis-vayetzei-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 6:4 | sefat-emet-genesis-vayetzei-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 7:1 | sefat-emet-genesis-vayetzei-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 7:2 | sefat-emet-genesis-vayetzei-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 7:3 | sefat-emet-genesis-vayetzei-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 7:4 | sefat-emet-genesis-vayetzei-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 7:5 | sefat-emet-genesis-vayetzei-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 7:6 | sefat-emet-genesis-vayetzei-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 8:1 | sefat-emet-genesis-vayetzei-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 8:2 | sefat-emet-genesis-vayetzei-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 8:3 | sefat-emet-genesis-vayetzei-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 8:4 | sefat-emet-genesis-vayetzei-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 8:5 | sefat-emet-genesis-vayetzei-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 9:1 | sefat-emet-genesis-vayetzei-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 9:2 | sefat-emet-genesis-vayetzei-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 9:3 | sefat-emet-genesis-vayetzei-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 10:1 | sefat-emet-genesis-vayetzei-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 10:2 | sefat-emet-genesis-vayetzei-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 10:3 | sefat-emet-genesis-vayetzei-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 11:1 | sefat-emet-genesis-vayetzei-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 11:2 | sefat-emet-genesis-vayetzei-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 11:3 | sefat-emet-genesis-vayetzei-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 11:4 | sefat-emet-genesis-vayetzei-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 11:5 | sefat-emet-genesis-vayetzei-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 11:6 | sefat-emet-genesis-vayetzei-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 11:7 | sefat-emet-genesis-vayetzei-11-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 12:1 | sefat-emet-genesis-vayetzei-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 12:2 | sefat-emet-genesis-vayetzei-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 12:3 | sefat-emet-genesis-vayetzei-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 12:4 | sefat-emet-genesis-vayetzei-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 12:5 | sefat-emet-genesis-vayetzei-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 12:6 | sefat-emet-genesis-vayetzei-12-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 13:1 | sefat-emet-genesis-vayetzei-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 13:2 | sefat-emet-genesis-vayetzei-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 13:3 | sefat-emet-genesis-vayetzei-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 13:4 | sefat-emet-genesis-vayetzei-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 13:5 | sefat-emet-genesis-vayetzei-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 14:1 | sefat-emet-genesis-vayetzei-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 14:2 | sefat-emet-genesis-vayetzei-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 14:3 | sefat-emet-genesis-vayetzei-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 14:4 | sefat-emet-genesis-vayetzei-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 15:1 | sefat-emet-genesis-vayetzei-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 15:2 | sefat-emet-genesis-vayetzei-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 15:3 | sefat-emet-genesis-vayetzei-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 15:4 | sefat-emet-genesis-vayetzei-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 16:1 | sefat-emet-genesis-vayetzei-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 16:2 | sefat-emet-genesis-vayetzei-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 16:3 | sefat-emet-genesis-vayetzei-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 16:4 | sefat-emet-genesis-vayetzei-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 16:5 | sefat-emet-genesis-vayetzei-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 16:6 | sefat-emet-genesis-vayetzei-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 17:1 | sefat-emet-genesis-vayetzei-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 17:2 | sefat-emet-genesis-vayetzei-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 17:3 | sefat-emet-genesis-vayetzei-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 17:4 | sefat-emet-genesis-vayetzei-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 18:1 | sefat-emet-genesis-vayetzei-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 18:2 | sefat-emet-genesis-vayetzei-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 18:3 | sefat-emet-genesis-vayetzei-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 18:4 | sefat-emet-genesis-vayetzei-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 19:1 | sefat-emet-genesis-vayetzei-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 19:2 | sefat-emet-genesis-vayetzei-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 19:3 | sefat-emet-genesis-vayetzei-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 19:4 | sefat-emet-genesis-vayetzei-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 19:5 | sefat-emet-genesis-vayetzei-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 20:1 | sefat-emet-genesis-vayetzei-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 20:2 | sefat-emet-genesis-vayetzei-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 20:3 | sefat-emet-genesis-vayetzei-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 20:4 | sefat-emet-genesis-vayetzei-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 21:1 | sefat-emet-genesis-vayetzei-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 21:2 | sefat-emet-genesis-vayetzei-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 21:3 | sefat-emet-genesis-vayetzei-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 22:1 | sefat-emet-genesis-vayetzei-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 22:2 | sefat-emet-genesis-vayetzei-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 22:3 | sefat-emet-genesis-vayetzei-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 22:4 | sefat-emet-genesis-vayetzei-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 23:1 | sefat-emet-genesis-vayetzei-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 23:2 | sefat-emet-genesis-vayetzei-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 23:3 | sefat-emet-genesis-vayetzei-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 24:1 | sefat-emet-genesis-vayetzei-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 24:2 | sefat-emet-genesis-vayetzei-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 24:3 | sefat-emet-genesis-vayetzei-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 24:4 | sefat-emet-genesis-vayetzei-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 25:1 | sefat-emet-genesis-vayetzei-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 25:2 | sefat-emet-genesis-vayetzei-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 25:3 | sefat-emet-genesis-vayetzei-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 25:4 | sefat-emet-genesis-vayetzei-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 26:1 | sefat-emet-genesis-vayetzei-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 26:2 | sefat-emet-genesis-vayetzei-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 26:3 | sefat-emet-genesis-vayetzei-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 26:4 | sefat-emet-genesis-vayetzei-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 26:5 | sefat-emet-genesis-vayetzei-26-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 27:1 | sefat-emet-genesis-vayetzei-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 27:2 | sefat-emet-genesis-vayetzei-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 27:3 | sefat-emet-genesis-vayetzei-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 27:4 | sefat-emet-genesis-vayetzei-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 27:5 | sefat-emet-genesis-vayetzei-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 27:6 | sefat-emet-genesis-vayetzei-27-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 28:1 | sefat-emet-genesis-vayetzei-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 28:2 | sefat-emet-genesis-vayetzei-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 28:3 | sefat-emet-genesis-vayetzei-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 29:1 | sefat-emet-genesis-vayetzei-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 29:2 | sefat-emet-genesis-vayetzei-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 29:3 | sefat-emet-genesis-vayetzei-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 30:1 | sefat-emet-genesis-vayetzei-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 30:2 | sefat-emet-genesis-vayetzei-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayetzei 30:3 | sefat-emet-genesis-vayetzei-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 1:1 | sefat-emet-genesis-vayishlach-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 1:2 | sefat-emet-genesis-vayishlach-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 1:3 | sefat-emet-genesis-vayishlach-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 1:4 | sefat-emet-genesis-vayishlach-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 1:5 | sefat-emet-genesis-vayishlach-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 2:1 | sefat-emet-genesis-vayishlach-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 2:2 | sefat-emet-genesis-vayishlach-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 2:3 | sefat-emet-genesis-vayishlach-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 3:1 | sefat-emet-genesis-vayishlach-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 3:2 | sefat-emet-genesis-vayishlach-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 3:3 | sefat-emet-genesis-vayishlach-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 3:4 | sefat-emet-genesis-vayishlach-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 3:5 | sefat-emet-genesis-vayishlach-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 4:1 | sefat-emet-genesis-vayishlach-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 4:2 | sefat-emet-genesis-vayishlach-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 4:3 | sefat-emet-genesis-vayishlach-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 4:4 | sefat-emet-genesis-vayishlach-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 4:5 | sefat-emet-genesis-vayishlach-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 5:1 | sefat-emet-genesis-vayishlach-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 5:2 | sefat-emet-genesis-vayishlach-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 5:3 | sefat-emet-genesis-vayishlach-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 5:4 | sefat-emet-genesis-vayishlach-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 5:5 | sefat-emet-genesis-vayishlach-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 6:1 | sefat-emet-genesis-vayishlach-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 6:2 | sefat-emet-genesis-vayishlach-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 6:3 | sefat-emet-genesis-vayishlach-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 7:1 | sefat-emet-genesis-vayishlach-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 7:2 | sefat-emet-genesis-vayishlach-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 7:3 | sefat-emet-genesis-vayishlach-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 7:4 | sefat-emet-genesis-vayishlach-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 7:5 | sefat-emet-genesis-vayishlach-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 7:6 | sefat-emet-genesis-vayishlach-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 8:1 | sefat-emet-genesis-vayishlach-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 8:2 | sefat-emet-genesis-vayishlach-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 8:3 | sefat-emet-genesis-vayishlach-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 8:4 | sefat-emet-genesis-vayishlach-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 8:5 | sefat-emet-genesis-vayishlach-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 9:1 | sefat-emet-genesis-vayishlach-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 9:2 | sefat-emet-genesis-vayishlach-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 9:3 | sefat-emet-genesis-vayishlach-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 9:4 | sefat-emet-genesis-vayishlach-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 9:5 | sefat-emet-genesis-vayishlach-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 9:6 | sefat-emet-genesis-vayishlach-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 9:7 | sefat-emet-genesis-vayishlach-9-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 10:1 | sefat-emet-genesis-vayishlach-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 10:2 | sefat-emet-genesis-vayishlach-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 10:3 | sefat-emet-genesis-vayishlach-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 10:4 | sefat-emet-genesis-vayishlach-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 11:1 | sefat-emet-genesis-vayishlach-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 11:2 | sefat-emet-genesis-vayishlach-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 11:3 | sefat-emet-genesis-vayishlach-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 11:4 | sefat-emet-genesis-vayishlach-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 11:5 | sefat-emet-genesis-vayishlach-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 12:1 | sefat-emet-genesis-vayishlach-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 12:2 | sefat-emet-genesis-vayishlach-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 12:3 | sefat-emet-genesis-vayishlach-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 13:1 | sefat-emet-genesis-vayishlach-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 13:2 | sefat-emet-genesis-vayishlach-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 13:3 | sefat-emet-genesis-vayishlach-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 13:4 | sefat-emet-genesis-vayishlach-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 13:5 | sefat-emet-genesis-vayishlach-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 14:1 | sefat-emet-genesis-vayishlach-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 14:2 | sefat-emet-genesis-vayishlach-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 14:3 | sefat-emet-genesis-vayishlach-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 14:4 | sefat-emet-genesis-vayishlach-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 14:5 | sefat-emet-genesis-vayishlach-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 15:1 | sefat-emet-genesis-vayishlach-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 15:2 | sefat-emet-genesis-vayishlach-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 15:3 | sefat-emet-genesis-vayishlach-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 15:4 | sefat-emet-genesis-vayishlach-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 15:5 | sefat-emet-genesis-vayishlach-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 15:6 | sefat-emet-genesis-vayishlach-15-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 16:1 | sefat-emet-genesis-vayishlach-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 16:2 | sefat-emet-genesis-vayishlach-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 16:3 | sefat-emet-genesis-vayishlach-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 16:4 | sefat-emet-genesis-vayishlach-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 16:5 | sefat-emet-genesis-vayishlach-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 17:1 | sefat-emet-genesis-vayishlach-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 17:2 | sefat-emet-genesis-vayishlach-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 17:3 | sefat-emet-genesis-vayishlach-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 17:4 | sefat-emet-genesis-vayishlach-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 18:1 | sefat-emet-genesis-vayishlach-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 18:2 | sefat-emet-genesis-vayishlach-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 18:3 | sefat-emet-genesis-vayishlach-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 18:4 | sefat-emet-genesis-vayishlach-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 18:5 | sefat-emet-genesis-vayishlach-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 18:6 | sefat-emet-genesis-vayishlach-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 19:1 | sefat-emet-genesis-vayishlach-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 19:2 | sefat-emet-genesis-vayishlach-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 19:3 | sefat-emet-genesis-vayishlach-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 19:4 | sefat-emet-genesis-vayishlach-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 19:5 | sefat-emet-genesis-vayishlach-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 20:1 | sefat-emet-genesis-vayishlach-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 20:2 | sefat-emet-genesis-vayishlach-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 20:3 | sefat-emet-genesis-vayishlach-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 20:4 | sefat-emet-genesis-vayishlach-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 21:1 | sefat-emet-genesis-vayishlach-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 21:2 | sefat-emet-genesis-vayishlach-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 21:3 | sefat-emet-genesis-vayishlach-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 22:1 | sefat-emet-genesis-vayishlach-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 22:2 | sefat-emet-genesis-vayishlach-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 22:3 | sefat-emet-genesis-vayishlach-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 22:4 | sefat-emet-genesis-vayishlach-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 23:1 | sefat-emet-genesis-vayishlach-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 23:2 | sefat-emet-genesis-vayishlach-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 23:3 | sefat-emet-genesis-vayishlach-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 23:4 | sefat-emet-genesis-vayishlach-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 24:1 | sefat-emet-genesis-vayishlach-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 24:2 | sefat-emet-genesis-vayishlach-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 24:3 | sefat-emet-genesis-vayishlach-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 24:4 | sefat-emet-genesis-vayishlach-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 24:5 | sefat-emet-genesis-vayishlach-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 24:6 | sefat-emet-genesis-vayishlach-24-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 25:1 | sefat-emet-genesis-vayishlach-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 25:2 | sefat-emet-genesis-vayishlach-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 25:3 | sefat-emet-genesis-vayishlach-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 26:1 | sefat-emet-genesis-vayishlach-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 26:2 | sefat-emet-genesis-vayishlach-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 26:3 | sefat-emet-genesis-vayishlach-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 27:1 | sefat-emet-genesis-vayishlach-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 27:2 | sefat-emet-genesis-vayishlach-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 27:3 | sefat-emet-genesis-vayishlach-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 27:4 | sefat-emet-genesis-vayishlach-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 28:1 | sefat-emet-genesis-vayishlach-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 28:2 | sefat-emet-genesis-vayishlach-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 28:3 | sefat-emet-genesis-vayishlach-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 28:4 | sefat-emet-genesis-vayishlach-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 28:5 | sefat-emet-genesis-vayishlach-28-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 29:1 | sefat-emet-genesis-vayishlach-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 29:2 | sefat-emet-genesis-vayishlach-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 29:3 | sefat-emet-genesis-vayishlach-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 29:4 | sefat-emet-genesis-vayishlach-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 29:5 | sefat-emet-genesis-vayishlach-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 30:1 | sefat-emet-genesis-vayishlach-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 30:2 | sefat-emet-genesis-vayishlach-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 30:3 | sefat-emet-genesis-vayishlach-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 30:4 | sefat-emet-genesis-vayishlach-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 31:1 | sefat-emet-genesis-vayishlach-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 31:2 | sefat-emet-genesis-vayishlach-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 31:3 | sefat-emet-genesis-vayishlach-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 31:4 | sefat-emet-genesis-vayishlach-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 31:5 | sefat-emet-genesis-vayishlach-31-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 32:1 | sefat-emet-genesis-vayishlach-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 32:2 | sefat-emet-genesis-vayishlach-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 32:3 | sefat-emet-genesis-vayishlach-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 32:4 | sefat-emet-genesis-vayishlach-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 33:1 | sefat-emet-genesis-vayishlach-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 33:2 | sefat-emet-genesis-vayishlach-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 33:3 | sefat-emet-genesis-vayishlach-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 34:1 | sefat-emet-genesis-vayishlach-34-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 34:2 | sefat-emet-genesis-vayishlach-34-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayishlach 34:3 | sefat-emet-genesis-vayishlach-34-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 1:1 | sefat-emet-genesis-vayeshev-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 1:2 | sefat-emet-genesis-vayeshev-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 1:3 | sefat-emet-genesis-vayeshev-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 1:4 | sefat-emet-genesis-vayeshev-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 1:5 | sefat-emet-genesis-vayeshev-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 2:1 | sefat-emet-genesis-vayeshev-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 2:2 | sefat-emet-genesis-vayeshev-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 2:3 | sefat-emet-genesis-vayeshev-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 2:4 | sefat-emet-genesis-vayeshev-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 2:5 | sefat-emet-genesis-vayeshev-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 3:1 | sefat-emet-genesis-vayeshev-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 3:2 | sefat-emet-genesis-vayeshev-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 3:3 | sefat-emet-genesis-vayeshev-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 3:4 | sefat-emet-genesis-vayeshev-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 3:5 | sefat-emet-genesis-vayeshev-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 3:6 | sefat-emet-genesis-vayeshev-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 4:1 | sefat-emet-genesis-vayeshev-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 4:2 | sefat-emet-genesis-vayeshev-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 4:3 | sefat-emet-genesis-vayeshev-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 4:4 | sefat-emet-genesis-vayeshev-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 4:5 | sefat-emet-genesis-vayeshev-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 4:6 | sefat-emet-genesis-vayeshev-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 5:1 | sefat-emet-genesis-vayeshev-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 5:2 | sefat-emet-genesis-vayeshev-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 5:3 | sefat-emet-genesis-vayeshev-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 6:1 | sefat-emet-genesis-vayeshev-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 6:2 | sefat-emet-genesis-vayeshev-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 6:3 | sefat-emet-genesis-vayeshev-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 6:4 | sefat-emet-genesis-vayeshev-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 6:5 | sefat-emet-genesis-vayeshev-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 6:6 | sefat-emet-genesis-vayeshev-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:1 | sefat-emet-genesis-vayeshev-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:2 | sefat-emet-genesis-vayeshev-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:3 | sefat-emet-genesis-vayeshev-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:4 | sefat-emet-genesis-vayeshev-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:5 | sefat-emet-genesis-vayeshev-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:6 | sefat-emet-genesis-vayeshev-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:7 | sefat-emet-genesis-vayeshev-7-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 7:8 | sefat-emet-genesis-vayeshev-7-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 8:1 | sefat-emet-genesis-vayeshev-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 8:2 | sefat-emet-genesis-vayeshev-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 8:3 | sefat-emet-genesis-vayeshev-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 8:4 | sefat-emet-genesis-vayeshev-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 9:1 | sefat-emet-genesis-vayeshev-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 9:2 | sefat-emet-genesis-vayeshev-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 9:3 | sefat-emet-genesis-vayeshev-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 10:1 | sefat-emet-genesis-vayeshev-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 10:2 | sefat-emet-genesis-vayeshev-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 10:3 | sefat-emet-genesis-vayeshev-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 10:4 | sefat-emet-genesis-vayeshev-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 10:5 | sefat-emet-genesis-vayeshev-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 11:1 | sefat-emet-genesis-vayeshev-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 11:2 | sefat-emet-genesis-vayeshev-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 11:3 | sefat-emet-genesis-vayeshev-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 11:4 | sefat-emet-genesis-vayeshev-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 12:1 | sefat-emet-genesis-vayeshev-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 12:2 | sefat-emet-genesis-vayeshev-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 12:3 | sefat-emet-genesis-vayeshev-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 12:4 | sefat-emet-genesis-vayeshev-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 13:1 | sefat-emet-genesis-vayeshev-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 13:2 | sefat-emet-genesis-vayeshev-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 13:3 | sefat-emet-genesis-vayeshev-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 13:4 | sefat-emet-genesis-vayeshev-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 14:1 | sefat-emet-genesis-vayeshev-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 14:2 | sefat-emet-genesis-vayeshev-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 14:3 | sefat-emet-genesis-vayeshev-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 14:4 | sefat-emet-genesis-vayeshev-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 14:5 | sefat-emet-genesis-vayeshev-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 14:6 | sefat-emet-genesis-vayeshev-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 15:1 | sefat-emet-genesis-vayeshev-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 15:2 | sefat-emet-genesis-vayeshev-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 15:3 | sefat-emet-genesis-vayeshev-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 16:1 | sefat-emet-genesis-vayeshev-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 16:2 | sefat-emet-genesis-vayeshev-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 16:3 | sefat-emet-genesis-vayeshev-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 16:4 | sefat-emet-genesis-vayeshev-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 17:1 | sefat-emet-genesis-vayeshev-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 17:2 | sefat-emet-genesis-vayeshev-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 17:3 | sefat-emet-genesis-vayeshev-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 17:4 | sefat-emet-genesis-vayeshev-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 17:5 | sefat-emet-genesis-vayeshev-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 18:1 | sefat-emet-genesis-vayeshev-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 18:2 | sefat-emet-genesis-vayeshev-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 18:3 | sefat-emet-genesis-vayeshev-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 18:4 | sefat-emet-genesis-vayeshev-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 19:1 | sefat-emet-genesis-vayeshev-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 19:2 | sefat-emet-genesis-vayeshev-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 19:3 | sefat-emet-genesis-vayeshev-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 19:4 | sefat-emet-genesis-vayeshev-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 20:1 | sefat-emet-genesis-vayeshev-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 20:2 | sefat-emet-genesis-vayeshev-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 20:3 | sefat-emet-genesis-vayeshev-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 20:4 | sefat-emet-genesis-vayeshev-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 21:1 | sefat-emet-genesis-vayeshev-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 21:2 | sefat-emet-genesis-vayeshev-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 21:3 | sefat-emet-genesis-vayeshev-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 22:1 | sefat-emet-genesis-vayeshev-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 22:2 | sefat-emet-genesis-vayeshev-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 22:3 | sefat-emet-genesis-vayeshev-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 23:1 | sefat-emet-genesis-vayeshev-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 23:2 | sefat-emet-genesis-vayeshev-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 23:3 | sefat-emet-genesis-vayeshev-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 23:4 | sefat-emet-genesis-vayeshev-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 24:1 | sefat-emet-genesis-vayeshev-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 24:2 | sefat-emet-genesis-vayeshev-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 24:3 | sefat-emet-genesis-vayeshev-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 24:4 | sefat-emet-genesis-vayeshev-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 25:1 | sefat-emet-genesis-vayeshev-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 25:2 | sefat-emet-genesis-vayeshev-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 25:3 | sefat-emet-genesis-vayeshev-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 25:4 | sefat-emet-genesis-vayeshev-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 26:1 | sefat-emet-genesis-vayeshev-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 26:2 | sefat-emet-genesis-vayeshev-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 26:3 | sefat-emet-genesis-vayeshev-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 26:4 | sefat-emet-genesis-vayeshev-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 26:5 | sefat-emet-genesis-vayeshev-26-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 27:1 | sefat-emet-genesis-vayeshev-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 27:2 | sefat-emet-genesis-vayeshev-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 27:3 | sefat-emet-genesis-vayeshev-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 27:4 | sefat-emet-genesis-vayeshev-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 28:1 | sefat-emet-genesis-vayeshev-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 28:2 | sefat-emet-genesis-vayeshev-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 28:3 | sefat-emet-genesis-vayeshev-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 28:4 | sefat-emet-genesis-vayeshev-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 29:1 | sefat-emet-genesis-vayeshev-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 29:2 | sefat-emet-genesis-vayeshev-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 29:3 | sefat-emet-genesis-vayeshev-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 29:4 | sefat-emet-genesis-vayeshev-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 30:1 | sefat-emet-genesis-vayeshev-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 30:2 | sefat-emet-genesis-vayeshev-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 30:3 | sefat-emet-genesis-vayeshev-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 30:4 | sefat-emet-genesis-vayeshev-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 31:1 | sefat-emet-genesis-vayeshev-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 31:2 | sefat-emet-genesis-vayeshev-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 31:3 | sefat-emet-genesis-vayeshev-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 31:4 | sefat-emet-genesis-vayeshev-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 31:5 | sefat-emet-genesis-vayeshev-31-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 32:1 | sefat-emet-genesis-vayeshev-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 32:2 | sefat-emet-genesis-vayeshev-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 32:3 | sefat-emet-genesis-vayeshev-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 32:4 | sefat-emet-genesis-vayeshev-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 32:5 | sefat-emet-genesis-vayeshev-32-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 32:6 | sefat-emet-genesis-vayeshev-32-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 33:1 | sefat-emet-genesis-vayeshev-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 33:2 | sefat-emet-genesis-vayeshev-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 33:3 | sefat-emet-genesis-vayeshev-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 33:4 | sefat-emet-genesis-vayeshev-33-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 34:1 | sefat-emet-genesis-vayeshev-34-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 34:2 | sefat-emet-genesis-vayeshev-34-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayeshev 34:3 | sefat-emet-genesis-vayeshev-34-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:1 | sefat-emet-genesis-miketz-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:2 | sefat-emet-genesis-miketz-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:3 | sefat-emet-genesis-miketz-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:4 | sefat-emet-genesis-miketz-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:5 | sefat-emet-genesis-miketz-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:6 | sefat-emet-genesis-miketz-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:7 | sefat-emet-genesis-miketz-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 1:8 | sefat-emet-genesis-miketz-1-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 2:1 | sefat-emet-genesis-miketz-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 2:2 | sefat-emet-genesis-miketz-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 2:3 | sefat-emet-genesis-miketz-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 2:4 | sefat-emet-genesis-miketz-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 2:5 | sefat-emet-genesis-miketz-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 3:1 | sefat-emet-genesis-miketz-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 3:2 | sefat-emet-genesis-miketz-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 3:3 | sefat-emet-genesis-miketz-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 4:1 | sefat-emet-genesis-miketz-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 4:2 | sefat-emet-genesis-miketz-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 4:3 | sefat-emet-genesis-miketz-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 4:4 | sefat-emet-genesis-miketz-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 5:1 | sefat-emet-genesis-miketz-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 5:2 | sefat-emet-genesis-miketz-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 5:3 | sefat-emet-genesis-miketz-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 5:4 | sefat-emet-genesis-miketz-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 5:5 | sefat-emet-genesis-miketz-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 5:6 | sefat-emet-genesis-miketz-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 6:1 | sefat-emet-genesis-miketz-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 6:2 | sefat-emet-genesis-miketz-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 6:3 | sefat-emet-genesis-miketz-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 6:4 | sefat-emet-genesis-miketz-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 6:5 | sefat-emet-genesis-miketz-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 6:6 | sefat-emet-genesis-miketz-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 6:7 | sefat-emet-genesis-miketz-6-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 7:1 | sefat-emet-genesis-miketz-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 7:2 | sefat-emet-genesis-miketz-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 7:3 | sefat-emet-genesis-miketz-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 7:4 | sefat-emet-genesis-miketz-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 7:5 | sefat-emet-genesis-miketz-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 7:6 | sefat-emet-genesis-miketz-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 7:7 | sefat-emet-genesis-miketz-7-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 8:1 | sefat-emet-genesis-miketz-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 8:2 | sefat-emet-genesis-miketz-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 8:3 | sefat-emet-genesis-miketz-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 9:1 | sefat-emet-genesis-miketz-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 9:2 | sefat-emet-genesis-miketz-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 9:3 | sefat-emet-genesis-miketz-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 9:4 | sefat-emet-genesis-miketz-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 9:5 | sefat-emet-genesis-miketz-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 9:6 | sefat-emet-genesis-miketz-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 10:1 | sefat-emet-genesis-miketz-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 10:2 | sefat-emet-genesis-miketz-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 10:3 | sefat-emet-genesis-miketz-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 10:4 | sefat-emet-genesis-miketz-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 11:1 | sefat-emet-genesis-miketz-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 11:2 | sefat-emet-genesis-miketz-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 11:3 | sefat-emet-genesis-miketz-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 12:1 | sefat-emet-genesis-miketz-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 12:2 | sefat-emet-genesis-miketz-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 12:3 | sefat-emet-genesis-miketz-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 12:4 | sefat-emet-genesis-miketz-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 13:1 | sefat-emet-genesis-miketz-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 13:2 | sefat-emet-genesis-miketz-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 13:3 | sefat-emet-genesis-miketz-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 14:1 | sefat-emet-genesis-miketz-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 14:2 | sefat-emet-genesis-miketz-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 14:3 | sefat-emet-genesis-miketz-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 14:4 | sefat-emet-genesis-miketz-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 15:1 | sefat-emet-genesis-miketz-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 15:2 | sefat-emet-genesis-miketz-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 15:3 | sefat-emet-genesis-miketz-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 16:1 | sefat-emet-genesis-miketz-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 16:2 | sefat-emet-genesis-miketz-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 16:3 | sefat-emet-genesis-miketz-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 17:1 | sefat-emet-genesis-miketz-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 17:2 | sefat-emet-genesis-miketz-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 17:3 | sefat-emet-genesis-miketz-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 17:4 | sefat-emet-genesis-miketz-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 18:1 | sefat-emet-genesis-miketz-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 18:2 | sefat-emet-genesis-miketz-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 18:3 | sefat-emet-genesis-miketz-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 19:1 | sefat-emet-genesis-miketz-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 19:2 | sefat-emet-genesis-miketz-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 19:3 | sefat-emet-genesis-miketz-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 20:1 | sefat-emet-genesis-miketz-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 20:2 | sefat-emet-genesis-miketz-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 20:3 | sefat-emet-genesis-miketz-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 20:4 | sefat-emet-genesis-miketz-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 21:1 | sefat-emet-genesis-miketz-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 21:2 | sefat-emet-genesis-miketz-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 21:3 | sefat-emet-genesis-miketz-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 21:4 | sefat-emet-genesis-miketz-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 22:1 | sefat-emet-genesis-miketz-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 22:2 | sefat-emet-genesis-miketz-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 22:3 | sefat-emet-genesis-miketz-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 22:4 | sefat-emet-genesis-miketz-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 23:1 | sefat-emet-genesis-miketz-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 23:2 | sefat-emet-genesis-miketz-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 23:3 | sefat-emet-genesis-miketz-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 24:1 | sefat-emet-genesis-miketz-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 24:2 | sefat-emet-genesis-miketz-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 24:3 | sefat-emet-genesis-miketz-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 25:1 | sefat-emet-genesis-miketz-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 25:2 | sefat-emet-genesis-miketz-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 25:3 | sefat-emet-genesis-miketz-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 26:1 | sefat-emet-genesis-miketz-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 26:2 | sefat-emet-genesis-miketz-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 26:3 | sefat-emet-genesis-miketz-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 26:4 | sefat-emet-genesis-miketz-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 27:1 | sefat-emet-genesis-miketz-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 27:2 | sefat-emet-genesis-miketz-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 27:3 | sefat-emet-genesis-miketz-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 28:1 | sefat-emet-genesis-miketz-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 28:2 | sefat-emet-genesis-miketz-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 28:3 | sefat-emet-genesis-miketz-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 28:4 | sefat-emet-genesis-miketz-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 29:1 | sefat-emet-genesis-miketz-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 29:2 | sefat-emet-genesis-miketz-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 29:3 | sefat-emet-genesis-miketz-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 29:4 | sefat-emet-genesis-miketz-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 30:1 | sefat-emet-genesis-miketz-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 30:2 | sefat-emet-genesis-miketz-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Miketz 30:3 | sefat-emet-genesis-miketz-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:1 | sefat-emet-genesis-for-chanuka-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:2 | sefat-emet-genesis-for-chanuka-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:3 | sefat-emet-genesis-for-chanuka-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:4 | sefat-emet-genesis-for-chanuka-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:5 | sefat-emet-genesis-for-chanuka-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:6 | sefat-emet-genesis-for-chanuka-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:7 | sefat-emet-genesis-for-chanuka-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:8 | sefat-emet-genesis-for-chanuka-1-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:9 | sefat-emet-genesis-for-chanuka-1-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 1:10 | sefat-emet-genesis-for-chanuka-1-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:1 | sefat-emet-genesis-for-chanuka-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:2 | sefat-emet-genesis-for-chanuka-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:3 | sefat-emet-genesis-for-chanuka-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:4 | sefat-emet-genesis-for-chanuka-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:5 | sefat-emet-genesis-for-chanuka-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:6 | sefat-emet-genesis-for-chanuka-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:7 | sefat-emet-genesis-for-chanuka-2-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:8 | sefat-emet-genesis-for-chanuka-2-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:9 | sefat-emet-genesis-for-chanuka-2-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 2:10 | sefat-emet-genesis-for-chanuka-2-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:1 | sefat-emet-genesis-for-chanuka-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:2 | sefat-emet-genesis-for-chanuka-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:3 | sefat-emet-genesis-for-chanuka-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:4 | sefat-emet-genesis-for-chanuka-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:5 | sefat-emet-genesis-for-chanuka-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:6 | sefat-emet-genesis-for-chanuka-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:7 | sefat-emet-genesis-for-chanuka-3-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:8 | sefat-emet-genesis-for-chanuka-3-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 3:9 | sefat-emet-genesis-for-chanuka-3-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:1 | sefat-emet-genesis-for-chanuka-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:2 | sefat-emet-genesis-for-chanuka-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:3 | sefat-emet-genesis-for-chanuka-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:4 | sefat-emet-genesis-for-chanuka-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:5 | sefat-emet-genesis-for-chanuka-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:6 | sefat-emet-genesis-for-chanuka-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:7 | sefat-emet-genesis-for-chanuka-4-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:8 | sefat-emet-genesis-for-chanuka-4-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:9 | sefat-emet-genesis-for-chanuka-4-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:10 | sefat-emet-genesis-for-chanuka-4-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:11 | sefat-emet-genesis-for-chanuka-4-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 4:12 | sefat-emet-genesis-for-chanuka-4-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:1 | sefat-emet-genesis-for-chanuka-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:2 | sefat-emet-genesis-for-chanuka-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:3 | sefat-emet-genesis-for-chanuka-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:4 | sefat-emet-genesis-for-chanuka-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:5 | sefat-emet-genesis-for-chanuka-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:6 | sefat-emet-genesis-for-chanuka-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:7 | sefat-emet-genesis-for-chanuka-5-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:8 | sefat-emet-genesis-for-chanuka-5-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:9 | sefat-emet-genesis-for-chanuka-5-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:10 | sefat-emet-genesis-for-chanuka-5-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 5:11 | sefat-emet-genesis-for-chanuka-5-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:1 | sefat-emet-genesis-for-chanuka-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:2 | sefat-emet-genesis-for-chanuka-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:3 | sefat-emet-genesis-for-chanuka-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:4 | sefat-emet-genesis-for-chanuka-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:5 | sefat-emet-genesis-for-chanuka-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:6 | sefat-emet-genesis-for-chanuka-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:7 | sefat-emet-genesis-for-chanuka-6-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:8 | sefat-emet-genesis-for-chanuka-6-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:9 | sefat-emet-genesis-for-chanuka-6-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:10 | sefat-emet-genesis-for-chanuka-6-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:11 | sefat-emet-genesis-for-chanuka-6-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 6:12 | sefat-emet-genesis-for-chanuka-6-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 7:1 | sefat-emet-genesis-for-chanuka-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 7:2 | sefat-emet-genesis-for-chanuka-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 7:3 | sefat-emet-genesis-for-chanuka-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 7:4 | sefat-emet-genesis-for-chanuka-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 7:5 | sefat-emet-genesis-for-chanuka-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 7:6 | sefat-emet-genesis-for-chanuka-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 7:7 | sefat-emet-genesis-for-chanuka-7-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:1 | sefat-emet-genesis-for-chanuka-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:2 | sefat-emet-genesis-for-chanuka-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:3 | sefat-emet-genesis-for-chanuka-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:4 | sefat-emet-genesis-for-chanuka-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:5 | sefat-emet-genesis-for-chanuka-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:6 | sefat-emet-genesis-for-chanuka-8-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:7 | sefat-emet-genesis-for-chanuka-8-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 8:8 | sefat-emet-genesis-for-chanuka-8-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 9:1 | sefat-emet-genesis-for-chanuka-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 9:2 | sefat-emet-genesis-for-chanuka-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 9:3 | sefat-emet-genesis-for-chanuka-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 9:4 | sefat-emet-genesis-for-chanuka-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 9:5 | sefat-emet-genesis-for-chanuka-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 9:6 | sefat-emet-genesis-for-chanuka-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 9:7 | sefat-emet-genesis-for-chanuka-9-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 10:1 | sefat-emet-genesis-for-chanuka-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 10:2 | sefat-emet-genesis-for-chanuka-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 10:3 | sefat-emet-genesis-for-chanuka-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 10:4 | sefat-emet-genesis-for-chanuka-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 10:5 | sefat-emet-genesis-for-chanuka-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 10:6 | sefat-emet-genesis-for-chanuka-10-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 10:7 | sefat-emet-genesis-for-chanuka-10-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:1 | sefat-emet-genesis-for-chanuka-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:2 | sefat-emet-genesis-for-chanuka-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:3 | sefat-emet-genesis-for-chanuka-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:4 | sefat-emet-genesis-for-chanuka-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:5 | sefat-emet-genesis-for-chanuka-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:6 | sefat-emet-genesis-for-chanuka-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:7 | sefat-emet-genesis-for-chanuka-11-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 11:8 | sefat-emet-genesis-for-chanuka-11-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:1 | sefat-emet-genesis-for-chanuka-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:2 | sefat-emet-genesis-for-chanuka-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:3 | sefat-emet-genesis-for-chanuka-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:4 | sefat-emet-genesis-for-chanuka-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:5 | sefat-emet-genesis-for-chanuka-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:6 | sefat-emet-genesis-for-chanuka-12-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:7 | sefat-emet-genesis-for-chanuka-12-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:8 | sefat-emet-genesis-for-chanuka-12-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:9 | sefat-emet-genesis-for-chanuka-12-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:10 | sefat-emet-genesis-for-chanuka-12-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:11 | sefat-emet-genesis-for-chanuka-12-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:12 | sefat-emet-genesis-for-chanuka-12-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:13 | sefat-emet-genesis-for-chanuka-12-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:14 | sefat-emet-genesis-for-chanuka-12-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 12:15 | sefat-emet-genesis-for-chanuka-12-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:1 | sefat-emet-genesis-for-chanuka-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:2 | sefat-emet-genesis-for-chanuka-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:3 | sefat-emet-genesis-for-chanuka-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:4 | sefat-emet-genesis-for-chanuka-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:5 | sefat-emet-genesis-for-chanuka-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:6 | sefat-emet-genesis-for-chanuka-13-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:7 | sefat-emet-genesis-for-chanuka-13-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:8 | sefat-emet-genesis-for-chanuka-13-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:9 | sefat-emet-genesis-for-chanuka-13-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 13:10 | sefat-emet-genesis-for-chanuka-13-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:1 | sefat-emet-genesis-for-chanuka-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:2 | sefat-emet-genesis-for-chanuka-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:3 | sefat-emet-genesis-for-chanuka-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:4 | sefat-emet-genesis-for-chanuka-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:5 | sefat-emet-genesis-for-chanuka-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:6 | sefat-emet-genesis-for-chanuka-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:7 | sefat-emet-genesis-for-chanuka-14-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:8 | sefat-emet-genesis-for-chanuka-14-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:9 | sefat-emet-genesis-for-chanuka-14-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:10 | sefat-emet-genesis-for-chanuka-14-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 14:11 | sefat-emet-genesis-for-chanuka-14-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 15:1 | sefat-emet-genesis-for-chanuka-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 15:2 | sefat-emet-genesis-for-chanuka-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 15:3 | sefat-emet-genesis-for-chanuka-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 15:4 | sefat-emet-genesis-for-chanuka-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 15:5 | sefat-emet-genesis-for-chanuka-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 15:6 | sefat-emet-genesis-for-chanuka-15-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:1 | sefat-emet-genesis-for-chanuka-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:2 | sefat-emet-genesis-for-chanuka-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:3 | sefat-emet-genesis-for-chanuka-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:4 | sefat-emet-genesis-for-chanuka-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:5 | sefat-emet-genesis-for-chanuka-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:6 | sefat-emet-genesis-for-chanuka-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:7 | sefat-emet-genesis-for-chanuka-16-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:8 | sefat-emet-genesis-for-chanuka-16-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:9 | sefat-emet-genesis-for-chanuka-16-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:10 | sefat-emet-genesis-for-chanuka-16-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:11 | sefat-emet-genesis-for-chanuka-16-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:12 | sefat-emet-genesis-for-chanuka-16-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:13 | sefat-emet-genesis-for-chanuka-16-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 16:14 | sefat-emet-genesis-for-chanuka-16-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:1 | sefat-emet-genesis-for-chanuka-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:2 | sefat-emet-genesis-for-chanuka-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:3 | sefat-emet-genesis-for-chanuka-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:4 | sefat-emet-genesis-for-chanuka-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:5 | sefat-emet-genesis-for-chanuka-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:6 | sefat-emet-genesis-for-chanuka-17-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:7 | sefat-emet-genesis-for-chanuka-17-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:8 | sefat-emet-genesis-for-chanuka-17-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:9 | sefat-emet-genesis-for-chanuka-17-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:10 | sefat-emet-genesis-for-chanuka-17-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:11 | sefat-emet-genesis-for-chanuka-17-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:12 | sefat-emet-genesis-for-chanuka-17-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:13 | sefat-emet-genesis-for-chanuka-17-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 17:14 | sefat-emet-genesis-for-chanuka-17-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:1 | sefat-emet-genesis-for-chanuka-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:2 | sefat-emet-genesis-for-chanuka-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:3 | sefat-emet-genesis-for-chanuka-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:4 | sefat-emet-genesis-for-chanuka-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:5 | sefat-emet-genesis-for-chanuka-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:6 | sefat-emet-genesis-for-chanuka-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:7 | sefat-emet-genesis-for-chanuka-18-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 18:8 | sefat-emet-genesis-for-chanuka-18-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 19:1 | sefat-emet-genesis-for-chanuka-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 19:2 | sefat-emet-genesis-for-chanuka-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 19:3 | sefat-emet-genesis-for-chanuka-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 19:4 | sefat-emet-genesis-for-chanuka-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 19:5 | sefat-emet-genesis-for-chanuka-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 19:6 | sefat-emet-genesis-for-chanuka-19-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 19:7 | sefat-emet-genesis-for-chanuka-19-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 20:1 | sefat-emet-genesis-for-chanuka-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 20:2 | sefat-emet-genesis-for-chanuka-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 20:3 | sefat-emet-genesis-for-chanuka-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 20:4 | sefat-emet-genesis-for-chanuka-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:1 | sefat-emet-genesis-for-chanuka-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:2 | sefat-emet-genesis-for-chanuka-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:3 | sefat-emet-genesis-for-chanuka-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:4 | sefat-emet-genesis-for-chanuka-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:5 | sefat-emet-genesis-for-chanuka-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:6 | sefat-emet-genesis-for-chanuka-21-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:7 | sefat-emet-genesis-for-chanuka-21-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 21:8 | sefat-emet-genesis-for-chanuka-21-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:1 | sefat-emet-genesis-for-chanuka-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:2 | sefat-emet-genesis-for-chanuka-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:3 | sefat-emet-genesis-for-chanuka-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:4 | sefat-emet-genesis-for-chanuka-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:5 | sefat-emet-genesis-for-chanuka-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:6 | sefat-emet-genesis-for-chanuka-22-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:7 | sefat-emet-genesis-for-chanuka-22-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:8 | sefat-emet-genesis-for-chanuka-22-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:9 | sefat-emet-genesis-for-chanuka-22-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:10 | sefat-emet-genesis-for-chanuka-22-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:11 | sefat-emet-genesis-for-chanuka-22-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 22:12 | sefat-emet-genesis-for-chanuka-22-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 23:1 | sefat-emet-genesis-for-chanuka-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 23:2 | sefat-emet-genesis-for-chanuka-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 23:3 | sefat-emet-genesis-for-chanuka-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 23:4 | sefat-emet-genesis-for-chanuka-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 23:5 | sefat-emet-genesis-for-chanuka-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 23:6 | sefat-emet-genesis-for-chanuka-23-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 24:1 | sefat-emet-genesis-for-chanuka-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 24:2 | sefat-emet-genesis-for-chanuka-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 24:3 | sefat-emet-genesis-for-chanuka-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 24:4 | sefat-emet-genesis-for-chanuka-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 24:5 | sefat-emet-genesis-for-chanuka-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 24:6 | sefat-emet-genesis-for-chanuka-24-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:1 | sefat-emet-genesis-for-chanuka-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:2 | sefat-emet-genesis-for-chanuka-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:3 | sefat-emet-genesis-for-chanuka-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:4 | sefat-emet-genesis-for-chanuka-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:5 | sefat-emet-genesis-for-chanuka-25-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:6 | sefat-emet-genesis-for-chanuka-25-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:7 | sefat-emet-genesis-for-chanuka-25-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 25:8 | sefat-emet-genesis-for-chanuka-25-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:1 | sefat-emet-genesis-for-chanuka-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:2 | sefat-emet-genesis-for-chanuka-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:3 | sefat-emet-genesis-for-chanuka-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:4 | sefat-emet-genesis-for-chanuka-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:5 | sefat-emet-genesis-for-chanuka-26-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:6 | sefat-emet-genesis-for-chanuka-26-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:7 | sefat-emet-genesis-for-chanuka-26-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 26:8 | sefat-emet-genesis-for-chanuka-26-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 27:1 | sefat-emet-genesis-for-chanuka-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 27:2 | sefat-emet-genesis-for-chanuka-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 27:3 | sefat-emet-genesis-for-chanuka-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 27:4 | sefat-emet-genesis-for-chanuka-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 27:5 | sefat-emet-genesis-for-chanuka-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:1 | sefat-emet-genesis-for-chanuka-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:2 | sefat-emet-genesis-for-chanuka-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:3 | sefat-emet-genesis-for-chanuka-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:4 | sefat-emet-genesis-for-chanuka-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:5 | sefat-emet-genesis-for-chanuka-28-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:6 | sefat-emet-genesis-for-chanuka-28-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:7 | sefat-emet-genesis-for-chanuka-28-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:8 | sefat-emet-genesis-for-chanuka-28-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:9 | sefat-emet-genesis-for-chanuka-28-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 28:10 | sefat-emet-genesis-for-chanuka-28-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:1 | sefat-emet-genesis-for-chanuka-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:2 | sefat-emet-genesis-for-chanuka-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:3 | sefat-emet-genesis-for-chanuka-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:4 | sefat-emet-genesis-for-chanuka-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:5 | sefat-emet-genesis-for-chanuka-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:6 | sefat-emet-genesis-for-chanuka-29-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:7 | sefat-emet-genesis-for-chanuka-29-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 29:8 | sefat-emet-genesis-for-chanuka-29-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 30:1 | sefat-emet-genesis-for-chanuka-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 30:2 | sefat-emet-genesis-for-chanuka-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 30:3 | sefat-emet-genesis-for-chanuka-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 30:4 | sefat-emet-genesis-for-chanuka-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 30:5 | sefat-emet-genesis-for-chanuka-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 30:6 | sefat-emet-genesis-for-chanuka-30-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 31:1 | sefat-emet-genesis-for-chanuka-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 31:2 | sefat-emet-genesis-for-chanuka-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 31:3 | sefat-emet-genesis-for-chanuka-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 31:4 | sefat-emet-genesis-for-chanuka-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 31:5 | sefat-emet-genesis-for-chanuka-31-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 31:6 | sefat-emet-genesis-for-chanuka-31-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 32:1 | sefat-emet-genesis-for-chanuka-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 32:2 | sefat-emet-genesis-for-chanuka-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 32:3 | sefat-emet-genesis-for-chanuka-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 32:4 | sefat-emet-genesis-for-chanuka-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 33:1 | sefat-emet-genesis-for-chanuka-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 33:2 | sefat-emet-genesis-for-chanuka-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 33:3 | sefat-emet-genesis-for-chanuka-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 33:4 | sefat-emet-genesis-for-chanuka-33-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 33:5 | sefat-emet-genesis-for-chanuka-33-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, For Chanuka 33:6 | sefat-emet-genesis-for-chanuka-33-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 1:1 | sefat-emet-genesis-vayigash-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 1:2 | sefat-emet-genesis-vayigash-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 1:3 | sefat-emet-genesis-vayigash-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 1:4 | sefat-emet-genesis-vayigash-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 1:5 | sefat-emet-genesis-vayigash-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 1:6 | sefat-emet-genesis-vayigash-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 1:7 | sefat-emet-genesis-vayigash-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 2:1 | sefat-emet-genesis-vayigash-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 2:2 | sefat-emet-genesis-vayigash-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 2:3 | sefat-emet-genesis-vayigash-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 2:4 | sefat-emet-genesis-vayigash-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 2:5 | sefat-emet-genesis-vayigash-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 3:1 | sefat-emet-genesis-vayigash-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 3:2 | sefat-emet-genesis-vayigash-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 3:3 | sefat-emet-genesis-vayigash-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 3:4 | sefat-emet-genesis-vayigash-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 3:5 | sefat-emet-genesis-vayigash-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 4:1 | sefat-emet-genesis-vayigash-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 4:2 | sefat-emet-genesis-vayigash-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 4:3 | sefat-emet-genesis-vayigash-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 4:4 | sefat-emet-genesis-vayigash-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 4:5 | sefat-emet-genesis-vayigash-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 4:6 | sefat-emet-genesis-vayigash-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 5:1 | sefat-emet-genesis-vayigash-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 5:2 | sefat-emet-genesis-vayigash-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 5:3 | sefat-emet-genesis-vayigash-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 5:4 | sefat-emet-genesis-vayigash-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 5:5 | sefat-emet-genesis-vayigash-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 6:1 | sefat-emet-genesis-vayigash-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 6:2 | sefat-emet-genesis-vayigash-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 6:3 | sefat-emet-genesis-vayigash-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 6:4 | sefat-emet-genesis-vayigash-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 6:5 | sefat-emet-genesis-vayigash-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 6:6 | sefat-emet-genesis-vayigash-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 7:1 | sefat-emet-genesis-vayigash-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 7:2 | sefat-emet-genesis-vayigash-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 7:3 | sefat-emet-genesis-vayigash-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 7:4 | sefat-emet-genesis-vayigash-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 7:5 | sefat-emet-genesis-vayigash-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 8:1 | sefat-emet-genesis-vayigash-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 8:2 | sefat-emet-genesis-vayigash-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 8:3 | sefat-emet-genesis-vayigash-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 8:4 | sefat-emet-genesis-vayigash-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 8:5 | sefat-emet-genesis-vayigash-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 8:6 | sefat-emet-genesis-vayigash-8-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 9:1 | sefat-emet-genesis-vayigash-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 9:2 | sefat-emet-genesis-vayigash-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 9:3 | sefat-emet-genesis-vayigash-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 9:4 | sefat-emet-genesis-vayigash-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 9:5 | sefat-emet-genesis-vayigash-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 9:6 | sefat-emet-genesis-vayigash-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 9:7 | sefat-emet-genesis-vayigash-9-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 10:1 | sefat-emet-genesis-vayigash-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 10:2 | sefat-emet-genesis-vayigash-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 10:3 | sefat-emet-genesis-vayigash-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 10:4 | sefat-emet-genesis-vayigash-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 11:1 | sefat-emet-genesis-vayigash-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 11:2 | sefat-emet-genesis-vayigash-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 11:3 | sefat-emet-genesis-vayigash-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 11:4 | sefat-emet-genesis-vayigash-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 11:5 | sefat-emet-genesis-vayigash-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 12:1 | sefat-emet-genesis-vayigash-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 12:2 | sefat-emet-genesis-vayigash-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 12:3 | sefat-emet-genesis-vayigash-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 12:4 | sefat-emet-genesis-vayigash-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 12:5 | sefat-emet-genesis-vayigash-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 13:1 | sefat-emet-genesis-vayigash-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 13:2 | sefat-emet-genesis-vayigash-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 13:3 | sefat-emet-genesis-vayigash-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 13:4 | sefat-emet-genesis-vayigash-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 14:1 | sefat-emet-genesis-vayigash-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 14:2 | sefat-emet-genesis-vayigash-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 14:3 | sefat-emet-genesis-vayigash-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 14:4 | sefat-emet-genesis-vayigash-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 15:1 | sefat-emet-genesis-vayigash-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 15:2 | sefat-emet-genesis-vayigash-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 15:3 | sefat-emet-genesis-vayigash-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 15:4 | sefat-emet-genesis-vayigash-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 16:1 | sefat-emet-genesis-vayigash-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 16:2 | sefat-emet-genesis-vayigash-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 16:3 | sefat-emet-genesis-vayigash-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 16:4 | sefat-emet-genesis-vayigash-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 16:5 | sefat-emet-genesis-vayigash-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 16:6 | sefat-emet-genesis-vayigash-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 17:1 | sefat-emet-genesis-vayigash-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 17:2 | sefat-emet-genesis-vayigash-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 17:3 | sefat-emet-genesis-vayigash-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 17:4 | sefat-emet-genesis-vayigash-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 18:1 | sefat-emet-genesis-vayigash-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 18:2 | sefat-emet-genesis-vayigash-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 18:3 | sefat-emet-genesis-vayigash-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 18:4 | sefat-emet-genesis-vayigash-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 18:5 | sefat-emet-genesis-vayigash-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 19:1 | sefat-emet-genesis-vayigash-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 19:2 | sefat-emet-genesis-vayigash-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 19:3 | sefat-emet-genesis-vayigash-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 19:4 | sefat-emet-genesis-vayigash-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 20:1 | sefat-emet-genesis-vayigash-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 20:2 | sefat-emet-genesis-vayigash-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 20:3 | sefat-emet-genesis-vayigash-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 20:4 | sefat-emet-genesis-vayigash-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 21:1 | sefat-emet-genesis-vayigash-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 21:2 | sefat-emet-genesis-vayigash-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 21:3 | sefat-emet-genesis-vayigash-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 22:1 | sefat-emet-genesis-vayigash-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 22:2 | sefat-emet-genesis-vayigash-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 22:3 | sefat-emet-genesis-vayigash-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 22:4 | sefat-emet-genesis-vayigash-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 23:1 | sefat-emet-genesis-vayigash-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 23:2 | sefat-emet-genesis-vayigash-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 23:3 | sefat-emet-genesis-vayigash-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 23:4 | sefat-emet-genesis-vayigash-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 24:1 | sefat-emet-genesis-vayigash-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 24:2 | sefat-emet-genesis-vayigash-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 24:3 | sefat-emet-genesis-vayigash-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 24:4 | sefat-emet-genesis-vayigash-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 24:5 | sefat-emet-genesis-vayigash-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 25:1 | sefat-emet-genesis-vayigash-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 25:2 | sefat-emet-genesis-vayigash-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 25:3 | sefat-emet-genesis-vayigash-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 26:1 | sefat-emet-genesis-vayigash-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 26:2 | sefat-emet-genesis-vayigash-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 26:3 | sefat-emet-genesis-vayigash-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 26:4 | sefat-emet-genesis-vayigash-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 27:1 | sefat-emet-genesis-vayigash-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 27:2 | sefat-emet-genesis-vayigash-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 27:3 | sefat-emet-genesis-vayigash-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 27:4 | sefat-emet-genesis-vayigash-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 27:5 | sefat-emet-genesis-vayigash-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 28:1 | sefat-emet-genesis-vayigash-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 28:2 | sefat-emet-genesis-vayigash-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 28:3 | sefat-emet-genesis-vayigash-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 29:1 | sefat-emet-genesis-vayigash-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 29:2 | sefat-emet-genesis-vayigash-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayigash 29:3 | sefat-emet-genesis-vayigash-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 1:1 | sefat-emet-genesis-vayechi-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 1:2 | sefat-emet-genesis-vayechi-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 1:3 | sefat-emet-genesis-vayechi-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 1:4 | sefat-emet-genesis-vayechi-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 1:5 | sefat-emet-genesis-vayechi-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 1:6 | sefat-emet-genesis-vayechi-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 2:1 | sefat-emet-genesis-vayechi-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 2:2 | sefat-emet-genesis-vayechi-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 2:3 | sefat-emet-genesis-vayechi-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 2:4 | sefat-emet-genesis-vayechi-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 3:1 | sefat-emet-genesis-vayechi-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 3:2 | sefat-emet-genesis-vayechi-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 3:3 | sefat-emet-genesis-vayechi-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 3:4 | sefat-emet-genesis-vayechi-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 3:5 | sefat-emet-genesis-vayechi-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 4:1 | sefat-emet-genesis-vayechi-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 4:2 | sefat-emet-genesis-vayechi-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 4:3 | sefat-emet-genesis-vayechi-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 4:4 | sefat-emet-genesis-vayechi-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 5:1 | sefat-emet-genesis-vayechi-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 5:2 | sefat-emet-genesis-vayechi-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 5:3 | sefat-emet-genesis-vayechi-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 5:4 | sefat-emet-genesis-vayechi-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 6:1 | sefat-emet-genesis-vayechi-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 6:2 | sefat-emet-genesis-vayechi-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 6:3 | sefat-emet-genesis-vayechi-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 6:4 | sefat-emet-genesis-vayechi-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 7:1 | sefat-emet-genesis-vayechi-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 7:2 | sefat-emet-genesis-vayechi-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 7:3 | sefat-emet-genesis-vayechi-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 7:4 | sefat-emet-genesis-vayechi-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 7:5 | sefat-emet-genesis-vayechi-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 8:1 | sefat-emet-genesis-vayechi-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 8:2 | sefat-emet-genesis-vayechi-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 8:3 | sefat-emet-genesis-vayechi-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 8:4 | sefat-emet-genesis-vayechi-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 9:1 | sefat-emet-genesis-vayechi-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 9:2 | sefat-emet-genesis-vayechi-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 9:3 | sefat-emet-genesis-vayechi-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 10:1 | sefat-emet-genesis-vayechi-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 10:2 | sefat-emet-genesis-vayechi-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 10:3 | sefat-emet-genesis-vayechi-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 10:4 | sefat-emet-genesis-vayechi-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 10:5 | sefat-emet-genesis-vayechi-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 11:1 | sefat-emet-genesis-vayechi-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 11:2 | sefat-emet-genesis-vayechi-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 11:3 | sefat-emet-genesis-vayechi-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 11:4 | sefat-emet-genesis-vayechi-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 12:1 | sefat-emet-genesis-vayechi-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 12:2 | sefat-emet-genesis-vayechi-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 12:3 | sefat-emet-genesis-vayechi-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 12:4 | sefat-emet-genesis-vayechi-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 12:5 | sefat-emet-genesis-vayechi-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 13:1 | sefat-emet-genesis-vayechi-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 13:2 | sefat-emet-genesis-vayechi-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 13:3 | sefat-emet-genesis-vayechi-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 14:1 | sefat-emet-genesis-vayechi-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 14:2 | sefat-emet-genesis-vayechi-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 14:3 | sefat-emet-genesis-vayechi-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 14:4 | sefat-emet-genesis-vayechi-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 14:5 | sefat-emet-genesis-vayechi-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 15:1 | sefat-emet-genesis-vayechi-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 15:2 | sefat-emet-genesis-vayechi-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 15:3 | sefat-emet-genesis-vayechi-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 15:4 | sefat-emet-genesis-vayechi-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 16:1 | sefat-emet-genesis-vayechi-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 16:2 | sefat-emet-genesis-vayechi-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 16:3 | sefat-emet-genesis-vayechi-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 16:4 | sefat-emet-genesis-vayechi-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 16:5 | sefat-emet-genesis-vayechi-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 16:6 | sefat-emet-genesis-vayechi-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 17:1 | sefat-emet-genesis-vayechi-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 17:2 | sefat-emet-genesis-vayechi-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 17:3 | sefat-emet-genesis-vayechi-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 17:4 | sefat-emet-genesis-vayechi-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 18:1 | sefat-emet-genesis-vayechi-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 18:2 | sefat-emet-genesis-vayechi-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 18:3 | sefat-emet-genesis-vayechi-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 18:4 | sefat-emet-genesis-vayechi-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 18:5 | sefat-emet-genesis-vayechi-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 18:6 | sefat-emet-genesis-vayechi-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 19:1 | sefat-emet-genesis-vayechi-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 19:2 | sefat-emet-genesis-vayechi-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 19:3 | sefat-emet-genesis-vayechi-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 19:4 | sefat-emet-genesis-vayechi-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 19:5 | sefat-emet-genesis-vayechi-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 20:1 | sefat-emet-genesis-vayechi-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 20:2 | sefat-emet-genesis-vayechi-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 20:3 | sefat-emet-genesis-vayechi-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 20:4 | sefat-emet-genesis-vayechi-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 21:1 | sefat-emet-genesis-vayechi-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 21:2 | sefat-emet-genesis-vayechi-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 21:3 | sefat-emet-genesis-vayechi-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 22:1 | sefat-emet-genesis-vayechi-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 22:2 | sefat-emet-genesis-vayechi-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 22:3 | sefat-emet-genesis-vayechi-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 22:4 | sefat-emet-genesis-vayechi-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 22:5 | sefat-emet-genesis-vayechi-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 23:1 | sefat-emet-genesis-vayechi-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 23:2 | sefat-emet-genesis-vayechi-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 23:3 | sefat-emet-genesis-vayechi-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 24:1 | sefat-emet-genesis-vayechi-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 24:2 | sefat-emet-genesis-vayechi-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 24:3 | sefat-emet-genesis-vayechi-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 24:4 | sefat-emet-genesis-vayechi-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 25:1 | sefat-emet-genesis-vayechi-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 25:2 | sefat-emet-genesis-vayechi-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 25:3 | sefat-emet-genesis-vayechi-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 25:4 | sefat-emet-genesis-vayechi-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 26:1 | sefat-emet-genesis-vayechi-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 26:2 | sefat-emet-genesis-vayechi-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 26:3 | sefat-emet-genesis-vayechi-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 26:4 | sefat-emet-genesis-vayechi-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 27:1 | sefat-emet-genesis-vayechi-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 27:2 | sefat-emet-genesis-vayechi-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 27:3 | sefat-emet-genesis-vayechi-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 27:4 | sefat-emet-genesis-vayechi-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 28:1 | sefat-emet-genesis-vayechi-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 28:2 | sefat-emet-genesis-vayechi-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 28:3 | sefat-emet-genesis-vayechi-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 28:4 | sefat-emet-genesis-vayechi-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 29:1 | sefat-emet-genesis-vayechi-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 29:2 | sefat-emet-genesis-vayechi-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 29:3 | sefat-emet-genesis-vayechi-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 29:4 | sefat-emet-genesis-vayechi-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 29:5 | sefat-emet-genesis-vayechi-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 30:1 | sefat-emet-genesis-vayechi-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 30:2 | sefat-emet-genesis-vayechi-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 30:3 | sefat-emet-genesis-vayechi-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 30:4 | sefat-emet-genesis-vayechi-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 30:5 | sefat-emet-genesis-vayechi-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 31:1 | sefat-emet-genesis-vayechi-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 31:2 | sefat-emet-genesis-vayechi-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 31:3 | sefat-emet-genesis-vayechi-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 32:1 | sefat-emet-genesis-vayechi-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 32:2 | sefat-emet-genesis-vayechi-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Genesis, Vayechi 32:3 | sefat-emet-genesis-vayechi-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 1:1 | sefat-emet-exodus-shemot-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 1:2 | sefat-emet-exodus-shemot-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 1:3 | sefat-emet-exodus-shemot-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 1:4 | sefat-emet-exodus-shemot-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 1:5 | sefat-emet-exodus-shemot-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 1:6 | sefat-emet-exodus-shemot-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 1:7 | sefat-emet-exodus-shemot-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 2:1 | sefat-emet-exodus-shemot-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 2:2 | sefat-emet-exodus-shemot-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 2:3 | sefat-emet-exodus-shemot-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 2:4 | sefat-emet-exodus-shemot-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 2:5 | sefat-emet-exodus-shemot-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 3:1 | sefat-emet-exodus-shemot-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 3:2 | sefat-emet-exodus-shemot-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 3:3 | sefat-emet-exodus-shemot-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 4:1 | sefat-emet-exodus-shemot-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 4:2 | sefat-emet-exodus-shemot-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 4:3 | sefat-emet-exodus-shemot-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 4:4 | sefat-emet-exodus-shemot-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 5:1 | sefat-emet-exodus-shemot-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 5:2 | sefat-emet-exodus-shemot-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 5:3 | sefat-emet-exodus-shemot-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 5:4 | sefat-emet-exodus-shemot-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 6:1 | sefat-emet-exodus-shemot-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 6:2 | sefat-emet-exodus-shemot-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 6:3 | sefat-emet-exodus-shemot-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 7:1 | sefat-emet-exodus-shemot-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 7:2 | sefat-emet-exodus-shemot-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 7:3 | sefat-emet-exodus-shemot-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 7:4 | sefat-emet-exodus-shemot-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 8:1 | sefat-emet-exodus-shemot-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 8:2 | sefat-emet-exodus-shemot-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 8:3 | sefat-emet-exodus-shemot-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 9:1 | sefat-emet-exodus-shemot-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 9:2 | sefat-emet-exodus-shemot-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 9:3 | sefat-emet-exodus-shemot-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 10:1 | sefat-emet-exodus-shemot-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 10:2 | sefat-emet-exodus-shemot-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 10:3 | sefat-emet-exodus-shemot-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 11:1 | sefat-emet-exodus-shemot-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 11:2 | sefat-emet-exodus-shemot-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 11:3 | sefat-emet-exodus-shemot-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 11:4 | sefat-emet-exodus-shemot-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 12:1 | sefat-emet-exodus-shemot-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 12:2 | sefat-emet-exodus-shemot-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 12:3 | sefat-emet-exodus-shemot-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 13:1 | sefat-emet-exodus-shemot-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 13:2 | sefat-emet-exodus-shemot-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 13:3 | sefat-emet-exodus-shemot-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 14:1 | sefat-emet-exodus-shemot-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 14:2 | sefat-emet-exodus-shemot-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 14:3 | sefat-emet-exodus-shemot-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 15:1 | sefat-emet-exodus-shemot-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 15:2 | sefat-emet-exodus-shemot-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 15:3 | sefat-emet-exodus-shemot-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 15:4 | sefat-emet-exodus-shemot-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 15:5 | sefat-emet-exodus-shemot-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 16:1 | sefat-emet-exodus-shemot-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 16:2 | sefat-emet-exodus-shemot-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 16:3 | sefat-emet-exodus-shemot-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 17:1 | sefat-emet-exodus-shemot-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 17:2 | sefat-emet-exodus-shemot-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 17:3 | sefat-emet-exodus-shemot-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 17:4 | sefat-emet-exodus-shemot-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 18:1 | sefat-emet-exodus-shemot-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 18:2 | sefat-emet-exodus-shemot-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 18:3 | sefat-emet-exodus-shemot-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 18:4 | sefat-emet-exodus-shemot-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 19:1 | sefat-emet-exodus-shemot-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 19:2 | sefat-emet-exodus-shemot-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 20:1 | sefat-emet-exodus-shemot-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 20:2 | sefat-emet-exodus-shemot-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 20:3 | sefat-emet-exodus-shemot-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 20:4 | sefat-emet-exodus-shemot-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 21:1 | sefat-emet-exodus-shemot-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 21:2 | sefat-emet-exodus-shemot-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 21:3 | sefat-emet-exodus-shemot-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 21:4 | sefat-emet-exodus-shemot-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 22:1 | sefat-emet-exodus-shemot-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 22:2 | sefat-emet-exodus-shemot-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 22:3 | sefat-emet-exodus-shemot-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 22:4 | sefat-emet-exodus-shemot-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 22:5 | sefat-emet-exodus-shemot-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 23:1 | sefat-emet-exodus-shemot-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 23:2 | sefat-emet-exodus-shemot-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 23:3 | sefat-emet-exodus-shemot-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 24:1 | sefat-emet-exodus-shemot-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 24:2 | sefat-emet-exodus-shemot-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 24:3 | sefat-emet-exodus-shemot-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 25:1 | sefat-emet-exodus-shemot-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 25:2 | sefat-emet-exodus-shemot-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 25:3 | sefat-emet-exodus-shemot-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 26:1 | sefat-emet-exodus-shemot-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 26:2 | sefat-emet-exodus-shemot-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 26:3 | sefat-emet-exodus-shemot-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 26:4 | sefat-emet-exodus-shemot-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 27:1 | sefat-emet-exodus-shemot-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 27:2 | sefat-emet-exodus-shemot-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 27:3 | sefat-emet-exodus-shemot-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 28:1 | sefat-emet-exodus-shemot-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 28:2 | sefat-emet-exodus-shemot-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 28:3 | sefat-emet-exodus-shemot-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 29:1 | sefat-emet-exodus-shemot-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 29:2 | sefat-emet-exodus-shemot-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 29:3 | sefat-emet-exodus-shemot-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 29:4 | sefat-emet-exodus-shemot-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 30:1 | sefat-emet-exodus-shemot-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 30:2 | sefat-emet-exodus-shemot-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 30:3 | sefat-emet-exodus-shemot-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 31:1 | sefat-emet-exodus-shemot-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 31:2 | sefat-emet-exodus-shemot-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Shemot 31:3 | sefat-emet-exodus-shemot-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 1:1 | sefat-emet-exodus-vaera-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 1:2 | sefat-emet-exodus-vaera-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 1:3 | sefat-emet-exodus-vaera-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 1:4 | sefat-emet-exodus-vaera-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 2:1 | sefat-emet-exodus-vaera-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 2:2 | sefat-emet-exodus-vaera-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 2:3 | sefat-emet-exodus-vaera-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 3:1 | sefat-emet-exodus-vaera-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 3:2 | sefat-emet-exodus-vaera-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 3:3 | sefat-emet-exodus-vaera-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 3:4 | sefat-emet-exodus-vaera-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 3:5 | sefat-emet-exodus-vaera-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 4:1 | sefat-emet-exodus-vaera-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 4:2 | sefat-emet-exodus-vaera-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 4:3 | sefat-emet-exodus-vaera-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 4:4 | sefat-emet-exodus-vaera-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 4:5 | sefat-emet-exodus-vaera-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 5:1 | sefat-emet-exodus-vaera-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 5:2 | sefat-emet-exodus-vaera-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 5:3 | sefat-emet-exodus-vaera-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 5:4 | sefat-emet-exodus-vaera-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 6:1 | sefat-emet-exodus-vaera-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 6:2 | sefat-emet-exodus-vaera-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 6:3 | sefat-emet-exodus-vaera-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 6:4 | sefat-emet-exodus-vaera-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 6:5 | sefat-emet-exodus-vaera-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 7:1 | sefat-emet-exodus-vaera-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 7:2 | sefat-emet-exodus-vaera-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 7:3 | sefat-emet-exodus-vaera-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 7:4 | sefat-emet-exodus-vaera-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 7:5 | sefat-emet-exodus-vaera-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 8:1 | sefat-emet-exodus-vaera-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 8:2 | sefat-emet-exodus-vaera-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 8:3 | sefat-emet-exodus-vaera-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 9:1 | sefat-emet-exodus-vaera-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 9:2 | sefat-emet-exodus-vaera-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 9:3 | sefat-emet-exodus-vaera-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 10:1 | sefat-emet-exodus-vaera-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 10:2 | sefat-emet-exodus-vaera-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 10:3 | sefat-emet-exodus-vaera-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 11:1 | sefat-emet-exodus-vaera-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 11:2 | sefat-emet-exodus-vaera-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 11:3 | sefat-emet-exodus-vaera-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 12:1 | sefat-emet-exodus-vaera-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 12:2 | sefat-emet-exodus-vaera-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 12:3 | sefat-emet-exodus-vaera-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 13:1 | sefat-emet-exodus-vaera-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 13:2 | sefat-emet-exodus-vaera-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 14:1 | sefat-emet-exodus-vaera-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 14:2 | sefat-emet-exodus-vaera-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 14:3 | sefat-emet-exodus-vaera-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 14:4 | sefat-emet-exodus-vaera-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 15:1 | sefat-emet-exodus-vaera-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 15:2 | sefat-emet-exodus-vaera-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 15:3 | sefat-emet-exodus-vaera-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 15:4 | sefat-emet-exodus-vaera-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 16:1 | sefat-emet-exodus-vaera-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 16:2 | sefat-emet-exodus-vaera-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 16:3 | sefat-emet-exodus-vaera-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 17:1 | sefat-emet-exodus-vaera-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 17:2 | sefat-emet-exodus-vaera-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 17:3 | sefat-emet-exodus-vaera-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 18:1 | sefat-emet-exodus-vaera-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 18:2 | sefat-emet-exodus-vaera-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 19:1 | sefat-emet-exodus-vaera-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 19:2 | sefat-emet-exodus-vaera-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 19:3 | sefat-emet-exodus-vaera-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 20:1 | sefat-emet-exodus-vaera-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 20:2 | sefat-emet-exodus-vaera-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 21:1 | sefat-emet-exodus-vaera-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 21:2 | sefat-emet-exodus-vaera-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 21:3 | sefat-emet-exodus-vaera-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 22:1 | sefat-emet-exodus-vaera-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 22:2 | sefat-emet-exodus-vaera-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 22:3 | sefat-emet-exodus-vaera-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 23:1 | sefat-emet-exodus-vaera-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 23:2 | sefat-emet-exodus-vaera-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 23:3 | sefat-emet-exodus-vaera-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 24:1 | sefat-emet-exodus-vaera-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 24:2 | sefat-emet-exodus-vaera-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 25:1 | sefat-emet-exodus-vaera-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 25:2 | sefat-emet-exodus-vaera-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 26:1 | sefat-emet-exodus-vaera-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 26:2 | sefat-emet-exodus-vaera-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 27:1 | sefat-emet-exodus-vaera-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 27:2 | sefat-emet-exodus-vaera-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 28:1 | sefat-emet-exodus-vaera-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 28:2 | sefat-emet-exodus-vaera-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 28:3 | sefat-emet-exodus-vaera-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 29:1 | sefat-emet-exodus-vaera-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 29:2 | sefat-emet-exodus-vaera-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 30:1 | sefat-emet-exodus-vaera-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vaera 30:2 | sefat-emet-exodus-vaera-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 1:1 | sefat-emet-exodus-bo-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 1:2 | sefat-emet-exodus-bo-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 1:3 | sefat-emet-exodus-bo-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 1:4 | sefat-emet-exodus-bo-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 1:5 | sefat-emet-exodus-bo-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 1:6 | sefat-emet-exodus-bo-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 2:1 | sefat-emet-exodus-bo-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 2:2 | sefat-emet-exodus-bo-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 2:3 | sefat-emet-exodus-bo-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 2:4 | sefat-emet-exodus-bo-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 2:5 | sefat-emet-exodus-bo-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 2:6 | sefat-emet-exodus-bo-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 3:1 | sefat-emet-exodus-bo-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 3:2 | sefat-emet-exodus-bo-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 3:3 | sefat-emet-exodus-bo-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 3:4 | sefat-emet-exodus-bo-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 3:5 | sefat-emet-exodus-bo-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 4:1 | sefat-emet-exodus-bo-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 4:2 | sefat-emet-exodus-bo-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 4:3 | sefat-emet-exodus-bo-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 4:4 | sefat-emet-exodus-bo-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 4:5 | sefat-emet-exodus-bo-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 4:6 | sefat-emet-exodus-bo-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 5:1 | sefat-emet-exodus-bo-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 5:2 | sefat-emet-exodus-bo-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 5:3 | sefat-emet-exodus-bo-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 5:4 | sefat-emet-exodus-bo-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 6:1 | sefat-emet-exodus-bo-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 6:2 | sefat-emet-exodus-bo-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 6:3 | sefat-emet-exodus-bo-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 6:4 | sefat-emet-exodus-bo-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 6:5 | sefat-emet-exodus-bo-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 7:1 | sefat-emet-exodus-bo-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 7:2 | sefat-emet-exodus-bo-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 7:3 | sefat-emet-exodus-bo-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 8:1 | sefat-emet-exodus-bo-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 8:2 | sefat-emet-exodus-bo-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 8:3 | sefat-emet-exodus-bo-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 8:4 | sefat-emet-exodus-bo-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 9:1 | sefat-emet-exodus-bo-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 9:2 | sefat-emet-exodus-bo-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 9:3 | sefat-emet-exodus-bo-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 9:4 | sefat-emet-exodus-bo-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 10:1 | sefat-emet-exodus-bo-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 10:2 | sefat-emet-exodus-bo-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 10:3 | sefat-emet-exodus-bo-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 10:4 | sefat-emet-exodus-bo-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 10:5 | sefat-emet-exodus-bo-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 11:1 | sefat-emet-exodus-bo-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 11:2 | sefat-emet-exodus-bo-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 11:3 | sefat-emet-exodus-bo-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 12:1 | sefat-emet-exodus-bo-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 12:2 | sefat-emet-exodus-bo-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 12:3 | sefat-emet-exodus-bo-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 12:4 | sefat-emet-exodus-bo-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 13:1 | sefat-emet-exodus-bo-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 13:2 | sefat-emet-exodus-bo-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 13:3 | sefat-emet-exodus-bo-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 13:4 | sefat-emet-exodus-bo-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 14:1 | sefat-emet-exodus-bo-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 14:2 | sefat-emet-exodus-bo-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 14:3 | sefat-emet-exodus-bo-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 14:4 | sefat-emet-exodus-bo-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 15:1 | sefat-emet-exodus-bo-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 15:2 | sefat-emet-exodus-bo-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 16:1 | sefat-emet-exodus-bo-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 16:2 | sefat-emet-exodus-bo-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 16:3 | sefat-emet-exodus-bo-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 16:4 | sefat-emet-exodus-bo-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 17:1 | sefat-emet-exodus-bo-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 17:2 | sefat-emet-exodus-bo-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 18:1 | sefat-emet-exodus-bo-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 18:2 | sefat-emet-exodus-bo-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 18:3 | sefat-emet-exodus-bo-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 18:4 | sefat-emet-exodus-bo-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 18:5 | sefat-emet-exodus-bo-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 18:6 | sefat-emet-exodus-bo-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 18:7 | sefat-emet-exodus-bo-18-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 19:1 | sefat-emet-exodus-bo-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 19:2 | sefat-emet-exodus-bo-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 19:3 | sefat-emet-exodus-bo-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 20:1 | sefat-emet-exodus-bo-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 20:2 | sefat-emet-exodus-bo-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 21:1 | sefat-emet-exodus-bo-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 21:2 | sefat-emet-exodus-bo-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 21:3 | sefat-emet-exodus-bo-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 22:1 | sefat-emet-exodus-bo-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 22:2 | sefat-emet-exodus-bo-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 22:3 | sefat-emet-exodus-bo-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 22:4 | sefat-emet-exodus-bo-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 23:1 | sefat-emet-exodus-bo-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 23:2 | sefat-emet-exodus-bo-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 23:3 | sefat-emet-exodus-bo-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 23:4 | sefat-emet-exodus-bo-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 24:1 | sefat-emet-exodus-bo-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 24:2 | sefat-emet-exodus-bo-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 24:3 | sefat-emet-exodus-bo-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 24:4 | sefat-emet-exodus-bo-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 25:1 | sefat-emet-exodus-bo-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 25:2 | sefat-emet-exodus-bo-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 25:3 | sefat-emet-exodus-bo-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 26:1 | sefat-emet-exodus-bo-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 26:2 | sefat-emet-exodus-bo-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 27:1 | sefat-emet-exodus-bo-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 27:2 | sefat-emet-exodus-bo-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 27:3 | sefat-emet-exodus-bo-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 27:4 | sefat-emet-exodus-bo-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 27:5 | sefat-emet-exodus-bo-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 28:1 | sefat-emet-exodus-bo-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 28:2 | sefat-emet-exodus-bo-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 28:3 | sefat-emet-exodus-bo-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 29:1 | sefat-emet-exodus-bo-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 29:2 | sefat-emet-exodus-bo-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 29:3 | sefat-emet-exodus-bo-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 30:1 | sefat-emet-exodus-bo-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 30:2 | sefat-emet-exodus-bo-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 31:1 | sefat-emet-exodus-bo-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 31:2 | sefat-emet-exodus-bo-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Bo 31:3 | sefat-emet-exodus-bo-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 1:1 | sefat-emet-exodus-beshalach-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 1:2 | sefat-emet-exodus-beshalach-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 1:3 | sefat-emet-exodus-beshalach-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 1:4 | sefat-emet-exodus-beshalach-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 1:5 | sefat-emet-exodus-beshalach-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 1:6 | sefat-emet-exodus-beshalach-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 2:1 | sefat-emet-exodus-beshalach-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 2:2 | sefat-emet-exodus-beshalach-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 2:3 | sefat-emet-exodus-beshalach-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 2:4 | sefat-emet-exodus-beshalach-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 3:1 | sefat-emet-exodus-beshalach-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 3:2 | sefat-emet-exodus-beshalach-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 3:3 | sefat-emet-exodus-beshalach-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 3:4 | sefat-emet-exodus-beshalach-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 4:1 | sefat-emet-exodus-beshalach-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 4:2 | sefat-emet-exodus-beshalach-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 4:3 | sefat-emet-exodus-beshalach-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 5:1 | sefat-emet-exodus-beshalach-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 5:2 | sefat-emet-exodus-beshalach-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 5:3 | sefat-emet-exodus-beshalach-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 6:1 | sefat-emet-exodus-beshalach-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 6:2 | sefat-emet-exodus-beshalach-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 6:3 | sefat-emet-exodus-beshalach-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 6:4 | sefat-emet-exodus-beshalach-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 7:1 | sefat-emet-exodus-beshalach-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 7:2 | sefat-emet-exodus-beshalach-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 7:3 | sefat-emet-exodus-beshalach-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 7:4 | sefat-emet-exodus-beshalach-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 7:5 | sefat-emet-exodus-beshalach-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 7:6 | sefat-emet-exodus-beshalach-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 8:1 | sefat-emet-exodus-beshalach-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 8:2 | sefat-emet-exodus-beshalach-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 8:3 | sefat-emet-exodus-beshalach-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 8:4 | sefat-emet-exodus-beshalach-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 8:5 | sefat-emet-exodus-beshalach-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 9:1 | sefat-emet-exodus-beshalach-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 9:2 | sefat-emet-exodus-beshalach-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 9:3 | sefat-emet-exodus-beshalach-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 10:1 | sefat-emet-exodus-beshalach-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 10:2 | sefat-emet-exodus-beshalach-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 10:3 | sefat-emet-exodus-beshalach-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 11:1 | sefat-emet-exodus-beshalach-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 11:2 | sefat-emet-exodus-beshalach-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 11:3 | sefat-emet-exodus-beshalach-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 11:4 | sefat-emet-exodus-beshalach-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 11:5 | sefat-emet-exodus-beshalach-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 12:1 | sefat-emet-exodus-beshalach-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 12:2 | sefat-emet-exodus-beshalach-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 12:3 | sefat-emet-exodus-beshalach-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 12:4 | sefat-emet-exodus-beshalach-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 13:1 | sefat-emet-exodus-beshalach-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 13:2 | sefat-emet-exodus-beshalach-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 13:3 | sefat-emet-exodus-beshalach-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 14:1 | sefat-emet-exodus-beshalach-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 14:2 | sefat-emet-exodus-beshalach-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 15:1 | sefat-emet-exodus-beshalach-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 15:2 | sefat-emet-exodus-beshalach-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 15:3 | sefat-emet-exodus-beshalach-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 15:4 | sefat-emet-exodus-beshalach-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 16:1 | sefat-emet-exodus-beshalach-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 16:2 | sefat-emet-exodus-beshalach-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 16:3 | sefat-emet-exodus-beshalach-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 17:1 | sefat-emet-exodus-beshalach-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 17:2 | sefat-emet-exodus-beshalach-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 17:3 | sefat-emet-exodus-beshalach-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 17:4 | sefat-emet-exodus-beshalach-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 18:1 | sefat-emet-exodus-beshalach-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 18:2 | sefat-emet-exodus-beshalach-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 18:3 | sefat-emet-exodus-beshalach-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 19:1 | sefat-emet-exodus-beshalach-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 19:2 | sefat-emet-exodus-beshalach-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 19:3 | sefat-emet-exodus-beshalach-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 20:1 | sefat-emet-exodus-beshalach-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 20:2 | sefat-emet-exodus-beshalach-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 20:3 | sefat-emet-exodus-beshalach-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 21:1 | sefat-emet-exodus-beshalach-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 21:2 | sefat-emet-exodus-beshalach-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 21:3 | sefat-emet-exodus-beshalach-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 21:4 | sefat-emet-exodus-beshalach-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 21:5 | sefat-emet-exodus-beshalach-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 22:1 | sefat-emet-exodus-beshalach-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 22:2 | sefat-emet-exodus-beshalach-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 22:3 | sefat-emet-exodus-beshalach-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 23:1 | sefat-emet-exodus-beshalach-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 23:2 | sefat-emet-exodus-beshalach-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 24:1 | sefat-emet-exodus-beshalach-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 24:2 | sefat-emet-exodus-beshalach-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 24:3 | sefat-emet-exodus-beshalach-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 25:1 | sefat-emet-exodus-beshalach-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 25:2 | sefat-emet-exodus-beshalach-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 26:1 | sefat-emet-exodus-beshalach-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 26:2 | sefat-emet-exodus-beshalach-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 27:1 | sefat-emet-exodus-beshalach-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 27:2 | sefat-emet-exodus-beshalach-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 28:1 | sefat-emet-exodus-beshalach-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 28:2 | sefat-emet-exodus-beshalach-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 28:3 | sefat-emet-exodus-beshalach-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 29:1 | sefat-emet-exodus-beshalach-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 29:2 | sefat-emet-exodus-beshalach-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 30:1 | sefat-emet-exodus-beshalach-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 30:2 | sefat-emet-exodus-beshalach-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 30:3 | sefat-emet-exodus-beshalach-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 31:1 | sefat-emet-exodus-beshalach-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 31:2 | sefat-emet-exodus-beshalach-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 31:3 | sefat-emet-exodus-beshalach-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 31:4 | sefat-emet-exodus-beshalach-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 32:1 | sefat-emet-exodus-beshalach-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 32:2 | sefat-emet-exodus-beshalach-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 32:3 | sefat-emet-exodus-beshalach-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Beshalach 32:4 | sefat-emet-exodus-beshalach-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 1:1 | sefat-emet-exodus-yitro-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 1:2 | sefat-emet-exodus-yitro-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 1:3 | sefat-emet-exodus-yitro-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 1:4 | sefat-emet-exodus-yitro-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 2:1 | sefat-emet-exodus-yitro-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 2:2 | sefat-emet-exodus-yitro-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 2:3 | sefat-emet-exodus-yitro-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 3:1 | sefat-emet-exodus-yitro-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 3:2 | sefat-emet-exodus-yitro-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 3:3 | sefat-emet-exodus-yitro-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 3:4 | sefat-emet-exodus-yitro-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 3:5 | sefat-emet-exodus-yitro-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 3:6 | sefat-emet-exodus-yitro-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 4:1 | sefat-emet-exodus-yitro-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 4:2 | sefat-emet-exodus-yitro-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 4:3 | sefat-emet-exodus-yitro-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 4:4 | sefat-emet-exodus-yitro-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 4:5 | sefat-emet-exodus-yitro-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 5:1 | sefat-emet-exodus-yitro-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 5:2 | sefat-emet-exodus-yitro-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 5:3 | sefat-emet-exodus-yitro-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 5:4 | sefat-emet-exodus-yitro-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 5:5 | sefat-emet-exodus-yitro-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 6:1 | sefat-emet-exodus-yitro-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 6:2 | sefat-emet-exodus-yitro-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 6:3 | sefat-emet-exodus-yitro-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 6:4 | sefat-emet-exodus-yitro-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 6:5 | sefat-emet-exodus-yitro-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 7:1 | sefat-emet-exodus-yitro-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 7:2 | sefat-emet-exodus-yitro-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 7:3 | sefat-emet-exodus-yitro-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 7:4 | sefat-emet-exodus-yitro-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 7:5 | sefat-emet-exodus-yitro-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 8:1 | sefat-emet-exodus-yitro-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 8:2 | sefat-emet-exodus-yitro-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 8:3 | sefat-emet-exodus-yitro-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 8:4 | sefat-emet-exodus-yitro-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 9:1 | sefat-emet-exodus-yitro-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 9:2 | sefat-emet-exodus-yitro-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 9:3 | sefat-emet-exodus-yitro-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 9:4 | sefat-emet-exodus-yitro-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 9:5 | sefat-emet-exodus-yitro-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 10:1 | sefat-emet-exodus-yitro-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 10:2 | sefat-emet-exodus-yitro-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 10:3 | sefat-emet-exodus-yitro-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 10:4 | sefat-emet-exodus-yitro-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 11:1 | sefat-emet-exodus-yitro-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 11:2 | sefat-emet-exodus-yitro-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 11:3 | sefat-emet-exodus-yitro-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 11:4 | sefat-emet-exodus-yitro-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 11:5 | sefat-emet-exodus-yitro-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 12:1 | sefat-emet-exodus-yitro-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 12:2 | sefat-emet-exodus-yitro-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 12:3 | sefat-emet-exodus-yitro-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 13:1 | sefat-emet-exodus-yitro-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 13:2 | sefat-emet-exodus-yitro-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 13:3 | sefat-emet-exodus-yitro-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 13:4 | sefat-emet-exodus-yitro-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 14:1 | sefat-emet-exodus-yitro-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 14:2 | sefat-emet-exodus-yitro-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 14:3 | sefat-emet-exodus-yitro-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 14:4 | sefat-emet-exodus-yitro-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 15:1 | sefat-emet-exodus-yitro-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 15:2 | sefat-emet-exodus-yitro-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 15:3 | sefat-emet-exodus-yitro-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 16:1 | sefat-emet-exodus-yitro-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 16:2 | sefat-emet-exodus-yitro-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 16:3 | sefat-emet-exodus-yitro-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 16:4 | sefat-emet-exodus-yitro-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 16:5 | sefat-emet-exodus-yitro-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 17:1 | sefat-emet-exodus-yitro-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 17:2 | sefat-emet-exodus-yitro-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 17:3 | sefat-emet-exodus-yitro-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 18:1 | sefat-emet-exodus-yitro-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 18:2 | sefat-emet-exodus-yitro-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 18:3 | sefat-emet-exodus-yitro-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 18:4 | sefat-emet-exodus-yitro-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 18:5 | sefat-emet-exodus-yitro-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 19:1 | sefat-emet-exodus-yitro-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 19:2 | sefat-emet-exodus-yitro-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 19:3 | sefat-emet-exodus-yitro-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 19:4 | sefat-emet-exodus-yitro-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 19:5 | sefat-emet-exodus-yitro-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 19:6 | sefat-emet-exodus-yitro-19-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 20:1 | sefat-emet-exodus-yitro-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 20:2 | sefat-emet-exodus-yitro-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 20:3 | sefat-emet-exodus-yitro-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 20:4 | sefat-emet-exodus-yitro-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 21:1 | sefat-emet-exodus-yitro-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 21:2 | sefat-emet-exodus-yitro-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 21:3 | sefat-emet-exodus-yitro-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 21:4 | sefat-emet-exodus-yitro-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 22:1 | sefat-emet-exodus-yitro-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 22:2 | sefat-emet-exodus-yitro-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 22:3 | sefat-emet-exodus-yitro-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 22:4 | sefat-emet-exodus-yitro-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 23:1 | sefat-emet-exodus-yitro-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 23:2 | sefat-emet-exodus-yitro-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 23:3 | sefat-emet-exodus-yitro-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 24:1 | sefat-emet-exodus-yitro-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 24:2 | sefat-emet-exodus-yitro-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 24:3 | sefat-emet-exodus-yitro-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 25:1 | sefat-emet-exodus-yitro-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 25:2 | sefat-emet-exodus-yitro-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 25:3 | sefat-emet-exodus-yitro-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 25:4 | sefat-emet-exodus-yitro-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 26:1 | sefat-emet-exodus-yitro-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 26:2 | sefat-emet-exodus-yitro-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 26:3 | sefat-emet-exodus-yitro-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 26:4 | sefat-emet-exodus-yitro-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 27:1 | sefat-emet-exodus-yitro-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 27:2 | sefat-emet-exodus-yitro-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 27:3 | sefat-emet-exodus-yitro-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 28:1 | sefat-emet-exodus-yitro-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 28:2 | sefat-emet-exodus-yitro-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 29:1 | sefat-emet-exodus-yitro-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 29:2 | sefat-emet-exodus-yitro-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 30:1 | sefat-emet-exodus-yitro-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 30:2 | sefat-emet-exodus-yitro-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 30:3 | sefat-emet-exodus-yitro-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 30:4 | sefat-emet-exodus-yitro-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 31:1 | sefat-emet-exodus-yitro-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Yitro 31:2 | sefat-emet-exodus-yitro-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 1:1 | sefat-emet-exodus-mishpatim-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 1:2 | sefat-emet-exodus-mishpatim-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 1:3 | sefat-emet-exodus-mishpatim-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 2:1 | sefat-emet-exodus-mishpatim-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 2:2 | sefat-emet-exodus-mishpatim-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 2:3 | sefat-emet-exodus-mishpatim-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 2:4 | sefat-emet-exodus-mishpatim-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 3:1 | sefat-emet-exodus-mishpatim-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 3:2 | sefat-emet-exodus-mishpatim-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 3:3 | sefat-emet-exodus-mishpatim-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 4:1 | sefat-emet-exodus-mishpatim-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 4:2 | sefat-emet-exodus-mishpatim-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 4:3 | sefat-emet-exodus-mishpatim-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 4:4 | sefat-emet-exodus-mishpatim-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 4:5 | sefat-emet-exodus-mishpatim-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 4:6 | sefat-emet-exodus-mishpatim-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 5:1 | sefat-emet-exodus-mishpatim-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 5:2 | sefat-emet-exodus-mishpatim-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 5:3 | sefat-emet-exodus-mishpatim-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 5:4 | sefat-emet-exodus-mishpatim-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 6:1 | sefat-emet-exodus-mishpatim-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 6:2 | sefat-emet-exodus-mishpatim-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 6:3 | sefat-emet-exodus-mishpatim-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 7:1 | sefat-emet-exodus-mishpatim-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 7:2 | sefat-emet-exodus-mishpatim-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 8:1 | sefat-emet-exodus-mishpatim-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 8:2 | sefat-emet-exodus-mishpatim-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 9:1 | sefat-emet-exodus-mishpatim-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 9:2 | sefat-emet-exodus-mishpatim-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 9:3 | sefat-emet-exodus-mishpatim-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 10:1 | sefat-emet-exodus-mishpatim-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 10:2 | sefat-emet-exodus-mishpatim-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 11:1 | sefat-emet-exodus-mishpatim-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 11:2 | sefat-emet-exodus-mishpatim-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 12:1 | sefat-emet-exodus-mishpatim-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 12:2 | sefat-emet-exodus-mishpatim-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 12:3 | sefat-emet-exodus-mishpatim-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 13:1 | sefat-emet-exodus-mishpatim-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 13:2 | sefat-emet-exodus-mishpatim-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 13:3 | sefat-emet-exodus-mishpatim-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 13:4 | sefat-emet-exodus-mishpatim-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 13:5 | sefat-emet-exodus-mishpatim-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 14:1 | sefat-emet-exodus-mishpatim-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 14:2 | sefat-emet-exodus-mishpatim-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 15:1 | sefat-emet-exodus-mishpatim-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 15:2 | sefat-emet-exodus-mishpatim-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 16:1 | sefat-emet-exodus-mishpatim-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 16:2 | sefat-emet-exodus-mishpatim-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 17:1 | sefat-emet-exodus-mishpatim-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 17:2 | sefat-emet-exodus-mishpatim-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 17:3 | sefat-emet-exodus-mishpatim-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 17:4 | sefat-emet-exodus-mishpatim-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 18:1 | sefat-emet-exodus-mishpatim-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 18:2 | sefat-emet-exodus-mishpatim-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 19:1 | sefat-emet-exodus-mishpatim-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 19:2 | sefat-emet-exodus-mishpatim-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 20:1 | sefat-emet-exodus-mishpatim-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 20:2 | sefat-emet-exodus-mishpatim-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 21:1 | sefat-emet-exodus-mishpatim-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 21:2 | sefat-emet-exodus-mishpatim-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 21:3 | sefat-emet-exodus-mishpatim-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 21:4 | sefat-emet-exodus-mishpatim-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 22:1 | sefat-emet-exodus-mishpatim-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 22:2 | sefat-emet-exodus-mishpatim-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 22:3 | sefat-emet-exodus-mishpatim-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 22:4 | sefat-emet-exodus-mishpatim-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 23:1 | sefat-emet-exodus-mishpatim-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 23:2 | sefat-emet-exodus-mishpatim-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 24:1 | sefat-emet-exodus-mishpatim-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 24:2 | sefat-emet-exodus-mishpatim-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 25:1 | sefat-emet-exodus-mishpatim-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 25:2 | sefat-emet-exodus-mishpatim-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 26:1 | sefat-emet-exodus-mishpatim-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 26:2 | sefat-emet-exodus-mishpatim-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 27:1 | sefat-emet-exodus-mishpatim-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 27:2 | sefat-emet-exodus-mishpatim-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Mishpatim 27:3 | sefat-emet-exodus-mishpatim-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 1:1 | sefat-emet-exodus-parashat-shekalim-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 1:2 | sefat-emet-exodus-parashat-shekalim-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 2:1 | sefat-emet-exodus-parashat-shekalim-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 2:2 | sefat-emet-exodus-parashat-shekalim-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 2:3 | sefat-emet-exodus-parashat-shekalim-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 2:4 | sefat-emet-exodus-parashat-shekalim-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 2:5 | sefat-emet-exodus-parashat-shekalim-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 3:1 | sefat-emet-exodus-parashat-shekalim-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 3:2 | sefat-emet-exodus-parashat-shekalim-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 3:3 | sefat-emet-exodus-parashat-shekalim-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 3:4 | sefat-emet-exodus-parashat-shekalim-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 4:1 | sefat-emet-exodus-parashat-shekalim-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 4:2 | sefat-emet-exodus-parashat-shekalim-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 4:3 | sefat-emet-exodus-parashat-shekalim-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 5:1 | sefat-emet-exodus-parashat-shekalim-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 5:2 | sefat-emet-exodus-parashat-shekalim-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 5:3 | sefat-emet-exodus-parashat-shekalim-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 6:1 | sefat-emet-exodus-parashat-shekalim-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 6:2 | sefat-emet-exodus-parashat-shekalim-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 6:3 | sefat-emet-exodus-parashat-shekalim-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 6:4 | sefat-emet-exodus-parashat-shekalim-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 7:1 | sefat-emet-exodus-parashat-shekalim-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 7:2 | sefat-emet-exodus-parashat-shekalim-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 8:1 | sefat-emet-exodus-parashat-shekalim-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 8:2 | sefat-emet-exodus-parashat-shekalim-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 8:3 | sefat-emet-exodus-parashat-shekalim-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 8:4 | sefat-emet-exodus-parashat-shekalim-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 9:1 | sefat-emet-exodus-parashat-shekalim-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 9:2 | sefat-emet-exodus-parashat-shekalim-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 10:1 | sefat-emet-exodus-parashat-shekalim-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 10:2 | sefat-emet-exodus-parashat-shekalim-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 10:3 | sefat-emet-exodus-parashat-shekalim-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 11:1 | sefat-emet-exodus-parashat-shekalim-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 11:2 | sefat-emet-exodus-parashat-shekalim-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 11:3 | sefat-emet-exodus-parashat-shekalim-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 11:4 | sefat-emet-exodus-parashat-shekalim-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 12:1 | sefat-emet-exodus-parashat-shekalim-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 12:2 | sefat-emet-exodus-parashat-shekalim-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 13:1 | sefat-emet-exodus-parashat-shekalim-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 13:2 | sefat-emet-exodus-parashat-shekalim-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 13:3 | sefat-emet-exodus-parashat-shekalim-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 14:1 | sefat-emet-exodus-parashat-shekalim-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 14:2 | sefat-emet-exodus-parashat-shekalim-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 15:1 | sefat-emet-exodus-parashat-shekalim-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 15:2 | sefat-emet-exodus-parashat-shekalim-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 15:3 | sefat-emet-exodus-parashat-shekalim-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 16:1 | sefat-emet-exodus-parashat-shekalim-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 16:2 | sefat-emet-exodus-parashat-shekalim-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 17:1 | sefat-emet-exodus-parashat-shekalim-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 17:2 | sefat-emet-exodus-parashat-shekalim-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 17:3 | sefat-emet-exodus-parashat-shekalim-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 18:1 | sefat-emet-exodus-parashat-shekalim-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 18:2 | sefat-emet-exodus-parashat-shekalim-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 18:3 | sefat-emet-exodus-parashat-shekalim-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 19:1 | sefat-emet-exodus-parashat-shekalim-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 19:2 | sefat-emet-exodus-parashat-shekalim-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 20:1 | sefat-emet-exodus-parashat-shekalim-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 20:2 | sefat-emet-exodus-parashat-shekalim-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 21:1 | sefat-emet-exodus-parashat-shekalim-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 21:2 | sefat-emet-exodus-parashat-shekalim-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 21:3 | sefat-emet-exodus-parashat-shekalim-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 22:1 | sefat-emet-exodus-parashat-shekalim-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 22:2 | sefat-emet-exodus-parashat-shekalim-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 22:3 | sefat-emet-exodus-parashat-shekalim-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 23:1 | sefat-emet-exodus-parashat-shekalim-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 23:2 | sefat-emet-exodus-parashat-shekalim-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 24:1 | sefat-emet-exodus-parashat-shekalim-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 24:2 | sefat-emet-exodus-parashat-shekalim-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 24:3 | sefat-emet-exodus-parashat-shekalim-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 25:1 | sefat-emet-exodus-parashat-shekalim-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 25:2 | sefat-emet-exodus-parashat-shekalim-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 25:3 | sefat-emet-exodus-parashat-shekalim-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 26:1 | sefat-emet-exodus-parashat-shekalim-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 26:2 | sefat-emet-exodus-parashat-shekalim-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 26:3 | sefat-emet-exodus-parashat-shekalim-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 27:1 | sefat-emet-exodus-parashat-shekalim-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Shekalim 27:2 | sefat-emet-exodus-parashat-shekalim-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 1:1 | sefat-emet-exodus-terumah-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 1:2 | sefat-emet-exodus-terumah-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 1:3 | sefat-emet-exodus-terumah-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 1:4 | sefat-emet-exodus-terumah-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 2:1 | sefat-emet-exodus-terumah-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 2:2 | sefat-emet-exodus-terumah-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 2:3 | sefat-emet-exodus-terumah-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 2:4 | sefat-emet-exodus-terumah-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 3:1 | sefat-emet-exodus-terumah-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 3:2 | sefat-emet-exodus-terumah-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 3:3 | sefat-emet-exodus-terumah-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 4:1 | sefat-emet-exodus-terumah-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 4:2 | sefat-emet-exodus-terumah-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 4:3 | sefat-emet-exodus-terumah-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 4:4 | sefat-emet-exodus-terumah-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 5:1 | sefat-emet-exodus-terumah-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 5:2 | sefat-emet-exodus-terumah-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 5:3 | sefat-emet-exodus-terumah-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 6:1 | sefat-emet-exodus-terumah-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 6:2 | sefat-emet-exodus-terumah-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 6:3 | sefat-emet-exodus-terumah-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 6:4 | sefat-emet-exodus-terumah-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 7:1 | sefat-emet-exodus-terumah-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 7:2 | sefat-emet-exodus-terumah-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 7:3 | sefat-emet-exodus-terumah-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 7:4 | sefat-emet-exodus-terumah-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 7:5 | sefat-emet-exodus-terumah-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 8:1 | sefat-emet-exodus-terumah-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 8:2 | sefat-emet-exodus-terumah-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 8:3 | sefat-emet-exodus-terumah-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 9:1 | sefat-emet-exodus-terumah-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 9:2 | sefat-emet-exodus-terumah-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 10:1 | sefat-emet-exodus-terumah-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 10:2 | sefat-emet-exodus-terumah-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 10:3 | sefat-emet-exodus-terumah-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 11:1 | sefat-emet-exodus-terumah-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 11:2 | sefat-emet-exodus-terumah-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 11:3 | sefat-emet-exodus-terumah-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 12:1 | sefat-emet-exodus-terumah-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 12:2 | sefat-emet-exodus-terumah-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 12:3 | sefat-emet-exodus-terumah-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 12:4 | sefat-emet-exodus-terumah-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 13:1 | sefat-emet-exodus-terumah-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 13:2 | sefat-emet-exodus-terumah-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 13:3 | sefat-emet-exodus-terumah-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 14:1 | sefat-emet-exodus-terumah-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 14:2 | sefat-emet-exodus-terumah-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 14:3 | sefat-emet-exodus-terumah-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 14:4 | sefat-emet-exodus-terumah-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 15:1 | sefat-emet-exodus-terumah-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 15:2 | sefat-emet-exodus-terumah-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 16:1 | sefat-emet-exodus-terumah-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 16:2 | sefat-emet-exodus-terumah-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 16:3 | sefat-emet-exodus-terumah-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 17:1 | sefat-emet-exodus-terumah-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 17:2 | sefat-emet-exodus-terumah-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 17:3 | sefat-emet-exodus-terumah-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 17:4 | sefat-emet-exodus-terumah-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 18:1 | sefat-emet-exodus-terumah-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 18:2 | sefat-emet-exodus-terumah-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 18:3 | sefat-emet-exodus-terumah-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 19:1 | sefat-emet-exodus-terumah-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 19:2 | sefat-emet-exodus-terumah-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 20:1 | sefat-emet-exodus-terumah-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 20:2 | sefat-emet-exodus-terumah-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 20:3 | sefat-emet-exodus-terumah-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 20:4 | sefat-emet-exodus-terumah-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 21:1 | sefat-emet-exodus-terumah-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 21:2 | sefat-emet-exodus-terumah-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 22:1 | sefat-emet-exodus-terumah-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 22:2 | sefat-emet-exodus-terumah-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 22:3 | sefat-emet-exodus-terumah-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 23:1 | sefat-emet-exodus-terumah-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 23:2 | sefat-emet-exodus-terumah-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 23:3 | sefat-emet-exodus-terumah-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 23:4 | sefat-emet-exodus-terumah-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 24:1 | sefat-emet-exodus-terumah-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 24:2 | sefat-emet-exodus-terumah-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 24:3 | sefat-emet-exodus-terumah-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 25:1 | sefat-emet-exodus-terumah-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 25:2 | sefat-emet-exodus-terumah-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 25:3 | sefat-emet-exodus-terumah-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 26:1 | sefat-emet-exodus-terumah-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 26:2 | sefat-emet-exodus-terumah-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 27:1 | sefat-emet-exodus-terumah-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 27:2 | sefat-emet-exodus-terumah-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 28:1 | sefat-emet-exodus-terumah-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 28:2 | sefat-emet-exodus-terumah-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 28:3 | sefat-emet-exodus-terumah-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 28:4 | sefat-emet-exodus-terumah-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 29:1 | sefat-emet-exodus-terumah-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 29:2 | sefat-emet-exodus-terumah-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Terumah 29:3 | sefat-emet-exodus-terumah-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 1:1 | sefat-emet-exodus-tetzaveh-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 1:2 | sefat-emet-exodus-tetzaveh-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 1:3 | sefat-emet-exodus-tetzaveh-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 1:4 | sefat-emet-exodus-tetzaveh-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 1:5 | sefat-emet-exodus-tetzaveh-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 2:1 | sefat-emet-exodus-tetzaveh-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 2:2 | sefat-emet-exodus-tetzaveh-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 2:3 | sefat-emet-exodus-tetzaveh-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 3:1 | sefat-emet-exodus-tetzaveh-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 3:2 | sefat-emet-exodus-tetzaveh-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 3:3 | sefat-emet-exodus-tetzaveh-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 3:4 | sefat-emet-exodus-tetzaveh-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 4:1 | sefat-emet-exodus-tetzaveh-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 4:2 | sefat-emet-exodus-tetzaveh-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 4:3 | sefat-emet-exodus-tetzaveh-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 5:1 | sefat-emet-exodus-tetzaveh-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 5:2 | sefat-emet-exodus-tetzaveh-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 5:3 | sefat-emet-exodus-tetzaveh-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 6:1 | sefat-emet-exodus-tetzaveh-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 6:2 | sefat-emet-exodus-tetzaveh-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 7:1 | sefat-emet-exodus-tetzaveh-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 7:2 | sefat-emet-exodus-tetzaveh-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 8:1 | sefat-emet-exodus-tetzaveh-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 8:2 | sefat-emet-exodus-tetzaveh-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 8:3 | sefat-emet-exodus-tetzaveh-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 8:4 | sefat-emet-exodus-tetzaveh-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 9:1 | sefat-emet-exodus-tetzaveh-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 9:2 | sefat-emet-exodus-tetzaveh-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 9:3 | sefat-emet-exodus-tetzaveh-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 10:1 | sefat-emet-exodus-tetzaveh-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 10:2 | sefat-emet-exodus-tetzaveh-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 10:3 | sefat-emet-exodus-tetzaveh-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 11:1 | sefat-emet-exodus-tetzaveh-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 11:2 | sefat-emet-exodus-tetzaveh-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 12:1 | sefat-emet-exodus-tetzaveh-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 12:2 | sefat-emet-exodus-tetzaveh-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 12:3 | sefat-emet-exodus-tetzaveh-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 13:1 | sefat-emet-exodus-tetzaveh-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 13:2 | sefat-emet-exodus-tetzaveh-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 14:1 | sefat-emet-exodus-tetzaveh-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 14:2 | sefat-emet-exodus-tetzaveh-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 15:1 | sefat-emet-exodus-tetzaveh-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 15:2 | sefat-emet-exodus-tetzaveh-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 16:1 | sefat-emet-exodus-tetzaveh-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 16:2 | sefat-emet-exodus-tetzaveh-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 17:1 | sefat-emet-exodus-tetzaveh-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 17:2 | sefat-emet-exodus-tetzaveh-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 17:3 | sefat-emet-exodus-tetzaveh-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 17:4 | sefat-emet-exodus-tetzaveh-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 18:1 | sefat-emet-exodus-tetzaveh-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 18:2 | sefat-emet-exodus-tetzaveh-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 19:1 | sefat-emet-exodus-tetzaveh-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 19:2 | sefat-emet-exodus-tetzaveh-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 19:3 | sefat-emet-exodus-tetzaveh-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 20:1 | sefat-emet-exodus-tetzaveh-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 20:2 | sefat-emet-exodus-tetzaveh-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 20:3 | sefat-emet-exodus-tetzaveh-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 20:4 | sefat-emet-exodus-tetzaveh-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 21:1 | sefat-emet-exodus-tetzaveh-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 21:2 | sefat-emet-exodus-tetzaveh-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 21:3 | sefat-emet-exodus-tetzaveh-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 22:1 | sefat-emet-exodus-tetzaveh-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 22:2 | sefat-emet-exodus-tetzaveh-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 22:3 | sefat-emet-exodus-tetzaveh-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 23:1 | sefat-emet-exodus-tetzaveh-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 23:2 | sefat-emet-exodus-tetzaveh-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 24:1 | sefat-emet-exodus-tetzaveh-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 24:2 | sefat-emet-exodus-tetzaveh-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 24:3 | sefat-emet-exodus-tetzaveh-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 25:1 | sefat-emet-exodus-tetzaveh-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 25:2 | sefat-emet-exodus-tetzaveh-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 26:1 | sefat-emet-exodus-tetzaveh-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 26:2 | sefat-emet-exodus-tetzaveh-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Tetzaveh 26:3 | sefat-emet-exodus-tetzaveh-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 1:1 | sefat-emet-exodus-parashat-zachor-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 1:2 | sefat-emet-exodus-parashat-zachor-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 1:3 | sefat-emet-exodus-parashat-zachor-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 2:1 | sefat-emet-exodus-parashat-zachor-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 2:2 | sefat-emet-exodus-parashat-zachor-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 3:1 | sefat-emet-exodus-parashat-zachor-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 3:2 | sefat-emet-exodus-parashat-zachor-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 3:3 | sefat-emet-exodus-parashat-zachor-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 4:1 | sefat-emet-exodus-parashat-zachor-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 4:2 | sefat-emet-exodus-parashat-zachor-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 4:3 | sefat-emet-exodus-parashat-zachor-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 4:4 | sefat-emet-exodus-parashat-zachor-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 5:1 | sefat-emet-exodus-parashat-zachor-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 5:2 | sefat-emet-exodus-parashat-zachor-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 5:3 | sefat-emet-exodus-parashat-zachor-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 6:1 | sefat-emet-exodus-parashat-zachor-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 6:2 | sefat-emet-exodus-parashat-zachor-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 6:3 | sefat-emet-exodus-parashat-zachor-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 6:4 | sefat-emet-exodus-parashat-zachor-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 7:1 | sefat-emet-exodus-parashat-zachor-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 7:2 | sefat-emet-exodus-parashat-zachor-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 8:1 | sefat-emet-exodus-parashat-zachor-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 8:2 | sefat-emet-exodus-parashat-zachor-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 8:3 | sefat-emet-exodus-parashat-zachor-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 9:1 | sefat-emet-exodus-parashat-zachor-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 9:2 | sefat-emet-exodus-parashat-zachor-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 10:1 | sefat-emet-exodus-parashat-zachor-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 10:2 | sefat-emet-exodus-parashat-zachor-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 10:3 | sefat-emet-exodus-parashat-zachor-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 11:1 | sefat-emet-exodus-parashat-zachor-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 11:2 | sefat-emet-exodus-parashat-zachor-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 12:1 | sefat-emet-exodus-parashat-zachor-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 12:2 | sefat-emet-exodus-parashat-zachor-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 12:3 | sefat-emet-exodus-parashat-zachor-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 13:1 | sefat-emet-exodus-parashat-zachor-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 13:2 | sefat-emet-exodus-parashat-zachor-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 13:3 | sefat-emet-exodus-parashat-zachor-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 14:1 | sefat-emet-exodus-parashat-zachor-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 14:2 | sefat-emet-exodus-parashat-zachor-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 14:3 | sefat-emet-exodus-parashat-zachor-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 15:1 | sefat-emet-exodus-parashat-zachor-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 15:2 | sefat-emet-exodus-parashat-zachor-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 15:3 | sefat-emet-exodus-parashat-zachor-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 16:1 | sefat-emet-exodus-parashat-zachor-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 16:2 | sefat-emet-exodus-parashat-zachor-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 16:3 | sefat-emet-exodus-parashat-zachor-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 16:4 | sefat-emet-exodus-parashat-zachor-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 17:1 | sefat-emet-exodus-parashat-zachor-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 17:2 | sefat-emet-exodus-parashat-zachor-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 17:3 | sefat-emet-exodus-parashat-zachor-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 18:1 | sefat-emet-exodus-parashat-zachor-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 18:2 | sefat-emet-exodus-parashat-zachor-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 19:1 | sefat-emet-exodus-parashat-zachor-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 19:2 | sefat-emet-exodus-parashat-zachor-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 19:3 | sefat-emet-exodus-parashat-zachor-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 19:4 | sefat-emet-exodus-parashat-zachor-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 20:1 | sefat-emet-exodus-parashat-zachor-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 20:2 | sefat-emet-exodus-parashat-zachor-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 20:3 | sefat-emet-exodus-parashat-zachor-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 21:1 | sefat-emet-exodus-parashat-zachor-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 21:2 | sefat-emet-exodus-parashat-zachor-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 21:3 | sefat-emet-exodus-parashat-zachor-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 22:1 | sefat-emet-exodus-parashat-zachor-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Zachor 22:2 | sefat-emet-exodus-parashat-zachor-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 1:1 | sefat-emet-exodus-for-purim-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 1:2 | sefat-emet-exodus-for-purim-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 1:3 | sefat-emet-exodus-for-purim-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 1:4 | sefat-emet-exodus-for-purim-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 1:5 | sefat-emet-exodus-for-purim-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 1:6 | sefat-emet-exodus-for-purim-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 2:1 | sefat-emet-exodus-for-purim-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 2:2 | sefat-emet-exodus-for-purim-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 2:3 | sefat-emet-exodus-for-purim-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 2:4 | sefat-emet-exodus-for-purim-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 2:5 | sefat-emet-exodus-for-purim-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 3:1 | sefat-emet-exodus-for-purim-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 3:2 | sefat-emet-exodus-for-purim-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 3:3 | sefat-emet-exodus-for-purim-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 3:4 | sefat-emet-exodus-for-purim-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 3:5 | sefat-emet-exodus-for-purim-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 4:1 | sefat-emet-exodus-for-purim-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 4:2 | sefat-emet-exodus-for-purim-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 4:3 | sefat-emet-exodus-for-purim-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 4:4 | sefat-emet-exodus-for-purim-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 5:1 | sefat-emet-exodus-for-purim-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 5:2 | sefat-emet-exodus-for-purim-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 5:3 | sefat-emet-exodus-for-purim-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 5:4 | sefat-emet-exodus-for-purim-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 5:5 | sefat-emet-exodus-for-purim-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 6:1 | sefat-emet-exodus-for-purim-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 6:2 | sefat-emet-exodus-for-purim-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 6:3 | sefat-emet-exodus-for-purim-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 7:1 | sefat-emet-exodus-for-purim-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 7:2 | sefat-emet-exodus-for-purim-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 8:1 | sefat-emet-exodus-for-purim-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 8:2 | sefat-emet-exodus-for-purim-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 8:3 | sefat-emet-exodus-for-purim-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 8:4 | sefat-emet-exodus-for-purim-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 9:1 | sefat-emet-exodus-for-purim-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 9:2 | sefat-emet-exodus-for-purim-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 9:3 | sefat-emet-exodus-for-purim-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 9:4 | sefat-emet-exodus-for-purim-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 10:1 | sefat-emet-exodus-for-purim-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 10:2 | sefat-emet-exodus-for-purim-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 10:3 | sefat-emet-exodus-for-purim-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 11:1 | sefat-emet-exodus-for-purim-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 11:2 | sefat-emet-exodus-for-purim-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 11:3 | sefat-emet-exodus-for-purim-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 11:4 | sefat-emet-exodus-for-purim-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 11:5 | sefat-emet-exodus-for-purim-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 12:1 | sefat-emet-exodus-for-purim-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 12:2 | sefat-emet-exodus-for-purim-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 13:1 | sefat-emet-exodus-for-purim-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 13:2 | sefat-emet-exodus-for-purim-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 13:3 | sefat-emet-exodus-for-purim-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 14:1 | sefat-emet-exodus-for-purim-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 14:2 | sefat-emet-exodus-for-purim-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 14:3 | sefat-emet-exodus-for-purim-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 14:4 | sefat-emet-exodus-for-purim-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 14:5 | sefat-emet-exodus-for-purim-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 15:1 | sefat-emet-exodus-for-purim-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 15:2 | sefat-emet-exodus-for-purim-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 15:3 | sefat-emet-exodus-for-purim-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 16:1 | sefat-emet-exodus-for-purim-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 16:2 | sefat-emet-exodus-for-purim-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 16:3 | sefat-emet-exodus-for-purim-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 16:4 | sefat-emet-exodus-for-purim-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 17:1 | sefat-emet-exodus-for-purim-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 17:2 | sefat-emet-exodus-for-purim-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 17:3 | sefat-emet-exodus-for-purim-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 17:4 | sefat-emet-exodus-for-purim-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 18:1 | sefat-emet-exodus-for-purim-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 18:2 | sefat-emet-exodus-for-purim-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 19:1 | sefat-emet-exodus-for-purim-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 19:2 | sefat-emet-exodus-for-purim-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 19:3 | sefat-emet-exodus-for-purim-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 20:1 | sefat-emet-exodus-for-purim-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 20:2 | sefat-emet-exodus-for-purim-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 20:3 | sefat-emet-exodus-for-purim-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 20:4 | sefat-emet-exodus-for-purim-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 21:1 | sefat-emet-exodus-for-purim-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 21:2 | sefat-emet-exodus-for-purim-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 21:3 | sefat-emet-exodus-for-purim-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 21:4 | sefat-emet-exodus-for-purim-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 21:5 | sefat-emet-exodus-for-purim-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 21:6 | sefat-emet-exodus-for-purim-21-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 22:1 | sefat-emet-exodus-for-purim-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 22:2 | sefat-emet-exodus-for-purim-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 23:1 | sefat-emet-exodus-for-purim-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 23:2 | sefat-emet-exodus-for-purim-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 23:3 | sefat-emet-exodus-for-purim-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 23:4 | sefat-emet-exodus-for-purim-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 23:5 | sefat-emet-exodus-for-purim-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 24:1 | sefat-emet-exodus-for-purim-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 24:2 | sefat-emet-exodus-for-purim-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 25:1 | sefat-emet-exodus-for-purim-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 25:2 | sefat-emet-exodus-for-purim-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 25:3 | sefat-emet-exodus-for-purim-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 25:4 | sefat-emet-exodus-for-purim-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 26:1 | sefat-emet-exodus-for-purim-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 26:2 | sefat-emet-exodus-for-purim-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 26:3 | sefat-emet-exodus-for-purim-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 26:4 | sefat-emet-exodus-for-purim-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 27:1 | sefat-emet-exodus-for-purim-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 27:2 | sefat-emet-exodus-for-purim-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 27:3 | sefat-emet-exodus-for-purim-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 27:4 | sefat-emet-exodus-for-purim-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 28:1 | sefat-emet-exodus-for-purim-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 28:2 | sefat-emet-exodus-for-purim-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 28:3 | sefat-emet-exodus-for-purim-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 28:4 | sefat-emet-exodus-for-purim-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 28:5 | sefat-emet-exodus-for-purim-28-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 29:1 | sefat-emet-exodus-for-purim-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 29:2 | sefat-emet-exodus-for-purim-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 29:3 | sefat-emet-exodus-for-purim-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 29:4 | sefat-emet-exodus-for-purim-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 30:1 | sefat-emet-exodus-for-purim-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 30:2 | sefat-emet-exodus-for-purim-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 30:3 | sefat-emet-exodus-for-purim-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, For Purim 30:4 | sefat-emet-exodus-for-purim-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 1:1 | sefat-emet-exodus-ki-tisa-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 1:2 | sefat-emet-exodus-ki-tisa-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 1:3 | sefat-emet-exodus-ki-tisa-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 2:1 | sefat-emet-exodus-ki-tisa-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 2:2 | sefat-emet-exodus-ki-tisa-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 2:3 | sefat-emet-exodus-ki-tisa-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 2:4 | sefat-emet-exodus-ki-tisa-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 3:1 | sefat-emet-exodus-ki-tisa-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 3:2 | sefat-emet-exodus-ki-tisa-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 4:1 | sefat-emet-exodus-ki-tisa-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 4:2 | sefat-emet-exodus-ki-tisa-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 4:3 | sefat-emet-exodus-ki-tisa-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 4:4 | sefat-emet-exodus-ki-tisa-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 4:5 | sefat-emet-exodus-ki-tisa-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 5:1 | sefat-emet-exodus-ki-tisa-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 5:2 | sefat-emet-exodus-ki-tisa-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 5:3 | sefat-emet-exodus-ki-tisa-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 6:1 | sefat-emet-exodus-ki-tisa-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 6:2 | sefat-emet-exodus-ki-tisa-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 6:3 | sefat-emet-exodus-ki-tisa-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 7:1 | sefat-emet-exodus-ki-tisa-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 7:2 | sefat-emet-exodus-ki-tisa-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 7:3 | sefat-emet-exodus-ki-tisa-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 8:1 | sefat-emet-exodus-ki-tisa-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 8:2 | sefat-emet-exodus-ki-tisa-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 8:3 | sefat-emet-exodus-ki-tisa-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 8:4 | sefat-emet-exodus-ki-tisa-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 9:1 | sefat-emet-exodus-ki-tisa-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 9:2 | sefat-emet-exodus-ki-tisa-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 9:3 | sefat-emet-exodus-ki-tisa-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 10:1 | sefat-emet-exodus-ki-tisa-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 10:2 | sefat-emet-exodus-ki-tisa-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 10:3 | sefat-emet-exodus-ki-tisa-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 11:1 | sefat-emet-exodus-ki-tisa-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 11:2 | sefat-emet-exodus-ki-tisa-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 12:1 | sefat-emet-exodus-ki-tisa-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 12:2 | sefat-emet-exodus-ki-tisa-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 12:3 | sefat-emet-exodus-ki-tisa-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 12:4 | sefat-emet-exodus-ki-tisa-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 12:5 | sefat-emet-exodus-ki-tisa-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 13:1 | sefat-emet-exodus-ki-tisa-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 13:2 | sefat-emet-exodus-ki-tisa-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 14:1 | sefat-emet-exodus-ki-tisa-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 14:2 | sefat-emet-exodus-ki-tisa-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 14:3 | sefat-emet-exodus-ki-tisa-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 15:1 | sefat-emet-exodus-ki-tisa-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 15:2 | sefat-emet-exodus-ki-tisa-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 16:1 | sefat-emet-exodus-ki-tisa-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 16:2 | sefat-emet-exodus-ki-tisa-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 16:3 | sefat-emet-exodus-ki-tisa-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 16:4 | sefat-emet-exodus-ki-tisa-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 17:1 | sefat-emet-exodus-ki-tisa-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 17:2 | sefat-emet-exodus-ki-tisa-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 17:3 | sefat-emet-exodus-ki-tisa-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 18:1 | sefat-emet-exodus-ki-tisa-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 18:2 | sefat-emet-exodus-ki-tisa-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 19:1 | sefat-emet-exodus-ki-tisa-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 19:2 | sefat-emet-exodus-ki-tisa-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 19:3 | sefat-emet-exodus-ki-tisa-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 20:1 | sefat-emet-exodus-ki-tisa-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 20:2 | sefat-emet-exodus-ki-tisa-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 20:3 | sefat-emet-exodus-ki-tisa-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 21:1 | sefat-emet-exodus-ki-tisa-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 21:2 | sefat-emet-exodus-ki-tisa-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 22:1 | sefat-emet-exodus-ki-tisa-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 22:2 | sefat-emet-exodus-ki-tisa-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 23:1 | sefat-emet-exodus-ki-tisa-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 23:2 | sefat-emet-exodus-ki-tisa-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 23:3 | sefat-emet-exodus-ki-tisa-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 23:4 | sefat-emet-exodus-ki-tisa-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 23:5 | sefat-emet-exodus-ki-tisa-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 24:1 | sefat-emet-exodus-ki-tisa-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 24:2 | sefat-emet-exodus-ki-tisa-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 24:3 | sefat-emet-exodus-ki-tisa-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 25:1 | sefat-emet-exodus-ki-tisa-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 25:2 | sefat-emet-exodus-ki-tisa-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 25:3 | sefat-emet-exodus-ki-tisa-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 26:1 | sefat-emet-exodus-ki-tisa-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 26:2 | sefat-emet-exodus-ki-tisa-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 26:3 | sefat-emet-exodus-ki-tisa-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 27:1 | sefat-emet-exodus-ki-tisa-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Ki Tisa 27:2 | sefat-emet-exodus-ki-tisa-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 1:1 | sefat-emet-exodus-parashat-parah-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 1:2 | sefat-emet-exodus-parashat-parah-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 1:3 | sefat-emet-exodus-parashat-parah-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 1:4 | sefat-emet-exodus-parashat-parah-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 1:5 | sefat-emet-exodus-parashat-parah-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 2:1 | sefat-emet-exodus-parashat-parah-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 2:2 | sefat-emet-exodus-parashat-parah-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 2:3 | sefat-emet-exodus-parashat-parah-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 3:1 | sefat-emet-exodus-parashat-parah-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 3:2 | sefat-emet-exodus-parashat-parah-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 3:3 | sefat-emet-exodus-parashat-parah-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 4:1 | sefat-emet-exodus-parashat-parah-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 4:2 | sefat-emet-exodus-parashat-parah-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 4:3 | sefat-emet-exodus-parashat-parah-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 5:1 | sefat-emet-exodus-parashat-parah-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 5:2 | sefat-emet-exodus-parashat-parah-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 6:1 | sefat-emet-exodus-parashat-parah-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 6:2 | sefat-emet-exodus-parashat-parah-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 6:3 | sefat-emet-exodus-parashat-parah-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 6:4 | sefat-emet-exodus-parashat-parah-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 7:1 | sefat-emet-exodus-parashat-parah-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 7:2 | sefat-emet-exodus-parashat-parah-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 7:3 | sefat-emet-exodus-parashat-parah-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 7:4 | sefat-emet-exodus-parashat-parah-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 8:1 | sefat-emet-exodus-parashat-parah-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 8:2 | sefat-emet-exodus-parashat-parah-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 8:3 | sefat-emet-exodus-parashat-parah-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 9:1 | sefat-emet-exodus-parashat-parah-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 9:2 | sefat-emet-exodus-parashat-parah-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 9:3 | sefat-emet-exodus-parashat-parah-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 9:4 | sefat-emet-exodus-parashat-parah-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 9:5 | sefat-emet-exodus-parashat-parah-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 9:6 | sefat-emet-exodus-parashat-parah-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 10:1 | sefat-emet-exodus-parashat-parah-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 10:2 | sefat-emet-exodus-parashat-parah-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 10:3 | sefat-emet-exodus-parashat-parah-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 10:4 | sefat-emet-exodus-parashat-parah-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 11:1 | sefat-emet-exodus-parashat-parah-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 11:2 | sefat-emet-exodus-parashat-parah-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 11:3 | sefat-emet-exodus-parashat-parah-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 11:4 | sefat-emet-exodus-parashat-parah-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 12:1 | sefat-emet-exodus-parashat-parah-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 12:2 | sefat-emet-exodus-parashat-parah-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 13:1 | sefat-emet-exodus-parashat-parah-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 13:2 | sefat-emet-exodus-parashat-parah-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 13:3 | sefat-emet-exodus-parashat-parah-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 14:1 | sefat-emet-exodus-parashat-parah-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 14:2 | sefat-emet-exodus-parashat-parah-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 14:3 | sefat-emet-exodus-parashat-parah-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 15:1 | sefat-emet-exodus-parashat-parah-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Parashat Parah 15:2 | sefat-emet-exodus-parashat-parah-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 1:1 | sefat-emet-exodus-vayakhel-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 1:2 | sefat-emet-exodus-vayakhel-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 1:3 | sefat-emet-exodus-vayakhel-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 1:4 | sefat-emet-exodus-vayakhel-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 1:5 | sefat-emet-exodus-vayakhel-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 2:1 | sefat-emet-exodus-vayakhel-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 2:2 | sefat-emet-exodus-vayakhel-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 2:3 | sefat-emet-exodus-vayakhel-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 2:4 | sefat-emet-exodus-vayakhel-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 2:5 | sefat-emet-exodus-vayakhel-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 3:1 | sefat-emet-exodus-vayakhel-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 3:2 | sefat-emet-exodus-vayakhel-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 3:3 | sefat-emet-exodus-vayakhel-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 3:4 | sefat-emet-exodus-vayakhel-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 4:1 | sefat-emet-exodus-vayakhel-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 4:2 | sefat-emet-exodus-vayakhel-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 5:1 | sefat-emet-exodus-vayakhel-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 5:2 | sefat-emet-exodus-vayakhel-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 5:3 | sefat-emet-exodus-vayakhel-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 6:1 | sefat-emet-exodus-vayakhel-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 6:2 | sefat-emet-exodus-vayakhel-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 6:3 | sefat-emet-exodus-vayakhel-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 6:4 | sefat-emet-exodus-vayakhel-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 6:5 | sefat-emet-exodus-vayakhel-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 7:1 | sefat-emet-exodus-vayakhel-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 7:2 | sefat-emet-exodus-vayakhel-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 8:1 | sefat-emet-exodus-vayakhel-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 8:2 | sefat-emet-exodus-vayakhel-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 8:3 | sefat-emet-exodus-vayakhel-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 9:1 | sefat-emet-exodus-vayakhel-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 9:2 | sefat-emet-exodus-vayakhel-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 9:3 | sefat-emet-exodus-vayakhel-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 9:4 | sefat-emet-exodus-vayakhel-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 9:5 | sefat-emet-exodus-vayakhel-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 9:6 | sefat-emet-exodus-vayakhel-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 9:7 | sefat-emet-exodus-vayakhel-9-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 10:1 | sefat-emet-exodus-vayakhel-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 10:2 | sefat-emet-exodus-vayakhel-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 10:3 | sefat-emet-exodus-vayakhel-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 10:4 | sefat-emet-exodus-vayakhel-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 11:1 | sefat-emet-exodus-vayakhel-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 11:2 | sefat-emet-exodus-vayakhel-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 12:1 | sefat-emet-exodus-vayakhel-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 12:2 | sefat-emet-exodus-vayakhel-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 12:3 | sefat-emet-exodus-vayakhel-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 12:4 | sefat-emet-exodus-vayakhel-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 13:1 | sefat-emet-exodus-vayakhel-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 13:2 | sefat-emet-exodus-vayakhel-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 13:3 | sefat-emet-exodus-vayakhel-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 14:1 | sefat-emet-exodus-vayakhel-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 14:2 | sefat-emet-exodus-vayakhel-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 14:3 | sefat-emet-exodus-vayakhel-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 14:4 | sefat-emet-exodus-vayakhel-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 15:1 | sefat-emet-exodus-vayakhel-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 15:2 | sefat-emet-exodus-vayakhel-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 16:1 | sefat-emet-exodus-vayakhel-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 16:2 | sefat-emet-exodus-vayakhel-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 16:3 | sefat-emet-exodus-vayakhel-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 16:4 | sefat-emet-exodus-vayakhel-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 16:5 | sefat-emet-exodus-vayakhel-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 17:1 | sefat-emet-exodus-vayakhel-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 17:2 | sefat-emet-exodus-vayakhel-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 18:1 | sefat-emet-exodus-vayakhel-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 18:2 | sefat-emet-exodus-vayakhel-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 19:1 | sefat-emet-exodus-vayakhel-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 19:2 | sefat-emet-exodus-vayakhel-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 20:1 | sefat-emet-exodus-vayakhel-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 20:2 | sefat-emet-exodus-vayakhel-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 20:3 | sefat-emet-exodus-vayakhel-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 21:1 | sefat-emet-exodus-vayakhel-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Vayakhel 21:2 | sefat-emet-exodus-vayakhel-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 1:1 | sefat-emet-exodus-pekudei-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 1:2 | sefat-emet-exodus-pekudei-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 1:3 | sefat-emet-exodus-pekudei-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 2:1 | sefat-emet-exodus-pekudei-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 2:2 | sefat-emet-exodus-pekudei-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 3:1 | sefat-emet-exodus-pekudei-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 3:2 | sefat-emet-exodus-pekudei-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 3:3 | sefat-emet-exodus-pekudei-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 3:4 | sefat-emet-exodus-pekudei-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 4:1 | sefat-emet-exodus-pekudei-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 4:2 | sefat-emet-exodus-pekudei-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 4:3 | sefat-emet-exodus-pekudei-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 4:4 | sefat-emet-exodus-pekudei-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 4:5 | sefat-emet-exodus-pekudei-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 5:1 | sefat-emet-exodus-pekudei-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 5:2 | sefat-emet-exodus-pekudei-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 5:3 | sefat-emet-exodus-pekudei-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 6:1 | sefat-emet-exodus-pekudei-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 6:2 | sefat-emet-exodus-pekudei-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 6:3 | sefat-emet-exodus-pekudei-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 7:1 | sefat-emet-exodus-pekudei-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 7:2 | sefat-emet-exodus-pekudei-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 8:1 | sefat-emet-exodus-pekudei-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 8:2 | sefat-emet-exodus-pekudei-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 9:1 | sefat-emet-exodus-pekudei-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 9:2 | sefat-emet-exodus-pekudei-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 9:3 | sefat-emet-exodus-pekudei-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 9:4 | sefat-emet-exodus-pekudei-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 9:5 | sefat-emet-exodus-pekudei-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 10:1 | sefat-emet-exodus-pekudei-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 10:2 | sefat-emet-exodus-pekudei-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 11:1 | sefat-emet-exodus-pekudei-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 11:2 | sefat-emet-exodus-pekudei-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 12:1 | sefat-emet-exodus-pekudei-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 12:2 | sefat-emet-exodus-pekudei-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 12:3 | sefat-emet-exodus-pekudei-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 13:1 | sefat-emet-exodus-pekudei-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 13:2 | sefat-emet-exodus-pekudei-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 14:1 | sefat-emet-exodus-pekudei-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 14:2 | sefat-emet-exodus-pekudei-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 15:1 | sefat-emet-exodus-pekudei-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 15:2 | sefat-emet-exodus-pekudei-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 15:3 | sefat-emet-exodus-pekudei-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 15:4 | sefat-emet-exodus-pekudei-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 16:1 | sefat-emet-exodus-pekudei-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 16:2 | sefat-emet-exodus-pekudei-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Exodus, Pekudei 16:3 | sefat-emet-exodus-pekudei-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 1:1 | sefat-emet-leviticus-vayikra-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 1:2 | sefat-emet-leviticus-vayikra-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 1:3 | sefat-emet-leviticus-vayikra-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 1:4 | sefat-emet-leviticus-vayikra-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 1:5 | sefat-emet-leviticus-vayikra-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 1:6 | sefat-emet-leviticus-vayikra-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 2:1 | sefat-emet-leviticus-vayikra-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 2:2 | sefat-emet-leviticus-vayikra-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 3:1 | sefat-emet-leviticus-vayikra-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 3:2 | sefat-emet-leviticus-vayikra-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 4:1 | sefat-emet-leviticus-vayikra-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 4:2 | sefat-emet-leviticus-vayikra-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 4:3 | sefat-emet-leviticus-vayikra-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 5:1 | sefat-emet-leviticus-vayikra-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 5:2 | sefat-emet-leviticus-vayikra-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 5:3 | sefat-emet-leviticus-vayikra-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 5:4 | sefat-emet-leviticus-vayikra-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 6:1 | sefat-emet-leviticus-vayikra-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 6:2 | sefat-emet-leviticus-vayikra-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 6:3 | sefat-emet-leviticus-vayikra-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 6:4 | sefat-emet-leviticus-vayikra-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 7:1 | sefat-emet-leviticus-vayikra-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 7:2 | sefat-emet-leviticus-vayikra-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 8:1 | sefat-emet-leviticus-vayikra-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 8:2 | sefat-emet-leviticus-vayikra-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 8:3 | sefat-emet-leviticus-vayikra-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 9:1 | sefat-emet-leviticus-vayikra-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 9:2 | sefat-emet-leviticus-vayikra-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 10:1 | sefat-emet-leviticus-vayikra-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 10:2 | sefat-emet-leviticus-vayikra-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 10:3 | sefat-emet-leviticus-vayikra-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 10:4 | sefat-emet-leviticus-vayikra-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 11:1 | sefat-emet-leviticus-vayikra-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 11:2 | sefat-emet-leviticus-vayikra-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 12:1 | sefat-emet-leviticus-vayikra-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 12:2 | sefat-emet-leviticus-vayikra-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 13:1 | sefat-emet-leviticus-vayikra-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 13:2 | sefat-emet-leviticus-vayikra-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 13:3 | sefat-emet-leviticus-vayikra-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 14:1 | sefat-emet-leviticus-vayikra-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 14:2 | sefat-emet-leviticus-vayikra-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 14:3 | sefat-emet-leviticus-vayikra-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 15:1 | sefat-emet-leviticus-vayikra-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 15:2 | sefat-emet-leviticus-vayikra-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 15:3 | sefat-emet-leviticus-vayikra-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 15:4 | sefat-emet-leviticus-vayikra-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 16:1 | sefat-emet-leviticus-vayikra-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 16:2 | sefat-emet-leviticus-vayikra-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 16:3 | sefat-emet-leviticus-vayikra-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 16:4 | sefat-emet-leviticus-vayikra-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 17:1 | sefat-emet-leviticus-vayikra-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 17:2 | sefat-emet-leviticus-vayikra-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 17:3 | sefat-emet-leviticus-vayikra-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 17:4 | sefat-emet-leviticus-vayikra-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 18:1 | sefat-emet-leviticus-vayikra-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 18:2 | sefat-emet-leviticus-vayikra-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 18:3 | sefat-emet-leviticus-vayikra-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 19:1 | sefat-emet-leviticus-vayikra-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 19:2 | sefat-emet-leviticus-vayikra-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 20:1 | sefat-emet-leviticus-vayikra-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 20:2 | sefat-emet-leviticus-vayikra-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 20:3 | sefat-emet-leviticus-vayikra-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 20:4 | sefat-emet-leviticus-vayikra-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 21:1 | sefat-emet-leviticus-vayikra-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 21:2 | sefat-emet-leviticus-vayikra-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 21:3 | sefat-emet-leviticus-vayikra-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 21:4 | sefat-emet-leviticus-vayikra-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 22:1 | sefat-emet-leviticus-vayikra-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 22:2 | sefat-emet-leviticus-vayikra-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 22:3 | sefat-emet-leviticus-vayikra-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Vayikra 22:4 | sefat-emet-leviticus-vayikra-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 1:1 | sefat-emet-leviticus-parashat-hachodesh-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 1:2 | sefat-emet-leviticus-parashat-hachodesh-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 1:3 | sefat-emet-leviticus-parashat-hachodesh-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 1:4 | sefat-emet-leviticus-parashat-hachodesh-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 2:1 | sefat-emet-leviticus-parashat-hachodesh-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 2:2 | sefat-emet-leviticus-parashat-hachodesh-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 2:3 | sefat-emet-leviticus-parashat-hachodesh-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 2:4 | sefat-emet-leviticus-parashat-hachodesh-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 3:1 | sefat-emet-leviticus-parashat-hachodesh-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 3:2 | sefat-emet-leviticus-parashat-hachodesh-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 3:3 | sefat-emet-leviticus-parashat-hachodesh-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 4:1 | sefat-emet-leviticus-parashat-hachodesh-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 4:2 | sefat-emet-leviticus-parashat-hachodesh-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 4:3 | sefat-emet-leviticus-parashat-hachodesh-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 4:4 | sefat-emet-leviticus-parashat-hachodesh-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 4:5 | sefat-emet-leviticus-parashat-hachodesh-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 4:6 | sefat-emet-leviticus-parashat-hachodesh-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 5:1 | sefat-emet-leviticus-parashat-hachodesh-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 5:2 | sefat-emet-leviticus-parashat-hachodesh-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 6:1 | sefat-emet-leviticus-parashat-hachodesh-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 6:2 | sefat-emet-leviticus-parashat-hachodesh-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 6:3 | sefat-emet-leviticus-parashat-hachodesh-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 7:1 | sefat-emet-leviticus-parashat-hachodesh-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 7:2 | sefat-emet-leviticus-parashat-hachodesh-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 8:1 | sefat-emet-leviticus-parashat-hachodesh-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 8:2 | sefat-emet-leviticus-parashat-hachodesh-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 9:1 | sefat-emet-leviticus-parashat-hachodesh-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 9:2 | sefat-emet-leviticus-parashat-hachodesh-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 10:1 | sefat-emet-leviticus-parashat-hachodesh-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 10:2 | sefat-emet-leviticus-parashat-hachodesh-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 10:3 | sefat-emet-leviticus-parashat-hachodesh-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 10:4 | sefat-emet-leviticus-parashat-hachodesh-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 11:1 | sefat-emet-leviticus-parashat-hachodesh-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 11:2 | sefat-emet-leviticus-parashat-hachodesh-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 11:3 | sefat-emet-leviticus-parashat-hachodesh-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 12:1 | sefat-emet-leviticus-parashat-hachodesh-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 12:2 | sefat-emet-leviticus-parashat-hachodesh-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 12:3 | sefat-emet-leviticus-parashat-hachodesh-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 12:4 | sefat-emet-leviticus-parashat-hachodesh-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 13:1 | sefat-emet-leviticus-parashat-hachodesh-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 13:2 | sefat-emet-leviticus-parashat-hachodesh-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 13:3 | sefat-emet-leviticus-parashat-hachodesh-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 14:1 | sefat-emet-leviticus-parashat-hachodesh-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 14:2 | sefat-emet-leviticus-parashat-hachodesh-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 15:1 | sefat-emet-leviticus-parashat-hachodesh-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 15:2 | sefat-emet-leviticus-parashat-hachodesh-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 15:3 | sefat-emet-leviticus-parashat-hachodesh-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 16:1 | sefat-emet-leviticus-parashat-hachodesh-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 16:2 | sefat-emet-leviticus-parashat-hachodesh-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 17:1 | sefat-emet-leviticus-parashat-hachodesh-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Parashat HaChodesh 17:2 | sefat-emet-leviticus-parashat-hachodesh-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 1:1 | sefat-emet-leviticus-tzav-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 1:2 | sefat-emet-leviticus-tzav-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 1:3 | sefat-emet-leviticus-tzav-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 1:4 | sefat-emet-leviticus-tzav-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 2:1 | sefat-emet-leviticus-tzav-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 2:2 | sefat-emet-leviticus-tzav-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 3:1 | sefat-emet-leviticus-tzav-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 3:2 | sefat-emet-leviticus-tzav-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 3:3 | sefat-emet-leviticus-tzav-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 3:4 | sefat-emet-leviticus-tzav-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 4:1 | sefat-emet-leviticus-tzav-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 4:2 | sefat-emet-leviticus-tzav-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 4:3 | sefat-emet-leviticus-tzav-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 4:4 | sefat-emet-leviticus-tzav-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 5:1 | sefat-emet-leviticus-tzav-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 5:2 | sefat-emet-leviticus-tzav-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 5:3 | sefat-emet-leviticus-tzav-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 5:4 | sefat-emet-leviticus-tzav-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 6:1 | sefat-emet-leviticus-tzav-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 6:2 | sefat-emet-leviticus-tzav-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 7:1 | sefat-emet-leviticus-tzav-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 7:2 | sefat-emet-leviticus-tzav-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 7:3 | sefat-emet-leviticus-tzav-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 8:1 | sefat-emet-leviticus-tzav-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 8:2 | sefat-emet-leviticus-tzav-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 9:1 | sefat-emet-leviticus-tzav-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 9:2 | sefat-emet-leviticus-tzav-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 9:3 | sefat-emet-leviticus-tzav-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 10:1 | sefat-emet-leviticus-tzav-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 10:2 | sefat-emet-leviticus-tzav-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 10:3 | sefat-emet-leviticus-tzav-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 11:1 | sefat-emet-leviticus-tzav-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 11:2 | sefat-emet-leviticus-tzav-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 11:3 | sefat-emet-leviticus-tzav-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 11:4 | sefat-emet-leviticus-tzav-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 12:1 | sefat-emet-leviticus-tzav-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 12:2 | sefat-emet-leviticus-tzav-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 12:3 | sefat-emet-leviticus-tzav-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 12:4 | sefat-emet-leviticus-tzav-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 13:1 | sefat-emet-leviticus-tzav-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 13:2 | sefat-emet-leviticus-tzav-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 13:3 | sefat-emet-leviticus-tzav-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 13:4 | sefat-emet-leviticus-tzav-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 14:1 | sefat-emet-leviticus-tzav-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 14:2 | sefat-emet-leviticus-tzav-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 14:3 | sefat-emet-leviticus-tzav-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 14:4 | sefat-emet-leviticus-tzav-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 15:1 | sefat-emet-leviticus-tzav-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 15:2 | sefat-emet-leviticus-tzav-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 15:3 | sefat-emet-leviticus-tzav-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 15:4 | sefat-emet-leviticus-tzav-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 16:1 | sefat-emet-leviticus-tzav-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 16:2 | sefat-emet-leviticus-tzav-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 16:3 | sefat-emet-leviticus-tzav-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 17:1 | sefat-emet-leviticus-tzav-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 17:2 | sefat-emet-leviticus-tzav-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 17:3 | sefat-emet-leviticus-tzav-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 18:1 | sefat-emet-leviticus-tzav-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 18:2 | sefat-emet-leviticus-tzav-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 19:1 | sefat-emet-leviticus-tzav-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 19:2 | sefat-emet-leviticus-tzav-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 19:3 | sefat-emet-leviticus-tzav-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 19:4 | sefat-emet-leviticus-tzav-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 20:1 | sefat-emet-leviticus-tzav-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 20:2 | sefat-emet-leviticus-tzav-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 21:1 | sefat-emet-leviticus-tzav-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 21:2 | sefat-emet-leviticus-tzav-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 22:1 | sefat-emet-leviticus-tzav-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 22:2 | sefat-emet-leviticus-tzav-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tzav 22:3 | sefat-emet-leviticus-tzav-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 1:1 | sefat-emet-leviticus-for-shabbat-hagadol-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 1:2 | sefat-emet-leviticus-for-shabbat-hagadol-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 1:3 | sefat-emet-leviticus-for-shabbat-hagadol-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 1:4 | sefat-emet-leviticus-for-shabbat-hagadol-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 2:1 | sefat-emet-leviticus-for-shabbat-hagadol-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 2:2 | sefat-emet-leviticus-for-shabbat-hagadol-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 2:3 | sefat-emet-leviticus-for-shabbat-hagadol-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 2:4 | sefat-emet-leviticus-for-shabbat-hagadol-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 3:1 | sefat-emet-leviticus-for-shabbat-hagadol-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 3:2 | sefat-emet-leviticus-for-shabbat-hagadol-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 3:3 | sefat-emet-leviticus-for-shabbat-hagadol-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 3:4 | sefat-emet-leviticus-for-shabbat-hagadol-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 4:1 | sefat-emet-leviticus-for-shabbat-hagadol-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 4:2 | sefat-emet-leviticus-for-shabbat-hagadol-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 5:1 | sefat-emet-leviticus-for-shabbat-hagadol-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 5:2 | sefat-emet-leviticus-for-shabbat-hagadol-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 5:3 | sefat-emet-leviticus-for-shabbat-hagadol-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 6:1 | sefat-emet-leviticus-for-shabbat-hagadol-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 6:2 | sefat-emet-leviticus-for-shabbat-hagadol-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 6:3 | sefat-emet-leviticus-for-shabbat-hagadol-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 7:1 | sefat-emet-leviticus-for-shabbat-hagadol-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 7:2 | sefat-emet-leviticus-for-shabbat-hagadol-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 7:3 | sefat-emet-leviticus-for-shabbat-hagadol-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 8:1 | sefat-emet-leviticus-for-shabbat-hagadol-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 8:2 | sefat-emet-leviticus-for-shabbat-hagadol-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 9:1 | sefat-emet-leviticus-for-shabbat-hagadol-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 9:2 | sefat-emet-leviticus-for-shabbat-hagadol-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 9:3 | sefat-emet-leviticus-for-shabbat-hagadol-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 10:1 | sefat-emet-leviticus-for-shabbat-hagadol-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 10:2 | sefat-emet-leviticus-for-shabbat-hagadol-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 11:1 | sefat-emet-leviticus-for-shabbat-hagadol-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 11:2 | sefat-emet-leviticus-for-shabbat-hagadol-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 11:3 | sefat-emet-leviticus-for-shabbat-hagadol-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 11:4 | sefat-emet-leviticus-for-shabbat-hagadol-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 12:1 | sefat-emet-leviticus-for-shabbat-hagadol-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 12:2 | sefat-emet-leviticus-for-shabbat-hagadol-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 13:1 | sefat-emet-leviticus-for-shabbat-hagadol-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 13:2 | sefat-emet-leviticus-for-shabbat-hagadol-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 13:3 | sefat-emet-leviticus-for-shabbat-hagadol-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 13:4 | sefat-emet-leviticus-for-shabbat-hagadol-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 14:1 | sefat-emet-leviticus-for-shabbat-hagadol-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 14:2 | sefat-emet-leviticus-for-shabbat-hagadol-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 14:3 | sefat-emet-leviticus-for-shabbat-hagadol-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 15:1 | sefat-emet-leviticus-for-shabbat-hagadol-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 15:2 | sefat-emet-leviticus-for-shabbat-hagadol-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 15:3 | sefat-emet-leviticus-for-shabbat-hagadol-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 16:1 | sefat-emet-leviticus-for-shabbat-hagadol-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 16:2 | sefat-emet-leviticus-for-shabbat-hagadol-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 16:3 | sefat-emet-leviticus-for-shabbat-hagadol-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 17:1 | sefat-emet-leviticus-for-shabbat-hagadol-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 17:2 | sefat-emet-leviticus-for-shabbat-hagadol-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 18:1 | sefat-emet-leviticus-for-shabbat-hagadol-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 18:2 | sefat-emet-leviticus-for-shabbat-hagadol-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 18:3 | sefat-emet-leviticus-for-shabbat-hagadol-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 19:1 | sefat-emet-leviticus-for-shabbat-hagadol-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 19:2 | sefat-emet-leviticus-for-shabbat-hagadol-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 19:3 | sefat-emet-leviticus-for-shabbat-hagadol-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 20:1 | sefat-emet-leviticus-for-shabbat-hagadol-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 20:2 | sefat-emet-leviticus-for-shabbat-hagadol-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 20:3 | sefat-emet-leviticus-for-shabbat-hagadol-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 20:4 | sefat-emet-leviticus-for-shabbat-hagadol-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 21:1 | sefat-emet-leviticus-for-shabbat-hagadol-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 21:2 | sefat-emet-leviticus-for-shabbat-hagadol-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 21:3 | sefat-emet-leviticus-for-shabbat-hagadol-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 22:1 | sefat-emet-leviticus-for-shabbat-hagadol-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 22:2 | sefat-emet-leviticus-for-shabbat-hagadol-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 23:1 | sefat-emet-leviticus-for-shabbat-hagadol-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 23:2 | sefat-emet-leviticus-for-shabbat-hagadol-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 24:1 | sefat-emet-leviticus-for-shabbat-hagadol-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 24:2 | sefat-emet-leviticus-for-shabbat-hagadol-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 24:3 | sefat-emet-leviticus-for-shabbat-hagadol-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 25:1 | sefat-emet-leviticus-for-shabbat-hagadol-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 25:2 | sefat-emet-leviticus-for-shabbat-hagadol-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 26:1 | sefat-emet-leviticus-for-shabbat-hagadol-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 26:2 | sefat-emet-leviticus-for-shabbat-hagadol-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 27:1 | sefat-emet-leviticus-for-shabbat-hagadol-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, For Shabbat HaGadol 27:2 | sefat-emet-leviticus-for-shabbat-hagadol-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:1 | sefat-emet-leviticus-passover-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:2 | sefat-emet-leviticus-passover-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:3 | sefat-emet-leviticus-passover-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:4 | sefat-emet-leviticus-passover-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:5 | sefat-emet-leviticus-passover-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:6 | sefat-emet-leviticus-passover-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:7 | sefat-emet-leviticus-passover-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:8 | sefat-emet-leviticus-passover-1-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:9 | sefat-emet-leviticus-passover-1-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:10 | sefat-emet-leviticus-passover-1-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:11 | sefat-emet-leviticus-passover-1-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:12 | sefat-emet-leviticus-passover-1-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:13 | sefat-emet-leviticus-passover-1-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:14 | sefat-emet-leviticus-passover-1-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:15 | sefat-emet-leviticus-passover-1-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:16 | sefat-emet-leviticus-passover-1-16 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:17 | sefat-emet-leviticus-passover-1-17 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:18 | sefat-emet-leviticus-passover-1-18 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:19 | sefat-emet-leviticus-passover-1-19 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:20 | sefat-emet-leviticus-passover-1-20 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:21 | sefat-emet-leviticus-passover-1-21 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:22 | sefat-emet-leviticus-passover-1-22 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 1:23 | sefat-emet-leviticus-passover-1-23 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:1 | sefat-emet-leviticus-passover-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:2 | sefat-emet-leviticus-passover-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:3 | sefat-emet-leviticus-passover-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:4 | sefat-emet-leviticus-passover-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:5 | sefat-emet-leviticus-passover-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:6 | sefat-emet-leviticus-passover-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:7 | sefat-emet-leviticus-passover-2-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:8 | sefat-emet-leviticus-passover-2-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:9 | sefat-emet-leviticus-passover-2-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:10 | sefat-emet-leviticus-passover-2-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:11 | sefat-emet-leviticus-passover-2-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:12 | sefat-emet-leviticus-passover-2-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:13 | sefat-emet-leviticus-passover-2-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:14 | sefat-emet-leviticus-passover-2-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:15 | sefat-emet-leviticus-passover-2-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:16 | sefat-emet-leviticus-passover-2-16 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:17 | sefat-emet-leviticus-passover-2-17 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:18 | sefat-emet-leviticus-passover-2-18 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:19 | sefat-emet-leviticus-passover-2-19 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:20 | sefat-emet-leviticus-passover-2-20 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:21 | sefat-emet-leviticus-passover-2-21 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:22 | sefat-emet-leviticus-passover-2-22 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:23 | sefat-emet-leviticus-passover-2-23 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:24 | sefat-emet-leviticus-passover-2-24 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 2:25 | sefat-emet-leviticus-passover-2-25 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 3:1 | sefat-emet-leviticus-passover-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 3:2 | sefat-emet-leviticus-passover-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 3:3 | sefat-emet-leviticus-passover-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 3:4 | sefat-emet-leviticus-passover-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 3:5 | sefat-emet-leviticus-passover-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 3:6 | sefat-emet-leviticus-passover-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 3:7 | sefat-emet-leviticus-passover-3-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:1 | sefat-emet-leviticus-passover-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:2 | sefat-emet-leviticus-passover-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:3 | sefat-emet-leviticus-passover-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:4 | sefat-emet-leviticus-passover-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:5 | sefat-emet-leviticus-passover-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:6 | sefat-emet-leviticus-passover-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:7 | sefat-emet-leviticus-passover-4-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:8 | sefat-emet-leviticus-passover-4-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 4:9 | sefat-emet-leviticus-passover-4-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:1 | sefat-emet-leviticus-passover-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:2 | sefat-emet-leviticus-passover-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:3 | sefat-emet-leviticus-passover-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:4 | sefat-emet-leviticus-passover-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:5 | sefat-emet-leviticus-passover-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:6 | sefat-emet-leviticus-passover-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:7 | sefat-emet-leviticus-passover-5-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:8 | sefat-emet-leviticus-passover-5-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:9 | sefat-emet-leviticus-passover-5-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:10 | sefat-emet-leviticus-passover-5-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:11 | sefat-emet-leviticus-passover-5-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 5:12 | sefat-emet-leviticus-passover-5-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:1 | sefat-emet-leviticus-passover-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:2 | sefat-emet-leviticus-passover-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:3 | sefat-emet-leviticus-passover-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:4 | sefat-emet-leviticus-passover-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:5 | sefat-emet-leviticus-passover-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:6 | sefat-emet-leviticus-passover-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:7 | sefat-emet-leviticus-passover-6-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 6:8 | sefat-emet-leviticus-passover-6-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:1 | sefat-emet-leviticus-passover-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:2 | sefat-emet-leviticus-passover-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:3 | sefat-emet-leviticus-passover-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:4 | sefat-emet-leviticus-passover-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:5 | sefat-emet-leviticus-passover-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:6 | sefat-emet-leviticus-passover-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:7 | sefat-emet-leviticus-passover-7-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:8 | sefat-emet-leviticus-passover-7-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:9 | sefat-emet-leviticus-passover-7-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:10 | sefat-emet-leviticus-passover-7-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:11 | sefat-emet-leviticus-passover-7-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:12 | sefat-emet-leviticus-passover-7-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 7:13 | sefat-emet-leviticus-passover-7-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:1 | sefat-emet-leviticus-passover-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:2 | sefat-emet-leviticus-passover-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:3 | sefat-emet-leviticus-passover-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:4 | sefat-emet-leviticus-passover-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:5 | sefat-emet-leviticus-passover-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:6 | sefat-emet-leviticus-passover-8-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:7 | sefat-emet-leviticus-passover-8-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:8 | sefat-emet-leviticus-passover-8-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:9 | sefat-emet-leviticus-passover-8-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:10 | sefat-emet-leviticus-passover-8-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:11 | sefat-emet-leviticus-passover-8-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 8:12 | sefat-emet-leviticus-passover-8-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:1 | sefat-emet-leviticus-passover-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:2 | sefat-emet-leviticus-passover-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:3 | sefat-emet-leviticus-passover-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:4 | sefat-emet-leviticus-passover-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:5 | sefat-emet-leviticus-passover-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:6 | sefat-emet-leviticus-passover-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:7 | sefat-emet-leviticus-passover-9-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:8 | sefat-emet-leviticus-passover-9-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:9 | sefat-emet-leviticus-passover-9-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 9:10 | sefat-emet-leviticus-passover-9-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:1 | sefat-emet-leviticus-passover-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:2 | sefat-emet-leviticus-passover-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:3 | sefat-emet-leviticus-passover-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:4 | sefat-emet-leviticus-passover-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:5 | sefat-emet-leviticus-passover-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:6 | sefat-emet-leviticus-passover-10-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:7 | sefat-emet-leviticus-passover-10-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:8 | sefat-emet-leviticus-passover-10-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:9 | sefat-emet-leviticus-passover-10-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:10 | sefat-emet-leviticus-passover-10-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:11 | sefat-emet-leviticus-passover-10-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:12 | sefat-emet-leviticus-passover-10-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:13 | sefat-emet-leviticus-passover-10-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:14 | sefat-emet-leviticus-passover-10-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:15 | sefat-emet-leviticus-passover-10-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:16 | sefat-emet-leviticus-passover-10-16 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:17 | sefat-emet-leviticus-passover-10-17 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 10:18 | sefat-emet-leviticus-passover-10-18 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:1 | sefat-emet-leviticus-passover-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:2 | sefat-emet-leviticus-passover-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:3 | sefat-emet-leviticus-passover-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:4 | sefat-emet-leviticus-passover-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:5 | sefat-emet-leviticus-passover-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:6 | sefat-emet-leviticus-passover-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:7 | sefat-emet-leviticus-passover-11-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:8 | sefat-emet-leviticus-passover-11-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:9 | sefat-emet-leviticus-passover-11-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:10 | sefat-emet-leviticus-passover-11-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:11 | sefat-emet-leviticus-passover-11-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:12 | sefat-emet-leviticus-passover-11-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:13 | sefat-emet-leviticus-passover-11-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 11:14 | sefat-emet-leviticus-passover-11-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:1 | sefat-emet-leviticus-passover-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:2 | sefat-emet-leviticus-passover-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:3 | sefat-emet-leviticus-passover-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:4 | sefat-emet-leviticus-passover-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:5 | sefat-emet-leviticus-passover-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:6 | sefat-emet-leviticus-passover-12-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:7 | sefat-emet-leviticus-passover-12-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 12:8 | sefat-emet-leviticus-passover-12-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:1 | sefat-emet-leviticus-passover-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:2 | sefat-emet-leviticus-passover-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:3 | sefat-emet-leviticus-passover-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:4 | sefat-emet-leviticus-passover-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:5 | sefat-emet-leviticus-passover-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:6 | sefat-emet-leviticus-passover-13-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:7 | sefat-emet-leviticus-passover-13-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:8 | sefat-emet-leviticus-passover-13-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:9 | sefat-emet-leviticus-passover-13-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:10 | sefat-emet-leviticus-passover-13-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:11 | sefat-emet-leviticus-passover-13-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:12 | sefat-emet-leviticus-passover-13-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:13 | sefat-emet-leviticus-passover-13-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:14 | sefat-emet-leviticus-passover-13-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 13:15 | sefat-emet-leviticus-passover-13-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:1 | sefat-emet-leviticus-passover-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:2 | sefat-emet-leviticus-passover-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:3 | sefat-emet-leviticus-passover-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:4 | sefat-emet-leviticus-passover-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:5 | sefat-emet-leviticus-passover-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:6 | sefat-emet-leviticus-passover-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:7 | sefat-emet-leviticus-passover-14-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:8 | sefat-emet-leviticus-passover-14-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:9 | sefat-emet-leviticus-passover-14-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:10 | sefat-emet-leviticus-passover-14-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:11 | sefat-emet-leviticus-passover-14-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:12 | sefat-emet-leviticus-passover-14-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 14:13 | sefat-emet-leviticus-passover-14-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:1 | sefat-emet-leviticus-passover-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:2 | sefat-emet-leviticus-passover-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:3 | sefat-emet-leviticus-passover-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:4 | sefat-emet-leviticus-passover-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:5 | sefat-emet-leviticus-passover-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:6 | sefat-emet-leviticus-passover-15-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:7 | sefat-emet-leviticus-passover-15-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:8 | sefat-emet-leviticus-passover-15-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:9 | sefat-emet-leviticus-passover-15-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:10 | sefat-emet-leviticus-passover-15-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 15:11 | sefat-emet-leviticus-passover-15-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:1 | sefat-emet-leviticus-passover-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:2 | sefat-emet-leviticus-passover-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:3 | sefat-emet-leviticus-passover-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:4 | sefat-emet-leviticus-passover-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:5 | sefat-emet-leviticus-passover-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:6 | sefat-emet-leviticus-passover-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:7 | sefat-emet-leviticus-passover-16-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:8 | sefat-emet-leviticus-passover-16-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:9 | sefat-emet-leviticus-passover-16-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 16:10 | sefat-emet-leviticus-passover-16-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:1 | sefat-emet-leviticus-passover-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:2 | sefat-emet-leviticus-passover-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:3 | sefat-emet-leviticus-passover-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:4 | sefat-emet-leviticus-passover-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:5 | sefat-emet-leviticus-passover-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:6 | sefat-emet-leviticus-passover-17-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:7 | sefat-emet-leviticus-passover-17-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:8 | sefat-emet-leviticus-passover-17-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:9 | sefat-emet-leviticus-passover-17-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:10 | sefat-emet-leviticus-passover-17-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 17:11 | sefat-emet-leviticus-passover-17-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:1 | sefat-emet-leviticus-passover-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:2 | sefat-emet-leviticus-passover-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:3 | sefat-emet-leviticus-passover-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:4 | sefat-emet-leviticus-passover-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:5 | sefat-emet-leviticus-passover-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:6 | sefat-emet-leviticus-passover-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:7 | sefat-emet-leviticus-passover-18-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:8 | sefat-emet-leviticus-passover-18-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:9 | sefat-emet-leviticus-passover-18-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:10 | sefat-emet-leviticus-passover-18-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:11 | sefat-emet-leviticus-passover-18-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:12 | sefat-emet-leviticus-passover-18-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:13 | sefat-emet-leviticus-passover-18-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:14 | sefat-emet-leviticus-passover-18-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:15 | sefat-emet-leviticus-passover-18-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:16 | sefat-emet-leviticus-passover-18-16 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:17 | sefat-emet-leviticus-passover-18-17 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:18 | sefat-emet-leviticus-passover-18-18 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:19 | sefat-emet-leviticus-passover-18-19 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:20 | sefat-emet-leviticus-passover-18-20 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:21 | sefat-emet-leviticus-passover-18-21 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:22 | sefat-emet-leviticus-passover-18-22 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:23 | sefat-emet-leviticus-passover-18-23 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:24 | sefat-emet-leviticus-passover-18-24 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:25 | sefat-emet-leviticus-passover-18-25 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:26 | sefat-emet-leviticus-passover-18-26 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:27 | sefat-emet-leviticus-passover-18-27 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 18:28 | sefat-emet-leviticus-passover-18-28 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:1 | sefat-emet-leviticus-passover-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:2 | sefat-emet-leviticus-passover-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:3 | sefat-emet-leviticus-passover-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:4 | sefat-emet-leviticus-passover-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:5 | sefat-emet-leviticus-passover-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:6 | sefat-emet-leviticus-passover-19-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:7 | sefat-emet-leviticus-passover-19-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 19:8 | sefat-emet-leviticus-passover-19-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:1 | sefat-emet-leviticus-passover-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:2 | sefat-emet-leviticus-passover-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:3 | sefat-emet-leviticus-passover-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:4 | sefat-emet-leviticus-passover-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:5 | sefat-emet-leviticus-passover-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:6 | sefat-emet-leviticus-passover-20-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:7 | sefat-emet-leviticus-passover-20-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:8 | sefat-emet-leviticus-passover-20-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 20:9 | sefat-emet-leviticus-passover-20-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:1 | sefat-emet-leviticus-passover-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:2 | sefat-emet-leviticus-passover-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:3 | sefat-emet-leviticus-passover-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:4 | sefat-emet-leviticus-passover-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:5 | sefat-emet-leviticus-passover-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:6 | sefat-emet-leviticus-passover-21-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:7 | sefat-emet-leviticus-passover-21-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:8 | sefat-emet-leviticus-passover-21-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:9 | sefat-emet-leviticus-passover-21-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:10 | sefat-emet-leviticus-passover-21-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:11 | sefat-emet-leviticus-passover-21-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 21:12 | sefat-emet-leviticus-passover-21-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:1 | sefat-emet-leviticus-passover-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:2 | sefat-emet-leviticus-passover-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:3 | sefat-emet-leviticus-passover-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:4 | sefat-emet-leviticus-passover-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:5 | sefat-emet-leviticus-passover-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:6 | sefat-emet-leviticus-passover-22-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:7 | sefat-emet-leviticus-passover-22-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:8 | sefat-emet-leviticus-passover-22-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:9 | sefat-emet-leviticus-passover-22-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 22:10 | sefat-emet-leviticus-passover-22-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:1 | sefat-emet-leviticus-passover-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:2 | sefat-emet-leviticus-passover-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:3 | sefat-emet-leviticus-passover-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:4 | sefat-emet-leviticus-passover-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:5 | sefat-emet-leviticus-passover-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:6 | sefat-emet-leviticus-passover-23-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:7 | sefat-emet-leviticus-passover-23-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:8 | sefat-emet-leviticus-passover-23-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:9 | sefat-emet-leviticus-passover-23-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:10 | sefat-emet-leviticus-passover-23-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:11 | sefat-emet-leviticus-passover-23-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:12 | sefat-emet-leviticus-passover-23-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:13 | sefat-emet-leviticus-passover-23-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:14 | sefat-emet-leviticus-passover-23-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:15 | sefat-emet-leviticus-passover-23-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:16 | sefat-emet-leviticus-passover-23-16 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:17 | sefat-emet-leviticus-passover-23-17 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:18 | sefat-emet-leviticus-passover-23-18 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:19 | sefat-emet-leviticus-passover-23-19 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:20 | sefat-emet-leviticus-passover-23-20 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:21 | sefat-emet-leviticus-passover-23-21 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:22 | sefat-emet-leviticus-passover-23-22 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:23 | sefat-emet-leviticus-passover-23-23 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 23:24 | sefat-emet-leviticus-passover-23-24 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 24:1 | sefat-emet-leviticus-passover-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 24:2 | sefat-emet-leviticus-passover-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 24:3 | sefat-emet-leviticus-passover-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 24:4 | sefat-emet-leviticus-passover-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 24:5 | sefat-emet-leviticus-passover-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 24:6 | sefat-emet-leviticus-passover-24-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:1 | sefat-emet-leviticus-passover-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:2 | sefat-emet-leviticus-passover-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:3 | sefat-emet-leviticus-passover-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:4 | sefat-emet-leviticus-passover-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:5 | sefat-emet-leviticus-passover-25-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:6 | sefat-emet-leviticus-passover-25-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:7 | sefat-emet-leviticus-passover-25-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:8 | sefat-emet-leviticus-passover-25-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 25:9 | sefat-emet-leviticus-passover-25-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 26:1 | sefat-emet-leviticus-passover-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 26:2 | sefat-emet-leviticus-passover-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 26:3 | sefat-emet-leviticus-passover-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 26:4 | sefat-emet-leviticus-passover-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 26:5 | sefat-emet-leviticus-passover-26-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 26:6 | sefat-emet-leviticus-passover-26-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 26:7 | sefat-emet-leviticus-passover-26-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:1 | sefat-emet-leviticus-passover-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:2 | sefat-emet-leviticus-passover-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:3 | sefat-emet-leviticus-passover-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:4 | sefat-emet-leviticus-passover-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:5 | sefat-emet-leviticus-passover-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:6 | sefat-emet-leviticus-passover-27-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:7 | sefat-emet-leviticus-passover-27-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:8 | sefat-emet-leviticus-passover-27-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:9 | sefat-emet-leviticus-passover-27-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 27:10 | sefat-emet-leviticus-passover-27-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 28:1 | sefat-emet-leviticus-passover-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 28:2 | sefat-emet-leviticus-passover-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 28:3 | sefat-emet-leviticus-passover-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 28:4 | sefat-emet-leviticus-passover-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:1 | sefat-emet-leviticus-passover-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:2 | sefat-emet-leviticus-passover-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:3 | sefat-emet-leviticus-passover-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:4 | sefat-emet-leviticus-passover-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:5 | sefat-emet-leviticus-passover-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:6 | sefat-emet-leviticus-passover-29-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:7 | sefat-emet-leviticus-passover-29-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:8 | sefat-emet-leviticus-passover-29-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:9 | sefat-emet-leviticus-passover-29-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:10 | sefat-emet-leviticus-passover-29-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:11 | sefat-emet-leviticus-passover-29-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:12 | sefat-emet-leviticus-passover-29-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:13 | sefat-emet-leviticus-passover-29-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 29:14 | sefat-emet-leviticus-passover-29-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:1 | sefat-emet-leviticus-passover-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:2 | sefat-emet-leviticus-passover-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:3 | sefat-emet-leviticus-passover-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:4 | sefat-emet-leviticus-passover-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:5 | sefat-emet-leviticus-passover-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:6 | sefat-emet-leviticus-passover-30-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:7 | sefat-emet-leviticus-passover-30-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:8 | sefat-emet-leviticus-passover-30-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 30:9 | sefat-emet-leviticus-passover-30-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 31:1 | sefat-emet-leviticus-passover-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 31:2 | sefat-emet-leviticus-passover-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 31:3 | sefat-emet-leviticus-passover-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 31:4 | sefat-emet-leviticus-passover-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 31:5 | sefat-emet-leviticus-passover-31-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Passover 31:6 | sefat-emet-leviticus-passover-31-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 1:1 | sefat-emet-leviticus-shmini-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 1:2 | sefat-emet-leviticus-shmini-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 1:3 | sefat-emet-leviticus-shmini-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 1:4 | sefat-emet-leviticus-shmini-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 1:5 | sefat-emet-leviticus-shmini-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 2:1 | sefat-emet-leviticus-shmini-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 2:2 | sefat-emet-leviticus-shmini-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 3:1 | sefat-emet-leviticus-shmini-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 3:2 | sefat-emet-leviticus-shmini-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 3:3 | sefat-emet-leviticus-shmini-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 3:4 | sefat-emet-leviticus-shmini-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 4:1 | sefat-emet-leviticus-shmini-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 4:2 | sefat-emet-leviticus-shmini-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 4:3 | sefat-emet-leviticus-shmini-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 4:4 | sefat-emet-leviticus-shmini-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 4:5 | sefat-emet-leviticus-shmini-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 5:1 | sefat-emet-leviticus-shmini-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 5:2 | sefat-emet-leviticus-shmini-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 5:3 | sefat-emet-leviticus-shmini-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 5:4 | sefat-emet-leviticus-shmini-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 6:1 | sefat-emet-leviticus-shmini-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 6:2 | sefat-emet-leviticus-shmini-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 6:3 | sefat-emet-leviticus-shmini-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 6:4 | sefat-emet-leviticus-shmini-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 7:1 | sefat-emet-leviticus-shmini-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 7:2 | sefat-emet-leviticus-shmini-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 7:3 | sefat-emet-leviticus-shmini-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 7:4 | sefat-emet-leviticus-shmini-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 7:5 | sefat-emet-leviticus-shmini-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 8:1 | sefat-emet-leviticus-shmini-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 8:2 | sefat-emet-leviticus-shmini-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 8:3 | sefat-emet-leviticus-shmini-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 8:4 | sefat-emet-leviticus-shmini-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 8:5 | sefat-emet-leviticus-shmini-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 9:1 | sefat-emet-leviticus-shmini-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 9:2 | sefat-emet-leviticus-shmini-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 9:3 | sefat-emet-leviticus-shmini-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 9:4 | sefat-emet-leviticus-shmini-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 10:1 | sefat-emet-leviticus-shmini-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 10:2 | sefat-emet-leviticus-shmini-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 10:3 | sefat-emet-leviticus-shmini-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 10:4 | sefat-emet-leviticus-shmini-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 11:1 | sefat-emet-leviticus-shmini-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 11:2 | sefat-emet-leviticus-shmini-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 12:1 | sefat-emet-leviticus-shmini-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 12:2 | sefat-emet-leviticus-shmini-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 12:3 | sefat-emet-leviticus-shmini-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 13:1 | sefat-emet-leviticus-shmini-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 13:2 | sefat-emet-leviticus-shmini-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 14:1 | sefat-emet-leviticus-shmini-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 14:2 | sefat-emet-leviticus-shmini-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 14:3 | sefat-emet-leviticus-shmini-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 15:1 | sefat-emet-leviticus-shmini-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 15:2 | sefat-emet-leviticus-shmini-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 15:3 | sefat-emet-leviticus-shmini-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 16:1 | sefat-emet-leviticus-shmini-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 16:2 | sefat-emet-leviticus-shmini-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 16:3 | sefat-emet-leviticus-shmini-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 16:4 | sefat-emet-leviticus-shmini-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 16:5 | sefat-emet-leviticus-shmini-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 17:1 | sefat-emet-leviticus-shmini-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 17:2 | sefat-emet-leviticus-shmini-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 17:3 | sefat-emet-leviticus-shmini-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 18:1 | sefat-emet-leviticus-shmini-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 18:2 | sefat-emet-leviticus-shmini-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 18:3 | sefat-emet-leviticus-shmini-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 18:4 | sefat-emet-leviticus-shmini-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 19:1 | sefat-emet-leviticus-shmini-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 19:2 | sefat-emet-leviticus-shmini-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 19:3 | sefat-emet-leviticus-shmini-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 20:1 | sefat-emet-leviticus-shmini-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 20:2 | sefat-emet-leviticus-shmini-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 20:3 | sefat-emet-leviticus-shmini-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 20:4 | sefat-emet-leviticus-shmini-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 21:1 | sefat-emet-leviticus-shmini-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 21:2 | sefat-emet-leviticus-shmini-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 22:1 | sefat-emet-leviticus-shmini-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 22:2 | sefat-emet-leviticus-shmini-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 22:3 | sefat-emet-leviticus-shmini-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 23:1 | sefat-emet-leviticus-shmini-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 23:2 | sefat-emet-leviticus-shmini-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 24:1 | sefat-emet-leviticus-shmini-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Shmini 24:2 | sefat-emet-leviticus-shmini-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 1:1 | sefat-emet-leviticus-tazria-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 1:2 | sefat-emet-leviticus-tazria-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 1:3 | sefat-emet-leviticus-tazria-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 1:4 | sefat-emet-leviticus-tazria-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 1:5 | sefat-emet-leviticus-tazria-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 1:6 | sefat-emet-leviticus-tazria-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 2:1 | sefat-emet-leviticus-tazria-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 2:2 | sefat-emet-leviticus-tazria-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 3:1 | sefat-emet-leviticus-tazria-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 3:2 | sefat-emet-leviticus-tazria-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 3:3 | sefat-emet-leviticus-tazria-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 4:1 | sefat-emet-leviticus-tazria-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 4:2 | sefat-emet-leviticus-tazria-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 5:1 | sefat-emet-leviticus-tazria-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 5:2 | sefat-emet-leviticus-tazria-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 5:3 | sefat-emet-leviticus-tazria-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 5:4 | sefat-emet-leviticus-tazria-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 6:1 | sefat-emet-leviticus-tazria-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 6:2 | sefat-emet-leviticus-tazria-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 6:3 | sefat-emet-leviticus-tazria-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 6:4 | sefat-emet-leviticus-tazria-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 6:5 | sefat-emet-leviticus-tazria-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 7:1 | sefat-emet-leviticus-tazria-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 7:2 | sefat-emet-leviticus-tazria-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 7:3 | sefat-emet-leviticus-tazria-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 8:1 | sefat-emet-leviticus-tazria-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 8:2 | sefat-emet-leviticus-tazria-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 8:3 | sefat-emet-leviticus-tazria-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 9:1 | sefat-emet-leviticus-tazria-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 9:2 | sefat-emet-leviticus-tazria-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 9:3 | sefat-emet-leviticus-tazria-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 10:1 | sefat-emet-leviticus-tazria-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 10:2 | sefat-emet-leviticus-tazria-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 10:3 | sefat-emet-leviticus-tazria-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 10:4 | sefat-emet-leviticus-tazria-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 10:5 | sefat-emet-leviticus-tazria-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 11:1 | sefat-emet-leviticus-tazria-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 11:2 | sefat-emet-leviticus-tazria-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 11:3 | sefat-emet-leviticus-tazria-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 11:4 | sefat-emet-leviticus-tazria-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 12:1 | sefat-emet-leviticus-tazria-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 12:2 | sefat-emet-leviticus-tazria-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 12:3 | sefat-emet-leviticus-tazria-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 12:4 | sefat-emet-leviticus-tazria-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 13:1 | sefat-emet-leviticus-tazria-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 13:2 | sefat-emet-leviticus-tazria-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 14:1 | sefat-emet-leviticus-tazria-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 14:2 | sefat-emet-leviticus-tazria-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 15:1 | sefat-emet-leviticus-tazria-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 15:2 | sefat-emet-leviticus-tazria-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 15:3 | sefat-emet-leviticus-tazria-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 16:1 | sefat-emet-leviticus-tazria-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 16:2 | sefat-emet-leviticus-tazria-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 16:3 | sefat-emet-leviticus-tazria-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 17:1 | sefat-emet-leviticus-tazria-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 17:2 | sefat-emet-leviticus-tazria-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 17:3 | sefat-emet-leviticus-tazria-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 18:1 | sefat-emet-leviticus-tazria-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 18:2 | sefat-emet-leviticus-tazria-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 19:1 | sefat-emet-leviticus-tazria-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 19:2 | sefat-emet-leviticus-tazria-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 20:1 | sefat-emet-leviticus-tazria-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 20:2 | sefat-emet-leviticus-tazria-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 21:1 | sefat-emet-leviticus-tazria-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 21:2 | sefat-emet-leviticus-tazria-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 21:3 | sefat-emet-leviticus-tazria-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 22:1 | sefat-emet-leviticus-tazria-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 22:2 | sefat-emet-leviticus-tazria-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 23:1 | sefat-emet-leviticus-tazria-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 23:2 | sefat-emet-leviticus-tazria-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 23:3 | sefat-emet-leviticus-tazria-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 23:4 | sefat-emet-leviticus-tazria-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 24:1 | sefat-emet-leviticus-tazria-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 24:2 | sefat-emet-leviticus-tazria-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 25:1 | sefat-emet-leviticus-tazria-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 25:2 | sefat-emet-leviticus-tazria-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 26:1 | sefat-emet-leviticus-tazria-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 26:2 | sefat-emet-leviticus-tazria-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Tazria 26:3 | sefat-emet-leviticus-tazria-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 1:1 | sefat-emet-leviticus-metzora-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 1:2 | sefat-emet-leviticus-metzora-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 2:1 | sefat-emet-leviticus-metzora-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 2:2 | sefat-emet-leviticus-metzora-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 2:3 | sefat-emet-leviticus-metzora-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 3:1 | sefat-emet-leviticus-metzora-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 3:2 | sefat-emet-leviticus-metzora-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 3:3 | sefat-emet-leviticus-metzora-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 3:4 | sefat-emet-leviticus-metzora-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 3:5 | sefat-emet-leviticus-metzora-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 4:1 | sefat-emet-leviticus-metzora-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 4:2 | sefat-emet-leviticus-metzora-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 4:3 | sefat-emet-leviticus-metzora-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 5:1 | sefat-emet-leviticus-metzora-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 5:2 | sefat-emet-leviticus-metzora-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 5:3 | sefat-emet-leviticus-metzora-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 6:1 | sefat-emet-leviticus-metzora-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 6:2 | sefat-emet-leviticus-metzora-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 7:1 | sefat-emet-leviticus-metzora-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 7:2 | sefat-emet-leviticus-metzora-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 8:1 | sefat-emet-leviticus-metzora-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 8:2 | sefat-emet-leviticus-metzora-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 9:1 | sefat-emet-leviticus-metzora-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 9:2 | sefat-emet-leviticus-metzora-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 10:1 | sefat-emet-leviticus-metzora-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 10:2 | sefat-emet-leviticus-metzora-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 11:1 | sefat-emet-leviticus-metzora-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 11:2 | sefat-emet-leviticus-metzora-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 12:1 | sefat-emet-leviticus-metzora-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 12:2 | sefat-emet-leviticus-metzora-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 13:1 | sefat-emet-leviticus-metzora-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 13:2 | sefat-emet-leviticus-metzora-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 14:1 | sefat-emet-leviticus-metzora-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Metzora 14:2 | sefat-emet-leviticus-metzora-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 1:1 | sefat-emet-leviticus-achrei-mot-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 1:2 | sefat-emet-leviticus-achrei-mot-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 1:3 | sefat-emet-leviticus-achrei-mot-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 2:1 | sefat-emet-leviticus-achrei-mot-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 2:2 | sefat-emet-leviticus-achrei-mot-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 2:3 | sefat-emet-leviticus-achrei-mot-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 3:1 | sefat-emet-leviticus-achrei-mot-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 3:2 | sefat-emet-leviticus-achrei-mot-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 4:1 | sefat-emet-leviticus-achrei-mot-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 4:2 | sefat-emet-leviticus-achrei-mot-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 4:3 | sefat-emet-leviticus-achrei-mot-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 4:4 | sefat-emet-leviticus-achrei-mot-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 4:5 | sefat-emet-leviticus-achrei-mot-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 5:1 | sefat-emet-leviticus-achrei-mot-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 5:2 | sefat-emet-leviticus-achrei-mot-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 5:3 | sefat-emet-leviticus-achrei-mot-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 6:1 | sefat-emet-leviticus-achrei-mot-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 6:2 | sefat-emet-leviticus-achrei-mot-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 7:1 | sefat-emet-leviticus-achrei-mot-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 7:2 | sefat-emet-leviticus-achrei-mot-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 7:3 | sefat-emet-leviticus-achrei-mot-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 8:1 | sefat-emet-leviticus-achrei-mot-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 8:2 | sefat-emet-leviticus-achrei-mot-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 9:1 | sefat-emet-leviticus-achrei-mot-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 9:2 | sefat-emet-leviticus-achrei-mot-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 9:3 | sefat-emet-leviticus-achrei-mot-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 9:4 | sefat-emet-leviticus-achrei-mot-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 10:1 | sefat-emet-leviticus-achrei-mot-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 10:2 | sefat-emet-leviticus-achrei-mot-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 10:3 | sefat-emet-leviticus-achrei-mot-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 11:1 | sefat-emet-leviticus-achrei-mot-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 11:2 | sefat-emet-leviticus-achrei-mot-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 12:1 | sefat-emet-leviticus-achrei-mot-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 12:2 | sefat-emet-leviticus-achrei-mot-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 13:1 | sefat-emet-leviticus-achrei-mot-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 13:2 | sefat-emet-leviticus-achrei-mot-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 14:1 | sefat-emet-leviticus-achrei-mot-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 14:2 | sefat-emet-leviticus-achrei-mot-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 14:3 | sefat-emet-leviticus-achrei-mot-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 14:4 | sefat-emet-leviticus-achrei-mot-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 14:5 | sefat-emet-leviticus-achrei-mot-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 15:1 | sefat-emet-leviticus-achrei-mot-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 15:2 | sefat-emet-leviticus-achrei-mot-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 16:1 | sefat-emet-leviticus-achrei-mot-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 16:2 | sefat-emet-leviticus-achrei-mot-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 17:1 | sefat-emet-leviticus-achrei-mot-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 17:2 | sefat-emet-leviticus-achrei-mot-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 17:3 | sefat-emet-leviticus-achrei-mot-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 18:1 | sefat-emet-leviticus-achrei-mot-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 18:2 | sefat-emet-leviticus-achrei-mot-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 18:3 | sefat-emet-leviticus-achrei-mot-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 18:4 | sefat-emet-leviticus-achrei-mot-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 19:1 | sefat-emet-leviticus-achrei-mot-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 19:2 | sefat-emet-leviticus-achrei-mot-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Achrei Mot 19:3 | sefat-emet-leviticus-achrei-mot-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 1:1 | sefat-emet-leviticus-kedoshim-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 1:2 | sefat-emet-leviticus-kedoshim-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 1:3 | sefat-emet-leviticus-kedoshim-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 1:4 | sefat-emet-leviticus-kedoshim-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 1:5 | sefat-emet-leviticus-kedoshim-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 1:6 | sefat-emet-leviticus-kedoshim-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 2:1 | sefat-emet-leviticus-kedoshim-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 2:2 | sefat-emet-leviticus-kedoshim-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 2:3 | sefat-emet-leviticus-kedoshim-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 2:4 | sefat-emet-leviticus-kedoshim-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 3:1 | sefat-emet-leviticus-kedoshim-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 3:2 | sefat-emet-leviticus-kedoshim-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 3:3 | sefat-emet-leviticus-kedoshim-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 4:1 | sefat-emet-leviticus-kedoshim-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 4:2 | sefat-emet-leviticus-kedoshim-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 4:3 | sefat-emet-leviticus-kedoshim-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 4:4 | sefat-emet-leviticus-kedoshim-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 5:1 | sefat-emet-leviticus-kedoshim-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 5:2 | sefat-emet-leviticus-kedoshim-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 5:3 | sefat-emet-leviticus-kedoshim-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 5:4 | sefat-emet-leviticus-kedoshim-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 5:5 | sefat-emet-leviticus-kedoshim-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 5:6 | sefat-emet-leviticus-kedoshim-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 6:1 | sefat-emet-leviticus-kedoshim-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 6:2 | sefat-emet-leviticus-kedoshim-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 6:3 | sefat-emet-leviticus-kedoshim-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 6:4 | sefat-emet-leviticus-kedoshim-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 6:5 | sefat-emet-leviticus-kedoshim-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 7:1 | sefat-emet-leviticus-kedoshim-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 7:2 | sefat-emet-leviticus-kedoshim-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 7:3 | sefat-emet-leviticus-kedoshim-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 7:4 | sefat-emet-leviticus-kedoshim-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 8:1 | sefat-emet-leviticus-kedoshim-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 8:2 | sefat-emet-leviticus-kedoshim-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 8:3 | sefat-emet-leviticus-kedoshim-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 9:1 | sefat-emet-leviticus-kedoshim-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 9:2 | sefat-emet-leviticus-kedoshim-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 9:3 | sefat-emet-leviticus-kedoshim-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 10:1 | sefat-emet-leviticus-kedoshim-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 10:2 | sefat-emet-leviticus-kedoshim-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 10:3 | sefat-emet-leviticus-kedoshim-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 10:4 | sefat-emet-leviticus-kedoshim-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 10:5 | sefat-emet-leviticus-kedoshim-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 11:1 | sefat-emet-leviticus-kedoshim-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 11:2 | sefat-emet-leviticus-kedoshim-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 12:1 | sefat-emet-leviticus-kedoshim-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 12:2 | sefat-emet-leviticus-kedoshim-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 12:3 | sefat-emet-leviticus-kedoshim-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 12:4 | sefat-emet-leviticus-kedoshim-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 13:1 | sefat-emet-leviticus-kedoshim-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 13:2 | sefat-emet-leviticus-kedoshim-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 14:1 | sefat-emet-leviticus-kedoshim-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 14:2 | sefat-emet-leviticus-kedoshim-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 14:3 | sefat-emet-leviticus-kedoshim-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 15:1 | sefat-emet-leviticus-kedoshim-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 15:2 | sefat-emet-leviticus-kedoshim-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 15:3 | sefat-emet-leviticus-kedoshim-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 16:1 | sefat-emet-leviticus-kedoshim-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 16:2 | sefat-emet-leviticus-kedoshim-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 17:1 | sefat-emet-leviticus-kedoshim-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 17:2 | sefat-emet-leviticus-kedoshim-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 17:3 | sefat-emet-leviticus-kedoshim-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 18:1 | sefat-emet-leviticus-kedoshim-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 18:2 | sefat-emet-leviticus-kedoshim-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 18:3 | sefat-emet-leviticus-kedoshim-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 18:4 | sefat-emet-leviticus-kedoshim-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 19:1 | sefat-emet-leviticus-kedoshim-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 19:2 | sefat-emet-leviticus-kedoshim-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 19:3 | sefat-emet-leviticus-kedoshim-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 20:1 | sefat-emet-leviticus-kedoshim-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 20:2 | sefat-emet-leviticus-kedoshim-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 20:3 | sefat-emet-leviticus-kedoshim-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 21:1 | sefat-emet-leviticus-kedoshim-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 21:2 | sefat-emet-leviticus-kedoshim-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 22:1 | sefat-emet-leviticus-kedoshim-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 22:2 | sefat-emet-leviticus-kedoshim-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 23:1 | sefat-emet-leviticus-kedoshim-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 23:2 | sefat-emet-leviticus-kedoshim-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 23:3 | sefat-emet-leviticus-kedoshim-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 23:4 | sefat-emet-leviticus-kedoshim-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 24:1 | sefat-emet-leviticus-kedoshim-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 24:2 | sefat-emet-leviticus-kedoshim-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 24:3 | sefat-emet-leviticus-kedoshim-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 25:1 | sefat-emet-leviticus-kedoshim-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 25:2 | sefat-emet-leviticus-kedoshim-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 26:1 | sefat-emet-leviticus-kedoshim-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 26:2 | sefat-emet-leviticus-kedoshim-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 27:1 | sefat-emet-leviticus-kedoshim-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 27:2 | sefat-emet-leviticus-kedoshim-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 27:3 | sefat-emet-leviticus-kedoshim-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 28:1 | sefat-emet-leviticus-kedoshim-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 28:2 | sefat-emet-leviticus-kedoshim-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 29:1 | sefat-emet-leviticus-kedoshim-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 29:2 | sefat-emet-leviticus-kedoshim-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 30:1 | sefat-emet-leviticus-kedoshim-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 30:2 | sefat-emet-leviticus-kedoshim-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 30:3 | sefat-emet-leviticus-kedoshim-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 31:1 | sefat-emet-leviticus-kedoshim-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 31:2 | sefat-emet-leviticus-kedoshim-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 31:3 | sefat-emet-leviticus-kedoshim-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 31:4 | sefat-emet-leviticus-kedoshim-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 32:1 | sefat-emet-leviticus-kedoshim-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 32:2 | sefat-emet-leviticus-kedoshim-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 32:3 | sefat-emet-leviticus-kedoshim-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 33:1 | sefat-emet-leviticus-kedoshim-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Kedoshim 33:2 | sefat-emet-leviticus-kedoshim-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 1:1 | sefat-emet-leviticus-emor-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 1:2 | sefat-emet-leviticus-emor-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 1:3 | sefat-emet-leviticus-emor-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 1:4 | sefat-emet-leviticus-emor-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 2:1 | sefat-emet-leviticus-emor-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 2:2 | sefat-emet-leviticus-emor-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 2:3 | sefat-emet-leviticus-emor-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 2:4 | sefat-emet-leviticus-emor-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 3:1 | sefat-emet-leviticus-emor-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 3:2 | sefat-emet-leviticus-emor-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 3:3 | sefat-emet-leviticus-emor-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 4:1 | sefat-emet-leviticus-emor-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 4:2 | sefat-emet-leviticus-emor-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 4:3 | sefat-emet-leviticus-emor-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 4:4 | sefat-emet-leviticus-emor-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 5:1 | sefat-emet-leviticus-emor-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 5:2 | sefat-emet-leviticus-emor-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 5:3 | sefat-emet-leviticus-emor-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 5:4 | sefat-emet-leviticus-emor-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 6:1 | sefat-emet-leviticus-emor-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 6:2 | sefat-emet-leviticus-emor-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 6:3 | sefat-emet-leviticus-emor-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 6:4 | sefat-emet-leviticus-emor-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 6:5 | sefat-emet-leviticus-emor-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 7:1 | sefat-emet-leviticus-emor-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 7:2 | sefat-emet-leviticus-emor-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 7:3 | sefat-emet-leviticus-emor-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 8:1 | sefat-emet-leviticus-emor-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 8:2 | sefat-emet-leviticus-emor-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 9:1 | sefat-emet-leviticus-emor-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 9:2 | sefat-emet-leviticus-emor-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 9:3 | sefat-emet-leviticus-emor-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 10:1 | sefat-emet-leviticus-emor-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 10:2 | sefat-emet-leviticus-emor-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 10:3 | sefat-emet-leviticus-emor-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 10:4 | sefat-emet-leviticus-emor-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 11:1 | sefat-emet-leviticus-emor-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 11:2 | sefat-emet-leviticus-emor-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 11:3 | sefat-emet-leviticus-emor-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 12:1 | sefat-emet-leviticus-emor-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 12:2 | sefat-emet-leviticus-emor-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 12:3 | sefat-emet-leviticus-emor-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 12:4 | sefat-emet-leviticus-emor-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 13:1 | sefat-emet-leviticus-emor-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 13:2 | sefat-emet-leviticus-emor-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 13:3 | sefat-emet-leviticus-emor-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 13:4 | sefat-emet-leviticus-emor-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 14:1 | sefat-emet-leviticus-emor-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 14:2 | sefat-emet-leviticus-emor-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 14:3 | sefat-emet-leviticus-emor-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 14:4 | sefat-emet-leviticus-emor-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 15:1 | sefat-emet-leviticus-emor-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 15:2 | sefat-emet-leviticus-emor-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 15:3 | sefat-emet-leviticus-emor-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 15:4 | sefat-emet-leviticus-emor-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 15:5 | sefat-emet-leviticus-emor-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 16:1 | sefat-emet-leviticus-emor-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 16:2 | sefat-emet-leviticus-emor-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 16:3 | sefat-emet-leviticus-emor-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 17:1 | sefat-emet-leviticus-emor-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 17:2 | sefat-emet-leviticus-emor-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 17:3 | sefat-emet-leviticus-emor-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 18:1 | sefat-emet-leviticus-emor-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 18:2 | sefat-emet-leviticus-emor-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 18:3 | sefat-emet-leviticus-emor-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 18:4 | sefat-emet-leviticus-emor-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 19:1 | sefat-emet-leviticus-emor-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 19:2 | sefat-emet-leviticus-emor-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 19:3 | sefat-emet-leviticus-emor-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 19:4 | sefat-emet-leviticus-emor-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 19:5 | sefat-emet-leviticus-emor-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 20:1 | sefat-emet-leviticus-emor-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 20:2 | sefat-emet-leviticus-emor-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 20:3 | sefat-emet-leviticus-emor-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 20:4 | sefat-emet-leviticus-emor-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 21:1 | sefat-emet-leviticus-emor-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 21:2 | sefat-emet-leviticus-emor-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 21:3 | sefat-emet-leviticus-emor-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 21:4 | sefat-emet-leviticus-emor-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 22:1 | sefat-emet-leviticus-emor-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 22:2 | sefat-emet-leviticus-emor-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 22:3 | sefat-emet-leviticus-emor-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 22:4 | sefat-emet-leviticus-emor-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 23:1 | sefat-emet-leviticus-emor-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 23:2 | sefat-emet-leviticus-emor-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 23:3 | sefat-emet-leviticus-emor-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 24:1 | sefat-emet-leviticus-emor-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 24:2 | sefat-emet-leviticus-emor-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 24:3 | sefat-emet-leviticus-emor-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 24:4 | sefat-emet-leviticus-emor-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 24:5 | sefat-emet-leviticus-emor-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 25:1 | sefat-emet-leviticus-emor-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 25:2 | sefat-emet-leviticus-emor-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 25:3 | sefat-emet-leviticus-emor-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 25:4 | sefat-emet-leviticus-emor-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 26:1 | sefat-emet-leviticus-emor-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 26:2 | sefat-emet-leviticus-emor-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 26:3 | sefat-emet-leviticus-emor-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 27:1 | sefat-emet-leviticus-emor-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 27:2 | sefat-emet-leviticus-emor-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 27:3 | sefat-emet-leviticus-emor-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 28:1 | sefat-emet-leviticus-emor-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 28:2 | sefat-emet-leviticus-emor-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 28:3 | sefat-emet-leviticus-emor-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 29:1 | sefat-emet-leviticus-emor-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 29:2 | sefat-emet-leviticus-emor-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 29:3 | sefat-emet-leviticus-emor-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 29:4 | sefat-emet-leviticus-emor-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 30:1 | sefat-emet-leviticus-emor-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 30:2 | sefat-emet-leviticus-emor-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 30:3 | sefat-emet-leviticus-emor-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 30:4 | sefat-emet-leviticus-emor-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 31:1 | sefat-emet-leviticus-emor-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 31:2 | sefat-emet-leviticus-emor-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Emor 31:3 | sefat-emet-leviticus-emor-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 1:1 | sefat-emet-leviticus-behar-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 1:2 | sefat-emet-leviticus-behar-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 1:3 | sefat-emet-leviticus-behar-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 1:4 | sefat-emet-leviticus-behar-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 1:5 | sefat-emet-leviticus-behar-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 1:6 | sefat-emet-leviticus-behar-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 2:1 | sefat-emet-leviticus-behar-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 2:2 | sefat-emet-leviticus-behar-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 3:1 | sefat-emet-leviticus-behar-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 3:2 | sefat-emet-leviticus-behar-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 4:1 | sefat-emet-leviticus-behar-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 4:2 | sefat-emet-leviticus-behar-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 4:3 | sefat-emet-leviticus-behar-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 4:4 | sefat-emet-leviticus-behar-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 5:1 | sefat-emet-leviticus-behar-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 5:2 | sefat-emet-leviticus-behar-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 5:3 | sefat-emet-leviticus-behar-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 6:1 | sefat-emet-leviticus-behar-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 6:2 | sefat-emet-leviticus-behar-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 6:3 | sefat-emet-leviticus-behar-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 7:1 | sefat-emet-leviticus-behar-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 7:2 | sefat-emet-leviticus-behar-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 8:1 | sefat-emet-leviticus-behar-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 8:2 | sefat-emet-leviticus-behar-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 8:3 | sefat-emet-leviticus-behar-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 9:1 | sefat-emet-leviticus-behar-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 9:2 | sefat-emet-leviticus-behar-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 9:3 | sefat-emet-leviticus-behar-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 9:4 | sefat-emet-leviticus-behar-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 10:1 | sefat-emet-leviticus-behar-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 10:2 | sefat-emet-leviticus-behar-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 11:1 | sefat-emet-leviticus-behar-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 11:2 | sefat-emet-leviticus-behar-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 11:3 | sefat-emet-leviticus-behar-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 12:1 | sefat-emet-leviticus-behar-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 12:2 | sefat-emet-leviticus-behar-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 12:3 | sefat-emet-leviticus-behar-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 13:1 | sefat-emet-leviticus-behar-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 13:2 | sefat-emet-leviticus-behar-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 13:3 | sefat-emet-leviticus-behar-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 14:1 | sefat-emet-leviticus-behar-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 14:2 | sefat-emet-leviticus-behar-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 15:1 | sefat-emet-leviticus-behar-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 15:2 | sefat-emet-leviticus-behar-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 16:1 | sefat-emet-leviticus-behar-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 16:2 | sefat-emet-leviticus-behar-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 16:3 | sefat-emet-leviticus-behar-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 17:1 | sefat-emet-leviticus-behar-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 17:2 | sefat-emet-leviticus-behar-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 17:3 | sefat-emet-leviticus-behar-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 18:1 | sefat-emet-leviticus-behar-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 18:2 | sefat-emet-leviticus-behar-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 18:3 | sefat-emet-leviticus-behar-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 19:1 | sefat-emet-leviticus-behar-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 19:2 | sefat-emet-leviticus-behar-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 19:3 | sefat-emet-leviticus-behar-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 20:1 | sefat-emet-leviticus-behar-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 20:2 | sefat-emet-leviticus-behar-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 21:1 | sefat-emet-leviticus-behar-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 21:2 | sefat-emet-leviticus-behar-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 21:3 | sefat-emet-leviticus-behar-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 21:4 | sefat-emet-leviticus-behar-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 22:1 | sefat-emet-leviticus-behar-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 22:2 | sefat-emet-leviticus-behar-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 23:1 | sefat-emet-leviticus-behar-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 23:2 | sefat-emet-leviticus-behar-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 23:3 | sefat-emet-leviticus-behar-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 24:1 | sefat-emet-leviticus-behar-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 24:2 | sefat-emet-leviticus-behar-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 25:1 | sefat-emet-leviticus-behar-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 25:2 | sefat-emet-leviticus-behar-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 25:3 | sefat-emet-leviticus-behar-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 26:1 | sefat-emet-leviticus-behar-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 26:2 | sefat-emet-leviticus-behar-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 27:1 | sefat-emet-leviticus-behar-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 27:2 | sefat-emet-leviticus-behar-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 27:3 | sefat-emet-leviticus-behar-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 27:4 | sefat-emet-leviticus-behar-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 28:1 | sefat-emet-leviticus-behar-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 28:2 | sefat-emet-leviticus-behar-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Behar 28:3 | sefat-emet-leviticus-behar-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 1:1 | sefat-emet-leviticus-bechukotai-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 1:2 | sefat-emet-leviticus-bechukotai-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 1:3 | sefat-emet-leviticus-bechukotai-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 1:4 | sefat-emet-leviticus-bechukotai-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 1:5 | sefat-emet-leviticus-bechukotai-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 2:1 | sefat-emet-leviticus-bechukotai-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 2:2 | sefat-emet-leviticus-bechukotai-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 2:3 | sefat-emet-leviticus-bechukotai-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 2:4 | sefat-emet-leviticus-bechukotai-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 2:5 | sefat-emet-leviticus-bechukotai-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 3:1 | sefat-emet-leviticus-bechukotai-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 3:2 | sefat-emet-leviticus-bechukotai-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 3:3 | sefat-emet-leviticus-bechukotai-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 3:4 | sefat-emet-leviticus-bechukotai-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 3:5 | sefat-emet-leviticus-bechukotai-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 4:1 | sefat-emet-leviticus-bechukotai-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 4:2 | sefat-emet-leviticus-bechukotai-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 4:3 | sefat-emet-leviticus-bechukotai-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 5:1 | sefat-emet-leviticus-bechukotai-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 5:2 | sefat-emet-leviticus-bechukotai-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 5:3 | sefat-emet-leviticus-bechukotai-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 6:1 | sefat-emet-leviticus-bechukotai-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 6:2 | sefat-emet-leviticus-bechukotai-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 6:3 | sefat-emet-leviticus-bechukotai-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 6:4 | sefat-emet-leviticus-bechukotai-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 7:1 | sefat-emet-leviticus-bechukotai-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 7:2 | sefat-emet-leviticus-bechukotai-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 7:3 | sefat-emet-leviticus-bechukotai-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 8:1 | sefat-emet-leviticus-bechukotai-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 8:2 | sefat-emet-leviticus-bechukotai-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 9:1 | sefat-emet-leviticus-bechukotai-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 9:2 | sefat-emet-leviticus-bechukotai-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 9:3 | sefat-emet-leviticus-bechukotai-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 9:4 | sefat-emet-leviticus-bechukotai-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 9:5 | sefat-emet-leviticus-bechukotai-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 9:6 | sefat-emet-leviticus-bechukotai-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 10:1 | sefat-emet-leviticus-bechukotai-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 10:2 | sefat-emet-leviticus-bechukotai-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 10:3 | sefat-emet-leviticus-bechukotai-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 11:1 | sefat-emet-leviticus-bechukotai-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 11:2 | sefat-emet-leviticus-bechukotai-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 11:3 | sefat-emet-leviticus-bechukotai-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 12:1 | sefat-emet-leviticus-bechukotai-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 12:2 | sefat-emet-leviticus-bechukotai-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 12:3 | sefat-emet-leviticus-bechukotai-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 13:1 | sefat-emet-leviticus-bechukotai-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 13:2 | sefat-emet-leviticus-bechukotai-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 14:1 | sefat-emet-leviticus-bechukotai-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 14:2 | sefat-emet-leviticus-bechukotai-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 14:3 | sefat-emet-leviticus-bechukotai-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 15:1 | sefat-emet-leviticus-bechukotai-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 15:2 | sefat-emet-leviticus-bechukotai-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 16:1 | sefat-emet-leviticus-bechukotai-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 16:2 | sefat-emet-leviticus-bechukotai-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 17:1 | sefat-emet-leviticus-bechukotai-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 17:2 | sefat-emet-leviticus-bechukotai-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 17:3 | sefat-emet-leviticus-bechukotai-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 18:1 | sefat-emet-leviticus-bechukotai-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 18:2 | sefat-emet-leviticus-bechukotai-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 19:1 | sefat-emet-leviticus-bechukotai-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 19:2 | sefat-emet-leviticus-bechukotai-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 19:3 | sefat-emet-leviticus-bechukotai-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 19:4 | sefat-emet-leviticus-bechukotai-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 20:1 | sefat-emet-leviticus-bechukotai-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 20:2 | sefat-emet-leviticus-bechukotai-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 21:1 | sefat-emet-leviticus-bechukotai-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 21:2 | sefat-emet-leviticus-bechukotai-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Leviticus, Bechukotai 21:3 | sefat-emet-leviticus-bechukotai-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 1:1 | sefat-emet-numbers-bamidbar-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 1:2 | sefat-emet-numbers-bamidbar-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 1:3 | sefat-emet-numbers-bamidbar-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 1:4 | sefat-emet-numbers-bamidbar-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 1:5 | sefat-emet-numbers-bamidbar-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 2:1 | sefat-emet-numbers-bamidbar-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 2:2 | sefat-emet-numbers-bamidbar-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 2:3 | sefat-emet-numbers-bamidbar-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 2:4 | sefat-emet-numbers-bamidbar-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 3:1 | sefat-emet-numbers-bamidbar-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 3:2 | sefat-emet-numbers-bamidbar-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 3:3 | sefat-emet-numbers-bamidbar-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 4:1 | sefat-emet-numbers-bamidbar-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 4:2 | sefat-emet-numbers-bamidbar-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 4:3 | sefat-emet-numbers-bamidbar-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 4:4 | sefat-emet-numbers-bamidbar-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 4:5 | sefat-emet-numbers-bamidbar-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 4:6 | sefat-emet-numbers-bamidbar-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 5:1 | sefat-emet-numbers-bamidbar-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 5:2 | sefat-emet-numbers-bamidbar-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 5:3 | sefat-emet-numbers-bamidbar-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 5:4 | sefat-emet-numbers-bamidbar-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 5:5 | sefat-emet-numbers-bamidbar-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 5:6 | sefat-emet-numbers-bamidbar-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 6:1 | sefat-emet-numbers-bamidbar-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 6:2 | sefat-emet-numbers-bamidbar-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 6:3 | sefat-emet-numbers-bamidbar-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 6:4 | sefat-emet-numbers-bamidbar-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 6:5 | sefat-emet-numbers-bamidbar-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 7:1 | sefat-emet-numbers-bamidbar-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 7:2 | sefat-emet-numbers-bamidbar-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 7:3 | sefat-emet-numbers-bamidbar-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 7:4 | sefat-emet-numbers-bamidbar-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 8:1 | sefat-emet-numbers-bamidbar-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 8:2 | sefat-emet-numbers-bamidbar-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 9:1 | sefat-emet-numbers-bamidbar-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 9:2 | sefat-emet-numbers-bamidbar-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 9:3 | sefat-emet-numbers-bamidbar-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 9:4 | sefat-emet-numbers-bamidbar-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 9:5 | sefat-emet-numbers-bamidbar-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 10:1 | sefat-emet-numbers-bamidbar-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 10:2 | sefat-emet-numbers-bamidbar-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 10:3 | sefat-emet-numbers-bamidbar-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 10:4 | sefat-emet-numbers-bamidbar-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 11:1 | sefat-emet-numbers-bamidbar-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 11:2 | sefat-emet-numbers-bamidbar-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 11:3 | sefat-emet-numbers-bamidbar-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 12:1 | sefat-emet-numbers-bamidbar-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 12:2 | sefat-emet-numbers-bamidbar-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 12:3 | sefat-emet-numbers-bamidbar-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 13:1 | sefat-emet-numbers-bamidbar-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 13:2 | sefat-emet-numbers-bamidbar-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 13:3 | sefat-emet-numbers-bamidbar-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 13:4 | sefat-emet-numbers-bamidbar-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 13:5 | sefat-emet-numbers-bamidbar-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 14:1 | sefat-emet-numbers-bamidbar-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 14:2 | sefat-emet-numbers-bamidbar-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 14:3 | sefat-emet-numbers-bamidbar-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 14:4 | sefat-emet-numbers-bamidbar-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 15:1 | sefat-emet-numbers-bamidbar-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 15:2 | sefat-emet-numbers-bamidbar-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 16:1 | sefat-emet-numbers-bamidbar-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 16:2 | sefat-emet-numbers-bamidbar-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 16:3 | sefat-emet-numbers-bamidbar-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 16:4 | sefat-emet-numbers-bamidbar-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 16:5 | sefat-emet-numbers-bamidbar-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 17:1 | sefat-emet-numbers-bamidbar-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 17:2 | sefat-emet-numbers-bamidbar-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 17:3 | sefat-emet-numbers-bamidbar-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 18:1 | sefat-emet-numbers-bamidbar-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 18:2 | sefat-emet-numbers-bamidbar-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 18:3 | sefat-emet-numbers-bamidbar-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 18:4 | sefat-emet-numbers-bamidbar-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 19:1 | sefat-emet-numbers-bamidbar-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 19:2 | sefat-emet-numbers-bamidbar-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 20:1 | sefat-emet-numbers-bamidbar-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 20:2 | sefat-emet-numbers-bamidbar-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 20:3 | sefat-emet-numbers-bamidbar-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 20:4 | sefat-emet-numbers-bamidbar-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 21:1 | sefat-emet-numbers-bamidbar-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 21:2 | sefat-emet-numbers-bamidbar-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 21:3 | sefat-emet-numbers-bamidbar-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 22:1 | sefat-emet-numbers-bamidbar-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 22:2 | sefat-emet-numbers-bamidbar-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 22:3 | sefat-emet-numbers-bamidbar-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 23:1 | sefat-emet-numbers-bamidbar-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 23:2 | sefat-emet-numbers-bamidbar-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 24:1 | sefat-emet-numbers-bamidbar-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 24:2 | sefat-emet-numbers-bamidbar-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 24:3 | sefat-emet-numbers-bamidbar-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 25:1 | sefat-emet-numbers-bamidbar-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 25:2 | sefat-emet-numbers-bamidbar-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 26:1 | sefat-emet-numbers-bamidbar-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 26:2 | sefat-emet-numbers-bamidbar-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 26:3 | sefat-emet-numbers-bamidbar-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 27:1 | sefat-emet-numbers-bamidbar-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 27:2 | sefat-emet-numbers-bamidbar-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 27:3 | sefat-emet-numbers-bamidbar-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 27:4 | sefat-emet-numbers-bamidbar-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 28:1 | sefat-emet-numbers-bamidbar-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 28:2 | sefat-emet-numbers-bamidbar-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 29:1 | sefat-emet-numbers-bamidbar-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 29:2 | sefat-emet-numbers-bamidbar-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 29:3 | sefat-emet-numbers-bamidbar-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 29:4 | sefat-emet-numbers-bamidbar-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 30:1 | sefat-emet-numbers-bamidbar-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 30:2 | sefat-emet-numbers-bamidbar-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 31:1 | sefat-emet-numbers-bamidbar-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 31:2 | sefat-emet-numbers-bamidbar-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 32:1 | sefat-emet-numbers-bamidbar-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 32:2 | sefat-emet-numbers-bamidbar-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 32:3 | sefat-emet-numbers-bamidbar-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 33:1 | sefat-emet-numbers-bamidbar-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 33:2 | sefat-emet-numbers-bamidbar-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Bamidbar 33:3 | sefat-emet-numbers-bamidbar-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 1:1 | sefat-emet-numbers-shavuot-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 1:2 | sefat-emet-numbers-shavuot-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 1:3 | sefat-emet-numbers-shavuot-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 1:4 | sefat-emet-numbers-shavuot-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 1:5 | sefat-emet-numbers-shavuot-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 1:6 | sefat-emet-numbers-shavuot-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 1:7 | sefat-emet-numbers-shavuot-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:1 | sefat-emet-numbers-shavuot-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:2 | sefat-emet-numbers-shavuot-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:3 | sefat-emet-numbers-shavuot-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:4 | sefat-emet-numbers-shavuot-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:5 | sefat-emet-numbers-shavuot-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:6 | sefat-emet-numbers-shavuot-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:7 | sefat-emet-numbers-shavuot-2-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:8 | sefat-emet-numbers-shavuot-2-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 2:9 | sefat-emet-numbers-shavuot-2-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 3:1 | sefat-emet-numbers-shavuot-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 3:2 | sefat-emet-numbers-shavuot-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 3:3 | sefat-emet-numbers-shavuot-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 3:4 | sefat-emet-numbers-shavuot-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 3:5 | sefat-emet-numbers-shavuot-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 3:6 | sefat-emet-numbers-shavuot-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 3:7 | sefat-emet-numbers-shavuot-3-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:1 | sefat-emet-numbers-shavuot-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:2 | sefat-emet-numbers-shavuot-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:3 | sefat-emet-numbers-shavuot-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:4 | sefat-emet-numbers-shavuot-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:5 | sefat-emet-numbers-shavuot-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:6 | sefat-emet-numbers-shavuot-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:7 | sefat-emet-numbers-shavuot-4-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:8 | sefat-emet-numbers-shavuot-4-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:9 | sefat-emet-numbers-shavuot-4-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:10 | sefat-emet-numbers-shavuot-4-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 4:11 | sefat-emet-numbers-shavuot-4-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:1 | sefat-emet-numbers-shavuot-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:2 | sefat-emet-numbers-shavuot-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:3 | sefat-emet-numbers-shavuot-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:4 | sefat-emet-numbers-shavuot-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:5 | sefat-emet-numbers-shavuot-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:6 | sefat-emet-numbers-shavuot-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:7 | sefat-emet-numbers-shavuot-5-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:8 | sefat-emet-numbers-shavuot-5-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:9 | sefat-emet-numbers-shavuot-5-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:10 | sefat-emet-numbers-shavuot-5-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 5:11 | sefat-emet-numbers-shavuot-5-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 6:1 | sefat-emet-numbers-shavuot-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 6:2 | sefat-emet-numbers-shavuot-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 6:3 | sefat-emet-numbers-shavuot-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 6:4 | sefat-emet-numbers-shavuot-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 6:5 | sefat-emet-numbers-shavuot-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:1 | sefat-emet-numbers-shavuot-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:2 | sefat-emet-numbers-shavuot-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:3 | sefat-emet-numbers-shavuot-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:4 | sefat-emet-numbers-shavuot-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:5 | sefat-emet-numbers-shavuot-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:6 | sefat-emet-numbers-shavuot-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:7 | sefat-emet-numbers-shavuot-7-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:8 | sefat-emet-numbers-shavuot-7-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 7:9 | sefat-emet-numbers-shavuot-7-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 8:1 | sefat-emet-numbers-shavuot-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 8:2 | sefat-emet-numbers-shavuot-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 8:3 | sefat-emet-numbers-shavuot-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 8:4 | sefat-emet-numbers-shavuot-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 8:5 | sefat-emet-numbers-shavuot-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 8:6 | sefat-emet-numbers-shavuot-8-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:1 | sefat-emet-numbers-shavuot-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:2 | sefat-emet-numbers-shavuot-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:3 | sefat-emet-numbers-shavuot-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:4 | sefat-emet-numbers-shavuot-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:5 | sefat-emet-numbers-shavuot-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:6 | sefat-emet-numbers-shavuot-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:7 | sefat-emet-numbers-shavuot-9-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 9:8 | sefat-emet-numbers-shavuot-9-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 10:1 | sefat-emet-numbers-shavuot-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 10:2 | sefat-emet-numbers-shavuot-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 10:3 | sefat-emet-numbers-shavuot-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 10:4 | sefat-emet-numbers-shavuot-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 10:5 | sefat-emet-numbers-shavuot-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 10:6 | sefat-emet-numbers-shavuot-10-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 10:7 | sefat-emet-numbers-shavuot-10-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 11:1 | sefat-emet-numbers-shavuot-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 11:2 | sefat-emet-numbers-shavuot-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 11:3 | sefat-emet-numbers-shavuot-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 11:4 | sefat-emet-numbers-shavuot-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 11:5 | sefat-emet-numbers-shavuot-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 11:6 | sefat-emet-numbers-shavuot-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 11:7 | sefat-emet-numbers-shavuot-11-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 12:1 | sefat-emet-numbers-shavuot-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 12:2 | sefat-emet-numbers-shavuot-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 12:3 | sefat-emet-numbers-shavuot-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 12:4 | sefat-emet-numbers-shavuot-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 12:5 | sefat-emet-numbers-shavuot-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 12:6 | sefat-emet-numbers-shavuot-12-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 12:7 | sefat-emet-numbers-shavuot-12-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 13:1 | sefat-emet-numbers-shavuot-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 13:2 | sefat-emet-numbers-shavuot-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 13:3 | sefat-emet-numbers-shavuot-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 13:4 | sefat-emet-numbers-shavuot-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 13:5 | sefat-emet-numbers-shavuot-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 13:6 | sefat-emet-numbers-shavuot-13-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 13:7 | sefat-emet-numbers-shavuot-13-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 14:1 | sefat-emet-numbers-shavuot-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 14:2 | sefat-emet-numbers-shavuot-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 14:3 | sefat-emet-numbers-shavuot-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 14:4 | sefat-emet-numbers-shavuot-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 14:5 | sefat-emet-numbers-shavuot-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 14:6 | sefat-emet-numbers-shavuot-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 14:7 | sefat-emet-numbers-shavuot-14-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 15:1 | sefat-emet-numbers-shavuot-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 15:2 | sefat-emet-numbers-shavuot-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 15:3 | sefat-emet-numbers-shavuot-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 15:4 | sefat-emet-numbers-shavuot-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 15:5 | sefat-emet-numbers-shavuot-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 15:6 | sefat-emet-numbers-shavuot-15-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:1 | sefat-emet-numbers-shavuot-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:2 | sefat-emet-numbers-shavuot-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:3 | sefat-emet-numbers-shavuot-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:4 | sefat-emet-numbers-shavuot-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:5 | sefat-emet-numbers-shavuot-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:6 | sefat-emet-numbers-shavuot-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:7 | sefat-emet-numbers-shavuot-16-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:8 | sefat-emet-numbers-shavuot-16-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:9 | sefat-emet-numbers-shavuot-16-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:10 | sefat-emet-numbers-shavuot-16-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:11 | sefat-emet-numbers-shavuot-16-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:12 | sefat-emet-numbers-shavuot-16-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:13 | sefat-emet-numbers-shavuot-16-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 16:14 | sefat-emet-numbers-shavuot-16-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 17:1 | sefat-emet-numbers-shavuot-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 17:2 | sefat-emet-numbers-shavuot-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 17:3 | sefat-emet-numbers-shavuot-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 17:4 | sefat-emet-numbers-shavuot-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 17:5 | sefat-emet-numbers-shavuot-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 17:6 | sefat-emet-numbers-shavuot-17-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 18:1 | sefat-emet-numbers-shavuot-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 18:2 | sefat-emet-numbers-shavuot-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 18:3 | sefat-emet-numbers-shavuot-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 18:4 | sefat-emet-numbers-shavuot-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 18:5 | sefat-emet-numbers-shavuot-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 18:6 | sefat-emet-numbers-shavuot-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 19:1 | sefat-emet-numbers-shavuot-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 19:2 | sefat-emet-numbers-shavuot-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 19:3 | sefat-emet-numbers-shavuot-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 19:4 | sefat-emet-numbers-shavuot-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 19:5 | sefat-emet-numbers-shavuot-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 19:6 | sefat-emet-numbers-shavuot-19-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 19:7 | sefat-emet-numbers-shavuot-19-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 20:1 | sefat-emet-numbers-shavuot-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 20:2 | sefat-emet-numbers-shavuot-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 20:3 | sefat-emet-numbers-shavuot-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 20:4 | sefat-emet-numbers-shavuot-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 20:5 | sefat-emet-numbers-shavuot-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 20:6 | sefat-emet-numbers-shavuot-20-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 20:7 | sefat-emet-numbers-shavuot-20-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 21:1 | sefat-emet-numbers-shavuot-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 21:2 | sefat-emet-numbers-shavuot-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 21:3 | sefat-emet-numbers-shavuot-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 21:4 | sefat-emet-numbers-shavuot-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 21:5 | sefat-emet-numbers-shavuot-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 21:6 | sefat-emet-numbers-shavuot-21-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 22:1 | sefat-emet-numbers-shavuot-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 22:2 | sefat-emet-numbers-shavuot-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 22:3 | sefat-emet-numbers-shavuot-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 22:4 | sefat-emet-numbers-shavuot-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 22:5 | sefat-emet-numbers-shavuot-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 22:6 | sefat-emet-numbers-shavuot-22-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 22:7 | sefat-emet-numbers-shavuot-22-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 23:1 | sefat-emet-numbers-shavuot-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 23:2 | sefat-emet-numbers-shavuot-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 23:3 | sefat-emet-numbers-shavuot-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 23:4 | sefat-emet-numbers-shavuot-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 24:1 | sefat-emet-numbers-shavuot-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 24:2 | sefat-emet-numbers-shavuot-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 24:3 | sefat-emet-numbers-shavuot-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 24:4 | sefat-emet-numbers-shavuot-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 25:1 | sefat-emet-numbers-shavuot-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 25:2 | sefat-emet-numbers-shavuot-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 25:3 | sefat-emet-numbers-shavuot-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 25:4 | sefat-emet-numbers-shavuot-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 25:5 | sefat-emet-numbers-shavuot-25-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 25:6 | sefat-emet-numbers-shavuot-25-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:1 | sefat-emet-numbers-shavuot-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:2 | sefat-emet-numbers-shavuot-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:3 | sefat-emet-numbers-shavuot-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:4 | sefat-emet-numbers-shavuot-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:5 | sefat-emet-numbers-shavuot-26-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:6 | sefat-emet-numbers-shavuot-26-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:7 | sefat-emet-numbers-shavuot-26-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 26:8 | sefat-emet-numbers-shavuot-26-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 27:1 | sefat-emet-numbers-shavuot-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 27:2 | sefat-emet-numbers-shavuot-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 27:3 | sefat-emet-numbers-shavuot-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 27:4 | sefat-emet-numbers-shavuot-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 28:1 | sefat-emet-numbers-shavuot-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 28:2 | sefat-emet-numbers-shavuot-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 28:3 | sefat-emet-numbers-shavuot-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 28:4 | sefat-emet-numbers-shavuot-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:1 | sefat-emet-numbers-shavuot-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:2 | sefat-emet-numbers-shavuot-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:3 | sefat-emet-numbers-shavuot-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:4 | sefat-emet-numbers-shavuot-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:5 | sefat-emet-numbers-shavuot-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:6 | sefat-emet-numbers-shavuot-29-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:7 | sefat-emet-numbers-shavuot-29-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 29:8 | sefat-emet-numbers-shavuot-29-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 30:1 | sefat-emet-numbers-shavuot-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 30:2 | sefat-emet-numbers-shavuot-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 30:3 | sefat-emet-numbers-shavuot-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 30:4 | sefat-emet-numbers-shavuot-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Shavuot 30:5 | sefat-emet-numbers-shavuot-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 1:1 | sefat-emet-numbers-nasso-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 1:2 | sefat-emet-numbers-nasso-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 1:3 | sefat-emet-numbers-nasso-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 1:4 | sefat-emet-numbers-nasso-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 1:5 | sefat-emet-numbers-nasso-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 2:1 | sefat-emet-numbers-nasso-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 2:2 | sefat-emet-numbers-nasso-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 2:3 | sefat-emet-numbers-nasso-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 3:1 | sefat-emet-numbers-nasso-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 3:2 | sefat-emet-numbers-nasso-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 3:3 | sefat-emet-numbers-nasso-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 4:1 | sefat-emet-numbers-nasso-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 4:2 | sefat-emet-numbers-nasso-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 4:3 | sefat-emet-numbers-nasso-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 4:4 | sefat-emet-numbers-nasso-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 5:1 | sefat-emet-numbers-nasso-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 5:2 | sefat-emet-numbers-nasso-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 5:3 | sefat-emet-numbers-nasso-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 5:4 | sefat-emet-numbers-nasso-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 6:1 | sefat-emet-numbers-nasso-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 6:2 | sefat-emet-numbers-nasso-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 6:3 | sefat-emet-numbers-nasso-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 7:1 | sefat-emet-numbers-nasso-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 7:2 | sefat-emet-numbers-nasso-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 7:3 | sefat-emet-numbers-nasso-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 7:4 | sefat-emet-numbers-nasso-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 8:1 | sefat-emet-numbers-nasso-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 8:2 | sefat-emet-numbers-nasso-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 8:3 | sefat-emet-numbers-nasso-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 9:1 | sefat-emet-numbers-nasso-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 9:2 | sefat-emet-numbers-nasso-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 9:3 | sefat-emet-numbers-nasso-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 10:1 | sefat-emet-numbers-nasso-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 10:2 | sefat-emet-numbers-nasso-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 11:1 | sefat-emet-numbers-nasso-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 11:2 | sefat-emet-numbers-nasso-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 11:3 | sefat-emet-numbers-nasso-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 12:1 | sefat-emet-numbers-nasso-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 12:2 | sefat-emet-numbers-nasso-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 12:3 | sefat-emet-numbers-nasso-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 13:1 | sefat-emet-numbers-nasso-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 13:2 | sefat-emet-numbers-nasso-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 13:3 | sefat-emet-numbers-nasso-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 13:4 | sefat-emet-numbers-nasso-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 14:1 | sefat-emet-numbers-nasso-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 14:2 | sefat-emet-numbers-nasso-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 14:3 | sefat-emet-numbers-nasso-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 15:1 | sefat-emet-numbers-nasso-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 15:2 | sefat-emet-numbers-nasso-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 15:3 | sefat-emet-numbers-nasso-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 15:4 | sefat-emet-numbers-nasso-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 15:5 | sefat-emet-numbers-nasso-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 16:1 | sefat-emet-numbers-nasso-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 16:2 | sefat-emet-numbers-nasso-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 17:1 | sefat-emet-numbers-nasso-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 17:2 | sefat-emet-numbers-nasso-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 17:3 | sefat-emet-numbers-nasso-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 18:1 | sefat-emet-numbers-nasso-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 18:2 | sefat-emet-numbers-nasso-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 18:3 | sefat-emet-numbers-nasso-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 19:1 | sefat-emet-numbers-nasso-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 19:2 | sefat-emet-numbers-nasso-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 19:3 | sefat-emet-numbers-nasso-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 19:4 | sefat-emet-numbers-nasso-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 19:5 | sefat-emet-numbers-nasso-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 20:1 | sefat-emet-numbers-nasso-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 20:2 | sefat-emet-numbers-nasso-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 21:1 | sefat-emet-numbers-nasso-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 21:2 | sefat-emet-numbers-nasso-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 21:3 | sefat-emet-numbers-nasso-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 22:1 | sefat-emet-numbers-nasso-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 22:2 | sefat-emet-numbers-nasso-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 22:3 | sefat-emet-numbers-nasso-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 23:1 | sefat-emet-numbers-nasso-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 23:2 | sefat-emet-numbers-nasso-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 24:1 | sefat-emet-numbers-nasso-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 24:2 | sefat-emet-numbers-nasso-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 24:3 | sefat-emet-numbers-nasso-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 25:1 | sefat-emet-numbers-nasso-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 25:2 | sefat-emet-numbers-nasso-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 25:3 | sefat-emet-numbers-nasso-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 26:1 | sefat-emet-numbers-nasso-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 26:2 | sefat-emet-numbers-nasso-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 27:1 | sefat-emet-numbers-nasso-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Nasso 27:2 | sefat-emet-numbers-nasso-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 1:1 | sefat-emet-numbers-behaalotcha-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 1:2 | sefat-emet-numbers-behaalotcha-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 1:3 | sefat-emet-numbers-behaalotcha-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 1:4 | sefat-emet-numbers-behaalotcha-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 2:1 | sefat-emet-numbers-behaalotcha-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 2:2 | sefat-emet-numbers-behaalotcha-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 2:3 | sefat-emet-numbers-behaalotcha-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 3:1 | sefat-emet-numbers-behaalotcha-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 3:2 | sefat-emet-numbers-behaalotcha-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 3:3 | sefat-emet-numbers-behaalotcha-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 4:1 | sefat-emet-numbers-behaalotcha-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 4:2 | sefat-emet-numbers-behaalotcha-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 4:3 | sefat-emet-numbers-behaalotcha-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 5:1 | sefat-emet-numbers-behaalotcha-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 5:2 | sefat-emet-numbers-behaalotcha-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 5:3 | sefat-emet-numbers-behaalotcha-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 5:4 | sefat-emet-numbers-behaalotcha-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 6:1 | sefat-emet-numbers-behaalotcha-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 6:2 | sefat-emet-numbers-behaalotcha-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 6:3 | sefat-emet-numbers-behaalotcha-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 6:4 | sefat-emet-numbers-behaalotcha-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 7:1 | sefat-emet-numbers-behaalotcha-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 7:2 | sefat-emet-numbers-behaalotcha-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 7:3 | sefat-emet-numbers-behaalotcha-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 8:1 | sefat-emet-numbers-behaalotcha-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 8:2 | sefat-emet-numbers-behaalotcha-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 8:3 | sefat-emet-numbers-behaalotcha-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 8:4 | sefat-emet-numbers-behaalotcha-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 9:1 | sefat-emet-numbers-behaalotcha-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 9:2 | sefat-emet-numbers-behaalotcha-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 10:1 | sefat-emet-numbers-behaalotcha-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 10:2 | sefat-emet-numbers-behaalotcha-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 11:1 | sefat-emet-numbers-behaalotcha-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 11:2 | sefat-emet-numbers-behaalotcha-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 11:3 | sefat-emet-numbers-behaalotcha-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 11:4 | sefat-emet-numbers-behaalotcha-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 12:1 | sefat-emet-numbers-behaalotcha-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 12:2 | sefat-emet-numbers-behaalotcha-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 12:3 | sefat-emet-numbers-behaalotcha-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 12:4 | sefat-emet-numbers-behaalotcha-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 13:1 | sefat-emet-numbers-behaalotcha-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 13:2 | sefat-emet-numbers-behaalotcha-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 13:3 | sefat-emet-numbers-behaalotcha-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 14:1 | sefat-emet-numbers-behaalotcha-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 14:2 | sefat-emet-numbers-behaalotcha-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 14:3 | sefat-emet-numbers-behaalotcha-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 15:1 | sefat-emet-numbers-behaalotcha-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 15:2 | sefat-emet-numbers-behaalotcha-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 15:3 | sefat-emet-numbers-behaalotcha-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 15:4 | sefat-emet-numbers-behaalotcha-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 15:5 | sefat-emet-numbers-behaalotcha-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:1 | sefat-emet-numbers-behaalotcha-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:2 | sefat-emet-numbers-behaalotcha-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:3 | sefat-emet-numbers-behaalotcha-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:4 | sefat-emet-numbers-behaalotcha-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:5 | sefat-emet-numbers-behaalotcha-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:6 | sefat-emet-numbers-behaalotcha-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:7 | sefat-emet-numbers-behaalotcha-16-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:8 | sefat-emet-numbers-behaalotcha-16-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:9 | sefat-emet-numbers-behaalotcha-16-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 16:10 | sefat-emet-numbers-behaalotcha-16-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 17:1 | sefat-emet-numbers-behaalotcha-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 17:2 | sefat-emet-numbers-behaalotcha-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 18:1 | sefat-emet-numbers-behaalotcha-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 18:2 | sefat-emet-numbers-behaalotcha-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 19:1 | sefat-emet-numbers-behaalotcha-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 19:2 | sefat-emet-numbers-behaalotcha-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 20:1 | sefat-emet-numbers-behaalotcha-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 20:2 | sefat-emet-numbers-behaalotcha-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 20:3 | sefat-emet-numbers-behaalotcha-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 21:1 | sefat-emet-numbers-behaalotcha-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 21:2 | sefat-emet-numbers-behaalotcha-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 21:3 | sefat-emet-numbers-behaalotcha-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 22:1 | sefat-emet-numbers-behaalotcha-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 22:2 | sefat-emet-numbers-behaalotcha-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 22:3 | sefat-emet-numbers-behaalotcha-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 22:4 | sefat-emet-numbers-behaalotcha-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 23:1 | sefat-emet-numbers-behaalotcha-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 23:2 | sefat-emet-numbers-behaalotcha-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 23:3 | sefat-emet-numbers-behaalotcha-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 24:1 | sefat-emet-numbers-behaalotcha-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 24:2 | sefat-emet-numbers-behaalotcha-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 25:1 | sefat-emet-numbers-behaalotcha-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 25:2 | sefat-emet-numbers-behaalotcha-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 25:3 | sefat-emet-numbers-behaalotcha-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 26:1 | sefat-emet-numbers-behaalotcha-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 26:2 | sefat-emet-numbers-behaalotcha-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 27:1 | sefat-emet-numbers-behaalotcha-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 27:2 | sefat-emet-numbers-behaalotcha-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 27:3 | sefat-emet-numbers-behaalotcha-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 28:1 | sefat-emet-numbers-behaalotcha-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 28:2 | sefat-emet-numbers-behaalotcha-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Beha'alotcha 28:3 | sefat-emet-numbers-behaalotcha-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 1:1 | sefat-emet-numbers-shlach-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 1:2 | sefat-emet-numbers-shlach-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 1:3 | sefat-emet-numbers-shlach-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 1:4 | sefat-emet-numbers-shlach-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 2:1 | sefat-emet-numbers-shlach-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 2:2 | sefat-emet-numbers-shlach-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 2:3 | sefat-emet-numbers-shlach-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 3:1 | sefat-emet-numbers-shlach-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 3:2 | sefat-emet-numbers-shlach-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 3:3 | sefat-emet-numbers-shlach-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 3:4 | sefat-emet-numbers-shlach-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 3:5 | sefat-emet-numbers-shlach-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 3:6 | sefat-emet-numbers-shlach-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 4:1 | sefat-emet-numbers-shlach-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 4:2 | sefat-emet-numbers-shlach-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 4:3 | sefat-emet-numbers-shlach-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 4:4 | sefat-emet-numbers-shlach-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 4:5 | sefat-emet-numbers-shlach-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 4:6 | sefat-emet-numbers-shlach-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 5:1 | sefat-emet-numbers-shlach-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 5:2 | sefat-emet-numbers-shlach-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 5:3 | sefat-emet-numbers-shlach-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 5:4 | sefat-emet-numbers-shlach-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 5:5 | sefat-emet-numbers-shlach-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 6:1 | sefat-emet-numbers-shlach-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 6:2 | sefat-emet-numbers-shlach-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 6:3 | sefat-emet-numbers-shlach-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 7:1 | sefat-emet-numbers-shlach-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 7:2 | sefat-emet-numbers-shlach-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 7:3 | sefat-emet-numbers-shlach-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 7:4 | sefat-emet-numbers-shlach-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 8:1 | sefat-emet-numbers-shlach-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 8:2 | sefat-emet-numbers-shlach-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 8:3 | sefat-emet-numbers-shlach-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 8:4 | sefat-emet-numbers-shlach-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 8:5 | sefat-emet-numbers-shlach-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 9:1 | sefat-emet-numbers-shlach-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 9:2 | sefat-emet-numbers-shlach-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 9:3 | sefat-emet-numbers-shlach-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 9:4 | sefat-emet-numbers-shlach-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 10:1 | sefat-emet-numbers-shlach-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 10:2 | sefat-emet-numbers-shlach-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 10:3 | sefat-emet-numbers-shlach-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 11:1 | sefat-emet-numbers-shlach-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 11:2 | sefat-emet-numbers-shlach-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 11:3 | sefat-emet-numbers-shlach-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 12:1 | sefat-emet-numbers-shlach-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 12:2 | sefat-emet-numbers-shlach-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 12:3 | sefat-emet-numbers-shlach-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 12:4 | sefat-emet-numbers-shlach-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 12:5 | sefat-emet-numbers-shlach-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 13:1 | sefat-emet-numbers-shlach-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 13:2 | sefat-emet-numbers-shlach-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 13:3 | sefat-emet-numbers-shlach-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 14:1 | sefat-emet-numbers-shlach-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 14:2 | sefat-emet-numbers-shlach-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 15:1 | sefat-emet-numbers-shlach-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 15:2 | sefat-emet-numbers-shlach-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 15:3 | sefat-emet-numbers-shlach-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 16:1 | sefat-emet-numbers-shlach-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 16:2 | sefat-emet-numbers-shlach-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 16:3 | sefat-emet-numbers-shlach-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 16:4 | sefat-emet-numbers-shlach-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 16:5 | sefat-emet-numbers-shlach-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 16:6 | sefat-emet-numbers-shlach-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 16:7 | sefat-emet-numbers-shlach-16-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 17:1 | sefat-emet-numbers-shlach-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 17:2 | sefat-emet-numbers-shlach-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 17:3 | sefat-emet-numbers-shlach-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 17:4 | sefat-emet-numbers-shlach-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 18:1 | sefat-emet-numbers-shlach-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 18:2 | sefat-emet-numbers-shlach-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 19:1 | sefat-emet-numbers-shlach-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 19:2 | sefat-emet-numbers-shlach-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 19:3 | sefat-emet-numbers-shlach-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 19:4 | sefat-emet-numbers-shlach-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 19:5 | sefat-emet-numbers-shlach-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 20:1 | sefat-emet-numbers-shlach-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 20:2 | sefat-emet-numbers-shlach-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 20:3 | sefat-emet-numbers-shlach-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 20:4 | sefat-emet-numbers-shlach-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 21:1 | sefat-emet-numbers-shlach-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 21:2 | sefat-emet-numbers-shlach-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 21:3 | sefat-emet-numbers-shlach-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 21:4 | sefat-emet-numbers-shlach-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 22:1 | sefat-emet-numbers-shlach-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 22:2 | sefat-emet-numbers-shlach-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 22:3 | sefat-emet-numbers-shlach-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 22:4 | sefat-emet-numbers-shlach-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 23:1 | sefat-emet-numbers-shlach-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 23:2 | sefat-emet-numbers-shlach-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 23:3 | sefat-emet-numbers-shlach-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 24:1 | sefat-emet-numbers-shlach-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 24:2 | sefat-emet-numbers-shlach-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 24:3 | sefat-emet-numbers-shlach-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 25:1 | sefat-emet-numbers-shlach-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 25:2 | sefat-emet-numbers-shlach-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 25:3 | sefat-emet-numbers-shlach-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 26:1 | sefat-emet-numbers-shlach-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 26:2 | sefat-emet-numbers-shlach-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 26:3 | sefat-emet-numbers-shlach-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 26:4 | sefat-emet-numbers-shlach-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 27:1 | sefat-emet-numbers-shlach-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 27:2 | sefat-emet-numbers-shlach-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 27:3 | sefat-emet-numbers-shlach-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 28:1 | sefat-emet-numbers-shlach-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 28:2 | sefat-emet-numbers-shlach-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 28:3 | sefat-emet-numbers-shlach-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 28:4 | sefat-emet-numbers-shlach-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 29:1 | sefat-emet-numbers-shlach-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 29:2 | sefat-emet-numbers-shlach-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 30:1 | sefat-emet-numbers-shlach-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 30:2 | sefat-emet-numbers-shlach-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 31:1 | sefat-emet-numbers-shlach-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 31:2 | sefat-emet-numbers-shlach-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 31:3 | sefat-emet-numbers-shlach-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Sh'lach 31:4 | sefat-emet-numbers-shlach-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 1:1 | sefat-emet-numbers-korach-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 1:2 | sefat-emet-numbers-korach-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 1:3 | sefat-emet-numbers-korach-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 1:4 | sefat-emet-numbers-korach-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 1:5 | sefat-emet-numbers-korach-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 2:1 | sefat-emet-numbers-korach-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 2:2 | sefat-emet-numbers-korach-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 2:3 | sefat-emet-numbers-korach-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 3:1 | sefat-emet-numbers-korach-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 3:2 | sefat-emet-numbers-korach-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 3:3 | sefat-emet-numbers-korach-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 3:4 | sefat-emet-numbers-korach-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 3:5 | sefat-emet-numbers-korach-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 4:1 | sefat-emet-numbers-korach-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 4:2 | sefat-emet-numbers-korach-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 5:1 | sefat-emet-numbers-korach-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 5:2 | sefat-emet-numbers-korach-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 5:3 | sefat-emet-numbers-korach-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 6:1 | sefat-emet-numbers-korach-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 6:2 | sefat-emet-numbers-korach-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 6:3 | sefat-emet-numbers-korach-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 6:4 | sefat-emet-numbers-korach-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 7:1 | sefat-emet-numbers-korach-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 7:2 | sefat-emet-numbers-korach-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 8:1 | sefat-emet-numbers-korach-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 8:2 | sefat-emet-numbers-korach-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 8:3 | sefat-emet-numbers-korach-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 9:1 | sefat-emet-numbers-korach-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 9:2 | sefat-emet-numbers-korach-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 9:3 | sefat-emet-numbers-korach-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 9:4 | sefat-emet-numbers-korach-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 10:1 | sefat-emet-numbers-korach-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 10:2 | sefat-emet-numbers-korach-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 10:3 | sefat-emet-numbers-korach-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 10:4 | sefat-emet-numbers-korach-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 11:1 | sefat-emet-numbers-korach-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 11:2 | sefat-emet-numbers-korach-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 12:1 | sefat-emet-numbers-korach-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 12:2 | sefat-emet-numbers-korach-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 12:3 | sefat-emet-numbers-korach-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 12:4 | sefat-emet-numbers-korach-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 13:1 | sefat-emet-numbers-korach-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 13:2 | sefat-emet-numbers-korach-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 14:1 | sefat-emet-numbers-korach-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 14:2 | sefat-emet-numbers-korach-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 14:3 | sefat-emet-numbers-korach-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 14:4 | sefat-emet-numbers-korach-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 14:5 | sefat-emet-numbers-korach-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 15:1 | sefat-emet-numbers-korach-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 15:2 | sefat-emet-numbers-korach-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 15:3 | sefat-emet-numbers-korach-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 16:1 | sefat-emet-numbers-korach-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 16:2 | sefat-emet-numbers-korach-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 16:3 | sefat-emet-numbers-korach-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 17:1 | sefat-emet-numbers-korach-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 17:2 | sefat-emet-numbers-korach-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 17:3 | sefat-emet-numbers-korach-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 17:4 | sefat-emet-numbers-korach-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 17:5 | sefat-emet-numbers-korach-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 18:1 | sefat-emet-numbers-korach-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 18:2 | sefat-emet-numbers-korach-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 18:3 | sefat-emet-numbers-korach-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 19:1 | sefat-emet-numbers-korach-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 19:2 | sefat-emet-numbers-korach-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 19:3 | sefat-emet-numbers-korach-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 20:1 | sefat-emet-numbers-korach-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 20:2 | sefat-emet-numbers-korach-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 20:3 | sefat-emet-numbers-korach-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 21:1 | sefat-emet-numbers-korach-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 21:2 | sefat-emet-numbers-korach-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 21:3 | sefat-emet-numbers-korach-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 22:1 | sefat-emet-numbers-korach-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 22:2 | sefat-emet-numbers-korach-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 23:1 | sefat-emet-numbers-korach-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 23:2 | sefat-emet-numbers-korach-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 24:1 | sefat-emet-numbers-korach-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 24:2 | sefat-emet-numbers-korach-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 25:1 | sefat-emet-numbers-korach-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 25:2 | sefat-emet-numbers-korach-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 25:3 | sefat-emet-numbers-korach-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 25:4 | sefat-emet-numbers-korach-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 26:1 | sefat-emet-numbers-korach-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 26:2 | sefat-emet-numbers-korach-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 27:1 | sefat-emet-numbers-korach-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 27:2 | sefat-emet-numbers-korach-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 28:1 | sefat-emet-numbers-korach-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 28:2 | sefat-emet-numbers-korach-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 28:3 | sefat-emet-numbers-korach-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 28:4 | sefat-emet-numbers-korach-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 29:1 | sefat-emet-numbers-korach-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Korach 29:2 | sefat-emet-numbers-korach-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 1:1 | sefat-emet-numbers-chukat-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 1:2 | sefat-emet-numbers-chukat-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 1:3 | sefat-emet-numbers-chukat-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 1:4 | sefat-emet-numbers-chukat-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 2:1 | sefat-emet-numbers-chukat-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 2:2 | sefat-emet-numbers-chukat-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 2:3 | sefat-emet-numbers-chukat-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 2:4 | sefat-emet-numbers-chukat-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 3:1 | sefat-emet-numbers-chukat-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 3:2 | sefat-emet-numbers-chukat-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 4:1 | sefat-emet-numbers-chukat-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 4:2 | sefat-emet-numbers-chukat-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 4:3 | sefat-emet-numbers-chukat-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 4:4 | sefat-emet-numbers-chukat-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 4:5 | sefat-emet-numbers-chukat-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 5:1 | sefat-emet-numbers-chukat-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 5:2 | sefat-emet-numbers-chukat-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 5:3 | sefat-emet-numbers-chukat-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 6:1 | sefat-emet-numbers-chukat-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 6:2 | sefat-emet-numbers-chukat-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 6:3 | sefat-emet-numbers-chukat-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 6:4 | sefat-emet-numbers-chukat-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 7:1 | sefat-emet-numbers-chukat-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 7:2 | sefat-emet-numbers-chukat-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 7:3 | sefat-emet-numbers-chukat-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 7:4 | sefat-emet-numbers-chukat-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 7:5 | sefat-emet-numbers-chukat-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 8:1 | sefat-emet-numbers-chukat-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 8:2 | sefat-emet-numbers-chukat-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 9:1 | sefat-emet-numbers-chukat-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 9:2 | sefat-emet-numbers-chukat-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 9:3 | sefat-emet-numbers-chukat-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 9:4 | sefat-emet-numbers-chukat-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 9:5 | sefat-emet-numbers-chukat-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 10:1 | sefat-emet-numbers-chukat-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 10:2 | sefat-emet-numbers-chukat-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 11:1 | sefat-emet-numbers-chukat-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 11:2 | sefat-emet-numbers-chukat-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 11:3 | sefat-emet-numbers-chukat-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 11:4 | sefat-emet-numbers-chukat-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 11:5 | sefat-emet-numbers-chukat-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 12:1 | sefat-emet-numbers-chukat-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 12:2 | sefat-emet-numbers-chukat-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 13:1 | sefat-emet-numbers-chukat-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 13:2 | sefat-emet-numbers-chukat-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 14:1 | sefat-emet-numbers-chukat-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 14:2 | sefat-emet-numbers-chukat-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 14:3 | sefat-emet-numbers-chukat-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 15:1 | sefat-emet-numbers-chukat-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 15:2 | sefat-emet-numbers-chukat-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 15:3 | sefat-emet-numbers-chukat-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 15:4 | sefat-emet-numbers-chukat-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 16:1 | sefat-emet-numbers-chukat-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 16:2 | sefat-emet-numbers-chukat-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 16:3 | sefat-emet-numbers-chukat-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 17:1 | sefat-emet-numbers-chukat-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 17:2 | sefat-emet-numbers-chukat-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 17:3 | sefat-emet-numbers-chukat-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 18:1 | sefat-emet-numbers-chukat-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 18:2 | sefat-emet-numbers-chukat-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 18:3 | sefat-emet-numbers-chukat-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 18:4 | sefat-emet-numbers-chukat-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 19:1 | sefat-emet-numbers-chukat-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 19:2 | sefat-emet-numbers-chukat-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 20:1 | sefat-emet-numbers-chukat-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 20:2 | sefat-emet-numbers-chukat-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 20:3 | sefat-emet-numbers-chukat-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 20:4 | sefat-emet-numbers-chukat-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 21:1 | sefat-emet-numbers-chukat-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 21:2 | sefat-emet-numbers-chukat-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 22:1 | sefat-emet-numbers-chukat-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 22:2 | sefat-emet-numbers-chukat-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 23:1 | sefat-emet-numbers-chukat-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 23:2 | sefat-emet-numbers-chukat-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 23:3 | sefat-emet-numbers-chukat-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 23:4 | sefat-emet-numbers-chukat-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 24:1 | sefat-emet-numbers-chukat-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 24:2 | sefat-emet-numbers-chukat-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 24:3 | sefat-emet-numbers-chukat-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 24:4 | sefat-emet-numbers-chukat-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 25:1 | sefat-emet-numbers-chukat-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 25:2 | sefat-emet-numbers-chukat-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 25:3 | sefat-emet-numbers-chukat-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 25:4 | sefat-emet-numbers-chukat-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 26:1 | sefat-emet-numbers-chukat-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 26:2 | sefat-emet-numbers-chukat-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 27:1 | sefat-emet-numbers-chukat-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 27:2 | sefat-emet-numbers-chukat-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 27:3 | sefat-emet-numbers-chukat-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 28:1 | sefat-emet-numbers-chukat-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 28:2 | sefat-emet-numbers-chukat-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Chukat 28:3 | sefat-emet-numbers-chukat-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 1:1 | sefat-emet-numbers-balak-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 1:2 | sefat-emet-numbers-balak-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 1:3 | sefat-emet-numbers-balak-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 2:1 | sefat-emet-numbers-balak-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 2:2 | sefat-emet-numbers-balak-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 2:3 | sefat-emet-numbers-balak-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 2:4 | sefat-emet-numbers-balak-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 2:5 | sefat-emet-numbers-balak-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 2:6 | sefat-emet-numbers-balak-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 2:7 | sefat-emet-numbers-balak-2-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 3:1 | sefat-emet-numbers-balak-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 3:2 | sefat-emet-numbers-balak-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 4:1 | sefat-emet-numbers-balak-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 4:2 | sefat-emet-numbers-balak-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 4:3 | sefat-emet-numbers-balak-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 4:4 | sefat-emet-numbers-balak-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 5:1 | sefat-emet-numbers-balak-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 5:2 | sefat-emet-numbers-balak-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 6:1 | sefat-emet-numbers-balak-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 6:2 | sefat-emet-numbers-balak-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 7:1 | sefat-emet-numbers-balak-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 7:2 | sefat-emet-numbers-balak-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 7:3 | sefat-emet-numbers-balak-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 7:4 | sefat-emet-numbers-balak-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 8:1 | sefat-emet-numbers-balak-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 8:2 | sefat-emet-numbers-balak-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 9:1 | sefat-emet-numbers-balak-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 9:2 | sefat-emet-numbers-balak-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 9:3 | sefat-emet-numbers-balak-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 9:4 | sefat-emet-numbers-balak-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 10:1 | sefat-emet-numbers-balak-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 10:2 | sefat-emet-numbers-balak-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 11:1 | sefat-emet-numbers-balak-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 11:2 | sefat-emet-numbers-balak-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 11:3 | sefat-emet-numbers-balak-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 12:1 | sefat-emet-numbers-balak-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 12:2 | sefat-emet-numbers-balak-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 12:3 | sefat-emet-numbers-balak-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 12:4 | sefat-emet-numbers-balak-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 13:1 | sefat-emet-numbers-balak-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 13:2 | sefat-emet-numbers-balak-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 13:3 | sefat-emet-numbers-balak-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 14:1 | sefat-emet-numbers-balak-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 14:2 | sefat-emet-numbers-balak-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 15:1 | sefat-emet-numbers-balak-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 15:2 | sefat-emet-numbers-balak-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 15:3 | sefat-emet-numbers-balak-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 15:4 | sefat-emet-numbers-balak-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 16:1 | sefat-emet-numbers-balak-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 16:2 | sefat-emet-numbers-balak-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 16:3 | sefat-emet-numbers-balak-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 17:1 | sefat-emet-numbers-balak-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 17:2 | sefat-emet-numbers-balak-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 17:3 | sefat-emet-numbers-balak-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 18:1 | sefat-emet-numbers-balak-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 18:2 | sefat-emet-numbers-balak-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 18:3 | sefat-emet-numbers-balak-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 19:1 | sefat-emet-numbers-balak-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 19:2 | sefat-emet-numbers-balak-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 19:3 | sefat-emet-numbers-balak-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 19:4 | sefat-emet-numbers-balak-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 19:5 | sefat-emet-numbers-balak-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:1 | sefat-emet-numbers-balak-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:2 | sefat-emet-numbers-balak-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:3 | sefat-emet-numbers-balak-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:4 | sefat-emet-numbers-balak-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:5 | sefat-emet-numbers-balak-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:6 | sefat-emet-numbers-balak-20-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:7 | sefat-emet-numbers-balak-20-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:8 | sefat-emet-numbers-balak-20-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:9 | sefat-emet-numbers-balak-20-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 20:10 | sefat-emet-numbers-balak-20-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 21:1 | sefat-emet-numbers-balak-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 21:2 | sefat-emet-numbers-balak-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 21:3 | sefat-emet-numbers-balak-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 22:1 | sefat-emet-numbers-balak-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 22:2 | sefat-emet-numbers-balak-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 23:1 | sefat-emet-numbers-balak-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 23:2 | sefat-emet-numbers-balak-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 23:3 | sefat-emet-numbers-balak-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 24:1 | sefat-emet-numbers-balak-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 24:2 | sefat-emet-numbers-balak-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 24:3 | sefat-emet-numbers-balak-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 24:4 | sefat-emet-numbers-balak-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 25:1 | sefat-emet-numbers-balak-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 25:2 | sefat-emet-numbers-balak-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 25:3 | sefat-emet-numbers-balak-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 26:1 | sefat-emet-numbers-balak-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Balak 26:2 | sefat-emet-numbers-balak-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 1:1 | sefat-emet-numbers-pinchas-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 1:2 | sefat-emet-numbers-pinchas-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 1:3 | sefat-emet-numbers-pinchas-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 1:4 | sefat-emet-numbers-pinchas-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 2:1 | sefat-emet-numbers-pinchas-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 2:2 | sefat-emet-numbers-pinchas-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 3:1 | sefat-emet-numbers-pinchas-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 3:2 | sefat-emet-numbers-pinchas-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 3:3 | sefat-emet-numbers-pinchas-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 3:4 | sefat-emet-numbers-pinchas-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 3:5 | sefat-emet-numbers-pinchas-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 3:6 | sefat-emet-numbers-pinchas-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 4:1 | sefat-emet-numbers-pinchas-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 4:2 | sefat-emet-numbers-pinchas-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 4:3 | sefat-emet-numbers-pinchas-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 5:1 | sefat-emet-numbers-pinchas-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 5:2 | sefat-emet-numbers-pinchas-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 5:3 | sefat-emet-numbers-pinchas-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 5:4 | sefat-emet-numbers-pinchas-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 6:1 | sefat-emet-numbers-pinchas-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 6:2 | sefat-emet-numbers-pinchas-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 7:1 | sefat-emet-numbers-pinchas-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 7:2 | sefat-emet-numbers-pinchas-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 7:3 | sefat-emet-numbers-pinchas-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 7:4 | sefat-emet-numbers-pinchas-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 8:1 | sefat-emet-numbers-pinchas-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 8:2 | sefat-emet-numbers-pinchas-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 8:3 | sefat-emet-numbers-pinchas-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 9:1 | sefat-emet-numbers-pinchas-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 9:2 | sefat-emet-numbers-pinchas-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 10:1 | sefat-emet-numbers-pinchas-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 10:2 | sefat-emet-numbers-pinchas-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 10:3 | sefat-emet-numbers-pinchas-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 11:1 | sefat-emet-numbers-pinchas-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 11:2 | sefat-emet-numbers-pinchas-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 11:3 | sefat-emet-numbers-pinchas-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 11:4 | sefat-emet-numbers-pinchas-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 12:1 | sefat-emet-numbers-pinchas-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 12:2 | sefat-emet-numbers-pinchas-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 12:3 | sefat-emet-numbers-pinchas-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 13:1 | sefat-emet-numbers-pinchas-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 13:2 | sefat-emet-numbers-pinchas-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 13:3 | sefat-emet-numbers-pinchas-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 13:4 | sefat-emet-numbers-pinchas-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 14:1 | sefat-emet-numbers-pinchas-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 14:2 | sefat-emet-numbers-pinchas-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 14:3 | sefat-emet-numbers-pinchas-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 15:1 | sefat-emet-numbers-pinchas-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 15:2 | sefat-emet-numbers-pinchas-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 15:3 | sefat-emet-numbers-pinchas-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 15:4 | sefat-emet-numbers-pinchas-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 16:1 | sefat-emet-numbers-pinchas-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 16:2 | sefat-emet-numbers-pinchas-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 16:3 | sefat-emet-numbers-pinchas-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 17:1 | sefat-emet-numbers-pinchas-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 17:2 | sefat-emet-numbers-pinchas-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 17:3 | sefat-emet-numbers-pinchas-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 18:1 | sefat-emet-numbers-pinchas-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 18:2 | sefat-emet-numbers-pinchas-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 18:3 | sefat-emet-numbers-pinchas-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 19:1 | sefat-emet-numbers-pinchas-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 19:2 | sefat-emet-numbers-pinchas-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 20:1 | sefat-emet-numbers-pinchas-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 20:2 | sefat-emet-numbers-pinchas-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 20:3 | sefat-emet-numbers-pinchas-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 21:1 | sefat-emet-numbers-pinchas-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 21:2 | sefat-emet-numbers-pinchas-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 22:1 | sefat-emet-numbers-pinchas-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 22:2 | sefat-emet-numbers-pinchas-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 23:1 | sefat-emet-numbers-pinchas-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 23:2 | sefat-emet-numbers-pinchas-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 23:3 | sefat-emet-numbers-pinchas-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 24:1 | sefat-emet-numbers-pinchas-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 24:2 | sefat-emet-numbers-pinchas-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 25:1 | sefat-emet-numbers-pinchas-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 25:2 | sefat-emet-numbers-pinchas-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 26:1 | sefat-emet-numbers-pinchas-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 26:2 | sefat-emet-numbers-pinchas-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 26:3 | sefat-emet-numbers-pinchas-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 26:4 | sefat-emet-numbers-pinchas-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 27:1 | sefat-emet-numbers-pinchas-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 27:2 | sefat-emet-numbers-pinchas-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 27:3 | sefat-emet-numbers-pinchas-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 28:1 | sefat-emet-numbers-pinchas-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 28:2 | sefat-emet-numbers-pinchas-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 28:3 | sefat-emet-numbers-pinchas-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 29:1 | sefat-emet-numbers-pinchas-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Pinchas 29:2 | sefat-emet-numbers-pinchas-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 1:1 | sefat-emet-numbers-matot-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 1:2 | sefat-emet-numbers-matot-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 1:3 | sefat-emet-numbers-matot-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 1:4 | sefat-emet-numbers-matot-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 2:1 | sefat-emet-numbers-matot-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 2:2 | sefat-emet-numbers-matot-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 3:1 | sefat-emet-numbers-matot-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 3:2 | sefat-emet-numbers-matot-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 3:3 | sefat-emet-numbers-matot-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 4:1 | sefat-emet-numbers-matot-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 4:2 | sefat-emet-numbers-matot-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 4:3 | sefat-emet-numbers-matot-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 5:1 | sefat-emet-numbers-matot-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 5:2 | sefat-emet-numbers-matot-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 5:3 | sefat-emet-numbers-matot-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 6:1 | sefat-emet-numbers-matot-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 6:2 | sefat-emet-numbers-matot-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 6:3 | sefat-emet-numbers-matot-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 6:4 | sefat-emet-numbers-matot-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 7:1 | sefat-emet-numbers-matot-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 7:2 | sefat-emet-numbers-matot-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 7:3 | sefat-emet-numbers-matot-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 8:1 | sefat-emet-numbers-matot-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 8:2 | sefat-emet-numbers-matot-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 8:3 | sefat-emet-numbers-matot-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 9:1 | sefat-emet-numbers-matot-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 9:2 | sefat-emet-numbers-matot-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 9:3 | sefat-emet-numbers-matot-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 10:1 | sefat-emet-numbers-matot-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 10:2 | sefat-emet-numbers-matot-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 10:3 | sefat-emet-numbers-matot-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 11:1 | sefat-emet-numbers-matot-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 11:2 | sefat-emet-numbers-matot-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 12:1 | sefat-emet-numbers-matot-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 12:2 | sefat-emet-numbers-matot-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 12:3 | sefat-emet-numbers-matot-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 13:1 | sefat-emet-numbers-matot-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 13:2 | sefat-emet-numbers-matot-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 14:1 | sefat-emet-numbers-matot-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 14:2 | sefat-emet-numbers-matot-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 15:1 | sefat-emet-numbers-matot-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 15:2 | sefat-emet-numbers-matot-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 16:1 | sefat-emet-numbers-matot-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 16:2 | sefat-emet-numbers-matot-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 16:3 | sefat-emet-numbers-matot-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 17:1 | sefat-emet-numbers-matot-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 17:2 | sefat-emet-numbers-matot-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 18:1 | sefat-emet-numbers-matot-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 18:2 | sefat-emet-numbers-matot-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 19:1 | sefat-emet-numbers-matot-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 19:2 | sefat-emet-numbers-matot-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 19:3 | sefat-emet-numbers-matot-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 20:1 | sefat-emet-numbers-matot-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 20:2 | sefat-emet-numbers-matot-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 21:1 | sefat-emet-numbers-matot-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 21:2 | sefat-emet-numbers-matot-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 21:3 | sefat-emet-numbers-matot-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 22:1 | sefat-emet-numbers-matot-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Matot 22:2 | sefat-emet-numbers-matot-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 1:1 | sefat-emet-numbers-masei-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 1:2 | sefat-emet-numbers-masei-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 1:3 | sefat-emet-numbers-masei-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 2:1 | sefat-emet-numbers-masei-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 2:2 | sefat-emet-numbers-masei-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 2:3 | sefat-emet-numbers-masei-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 3:1 | sefat-emet-numbers-masei-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 3:2 | sefat-emet-numbers-masei-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 3:3 | sefat-emet-numbers-masei-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 4:1 | sefat-emet-numbers-masei-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 4:2 | sefat-emet-numbers-masei-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 4:3 | sefat-emet-numbers-masei-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 5:1 | sefat-emet-numbers-masei-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 5:2 | sefat-emet-numbers-masei-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 6:1 | sefat-emet-numbers-masei-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 6:2 | sefat-emet-numbers-masei-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 7:1 | sefat-emet-numbers-masei-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 7:2 | sefat-emet-numbers-masei-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 7:3 | sefat-emet-numbers-masei-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 8:1 | sefat-emet-numbers-masei-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 8:2 | sefat-emet-numbers-masei-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 8:3 | sefat-emet-numbers-masei-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 8:4 | sefat-emet-numbers-masei-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 9:1 | sefat-emet-numbers-masei-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 9:2 | sefat-emet-numbers-masei-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 9:3 | sefat-emet-numbers-masei-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 9:4 | sefat-emet-numbers-masei-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 10:1 | sefat-emet-numbers-masei-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 10:2 | sefat-emet-numbers-masei-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 10:3 | sefat-emet-numbers-masei-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 11:1 | sefat-emet-numbers-masei-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 11:2 | sefat-emet-numbers-masei-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 11:3 | sefat-emet-numbers-masei-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 12:1 | sefat-emet-numbers-masei-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 12:2 | sefat-emet-numbers-masei-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 12:3 | sefat-emet-numbers-masei-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 12:4 | sefat-emet-numbers-masei-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 12:5 | sefat-emet-numbers-masei-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 13:1 | sefat-emet-numbers-masei-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 13:2 | sefat-emet-numbers-masei-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 13:3 | sefat-emet-numbers-masei-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 14:1 | sefat-emet-numbers-masei-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 14:2 | sefat-emet-numbers-masei-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 15:1 | sefat-emet-numbers-masei-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 15:2 | sefat-emet-numbers-masei-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 16:1 | sefat-emet-numbers-masei-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 16:2 | sefat-emet-numbers-masei-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 16:3 | sefat-emet-numbers-masei-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 17:1 | sefat-emet-numbers-masei-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 17:2 | sefat-emet-numbers-masei-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 17:3 | sefat-emet-numbers-masei-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 17:4 | sefat-emet-numbers-masei-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 18:1 | sefat-emet-numbers-masei-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 18:2 | sefat-emet-numbers-masei-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 18:3 | sefat-emet-numbers-masei-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 19:1 | sefat-emet-numbers-masei-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 19:2 | sefat-emet-numbers-masei-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 19:3 | sefat-emet-numbers-masei-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 20:1 | sefat-emet-numbers-masei-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 20:2 | sefat-emet-numbers-masei-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Numbers, Masei 20:3 | sefat-emet-numbers-masei-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 1:1 | sefat-emet-deuteronomy-devarim-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 1:2 | sefat-emet-deuteronomy-devarim-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 1:3 | sefat-emet-deuteronomy-devarim-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 1:4 | sefat-emet-deuteronomy-devarim-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 1:5 | sefat-emet-deuteronomy-devarim-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 2:1 | sefat-emet-deuteronomy-devarim-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 2:2 | sefat-emet-deuteronomy-devarim-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 3:1 | sefat-emet-deuteronomy-devarim-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 3:2 | sefat-emet-deuteronomy-devarim-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 3:3 | sefat-emet-deuteronomy-devarim-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 3:4 | sefat-emet-deuteronomy-devarim-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 4:1 | sefat-emet-deuteronomy-devarim-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 4:2 | sefat-emet-deuteronomy-devarim-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 4:3 | sefat-emet-deuteronomy-devarim-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 4:4 | sefat-emet-deuteronomy-devarim-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 4:5 | sefat-emet-deuteronomy-devarim-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 5:1 | sefat-emet-deuteronomy-devarim-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 5:2 | sefat-emet-deuteronomy-devarim-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 5:3 | sefat-emet-deuteronomy-devarim-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 5:4 | sefat-emet-deuteronomy-devarim-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 6:1 | sefat-emet-deuteronomy-devarim-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 6:2 | sefat-emet-deuteronomy-devarim-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 7:1 | sefat-emet-deuteronomy-devarim-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 7:2 | sefat-emet-deuteronomy-devarim-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 8:1 | sefat-emet-deuteronomy-devarim-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 8:2 | sefat-emet-deuteronomy-devarim-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 8:3 | sefat-emet-deuteronomy-devarim-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 8:4 | sefat-emet-deuteronomy-devarim-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 8:5 | sefat-emet-deuteronomy-devarim-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 9:1 | sefat-emet-deuteronomy-devarim-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 9:2 | sefat-emet-deuteronomy-devarim-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 9:3 | sefat-emet-deuteronomy-devarim-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 10:1 | sefat-emet-deuteronomy-devarim-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 10:2 | sefat-emet-deuteronomy-devarim-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 10:3 | sefat-emet-deuteronomy-devarim-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 11:1 | sefat-emet-deuteronomy-devarim-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 11:2 | sefat-emet-deuteronomy-devarim-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 11:3 | sefat-emet-deuteronomy-devarim-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 11:4 | sefat-emet-deuteronomy-devarim-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 12:1 | sefat-emet-deuteronomy-devarim-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 12:2 | sefat-emet-deuteronomy-devarim-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 12:3 | sefat-emet-deuteronomy-devarim-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 13:1 | sefat-emet-deuteronomy-devarim-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 13:2 | sefat-emet-deuteronomy-devarim-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 13:3 | sefat-emet-deuteronomy-devarim-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 14:1 | sefat-emet-deuteronomy-devarim-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 14:2 | sefat-emet-deuteronomy-devarim-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 15:1 | sefat-emet-deuteronomy-devarim-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 15:2 | sefat-emet-deuteronomy-devarim-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 15:3 | sefat-emet-deuteronomy-devarim-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 16:1 | sefat-emet-deuteronomy-devarim-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 16:2 | sefat-emet-deuteronomy-devarim-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 17:1 | sefat-emet-deuteronomy-devarim-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 17:2 | sefat-emet-deuteronomy-devarim-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 18:1 | sefat-emet-deuteronomy-devarim-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 18:2 | sefat-emet-deuteronomy-devarim-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 18:3 | sefat-emet-deuteronomy-devarim-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 18:4 | sefat-emet-deuteronomy-devarim-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 18:5 | sefat-emet-deuteronomy-devarim-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 19:1 | sefat-emet-deuteronomy-devarim-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 19:2 | sefat-emet-deuteronomy-devarim-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 20:1 | sefat-emet-deuteronomy-devarim-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 20:2 | sefat-emet-deuteronomy-devarim-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 20:3 | sefat-emet-deuteronomy-devarim-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 20:4 | sefat-emet-deuteronomy-devarim-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 20:5 | sefat-emet-deuteronomy-devarim-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 21:1 | sefat-emet-deuteronomy-devarim-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 21:2 | sefat-emet-deuteronomy-devarim-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 21:3 | sefat-emet-deuteronomy-devarim-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 22:1 | sefat-emet-deuteronomy-devarim-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 22:2 | sefat-emet-deuteronomy-devarim-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 22:3 | sefat-emet-deuteronomy-devarim-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 22:4 | sefat-emet-deuteronomy-devarim-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 23:1 | sefat-emet-deuteronomy-devarim-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 23:2 | sefat-emet-deuteronomy-devarim-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 23:3 | sefat-emet-deuteronomy-devarim-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 23:4 | sefat-emet-deuteronomy-devarim-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 24:1 | sefat-emet-deuteronomy-devarim-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 24:2 | sefat-emet-deuteronomy-devarim-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 24:3 | sefat-emet-deuteronomy-devarim-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 25:1 | sefat-emet-deuteronomy-devarim-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 25:2 | sefat-emet-deuteronomy-devarim-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 25:3 | sefat-emet-deuteronomy-devarim-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 26:1 | sefat-emet-deuteronomy-devarim-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 26:2 | sefat-emet-deuteronomy-devarim-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 26:3 | sefat-emet-deuteronomy-devarim-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 26:4 | sefat-emet-deuteronomy-devarim-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 27:1 | sefat-emet-deuteronomy-devarim-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 27:2 | sefat-emet-deuteronomy-devarim-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 27:3 | sefat-emet-deuteronomy-devarim-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 27:4 | sefat-emet-deuteronomy-devarim-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 27:5 | sefat-emet-deuteronomy-devarim-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 27:6 | sefat-emet-deuteronomy-devarim-27-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 28:1 | sefat-emet-deuteronomy-devarim-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Devarim 28:2 | sefat-emet-deuteronomy-devarim-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 1:1 | sefat-emet-deuteronomy-vaetchanan-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 1:2 | sefat-emet-deuteronomy-vaetchanan-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 1:3 | sefat-emet-deuteronomy-vaetchanan-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 1:4 | sefat-emet-deuteronomy-vaetchanan-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 1:5 | sefat-emet-deuteronomy-vaetchanan-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 1:6 | sefat-emet-deuteronomy-vaetchanan-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 2:1 | sefat-emet-deuteronomy-vaetchanan-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 2:2 | sefat-emet-deuteronomy-vaetchanan-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 3:1 | sefat-emet-deuteronomy-vaetchanan-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 3:2 | sefat-emet-deuteronomy-vaetchanan-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 3:3 | sefat-emet-deuteronomy-vaetchanan-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 3:4 | sefat-emet-deuteronomy-vaetchanan-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 4:1 | sefat-emet-deuteronomy-vaetchanan-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 4:2 | sefat-emet-deuteronomy-vaetchanan-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 4:3 | sefat-emet-deuteronomy-vaetchanan-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 4:4 | sefat-emet-deuteronomy-vaetchanan-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 4:5 | sefat-emet-deuteronomy-vaetchanan-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 4:6 | sefat-emet-deuteronomy-vaetchanan-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 4:7 | sefat-emet-deuteronomy-vaetchanan-4-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 5:1 | sefat-emet-deuteronomy-vaetchanan-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 5:2 | sefat-emet-deuteronomy-vaetchanan-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 5:3 | sefat-emet-deuteronomy-vaetchanan-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 5:4 | sefat-emet-deuteronomy-vaetchanan-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 5:5 | sefat-emet-deuteronomy-vaetchanan-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 5:6 | sefat-emet-deuteronomy-vaetchanan-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 6:1 | sefat-emet-deuteronomy-vaetchanan-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 6:2 | sefat-emet-deuteronomy-vaetchanan-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 6:3 | sefat-emet-deuteronomy-vaetchanan-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 6:4 | sefat-emet-deuteronomy-vaetchanan-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 7:1 | sefat-emet-deuteronomy-vaetchanan-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 7:2 | sefat-emet-deuteronomy-vaetchanan-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 7:3 | sefat-emet-deuteronomy-vaetchanan-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 7:4 | sefat-emet-deuteronomy-vaetchanan-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 8:1 | sefat-emet-deuteronomy-vaetchanan-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 8:2 | sefat-emet-deuteronomy-vaetchanan-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 8:3 | sefat-emet-deuteronomy-vaetchanan-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 9:1 | sefat-emet-deuteronomy-vaetchanan-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 9:2 | sefat-emet-deuteronomy-vaetchanan-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 9:3 | sefat-emet-deuteronomy-vaetchanan-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 10:1 | sefat-emet-deuteronomy-vaetchanan-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 10:2 | sefat-emet-deuteronomy-vaetchanan-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 10:3 | sefat-emet-deuteronomy-vaetchanan-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 10:4 | sefat-emet-deuteronomy-vaetchanan-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 10:5 | sefat-emet-deuteronomy-vaetchanan-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 11:1 | sefat-emet-deuteronomy-vaetchanan-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 11:2 | sefat-emet-deuteronomy-vaetchanan-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 11:3 | sefat-emet-deuteronomy-vaetchanan-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 11:4 | sefat-emet-deuteronomy-vaetchanan-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 11:5 | sefat-emet-deuteronomy-vaetchanan-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 12:1 | sefat-emet-deuteronomy-vaetchanan-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 12:2 | sefat-emet-deuteronomy-vaetchanan-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 12:3 | sefat-emet-deuteronomy-vaetchanan-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 13:1 | sefat-emet-deuteronomy-vaetchanan-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 13:2 | sefat-emet-deuteronomy-vaetchanan-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 13:3 | sefat-emet-deuteronomy-vaetchanan-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 14:1 | sefat-emet-deuteronomy-vaetchanan-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 14:2 | sefat-emet-deuteronomy-vaetchanan-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 14:3 | sefat-emet-deuteronomy-vaetchanan-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 15:1 | sefat-emet-deuteronomy-vaetchanan-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 15:2 | sefat-emet-deuteronomy-vaetchanan-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 15:3 | sefat-emet-deuteronomy-vaetchanan-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 15:4 | sefat-emet-deuteronomy-vaetchanan-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 16:1 | sefat-emet-deuteronomy-vaetchanan-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 16:2 | sefat-emet-deuteronomy-vaetchanan-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 16:3 | sefat-emet-deuteronomy-vaetchanan-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 16:4 | sefat-emet-deuteronomy-vaetchanan-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 16:5 | sefat-emet-deuteronomy-vaetchanan-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 17:1 | sefat-emet-deuteronomy-vaetchanan-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 17:2 | sefat-emet-deuteronomy-vaetchanan-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 18:1 | sefat-emet-deuteronomy-vaetchanan-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 18:2 | sefat-emet-deuteronomy-vaetchanan-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 18:3 | sefat-emet-deuteronomy-vaetchanan-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 19:1 | sefat-emet-deuteronomy-vaetchanan-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 19:2 | sefat-emet-deuteronomy-vaetchanan-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 19:3 | sefat-emet-deuteronomy-vaetchanan-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 19:4 | sefat-emet-deuteronomy-vaetchanan-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 20:1 | sefat-emet-deuteronomy-vaetchanan-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 20:2 | sefat-emet-deuteronomy-vaetchanan-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 20:3 | sefat-emet-deuteronomy-vaetchanan-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 20:4 | sefat-emet-deuteronomy-vaetchanan-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 20:5 | sefat-emet-deuteronomy-vaetchanan-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 20:6 | sefat-emet-deuteronomy-vaetchanan-20-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 20:7 | sefat-emet-deuteronomy-vaetchanan-20-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 21:1 | sefat-emet-deuteronomy-vaetchanan-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 21:2 | sefat-emet-deuteronomy-vaetchanan-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 21:3 | sefat-emet-deuteronomy-vaetchanan-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 21:4 | sefat-emet-deuteronomy-vaetchanan-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 22:1 | sefat-emet-deuteronomy-vaetchanan-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 22:2 | sefat-emet-deuteronomy-vaetchanan-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 22:3 | sefat-emet-deuteronomy-vaetchanan-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 22:4 | sefat-emet-deuteronomy-vaetchanan-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 23:1 | sefat-emet-deuteronomy-vaetchanan-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 23:2 | sefat-emet-deuteronomy-vaetchanan-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 24:1 | sefat-emet-deuteronomy-vaetchanan-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 24:2 | sefat-emet-deuteronomy-vaetchanan-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 25:1 | sefat-emet-deuteronomy-vaetchanan-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 25:2 | sefat-emet-deuteronomy-vaetchanan-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 25:3 | sefat-emet-deuteronomy-vaetchanan-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 26:1 | sefat-emet-deuteronomy-vaetchanan-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 26:2 | sefat-emet-deuteronomy-vaetchanan-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 27:1 | sefat-emet-deuteronomy-vaetchanan-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 27:2 | sefat-emet-deuteronomy-vaetchanan-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 27:3 | sefat-emet-deuteronomy-vaetchanan-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vaetchanan 27:4 | sefat-emet-deuteronomy-vaetchanan-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 1:1 | sefat-emet-deuteronomy-eikev-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 1:2 | sefat-emet-deuteronomy-eikev-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 1:3 | sefat-emet-deuteronomy-eikev-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 1:4 | sefat-emet-deuteronomy-eikev-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 2:1 | sefat-emet-deuteronomy-eikev-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 2:2 | sefat-emet-deuteronomy-eikev-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 2:3 | sefat-emet-deuteronomy-eikev-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 2:4 | sefat-emet-deuteronomy-eikev-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 3:1 | sefat-emet-deuteronomy-eikev-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 3:2 | sefat-emet-deuteronomy-eikev-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 3:3 | sefat-emet-deuteronomy-eikev-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 3:4 | sefat-emet-deuteronomy-eikev-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 4:1 | sefat-emet-deuteronomy-eikev-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 4:2 | sefat-emet-deuteronomy-eikev-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 4:3 | sefat-emet-deuteronomy-eikev-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 4:4 | sefat-emet-deuteronomy-eikev-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 5:1 | sefat-emet-deuteronomy-eikev-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 5:2 | sefat-emet-deuteronomy-eikev-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 5:3 | sefat-emet-deuteronomy-eikev-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 5:4 | sefat-emet-deuteronomy-eikev-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 5:5 | sefat-emet-deuteronomy-eikev-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 6:1 | sefat-emet-deuteronomy-eikev-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 6:2 | sefat-emet-deuteronomy-eikev-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 7:1 | sefat-emet-deuteronomy-eikev-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 7:2 | sefat-emet-deuteronomy-eikev-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 7:3 | sefat-emet-deuteronomy-eikev-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 7:4 | sefat-emet-deuteronomy-eikev-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 8:1 | sefat-emet-deuteronomy-eikev-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 8:2 | sefat-emet-deuteronomy-eikev-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 8:3 | sefat-emet-deuteronomy-eikev-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 8:4 | sefat-emet-deuteronomy-eikev-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 9:1 | sefat-emet-deuteronomy-eikev-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 9:2 | sefat-emet-deuteronomy-eikev-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 9:3 | sefat-emet-deuteronomy-eikev-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 9:4 | sefat-emet-deuteronomy-eikev-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 10:1 | sefat-emet-deuteronomy-eikev-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 10:2 | sefat-emet-deuteronomy-eikev-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 11:1 | sefat-emet-deuteronomy-eikev-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 11:2 | sefat-emet-deuteronomy-eikev-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 11:3 | sefat-emet-deuteronomy-eikev-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 11:4 | sefat-emet-deuteronomy-eikev-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 12:1 | sefat-emet-deuteronomy-eikev-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 12:2 | sefat-emet-deuteronomy-eikev-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 12:3 | sefat-emet-deuteronomy-eikev-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 12:4 | sefat-emet-deuteronomy-eikev-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 13:1 | sefat-emet-deuteronomy-eikev-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 13:2 | sefat-emet-deuteronomy-eikev-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 14:1 | sefat-emet-deuteronomy-eikev-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 14:2 | sefat-emet-deuteronomy-eikev-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 14:3 | sefat-emet-deuteronomy-eikev-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 15:1 | sefat-emet-deuteronomy-eikev-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 15:2 | sefat-emet-deuteronomy-eikev-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 15:3 | sefat-emet-deuteronomy-eikev-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 16:1 | sefat-emet-deuteronomy-eikev-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 16:2 | sefat-emet-deuteronomy-eikev-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 16:3 | sefat-emet-deuteronomy-eikev-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 16:4 | sefat-emet-deuteronomy-eikev-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 16:5 | sefat-emet-deuteronomy-eikev-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 17:1 | sefat-emet-deuteronomy-eikev-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 17:2 | sefat-emet-deuteronomy-eikev-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 18:1 | sefat-emet-deuteronomy-eikev-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 18:2 | sefat-emet-deuteronomy-eikev-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 18:3 | sefat-emet-deuteronomy-eikev-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 19:1 | sefat-emet-deuteronomy-eikev-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 19:2 | sefat-emet-deuteronomy-eikev-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 19:3 | sefat-emet-deuteronomy-eikev-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 19:4 | sefat-emet-deuteronomy-eikev-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 20:1 | sefat-emet-deuteronomy-eikev-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 20:2 | sefat-emet-deuteronomy-eikev-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 20:3 | sefat-emet-deuteronomy-eikev-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 21:1 | sefat-emet-deuteronomy-eikev-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 21:2 | sefat-emet-deuteronomy-eikev-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 21:3 | sefat-emet-deuteronomy-eikev-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 22:1 | sefat-emet-deuteronomy-eikev-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 22:2 | sefat-emet-deuteronomy-eikev-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 22:3 | sefat-emet-deuteronomy-eikev-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 22:4 | sefat-emet-deuteronomy-eikev-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 23:1 | sefat-emet-deuteronomy-eikev-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 23:2 | sefat-emet-deuteronomy-eikev-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 23:3 | sefat-emet-deuteronomy-eikev-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 23:4 | sefat-emet-deuteronomy-eikev-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 23:5 | sefat-emet-deuteronomy-eikev-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 23:6 | sefat-emet-deuteronomy-eikev-23-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 24:1 | sefat-emet-deuteronomy-eikev-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 24:2 | sefat-emet-deuteronomy-eikev-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 24:3 | sefat-emet-deuteronomy-eikev-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 24:4 | sefat-emet-deuteronomy-eikev-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 24:5 | sefat-emet-deuteronomy-eikev-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 25:1 | sefat-emet-deuteronomy-eikev-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 25:2 | sefat-emet-deuteronomy-eikev-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 25:3 | sefat-emet-deuteronomy-eikev-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 25:4 | sefat-emet-deuteronomy-eikev-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 26:1 | sefat-emet-deuteronomy-eikev-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 26:2 | sefat-emet-deuteronomy-eikev-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 26:3 | sefat-emet-deuteronomy-eikev-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 27:1 | sefat-emet-deuteronomy-eikev-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 27:2 | sefat-emet-deuteronomy-eikev-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 27:3 | sefat-emet-deuteronomy-eikev-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Eikev 27:4 | sefat-emet-deuteronomy-eikev-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:1 | sefat-emet-deuteronomy-reeh-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:2 | sefat-emet-deuteronomy-reeh-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:3 | sefat-emet-deuteronomy-reeh-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:4 | sefat-emet-deuteronomy-reeh-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:5 | sefat-emet-deuteronomy-reeh-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:6 | sefat-emet-deuteronomy-reeh-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:7 | sefat-emet-deuteronomy-reeh-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 1:8 | sefat-emet-deuteronomy-reeh-1-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 2:1 | sefat-emet-deuteronomy-reeh-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 2:2 | sefat-emet-deuteronomy-reeh-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 2:3 | sefat-emet-deuteronomy-reeh-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 3:1 | sefat-emet-deuteronomy-reeh-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 3:2 | sefat-emet-deuteronomy-reeh-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 3:3 | sefat-emet-deuteronomy-reeh-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 3:4 | sefat-emet-deuteronomy-reeh-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 3:5 | sefat-emet-deuteronomy-reeh-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 3:6 | sefat-emet-deuteronomy-reeh-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 4:1 | sefat-emet-deuteronomy-reeh-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 4:2 | sefat-emet-deuteronomy-reeh-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 4:3 | sefat-emet-deuteronomy-reeh-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 5:1 | sefat-emet-deuteronomy-reeh-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 5:2 | sefat-emet-deuteronomy-reeh-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 5:3 | sefat-emet-deuteronomy-reeh-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 6:1 | sefat-emet-deuteronomy-reeh-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 6:2 | sefat-emet-deuteronomy-reeh-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 6:3 | sefat-emet-deuteronomy-reeh-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 6:4 | sefat-emet-deuteronomy-reeh-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 7:1 | sefat-emet-deuteronomy-reeh-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 7:2 | sefat-emet-deuteronomy-reeh-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 7:3 | sefat-emet-deuteronomy-reeh-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 8:1 | sefat-emet-deuteronomy-reeh-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 8:2 | sefat-emet-deuteronomy-reeh-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 8:3 | sefat-emet-deuteronomy-reeh-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 9:1 | sefat-emet-deuteronomy-reeh-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 9:2 | sefat-emet-deuteronomy-reeh-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 9:3 | sefat-emet-deuteronomy-reeh-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 9:4 | sefat-emet-deuteronomy-reeh-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 10:1 | sefat-emet-deuteronomy-reeh-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 10:2 | sefat-emet-deuteronomy-reeh-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 10:3 | sefat-emet-deuteronomy-reeh-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 11:1 | sefat-emet-deuteronomy-reeh-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 11:2 | sefat-emet-deuteronomy-reeh-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 12:1 | sefat-emet-deuteronomy-reeh-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 12:2 | sefat-emet-deuteronomy-reeh-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 12:3 | sefat-emet-deuteronomy-reeh-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 13:1 | sefat-emet-deuteronomy-reeh-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 13:2 | sefat-emet-deuteronomy-reeh-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 14:1 | sefat-emet-deuteronomy-reeh-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 14:2 | sefat-emet-deuteronomy-reeh-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 14:3 | sefat-emet-deuteronomy-reeh-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 15:1 | sefat-emet-deuteronomy-reeh-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 15:2 | sefat-emet-deuteronomy-reeh-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 15:3 | sefat-emet-deuteronomy-reeh-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 16:1 | sefat-emet-deuteronomy-reeh-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 16:2 | sefat-emet-deuteronomy-reeh-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 17:1 | sefat-emet-deuteronomy-reeh-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 17:2 | sefat-emet-deuteronomy-reeh-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 18:1 | sefat-emet-deuteronomy-reeh-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 18:2 | sefat-emet-deuteronomy-reeh-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 19:1 | sefat-emet-deuteronomy-reeh-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 19:2 | sefat-emet-deuteronomy-reeh-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 19:3 | sefat-emet-deuteronomy-reeh-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 20:1 | sefat-emet-deuteronomy-reeh-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 20:2 | sefat-emet-deuteronomy-reeh-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 20:3 | sefat-emet-deuteronomy-reeh-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 20:4 | sefat-emet-deuteronomy-reeh-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 20:5 | sefat-emet-deuteronomy-reeh-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 21:1 | sefat-emet-deuteronomy-reeh-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 21:2 | sefat-emet-deuteronomy-reeh-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 21:3 | sefat-emet-deuteronomy-reeh-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 21:4 | sefat-emet-deuteronomy-reeh-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 22:1 | sefat-emet-deuteronomy-reeh-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 22:2 | sefat-emet-deuteronomy-reeh-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 22:3 | sefat-emet-deuteronomy-reeh-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 22:4 | sefat-emet-deuteronomy-reeh-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 23:1 | sefat-emet-deuteronomy-reeh-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 23:2 | sefat-emet-deuteronomy-reeh-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 24:1 | sefat-emet-deuteronomy-reeh-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 24:2 | sefat-emet-deuteronomy-reeh-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 24:3 | sefat-emet-deuteronomy-reeh-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 25:1 | sefat-emet-deuteronomy-reeh-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 25:2 | sefat-emet-deuteronomy-reeh-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 25:3 | sefat-emet-deuteronomy-reeh-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 25:4 | sefat-emet-deuteronomy-reeh-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 26:1 | sefat-emet-deuteronomy-reeh-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 26:2 | sefat-emet-deuteronomy-reeh-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 27:1 | sefat-emet-deuteronomy-reeh-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Re'eh 27:2 | sefat-emet-deuteronomy-reeh-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 1:1 | sefat-emet-deuteronomy-shoftim-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 1:2 | sefat-emet-deuteronomy-shoftim-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 1:3 | sefat-emet-deuteronomy-shoftim-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 1:4 | sefat-emet-deuteronomy-shoftim-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 1:5 | sefat-emet-deuteronomy-shoftim-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 1:6 | sefat-emet-deuteronomy-shoftim-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 1:7 | sefat-emet-deuteronomy-shoftim-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 2:1 | sefat-emet-deuteronomy-shoftim-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 2:2 | sefat-emet-deuteronomy-shoftim-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 2:3 | sefat-emet-deuteronomy-shoftim-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 3:1 | sefat-emet-deuteronomy-shoftim-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 3:2 | sefat-emet-deuteronomy-shoftim-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 3:3 | sefat-emet-deuteronomy-shoftim-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 4:1 | sefat-emet-deuteronomy-shoftim-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 4:2 | sefat-emet-deuteronomy-shoftim-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 4:3 | sefat-emet-deuteronomy-shoftim-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 4:4 | sefat-emet-deuteronomy-shoftim-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 5:1 | sefat-emet-deuteronomy-shoftim-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 5:2 | sefat-emet-deuteronomy-shoftim-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 5:3 | sefat-emet-deuteronomy-shoftim-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 5:4 | sefat-emet-deuteronomy-shoftim-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 5:5 | sefat-emet-deuteronomy-shoftim-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 6:1 | sefat-emet-deuteronomy-shoftim-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 6:2 | sefat-emet-deuteronomy-shoftim-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 6:3 | sefat-emet-deuteronomy-shoftim-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 6:4 | sefat-emet-deuteronomy-shoftim-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 7:1 | sefat-emet-deuteronomy-shoftim-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 7:2 | sefat-emet-deuteronomy-shoftim-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 7:3 | sefat-emet-deuteronomy-shoftim-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 8:1 | sefat-emet-deuteronomy-shoftim-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 8:2 | sefat-emet-deuteronomy-shoftim-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 8:3 | sefat-emet-deuteronomy-shoftim-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 9:1 | sefat-emet-deuteronomy-shoftim-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 9:2 | sefat-emet-deuteronomy-shoftim-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 9:3 | sefat-emet-deuteronomy-shoftim-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 10:1 | sefat-emet-deuteronomy-shoftim-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 10:2 | sefat-emet-deuteronomy-shoftim-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 10:3 | sefat-emet-deuteronomy-shoftim-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 11:1 | sefat-emet-deuteronomy-shoftim-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 11:2 | sefat-emet-deuteronomy-shoftim-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 12:1 | sefat-emet-deuteronomy-shoftim-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 12:2 | sefat-emet-deuteronomy-shoftim-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 12:3 | sefat-emet-deuteronomy-shoftim-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 13:1 | sefat-emet-deuteronomy-shoftim-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 13:2 | sefat-emet-deuteronomy-shoftim-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 13:3 | sefat-emet-deuteronomy-shoftim-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 14:1 | sefat-emet-deuteronomy-shoftim-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 14:2 | sefat-emet-deuteronomy-shoftim-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 15:1 | sefat-emet-deuteronomy-shoftim-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 15:2 | sefat-emet-deuteronomy-shoftim-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 15:3 | sefat-emet-deuteronomy-shoftim-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 15:4 | sefat-emet-deuteronomy-shoftim-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 16:1 | sefat-emet-deuteronomy-shoftim-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 16:2 | sefat-emet-deuteronomy-shoftim-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 16:3 | sefat-emet-deuteronomy-shoftim-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 16:4 | sefat-emet-deuteronomy-shoftim-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 16:5 | sefat-emet-deuteronomy-shoftim-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 16:6 | sefat-emet-deuteronomy-shoftim-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 16:7 | sefat-emet-deuteronomy-shoftim-16-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 17:1 | sefat-emet-deuteronomy-shoftim-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 17:2 | sefat-emet-deuteronomy-shoftim-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 17:3 | sefat-emet-deuteronomy-shoftim-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 18:1 | sefat-emet-deuteronomy-shoftim-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 18:2 | sefat-emet-deuteronomy-shoftim-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 18:3 | sefat-emet-deuteronomy-shoftim-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 19:1 | sefat-emet-deuteronomy-shoftim-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 19:2 | sefat-emet-deuteronomy-shoftim-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 19:3 | sefat-emet-deuteronomy-shoftim-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 20:1 | sefat-emet-deuteronomy-shoftim-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 20:2 | sefat-emet-deuteronomy-shoftim-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 20:3 | sefat-emet-deuteronomy-shoftim-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 20:4 | sefat-emet-deuteronomy-shoftim-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 21:1 | sefat-emet-deuteronomy-shoftim-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 21:2 | sefat-emet-deuteronomy-shoftim-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 21:3 | sefat-emet-deuteronomy-shoftim-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 21:4 | sefat-emet-deuteronomy-shoftim-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 21:5 | sefat-emet-deuteronomy-shoftim-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 22:1 | sefat-emet-deuteronomy-shoftim-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 22:2 | sefat-emet-deuteronomy-shoftim-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 22:3 | sefat-emet-deuteronomy-shoftim-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 23:1 | sefat-emet-deuteronomy-shoftim-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 23:2 | sefat-emet-deuteronomy-shoftim-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 24:1 | sefat-emet-deuteronomy-shoftim-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 24:2 | sefat-emet-deuteronomy-shoftim-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 25:1 | sefat-emet-deuteronomy-shoftim-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 25:2 | sefat-emet-deuteronomy-shoftim-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 25:3 | sefat-emet-deuteronomy-shoftim-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 26:1 | sefat-emet-deuteronomy-shoftim-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 26:2 | sefat-emet-deuteronomy-shoftim-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 27:1 | sefat-emet-deuteronomy-shoftim-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 27:2 | sefat-emet-deuteronomy-shoftim-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 27:3 | sefat-emet-deuteronomy-shoftim-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 28:1 | sefat-emet-deuteronomy-shoftim-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shoftim 28:2 | sefat-emet-deuteronomy-shoftim-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 1:1 | sefat-emet-deuteronomy-ki-teitzei-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 1:2 | sefat-emet-deuteronomy-ki-teitzei-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 1:3 | sefat-emet-deuteronomy-ki-teitzei-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 1:4 | sefat-emet-deuteronomy-ki-teitzei-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 1:5 | sefat-emet-deuteronomy-ki-teitzei-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 2:1 | sefat-emet-deuteronomy-ki-teitzei-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 2:2 | sefat-emet-deuteronomy-ki-teitzei-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 2:3 | sefat-emet-deuteronomy-ki-teitzei-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 2:4 | sefat-emet-deuteronomy-ki-teitzei-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 3:1 | sefat-emet-deuteronomy-ki-teitzei-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 3:2 | sefat-emet-deuteronomy-ki-teitzei-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 3:3 | sefat-emet-deuteronomy-ki-teitzei-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 4:1 | sefat-emet-deuteronomy-ki-teitzei-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 4:2 | sefat-emet-deuteronomy-ki-teitzei-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 4:3 | sefat-emet-deuteronomy-ki-teitzei-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 4:4 | sefat-emet-deuteronomy-ki-teitzei-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 4:5 | sefat-emet-deuteronomy-ki-teitzei-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 5:1 | sefat-emet-deuteronomy-ki-teitzei-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 5:2 | sefat-emet-deuteronomy-ki-teitzei-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 5:3 | sefat-emet-deuteronomy-ki-teitzei-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 5:4 | sefat-emet-deuteronomy-ki-teitzei-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 5:5 | sefat-emet-deuteronomy-ki-teitzei-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 6:1 | sefat-emet-deuteronomy-ki-teitzei-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 6:2 | sefat-emet-deuteronomy-ki-teitzei-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 6:3 | sefat-emet-deuteronomy-ki-teitzei-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 6:4 | sefat-emet-deuteronomy-ki-teitzei-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 6:5 | sefat-emet-deuteronomy-ki-teitzei-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 7:1 | sefat-emet-deuteronomy-ki-teitzei-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 7:2 | sefat-emet-deuteronomy-ki-teitzei-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 7:3 | sefat-emet-deuteronomy-ki-teitzei-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 8:1 | sefat-emet-deuteronomy-ki-teitzei-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 8:2 | sefat-emet-deuteronomy-ki-teitzei-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 8:3 | sefat-emet-deuteronomy-ki-teitzei-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 8:4 | sefat-emet-deuteronomy-ki-teitzei-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 9:1 | sefat-emet-deuteronomy-ki-teitzei-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 9:2 | sefat-emet-deuteronomy-ki-teitzei-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 9:3 | sefat-emet-deuteronomy-ki-teitzei-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 10:1 | sefat-emet-deuteronomy-ki-teitzei-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 10:2 | sefat-emet-deuteronomy-ki-teitzei-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 10:3 | sefat-emet-deuteronomy-ki-teitzei-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 10:4 | sefat-emet-deuteronomy-ki-teitzei-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 10:5 | sefat-emet-deuteronomy-ki-teitzei-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:1 | sefat-emet-deuteronomy-ki-teitzei-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:2 | sefat-emet-deuteronomy-ki-teitzei-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:3 | sefat-emet-deuteronomy-ki-teitzei-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:4 | sefat-emet-deuteronomy-ki-teitzei-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:5 | sefat-emet-deuteronomy-ki-teitzei-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:6 | sefat-emet-deuteronomy-ki-teitzei-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:7 | sefat-emet-deuteronomy-ki-teitzei-11-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 11:8 | sefat-emet-deuteronomy-ki-teitzei-11-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 12:1 | sefat-emet-deuteronomy-ki-teitzei-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 12:2 | sefat-emet-deuteronomy-ki-teitzei-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 12:3 | sefat-emet-deuteronomy-ki-teitzei-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 12:4 | sefat-emet-deuteronomy-ki-teitzei-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 12:5 | sefat-emet-deuteronomy-ki-teitzei-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 13:1 | sefat-emet-deuteronomy-ki-teitzei-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 13:2 | sefat-emet-deuteronomy-ki-teitzei-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 13:3 | sefat-emet-deuteronomy-ki-teitzei-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 14:1 | sefat-emet-deuteronomy-ki-teitzei-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 14:2 | sefat-emet-deuteronomy-ki-teitzei-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 14:3 | sefat-emet-deuteronomy-ki-teitzei-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 14:4 | sefat-emet-deuteronomy-ki-teitzei-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 14:5 | sefat-emet-deuteronomy-ki-teitzei-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 14:6 | sefat-emet-deuteronomy-ki-teitzei-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 14:7 | sefat-emet-deuteronomy-ki-teitzei-14-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 15:1 | sefat-emet-deuteronomy-ki-teitzei-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 15:2 | sefat-emet-deuteronomy-ki-teitzei-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 15:3 | sefat-emet-deuteronomy-ki-teitzei-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 15:4 | sefat-emet-deuteronomy-ki-teitzei-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 16:1 | sefat-emet-deuteronomy-ki-teitzei-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 16:2 | sefat-emet-deuteronomy-ki-teitzei-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 16:3 | sefat-emet-deuteronomy-ki-teitzei-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 17:1 | sefat-emet-deuteronomy-ki-teitzei-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 17:2 | sefat-emet-deuteronomy-ki-teitzei-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 17:3 | sefat-emet-deuteronomy-ki-teitzei-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 17:4 | sefat-emet-deuteronomy-ki-teitzei-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 18:1 | sefat-emet-deuteronomy-ki-teitzei-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 18:2 | sefat-emet-deuteronomy-ki-teitzei-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 19:1 | sefat-emet-deuteronomy-ki-teitzei-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 19:2 | sefat-emet-deuteronomy-ki-teitzei-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 19:3 | sefat-emet-deuteronomy-ki-teitzei-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 19:4 | sefat-emet-deuteronomy-ki-teitzei-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 20:1 | sefat-emet-deuteronomy-ki-teitzei-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 20:2 | sefat-emet-deuteronomy-ki-teitzei-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 20:3 | sefat-emet-deuteronomy-ki-teitzei-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 21:1 | sefat-emet-deuteronomy-ki-teitzei-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 21:2 | sefat-emet-deuteronomy-ki-teitzei-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 22:1 | sefat-emet-deuteronomy-ki-teitzei-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 22:2 | sefat-emet-deuteronomy-ki-teitzei-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 22:3 | sefat-emet-deuteronomy-ki-teitzei-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 22:4 | sefat-emet-deuteronomy-ki-teitzei-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 23:1 | sefat-emet-deuteronomy-ki-teitzei-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 23:2 | sefat-emet-deuteronomy-ki-teitzei-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Teitzei 23:3 | sefat-emet-deuteronomy-ki-teitzei-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 1:1 | sefat-emet-deuteronomy-ki-tavo-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 1:2 | sefat-emet-deuteronomy-ki-tavo-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 1:3 | sefat-emet-deuteronomy-ki-tavo-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 1:4 | sefat-emet-deuteronomy-ki-tavo-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 1:5 | sefat-emet-deuteronomy-ki-tavo-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 2:1 | sefat-emet-deuteronomy-ki-tavo-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 2:2 | sefat-emet-deuteronomy-ki-tavo-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 2:3 | sefat-emet-deuteronomy-ki-tavo-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 3:1 | sefat-emet-deuteronomy-ki-tavo-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 3:2 | sefat-emet-deuteronomy-ki-tavo-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 3:3 | sefat-emet-deuteronomy-ki-tavo-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 4:1 | sefat-emet-deuteronomy-ki-tavo-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 4:2 | sefat-emet-deuteronomy-ki-tavo-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 4:3 | sefat-emet-deuteronomy-ki-tavo-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 5:1 | sefat-emet-deuteronomy-ki-tavo-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 5:2 | sefat-emet-deuteronomy-ki-tavo-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 5:3 | sefat-emet-deuteronomy-ki-tavo-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 5:4 | sefat-emet-deuteronomy-ki-tavo-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 5:5 | sefat-emet-deuteronomy-ki-tavo-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 5:6 | sefat-emet-deuteronomy-ki-tavo-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 6:1 | sefat-emet-deuteronomy-ki-tavo-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 6:2 | sefat-emet-deuteronomy-ki-tavo-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 6:3 | sefat-emet-deuteronomy-ki-tavo-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 6:4 | sefat-emet-deuteronomy-ki-tavo-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 6:5 | sefat-emet-deuteronomy-ki-tavo-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 6:6 | sefat-emet-deuteronomy-ki-tavo-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 7:1 | sefat-emet-deuteronomy-ki-tavo-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 7:2 | sefat-emet-deuteronomy-ki-tavo-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 7:3 | sefat-emet-deuteronomy-ki-tavo-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 7:4 | sefat-emet-deuteronomy-ki-tavo-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 8:1 | sefat-emet-deuteronomy-ki-tavo-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 8:2 | sefat-emet-deuteronomy-ki-tavo-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 8:3 | sefat-emet-deuteronomy-ki-tavo-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 9:1 | sefat-emet-deuteronomy-ki-tavo-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 9:2 | sefat-emet-deuteronomy-ki-tavo-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 9:3 | sefat-emet-deuteronomy-ki-tavo-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 10:1 | sefat-emet-deuteronomy-ki-tavo-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 10:2 | sefat-emet-deuteronomy-ki-tavo-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 10:3 | sefat-emet-deuteronomy-ki-tavo-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 11:1 | sefat-emet-deuteronomy-ki-tavo-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 11:2 | sefat-emet-deuteronomy-ki-tavo-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 11:3 | sefat-emet-deuteronomy-ki-tavo-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 11:4 | sefat-emet-deuteronomy-ki-tavo-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 12:1 | sefat-emet-deuteronomy-ki-tavo-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 12:2 | sefat-emet-deuteronomy-ki-tavo-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 12:3 | sefat-emet-deuteronomy-ki-tavo-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 12:4 | sefat-emet-deuteronomy-ki-tavo-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 13:1 | sefat-emet-deuteronomy-ki-tavo-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 13:2 | sefat-emet-deuteronomy-ki-tavo-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 13:3 | sefat-emet-deuteronomy-ki-tavo-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 13:4 | sefat-emet-deuteronomy-ki-tavo-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 14:1 | sefat-emet-deuteronomy-ki-tavo-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 14:2 | sefat-emet-deuteronomy-ki-tavo-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 14:3 | sefat-emet-deuteronomy-ki-tavo-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 15:1 | sefat-emet-deuteronomy-ki-tavo-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 15:2 | sefat-emet-deuteronomy-ki-tavo-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 16:1 | sefat-emet-deuteronomy-ki-tavo-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 16:2 | sefat-emet-deuteronomy-ki-tavo-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 16:3 | sefat-emet-deuteronomy-ki-tavo-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 17:1 | sefat-emet-deuteronomy-ki-tavo-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 17:2 | sefat-emet-deuteronomy-ki-tavo-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 17:3 | sefat-emet-deuteronomy-ki-tavo-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 18:1 | sefat-emet-deuteronomy-ki-tavo-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 18:2 | sefat-emet-deuteronomy-ki-tavo-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 18:3 | sefat-emet-deuteronomy-ki-tavo-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 18:4 | sefat-emet-deuteronomy-ki-tavo-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 18:5 | sefat-emet-deuteronomy-ki-tavo-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 19:1 | sefat-emet-deuteronomy-ki-tavo-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 19:2 | sefat-emet-deuteronomy-ki-tavo-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 19:3 | sefat-emet-deuteronomy-ki-tavo-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 20:1 | sefat-emet-deuteronomy-ki-tavo-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 20:2 | sefat-emet-deuteronomy-ki-tavo-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 21:1 | sefat-emet-deuteronomy-ki-tavo-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 21:2 | sefat-emet-deuteronomy-ki-tavo-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 21:3 | sefat-emet-deuteronomy-ki-tavo-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 22:1 | sefat-emet-deuteronomy-ki-tavo-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 22:2 | sefat-emet-deuteronomy-ki-tavo-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 22:3 | sefat-emet-deuteronomy-ki-tavo-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 22:4 | sefat-emet-deuteronomy-ki-tavo-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 23:1 | sefat-emet-deuteronomy-ki-tavo-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 23:2 | sefat-emet-deuteronomy-ki-tavo-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 23:3 | sefat-emet-deuteronomy-ki-tavo-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 23:4 | sefat-emet-deuteronomy-ki-tavo-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 23:5 | sefat-emet-deuteronomy-ki-tavo-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 24:1 | sefat-emet-deuteronomy-ki-tavo-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 24:2 | sefat-emet-deuteronomy-ki-tavo-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 24:3 | sefat-emet-deuteronomy-ki-tavo-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 24:4 | sefat-emet-deuteronomy-ki-tavo-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 24:5 | sefat-emet-deuteronomy-ki-tavo-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 25:1 | sefat-emet-deuteronomy-ki-tavo-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 25:2 | sefat-emet-deuteronomy-ki-tavo-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 25:3 | sefat-emet-deuteronomy-ki-tavo-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 25:4 | sefat-emet-deuteronomy-ki-tavo-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 26:1 | sefat-emet-deuteronomy-ki-tavo-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 26:2 | sefat-emet-deuteronomy-ki-tavo-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 27:1 | sefat-emet-deuteronomy-ki-tavo-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 27:2 | sefat-emet-deuteronomy-ki-tavo-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 27:3 | sefat-emet-deuteronomy-ki-tavo-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 27:4 | sefat-emet-deuteronomy-ki-tavo-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 28:1 | sefat-emet-deuteronomy-ki-tavo-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 28:2 | sefat-emet-deuteronomy-ki-tavo-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 29:1 | sefat-emet-deuteronomy-ki-tavo-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 29:2 | sefat-emet-deuteronomy-ki-tavo-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 29:3 | sefat-emet-deuteronomy-ki-tavo-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 29:4 | sefat-emet-deuteronomy-ki-tavo-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 30:1 | sefat-emet-deuteronomy-ki-tavo-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 30:2 | sefat-emet-deuteronomy-ki-tavo-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 30:3 | sefat-emet-deuteronomy-ki-tavo-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 31:1 | sefat-emet-deuteronomy-ki-tavo-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 31:2 | sefat-emet-deuteronomy-ki-tavo-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 31:3 | sefat-emet-deuteronomy-ki-tavo-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 31:4 | sefat-emet-deuteronomy-ki-tavo-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 32:1 | sefat-emet-deuteronomy-ki-tavo-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 32:2 | sefat-emet-deuteronomy-ki-tavo-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 32:3 | sefat-emet-deuteronomy-ki-tavo-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 33:1 | sefat-emet-deuteronomy-ki-tavo-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 33:2 | sefat-emet-deuteronomy-ki-tavo-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ki Tavo 33:3 | sefat-emet-deuteronomy-ki-tavo-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 1:1 | sefat-emet-deuteronomy-nitzavim-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 1:2 | sefat-emet-deuteronomy-nitzavim-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 1:3 | sefat-emet-deuteronomy-nitzavim-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 1:4 | sefat-emet-deuteronomy-nitzavim-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 2:1 | sefat-emet-deuteronomy-nitzavim-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 2:2 | sefat-emet-deuteronomy-nitzavim-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 2:3 | sefat-emet-deuteronomy-nitzavim-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 3:1 | sefat-emet-deuteronomy-nitzavim-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 3:2 | sefat-emet-deuteronomy-nitzavim-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 3:3 | sefat-emet-deuteronomy-nitzavim-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 3:4 | sefat-emet-deuteronomy-nitzavim-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 4:1 | sefat-emet-deuteronomy-nitzavim-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 4:2 | sefat-emet-deuteronomy-nitzavim-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 4:3 | sefat-emet-deuteronomy-nitzavim-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 4:4 | sefat-emet-deuteronomy-nitzavim-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 4:5 | sefat-emet-deuteronomy-nitzavim-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 5:1 | sefat-emet-deuteronomy-nitzavim-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 5:2 | sefat-emet-deuteronomy-nitzavim-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 5:3 | sefat-emet-deuteronomy-nitzavim-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 5:4 | sefat-emet-deuteronomy-nitzavim-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 5:5 | sefat-emet-deuteronomy-nitzavim-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 5:6 | sefat-emet-deuteronomy-nitzavim-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 6:1 | sefat-emet-deuteronomy-nitzavim-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 6:2 | sefat-emet-deuteronomy-nitzavim-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 6:3 | sefat-emet-deuteronomy-nitzavim-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 6:4 | sefat-emet-deuteronomy-nitzavim-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 7:1 | sefat-emet-deuteronomy-nitzavim-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 7:2 | sefat-emet-deuteronomy-nitzavim-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 7:3 | sefat-emet-deuteronomy-nitzavim-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 8:1 | sefat-emet-deuteronomy-nitzavim-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 8:2 | sefat-emet-deuteronomy-nitzavim-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 8:3 | sefat-emet-deuteronomy-nitzavim-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 8:4 | sefat-emet-deuteronomy-nitzavim-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 8:5 | sefat-emet-deuteronomy-nitzavim-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 8:6 | sefat-emet-deuteronomy-nitzavim-8-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 9:1 | sefat-emet-deuteronomy-nitzavim-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 9:2 | sefat-emet-deuteronomy-nitzavim-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 9:3 | sefat-emet-deuteronomy-nitzavim-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 9:4 | sefat-emet-deuteronomy-nitzavim-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 10:1 | sefat-emet-deuteronomy-nitzavim-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 10:2 | sefat-emet-deuteronomy-nitzavim-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 10:3 | sefat-emet-deuteronomy-nitzavim-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 10:4 | sefat-emet-deuteronomy-nitzavim-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 11:1 | sefat-emet-deuteronomy-nitzavim-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 11:2 | sefat-emet-deuteronomy-nitzavim-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 11:3 | sefat-emet-deuteronomy-nitzavim-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 11:4 | sefat-emet-deuteronomy-nitzavim-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 11:5 | sefat-emet-deuteronomy-nitzavim-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 12:1 | sefat-emet-deuteronomy-nitzavim-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 12:2 | sefat-emet-deuteronomy-nitzavim-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 13:1 | sefat-emet-deuteronomy-nitzavim-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 13:2 | sefat-emet-deuteronomy-nitzavim-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 14:1 | sefat-emet-deuteronomy-nitzavim-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 14:2 | sefat-emet-deuteronomy-nitzavim-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 15:1 | sefat-emet-deuteronomy-nitzavim-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 15:2 | sefat-emet-deuteronomy-nitzavim-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 15:3 | sefat-emet-deuteronomy-nitzavim-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 16:1 | sefat-emet-deuteronomy-nitzavim-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 16:2 | sefat-emet-deuteronomy-nitzavim-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 16:3 | sefat-emet-deuteronomy-nitzavim-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 17:1 | sefat-emet-deuteronomy-nitzavim-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 17:2 | sefat-emet-deuteronomy-nitzavim-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 17:3 | sefat-emet-deuteronomy-nitzavim-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 18:1 | sefat-emet-deuteronomy-nitzavim-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 18:2 | sefat-emet-deuteronomy-nitzavim-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 19:1 | sefat-emet-deuteronomy-nitzavim-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 19:2 | sefat-emet-deuteronomy-nitzavim-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 20:1 | sefat-emet-deuteronomy-nitzavim-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 20:2 | sefat-emet-deuteronomy-nitzavim-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 21:1 | sefat-emet-deuteronomy-nitzavim-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 21:2 | sefat-emet-deuteronomy-nitzavim-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 21:3 | sefat-emet-deuteronomy-nitzavim-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 22:1 | sefat-emet-deuteronomy-nitzavim-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 22:2 | sefat-emet-deuteronomy-nitzavim-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 22:3 | sefat-emet-deuteronomy-nitzavim-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 23:1 | sefat-emet-deuteronomy-nitzavim-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 23:2 | sefat-emet-deuteronomy-nitzavim-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 23:3 | sefat-emet-deuteronomy-nitzavim-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 24:1 | sefat-emet-deuteronomy-nitzavim-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 24:2 | sefat-emet-deuteronomy-nitzavim-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 25:1 | sefat-emet-deuteronomy-nitzavim-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 25:2 | sefat-emet-deuteronomy-nitzavim-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 26:1 | sefat-emet-deuteronomy-nitzavim-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 26:2 | sefat-emet-deuteronomy-nitzavim-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 26:3 | sefat-emet-deuteronomy-nitzavim-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 27:1 | sefat-emet-deuteronomy-nitzavim-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 27:2 | sefat-emet-deuteronomy-nitzavim-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 27:3 | sefat-emet-deuteronomy-nitzavim-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 28:1 | sefat-emet-deuteronomy-nitzavim-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 28:2 | sefat-emet-deuteronomy-nitzavim-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 28:3 | sefat-emet-deuteronomy-nitzavim-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 29:1 | sefat-emet-deuteronomy-nitzavim-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 29:2 | sefat-emet-deuteronomy-nitzavim-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 30:1 | sefat-emet-deuteronomy-nitzavim-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Nitzavim 30:2 | sefat-emet-deuteronomy-nitzavim-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 1:1 | sefat-emet-deuteronomy-vayeilech-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 1:2 | sefat-emet-deuteronomy-vayeilech-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 1:3 | sefat-emet-deuteronomy-vayeilech-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 2:1 | sefat-emet-deuteronomy-vayeilech-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 2:2 | sefat-emet-deuteronomy-vayeilech-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 3:1 | sefat-emet-deuteronomy-vayeilech-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 3:2 | sefat-emet-deuteronomy-vayeilech-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 4:1 | sefat-emet-deuteronomy-vayeilech-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 4:2 | sefat-emet-deuteronomy-vayeilech-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 5:1 | sefat-emet-deuteronomy-vayeilech-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 5:2 | sefat-emet-deuteronomy-vayeilech-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 6:1 | sefat-emet-deuteronomy-vayeilech-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 6:2 | sefat-emet-deuteronomy-vayeilech-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 7:1 | sefat-emet-deuteronomy-vayeilech-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 7:2 | sefat-emet-deuteronomy-vayeilech-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 8:1 | sefat-emet-deuteronomy-vayeilech-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 8:2 | sefat-emet-deuteronomy-vayeilech-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 9:1 | sefat-emet-deuteronomy-vayeilech-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 9:2 | sefat-emet-deuteronomy-vayeilech-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 9:3 | sefat-emet-deuteronomy-vayeilech-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 10:1 | sefat-emet-deuteronomy-vayeilech-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 10:2 | sefat-emet-deuteronomy-vayeilech-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 11:1 | sefat-emet-deuteronomy-vayeilech-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Vayeilech 11:2 | sefat-emet-deuteronomy-vayeilech-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 1:1 | sefat-emet-deuteronomy-for-the-month-of-elul-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 1:2 | sefat-emet-deuteronomy-for-the-month-of-elul-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 1:3 | sefat-emet-deuteronomy-for-the-month-of-elul-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 2:1 | sefat-emet-deuteronomy-for-the-month-of-elul-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 2:2 | sefat-emet-deuteronomy-for-the-month-of-elul-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 2:3 | sefat-emet-deuteronomy-for-the-month-of-elul-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 3:1 | sefat-emet-deuteronomy-for-the-month-of-elul-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 3:2 | sefat-emet-deuteronomy-for-the-month-of-elul-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 4:1 | sefat-emet-deuteronomy-for-the-month-of-elul-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 4:2 | sefat-emet-deuteronomy-for-the-month-of-elul-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 4:3 | sefat-emet-deuteronomy-for-the-month-of-elul-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 5:1 | sefat-emet-deuteronomy-for-the-month-of-elul-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 5:2 | sefat-emet-deuteronomy-for-the-month-of-elul-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 6:1 | sefat-emet-deuteronomy-for-the-month-of-elul-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 6:2 | sefat-emet-deuteronomy-for-the-month-of-elul-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 7:1 | sefat-emet-deuteronomy-for-the-month-of-elul-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 7:2 | sefat-emet-deuteronomy-for-the-month-of-elul-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 8:1 | sefat-emet-deuteronomy-for-the-month-of-elul-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 8:2 | sefat-emet-deuteronomy-for-the-month-of-elul-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 9:1 | sefat-emet-deuteronomy-for-the-month-of-elul-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 9:2 | sefat-emet-deuteronomy-for-the-month-of-elul-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 9:3 | sefat-emet-deuteronomy-for-the-month-of-elul-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 9:4 | sefat-emet-deuteronomy-for-the-month-of-elul-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 10:1 | sefat-emet-deuteronomy-for-the-month-of-elul-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 10:2 | sefat-emet-deuteronomy-for-the-month-of-elul-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 11:1 | sefat-emet-deuteronomy-for-the-month-of-elul-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 11:2 | sefat-emet-deuteronomy-for-the-month-of-elul-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 12:1 | sefat-emet-deuteronomy-for-the-month-of-elul-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Month of Elul 12:2 | sefat-emet-deuteronomy-for-the-month-of-elul-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 1:1 | sefat-emet-deuteronomy-rosh-hashanah-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 1:2 | sefat-emet-deuteronomy-rosh-hashanah-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 1:3 | sefat-emet-deuteronomy-rosh-hashanah-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 1:4 | sefat-emet-deuteronomy-rosh-hashanah-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 1:5 | sefat-emet-deuteronomy-rosh-hashanah-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 1:6 | sefat-emet-deuteronomy-rosh-hashanah-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 1:7 | sefat-emet-deuteronomy-rosh-hashanah-1-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 2:1 | sefat-emet-deuteronomy-rosh-hashanah-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 2:2 | sefat-emet-deuteronomy-rosh-hashanah-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 2:3 | sefat-emet-deuteronomy-rosh-hashanah-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 3:1 | sefat-emet-deuteronomy-rosh-hashanah-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 3:2 | sefat-emet-deuteronomy-rosh-hashanah-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 3:3 | sefat-emet-deuteronomy-rosh-hashanah-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 3:4 | sefat-emet-deuteronomy-rosh-hashanah-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 3:5 | sefat-emet-deuteronomy-rosh-hashanah-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 4:1 | sefat-emet-deuteronomy-rosh-hashanah-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 4:2 | sefat-emet-deuteronomy-rosh-hashanah-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 4:3 | sefat-emet-deuteronomy-rosh-hashanah-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 5:1 | sefat-emet-deuteronomy-rosh-hashanah-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 5:2 | sefat-emet-deuteronomy-rosh-hashanah-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 5:3 | sefat-emet-deuteronomy-rosh-hashanah-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 5:4 | sefat-emet-deuteronomy-rosh-hashanah-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 5:5 | sefat-emet-deuteronomy-rosh-hashanah-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 5:6 | sefat-emet-deuteronomy-rosh-hashanah-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 6:1 | sefat-emet-deuteronomy-rosh-hashanah-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 6:2 | sefat-emet-deuteronomy-rosh-hashanah-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 6:3 | sefat-emet-deuteronomy-rosh-hashanah-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 6:4 | sefat-emet-deuteronomy-rosh-hashanah-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 7:1 | sefat-emet-deuteronomy-rosh-hashanah-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 7:2 | sefat-emet-deuteronomy-rosh-hashanah-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 7:3 | sefat-emet-deuteronomy-rosh-hashanah-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 7:4 | sefat-emet-deuteronomy-rosh-hashanah-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 8:1 | sefat-emet-deuteronomy-rosh-hashanah-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 8:2 | sefat-emet-deuteronomy-rosh-hashanah-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 8:3 | sefat-emet-deuteronomy-rosh-hashanah-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 8:4 | sefat-emet-deuteronomy-rosh-hashanah-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 9:1 | sefat-emet-deuteronomy-rosh-hashanah-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 9:2 | sefat-emet-deuteronomy-rosh-hashanah-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 9:3 | sefat-emet-deuteronomy-rosh-hashanah-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 9:4 | sefat-emet-deuteronomy-rosh-hashanah-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 10:1 | sefat-emet-deuteronomy-rosh-hashanah-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 10:2 | sefat-emet-deuteronomy-rosh-hashanah-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 10:3 | sefat-emet-deuteronomy-rosh-hashanah-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 10:4 | sefat-emet-deuteronomy-rosh-hashanah-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 11:1 | sefat-emet-deuteronomy-rosh-hashanah-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 11:2 | sefat-emet-deuteronomy-rosh-hashanah-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 11:3 | sefat-emet-deuteronomy-rosh-hashanah-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 11:4 | sefat-emet-deuteronomy-rosh-hashanah-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 12:1 | sefat-emet-deuteronomy-rosh-hashanah-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 12:2 | sefat-emet-deuteronomy-rosh-hashanah-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 12:3 | sefat-emet-deuteronomy-rosh-hashanah-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 13:1 | sefat-emet-deuteronomy-rosh-hashanah-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 13:2 | sefat-emet-deuteronomy-rosh-hashanah-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 13:3 | sefat-emet-deuteronomy-rosh-hashanah-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 13:4 | sefat-emet-deuteronomy-rosh-hashanah-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 13:5 | sefat-emet-deuteronomy-rosh-hashanah-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 13:6 | sefat-emet-deuteronomy-rosh-hashanah-13-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 13:7 | sefat-emet-deuteronomy-rosh-hashanah-13-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 14:1 | sefat-emet-deuteronomy-rosh-hashanah-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 14:2 | sefat-emet-deuteronomy-rosh-hashanah-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 14:3 | sefat-emet-deuteronomy-rosh-hashanah-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 14:4 | sefat-emet-deuteronomy-rosh-hashanah-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 15:1 | sefat-emet-deuteronomy-rosh-hashanah-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 15:2 | sefat-emet-deuteronomy-rosh-hashanah-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 15:3 | sefat-emet-deuteronomy-rosh-hashanah-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 15:4 | sefat-emet-deuteronomy-rosh-hashanah-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 16:1 | sefat-emet-deuteronomy-rosh-hashanah-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 16:2 | sefat-emet-deuteronomy-rosh-hashanah-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 16:3 | sefat-emet-deuteronomy-rosh-hashanah-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 16:4 | sefat-emet-deuteronomy-rosh-hashanah-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 16:5 | sefat-emet-deuteronomy-rosh-hashanah-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 16:6 | sefat-emet-deuteronomy-rosh-hashanah-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:1 | sefat-emet-deuteronomy-rosh-hashanah-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:2 | sefat-emet-deuteronomy-rosh-hashanah-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:3 | sefat-emet-deuteronomy-rosh-hashanah-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:4 | sefat-emet-deuteronomy-rosh-hashanah-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:5 | sefat-emet-deuteronomy-rosh-hashanah-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:6 | sefat-emet-deuteronomy-rosh-hashanah-17-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:7 | sefat-emet-deuteronomy-rosh-hashanah-17-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:8 | sefat-emet-deuteronomy-rosh-hashanah-17-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 17:9 | sefat-emet-deuteronomy-rosh-hashanah-17-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 18:1 | sefat-emet-deuteronomy-rosh-hashanah-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 18:2 | sefat-emet-deuteronomy-rosh-hashanah-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 18:3 | sefat-emet-deuteronomy-rosh-hashanah-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 18:4 | sefat-emet-deuteronomy-rosh-hashanah-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 19:1 | sefat-emet-deuteronomy-rosh-hashanah-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 19:2 | sefat-emet-deuteronomy-rosh-hashanah-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 19:3 | sefat-emet-deuteronomy-rosh-hashanah-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 19:4 | sefat-emet-deuteronomy-rosh-hashanah-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 19:5 | sefat-emet-deuteronomy-rosh-hashanah-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 20:1 | sefat-emet-deuteronomy-rosh-hashanah-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 20:2 | sefat-emet-deuteronomy-rosh-hashanah-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 20:3 | sefat-emet-deuteronomy-rosh-hashanah-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 20:4 | sefat-emet-deuteronomy-rosh-hashanah-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 20:5 | sefat-emet-deuteronomy-rosh-hashanah-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 21:1 | sefat-emet-deuteronomy-rosh-hashanah-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 21:2 | sefat-emet-deuteronomy-rosh-hashanah-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 21:3 | sefat-emet-deuteronomy-rosh-hashanah-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 22:1 | sefat-emet-deuteronomy-rosh-hashanah-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 22:2 | sefat-emet-deuteronomy-rosh-hashanah-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 23:1 | sefat-emet-deuteronomy-rosh-hashanah-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 23:2 | sefat-emet-deuteronomy-rosh-hashanah-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 24:1 | sefat-emet-deuteronomy-rosh-hashanah-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 24:2 | sefat-emet-deuteronomy-rosh-hashanah-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 25:1 | sefat-emet-deuteronomy-rosh-hashanah-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 25:2 | sefat-emet-deuteronomy-rosh-hashanah-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 25:3 | sefat-emet-deuteronomy-rosh-hashanah-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 25:4 | sefat-emet-deuteronomy-rosh-hashanah-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 26:1 | sefat-emet-deuteronomy-rosh-hashanah-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 26:2 | sefat-emet-deuteronomy-rosh-hashanah-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 26:3 | sefat-emet-deuteronomy-rosh-hashanah-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 26:4 | sefat-emet-deuteronomy-rosh-hashanah-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 27:1 | sefat-emet-deuteronomy-rosh-hashanah-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 27:2 | sefat-emet-deuteronomy-rosh-hashanah-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 27:3 | sefat-emet-deuteronomy-rosh-hashanah-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 27:4 | sefat-emet-deuteronomy-rosh-hashanah-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 28:1 | sefat-emet-deuteronomy-rosh-hashanah-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 28:2 | sefat-emet-deuteronomy-rosh-hashanah-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 28:3 | sefat-emet-deuteronomy-rosh-hashanah-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 28:4 | sefat-emet-deuteronomy-rosh-hashanah-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 28:5 | sefat-emet-deuteronomy-rosh-hashanah-28-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 29:1 | sefat-emet-deuteronomy-rosh-hashanah-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 29:2 | sefat-emet-deuteronomy-rosh-hashanah-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 30:1 | sefat-emet-deuteronomy-rosh-hashanah-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 30:2 | sefat-emet-deuteronomy-rosh-hashanah-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 30:3 | sefat-emet-deuteronomy-rosh-hashanah-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 30:4 | sefat-emet-deuteronomy-rosh-hashanah-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 30:5 | sefat-emet-deuteronomy-rosh-hashanah-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 30:6 | sefat-emet-deuteronomy-rosh-hashanah-30-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 31:1 | sefat-emet-deuteronomy-rosh-hashanah-31-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 31:2 | sefat-emet-deuteronomy-rosh-hashanah-31-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 31:3 | sefat-emet-deuteronomy-rosh-hashanah-31-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 31:4 | sefat-emet-deuteronomy-rosh-hashanah-31-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 31:5 | sefat-emet-deuteronomy-rosh-hashanah-31-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 32:1 | sefat-emet-deuteronomy-rosh-hashanah-32-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 32:2 | sefat-emet-deuteronomy-rosh-hashanah-32-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 32:3 | sefat-emet-deuteronomy-rosh-hashanah-32-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 32:4 | sefat-emet-deuteronomy-rosh-hashanah-32-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 32:5 | sefat-emet-deuteronomy-rosh-hashanah-32-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 32:6 | sefat-emet-deuteronomy-rosh-hashanah-32-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 33:1 | sefat-emet-deuteronomy-rosh-hashanah-33-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 33:2 | sefat-emet-deuteronomy-rosh-hashanah-33-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 33:3 | sefat-emet-deuteronomy-rosh-hashanah-33-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Rosh HaShanah 33:4 | sefat-emet-deuteronomy-rosh-hashanah-33-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 1:1 | sefat-emet-deuteronomy-shabbat-shuva-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 1:2 | sefat-emet-deuteronomy-shabbat-shuva-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 1:3 | sefat-emet-deuteronomy-shabbat-shuva-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 1:4 | sefat-emet-deuteronomy-shabbat-shuva-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 1:5 | sefat-emet-deuteronomy-shabbat-shuva-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 2:1 | sefat-emet-deuteronomy-shabbat-shuva-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 2:2 | sefat-emet-deuteronomy-shabbat-shuva-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 2:3 | sefat-emet-deuteronomy-shabbat-shuva-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 3:1 | sefat-emet-deuteronomy-shabbat-shuva-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 3:2 | sefat-emet-deuteronomy-shabbat-shuva-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 4:1 | sefat-emet-deuteronomy-shabbat-shuva-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 4:2 | sefat-emet-deuteronomy-shabbat-shuva-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 4:3 | sefat-emet-deuteronomy-shabbat-shuva-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 4:4 | sefat-emet-deuteronomy-shabbat-shuva-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 4:5 | sefat-emet-deuteronomy-shabbat-shuva-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 5:1 | sefat-emet-deuteronomy-shabbat-shuva-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 5:2 | sefat-emet-deuteronomy-shabbat-shuva-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 5:3 | sefat-emet-deuteronomy-shabbat-shuva-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 5:4 | sefat-emet-deuteronomy-shabbat-shuva-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 5:5 | sefat-emet-deuteronomy-shabbat-shuva-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 5:6 | sefat-emet-deuteronomy-shabbat-shuva-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 6:1 | sefat-emet-deuteronomy-shabbat-shuva-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 6:2 | sefat-emet-deuteronomy-shabbat-shuva-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 6:3 | sefat-emet-deuteronomy-shabbat-shuva-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 6:4 | sefat-emet-deuteronomy-shabbat-shuva-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 6:5 | sefat-emet-deuteronomy-shabbat-shuva-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 7:1 | sefat-emet-deuteronomy-shabbat-shuva-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 7:2 | sefat-emet-deuteronomy-shabbat-shuva-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 7:3 | sefat-emet-deuteronomy-shabbat-shuva-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 8:1 | sefat-emet-deuteronomy-shabbat-shuva-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 8:2 | sefat-emet-deuteronomy-shabbat-shuva-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 9:1 | sefat-emet-deuteronomy-shabbat-shuva-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 9:2 | sefat-emet-deuteronomy-shabbat-shuva-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 9:3 | sefat-emet-deuteronomy-shabbat-shuva-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 9:4 | sefat-emet-deuteronomy-shabbat-shuva-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 10:1 | sefat-emet-deuteronomy-shabbat-shuva-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 10:2 | sefat-emet-deuteronomy-shabbat-shuva-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 10:3 | sefat-emet-deuteronomy-shabbat-shuva-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 11:1 | sefat-emet-deuteronomy-shabbat-shuva-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 11:2 | sefat-emet-deuteronomy-shabbat-shuva-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 11:3 | sefat-emet-deuteronomy-shabbat-shuva-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 12:1 | sefat-emet-deuteronomy-shabbat-shuva-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 12:2 | sefat-emet-deuteronomy-shabbat-shuva-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 13:1 | sefat-emet-deuteronomy-shabbat-shuva-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 13:2 | sefat-emet-deuteronomy-shabbat-shuva-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 13:3 | sefat-emet-deuteronomy-shabbat-shuva-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 13:4 | sefat-emet-deuteronomy-shabbat-shuva-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 14:1 | sefat-emet-deuteronomy-shabbat-shuva-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 14:2 | sefat-emet-deuteronomy-shabbat-shuva-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 14:3 | sefat-emet-deuteronomy-shabbat-shuva-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 15:1 | sefat-emet-deuteronomy-shabbat-shuva-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 15:2 | sefat-emet-deuteronomy-shabbat-shuva-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 16:1 | sefat-emet-deuteronomy-shabbat-shuva-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 16:2 | sefat-emet-deuteronomy-shabbat-shuva-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 16:3 | sefat-emet-deuteronomy-shabbat-shuva-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 16:4 | sefat-emet-deuteronomy-shabbat-shuva-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 17:1 | sefat-emet-deuteronomy-shabbat-shuva-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 17:2 | sefat-emet-deuteronomy-shabbat-shuva-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 17:3 | sefat-emet-deuteronomy-shabbat-shuva-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 18:1 | sefat-emet-deuteronomy-shabbat-shuva-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 18:2 | sefat-emet-deuteronomy-shabbat-shuva-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 18:3 | sefat-emet-deuteronomy-shabbat-shuva-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 19:1 | sefat-emet-deuteronomy-shabbat-shuva-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 19:2 | sefat-emet-deuteronomy-shabbat-shuva-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 19:3 | sefat-emet-deuteronomy-shabbat-shuva-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 20:1 | sefat-emet-deuteronomy-shabbat-shuva-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 20:2 | sefat-emet-deuteronomy-shabbat-shuva-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 21:1 | sefat-emet-deuteronomy-shabbat-shuva-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 21:2 | sefat-emet-deuteronomy-shabbat-shuva-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 21:3 | sefat-emet-deuteronomy-shabbat-shuva-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 21:4 | sefat-emet-deuteronomy-shabbat-shuva-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 21:5 | sefat-emet-deuteronomy-shabbat-shuva-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 21:6 | sefat-emet-deuteronomy-shabbat-shuva-21-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 22:1 | sefat-emet-deuteronomy-shabbat-shuva-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 22:2 | sefat-emet-deuteronomy-shabbat-shuva-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 22:3 | sefat-emet-deuteronomy-shabbat-shuva-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 22:4 | sefat-emet-deuteronomy-shabbat-shuva-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 22:5 | sefat-emet-deuteronomy-shabbat-shuva-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 23:1 | sefat-emet-deuteronomy-shabbat-shuva-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Shabbat Shuva 23:2 | sefat-emet-deuteronomy-shabbat-shuva-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 1:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 1:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 1:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 2:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 2:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 2:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 3:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 3:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 4:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 4:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 4:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 4:4 | sefat-emet-deuteronomy-for-the-day-of-atonement-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 5:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 5:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 5:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 6:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 6:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 6:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 6:4 | sefat-emet-deuteronomy-for-the-day-of-atonement-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 7:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 7:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 7:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 8:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 8:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 8:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 9:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 9:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 10:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 10:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 11:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 11:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 11:3 | sefat-emet-deuteronomy-for-the-day-of-atonement-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 11:4 | sefat-emet-deuteronomy-for-the-day-of-atonement-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 11:5 | sefat-emet-deuteronomy-for-the-day-of-atonement-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 12:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 12:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 13:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 13:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 14:1 | sefat-emet-deuteronomy-for-the-day-of-atonement-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, For the Day of Atonement 14:2 | sefat-emet-deuteronomy-for-the-day-of-atonement-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 1:1 | sefat-emet-deuteronomy-haazinu-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 1:2 | sefat-emet-deuteronomy-haazinu-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 1:3 | sefat-emet-deuteronomy-haazinu-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 1:4 | sefat-emet-deuteronomy-haazinu-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 2:1 | sefat-emet-deuteronomy-haazinu-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 2:2 | sefat-emet-deuteronomy-haazinu-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 2:3 | sefat-emet-deuteronomy-haazinu-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 3:1 | sefat-emet-deuteronomy-haazinu-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 3:2 | sefat-emet-deuteronomy-haazinu-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 3:3 | sefat-emet-deuteronomy-haazinu-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 4:1 | sefat-emet-deuteronomy-haazinu-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 4:2 | sefat-emet-deuteronomy-haazinu-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 4:3 | sefat-emet-deuteronomy-haazinu-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 5:1 | sefat-emet-deuteronomy-haazinu-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 5:2 | sefat-emet-deuteronomy-haazinu-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 5:3 | sefat-emet-deuteronomy-haazinu-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 5:4 | sefat-emet-deuteronomy-haazinu-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 6:1 | sefat-emet-deuteronomy-haazinu-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 6:2 | sefat-emet-deuteronomy-haazinu-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 7:1 | sefat-emet-deuteronomy-haazinu-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 7:2 | sefat-emet-deuteronomy-haazinu-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 7:3 | sefat-emet-deuteronomy-haazinu-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 8:1 | sefat-emet-deuteronomy-haazinu-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 8:2 | sefat-emet-deuteronomy-haazinu-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 8:3 | sefat-emet-deuteronomy-haazinu-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 8:4 | sefat-emet-deuteronomy-haazinu-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 9:1 | sefat-emet-deuteronomy-haazinu-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 9:2 | sefat-emet-deuteronomy-haazinu-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 10:1 | sefat-emet-deuteronomy-haazinu-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 10:2 | sefat-emet-deuteronomy-haazinu-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 11:1 | sefat-emet-deuteronomy-haazinu-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 11:2 | sefat-emet-deuteronomy-haazinu-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 11:3 | sefat-emet-deuteronomy-haazinu-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 12:1 | sefat-emet-deuteronomy-haazinu-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Ha'Azinu 12:2 | sefat-emet-deuteronomy-haazinu-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 1:1 | sefat-emet-deuteronomy-sukkot-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 1:2 | sefat-emet-deuteronomy-sukkot-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 1:3 | sefat-emet-deuteronomy-sukkot-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 1:4 | sefat-emet-deuteronomy-sukkot-1-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 1:5 | sefat-emet-deuteronomy-sukkot-1-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 1:6 | sefat-emet-deuteronomy-sukkot-1-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:1 | sefat-emet-deuteronomy-sukkot-2-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:2 | sefat-emet-deuteronomy-sukkot-2-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:3 | sefat-emet-deuteronomy-sukkot-2-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:4 | sefat-emet-deuteronomy-sukkot-2-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:5 | sefat-emet-deuteronomy-sukkot-2-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:6 | sefat-emet-deuteronomy-sukkot-2-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:7 | sefat-emet-deuteronomy-sukkot-2-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:8 | sefat-emet-deuteronomy-sukkot-2-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:9 | sefat-emet-deuteronomy-sukkot-2-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:10 | sefat-emet-deuteronomy-sukkot-2-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:11 | sefat-emet-deuteronomy-sukkot-2-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 2:12 | sefat-emet-deuteronomy-sukkot-2-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:1 | sefat-emet-deuteronomy-sukkot-3-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:2 | sefat-emet-deuteronomy-sukkot-3-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:3 | sefat-emet-deuteronomy-sukkot-3-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:4 | sefat-emet-deuteronomy-sukkot-3-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:5 | sefat-emet-deuteronomy-sukkot-3-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:6 | sefat-emet-deuteronomy-sukkot-3-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:7 | sefat-emet-deuteronomy-sukkot-3-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:8 | sefat-emet-deuteronomy-sukkot-3-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:9 | sefat-emet-deuteronomy-sukkot-3-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 3:10 | sefat-emet-deuteronomy-sukkot-3-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:1 | sefat-emet-deuteronomy-sukkot-4-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:2 | sefat-emet-deuteronomy-sukkot-4-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:3 | sefat-emet-deuteronomy-sukkot-4-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:4 | sefat-emet-deuteronomy-sukkot-4-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:5 | sefat-emet-deuteronomy-sukkot-4-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:6 | sefat-emet-deuteronomy-sukkot-4-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:7 | sefat-emet-deuteronomy-sukkot-4-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:8 | sefat-emet-deuteronomy-sukkot-4-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:9 | sefat-emet-deuteronomy-sukkot-4-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:10 | sefat-emet-deuteronomy-sukkot-4-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 4:11 | sefat-emet-deuteronomy-sukkot-4-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:1 | sefat-emet-deuteronomy-sukkot-5-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:2 | sefat-emet-deuteronomy-sukkot-5-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:3 | sefat-emet-deuteronomy-sukkot-5-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:4 | sefat-emet-deuteronomy-sukkot-5-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:5 | sefat-emet-deuteronomy-sukkot-5-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:6 | sefat-emet-deuteronomy-sukkot-5-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:7 | sefat-emet-deuteronomy-sukkot-5-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:8 | sefat-emet-deuteronomy-sukkot-5-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:9 | sefat-emet-deuteronomy-sukkot-5-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:10 | sefat-emet-deuteronomy-sukkot-5-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:11 | sefat-emet-deuteronomy-sukkot-5-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:12 | sefat-emet-deuteronomy-sukkot-5-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:13 | sefat-emet-deuteronomy-sukkot-5-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:14 | sefat-emet-deuteronomy-sukkot-5-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:15 | sefat-emet-deuteronomy-sukkot-5-15 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 5:16 | sefat-emet-deuteronomy-sukkot-5-16 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:1 | sefat-emet-deuteronomy-sukkot-6-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:2 | sefat-emet-deuteronomy-sukkot-6-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:3 | sefat-emet-deuteronomy-sukkot-6-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:4 | sefat-emet-deuteronomy-sukkot-6-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:5 | sefat-emet-deuteronomy-sukkot-6-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:6 | sefat-emet-deuteronomy-sukkot-6-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:7 | sefat-emet-deuteronomy-sukkot-6-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:8 | sefat-emet-deuteronomy-sukkot-6-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:9 | sefat-emet-deuteronomy-sukkot-6-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 6:10 | sefat-emet-deuteronomy-sukkot-6-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:1 | sefat-emet-deuteronomy-sukkot-7-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:2 | sefat-emet-deuteronomy-sukkot-7-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:3 | sefat-emet-deuteronomy-sukkot-7-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:4 | sefat-emet-deuteronomy-sukkot-7-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:5 | sefat-emet-deuteronomy-sukkot-7-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:6 | sefat-emet-deuteronomy-sukkot-7-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:7 | sefat-emet-deuteronomy-sukkot-7-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:8 | sefat-emet-deuteronomy-sukkot-7-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:9 | sefat-emet-deuteronomy-sukkot-7-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:10 | sefat-emet-deuteronomy-sukkot-7-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 7:11 | sefat-emet-deuteronomy-sukkot-7-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:1 | sefat-emet-deuteronomy-sukkot-8-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:2 | sefat-emet-deuteronomy-sukkot-8-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:3 | sefat-emet-deuteronomy-sukkot-8-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:4 | sefat-emet-deuteronomy-sukkot-8-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:5 | sefat-emet-deuteronomy-sukkot-8-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:6 | sefat-emet-deuteronomy-sukkot-8-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:7 | sefat-emet-deuteronomy-sukkot-8-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:8 | sefat-emet-deuteronomy-sukkot-8-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:9 | sefat-emet-deuteronomy-sukkot-8-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:10 | sefat-emet-deuteronomy-sukkot-8-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 8:11 | sefat-emet-deuteronomy-sukkot-8-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:1 | sefat-emet-deuteronomy-sukkot-9-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:2 | sefat-emet-deuteronomy-sukkot-9-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:3 | sefat-emet-deuteronomy-sukkot-9-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:4 | sefat-emet-deuteronomy-sukkot-9-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:5 | sefat-emet-deuteronomy-sukkot-9-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:6 | sefat-emet-deuteronomy-sukkot-9-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:7 | sefat-emet-deuteronomy-sukkot-9-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:8 | sefat-emet-deuteronomy-sukkot-9-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:9 | sefat-emet-deuteronomy-sukkot-9-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:10 | sefat-emet-deuteronomy-sukkot-9-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:11 | sefat-emet-deuteronomy-sukkot-9-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 9:12 | sefat-emet-deuteronomy-sukkot-9-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 10:1 | sefat-emet-deuteronomy-sukkot-10-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 10:2 | sefat-emet-deuteronomy-sukkot-10-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 10:3 | sefat-emet-deuteronomy-sukkot-10-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 10:4 | sefat-emet-deuteronomy-sukkot-10-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 10:5 | sefat-emet-deuteronomy-sukkot-10-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 10:6 | sefat-emet-deuteronomy-sukkot-10-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 10:7 | sefat-emet-deuteronomy-sukkot-10-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:1 | sefat-emet-deuteronomy-sukkot-11-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:2 | sefat-emet-deuteronomy-sukkot-11-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:3 | sefat-emet-deuteronomy-sukkot-11-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:4 | sefat-emet-deuteronomy-sukkot-11-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:5 | sefat-emet-deuteronomy-sukkot-11-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:6 | sefat-emet-deuteronomy-sukkot-11-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:7 | sefat-emet-deuteronomy-sukkot-11-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:8 | sefat-emet-deuteronomy-sukkot-11-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:9 | sefat-emet-deuteronomy-sukkot-11-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:10 | sefat-emet-deuteronomy-sukkot-11-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:11 | sefat-emet-deuteronomy-sukkot-11-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 11:12 | sefat-emet-deuteronomy-sukkot-11-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:1 | sefat-emet-deuteronomy-sukkot-12-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:2 | sefat-emet-deuteronomy-sukkot-12-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:3 | sefat-emet-deuteronomy-sukkot-12-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:4 | sefat-emet-deuteronomy-sukkot-12-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:5 | sefat-emet-deuteronomy-sukkot-12-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:6 | sefat-emet-deuteronomy-sukkot-12-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:7 | sefat-emet-deuteronomy-sukkot-12-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:8 | sefat-emet-deuteronomy-sukkot-12-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:9 | sefat-emet-deuteronomy-sukkot-12-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:10 | sefat-emet-deuteronomy-sukkot-12-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:11 | sefat-emet-deuteronomy-sukkot-12-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 12:12 | sefat-emet-deuteronomy-sukkot-12-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 13:1 | sefat-emet-deuteronomy-sukkot-13-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 13:2 | sefat-emet-deuteronomy-sukkot-13-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 13:3 | sefat-emet-deuteronomy-sukkot-13-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 13:4 | sefat-emet-deuteronomy-sukkot-13-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 13:5 | sefat-emet-deuteronomy-sukkot-13-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 13:6 | sefat-emet-deuteronomy-sukkot-13-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:1 | sefat-emet-deuteronomy-sukkot-14-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:2 | sefat-emet-deuteronomy-sukkot-14-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:3 | sefat-emet-deuteronomy-sukkot-14-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:4 | sefat-emet-deuteronomy-sukkot-14-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:5 | sefat-emet-deuteronomy-sukkot-14-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:6 | sefat-emet-deuteronomy-sukkot-14-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:7 | sefat-emet-deuteronomy-sukkot-14-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:8 | sefat-emet-deuteronomy-sukkot-14-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:9 | sefat-emet-deuteronomy-sukkot-14-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 14:10 | sefat-emet-deuteronomy-sukkot-14-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 15:1 | sefat-emet-deuteronomy-sukkot-15-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 15:2 | sefat-emet-deuteronomy-sukkot-15-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 15:3 | sefat-emet-deuteronomy-sukkot-15-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 15:4 | sefat-emet-deuteronomy-sukkot-15-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 15:5 | sefat-emet-deuteronomy-sukkot-15-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 15:6 | sefat-emet-deuteronomy-sukkot-15-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:1 | sefat-emet-deuteronomy-sukkot-16-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:2 | sefat-emet-deuteronomy-sukkot-16-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:3 | sefat-emet-deuteronomy-sukkot-16-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:4 | sefat-emet-deuteronomy-sukkot-16-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:5 | sefat-emet-deuteronomy-sukkot-16-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:6 | sefat-emet-deuteronomy-sukkot-16-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:7 | sefat-emet-deuteronomy-sukkot-16-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:8 | sefat-emet-deuteronomy-sukkot-16-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:9 | sefat-emet-deuteronomy-sukkot-16-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:10 | sefat-emet-deuteronomy-sukkot-16-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 16:11 | sefat-emet-deuteronomy-sukkot-16-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:1 | sefat-emet-deuteronomy-sukkot-17-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:2 | sefat-emet-deuteronomy-sukkot-17-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:3 | sefat-emet-deuteronomy-sukkot-17-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:4 | sefat-emet-deuteronomy-sukkot-17-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:5 | sefat-emet-deuteronomy-sukkot-17-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:6 | sefat-emet-deuteronomy-sukkot-17-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:7 | sefat-emet-deuteronomy-sukkot-17-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:8 | sefat-emet-deuteronomy-sukkot-17-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:9 | sefat-emet-deuteronomy-sukkot-17-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:10 | sefat-emet-deuteronomy-sukkot-17-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 17:11 | sefat-emet-deuteronomy-sukkot-17-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:1 | sefat-emet-deuteronomy-sukkot-18-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:2 | sefat-emet-deuteronomy-sukkot-18-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:3 | sefat-emet-deuteronomy-sukkot-18-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:4 | sefat-emet-deuteronomy-sukkot-18-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:5 | sefat-emet-deuteronomy-sukkot-18-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:6 | sefat-emet-deuteronomy-sukkot-18-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:7 | sefat-emet-deuteronomy-sukkot-18-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:8 | sefat-emet-deuteronomy-sukkot-18-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:9 | sefat-emet-deuteronomy-sukkot-18-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:10 | sefat-emet-deuteronomy-sukkot-18-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:11 | sefat-emet-deuteronomy-sukkot-18-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 18:12 | sefat-emet-deuteronomy-sukkot-18-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:1 | sefat-emet-deuteronomy-sukkot-19-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:2 | sefat-emet-deuteronomy-sukkot-19-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:3 | sefat-emet-deuteronomy-sukkot-19-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:4 | sefat-emet-deuteronomy-sukkot-19-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:5 | sefat-emet-deuteronomy-sukkot-19-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:6 | sefat-emet-deuteronomy-sukkot-19-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:7 | sefat-emet-deuteronomy-sukkot-19-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:8 | sefat-emet-deuteronomy-sukkot-19-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:9 | sefat-emet-deuteronomy-sukkot-19-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:10 | sefat-emet-deuteronomy-sukkot-19-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:11 | sefat-emet-deuteronomy-sukkot-19-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:12 | sefat-emet-deuteronomy-sukkot-19-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:13 | sefat-emet-deuteronomy-sukkot-19-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 19:14 | sefat-emet-deuteronomy-sukkot-19-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 20:1 | sefat-emet-deuteronomy-sukkot-20-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 20:2 | sefat-emet-deuteronomy-sukkot-20-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 20:3 | sefat-emet-deuteronomy-sukkot-20-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 20:4 | sefat-emet-deuteronomy-sukkot-20-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 20:5 | sefat-emet-deuteronomy-sukkot-20-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 20:6 | sefat-emet-deuteronomy-sukkot-20-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 21:1 | sefat-emet-deuteronomy-sukkot-21-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 21:2 | sefat-emet-deuteronomy-sukkot-21-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 21:3 | sefat-emet-deuteronomy-sukkot-21-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 21:4 | sefat-emet-deuteronomy-sukkot-21-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 21:5 | sefat-emet-deuteronomy-sukkot-21-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:1 | sefat-emet-deuteronomy-sukkot-22-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:2 | sefat-emet-deuteronomy-sukkot-22-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:3 | sefat-emet-deuteronomy-sukkot-22-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:4 | sefat-emet-deuteronomy-sukkot-22-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:5 | sefat-emet-deuteronomy-sukkot-22-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:6 | sefat-emet-deuteronomy-sukkot-22-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:7 | sefat-emet-deuteronomy-sukkot-22-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:8 | sefat-emet-deuteronomy-sukkot-22-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:9 | sefat-emet-deuteronomy-sukkot-22-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:10 | sefat-emet-deuteronomy-sukkot-22-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:11 | sefat-emet-deuteronomy-sukkot-22-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:12 | sefat-emet-deuteronomy-sukkot-22-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:13 | sefat-emet-deuteronomy-sukkot-22-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 22:14 | sefat-emet-deuteronomy-sukkot-22-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:1 | sefat-emet-deuteronomy-sukkot-23-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:2 | sefat-emet-deuteronomy-sukkot-23-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:3 | sefat-emet-deuteronomy-sukkot-23-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:4 | sefat-emet-deuteronomy-sukkot-23-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:5 | sefat-emet-deuteronomy-sukkot-23-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:6 | sefat-emet-deuteronomy-sukkot-23-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:7 | sefat-emet-deuteronomy-sukkot-23-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 23:8 | sefat-emet-deuteronomy-sukkot-23-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 24:1 | sefat-emet-deuteronomy-sukkot-24-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 24:2 | sefat-emet-deuteronomy-sukkot-24-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 24:3 | sefat-emet-deuteronomy-sukkot-24-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 24:4 | sefat-emet-deuteronomy-sukkot-24-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 24:5 | sefat-emet-deuteronomy-sukkot-24-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 25:1 | sefat-emet-deuteronomy-sukkot-25-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 25:2 | sefat-emet-deuteronomy-sukkot-25-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 25:3 | sefat-emet-deuteronomy-sukkot-25-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 25:4 | sefat-emet-deuteronomy-sukkot-25-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 25:5 | sefat-emet-deuteronomy-sukkot-25-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 25:6 | sefat-emet-deuteronomy-sukkot-25-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 25:7 | sefat-emet-deuteronomy-sukkot-25-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:1 | sefat-emet-deuteronomy-sukkot-26-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:2 | sefat-emet-deuteronomy-sukkot-26-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:3 | sefat-emet-deuteronomy-sukkot-26-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:4 | sefat-emet-deuteronomy-sukkot-26-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:5 | sefat-emet-deuteronomy-sukkot-26-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:6 | sefat-emet-deuteronomy-sukkot-26-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:7 | sefat-emet-deuteronomy-sukkot-26-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:8 | sefat-emet-deuteronomy-sukkot-26-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:9 | sefat-emet-deuteronomy-sukkot-26-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 26:10 | sefat-emet-deuteronomy-sukkot-26-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:1 | sefat-emet-deuteronomy-sukkot-27-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:2 | sefat-emet-deuteronomy-sukkot-27-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:3 | sefat-emet-deuteronomy-sukkot-27-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:4 | sefat-emet-deuteronomy-sukkot-27-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:5 | sefat-emet-deuteronomy-sukkot-27-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:6 | sefat-emet-deuteronomy-sukkot-27-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:7 | sefat-emet-deuteronomy-sukkot-27-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:8 | sefat-emet-deuteronomy-sukkot-27-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:9 | sefat-emet-deuteronomy-sukkot-27-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:10 | sefat-emet-deuteronomy-sukkot-27-10 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:11 | sefat-emet-deuteronomy-sukkot-27-11 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:12 | sefat-emet-deuteronomy-sukkot-27-12 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:13 | sefat-emet-deuteronomy-sukkot-27-13 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 27:14 | sefat-emet-deuteronomy-sukkot-27-14 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:1 | sefat-emet-deuteronomy-sukkot-28-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:2 | sefat-emet-deuteronomy-sukkot-28-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:3 | sefat-emet-deuteronomy-sukkot-28-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:4 | sefat-emet-deuteronomy-sukkot-28-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:5 | sefat-emet-deuteronomy-sukkot-28-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:6 | sefat-emet-deuteronomy-sukkot-28-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:7 | sefat-emet-deuteronomy-sukkot-28-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:8 | sefat-emet-deuteronomy-sukkot-28-8 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 28:9 | sefat-emet-deuteronomy-sukkot-28-9 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 29:1 | sefat-emet-deuteronomy-sukkot-29-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 29:2 | sefat-emet-deuteronomy-sukkot-29-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 29:3 | sefat-emet-deuteronomy-sukkot-29-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 29:4 | sefat-emet-deuteronomy-sukkot-29-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 29:5 | sefat-emet-deuteronomy-sukkot-29-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 29:6 | sefat-emet-deuteronomy-sukkot-29-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 29:7 | sefat-emet-deuteronomy-sukkot-29-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 30:1 | sefat-emet-deuteronomy-sukkot-30-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 30:2 | sefat-emet-deuteronomy-sukkot-30-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 30:3 | sefat-emet-deuteronomy-sukkot-30-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 30:4 | sefat-emet-deuteronomy-sukkot-30-4 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 30:5 | sefat-emet-deuteronomy-sukkot-30-5 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 30:6 | sefat-emet-deuteronomy-sukkot-30-6 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, Sukkot 30:7 | sefat-emet-deuteronomy-sukkot-30-7 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, V'Zot HaBerachah 1:1 | sefat-emet-deuteronomy-vzot-haberachah-1-1 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, V'Zot HaBerachah 1:2 | sefat-emet-deuteronomy-vzot-haberachah-1-2 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, V'Zot HaBerachah 1:3 | sefat-emet-deuteronomy-vzot-haberachah-1-3 |  |  | not_done |  |
+| sefat-emet | Sefat Emet | Sefat Emet, Deuteronomy, V'Zot HaBerachah 1:4 | sefat-emet-deuteronomy-vzot-haberachah-1-4 |  |  | not_done |  |

@@ -1,0 +1,1630 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:1 | tiferet-shlomo-on-torah-bereshit-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:2 | tiferet-shlomo-on-torah-bereshit-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:3 | tiferet-shlomo-on-torah-bereshit-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:4 | tiferet-shlomo-on-torah-bereshit-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:5 | tiferet-shlomo-on-torah-bereshit-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:6 | tiferet-shlomo-on-torah-bereshit-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:7 | tiferet-shlomo-on-torah-bereshit-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:8 | tiferet-shlomo-on-torah-bereshit-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:9 | tiferet-shlomo-on-torah-bereshit-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:10 | tiferet-shlomo-on-torah-bereshit-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:11 | tiferet-shlomo-on-torah-bereshit-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:12 | tiferet-shlomo-on-torah-bereshit-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:13 | tiferet-shlomo-on-torah-bereshit-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:14 | tiferet-shlomo-on-torah-bereshit-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:15 | tiferet-shlomo-on-torah-bereshit-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:16 | tiferet-shlomo-on-torah-bereshit-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:17 | tiferet-shlomo-on-torah-bereshit-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:18 | tiferet-shlomo-on-torah-bereshit-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:19 | tiferet-shlomo-on-torah-bereshit-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:20 | tiferet-shlomo-on-torah-bereshit-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:21 | tiferet-shlomo-on-torah-bereshit-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:22 | tiferet-shlomo-on-torah-bereshit-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:23 | tiferet-shlomo-on-torah-bereshit-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:24 | tiferet-shlomo-on-torah-bereshit-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:25 | tiferet-shlomo-on-torah-bereshit-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:26 | tiferet-shlomo-on-torah-bereshit-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:27 | tiferet-shlomo-on-torah-bereshit-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:28 | tiferet-shlomo-on-torah-bereshit-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:29 | tiferet-shlomo-on-torah-bereshit-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:30 | tiferet-shlomo-on-torah-bereshit-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:31 | tiferet-shlomo-on-torah-bereshit-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:32 | tiferet-shlomo-on-torah-bereshit-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:33 | tiferet-shlomo-on-torah-bereshit-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:34 | tiferet-shlomo-on-torah-bereshit-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:35 | tiferet-shlomo-on-torah-bereshit-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:36 | tiferet-shlomo-on-torah-bereshit-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:37 | tiferet-shlomo-on-torah-bereshit-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:38 | tiferet-shlomo-on-torah-bereshit-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:39 | tiferet-shlomo-on-torah-bereshit-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:40 | tiferet-shlomo-on-torah-bereshit-40 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:41 | tiferet-shlomo-on-torah-bereshit-41 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:42 | tiferet-shlomo-on-torah-bereshit-42 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:43 | tiferet-shlomo-on-torah-bereshit-43 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:44 | tiferet-shlomo-on-torah-bereshit-44 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:45 | tiferet-shlomo-on-torah-bereshit-45 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:46 | tiferet-shlomo-on-torah-bereshit-46 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:47 | tiferet-shlomo-on-torah-bereshit-47 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bereshit:48 | tiferet-shlomo-on-torah-bereshit-48 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:1 | tiferet-shlomo-on-torah-noach-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:2 | tiferet-shlomo-on-torah-noach-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:3 | tiferet-shlomo-on-torah-noach-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:4 | tiferet-shlomo-on-torah-noach-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:5 | tiferet-shlomo-on-torah-noach-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:6 | tiferet-shlomo-on-torah-noach-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:7 | tiferet-shlomo-on-torah-noach-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:8 | tiferet-shlomo-on-torah-noach-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:9 | tiferet-shlomo-on-torah-noach-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:10 | tiferet-shlomo-on-torah-noach-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:11 | tiferet-shlomo-on-torah-noach-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:12 | tiferet-shlomo-on-torah-noach-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:13 | tiferet-shlomo-on-torah-noach-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:14 | tiferet-shlomo-on-torah-noach-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:15 | tiferet-shlomo-on-torah-noach-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:16 | tiferet-shlomo-on-torah-noach-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:17 | tiferet-shlomo-on-torah-noach-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Noach:18 | tiferet-shlomo-on-torah-noach-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:1 | tiferet-shlomo-on-torah-lech-lecha-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:2 | tiferet-shlomo-on-torah-lech-lecha-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:3 | tiferet-shlomo-on-torah-lech-lecha-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:4 | tiferet-shlomo-on-torah-lech-lecha-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:5 | tiferet-shlomo-on-torah-lech-lecha-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:6 | tiferet-shlomo-on-torah-lech-lecha-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:7 | tiferet-shlomo-on-torah-lech-lecha-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:8 | tiferet-shlomo-on-torah-lech-lecha-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:9 | tiferet-shlomo-on-torah-lech-lecha-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:10 | tiferet-shlomo-on-torah-lech-lecha-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:11 | tiferet-shlomo-on-torah-lech-lecha-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:12 | tiferet-shlomo-on-torah-lech-lecha-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:13 | tiferet-shlomo-on-torah-lech-lecha-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:14 | tiferet-shlomo-on-torah-lech-lecha-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:15 | tiferet-shlomo-on-torah-lech-lecha-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:16 | tiferet-shlomo-on-torah-lech-lecha-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:17 | tiferet-shlomo-on-torah-lech-lecha-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:18 | tiferet-shlomo-on-torah-lech-lecha-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:19 | tiferet-shlomo-on-torah-lech-lecha-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:20 | tiferet-shlomo-on-torah-lech-lecha-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:21 | tiferet-shlomo-on-torah-lech-lecha-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:22 | tiferet-shlomo-on-torah-lech-lecha-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:23 | tiferet-shlomo-on-torah-lech-lecha-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:24 | tiferet-shlomo-on-torah-lech-lecha-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:25 | tiferet-shlomo-on-torah-lech-lecha-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:26 | tiferet-shlomo-on-torah-lech-lecha-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:27 | tiferet-shlomo-on-torah-lech-lecha-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:28 | tiferet-shlomo-on-torah-lech-lecha-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:29 | tiferet-shlomo-on-torah-lech-lecha-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:30 | tiferet-shlomo-on-torah-lech-lecha-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:31 | tiferet-shlomo-on-torah-lech-lecha-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:32 | tiferet-shlomo-on-torah-lech-lecha-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Lech Lecha:33 | tiferet-shlomo-on-torah-lech-lecha-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:1 | tiferet-shlomo-on-torah-vayera-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:2 | tiferet-shlomo-on-torah-vayera-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:3 | tiferet-shlomo-on-torah-vayera-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:4 | tiferet-shlomo-on-torah-vayera-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:5 | tiferet-shlomo-on-torah-vayera-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:6 | tiferet-shlomo-on-torah-vayera-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:7 | tiferet-shlomo-on-torah-vayera-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:8 | tiferet-shlomo-on-torah-vayera-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:9 | tiferet-shlomo-on-torah-vayera-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:10 | tiferet-shlomo-on-torah-vayera-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:11 | tiferet-shlomo-on-torah-vayera-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:12 | tiferet-shlomo-on-torah-vayera-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:13 | tiferet-shlomo-on-torah-vayera-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:14 | tiferet-shlomo-on-torah-vayera-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:15 | tiferet-shlomo-on-torah-vayera-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:16 | tiferet-shlomo-on-torah-vayera-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:17 | tiferet-shlomo-on-torah-vayera-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:18 | tiferet-shlomo-on-torah-vayera-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:19 | tiferet-shlomo-on-torah-vayera-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:20 | tiferet-shlomo-on-torah-vayera-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:21 | tiferet-shlomo-on-torah-vayera-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:22 | tiferet-shlomo-on-torah-vayera-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:23 | tiferet-shlomo-on-torah-vayera-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:24 | tiferet-shlomo-on-torah-vayera-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:25 | tiferet-shlomo-on-torah-vayera-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:26 | tiferet-shlomo-on-torah-vayera-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:27 | tiferet-shlomo-on-torah-vayera-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:28 | tiferet-shlomo-on-torah-vayera-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:29 | tiferet-shlomo-on-torah-vayera-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:30 | tiferet-shlomo-on-torah-vayera-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:31 | tiferet-shlomo-on-torah-vayera-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:32 | tiferet-shlomo-on-torah-vayera-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:33 | tiferet-shlomo-on-torah-vayera-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:34 | tiferet-shlomo-on-torah-vayera-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:35 | tiferet-shlomo-on-torah-vayera-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:36 | tiferet-shlomo-on-torah-vayera-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:37 | tiferet-shlomo-on-torah-vayera-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:38 | tiferet-shlomo-on-torah-vayera-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayera:39 | tiferet-shlomo-on-torah-vayera-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:1 | tiferet-shlomo-on-torah-chayei-sara-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:2 | tiferet-shlomo-on-torah-chayei-sara-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:3 | tiferet-shlomo-on-torah-chayei-sara-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:4 | tiferet-shlomo-on-torah-chayei-sara-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:5 | tiferet-shlomo-on-torah-chayei-sara-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:6 | tiferet-shlomo-on-torah-chayei-sara-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:7 | tiferet-shlomo-on-torah-chayei-sara-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:8 | tiferet-shlomo-on-torah-chayei-sara-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:9 | tiferet-shlomo-on-torah-chayei-sara-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:10 | tiferet-shlomo-on-torah-chayei-sara-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:11 | tiferet-shlomo-on-torah-chayei-sara-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:12 | tiferet-shlomo-on-torah-chayei-sara-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:13 | tiferet-shlomo-on-torah-chayei-sara-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:14 | tiferet-shlomo-on-torah-chayei-sara-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:15 | tiferet-shlomo-on-torah-chayei-sara-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:16 | tiferet-shlomo-on-torah-chayei-sara-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:17 | tiferet-shlomo-on-torah-chayei-sara-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:18 | tiferet-shlomo-on-torah-chayei-sara-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:19 | tiferet-shlomo-on-torah-chayei-sara-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:20 | tiferet-shlomo-on-torah-chayei-sara-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:21 | tiferet-shlomo-on-torah-chayei-sara-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:22 | tiferet-shlomo-on-torah-chayei-sara-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:23 | tiferet-shlomo-on-torah-chayei-sara-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:24 | tiferet-shlomo-on-torah-chayei-sara-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:25 | tiferet-shlomo-on-torah-chayei-sara-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:26 | tiferet-shlomo-on-torah-chayei-sara-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:27 | tiferet-shlomo-on-torah-chayei-sara-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chayei Sara:28 | tiferet-shlomo-on-torah-chayei-sara-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:1 | tiferet-shlomo-on-torah-toldot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:2 | tiferet-shlomo-on-torah-toldot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:3 | tiferet-shlomo-on-torah-toldot-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:4 | tiferet-shlomo-on-torah-toldot-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:5 | tiferet-shlomo-on-torah-toldot-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:6 | tiferet-shlomo-on-torah-toldot-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:7 | tiferet-shlomo-on-torah-toldot-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:8 | tiferet-shlomo-on-torah-toldot-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:9 | tiferet-shlomo-on-torah-toldot-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:10 | tiferet-shlomo-on-torah-toldot-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:11 | tiferet-shlomo-on-torah-toldot-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:12 | tiferet-shlomo-on-torah-toldot-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:13 | tiferet-shlomo-on-torah-toldot-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:14 | tiferet-shlomo-on-torah-toldot-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:15 | tiferet-shlomo-on-torah-toldot-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:16 | tiferet-shlomo-on-torah-toldot-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:17 | tiferet-shlomo-on-torah-toldot-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:18 | tiferet-shlomo-on-torah-toldot-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:19 | tiferet-shlomo-on-torah-toldot-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:20 | tiferet-shlomo-on-torah-toldot-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:21 | tiferet-shlomo-on-torah-toldot-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:22 | tiferet-shlomo-on-torah-toldot-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:23 | tiferet-shlomo-on-torah-toldot-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:24 | tiferet-shlomo-on-torah-toldot-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:25 | tiferet-shlomo-on-torah-toldot-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:26 | tiferet-shlomo-on-torah-toldot-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:27 | tiferet-shlomo-on-torah-toldot-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:28 | tiferet-shlomo-on-torah-toldot-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:29 | tiferet-shlomo-on-torah-toldot-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:30 | tiferet-shlomo-on-torah-toldot-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:31 | tiferet-shlomo-on-torah-toldot-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:32 | tiferet-shlomo-on-torah-toldot-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Toldot:33 | tiferet-shlomo-on-torah-toldot-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:1 | tiferet-shlomo-on-torah-vayetzei-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:2 | tiferet-shlomo-on-torah-vayetzei-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:3 | tiferet-shlomo-on-torah-vayetzei-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:4 | tiferet-shlomo-on-torah-vayetzei-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:5 | tiferet-shlomo-on-torah-vayetzei-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:6 | tiferet-shlomo-on-torah-vayetzei-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:7 | tiferet-shlomo-on-torah-vayetzei-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:8 | tiferet-shlomo-on-torah-vayetzei-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:9 | tiferet-shlomo-on-torah-vayetzei-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:10 | tiferet-shlomo-on-torah-vayetzei-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:11 | tiferet-shlomo-on-torah-vayetzei-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:12 | tiferet-shlomo-on-torah-vayetzei-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:13 | tiferet-shlomo-on-torah-vayetzei-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:14 | tiferet-shlomo-on-torah-vayetzei-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:15 | tiferet-shlomo-on-torah-vayetzei-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:16 | tiferet-shlomo-on-torah-vayetzei-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:17 | tiferet-shlomo-on-torah-vayetzei-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:18 | tiferet-shlomo-on-torah-vayetzei-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:19 | tiferet-shlomo-on-torah-vayetzei-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:20 | tiferet-shlomo-on-torah-vayetzei-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:21 | tiferet-shlomo-on-torah-vayetzei-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:22 | tiferet-shlomo-on-torah-vayetzei-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:23 | tiferet-shlomo-on-torah-vayetzei-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayetzei:24 | tiferet-shlomo-on-torah-vayetzei-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:1 | tiferet-shlomo-on-torah-vayishlach-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:2 | tiferet-shlomo-on-torah-vayishlach-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:3 | tiferet-shlomo-on-torah-vayishlach-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:4 | tiferet-shlomo-on-torah-vayishlach-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:5 | tiferet-shlomo-on-torah-vayishlach-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:6 | tiferet-shlomo-on-torah-vayishlach-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:7 | tiferet-shlomo-on-torah-vayishlach-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:8 | tiferet-shlomo-on-torah-vayishlach-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:9 | tiferet-shlomo-on-torah-vayishlach-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:10 | tiferet-shlomo-on-torah-vayishlach-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayishlach:11 | tiferet-shlomo-on-torah-vayishlach-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:1 | tiferet-shlomo-on-torah-vayeshev-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:2 | tiferet-shlomo-on-torah-vayeshev-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:3 | tiferet-shlomo-on-torah-vayeshev-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:4 | tiferet-shlomo-on-torah-vayeshev-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:5 | tiferet-shlomo-on-torah-vayeshev-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:6 | tiferet-shlomo-on-torah-vayeshev-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:7 | tiferet-shlomo-on-torah-vayeshev-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:8 | tiferet-shlomo-on-torah-vayeshev-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:9 | tiferet-shlomo-on-torah-vayeshev-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:10 | tiferet-shlomo-on-torah-vayeshev-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:11 | tiferet-shlomo-on-torah-vayeshev-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:12 | tiferet-shlomo-on-torah-vayeshev-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:13 | tiferet-shlomo-on-torah-vayeshev-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:14 | tiferet-shlomo-on-torah-vayeshev-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:15 | tiferet-shlomo-on-torah-vayeshev-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:16 | tiferet-shlomo-on-torah-vayeshev-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:17 | tiferet-shlomo-on-torah-vayeshev-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:18 | tiferet-shlomo-on-torah-vayeshev-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:19 | tiferet-shlomo-on-torah-vayeshev-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:20 | tiferet-shlomo-on-torah-vayeshev-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:21 | tiferet-shlomo-on-torah-vayeshev-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:22 | tiferet-shlomo-on-torah-vayeshev-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeshev:23 | tiferet-shlomo-on-torah-vayeshev-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:1 | tiferet-shlomo-on-torah-miketz-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:2 | tiferet-shlomo-on-torah-miketz-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:3 | tiferet-shlomo-on-torah-miketz-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:4 | tiferet-shlomo-on-torah-miketz-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:5 | tiferet-shlomo-on-torah-miketz-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:6 | tiferet-shlomo-on-torah-miketz-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:7 | tiferet-shlomo-on-torah-miketz-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:8 | tiferet-shlomo-on-torah-miketz-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:9 | tiferet-shlomo-on-torah-miketz-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:10 | tiferet-shlomo-on-torah-miketz-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:11 | tiferet-shlomo-on-torah-miketz-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:12 | tiferet-shlomo-on-torah-miketz-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:13 | tiferet-shlomo-on-torah-miketz-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:14 | tiferet-shlomo-on-torah-miketz-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:15 | tiferet-shlomo-on-torah-miketz-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:16 | tiferet-shlomo-on-torah-miketz-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:17 | tiferet-shlomo-on-torah-miketz-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:18 | tiferet-shlomo-on-torah-miketz-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:19 | tiferet-shlomo-on-torah-miketz-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Miketz:20 | tiferet-shlomo-on-torah-miketz-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:1 | tiferet-shlomo-on-torah-vayechi-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:2 | tiferet-shlomo-on-torah-vayechi-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:3 | tiferet-shlomo-on-torah-vayechi-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:4 | tiferet-shlomo-on-torah-vayechi-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:5 | tiferet-shlomo-on-torah-vayechi-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:6 | tiferet-shlomo-on-torah-vayechi-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:7 | tiferet-shlomo-on-torah-vayechi-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:8 | tiferet-shlomo-on-torah-vayechi-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:9 | tiferet-shlomo-on-torah-vayechi-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:10 | tiferet-shlomo-on-torah-vayechi-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:11 | tiferet-shlomo-on-torah-vayechi-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:12 | tiferet-shlomo-on-torah-vayechi-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:13 | tiferet-shlomo-on-torah-vayechi-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:14 | tiferet-shlomo-on-torah-vayechi-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:15 | tiferet-shlomo-on-torah-vayechi-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:16 | tiferet-shlomo-on-torah-vayechi-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayechi:17 | tiferet-shlomo-on-torah-vayechi-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:1 | tiferet-shlomo-on-torah-shemot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:2 | tiferet-shlomo-on-torah-shemot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:3 | tiferet-shlomo-on-torah-shemot-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:4 | tiferet-shlomo-on-torah-shemot-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:5 | tiferet-shlomo-on-torah-shemot-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:6 | tiferet-shlomo-on-torah-shemot-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:7 | tiferet-shlomo-on-torah-shemot-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:8 | tiferet-shlomo-on-torah-shemot-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:9 | tiferet-shlomo-on-torah-shemot-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:10 | tiferet-shlomo-on-torah-shemot-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:11 | tiferet-shlomo-on-torah-shemot-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:12 | tiferet-shlomo-on-torah-shemot-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:13 | tiferet-shlomo-on-torah-shemot-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:14 | tiferet-shlomo-on-torah-shemot-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:15 | tiferet-shlomo-on-torah-shemot-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:16 | tiferet-shlomo-on-torah-shemot-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:17 | tiferet-shlomo-on-torah-shemot-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:18 | tiferet-shlomo-on-torah-shemot-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:19 | tiferet-shlomo-on-torah-shemot-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:20 | tiferet-shlomo-on-torah-shemot-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:21 | tiferet-shlomo-on-torah-shemot-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:22 | tiferet-shlomo-on-torah-shemot-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:23 | tiferet-shlomo-on-torah-shemot-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:24 | tiferet-shlomo-on-torah-shemot-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:25 | tiferet-shlomo-on-torah-shemot-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:26 | tiferet-shlomo-on-torah-shemot-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:27 | tiferet-shlomo-on-torah-shemot-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:28 | tiferet-shlomo-on-torah-shemot-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:29 | tiferet-shlomo-on-torah-shemot-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:30 | tiferet-shlomo-on-torah-shemot-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shemot:31 | tiferet-shlomo-on-torah-shemot-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:1 | tiferet-shlomo-on-torah-vaera-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:2 | tiferet-shlomo-on-torah-vaera-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:3 | tiferet-shlomo-on-torah-vaera-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:4 | tiferet-shlomo-on-torah-vaera-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:5 | tiferet-shlomo-on-torah-vaera-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:6 | tiferet-shlomo-on-torah-vaera-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:7 | tiferet-shlomo-on-torah-vaera-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:8 | tiferet-shlomo-on-torah-vaera-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:9 | tiferet-shlomo-on-torah-vaera-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaera:10 | tiferet-shlomo-on-torah-vaera-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bo:1 | tiferet-shlomo-on-torah-bo-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bo:2 | tiferet-shlomo-on-torah-bo-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bo:3 | tiferet-shlomo-on-torah-bo-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bo:4 | tiferet-shlomo-on-torah-bo-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bo:5 | tiferet-shlomo-on-torah-bo-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bo:6 | tiferet-shlomo-on-torah-bo-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:1 | tiferet-shlomo-on-torah-beshalach-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:2 | tiferet-shlomo-on-torah-beshalach-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:3 | tiferet-shlomo-on-torah-beshalach-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:4 | tiferet-shlomo-on-torah-beshalach-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:5 | tiferet-shlomo-on-torah-beshalach-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:6 | tiferet-shlomo-on-torah-beshalach-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:7 | tiferet-shlomo-on-torah-beshalach-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:8 | tiferet-shlomo-on-torah-beshalach-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:9 | tiferet-shlomo-on-torah-beshalach-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:10 | tiferet-shlomo-on-torah-beshalach-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:11 | tiferet-shlomo-on-torah-beshalach-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:12 | tiferet-shlomo-on-torah-beshalach-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:13 | tiferet-shlomo-on-torah-beshalach-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:14 | tiferet-shlomo-on-torah-beshalach-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:15 | tiferet-shlomo-on-torah-beshalach-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:16 | tiferet-shlomo-on-torah-beshalach-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:17 | tiferet-shlomo-on-torah-beshalach-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:18 | tiferet-shlomo-on-torah-beshalach-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:19 | tiferet-shlomo-on-torah-beshalach-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:20 | tiferet-shlomo-on-torah-beshalach-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:21 | tiferet-shlomo-on-torah-beshalach-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:22 | tiferet-shlomo-on-torah-beshalach-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:23 | tiferet-shlomo-on-torah-beshalach-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:24 | tiferet-shlomo-on-torah-beshalach-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:25 | tiferet-shlomo-on-torah-beshalach-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:26 | tiferet-shlomo-on-torah-beshalach-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:27 | tiferet-shlomo-on-torah-beshalach-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:28 | tiferet-shlomo-on-torah-beshalach-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:29 | tiferet-shlomo-on-torah-beshalach-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:30 | tiferet-shlomo-on-torah-beshalach-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:31 | tiferet-shlomo-on-torah-beshalach-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:32 | tiferet-shlomo-on-torah-beshalach-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:33 | tiferet-shlomo-on-torah-beshalach-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:34 | tiferet-shlomo-on-torah-beshalach-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beshalach:35 | tiferet-shlomo-on-torah-beshalach-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:1 | tiferet-shlomo-on-torah-yitro-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:2 | tiferet-shlomo-on-torah-yitro-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:3 | tiferet-shlomo-on-torah-yitro-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:4 | tiferet-shlomo-on-torah-yitro-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:5 | tiferet-shlomo-on-torah-yitro-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:6 | tiferet-shlomo-on-torah-yitro-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:7 | tiferet-shlomo-on-torah-yitro-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:8 | tiferet-shlomo-on-torah-yitro-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:9 | tiferet-shlomo-on-torah-yitro-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:10 | tiferet-shlomo-on-torah-yitro-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:11 | tiferet-shlomo-on-torah-yitro-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:12 | tiferet-shlomo-on-torah-yitro-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:13 | tiferet-shlomo-on-torah-yitro-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:14 | tiferet-shlomo-on-torah-yitro-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:15 | tiferet-shlomo-on-torah-yitro-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:16 | tiferet-shlomo-on-torah-yitro-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:17 | tiferet-shlomo-on-torah-yitro-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:18 | tiferet-shlomo-on-torah-yitro-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:19 | tiferet-shlomo-on-torah-yitro-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Yitro:20 | tiferet-shlomo-on-torah-yitro-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:1 | tiferet-shlomo-on-torah-mishpatim-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:2 | tiferet-shlomo-on-torah-mishpatim-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:3 | tiferet-shlomo-on-torah-mishpatim-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:4 | tiferet-shlomo-on-torah-mishpatim-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:5 | tiferet-shlomo-on-torah-mishpatim-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:6 | tiferet-shlomo-on-torah-mishpatim-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:7 | tiferet-shlomo-on-torah-mishpatim-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:8 | tiferet-shlomo-on-torah-mishpatim-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:9 | tiferet-shlomo-on-torah-mishpatim-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:10 | tiferet-shlomo-on-torah-mishpatim-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Mishpatim:11 | tiferet-shlomo-on-torah-mishpatim-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:1 | tiferet-shlomo-on-torah-terumah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:2 | tiferet-shlomo-on-torah-terumah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:3 | tiferet-shlomo-on-torah-terumah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:4 | tiferet-shlomo-on-torah-terumah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:5 | tiferet-shlomo-on-torah-terumah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:6 | tiferet-shlomo-on-torah-terumah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:7 | tiferet-shlomo-on-torah-terumah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:8 | tiferet-shlomo-on-torah-terumah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:9 | tiferet-shlomo-on-torah-terumah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Terumah:10 | tiferet-shlomo-on-torah-terumah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tetzaveh:1 | tiferet-shlomo-on-torah-tetzaveh-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tetzaveh:2 | tiferet-shlomo-on-torah-tetzaveh-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tetzaveh:3 | tiferet-shlomo-on-torah-tetzaveh-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tetzaveh:4 | tiferet-shlomo-on-torah-tetzaveh-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tetzaveh:5 | tiferet-shlomo-on-torah-tetzaveh-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tetzaveh:6 | tiferet-shlomo-on-torah-tetzaveh-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Parashat Shekalim:1 | tiferet-shlomo-on-torah-parashat-shekalim-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Parashat Shekalim:2 | tiferet-shlomo-on-torah-parashat-shekalim-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Parashat Zachor:1 | tiferet-shlomo-on-torah-parashat-zachor-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:1 | tiferet-shlomo-on-torah-ki-tisa-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:2 | tiferet-shlomo-on-torah-ki-tisa-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:3 | tiferet-shlomo-on-torah-ki-tisa-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:4 | tiferet-shlomo-on-torah-ki-tisa-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:5 | tiferet-shlomo-on-torah-ki-tisa-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:6 | tiferet-shlomo-on-torah-ki-tisa-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:7 | tiferet-shlomo-on-torah-ki-tisa-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:8 | tiferet-shlomo-on-torah-ki-tisa-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:9 | tiferet-shlomo-on-torah-ki-tisa-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:10 | tiferet-shlomo-on-torah-ki-tisa-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:11 | tiferet-shlomo-on-torah-ki-tisa-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:12 | tiferet-shlomo-on-torah-ki-tisa-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:13 | tiferet-shlomo-on-torah-ki-tisa-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:14 | tiferet-shlomo-on-torah-ki-tisa-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:15 | tiferet-shlomo-on-torah-ki-tisa-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:16 | tiferet-shlomo-on-torah-ki-tisa-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:17 | tiferet-shlomo-on-torah-ki-tisa-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:18 | tiferet-shlomo-on-torah-ki-tisa-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:19 | tiferet-shlomo-on-torah-ki-tisa-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:20 | tiferet-shlomo-on-torah-ki-tisa-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:21 | tiferet-shlomo-on-torah-ki-tisa-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:22 | tiferet-shlomo-on-torah-ki-tisa-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tisa:23 | tiferet-shlomo-on-torah-ki-tisa-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:1 | tiferet-shlomo-on-torah-vayakhel-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:2 | tiferet-shlomo-on-torah-vayakhel-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:3 | tiferet-shlomo-on-torah-vayakhel-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:4 | tiferet-shlomo-on-torah-vayakhel-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:5 | tiferet-shlomo-on-torah-vayakhel-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:6 | tiferet-shlomo-on-torah-vayakhel-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:7 | tiferet-shlomo-on-torah-vayakhel-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:8 | tiferet-shlomo-on-torah-vayakhel-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:9 | tiferet-shlomo-on-torah-vayakhel-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayakhel:10 | tiferet-shlomo-on-torah-vayakhel-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pekudei:1 | tiferet-shlomo-on-torah-pekudei-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pekudei:2 | tiferet-shlomo-on-torah-pekudei-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pekudei:3 | tiferet-shlomo-on-torah-pekudei-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pekudei:4 | tiferet-shlomo-on-torah-pekudei-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pekudei:5 | tiferet-shlomo-on-torah-pekudei-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pekudei:6 | tiferet-shlomo-on-torah-pekudei-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pekudei:7 | tiferet-shlomo-on-torah-pekudei-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:1 | tiferet-shlomo-on-torah-vayikra-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:2 | tiferet-shlomo-on-torah-vayikra-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:3 | tiferet-shlomo-on-torah-vayikra-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:4 | tiferet-shlomo-on-torah-vayikra-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:5 | tiferet-shlomo-on-torah-vayikra-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:6 | tiferet-shlomo-on-torah-vayikra-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:7 | tiferet-shlomo-on-torah-vayikra-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:8 | tiferet-shlomo-on-torah-vayikra-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:9 | tiferet-shlomo-on-torah-vayikra-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:10 | tiferet-shlomo-on-torah-vayikra-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:11 | tiferet-shlomo-on-torah-vayikra-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:12 | tiferet-shlomo-on-torah-vayikra-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayikra:13 | tiferet-shlomo-on-torah-vayikra-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tzav:1 | tiferet-shlomo-on-torah-tzav-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tzav:2 | tiferet-shlomo-on-torah-tzav-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tzav:3 | tiferet-shlomo-on-torah-tzav-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tzav:4 | tiferet-shlomo-on-torah-tzav-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tzav:5 | tiferet-shlomo-on-torah-tzav-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:1 | tiferet-shlomo-on-torah-shmini-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:2 | tiferet-shlomo-on-torah-shmini-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:3 | tiferet-shlomo-on-torah-shmini-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:4 | tiferet-shlomo-on-torah-shmini-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:5 | tiferet-shlomo-on-torah-shmini-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:6 | tiferet-shlomo-on-torah-shmini-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:7 | tiferet-shlomo-on-torah-shmini-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:8 | tiferet-shlomo-on-torah-shmini-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:9 | tiferet-shlomo-on-torah-shmini-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:10 | tiferet-shlomo-on-torah-shmini-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:11 | tiferet-shlomo-on-torah-shmini-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:12 | tiferet-shlomo-on-torah-shmini-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shmini:13 | tiferet-shlomo-on-torah-shmini-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:1 | tiferet-shlomo-on-torah-tazria-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:2 | tiferet-shlomo-on-torah-tazria-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:3 | tiferet-shlomo-on-torah-tazria-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:4 | tiferet-shlomo-on-torah-tazria-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:5 | tiferet-shlomo-on-torah-tazria-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:6 | tiferet-shlomo-on-torah-tazria-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:7 | tiferet-shlomo-on-torah-tazria-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Tazria:8 | tiferet-shlomo-on-torah-tazria-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:1 | tiferet-shlomo-on-torah-metzora-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:2 | tiferet-shlomo-on-torah-metzora-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:3 | tiferet-shlomo-on-torah-metzora-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:4 | tiferet-shlomo-on-torah-metzora-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:5 | tiferet-shlomo-on-torah-metzora-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:6 | tiferet-shlomo-on-torah-metzora-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:7 | tiferet-shlomo-on-torah-metzora-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:8 | tiferet-shlomo-on-torah-metzora-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Metzora:9 | tiferet-shlomo-on-torah-metzora-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:1 | tiferet-shlomo-on-torah-achrei-mot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:2 | tiferet-shlomo-on-torah-achrei-mot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:3 | tiferet-shlomo-on-torah-achrei-mot-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:4 | tiferet-shlomo-on-torah-achrei-mot-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:5 | tiferet-shlomo-on-torah-achrei-mot-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:6 | tiferet-shlomo-on-torah-achrei-mot-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:7 | tiferet-shlomo-on-torah-achrei-mot-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Achrei Mot:8 | tiferet-shlomo-on-torah-achrei-mot-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:1 | tiferet-shlomo-on-torah-kedoshim-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:2 | tiferet-shlomo-on-torah-kedoshim-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:3 | tiferet-shlomo-on-torah-kedoshim-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:4 | tiferet-shlomo-on-torah-kedoshim-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:5 | tiferet-shlomo-on-torah-kedoshim-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:6 | tiferet-shlomo-on-torah-kedoshim-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:7 | tiferet-shlomo-on-torah-kedoshim-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:8 | tiferet-shlomo-on-torah-kedoshim-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:9 | tiferet-shlomo-on-torah-kedoshim-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Kedoshim:10 | tiferet-shlomo-on-torah-kedoshim-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Emor:1 | tiferet-shlomo-on-torah-emor-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Emor:2 | tiferet-shlomo-on-torah-emor-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Emor:3 | tiferet-shlomo-on-torah-emor-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Emor:4 | tiferet-shlomo-on-torah-emor-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Emor:5 | tiferet-shlomo-on-torah-emor-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Emor:6 | tiferet-shlomo-on-torah-emor-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Emor:7 | tiferet-shlomo-on-torah-emor-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:1 | tiferet-shlomo-on-torah-behar-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:2 | tiferet-shlomo-on-torah-behar-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:3 | tiferet-shlomo-on-torah-behar-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:4 | tiferet-shlomo-on-torah-behar-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:5 | tiferet-shlomo-on-torah-behar-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:6 | tiferet-shlomo-on-torah-behar-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:7 | tiferet-shlomo-on-torah-behar-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:8 | tiferet-shlomo-on-torah-behar-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:9 | tiferet-shlomo-on-torah-behar-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Behar:10 | tiferet-shlomo-on-torah-behar-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:1 | tiferet-shlomo-on-torah-bechukotai-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:2 | tiferet-shlomo-on-torah-bechukotai-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:3 | tiferet-shlomo-on-torah-bechukotai-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:4 | tiferet-shlomo-on-torah-bechukotai-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:5 | tiferet-shlomo-on-torah-bechukotai-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:6 | tiferet-shlomo-on-torah-bechukotai-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:7 | tiferet-shlomo-on-torah-bechukotai-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:8 | tiferet-shlomo-on-torah-bechukotai-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:9 | tiferet-shlomo-on-torah-bechukotai-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:10 | tiferet-shlomo-on-torah-bechukotai-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:11 | tiferet-shlomo-on-torah-bechukotai-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:12 | tiferet-shlomo-on-torah-bechukotai-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bechukotai:13 | tiferet-shlomo-on-torah-bechukotai-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:1 | tiferet-shlomo-on-torah-bamidbar-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:2 | tiferet-shlomo-on-torah-bamidbar-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:3 | tiferet-shlomo-on-torah-bamidbar-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:4 | tiferet-shlomo-on-torah-bamidbar-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:5 | tiferet-shlomo-on-torah-bamidbar-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:6 | tiferet-shlomo-on-torah-bamidbar-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:7 | tiferet-shlomo-on-torah-bamidbar-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:8 | tiferet-shlomo-on-torah-bamidbar-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:9 | tiferet-shlomo-on-torah-bamidbar-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Bamidbar:10 | tiferet-shlomo-on-torah-bamidbar-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nasso:1 | tiferet-shlomo-on-torah-nasso-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nasso:2 | tiferet-shlomo-on-torah-nasso-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nasso:3 | tiferet-shlomo-on-torah-nasso-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nasso:4 | tiferet-shlomo-on-torah-nasso-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nasso:5 | tiferet-shlomo-on-torah-nasso-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:1 | tiferet-shlomo-on-torah-behaalotcha-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:2 | tiferet-shlomo-on-torah-behaalotcha-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:3 | tiferet-shlomo-on-torah-behaalotcha-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:4 | tiferet-shlomo-on-torah-behaalotcha-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:5 | tiferet-shlomo-on-torah-behaalotcha-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:6 | tiferet-shlomo-on-torah-behaalotcha-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:7 | tiferet-shlomo-on-torah-behaalotcha-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:8 | tiferet-shlomo-on-torah-behaalotcha-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Beha'alotcha:9 | tiferet-shlomo-on-torah-behaalotcha-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Sh'lach:1 | tiferet-shlomo-on-torah-shlach-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Sh'lach:2 | tiferet-shlomo-on-torah-shlach-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Sh'lach:3 | tiferet-shlomo-on-torah-shlach-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Sh'lach:4 | tiferet-shlomo-on-torah-shlach-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:1 | tiferet-shlomo-on-torah-korach-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:2 | tiferet-shlomo-on-torah-korach-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:3 | tiferet-shlomo-on-torah-korach-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:4 | tiferet-shlomo-on-torah-korach-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:5 | tiferet-shlomo-on-torah-korach-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:6 | tiferet-shlomo-on-torah-korach-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:7 | tiferet-shlomo-on-torah-korach-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:8 | tiferet-shlomo-on-torah-korach-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:9 | tiferet-shlomo-on-torah-korach-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:10 | tiferet-shlomo-on-torah-korach-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:11 | tiferet-shlomo-on-torah-korach-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:12 | tiferet-shlomo-on-torah-korach-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Korach:13 | tiferet-shlomo-on-torah-korach-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:1 | tiferet-shlomo-on-torah-chukat-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:2 | tiferet-shlomo-on-torah-chukat-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:3 | tiferet-shlomo-on-torah-chukat-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:4 | tiferet-shlomo-on-torah-chukat-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:5 | tiferet-shlomo-on-torah-chukat-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:6 | tiferet-shlomo-on-torah-chukat-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:7 | tiferet-shlomo-on-torah-chukat-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:8 | tiferet-shlomo-on-torah-chukat-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:9 | tiferet-shlomo-on-torah-chukat-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Chukat:10 | tiferet-shlomo-on-torah-chukat-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:1 | tiferet-shlomo-on-torah-balak-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:2 | tiferet-shlomo-on-torah-balak-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:3 | tiferet-shlomo-on-torah-balak-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:4 | tiferet-shlomo-on-torah-balak-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:5 | tiferet-shlomo-on-torah-balak-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:6 | tiferet-shlomo-on-torah-balak-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:7 | tiferet-shlomo-on-torah-balak-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:8 | tiferet-shlomo-on-torah-balak-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:9 | tiferet-shlomo-on-torah-balak-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:10 | tiferet-shlomo-on-torah-balak-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:11 | tiferet-shlomo-on-torah-balak-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:12 | tiferet-shlomo-on-torah-balak-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:13 | tiferet-shlomo-on-torah-balak-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:14 | tiferet-shlomo-on-torah-balak-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:15 | tiferet-shlomo-on-torah-balak-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:16 | tiferet-shlomo-on-torah-balak-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Balak:17 | tiferet-shlomo-on-torah-balak-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:1 | tiferet-shlomo-on-torah-pinchas-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:2 | tiferet-shlomo-on-torah-pinchas-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:3 | tiferet-shlomo-on-torah-pinchas-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:4 | tiferet-shlomo-on-torah-pinchas-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:5 | tiferet-shlomo-on-torah-pinchas-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:6 | tiferet-shlomo-on-torah-pinchas-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:7 | tiferet-shlomo-on-torah-pinchas-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:8 | tiferet-shlomo-on-torah-pinchas-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:9 | tiferet-shlomo-on-torah-pinchas-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:10 | tiferet-shlomo-on-torah-pinchas-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:11 | tiferet-shlomo-on-torah-pinchas-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:12 | tiferet-shlomo-on-torah-pinchas-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:13 | tiferet-shlomo-on-torah-pinchas-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:14 | tiferet-shlomo-on-torah-pinchas-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:15 | tiferet-shlomo-on-torah-pinchas-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:16 | tiferet-shlomo-on-torah-pinchas-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:17 | tiferet-shlomo-on-torah-pinchas-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:18 | tiferet-shlomo-on-torah-pinchas-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Pinchas:19 | tiferet-shlomo-on-torah-pinchas-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:1 | tiferet-shlomo-on-torah-matot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:2 | tiferet-shlomo-on-torah-matot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:3 | tiferet-shlomo-on-torah-matot-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:4 | tiferet-shlomo-on-torah-matot-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:5 | tiferet-shlomo-on-torah-matot-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:6 | tiferet-shlomo-on-torah-matot-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:7 | tiferet-shlomo-on-torah-matot-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:8 | tiferet-shlomo-on-torah-matot-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:9 | tiferet-shlomo-on-torah-matot-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:10 | tiferet-shlomo-on-torah-matot-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:11 | tiferet-shlomo-on-torah-matot-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:12 | tiferet-shlomo-on-torah-matot-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:13 | tiferet-shlomo-on-torah-matot-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:14 | tiferet-shlomo-on-torah-matot-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:15 | tiferet-shlomo-on-torah-matot-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:16 | tiferet-shlomo-on-torah-matot-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Matot:17 | tiferet-shlomo-on-torah-matot-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:1 | tiferet-shlomo-on-torah-masei-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:2 | tiferet-shlomo-on-torah-masei-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:3 | tiferet-shlomo-on-torah-masei-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:4 | tiferet-shlomo-on-torah-masei-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:5 | tiferet-shlomo-on-torah-masei-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:6 | tiferet-shlomo-on-torah-masei-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:7 | tiferet-shlomo-on-torah-masei-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:8 | tiferet-shlomo-on-torah-masei-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Masei:9 | tiferet-shlomo-on-torah-masei-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:1 | tiferet-shlomo-on-torah-devarim-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:2 | tiferet-shlomo-on-torah-devarim-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:3 | tiferet-shlomo-on-torah-devarim-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:4 | tiferet-shlomo-on-torah-devarim-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:5 | tiferet-shlomo-on-torah-devarim-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:6 | tiferet-shlomo-on-torah-devarim-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:7 | tiferet-shlomo-on-torah-devarim-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:8 | tiferet-shlomo-on-torah-devarim-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:9 | tiferet-shlomo-on-torah-devarim-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:10 | tiferet-shlomo-on-torah-devarim-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Devarim:11 | tiferet-shlomo-on-torah-devarim-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, The Three Weeks:1 | tiferet-shlomo-on-torah-the-three-weeks-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, The Three Weeks:2 | tiferet-shlomo-on-torah-the-three-weeks-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, The Three Weeks:3 | tiferet-shlomo-on-torah-the-three-weeks-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, The Three Weeks:4 | tiferet-shlomo-on-torah-the-three-weeks-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Chazon:1 | tiferet-shlomo-on-torah-shabbat-chazon-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Chazon:2 | tiferet-shlomo-on-torah-shabbat-chazon-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Chazon:3 | tiferet-shlomo-on-torah-shabbat-chazon-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Chazon:4 | tiferet-shlomo-on-torah-shabbat-chazon-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Chazon:5 | tiferet-shlomo-on-torah-shabbat-chazon-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Chazon:6 | tiferet-shlomo-on-torah-shabbat-chazon-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Chazon:7 | tiferet-shlomo-on-torah-shabbat-chazon-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:1 | tiferet-shlomo-on-torah-shabbat-nachamu-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:2 | tiferet-shlomo-on-torah-shabbat-nachamu-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:3 | tiferet-shlomo-on-torah-shabbat-nachamu-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:4 | tiferet-shlomo-on-torah-shabbat-nachamu-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:5 | tiferet-shlomo-on-torah-shabbat-nachamu-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:6 | tiferet-shlomo-on-torah-shabbat-nachamu-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:7 | tiferet-shlomo-on-torah-shabbat-nachamu-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:8 | tiferet-shlomo-on-torah-shabbat-nachamu-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:9 | tiferet-shlomo-on-torah-shabbat-nachamu-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:10 | tiferet-shlomo-on-torah-shabbat-nachamu-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:11 | tiferet-shlomo-on-torah-shabbat-nachamu-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:12 | tiferet-shlomo-on-torah-shabbat-nachamu-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:13 | tiferet-shlomo-on-torah-shabbat-nachamu-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:14 | tiferet-shlomo-on-torah-shabbat-nachamu-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shabbat Nachamu:15 | tiferet-shlomo-on-torah-shabbat-nachamu-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:1 | tiferet-shlomo-on-torah-vaetchanan-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:2 | tiferet-shlomo-on-torah-vaetchanan-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:3 | tiferet-shlomo-on-torah-vaetchanan-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:4 | tiferet-shlomo-on-torah-vaetchanan-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:5 | tiferet-shlomo-on-torah-vaetchanan-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:6 | tiferet-shlomo-on-torah-vaetchanan-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:7 | tiferet-shlomo-on-torah-vaetchanan-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:8 | tiferet-shlomo-on-torah-vaetchanan-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:9 | tiferet-shlomo-on-torah-vaetchanan-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:10 | tiferet-shlomo-on-torah-vaetchanan-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:11 | tiferet-shlomo-on-torah-vaetchanan-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:12 | tiferet-shlomo-on-torah-vaetchanan-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:13 | tiferet-shlomo-on-torah-vaetchanan-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:14 | tiferet-shlomo-on-torah-vaetchanan-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:15 | tiferet-shlomo-on-torah-vaetchanan-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:16 | tiferet-shlomo-on-torah-vaetchanan-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:17 | tiferet-shlomo-on-torah-vaetchanan-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:18 | tiferet-shlomo-on-torah-vaetchanan-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:19 | tiferet-shlomo-on-torah-vaetchanan-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:20 | tiferet-shlomo-on-torah-vaetchanan-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:21 | tiferet-shlomo-on-torah-vaetchanan-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:22 | tiferet-shlomo-on-torah-vaetchanan-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:23 | tiferet-shlomo-on-torah-vaetchanan-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:24 | tiferet-shlomo-on-torah-vaetchanan-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:25 | tiferet-shlomo-on-torah-vaetchanan-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:26 | tiferet-shlomo-on-torah-vaetchanan-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:27 | tiferet-shlomo-on-torah-vaetchanan-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:28 | tiferet-shlomo-on-torah-vaetchanan-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:29 | tiferet-shlomo-on-torah-vaetchanan-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:30 | tiferet-shlomo-on-torah-vaetchanan-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:31 | tiferet-shlomo-on-torah-vaetchanan-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:32 | tiferet-shlomo-on-torah-vaetchanan-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:33 | tiferet-shlomo-on-torah-vaetchanan-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:34 | tiferet-shlomo-on-torah-vaetchanan-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vaetchanan:35 | tiferet-shlomo-on-torah-vaetchanan-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:1 | tiferet-shlomo-on-torah-eikev-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:2 | tiferet-shlomo-on-torah-eikev-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:3 | tiferet-shlomo-on-torah-eikev-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:4 | tiferet-shlomo-on-torah-eikev-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:5 | tiferet-shlomo-on-torah-eikev-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:6 | tiferet-shlomo-on-torah-eikev-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:7 | tiferet-shlomo-on-torah-eikev-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:8 | tiferet-shlomo-on-torah-eikev-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:9 | tiferet-shlomo-on-torah-eikev-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:10 | tiferet-shlomo-on-torah-eikev-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:11 | tiferet-shlomo-on-torah-eikev-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:12 | tiferet-shlomo-on-torah-eikev-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Eikev:13 | tiferet-shlomo-on-torah-eikev-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:1 | tiferet-shlomo-on-torah-reeh-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:2 | tiferet-shlomo-on-torah-reeh-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:3 | tiferet-shlomo-on-torah-reeh-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:4 | tiferet-shlomo-on-torah-reeh-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:5 | tiferet-shlomo-on-torah-reeh-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:6 | tiferet-shlomo-on-torah-reeh-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:7 | tiferet-shlomo-on-torah-reeh-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:8 | tiferet-shlomo-on-torah-reeh-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:9 | tiferet-shlomo-on-torah-reeh-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:10 | tiferet-shlomo-on-torah-reeh-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:11 | tiferet-shlomo-on-torah-reeh-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:12 | tiferet-shlomo-on-torah-reeh-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:13 | tiferet-shlomo-on-torah-reeh-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:14 | tiferet-shlomo-on-torah-reeh-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Re'eh:15 | tiferet-shlomo-on-torah-reeh-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:1 | tiferet-shlomo-on-torah-shoftim-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:2 | tiferet-shlomo-on-torah-shoftim-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:3 | tiferet-shlomo-on-torah-shoftim-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:4 | tiferet-shlomo-on-torah-shoftim-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:5 | tiferet-shlomo-on-torah-shoftim-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:6 | tiferet-shlomo-on-torah-shoftim-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:7 | tiferet-shlomo-on-torah-shoftim-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:8 | tiferet-shlomo-on-torah-shoftim-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:9 | tiferet-shlomo-on-torah-shoftim-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:10 | tiferet-shlomo-on-torah-shoftim-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Shoftim:11 | tiferet-shlomo-on-torah-shoftim-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:1 | tiferet-shlomo-on-torah-ki-teitzei-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:2 | tiferet-shlomo-on-torah-ki-teitzei-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:3 | tiferet-shlomo-on-torah-ki-teitzei-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:4 | tiferet-shlomo-on-torah-ki-teitzei-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:5 | tiferet-shlomo-on-torah-ki-teitzei-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:6 | tiferet-shlomo-on-torah-ki-teitzei-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:7 | tiferet-shlomo-on-torah-ki-teitzei-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:8 | tiferet-shlomo-on-torah-ki-teitzei-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:9 | tiferet-shlomo-on-torah-ki-teitzei-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:10 | tiferet-shlomo-on-torah-ki-teitzei-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:11 | tiferet-shlomo-on-torah-ki-teitzei-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:12 | tiferet-shlomo-on-torah-ki-teitzei-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:13 | tiferet-shlomo-on-torah-ki-teitzei-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:14 | tiferet-shlomo-on-torah-ki-teitzei-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:15 | tiferet-shlomo-on-torah-ki-teitzei-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:16 | tiferet-shlomo-on-torah-ki-teitzei-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:17 | tiferet-shlomo-on-torah-ki-teitzei-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:18 | tiferet-shlomo-on-torah-ki-teitzei-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Teitzei:19 | tiferet-shlomo-on-torah-ki-teitzei-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:1 | tiferet-shlomo-on-torah-ki-tavo-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:2 | tiferet-shlomo-on-torah-ki-tavo-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:3 | tiferet-shlomo-on-torah-ki-tavo-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:4 | tiferet-shlomo-on-torah-ki-tavo-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:5 | tiferet-shlomo-on-torah-ki-tavo-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:6 | tiferet-shlomo-on-torah-ki-tavo-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:7 | tiferet-shlomo-on-torah-ki-tavo-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:8 | tiferet-shlomo-on-torah-ki-tavo-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:9 | tiferet-shlomo-on-torah-ki-tavo-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:10 | tiferet-shlomo-on-torah-ki-tavo-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:11 | tiferet-shlomo-on-torah-ki-tavo-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:12 | tiferet-shlomo-on-torah-ki-tavo-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:13 | tiferet-shlomo-on-torah-ki-tavo-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:14 | tiferet-shlomo-on-torah-ki-tavo-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:15 | tiferet-shlomo-on-torah-ki-tavo-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:16 | tiferet-shlomo-on-torah-ki-tavo-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:17 | tiferet-shlomo-on-torah-ki-tavo-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:18 | tiferet-shlomo-on-torah-ki-tavo-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:19 | tiferet-shlomo-on-torah-ki-tavo-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ki Tavo:20 | tiferet-shlomo-on-torah-ki-tavo-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:1 | tiferet-shlomo-on-torah-rosh-hashanah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:2 | tiferet-shlomo-on-torah-rosh-hashanah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:3 | tiferet-shlomo-on-torah-rosh-hashanah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:4 | tiferet-shlomo-on-torah-rosh-hashanah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:5 | tiferet-shlomo-on-torah-rosh-hashanah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:6 | tiferet-shlomo-on-torah-rosh-hashanah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:7 | tiferet-shlomo-on-torah-rosh-hashanah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:8 | tiferet-shlomo-on-torah-rosh-hashanah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:9 | tiferet-shlomo-on-torah-rosh-hashanah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:10 | tiferet-shlomo-on-torah-rosh-hashanah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:11 | tiferet-shlomo-on-torah-rosh-hashanah-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:12 | tiferet-shlomo-on-torah-rosh-hashanah-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Rosh Hashanah:13 | tiferet-shlomo-on-torah-rosh-hashanah-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:1 | tiferet-shlomo-on-torah-nitzavim-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:2 | tiferet-shlomo-on-torah-nitzavim-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:3 | tiferet-shlomo-on-torah-nitzavim-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:4 | tiferet-shlomo-on-torah-nitzavim-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:5 | tiferet-shlomo-on-torah-nitzavim-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:6 | tiferet-shlomo-on-torah-nitzavim-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:7 | tiferet-shlomo-on-torah-nitzavim-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:8 | tiferet-shlomo-on-torah-nitzavim-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:9 | tiferet-shlomo-on-torah-nitzavim-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Nitzavim:10 | tiferet-shlomo-on-torah-nitzavim-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeilech:1 | tiferet-shlomo-on-torah-vayeilech-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeilech:2 | tiferet-shlomo-on-torah-vayeilech-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeilech:3 | tiferet-shlomo-on-torah-vayeilech-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeilech:4 | tiferet-shlomo-on-torah-vayeilech-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeilech:5 | tiferet-shlomo-on-torah-vayeilech-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeilech:6 | tiferet-shlomo-on-torah-vayeilech-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Vayeilech:7 | tiferet-shlomo-on-torah-vayeilech-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:1 | tiferet-shlomo-on-torah-haazinu-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:2 | tiferet-shlomo-on-torah-haazinu-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:3 | tiferet-shlomo-on-torah-haazinu-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:4 | tiferet-shlomo-on-torah-haazinu-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:5 | tiferet-shlomo-on-torah-haazinu-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:6 | tiferet-shlomo-on-torah-haazinu-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:7 | tiferet-shlomo-on-torah-haazinu-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:8 | tiferet-shlomo-on-torah-haazinu-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, Ha'Azinu:9 | tiferet-shlomo-on-torah-haazinu-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, V'Zot HaBerachah:1 | tiferet-shlomo-on-torah-vzot-haberachah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, V'Zot HaBerachah:2 | tiferet-shlomo-on-torah-vzot-haberachah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Torah, V'Zot HaBerachah:3 | tiferet-shlomo-on-torah-vzot-haberachah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:1 | tiferet-shlomo-on-festivals-introduction-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:2 | tiferet-shlomo-on-festivals-introduction-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:3 | tiferet-shlomo-on-festivals-introduction-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:4 | tiferet-shlomo-on-festivals-introduction-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:5 | tiferet-shlomo-on-festivals-introduction-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:6 | tiferet-shlomo-on-festivals-introduction-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:7 | tiferet-shlomo-on-festivals-introduction-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:8 | tiferet-shlomo-on-festivals-introduction-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:9 | tiferet-shlomo-on-festivals-introduction-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:10 | tiferet-shlomo-on-festivals-introduction-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:11 | tiferet-shlomo-on-festivals-introduction-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:12 | tiferet-shlomo-on-festivals-introduction-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:13 | tiferet-shlomo-on-festivals-introduction-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:14 | tiferet-shlomo-on-festivals-introduction-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:15 | tiferet-shlomo-on-festivals-introduction-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:16 | tiferet-shlomo-on-festivals-introduction-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:17 | tiferet-shlomo-on-festivals-introduction-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:18 | tiferet-shlomo-on-festivals-introduction-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:19 | tiferet-shlomo-on-festivals-introduction-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:20 | tiferet-shlomo-on-festivals-introduction-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:21 | tiferet-shlomo-on-festivals-introduction-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:22 | tiferet-shlomo-on-festivals-introduction-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:23 | tiferet-shlomo-on-festivals-introduction-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:24 | tiferet-shlomo-on-festivals-introduction-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Introduction:25 | tiferet-shlomo-on-festivals-introduction-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:1 | tiferet-shlomo-on-festivals-birkat-hatorah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:2 | tiferet-shlomo-on-festivals-birkat-hatorah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:3 | tiferet-shlomo-on-festivals-birkat-hatorah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:4 | tiferet-shlomo-on-festivals-birkat-hatorah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:5 | tiferet-shlomo-on-festivals-birkat-hatorah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:6 | tiferet-shlomo-on-festivals-birkat-hatorah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:7 | tiferet-shlomo-on-festivals-birkat-hatorah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:8 | tiferet-shlomo-on-festivals-birkat-hatorah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:9 | tiferet-shlomo-on-festivals-birkat-hatorah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:10 | tiferet-shlomo-on-festivals-birkat-hatorah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:11 | tiferet-shlomo-on-festivals-birkat-hatorah-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:12 | tiferet-shlomo-on-festivals-birkat-hatorah-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:13 | tiferet-shlomo-on-festivals-birkat-hatorah-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Birkat HaTorah:14 | tiferet-shlomo-on-festivals-birkat-hatorah-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:1 | tiferet-shlomo-on-festivals-shaar-tefillah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:2 | tiferet-shlomo-on-festivals-shaar-tefillah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:3 | tiferet-shlomo-on-festivals-shaar-tefillah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:4 | tiferet-shlomo-on-festivals-shaar-tefillah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:5 | tiferet-shlomo-on-festivals-shaar-tefillah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:6 | tiferet-shlomo-on-festivals-shaar-tefillah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:7 | tiferet-shlomo-on-festivals-shaar-tefillah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:8 | tiferet-shlomo-on-festivals-shaar-tefillah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:9 | tiferet-shlomo-on-festivals-shaar-tefillah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:10 | tiferet-shlomo-on-festivals-shaar-tefillah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:11 | tiferet-shlomo-on-festivals-shaar-tefillah-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:12 | tiferet-shlomo-on-festivals-shaar-tefillah-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:13 | tiferet-shlomo-on-festivals-shaar-tefillah-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:14 | tiferet-shlomo-on-festivals-shaar-tefillah-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:15 | tiferet-shlomo-on-festivals-shaar-tefillah-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:16 | tiferet-shlomo-on-festivals-shaar-tefillah-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:17 | tiferet-shlomo-on-festivals-shaar-tefillah-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:18 | tiferet-shlomo-on-festivals-shaar-tefillah-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:19 | tiferet-shlomo-on-festivals-shaar-tefillah-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:20 | tiferet-shlomo-on-festivals-shaar-tefillah-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:21 | tiferet-shlomo-on-festivals-shaar-tefillah-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:22 | tiferet-shlomo-on-festivals-shaar-tefillah-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:23 | tiferet-shlomo-on-festivals-shaar-tefillah-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:24 | tiferet-shlomo-on-festivals-shaar-tefillah-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:25 | tiferet-shlomo-on-festivals-shaar-tefillah-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:26 | tiferet-shlomo-on-festivals-shaar-tefillah-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:27 | tiferet-shlomo-on-festivals-shaar-tefillah-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:28 | tiferet-shlomo-on-festivals-shaar-tefillah-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:29 | tiferet-shlomo-on-festivals-shaar-tefillah-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:30 | tiferet-shlomo-on-festivals-shaar-tefillah-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:31 | tiferet-shlomo-on-festivals-shaar-tefillah-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:32 | tiferet-shlomo-on-festivals-shaar-tefillah-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:33 | tiferet-shlomo-on-festivals-shaar-tefillah-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:34 | tiferet-shlomo-on-festivals-shaar-tefillah-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:35 | tiferet-shlomo-on-festivals-shaar-tefillah-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:36 | tiferet-shlomo-on-festivals-shaar-tefillah-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:37 | tiferet-shlomo-on-festivals-shaar-tefillah-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:38 | tiferet-shlomo-on-festivals-shaar-tefillah-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:39 | tiferet-shlomo-on-festivals-shaar-tefillah-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:40 | tiferet-shlomo-on-festivals-shaar-tefillah-40 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:41 | tiferet-shlomo-on-festivals-shaar-tefillah-41 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:42 | tiferet-shlomo-on-festivals-shaar-tefillah-42 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:43 | tiferet-shlomo-on-festivals-shaar-tefillah-43 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:44 | tiferet-shlomo-on-festivals-shaar-tefillah-44 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:45 | tiferet-shlomo-on-festivals-shaar-tefillah-45 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:46 | tiferet-shlomo-on-festivals-shaar-tefillah-46 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:47 | tiferet-shlomo-on-festivals-shaar-tefillah-47 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:48 | tiferet-shlomo-on-festivals-shaar-tefillah-48 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:49 | tiferet-shlomo-on-festivals-shaar-tefillah-49 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:50 | tiferet-shlomo-on-festivals-shaar-tefillah-50 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:51 | tiferet-shlomo-on-festivals-shaar-tefillah-51 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:52 | tiferet-shlomo-on-festivals-shaar-tefillah-52 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:53 | tiferet-shlomo-on-festivals-shaar-tefillah-53 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:54 | tiferet-shlomo-on-festivals-shaar-tefillah-54 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:55 | tiferet-shlomo-on-festivals-shaar-tefillah-55 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:56 | tiferet-shlomo-on-festivals-shaar-tefillah-56 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Tefillah:57 | tiferet-shlomo-on-festivals-shaar-tefillah-57 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:1 | tiferet-shlomo-on-festivals-shaar-keriat-shema-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:2 | tiferet-shlomo-on-festivals-shaar-keriat-shema-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:3 | tiferet-shlomo-on-festivals-shaar-keriat-shema-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:4 | tiferet-shlomo-on-festivals-shaar-keriat-shema-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:5 | tiferet-shlomo-on-festivals-shaar-keriat-shema-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:6 | tiferet-shlomo-on-festivals-shaar-keriat-shema-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:7 | tiferet-shlomo-on-festivals-shaar-keriat-shema-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:8 | tiferet-shlomo-on-festivals-shaar-keriat-shema-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:9 | tiferet-shlomo-on-festivals-shaar-keriat-shema-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:10 | tiferet-shlomo-on-festivals-shaar-keriat-shema-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:11 | tiferet-shlomo-on-festivals-shaar-keriat-shema-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:12 | tiferet-shlomo-on-festivals-shaar-keriat-shema-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:13 | tiferet-shlomo-on-festivals-shaar-keriat-shema-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:14 | tiferet-shlomo-on-festivals-shaar-keriat-shema-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:15 | tiferet-shlomo-on-festivals-shaar-keriat-shema-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:16 | tiferet-shlomo-on-festivals-shaar-keriat-shema-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:17 | tiferet-shlomo-on-festivals-shaar-keriat-shema-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:18 | tiferet-shlomo-on-festivals-shaar-keriat-shema-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:19 | tiferet-shlomo-on-festivals-shaar-keriat-shema-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:20 | tiferet-shlomo-on-festivals-shaar-keriat-shema-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:21 | tiferet-shlomo-on-festivals-shaar-keriat-shema-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:22 | tiferet-shlomo-on-festivals-shaar-keriat-shema-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:23 | tiferet-shlomo-on-festivals-shaar-keriat-shema-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:24 | tiferet-shlomo-on-festivals-shaar-keriat-shema-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:25 | tiferet-shlomo-on-festivals-shaar-keriat-shema-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:26 | tiferet-shlomo-on-festivals-shaar-keriat-shema-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:27 | tiferet-shlomo-on-festivals-shaar-keriat-shema-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:28 | tiferet-shlomo-on-festivals-shaar-keriat-shema-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:29 | tiferet-shlomo-on-festivals-shaar-keriat-shema-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shaar Keriat Shema:30 | tiferet-shlomo-on-festivals-shaar-keriat-shema-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:1 | tiferet-shlomo-on-festivals-shabbat-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:2 | tiferet-shlomo-on-festivals-shabbat-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:3 | tiferet-shlomo-on-festivals-shabbat-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:4 | tiferet-shlomo-on-festivals-shabbat-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:5 | tiferet-shlomo-on-festivals-shabbat-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:6 | tiferet-shlomo-on-festivals-shabbat-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:7 | tiferet-shlomo-on-festivals-shabbat-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:8 | tiferet-shlomo-on-festivals-shabbat-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:9 | tiferet-shlomo-on-festivals-shabbat-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:10 | tiferet-shlomo-on-festivals-shabbat-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:11 | tiferet-shlomo-on-festivals-shabbat-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:12 | tiferet-shlomo-on-festivals-shabbat-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:13 | tiferet-shlomo-on-festivals-shabbat-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:14 | tiferet-shlomo-on-festivals-shabbat-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:15 | tiferet-shlomo-on-festivals-shabbat-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:16 | tiferet-shlomo-on-festivals-shabbat-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:17 | tiferet-shlomo-on-festivals-shabbat-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:18 | tiferet-shlomo-on-festivals-shabbat-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:19 | tiferet-shlomo-on-festivals-shabbat-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:20 | tiferet-shlomo-on-festivals-shabbat-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:21 | tiferet-shlomo-on-festivals-shabbat-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:22 | tiferet-shlomo-on-festivals-shabbat-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:23 | tiferet-shlomo-on-festivals-shabbat-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:24 | tiferet-shlomo-on-festivals-shabbat-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:25 | tiferet-shlomo-on-festivals-shabbat-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:26 | tiferet-shlomo-on-festivals-shabbat-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:27 | tiferet-shlomo-on-festivals-shabbat-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:28 | tiferet-shlomo-on-festivals-shabbat-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:29 | tiferet-shlomo-on-festivals-shabbat-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:30 | tiferet-shlomo-on-festivals-shabbat-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:31 | tiferet-shlomo-on-festivals-shabbat-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:32 | tiferet-shlomo-on-festivals-shabbat-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:33 | tiferet-shlomo-on-festivals-shabbat-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:34 | tiferet-shlomo-on-festivals-shabbat-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat:35 | tiferet-shlomo-on-festivals-shabbat-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:1 | tiferet-shlomo-on-festivals-rosh-chodesh-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:2 | tiferet-shlomo-on-festivals-rosh-chodesh-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:3 | tiferet-shlomo-on-festivals-rosh-chodesh-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:4 | tiferet-shlomo-on-festivals-rosh-chodesh-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:5 | tiferet-shlomo-on-festivals-rosh-chodesh-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:6 | tiferet-shlomo-on-festivals-rosh-chodesh-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:7 | tiferet-shlomo-on-festivals-rosh-chodesh-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:8 | tiferet-shlomo-on-festivals-rosh-chodesh-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:9 | tiferet-shlomo-on-festivals-rosh-chodesh-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:10 | tiferet-shlomo-on-festivals-rosh-chodesh-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:11 | tiferet-shlomo-on-festivals-rosh-chodesh-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:12 | tiferet-shlomo-on-festivals-rosh-chodesh-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Chodesh:13 | tiferet-shlomo-on-festivals-rosh-chodesh-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:1 | tiferet-shlomo-on-festivals-rosh-hashanah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:2 | tiferet-shlomo-on-festivals-rosh-hashanah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:3 | tiferet-shlomo-on-festivals-rosh-hashanah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:4 | tiferet-shlomo-on-festivals-rosh-hashanah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:5 | tiferet-shlomo-on-festivals-rosh-hashanah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:6 | tiferet-shlomo-on-festivals-rosh-hashanah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:7 | tiferet-shlomo-on-festivals-rosh-hashanah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:8 | tiferet-shlomo-on-festivals-rosh-hashanah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:9 | tiferet-shlomo-on-festivals-rosh-hashanah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:10 | tiferet-shlomo-on-festivals-rosh-hashanah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:11 | tiferet-shlomo-on-festivals-rosh-hashanah-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:12 | tiferet-shlomo-on-festivals-rosh-hashanah-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:13 | tiferet-shlomo-on-festivals-rosh-hashanah-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:14 | tiferet-shlomo-on-festivals-rosh-hashanah-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:15 | tiferet-shlomo-on-festivals-rosh-hashanah-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:16 | tiferet-shlomo-on-festivals-rosh-hashanah-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:17 | tiferet-shlomo-on-festivals-rosh-hashanah-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:18 | tiferet-shlomo-on-festivals-rosh-hashanah-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:19 | tiferet-shlomo-on-festivals-rosh-hashanah-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:20 | tiferet-shlomo-on-festivals-rosh-hashanah-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:21 | tiferet-shlomo-on-festivals-rosh-hashanah-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:22 | tiferet-shlomo-on-festivals-rosh-hashanah-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:23 | tiferet-shlomo-on-festivals-rosh-hashanah-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:24 | tiferet-shlomo-on-festivals-rosh-hashanah-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:25 | tiferet-shlomo-on-festivals-rosh-hashanah-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:26 | tiferet-shlomo-on-festivals-rosh-hashanah-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:27 | tiferet-shlomo-on-festivals-rosh-hashanah-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:28 | tiferet-shlomo-on-festivals-rosh-hashanah-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:29 | tiferet-shlomo-on-festivals-rosh-hashanah-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:30 | tiferet-shlomo-on-festivals-rosh-hashanah-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:31 | tiferet-shlomo-on-festivals-rosh-hashanah-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:32 | tiferet-shlomo-on-festivals-rosh-hashanah-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:33 | tiferet-shlomo-on-festivals-rosh-hashanah-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:34 | tiferet-shlomo-on-festivals-rosh-hashanah-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:35 | tiferet-shlomo-on-festivals-rosh-hashanah-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:36 | tiferet-shlomo-on-festivals-rosh-hashanah-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:37 | tiferet-shlomo-on-festivals-rosh-hashanah-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:38 | tiferet-shlomo-on-festivals-rosh-hashanah-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:39 | tiferet-shlomo-on-festivals-rosh-hashanah-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:40 | tiferet-shlomo-on-festivals-rosh-hashanah-40 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:41 | tiferet-shlomo-on-festivals-rosh-hashanah-41 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:42 | tiferet-shlomo-on-festivals-rosh-hashanah-42 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:43 | tiferet-shlomo-on-festivals-rosh-hashanah-43 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:44 | tiferet-shlomo-on-festivals-rosh-hashanah-44 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:45 | tiferet-shlomo-on-festivals-rosh-hashanah-45 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:46 | tiferet-shlomo-on-festivals-rosh-hashanah-46 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:47 | tiferet-shlomo-on-festivals-rosh-hashanah-47 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:48 | tiferet-shlomo-on-festivals-rosh-hashanah-48 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:49 | tiferet-shlomo-on-festivals-rosh-hashanah-49 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:50 | tiferet-shlomo-on-festivals-rosh-hashanah-50 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Rosh Hashanah:51 | tiferet-shlomo-on-festivals-rosh-hashanah-51 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:1 | tiferet-shlomo-on-festivals-shabbat-shuva-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:2 | tiferet-shlomo-on-festivals-shabbat-shuva-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:3 | tiferet-shlomo-on-festivals-shabbat-shuva-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:4 | tiferet-shlomo-on-festivals-shabbat-shuva-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:5 | tiferet-shlomo-on-festivals-shabbat-shuva-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:6 | tiferet-shlomo-on-festivals-shabbat-shuva-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:7 | tiferet-shlomo-on-festivals-shabbat-shuva-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:8 | tiferet-shlomo-on-festivals-shabbat-shuva-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:9 | tiferet-shlomo-on-festivals-shabbat-shuva-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Shuva:10 | tiferet-shlomo-on-festivals-shabbat-shuva-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Erev Yom Kippur:1 | tiferet-shlomo-on-festivals-erev-yom-kippur-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Erev Yom Kippur:2 | tiferet-shlomo-on-festivals-erev-yom-kippur-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Erev Yom Kippur:3 | tiferet-shlomo-on-festivals-erev-yom-kippur-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Erev Yom Kippur:4 | tiferet-shlomo-on-festivals-erev-yom-kippur-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Erev Yom Kippur:5 | tiferet-shlomo-on-festivals-erev-yom-kippur-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Erev Yom Kippur:6 | tiferet-shlomo-on-festivals-erev-yom-kippur-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Erev Yom Kippur:7 | tiferet-shlomo-on-festivals-erev-yom-kippur-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:1 | tiferet-shlomo-on-festivals-yom-kippur-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:2 | tiferet-shlomo-on-festivals-yom-kippur-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:3 | tiferet-shlomo-on-festivals-yom-kippur-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:4 | tiferet-shlomo-on-festivals-yom-kippur-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:5 | tiferet-shlomo-on-festivals-yom-kippur-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:6 | tiferet-shlomo-on-festivals-yom-kippur-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:7 | tiferet-shlomo-on-festivals-yom-kippur-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:8 | tiferet-shlomo-on-festivals-yom-kippur-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:9 | tiferet-shlomo-on-festivals-yom-kippur-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:10 | tiferet-shlomo-on-festivals-yom-kippur-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:11 | tiferet-shlomo-on-festivals-yom-kippur-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:12 | tiferet-shlomo-on-festivals-yom-kippur-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:13 | tiferet-shlomo-on-festivals-yom-kippur-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:14 | tiferet-shlomo-on-festivals-yom-kippur-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:15 | tiferet-shlomo-on-festivals-yom-kippur-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Yom Kippur:16 | tiferet-shlomo-on-festivals-yom-kippur-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:1 | tiferet-shlomo-on-festivals-sukkot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:2 | tiferet-shlomo-on-festivals-sukkot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:3 | tiferet-shlomo-on-festivals-sukkot-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:4 | tiferet-shlomo-on-festivals-sukkot-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:5 | tiferet-shlomo-on-festivals-sukkot-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:6 | tiferet-shlomo-on-festivals-sukkot-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:7 | tiferet-shlomo-on-festivals-sukkot-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:8 | tiferet-shlomo-on-festivals-sukkot-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:9 | tiferet-shlomo-on-festivals-sukkot-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:10 | tiferet-shlomo-on-festivals-sukkot-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:11 | tiferet-shlomo-on-festivals-sukkot-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:12 | tiferet-shlomo-on-festivals-sukkot-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:13 | tiferet-shlomo-on-festivals-sukkot-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:14 | tiferet-shlomo-on-festivals-sukkot-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:15 | tiferet-shlomo-on-festivals-sukkot-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:16 | tiferet-shlomo-on-festivals-sukkot-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:17 | tiferet-shlomo-on-festivals-sukkot-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:18 | tiferet-shlomo-on-festivals-sukkot-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:19 | tiferet-shlomo-on-festivals-sukkot-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:20 | tiferet-shlomo-on-festivals-sukkot-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:21 | tiferet-shlomo-on-festivals-sukkot-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:22 | tiferet-shlomo-on-festivals-sukkot-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:23 | tiferet-shlomo-on-festivals-sukkot-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:24 | tiferet-shlomo-on-festivals-sukkot-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:25 | tiferet-shlomo-on-festivals-sukkot-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:26 | tiferet-shlomo-on-festivals-sukkot-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:27 | tiferet-shlomo-on-festivals-sukkot-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:28 | tiferet-shlomo-on-festivals-sukkot-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:29 | tiferet-shlomo-on-festivals-sukkot-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:30 | tiferet-shlomo-on-festivals-sukkot-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:31 | tiferet-shlomo-on-festivals-sukkot-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:32 | tiferet-shlomo-on-festivals-sukkot-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:33 | tiferet-shlomo-on-festivals-sukkot-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:34 | tiferet-shlomo-on-festivals-sukkot-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:35 | tiferet-shlomo-on-festivals-sukkot-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:36 | tiferet-shlomo-on-festivals-sukkot-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:37 | tiferet-shlomo-on-festivals-sukkot-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:38 | tiferet-shlomo-on-festivals-sukkot-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:39 | tiferet-shlomo-on-festivals-sukkot-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:40 | tiferet-shlomo-on-festivals-sukkot-40 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:41 | tiferet-shlomo-on-festivals-sukkot-41 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:42 | tiferet-shlomo-on-festivals-sukkot-42 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:43 | tiferet-shlomo-on-festivals-sukkot-43 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:44 | tiferet-shlomo-on-festivals-sukkot-44 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:45 | tiferet-shlomo-on-festivals-sukkot-45 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:46 | tiferet-shlomo-on-festivals-sukkot-46 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:47 | tiferet-shlomo-on-festivals-sukkot-47 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:48 | tiferet-shlomo-on-festivals-sukkot-48 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:49 | tiferet-shlomo-on-festivals-sukkot-49 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:50 | tiferet-shlomo-on-festivals-sukkot-50 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:51 | tiferet-shlomo-on-festivals-sukkot-51 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:52 | tiferet-shlomo-on-festivals-sukkot-52 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:53 | tiferet-shlomo-on-festivals-sukkot-53 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:54 | tiferet-shlomo-on-festivals-sukkot-54 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:55 | tiferet-shlomo-on-festivals-sukkot-55 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:56 | tiferet-shlomo-on-festivals-sukkot-56 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:57 | tiferet-shlomo-on-festivals-sukkot-57 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:58 | tiferet-shlomo-on-festivals-sukkot-58 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:59 | tiferet-shlomo-on-festivals-sukkot-59 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:60 | tiferet-shlomo-on-festivals-sukkot-60 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:61 | tiferet-shlomo-on-festivals-sukkot-61 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sukkot:62 | tiferet-shlomo-on-festivals-sukkot-62 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chol Hamoed Sukkot:1 | tiferet-shlomo-on-festivals-shabbat-chol-hamoed-sukkot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chol Hamoed Sukkot:2 | tiferet-shlomo-on-festivals-shabbat-chol-hamoed-sukkot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshanot:1 | tiferet-shlomo-on-festivals-hoshanot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshanot:2 | tiferet-shlomo-on-festivals-hoshanot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshanot:3 | tiferet-shlomo-on-festivals-hoshanot-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:1 | tiferet-shlomo-on-festivals-hoshana-rabba-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:2 | tiferet-shlomo-on-festivals-hoshana-rabba-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:3 | tiferet-shlomo-on-festivals-hoshana-rabba-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:4 | tiferet-shlomo-on-festivals-hoshana-rabba-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:5 | tiferet-shlomo-on-festivals-hoshana-rabba-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:6 | tiferet-shlomo-on-festivals-hoshana-rabba-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:7 | tiferet-shlomo-on-festivals-hoshana-rabba-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:8 | tiferet-shlomo-on-festivals-hoshana-rabba-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:9 | tiferet-shlomo-on-festivals-hoshana-rabba-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:10 | tiferet-shlomo-on-festivals-hoshana-rabba-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:11 | tiferet-shlomo-on-festivals-hoshana-rabba-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:12 | tiferet-shlomo-on-festivals-hoshana-rabba-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:13 | tiferet-shlomo-on-festivals-hoshana-rabba-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Hoshana Rabba:14 | tiferet-shlomo-on-festivals-hoshana-rabba-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:1 | tiferet-shlomo-on-festivals-shemini-atzeret-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:2 | tiferet-shlomo-on-festivals-shemini-atzeret-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:3 | tiferet-shlomo-on-festivals-shemini-atzeret-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:4 | tiferet-shlomo-on-festivals-shemini-atzeret-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:5 | tiferet-shlomo-on-festivals-shemini-atzeret-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:6 | tiferet-shlomo-on-festivals-shemini-atzeret-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:7 | tiferet-shlomo-on-festivals-shemini-atzeret-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:8 | tiferet-shlomo-on-festivals-shemini-atzeret-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:9 | tiferet-shlomo-on-festivals-shemini-atzeret-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:10 | tiferet-shlomo-on-festivals-shemini-atzeret-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:11 | tiferet-shlomo-on-festivals-shemini-atzeret-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:12 | tiferet-shlomo-on-festivals-shemini-atzeret-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:13 | tiferet-shlomo-on-festivals-shemini-atzeret-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:14 | tiferet-shlomo-on-festivals-shemini-atzeret-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:15 | tiferet-shlomo-on-festivals-shemini-atzeret-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:16 | tiferet-shlomo-on-festivals-shemini-atzeret-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:17 | tiferet-shlomo-on-festivals-shemini-atzeret-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:18 | tiferet-shlomo-on-festivals-shemini-atzeret-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:19 | tiferet-shlomo-on-festivals-shemini-atzeret-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:20 | tiferet-shlomo-on-festivals-shemini-atzeret-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:21 | tiferet-shlomo-on-festivals-shemini-atzeret-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:22 | tiferet-shlomo-on-festivals-shemini-atzeret-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:23 | tiferet-shlomo-on-festivals-shemini-atzeret-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:24 | tiferet-shlomo-on-festivals-shemini-atzeret-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:25 | tiferet-shlomo-on-festivals-shemini-atzeret-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:26 | tiferet-shlomo-on-festivals-shemini-atzeret-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:27 | tiferet-shlomo-on-festivals-shemini-atzeret-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:28 | tiferet-shlomo-on-festivals-shemini-atzeret-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:29 | tiferet-shlomo-on-festivals-shemini-atzeret-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:30 | tiferet-shlomo-on-festivals-shemini-atzeret-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:31 | tiferet-shlomo-on-festivals-shemini-atzeret-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:32 | tiferet-shlomo-on-festivals-shemini-atzeret-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:33 | tiferet-shlomo-on-festivals-shemini-atzeret-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:34 | tiferet-shlomo-on-festivals-shemini-atzeret-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:35 | tiferet-shlomo-on-festivals-shemini-atzeret-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:36 | tiferet-shlomo-on-festivals-shemini-atzeret-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:37 | tiferet-shlomo-on-festivals-shemini-atzeret-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shemini Atzeret:38 | tiferet-shlomo-on-festivals-shemini-atzeret-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:1 | tiferet-shlomo-on-festivals-chanukah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:2 | tiferet-shlomo-on-festivals-chanukah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:3 | tiferet-shlomo-on-festivals-chanukah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:4 | tiferet-shlomo-on-festivals-chanukah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:5 | tiferet-shlomo-on-festivals-chanukah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:6 | tiferet-shlomo-on-festivals-chanukah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:7 | tiferet-shlomo-on-festivals-chanukah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:8 | tiferet-shlomo-on-festivals-chanukah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:9 | tiferet-shlomo-on-festivals-chanukah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:10 | tiferet-shlomo-on-festivals-chanukah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:11 | tiferet-shlomo-on-festivals-chanukah-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:12 | tiferet-shlomo-on-festivals-chanukah-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:13 | tiferet-shlomo-on-festivals-chanukah-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:14 | tiferet-shlomo-on-festivals-chanukah-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:15 | tiferet-shlomo-on-festivals-chanukah-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:16 | tiferet-shlomo-on-festivals-chanukah-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Chanukah:17 | tiferet-shlomo-on-festivals-chanukah-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:1 | tiferet-shlomo-on-festivals-shabbat-chanukah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:2 | tiferet-shlomo-on-festivals-shabbat-chanukah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:3 | tiferet-shlomo-on-festivals-shabbat-chanukah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:4 | tiferet-shlomo-on-festivals-shabbat-chanukah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:5 | tiferet-shlomo-on-festivals-shabbat-chanukah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:6 | tiferet-shlomo-on-festivals-shabbat-chanukah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:7 | tiferet-shlomo-on-festivals-shabbat-chanukah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:8 | tiferet-shlomo-on-festivals-shabbat-chanukah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:9 | tiferet-shlomo-on-festivals-shabbat-chanukah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:10 | tiferet-shlomo-on-festivals-shabbat-chanukah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:11 | tiferet-shlomo-on-festivals-shabbat-chanukah-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:12 | tiferet-shlomo-on-festivals-shabbat-chanukah-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:13 | tiferet-shlomo-on-festivals-shabbat-chanukah-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat Chanukah:14 | tiferet-shlomo-on-festivals-shabbat-chanukah-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:1 | tiferet-shlomo-on-festivals-zot-chanukah-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:2 | tiferet-shlomo-on-festivals-zot-chanukah-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:3 | tiferet-shlomo-on-festivals-zot-chanukah-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:4 | tiferet-shlomo-on-festivals-zot-chanukah-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:5 | tiferet-shlomo-on-festivals-zot-chanukah-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:6 | tiferet-shlomo-on-festivals-zot-chanukah-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:7 | tiferet-shlomo-on-festivals-zot-chanukah-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:8 | tiferet-shlomo-on-festivals-zot-chanukah-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:9 | tiferet-shlomo-on-festivals-zot-chanukah-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:10 | tiferet-shlomo-on-festivals-zot-chanukah-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:11 | tiferet-shlomo-on-festivals-zot-chanukah-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:12 | tiferet-shlomo-on-festivals-zot-chanukah-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:13 | tiferet-shlomo-on-festivals-zot-chanukah-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:14 | tiferet-shlomo-on-festivals-zot-chanukah-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:15 | tiferet-shlomo-on-festivals-zot-chanukah-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:16 | tiferet-shlomo-on-festivals-zot-chanukah-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:17 | tiferet-shlomo-on-festivals-zot-chanukah-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:18 | tiferet-shlomo-on-festivals-zot-chanukah-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:19 | tiferet-shlomo-on-festivals-zot-chanukah-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:20 | tiferet-shlomo-on-festivals-zot-chanukah-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:21 | tiferet-shlomo-on-festivals-zot-chanukah-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:22 | tiferet-shlomo-on-festivals-zot-chanukah-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:23 | tiferet-shlomo-on-festivals-zot-chanukah-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:24 | tiferet-shlomo-on-festivals-zot-chanukah-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:25 | tiferet-shlomo-on-festivals-zot-chanukah-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:26 | tiferet-shlomo-on-festivals-zot-chanukah-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:27 | tiferet-shlomo-on-festivals-zot-chanukah-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:28 | tiferet-shlomo-on-festivals-zot-chanukah-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:29 | tiferet-shlomo-on-festivals-zot-chanukah-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:30 | tiferet-shlomo-on-festivals-zot-chanukah-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:31 | tiferet-shlomo-on-festivals-zot-chanukah-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:32 | tiferet-shlomo-on-festivals-zot-chanukah-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:33 | tiferet-shlomo-on-festivals-zot-chanukah-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:34 | tiferet-shlomo-on-festivals-zot-chanukah-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:35 | tiferet-shlomo-on-festivals-zot-chanukah-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Zot Chanukah:36 | tiferet-shlomo-on-festivals-zot-chanukah-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:1 | tiferet-shlomo-on-festivals-purim-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:2 | tiferet-shlomo-on-festivals-purim-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:3 | tiferet-shlomo-on-festivals-purim-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:4 | tiferet-shlomo-on-festivals-purim-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:5 | tiferet-shlomo-on-festivals-purim-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:6 | tiferet-shlomo-on-festivals-purim-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:7 | tiferet-shlomo-on-festivals-purim-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:8 | tiferet-shlomo-on-festivals-purim-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:9 | tiferet-shlomo-on-festivals-purim-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:10 | tiferet-shlomo-on-festivals-purim-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:11 | tiferet-shlomo-on-festivals-purim-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:12 | tiferet-shlomo-on-festivals-purim-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:13 | tiferet-shlomo-on-festivals-purim-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:14 | tiferet-shlomo-on-festivals-purim-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:15 | tiferet-shlomo-on-festivals-purim-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:16 | tiferet-shlomo-on-festivals-purim-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:17 | tiferet-shlomo-on-festivals-purim-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:18 | tiferet-shlomo-on-festivals-purim-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:19 | tiferet-shlomo-on-festivals-purim-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:20 | tiferet-shlomo-on-festivals-purim-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:21 | tiferet-shlomo-on-festivals-purim-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:22 | tiferet-shlomo-on-festivals-purim-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:23 | tiferet-shlomo-on-festivals-purim-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:24 | tiferet-shlomo-on-festivals-purim-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:25 | tiferet-shlomo-on-festivals-purim-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:26 | tiferet-shlomo-on-festivals-purim-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:27 | tiferet-shlomo-on-festivals-purim-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:28 | tiferet-shlomo-on-festivals-purim-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:29 | tiferet-shlomo-on-festivals-purim-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:30 | tiferet-shlomo-on-festivals-purim-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:31 | tiferet-shlomo-on-festivals-purim-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:32 | tiferet-shlomo-on-festivals-purim-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:33 | tiferet-shlomo-on-festivals-purim-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:34 | tiferet-shlomo-on-festivals-purim-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:35 | tiferet-shlomo-on-festivals-purim-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:36 | tiferet-shlomo-on-festivals-purim-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:37 | tiferet-shlomo-on-festivals-purim-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:38 | tiferet-shlomo-on-festivals-purim-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:39 | tiferet-shlomo-on-festivals-purim-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:40 | tiferet-shlomo-on-festivals-purim-40 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:41 | tiferet-shlomo-on-festivals-purim-41 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:42 | tiferet-shlomo-on-festivals-purim-42 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:43 | tiferet-shlomo-on-festivals-purim-43 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:44 | tiferet-shlomo-on-festivals-purim-44 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:45 | tiferet-shlomo-on-festivals-purim-45 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:46 | tiferet-shlomo-on-festivals-purim-46 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:47 | tiferet-shlomo-on-festivals-purim-47 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:48 | tiferet-shlomo-on-festivals-purim-48 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:49 | tiferet-shlomo-on-festivals-purim-49 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:50 | tiferet-shlomo-on-festivals-purim-50 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:51 | tiferet-shlomo-on-festivals-purim-51 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:52 | tiferet-shlomo-on-festivals-purim-52 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:53 | tiferet-shlomo-on-festivals-purim-53 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:54 | tiferet-shlomo-on-festivals-purim-54 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:55 | tiferet-shlomo-on-festivals-purim-55 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:56 | tiferet-shlomo-on-festivals-purim-56 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:57 | tiferet-shlomo-on-festivals-purim-57 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:58 | tiferet-shlomo-on-festivals-purim-58 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:59 | tiferet-shlomo-on-festivals-purim-59 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:60 | tiferet-shlomo-on-festivals-purim-60 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:61 | tiferet-shlomo-on-festivals-purim-61 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:62 | tiferet-shlomo-on-festivals-purim-62 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:63 | tiferet-shlomo-on-festivals-purim-63 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:64 | tiferet-shlomo-on-festivals-purim-64 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:65 | tiferet-shlomo-on-festivals-purim-65 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:66 | tiferet-shlomo-on-festivals-purim-66 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:67 | tiferet-shlomo-on-festivals-purim-67 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:68 | tiferet-shlomo-on-festivals-purim-68 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:69 | tiferet-shlomo-on-festivals-purim-69 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:70 | tiferet-shlomo-on-festivals-purim-70 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:71 | tiferet-shlomo-on-festivals-purim-71 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:72 | tiferet-shlomo-on-festivals-purim-72 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:73 | tiferet-shlomo-on-festivals-purim-73 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:74 | tiferet-shlomo-on-festivals-purim-74 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:75 | tiferet-shlomo-on-festivals-purim-75 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:76 | tiferet-shlomo-on-festivals-purim-76 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:77 | tiferet-shlomo-on-festivals-purim-77 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:78 | tiferet-shlomo-on-festivals-purim-78 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:79 | tiferet-shlomo-on-festivals-purim-79 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:80 | tiferet-shlomo-on-festivals-purim-80 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:81 | tiferet-shlomo-on-festivals-purim-81 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:82 | tiferet-shlomo-on-festivals-purim-82 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:83 | tiferet-shlomo-on-festivals-purim-83 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:84 | tiferet-shlomo-on-festivals-purim-84 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:85 | tiferet-shlomo-on-festivals-purim-85 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:86 | tiferet-shlomo-on-festivals-purim-86 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:87 | tiferet-shlomo-on-festivals-purim-87 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:88 | tiferet-shlomo-on-festivals-purim-88 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:89 | tiferet-shlomo-on-festivals-purim-89 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:90 | tiferet-shlomo-on-festivals-purim-90 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:91 | tiferet-shlomo-on-festivals-purim-91 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:92 | tiferet-shlomo-on-festivals-purim-92 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:93 | tiferet-shlomo-on-festivals-purim-93 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:94 | tiferet-shlomo-on-festivals-purim-94 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:95 | tiferet-shlomo-on-festivals-purim-95 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:96 | tiferet-shlomo-on-festivals-purim-96 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:97 | tiferet-shlomo-on-festivals-purim-97 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:98 | tiferet-shlomo-on-festivals-purim-98 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:99 | tiferet-shlomo-on-festivals-purim-99 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:100 | tiferet-shlomo-on-festivals-purim-100 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:101 | tiferet-shlomo-on-festivals-purim-101 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:102 | tiferet-shlomo-on-festivals-purim-102 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:103 | tiferet-shlomo-on-festivals-purim-103 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:104 | tiferet-shlomo-on-festivals-purim-104 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Purim:105 | tiferet-shlomo-on-festivals-purim-105 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Parashat HaChodesh:1 | tiferet-shlomo-on-festivals-parashat-hachodesh-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Parashat HaChodesh:2 | tiferet-shlomo-on-festivals-parashat-hachodesh-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:1 | tiferet-shlomo-on-festivals-shabbat-hagadol-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:2 | tiferet-shlomo-on-festivals-shabbat-hagadol-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:3 | tiferet-shlomo-on-festivals-shabbat-hagadol-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:4 | tiferet-shlomo-on-festivals-shabbat-hagadol-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:5 | tiferet-shlomo-on-festivals-shabbat-hagadol-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:6 | tiferet-shlomo-on-festivals-shabbat-hagadol-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:7 | tiferet-shlomo-on-festivals-shabbat-hagadol-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:8 | tiferet-shlomo-on-festivals-shabbat-hagadol-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:9 | tiferet-shlomo-on-festivals-shabbat-hagadol-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:10 | tiferet-shlomo-on-festivals-shabbat-hagadol-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:11 | tiferet-shlomo-on-festivals-shabbat-hagadol-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:12 | tiferet-shlomo-on-festivals-shabbat-hagadol-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:13 | tiferet-shlomo-on-festivals-shabbat-hagadol-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:14 | tiferet-shlomo-on-festivals-shabbat-hagadol-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:15 | tiferet-shlomo-on-festivals-shabbat-hagadol-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:16 | tiferet-shlomo-on-festivals-shabbat-hagadol-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:17 | tiferet-shlomo-on-festivals-shabbat-hagadol-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:18 | tiferet-shlomo-on-festivals-shabbat-hagadol-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:19 | tiferet-shlomo-on-festivals-shabbat-hagadol-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:20 | tiferet-shlomo-on-festivals-shabbat-hagadol-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:21 | tiferet-shlomo-on-festivals-shabbat-hagadol-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:22 | tiferet-shlomo-on-festivals-shabbat-hagadol-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:23 | tiferet-shlomo-on-festivals-shabbat-hagadol-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:24 | tiferet-shlomo-on-festivals-shabbat-hagadol-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:25 | tiferet-shlomo-on-festivals-shabbat-hagadol-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:26 | tiferet-shlomo-on-festivals-shabbat-hagadol-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:27 | tiferet-shlomo-on-festivals-shabbat-hagadol-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:28 | tiferet-shlomo-on-festivals-shabbat-hagadol-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:29 | tiferet-shlomo-on-festivals-shabbat-hagadol-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:30 | tiferet-shlomo-on-festivals-shabbat-hagadol-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:31 | tiferet-shlomo-on-festivals-shabbat-hagadol-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:32 | tiferet-shlomo-on-festivals-shabbat-hagadol-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:33 | tiferet-shlomo-on-festivals-shabbat-hagadol-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:34 | tiferet-shlomo-on-festivals-shabbat-hagadol-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:35 | tiferet-shlomo-on-festivals-shabbat-hagadol-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:36 | tiferet-shlomo-on-festivals-shabbat-hagadol-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:37 | tiferet-shlomo-on-festivals-shabbat-hagadol-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shabbat HaGadol:38 | tiferet-shlomo-on-festivals-shabbat-hagadol-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:1 | tiferet-shlomo-on-festivals-pesach-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:2 | tiferet-shlomo-on-festivals-pesach-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:3 | tiferet-shlomo-on-festivals-pesach-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:4 | tiferet-shlomo-on-festivals-pesach-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:5 | tiferet-shlomo-on-festivals-pesach-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:6 | tiferet-shlomo-on-festivals-pesach-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:7 | tiferet-shlomo-on-festivals-pesach-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:8 | tiferet-shlomo-on-festivals-pesach-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:9 | tiferet-shlomo-on-festivals-pesach-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:10 | tiferet-shlomo-on-festivals-pesach-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:11 | tiferet-shlomo-on-festivals-pesach-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:12 | tiferet-shlomo-on-festivals-pesach-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:13 | tiferet-shlomo-on-festivals-pesach-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:14 | tiferet-shlomo-on-festivals-pesach-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:15 | tiferet-shlomo-on-festivals-pesach-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:16 | tiferet-shlomo-on-festivals-pesach-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:17 | tiferet-shlomo-on-festivals-pesach-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:18 | tiferet-shlomo-on-festivals-pesach-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:19 | tiferet-shlomo-on-festivals-pesach-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:20 | tiferet-shlomo-on-festivals-pesach-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:21 | tiferet-shlomo-on-festivals-pesach-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:22 | tiferet-shlomo-on-festivals-pesach-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:23 | tiferet-shlomo-on-festivals-pesach-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:24 | tiferet-shlomo-on-festivals-pesach-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:25 | tiferet-shlomo-on-festivals-pesach-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:26 | tiferet-shlomo-on-festivals-pesach-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:27 | tiferet-shlomo-on-festivals-pesach-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:28 | tiferet-shlomo-on-festivals-pesach-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:29 | tiferet-shlomo-on-festivals-pesach-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:30 | tiferet-shlomo-on-festivals-pesach-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:31 | tiferet-shlomo-on-festivals-pesach-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:32 | tiferet-shlomo-on-festivals-pesach-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:33 | tiferet-shlomo-on-festivals-pesach-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:34 | tiferet-shlomo-on-festivals-pesach-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:35 | tiferet-shlomo-on-festivals-pesach-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:36 | tiferet-shlomo-on-festivals-pesach-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:37 | tiferet-shlomo-on-festivals-pesach-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:38 | tiferet-shlomo-on-festivals-pesach-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:39 | tiferet-shlomo-on-festivals-pesach-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:40 | tiferet-shlomo-on-festivals-pesach-40 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:41 | tiferet-shlomo-on-festivals-pesach-41 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:42 | tiferet-shlomo-on-festivals-pesach-42 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:43 | tiferet-shlomo-on-festivals-pesach-43 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:44 | tiferet-shlomo-on-festivals-pesach-44 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:45 | tiferet-shlomo-on-festivals-pesach-45 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:46 | tiferet-shlomo-on-festivals-pesach-46 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:47 | tiferet-shlomo-on-festivals-pesach-47 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:48 | tiferet-shlomo-on-festivals-pesach-48 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:49 | tiferet-shlomo-on-festivals-pesach-49 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:50 | tiferet-shlomo-on-festivals-pesach-50 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:51 | tiferet-shlomo-on-festivals-pesach-51 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:52 | tiferet-shlomo-on-festivals-pesach-52 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:53 | tiferet-shlomo-on-festivals-pesach-53 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:54 | tiferet-shlomo-on-festivals-pesach-54 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:55 | tiferet-shlomo-on-festivals-pesach-55 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:56 | tiferet-shlomo-on-festivals-pesach-56 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:57 | tiferet-shlomo-on-festivals-pesach-57 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:58 | tiferet-shlomo-on-festivals-pesach-58 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:59 | tiferet-shlomo-on-festivals-pesach-59 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:60 | tiferet-shlomo-on-festivals-pesach-60 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:61 | tiferet-shlomo-on-festivals-pesach-61 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:62 | tiferet-shlomo-on-festivals-pesach-62 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:63 | tiferet-shlomo-on-festivals-pesach-63 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:64 | tiferet-shlomo-on-festivals-pesach-64 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:65 | tiferet-shlomo-on-festivals-pesach-65 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:66 | tiferet-shlomo-on-festivals-pesach-66 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:67 | tiferet-shlomo-on-festivals-pesach-67 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:68 | tiferet-shlomo-on-festivals-pesach-68 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:69 | tiferet-shlomo-on-festivals-pesach-69 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:70 | tiferet-shlomo-on-festivals-pesach-70 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:71 | tiferet-shlomo-on-festivals-pesach-71 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:72 | tiferet-shlomo-on-festivals-pesach-72 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:73 | tiferet-shlomo-on-festivals-pesach-73 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:74 | tiferet-shlomo-on-festivals-pesach-74 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:75 | tiferet-shlomo-on-festivals-pesach-75 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:76 | tiferet-shlomo-on-festivals-pesach-76 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:77 | tiferet-shlomo-on-festivals-pesach-77 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:78 | tiferet-shlomo-on-festivals-pesach-78 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:79 | tiferet-shlomo-on-festivals-pesach-79 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:80 | tiferet-shlomo-on-festivals-pesach-80 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:81 | tiferet-shlomo-on-festivals-pesach-81 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:82 | tiferet-shlomo-on-festivals-pesach-82 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:83 | tiferet-shlomo-on-festivals-pesach-83 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:84 | tiferet-shlomo-on-festivals-pesach-84 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:85 | tiferet-shlomo-on-festivals-pesach-85 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:86 | tiferet-shlomo-on-festivals-pesach-86 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:87 | tiferet-shlomo-on-festivals-pesach-87 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:88 | tiferet-shlomo-on-festivals-pesach-88 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pesach:89 | tiferet-shlomo-on-festivals-pesach-89 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sefirat HaOmer:1 | tiferet-shlomo-on-festivals-sefirat-haomer-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sefirat HaOmer:2 | tiferet-shlomo-on-festivals-sefirat-haomer-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sefirat HaOmer:3 | tiferet-shlomo-on-festivals-sefirat-haomer-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sefirat HaOmer:4 | tiferet-shlomo-on-festivals-sefirat-haomer-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sefirat HaOmer:5 | tiferet-shlomo-on-festivals-sefirat-haomer-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Sefirat HaOmer:6 | tiferet-shlomo-on-festivals-sefirat-haomer-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Lag BaOmer:1 | tiferet-shlomo-on-festivals-lag-baomer-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Lag BaOmer:2 | tiferet-shlomo-on-festivals-lag-baomer-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:1 | tiferet-shlomo-on-festivals-shavuot-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:2 | tiferet-shlomo-on-festivals-shavuot-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:3 | tiferet-shlomo-on-festivals-shavuot-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:4 | tiferet-shlomo-on-festivals-shavuot-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:5 | tiferet-shlomo-on-festivals-shavuot-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:6 | tiferet-shlomo-on-festivals-shavuot-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:7 | tiferet-shlomo-on-festivals-shavuot-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:8 | tiferet-shlomo-on-festivals-shavuot-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:9 | tiferet-shlomo-on-festivals-shavuot-9 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:10 | tiferet-shlomo-on-festivals-shavuot-10 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:11 | tiferet-shlomo-on-festivals-shavuot-11 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:12 | tiferet-shlomo-on-festivals-shavuot-12 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:13 | tiferet-shlomo-on-festivals-shavuot-13 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:14 | tiferet-shlomo-on-festivals-shavuot-14 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:15 | tiferet-shlomo-on-festivals-shavuot-15 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:16 | tiferet-shlomo-on-festivals-shavuot-16 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:17 | tiferet-shlomo-on-festivals-shavuot-17 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:18 | tiferet-shlomo-on-festivals-shavuot-18 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:19 | tiferet-shlomo-on-festivals-shavuot-19 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:20 | tiferet-shlomo-on-festivals-shavuot-20 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:21 | tiferet-shlomo-on-festivals-shavuot-21 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:22 | tiferet-shlomo-on-festivals-shavuot-22 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:23 | tiferet-shlomo-on-festivals-shavuot-23 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:24 | tiferet-shlomo-on-festivals-shavuot-24 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:25 | tiferet-shlomo-on-festivals-shavuot-25 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:26 | tiferet-shlomo-on-festivals-shavuot-26 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:27 | tiferet-shlomo-on-festivals-shavuot-27 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:28 | tiferet-shlomo-on-festivals-shavuot-28 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:29 | tiferet-shlomo-on-festivals-shavuot-29 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:30 | tiferet-shlomo-on-festivals-shavuot-30 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:31 | tiferet-shlomo-on-festivals-shavuot-31 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:32 | tiferet-shlomo-on-festivals-shavuot-32 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:33 | tiferet-shlomo-on-festivals-shavuot-33 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:34 | tiferet-shlomo-on-festivals-shavuot-34 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:35 | tiferet-shlomo-on-festivals-shavuot-35 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:36 | tiferet-shlomo-on-festivals-shavuot-36 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:37 | tiferet-shlomo-on-festivals-shavuot-37 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:38 | tiferet-shlomo-on-festivals-shavuot-38 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:39 | tiferet-shlomo-on-festivals-shavuot-39 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:40 | tiferet-shlomo-on-festivals-shavuot-40 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:41 | tiferet-shlomo-on-festivals-shavuot-41 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:42 | tiferet-shlomo-on-festivals-shavuot-42 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:43 | tiferet-shlomo-on-festivals-shavuot-43 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:44 | tiferet-shlomo-on-festivals-shavuot-44 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:45 | tiferet-shlomo-on-festivals-shavuot-45 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:46 | tiferet-shlomo-on-festivals-shavuot-46 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:47 | tiferet-shlomo-on-festivals-shavuot-47 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:48 | tiferet-shlomo-on-festivals-shavuot-48 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:49 | tiferet-shlomo-on-festivals-shavuot-49 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:50 | tiferet-shlomo-on-festivals-shavuot-50 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:51 | tiferet-shlomo-on-festivals-shavuot-51 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:52 | tiferet-shlomo-on-festivals-shavuot-52 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:53 | tiferet-shlomo-on-festivals-shavuot-53 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:54 | tiferet-shlomo-on-festivals-shavuot-54 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Shavuot:55 | tiferet-shlomo-on-festivals-shavuot-55 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:1 | tiferet-shlomo-on-festivals-ruth-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:2 | tiferet-shlomo-on-festivals-ruth-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:3 | tiferet-shlomo-on-festivals-ruth-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:4 | tiferet-shlomo-on-festivals-ruth-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:5 | tiferet-shlomo-on-festivals-ruth-5 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:6 | tiferet-shlomo-on-festivals-ruth-6 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:7 | tiferet-shlomo-on-festivals-ruth-7 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Ruth:8 | tiferet-shlomo-on-festivals-ruth-8 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 1:1 | tiferet-shlomo-on-festivals-pirkei-avot-1-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 1:2 | tiferet-shlomo-on-festivals-pirkei-avot-1-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 1:3 | tiferet-shlomo-on-festivals-pirkei-avot-1-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 1:4 | tiferet-shlomo-on-festivals-pirkei-avot-1-4 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 3:1 | tiferet-shlomo-on-festivals-pirkei-avot-3-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 3:2 | tiferet-shlomo-on-festivals-pirkei-avot-3-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 5:1 | tiferet-shlomo-on-festivals-pirkei-avot-5-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 5:2 | tiferet-shlomo-on-festivals-pirkei-avot-5-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 6:1 | tiferet-shlomo-on-festivals-pirkei-avot-6-1 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 6:2 | tiferet-shlomo-on-festivals-pirkei-avot-6-2 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 6:3 | tiferet-shlomo-on-festivals-pirkei-avot-6-3 |  |  | not_done |  |
+| tiferet-shlomo | Tiferet Shlomo | Tiferet Shlomo, on Festivals, Pirkei Avot 6:4 | tiferet-shlomo-on-festivals-pirkei-avot-6-4 |  |  | not_done |  |

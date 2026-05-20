@@ -1,0 +1,736 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| meor-einayim | Me'or Einayim | Me'or Einayim, Title:1 | meor-einayim-title-title-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Title:2 | meor-einayim-title-title-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Title:3 | meor-einayim-title-title-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Title:4 | meor-einayim-title-title-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Title:5 | meor-einayim-title-title-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Title:6 | meor-einayim-title-title-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:1 | meor-einayim-approbations-approbations-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:2 | meor-einayim-approbations-approbations-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:3 | meor-einayim-approbations-approbations-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:4 | meor-einayim-approbations-approbations-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:5 | meor-einayim-approbations-approbations-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:6 | meor-einayim-approbations-approbations-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:7 | meor-einayim-approbations-approbations-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:8 | meor-einayim-approbations-approbations-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:9 | meor-einayim-approbations-approbations-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:10 | meor-einayim-approbations-approbations-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:11 | meor-einayim-approbations-approbations-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:12 | meor-einayim-approbations-approbations-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:13 | meor-einayim-approbations-approbations-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Approbations:14 | meor-einayim-approbations-approbations-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Introduction:1 | meor-einayim-introduction-introduction-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Introduction:2 | meor-einayim-introduction-introduction-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:1 | meor-einayim-bereshit-bereshit-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:2 | meor-einayim-bereshit-bereshit-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:3 | meor-einayim-bereshit-bereshit-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:4 | meor-einayim-bereshit-bereshit-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:5 | meor-einayim-bereshit-bereshit-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:6 | meor-einayim-bereshit-bereshit-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:7 | meor-einayim-bereshit-bereshit-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:8 | meor-einayim-bereshit-bereshit-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:9 | meor-einayim-bereshit-bereshit-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:10 | meor-einayim-bereshit-bereshit-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:11 | meor-einayim-bereshit-bereshit-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:12 | meor-einayim-bereshit-bereshit-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:13 | meor-einayim-bereshit-bereshit-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:14 | meor-einayim-bereshit-bereshit-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:15 | meor-einayim-bereshit-bereshit-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:16 | meor-einayim-bereshit-bereshit-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:17 | meor-einayim-bereshit-bereshit-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:18 | meor-einayim-bereshit-bereshit-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:19 | meor-einayim-bereshit-bereshit-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:20 | meor-einayim-bereshit-bereshit-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:21 | meor-einayim-bereshit-bereshit-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:22 | meor-einayim-bereshit-bereshit-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:23 | meor-einayim-bereshit-bereshit-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:24 | meor-einayim-bereshit-bereshit-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:25 | meor-einayim-bereshit-bereshit-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:26 | meor-einayim-bereshit-bereshit-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:27 | meor-einayim-bereshit-bereshit-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:28 | meor-einayim-bereshit-bereshit-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:29 | meor-einayim-bereshit-bereshit-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:30 | meor-einayim-bereshit-bereshit-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:31 | meor-einayim-bereshit-bereshit-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:32 | meor-einayim-bereshit-bereshit-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:33 | meor-einayim-bereshit-bereshit-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:34 | meor-einayim-bereshit-bereshit-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:35 | meor-einayim-bereshit-bereshit-35 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:36 | meor-einayim-bereshit-bereshit-36 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:37 | meor-einayim-bereshit-bereshit-37 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:38 | meor-einayim-bereshit-bereshit-38 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:39 | meor-einayim-bereshit-bereshit-39 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:40 | meor-einayim-bereshit-bereshit-40 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:41 | meor-einayim-bereshit-bereshit-41 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:42 | meor-einayim-bereshit-bereshit-42 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:43 | meor-einayim-bereshit-bereshit-43 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:44 | meor-einayim-bereshit-bereshit-44 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:45 | meor-einayim-bereshit-bereshit-45 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:46 | meor-einayim-bereshit-bereshit-46 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:47 | meor-einayim-bereshit-bereshit-47 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:48 | meor-einayim-bereshit-bereshit-48 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bereshit:49 | meor-einayim-bereshit-bereshit-49 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:1 | meor-einayim-noach-noach-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:2 | meor-einayim-noach-noach-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:3 | meor-einayim-noach-noach-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:4 | meor-einayim-noach-noach-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:5 | meor-einayim-noach-noach-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:6 | meor-einayim-noach-noach-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:7 | meor-einayim-noach-noach-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:8 | meor-einayim-noach-noach-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:9 | meor-einayim-noach-noach-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:10 | meor-einayim-noach-noach-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:11 | meor-einayim-noach-noach-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:12 | meor-einayim-noach-noach-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:13 | meor-einayim-noach-noach-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:14 | meor-einayim-noach-noach-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:15 | meor-einayim-noach-noach-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:16 | meor-einayim-noach-noach-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Noach:17 | meor-einayim-noach-noach-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:1 | meor-einayim-lech-lecha-lech-lecha-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:2 | meor-einayim-lech-lecha-lech-lecha-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:3 | meor-einayim-lech-lecha-lech-lecha-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:4 | meor-einayim-lech-lecha-lech-lecha-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:5 | meor-einayim-lech-lecha-lech-lecha-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:6 | meor-einayim-lech-lecha-lech-lecha-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:7 | meor-einayim-lech-lecha-lech-lecha-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:8 | meor-einayim-lech-lecha-lech-lecha-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:9 | meor-einayim-lech-lecha-lech-lecha-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:10 | meor-einayim-lech-lecha-lech-lecha-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:11 | meor-einayim-lech-lecha-lech-lecha-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:12 | meor-einayim-lech-lecha-lech-lecha-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:13 | meor-einayim-lech-lecha-lech-lecha-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:14 | meor-einayim-lech-lecha-lech-lecha-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:15 | meor-einayim-lech-lecha-lech-lecha-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:16 | meor-einayim-lech-lecha-lech-lecha-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:17 | meor-einayim-lech-lecha-lech-lecha-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:18 | meor-einayim-lech-lecha-lech-lecha-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:19 | meor-einayim-lech-lecha-lech-lecha-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:20 | meor-einayim-lech-lecha-lech-lecha-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:21 | meor-einayim-lech-lecha-lech-lecha-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:22 | meor-einayim-lech-lecha-lech-lecha-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:23 | meor-einayim-lech-lecha-lech-lecha-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:24 | meor-einayim-lech-lecha-lech-lecha-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:25 | meor-einayim-lech-lecha-lech-lecha-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:26 | meor-einayim-lech-lecha-lech-lecha-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:27 | meor-einayim-lech-lecha-lech-lecha-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:28 | meor-einayim-lech-lecha-lech-lecha-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:29 | meor-einayim-lech-lecha-lech-lecha-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:30 | meor-einayim-lech-lecha-lech-lecha-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:31 | meor-einayim-lech-lecha-lech-lecha-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:32 | meor-einayim-lech-lecha-lech-lecha-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:33 | meor-einayim-lech-lecha-lech-lecha-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:34 | meor-einayim-lech-lecha-lech-lecha-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:35 | meor-einayim-lech-lecha-lech-lecha-35 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:36 | meor-einayim-lech-lecha-lech-lecha-36 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:37 | meor-einayim-lech-lecha-lech-lecha-37 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:38 | meor-einayim-lech-lecha-lech-lecha-38 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:39 | meor-einayim-lech-lecha-lech-lecha-39 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:40 | meor-einayim-lech-lecha-lech-lecha-40 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:41 | meor-einayim-lech-lecha-lech-lecha-41 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Lech Lecha:42 | meor-einayim-lech-lecha-lech-lecha-42 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:1 | meor-einayim-vayera-vayera-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:2 | meor-einayim-vayera-vayera-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:3 | meor-einayim-vayera-vayera-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:4 | meor-einayim-vayera-vayera-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:5 | meor-einayim-vayera-vayera-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:6 | meor-einayim-vayera-vayera-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:7 | meor-einayim-vayera-vayera-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:8 | meor-einayim-vayera-vayera-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:9 | meor-einayim-vayera-vayera-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:10 | meor-einayim-vayera-vayera-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:11 | meor-einayim-vayera-vayera-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:12 | meor-einayim-vayera-vayera-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:13 | meor-einayim-vayera-vayera-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:14 | meor-einayim-vayera-vayera-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:15 | meor-einayim-vayera-vayera-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:16 | meor-einayim-vayera-vayera-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:17 | meor-einayim-vayera-vayera-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:18 | meor-einayim-vayera-vayera-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:19 | meor-einayim-vayera-vayera-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:20 | meor-einayim-vayera-vayera-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:21 | meor-einayim-vayera-vayera-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:22 | meor-einayim-vayera-vayera-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:23 | meor-einayim-vayera-vayera-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:24 | meor-einayim-vayera-vayera-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:25 | meor-einayim-vayera-vayera-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:26 | meor-einayim-vayera-vayera-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayera:27 | meor-einayim-vayera-vayera-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:1 | meor-einayim-chayei-sara-chayei-sara-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:2 | meor-einayim-chayei-sara-chayei-sara-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:3 | meor-einayim-chayei-sara-chayei-sara-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:4 | meor-einayim-chayei-sara-chayei-sara-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:5 | meor-einayim-chayei-sara-chayei-sara-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:6 | meor-einayim-chayei-sara-chayei-sara-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:7 | meor-einayim-chayei-sara-chayei-sara-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:8 | meor-einayim-chayei-sara-chayei-sara-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:9 | meor-einayim-chayei-sara-chayei-sara-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:10 | meor-einayim-chayei-sara-chayei-sara-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:11 | meor-einayim-chayei-sara-chayei-sara-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:12 | meor-einayim-chayei-sara-chayei-sara-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:13 | meor-einayim-chayei-sara-chayei-sara-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:14 | meor-einayim-chayei-sara-chayei-sara-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:15 | meor-einayim-chayei-sara-chayei-sara-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:16 | meor-einayim-chayei-sara-chayei-sara-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:17 | meor-einayim-chayei-sara-chayei-sara-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:18 | meor-einayim-chayei-sara-chayei-sara-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:19 | meor-einayim-chayei-sara-chayei-sara-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:20 | meor-einayim-chayei-sara-chayei-sara-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:21 | meor-einayim-chayei-sara-chayei-sara-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:22 | meor-einayim-chayei-sara-chayei-sara-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:23 | meor-einayim-chayei-sara-chayei-sara-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:24 | meor-einayim-chayei-sara-chayei-sara-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:25 | meor-einayim-chayei-sara-chayei-sara-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:26 | meor-einayim-chayei-sara-chayei-sara-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:27 | meor-einayim-chayei-sara-chayei-sara-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:28 | meor-einayim-chayei-sara-chayei-sara-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chayei Sara:29 | meor-einayim-chayei-sara-chayei-sara-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:1 | meor-einayim-toldot-toldot-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:2 | meor-einayim-toldot-toldot-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:3 | meor-einayim-toldot-toldot-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:4 | meor-einayim-toldot-toldot-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:5 | meor-einayim-toldot-toldot-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:6 | meor-einayim-toldot-toldot-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:7 | meor-einayim-toldot-toldot-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:8 | meor-einayim-toldot-toldot-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:9 | meor-einayim-toldot-toldot-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:10 | meor-einayim-toldot-toldot-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:11 | meor-einayim-toldot-toldot-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:12 | meor-einayim-toldot-toldot-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:13 | meor-einayim-toldot-toldot-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:14 | meor-einayim-toldot-toldot-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:15 | meor-einayim-toldot-toldot-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:16 | meor-einayim-toldot-toldot-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:17 | meor-einayim-toldot-toldot-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:18 | meor-einayim-toldot-toldot-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:19 | meor-einayim-toldot-toldot-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:20 | meor-einayim-toldot-toldot-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:21 | meor-einayim-toldot-toldot-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:22 | meor-einayim-toldot-toldot-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:23 | meor-einayim-toldot-toldot-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:24 | meor-einayim-toldot-toldot-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:25 | meor-einayim-toldot-toldot-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:26 | meor-einayim-toldot-toldot-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:27 | meor-einayim-toldot-toldot-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:28 | meor-einayim-toldot-toldot-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:29 | meor-einayim-toldot-toldot-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:30 | meor-einayim-toldot-toldot-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:31 | meor-einayim-toldot-toldot-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:32 | meor-einayim-toldot-toldot-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:33 | meor-einayim-toldot-toldot-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Toldot:34 | meor-einayim-toldot-toldot-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:1 | meor-einayim-vayetzei-vayetzei-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:2 | meor-einayim-vayetzei-vayetzei-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:3 | meor-einayim-vayetzei-vayetzei-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:4 | meor-einayim-vayetzei-vayetzei-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:5 | meor-einayim-vayetzei-vayetzei-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:6 | meor-einayim-vayetzei-vayetzei-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:7 | meor-einayim-vayetzei-vayetzei-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:8 | meor-einayim-vayetzei-vayetzei-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:9 | meor-einayim-vayetzei-vayetzei-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:10 | meor-einayim-vayetzei-vayetzei-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:11 | meor-einayim-vayetzei-vayetzei-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:12 | meor-einayim-vayetzei-vayetzei-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:13 | meor-einayim-vayetzei-vayetzei-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:14 | meor-einayim-vayetzei-vayetzei-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:15 | meor-einayim-vayetzei-vayetzei-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:16 | meor-einayim-vayetzei-vayetzei-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:17 | meor-einayim-vayetzei-vayetzei-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:18 | meor-einayim-vayetzei-vayetzei-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:19 | meor-einayim-vayetzei-vayetzei-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:20 | meor-einayim-vayetzei-vayetzei-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:21 | meor-einayim-vayetzei-vayetzei-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:22 | meor-einayim-vayetzei-vayetzei-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:23 | meor-einayim-vayetzei-vayetzei-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:24 | meor-einayim-vayetzei-vayetzei-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:25 | meor-einayim-vayetzei-vayetzei-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:26 | meor-einayim-vayetzei-vayetzei-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:27 | meor-einayim-vayetzei-vayetzei-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:28 | meor-einayim-vayetzei-vayetzei-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:29 | meor-einayim-vayetzei-vayetzei-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:30 | meor-einayim-vayetzei-vayetzei-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:31 | meor-einayim-vayetzei-vayetzei-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:32 | meor-einayim-vayetzei-vayetzei-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:33 | meor-einayim-vayetzei-vayetzei-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:34 | meor-einayim-vayetzei-vayetzei-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:35 | meor-einayim-vayetzei-vayetzei-35 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:36 | meor-einayim-vayetzei-vayetzei-36 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:37 | meor-einayim-vayetzei-vayetzei-37 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:38 | meor-einayim-vayetzei-vayetzei-38 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:39 | meor-einayim-vayetzei-vayetzei-39 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:40 | meor-einayim-vayetzei-vayetzei-40 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:41 | meor-einayim-vayetzei-vayetzei-41 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:42 | meor-einayim-vayetzei-vayetzei-42 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:43 | meor-einayim-vayetzei-vayetzei-43 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:44 | meor-einayim-vayetzei-vayetzei-44 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayetzei:45 | meor-einayim-vayetzei-vayetzei-45 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayishlach:1 | meor-einayim-vayishlach-vayishlach-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayishlach:2 | meor-einayim-vayishlach-vayishlach-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayishlach:3 | meor-einayim-vayishlach-vayishlach-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayishlach:4 | meor-einayim-vayishlach-vayishlach-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeshev:1 | meor-einayim-vayeshev-vayeshev-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeshev:2 | meor-einayim-vayeshev-vayeshev-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeshev:3 | meor-einayim-vayeshev-vayeshev-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeshev:4 | meor-einayim-vayeshev-vayeshev-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeshev:5 | meor-einayim-vayeshev-vayeshev-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:1 | meor-einayim-miketz-miketz-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:2 | meor-einayim-miketz-miketz-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:3 | meor-einayim-miketz-miketz-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:4 | meor-einayim-miketz-miketz-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:5 | meor-einayim-miketz-miketz-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:6 | meor-einayim-miketz-miketz-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:7 | meor-einayim-miketz-miketz-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:8 | meor-einayim-miketz-miketz-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:9 | meor-einayim-miketz-miketz-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:10 | meor-einayim-miketz-miketz-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Miketz:11 | meor-einayim-miketz-miketz-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayigash:1 | meor-einayim-vayigash-vayigash-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayigash:2 | meor-einayim-vayigash-vayigash-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:1 | meor-einayim-shemot-shemot-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:2 | meor-einayim-shemot-shemot-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:3 | meor-einayim-shemot-shemot-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:4 | meor-einayim-shemot-shemot-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:5 | meor-einayim-shemot-shemot-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:6 | meor-einayim-shemot-shemot-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:7 | meor-einayim-shemot-shemot-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:8 | meor-einayim-shemot-shemot-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:9 | meor-einayim-shemot-shemot-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:10 | meor-einayim-shemot-shemot-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:11 | meor-einayim-shemot-shemot-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:12 | meor-einayim-shemot-shemot-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:13 | meor-einayim-shemot-shemot-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:14 | meor-einayim-shemot-shemot-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:15 | meor-einayim-shemot-shemot-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:16 | meor-einayim-shemot-shemot-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:17 | meor-einayim-shemot-shemot-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:18 | meor-einayim-shemot-shemot-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:19 | meor-einayim-shemot-shemot-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:20 | meor-einayim-shemot-shemot-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:21 | meor-einayim-shemot-shemot-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:22 | meor-einayim-shemot-shemot-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:23 | meor-einayim-shemot-shemot-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:24 | meor-einayim-shemot-shemot-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:25 | meor-einayim-shemot-shemot-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:26 | meor-einayim-shemot-shemot-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:27 | meor-einayim-shemot-shemot-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:28 | meor-einayim-shemot-shemot-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:29 | meor-einayim-shemot-shemot-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:30 | meor-einayim-shemot-shemot-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:31 | meor-einayim-shemot-shemot-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:32 | meor-einayim-shemot-shemot-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:33 | meor-einayim-shemot-shemot-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:34 | meor-einayim-shemot-shemot-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:35 | meor-einayim-shemot-shemot-35 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:36 | meor-einayim-shemot-shemot-36 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:37 | meor-einayim-shemot-shemot-37 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shemot:38 | meor-einayim-shemot-shemot-38 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:1 | meor-einayim-vaera-vaera-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:2 | meor-einayim-vaera-vaera-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:3 | meor-einayim-vaera-vaera-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:4 | meor-einayim-vaera-vaera-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:5 | meor-einayim-vaera-vaera-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:6 | meor-einayim-vaera-vaera-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:7 | meor-einayim-vaera-vaera-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:8 | meor-einayim-vaera-vaera-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaera:9 | meor-einayim-vaera-vaera-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bo:1 | meor-einayim-bo-bo-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bo:2 | meor-einayim-bo-bo-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bo:3 | meor-einayim-bo-bo-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bo:4 | meor-einayim-bo-bo-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bo:5 | meor-einayim-bo-bo-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bo:6 | meor-einayim-bo-bo-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:1 | meor-einayim-beshalach-beshalach-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:2 | meor-einayim-beshalach-beshalach-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:3 | meor-einayim-beshalach-beshalach-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:4 | meor-einayim-beshalach-beshalach-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:5 | meor-einayim-beshalach-beshalach-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:6 | meor-einayim-beshalach-beshalach-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:7 | meor-einayim-beshalach-beshalach-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:8 | meor-einayim-beshalach-beshalach-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:9 | meor-einayim-beshalach-beshalach-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:10 | meor-einayim-beshalach-beshalach-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:11 | meor-einayim-beshalach-beshalach-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:12 | meor-einayim-beshalach-beshalach-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:13 | meor-einayim-beshalach-beshalach-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:14 | meor-einayim-beshalach-beshalach-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:15 | meor-einayim-beshalach-beshalach-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:16 | meor-einayim-beshalach-beshalach-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:17 | meor-einayim-beshalach-beshalach-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:18 | meor-einayim-beshalach-beshalach-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:19 | meor-einayim-beshalach-beshalach-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beshalach:20 | meor-einayim-beshalach-beshalach-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:1 | meor-einayim-yitro-yitro-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:2 | meor-einayim-yitro-yitro-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:3 | meor-einayim-yitro-yitro-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:4 | meor-einayim-yitro-yitro-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:5 | meor-einayim-yitro-yitro-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:6 | meor-einayim-yitro-yitro-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:7 | meor-einayim-yitro-yitro-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:8 | meor-einayim-yitro-yitro-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:9 | meor-einayim-yitro-yitro-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:10 | meor-einayim-yitro-yitro-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:11 | meor-einayim-yitro-yitro-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:12 | meor-einayim-yitro-yitro-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:13 | meor-einayim-yitro-yitro-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:14 | meor-einayim-yitro-yitro-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:15 | meor-einayim-yitro-yitro-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:16 | meor-einayim-yitro-yitro-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:17 | meor-einayim-yitro-yitro-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:18 | meor-einayim-yitro-yitro-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:19 | meor-einayim-yitro-yitro-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:20 | meor-einayim-yitro-yitro-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:21 | meor-einayim-yitro-yitro-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:22 | meor-einayim-yitro-yitro-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:23 | meor-einayim-yitro-yitro-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:24 | meor-einayim-yitro-yitro-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:25 | meor-einayim-yitro-yitro-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:26 | meor-einayim-yitro-yitro-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:27 | meor-einayim-yitro-yitro-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:28 | meor-einayim-yitro-yitro-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:29 | meor-einayim-yitro-yitro-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:30 | meor-einayim-yitro-yitro-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:31 | meor-einayim-yitro-yitro-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:32 | meor-einayim-yitro-yitro-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:33 | meor-einayim-yitro-yitro-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:34 | meor-einayim-yitro-yitro-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:35 | meor-einayim-yitro-yitro-35 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Yitro:36 | meor-einayim-yitro-yitro-36 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Mishpatim:1 | meor-einayim-mishpatim-mishpatim-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Mishpatim:2 | meor-einayim-mishpatim-mishpatim-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Mishpatim:3 | meor-einayim-mishpatim-mishpatim-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Terumah:1 | meor-einayim-terumah-terumah-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Terumah:2 | meor-einayim-terumah-terumah-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Terumah:3 | meor-einayim-terumah-terumah-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Terumah:4 | meor-einayim-terumah-terumah-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Terumah:5 | meor-einayim-terumah-terumah-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Terumah:6 | meor-einayim-terumah-terumah-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tetzaveh:1 | meor-einayim-tetzaveh-tetzaveh-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tetzaveh:2 | meor-einayim-tetzaveh-tetzaveh-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:1 | meor-einayim-ki-tisa-ki-tisa-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:2 | meor-einayim-ki-tisa-ki-tisa-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:3 | meor-einayim-ki-tisa-ki-tisa-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:4 | meor-einayim-ki-tisa-ki-tisa-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:5 | meor-einayim-ki-tisa-ki-tisa-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:6 | meor-einayim-ki-tisa-ki-tisa-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:7 | meor-einayim-ki-tisa-ki-tisa-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:8 | meor-einayim-ki-tisa-ki-tisa-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tisa:9 | meor-einayim-ki-tisa-ki-tisa-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:1 | meor-einayim-vayakhel-vayakhel-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:2 | meor-einayim-vayakhel-vayakhel-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:3 | meor-einayim-vayakhel-vayakhel-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:4 | meor-einayim-vayakhel-vayakhel-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:5 | meor-einayim-vayakhel-vayakhel-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:6 | meor-einayim-vayakhel-vayakhel-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:7 | meor-einayim-vayakhel-vayakhel-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:8 | meor-einayim-vayakhel-vayakhel-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:9 | meor-einayim-vayakhel-vayakhel-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:10 | meor-einayim-vayakhel-vayakhel-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayakhel:11 | meor-einayim-vayakhel-vayakhel-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pekudei:1 | meor-einayim-pekudei-pekudei-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pekudei:2 | meor-einayim-pekudei-pekudei-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayikra:1 | meor-einayim-vayikra-vayikra-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayikra:2 | meor-einayim-vayikra-vayikra-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayikra:3 | meor-einayim-vayikra-vayikra-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tzav:1 | meor-einayim-tzav-tzav-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tzav:2 | meor-einayim-tzav-tzav-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tzav:3 | meor-einayim-tzav-tzav-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tzav:4 | meor-einayim-tzav-tzav-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tzav:5 | meor-einayim-tzav-tzav-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tzav:6 | meor-einayim-tzav-tzav-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Tzav:7 | meor-einayim-tzav-tzav-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shmini:1 | meor-einayim-shmini-shmini-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Shmini:2 | meor-einayim-shmini-shmini-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Metzora:1 | meor-einayim-metzora-metzora-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Metzora:2 | meor-einayim-metzora-metzora-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Metzora:3 | meor-einayim-metzora-metzora-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Achrei Mot:1 | meor-einayim-achrei-mot-achrei-mot-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Achrei Mot:2 | meor-einayim-achrei-mot-achrei-mot-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Achrei Mot:3 | meor-einayim-achrei-mot-achrei-mot-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:1 | meor-einayim-kedoshim-kedoshim-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:2 | meor-einayim-kedoshim-kedoshim-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:3 | meor-einayim-kedoshim-kedoshim-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:4 | meor-einayim-kedoshim-kedoshim-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:5 | meor-einayim-kedoshim-kedoshim-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:6 | meor-einayim-kedoshim-kedoshim-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:7 | meor-einayim-kedoshim-kedoshim-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:8 | meor-einayim-kedoshim-kedoshim-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:9 | meor-einayim-kedoshim-kedoshim-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:10 | meor-einayim-kedoshim-kedoshim-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:11 | meor-einayim-kedoshim-kedoshim-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:12 | meor-einayim-kedoshim-kedoshim-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:13 | meor-einayim-kedoshim-kedoshim-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:14 | meor-einayim-kedoshim-kedoshim-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:15 | meor-einayim-kedoshim-kedoshim-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:16 | meor-einayim-kedoshim-kedoshim-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:17 | meor-einayim-kedoshim-kedoshim-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Kedoshim:18 | meor-einayim-kedoshim-kedoshim-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:1 | meor-einayim-emor-emor-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:2 | meor-einayim-emor-emor-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:3 | meor-einayim-emor-emor-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:4 | meor-einayim-emor-emor-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:5 | meor-einayim-emor-emor-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:6 | meor-einayim-emor-emor-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:7 | meor-einayim-emor-emor-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:8 | meor-einayim-emor-emor-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:9 | meor-einayim-emor-emor-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:10 | meor-einayim-emor-emor-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:11 | meor-einayim-emor-emor-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:12 | meor-einayim-emor-emor-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:13 | meor-einayim-emor-emor-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:14 | meor-einayim-emor-emor-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:15 | meor-einayim-emor-emor-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Emor:16 | meor-einayim-emor-emor-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bechukotai:1 | meor-einayim-bechukotai-bechukotai-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bechukotai:2 | meor-einayim-bechukotai-bechukotai-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bechukotai:3 | meor-einayim-bechukotai-bechukotai-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bechukotai:4 | meor-einayim-bechukotai-bechukotai-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bamidbar:1 | meor-einayim-bamidbar-bamidbar-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bamidbar:2 | meor-einayim-bamidbar-bamidbar-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bamidbar:3 | meor-einayim-bamidbar-bamidbar-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Bamidbar:4 | meor-einayim-bamidbar-bamidbar-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nasso:1 | meor-einayim-nasso-nasso-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nasso:2 | meor-einayim-nasso-nasso-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nasso:3 | meor-einayim-nasso-nasso-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nasso:4 | meor-einayim-nasso-nasso-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beha'alotcha:1 | meor-einayim-behaalotcha-behaalotcha-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Beha'alotcha:2 | meor-einayim-behaalotcha-behaalotcha-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Sh'lach:1 | meor-einayim-shlach-shlach-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Sh'lach:2 | meor-einayim-shlach-shlach-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:1 | meor-einayim-chukat-chukat-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:2 | meor-einayim-chukat-chukat-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:3 | meor-einayim-chukat-chukat-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:4 | meor-einayim-chukat-chukat-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:5 | meor-einayim-chukat-chukat-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:6 | meor-einayim-chukat-chukat-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:7 | meor-einayim-chukat-chukat-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Chukat:8 | meor-einayim-chukat-chukat-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:1 | meor-einayim-pinchas-pinchas-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:2 | meor-einayim-pinchas-pinchas-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:3 | meor-einayim-pinchas-pinchas-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:4 | meor-einayim-pinchas-pinchas-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:5 | meor-einayim-pinchas-pinchas-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:6 | meor-einayim-pinchas-pinchas-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:7 | meor-einayim-pinchas-pinchas-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:8 | meor-einayim-pinchas-pinchas-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:9 | meor-einayim-pinchas-pinchas-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:10 | meor-einayim-pinchas-pinchas-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:11 | meor-einayim-pinchas-pinchas-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:12 | meor-einayim-pinchas-pinchas-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:13 | meor-einayim-pinchas-pinchas-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:14 | meor-einayim-pinchas-pinchas-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:15 | meor-einayim-pinchas-pinchas-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Pinchas:16 | meor-einayim-pinchas-pinchas-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:1 | meor-einayim-matot-matot-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:2 | meor-einayim-matot-matot-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:3 | meor-einayim-matot-matot-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:4 | meor-einayim-matot-matot-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:5 | meor-einayim-matot-matot-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:6 | meor-einayim-matot-matot-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:7 | meor-einayim-matot-matot-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:8 | meor-einayim-matot-matot-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:9 | meor-einayim-matot-matot-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:10 | meor-einayim-matot-matot-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:11 | meor-einayim-matot-matot-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:12 | meor-einayim-matot-matot-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:13 | meor-einayim-matot-matot-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:14 | meor-einayim-matot-matot-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:15 | meor-einayim-matot-matot-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:16 | meor-einayim-matot-matot-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:17 | meor-einayim-matot-matot-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:18 | meor-einayim-matot-matot-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:19 | meor-einayim-matot-matot-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:20 | meor-einayim-matot-matot-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Matot:21 | meor-einayim-matot-matot-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:1 | meor-einayim-devarim-devarim-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:2 | meor-einayim-devarim-devarim-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:3 | meor-einayim-devarim-devarim-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:4 | meor-einayim-devarim-devarim-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:5 | meor-einayim-devarim-devarim-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:6 | meor-einayim-devarim-devarim-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:7 | meor-einayim-devarim-devarim-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:8 | meor-einayim-devarim-devarim-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:9 | meor-einayim-devarim-devarim-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:10 | meor-einayim-devarim-devarim-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:11 | meor-einayim-devarim-devarim-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:12 | meor-einayim-devarim-devarim-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:13 | meor-einayim-devarim-devarim-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:14 | meor-einayim-devarim-devarim-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:15 | meor-einayim-devarim-devarim-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:16 | meor-einayim-devarim-devarim-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:17 | meor-einayim-devarim-devarim-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:18 | meor-einayim-devarim-devarim-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:19 | meor-einayim-devarim-devarim-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:20 | meor-einayim-devarim-devarim-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:21 | meor-einayim-devarim-devarim-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:22 | meor-einayim-devarim-devarim-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Devarim:23 | meor-einayim-devarim-devarim-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:1 | meor-einayim-vaetchanan-vaetchanan-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:2 | meor-einayim-vaetchanan-vaetchanan-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:3 | meor-einayim-vaetchanan-vaetchanan-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:4 | meor-einayim-vaetchanan-vaetchanan-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:5 | meor-einayim-vaetchanan-vaetchanan-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:6 | meor-einayim-vaetchanan-vaetchanan-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:7 | meor-einayim-vaetchanan-vaetchanan-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:8 | meor-einayim-vaetchanan-vaetchanan-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:9 | meor-einayim-vaetchanan-vaetchanan-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:10 | meor-einayim-vaetchanan-vaetchanan-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:11 | meor-einayim-vaetchanan-vaetchanan-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:12 | meor-einayim-vaetchanan-vaetchanan-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:13 | meor-einayim-vaetchanan-vaetchanan-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:14 | meor-einayim-vaetchanan-vaetchanan-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:15 | meor-einayim-vaetchanan-vaetchanan-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:16 | meor-einayim-vaetchanan-vaetchanan-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:17 | meor-einayim-vaetchanan-vaetchanan-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:18 | meor-einayim-vaetchanan-vaetchanan-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:19 | meor-einayim-vaetchanan-vaetchanan-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:20 | meor-einayim-vaetchanan-vaetchanan-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:21 | meor-einayim-vaetchanan-vaetchanan-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:22 | meor-einayim-vaetchanan-vaetchanan-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:23 | meor-einayim-vaetchanan-vaetchanan-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:24 | meor-einayim-vaetchanan-vaetchanan-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:25 | meor-einayim-vaetchanan-vaetchanan-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:26 | meor-einayim-vaetchanan-vaetchanan-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:27 | meor-einayim-vaetchanan-vaetchanan-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:28 | meor-einayim-vaetchanan-vaetchanan-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:29 | meor-einayim-vaetchanan-vaetchanan-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:30 | meor-einayim-vaetchanan-vaetchanan-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:31 | meor-einayim-vaetchanan-vaetchanan-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:32 | meor-einayim-vaetchanan-vaetchanan-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:33 | meor-einayim-vaetchanan-vaetchanan-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:34 | meor-einayim-vaetchanan-vaetchanan-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:35 | meor-einayim-vaetchanan-vaetchanan-35 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:36 | meor-einayim-vaetchanan-vaetchanan-36 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:37 | meor-einayim-vaetchanan-vaetchanan-37 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:38 | meor-einayim-vaetchanan-vaetchanan-38 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:39 | meor-einayim-vaetchanan-vaetchanan-39 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:40 | meor-einayim-vaetchanan-vaetchanan-40 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:41 | meor-einayim-vaetchanan-vaetchanan-41 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vaetchanan:42 | meor-einayim-vaetchanan-vaetchanan-42 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Re'eh:1 | meor-einayim-reeh-reeh-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Re'eh:2 | meor-einayim-reeh-reeh-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Re'eh:3 | meor-einayim-reeh-reeh-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Re'eh:4 | meor-einayim-reeh-reeh-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Re'eh:5 | meor-einayim-reeh-reeh-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Re'eh:6 | meor-einayim-reeh-reeh-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Re'eh:7 | meor-einayim-reeh-reeh-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Teitzei:1 | meor-einayim-ki-teitzei-ki-teitzei-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Teitzei:2 | meor-einayim-ki-teitzei-ki-teitzei-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tavo:1 | meor-einayim-ki-tavo-ki-tavo-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tavo:2 | meor-einayim-ki-tavo-ki-tavo-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tavo:3 | meor-einayim-ki-tavo-ki-tavo-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tavo:4 | meor-einayim-ki-tavo-ki-tavo-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ki Tavo:5 | meor-einayim-ki-tavo-ki-tavo-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nitzavim:1 | meor-einayim-nitzavim-nitzavim-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nitzavim:2 | meor-einayim-nitzavim-nitzavim-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nitzavim:3 | meor-einayim-nitzavim-nitzavim-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Nitzavim:4 | meor-einayim-nitzavim-nitzavim-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeilech:1 | meor-einayim-vayeilech-vayeilech-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeilech:2 | meor-einayim-vayeilech-vayeilech-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Vayeilech:3 | meor-einayim-vayeilech-vayeilech-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:1 | meor-einayim-haazinu-haazinu-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:2 | meor-einayim-haazinu-haazinu-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:3 | meor-einayim-haazinu-haazinu-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:4 | meor-einayim-haazinu-haazinu-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:5 | meor-einayim-haazinu-haazinu-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:6 | meor-einayim-haazinu-haazinu-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:7 | meor-einayim-haazinu-haazinu-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:8 | meor-einayim-haazinu-haazinu-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:9 | meor-einayim-haazinu-haazinu-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:10 | meor-einayim-haazinu-haazinu-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:11 | meor-einayim-haazinu-haazinu-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:12 | meor-einayim-haazinu-haazinu-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:13 | meor-einayim-haazinu-haazinu-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:14 | meor-einayim-haazinu-haazinu-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:15 | meor-einayim-haazinu-haazinu-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:16 | meor-einayim-haazinu-haazinu-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:17 | meor-einayim-haazinu-haazinu-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:18 | meor-einayim-haazinu-haazinu-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:19 | meor-einayim-haazinu-haazinu-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:20 | meor-einayim-haazinu-haazinu-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:21 | meor-einayim-haazinu-haazinu-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:22 | meor-einayim-haazinu-haazinu-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Ha'Azinu:23 | meor-einayim-haazinu-haazinu-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:1 | meor-einayim-additions-additions-1 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:2 | meor-einayim-additions-additions-2 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:3 | meor-einayim-additions-additions-3 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:4 | meor-einayim-additions-additions-4 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:5 | meor-einayim-additions-additions-5 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:6 | meor-einayim-additions-additions-6 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:7 | meor-einayim-additions-additions-7 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:8 | meor-einayim-additions-additions-8 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:9 | meor-einayim-additions-additions-9 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:10 | meor-einayim-additions-additions-10 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:11 | meor-einayim-additions-additions-11 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:12 | meor-einayim-additions-additions-12 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:13 | meor-einayim-additions-additions-13 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:14 | meor-einayim-additions-additions-14 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:15 | meor-einayim-additions-additions-15 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:16 | meor-einayim-additions-additions-16 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:17 | meor-einayim-additions-additions-17 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:18 | meor-einayim-additions-additions-18 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:19 | meor-einayim-additions-additions-19 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:20 | meor-einayim-additions-additions-20 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:21 | meor-einayim-additions-additions-21 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:22 | meor-einayim-additions-additions-22 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:23 | meor-einayim-additions-additions-23 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:24 | meor-einayim-additions-additions-24 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:25 | meor-einayim-additions-additions-25 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:26 | meor-einayim-additions-additions-26 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:27 | meor-einayim-additions-additions-27 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:28 | meor-einayim-additions-additions-28 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:29 | meor-einayim-additions-additions-29 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:30 | meor-einayim-additions-additions-30 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:31 | meor-einayim-additions-additions-31 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:32 | meor-einayim-additions-additions-32 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:33 | meor-einayim-additions-additions-33 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:34 | meor-einayim-additions-additions-34 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:35 | meor-einayim-additions-additions-35 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:36 | meor-einayim-additions-additions-36 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:37 | meor-einayim-additions-additions-37 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:38 | meor-einayim-additions-additions-38 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:39 | meor-einayim-additions-additions-39 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:40 | meor-einayim-additions-additions-40 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:41 | meor-einayim-additions-additions-41 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:42 | meor-einayim-additions-additions-42 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:43 | meor-einayim-additions-additions-43 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:44 | meor-einayim-additions-additions-44 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:45 | meor-einayim-additions-additions-45 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:46 | meor-einayim-additions-additions-46 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:47 | meor-einayim-additions-additions-47 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:48 | meor-einayim-additions-additions-48 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:49 | meor-einayim-additions-additions-49 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:50 | meor-einayim-additions-additions-50 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:51 | meor-einayim-additions-additions-51 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:52 | meor-einayim-additions-additions-52 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:53 | meor-einayim-additions-additions-53 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:54 | meor-einayim-additions-additions-54 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:55 | meor-einayim-additions-additions-55 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:56 | meor-einayim-additions-additions-56 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:57 | meor-einayim-additions-additions-57 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:58 | meor-einayim-additions-additions-58 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:59 | meor-einayim-additions-additions-59 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:60 | meor-einayim-additions-additions-60 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:61 | meor-einayim-additions-additions-61 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:62 | meor-einayim-additions-additions-62 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:63 | meor-einayim-additions-additions-63 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:64 | meor-einayim-additions-additions-64 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:65 | meor-einayim-additions-additions-65 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:66 | meor-einayim-additions-additions-66 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:67 | meor-einayim-additions-additions-67 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:68 | meor-einayim-additions-additions-68 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:69 | meor-einayim-additions-additions-69 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:70 | meor-einayim-additions-additions-70 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:71 | meor-einayim-additions-additions-71 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:72 | meor-einayim-additions-additions-72 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:73 | meor-einayim-additions-additions-73 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:74 | meor-einayim-additions-additions-74 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:75 | meor-einayim-additions-additions-75 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:76 | meor-einayim-additions-additions-76 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:77 | meor-einayim-additions-additions-77 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:78 | meor-einayim-additions-additions-78 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:79 | meor-einayim-additions-additions-79 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:80 | meor-einayim-additions-additions-80 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:81 | meor-einayim-additions-additions-81 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:82 | meor-einayim-additions-additions-82 |  |  | not_done |  |
+| meor-einayim | Me'or Einayim | Me'or Einayim, Additions:83 | meor-einayim-additions-additions-83 |  |  | not_done |  |

@@ -1,0 +1,1892 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:1 | peri-tzadik-title-title-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:2 | peri-tzadik-title-title-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:3 | peri-tzadik-title-title-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:4 | peri-tzadik-title-title-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:5 | peri-tzadik-title-title-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:6 | peri-tzadik-title-title-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:7 | peri-tzadik-title-title-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:8 | peri-tzadik-title-title-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Title:9 | peri-tzadik-title-title-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Introduction:1 | peri-tzadik-introduction-introduction-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Introduction:2 | peri-tzadik-introduction-introduction-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Introduction:3 | peri-tzadik-introduction-introduction-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:1 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:2 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:3 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:4 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:5 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:6 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:7 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 1:8 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-1-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:1 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:2 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:3 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:4 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:5 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:6 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:7 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 2:8 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-2-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:1 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:2 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:3 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:4 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:5 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:6 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:7 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:8 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 3:9 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-3-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:1 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:2 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:3 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:4 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:5 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:6 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:7 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:8 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:9 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:10 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-10 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:11 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-11 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 4:12 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-4-12 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:1 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:2 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:3 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:4 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:5 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:6 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:7 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:8 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 5:9 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-5-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:1 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:2 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:3 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:4 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:5 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:6 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:7 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:8 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 6:9 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-6-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:1 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:2 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:3 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:4 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:5 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:6 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:7 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:8 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:9 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:10 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-10 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:11 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-11 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:12 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-12 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:13 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-13 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:14 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-14 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:15 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-15 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:16 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-16 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:17 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-17 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:18 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-18 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:19 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-19 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:20 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-20 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:21 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-21 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:22 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-22 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:23 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-23 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:24 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-24 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:25 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-25 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:26 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-26 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:27 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-27 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:28 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-28 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:29 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-29 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:30 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-30 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:31 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-31 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:32 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-32 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sefer Kedushat Shabbat 7:33 | peri-tzadik-sefer-kedushat-shabbat-sefer-kedushat-shabbat-7-33 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:1 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:2 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:3 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:4 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:5 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:6 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:7 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:8 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:9 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:10 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-10 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:11 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-11 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:12 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-12 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:13 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-13 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 1:14 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-1-14 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 2:1 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 2:2 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 2:3 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 2:4 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-2-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 2:5 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-2-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 2:6 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-2-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 2:7 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-2-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 3:1 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 4:1 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 4:2 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:1 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:2 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:3 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:4 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:5 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:6 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:7 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:8 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:9 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:10 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-10 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 5:11 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-5-11 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:1 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:2 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:3 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:4 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:5 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:6 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:7 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:8 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 6:9 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-6-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 7:1 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 7:2 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 7:3 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 7:4 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-7-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 7:5 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-7-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Shvitat Shabbat 7:6 | peri-tzadik-kuntres-shvitat-shabbat-kuntres-shvitat-shabbat-7-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 1:1 | peri-tzadik-bereshit-bereshit-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 2:1 | peri-tzadik-bereshit-bereshit-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 2:2 | peri-tzadik-bereshit-bereshit-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 3:1 | peri-tzadik-bereshit-bereshit-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 4:1 | peri-tzadik-bereshit-bereshit-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 4:2 | peri-tzadik-bereshit-bereshit-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 5:1 | peri-tzadik-bereshit-bereshit-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 6:1 | peri-tzadik-bereshit-bereshit-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 7:1 | peri-tzadik-bereshit-bereshit-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 7:2 | peri-tzadik-bereshit-bereshit-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 8:1 | peri-tzadik-bereshit-bereshit-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 9:1 | peri-tzadik-bereshit-bereshit-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 10:1 | peri-tzadik-bereshit-bereshit-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 11:1 | peri-tzadik-bereshit-bereshit-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 12:1 | peri-tzadik-bereshit-bereshit-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 13:1 | peri-tzadik-bereshit-bereshit-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 14:1 | peri-tzadik-bereshit-bereshit-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 15:1 | peri-tzadik-bereshit-bereshit-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 15:2 | peri-tzadik-bereshit-bereshit-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bereshit 15:3 | peri-tzadik-bereshit-bereshit-15-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh (manuscript):1 | peri-tzadik-rosh-chodesh-manuscript-rosh-chodesh-manuscript-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Cheshvan:1 | peri-tzadik-rosh-chodesh-cheshvan-rosh-chodesh-cheshvan-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Cheshvan:2 | peri-tzadik-rosh-chodesh-cheshvan-rosh-chodesh-cheshvan-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Cheshvan:3 | peri-tzadik-rosh-chodesh-cheshvan-rosh-chodesh-cheshvan-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Cheshvan:4 | peri-tzadik-rosh-chodesh-cheshvan-rosh-chodesh-cheshvan-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 1:1 | peri-tzadik-noach-noach-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 2:1 | peri-tzadik-noach-noach-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 2:2 | peri-tzadik-noach-noach-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 3:1 | peri-tzadik-noach-noach-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 4:1 | peri-tzadik-noach-noach-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 4:2 | peri-tzadik-noach-noach-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 4:3 | peri-tzadik-noach-noach-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 5:1 | peri-tzadik-noach-noach-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 6:1 | peri-tzadik-noach-noach-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 7:1 | peri-tzadik-noach-noach-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 7:2 | peri-tzadik-noach-noach-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 8:1 | peri-tzadik-noach-noach-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 9:1 | peri-tzadik-noach-noach-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 10:1 | peri-tzadik-noach-noach-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 10:2 | peri-tzadik-noach-noach-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Noach 10:3 | peri-tzadik-noach-noach-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 1:1 | peri-tzadik-lech-lecha-lech-lecha-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 2:1 | peri-tzadik-lech-lecha-lech-lecha-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 3:1 | peri-tzadik-lech-lecha-lech-lecha-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 4:1 | peri-tzadik-lech-lecha-lech-lecha-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 5:1 | peri-tzadik-lech-lecha-lech-lecha-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 6:1 | peri-tzadik-lech-lecha-lech-lecha-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 7:1 | peri-tzadik-lech-lecha-lech-lecha-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 8:1 | peri-tzadik-lech-lecha-lech-lecha-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 9:1 | peri-tzadik-lech-lecha-lech-lecha-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 10:1 | peri-tzadik-lech-lecha-lech-lecha-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lech Lecha 11:1 | peri-tzadik-lech-lecha-lech-lecha-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 1:1 | peri-tzadik-vayera-vayera-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 1:2 | peri-tzadik-vayera-vayera-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 1:3 | peri-tzadik-vayera-vayera-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 1:4 | peri-tzadik-vayera-vayera-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 1:5 | peri-tzadik-vayera-vayera-1-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 1:6 | peri-tzadik-vayera-vayera-1-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 2:1 | peri-tzadik-vayera-vayera-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 3:1 | peri-tzadik-vayera-vayera-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 4:1 | peri-tzadik-vayera-vayera-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 5:1 | peri-tzadik-vayera-vayera-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 6:1 | peri-tzadik-vayera-vayera-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 7:1 | peri-tzadik-vayera-vayera-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 8:1 | peri-tzadik-vayera-vayera-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 8:2 | peri-tzadik-vayera-vayera-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 9:1 | peri-tzadik-vayera-vayera-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayera 10:1 | peri-tzadik-vayera-vayera-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 1:1 | peri-tzadik-chayei-sara-chayei-sara-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 1:2 | peri-tzadik-chayei-sara-chayei-sara-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 1:3 | peri-tzadik-chayei-sara-chayei-sara-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 2:1 | peri-tzadik-chayei-sara-chayei-sara-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 3:1 | peri-tzadik-chayei-sara-chayei-sara-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 4:1 | peri-tzadik-chayei-sara-chayei-sara-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 5:1 | peri-tzadik-chayei-sara-chayei-sara-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 5:2 | peri-tzadik-chayei-sara-chayei-sara-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 6:1 | peri-tzadik-chayei-sara-chayei-sara-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 7:1 | peri-tzadik-chayei-sara-chayei-sara-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 7:2 | peri-tzadik-chayei-sara-chayei-sara-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 8:1 | peri-tzadik-chayei-sara-chayei-sara-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 9:1 | peri-tzadik-chayei-sara-chayei-sara-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 9:2 | peri-tzadik-chayei-sara-chayei-sara-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 10:1 | peri-tzadik-chayei-sara-chayei-sara-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 10:2 | peri-tzadik-chayei-sara-chayei-sara-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chayei Sara 11:1 | peri-tzadik-chayei-sara-chayei-sara-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Kislev 1:1 | peri-tzadik-rosh-chodesh-kislev-rosh-chodesh-kislev-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Kislev 2:1 | peri-tzadik-rosh-chodesh-kislev-rosh-chodesh-kislev-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Kislev 3:1 | peri-tzadik-rosh-chodesh-kislev-rosh-chodesh-kislev-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Kislev 4:1 | peri-tzadik-rosh-chodesh-kislev-rosh-chodesh-kislev-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Kislev 5:1 | peri-tzadik-rosh-chodesh-kislev-rosh-chodesh-kislev-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Kislev 6:1 | peri-tzadik-rosh-chodesh-kislev-rosh-chodesh-kislev-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Kislev 7:1 | peri-tzadik-rosh-chodesh-kislev-rosh-chodesh-kislev-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 1:1 | peri-tzadik-toldot-toldot-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 1:2 | peri-tzadik-toldot-toldot-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 1:3 | peri-tzadik-toldot-toldot-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 1:4 | peri-tzadik-toldot-toldot-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 2:1 | peri-tzadik-toldot-toldot-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 2:2 | peri-tzadik-toldot-toldot-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 3:1 | peri-tzadik-toldot-toldot-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 3:2 | peri-tzadik-toldot-toldot-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 4:1 | peri-tzadik-toldot-toldot-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 4:2 | peri-tzadik-toldot-toldot-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 5:1 | peri-tzadik-toldot-toldot-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 6:1 | peri-tzadik-toldot-toldot-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 7:1 | peri-tzadik-toldot-toldot-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 7:2 | peri-tzadik-toldot-toldot-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 7:3 | peri-tzadik-toldot-toldot-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 8:1 | peri-tzadik-toldot-toldot-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 9:1 | peri-tzadik-toldot-toldot-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 9:2 | peri-tzadik-toldot-toldot-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 9:3 | peri-tzadik-toldot-toldot-9-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 10:1 | peri-tzadik-toldot-toldot-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 10:2 | peri-tzadik-toldot-toldot-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Toldot 10:3 | peri-tzadik-toldot-toldot-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 1:1 | peri-tzadik-vayetzei-vayetzei-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 2:1 | peri-tzadik-vayetzei-vayetzei-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 2:2 | peri-tzadik-vayetzei-vayetzei-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 3:1 | peri-tzadik-vayetzei-vayetzei-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 3:2 | peri-tzadik-vayetzei-vayetzei-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 3:3 | peri-tzadik-vayetzei-vayetzei-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 4:1 | peri-tzadik-vayetzei-vayetzei-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 4:2 | peri-tzadik-vayetzei-vayetzei-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 5:1 | peri-tzadik-vayetzei-vayetzei-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 6:1 | peri-tzadik-vayetzei-vayetzei-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 7:1 | peri-tzadik-vayetzei-vayetzei-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 7:2 | peri-tzadik-vayetzei-vayetzei-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 8:1 | peri-tzadik-vayetzei-vayetzei-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 9:1 | peri-tzadik-vayetzei-vayetzei-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 10:1 | peri-tzadik-vayetzei-vayetzei-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 10:2 | peri-tzadik-vayetzei-vayetzei-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 10:3 | peri-tzadik-vayetzei-vayetzei-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayetzei 10:4 | peri-tzadik-vayetzei-vayetzei-10-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 1:1 | peri-tzadik-vayishlach-vayishlach-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 1:2 | peri-tzadik-vayishlach-vayishlach-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 1:3 | peri-tzadik-vayishlach-vayishlach-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 1:4 | peri-tzadik-vayishlach-vayishlach-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 1:5 | peri-tzadik-vayishlach-vayishlach-1-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 2:1 | peri-tzadik-vayishlach-vayishlach-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 3:1 | peri-tzadik-vayishlach-vayishlach-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 4:1 | peri-tzadik-vayishlach-vayishlach-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 4:2 | peri-tzadik-vayishlach-vayishlach-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 4:3 | peri-tzadik-vayishlach-vayishlach-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 5:1 | peri-tzadik-vayishlach-vayishlach-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 6:1 | peri-tzadik-vayishlach-vayishlach-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 6:2 | peri-tzadik-vayishlach-vayishlach-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 7:1 | peri-tzadik-vayishlach-vayishlach-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 8:1 | peri-tzadik-vayishlach-vayishlach-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 9:1 | peri-tzadik-vayishlach-vayishlach-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 9:2 | peri-tzadik-vayishlach-vayishlach-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 10:1 | peri-tzadik-vayishlach-vayishlach-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 11:1 | peri-tzadik-vayishlach-vayishlach-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 11:2 | peri-tzadik-vayishlach-vayishlach-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayishlach 11:3 | peri-tzadik-vayishlach-vayishlach-11-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 1:1 | peri-tzadik-vayeshev-vayeshev-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 2:1 | peri-tzadik-vayeshev-vayeshev-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 3:1 | peri-tzadik-vayeshev-vayeshev-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 3:2 | peri-tzadik-vayeshev-vayeshev-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 4:1 | peri-tzadik-vayeshev-vayeshev-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 5:1 | peri-tzadik-vayeshev-vayeshev-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 6:1 | peri-tzadik-vayeshev-vayeshev-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 7:1 | peri-tzadik-vayeshev-vayeshev-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 8:1 | peri-tzadik-vayeshev-vayeshev-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 8:2 | peri-tzadik-vayeshev-vayeshev-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 9:1 | peri-tzadik-vayeshev-vayeshev-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 10:1 | peri-tzadik-vayeshev-vayeshev-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 11:1 | peri-tzadik-vayeshev-vayeshev-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 12:1 | peri-tzadik-vayeshev-vayeshev-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 12:2 | peri-tzadik-vayeshev-vayeshev-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeshev 13:1 | peri-tzadik-vayeshev-vayeshev-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 1:1 | peri-tzadik-chanukah-chanukah-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 1:2 | peri-tzadik-chanukah-chanukah-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 1:3 | peri-tzadik-chanukah-chanukah-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 1:4 | peri-tzadik-chanukah-chanukah-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 2:1 | peri-tzadik-chanukah-chanukah-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 2:2 | peri-tzadik-chanukah-chanukah-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 2:3 | peri-tzadik-chanukah-chanukah-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 2:4 | peri-tzadik-chanukah-chanukah-2-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 2:5 | peri-tzadik-chanukah-chanukah-2-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 3:1 | peri-tzadik-chanukah-chanukah-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 4:1 | peri-tzadik-chanukah-chanukah-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 5:1 | peri-tzadik-chanukah-chanukah-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 5:2 | peri-tzadik-chanukah-chanukah-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 6:1 | peri-tzadik-chanukah-chanukah-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 7:1 | peri-tzadik-chanukah-chanukah-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 8:1 | peri-tzadik-chanukah-chanukah-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 9:1 | peri-tzadik-chanukah-chanukah-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 9:2 | peri-tzadik-chanukah-chanukah-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 9:3 | peri-tzadik-chanukah-chanukah-9-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 10:1 | peri-tzadik-chanukah-chanukah-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 11:1 | peri-tzadik-chanukah-chanukah-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 12:1 | peri-tzadik-chanukah-chanukah-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 13:1 | peri-tzadik-chanukah-chanukah-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 13:2 | peri-tzadik-chanukah-chanukah-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 14:1 | peri-tzadik-chanukah-chanukah-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 14:2 | peri-tzadik-chanukah-chanukah-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 14:3 | peri-tzadik-chanukah-chanukah-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 14:4 | peri-tzadik-chanukah-chanukah-14-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 15:1 | peri-tzadik-chanukah-chanukah-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 15:2 | peri-tzadik-chanukah-chanukah-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 15:3 | peri-tzadik-chanukah-chanukah-15-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 16:1 | peri-tzadik-chanukah-chanukah-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 16:2 | peri-tzadik-chanukah-chanukah-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 17:1 | peri-tzadik-chanukah-chanukah-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 18:1 | peri-tzadik-chanukah-chanukah-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 19:1 | peri-tzadik-chanukah-chanukah-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 20:1 | peri-tzadik-chanukah-chanukah-20-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 21:1 | peri-tzadik-chanukah-chanukah-21-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 21:2 | peri-tzadik-chanukah-chanukah-21-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 22:1 | peri-tzadik-chanukah-chanukah-22-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 22:2 | peri-tzadik-chanukah-chanukah-22-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 23:1 | peri-tzadik-chanukah-chanukah-23-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 24:1 | peri-tzadik-chanukah-chanukah-24-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 25:1 | peri-tzadik-chanukah-chanukah-25-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 25:2 | peri-tzadik-chanukah-chanukah-25-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 25:3 | peri-tzadik-chanukah-chanukah-25-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 25:4 | peri-tzadik-chanukah-chanukah-25-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 25:5 | peri-tzadik-chanukah-chanukah-25-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chanukah 25:6 | peri-tzadik-chanukah-chanukah-25-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 1:1 | peri-tzadik-miketz-miketz-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 2:1 | peri-tzadik-miketz-miketz-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 3:1 | peri-tzadik-miketz-miketz-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 4:1 | peri-tzadik-miketz-miketz-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 4:2 | peri-tzadik-miketz-miketz-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 5:1 | peri-tzadik-miketz-miketz-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 6:1 | peri-tzadik-miketz-miketz-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 6:2 | peri-tzadik-miketz-miketz-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 6:3 | peri-tzadik-miketz-miketz-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 7:1 | peri-tzadik-miketz-miketz-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 8:1 | peri-tzadik-miketz-miketz-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 9:1 | peri-tzadik-miketz-miketz-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 10:1 | peri-tzadik-miketz-miketz-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 11:1 | peri-tzadik-miketz-miketz-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 12:1 | peri-tzadik-miketz-miketz-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 13:1 | peri-tzadik-miketz-miketz-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 14:1 | peri-tzadik-miketz-miketz-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 14:2 | peri-tzadik-miketz-miketz-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Miketz 14:3 | peri-tzadik-miketz-miketz-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 1:1 | peri-tzadik-vayigash-vayigash-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 2:1 | peri-tzadik-vayigash-vayigash-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 3:1 | peri-tzadik-vayigash-vayigash-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 4:1 | peri-tzadik-vayigash-vayigash-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 5:1 | peri-tzadik-vayigash-vayigash-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 6:1 | peri-tzadik-vayigash-vayigash-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 7:1 | peri-tzadik-vayigash-vayigash-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 7:2 | peri-tzadik-vayigash-vayigash-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 8:1 | peri-tzadik-vayigash-vayigash-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 9:1 | peri-tzadik-vayigash-vayigash-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 10:1 | peri-tzadik-vayigash-vayigash-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 11:1 | peri-tzadik-vayigash-vayigash-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 12:1 | peri-tzadik-vayigash-vayigash-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 12:2 | peri-tzadik-vayigash-vayigash-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 13:1 | peri-tzadik-vayigash-vayigash-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 13:2 | peri-tzadik-vayigash-vayigash-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 14:1 | peri-tzadik-vayigash-vayigash-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 15:1 | peri-tzadik-vayigash-vayigash-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 16:1 | peri-tzadik-vayigash-vayigash-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 17:1 | peri-tzadik-vayigash-vayigash-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 17:2 | peri-tzadik-vayigash-vayigash-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayigash 17:3 | peri-tzadik-vayigash-vayigash-17-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 1:1 | peri-tzadik-vayechi-vayechi-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 2:1 | peri-tzadik-vayechi-vayechi-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 3:1 | peri-tzadik-vayechi-vayechi-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 3:2 | peri-tzadik-vayechi-vayechi-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 4:1 | peri-tzadik-vayechi-vayechi-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 5:1 | peri-tzadik-vayechi-vayechi-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 6:1 | peri-tzadik-vayechi-vayechi-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 7:1 | peri-tzadik-vayechi-vayechi-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 8:1 | peri-tzadik-vayechi-vayechi-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 9:1 | peri-tzadik-vayechi-vayechi-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 10:1 | peri-tzadik-vayechi-vayechi-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 10:2 | peri-tzadik-vayechi-vayechi-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 11:1 | peri-tzadik-vayechi-vayechi-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 12:1 | peri-tzadik-vayechi-vayechi-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 13:1 | peri-tzadik-vayechi-vayechi-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 14:1 | peri-tzadik-vayechi-vayechi-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 15:1 | peri-tzadik-vayechi-vayechi-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 15:2 | peri-tzadik-vayechi-vayechi-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 16:1 | peri-tzadik-vayechi-vayechi-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 17:1 | peri-tzadik-vayechi-vayechi-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 17:2 | peri-tzadik-vayechi-vayechi-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 17:3 | peri-tzadik-vayechi-vayechi-17-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 17:4 | peri-tzadik-vayechi-vayechi-17-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayechi 17:5 | peri-tzadik-vayechi-vayechi-17-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 1:1 | peri-tzadik-shemot-shemot-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 1:2 | peri-tzadik-shemot-shemot-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 1:3 | peri-tzadik-shemot-shemot-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 2:1 | peri-tzadik-shemot-shemot-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 3:1 | peri-tzadik-shemot-shemot-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 4:1 | peri-tzadik-shemot-shemot-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 5:1 | peri-tzadik-shemot-shemot-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 6:1 | peri-tzadik-shemot-shemot-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 7:1 | peri-tzadik-shemot-shemot-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 8:1 | peri-tzadik-shemot-shemot-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 9:1 | peri-tzadik-shemot-shemot-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 10:1 | peri-tzadik-shemot-shemot-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 10:2 | peri-tzadik-shemot-shemot-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 10:3 | peri-tzadik-shemot-shemot-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 11:1 | peri-tzadik-shemot-shemot-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 11:2 | peri-tzadik-shemot-shemot-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shemot 11:3 | peri-tzadik-shemot-shemot-11-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 1:1 | peri-tzadik-vaera-vaera-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 1:2 | peri-tzadik-vaera-vaera-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 2:1 | peri-tzadik-vaera-vaera-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 3:1 | peri-tzadik-vaera-vaera-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 4:1 | peri-tzadik-vaera-vaera-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 5:1 | peri-tzadik-vaera-vaera-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 6:1 | peri-tzadik-vaera-vaera-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 7:1 | peri-tzadik-vaera-vaera-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 8:1 | peri-tzadik-vaera-vaera-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 9:1 | peri-tzadik-vaera-vaera-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 9:2 | peri-tzadik-vaera-vaera-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 10:1 | peri-tzadik-vaera-vaera-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 11:1 | peri-tzadik-vaera-vaera-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 12:1 | peri-tzadik-vaera-vaera-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 13:1 | peri-tzadik-vaera-vaera-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 14:1 | peri-tzadik-vaera-vaera-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 15:1 | peri-tzadik-vaera-vaera-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 16:1 | peri-tzadik-vaera-vaera-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 17:1 | peri-tzadik-vaera-vaera-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 17:2 | peri-tzadik-vaera-vaera-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaera 17:3 | peri-tzadik-vaera-vaera-17-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 1:1 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 2:1 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 2:2 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 3:1 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 4:1 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 5:1 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 6:1 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Shvat 6:2 | peri-tzadik-rosh-chodesh-shvat-rosh-chodesh-shvat-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 1:1 | peri-tzadik-bo-bo-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 2:1 | peri-tzadik-bo-bo-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 2:2 | peri-tzadik-bo-bo-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 3:1 | peri-tzadik-bo-bo-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 4:1 | peri-tzadik-bo-bo-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 5:1 | peri-tzadik-bo-bo-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 6:1 | peri-tzadik-bo-bo-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 7:1 | peri-tzadik-bo-bo-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 8:1 | peri-tzadik-bo-bo-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 9:1 | peri-tzadik-bo-bo-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 10:1 | peri-tzadik-bo-bo-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 11:1 | peri-tzadik-bo-bo-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 12:1 | peri-tzadik-bo-bo-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 12:2 | peri-tzadik-bo-bo-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bo 12:3 | peri-tzadik-bo-bo-12-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pidyon Haben 1:1 | peri-tzadik-pidyon-haben-pidyon-haben-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pidyon Haben 1:2 | peri-tzadik-pidyon-haben-pidyon-haben-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pidyon Haben 1:3 | peri-tzadik-pidyon-haben-pidyon-haben-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pidyon Haben 1:4 | peri-tzadik-pidyon-haben-pidyon-haben-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pidyon Haben 1:5 | peri-tzadik-pidyon-haben-pidyon-haben-1-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pidyon Haben 2:1 | peri-tzadik-pidyon-haben-pidyon-haben-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pidyon Haben 3:1 | peri-tzadik-pidyon-haben-pidyon-haben-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 1:1 | peri-tzadik-beshalach-beshalach-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 1:2 | peri-tzadik-beshalach-beshalach-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 2:1 | peri-tzadik-beshalach-beshalach-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 3:1 | peri-tzadik-beshalach-beshalach-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 4:1 | peri-tzadik-beshalach-beshalach-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 5:1 | peri-tzadik-beshalach-beshalach-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 6:1 | peri-tzadik-beshalach-beshalach-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 7:1 | peri-tzadik-beshalach-beshalach-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 8:1 | peri-tzadik-beshalach-beshalach-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 9:1 | peri-tzadik-beshalach-beshalach-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 10:1 | peri-tzadik-beshalach-beshalach-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 11:1 | peri-tzadik-beshalach-beshalach-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 12:1 | peri-tzadik-beshalach-beshalach-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 13:1 | peri-tzadik-beshalach-beshalach-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 14:1 | peri-tzadik-beshalach-beshalach-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 14:2 | peri-tzadik-beshalach-beshalach-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beshalach 14:3 | peri-tzadik-beshalach-beshalach-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tu BiShvat 1:1 | peri-tzadik-tu-bishvat-tu-bishvat-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tu BiShvat 1:2 | peri-tzadik-tu-bishvat-tu-bishvat-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tu BiShvat 2:1 | peri-tzadik-tu-bishvat-tu-bishvat-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tu BiShvat 2:2 | peri-tzadik-tu-bishvat-tu-bishvat-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tu BiShvat 3:1 | peri-tzadik-tu-bishvat-tu-bishvat-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tu BiShvat 4:1 | peri-tzadik-tu-bishvat-tu-bishvat-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tu BiShvat 5:1 | peri-tzadik-tu-bishvat-tu-bishvat-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 1:1 | peri-tzadik-yitro-yitro-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 1:2 | peri-tzadik-yitro-yitro-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 2:1 | peri-tzadik-yitro-yitro-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 3:1 | peri-tzadik-yitro-yitro-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 3:2 | peri-tzadik-yitro-yitro-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 4:1 | peri-tzadik-yitro-yitro-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 5:1 | peri-tzadik-yitro-yitro-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 6:1 | peri-tzadik-yitro-yitro-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 7:1 | peri-tzadik-yitro-yitro-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 8:1 | peri-tzadik-yitro-yitro-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 9:1 | peri-tzadik-yitro-yitro-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 10:1 | peri-tzadik-yitro-yitro-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 11:1 | peri-tzadik-yitro-yitro-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 12:1 | peri-tzadik-yitro-yitro-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 13:1 | peri-tzadik-yitro-yitro-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 13:2 | peri-tzadik-yitro-yitro-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Yitro 13:3 | peri-tzadik-yitro-yitro-13-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 1:1 | peri-tzadik-mishpatim-mishpatim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 2:1 | peri-tzadik-mishpatim-mishpatim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 2:2 | peri-tzadik-mishpatim-mishpatim-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 3:1 | peri-tzadik-mishpatim-mishpatim-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 4:1 | peri-tzadik-mishpatim-mishpatim-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 5:1 | peri-tzadik-mishpatim-mishpatim-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 6:1 | peri-tzadik-mishpatim-mishpatim-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 6:2 | peri-tzadik-mishpatim-mishpatim-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 7:1 | peri-tzadik-mishpatim-mishpatim-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 8:1 | peri-tzadik-mishpatim-mishpatim-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 9:1 | peri-tzadik-mishpatim-mishpatim-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 10:1 | peri-tzadik-mishpatim-mishpatim-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 11:1 | peri-tzadik-mishpatim-mishpatim-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 12:1 | peri-tzadik-mishpatim-mishpatim-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 12:2 | peri-tzadik-mishpatim-mishpatim-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Mishpatim 12:3 | peri-tzadik-mishpatim-mishpatim-12-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 1:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 1:2 | peri-tzadik-parshat-shekalim-parshat-shekalim-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 1:3 | peri-tzadik-parshat-shekalim-parshat-shekalim-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 1:4 | peri-tzadik-parshat-shekalim-parshat-shekalim-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 1:5 | peri-tzadik-parshat-shekalim-parshat-shekalim-1-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 1:6 | peri-tzadik-parshat-shekalim-parshat-shekalim-1-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 2:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 3:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 4:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 5:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 6:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 7:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 7:2 | peri-tzadik-parshat-shekalim-parshat-shekalim-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 8:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 9:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 10:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 11:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 12:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 13:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 14:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Shekalim 15:1 | peri-tzadik-parshat-shekalim-parshat-shekalim-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 1:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 2:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 2:2 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 2:3 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 3:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 4:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 5:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 6:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 7:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 8:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 9:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 10:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 10:2 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 10:3 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar 11:1 | peri-tzadik-rosh-chodesh-adar-rosh-chodesh-adar-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim Katan 1:1 | peri-tzadik-purim-katan-purim-katan-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim Katan 2:1 | peri-tzadik-purim-katan-purim-katan-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar II 1:1 | peri-tzadik-rosh-chodesh-adar-ii-rosh-chodesh-adar-ii-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar II 1:2 | peri-tzadik-rosh-chodesh-adar-ii-rosh-chodesh-adar-ii-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Adar II 2:1 | peri-tzadik-rosh-chodesh-adar-ii-rosh-chodesh-adar-ii-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 1:1 | peri-tzadik-terumah-terumah-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 2:1 | peri-tzadik-terumah-terumah-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 2:2 | peri-tzadik-terumah-terumah-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 3:1 | peri-tzadik-terumah-terumah-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 4:1 | peri-tzadik-terumah-terumah-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 5:1 | peri-tzadik-terumah-terumah-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 6:1 | peri-tzadik-terumah-terumah-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 7:1 | peri-tzadik-terumah-terumah-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 8:1 | peri-tzadik-terumah-terumah-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 9:1 | peri-tzadik-terumah-terumah-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 10:1 | peri-tzadik-terumah-terumah-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 11:1 | peri-tzadik-terumah-terumah-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 12:1 | peri-tzadik-terumah-terumah-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 13:1 | peri-tzadik-terumah-terumah-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 13:2 | peri-tzadik-terumah-terumah-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Terumah 13:3 | peri-tzadik-terumah-terumah-13-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 1:1 | peri-tzadik-tetzaveh-tetzaveh-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 2:1 | peri-tzadik-tetzaveh-tetzaveh-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 3:1 | peri-tzadik-tetzaveh-tetzaveh-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 4:1 | peri-tzadik-tetzaveh-tetzaveh-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 5:1 | peri-tzadik-tetzaveh-tetzaveh-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 6:1 | peri-tzadik-tetzaveh-tetzaveh-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 7:1 | peri-tzadik-tetzaveh-tetzaveh-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 8:1 | peri-tzadik-tetzaveh-tetzaveh-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 9:1 | peri-tzadik-tetzaveh-tetzaveh-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 10:1 | peri-tzadik-tetzaveh-tetzaveh-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 11:1 | peri-tzadik-tetzaveh-tetzaveh-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 12:1 | peri-tzadik-tetzaveh-tetzaveh-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tetzaveh 12:2 | peri-tzadik-tetzaveh-tetzaveh-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 1:1 | peri-tzadik-parshat-zachor-parshat-zachor-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 2:1 | peri-tzadik-parshat-zachor-parshat-zachor-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 3:1 | peri-tzadik-parshat-zachor-parshat-zachor-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 4:1 | peri-tzadik-parshat-zachor-parshat-zachor-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 5:1 | peri-tzadik-parshat-zachor-parshat-zachor-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 6:1 | peri-tzadik-parshat-zachor-parshat-zachor-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 7:1 | peri-tzadik-parshat-zachor-parshat-zachor-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 8:1 | peri-tzadik-parshat-zachor-parshat-zachor-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 9:1 | peri-tzadik-parshat-zachor-parshat-zachor-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 9:2 | peri-tzadik-parshat-zachor-parshat-zachor-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 9:3 | peri-tzadik-parshat-zachor-parshat-zachor-9-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 10:1 | peri-tzadik-parshat-zachor-parshat-zachor-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 11:1 | peri-tzadik-parshat-zachor-parshat-zachor-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 11:2 | peri-tzadik-parshat-zachor-parshat-zachor-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 12:1 | peri-tzadik-parshat-zachor-parshat-zachor-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 12:2 | peri-tzadik-parshat-zachor-parshat-zachor-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Zachor 13:1 | peri-tzadik-parshat-zachor-parshat-zachor-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 1:1 | peri-tzadik-purim-purim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 1:2 | peri-tzadik-purim-purim-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 2:1 | peri-tzadik-purim-purim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 2:2 | peri-tzadik-purim-purim-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 2:3 | peri-tzadik-purim-purim-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 3:1 | peri-tzadik-purim-purim-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 4:1 | peri-tzadik-purim-purim-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 5:1 | peri-tzadik-purim-purim-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 6:1 | peri-tzadik-purim-purim-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 7:1 | peri-tzadik-purim-purim-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Purim 8:1 | peri-tzadik-purim-purim-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shushan Purim 1:1 | peri-tzadik-shushan-purim-shushan-purim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shushan Purim 2:1 | peri-tzadik-shushan-purim-shushan-purim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 1:1 | peri-tzadik-ki-tisa-ki-tisa-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 2:1 | peri-tzadik-ki-tisa-ki-tisa-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 3:1 | peri-tzadik-ki-tisa-ki-tisa-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 4:1 | peri-tzadik-ki-tisa-ki-tisa-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 5:1 | peri-tzadik-ki-tisa-ki-tisa-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 6:1 | peri-tzadik-ki-tisa-ki-tisa-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 7:1 | peri-tzadik-ki-tisa-ki-tisa-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 7:2 | peri-tzadik-ki-tisa-ki-tisa-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 8:1 | peri-tzadik-ki-tisa-ki-tisa-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 9:1 | peri-tzadik-ki-tisa-ki-tisa-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tisa 10:1 | peri-tzadik-ki-tisa-ki-tisa-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 1:1 | peri-tzadik-parshat-parah-parshat-parah-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 2:1 | peri-tzadik-parshat-parah-parshat-parah-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 3:1 | peri-tzadik-parshat-parah-parshat-parah-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 4:1 | peri-tzadik-parshat-parah-parshat-parah-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 5:1 | peri-tzadik-parshat-parah-parshat-parah-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 6:1 | peri-tzadik-parshat-parah-parshat-parah-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 7:1 | peri-tzadik-parshat-parah-parshat-parah-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 7:2 | peri-tzadik-parshat-parah-parshat-parah-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat Parah 7:3 | peri-tzadik-parshat-parah-parshat-parah-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 1:1 | peri-tzadik-vayakhel-vayakhel-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 2:1 | peri-tzadik-vayakhel-vayakhel-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 3:1 | peri-tzadik-vayakhel-vayakhel-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 4:1 | peri-tzadik-vayakhel-vayakhel-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 5:1 | peri-tzadik-vayakhel-vayakhel-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 6:1 | peri-tzadik-vayakhel-vayakhel-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 7:1 | peri-tzadik-vayakhel-vayakhel-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 8:1 | peri-tzadik-vayakhel-vayakhel-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 9:1 | peri-tzadik-vayakhel-vayakhel-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 10:1 | peri-tzadik-vayakhel-vayakhel-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayakhel 11:1 | peri-tzadik-vayakhel-vayakhel-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 1:1 | peri-tzadik-pekudei-pekudei-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 2:1 | peri-tzadik-pekudei-pekudei-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 3:1 | peri-tzadik-pekudei-pekudei-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 4:1 | peri-tzadik-pekudei-pekudei-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 5:1 | peri-tzadik-pekudei-pekudei-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 6:1 | peri-tzadik-pekudei-pekudei-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 7:1 | peri-tzadik-pekudei-pekudei-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 8:1 | peri-tzadik-pekudei-pekudei-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 9:1 | peri-tzadik-pekudei-pekudei-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 9:2 | peri-tzadik-pekudei-pekudei-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pekudei 10:1 | peri-tzadik-pekudei-pekudei-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:1 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:2 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:3 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:4 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:5 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:6 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:7 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:8 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:9 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-9 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Parshat HaChodesh:10 | peri-tzadik-parshat-hachodesh-parshat-hachodesh-10 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 1:1 | peri-tzadik-vayikra-vayikra-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 1:2 | peri-tzadik-vayikra-vayikra-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 2:1 | peri-tzadik-vayikra-vayikra-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 3:1 | peri-tzadik-vayikra-vayikra-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 4:1 | peri-tzadik-vayikra-vayikra-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 5:1 | peri-tzadik-vayikra-vayikra-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 5:2 | peri-tzadik-vayikra-vayikra-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 6:1 | peri-tzadik-vayikra-vayikra-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 7:1 | peri-tzadik-vayikra-vayikra-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 7:2 | peri-tzadik-vayikra-vayikra-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 7:3 | peri-tzadik-vayikra-vayikra-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 8:1 | peri-tzadik-vayikra-vayikra-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 9:1 | peri-tzadik-vayikra-vayikra-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 9:2 | peri-tzadik-vayikra-vayikra-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 9:3 | peri-tzadik-vayikra-vayikra-9-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 10:1 | peri-tzadik-vayikra-vayikra-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayikra 10:2 | peri-tzadik-vayikra-vayikra-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Nisan 1:1 | peri-tzadik-rosh-chodesh-nisan-rosh-chodesh-nisan-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Nisan 1:2 | peri-tzadik-rosh-chodesh-nisan-rosh-chodesh-nisan-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Nisan 1:3 | peri-tzadik-rosh-chodesh-nisan-rosh-chodesh-nisan-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Nisan 2:1 | peri-tzadik-rosh-chodesh-nisan-rosh-chodesh-nisan-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Nisan 2:2 | peri-tzadik-rosh-chodesh-nisan-rosh-chodesh-nisan-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Nisan 3:1 | peri-tzadik-rosh-chodesh-nisan-rosh-chodesh-nisan-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 1:1 | peri-tzadik-tzav-tzav-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 2:1 | peri-tzadik-tzav-tzav-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 3:1 | peri-tzadik-tzav-tzav-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 4:1 | peri-tzadik-tzav-tzav-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 5:1 | peri-tzadik-tzav-tzav-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 5:2 | peri-tzadik-tzav-tzav-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 6:1 | peri-tzadik-tzav-tzav-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 6:2 | peri-tzadik-tzav-tzav-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 6:3 | peri-tzadik-tzav-tzav-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 7:1 | peri-tzadik-tzav-tzav-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 8:1 | peri-tzadik-tzav-tzav-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 8:2 | peri-tzadik-tzav-tzav-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 8:3 | peri-tzadik-tzav-tzav-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 9:1 | peri-tzadik-tzav-tzav-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 9:2 | peri-tzadik-tzav-tzav-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tzav 10:1 | peri-tzadik-tzav-tzav-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 1:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 1:2 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 1:3 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 2:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 3:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 4:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 5:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 5:2 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 5:3 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 6:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 7:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 8:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 9:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 9:2 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 10:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 11:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shabbat HaGadol 12:1 | peri-tzadik-shabbat-hagadol-shabbat-hagadol-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 1:1 | peri-tzadik-pesach-pesach-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 1:2 | peri-tzadik-pesach-pesach-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 1:3 | peri-tzadik-pesach-pesach-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 1:4 | peri-tzadik-pesach-pesach-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 2:1 | peri-tzadik-pesach-pesach-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 3:1 | peri-tzadik-pesach-pesach-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 4:1 | peri-tzadik-pesach-pesach-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 4:2 | peri-tzadik-pesach-pesach-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 5:1 | peri-tzadik-pesach-pesach-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 5:2 | peri-tzadik-pesach-pesach-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 6:1 | peri-tzadik-pesach-pesach-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 7:1 | peri-tzadik-pesach-pesach-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 8:1 | peri-tzadik-pesach-pesach-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 9:1 | peri-tzadik-pesach-pesach-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 9:2 | peri-tzadik-pesach-pesach-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 10:1 | peri-tzadik-pesach-pesach-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 11:1 | peri-tzadik-pesach-pesach-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 11:2 | peri-tzadik-pesach-pesach-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 11:3 | peri-tzadik-pesach-pesach-11-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 12:1 | peri-tzadik-pesach-pesach-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 13:1 | peri-tzadik-pesach-pesach-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 13:2 | peri-tzadik-pesach-pesach-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 13:3 | peri-tzadik-pesach-pesach-13-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 14:1 | peri-tzadik-pesach-pesach-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 15:1 | peri-tzadik-pesach-pesach-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 15:2 | peri-tzadik-pesach-pesach-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 15:3 | peri-tzadik-pesach-pesach-15-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 16:1 | peri-tzadik-pesach-pesach-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 17:1 | peri-tzadik-pesach-pesach-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 18:1 | peri-tzadik-pesach-pesach-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 19:1 | peri-tzadik-pesach-pesach-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 19:2 | peri-tzadik-pesach-pesach-19-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 20:1 | peri-tzadik-pesach-pesach-20-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 21:1 | peri-tzadik-pesach-pesach-21-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 21:2 | peri-tzadik-pesach-pesach-21-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 21:3 | peri-tzadik-pesach-pesach-21-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 21:4 | peri-tzadik-pesach-pesach-21-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 22:1 | peri-tzadik-pesach-pesach-22-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 22:2 | peri-tzadik-pesach-pesach-22-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 22:3 | peri-tzadik-pesach-pesach-22-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 23:1 | peri-tzadik-pesach-pesach-23-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 23:2 | peri-tzadik-pesach-pesach-23-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 24:1 | peri-tzadik-pesach-pesach-24-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 24:2 | peri-tzadik-pesach-pesach-24-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 25:1 | peri-tzadik-pesach-pesach-25-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 26:1 | peri-tzadik-pesach-pesach-26-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 26:2 | peri-tzadik-pesach-pesach-26-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 27:1 | peri-tzadik-pesach-pesach-27-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 28:1 | peri-tzadik-pesach-pesach-28-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 29:1 | peri-tzadik-pesach-pesach-29-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 29:2 | peri-tzadik-pesach-pesach-29-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 30:1 | peri-tzadik-pesach-pesach-30-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 31:1 | peri-tzadik-pesach-pesach-31-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 32:1 | peri-tzadik-pesach-pesach-32-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 33:1 | peri-tzadik-pesach-pesach-33-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 34:1 | peri-tzadik-pesach-pesach-34-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 34:2 | peri-tzadik-pesach-pesach-34-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 35:1 | peri-tzadik-pesach-pesach-35-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 35:2 | peri-tzadik-pesach-pesach-35-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 36:1 | peri-tzadik-pesach-pesach-36-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 37:1 | peri-tzadik-pesach-pesach-37-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 38:1 | peri-tzadik-pesach-pesach-38-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 39:1 | peri-tzadik-pesach-pesach-39-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 39:2 | peri-tzadik-pesach-pesach-39-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 40:1 | peri-tzadik-pesach-pesach-40-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 41:1 | peri-tzadik-pesach-pesach-41-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 42:1 | peri-tzadik-pesach-pesach-42-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 42:2 | peri-tzadik-pesach-pesach-42-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 43:1 | peri-tzadik-pesach-pesach-43-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 43:2 | peri-tzadik-pesach-pesach-43-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 44:1 | peri-tzadik-pesach-pesach-44-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 44:2 | peri-tzadik-pesach-pesach-44-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 44:3 | peri-tzadik-pesach-pesach-44-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 45:1 | peri-tzadik-pesach-pesach-45-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 46:1 | peri-tzadik-pesach-pesach-46-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 46:2 | peri-tzadik-pesach-pesach-46-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 47:1 | peri-tzadik-pesach-pesach-47-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 47:2 | peri-tzadik-pesach-pesach-47-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 47:3 | peri-tzadik-pesach-pesach-47-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 48:1 | peri-tzadik-pesach-pesach-48-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 49:1 | peri-tzadik-pesach-pesach-49-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 50:1 | peri-tzadik-pesach-pesach-50-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 50:2 | peri-tzadik-pesach-pesach-50-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 51:1 | peri-tzadik-pesach-pesach-51-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 52:1 | peri-tzadik-pesach-pesach-52-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 53:1 | peri-tzadik-pesach-pesach-53-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 53:2 | peri-tzadik-pesach-pesach-53-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 54:1 | peri-tzadik-pesach-pesach-54-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 54:2 | peri-tzadik-pesach-pesach-54-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 54:3 | peri-tzadik-pesach-pesach-54-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 54:4 | peri-tzadik-pesach-pesach-54-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach 54:5 | peri-tzadik-pesach-pesach-54-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 1:1 | peri-tzadik-shmini-shmini-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 2:1 | peri-tzadik-shmini-shmini-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 3:1 | peri-tzadik-shmini-shmini-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 4:1 | peri-tzadik-shmini-shmini-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 5:1 | peri-tzadik-shmini-shmini-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 5:2 | peri-tzadik-shmini-shmini-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 6:1 | peri-tzadik-shmini-shmini-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 7:1 | peri-tzadik-shmini-shmini-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 8:1 | peri-tzadik-shmini-shmini-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 8:2 | peri-tzadik-shmini-shmini-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 8:3 | peri-tzadik-shmini-shmini-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 9:1 | peri-tzadik-shmini-shmini-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 9:2 | peri-tzadik-shmini-shmini-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 10:1 | peri-tzadik-shmini-shmini-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shmini 11:1 | peri-tzadik-shmini-shmini-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 1:1 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 1:2 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 2:1 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 2:2 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 3:1 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 3:2 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 3:3 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 4:1 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 4:2 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 4:3 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 5:1 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 5:2 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 5:3 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Iyar 6:1 | peri-tzadik-rosh-chodesh-iyar-rosh-chodesh-iyar-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 1:1 | peri-tzadik-tazria-tazria-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 1:2 | peri-tzadik-tazria-tazria-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 2:1 | peri-tzadik-tazria-tazria-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 3:1 | peri-tzadik-tazria-tazria-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 4:1 | peri-tzadik-tazria-tazria-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 4:2 | peri-tzadik-tazria-tazria-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 5:1 | peri-tzadik-tazria-tazria-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 6:1 | peri-tzadik-tazria-tazria-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 6:2 | peri-tzadik-tazria-tazria-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 7:1 | peri-tzadik-tazria-tazria-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 8:1 | peri-tzadik-tazria-tazria-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 9:1 | peri-tzadik-tazria-tazria-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 9:2 | peri-tzadik-tazria-tazria-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 9:3 | peri-tzadik-tazria-tazria-9-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 10:1 | peri-tzadik-tazria-tazria-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Tazria 11:1 | peri-tzadik-tazria-tazria-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 1:1 | peri-tzadik-metzora-metzora-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 1:2 | peri-tzadik-metzora-metzora-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 1:3 | peri-tzadik-metzora-metzora-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 2:1 | peri-tzadik-metzora-metzora-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 3:1 | peri-tzadik-metzora-metzora-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 4:1 | peri-tzadik-metzora-metzora-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 5:1 | peri-tzadik-metzora-metzora-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 6:1 | peri-tzadik-metzora-metzora-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 6:2 | peri-tzadik-metzora-metzora-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 6:3 | peri-tzadik-metzora-metzora-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 6:4 | peri-tzadik-metzora-metzora-6-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 7:1 | peri-tzadik-metzora-metzora-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 8:1 | peri-tzadik-metzora-metzora-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 9:1 | peri-tzadik-metzora-metzora-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Metzora 10:1 | peri-tzadik-metzora-metzora-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 1:1 | peri-tzadik-achrei-mot-achrei-mot-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 2:1 | peri-tzadik-achrei-mot-achrei-mot-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 3:1 | peri-tzadik-achrei-mot-achrei-mot-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 4:1 | peri-tzadik-achrei-mot-achrei-mot-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 4:2 | peri-tzadik-achrei-mot-achrei-mot-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 5:1 | peri-tzadik-achrei-mot-achrei-mot-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 6:1 | peri-tzadik-achrei-mot-achrei-mot-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 7:1 | peri-tzadik-achrei-mot-achrei-mot-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 7:2 | peri-tzadik-achrei-mot-achrei-mot-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 7:3 | peri-tzadik-achrei-mot-achrei-mot-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 7:4 | peri-tzadik-achrei-mot-achrei-mot-7-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 8:1 | peri-tzadik-achrei-mot-achrei-mot-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 9:1 | peri-tzadik-achrei-mot-achrei-mot-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 10:1 | peri-tzadik-achrei-mot-achrei-mot-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 11:1 | peri-tzadik-achrei-mot-achrei-mot-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Achrei Mot 12:1 | peri-tzadik-achrei-mot-achrei-mot-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 1:1 | peri-tzadik-kedoshim-kedoshim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 1:2 | peri-tzadik-kedoshim-kedoshim-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 1:3 | peri-tzadik-kedoshim-kedoshim-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 2:1 | peri-tzadik-kedoshim-kedoshim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 3:1 | peri-tzadik-kedoshim-kedoshim-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 3:2 | peri-tzadik-kedoshim-kedoshim-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 4:1 | peri-tzadik-kedoshim-kedoshim-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 5:1 | peri-tzadik-kedoshim-kedoshim-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 6:1 | peri-tzadik-kedoshim-kedoshim-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 6:2 | peri-tzadik-kedoshim-kedoshim-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 7:1 | peri-tzadik-kedoshim-kedoshim-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 8:1 | peri-tzadik-kedoshim-kedoshim-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 8:2 | peri-tzadik-kedoshim-kedoshim-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 8:3 | peri-tzadik-kedoshim-kedoshim-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 9:1 | peri-tzadik-kedoshim-kedoshim-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 10:1 | peri-tzadik-kedoshim-kedoshim-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 10:2 | peri-tzadik-kedoshim-kedoshim-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 11:1 | peri-tzadik-kedoshim-kedoshim-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 11:2 | peri-tzadik-kedoshim-kedoshim-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 12:1 | peri-tzadik-kedoshim-kedoshim-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 13:1 | peri-tzadik-kedoshim-kedoshim-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 14:1 | peri-tzadik-kedoshim-kedoshim-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 14:2 | peri-tzadik-kedoshim-kedoshim-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kedoshim 14:3 | peri-tzadik-kedoshim-kedoshim-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 1:1 | peri-tzadik-pesach-sheni-pesach-sheni-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 1:2 | peri-tzadik-pesach-sheni-pesach-sheni-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 2:1 | peri-tzadik-pesach-sheni-pesach-sheni-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 2:2 | peri-tzadik-pesach-sheni-pesach-sheni-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 2:3 | peri-tzadik-pesach-sheni-pesach-sheni-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 3:1 | peri-tzadik-pesach-sheni-pesach-sheni-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 3:2 | peri-tzadik-pesach-sheni-pesach-sheni-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pesach Sheni 3:3 | peri-tzadik-pesach-sheni-pesach-sheni-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 1:1 | peri-tzadik-emor-emor-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 2:1 | peri-tzadik-emor-emor-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 2:2 | peri-tzadik-emor-emor-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 3:1 | peri-tzadik-emor-emor-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 3:2 | peri-tzadik-emor-emor-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 3:3 | peri-tzadik-emor-emor-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 4:1 | peri-tzadik-emor-emor-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 5:1 | peri-tzadik-emor-emor-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 6:1 | peri-tzadik-emor-emor-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 6:2 | peri-tzadik-emor-emor-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 7:1 | peri-tzadik-emor-emor-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 8:1 | peri-tzadik-emor-emor-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 9:1 | peri-tzadik-emor-emor-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 10:1 | peri-tzadik-emor-emor-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 11:1 | peri-tzadik-emor-emor-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 11:2 | peri-tzadik-emor-emor-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 12:1 | peri-tzadik-emor-emor-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 13:1 | peri-tzadik-emor-emor-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Emor 14:1 | peri-tzadik-emor-emor-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 1:1 | peri-tzadik-lag-baomer-lag-baomer-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 2:1 | peri-tzadik-lag-baomer-lag-baomer-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 3:1 | peri-tzadik-lag-baomer-lag-baomer-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 3:2 | peri-tzadik-lag-baomer-lag-baomer-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 4:1 | peri-tzadik-lag-baomer-lag-baomer-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 4:2 | peri-tzadik-lag-baomer-lag-baomer-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 5:1 | peri-tzadik-lag-baomer-lag-baomer-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 6:1 | peri-tzadik-lag-baomer-lag-baomer-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 6:2 | peri-tzadik-lag-baomer-lag-baomer-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 7:1 | peri-tzadik-lag-baomer-lag-baomer-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 8:1 | peri-tzadik-lag-baomer-lag-baomer-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 8:2 | peri-tzadik-lag-baomer-lag-baomer-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 8:3 | peri-tzadik-lag-baomer-lag-baomer-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Lag BaOmer 8:4 | peri-tzadik-lag-baomer-lag-baomer-8-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 1:1 | peri-tzadik-behar-behar-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 2:1 | peri-tzadik-behar-behar-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 3:1 | peri-tzadik-behar-behar-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 4:1 | peri-tzadik-behar-behar-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 5:1 | peri-tzadik-behar-behar-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 5:2 | peri-tzadik-behar-behar-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 5:3 | peri-tzadik-behar-behar-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 5:4 | peri-tzadik-behar-behar-5-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 5:5 | peri-tzadik-behar-behar-5-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 6:1 | peri-tzadik-behar-behar-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 7:1 | peri-tzadik-behar-behar-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 8:1 | peri-tzadik-behar-behar-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 8:2 | peri-tzadik-behar-behar-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 9:1 | peri-tzadik-behar-behar-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 9:2 | peri-tzadik-behar-behar-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 10:1 | peri-tzadik-behar-behar-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 11:1 | peri-tzadik-behar-behar-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 12:1 | peri-tzadik-behar-behar-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 13:1 | peri-tzadik-behar-behar-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 13:2 | peri-tzadik-behar-behar-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 14:1 | peri-tzadik-behar-behar-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 15:1 | peri-tzadik-behar-behar-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 16:1 | peri-tzadik-behar-behar-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Behar 17:1 | peri-tzadik-behar-behar-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 1:1 | peri-tzadik-bechukotai-bechukotai-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 1:2 | peri-tzadik-bechukotai-bechukotai-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 2:1 | peri-tzadik-bechukotai-bechukotai-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 3:1 | peri-tzadik-bechukotai-bechukotai-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 3:2 | peri-tzadik-bechukotai-bechukotai-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 4:1 | peri-tzadik-bechukotai-bechukotai-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 4:2 | peri-tzadik-bechukotai-bechukotai-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 4:3 | peri-tzadik-bechukotai-bechukotai-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 5:1 | peri-tzadik-bechukotai-bechukotai-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 6:1 | peri-tzadik-bechukotai-bechukotai-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 7:1 | peri-tzadik-bechukotai-bechukotai-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 8:1 | peri-tzadik-bechukotai-bechukotai-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 9:1 | peri-tzadik-bechukotai-bechukotai-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 10:1 | peri-tzadik-bechukotai-bechukotai-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 10:2 | peri-tzadik-bechukotai-bechukotai-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 11:1 | peri-tzadik-bechukotai-bechukotai-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 12:1 | peri-tzadik-bechukotai-bechukotai-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 13:1 | peri-tzadik-bechukotai-bechukotai-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 14:1 | peri-tzadik-bechukotai-bechukotai-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 14:2 | peri-tzadik-bechukotai-bechukotai-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 14:3 | peri-tzadik-bechukotai-bechukotai-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bechukotai 14:4 | peri-tzadik-bechukotai-bechukotai-14-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 1:1 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 2:1 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 3:1 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 4:1 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 5:1 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 6:1 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 6:2 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 6:3 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 6:4 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-6-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Kuntres Amalah shel Torah 6:5 | peri-tzadik-kuntres-amalah-shel-torah-kuntres-amalah-shel-torah-6-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 1:1 | peri-tzadik-bamidbar-bamidbar-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 1:2 | peri-tzadik-bamidbar-bamidbar-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 2:1 | peri-tzadik-bamidbar-bamidbar-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 2:2 | peri-tzadik-bamidbar-bamidbar-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 3:1 | peri-tzadik-bamidbar-bamidbar-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 3:2 | peri-tzadik-bamidbar-bamidbar-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 4:1 | peri-tzadik-bamidbar-bamidbar-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 5:1 | peri-tzadik-bamidbar-bamidbar-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 5:2 | peri-tzadik-bamidbar-bamidbar-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 6:1 | peri-tzadik-bamidbar-bamidbar-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 6:2 | peri-tzadik-bamidbar-bamidbar-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 6:3 | peri-tzadik-bamidbar-bamidbar-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 7:1 | peri-tzadik-bamidbar-bamidbar-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 8:1 | peri-tzadik-bamidbar-bamidbar-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 8:2 | peri-tzadik-bamidbar-bamidbar-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 8:3 | peri-tzadik-bamidbar-bamidbar-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 9:1 | peri-tzadik-bamidbar-bamidbar-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 10:1 | peri-tzadik-bamidbar-bamidbar-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 11:1 | peri-tzadik-bamidbar-bamidbar-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 11:2 | peri-tzadik-bamidbar-bamidbar-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 12:1 | peri-tzadik-bamidbar-bamidbar-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 13:1 | peri-tzadik-bamidbar-bamidbar-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 14:1 | peri-tzadik-bamidbar-bamidbar-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 15:1 | peri-tzadik-bamidbar-bamidbar-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 16:1 | peri-tzadik-bamidbar-bamidbar-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 17:1 | peri-tzadik-bamidbar-bamidbar-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 18:1 | peri-tzadik-bamidbar-bamidbar-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Bamidbar 18:2 | peri-tzadik-bamidbar-bamidbar-18-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 1:1 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 1:2 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 2:1 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 2:2 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 3:1 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 3:2 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 3:3 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 4:1 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 4:2 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 4:3 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 4:4 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-4-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 5:1 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 5:2 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Sivan 5:3 | peri-tzadik-rosh-chodesh-sivan-rosh-chodesh-sivan-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 1:1 | peri-tzadik-shavuot-shavuot-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 1:2 | peri-tzadik-shavuot-shavuot-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 2:1 | peri-tzadik-shavuot-shavuot-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 2:2 | peri-tzadik-shavuot-shavuot-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 3:1 | peri-tzadik-shavuot-shavuot-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 3:2 | peri-tzadik-shavuot-shavuot-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 4:1 | peri-tzadik-shavuot-shavuot-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 4:2 | peri-tzadik-shavuot-shavuot-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 5:1 | peri-tzadik-shavuot-shavuot-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 6:1 | peri-tzadik-shavuot-shavuot-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 6:2 | peri-tzadik-shavuot-shavuot-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 7:1 | peri-tzadik-shavuot-shavuot-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 7:2 | peri-tzadik-shavuot-shavuot-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 7:3 | peri-tzadik-shavuot-shavuot-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 7:4 | peri-tzadik-shavuot-shavuot-7-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 7:5 | peri-tzadik-shavuot-shavuot-7-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 7:6 | peri-tzadik-shavuot-shavuot-7-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 8:1 | peri-tzadik-shavuot-shavuot-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 9:1 | peri-tzadik-shavuot-shavuot-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 9:2 | peri-tzadik-shavuot-shavuot-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 10:1 | peri-tzadik-shavuot-shavuot-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 10:2 | peri-tzadik-shavuot-shavuot-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 11:1 | peri-tzadik-shavuot-shavuot-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 11:2 | peri-tzadik-shavuot-shavuot-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 12:1 | peri-tzadik-shavuot-shavuot-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 13:1 | peri-tzadik-shavuot-shavuot-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 14:1 | peri-tzadik-shavuot-shavuot-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 15:1 | peri-tzadik-shavuot-shavuot-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 15:2 | peri-tzadik-shavuot-shavuot-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 16:1 | peri-tzadik-shavuot-shavuot-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 16:2 | peri-tzadik-shavuot-shavuot-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 16:3 | peri-tzadik-shavuot-shavuot-16-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 17:1 | peri-tzadik-shavuot-shavuot-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 17:2 | peri-tzadik-shavuot-shavuot-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 18:1 | peri-tzadik-shavuot-shavuot-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 18:2 | peri-tzadik-shavuot-shavuot-18-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 19:1 | peri-tzadik-shavuot-shavuot-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 20:1 | peri-tzadik-shavuot-shavuot-20-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 21:1 | peri-tzadik-shavuot-shavuot-21-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 22:1 | peri-tzadik-shavuot-shavuot-22-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 23:1 | peri-tzadik-shavuot-shavuot-23-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 23:2 | peri-tzadik-shavuot-shavuot-23-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 24:1 | peri-tzadik-shavuot-shavuot-24-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 25:1 | peri-tzadik-shavuot-shavuot-25-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shavuot 26:1 | peri-tzadik-shavuot-shavuot-26-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 1:1 | peri-tzadik-nasso-nasso-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 1:2 | peri-tzadik-nasso-nasso-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 1:3 | peri-tzadik-nasso-nasso-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 1:4 | peri-tzadik-nasso-nasso-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 2:1 | peri-tzadik-nasso-nasso-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 2:2 | peri-tzadik-nasso-nasso-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 2:3 | peri-tzadik-nasso-nasso-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 3:1 | peri-tzadik-nasso-nasso-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 3:2 | peri-tzadik-nasso-nasso-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 3:3 | peri-tzadik-nasso-nasso-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 4:1 | peri-tzadik-nasso-nasso-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 5:1 | peri-tzadik-nasso-nasso-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 5:2 | peri-tzadik-nasso-nasso-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 6:1 | peri-tzadik-nasso-nasso-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 6:2 | peri-tzadik-nasso-nasso-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 6:3 | peri-tzadik-nasso-nasso-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 7:1 | peri-tzadik-nasso-nasso-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 8:1 | peri-tzadik-nasso-nasso-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 9:1 | peri-tzadik-nasso-nasso-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 10:1 | peri-tzadik-nasso-nasso-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 10:2 | peri-tzadik-nasso-nasso-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 10:3 | peri-tzadik-nasso-nasso-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 11:1 | peri-tzadik-nasso-nasso-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 11:2 | peri-tzadik-nasso-nasso-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 12:1 | peri-tzadik-nasso-nasso-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 13:1 | peri-tzadik-nasso-nasso-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 14:1 | peri-tzadik-nasso-nasso-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 15:1 | peri-tzadik-nasso-nasso-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 15:2 | peri-tzadik-nasso-nasso-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 16:1 | peri-tzadik-nasso-nasso-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 17:1 | peri-tzadik-nasso-nasso-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 18:1 | peri-tzadik-nasso-nasso-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 19:1 | peri-tzadik-nasso-nasso-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nasso 19:2 | peri-tzadik-nasso-nasso-19-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 1:1 | peri-tzadik-behaalotcha-behaalotcha-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 1:2 | peri-tzadik-behaalotcha-behaalotcha-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 1:3 | peri-tzadik-behaalotcha-behaalotcha-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 1:4 | peri-tzadik-behaalotcha-behaalotcha-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 2:1 | peri-tzadik-behaalotcha-behaalotcha-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 3:1 | peri-tzadik-behaalotcha-behaalotcha-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 3:2 | peri-tzadik-behaalotcha-behaalotcha-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 4:1 | peri-tzadik-behaalotcha-behaalotcha-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 5:1 | peri-tzadik-behaalotcha-behaalotcha-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 5:2 | peri-tzadik-behaalotcha-behaalotcha-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 5:3 | peri-tzadik-behaalotcha-behaalotcha-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 6:1 | peri-tzadik-behaalotcha-behaalotcha-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 6:2 | peri-tzadik-behaalotcha-behaalotcha-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 7:1 | peri-tzadik-behaalotcha-behaalotcha-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 8:1 | peri-tzadik-behaalotcha-behaalotcha-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 8:2 | peri-tzadik-behaalotcha-behaalotcha-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 9:1 | peri-tzadik-behaalotcha-behaalotcha-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 9:2 | peri-tzadik-behaalotcha-behaalotcha-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 10:1 | peri-tzadik-behaalotcha-behaalotcha-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 10:2 | peri-tzadik-behaalotcha-behaalotcha-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 10:3 | peri-tzadik-behaalotcha-behaalotcha-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 10:4 | peri-tzadik-behaalotcha-behaalotcha-10-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 11:1 | peri-tzadik-behaalotcha-behaalotcha-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 11:2 | peri-tzadik-behaalotcha-behaalotcha-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 11:3 | peri-tzadik-behaalotcha-behaalotcha-11-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 12:1 | peri-tzadik-behaalotcha-behaalotcha-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 12:2 | peri-tzadik-behaalotcha-behaalotcha-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 13:1 | peri-tzadik-behaalotcha-behaalotcha-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Beha'alotcha 14:1 | peri-tzadik-behaalotcha-behaalotcha-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 1:1 | peri-tzadik-shlach-shlach-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 2:1 | peri-tzadik-shlach-shlach-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 2:2 | peri-tzadik-shlach-shlach-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 3:1 | peri-tzadik-shlach-shlach-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 4:1 | peri-tzadik-shlach-shlach-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 5:1 | peri-tzadik-shlach-shlach-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 5:2 | peri-tzadik-shlach-shlach-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 6:1 | peri-tzadik-shlach-shlach-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 7:1 | peri-tzadik-shlach-shlach-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 7:2 | peri-tzadik-shlach-shlach-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 8:1 | peri-tzadik-shlach-shlach-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 8:2 | peri-tzadik-shlach-shlach-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 9:1 | peri-tzadik-shlach-shlach-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 10:1 | peri-tzadik-shlach-shlach-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 10:2 | peri-tzadik-shlach-shlach-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 10:3 | peri-tzadik-shlach-shlach-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 10:4 | peri-tzadik-shlach-shlach-10-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 11:1 | peri-tzadik-shlach-shlach-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 12:1 | peri-tzadik-shlach-shlach-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 13:1 | peri-tzadik-shlach-shlach-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 14:1 | peri-tzadik-shlach-shlach-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 14:2 | peri-tzadik-shlach-shlach-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 14:3 | peri-tzadik-shlach-shlach-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 15:1 | peri-tzadik-shlach-shlach-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sh'lach 15:2 | peri-tzadik-shlach-shlach-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 1:1 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 1:2 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 1:3 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 1:4 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 2:1 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 2:2 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 3:1 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 3:2 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 4:1 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 4:2 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 4:3 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 5:1 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Tammuz 5:2 | peri-tzadik-rosh-chodesh-tammuz-rosh-chodesh-tammuz-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 1:1 | peri-tzadik-korach-korach-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 1:2 | peri-tzadik-korach-korach-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 1:3 | peri-tzadik-korach-korach-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 2:1 | peri-tzadik-korach-korach-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 3:1 | peri-tzadik-korach-korach-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 3:2 | peri-tzadik-korach-korach-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 4:1 | peri-tzadik-korach-korach-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 4:2 | peri-tzadik-korach-korach-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 4:3 | peri-tzadik-korach-korach-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 5:1 | peri-tzadik-korach-korach-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 5:2 | peri-tzadik-korach-korach-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 6:1 | peri-tzadik-korach-korach-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 6:2 | peri-tzadik-korach-korach-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 7:1 | peri-tzadik-korach-korach-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 8:1 | peri-tzadik-korach-korach-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 8:2 | peri-tzadik-korach-korach-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 8:3 | peri-tzadik-korach-korach-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 8:4 | peri-tzadik-korach-korach-8-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 9:1 | peri-tzadik-korach-korach-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 10:1 | peri-tzadik-korach-korach-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 11:1 | peri-tzadik-korach-korach-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 11:2 | peri-tzadik-korach-korach-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 12:1 | peri-tzadik-korach-korach-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 13:1 | peri-tzadik-korach-korach-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 13:2 | peri-tzadik-korach-korach-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 14:1 | peri-tzadik-korach-korach-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 15:1 | peri-tzadik-korach-korach-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 15:2 | peri-tzadik-korach-korach-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 16:1 | peri-tzadik-korach-korach-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 16:2 | peri-tzadik-korach-korach-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Korach 17:1 | peri-tzadik-korach-korach-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 1:1 | peri-tzadik-chukat-chukat-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 2:1 | peri-tzadik-chukat-chukat-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 3:1 | peri-tzadik-chukat-chukat-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 4:1 | peri-tzadik-chukat-chukat-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 4:2 | peri-tzadik-chukat-chukat-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 5:1 | peri-tzadik-chukat-chukat-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 6:1 | peri-tzadik-chukat-chukat-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 6:2 | peri-tzadik-chukat-chukat-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 7:1 | peri-tzadik-chukat-chukat-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 8:1 | peri-tzadik-chukat-chukat-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 8:2 | peri-tzadik-chukat-chukat-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 9:1 | peri-tzadik-chukat-chukat-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 10:1 | peri-tzadik-chukat-chukat-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 10:2 | peri-tzadik-chukat-chukat-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 10:3 | peri-tzadik-chukat-chukat-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 11:1 | peri-tzadik-chukat-chukat-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 12:1 | peri-tzadik-chukat-chukat-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 13:1 | peri-tzadik-chukat-chukat-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 14:1 | peri-tzadik-chukat-chukat-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 15:1 | peri-tzadik-chukat-chukat-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Chukat 16:1 | peri-tzadik-chukat-chukat-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 1:1 | peri-tzadik-balak-balak-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 1:2 | peri-tzadik-balak-balak-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 2:1 | peri-tzadik-balak-balak-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 2:2 | peri-tzadik-balak-balak-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 2:3 | peri-tzadik-balak-balak-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 3:1 | peri-tzadik-balak-balak-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 3:2 | peri-tzadik-balak-balak-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 3:3 | peri-tzadik-balak-balak-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 4:1 | peri-tzadik-balak-balak-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 5:1 | peri-tzadik-balak-balak-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 6:1 | peri-tzadik-balak-balak-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 7:1 | peri-tzadik-balak-balak-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 7:2 | peri-tzadik-balak-balak-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 8:1 | peri-tzadik-balak-balak-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 8:2 | peri-tzadik-balak-balak-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 9:1 | peri-tzadik-balak-balak-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 10:1 | peri-tzadik-balak-balak-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 10:2 | peri-tzadik-balak-balak-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 10:3 | peri-tzadik-balak-balak-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 11:1 | peri-tzadik-balak-balak-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 12:1 | peri-tzadik-balak-balak-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 12:2 | peri-tzadik-balak-balak-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 13:1 | peri-tzadik-balak-balak-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 13:2 | peri-tzadik-balak-balak-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 14:1 | peri-tzadik-balak-balak-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 14:2 | peri-tzadik-balak-balak-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 14:3 | peri-tzadik-balak-balak-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Balak 15:1 | peri-tzadik-balak-balak-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 1:1 | peri-tzadik-pinchas-pinchas-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 2:1 | peri-tzadik-pinchas-pinchas-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 3:1 | peri-tzadik-pinchas-pinchas-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 3:2 | peri-tzadik-pinchas-pinchas-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 4:1 | peri-tzadik-pinchas-pinchas-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 5:1 | peri-tzadik-pinchas-pinchas-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 6:1 | peri-tzadik-pinchas-pinchas-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 6:2 | peri-tzadik-pinchas-pinchas-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 7:1 | peri-tzadik-pinchas-pinchas-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 8:1 | peri-tzadik-pinchas-pinchas-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 9:1 | peri-tzadik-pinchas-pinchas-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 10:1 | peri-tzadik-pinchas-pinchas-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 11:1 | peri-tzadik-pinchas-pinchas-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 12:1 | peri-tzadik-pinchas-pinchas-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 12:2 | peri-tzadik-pinchas-pinchas-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 13:1 | peri-tzadik-pinchas-pinchas-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 13:2 | peri-tzadik-pinchas-pinchas-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 13:3 | peri-tzadik-pinchas-pinchas-13-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 14:1 | peri-tzadik-pinchas-pinchas-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 14:2 | peri-tzadik-pinchas-pinchas-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 15:1 | peri-tzadik-pinchas-pinchas-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 15:2 | peri-tzadik-pinchas-pinchas-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 16:1 | peri-tzadik-pinchas-pinchas-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 16:2 | peri-tzadik-pinchas-pinchas-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 16:3 | peri-tzadik-pinchas-pinchas-16-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 17:1 | peri-tzadik-pinchas-pinchas-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 18:1 | peri-tzadik-pinchas-pinchas-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 18:2 | peri-tzadik-pinchas-pinchas-18-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 19:1 | peri-tzadik-pinchas-pinchas-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Pinchas 19:2 | peri-tzadik-pinchas-pinchas-19-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 1:1 | peri-tzadik-matot-matot-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 1:2 | peri-tzadik-matot-matot-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 2:1 | peri-tzadik-matot-matot-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 2:2 | peri-tzadik-matot-matot-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 2:3 | peri-tzadik-matot-matot-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 2:4 | peri-tzadik-matot-matot-2-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 3:1 | peri-tzadik-matot-matot-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 4:1 | peri-tzadik-matot-matot-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 4:2 | peri-tzadik-matot-matot-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 5:1 | peri-tzadik-matot-matot-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 6:1 | peri-tzadik-matot-matot-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 7:1 | peri-tzadik-matot-matot-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 8:1 | peri-tzadik-matot-matot-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 8:2 | peri-tzadik-matot-matot-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 8:3 | peri-tzadik-matot-matot-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 9:1 | peri-tzadik-matot-matot-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 10:1 | peri-tzadik-matot-matot-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 11:1 | peri-tzadik-matot-matot-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 12:1 | peri-tzadik-matot-matot-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 13:1 | peri-tzadik-matot-matot-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 14:1 | peri-tzadik-matot-matot-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Matot 14:2 | peri-tzadik-matot-matot-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 1:1 | peri-tzadik-masei-masei-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 1:2 | peri-tzadik-masei-masei-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 2:1 | peri-tzadik-masei-masei-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 2:2 | peri-tzadik-masei-masei-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 3:1 | peri-tzadik-masei-masei-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 3:2 | peri-tzadik-masei-masei-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 3:3 | peri-tzadik-masei-masei-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 4:1 | peri-tzadik-masei-masei-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 5:1 | peri-tzadik-masei-masei-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 5:2 | peri-tzadik-masei-masei-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 6:1 | peri-tzadik-masei-masei-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 6:2 | peri-tzadik-masei-masei-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 6:3 | peri-tzadik-masei-masei-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 6:4 | peri-tzadik-masei-masei-6-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 6:5 | peri-tzadik-masei-masei-6-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 7:1 | peri-tzadik-masei-masei-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 8:1 | peri-tzadik-masei-masei-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 8:2 | peri-tzadik-masei-masei-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 9:1 | peri-tzadik-masei-masei-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 9:2 | peri-tzadik-masei-masei-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 10:1 | peri-tzadik-masei-masei-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 11:1 | peri-tzadik-masei-masei-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 11:2 | peri-tzadik-masei-masei-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 11:3 | peri-tzadik-masei-masei-11-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 11:4 | peri-tzadik-masei-masei-11-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 12:1 | peri-tzadik-masei-masei-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 13:1 | peri-tzadik-masei-masei-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 13:2 | peri-tzadik-masei-masei-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 14:1 | peri-tzadik-masei-masei-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 14:2 | peri-tzadik-masei-masei-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Masei 15:1 | peri-tzadik-masei-masei-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 1:1 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 1:2 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 2:1 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 2:2 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 3:1 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 4:1 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 4:2 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 5:1 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 6:1 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 7:1 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Av 7:2 | peri-tzadik-rosh-chodesh-av-rosh-chodesh-av-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 1:1 | peri-tzadik-devarim-devarim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 1:2 | peri-tzadik-devarim-devarim-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 2:1 | peri-tzadik-devarim-devarim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 2:2 | peri-tzadik-devarim-devarim-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 3:1 | peri-tzadik-devarim-devarim-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 3:2 | peri-tzadik-devarim-devarim-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 4:1 | peri-tzadik-devarim-devarim-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 4:2 | peri-tzadik-devarim-devarim-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 5:1 | peri-tzadik-devarim-devarim-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 6:1 | peri-tzadik-devarim-devarim-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 6:2 | peri-tzadik-devarim-devarim-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 7:1 | peri-tzadik-devarim-devarim-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 8:1 | peri-tzadik-devarim-devarim-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 8:2 | peri-tzadik-devarim-devarim-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 9:1 | peri-tzadik-devarim-devarim-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 9:2 | peri-tzadik-devarim-devarim-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 10:1 | peri-tzadik-devarim-devarim-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 10:2 | peri-tzadik-devarim-devarim-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 11:1 | peri-tzadik-devarim-devarim-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 11:2 | peri-tzadik-devarim-devarim-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 11:3 | peri-tzadik-devarim-devarim-11-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 12:1 | peri-tzadik-devarim-devarim-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 12:2 | peri-tzadik-devarim-devarim-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 12:3 | peri-tzadik-devarim-devarim-12-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 13:1 | peri-tzadik-devarim-devarim-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 13:2 | peri-tzadik-devarim-devarim-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 14:1 | peri-tzadik-devarim-devarim-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 14:2 | peri-tzadik-devarim-devarim-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 15:1 | peri-tzadik-devarim-devarim-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 16:1 | peri-tzadik-devarim-devarim-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 17:1 | peri-tzadik-devarim-devarim-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 17:2 | peri-tzadik-devarim-devarim-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 17:3 | peri-tzadik-devarim-devarim-17-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 17:4 | peri-tzadik-devarim-devarim-17-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Devarim 17:5 | peri-tzadik-devarim-devarim-17-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 1:1 | peri-tzadik-vaetchanan-vaetchanan-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 1:2 | peri-tzadik-vaetchanan-vaetchanan-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 2:1 | peri-tzadik-vaetchanan-vaetchanan-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 2:2 | peri-tzadik-vaetchanan-vaetchanan-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 3:1 | peri-tzadik-vaetchanan-vaetchanan-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 3:2 | peri-tzadik-vaetchanan-vaetchanan-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 4:1 | peri-tzadik-vaetchanan-vaetchanan-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 5:1 | peri-tzadik-vaetchanan-vaetchanan-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 5:2 | peri-tzadik-vaetchanan-vaetchanan-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 5:3 | peri-tzadik-vaetchanan-vaetchanan-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 6:1 | peri-tzadik-vaetchanan-vaetchanan-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 6:2 | peri-tzadik-vaetchanan-vaetchanan-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 6:3 | peri-tzadik-vaetchanan-vaetchanan-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 7:1 | peri-tzadik-vaetchanan-vaetchanan-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 8:1 | peri-tzadik-vaetchanan-vaetchanan-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 8:2 | peri-tzadik-vaetchanan-vaetchanan-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 9:1 | peri-tzadik-vaetchanan-vaetchanan-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 10:1 | peri-tzadik-vaetchanan-vaetchanan-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 10:2 | peri-tzadik-vaetchanan-vaetchanan-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 11:1 | peri-tzadik-vaetchanan-vaetchanan-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 12:1 | peri-tzadik-vaetchanan-vaetchanan-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 12:2 | peri-tzadik-vaetchanan-vaetchanan-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 13:1 | peri-tzadik-vaetchanan-vaetchanan-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 14:1 | peri-tzadik-vaetchanan-vaetchanan-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 15:1 | peri-tzadik-vaetchanan-vaetchanan-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 15:2 | peri-tzadik-vaetchanan-vaetchanan-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 16:1 | peri-tzadik-vaetchanan-vaetchanan-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 17:1 | peri-tzadik-vaetchanan-vaetchanan-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 18:1 | peri-tzadik-vaetchanan-vaetchanan-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 19:1 | peri-tzadik-vaetchanan-vaetchanan-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 19:2 | peri-tzadik-vaetchanan-vaetchanan-19-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 20:1 | peri-tzadik-vaetchanan-vaetchanan-20-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vaetchanan 21:1 | peri-tzadik-vaetchanan-vaetchanan-21-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:1 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:2 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:3 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:4 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:5 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:6 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-6 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:7 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-7 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 1:8 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-1-8 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 2:1 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 3:1 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 3:2 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 3:3 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 4:1 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 4:2 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 4:3 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 5:1 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 5:2 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 6:1 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 6:2 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 6:3 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 6:4 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-6-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, The Fifteenth of Av 6:5 | peri-tzadik-the-fifteenth-of-av-the-fifteenth-of-av-6-5 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 1:1 | peri-tzadik-eikev-eikev-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 2:1 | peri-tzadik-eikev-eikev-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 2:2 | peri-tzadik-eikev-eikev-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 2:3 | peri-tzadik-eikev-eikev-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 3:1 | peri-tzadik-eikev-eikev-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 3:2 | peri-tzadik-eikev-eikev-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 3:3 | peri-tzadik-eikev-eikev-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 4:1 | peri-tzadik-eikev-eikev-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 5:1 | peri-tzadik-eikev-eikev-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 5:2 | peri-tzadik-eikev-eikev-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 6:1 | peri-tzadik-eikev-eikev-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 7:1 | peri-tzadik-eikev-eikev-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 8:1 | peri-tzadik-eikev-eikev-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 9:1 | peri-tzadik-eikev-eikev-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 9:2 | peri-tzadik-eikev-eikev-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 10:1 | peri-tzadik-eikev-eikev-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 11:1 | peri-tzadik-eikev-eikev-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 12:1 | peri-tzadik-eikev-eikev-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 13:1 | peri-tzadik-eikev-eikev-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 13:2 | peri-tzadik-eikev-eikev-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 14:1 | peri-tzadik-eikev-eikev-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 15:1 | peri-tzadik-eikev-eikev-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 16:1 | peri-tzadik-eikev-eikev-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 17:1 | peri-tzadik-eikev-eikev-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 18:1 | peri-tzadik-eikev-eikev-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Eikev 19:1 | peri-tzadik-eikev-eikev-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 1:1 | peri-tzadik-reeh-reeh-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 2:1 | peri-tzadik-reeh-reeh-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 3:1 | peri-tzadik-reeh-reeh-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 4:1 | peri-tzadik-reeh-reeh-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 5:1 | peri-tzadik-reeh-reeh-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 6:1 | peri-tzadik-reeh-reeh-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 6:2 | peri-tzadik-reeh-reeh-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 7:1 | peri-tzadik-reeh-reeh-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 7:2 | peri-tzadik-reeh-reeh-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 7:3 | peri-tzadik-reeh-reeh-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 8:1 | peri-tzadik-reeh-reeh-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 8:2 | peri-tzadik-reeh-reeh-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 9:1 | peri-tzadik-reeh-reeh-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 9:2 | peri-tzadik-reeh-reeh-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 9:3 | peri-tzadik-reeh-reeh-9-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 10:1 | peri-tzadik-reeh-reeh-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 10:2 | peri-tzadik-reeh-reeh-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 10:3 | peri-tzadik-reeh-reeh-10-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 11:1 | peri-tzadik-reeh-reeh-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 12:1 | peri-tzadik-reeh-reeh-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 13:1 | peri-tzadik-reeh-reeh-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 14:1 | peri-tzadik-reeh-reeh-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 15:1 | peri-tzadik-reeh-reeh-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 16:1 | peri-tzadik-reeh-reeh-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Re'eh 16:2 | peri-tzadik-reeh-reeh-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 1:1 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 1:2 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 1:3 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 2:1 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 2:2 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 2:3 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 3:1 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 3:2 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 3:3 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-3-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 3:4 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-3-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 4:1 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 4:2 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Chodesh Elul 5:1 | peri-tzadik-rosh-chodesh-elul-rosh-chodesh-elul-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 1:1 | peri-tzadik-shoftim-shoftim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 1:2 | peri-tzadik-shoftim-shoftim-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 2:1 | peri-tzadik-shoftim-shoftim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 2:2 | peri-tzadik-shoftim-shoftim-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 3:1 | peri-tzadik-shoftim-shoftim-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 4:1 | peri-tzadik-shoftim-shoftim-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 5:1 | peri-tzadik-shoftim-shoftim-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 5:2 | peri-tzadik-shoftim-shoftim-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 6:1 | peri-tzadik-shoftim-shoftim-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 7:1 | peri-tzadik-shoftim-shoftim-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 8:1 | peri-tzadik-shoftim-shoftim-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 9:1 | peri-tzadik-shoftim-shoftim-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 9:2 | peri-tzadik-shoftim-shoftim-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 10:1 | peri-tzadik-shoftim-shoftim-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 11:1 | peri-tzadik-shoftim-shoftim-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 12:1 | peri-tzadik-shoftim-shoftim-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 13:1 | peri-tzadik-shoftim-shoftim-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 13:2 | peri-tzadik-shoftim-shoftim-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 14:1 | peri-tzadik-shoftim-shoftim-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 14:2 | peri-tzadik-shoftim-shoftim-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 15:1 | peri-tzadik-shoftim-shoftim-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 15:2 | peri-tzadik-shoftim-shoftim-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 16:1 | peri-tzadik-shoftim-shoftim-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Shoftim 17:1 | peri-tzadik-shoftim-shoftim-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 1:1 | peri-tzadik-ki-teitzei-ki-teitzei-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 1:2 | peri-tzadik-ki-teitzei-ki-teitzei-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 2:1 | peri-tzadik-ki-teitzei-ki-teitzei-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 2:2 | peri-tzadik-ki-teitzei-ki-teitzei-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 3:1 | peri-tzadik-ki-teitzei-ki-teitzei-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 4:1 | peri-tzadik-ki-teitzei-ki-teitzei-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 5:1 | peri-tzadik-ki-teitzei-ki-teitzei-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 6:1 | peri-tzadik-ki-teitzei-ki-teitzei-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 6:2 | peri-tzadik-ki-teitzei-ki-teitzei-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 7:1 | peri-tzadik-ki-teitzei-ki-teitzei-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 8:1 | peri-tzadik-ki-teitzei-ki-teitzei-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 9:1 | peri-tzadik-ki-teitzei-ki-teitzei-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 10:1 | peri-tzadik-ki-teitzei-ki-teitzei-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 11:1 | peri-tzadik-ki-teitzei-ki-teitzei-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 11:2 | peri-tzadik-ki-teitzei-ki-teitzei-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 12:1 | peri-tzadik-ki-teitzei-ki-teitzei-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 12:2 | peri-tzadik-ki-teitzei-ki-teitzei-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 12:3 | peri-tzadik-ki-teitzei-ki-teitzei-12-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 13:1 | peri-tzadik-ki-teitzei-ki-teitzei-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 14:1 | peri-tzadik-ki-teitzei-ki-teitzei-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 14:2 | peri-tzadik-ki-teitzei-ki-teitzei-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 15:1 | peri-tzadik-ki-teitzei-ki-teitzei-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 15:2 | peri-tzadik-ki-teitzei-ki-teitzei-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 15:3 | peri-tzadik-ki-teitzei-ki-teitzei-15-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 16:1 | peri-tzadik-ki-teitzei-ki-teitzei-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 16:2 | peri-tzadik-ki-teitzei-ki-teitzei-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 16:3 | peri-tzadik-ki-teitzei-ki-teitzei-16-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 17:1 | peri-tzadik-ki-teitzei-ki-teitzei-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 17:2 | peri-tzadik-ki-teitzei-ki-teitzei-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Teitzei 17:3 | peri-tzadik-ki-teitzei-ki-teitzei-17-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 1:1 | peri-tzadik-ki-tavo-ki-tavo-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 2:1 | peri-tzadik-ki-tavo-ki-tavo-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 3:1 | peri-tzadik-ki-tavo-ki-tavo-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 3:2 | peri-tzadik-ki-tavo-ki-tavo-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 4:1 | peri-tzadik-ki-tavo-ki-tavo-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 4:2 | peri-tzadik-ki-tavo-ki-tavo-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 5:1 | peri-tzadik-ki-tavo-ki-tavo-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 6:1 | peri-tzadik-ki-tavo-ki-tavo-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 6:2 | peri-tzadik-ki-tavo-ki-tavo-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 6:3 | peri-tzadik-ki-tavo-ki-tavo-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 7:1 | peri-tzadik-ki-tavo-ki-tavo-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 7:2 | peri-tzadik-ki-tavo-ki-tavo-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 7:3 | peri-tzadik-ki-tavo-ki-tavo-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 8:1 | peri-tzadik-ki-tavo-ki-tavo-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 8:2 | peri-tzadik-ki-tavo-ki-tavo-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 8:3 | peri-tzadik-ki-tavo-ki-tavo-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 9:1 | peri-tzadik-ki-tavo-ki-tavo-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 10:1 | peri-tzadik-ki-tavo-ki-tavo-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 10:2 | peri-tzadik-ki-tavo-ki-tavo-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 11:1 | peri-tzadik-ki-tavo-ki-tavo-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 11:2 | peri-tzadik-ki-tavo-ki-tavo-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 11:3 | peri-tzadik-ki-tavo-ki-tavo-11-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 12:1 | peri-tzadik-ki-tavo-ki-tavo-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 12:2 | peri-tzadik-ki-tavo-ki-tavo-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 12:3 | peri-tzadik-ki-tavo-ki-tavo-12-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 13:1 | peri-tzadik-ki-tavo-ki-tavo-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 13:2 | peri-tzadik-ki-tavo-ki-tavo-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 13:3 | peri-tzadik-ki-tavo-ki-tavo-13-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 14:1 | peri-tzadik-ki-tavo-ki-tavo-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 14:2 | peri-tzadik-ki-tavo-ki-tavo-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 14:3 | peri-tzadik-ki-tavo-ki-tavo-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 15:1 | peri-tzadik-ki-tavo-ki-tavo-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 15:2 | peri-tzadik-ki-tavo-ki-tavo-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 16:1 | peri-tzadik-ki-tavo-ki-tavo-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 16:2 | peri-tzadik-ki-tavo-ki-tavo-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 16:3 | peri-tzadik-ki-tavo-ki-tavo-16-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 17:1 | peri-tzadik-ki-tavo-ki-tavo-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ki Tavo 17:2 | peri-tzadik-ki-tavo-ki-tavo-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 1:1 | peri-tzadik-nitzavim-nitzavim-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 2:1 | peri-tzadik-nitzavim-nitzavim-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 2:2 | peri-tzadik-nitzavim-nitzavim-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 3:1 | peri-tzadik-nitzavim-nitzavim-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 3:2 | peri-tzadik-nitzavim-nitzavim-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 4:1 | peri-tzadik-nitzavim-nitzavim-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 5:1 | peri-tzadik-nitzavim-nitzavim-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 5:2 | peri-tzadik-nitzavim-nitzavim-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 5:3 | peri-tzadik-nitzavim-nitzavim-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 6:1 | peri-tzadik-nitzavim-nitzavim-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 6:2 | peri-tzadik-nitzavim-nitzavim-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 6:3 | peri-tzadik-nitzavim-nitzavim-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 6:4 | peri-tzadik-nitzavim-nitzavim-6-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 7:1 | peri-tzadik-nitzavim-nitzavim-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 7:2 | peri-tzadik-nitzavim-nitzavim-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 7:3 | peri-tzadik-nitzavim-nitzavim-7-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 8:1 | peri-tzadik-nitzavim-nitzavim-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 9:1 | peri-tzadik-nitzavim-nitzavim-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 10:1 | peri-tzadik-nitzavim-nitzavim-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 10:2 | peri-tzadik-nitzavim-nitzavim-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 11:1 | peri-tzadik-nitzavim-nitzavim-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 12:1 | peri-tzadik-nitzavim-nitzavim-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 13:1 | peri-tzadik-nitzavim-nitzavim-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 14:1 | peri-tzadik-nitzavim-nitzavim-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 15:1 | peri-tzadik-nitzavim-nitzavim-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 16:1 | peri-tzadik-nitzavim-nitzavim-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 17:1 | peri-tzadik-nitzavim-nitzavim-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 18:1 | peri-tzadik-nitzavim-nitzavim-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Nitzavim 18:2 | peri-tzadik-nitzavim-nitzavim-18-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 1:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 2:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 3:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 3:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 4:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 5:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 6:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 6:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 6:3 | peri-tzadik-rosh-hashanah-rosh-hashanah-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 7:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 7:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 8:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 8:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 9:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 9:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-9-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 10:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 11:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 12:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 12:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 13:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 13:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 13:3 | peri-tzadik-rosh-hashanah-rosh-hashanah-13-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 14:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 14:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 15:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 16:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 17:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 17:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 18:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 18:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-18-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 19:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 20:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-20-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 21:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-21-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 22:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-22-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 23:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-23-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 24:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-24-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 24:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-24-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 25:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-25-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 26:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-26-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 27:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-27-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 27:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-27-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 28:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-28-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 29:1 | peri-tzadik-rosh-hashanah-rosh-hashanah-29-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 29:2 | peri-tzadik-rosh-hashanah-rosh-hashanah-29-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Rosh Hashanah 29:3 | peri-tzadik-rosh-hashanah-rosh-hashanah-29-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 1:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 2:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 2:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-2-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 2:3 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-2-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 3:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 3:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-3-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 4:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 5:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 6:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 6:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 7:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 8:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 9:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 10:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 10:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 11:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 11:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-11-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 12:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 12:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 13:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 13:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 14:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 14:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-14-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 14:3 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-14-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 15:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 15:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-15-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 16:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 17:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 17:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-17-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 17:3 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-17-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 18:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 18:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-18-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 18:3 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-18-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 19:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 20:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-20-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 21:1 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-21-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 21:2 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-21-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 21:3 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-21-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Vayeilech and Shabbat Shuvah 21:4 | peri-tzadik-vayeilech-and-shabbat-shuvah-vayeilech-and-shabbat-shuvah-21-4 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 1:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 1:2 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 1:3 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 2:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 3:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 4:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 4:2 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-4-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 4:3 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-4-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 5:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 5:2 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 5:3 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-5-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 6:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 6:2 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-6-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 6:3 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-6-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 7:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 7:2 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 8:1 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 8:2 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-8-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Erev Yom Kippur 8:3 | peri-tzadik-erev-yom-kippur-erev-yom-kippur-8-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 1:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 2:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 3:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 4:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 5:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 5:2 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-5-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 6:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 7:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 8:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 9:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 10:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 11:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 12:1 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Motzei Yom Kippur 12:2 | peri-tzadik-motzei-yom-kippur-motzei-yom-kippur-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 1:1 | peri-tzadik-haazinu-haazinu-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 1:2 | peri-tzadik-haazinu-haazinu-1-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 1:3 | peri-tzadik-haazinu-haazinu-1-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 2:1 | peri-tzadik-haazinu-haazinu-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 3:1 | peri-tzadik-haazinu-haazinu-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 4:1 | peri-tzadik-haazinu-haazinu-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 5:1 | peri-tzadik-haazinu-haazinu-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 6:1 | peri-tzadik-haazinu-haazinu-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 7:1 | peri-tzadik-haazinu-haazinu-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 8:1 | peri-tzadik-haazinu-haazinu-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 9:1 | peri-tzadik-haazinu-haazinu-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 10:1 | peri-tzadik-haazinu-haazinu-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 11:1 | peri-tzadik-haazinu-haazinu-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 12:1 | peri-tzadik-haazinu-haazinu-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Ha'Azinu 13:1 | peri-tzadik-haazinu-haazinu-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 1:1 | peri-tzadik-sukkot-sukkot-1-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 2:1 | peri-tzadik-sukkot-sukkot-2-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 3:1 | peri-tzadik-sukkot-sukkot-3-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 4:1 | peri-tzadik-sukkot-sukkot-4-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 5:1 | peri-tzadik-sukkot-sukkot-5-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 6:1 | peri-tzadik-sukkot-sukkot-6-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 7:1 | peri-tzadik-sukkot-sukkot-7-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 7:2 | peri-tzadik-sukkot-sukkot-7-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 8:1 | peri-tzadik-sukkot-sukkot-8-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 9:1 | peri-tzadik-sukkot-sukkot-9-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 10:1 | peri-tzadik-sukkot-sukkot-10-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 10:2 | peri-tzadik-sukkot-sukkot-10-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 11:1 | peri-tzadik-sukkot-sukkot-11-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 12:1 | peri-tzadik-sukkot-sukkot-12-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 12:2 | peri-tzadik-sukkot-sukkot-12-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 13:1 | peri-tzadik-sukkot-sukkot-13-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 13:2 | peri-tzadik-sukkot-sukkot-13-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 14:1 | peri-tzadik-sukkot-sukkot-14-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 15:1 | peri-tzadik-sukkot-sukkot-15-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 16:1 | peri-tzadik-sukkot-sukkot-16-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 16:2 | peri-tzadik-sukkot-sukkot-16-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 17:1 | peri-tzadik-sukkot-sukkot-17-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 18:1 | peri-tzadik-sukkot-sukkot-18-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 19:1 | peri-tzadik-sukkot-sukkot-19-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 20:1 | peri-tzadik-sukkot-sukkot-20-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 21:1 | peri-tzadik-sukkot-sukkot-21-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 22:1 | peri-tzadik-sukkot-sukkot-22-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 22:2 | peri-tzadik-sukkot-sukkot-22-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 23:1 | peri-tzadik-sukkot-sukkot-23-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 23:2 | peri-tzadik-sukkot-sukkot-23-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 23:3 | peri-tzadik-sukkot-sukkot-23-3 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 24:1 | peri-tzadik-sukkot-sukkot-24-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 25:1 | peri-tzadik-sukkot-sukkot-25-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 26:1 | peri-tzadik-sukkot-sukkot-26-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 27:1 | peri-tzadik-sukkot-sukkot-27-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 27:2 | peri-tzadik-sukkot-sukkot-27-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 28:1 | peri-tzadik-sukkot-sukkot-28-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 28:2 | peri-tzadik-sukkot-sukkot-28-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 29:1 | peri-tzadik-sukkot-sukkot-29-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 29:2 | peri-tzadik-sukkot-sukkot-29-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 30:1 | peri-tzadik-sukkot-sukkot-30-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 31:1 | peri-tzadik-sukkot-sukkot-31-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 31:2 | peri-tzadik-sukkot-sukkot-31-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 32:1 | peri-tzadik-sukkot-sukkot-32-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 33:1 | peri-tzadik-sukkot-sukkot-33-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 34:1 | peri-tzadik-sukkot-sukkot-34-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 35:1 | peri-tzadik-sukkot-sukkot-35-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 36:1 | peri-tzadik-sukkot-sukkot-36-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 37:1 | peri-tzadik-sukkot-sukkot-37-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 38:1 | peri-tzadik-sukkot-sukkot-38-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 39:1 | peri-tzadik-sukkot-sukkot-39-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 40:1 | peri-tzadik-sukkot-sukkot-40-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 41:1 | peri-tzadik-sukkot-sukkot-41-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 42:1 | peri-tzadik-sukkot-sukkot-42-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 43:1 | peri-tzadik-sukkot-sukkot-43-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 44:1 | peri-tzadik-sukkot-sukkot-44-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 44:2 | peri-tzadik-sukkot-sukkot-44-2 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 45:1 | peri-tzadik-sukkot-sukkot-45-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 46:1 | peri-tzadik-sukkot-sukkot-46-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 47:1 | peri-tzadik-sukkot-sukkot-47-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 48:1 | peri-tzadik-sukkot-sukkot-48-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 49:1 | peri-tzadik-sukkot-sukkot-49-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 50:1 | peri-tzadik-sukkot-sukkot-50-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 51:1 | peri-tzadik-sukkot-sukkot-51-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 52:1 | peri-tzadik-sukkot-sukkot-52-1 |  |  | not_done |  |
+| peri-tzadik | Peri Tzadik | Peri Tzadik, Sukkot 53:1 | peri-tzadik-sukkot-sukkot-53-1 |  |  | not_done |  |

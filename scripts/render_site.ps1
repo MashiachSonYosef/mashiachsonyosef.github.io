@@ -5,7 +5,8 @@ param(
   [string[]]$WorkIds = @(),
   [string]$OnlyWorkIdsPath = '',
   [switch]$SkipOverlayExports,
-  [switch]$SkipLexicalPayloadFiles
+  [switch]$SkipLexicalPayloadFiles,
+  [switch]$OnlyLexicalPayloadFiles
 )
 
 $ErrorActionPreference = 'Stop'
@@ -107,6 +108,7 @@ function Get-HomeGroup {
     if ($first -eq 'tosefta') { return 'Tosefta / Tannaitic' }
     if ($first -eq 'jewish-thought') { return 'Jewish Thought / Philosophy' }
     if ($first -eq 'musar') { return 'Musar' }
+    if ($first -eq 'chasidut') { return 'Chasidut' }
     return (Get-Culture).TextInfo.ToTitleCase(($first -replace '-', ' '))
   }
   return 'Other'
@@ -178,6 +180,13 @@ function Get-LibrarySubgroup {
       if ($title -match 'Kelim|Oholot|Negaim|Parah|Tahorot|Mikvaot|Niddah|Makhshirin|Zavim|Tevul Yom|Yadayim|Oktsin') { return 'Tahorot' }
       return 'Other Tosefta'
     }
+    'Chasidut' {
+      if ($isCommentary) { return 'Chasidic Commentaries' }
+      if ($title -match 'Tzidkat|Peri Tzadik|Resisei|Kometz|Dover|Zadok|Takanat|Yisrael Kedoshim|Machshavot|Divrei') { return 'R. Tzadok and Lublin' }
+      if ($title -match 'Baal Shem|Besht|Rivash|Keter Shem|Toldot Yaakov Yosef|Maggid Devarav') { return 'Besht and Early Hasidism' }
+      if ($title -match 'Noam|Elimelekh|Levi|Aharon|Bnei|Sefat|Shem MiShmuel|Yismach') { return 'Classic Hasidic Torah' }
+      return 'Other Chasidut'
+    }
     'Talmud / Commentary' {
       if ($isCommentary) { return 'Commentary' }
       return 'Talmud'
@@ -242,6 +251,13 @@ function Get-LibrarySubgroupOrder {
       'Kodashim' = 5
       'Tahorot' = 6
       'Other Tosefta' = 9
+    }
+    'Chasidut' = @{
+      'Besht and Early Hasidism' = 1
+      'Classic Hasidic Torah' = 2
+      'R. Tzadok and Lublin' = 3
+      'Chasidic Commentaries' = 4
+      'Other Chasidut' = 9
     }
   }
 
@@ -2284,6 +2300,20 @@ $renderSources = if ($targetWorkIds.Count -gt 0) {
   @($sources | Where-Object { $targetWorkIds -contains [string]$_.work_id })
 } else {
   $sources
+}
+
+if ($OnlyLexicalPayloadFiles) {
+  if ($SkipLexicalPayloadFiles) {
+    throw 'OnlyLexicalPayloadFiles cannot be combined with SkipLexicalPayloadFiles.'
+  }
+  foreach ($source in $renderSources) {
+    $workOccurrence = if ($lexicalCache.occurrences_by_work.ContainsKey([string]$source.work_id)) { $lexicalCache.occurrences_by_work[[string]$source.work_id] } else { $null }
+    if ($null -eq $workOccurrence) { continue }
+    $workLexicalPayload = Get-WorkLexicalPayload -WorkOccurrence $workOccurrence -LexicalCache $lexicalCache
+    $rootHref = Get-RootHref -WorkSlug $source.work_slug
+    [void](Write-WorkLexicalPayloadFiles -WorkId $source.work_id -WorkLexicalPayload $workLexicalPayload -RootHref $rootHref)
+  }
+  return
 }
 
 if (-not $SkipOverlayExports) {

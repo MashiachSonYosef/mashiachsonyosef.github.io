@@ -1,0 +1,553 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:1 | ohr-hameir-bereshit-bereshit-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:2 | ohr-hameir-bereshit-bereshit-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:3 | ohr-hameir-bereshit-bereshit-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:4 | ohr-hameir-bereshit-bereshit-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:5 | ohr-hameir-bereshit-bereshit-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:6 | ohr-hameir-bereshit-bereshit-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:7 | ohr-hameir-bereshit-bereshit-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bereshit:8 | ohr-hameir-bereshit-bereshit-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Noach:1 | ohr-hameir-noach-noach-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Noach:2 | ohr-hameir-noach-noach-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Noach:3 | ohr-hameir-noach-noach-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Noach:4 | ohr-hameir-noach-noach-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Noach:5 | ohr-hameir-noach-noach-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Noach:6 | ohr-hameir-noach-noach-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Lech Lecha:1 | ohr-hameir-lech-lecha-lech-lecha-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Lech Lecha:2 | ohr-hameir-lech-lecha-lech-lecha-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Lech Lecha:3 | ohr-hameir-lech-lecha-lech-lecha-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Lech Lecha:4 | ohr-hameir-lech-lecha-lech-lecha-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Lech Lecha:5 | ohr-hameir-lech-lecha-lech-lecha-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:1 | ohr-hameir-vayera-vayera-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:2 | ohr-hameir-vayera-vayera-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:3 | ohr-hameir-vayera-vayera-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:4 | ohr-hameir-vayera-vayera-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:5 | ohr-hameir-vayera-vayera-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:6 | ohr-hameir-vayera-vayera-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:7 | ohr-hameir-vayera-vayera-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:8 | ohr-hameir-vayera-vayera-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:9 | ohr-hameir-vayera-vayera-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayera:10 | ohr-hameir-vayera-vayera-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:1 | ohr-hameir-chayei-sarah-chayei-sarah-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:2 | ohr-hameir-chayei-sarah-chayei-sarah-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:3 | ohr-hameir-chayei-sarah-chayei-sarah-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:4 | ohr-hameir-chayei-sarah-chayei-sarah-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:5 | ohr-hameir-chayei-sarah-chayei-sarah-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:6 | ohr-hameir-chayei-sarah-chayei-sarah-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:7 | ohr-hameir-chayei-sarah-chayei-sarah-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:8 | ohr-hameir-chayei-sarah-chayei-sarah-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:9 | ohr-hameir-chayei-sarah-chayei-sarah-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:10 | ohr-hameir-chayei-sarah-chayei-sarah-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:11 | ohr-hameir-chayei-sarah-chayei-sarah-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:12 | ohr-hameir-chayei-sarah-chayei-sarah-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:13 | ohr-hameir-chayei-sarah-chayei-sarah-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:14 | ohr-hameir-chayei-sarah-chayei-sarah-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chayei Sarah:15 | ohr-hameir-chayei-sarah-chayei-sarah-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:1 | ohr-hameir-toldot-toldot-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:2 | ohr-hameir-toldot-toldot-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:3 | ohr-hameir-toldot-toldot-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:4 | ohr-hameir-toldot-toldot-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:5 | ohr-hameir-toldot-toldot-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:6 | ohr-hameir-toldot-toldot-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:7 | ohr-hameir-toldot-toldot-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Toldot:8 | ohr-hameir-toldot-toldot-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:1 | ohr-hameir-vayeitze-vayeitze-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:2 | ohr-hameir-vayeitze-vayeitze-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:3 | ohr-hameir-vayeitze-vayeitze-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:4 | ohr-hameir-vayeitze-vayeitze-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:5 | ohr-hameir-vayeitze-vayeitze-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:6 | ohr-hameir-vayeitze-vayeitze-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:7 | ohr-hameir-vayeitze-vayeitze-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:8 | ohr-hameir-vayeitze-vayeitze-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:9 | ohr-hameir-vayeitze-vayeitze-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:10 | ohr-hameir-vayeitze-vayeitze-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:11 | ohr-hameir-vayeitze-vayeitze-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:12 | ohr-hameir-vayeitze-vayeitze-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:13 | ohr-hameir-vayeitze-vayeitze-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:14 | ohr-hameir-vayeitze-vayeitze-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:15 | ohr-hameir-vayeitze-vayeitze-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:16 | ohr-hameir-vayeitze-vayeitze-16 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:17 | ohr-hameir-vayeitze-vayeitze-17 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeitze:18 | ohr-hameir-vayeitze-vayeitze-18 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:1 | ohr-hameir-vayishlach-vayishlach-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:2 | ohr-hameir-vayishlach-vayishlach-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:3 | ohr-hameir-vayishlach-vayishlach-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:4 | ohr-hameir-vayishlach-vayishlach-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:5 | ohr-hameir-vayishlach-vayishlach-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:6 | ohr-hameir-vayishlach-vayishlach-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:7 | ohr-hameir-vayishlach-vayishlach-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:8 | ohr-hameir-vayishlach-vayishlach-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:9 | ohr-hameir-vayishlach-vayishlach-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayishlach:10 | ohr-hameir-vayishlach-vayishlach-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:1 | ohr-hameir-vayeshev-vayeshev-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:2 | ohr-hameir-vayeshev-vayeshev-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:3 | ohr-hameir-vayeshev-vayeshev-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:4 | ohr-hameir-vayeshev-vayeshev-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:5 | ohr-hameir-vayeshev-vayeshev-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:6 | ohr-hameir-vayeshev-vayeshev-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:7 | ohr-hameir-vayeshev-vayeshev-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayeshev:8 | ohr-hameir-vayeshev-vayeshev-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:1 | ohr-hameir-miketz-miketz-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:2 | ohr-hameir-miketz-miketz-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:3 | ohr-hameir-miketz-miketz-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:4 | ohr-hameir-miketz-miketz-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:5 | ohr-hameir-miketz-miketz-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:6 | ohr-hameir-miketz-miketz-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:7 | ohr-hameir-miketz-miketz-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:8 | ohr-hameir-miketz-miketz-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:9 | ohr-hameir-miketz-miketz-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:10 | ohr-hameir-miketz-miketz-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:11 | ohr-hameir-miketz-miketz-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:12 | ohr-hameir-miketz-miketz-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:13 | ohr-hameir-miketz-miketz-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Miketz:14 | ohr-hameir-miketz-miketz-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:1 | ohr-hameir-vayigash-vayigash-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:2 | ohr-hameir-vayigash-vayigash-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:3 | ohr-hameir-vayigash-vayigash-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:4 | ohr-hameir-vayigash-vayigash-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:5 | ohr-hameir-vayigash-vayigash-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:6 | ohr-hameir-vayigash-vayigash-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:7 | ohr-hameir-vayigash-vayigash-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayigash:8 | ohr-hameir-vayigash-vayigash-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:1 | ohr-hameir-vayechi-vayechi-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:2 | ohr-hameir-vayechi-vayechi-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:3 | ohr-hameir-vayechi-vayechi-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:4 | ohr-hameir-vayechi-vayechi-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:5 | ohr-hameir-vayechi-vayechi-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:6 | ohr-hameir-vayechi-vayechi-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:7 | ohr-hameir-vayechi-vayechi-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:8 | ohr-hameir-vayechi-vayechi-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayechi:9 | ohr-hameir-vayechi-vayechi-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:1 | ohr-hameir-shemot-shemot-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:2 | ohr-hameir-shemot-shemot-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:3 | ohr-hameir-shemot-shemot-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:4 | ohr-hameir-shemot-shemot-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:5 | ohr-hameir-shemot-shemot-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:6 | ohr-hameir-shemot-shemot-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:7 | ohr-hameir-shemot-shemot-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:8 | ohr-hameir-shemot-shemot-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:9 | ohr-hameir-shemot-shemot-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:10 | ohr-hameir-shemot-shemot-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:11 | ohr-hameir-shemot-shemot-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:12 | ohr-hameir-shemot-shemot-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:13 | ohr-hameir-shemot-shemot-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shemot:14 | ohr-hameir-shemot-shemot-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaera:1 | ohr-hameir-vaera-vaera-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaera:2 | ohr-hameir-vaera-vaera-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaera:3 | ohr-hameir-vaera-vaera-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaera:4 | ohr-hameir-vaera-vaera-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bo:1 | ohr-hameir-bo-bo-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bo:2 | ohr-hameir-bo-bo-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bo:3 | ohr-hameir-bo-bo-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bo:4 | ohr-hameir-bo-bo-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bo:5 | ohr-hameir-bo-bo-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bo:6 | ohr-hameir-bo-bo-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:1 | ohr-hameir-beshalach-beshalach-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:2 | ohr-hameir-beshalach-beshalach-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:3 | ohr-hameir-beshalach-beshalach-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:4 | ohr-hameir-beshalach-beshalach-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:5 | ohr-hameir-beshalach-beshalach-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:6 | ohr-hameir-beshalach-beshalach-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:7 | ohr-hameir-beshalach-beshalach-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beshalach:8 | ohr-hameir-beshalach-beshalach-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:1 | ohr-hameir-yitro-yitro-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:2 | ohr-hameir-yitro-yitro-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:3 | ohr-hameir-yitro-yitro-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:4 | ohr-hameir-yitro-yitro-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:5 | ohr-hameir-yitro-yitro-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:6 | ohr-hameir-yitro-yitro-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:7 | ohr-hameir-yitro-yitro-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:8 | ohr-hameir-yitro-yitro-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:9 | ohr-hameir-yitro-yitro-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:10 | ohr-hameir-yitro-yitro-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Yitro:11 | ohr-hameir-yitro-yitro-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Mishpatim:1 | ohr-hameir-mishpatim-mishpatim-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Mishpatim:2 | ohr-hameir-mishpatim-mishpatim-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Mishpatim:3 | ohr-hameir-mishpatim-mishpatim-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Terumah:1 | ohr-hameir-terumah-terumah-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Terumah:2 | ohr-hameir-terumah-terumah-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Terumah:3 | ohr-hameir-terumah-terumah-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:1 | ohr-hameir-tetzaveh-tetzaveh-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:2 | ohr-hameir-tetzaveh-tetzaveh-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:3 | ohr-hameir-tetzaveh-tetzaveh-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:4 | ohr-hameir-tetzaveh-tetzaveh-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:5 | ohr-hameir-tetzaveh-tetzaveh-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:6 | ohr-hameir-tetzaveh-tetzaveh-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:7 | ohr-hameir-tetzaveh-tetzaveh-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:8 | ohr-hameir-tetzaveh-tetzaveh-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:9 | ohr-hameir-tetzaveh-tetzaveh-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:10 | ohr-hameir-tetzaveh-tetzaveh-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:11 | ohr-hameir-tetzaveh-tetzaveh-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tetzaveh:12 | ohr-hameir-tetzaveh-tetzaveh-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:1 | ohr-hameir-ki-tisa-ki-tisa-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:2 | ohr-hameir-ki-tisa-ki-tisa-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:3 | ohr-hameir-ki-tisa-ki-tisa-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:4 | ohr-hameir-ki-tisa-ki-tisa-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:5 | ohr-hameir-ki-tisa-ki-tisa-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:6 | ohr-hameir-ki-tisa-ki-tisa-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:7 | ohr-hameir-ki-tisa-ki-tisa-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:8 | ohr-hameir-ki-tisa-ki-tisa-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:9 | ohr-hameir-ki-tisa-ki-tisa-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:10 | ohr-hameir-ki-tisa-ki-tisa-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:11 | ohr-hameir-ki-tisa-ki-tisa-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:12 | ohr-hameir-ki-tisa-ki-tisa-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:13 | ohr-hameir-ki-tisa-ki-tisa-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:14 | ohr-hameir-ki-tisa-ki-tisa-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tisa:15 | ohr-hameir-ki-tisa-ki-tisa-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayakhel:1 | ohr-hameir-vayakhel-vayakhel-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pekudei:1 | ohr-hameir-pekudei-pekudei-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pekudei:2 | ohr-hameir-pekudei-pekudei-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pekudei:3 | ohr-hameir-pekudei-pekudei-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:1 | ohr-hameir-scroll-of-esther-scroll-of-esther-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:2 | ohr-hameir-scroll-of-esther-scroll-of-esther-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:3 | ohr-hameir-scroll-of-esther-scroll-of-esther-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:4 | ohr-hameir-scroll-of-esther-scroll-of-esther-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:5 | ohr-hameir-scroll-of-esther-scroll-of-esther-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:6 | ohr-hameir-scroll-of-esther-scroll-of-esther-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:7 | ohr-hameir-scroll-of-esther-scroll-of-esther-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:8 | ohr-hameir-scroll-of-esther-scroll-of-esther-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:9 | ohr-hameir-scroll-of-esther-scroll-of-esther-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:10 | ohr-hameir-scroll-of-esther-scroll-of-esther-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:11 | ohr-hameir-scroll-of-esther-scroll-of-esther-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:12 | ohr-hameir-scroll-of-esther-scroll-of-esther-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:13 | ohr-hameir-scroll-of-esther-scroll-of-esther-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:14 | ohr-hameir-scroll-of-esther-scroll-of-esther-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:15 | ohr-hameir-scroll-of-esther-scroll-of-esther-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:16 | ohr-hameir-scroll-of-esther-scroll-of-esther-16 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:17 | ohr-hameir-scroll-of-esther-scroll-of-esther-17 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:18 | ohr-hameir-scroll-of-esther-scroll-of-esther-18 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:19 | ohr-hameir-scroll-of-esther-scroll-of-esther-19 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:20 | ohr-hameir-scroll-of-esther-scroll-of-esther-20 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:21 | ohr-hameir-scroll-of-esther-scroll-of-esther-21 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:22 | ohr-hameir-scroll-of-esther-scroll-of-esther-22 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:23 | ohr-hameir-scroll-of-esther-scroll-of-esther-23 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:24 | ohr-hameir-scroll-of-esther-scroll-of-esther-24 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:25 | ohr-hameir-scroll-of-esther-scroll-of-esther-25 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:26 | ohr-hameir-scroll-of-esther-scroll-of-esther-26 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:27 | ohr-hameir-scroll-of-esther-scroll-of-esther-27 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:28 | ohr-hameir-scroll-of-esther-scroll-of-esther-28 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:29 | ohr-hameir-scroll-of-esther-scroll-of-esther-29 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:30 | ohr-hameir-scroll-of-esther-scroll-of-esther-30 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:31 | ohr-hameir-scroll-of-esther-scroll-of-esther-31 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Scroll of Esther:32 | ohr-hameir-scroll-of-esther-scroll-of-esther-32 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vayikra:1 | ohr-hameir-vayikra-vayikra-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tzav:1 | ohr-hameir-tzav-tzav-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tzav:2 | ohr-hameir-tzav-tzav-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:1 | ohr-hameir-pesach-pesach-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:2 | ohr-hameir-pesach-pesach-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:3 | ohr-hameir-pesach-pesach-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:4 | ohr-hameir-pesach-pesach-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:5 | ohr-hameir-pesach-pesach-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:6 | ohr-hameir-pesach-pesach-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:7 | ohr-hameir-pesach-pesach-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:8 | ohr-hameir-pesach-pesach-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:9 | ohr-hameir-pesach-pesach-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:10 | ohr-hameir-pesach-pesach-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:11 | ohr-hameir-pesach-pesach-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:12 | ohr-hameir-pesach-pesach-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:13 | ohr-hameir-pesach-pesach-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:14 | ohr-hameir-pesach-pesach-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:15 | ohr-hameir-pesach-pesach-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:16 | ohr-hameir-pesach-pesach-16 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:17 | ohr-hameir-pesach-pesach-17 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pesach:18 | ohr-hameir-pesach-pesach-18 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:1 | ohr-hameir-song-of-songs-song-of-songs-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:2 | ohr-hameir-song-of-songs-song-of-songs-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:3 | ohr-hameir-song-of-songs-song-of-songs-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:4 | ohr-hameir-song-of-songs-song-of-songs-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:5 | ohr-hameir-song-of-songs-song-of-songs-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:6 | ohr-hameir-song-of-songs-song-of-songs-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:7 | ohr-hameir-song-of-songs-song-of-songs-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:8 | ohr-hameir-song-of-songs-song-of-songs-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:9 | ohr-hameir-song-of-songs-song-of-songs-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:10 | ohr-hameir-song-of-songs-song-of-songs-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:11 | ohr-hameir-song-of-songs-song-of-songs-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:12 | ohr-hameir-song-of-songs-song-of-songs-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:13 | ohr-hameir-song-of-songs-song-of-songs-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:14 | ohr-hameir-song-of-songs-song-of-songs-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:15 | ohr-hameir-song-of-songs-song-of-songs-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:16 | ohr-hameir-song-of-songs-song-of-songs-16 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:17 | ohr-hameir-song-of-songs-song-of-songs-17 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:18 | ohr-hameir-song-of-songs-song-of-songs-18 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:19 | ohr-hameir-song-of-songs-song-of-songs-19 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:20 | ohr-hameir-song-of-songs-song-of-songs-20 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:21 | ohr-hameir-song-of-songs-song-of-songs-21 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:22 | ohr-hameir-song-of-songs-song-of-songs-22 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:23 | ohr-hameir-song-of-songs-song-of-songs-23 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:24 | ohr-hameir-song-of-songs-song-of-songs-24 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:25 | ohr-hameir-song-of-songs-song-of-songs-25 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:26 | ohr-hameir-song-of-songs-song-of-songs-26 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:27 | ohr-hameir-song-of-songs-song-of-songs-27 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:28 | ohr-hameir-song-of-songs-song-of-songs-28 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Song of Songs:29 | ohr-hameir-song-of-songs-song-of-songs-29 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tazria:1 | ohr-hameir-tazria-tazria-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tazria:2 | ohr-hameir-tazria-tazria-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Tazria:3 | ohr-hameir-tazria-tazria-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Metzora:1 | ohr-hameir-metzora-metzora-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Metzora:2 | ohr-hameir-metzora-metzora-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Metzora:3 | ohr-hameir-metzora-metzora-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Achrei Mot:1 | ohr-hameir-achrei-mot-achrei-mot-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Achrei Mot:2 | ohr-hameir-achrei-mot-achrei-mot-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Achrei Mot:3 | ohr-hameir-achrei-mot-achrei-mot-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kedoshim:1 | ohr-hameir-kedoshim-kedoshim-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kedoshim:2 | ohr-hameir-kedoshim-kedoshim-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kedoshim:3 | ohr-hameir-kedoshim-kedoshim-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:1 | ohr-hameir-emor-emor-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:2 | ohr-hameir-emor-emor-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:3 | ohr-hameir-emor-emor-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:4 | ohr-hameir-emor-emor-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:5 | ohr-hameir-emor-emor-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:6 | ohr-hameir-emor-emor-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:7 | ohr-hameir-emor-emor-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:8 | ohr-hameir-emor-emor-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:9 | ohr-hameir-emor-emor-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:10 | ohr-hameir-emor-emor-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:11 | ohr-hameir-emor-emor-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:12 | ohr-hameir-emor-emor-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:13 | ohr-hameir-emor-emor-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Emor:14 | ohr-hameir-emor-emor-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Behar:1 | ohr-hameir-behar-behar-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Behar:2 | ohr-hameir-behar-behar-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Behar:3 | ohr-hameir-behar-behar-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bechukotai:1 | ohr-hameir-bechukotai-bechukotai-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bechukotai:2 | ohr-hameir-bechukotai-bechukotai-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bechukotai:3 | ohr-hameir-bechukotai-bechukotai-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bechukotai:4 | ohr-hameir-bechukotai-bechukotai-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bechukotai:5 | ohr-hameir-bechukotai-bechukotai-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Bechukotai:6 | ohr-hameir-bechukotai-bechukotai-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:1 | ohr-hameir-nasso-nasso-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:2 | ohr-hameir-nasso-nasso-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:3 | ohr-hameir-nasso-nasso-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:4 | ohr-hameir-nasso-nasso-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:5 | ohr-hameir-nasso-nasso-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:6 | ohr-hameir-nasso-nasso-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:7 | ohr-hameir-nasso-nasso-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nasso:8 | ohr-hameir-nasso-nasso-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:1 | ohr-hameir-shavuot-shavuot-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:2 | ohr-hameir-shavuot-shavuot-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:3 | ohr-hameir-shavuot-shavuot-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:4 | ohr-hameir-shavuot-shavuot-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:5 | ohr-hameir-shavuot-shavuot-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:6 | ohr-hameir-shavuot-shavuot-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:7 | ohr-hameir-shavuot-shavuot-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:8 | ohr-hameir-shavuot-shavuot-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:9 | ohr-hameir-shavuot-shavuot-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:10 | ohr-hameir-shavuot-shavuot-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shavuot:11 | ohr-hameir-shavuot-shavuot-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:1 | ohr-hameir-ruth-ruth-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:2 | ohr-hameir-ruth-ruth-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:3 | ohr-hameir-ruth-ruth-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:4 | ohr-hameir-ruth-ruth-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:5 | ohr-hameir-ruth-ruth-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:6 | ohr-hameir-ruth-ruth-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:7 | ohr-hameir-ruth-ruth-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:8 | ohr-hameir-ruth-ruth-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:9 | ohr-hameir-ruth-ruth-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:10 | ohr-hameir-ruth-ruth-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:11 | ohr-hameir-ruth-ruth-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:12 | ohr-hameir-ruth-ruth-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:13 | ohr-hameir-ruth-ruth-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:14 | ohr-hameir-ruth-ruth-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:15 | ohr-hameir-ruth-ruth-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:16 | ohr-hameir-ruth-ruth-16 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:17 | ohr-hameir-ruth-ruth-17 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:18 | ohr-hameir-ruth-ruth-18 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:19 | ohr-hameir-ruth-ruth-19 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:20 | ohr-hameir-ruth-ruth-20 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:21 | ohr-hameir-ruth-ruth-21 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:22 | ohr-hameir-ruth-ruth-22 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:23 | ohr-hameir-ruth-ruth-23 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:24 | ohr-hameir-ruth-ruth-24 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:25 | ohr-hameir-ruth-ruth-25 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:26 | ohr-hameir-ruth-ruth-26 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:27 | ohr-hameir-ruth-ruth-27 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:28 | ohr-hameir-ruth-ruth-28 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:29 | ohr-hameir-ruth-ruth-29 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:30 | ohr-hameir-ruth-ruth-30 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:31 | ohr-hameir-ruth-ruth-31 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:32 | ohr-hameir-ruth-ruth-32 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:33 | ohr-hameir-ruth-ruth-33 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:34 | ohr-hameir-ruth-ruth-34 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:35 | ohr-hameir-ruth-ruth-35 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:36 | ohr-hameir-ruth-ruth-36 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:37 | ohr-hameir-ruth-ruth-37 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:38 | ohr-hameir-ruth-ruth-38 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:39 | ohr-hameir-ruth-ruth-39 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:40 | ohr-hameir-ruth-ruth-40 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:41 | ohr-hameir-ruth-ruth-41 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ruth:42 | ohr-hameir-ruth-ruth-42 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beha'alotcha:1 | ohr-hameir-behaalotcha-behaalotcha-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beha'alotcha:2 | ohr-hameir-behaalotcha-behaalotcha-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beha'alotcha:3 | ohr-hameir-behaalotcha-behaalotcha-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beha'alotcha:4 | ohr-hameir-behaalotcha-behaalotcha-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Beha'alotcha:5 | ohr-hameir-behaalotcha-behaalotcha-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:1 | ohr-hameir-shlach-shlach-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:2 | ohr-hameir-shlach-shlach-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:3 | ohr-hameir-shlach-shlach-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:4 | ohr-hameir-shlach-shlach-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:5 | ohr-hameir-shlach-shlach-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:6 | ohr-hameir-shlach-shlach-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:7 | ohr-hameir-shlach-shlach-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:8 | ohr-hameir-shlach-shlach-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:9 | ohr-hameir-shlach-shlach-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:10 | ohr-hameir-shlach-shlach-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:11 | ohr-hameir-shlach-shlach-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sh'lach:12 | ohr-hameir-shlach-shlach-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Korach:1 | ohr-hameir-korach-korach-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Korach:2 | ohr-hameir-korach-korach-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Korach:3 | ohr-hameir-korach-korach-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Korach:4 | ohr-hameir-korach-korach-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Korach:5 | ohr-hameir-korach-korach-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Korach:6 | ohr-hameir-korach-korach-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chukat:1 | ohr-hameir-chukat-chukat-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chukat:2 | ohr-hameir-chukat-chukat-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chukat:3 | ohr-hameir-chukat-chukat-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chukat:4 | ohr-hameir-chukat-chukat-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Chukat:5 | ohr-hameir-chukat-chukat-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:1 | ohr-hameir-balak-balak-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:2 | ohr-hameir-balak-balak-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:3 | ohr-hameir-balak-balak-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:4 | ohr-hameir-balak-balak-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:5 | ohr-hameir-balak-balak-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:6 | ohr-hameir-balak-balak-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:7 | ohr-hameir-balak-balak-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Balak:8 | ohr-hameir-balak-balak-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pinchas:1 | ohr-hameir-pinchas-pinchas-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pinchas:2 | ohr-hameir-pinchas-pinchas-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Pinchas:3 | ohr-hameir-pinchas-pinchas-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Matot:1 | ohr-hameir-matot-matot-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Matot:2 | ohr-hameir-matot-matot-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Matot:3 | ohr-hameir-matot-matot-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Matot:4 | ohr-hameir-matot-matot-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Matot:5 | ohr-hameir-matot-matot-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Matot:6 | ohr-hameir-matot-matot-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Masei:1 | ohr-hameir-masei-masei-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Masei:2 | ohr-hameir-masei-masei-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Masei:3 | ohr-hameir-masei-masei-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Masei:4 | ohr-hameir-masei-masei-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Masei:5 | ohr-hameir-masei-masei-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:1 | ohr-hameir-devarim-devarim-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:2 | ohr-hameir-devarim-devarim-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:3 | ohr-hameir-devarim-devarim-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:4 | ohr-hameir-devarim-devarim-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:5 | ohr-hameir-devarim-devarim-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:6 | ohr-hameir-devarim-devarim-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:7 | ohr-hameir-devarim-devarim-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:8 | ohr-hameir-devarim-devarim-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:9 | ohr-hameir-devarim-devarim-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:10 | ohr-hameir-devarim-devarim-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Devarim:11 | ohr-hameir-devarim-devarim-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaetchanan:1 | ohr-hameir-vaetchanan-vaetchanan-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaetchanan:2 | ohr-hameir-vaetchanan-vaetchanan-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaetchanan:3 | ohr-hameir-vaetchanan-vaetchanan-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaetchanan:4 | ohr-hameir-vaetchanan-vaetchanan-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaetchanan:5 | ohr-hameir-vaetchanan-vaetchanan-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaetchanan:6 | ohr-hameir-vaetchanan-vaetchanan-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Vaetchanan:7 | ohr-hameir-vaetchanan-vaetchanan-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:1 | ohr-hameir-eikev-eikev-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:2 | ohr-hameir-eikev-eikev-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:3 | ohr-hameir-eikev-eikev-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:4 | ohr-hameir-eikev-eikev-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:5 | ohr-hameir-eikev-eikev-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:6 | ohr-hameir-eikev-eikev-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:7 | ohr-hameir-eikev-eikev-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:8 | ohr-hameir-eikev-eikev-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:9 | ohr-hameir-eikev-eikev-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Eikev:10 | ohr-hameir-eikev-eikev-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Re'eh:1 | ohr-hameir-reeh-reeh-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Re'eh:2 | ohr-hameir-reeh-reeh-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Re'eh:3 | ohr-hameir-reeh-reeh-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Re'eh:4 | ohr-hameir-reeh-reeh-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Re'eh:5 | ohr-hameir-reeh-reeh-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shoftim:1 | ohr-hameir-shoftim-shoftim-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shoftim:2 | ohr-hameir-shoftim-shoftim-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:1 | ohr-hameir-ki-teitzei-ki-teitzei-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:2 | ohr-hameir-ki-teitzei-ki-teitzei-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:3 | ohr-hameir-ki-teitzei-ki-teitzei-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:4 | ohr-hameir-ki-teitzei-ki-teitzei-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:5 | ohr-hameir-ki-teitzei-ki-teitzei-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:6 | ohr-hameir-ki-teitzei-ki-teitzei-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:7 | ohr-hameir-ki-teitzei-ki-teitzei-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:8 | ohr-hameir-ki-teitzei-ki-teitzei-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Teitzei:9 | ohr-hameir-ki-teitzei-ki-teitzei-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tavo:1 | ohr-hameir-ki-tavo-ki-tavo-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ki Tavo:2 | ohr-hameir-ki-tavo-ki-tavo-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nitzavim:1 | ohr-hameir-nitzavim-nitzavim-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nitzavim:2 | ohr-hameir-nitzavim-nitzavim-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nitzavim:3 | ohr-hameir-nitzavim-nitzavim-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Nitzavim:4 | ohr-hameir-nitzavim-nitzavim-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:1 | ohr-hameir-rosh-hashana-rosh-hashana-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:2 | ohr-hameir-rosh-hashana-rosh-hashana-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:3 | ohr-hameir-rosh-hashana-rosh-hashana-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:4 | ohr-hameir-rosh-hashana-rosh-hashana-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:5 | ohr-hameir-rosh-hashana-rosh-hashana-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:6 | ohr-hameir-rosh-hashana-rosh-hashana-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:7 | ohr-hameir-rosh-hashana-rosh-hashana-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:8 | ohr-hameir-rosh-hashana-rosh-hashana-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:9 | ohr-hameir-rosh-hashana-rosh-hashana-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:10 | ohr-hameir-rosh-hashana-rosh-hashana-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:11 | ohr-hameir-rosh-hashana-rosh-hashana-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:12 | ohr-hameir-rosh-hashana-rosh-hashana-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:13 | ohr-hameir-rosh-hashana-rosh-hashana-13 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:14 | ohr-hameir-rosh-hashana-rosh-hashana-14 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:15 | ohr-hameir-rosh-hashana-rosh-hashana-15 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:16 | ohr-hameir-rosh-hashana-rosh-hashana-16 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:17 | ohr-hameir-rosh-hashana-rosh-hashana-17 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:18 | ohr-hameir-rosh-hashana-rosh-hashana-18 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:19 | ohr-hameir-rosh-hashana-rosh-hashana-19 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:20 | ohr-hameir-rosh-hashana-rosh-hashana-20 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:21 | ohr-hameir-rosh-hashana-rosh-hashana-21 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:22 | ohr-hameir-rosh-hashana-rosh-hashana-22 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:23 | ohr-hameir-rosh-hashana-rosh-hashana-23 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:24 | ohr-hameir-rosh-hashana-rosh-hashana-24 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:25 | ohr-hameir-rosh-hashana-rosh-hashana-25 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:26 | ohr-hameir-rosh-hashana-rosh-hashana-26 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:27 | ohr-hameir-rosh-hashana-rosh-hashana-27 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:28 | ohr-hameir-rosh-hashana-rosh-hashana-28 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:29 | ohr-hameir-rosh-hashana-rosh-hashana-29 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:30 | ohr-hameir-rosh-hashana-rosh-hashana-30 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:31 | ohr-hameir-rosh-hashana-rosh-hashana-31 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:32 | ohr-hameir-rosh-hashana-rosh-hashana-32 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:33 | ohr-hameir-rosh-hashana-rosh-hashana-33 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:34 | ohr-hameir-rosh-hashana-rosh-hashana-34 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Rosh Hashana:35 | ohr-hameir-rosh-hashana-rosh-hashana-35 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:1 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:2 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:3 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:4 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:5 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:6 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:7 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:8 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:9 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:10 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:11 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-11 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Shabbat Shuvah:12 | ohr-hameir-shabbat-shuvah-shabbat-shuvah-12 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ha'Azinu:1 | ohr-hameir-haazinu-haazinu-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ha'Azinu:2 | ohr-hameir-haazinu-haazinu-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Ha'Azinu:3 | ohr-hameir-haazinu-haazinu-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:1 | ohr-hameir-sukkot-sukkot-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:2 | ohr-hameir-sukkot-sukkot-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:3 | ohr-hameir-sukkot-sukkot-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:4 | ohr-hameir-sukkot-sukkot-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:5 | ohr-hameir-sukkot-sukkot-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:6 | ohr-hameir-sukkot-sukkot-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:7 | ohr-hameir-sukkot-sukkot-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:8 | ohr-hameir-sukkot-sukkot-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:9 | ohr-hameir-sukkot-sukkot-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Sukkot:10 | ohr-hameir-sukkot-sukkot-10 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:1 | ohr-hameir-kohelet-kohelet-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:2 | ohr-hameir-kohelet-kohelet-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:3 | ohr-hameir-kohelet-kohelet-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:4 | ohr-hameir-kohelet-kohelet-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:5 | ohr-hameir-kohelet-kohelet-5 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:6 | ohr-hameir-kohelet-kohelet-6 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:7 | ohr-hameir-kohelet-kohelet-7 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:8 | ohr-hameir-kohelet-kohelet-8 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, Kohelet:9 | ohr-hameir-kohelet-kohelet-9 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, V'Zot HaBerachah:1 | ohr-hameir-vzot-haberachah-vzot-haberachah-1 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, V'Zot HaBerachah:2 | ohr-hameir-vzot-haberachah-vzot-haberachah-2 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, V'Zot HaBerachah:3 | ohr-hameir-vzot-haberachah-vzot-haberachah-3 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, V'Zot HaBerachah:4 | ohr-hameir-vzot-haberachah-vzot-haberachah-4 |  |  | not_done |  |
+| ohr-hameir | Ohr HaMeir | Ohr HaMeir, V'Zot HaBerachah:5 | ohr-hameir-vzot-haberachah-vzot-haberachah-5 |  |  | not_done |  |

@@ -1,0 +1,701 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Title:1 | ohev-yisrael-title-title-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Title:2 | ohev-yisrael-title-title-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Title:3 | ohev-yisrael-title-title-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Approbations:1 | ohev-yisrael-approbations-approbations-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Approbations:2 | ohev-yisrael-approbations-approbations-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Introduction:1 | ohev-yisrael-introduction-introduction-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Introduction:2 | ohev-yisrael-introduction-introduction-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Introduction:3 | ohev-yisrael-introduction-introduction-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:1 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:2 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:3 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:4 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:5 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:6 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:7 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:8 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:9 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:10 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:11 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-11 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, A Song in Honor of the Author:12 | ohev-yisrael-a-song-in-honor-of-the-author-a-song-in-honor-of-the-author-12 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 1:1 | ohev-yisrael-bereshit-bereshit-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 1:2 | ohev-yisrael-bereshit-bereshit-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 2:1 | ohev-yisrael-bereshit-bereshit-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 2:2 | ohev-yisrael-bereshit-bereshit-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 2:3 | ohev-yisrael-bereshit-bereshit-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 2:4 | ohev-yisrael-bereshit-bereshit-2-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 2:5 | ohev-yisrael-bereshit-bereshit-2-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 3:1 | ohev-yisrael-bereshit-bereshit-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 3:2 | ohev-yisrael-bereshit-bereshit-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 4:1 | ohev-yisrael-bereshit-bereshit-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 4:2 | ohev-yisrael-bereshit-bereshit-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 5:1 | ohev-yisrael-bereshit-bereshit-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 6:1 | ohev-yisrael-bereshit-bereshit-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 6:2 | ohev-yisrael-bereshit-bereshit-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 6:3 | ohev-yisrael-bereshit-bereshit-6-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bereshit 6:4 | ohev-yisrael-bereshit-bereshit-6-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Noach 1:1 | ohev-yisrael-noach-noach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Noach 2:1 | ohev-yisrael-noach-noach-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Noach 3:1 | ohev-yisrael-noach-noach-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Noach 4:1 | ohev-yisrael-noach-noach-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Noach 4:2 | ohev-yisrael-noach-noach-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Noach 5:1 | ohev-yisrael-noach-noach-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Noach 6:1 | ohev-yisrael-noach-noach-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Lech Lecha 1:1 | ohev-yisrael-lech-lecha-lech-lecha-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Lech Lecha 2:1 | ohev-yisrael-lech-lecha-lech-lecha-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Lech Lecha 3:1 | ohev-yisrael-lech-lecha-lech-lecha-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Lech Lecha 4:1 | ohev-yisrael-lech-lecha-lech-lecha-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 1:1 | ohev-yisrael-vayera-vayera-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 1:2 | ohev-yisrael-vayera-vayera-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 1:3 | ohev-yisrael-vayera-vayera-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 1:4 | ohev-yisrael-vayera-vayera-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 2:1 | ohev-yisrael-vayera-vayera-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 2:2 | ohev-yisrael-vayera-vayera-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 3:1 | ohev-yisrael-vayera-vayera-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 4:1 | ohev-yisrael-vayera-vayera-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 4:2 | ohev-yisrael-vayera-vayera-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 5:1 | ohev-yisrael-vayera-vayera-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 6:1 | ohev-yisrael-vayera-vayera-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 7:1 | ohev-yisrael-vayera-vayera-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 7:2 | ohev-yisrael-vayera-vayera-7-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 8:1 | ohev-yisrael-vayera-vayera-8-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayera 8:2 | ohev-yisrael-vayera-vayera-8-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chayei Sara 1:1 | ohev-yisrael-chayei-sara-chayei-sara-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chayei Sara 2:1 | ohev-yisrael-chayei-sara-chayei-sara-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chayei Sara 2:2 | ohev-yisrael-chayei-sara-chayei-sara-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chayei Sara 2:3 | ohev-yisrael-chayei-sara-chayei-sara-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chayei Sara 3:1 | ohev-yisrael-chayei-sara-chayei-sara-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chayei Sara 3:2 | ohev-yisrael-chayei-sara-chayei-sara-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 1:1 | ohev-yisrael-toldot-toldot-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 2:1 | ohev-yisrael-toldot-toldot-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 3:1 | ohev-yisrael-toldot-toldot-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 4:1 | ohev-yisrael-toldot-toldot-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 5:1 | ohev-yisrael-toldot-toldot-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 6:1 | ohev-yisrael-toldot-toldot-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 6:2 | ohev-yisrael-toldot-toldot-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 7:1 | ohev-yisrael-toldot-toldot-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 8:1 | ohev-yisrael-toldot-toldot-8-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 8:2 | ohev-yisrael-toldot-toldot-8-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 9:1 | ohev-yisrael-toldot-toldot-9-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 10:1 | ohev-yisrael-toldot-toldot-10-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 11:1 | ohev-yisrael-toldot-toldot-11-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Toldot 11:2 | ohev-yisrael-toldot-toldot-11-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:1 | ohev-yisrael-vayetzei-vayetzei-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:2 | ohev-yisrael-vayetzei-vayetzei-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:3 | ohev-yisrael-vayetzei-vayetzei-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:4 | ohev-yisrael-vayetzei-vayetzei-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:5 | ohev-yisrael-vayetzei-vayetzei-1-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:6 | ohev-yisrael-vayetzei-vayetzei-1-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:7 | ohev-yisrael-vayetzei-vayetzei-1-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 1:8 | ohev-yisrael-vayetzei-vayetzei-1-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 2:1 | ohev-yisrael-vayetzei-vayetzei-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 3:1 | ohev-yisrael-vayetzei-vayetzei-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 3:2 | ohev-yisrael-vayetzei-vayetzei-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 3:3 | ohev-yisrael-vayetzei-vayetzei-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 3:4 | ohev-yisrael-vayetzei-vayetzei-3-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 4:1 | ohev-yisrael-vayetzei-vayetzei-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 5:1 | ohev-yisrael-vayetzei-vayetzei-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 5:2 | ohev-yisrael-vayetzei-vayetzei-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 5:3 | ohev-yisrael-vayetzei-vayetzei-5-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 5:4 | ohev-yisrael-vayetzei-vayetzei-5-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 5:5 | ohev-yisrael-vayetzei-vayetzei-5-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 6:1 | ohev-yisrael-vayetzei-vayetzei-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 6:2 | ohev-yisrael-vayetzei-vayetzei-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 6:3 | ohev-yisrael-vayetzei-vayetzei-6-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 7:1 | ohev-yisrael-vayetzei-vayetzei-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 8:1 | ohev-yisrael-vayetzei-vayetzei-8-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 8:2 | ohev-yisrael-vayetzei-vayetzei-8-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 8:3 | ohev-yisrael-vayetzei-vayetzei-8-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 9:1 | ohev-yisrael-vayetzei-vayetzei-9-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 9:2 | ohev-yisrael-vayetzei-vayetzei-9-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 10:1 | ohev-yisrael-vayetzei-vayetzei-10-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayetzei 10:2 | ohev-yisrael-vayetzei-vayetzei-10-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayishlach 1:1 | ohev-yisrael-vayishlach-vayishlach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayishlach 1:2 | ohev-yisrael-vayishlach-vayishlach-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayishlach 2:1 | ohev-yisrael-vayishlach-vayishlach-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayishlach 3:1 | ohev-yisrael-vayishlach-vayishlach-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayishlach 3:2 | ohev-yisrael-vayishlach-vayishlach-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayishlach 3:3 | ohev-yisrael-vayishlach-vayishlach-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayishlach 4:1 | ohev-yisrael-vayishlach-vayishlach-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayeshev 1:1 | ohev-yisrael-vayeshev-vayeshev-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayeshev 2:1 | ohev-yisrael-vayeshev-vayeshev-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayeshev 2:2 | ohev-yisrael-vayeshev-vayeshev-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayeshev 3:1 | ohev-yisrael-vayeshev-vayeshev-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayeshev 4:1 | ohev-yisrael-vayeshev-vayeshev-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayeshev 4:2 | ohev-yisrael-vayeshev-vayeshev-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 1:1 | ohev-yisrael-hannukah-hannukah-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 2:1 | ohev-yisrael-hannukah-hannukah-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 2:2 | ohev-yisrael-hannukah-hannukah-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 2:3 | ohev-yisrael-hannukah-hannukah-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 2:4 | ohev-yisrael-hannukah-hannukah-2-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 3:1 | ohev-yisrael-hannukah-hannukah-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 4:1 | ohev-yisrael-hannukah-hannukah-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Hannukah 5:1 | ohev-yisrael-hannukah-hannukah-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miketz 1:1 | ohev-yisrael-miketz-miketz-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miketz 2:1 | ohev-yisrael-miketz-miketz-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayigash 1:1 | ohev-yisrael-vayigash-vayigash-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayigash 2:1 | ohev-yisrael-vayigash-vayigash-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayigash 3:1 | ohev-yisrael-vayigash-vayigash-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayigash 4:1 | ohev-yisrael-vayigash-vayigash-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayigash 4:2 | ohev-yisrael-vayigash-vayigash-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayigash 4:3 | ohev-yisrael-vayigash-vayigash-4-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayigash 4:4 | ohev-yisrael-vayigash-vayigash-4-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 1:1 | ohev-yisrael-vayechi-vayechi-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 1:2 | ohev-yisrael-vayechi-vayechi-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 1:3 | ohev-yisrael-vayechi-vayechi-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 2:1 | ohev-yisrael-vayechi-vayechi-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 3:1 | ohev-yisrael-vayechi-vayechi-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 3:2 | ohev-yisrael-vayechi-vayechi-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 4:1 | ohev-yisrael-vayechi-vayechi-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 4:2 | ohev-yisrael-vayechi-vayechi-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 4:3 | ohev-yisrael-vayechi-vayechi-4-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 4:4 | ohev-yisrael-vayechi-vayechi-4-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayechi 4:5 | ohev-yisrael-vayechi-vayechi-4-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 1:1 | ohev-yisrael-shemot-shemot-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 1:2 | ohev-yisrael-shemot-shemot-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 1:3 | ohev-yisrael-shemot-shemot-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 1:4 | ohev-yisrael-shemot-shemot-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 1:5 | ohev-yisrael-shemot-shemot-1-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 2:1 | ohev-yisrael-shemot-shemot-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 3:1 | ohev-yisrael-shemot-shemot-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 3:2 | ohev-yisrael-shemot-shemot-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 3:3 | ohev-yisrael-shemot-shemot-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 3:4 | ohev-yisrael-shemot-shemot-3-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 3:5 | ohev-yisrael-shemot-shemot-3-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 4:1 | ohev-yisrael-shemot-shemot-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 4:2 | ohev-yisrael-shemot-shemot-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shemot 5:1 | ohev-yisrael-shemot-shemot-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 1:1 | ohev-yisrael-vaera-vaera-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 1:2 | ohev-yisrael-vaera-vaera-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 1:3 | ohev-yisrael-vaera-vaera-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 2:1 | ohev-yisrael-vaera-vaera-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 3:1 | ohev-yisrael-vaera-vaera-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 4:1 | ohev-yisrael-vaera-vaera-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 4:2 | ohev-yisrael-vaera-vaera-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 4:3 | ohev-yisrael-vaera-vaera-4-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 5:1 | ohev-yisrael-vaera-vaera-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 5:2 | ohev-yisrael-vaera-vaera-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 5:3 | ohev-yisrael-vaera-vaera-5-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 6:1 | ohev-yisrael-vaera-vaera-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaera 6:2 | ohev-yisrael-vaera-vaera-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 1:1 | ohev-yisrael-bo-bo-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 2:1 | ohev-yisrael-bo-bo-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 2:2 | ohev-yisrael-bo-bo-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 2:3 | ohev-yisrael-bo-bo-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 3:1 | ohev-yisrael-bo-bo-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 3:2 | ohev-yisrael-bo-bo-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 4:1 | ohev-yisrael-bo-bo-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 4:2 | ohev-yisrael-bo-bo-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 4:3 | ohev-yisrael-bo-bo-4-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 5:1 | ohev-yisrael-bo-bo-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 5:2 | ohev-yisrael-bo-bo-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 6:1 | ohev-yisrael-bo-bo-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 7:1 | ohev-yisrael-bo-bo-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 7:2 | ohev-yisrael-bo-bo-7-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 7:3 | ohev-yisrael-bo-bo-7-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 7:4 | ohev-yisrael-bo-bo-7-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 8:1 | ohev-yisrael-bo-bo-8-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bo 8:2 | ohev-yisrael-bo-bo-8-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 1:1 | ohev-yisrael-beshalach-beshalach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 1:2 | ohev-yisrael-beshalach-beshalach-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 2:1 | ohev-yisrael-beshalach-beshalach-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 3:1 | ohev-yisrael-beshalach-beshalach-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 3:2 | ohev-yisrael-beshalach-beshalach-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 4:1 | ohev-yisrael-beshalach-beshalach-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 4:2 | ohev-yisrael-beshalach-beshalach-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 5:1 | ohev-yisrael-beshalach-beshalach-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 5:2 | ohev-yisrael-beshalach-beshalach-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 5:3 | ohev-yisrael-beshalach-beshalach-5-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 6:1 | ohev-yisrael-beshalach-beshalach-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 6:2 | ohev-yisrael-beshalach-beshalach-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 6:3 | ohev-yisrael-beshalach-beshalach-6-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:1 | ohev-yisrael-beshalach-beshalach-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:2 | ohev-yisrael-beshalach-beshalach-7-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:3 | ohev-yisrael-beshalach-beshalach-7-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:4 | ohev-yisrael-beshalach-beshalach-7-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:5 | ohev-yisrael-beshalach-beshalach-7-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:6 | ohev-yisrael-beshalach-beshalach-7-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:7 | ohev-yisrael-beshalach-beshalach-7-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:8 | ohev-yisrael-beshalach-beshalach-7-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:9 | ohev-yisrael-beshalach-beshalach-7-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:10 | ohev-yisrael-beshalach-beshalach-7-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:11 | ohev-yisrael-beshalach-beshalach-7-11 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 7:12 | ohev-yisrael-beshalach-beshalach-7-12 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 8:1 | ohev-yisrael-beshalach-beshalach-8-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 9:1 | ohev-yisrael-beshalach-beshalach-9-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 10:1 | ohev-yisrael-beshalach-beshalach-10-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 11:1 | ohev-yisrael-beshalach-beshalach-11-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 11:2 | ohev-yisrael-beshalach-beshalach-11-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beshalach 11:3 | ohev-yisrael-beshalach-beshalach-11-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tu B'Shevat:1 | ohev-yisrael-tu-bshevat-tu-bshevat-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tu B'Shevat:2 | ohev-yisrael-tu-bshevat-tu-bshevat-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tu B'Shevat:3 | ohev-yisrael-tu-bshevat-tu-bshevat-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tu B'Shevat:4 | ohev-yisrael-tu-bshevat-tu-bshevat-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tu B'Shevat:5 | ohev-yisrael-tu-bshevat-tu-bshevat-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tu B'Shevat:6 | ohev-yisrael-tu-bshevat-tu-bshevat-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tu B'Shevat:7 | ohev-yisrael-tu-bshevat-tu-bshevat-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 1:1 | ohev-yisrael-yitro-yitro-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 1:2 | ohev-yisrael-yitro-yitro-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 2:1 | ohev-yisrael-yitro-yitro-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 2:2 | ohev-yisrael-yitro-yitro-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 2:3 | ohev-yisrael-yitro-yitro-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 3:1 | ohev-yisrael-yitro-yitro-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 3:2 | ohev-yisrael-yitro-yitro-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 4:1 | ohev-yisrael-yitro-yitro-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 4:2 | ohev-yisrael-yitro-yitro-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 5:1 | ohev-yisrael-yitro-yitro-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 6:1 | ohev-yisrael-yitro-yitro-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 6:2 | ohev-yisrael-yitro-yitro-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 6:3 | ohev-yisrael-yitro-yitro-6-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 6:4 | ohev-yisrael-yitro-yitro-6-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 6:5 | ohev-yisrael-yitro-yitro-6-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Yitro 7:1 | ohev-yisrael-yitro-yitro-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 1:1 | ohev-yisrael-mishpatim-mishpatim-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 1:2 | ohev-yisrael-mishpatim-mishpatim-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 1:3 | ohev-yisrael-mishpatim-mishpatim-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 2:1 | ohev-yisrael-mishpatim-mishpatim-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:1 | ohev-yisrael-mishpatim-mishpatim-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:2 | ohev-yisrael-mishpatim-mishpatim-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:3 | ohev-yisrael-mishpatim-mishpatim-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:4 | ohev-yisrael-mishpatim-mishpatim-3-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:5 | ohev-yisrael-mishpatim-mishpatim-3-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:6 | ohev-yisrael-mishpatim-mishpatim-3-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:7 | ohev-yisrael-mishpatim-mishpatim-3-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:8 | ohev-yisrael-mishpatim-mishpatim-3-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:9 | ohev-yisrael-mishpatim-mishpatim-3-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:10 | ohev-yisrael-mishpatim-mishpatim-3-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 3:11 | ohev-yisrael-mishpatim-mishpatim-3-11 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 4:1 | ohev-yisrael-mishpatim-mishpatim-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Mishpatim 4:2 | ohev-yisrael-mishpatim-mishpatim-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:1 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:2 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:3 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:4 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:5 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:6 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:7 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:8 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:9 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:10 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:11 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-11 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:12 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-12 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 1:13 | ohev-yisrael-parashat-shekalim-parashat-shekalim-1-13 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 2:1 | ohev-yisrael-parashat-shekalim-parashat-shekalim-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:1 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:2 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:3 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:4 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:5 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:6 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:7 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:8 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:9 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:10 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:11 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-11 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:12 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-12 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:13 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-13 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 3:14 | ohev-yisrael-parashat-shekalim-parashat-shekalim-3-14 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 4:1 | ohev-yisrael-parashat-shekalim-parashat-shekalim-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 4:2 | ohev-yisrael-parashat-shekalim-parashat-shekalim-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Shekalim 4:3 | ohev-yisrael-parashat-shekalim-parashat-shekalim-4-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Zachor 1:1 | ohev-yisrael-parashat-zachor-parashat-zachor-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Zachor 1:2 | ohev-yisrael-parashat-zachor-parashat-zachor-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Zachor 1:3 | ohev-yisrael-parashat-zachor-parashat-zachor-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Zachor 1:4 | ohev-yisrael-parashat-zachor-parashat-zachor-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 1:1 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 1:2 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 1:3 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 2:1 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 2:2 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 2:3 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 2:4 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-2-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 3:1 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 4:1 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 4:2 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 5:1 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 5:2 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parsaht Zachor and Purim 6:1 | ohev-yisrael-parsaht-zachor-and-purim-parsaht-zachor-and-purim-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 1:1 | ohev-yisrael-parashat-parah-parashat-parah-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 1:2 | ohev-yisrael-parashat-parah-parashat-parah-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 2:1 | ohev-yisrael-parashat-parah-parashat-parah-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 2:2 | ohev-yisrael-parashat-parah-parashat-parah-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 2:3 | ohev-yisrael-parashat-parah-parashat-parah-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 2:4 | ohev-yisrael-parashat-parah-parashat-parah-2-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 2:5 | ohev-yisrael-parashat-parah-parashat-parah-2-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 2:6 | ohev-yisrael-parashat-parah-parashat-parah-2-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Parah 2:7 | ohev-yisrael-parashat-parah-parashat-parah-2-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Hachodesh 1:1 | ohev-yisrael-parashat-hachodesh-parashat-hachodesh-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Hachodesh 1:2 | ohev-yisrael-parashat-hachodesh-parashat-hachodesh-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Parashat Hachodesh 1:3 | ohev-yisrael-parashat-hachodesh-parashat-hachodesh-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 1:1 | ohev-yisrael-terumah-terumah-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 1:2 | ohev-yisrael-terumah-terumah-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 2:1 | ohev-yisrael-terumah-terumah-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 2:2 | ohev-yisrael-terumah-terumah-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:1 | ohev-yisrael-terumah-terumah-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:2 | ohev-yisrael-terumah-terumah-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:3 | ohev-yisrael-terumah-terumah-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:4 | ohev-yisrael-terumah-terumah-3-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:5 | ohev-yisrael-terumah-terumah-3-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:6 | ohev-yisrael-terumah-terumah-3-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:7 | ohev-yisrael-terumah-terumah-3-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:8 | ohev-yisrael-terumah-terumah-3-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 3:9 | ohev-yisrael-terumah-terumah-3-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 4:1 | ohev-yisrael-terumah-terumah-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 4:2 | ohev-yisrael-terumah-terumah-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 4:3 | ohev-yisrael-terumah-terumah-4-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 4:4 | ohev-yisrael-terumah-terumah-4-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 5:1 | ohev-yisrael-terumah-terumah-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 5:2 | ohev-yisrael-terumah-terumah-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 6:1 | ohev-yisrael-terumah-terumah-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 7:1 | ohev-yisrael-terumah-terumah-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 7:2 | ohev-yisrael-terumah-terumah-7-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 7:3 | ohev-yisrael-terumah-terumah-7-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 7:4 | ohev-yisrael-terumah-terumah-7-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 7:5 | ohev-yisrael-terumah-terumah-7-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Terumah 7:6 | ohev-yisrael-terumah-terumah-7-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 1:1 | ohev-yisrael-tetzaveh-tetzaveh-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 1:2 | ohev-yisrael-tetzaveh-tetzaveh-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 1:3 | ohev-yisrael-tetzaveh-tetzaveh-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 1:4 | ohev-yisrael-tetzaveh-tetzaveh-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 2:1 | ohev-yisrael-tetzaveh-tetzaveh-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 2:2 | ohev-yisrael-tetzaveh-tetzaveh-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 2:3 | ohev-yisrael-tetzaveh-tetzaveh-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:1 | ohev-yisrael-tetzaveh-tetzaveh-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:2 | ohev-yisrael-tetzaveh-tetzaveh-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:3 | ohev-yisrael-tetzaveh-tetzaveh-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:4 | ohev-yisrael-tetzaveh-tetzaveh-3-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:5 | ohev-yisrael-tetzaveh-tetzaveh-3-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:6 | ohev-yisrael-tetzaveh-tetzaveh-3-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:7 | ohev-yisrael-tetzaveh-tetzaveh-3-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:8 | ohev-yisrael-tetzaveh-tetzaveh-3-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tetzaveh 3:9 | ohev-yisrael-tetzaveh-tetzaveh-3-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:1 | ohev-yisrael-ki-tisa-ki-tisa-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:2 | ohev-yisrael-ki-tisa-ki-tisa-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:3 | ohev-yisrael-ki-tisa-ki-tisa-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:4 | ohev-yisrael-ki-tisa-ki-tisa-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:5 | ohev-yisrael-ki-tisa-ki-tisa-1-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:6 | ohev-yisrael-ki-tisa-ki-tisa-1-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:7 | ohev-yisrael-ki-tisa-ki-tisa-1-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 1:8 | ohev-yisrael-ki-tisa-ki-tisa-1-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:1 | ohev-yisrael-ki-tisa-ki-tisa-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:2 | ohev-yisrael-ki-tisa-ki-tisa-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:3 | ohev-yisrael-ki-tisa-ki-tisa-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:4 | ohev-yisrael-ki-tisa-ki-tisa-2-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:5 | ohev-yisrael-ki-tisa-ki-tisa-2-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:6 | ohev-yisrael-ki-tisa-ki-tisa-2-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:7 | ohev-yisrael-ki-tisa-ki-tisa-2-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 2:8 | ohev-yisrael-ki-tisa-ki-tisa-2-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 3:1 | ohev-yisrael-ki-tisa-ki-tisa-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 4:1 | ohev-yisrael-ki-tisa-ki-tisa-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 5:1 | ohev-yisrael-ki-tisa-ki-tisa-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 5:2 | ohev-yisrael-ki-tisa-ki-tisa-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 5:3 | ohev-yisrael-ki-tisa-ki-tisa-5-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 6:1 | ohev-yisrael-ki-tisa-ki-tisa-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 6:2 | ohev-yisrael-ki-tisa-ki-tisa-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 7:1 | ohev-yisrael-ki-tisa-ki-tisa-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 8:1 | ohev-yisrael-ki-tisa-ki-tisa-8-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 8:2 | ohev-yisrael-ki-tisa-ki-tisa-8-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 8:3 | ohev-yisrael-ki-tisa-ki-tisa-8-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 8:4 | ohev-yisrael-ki-tisa-ki-tisa-8-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Tisa 8:5 | ohev-yisrael-ki-tisa-ki-tisa-8-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayakhel 1:1 | ohev-yisrael-vayakhel-vayakhel-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayakhel 2:1 | ohev-yisrael-vayakhel-vayakhel-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayakhel 3:1 | ohev-yisrael-vayakhel-vayakhel-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayakhel 3:2 | ohev-yisrael-vayakhel-vayakhel-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayakhel 4:1 | ohev-yisrael-vayakhel-vayakhel-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pekudei 1:1 | ohev-yisrael-pekudei-pekudei-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pekudei 1:2 | ohev-yisrael-pekudei-pekudei-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pekudei 1:3 | ohev-yisrael-pekudei-pekudei-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pekudei 2:1 | ohev-yisrael-pekudei-pekudei-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pekudei 3:1 | ohev-yisrael-pekudei-pekudei-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vayikra 1:1 | ohev-yisrael-vayikra-vayikra-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tzav 1:1 | ohev-yisrael-tzav-tzav-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tzav 2:1 | ohev-yisrael-tzav-tzav-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tzav 2:2 | ohev-yisrael-tzav-tzav-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 1:1 | ohev-yisrael-shmini-shmini-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 1:2 | ohev-yisrael-shmini-shmini-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 1:3 | ohev-yisrael-shmini-shmini-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 2:1 | ohev-yisrael-shmini-shmini-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 2:2 | ohev-yisrael-shmini-shmini-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 3:1 | ohev-yisrael-shmini-shmini-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 3:2 | ohev-yisrael-shmini-shmini-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 3:3 | ohev-yisrael-shmini-shmini-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 3:4 | ohev-yisrael-shmini-shmini-3-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 3:5 | ohev-yisrael-shmini-shmini-3-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shmini 3:6 | ohev-yisrael-shmini-shmini-3-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Tazria 1:1 | ohev-yisrael-tazria-tazria-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Metzora 1:1 | ohev-yisrael-metzora-metzora-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Achrei Mot 1:1 | ohev-yisrael-achrei-mot-achrei-mot-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Achrei Mot 2:1 | ohev-yisrael-achrei-mot-achrei-mot-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Kedoshim 1:1 | ohev-yisrael-kedoshim-kedoshim-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Kedoshim 2:1 | ohev-yisrael-kedoshim-kedoshim-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Kedoshim 3:1 | ohev-yisrael-kedoshim-kedoshim-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Kedoshim 4:1 | ohev-yisrael-kedoshim-kedoshim-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Kedoshim 5:1 | ohev-yisrael-kedoshim-kedoshim-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Emor 1:1 | ohev-yisrael-emor-emor-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Emor 2:1 | ohev-yisrael-emor-emor-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Behar 1:1 | ohev-yisrael-behar-behar-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Behar 2:1 | ohev-yisrael-behar-behar-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Behar 2:2 | ohev-yisrael-behar-behar-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Behar 2:3 | ohev-yisrael-behar-behar-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Behar 3:1 | ohev-yisrael-behar-behar-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bechukotai 1:1 | ohev-yisrael-bechukotai-bechukotai-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bechukotai 2:1 | ohev-yisrael-bechukotai-bechukotai-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bechukotai 3:1 | ohev-yisrael-bechukotai-bechukotai-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bechukotai 4:1 | ohev-yisrael-bechukotai-bechukotai-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bechukotai 5:1 | ohev-yisrael-bechukotai-bechukotai-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bechukotai 5:2 | ohev-yisrael-bechukotai-bechukotai-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bamidbar 1:1 | ohev-yisrael-bamidbar-bamidbar-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bamidbar 1:2 | ohev-yisrael-bamidbar-bamidbar-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bamidbar 2:1 | ohev-yisrael-bamidbar-bamidbar-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Bamidbar 2:2 | ohev-yisrael-bamidbar-bamidbar-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Nasso 1:1 | ohev-yisrael-nasso-nasso-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Nasso 2:1 | ohev-yisrael-nasso-nasso-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 1:1 | ohev-yisrael-behaalotcha-behaalotcha-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 1:2 | ohev-yisrael-behaalotcha-behaalotcha-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 1:3 | ohev-yisrael-behaalotcha-behaalotcha-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 2:1 | ohev-yisrael-behaalotcha-behaalotcha-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 3:1 | ohev-yisrael-behaalotcha-behaalotcha-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 3:2 | ohev-yisrael-behaalotcha-behaalotcha-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 4:1 | ohev-yisrael-behaalotcha-behaalotcha-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 5:1 | ohev-yisrael-behaalotcha-behaalotcha-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Beha'alotcha 5:2 | ohev-yisrael-behaalotcha-behaalotcha-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Sh'lach 1:1 | ohev-yisrael-shlach-shlach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Sh'lach 1:2 | ohev-yisrael-shlach-shlach-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Sh'lach 1:3 | ohev-yisrael-shlach-shlach-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Sh'lach 1:4 | ohev-yisrael-shlach-shlach-1-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Korach 1:1 | ohev-yisrael-korach-korach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Korach 2:1 | ohev-yisrael-korach-korach-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Korach 3:1 | ohev-yisrael-korach-korach-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Korach 3:2 | ohev-yisrael-korach-korach-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Korach 3:3 | ohev-yisrael-korach-korach-3-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Korach 4:1 | ohev-yisrael-korach-korach-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 1:1 | ohev-yisrael-chukat-chukat-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 1:2 | ohev-yisrael-chukat-chukat-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:1 | ohev-yisrael-chukat-chukat-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:2 | ohev-yisrael-chukat-chukat-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:3 | ohev-yisrael-chukat-chukat-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:4 | ohev-yisrael-chukat-chukat-2-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:5 | ohev-yisrael-chukat-chukat-2-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:6 | ohev-yisrael-chukat-chukat-2-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:7 | ohev-yisrael-chukat-chukat-2-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:8 | ohev-yisrael-chukat-chukat-2-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:9 | ohev-yisrael-chukat-chukat-2-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:10 | ohev-yisrael-chukat-chukat-2-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:11 | ohev-yisrael-chukat-chukat-2-11 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 2:12 | ohev-yisrael-chukat-chukat-2-12 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 3:1 | ohev-yisrael-chukat-chukat-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 3:2 | ohev-yisrael-chukat-chukat-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Chukat 4:1 | ohev-yisrael-chukat-chukat-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Balak 1:1 | ohev-yisrael-balak-balak-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Balak 1:2 | ohev-yisrael-balak-balak-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 1:1 | ohev-yisrael-pinchas-pinchas-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 2:1 | ohev-yisrael-pinchas-pinchas-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 3:1 | ohev-yisrael-pinchas-pinchas-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 4:1 | ohev-yisrael-pinchas-pinchas-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 4:2 | ohev-yisrael-pinchas-pinchas-4-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 4:3 | ohev-yisrael-pinchas-pinchas-4-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 4:4 | ohev-yisrael-pinchas-pinchas-4-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 5:1 | ohev-yisrael-pinchas-pinchas-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 5:2 | ohev-yisrael-pinchas-pinchas-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 5:3 | ohev-yisrael-pinchas-pinchas-5-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 6:1 | ohev-yisrael-pinchas-pinchas-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 6:2 | ohev-yisrael-pinchas-pinchas-6-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 6:3 | ohev-yisrael-pinchas-pinchas-6-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 6:4 | ohev-yisrael-pinchas-pinchas-6-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Pinchas 6:5 | ohev-yisrael-pinchas-pinchas-6-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Matot 1:1 | ohev-yisrael-matot-matot-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Matot 2:1 | ohev-yisrael-matot-matot-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Masei 1:1 | ohev-yisrael-masei-masei-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Masei 2:1 | ohev-yisrael-masei-masei-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Masei 3:1 | ohev-yisrael-masei-masei-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Masei 4:1 | ohev-yisrael-masei-masei-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Devarim 1:1 | ohev-yisrael-devarim-devarim-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Devarim 2:1 | ohev-yisrael-devarim-devarim-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shabbat Chazon 1:1 | ohev-yisrael-shabbat-chazon-shabbat-chazon-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaetchanan 1:1 | ohev-yisrael-vaetchanan-vaetchanan-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Vaetchanan 2:1 | ohev-yisrael-vaetchanan-vaetchanan-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Eikev 1:1 | ohev-yisrael-eikev-eikev-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Eikev 2:1 | ohev-yisrael-eikev-eikev-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Eikev 3:1 | ohev-yisrael-eikev-eikev-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Eikev 4:1 | ohev-yisrael-eikev-eikev-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Eikev 5:1 | ohev-yisrael-eikev-eikev-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Re'eh 1:1 | ohev-yisrael-reeh-reeh-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Re'eh 2:1 | ohev-yisrael-reeh-reeh-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Re'eh 3:1 | ohev-yisrael-reeh-reeh-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Re'eh 3:2 | ohev-yisrael-reeh-reeh-3-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Re'eh 4:1 | ohev-yisrael-reeh-reeh-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Re'eh 5:1 | ohev-yisrael-reeh-reeh-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shoftim 1:1 | ohev-yisrael-shoftim-shoftim-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Teitzei 1:1 | ohev-yisrael-ki-teitzei-ki-teitzei-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Teitzei 2:1 | ohev-yisrael-ki-teitzei-ki-teitzei-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ki Teitzei 3:1 | ohev-yisrael-ki-teitzei-ki-teitzei-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Nitzavim 1:1 | ohev-yisrael-nitzavim-nitzavim-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Nitzavim 2:1 | ohev-yisrael-nitzavim-nitzavim-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Ha'Azinu 1:1 | ohev-yisrael-haazinu-haazinu-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shabbat 1:1 | ohev-yisrael-for-shabbat-for-shabbat-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shabbat 2:1 | ohev-yisrael-for-shabbat-for-shabbat-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shabbat 3:1 | ohev-yisrael-for-shabbat-for-shabbat-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shabbat 4:1 | ohev-yisrael-for-shabbat-for-shabbat-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shabbat 5:1 | ohev-yisrael-for-shabbat-for-shabbat-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shabbat 6:1 | ohev-yisrael-for-shabbat-for-shabbat-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 1:1 | ohev-yisrael-for-pesach-for-pesach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 1:2 | ohev-yisrael-for-pesach-for-pesach-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 2:1 | ohev-yisrael-for-pesach-for-pesach-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 3:1 | ohev-yisrael-for-pesach-for-pesach-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 4:1 | ohev-yisrael-for-pesach-for-pesach-4-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 5:1 | ohev-yisrael-for-pesach-for-pesach-5-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 5:2 | ohev-yisrael-for-pesach-for-pesach-5-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 6:1 | ohev-yisrael-for-pesach-for-pesach-6-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 7:1 | ohev-yisrael-for-pesach-for-pesach-7-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 8:1 | ohev-yisrael-for-pesach-for-pesach-8-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 9:1 | ohev-yisrael-for-pesach-for-pesach-9-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 10:1 | ohev-yisrael-for-pesach-for-pesach-10-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 11:1 | ohev-yisrael-for-pesach-for-pesach-11-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Pesach 11:2 | ohev-yisrael-for-pesach-for-pesach-11-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Seventh Day of Pesach 1:1 | ohev-yisrael-for-the-seventh-day-of-pesach-for-the-seventh-day-of-pesach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Seventh Day of Pesach 1:2 | ohev-yisrael-for-the-seventh-day-of-pesach-for-the-seventh-day-of-pesach-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Seventh Day of Pesach 1:3 | ohev-yisrael-for-the-seventh-day-of-pesach-for-the-seventh-day-of-pesach-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Shabbat After Pesach 1:1 | ohev-yisrael-for-the-shabbat-after-pesach-for-the-shabbat-after-pesach-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Shabbat After Pesach 1:2 | ohev-yisrael-for-the-shabbat-after-pesach-for-the-shabbat-after-pesach-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Shabbat After Pesach 2:1 | ohev-yisrael-for-the-shabbat-after-pesach-for-the-shabbat-after-pesach-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Shabbat After Pesach 3:1 | ohev-yisrael-for-the-shabbat-after-pesach-for-the-shabbat-after-pesach-3-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shavuot 1:1 | ohev-yisrael-for-shavuot-for-shavuot-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shavuot 2:1 | ohev-yisrael-for-shavuot-for-shavuot-2-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shavuot 2:2 | ohev-yisrael-for-shavuot-for-shavuot-2-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shavuot 2:3 | ohev-yisrael-for-shavuot-for-shavuot-2-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Tu B'Av and Yom Kippur 1:1 | ohev-yisrael-for-tu-bav-and-yom-kippur-for-tu-bav-and-yom-kippur-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Tu B'Av and Yom Kippur 1:2 | ohev-yisrael-for-tu-bav-and-yom-kippur-for-tu-bav-and-yom-kippur-1-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Tu B'Av and Yom Kippur 1:3 | ohev-yisrael-for-tu-bav-and-yom-kippur-for-tu-bav-and-yom-kippur-1-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For the Days of Awe 1:1 | ohev-yisrael-for-the-days-of-awe-for-the-days-of-awe-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Haftarah for Rosh Hashanah 1:1 | ohev-yisrael-haftarah-for-rosh-hashanah-haftarah-for-rosh-hashanah-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Sukkot 1:1 | ohev-yisrael-for-sukkot-for-sukkot-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Shemini Atzeret 1:1 | ohev-yisrael-for-shemini-atzeret-for-shemini-atzeret-1-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Hosea:1 | ohev-yisrael-selections-on-nach-hosea-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Jeremiah:1 | ohev-yisrael-selections-on-nach-jeremiah-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Jeremiah:2 | ohev-yisrael-selections-on-nach-jeremiah-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Psalms:1 | ohev-yisrael-selections-on-nach-psalms-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Psalms:2 | ohev-yisrael-selections-on-nach-psalms-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Psalms:3 | ohev-yisrael-selections-on-nach-psalms-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Psalms:4 | ohev-yisrael-selections-on-nach-psalms-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Psalms:5 | ohev-yisrael-selections-on-nach-psalms-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Psalms:6 | ohev-yisrael-selections-on-nach-psalms-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Proverbs:1 | ohev-yisrael-selections-on-nach-proverbs-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Proverbs:2 | ohev-yisrael-selections-on-nach-proverbs-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections on Nach, Proverbs:3 | ohev-yisrael-selections-on-nach-proverbs-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Omission for Shabbat HaGadol:1 | ohev-yisrael-omission-for-shabbat-hagadol-omission-for-shabbat-hagadol-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Omission for Shabbat HaGadol:2 | ohev-yisrael-omission-for-shabbat-hagadol-omission-for-shabbat-hagadol-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:1 | ohev-yisrael-miscellany-miscellany-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:2 | ohev-yisrael-miscellany-miscellany-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:3 | ohev-yisrael-miscellany-miscellany-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:4 | ohev-yisrael-miscellany-miscellany-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:5 | ohev-yisrael-miscellany-miscellany-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:6 | ohev-yisrael-miscellany-miscellany-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:7 | ohev-yisrael-miscellany-miscellany-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:8 | ohev-yisrael-miscellany-miscellany-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:9 | ohev-yisrael-miscellany-miscellany-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Miscellany:10 | ohev-yisrael-miscellany-miscellany-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, For Completion of Mishnah:1 | ohev-yisrael-for-completion-of-mishnah-for-completion-of-mishnah-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Shir HaShirim:1 | ohev-yisrael-shir-hashirim-shir-hashirim-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Haftarah of Ki Tisa:1 | ohev-yisrael-haftarah-of-ki-tisa-haftarah-of-ki-tisa-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Haftarah of Ki Tisa:2 | ohev-yisrael-haftarah-of-ki-tisa-haftarah-of-ki-tisa-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Bereshit:1 | ohev-yisrael-selections-parashat-bereshit-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Bereshit:2 | ohev-yisrael-selections-parashat-bereshit-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Noach:1 | ohev-yisrael-selections-parashat-noach-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Noach:2 | ohev-yisrael-selections-parashat-noach-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Noach:3 | ohev-yisrael-selections-parashat-noach-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Lech Lecha:1 | ohev-yisrael-selections-parashat-lech-lecha-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Lech Lecha:2 | ohev-yisrael-selections-parashat-lech-lecha-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Lech Lecha:3 | ohev-yisrael-selections-parashat-lech-lecha-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Lech Lecha:4 | ohev-yisrael-selections-parashat-lech-lecha-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayera:1 | ohev-yisrael-selections-parashat-vayera-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayera:2 | ohev-yisrael-selections-parashat-vayera-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayera:3 | ohev-yisrael-selections-parashat-vayera-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Chayei Sara:1 | ohev-yisrael-selections-parashat-chayei-sara-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Toldot:1 | ohev-yisrael-selections-parashat-toldot-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Toldot:2 | ohev-yisrael-selections-parashat-toldot-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Vayetzei:1 | ohev-yisrael-selections-vayetzei-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Vayetzei:2 | ohev-yisrael-selections-vayetzei-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Vayetzei:3 | ohev-yisrael-selections-vayetzei-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayishlach:1 | ohev-yisrael-selections-parashat-vayishlach-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayeshev:1 | ohev-yisrael-selections-parashat-vayeshev-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayeshev:2 | ohev-yisrael-selections-parashat-vayeshev-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Hannukah:1 | ohev-yisrael-selections-hannukah-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Miketz:1 | ohev-yisrael-selections-parashat-miketz-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Miketz:2 | ohev-yisrael-selections-parashat-miketz-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Miketz:3 | ohev-yisrael-selections-parashat-miketz-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Miketz:4 | ohev-yisrael-selections-parashat-miketz-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Shemot:1 | ohev-yisrael-selections-parashat-shemot-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Shemot:2 | ohev-yisrael-selections-parashat-shemot-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Shemot:3 | ohev-yisrael-selections-parashat-shemot-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vaera:1 | ohev-yisrael-selections-parashat-vaera-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Mishpatim:1 | ohev-yisrael-selections-parashat-mishpatim-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Mishpatim:2 | ohev-yisrael-selections-parashat-mishpatim-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Mishpatim:3 | ohev-yisrael-selections-parashat-mishpatim-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Terumah:1 | ohev-yisrael-selections-parashat-terumah-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:1 | ohev-yisrael-selections-selections-for-shabbat-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:2 | ohev-yisrael-selections-selections-for-shabbat-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:3 | ohev-yisrael-selections-selections-for-shabbat-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:4 | ohev-yisrael-selections-selections-for-shabbat-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:5 | ohev-yisrael-selections-selections-for-shabbat-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:6 | ohev-yisrael-selections-selections-for-shabbat-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:7 | ohev-yisrael-selections-selections-for-shabbat-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections for Shabbat:8 | ohev-yisrael-selections-selections-for-shabbat-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Pekudei:1 | ohev-yisrael-selections-parashat-pekudei-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayikra:1 | ohev-yisrael-selections-parashat-vayikra-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vayikra:2 | ohev-yisrael-selections-parashat-vayikra-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Shmini:1 | ohev-yisrael-selections-parashat-shmini-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Shmini:2 | ohev-yisrael-selections-parashat-shmini-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Bamidbar:1 | ohev-yisrael-selections-parashat-bamidbar-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Balak:1 | ohev-yisrael-selections-parashat-balak-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Balak:2 | ohev-yisrael-selections-parashat-balak-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Matot:1 | ohev-yisrael-selections-parashat-matot-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Matot:2 | ohev-yisrael-selections-parashat-matot-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Vaetchanan:1 | ohev-yisrael-selections-parashat-vaetchanan-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Eikev:1 | ohev-yisrael-selections-parashat-eikev-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Eikev:2 | ohev-yisrael-selections-parashat-eikev-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat Eikev:3 | ohev-yisrael-selections-parashat-eikev-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Nitzavim:1 | ohev-yisrael-selections-nitzavim-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Days of Awe:1 | ohev-yisrael-selections-days-of-awe-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Days of Awe:2 | ohev-yisrael-selections-days-of-awe-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Days of Awe:3 | ohev-yisrael-selections-days-of-awe-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Days of Awe:4 | ohev-yisrael-selections-days-of-awe-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Days of Awe:5 | ohev-yisrael-selections-days-of-awe-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Sukkot:1 | ohev-yisrael-selections-sukkot-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Sukkot:2 | ohev-yisrael-selections-sukkot-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Shemini Atzeret:1 | ohev-yisrael-selections-shemini-atzeret-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Shemini Atzeret:2 | ohev-yisrael-selections-shemini-atzeret-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Shemini Atzeret:3 | ohev-yisrael-selections-shemini-atzeret-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Parashat V'Zot HaBerachah:1 | ohev-yisrael-selections-parashat-vzot-haberachah-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:1 | ohev-yisrael-selections-selections-1 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:2 | ohev-yisrael-selections-selections-2 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:3 | ohev-yisrael-selections-selections-3 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:4 | ohev-yisrael-selections-selections-4 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:5 | ohev-yisrael-selections-selections-5 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:6 | ohev-yisrael-selections-selections-6 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:7 | ohev-yisrael-selections-selections-7 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:8 | ohev-yisrael-selections-selections-8 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:9 | ohev-yisrael-selections-selections-9 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:10 | ohev-yisrael-selections-selections-10 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:11 | ohev-yisrael-selections-selections-11 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:12 | ohev-yisrael-selections-selections-12 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:13 | ohev-yisrael-selections-selections-13 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:14 | ohev-yisrael-selections-selections-14 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:15 | ohev-yisrael-selections-selections-15 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:16 | ohev-yisrael-selections-selections-16 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:17 | ohev-yisrael-selections-selections-17 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:18 | ohev-yisrael-selections-selections-18 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:19 | ohev-yisrael-selections-selections-19 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:20 | ohev-yisrael-selections-selections-20 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:21 | ohev-yisrael-selections-selections-21 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:22 | ohev-yisrael-selections-selections-22 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:23 | ohev-yisrael-selections-selections-23 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:24 | ohev-yisrael-selections-selections-24 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:25 | ohev-yisrael-selections-selections-25 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:26 | ohev-yisrael-selections-selections-26 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:27 | ohev-yisrael-selections-selections-27 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:28 | ohev-yisrael-selections-selections-28 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:29 | ohev-yisrael-selections-selections-29 |  |  | not_done |  |
+| ohev-yisrael | Ohev Yisrael | Ohev Yisrael, Selections, Selections:30 | ohev-yisrael-selections-selections-30 |  |  | not_done |  |
