@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-20T07:48:02.230Z
+Generated: 2026-05-21T02:01:39.041Z
 
 ## Scope
 
@@ -15,41 +15,41 @@ Generated: 2026-05-20T07:48:02.230Z
 
 ## Counts
 
-- Total work-surface rows: 3735961
-- Total sitewide unique surface forms: 820161
-- Sitewide unique surface forms matched at least once: 94413
-- Sitewide unique surface forms unmatched everywhere: 725748
-- Total token occurrences: 24949408
-- Matched before prefix/suffix parser: 846142
-- Newly resolved by prefix/suffix parser: 147014
-- Total matched after parser: 1024398
-- Percent matched: 27.4%
-- Matched via Wikidata: 755588
-- Enriched via OpenScriptures: 847981
-- Unmatched: 2711563
+- Total work-surface rows: 4464107
+- Total sitewide unique surface forms: 927120
+- Sitewide unique surface forms matched at least once: 97889
+- Sitewide unique surface forms unmatched everywhere: 829231
+- Total token occurrences: 35415286
+- Matched before prefix/suffix parser: 935649
+- Newly resolved by prefix/suffix parser: 171200
+- Total matched after parser: 1141203
+- Percent matched: 25.6%
+- Matched via Wikidata: 842731
+- Enriched via OpenScriptures: 941344
+- Unmatched: 3322904
 
 ## Newly Resolved Parsed Forms
 
+- שאם -> that if, which if, who if (workspace) -- beit-yosef
+- בסימן -> in sign, with sign, by sign (wikidata) -- arukh-hashulchan
+- בסימן -> in sign, with sign, by sign (wikidata) -- beit-yosef
+- והא -> and behold, and this (workspace) -- beit-yosef
+- ליתן -> to make, for make, of make (openscriptures) -- arukh-hashulchan
+- כדברי -> as thing, like thing, as entity (wikidata + openscriptures) -- beit-yosef
+- מגן -> from garden, of garden (openscriptures) -- arukh-hashulchan
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- peri-tzadik
+- בעלמא -> in forever, with forever, by forever (openscriptures) -- arukh-hashulchan
+- ורבינו -> our size, our age, our number (openscriptures + wikidata) -- beit-yosef
+- שאם -> that if, which if, who if (workspace) -- arukh-hashulchan
 - בשער -> in hair, with hair, by hair (wikidata + openscriptures) -- pardes-rimmonim
+- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- beit-yosef
+- בסימן -> in sign, with sign, by sign (wikidata) -- biur-halacha
+- בעלמא -> in forever, with forever, by forever (openscriptures) -- beit-yosef
+- ליתן -> to make, for make, of make (openscriptures) -- beit-yosef
+- לדברי -> to thing, for thing, of thing (wikidata + openscriptures) -- beit-yosef
 - כנגד -> as resistor, like resistor (wikidata + openscriptures) -- ohr-hachammah-on-zohar
+- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- arukh-hashulchan
 - והענין -> and ado, and business, and travail (openscriptures) -- ohr-hachammah-on-zohar
-- בשער -> in hair, with hair, by hair (wikidata + openscriptures) -- akeidat-yitzchak
-- שאם -> that if, which if, who if (workspace) -- ohr-hashem
-- הענינים -> the matter, issue, the business (kaikki) -- akeidat-yitzchak
-- שאם -> that if, which if, who if (workspace) -- akeidat-yitzchak
-- ודא -> and this, and one..another (openscriptures) -- ohr-hachammah-on-zohar
-- שאז -> that at that time, which at that time, who at that time (openscriptures) -- peri-tzadik
-- ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- ohr-hachammah-on-zohar
-- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- shenei-luchot-haberit
-- כאלו -> as this/that, like this/that, as demonstrative pronoun (wikidata + openscriptures) -- shenei-luchot-haberit
-- בעלמא -> in forever, with forever, by forever (openscriptures) -- ohr-hachammah-on-zohar
-- שאם -> that if, which if, who if (workspace) -- ohr-hachammah-on-zohar
-- ואלו -> and this/that, and demonstrative pronoun (wikidata + openscriptures) -- shenei-luchot-haberit
-- כנגד -> as resistor, like resistor (wikidata + openscriptures) -- otzar-midrashim
-- שאם -> that if, which if, who if (workspace) -- the-wars-of-the-lord
-- וּכְתִיב -> and it is written (workspace) -- ein-yaakov
-- הגם -> the assemblage, the used only adverbially also, the even (openscriptures) -- bnei-yissaschar
 
 ## Sample Matched Words With Refs To Test
 
@@ -66,89 +66,89 @@ Generated: 2026-05-20T07:48:02.230Z
 - א״א -> Arikh Anpin (workspace) -- shaar-maamarei-razal
 - א״א -> Arikh Anpin (workspace) -- yahel-ohr-on-zohar
 - א״כ -> if so, therefore (workspace) -- abarbanel-on-guide-for-the-perplexed
+- א״כ -> if so, therefore (workspace) -- abudarham
 - א״כ -> if so, therefore (workspace) -- aderet-eliyahu
 - א״כ -> if so, therefore (workspace) -- aggadat-bereshit
 - א״כ -> if so, therefore (workspace) -- akeidat-yitzchak
+- א״כ -> if so, therefore (workspace) -- arukh-hashulchan-heatid
+- א״כ -> if so, therefore (workspace) -- arukh-hashulchan
 - א״כ -> if so, therefore (workspace) -- avodat-yisrael
-- א״כ -> if so, therefore (workspace) -- avot-derabbi-natan
-- א״כ -> if so, therefore (workspace) -- beit-aharon
-- א״כ -> if so, therefore (workspace) -- beit-elohim
 
 ## Sample Unmatched Words
 
 - אֵ־ל -- ein-yaakov
 - א־תִירָ֣א -- siddur-edot-hamizrach
 - אאא -- otzar-midrashim
+- אאב -- beit-yosef
 - אאב -- peri-tzadik
+- אאב -- prisha
+- אאב -- sefer-yereim
+- אאבא -- beit-yosef
+- אאבא -- drisha
+- אאבא -- sefer-yereim
 - אאבד -- avot-derabbi-natan
 - אאבד -- ein-yaakov
 - אאבד -- imrei-binah
 - אאבד -- peri-tzadik
 - אאבד -- raavad-on-sifra
 - אאבד -- shevet-musar
+- אאבוה -- beit-yosef
 - אַאֲבוּהָ -- ein-yaakov
 - אאבוהי -- yaarot-devash-i
 - אאבוי -- ohr-hachammah-on-zohar
-- אאבות -- shenei-luchot-haberit
-- אאביד -- midrash-tanchuma-buber
-- אאבידה -- peri-tzadik
-- אאביו -- chafetz-chaim-on-sifra
-- אאביו -- etz-yosef-on-kohelet-rabbah
-- אאביי -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- אאביך -- ohr-hachammah-on-zohar
 
 ## Top 50 Remaining Unmatched By Frequency
 
+- 20950x כתב -- beit-yosef
+- 12010x וכתב -- beit-yosef
+- 10665x עכ״ל -- beit-yosef
+- 10605x ומ״ש -- beit-yosef
+- 10209x רבינו -- beit-yosef
 - 9864x וגומר -- ohr-hachammah-on-zohar
 - 8149x וז״ש -- ohr-hachammah-on-zohar
+- 7962x הרא״ש -- beit-yosef
+- 7324x כתב -- arukh-hashulchan
+- 6624x כתב -- drisha
+- 6412x אסור -- arukh-hashulchan
+- 6236x אסור -- beit-yosef
 - 5775x ה׳ -- ohr-hachammah-on-zohar
+- 5773x עיין -- arukh-hashulchan
+- 5669x נמי -- beit-yosef
+- 5448x שכתב -- beit-yosef
 - 5425x ה׳ -- peri-tzadik
+- 5307x משמע -- beit-yosef
 - 5141x ה׳ -- akeidat-yitzchak
 - 4914x הי׳ -- sefat-emet
+- 4772x רבינו -- arukh-hashulchan
+- 4478x רבינו -- drisha
 - 4452x בנ״י -- sefat-emet
+- 4349x חייב -- arukh-hashulchan
 - 4314x ה׳ -- shenei-luchot-haberit
 - 4253x א׳ -- ohr-hachammah-on-zohar
+- 4234x עכ״ל -- arukh-hashulchan
 - 4070x ה׳ -- sefat-emet
+- 4052x שכתב -- arukh-hashulchan
+- 4031x לאו -- beit-yosef
 - 4007x השי״ת -- sod-yesharim
 - 3972x בב״ת -- ohr-hashem
+- 3937x דאמר -- beit-yosef
+- 3872x וזהו -- arukh-hashulchan
+- 3757x הכי -- beit-yosef
+- 3747x חייב -- beit-yosef
 - 3738x הת״ת -- ohr-hachammah-on-zohar
+- 3676x הרא״ש -- drisha
+- 3672x כגון -- arukh-hashulchan
+- 3642x דאם -- arukh-hashulchan
+- 3640x הרי״ף -- beit-yosef
+- 3563x לשונו -- arukh-hashulchan
+- 3557x בסעיף -- arukh-hashulchan
+- 3484x כתב -- prisha
 - 3383x ית׳ -- sod-yesharim
-- 3022x ת״ת -- ohr-hachammah-on-zohar
-- 2958x ה׳ -- yismach-moshe
-- 2892x והבן -- yismach-moshe
-- 2547x ר -- notes-and-corrections-on-midrash-lekach-tov
-- 2533x א׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 2526x שנא׳ -- menorat-hamaor
-- 2514x ית׳ -- sefat-emet
-- 2487x ג׳ -- ohr-hachammah-on-zohar
-- 2467x אמ׳ -- menorat-hamaor
-- 2450x פ׳ -- peri-tzadik
-- 2433x ב׳ -- beur-hagra-on-shulchan-arukh-yoreh-deah
-- 2400x א׳ -- peri-tzadik
-- 2393x ה׳ -- maor-vashemesh
-- 2208x נ״ב -- mikdash-melekh-on-zohar
-- 2176x נק׳ -- ohr-hachammah-on-zohar
-- 2151x המ׳ -- ohr-hachammah-on-zohar
-- 2150x ה׳ -- menorat-hamaor
-- 2147x כדפי׳ -- ohr-hachammah-on-zohar
-- 2146x ולכך -- ohr-hachammah-on-zohar
-- 2066x ואמר -- ohr-hachammah-on-zohar
-- 2055x עיין -- yismach-moshe
-- 2023x ה׳ -- tiferet-shlomo
-- 2017x וז״ש -- sefat-emet
-- 1995x הי׳ -- zera-kodesh
-- 1977x אינון -- ohr-hachammah-on-zohar
-- 1965x וזהו -- shenei-luchot-haberit
-- 1962x וזהו -- ohr-hachammah-on-zohar
-- 1957x דף -- ohr-hachammah-on-zohar
-- 1931x גי׳ -- zera-kodesh
-- 1918x זלה״ה -- ohr-hachammah-on-zohar
-- 1916x וזהו -- peri-tzadik
-- 1915x בזוה״ק -- sod-yesharim
-- 1913x בגין -- ohr-hachammah-on-zohar
-- 1909x וז״ש -- tiferet-shlomo
-- 1896x יְהֹוָה -- selichot-nusach-ashkenaz-lita
-- 1877x לעיל -- ohr-hachammah-on-zohar
+- 3311x ג׳ -- beit-yosef
+- 3287x דכיון -- beit-yosef
+- 3250x והרא״ש -- beit-yosef
+- 3231x כגון -- beit-yosef
+- 3211x הר״ן -- beit-yosef
 
 ## Exact Orot Refs To Test
 

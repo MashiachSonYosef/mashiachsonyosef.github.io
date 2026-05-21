@@ -1,0 +1,3111 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:1 | chayyei-adam-authors-introduction-authors-introduction-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:2 | chayyei-adam-authors-introduction-authors-introduction-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:3 | chayyei-adam-authors-introduction-authors-introduction-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:4 | chayyei-adam-authors-introduction-authors-introduction-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:5 | chayyei-adam-authors-introduction-authors-introduction-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:6 | chayyei-adam-authors-introduction-authors-introduction-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:7 | chayyei-adam-authors-introduction-authors-introduction-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:8 | chayyei-adam-authors-introduction-authors-introduction-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:9 | chayyei-adam-authors-introduction-authors-introduction-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:10 | chayyei-adam-authors-introduction-authors-introduction-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:11 | chayyei-adam-authors-introduction-authors-introduction-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:12 | chayyei-adam-authors-introduction-authors-introduction-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Author's Introduction:13 | chayyei-adam-authors-introduction-authors-introduction-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:1 | chayyei-adam-default-default-1-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:2 | chayyei-adam-default-default-1-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:3 | chayyei-adam-default-default-1-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:4 | chayyei-adam-default-default-1-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:5 | chayyei-adam-default-default-1-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:6 | chayyei-adam-default-default-1-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:7 | chayyei-adam-default-default-1-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:8 | chayyei-adam-default-default-1-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 1:9 | chayyei-adam-default-default-1-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 2:1 | chayyei-adam-default-default-2-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 2:2 | chayyei-adam-default-default-2-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 2:3 | chayyei-adam-default-default-2-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 2:4 | chayyei-adam-default-default-2-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 2:5 | chayyei-adam-default-default-2-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 2:6 | chayyei-adam-default-default-2-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:1 | chayyei-adam-default-default-3-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:2 | chayyei-adam-default-default-3-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:3 | chayyei-adam-default-default-3-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:4 | chayyei-adam-default-default-3-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:5 | chayyei-adam-default-default-3-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:6 | chayyei-adam-default-default-3-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:7 | chayyei-adam-default-default-3-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:8 | chayyei-adam-default-default-3-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:9 | chayyei-adam-default-default-3-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:10 | chayyei-adam-default-default-3-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:11 | chayyei-adam-default-default-3-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:12 | chayyei-adam-default-default-3-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:13 | chayyei-adam-default-default-3-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:14 | chayyei-adam-default-default-3-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:15 | chayyei-adam-default-default-3-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:16 | chayyei-adam-default-default-3-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:17 | chayyei-adam-default-default-3-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:18 | chayyei-adam-default-default-3-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:19 | chayyei-adam-default-default-3-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:20 | chayyei-adam-default-default-3-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:21 | chayyei-adam-default-default-3-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:22 | chayyei-adam-default-default-3-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:23 | chayyei-adam-default-default-3-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:24 | chayyei-adam-default-default-3-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:25 | chayyei-adam-default-default-3-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:26 | chayyei-adam-default-default-3-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:27 | chayyei-adam-default-default-3-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:28 | chayyei-adam-default-default-3-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:29 | chayyei-adam-default-default-3-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:30 | chayyei-adam-default-default-3-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:31 | chayyei-adam-default-default-3-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:32 | chayyei-adam-default-default-3-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:33 | chayyei-adam-default-default-3-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:34 | chayyei-adam-default-default-3-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:35 | chayyei-adam-default-default-3-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:36 | chayyei-adam-default-default-3-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:37 | chayyei-adam-default-default-3-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 3:38 | chayyei-adam-default-default-3-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:1 | chayyei-adam-default-default-4-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:2 | chayyei-adam-default-default-4-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:3 | chayyei-adam-default-default-4-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:4 | chayyei-adam-default-default-4-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:5 | chayyei-adam-default-default-4-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:6 | chayyei-adam-default-default-4-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:7 | chayyei-adam-default-default-4-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:8 | chayyei-adam-default-default-4-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:9 | chayyei-adam-default-default-4-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:10 | chayyei-adam-default-default-4-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:11 | chayyei-adam-default-default-4-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 4:12 | chayyei-adam-default-default-4-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:1 | chayyei-adam-default-default-5-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:2 | chayyei-adam-default-default-5-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:3 | chayyei-adam-default-default-5-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:4 | chayyei-adam-default-default-5-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:5 | chayyei-adam-default-default-5-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:6 | chayyei-adam-default-default-5-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:7 | chayyei-adam-default-default-5-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:8 | chayyei-adam-default-default-5-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:9 | chayyei-adam-default-default-5-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:10 | chayyei-adam-default-default-5-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:11 | chayyei-adam-default-default-5-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:12 | chayyei-adam-default-default-5-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:13 | chayyei-adam-default-default-5-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:14 | chayyei-adam-default-default-5-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:15 | chayyei-adam-default-default-5-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:16 | chayyei-adam-default-default-5-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:17 | chayyei-adam-default-default-5-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:18 | chayyei-adam-default-default-5-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:19 | chayyei-adam-default-default-5-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:20 | chayyei-adam-default-default-5-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:21 | chayyei-adam-default-default-5-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:22 | chayyei-adam-default-default-5-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:23 | chayyei-adam-default-default-5-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:24 | chayyei-adam-default-default-5-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:25 | chayyei-adam-default-default-5-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:26 | chayyei-adam-default-default-5-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 5:27 | chayyei-adam-default-default-5-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 6:1 | chayyei-adam-default-default-6-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 6:2 | chayyei-adam-default-default-6-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 6:3 | chayyei-adam-default-default-6-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 6:4 | chayyei-adam-default-default-6-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 6:5 | chayyei-adam-default-default-6-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:1 | chayyei-adam-default-default-7-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:2 | chayyei-adam-default-default-7-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:3 | chayyei-adam-default-default-7-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:4 | chayyei-adam-default-default-7-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:5 | chayyei-adam-default-default-7-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:6 | chayyei-adam-default-default-7-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:7 | chayyei-adam-default-default-7-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 7:8 | chayyei-adam-default-default-7-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:1 | chayyei-adam-default-default-8-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:2 | chayyei-adam-default-default-8-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:3 | chayyei-adam-default-default-8-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:4 | chayyei-adam-default-default-8-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:5 | chayyei-adam-default-default-8-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:6 | chayyei-adam-default-default-8-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:7 | chayyei-adam-default-default-8-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:8 | chayyei-adam-default-default-8-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:9 | chayyei-adam-default-default-8-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:10 | chayyei-adam-default-default-8-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 8:11 | chayyei-adam-default-default-8-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:1 | chayyei-adam-default-default-9-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:2 | chayyei-adam-default-default-9-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:3 | chayyei-adam-default-default-9-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:4 | chayyei-adam-default-default-9-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:5 | chayyei-adam-default-default-9-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:6 | chayyei-adam-default-default-9-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:7 | chayyei-adam-default-default-9-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:8 | chayyei-adam-default-default-9-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:9 | chayyei-adam-default-default-9-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:10 | chayyei-adam-default-default-9-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 9:11 | chayyei-adam-default-default-9-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:1 | chayyei-adam-default-default-10-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:2 | chayyei-adam-default-default-10-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:3 | chayyei-adam-default-default-10-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:4 | chayyei-adam-default-default-10-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:5 | chayyei-adam-default-default-10-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:6 | chayyei-adam-default-default-10-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:7 | chayyei-adam-default-default-10-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:8 | chayyei-adam-default-default-10-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:9 | chayyei-adam-default-default-10-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:10 | chayyei-adam-default-default-10-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:11 | chayyei-adam-default-default-10-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:12 | chayyei-adam-default-default-10-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 10:13 | chayyei-adam-default-default-10-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:1 | chayyei-adam-default-default-11-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:2 | chayyei-adam-default-default-11-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:3 | chayyei-adam-default-default-11-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:4 | chayyei-adam-default-default-11-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:5 | chayyei-adam-default-default-11-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:6 | chayyei-adam-default-default-11-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:7 | chayyei-adam-default-default-11-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:8 | chayyei-adam-default-default-11-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:9 | chayyei-adam-default-default-11-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:10 | chayyei-adam-default-default-11-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:11 | chayyei-adam-default-default-11-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:12 | chayyei-adam-default-default-11-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:13 | chayyei-adam-default-default-11-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:14 | chayyei-adam-default-default-11-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:15 | chayyei-adam-default-default-11-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:16 | chayyei-adam-default-default-11-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:17 | chayyei-adam-default-default-11-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:18 | chayyei-adam-default-default-11-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:19 | chayyei-adam-default-default-11-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:20 | chayyei-adam-default-default-11-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:21 | chayyei-adam-default-default-11-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:22 | chayyei-adam-default-default-11-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:23 | chayyei-adam-default-default-11-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:24 | chayyei-adam-default-default-11-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:25 | chayyei-adam-default-default-11-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:26 | chayyei-adam-default-default-11-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:27 | chayyei-adam-default-default-11-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:28 | chayyei-adam-default-default-11-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:29 | chayyei-adam-default-default-11-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:30 | chayyei-adam-default-default-11-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:31 | chayyei-adam-default-default-11-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:32 | chayyei-adam-default-default-11-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:33 | chayyei-adam-default-default-11-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:34 | chayyei-adam-default-default-11-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:35 | chayyei-adam-default-default-11-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:36 | chayyei-adam-default-default-11-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:37 | chayyei-adam-default-default-11-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:38 | chayyei-adam-default-default-11-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:39 | chayyei-adam-default-default-11-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:40 | chayyei-adam-default-default-11-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:41 | chayyei-adam-default-default-11-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:42 | chayyei-adam-default-default-11-42 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 11:43 | chayyei-adam-default-default-11-43 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:1 | chayyei-adam-default-default-12-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:2 | chayyei-adam-default-default-12-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:3 | chayyei-adam-default-default-12-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:4 | chayyei-adam-default-default-12-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:5 | chayyei-adam-default-default-12-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:6 | chayyei-adam-default-default-12-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:7 | chayyei-adam-default-default-12-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 12:8 | chayyei-adam-default-default-12-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:1 | chayyei-adam-default-default-13-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:2 | chayyei-adam-default-default-13-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:3 | chayyei-adam-default-default-13-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:4 | chayyei-adam-default-default-13-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:5 | chayyei-adam-default-default-13-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:6 | chayyei-adam-default-default-13-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:7 | chayyei-adam-default-default-13-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:8 | chayyei-adam-default-default-13-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:9 | chayyei-adam-default-default-13-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:10 | chayyei-adam-default-default-13-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:11 | chayyei-adam-default-default-13-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 13:12 | chayyei-adam-default-default-13-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:1 | chayyei-adam-default-default-14-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:2 | chayyei-adam-default-default-14-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:3 | chayyei-adam-default-default-14-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:4 | chayyei-adam-default-default-14-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:5 | chayyei-adam-default-default-14-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:6 | chayyei-adam-default-default-14-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:7 | chayyei-adam-default-default-14-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:8 | chayyei-adam-default-default-14-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:9 | chayyei-adam-default-default-14-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:10 | chayyei-adam-default-default-14-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:11 | chayyei-adam-default-default-14-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:12 | chayyei-adam-default-default-14-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:13 | chayyei-adam-default-default-14-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:14 | chayyei-adam-default-default-14-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:15 | chayyei-adam-default-default-14-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:16 | chayyei-adam-default-default-14-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:17 | chayyei-adam-default-default-14-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:18 | chayyei-adam-default-default-14-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:19 | chayyei-adam-default-default-14-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:20 | chayyei-adam-default-default-14-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:21 | chayyei-adam-default-default-14-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:22 | chayyei-adam-default-default-14-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:23 | chayyei-adam-default-default-14-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:24 | chayyei-adam-default-default-14-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:25 | chayyei-adam-default-default-14-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:26 | chayyei-adam-default-default-14-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:27 | chayyei-adam-default-default-14-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 14:28 | chayyei-adam-default-default-14-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:1 | chayyei-adam-default-default-15-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:2 | chayyei-adam-default-default-15-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:3 | chayyei-adam-default-default-15-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:4 | chayyei-adam-default-default-15-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:5 | chayyei-adam-default-default-15-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:6 | chayyei-adam-default-default-15-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:7 | chayyei-adam-default-default-15-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:8 | chayyei-adam-default-default-15-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:9 | chayyei-adam-default-default-15-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:10 | chayyei-adam-default-default-15-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:11 | chayyei-adam-default-default-15-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:12 | chayyei-adam-default-default-15-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:13 | chayyei-adam-default-default-15-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:14 | chayyei-adam-default-default-15-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:15 | chayyei-adam-default-default-15-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:16 | chayyei-adam-default-default-15-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:17 | chayyei-adam-default-default-15-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:18 | chayyei-adam-default-default-15-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:19 | chayyei-adam-default-default-15-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:20 | chayyei-adam-default-default-15-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:21 | chayyei-adam-default-default-15-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:22 | chayyei-adam-default-default-15-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:23 | chayyei-adam-default-default-15-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:24 | chayyei-adam-default-default-15-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 15:25 | chayyei-adam-default-default-15-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 16:1 | chayyei-adam-default-default-16-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 16:2 | chayyei-adam-default-default-16-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 16:3 | chayyei-adam-default-default-16-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:1 | chayyei-adam-default-default-17-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:2 | chayyei-adam-default-default-17-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:3 | chayyei-adam-default-default-17-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:4 | chayyei-adam-default-default-17-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:5 | chayyei-adam-default-default-17-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:6 | chayyei-adam-default-default-17-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:7 | chayyei-adam-default-default-17-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:8 | chayyei-adam-default-default-17-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:9 | chayyei-adam-default-default-17-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:10 | chayyei-adam-default-default-17-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:11 | chayyei-adam-default-default-17-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:12 | chayyei-adam-default-default-17-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:13 | chayyei-adam-default-default-17-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:14 | chayyei-adam-default-default-17-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:15 | chayyei-adam-default-default-17-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:16 | chayyei-adam-default-default-17-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:17 | chayyei-adam-default-default-17-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:18 | chayyei-adam-default-default-17-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:19 | chayyei-adam-default-default-17-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:20 | chayyei-adam-default-default-17-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:21 | chayyei-adam-default-default-17-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:22 | chayyei-adam-default-default-17-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:23 | chayyei-adam-default-default-17-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:24 | chayyei-adam-default-default-17-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:25 | chayyei-adam-default-default-17-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:26 | chayyei-adam-default-default-17-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:27 | chayyei-adam-default-default-17-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:28 | chayyei-adam-default-default-17-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:29 | chayyei-adam-default-default-17-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:30 | chayyei-adam-default-default-17-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:31 | chayyei-adam-default-default-17-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:32 | chayyei-adam-default-default-17-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:33 | chayyei-adam-default-default-17-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:34 | chayyei-adam-default-default-17-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:35 | chayyei-adam-default-default-17-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:36 | chayyei-adam-default-default-17-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:37 | chayyei-adam-default-default-17-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:38 | chayyei-adam-default-default-17-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:39 | chayyei-adam-default-default-17-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:40 | chayyei-adam-default-default-17-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:41 | chayyei-adam-default-default-17-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:42 | chayyei-adam-default-default-17-42 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:43 | chayyei-adam-default-default-17-43 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:44 | chayyei-adam-default-default-17-44 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:45 | chayyei-adam-default-default-17-45 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:46 | chayyei-adam-default-default-17-46 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:47 | chayyei-adam-default-default-17-47 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:48 | chayyei-adam-default-default-17-48 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:49 | chayyei-adam-default-default-17-49 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:50 | chayyei-adam-default-default-17-50 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:51 | chayyei-adam-default-default-17-51 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:52 | chayyei-adam-default-default-17-52 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:53 | chayyei-adam-default-default-17-53 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:54 | chayyei-adam-default-default-17-54 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:55 | chayyei-adam-default-default-17-55 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:56 | chayyei-adam-default-default-17-56 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 17:57 | chayyei-adam-default-default-17-57 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 18:1 | chayyei-adam-default-default-18-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 18:2 | chayyei-adam-default-default-18-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 18:3 | chayyei-adam-default-default-18-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 18:4 | chayyei-adam-default-default-18-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 18:5 | chayyei-adam-default-default-18-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:1 | chayyei-adam-default-default-19-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:2 | chayyei-adam-default-default-19-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:3 | chayyei-adam-default-default-19-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:4 | chayyei-adam-default-default-19-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:5 | chayyei-adam-default-default-19-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:6 | chayyei-adam-default-default-19-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:7 | chayyei-adam-default-default-19-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 19:8 | chayyei-adam-default-default-19-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:1 | chayyei-adam-default-default-20-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:2 | chayyei-adam-default-default-20-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:3 | chayyei-adam-default-default-20-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:4 | chayyei-adam-default-default-20-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:5 | chayyei-adam-default-default-20-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:6 | chayyei-adam-default-default-20-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:7 | chayyei-adam-default-default-20-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:8 | chayyei-adam-default-default-20-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:9 | chayyei-adam-default-default-20-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 20:10 | chayyei-adam-default-default-20-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:1 | chayyei-adam-default-default-21-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:2 | chayyei-adam-default-default-21-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:3 | chayyei-adam-default-default-21-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:4 | chayyei-adam-default-default-21-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:5 | chayyei-adam-default-default-21-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:6 | chayyei-adam-default-default-21-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:7 | chayyei-adam-default-default-21-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:8 | chayyei-adam-default-default-21-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:9 | chayyei-adam-default-default-21-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:10 | chayyei-adam-default-default-21-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:11 | chayyei-adam-default-default-21-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:12 | chayyei-adam-default-default-21-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:13 | chayyei-adam-default-default-21-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:14 | chayyei-adam-default-default-21-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:15 | chayyei-adam-default-default-21-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:16 | chayyei-adam-default-default-21-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:17 | chayyei-adam-default-default-21-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:18 | chayyei-adam-default-default-21-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 21:19 | chayyei-adam-default-default-21-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:1 | chayyei-adam-default-default-22-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:2 | chayyei-adam-default-default-22-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:3 | chayyei-adam-default-default-22-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:4 | chayyei-adam-default-default-22-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:5 | chayyei-adam-default-default-22-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:6 | chayyei-adam-default-default-22-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:7 | chayyei-adam-default-default-22-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:8 | chayyei-adam-default-default-22-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:9 | chayyei-adam-default-default-22-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:10 | chayyei-adam-default-default-22-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:11 | chayyei-adam-default-default-22-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:12 | chayyei-adam-default-default-22-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:13 | chayyei-adam-default-default-22-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:14 | chayyei-adam-default-default-22-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:15 | chayyei-adam-default-default-22-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:16 | chayyei-adam-default-default-22-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:17 | chayyei-adam-default-default-22-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 22:18 | chayyei-adam-default-default-22-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 23:1 | chayyei-adam-default-default-23-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 23:2 | chayyei-adam-default-default-23-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 23:3 | chayyei-adam-default-default-23-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 23:4 | chayyei-adam-default-default-23-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 23:5 | chayyei-adam-default-default-23-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:1 | chayyei-adam-default-default-24-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:2 | chayyei-adam-default-default-24-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:3 | chayyei-adam-default-default-24-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:4 | chayyei-adam-default-default-24-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:5 | chayyei-adam-default-default-24-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:6 | chayyei-adam-default-default-24-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:7 | chayyei-adam-default-default-24-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:8 | chayyei-adam-default-default-24-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:9 | chayyei-adam-default-default-24-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:10 | chayyei-adam-default-default-24-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:11 | chayyei-adam-default-default-24-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:12 | chayyei-adam-default-default-24-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:13 | chayyei-adam-default-default-24-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:14 | chayyei-adam-default-default-24-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:15 | chayyei-adam-default-default-24-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:16 | chayyei-adam-default-default-24-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:17 | chayyei-adam-default-default-24-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:18 | chayyei-adam-default-default-24-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:19 | chayyei-adam-default-default-24-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:20 | chayyei-adam-default-default-24-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:21 | chayyei-adam-default-default-24-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:22 | chayyei-adam-default-default-24-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:23 | chayyei-adam-default-default-24-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:24 | chayyei-adam-default-default-24-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:25 | chayyei-adam-default-default-24-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:26 | chayyei-adam-default-default-24-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:27 | chayyei-adam-default-default-24-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:28 | chayyei-adam-default-default-24-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:29 | chayyei-adam-default-default-24-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:30 | chayyei-adam-default-default-24-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 24:31 | chayyei-adam-default-default-24-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:1 | chayyei-adam-default-default-25-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:2 | chayyei-adam-default-default-25-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:3 | chayyei-adam-default-default-25-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:4 | chayyei-adam-default-default-25-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:5 | chayyei-adam-default-default-25-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:6 | chayyei-adam-default-default-25-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:7 | chayyei-adam-default-default-25-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:8 | chayyei-adam-default-default-25-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:9 | chayyei-adam-default-default-25-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:10 | chayyei-adam-default-default-25-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:11 | chayyei-adam-default-default-25-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:12 | chayyei-adam-default-default-25-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 25:13 | chayyei-adam-default-default-25-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 26:1 | chayyei-adam-default-default-26-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 26:2 | chayyei-adam-default-default-26-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 26:3 | chayyei-adam-default-default-26-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 26:4 | chayyei-adam-default-default-26-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:1 | chayyei-adam-default-default-27-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:2 | chayyei-adam-default-default-27-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:3 | chayyei-adam-default-default-27-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:4 | chayyei-adam-default-default-27-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:5 | chayyei-adam-default-default-27-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:6 | chayyei-adam-default-default-27-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:7 | chayyei-adam-default-default-27-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:8 | chayyei-adam-default-default-27-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:9 | chayyei-adam-default-default-27-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:10 | chayyei-adam-default-default-27-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:11 | chayyei-adam-default-default-27-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:12 | chayyei-adam-default-default-27-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:13 | chayyei-adam-default-default-27-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:14 | chayyei-adam-default-default-27-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:15 | chayyei-adam-default-default-27-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:16 | chayyei-adam-default-default-27-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 27:17 | chayyei-adam-default-default-27-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:1 | chayyei-adam-default-default-28-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:2 | chayyei-adam-default-default-28-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:3 | chayyei-adam-default-default-28-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:4 | chayyei-adam-default-default-28-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:5 | chayyei-adam-default-default-28-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:6 | chayyei-adam-default-default-28-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:7 | chayyei-adam-default-default-28-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:8 | chayyei-adam-default-default-28-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:9 | chayyei-adam-default-default-28-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:10 | chayyei-adam-default-default-28-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:11 | chayyei-adam-default-default-28-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:12 | chayyei-adam-default-default-28-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:13 | chayyei-adam-default-default-28-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:14 | chayyei-adam-default-default-28-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:15 | chayyei-adam-default-default-28-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:16 | chayyei-adam-default-default-28-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:17 | chayyei-adam-default-default-28-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 28:18 | chayyei-adam-default-default-28-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:1 | chayyei-adam-default-default-29-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:2 | chayyei-adam-default-default-29-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:3 | chayyei-adam-default-default-29-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:4 | chayyei-adam-default-default-29-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:5 | chayyei-adam-default-default-29-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:6 | chayyei-adam-default-default-29-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:7 | chayyei-adam-default-default-29-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:8 | chayyei-adam-default-default-29-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:9 | chayyei-adam-default-default-29-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:10 | chayyei-adam-default-default-29-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:11 | chayyei-adam-default-default-29-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:12 | chayyei-adam-default-default-29-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:13 | chayyei-adam-default-default-29-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:14 | chayyei-adam-default-default-29-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:15 | chayyei-adam-default-default-29-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:16 | chayyei-adam-default-default-29-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:17 | chayyei-adam-default-default-29-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 29:18 | chayyei-adam-default-default-29-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:1 | chayyei-adam-default-default-30-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:2 | chayyei-adam-default-default-30-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:3 | chayyei-adam-default-default-30-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:4 | chayyei-adam-default-default-30-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:5 | chayyei-adam-default-default-30-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:6 | chayyei-adam-default-default-30-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:7 | chayyei-adam-default-default-30-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:8 | chayyei-adam-default-default-30-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:9 | chayyei-adam-default-default-30-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:10 | chayyei-adam-default-default-30-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:11 | chayyei-adam-default-default-30-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 30:12 | chayyei-adam-default-default-30-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:1 | chayyei-adam-default-default-31-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:2 | chayyei-adam-default-default-31-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:3 | chayyei-adam-default-default-31-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:4 | chayyei-adam-default-default-31-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:5 | chayyei-adam-default-default-31-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:6 | chayyei-adam-default-default-31-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:7 | chayyei-adam-default-default-31-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:8 | chayyei-adam-default-default-31-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:9 | chayyei-adam-default-default-31-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:10 | chayyei-adam-default-default-31-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:11 | chayyei-adam-default-default-31-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:12 | chayyei-adam-default-default-31-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:13 | chayyei-adam-default-default-31-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:14 | chayyei-adam-default-default-31-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:15 | chayyei-adam-default-default-31-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:16 | chayyei-adam-default-default-31-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:17 | chayyei-adam-default-default-31-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:18 | chayyei-adam-default-default-31-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:19 | chayyei-adam-default-default-31-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:20 | chayyei-adam-default-default-31-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:21 | chayyei-adam-default-default-31-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:22 | chayyei-adam-default-default-31-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:23 | chayyei-adam-default-default-31-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:24 | chayyei-adam-default-default-31-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:25 | chayyei-adam-default-default-31-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:26 | chayyei-adam-default-default-31-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:27 | chayyei-adam-default-default-31-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:28 | chayyei-adam-default-default-31-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:29 | chayyei-adam-default-default-31-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:30 | chayyei-adam-default-default-31-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:31 | chayyei-adam-default-default-31-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:32 | chayyei-adam-default-default-31-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:33 | chayyei-adam-default-default-31-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:34 | chayyei-adam-default-default-31-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:35 | chayyei-adam-default-default-31-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:36 | chayyei-adam-default-default-31-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:37 | chayyei-adam-default-default-31-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:38 | chayyei-adam-default-default-31-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:39 | chayyei-adam-default-default-31-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:40 | chayyei-adam-default-default-31-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:41 | chayyei-adam-default-default-31-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:42 | chayyei-adam-default-default-31-42 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:43 | chayyei-adam-default-default-31-43 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:44 | chayyei-adam-default-default-31-44 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:45 | chayyei-adam-default-default-31-45 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:46 | chayyei-adam-default-default-31-46 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:47 | chayyei-adam-default-default-31-47 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:48 | chayyei-adam-default-default-31-48 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:49 | chayyei-adam-default-default-31-49 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 31:50 | chayyei-adam-default-default-31-50 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:1 | chayyei-adam-default-default-32-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:2 | chayyei-adam-default-default-32-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:3 | chayyei-adam-default-default-32-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:4 | chayyei-adam-default-default-32-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:5 | chayyei-adam-default-default-32-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:6 | chayyei-adam-default-default-32-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:7 | chayyei-adam-default-default-32-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:8 | chayyei-adam-default-default-32-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:9 | chayyei-adam-default-default-32-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:10 | chayyei-adam-default-default-32-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:11 | chayyei-adam-default-default-32-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:12 | chayyei-adam-default-default-32-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:13 | chayyei-adam-default-default-32-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:14 | chayyei-adam-default-default-32-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:15 | chayyei-adam-default-default-32-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:16 | chayyei-adam-default-default-32-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:17 | chayyei-adam-default-default-32-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:18 | chayyei-adam-default-default-32-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:19 | chayyei-adam-default-default-32-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:20 | chayyei-adam-default-default-32-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:21 | chayyei-adam-default-default-32-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:22 | chayyei-adam-default-default-32-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:23 | chayyei-adam-default-default-32-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:24 | chayyei-adam-default-default-32-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:25 | chayyei-adam-default-default-32-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:26 | chayyei-adam-default-default-32-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:27 | chayyei-adam-default-default-32-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:28 | chayyei-adam-default-default-32-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:29 | chayyei-adam-default-default-32-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:30 | chayyei-adam-default-default-32-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:31 | chayyei-adam-default-default-32-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:32 | chayyei-adam-default-default-32-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:33 | chayyei-adam-default-default-32-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:34 | chayyei-adam-default-default-32-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 32:35 | chayyei-adam-default-default-32-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 33:1 | chayyei-adam-default-default-33-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 33:2 | chayyei-adam-default-default-33-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 33:3 | chayyei-adam-default-default-33-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 33:4 | chayyei-adam-default-default-33-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 33:5 | chayyei-adam-default-default-33-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 33:6 | chayyei-adam-default-default-33-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 33:7 | chayyei-adam-default-default-33-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:1 | chayyei-adam-default-default-34-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:2 | chayyei-adam-default-default-34-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:3 | chayyei-adam-default-default-34-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:4 | chayyei-adam-default-default-34-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:5 | chayyei-adam-default-default-34-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:6 | chayyei-adam-default-default-34-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:7 | chayyei-adam-default-default-34-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:8 | chayyei-adam-default-default-34-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:9 | chayyei-adam-default-default-34-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:10 | chayyei-adam-default-default-34-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:11 | chayyei-adam-default-default-34-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 34:12 | chayyei-adam-default-default-34-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 35:1 | chayyei-adam-default-default-35-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 35:2 | chayyei-adam-default-default-35-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 35:3 | chayyei-adam-default-default-35-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 35:4 | chayyei-adam-default-default-35-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 35:5 | chayyei-adam-default-default-35-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:1 | chayyei-adam-default-default-36-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:2 | chayyei-adam-default-default-36-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:3 | chayyei-adam-default-default-36-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:4 | chayyei-adam-default-default-36-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:5 | chayyei-adam-default-default-36-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:6 | chayyei-adam-default-default-36-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:7 | chayyei-adam-default-default-36-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:8 | chayyei-adam-default-default-36-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:9 | chayyei-adam-default-default-36-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 36:10 | chayyei-adam-default-default-36-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:1 | chayyei-adam-default-default-37-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:2 | chayyei-adam-default-default-37-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:3 | chayyei-adam-default-default-37-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:4 | chayyei-adam-default-default-37-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:5 | chayyei-adam-default-default-37-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:6 | chayyei-adam-default-default-37-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:7 | chayyei-adam-default-default-37-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:8 | chayyei-adam-default-default-37-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:9 | chayyei-adam-default-default-37-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 37:10 | chayyei-adam-default-default-37-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 38:1 | chayyei-adam-default-default-38-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 38:2 | chayyei-adam-default-default-38-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 38:3 | chayyei-adam-default-default-38-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 38:4 | chayyei-adam-default-default-38-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 38:5 | chayyei-adam-default-default-38-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:1 | chayyei-adam-default-default-39-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:2 | chayyei-adam-default-default-39-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:3 | chayyei-adam-default-default-39-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:4 | chayyei-adam-default-default-39-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:5 | chayyei-adam-default-default-39-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:6 | chayyei-adam-default-default-39-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:7 | chayyei-adam-default-default-39-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:8 | chayyei-adam-default-default-39-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:9 | chayyei-adam-default-default-39-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:10 | chayyei-adam-default-default-39-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 39:11 | chayyei-adam-default-default-39-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:1 | chayyei-adam-default-default-40-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:2 | chayyei-adam-default-default-40-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:3 | chayyei-adam-default-default-40-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:4 | chayyei-adam-default-default-40-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:5 | chayyei-adam-default-default-40-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:6 | chayyei-adam-default-default-40-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:7 | chayyei-adam-default-default-40-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:8 | chayyei-adam-default-default-40-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:9 | chayyei-adam-default-default-40-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:10 | chayyei-adam-default-default-40-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:11 | chayyei-adam-default-default-40-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:12 | chayyei-adam-default-default-40-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:13 | chayyei-adam-default-default-40-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:14 | chayyei-adam-default-default-40-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:15 | chayyei-adam-default-default-40-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:16 | chayyei-adam-default-default-40-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:17 | chayyei-adam-default-default-40-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:18 | chayyei-adam-default-default-40-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:19 | chayyei-adam-default-default-40-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 40:20 | chayyei-adam-default-default-40-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 41:1 | chayyei-adam-default-default-41-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 41:2 | chayyei-adam-default-default-41-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 41:3 | chayyei-adam-default-default-41-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 41:4 | chayyei-adam-default-default-41-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 41:5 | chayyei-adam-default-default-41-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:1 | chayyei-adam-default-default-42-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:2 | chayyei-adam-default-default-42-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:3 | chayyei-adam-default-default-42-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:4 | chayyei-adam-default-default-42-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:5 | chayyei-adam-default-default-42-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:6 | chayyei-adam-default-default-42-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:7 | chayyei-adam-default-default-42-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:8 | chayyei-adam-default-default-42-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:9 | chayyei-adam-default-default-42-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:10 | chayyei-adam-default-default-42-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:11 | chayyei-adam-default-default-42-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:12 | chayyei-adam-default-default-42-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 42:13 | chayyei-adam-default-default-42-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:1 | chayyei-adam-default-default-43-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:2 | chayyei-adam-default-default-43-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:3 | chayyei-adam-default-default-43-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:4 | chayyei-adam-default-default-43-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:5 | chayyei-adam-default-default-43-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:6 | chayyei-adam-default-default-43-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:7 | chayyei-adam-default-default-43-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:8 | chayyei-adam-default-default-43-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:9 | chayyei-adam-default-default-43-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:10 | chayyei-adam-default-default-43-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:11 | chayyei-adam-default-default-43-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 43:12 | chayyei-adam-default-default-43-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 44:1 | chayyei-adam-default-default-44-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 44:2 | chayyei-adam-default-default-44-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 44:3 | chayyei-adam-default-default-44-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 44:4 | chayyei-adam-default-default-44-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 44:5 | chayyei-adam-default-default-44-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:1 | chayyei-adam-default-default-45-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:2 | chayyei-adam-default-default-45-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:3 | chayyei-adam-default-default-45-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:4 | chayyei-adam-default-default-45-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:5 | chayyei-adam-default-default-45-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:6 | chayyei-adam-default-default-45-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:7 | chayyei-adam-default-default-45-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:8 | chayyei-adam-default-default-45-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 45:9 | chayyei-adam-default-default-45-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:1 | chayyei-adam-default-default-46-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:2 | chayyei-adam-default-default-46-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:3 | chayyei-adam-default-default-46-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:4 | chayyei-adam-default-default-46-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:5 | chayyei-adam-default-default-46-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:6 | chayyei-adam-default-default-46-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:7 | chayyei-adam-default-default-46-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:8 | chayyei-adam-default-default-46-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:9 | chayyei-adam-default-default-46-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:10 | chayyei-adam-default-default-46-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 46:11 | chayyei-adam-default-default-46-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:1 | chayyei-adam-default-default-47-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:2 | chayyei-adam-default-default-47-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:3 | chayyei-adam-default-default-47-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:4 | chayyei-adam-default-default-47-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:5 | chayyei-adam-default-default-47-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:6 | chayyei-adam-default-default-47-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:7 | chayyei-adam-default-default-47-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:8 | chayyei-adam-default-default-47-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:9 | chayyei-adam-default-default-47-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:10 | chayyei-adam-default-default-47-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:11 | chayyei-adam-default-default-47-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:12 | chayyei-adam-default-default-47-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:13 | chayyei-adam-default-default-47-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:14 | chayyei-adam-default-default-47-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:15 | chayyei-adam-default-default-47-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:16 | chayyei-adam-default-default-47-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:17 | chayyei-adam-default-default-47-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:18 | chayyei-adam-default-default-47-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:19 | chayyei-adam-default-default-47-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:20 | chayyei-adam-default-default-47-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:21 | chayyei-adam-default-default-47-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:22 | chayyei-adam-default-default-47-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:23 | chayyei-adam-default-default-47-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 47:24 | chayyei-adam-default-default-47-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:1 | chayyei-adam-default-default-48-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:2 | chayyei-adam-default-default-48-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:3 | chayyei-adam-default-default-48-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:4 | chayyei-adam-default-default-48-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:5 | chayyei-adam-default-default-48-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:6 | chayyei-adam-default-default-48-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:7 | chayyei-adam-default-default-48-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:8 | chayyei-adam-default-default-48-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:9 | chayyei-adam-default-default-48-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:10 | chayyei-adam-default-default-48-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:11 | chayyei-adam-default-default-48-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:12 | chayyei-adam-default-default-48-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:13 | chayyei-adam-default-default-48-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:14 | chayyei-adam-default-default-48-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:15 | chayyei-adam-default-default-48-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:16 | chayyei-adam-default-default-48-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:17 | chayyei-adam-default-default-48-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:18 | chayyei-adam-default-default-48-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:19 | chayyei-adam-default-default-48-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 48:20 | chayyei-adam-default-default-48-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:1 | chayyei-adam-default-default-49-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:2 | chayyei-adam-default-default-49-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:3 | chayyei-adam-default-default-49-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:4 | chayyei-adam-default-default-49-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:5 | chayyei-adam-default-default-49-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:6 | chayyei-adam-default-default-49-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:7 | chayyei-adam-default-default-49-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:8 | chayyei-adam-default-default-49-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:9 | chayyei-adam-default-default-49-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:10 | chayyei-adam-default-default-49-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:11 | chayyei-adam-default-default-49-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:12 | chayyei-adam-default-default-49-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:13 | chayyei-adam-default-default-49-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:14 | chayyei-adam-default-default-49-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 49:15 | chayyei-adam-default-default-49-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:1 | chayyei-adam-default-default-50-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:2 | chayyei-adam-default-default-50-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:3 | chayyei-adam-default-default-50-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:4 | chayyei-adam-default-default-50-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:5 | chayyei-adam-default-default-50-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:6 | chayyei-adam-default-default-50-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:7 | chayyei-adam-default-default-50-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:8 | chayyei-adam-default-default-50-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:10 | chayyei-adam-default-default-50-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:11 | chayyei-adam-default-default-50-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:12 | chayyei-adam-default-default-50-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:13 | chayyei-adam-default-default-50-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:14 | chayyei-adam-default-default-50-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:15 | chayyei-adam-default-default-50-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:16 | chayyei-adam-default-default-50-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:17 | chayyei-adam-default-default-50-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:18 | chayyei-adam-default-default-50-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:19 | chayyei-adam-default-default-50-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:20 | chayyei-adam-default-default-50-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:21 | chayyei-adam-default-default-50-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:22 | chayyei-adam-default-default-50-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:23 | chayyei-adam-default-default-50-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:24 | chayyei-adam-default-default-50-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:25 | chayyei-adam-default-default-50-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:26 | chayyei-adam-default-default-50-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 50:27 | chayyei-adam-default-default-50-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:1 | chayyei-adam-default-default-51-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:2 | chayyei-adam-default-default-51-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:3 | chayyei-adam-default-default-51-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:4 | chayyei-adam-default-default-51-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:5 | chayyei-adam-default-default-51-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:6 | chayyei-adam-default-default-51-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:7 | chayyei-adam-default-default-51-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:8 | chayyei-adam-default-default-51-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:9 | chayyei-adam-default-default-51-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:10 | chayyei-adam-default-default-51-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:11 | chayyei-adam-default-default-51-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:12 | chayyei-adam-default-default-51-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:13 | chayyei-adam-default-default-51-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:14 | chayyei-adam-default-default-51-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:15 | chayyei-adam-default-default-51-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:16 | chayyei-adam-default-default-51-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 51:17 | chayyei-adam-default-default-51-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 52:1 | chayyei-adam-default-default-52-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 52:2 | chayyei-adam-default-default-52-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 52:3 | chayyei-adam-default-default-52-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 52:4 | chayyei-adam-default-default-52-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 52:5 | chayyei-adam-default-default-52-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 52:6 | chayyei-adam-default-default-52-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 52:7 | chayyei-adam-default-default-52-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:1 | chayyei-adam-default-default-53-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:2 | chayyei-adam-default-default-53-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:3 | chayyei-adam-default-default-53-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:4 | chayyei-adam-default-default-53-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:5 | chayyei-adam-default-default-53-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:6 | chayyei-adam-default-default-53-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:7 | chayyei-adam-default-default-53-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:8 | chayyei-adam-default-default-53-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:9 | chayyei-adam-default-default-53-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 53:10 | chayyei-adam-default-default-53-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:1 | chayyei-adam-default-default-54-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:2 | chayyei-adam-default-default-54-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:3 | chayyei-adam-default-default-54-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:4 | chayyei-adam-default-default-54-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:5 | chayyei-adam-default-default-54-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:6 | chayyei-adam-default-default-54-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:7 | chayyei-adam-default-default-54-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:8 | chayyei-adam-default-default-54-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:9 | chayyei-adam-default-default-54-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:10 | chayyei-adam-default-default-54-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:11 | chayyei-adam-default-default-54-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:12 | chayyei-adam-default-default-54-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:13 | chayyei-adam-default-default-54-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:14 | chayyei-adam-default-default-54-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:15 | chayyei-adam-default-default-54-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:16 | chayyei-adam-default-default-54-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 54:17 | chayyei-adam-default-default-54-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 55:1 | chayyei-adam-default-default-55-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 55:2 | chayyei-adam-default-default-55-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 55:3 | chayyei-adam-default-default-55-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 55:4 | chayyei-adam-default-default-55-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 55:5 | chayyei-adam-default-default-55-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 55:6 | chayyei-adam-default-default-55-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 55:7 | chayyei-adam-default-default-55-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 56:1 | chayyei-adam-default-default-56-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 56:2 | chayyei-adam-default-default-56-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 56:3 | chayyei-adam-default-default-56-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 56:4 | chayyei-adam-default-default-56-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 56:5 | chayyei-adam-default-default-56-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:1 | chayyei-adam-default-default-57-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:2 | chayyei-adam-default-default-57-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:3 | chayyei-adam-default-default-57-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:4 | chayyei-adam-default-default-57-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:5 | chayyei-adam-default-default-57-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:6 | chayyei-adam-default-default-57-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:7 | chayyei-adam-default-default-57-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:8 | chayyei-adam-default-default-57-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:9 | chayyei-adam-default-default-57-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 57:10 | chayyei-adam-default-default-57-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:1 | chayyei-adam-default-default-58-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:2 | chayyei-adam-default-default-58-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:3 | chayyei-adam-default-default-58-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:4 | chayyei-adam-default-default-58-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:5 | chayyei-adam-default-default-58-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:6 | chayyei-adam-default-default-58-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:7 | chayyei-adam-default-default-58-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 58:8 | chayyei-adam-default-default-58-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:1 | chayyei-adam-default-default-59-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:2 | chayyei-adam-default-default-59-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:3 | chayyei-adam-default-default-59-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:4 | chayyei-adam-default-default-59-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:5 | chayyei-adam-default-default-59-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:6 | chayyei-adam-default-default-59-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:7 | chayyei-adam-default-default-59-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:8 | chayyei-adam-default-default-59-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:9 | chayyei-adam-default-default-59-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:10 | chayyei-adam-default-default-59-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:11 | chayyei-adam-default-default-59-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:12 | chayyei-adam-default-default-59-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:13 | chayyei-adam-default-default-59-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:14 | chayyei-adam-default-default-59-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:15 | chayyei-adam-default-default-59-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 59:16 | chayyei-adam-default-default-59-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 60:1 | chayyei-adam-default-default-60-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 60:2 | chayyei-adam-default-default-60-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 60:3 | chayyei-adam-default-default-60-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 60:4 | chayyei-adam-default-default-60-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 60:5 | chayyei-adam-default-default-60-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 60:6 | chayyei-adam-default-default-60-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 60:7 | chayyei-adam-default-default-60-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:1 | chayyei-adam-default-default-61-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:2 | chayyei-adam-default-default-61-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:3 | chayyei-adam-default-default-61-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:4 | chayyei-adam-default-default-61-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:5 | chayyei-adam-default-default-61-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:6 | chayyei-adam-default-default-61-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:7 | chayyei-adam-default-default-61-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:8 | chayyei-adam-default-default-61-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:9 | chayyei-adam-default-default-61-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:10 | chayyei-adam-default-default-61-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:11 | chayyei-adam-default-default-61-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:12 | chayyei-adam-default-default-61-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:13 | chayyei-adam-default-default-61-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:14 | chayyei-adam-default-default-61-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 61:15 | chayyei-adam-default-default-61-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:1 | chayyei-adam-default-default-62-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:2 | chayyei-adam-default-default-62-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:3 | chayyei-adam-default-default-62-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:4 | chayyei-adam-default-default-62-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:5 | chayyei-adam-default-default-62-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:6 | chayyei-adam-default-default-62-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:7 | chayyei-adam-default-default-62-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:8 | chayyei-adam-default-default-62-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:9 | chayyei-adam-default-default-62-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:10 | chayyei-adam-default-default-62-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:11 | chayyei-adam-default-default-62-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:12 | chayyei-adam-default-default-62-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:13 | chayyei-adam-default-default-62-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:14 | chayyei-adam-default-default-62-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 62:15 | chayyei-adam-default-default-62-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:1 | chayyei-adam-default-default-63-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:2 | chayyei-adam-default-default-63-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:3 | chayyei-adam-default-default-63-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:4 | chayyei-adam-default-default-63-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:5 | chayyei-adam-default-default-63-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:6 | chayyei-adam-default-default-63-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:7 | chayyei-adam-default-default-63-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:8 | chayyei-adam-default-default-63-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:9 | chayyei-adam-default-default-63-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:10 | chayyei-adam-default-default-63-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:11 | chayyei-adam-default-default-63-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:12 | chayyei-adam-default-default-63-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:13 | chayyei-adam-default-default-63-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:14 | chayyei-adam-default-default-63-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:15 | chayyei-adam-default-default-63-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:16 | chayyei-adam-default-default-63-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 63:17 | chayyei-adam-default-default-63-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 64:1 | chayyei-adam-default-default-64-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 64:2 | chayyei-adam-default-default-64-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 64:3 | chayyei-adam-default-default-64-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 64:4 | chayyei-adam-default-default-64-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 64:5 | chayyei-adam-default-default-64-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 64:6 | chayyei-adam-default-default-64-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 64:7 | chayyei-adam-default-default-64-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 65:1 | chayyei-adam-default-default-65-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 65:2 | chayyei-adam-default-default-65-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 65:3 | chayyei-adam-default-default-65-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 65:4 | chayyei-adam-default-default-65-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 65:5 | chayyei-adam-default-default-65-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 65:6 | chayyei-adam-default-default-65-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 65:7 | chayyei-adam-default-default-65-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:1 | chayyei-adam-default-default-66-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:2 | chayyei-adam-default-default-66-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:3 | chayyei-adam-default-default-66-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:4 | chayyei-adam-default-default-66-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:5 | chayyei-adam-default-default-66-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:6 | chayyei-adam-default-default-66-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:7 | chayyei-adam-default-default-66-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:8 | chayyei-adam-default-default-66-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:9 | chayyei-adam-default-default-66-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:10 | chayyei-adam-default-default-66-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:11 | chayyei-adam-default-default-66-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:12 | chayyei-adam-default-default-66-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:13 | chayyei-adam-default-default-66-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:14 | chayyei-adam-default-default-66-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:15 | chayyei-adam-default-default-66-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:16 | chayyei-adam-default-default-66-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:17 | chayyei-adam-default-default-66-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 66:18 | chayyei-adam-default-default-66-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:1 | chayyei-adam-default-default-67-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:2 | chayyei-adam-default-default-67-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:3 | chayyei-adam-default-default-67-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:4 | chayyei-adam-default-default-67-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:5 | chayyei-adam-default-default-67-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:6 | chayyei-adam-default-default-67-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:7 | chayyei-adam-default-default-67-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:8 | chayyei-adam-default-default-67-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:9 | chayyei-adam-default-default-67-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:10 | chayyei-adam-default-default-67-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:11 | chayyei-adam-default-default-67-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:12 | chayyei-adam-default-default-67-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:13 | chayyei-adam-default-default-67-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:14 | chayyei-adam-default-default-67-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:15 | chayyei-adam-default-default-67-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:16 | chayyei-adam-default-default-67-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:17 | chayyei-adam-default-default-67-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:18 | chayyei-adam-default-default-67-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:19 | chayyei-adam-default-default-67-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:20 | chayyei-adam-default-default-67-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:21 | chayyei-adam-default-default-67-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:22 | chayyei-adam-default-default-67-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:23 | chayyei-adam-default-default-67-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:24 | chayyei-adam-default-default-67-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:25 | chayyei-adam-default-default-67-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:26 | chayyei-adam-default-default-67-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:27 | chayyei-adam-default-default-67-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:28 | chayyei-adam-default-default-67-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:29 | chayyei-adam-default-default-67-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 67:30 | chayyei-adam-default-default-67-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:1 | chayyei-adam-default-default-68-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:2 | chayyei-adam-default-default-68-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:3 | chayyei-adam-default-default-68-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:4 | chayyei-adam-default-default-68-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:5 | chayyei-adam-default-default-68-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:6 | chayyei-adam-default-default-68-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:7 | chayyei-adam-default-default-68-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:8 | chayyei-adam-default-default-68-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:9 | chayyei-adam-default-default-68-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:10 | chayyei-adam-default-default-68-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:11 | chayyei-adam-default-default-68-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:12 | chayyei-adam-default-default-68-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:13 | chayyei-adam-default-default-68-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:14 | chayyei-adam-default-default-68-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:15 | chayyei-adam-default-default-68-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:16 | chayyei-adam-default-default-68-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:17 | chayyei-adam-default-default-68-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:18 | chayyei-adam-default-default-68-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:19 | chayyei-adam-default-default-68-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:20 | chayyei-adam-default-default-68-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:21 | chayyei-adam-default-default-68-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:22 | chayyei-adam-default-default-68-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:23 | chayyei-adam-default-default-68-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:24 | chayyei-adam-default-default-68-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 68:25 | chayyei-adam-default-default-68-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:1 | chayyei-adam-default-default-69-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:2 | chayyei-adam-default-default-69-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:3 | chayyei-adam-default-default-69-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:4 | chayyei-adam-default-default-69-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:5 | chayyei-adam-default-default-69-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:6 | chayyei-adam-default-default-69-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:7 | chayyei-adam-default-default-69-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:8 | chayyei-adam-default-default-69-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:9 | chayyei-adam-default-default-69-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:10 | chayyei-adam-default-default-69-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam 69:11 | chayyei-adam-default-default-69-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 1:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-1-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 2:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-2-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 3:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-3-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 4:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-4-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 4:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-4-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 4:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-4-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 4:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-4-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 4:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-4-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 5:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-5-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 6:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-6-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 7:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-7-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 8:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-8-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 9:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-9-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 10:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-10-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 10:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-10-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 10:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-10-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 11:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-11-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 11:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-11-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 11:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-11-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 11:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-11-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 11:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-11-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 12:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-12-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 13:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-13-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 13:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-13-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 13:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-13-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 14:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-14-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 15:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-15-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 16:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-16-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 17:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-17-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 17:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-17-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 17:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-17-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 17:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-17-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 17:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-17-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 17:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-17-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 17:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-17-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 18:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-18-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 18:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-18-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 18:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-18-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 19:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-19-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 19:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-19-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 19:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-19-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 19:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-19-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 19:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-19-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 19:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-19-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 20:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-20-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 21:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-21-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 21:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-21-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 21:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-21-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 21:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-21-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 21:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-21-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 21:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-21-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 22:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-22-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 23:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-23-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 24:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-24-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 24:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-24-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 24:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-24-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 24:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-24-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 24:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-24-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 24:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-24-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 25:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-25-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 25:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-25-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 25:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-25-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 25:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-25-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 25:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-25-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 25:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-25-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 25:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-25-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 26:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-26-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 28:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-28-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 28:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-28-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 28:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-28-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 28:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-28-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 28:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-28-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 29:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-29-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 29:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-29-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 29:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-29-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 29:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-29-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 29:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-29-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 30:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-30-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 31:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-31-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 31:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-31-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 31:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-31-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 31:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-31-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 31:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-31-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 31:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-31-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 31:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-31-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 32:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-32-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 34:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-34-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 34:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-34-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 34:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-34-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 34:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-34-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 34:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-34-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 34:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-34-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 34:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-34-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 36:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-36-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 36:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-36-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 36:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-36-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 37:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-37-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 37:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-37-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 37:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-37-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 37:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-37-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 37:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-37-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 37:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-37-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 38:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-38-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 39:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-39-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 40:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-40-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 41:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-41-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 41:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-41-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 41:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-41-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 41:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-41-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 41:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-41-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 41:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-41-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 41:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-41-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 42:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-42-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 42:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-42-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 42:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-42-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 42:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-42-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 42:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-42-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 42:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-42-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 43:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-43-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 43:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-43-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 44:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-44-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 45:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-45-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 47:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-47-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 48:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-48-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 49:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-49-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 50:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-50-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 50:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-50-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 50:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-50-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 50:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-50-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 50:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-50-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 50:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-50-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 50:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-50-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 51:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-51-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 52:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-52-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 53:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-53-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 54:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-54-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 55:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-55-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 56:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-56-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 57:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-57-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 58:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-58-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 59:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-59-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 60:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-60-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 61:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-61-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 62:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-62-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 63:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-63-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 64:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-64-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 65:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-65-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 66:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-66-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 67:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-67-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 68:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-68-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 69:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-69-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 70:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-70-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 70:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-70-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 70:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-70-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 70:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-70-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 70:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-70-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 71:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-71-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 72:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-72-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 73:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-73-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 74:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-74-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 75:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-75-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 76:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-76-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 77:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-77-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 78:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-78-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 78:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-78-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 79:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-79-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 79:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-79-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 79:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-79-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 80:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-80-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 80:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-80-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 80:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-80-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 80:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-80-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 80:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-80-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 80:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-80-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 80:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-80-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 81:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-81-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 82:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-82-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 83:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-83-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 83:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-83-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 83:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-83-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 83:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-83-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 83:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-83-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 84:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-84-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 84:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-84-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 84:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-84-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 85:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-85-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 86:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-86-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 86:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-86-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 86:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-86-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 87:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-87-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 87:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-87-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 87:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-87-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 88:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-88-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 88:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-88-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 88:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-88-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 88:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-88-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 88:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-88-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 88:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-88-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 88:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-88-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 89:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-89-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 90:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-90-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 90:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-90-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 91:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-91-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 92:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-92-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 92:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-92-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 92:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-92-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 93:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-93-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 94:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-94-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 95:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-95-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 96:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-96-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 97:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-97-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 98:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-98-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 98:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-98-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 98:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-98-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 98:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-98-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 98:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-98-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 98:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-98-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 99:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-99-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 100:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-100-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 101:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-101-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 102:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-102-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 103:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-103-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 103:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-103-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 103:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-103-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 103:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-103-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 104:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-104-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 104:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-104-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 104:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-104-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 104:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-104-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 104:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-104-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 105:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-105-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 105:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-105-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 105:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-105-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 105:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-105-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 106:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-106-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 107:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-107-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 107:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-107-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 108:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-108-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 108:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-108-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 108:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-108-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 108:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-108-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 108:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-108-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 108:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-108-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 108:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-108-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 109:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-109-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 110:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-110-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 111:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-111-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 112:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-112-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 113:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-113-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 113:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-113-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 113:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-113-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 113:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-113-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 113:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-113-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 113:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-113-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 114:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-114-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 114:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-114-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 114:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-114-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 114:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-114-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 114:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-114-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 114:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-114-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 115:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-115-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 115:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-115-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 115:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-115-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 115:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-115-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 116:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-116-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 116:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-116-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 117:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-117-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 117:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-117-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 117:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-117-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 118:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-118-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 119:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-119-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 120:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-120-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 121:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-121-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 122:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-122-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 123:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-123-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 123:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-123-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 123:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-123-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 124:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-124-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 125:38 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-125-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 126:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-126-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 127:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-127-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 128:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-128-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 129:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-129-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 130:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-130-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 131:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-131-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:38 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:39 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:40 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:41 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:42 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-42 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:43 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-43 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 132:44 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-132-44 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 133:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-133-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 134:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-134-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 135:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-135-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 136:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-136-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 137:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-137-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 137:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-137-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 137:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-137-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 137:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-137-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 137:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-137-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 138:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-138-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 139:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-139-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 140:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-140-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 141:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-141-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 142:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-142-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 143:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-143-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 144:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-144-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:38 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:39 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:40 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:41 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:42 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-42 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 145:43 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-145-43 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:38 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:39 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:40 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:41 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:42 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-42 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:43 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-43 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:44 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-44 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:45 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-45 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:46 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-46 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:47 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-47 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:48 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-48 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 146:49 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-146-49 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 147:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-147-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 148:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-148-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 149:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-149-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 150:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-150-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 151:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-151-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 152:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-152-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 153:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-153-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 153:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-153-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 153:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-153-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 153:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-153-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 153:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-153-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 153:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-153-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 153:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-153-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:38 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:39 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:40 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:41 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:42 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-42 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 154:43 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-154-43 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:1 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-1 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:2 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-2 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:3 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-3 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:4 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-4 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:5 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-5 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:6 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-6 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:7 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-7 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:8 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-8 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:9 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-9 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:10 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-10 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:11 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-11 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:12 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-12 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:13 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-13 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:14 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-14 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:15 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-15 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:16 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-16 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:17 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-17 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:18 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-18 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:19 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-19 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:20 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-20 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:21 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-21 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:22 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-22 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:23 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-23 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:24 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-24 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:25 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-25 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:26 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-26 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:27 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-27 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:28 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-28 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:29 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-29 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:30 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-30 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:31 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-31 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:32 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-32 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:33 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-33 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:34 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-34 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:35 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-35 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:36 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-36 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:37 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-37 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:38 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-38 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:39 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-39 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:40 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-40 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:41 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-41 |  |  | not_done |  |
+| chayyei-adam | Chayyei Adam | Chayyei Adam, Shabbat and Festivals 155:42 | chayyei-adam-shabbat-and-festivals-shabbat-and-festivals-155-42 |  |  | not_done |  |
