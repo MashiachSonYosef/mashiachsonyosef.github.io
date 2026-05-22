@@ -1,0 +1,1746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bedikat HaSakin</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Bedikat HaSakin</h1>
+        <p class="meta">36 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Teshuvot HaGeonim, Coronel 1871 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001014411">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>961 matched</strong> / 3072 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/bedikat-hasakin.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Bedikat HaSakin <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Bedikat HaSakin <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-1" title="Bedikat HaSakin:1">1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-2" title="Bedikat HaSakin:2">2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-3" title="Bedikat HaSakin:3">3</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-4" title="Bedikat HaSakin:4">4</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-5" title="Bedikat HaSakin:5">5</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-6" title="Bedikat HaSakin:6">6</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-7" title="Bedikat HaSakin:7">7</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-8" title="Bedikat HaSakin:8">8</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-9" title="Bedikat HaSakin:9">9</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-10" title="Bedikat HaSakin:10">10</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-11" title="Bedikat HaSakin:11">11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 12</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-12">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-12" title="Bedikat HaSakin:12">12</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 13</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-13">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-13" title="Bedikat HaSakin:13">13</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 14</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-14">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-14" title="Bedikat HaSakin:14">14</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-15" title="Bedikat HaSakin:15">15</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 16</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-16">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-16" title="Bedikat HaSakin:16">16</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 17</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-17">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-17" title="Bedikat HaSakin:17">17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-18" title="Bedikat HaSakin:18">18</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 19</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-19">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-19" title="Bedikat HaSakin:19">19</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 20</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-20">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-20" title="Bedikat HaSakin:20">20</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 21</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-21">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-21" title="Bedikat HaSakin:21">21</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 22</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-22">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-22" title="Bedikat HaSakin:22">22</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 23</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-23">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-23" title="Bedikat HaSakin:23">23</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 24</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-24">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-24" title="Bedikat HaSakin:24">24</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 25</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-25">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-25" title="Bedikat HaSakin:25">25</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 26</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-26">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-26" title="Bedikat HaSakin:26">26</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 27</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-27">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-27" title="Bedikat HaSakin:27">27</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 28</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-28">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-28" title="Bedikat HaSakin:28">28</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 29</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-29">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-29" title="Bedikat HaSakin:29">29</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 30</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-30">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-30" title="Bedikat HaSakin:30">30</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 31</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-31">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-31" title="Bedikat HaSakin:31">31</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 32</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-32">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-32" title="Bedikat HaSakin:32">32</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 33</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-33">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-33" title="Bedikat HaSakin:33">33</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 34</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-34">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-34" title="Bedikat HaSakin:34">34</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 35</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-35">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-35" title="Bedikat HaSakin:35">35</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 36</summary>
+                  <a class="toc-start" href="#chapter-bedikat-hasakin-text-36">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#bedikat-hasakin-36" title="Bedikat HaSakin:36">36</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-bedikat-hasakin-text-1">Chapter 1</h4>
+          <section class="unit" id="bedikat-hasakin-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:1</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-1" aria-label="Copy link to Bedikat HaSakin:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משפטי בדיקת הסכין לרבי׳ יונה זצ&quot;ל</strong></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-2">Chapter 2</h4>
+          <section class="unit" id="bedikat-hasakin-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:2</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-2" aria-label="Copy link to Bedikat HaSakin:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עיקר חכמת בדיקת הסכין ביישוב הדעת ובכונת הלב כמו שעינינו רואות כי פעמים יבדוק האדם את הסכין ולא ימצא בה פגימה וכשהוא חוזר ובודק פעם שנייה ימצא הפגימה אין זה אלא שלא כיוון לבו בראשונה וכיוון באחרונה על כן חייב השוחט לפנות לבו מכל מחשבות בעת הבדיקה כדי שיכוין לבו ובכל כחו לבדוק יפה וכל שכן שאין לדבר עם בני אדם בשעת הבדיקה וכאשר נבאר שחייב השוחט לבדוק י&quot;ב בדיקות קודם שחיטה כך חייב לבדוק אחר שחיטה שאם תמצא הסכין פגומה לאחר שחיטה הנה שחיטתו פסולה דאמרינן בגמרא הוה עובדא ועבד רב יוסף הילולא לבריה וטרף רב יוסף תליסר חיותא ואפי׳ קמיתא דאמר שמא בעור נפגם ואמרינן התם האי מאן דשחיט בהמות רבות יבדוק בין כל חדא וחדא התם משום זהירותא יתירה הוא מפני שחיטת רוב הבהמות שלא יפול בהן ספק ולכן חייב השוחט לבדוק בין כל חדא וחדא י&quot;ב בדיקות ואסור לאדם להכניס עצמו לומר לא אבדוק בין שחיטה לשחיטה אלא באחרונה כי בוטח אני בסכין שלא תפגם כלל שאם תמצא הסכין פגומה באחרונה נמצא פושע פשיעה גמורה בשאר הבהמות בזה הפסק יש שני טעמים האחד שאסור לאדם להשחית את ממונו שנית יש שמא ח&quot;ו יחוס על ממונו ולא יאמר ולא יגלה הפגימה אשר מצא בסכין ויאכיל טרפה לאחרים וכ&quot;ש שאין לו לפשוע ועוד אם פשע חייב לשלם וגם יש לחוש שמא ח&quot;ו מתירא מפני בעל הממון ולא יגלה הפגימה ונמצא זה מחטיא את הרבים באיסור אכילת נבלה ועוד יהיו רוב ימיהם באיסור לפי׳ שכל כליהם יהיו מעורבין באיסור ואוכלים זמן הרבה באותם כלים ועל כן חייב השוחט לבדוק הסכין בין כל בהמה ובהמה כמו שבארנו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-3">Chapter 3</h4>
+          <section class="unit" id="bedikat-hasakin-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:3</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-3" aria-label="Copy link to Bedikat HaSakin:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דין סכין של גוים. </strong>אתמר השוחט בסכין של גוים רבא אמר קולף מקום שחיטה רבה בר הונא מדיח והלכתה מדיח ולקולא ואיכא מאן דפסק כרב לחומרא פי׳ סכין זה ידוע לנו בן יומו פי׳ שהגוי חתך בו ביום בשר איסור דאם אינו בן יומו הרי הוא נותן טעם לפגם ומותר והוצרכנו לומר כן משום דקיימא לן בע&quot;ז דסתם כלים של גוים אינם בני יומם אבל הרב אמר אעפ&quot;י שאינו בן יומו מצית לאוקמא וכגון שיש שמנינות על הסכין אעפ&quot;י שאינו בן יומו אסור דכי אמרינן נותן טעם לפגם ומותר ה&quot;מ במה שבלוע אבל בשעה שהוא בעין לא שנא בני יומן ולא שנא שאינן בני יומן קולף מקום השחיטה שהרי בלעה משמנינות הסכין ומדיחה במים פי׳ בית השחיטה ובגמרא מפרש טעמא דמאן מדיח משום דסבר דבית השחיטה צונן היה ולכך צריך הדחה מפני שמנינות הסכין עומד בדפנות השחיטה שאי אפשר שלא יהא שמנינות בדפנו השחיטה כיון שיש שמנינות בסכין ולכך צריך הדחה ומאן דאמר קולף כיון שהסכין דוחק בכח השחיטה ודאי בלע והילכך מדיח כיון דר׳ אמר בלע דרותח כך דעת הריא&quot;ף וגאונים אחרים אבל ר&quot;א ז&quot;ל פסק כרב דאמר קולף משום דקימא לן הלכה כרב באיסור מפני שהוא מחמיר ואע&quot;ג דפסק בגמרא דבית שחיטה אינו רותח ואינו בלע דאי הוה רותח הוי בלע אבל מכל מקום חכם הוא וצריך קליפא דהאי הוי רותח ולא סגי לה בקליפא דהנותן דבר צונן לתוך דבר חם לעולם התחתון גובר ובכן הבהמה למטה ולא סגי ליה בקליפא ולא דמי לשוחט את הטרפה דאמרינן דבהדחה בצונן סגי ליה דהתם אינו אלא לפי שעה ואי אפשר בלא הכי ומ&quot;מ הקלנו בה אבל סכין של גוים שהיא עומדת לחתוך בו איסור ודאי קליפא צריך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-4">Chapter 4</h4>
+          <section class="unit" id="bedikat-hasakin-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:4</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-4" aria-label="Copy link to Bedikat HaSakin:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דין סכין ששחט בה טרפה.</strong> סכין ששחט בה טרפה פליגי בה רב אחא ורבינא חד אמר מדיחה בחמין וחד אמר מדיחה בצונן והילכתא אפי׳ בצונן ואי איכא בלייתא דפרסא לא צריך אלא מכפרה בבלייתא דפרסא ואינה צריכה הדחה פי׳ שחט בהמה ונמצא טרפה מדיחה לסכין אפי׳ בצונן או מקנח בסמרטוט פי׳ בגד בלוי שכן קורין לאנשים המלבישן בגדים בלויין סמרטוטין וה&quot;ה לכל דבר קשה ודי לו בכך ואם מקנחו בעור הבהמה יפה הוא שהרי הוא כסמרטוט והאי דתנן סכין ששחט בה טרפה כיון דתנא סכין של גוים משום דהייתי אומר כיון דסכין של גוים לא בעי אלא הדחה וסכין ששחט בה טרפה לא לבעי אפי׳ הדחה קל&quot;ן וטעמא דסכין ששחט בה טרפה משום שיש בסכין משמנינות הטרפה וכשישחט ישאר בדופני השחיטה תדע דמטעם שמנינות ולא מטעם איסור דם דאם כן אפי׳ שחט בה כשרה צריכה הדחה ואינו כן שאם שחט כשירה מותר לשחוט אחרת בלא הדחה ועוד שהדם אינו יוצא אלא במליחה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-5">Chapter 5</h4>
+          <section class="unit" id="bedikat-hasakin-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:5</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-5" aria-label="Copy link to Bedikat HaSakin:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דין סכין של ע&quot;ז.</strong> סכין של עבודה זרה מותר לשחוט בה מפני שמקלקל הוא ואסור לחתוך בה בשר מפני שהוא מתקן ואפי׳ הסכין חדש ולא שמשו בדבר של איסור אלא שפצעו בו את האגוז אסור ליהנות ממנו כיון דשמש לפני ע&quot;ז שנא׳ ולא ידבק בידך מאומה מן החרם הנה אסור אבל מותר לשחוט בו מפני שהוא מקלקל ואעפ&quot;י שהתרתי לשחוט בו פעמים יש שאסור מפני שהוא מתקן את הבהמה כגון שהיא מסוכנת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-6">Chapter 6</h4>
+          <section class="unit" id="bedikat-hasakin-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:6</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-6" aria-label="Copy link to Bedikat HaSakin:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מנין לבדיקת הסכין מיד חכם מן התורה ר&quot;ל מנין שחייב אדם להראות סכינו לחכם קודם שישחוט שנאמ׳ ושחטתם בזה ואכלתם פי׳ בדוק כמו זה שאול ע&quot;ה אמר לישראל שישחטו בסכין שיהא בדוק מיד חכם כמו זה שהוא בדוק מידי שאני חכם ומדאמרינן זה ודאי סכין בדוק היה ולא דבר אחר ועוד אמר רב הונא האי טבחא דלא סר סכיניה קמי חכם משמתין ליה רבא אמר מעבידינן ליה ומכריזין אבשריה דטרפה הוא ולא פליגי כאן שנמצאת סכינו יפה וכאן שלא נמצאת סכינו יפה והרמב&quot;ן ז&quot;ל אמר מנדין אותו פי׳ על שביזה תלמידי חכמים ושחיטה כשירה דאין לאסור השחיטה מפני נדוייו והכי אמרינן מנדין לכבוד הרב והאי כבוד הוא לו ומאבדין אותה ממנה שלא ימכרנה אפי׳ לגוים כיון דסכינו פגום ולא חס על כבוד הרב אין חסין על ממונו. ובהלכות הריא&quot;ף ז&quot;ל כתב שמעבירין אותו כלומר שלא יהא טבח לעולם אבל אינו חייב לחזור אחריו אם אינו בפניו כששוחט דהא ליכא בזיון לת&quot;ח כיון שאינו שוחט בפניו ועוד אמרו רז&quot;ל על בדיקת הסכין במאי בדקי לה סכינה במיא בשמשא בנהרדעא בדקי לה במיא בסורא בדקי לה בבשרא אמרי בשרא אכיל לה ובשרא בדיק לה אמר רב פפא צריכה אכשרא ואטופרא ואתלת רוחתיה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-7">Chapter 7</h4>
+          <section class="unit" id="bedikat-hasakin-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:7</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-7" aria-label="Copy link to Bedikat HaSakin:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש מדות בסכין אוגרת ומסוכסכת ועולה ויורדת. אוגרת לא ישחוט בה ואם שחט שחיטתו פסולה פי׳ אוגרת משתי רוחותיה שיש שני עוקצין לפגימה אחד מכאן ואחד מכאן והגפימה באמצע וכשבודק אדם את הסכין בין בהולכה בין בהובאה מכל צד ורוח הוא מוצא את הפגימה אוגרת מלשון אסיפה פי׳ שהצפורן נאספת שם שאינה יכולה לצאת בלא נגיעת הצפורן בעוקץ מלשון אגרה בקיץ מאכלה שהוא לשון אסיפה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-8">Chapter 8</h4>
+          <section class="unit" id="bedikat-hasakin-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:8</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-8" aria-label="Copy link to Bedikat HaSakin:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מסוכסכת לא ישחוט בה ואם שחט שחיטתו כשרה פי׳ מסוכסכת מעורבת להכשיר ולפסול שאם שחט בהולכה או בהובאה כשרה ואם שחט מצד הפגימה פסולה ולכך קרי ליה מסוכסכת מלשון וסוכסכתי שהוא כמו וערבבתי. וצריכה שלשה תנאים ואלו הם שיודע בה קודם שחיטה כדי שיזהר ממנה שלא ישחוט דרך שהרוח שאין הפגימה נכרת בה התנאי השני אין לסכין אלא פגימה אחת ואינה נראית אלא מרוח אחת התנאי השלישי שתהא הפגימה עומדת בראש הסכין אבל עומדת באמצע הסכין אפי׳ מסוכסכת פסולה שמא הוליך והביא ושחט בסכין פגומה כך דעת רש&quot;י ז&quot;ל אבל רי&quot;ף והרמב&quot;ן כתבו אעפ&quot;י שהפגימה עומדת באמצע אם העוקץ עומד כלפי הראש כשרה אעפ&quot;י שהסימן יורד לתוך על כרחך כיון שהעוקץ עומד כנגד הסימן אלא שהסימן עובר עליו ונופל בפנימה ואין יכול העוקץ לבזוע הסימן וכשרה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-9">Chapter 9</h4>
+          <section class="unit" id="bedikat-hasakin-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:9</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-9" aria-label="Copy link to Bedikat HaSakin:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עולה ויורדת כגון שהסכין נמוך במקום אחד וגבוה במקום אחר כגון  שהיה שם פגימה גדולה והוחלף העוקצין של פגימה ונשאר הסכין עולה ויורד כיון שאין שם עוקצין אינה חשובה פגימה ומותר לשחוט באותו סכין אפי׳ לכתחלה. כמה הוא אורך הסכין ששוחטין בה כל שהוא יש מפרש כל שהוא ר&quot;ל כל שיש בו גמטריא של הוא שהם י&quot;ב וכן מצינו בשאול כשצוה לישראל אמר ושחטתם בזה שיש בו מלות  בזה שיש בה שנים עשר אצבעות וג&quot;כ גוזרין מזה שנים עשר בדיקות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-10">Chapter 10</h4>
+          <section class="unit" id="bedikat-hasakin-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:10</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-10" aria-label="Copy link to Bedikat HaSakin:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משפטי הבדיקה בריאה</strong></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-11">Chapter 11</h4>
+          <section class="unit" id="bedikat-hasakin-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:11</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-11" aria-label="Copy link to Bedikat HaSakin:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">סרוכה או דבוקה על פי המנהג והלכה נמצאים כללים בשלשה ענינים ומהם יוצאות כמה פארות וסנסנים. הראשון במנין האונות. השני בסרכא יוצאה מן הריאה לגוף הבהמה או לשאר המקומות הסמוכות לה. השלישית בסירכא היוצאה ממקום למקום בריאה עצמה לפיכך הבודק צריך שיבדוק בשלשתם ולדקדק במשפטם על פי משמרתם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-12">Chapter 12</h4>
+          <section class="unit" id="bedikat-hasakin-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:12</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-12" aria-label="Copy link to Bedikat HaSakin:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הדין הראשון במנין האונות ה׳ אוניניות אית לה לריאה כשהבהמה תלויה ברגליה ופניה כלפי הבודק שלשה מן הימין ושתים מן השמאל זולתי שתי האונות הגדולות התחתונות וזולתי עינונותא דוחדא הנמצאת בימין ברוב הבהמות ואי חסיר מתרתי דשמאלה טרפה אבל אי חסיר מתלת ימינא ואיתא להך עינונותא תמן כתב הגאון ז&quot;ל דמשלמת היא וכשרה וכן כרתב הרמב&quot;ן ז&quot;ל ודעת הרשב&quot;א לאסור כיון דלא קיימא בדרא דאוני ומנהג כדברי הגאונים. ואם תאמר הואיל ואי לית לה היאך עינינותא תחשב כאונא להשלים מנין האונות יש לפרש לפי שהבהמות חלוקין לשני מינין יש שיש להן ויש שאין להן לכך אינה פוסלת משום חיסור ומשלמת אבל חסרון דשמאלה אע&quot;ג דמשתכחי בשמאלה לא משלמה משום שהוא פסולה לה כל שכן דלא משלמה דלאו דרכה למהוי תמן ואי משתכחי תרתי עכינונותא דורדא רש&quot;י ז&quot;ל אוסר דאפילו חדא לא שארו בגמרא אלא משום דכל הני עזי בריתא הכי אית להו אבל תרתי לית להו וטרפה. והגאון ז&quot;ל הכשירו מטעם דכיון דאמר מצד ימין דהני עזי בריתא הכי אית להו ולא מפסלא משום יתירה דאשתכח דכל ביני וביני של צד ימין דרא דאוני הוא על פני כלו כשאר דרא דאוני דלא משתכח טרפה אלא מגבו אבל מקמא אפילו כמה עינוניות כשרה דהכי אמר בגמרא אבל ביני וביני טרפה דבההוא מוקמינן ליה לצד שמאל דאי איכא אפי׳ חדא טרפה דבההוא צד לא משתכח כלל כדאמרינן כל היתר כנטול דמי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-12">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-13">Chapter 13</h4>
+          <section class="unit" id="bedikat-hasakin-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:13</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-13" aria-label="Copy link to Bedikat HaSakin:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">והתוספות בשם ר׳ אפרים הכשירו מטעם אחר דודאי האי דאמרין בגמרא סבר רב אשי למטרפיה בתרי הוא דאי חדא כלהי הכי אית להו ולא הוה תלי בעזי בריתא ולא הוה ג&quot;כ הדבר מחודש אצלם כמו שאינו מחודש אצלנו ולפי סברא זו משמע דאי לית ליה כלל טרפה אך המנהג להכשיר בין אית לה תרתי בין לית לה כלל וכן אם נמצאו עוד אונות יתרות על אלו כשרה דלית הלכה כרבא ביותרת וה&quot;מ דקימא בדרא דאוני אבל מגבה אפי׳ כטרפא דאסא טרפא ואי פחותא מטרפא דאסא כשרה וכן כתב הרמב&quot;ן ז&quot;ל בפחות מכאן אינו חשוב כאונא וכן אם יחסר מנין האונות ואונא קטנה כטרפא דאסא משלמת וחשובה כאונא אעפ&quot;י שנראית מלשון אפי׳ דה&quot;ה כשהיתה פחותה מעלה של הדס ואורחא דמלתא נקט שאין דרך שתמצא פחותה מזה אעפ&quot;י כן מצינו לשון אפי׳ בתלמוד דוקא דאשכחינן גבי נטילת ידים בברכות ד׳ מילין וה&quot;מ הוא לפניו אבל לאחוריו אפי׳ מיל אינו חוזר ומינה מיל הוא דאינו חוזר ודכותיה אשכחינן בהרבה מקומות בתלמוד והריאה דרמיא לאופתא והיא בקעת עצים והרבה לשונות נאמרו בה ואחד מהם דשיעא כאופתא דלית לה חתוכי דאוני וכתב הרמב&quot;ן ז&quot;ל אם היה ביניהם כמו עלה של הדס בין בעיקרן בין בסופן בין באמצען כדי שיהיה ניכר שהם שתים דבוקות מותרת ואי לא הרי זו חסירה וטריפה וכן נמי אי לא מנכרן חתוכי דאוני כלל וכדו פסלה מנכרן חתוכי דאוני דילה בחשבון הראוי כשרה ויש אומרים דאי סריכין מעיקרי הוא ועד סופפי הוא מיתינין סכינא חריפא ומפיקינן להו אי מפקא זיקא חדא היא וטרפה ואי לא כשרה ויש אומרים שאם נדבקו האונות בסרכא וכשאדם נותן אצבעו ביניהן מתפרקת הסרכא ונעשית שם חיתוך בלא קריעת בשר הריאה כשרה דלא דמיא לאופתא דהא דאמרינן כסדרן היינו רביתיהו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-13">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-14">Chapter 14</h4>
+          <section class="unit" id="bedikat-hasakin-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:14</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-14" aria-label="Copy link to Bedikat HaSakin:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הדין השני דין סרכא היוצאה מן הריאה לגוף הבהמה או לשאר המקומות הסמוכים לה אונא לדופן כשרה וה&quot;מ בהסירכא יוצאה מגב האונא ולדופן אבל מתחתית האונא לדופן טרפה דלאו מקום רביתא הוא וצריך שיהא נסרך ונותר ונאחז כבשר שבין הצלעות או לעצם ולבשר דאז הויא סתימה ולא מתפרקא אבל בעצם לבדו אין דבוקו יפה וחזק ומתפרק ולא הוי סתימא ויש שאין מתירין עד שיהא נאחז לבשר לבדו ודיקינן ליה ממשמעות הלשון מדלא קאמר והוא דסביך בדופן כדאמרי׳ ודופן סותמתא ועל זה כתב הרמב&quot;ם ז&quot;ל אבא מרי ז&quot;ל מן האוסרין ואני מן המתירין והיכא דסריך לגרמא לבד אוסר הרב ז&quot;ל והראב&quot;ד ז&quot;ל הגיה עליו דלא אמרו דסביך בבשרא אלא למיעוטא היכא דלא סביך כלל שכל שהיא מסתבכת בבשרא היא מסתבכת שאין עצם בלא בשר ומנהגינו כדעת הרמב&quot;ם ז&quot;ל להתיר לעצם ולבשר וכל שכן לבשר לבדו אבל לא לעצם לבדו והראב&quot;ד ז&quot;ל כתב אך אם היתה מכה בדופן מכשריהן לה בעצם לבדו ק&quot;ו מאומה לדופן וטעמא דאונא לדופן דכשרה משום דמקום רביתא הוא כדבעינן למימר קטן שמע מינה דכל סרכא היוצאה מן הריאה לגוף הבהמה ואסרכה שלא במקום רביתא מרפה כגון לגרגרת ולשמנינותא דגרגרת לחזה ולשמנינותא דחזה לשומנן הלב והוא בלשון חכמים טרפשא דליבא לקנה הלב והוא חד מתלתא קנה דאמרו רז&quot;ל חד פריש לליבא וחד לקנה הערוגות המחובר בשדרה וערוגות הריאה תלויות בו מימין הריאה ומשמאלה והוא שנחלקו בו רב ושמואל בנקבתו לטרפשא דכבדא והוא בלשון תורה יותרת הכבד והיא חתיכה לבנה סמוכה לצואר כל אלו המקומות אם נסרכא האומא או האונא בהם לא סתום לה דכלהו שלא במקום רבותן נינהו ולא מצינו מי שנהג היתר באחד מאלו אבל הרמב&quot;ן ז&quot;ל דלא משוה חילוק בין חזה ומיצר החזה שהכל הוא מתיר ולא נהגנו כמותו ומצאתי כתוב בשם הרב ברזילוני ז&quot;ל ששלחו למר יעקב גלקי ז&quot;ל שמענו עליך שאתה מתיר אונא לטרפשא דליבא והוא השיב ח&quot;ו אך כמה ריאות יש שהאונות מדובקות בחלב שבטרפשא דליבא מרוב שמנינות הבהמה ואנו מפרקים אותו שומן מן האונא ולא מצאנו בו שום סרכא ובזה אני מכשיר ומתיר והודו לו הגאונים ע&quot;כ, ואומר אני שלא לכל אדם אמרו כי מאן חכים למעבד הכי אלא מר יעקב דגברא רבא הוה שיהיה נזהר לדקדק ולראות שלא יהא באותו דבקות סרכא והבא להורות כן יתכן אחר נפיחה ובחזה שנהגו בו איסור הגאונים ז&quot;ל נתנו בו שיעור עד היכן נקרא דופן ואמרו שחוט אחד נמשך על ראשי הצלעות בינם ובין החזה והוא החוט שמנקרין הטבחים עד אותו חוט נקרא דופן וכשרה וכן כתב ר׳ גרשום ז&quot;ל וצלעות קטנות שעמדו כמין גם דינן כדופן וכן שומן החזה התולה על הצלעות החזה דינו כדופן והאי דאסרי סרכא לשומן החזה ולאידך שומני לא תקשי לך הא דקימא לן הלב טהור סותם את הנקב היכא שאינו עשוי׳ ככובע שאין חלב טהור סותם אלא הגדל עם אותו האבר בעצמו כגון שומן הדקין וכיוצא בו לפי שהוא מחובר בו ושוכב עליו תמיד אבל ריאה שנקבה ושומן הסמוך לה סותמתה טרפה שאין השומן ההוא מחובר לריאה וכן כל כיוצא בזה וכ הדין נותן שהרי אפילו בחלב טמא ששוכב עליו תמיד אמרינן שאינו סותם לפי שאינו מהודק בו יפה כ&quot;ש זה שאינו מעצמו ופעמים שוכב עליו ופעמים מתפרד ממנו ובשר הריאה שנ גד חיתוך האונות דינו כאונות והוא הנקרא גג האונות וסרכא היוצאת משם לדופן כשרה ואעפ&quot;י שיש מחמירין מנהגנו להתיר וכי משערינן בחוט השוה משערינן ולא באלכסון כמו שהאונות הולכות שכל מה שכנגדן עומד במצר החזה וכן סרכא הבאה מאונא לדופן שכנגד האומא מותרת ויש אוסרין אותה ונכון להחמיר ואם נקב הדופן כנ גד סמיכת הריאה אילו מנין כלל ואל מחמת דופן דהא אילו מינקב כולי האי דופן לית לן בה דלא חשיב נקיבת דופן בהדי טרפות אלא מחמת שניקב הריאה ואינה סותמת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-14">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-15">Chapter 15</h4>
+          <section class="unit" id="bedikat-hasakin-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:15</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-15" aria-label="Copy link to Bedikat HaSakin:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אומה הסמוכה לדופן טרפה ואעפ&quot;י שהדברים הנראים לנו משטת התלמוד דאפי׳ בדליכא מכה בדופן סגי לה בבדיקה כתבו הגאונים זכרם לברכה דכי ליכא מכה בדופן דלא בדקינן לה וטרפה ואי איכא מכה בדופן לא מכשרינן ליה אלא בבדיקה אבל בבדיקה מיהא מותרת אעפ&quot;י שיש צמחים בריאה ולא חשינן לקרום שעלה מחמת מכה ויש אומרים שהיא כשרה לגמרי אפי׳ בלא בדיקה ואפי׳ נמצאת נקובה כשנתפרקה מן המכה דאמרינן עם פריקתה ניקבה מפני שקרומה דק ואחר שהוא נאחז במכה אי איפשר לקורעו בלא קריעה וכן כתב הר&quot;מ ז&quot;ל. ומצאתי כתוב בשם ר׳ האיי ז &quot;ל דכי תלינן במכת הדופן ה&quot;מ שיוצאה כל סרכא ממקום מכה אבל מתפשטת חוץ לה לא מכשרינן לה ויש אומרים שאם יצא רוב הסרכא מן המכה ומעוטה לחוץ מהמכה דכשירה וכן בכל סרכא שיוצאה מן מקום כשר ופסול דאזלינן בתר רובה כגון אונא ואומא לדופן או אונא בחזה ובדופן וכיוצא בהן אזלינן בתר רובה ונהגנו כדברי הגאון ז&quot;ל וכתב הריא&quot;ף ז&quot;ל דכי הכי תלינן במכת הדופן הכי נמי תלינן במכת שאר מקומות שסרוכה הריאה בהן כדין האמור בדופן וכן נראה לי דמה לי דופן דמה לי שאר מקומות ביון דרגלים לדבר דבמקום שהסרכא דבוקה שם יש מכה הרגילה להוציא ליחה ולשלוח סביבותיה סבוכות ויש שחולקים עליו דלא אמרו אלא בדופן לפי שהדופן קשה להסתבך מחמת ליחה שבריאה הילכך אמרינן שהרי נסרכת מחמת ליחה בדופן שהיא קלה ורכה להסתרך לה אבל שאר מקומות שהם נוחים להסתרך לריאה כשם שהריאה נוחה להסתרך אליהם חוששין שמא מחמת הריאה הוא וטרפה ואם תקשי לך האי דאמרינן הכא שהדופן קשה הוא להסתרך מחמת ליחה שבריאה דאם כן היאך תלינן בריאה בדליכא מכה בדופן דזה אמרו להחמיר אבל לא להקל וכן נהגו שאין תולין במכת שאר מקומות כי אם במכה בדופן כמו שכתבנו וסרכא בריאה מן האונה לאומה ומתוכה יוצאה סרכא לדופן קורין אותה סרכא כפולה ונופחן לה אם נמשכת אחר האומה טרפה ואם אחר האונה כשרה הביא הרשב&quot;א ז&quot;ל משמן של גאונים שאם כל האומה מהשלמת האונות ולמטה דבוק כלו כשנראה בלא פילוש כלל כשרה שכך מראין הדברים שזו דרך ברייתה ואם יש שם פיצול שאין כל הגג כלו דבוק טרפה וכן מתירין שפולי האומה והיא כשהיא דבוקה מאחריה ממקום חבורה בשדרה עד למטה בטרפש הכבד וכבר בא בתלמוד ההפרש שבין אונה לדופן דכשרה ובין אומר לדופן דטרפה וטעמא דמלתא דכאן מקום רביתא וכאן שלא במקום רביתא ואמרינן מקום רביתא היכא מקום חתוכי דאוני שהם סמוך לצואר במיצר החלל וגדלין שם עם הריאה עם הדופן וסומכין תמיד עליו ולא מפרקא ההוא סתימה אמרי׳ מקום רביתא ולכך כשרה אבל אומה גדולה שהיא ברוחב החלל ורחוקה מן הדופן ומפרקא ההיא סתומה מכח דחיפתה מצאתי כתוב בשם מחזיק הבדק וזה לשונו ההיתר לאונות הטעם לפי שבהליכת הבהמה האונות דחוקות ורובצות זו על זו ומגינות ולא שלטי בהו אוירא ומתחממה והדרה בריא אבל האומות הגדולות מתפרקות מן האונות בהליכת הבהמה ושולט בה אוירא ולא הדרה בריא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-15">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-16">Chapter 16</h4>
+          <section class="unit" id="bedikat-hasakin-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:16</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-16" aria-label="Copy link to Bedikat HaSakin:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הדין השלישי סרכה היוצאה ממקום למקום בריאה עצמה תרתי אוני דסריכי להדדי כסדרן כשרה שלא כסדרן טרפה פירש&quot;י ז&quot;ל שלא כסדרן כמין דסריכין מראשונה לשלישית ממעל ומתחת ומתוך שזו נוטה לכאן וזו נוטה לכאן הקרום מתפרק ונסתר משמע מיהא דכסידרן הוא כל דסריכין חדא אחברתא אפי׳ מגב לגב או מגב לחיתוך מתקרי שלא כסדרן שאין לו דבר שיסתום אותו מה הוא מחתוך לחתוך הסכימו הגאונים ז&quot;ל להכשיר אעפ&quot;י שנסרכו באמצע ובעקרן מיפרקי זו מזו דכיון דחדא אחברתא היינו רביצה ורביעתה וכשהבהמה בחייה אפילו בלא סרכא דחקי בהדדי וכן כתב הריא&quot;ס ז&quot;ל בתשובה וכן דעת רבי׳ האיי ז&quot;ל וכן נהגו היתר על פיהם בכל המקומות אעפ&quot;י שחז&quot;ל מגמגם איסור בדבר עד שנסתרך אונה לחברתה מתחילתה ועד סופה כדי שלא יתפרקו בנענוען ואפילו בסרכא המושכת מתחילת חיתוך זו לסוף חיתוך זו באלכסון ונהגנו להכשיר אבל מגב לגב או מגב לחיתוך נהגנו לאיסור מטעם שכתבנו ויש אומרין דכסידרן דמכשרינן לה דוקא בנפיחה אבל בלא נפיחה לא ודיקינן לה מדאמר רבא דלא כסדרן לית להו בדיקותא ולא אמר טרפה מכלל דהכי הוא דלית בהו בדיקותא הא כסדרן אית להו בדיקותא ובדיקה מהא בעיא כיון שנסרכו ולא נהיר דכיון שמפרש טעמא דהיינו רביתיהו משמע דבלא בדיקה כשרה וכן כתב רבי׳ האיי ז&quot;ל וכן נהגו ולא תקשי לך מלת אדרבא שכך רצה לומר דלא תימר דשלא כסדרן דקינן לה אי מבצבצא כדבדקינן לה הסמוכה לדופן דהתם תלינן בנקיבת דופן וכשרה אבל הכא בתרתי אוני דסמיכין שלא כסדרן במאי תלינן אי הכא אי אינקב טרפה ואין האחת מגינה על חברתה דאינן רבוצות זו על זו ולכך אמר רבא דבשלא כסדרן לית ליה בדיקותא דאפילו לא מפקא זיקא טרפה הילכך בכסידרן אפי׳ בלא בדיקה אונא לאומה הסמוכה רש&quot;י ז&quot;ל הכשירה בשם רבו ואמר לא מצינו אומא בתלמוד דבכלל היתר אוני היא ועוד וכי בשביל שוטים אלו שקורין לה אומה נאכל שם אונתינו ויש אוסרין משום דלא אמר רבא אלא אוני דסמיכין להדדי אבל אומה לא פרשו ואין לנו אלא מה שמנו חז&quot;ל וכן דעת רבי׳ יעקב ז&quot;ל שלא הכשירו אלא אוני דסמיכין אע&quot;ג דאומא לא הוזכרה בגמר׳ כלל ודאי לא הוזכרה בשם אומה אבל בכלל אונא ליתא דריאה מקרי׳ כדאמרינן ה׳ אוני אית לה לריאה ואם איתא נינהו שבעה אלא דלאומי קרי ריאה ולאוני אוני ואע&quot;פי שכך הוא כדברי רבי׳ שאין אומא בכלל אוני דאומי ריאה מקריא משמע מיהא הלכה למעשה כדברי רש&quot;י שהסכים עם המתירין דהא טעמא דמלתא משום דהיינו רביתיהו ואונא לאומה דסמיכין נמי מההיא טעמא מתכשרה דהא היינו רביתא ורביצתה ותמיד הן שוכבת זו בצד זו אפי׳ בלא סוכה ומה שהזכיר אבא אוני לבד ולא אמר אומא או ריאה דסריכן כסדרן כשרה וכ&quot;ש אוני הא קא יהיב רש&quot;י ז&quot;ל טעמא להכין אותה ולסעדא דעיקרא דמלתא דרבא לא שמעין הכשירה כסדרן אלא כח דאיסורא קמ&quot;ל דאוני דסריכן שלא כסדרן טרפה שלא תאמר כיון שעומדת במיצר החזה ואינן עשויות להתנועע ולהתפרק זו מזו כל כך לא תפסול לעולם אבל אומה לאונא שלא כסדרן לא איצטריכה ליה לרבא למנקט כיון דאומה במרחב היא עומדת קצת ונסרכת לאונא שלא כסדרן האי ודאי טרפה וכבר נהגו להתיר כדברי רש&quot;י ז&quot;ל ובין אונא לאומה בין אונא לאונא מגב לגב או מגב לחיתוך טרפה וכן נהגנו להחמיר משפולי לשפולי אי נמי משפולי לחתוך דמספקא לן שמא מן הגב היא באה עד דנפחינן לה ובנפיחה יתברר אם היא מגב או מחיתוך ועינינותא דורדא כתב הגאון ז&quot;ל דכל היכא דסריכה ואפילו לכיס שלה טרפה דלא הכשירו אלא באוני דכיון דהיינא רביתא כל חדא וחדא מגינה על חברתה אבל ענינותא דורדא זו אין לה מקום כשרות לסרכה דכלהו שלא כסדרן הוה אצלה ועוד מצאתי כתוב משמו שהיה מתיר כשהיא דבוקה מצד אחד וה&quot;ה נמי אם סריכן תרתי ענינותא אהדדי טרפה והא שלא הזכירו הכשיר כסדרן אלא באוני אומר אני אחר שהכשירו תרתי או תלתא עונינותא קורא אני אותם דרא דאוני ודין אחד להם ואם דבוקה בכיס שלו בלא פילוש נעשה מעשה על פי הראב&quot;ד ז&quot;ל להתיר וסרכה תלויה באונה או באומה יש מן הגאונים שאוסרין אותה ומר רב יהודאי ורב נטרונאי אוסרין אותה וקורין לה סרכה בת יומא אבל הראב&quot;ד ז&quot;ל התיר אותה כי סרכה כשמה כן היא דמשמע שנסרכת משני ראשיה וכיון שאינה נסרכת כי אם מצד אחד אינה סרכא וכשרה והרמב&quot;ם קורא לאוסרין מכלים ממונם של ישראל ומצריכה נפיחה ונהגנו עכשיו להתירה אפילו בלא נפיחה וצריך לעיין אם נמצאת סרכא תלוייה באומא וכנגדו סימן בדופן ואומר הבודק ברי לי שלא היתה דבוקה בשעת שבדקתיה שעד אחד נאמן באיסורין ואפילו בשחיטה שבהמה בחייה בחזקת איסור עומדת כ&quot;ש אחר שחיטה שעומדת בהיתר שיהא נאמן עד ונראה לי לדון ולהורות אחר שלפי הגמרא אפי׳ אומא הסמוכה לדופן בבדיקה סגי לה ולזאת שלא מצאנוה סמוכה בדין הוא שיפסק לה בבדיקה ונכשרת וסרכה שהיא נדבקת מעט ולהדיא מתפרקת ונימוחה נהנו בהרבה מקומות שימשמש בה הבודק באצבעותיו מעט ואם הם נימוחות ונשמטות כשרה שרירין הן ואעפ&quot;י שהם נדבקות ולא חיישינן שמא סרכא בת יומא או יומים היא ודבר זה קבלה היא בידם רב מפי רב ואומר כי אם יהיה סרכא כל עוד שיד הבודק ממשמש בה יתחזק ויתקשה ושוב כמו יתר ואם היה ריר יהיה נימוח לאלתר ובכאן לא נהגו כן ולא נכון לעשות כן כי הסרכא היום הראשון שנתהוה לא היתה כי אם ריר ומעט מעט היא מתקשה וכל סרכא מן הריר היא באה ועוד חשש למשמשים שאפשר שיעקר ראשה אחד שלא לדעת וידמה להם שכבר נימוחה כי שגיאות מי יבין ואנא השם מנסתרות נקני גם מזדים חשוך עבדך ואל ימשלו בי וגומר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-16">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-17">Chapter 17</h4>
+          <section class="unit" id="bedikat-hasakin-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:17</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-17" aria-label="Copy link to Bedikat HaSakin:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וטעם פסול הסרכות דעת רש&quot;י ז&quot;ל והראשונים כתבו לפי שאין סרכא בלא נקב וכדמשמע לן מדאמרי׳ דלא דמי תרתי אוני דסריכין אהדדי לריאה הסמוכה לדופן דאלו התם אי סלקא סירכא מחמת נקב דופן לית לן בה אבל הכא אינקיב האי טרפה אלא מחמת הוא שעלתה סרכא זו ונסתבכה במקום אחר והוה לי׳ הריאה שניקבה הלכך שלא כסדרן דזו נוטה לכאן וזו נוטה לכאן סוף הקרום להתפרק ויתגלה הנקב אבל כסדרן הולך וחזק הוא בכל עת וכאילו אין שם נקב דמי ולא תקשי לך הא דקי׳לן קרום שעלה מחמת מכה בריאה שאינו קרום דלאו כללא הוא גבי סתימה אחרת עם הקרום כדאמרינן ריאה שנקבה ודופן סותמתה כשרה ולפי זו שטה ראוי לפסול אף מחיתוך לחיתוך דסריכן בשפולי דאונא משום דאינן דבקות יפה ואפילו כסדלקא סרכא באמצע האומות באלכסן דאין זו סתימה חזקה דבשביל זה טרפינן אומא לדופן מפני שעומדת ברוחב החלל ויתפרק ולא ישאר סתימה אלא מחמת נקב לבד ואינו סותם וסרכא תלויה ג&quot;כ פוסלת לפי שטה זו דמחמת נקב סלקא ואין לה דביקות המנין עליה וכבר כתבנו מנהגנו בכל אלו הסרכות. והתוספתות כתבו דודאי יש סרכא בלא נקב דפעמים שעולה מחמת ליחות וחמימות המקום וטעם פסולתה שלא כסדרן לפי שחוששין שמתוך נענוע הבהמה מושכת הסרכא וסופה לינקוב להתפרק בריאה בקריעת הקרום וכל העומד לינקב כנקוב דמי ואוסרין אותה מעתה אעפ&quot;י שנשחט קודם פרוקא שכן דרך הטרפות כל שעלה בה דבר שעתידה ליטרף מחמתו וקדם ושחטה לא הואיל כדאמרינן בדרוסה זהרא מקלא קלי אבל כסדרן אין סוף הקרום להתפרק ואם נתפרדו זו מזו בנחת הם נפרדות ולא יעשה נקב בפירוקן וריאה הסמוכה לדופן חוששין שמא יתפרק הקרום מצד הריאה ויקרע העור אלא א&quot;כ יש מכה בדופן שאז נראה דממקום המכה עשוי להתפרק וכי ליכא מכה בדופן טרפה ורב נחמיה דבדיק לה בפושרין קסבר כיון שעלתה בנפיחה והשתא מיהא לא מתפרקא תולין שתתפרק הדופן וכשרה והאי דאמרינן גבי ריאה אונין דסריכין אי אינקיב טרפה הכי קאמר עשויין הן להתפרק ויקרע העור מכאן או מכאן והרי היא כנקובה מעתה והרי הוא כאילו אמר אי מנקיב האי טרפה גם יש ספרים בלשון מנקיב והוא מורה על זה ולפי שטה זו יש להכשיר סוכא תלויה שהרי יש לתלות דמחמת משקין שהיא שואבת היא פולטת ליחה עבה ומתדבקת ונמשכת כחוט והראב&quot;ד הכריע בין שתי השטות שכתבנו דסרכא שלא במקום רביתא ודאי מחמת נקב היא דאי לאו נקב סורכא מנין ואעפ&quot;כ שעולה בנפיחה אומרין קרום עלה באותו נקב אבל כשהסרכא במקום רביתא תולין דמשום דוחק רביצתה עליו עלתה שם סרכא לא מחמת נקב והיינו דתוב בדיק לה רב נחמיה וכשעולה בנפיחה תולין דמחמת לחות נסתבכה שם ועל פי סברא זו הוא אומר דאונא הסמוכה לדופן דמכשרי אפי׳ בסרכא לגרמא כשרה דכיון דמקום רביתא בהא ליכא למיחש לנקב ועל כן לא אמרי׳ הוא דסביך כבשרא אלא בריאה שניקבה דבעינן סתימה אלימתא הא לאו הכי לא צריך ולפי שטה זו סרכא תלויה שלא במקום רביתא אסורה דודאי מחמת נקב היא הלא כתבתי לך שלישים בטעמי הסרכות ובאמת לא יכולתי להעמיד מנהג בשטות אחד מהם כי אני רואה שכל אחד ואחד מהם אוסר ומתיר לפי שטתו וזה מה שכתב הרמב&quot;ם ז&quot;ל לדברים אלו אינם על פי הדין אלא על פי המנהג ואל ישנה אדם מנהג מקומו אשר הטה עושים כי כל העדה כולם קדושים ואלו ואלו לא נתכונו אלא לדבר אחד כי כולם נתנו מרועה אחד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-17">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-18">Chapter 18</h4>
+          <section class="unit" id="bedikat-hasakin-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:18</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-18" aria-label="Copy link to Bedikat HaSakin:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">טעם לבדיקת הריאה יותר משאר טרפיות וסברת רוב המפרשים ורוב הפוסקים שבשביל שהריאה עלולה כאלו הפרכות חשו חכמים לבדיקתה יותר משאר טרפיותיה הר&quot;י זיל השיג על זה הטעם דאם כן תהי׳ כל הריאה צריכה נפיחה שהרי אין סרכא אוסרת אלא מחמת נקב כשטת הגאונים ז״ל ואעפ&quot;י שיש מקצתם נולדו מחטת חום חשו לסרבות הכאות מחטת נקב ואם לסרבות הבאות מחטת נקב חשינן ניחוש לנקב כלא סרכא שאם אמרו אין סרכא בלא נקב ולא אמרו אין נקב בלא סרכא ואין פרכות מצוייות הנקביים מצויין שאף הם מחמת נקב ותחוש להם אבל טעמו של דבר זה כדי להתיר המכשולים לפי שהסרכות נכרות לעינים ואם שהם מצויות אם לא נבדוק בהם יבא הדבר לידי הפסד רב ורבו הטכשולות דפעמים שנמצא אדם סרכא בריאה ויחזור על לוקחי בשר לשכור כליהם ולהריץ מאכלו לפני בלבו ואפשר שיחוס מי שאינו הגון על ממונו ולא יחוש ויאכל לשי׳ תקנו שיבדוק ואחד כך יקח אבל שאר טרפיות שתולין בנקב או כענינים דקים שאינם נמצאים לא חשו להם חכמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-18">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-19">Chapter 19</h4>
+          <section class="unit" id="bedikat-hasakin-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:19</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-19" aria-label="Copy link to Bedikat HaSakin:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ועוד טעם אחר בדבר הקרוב והמזומן לעינים בפרכות הריאה דמשתכחי בפתיחת הנהמה מיד לא נכון להעלים עין מן האסור אך מן התמה הוא שלא מצינו לרז&quot;ל בעלי התלמוד שיצריכו זה הבדיקה ככלל דבריהם בפרק הטרפות כי אם למיחש להם כשימצא בלתי טעמים הנמצאים אלא במקומם כגון האי דאמרינן כפרק אין צדין נטיעה מקטע רגליהון דקצביא ורבו עלי נדות פי׳ נטיעה תשובתם לקצבים ורכו עלי נרות שממתינים משום ערלה שלשה שנים ולא ימתינו לבהמה עד שתבדק ולנשותיהם שבעה נקיים וכן בירושלמי נמי קתני עלה נטיעתך אתה משמר שלישה שנים ואי אתה משמר בהמתך וכן בילמדנו אמר ר׳ יהודה בן פדיה מן יגלה עפר מעיניך אדם הראשון שאתה לא יכולת לעמוד בנסיונך אפי׳ שעה אחת והרי בניך משמרים כל המצות שנתנו להם אחד מהם עומד ונוטע מעמיר ומכניש טורח ומשקה ורואה פירות נטיעה לפניו כשהם מנוכרות וקופץ ידו ואינו טועם מהם ואתה לא יכולת לעמוד בנסיונך אפי׳ שעה אחת ובניך נצטוו את זה תאכלו ואת זה לא תאכלו וביותר אדם מישראל לוקח בהמה שור או כבש או עז שוחט ומפשיט רוחץ ובודק בריאה ונמצאת טרפה מונע ידו ואינו אוכל הוי אומר אמרת ה׳ צרופה מפני שעניני הסרכות דתיהם שונות כפי מנהג המדינות הצגתי אותן לבדיהן ויש שש חלאים אחריש שאש יארעו לריאה אשר נח בהן להמית אותה ואלו הן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-19">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-20">Chapter 20</h4>
+          <section class="unit" id="bedikat-hasakin-20" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:20</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-20" aria-label="Copy link to Bedikat HaSakin:20">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הוי יודע דבל טרפות ששנו חכמים בריאה משום השש נקב נגעו בה וזה הוא לישון רש&quot;י ז&quot;ל בזה ובל הנך טריפות דמנינן לקמן בריאה כגון חלוף דאוני ודמיא לבשרא ולשיעתא וריותא ואטים בריאה כלהו בכלל נקבה בריאה או שהשרה איתיניהו דחליף היינו הסרה ממקום שריאה והנהו חזותא לקתוא הוא ובל לקותא סופה לנקוב והוד, ליה נקובה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-20">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-21">Chapter 21</h4>
+          <section class="unit" id="bedikat-hasakin-21" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:21</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-21" aria-label="Copy link to Bedikat HaSakin:21">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הריאה שנקבה טרפה אעפ&quot;י שעלה קרום עליו ונסתם בד&quot;א שנוקבו שני הקרושות אבל ניקב זה בלא זה בישרה ובת: הרשב&quot;א ז&quot;ל ויראה לי שאם נקבו זה שלא כנגד זה אעפ&quot;י שנקנו שניהם כשרה וסתירה לזאת הסברה מצאתי שהאי דאמרי׳ נבי ריאה דאושא דאי לא בצבצא מיא זיקא דביני ביני הוא משמע שהרוח נכנס בין שני הקרושות דרך נקב התחתון ואש יהיה נקב בקרום העליון בכל מקום שיהיה יצא הרוח להוץ ויבצבצו במים הרי לך שנקבו זה שלא בנכד זה וטרפינן לה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-21">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-22">Chapter 22</h4>
+          <section class="unit" id="bedikat-hasakin-22" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:22</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-22" aria-label="Copy link to Bedikat HaSakin:22">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">האי ריאה דאיגליד דאינהו סומקא בשרה והיא שניטל הקרוש העליון ונשאר התחתון כתמרה ארובה נשרה ונתב בעל הלבות גדולות והוא דלא מפקא זיקא אלמא קסבר בעיא בריקה בנפיחה מיהו כשרה בלא בדיקה משמע אלא א&quot;כ פרשו בגמרא ואעפ&quot;י שהחמירו חז&quot;ל בריאה מפני שעלולה לקבל טרפות יותר משאר אברים הרי היא בבליל בני טעים שאש בא זאב או כלב ונטל את הריאה והחזירה כשהיא מנוקבת תלינן כזאב ובן אי אינקיב ריאה היכא דמשמשא ירא דטבחא תלינן בירא דטבחא וכת: רש&quot;י ז&quot;ל אני שמעתי במצר החצר שמתוך דוהק היד קורע את הריאה בציפורניו ובדומה לי אני בבל מקוש שיודע שיוכל לתלות כגון נקב העשוי כשבין או שתלשה מלמעלה בחזקה ואחר בך נמצא בה הנקב אינקיב ריאה היכא דליכא למתלי בירא דטבחא מקיפין אפי׳ מערוגה לערונה ופי׳ הגאונים ז&quot;ל ריאה זו לריאה אחרת ודוקא מבהמה דקה לרקה ומנסה לגסה אבל לא מדקא לגסא ולא מנסא לדקא ואין מדקדקין מאונא לאונא ומאומא לאומא אבל אפי׳ מאונא לאומא ומאימא לאונא בבהמה שהיא מינה ופרישנן ערוגה אונא או אובא של צד ימין או של צד ששאל כלומר שאפי נקבה מצד זה מקיפין כצד שני ובלבד מאונא לאונא שבנגדה ומאומא לאומא אבל לא מאומא לאונא ולא מאונא לאומה אפי׳ בבהמה אחרת והיינו רקה וגסא דקאמרי׳ בגמרא אין צריך לומר שאין מקיפין מבהמה לבהמה בלל ולא משמע הכי לישנא דגמרא דקאמרי נשא ודקה והוי ליה למימר קטנה וגדולה או לשון אחר דלא למטעי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-22">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-23">Chapter 23</h4>
+          <section class="unit" id="bedikat-hasakin-23" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:23</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-23" aria-label="Copy link to Bedikat HaSakin:23">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מורנא והיא תולעת היוצאה מן הריאה ואין ידוע אי קודם שחיטה פריש או אחר שחיטה פריש חזקה לאחר שחיטה פריש כשנקרר הדם אחר שחיטה קפץ ממקומו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-23">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-24">Chapter 24</h4>
+          <section class="unit" id="bedikat-hasakin-24" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:24</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-24" aria-label="Copy link to Bedikat HaSakin:24">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">האי ריאה דאושא פי׳ משמעת קול כשנופחין אותה אי ידעין מהיכן אושא מותבינן עלה גילה או גדפא או רוקה אי מבצבצא ההיא מיד מהמת הנפיחה כידוע שיש שם נקב שהרוח יוצא משם וטרפה ואי לא ירעין מהיכן אושא דפעמים שאין אדם יכול להבחין לשמיעת האוזן בהיכן קול יוצא מיתינן משכלתא דמיא כפושרי ומותבינן לכלו ריאה בנויהון וכל מקום שיהיה שש נקב יבצבצו המים והמימי חמימי לא משום דמטרשילה פי׳ מקשין אותה כאבן ואם אין נקב בעליון ויש נקב בתחתון מתקרע העליון מפני שהוא קלוש ומים קרים מתרין אותה כשמקשה אלא בדקינן לה בפושרין אי מכצבצא טרפה ואי לא כשרה דתתאה אינקיב עילאה לא אינקיב והאי דאושא זיקא דביני ביני הוא והרוח יוצא מבפנים דרך נקב ואינו יכול לצאת חוץ בפני קרום העליון שבגין והולך חרוח בין שני הקרומות לכך משמעת קול וכדמותבינן ריאה במנא דמיא פושרי בהרי כבדא מותבינן לה בגווה משום דכבד מצלול הריאה למטח ובפני עצמה צפה חיא על פני המים ואין המים מכסים אותה ולא תבדק יפה אי נטי יתלה בה דבר שיכבדנה ויצללינה לפטה והפשר זה כהפשר המים בימות הקיץ שנשתנו בבית קצת אחר שנשאבו כדמוכחינן לקמן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-24">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-25">Chapter 25</h4>
+          <section class="unit" id="bedikat-hasakin-25" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:25</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-25" aria-label="Copy link to Bedikat HaSakin:25">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ריאה שיבשה מקצתה וכל שבן כולה עד שהיא נפרכת בצפורן טרפה אף על גב רגבי אוזן יבשה של בכור דהוי מום אמרינן איזו היא יבשה כל שאם תנקב ואינה מוציאה טפת דם ולא אמר עד שהיא נפרכת בצפורן רהתם גבי איזן בכור דשליט בהו אוירא ורוח ואויר מבאיש את הפכה ומקלקלת הילכו כל דלא מפקא דמא לא הדרא בריא הכא גבי ריאה כיון דלא שליט בה אוירא הדרא בריא עד שתתפרך בצפורן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-25">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-26">Chapter 26</h4>
+          <section class="unit" id="bedikat-hasakin-26" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:26</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-26" aria-label="Copy link to Bedikat HaSakin:26">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">חרותה בידי שמים כשרה איזו היא חרותה כל שצמקה הריאה שלה בידי שמים מקול רעמים וזועות וכיוצא בהן כשרה בירי אדם כגון שהבעיתה אדם או ששחט בהמה לפניה וביוצא בהן אעפ&quot;י שאינה יבשה טרפה ובידי בל הבריות כגון ששמעה שאנת אריה וקול שחל כבידי שמים דכי וכשדה ותלי׳ מזה בדבר שנמצאת סיבתו בפנינו או בידי שטים או בידי אדם ואש נמצא ריאה שצמקה ואין שום דכר בשנינו שנגע סיבתו אש בירי שטים אם בידי אדם בדקינן לה הכי עבדין בקיטא מתינן טשכלא דקוניא והוא כלי חרם שאין יצוע כאבר בשביל שלא יתחממו המים בהם ונמלמנהו מיא קר ירי בסהוא מיתינן משכלא שחימי ר&quot;ל שחורות שלא חפו אותם באבר ואין מצננין כל בך כלבנים ויש אומרים שחימי של נחושת ונמלימנהו מיא פושרי ונותביניהו וננחינהו בגווה מעת לעת אי הדרא בריא בירי שמים היא ובשרה ואי לא הדרא בריא בידי אדם היא וטרפה ולפי דרבנו למדנו מדאמרינן בקיטא מיא קרירי כסתוא מיא פושרי דקרירי בקיטא פשורא בסתוא בדפסקינן לעיל גבי ריאה ראושא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-26">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-27">Chapter 27</h4>
+          <section class="unit" id="bedikat-hasakin-27" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:27</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-27" aria-label="Copy link to Bedikat HaSakin:27">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אוטם בריאה והוא שנמצא בה מקים מטומטם שאין הרוח נכנס שם כשנופחין אותה מיתינן סכינא וקורעין ההוא אוטם אם מהמת מוגלא כשרה ואי לא מותבינן על הקרע גילדי או רוקא או גדפא אי מבצבצא בשרה ואי לא טרפה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-27">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-28">Chapter 28</h4>
+          <section class="unit" id="bedikat-hasakin-28" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:28</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-28" aria-label="Copy link to Bedikat HaSakin:28">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ריאה שנימוק והיא שנתרוקנה מאליה וקרום שלה קים אפילו מחזקת רביעית בחלל החסרון כשרה דחסרון מבפנים לא שמיה חסרון ואם מחזקת יותר מרביעית יש לדון ולהורות כדאמרינן גבי יתירה מנכה דריאה על פי הסרבות שכתבנו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-28">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-29">Chapter 29</h4>
+          <section class="unit" id="bedikat-hasakin-29" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:29</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-29" aria-label="Copy link to Bedikat HaSakin:29">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ריאה שנשפכה כקיתון והוא שנימוחה ונכס בשרה בתוך קרומות שלה ונשפכה מראשה לסופה ומסופה לראשה בשיה וחוא דקימי סמפונהא והדרא בריא ומנא ידעין אי נמוחו מיתינן צעא דקוניא ושפכינן לה בנוה אי אית בה שוריקא חיורי הסמפונות הן שנימוחו וטרפה ואי לא כשרה. האי סמפונא דריאה דאינקיב לחבריה והוא פצל פיצולו שמתפצל מחברו טרפה דכיון דדופן חברו קשה הוא נמצא עומד לעצמו ואינו סותם הנקב הילכך לא מגין עליה אבל נקב אחד פיצולו כדחוק בשר הריאה שהוא רך נכנם לנקב ומנין עליה וכשרה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-29">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-30">Chapter 30</h4>
+          <section class="unit" id="bedikat-hasakin-30" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:30</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-30" aria-label="Copy link to Bedikat HaSakin:30">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מחט שנמצאת בריאה ואינה נקובה מבחוץ וכשנופחין אותה אין הרוח יוצא כמנה אבל במשוש היד נרגשת בה כשרה דאמרינן דרך הקנה נכנסה ובא דרך הסמפונות ומן הסמפונות לבשר הריאה ומ&quot;מ קרום החיצון לא אינקיב ואף על פי שאין דרך הקנה לבלוע אפ&quot;ה דכיון דאיתיה לריאה קטן ולא חזינן דאינקיבה על כרחך דרך סמפונות אתאי ומספקא לא מחזקינן ריעותא ואש לא נמצאת המחט עד שנחתכה טרפה שחוששין דלכא נקובי נקיב ואתאי כשאר הנבלעין דרך ושט ומשם באה לכרס ולדקין ויצא ונכנסה בתוך הריאה וניקבה ואם נמצאת באחד מזה הסמפונות אעפ&quot;י שהריאה חתובה כימרה דודאי דרך הקנה נכנסה וסמפונא נקט ואתאי ואם תאמר דרך ושט נכנסה היאך נמצאת בסמפון בי כבשר הריאה נמצאת ואעפ&quot;י דבחתוכה דכבדא יש חלוק בין קופא לגוא ובין קופא לבר התם היא שהכבד רחוק מן הקנה ואין תולין בו אלא בקופא לגאו אבל בריאה דלא מרחקא כולי האי אפילו קופא לבר תלינן בקנה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-30">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-31">Chapter 31</h4>
+          <section class="unit" id="bedikat-hasakin-31" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:31</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-31" aria-label="Copy link to Bedikat HaSakin:31">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">האי ריאה דקימא גילרי גילדי או כולי אוכמי חזותא חזותא כשרה פי׳ קליפות קליפות של ריאטת שחורות שחורות גוונים גוונים ופרש&quot;י ז&quot;ל דוקא הנך גווני דלא פסלי בהו ריאה כארומה כירוקה ובחלא וקמ&quot;ל ואף על גב דלא מתחזה כולה כחד גוונא לא אמרין לקותא היא אבל חזותא דמפסלה כהו ריאה כגון שחורה כריו וכעין מוריקא וכעין ביעותא טרפה דבל אותן מראות לקות הן לכך לא שנא בכולה ולא שנא במקצתה דלקות מהמת נקב הוא ונקב במשהו פוסל בה וזה רעת הרמב&quot;ן ז&quot;ל והרב בעל התוספות אבל הראב&quot;ד ז&quot;ל כתב רחזותא חזואתה אפי׳ בגווני רמפסלי בהו ריאה דלא אסרו אלא בכולה אבל במקצתה הדרא בריא והביא ראיה מדמפליגנן במקצת טרפיות נין כלה בין מקצתה כדאמרינן ריאה שיבשה מקצתה שמע מינה דהיבא דלא פרשו מקצתה משמע כלה עד שתהא כולה מאותה מראה רע לא טרפינן ויש להשיב על זה דאדרביה אימא לאידך גיסא מדאצטריכו לאפלוגי בהאדומה נין כלה בין למקצתה ש&quot;מ דמסתמא אפי׳ מקצתה פסולה עוד נראה לי בו משום הכי לא אמרינן מקצתה מדאמדינן ריאה שסמקא והיא חרותא בידי אדם טרפה כיון שסמקה כחריות של דקל והוא שנתמעטה מחמת שנמשכה כולה אבל יבשה שעמדה בעינה אלא שנתקשה אפילו מקצתה טרפה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-31">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-32">Chapter 32</h4>
+          <section class="unit" id="bedikat-hasakin-32" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:32</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-32" aria-label="Copy link to Bedikat HaSakin:32">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">האי ריאה דדמיא לאופתא והוא בקעת עצים אמרי ליה דפחיזא כאופתא אפילו שהוקשה כעץ פי׳ הראב״ד ז״ל כתשובת שאילה דמיא לאופתא דנפיחא כאופתא והיא שהריאה קשה ועומדת כל שעת מפיחה כאדם שבטנו צבא עוד נאמר כחזותא דאופיתא נראה לי שהיא עגולה ואין אונין שלה ניכרין אלא שהוא כסדר עגול והיא נידונית כחסירה, ועור נאמר בה כנושתא אשפרא בלע״ז כמו האופתא שיוצאת ממנה עוקצין עוקצין וטורי טורי שהכשרו בה בועות הם שקרום שעליהם חלק ומה בשיעא דאופתא שאין לה חתוך אונות ופרשו לה רבנן אעפ&quot;י שיש לה מבפנים כיון שהיא כלה חלקה מבחוץ טרפה ומכאן הכשירו אומא לאונא אעפ&quot;י שאינה ראיה גמורה ואעפ״י שהכל מורים אם אין לה פלוש כשרה ואי; אוסרין אלא סירכא שאין לה הכשר ממקום אחר הרי פירשתי לך דמיא לאופתא ע&quot;כ הרב ז״ל ואיכא דפריש לה הכי אמרי ליה כנושתא דפחיזא כאופתא משושה קשה כעץ פחיזה מלשון יחפוז זנבו כמו ארז ואמרי׳ כחזואתא דנפוחא כאופתא נעשית לבנה כבקעת ואיכא דאמרי דשיעא כאופתא דלית לה חיתוכה דאוני.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-32">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-33">Chapter 33</h4>
+          <section class="unit" id="bedikat-hasakin-33" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:33</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-33" aria-label="Copy link to Bedikat HaSakin:33">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הריאה שהאדימה בין מקצתה בין כלה כשרה זה הוא רעת רש&quot;י ז״ל והרי״ף והרמב&quot;ם ז״ל וראיה לדבר כדאמרי׳ אדומה כשרה מדר׳ נתן ור&quot;ח זכר לברכה כתב שהאדימה נין כולה בין מקצה טרפה ואי קשי׳ האי אדומה ר׳ נתן ור׳ אפרים נתן טעם לדבר דשאני אדומה משהאדימה דהאדימה מגזרת הפעול והוא ארומה ביותר ומשמע שהאדימה מחטת לקות הוא ואדומה משמע מתולדותה ולפי שעדין אין דמה נבלע בה ומראיתה יעיד עליה כי הפרש יש כין אדמו עצם מפנינים שהוא מפועל קל לאם יאדימו כתולע שהוא מבנין הפעיל שאין אדמימות הפנינים חזק כארמי התולע ואינו נכון דא&quot;כ דאינה חלוק נין אדמימות לאדמימות הוה. לן למבעי גבי אדומה כשרה היכי דמי אדומה כשרה וכדבעו בירוקה כשרה ודבי משכחת לה ירוקה ככרתי והיא כעלה חציר כשר ירוקה כעי; קישות והוא עשב שקורין לו מלוכיא כעין מוריקא והוא הכרכום והר&quot;מ סי׳ כעין חריע והוא הצמח שצובעין בו הבגדים והוא דומה לשערות אדומית מעט ונוטה לירקות כעין כיעתא והוא חלמון ביצה טרפה וכל מראה גרוע בכלל אלו הירוקון הפסולין הן ככוחלא והוא הצבע כחול לא ירוק ולא שחור כשרה כדיותא והוא קורט דיו יבש והוא שחור טרפה ככבדא כשרה כבשרה טרפה וסימנך ובשר בשדה טרפה פי׳ רש&quot;י והרמב״ם ז״ל כמראה הכבד כמראה הבשר והרז&quot;ה ז&quot;ל פי׳ ככבדא וכבשרא במשושא ולא בחזותא מדלא קאמר כעין כבדא כעין בשרא כדקאמרינן כעין כישות כעין מוריקא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-33">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-34">Chapter 34</h4>
+          <section class="unit" id="bedikat-hasakin-34" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:34</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-34" aria-label="Copy link to Bedikat HaSakin:34">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הוריקה הריאה מחמת מכות אש לא אתפרש בגמרא כלל וכבר בארנו בזח במקום אחר כי רבו הרעות והמכריעין לפני חכמים הכריעו לאיסור אחר שלא פסלו בירוקה אלא מחמת נקב שכל שהוריק עתיד לנקוב כדאמרינן בשיעור נקיבתן שיעור ירוקתן גבי כני טעים של עוף שנחמרו אע״פי שחמרו לא אמרו ירוקין פסולה אלא בלב וקרקבן וכבד הוא הדין בריאה מטעם שכתבנו שאם כח האש שולט בלב וקרקבן כל שכן בקרומי הריאה שהם דקין מאד ולא תקשי לך האי דאמרינן אין ריאה בעוף לא לינפל לא ליחמר דהכי קאמרינן שאין חוששין לה מסתמר, ולא צריכה בדיקה בנפלה לאור כדין שאר בני טעים לפי שאין הדבר מצוי הואיל והצלעות מגינות אותה אבל כיון דחזינן כה ריעותה היאך נאמר שהצלעות מנינות אותה הרי לא הועילו לה ולא הצילו ואחר שכן הוא נעוף ה&quot;ה כבהמה שהרי אפרו כל טרפות שמנו חכמים כבהמה כנגדן בעוף ולא תאני האי טרפות בעוף אלא מפני שדרכן לשלוט בו האור ונחמרים בני מעיו לאלתר אבל בהמה אין דרכה שישלוט בה האור כל כך הא אלו שליט בה ונחמרו מעיה אין לנו להכשיר ודין שניהם אחד הוא לא שנשתנו מראיתם וכן ראיתי סברת הרשב&quot;א ז&quot;ל אך סברת הכ&quot;מ ז&quot;ל אין נראית כי וכרוק ותשכח בפרק עשירי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-34">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-35">Chapter 35</h4>
+          <section class="unit" id="bedikat-hasakin-35" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:35</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-35" aria-label="Copy link to Bedikat HaSakin:35">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יש הכשר בריאה ובכוליא והם מים זנים יש פוסל נזה ונזה לקותא והוא בשר שנתמסמס עד שהרופא גררו ומעמידו על בשר חי והיינו תפלא תלחי תלחי שמניא בגמרא יש כשר בריאה ופסול בכוליא מוגלא יש פסול בריאה ונשר בכוליא נקב ומים זכים דכשרין כאן וכאן לא אמרן אלא רצילי אבל עכירי טרפה ודצילי נטי לא אמרן אלא דלא אפרוח אכל אסרוח טרפה כך היא שיטת הרי״ף זכר לברכה ודעת הרמב&quot;ן וכן פירש&quot;י זכר לברכה דעכירי טרפה כאן וכאן ואסרוח טרפה כאן וכאן פי׳ בריאה ובכוליא והרז״ה זכר לברכה דמכשיר עכירי ואסרוה בריאה נראה דלא גריס בגמרא כאן וכאן ואכוליא בלחוד ולא אריאה דכיון דמגליא מוגלא כשרה בריאה מוגלא היינו מים עכורין והיא היא ועוד ריאה שנשפכה כקיתון דכשרה בדקימא סימפונה אי אפשר דלא עכורה והואיל וכולה נימוחה מבפנים דעכירי אכוליא ולא אריאה הוא דאסרות דכוליא אכל בריאה כשרה הוא וכן דעת הראב״ד זכר לברכה ורכים מן הפוסקים וכן כתב הרשב״א זכר לברכה בחיבורו עוד ראיה מדמכשרינן בגמרא הנך דקימי צמתי טנרי כנרי ועדין היו מלאות ולא יצאתה עדין לחותן לראות אם עכורין אם סרוחין אבל מסתמא מכשירינן להו שמע מינה דעכורין וסרוחין לא פסלו בריאה והרמב״ן זכר לברכה שכתב וצריכה בדיקה אם מימיה סרוחין אם לאו עליו להביא ראיה וכתב גם כן וצריך לבדוק בסמפון שתחתיה אם נמצא נקוב טרפה והא דאמרינן בריאה שנשפכה פ קיתון והוא דקימי סימפונא שלא נימוחו ויתברר לנו באי אית כה סוריקי חיוארי אם לא ולא הצריכונו לבדוק בסמפונות אם הם נקובין אם לאו גם לא מצינו טרפות לסמפוני הריאה הפנימים אם לאו בניקב לחברו כמו שפירשנו למעלה או בנימוחו וצמחי צמחי דאמרינן הן בועות מליאות ליחה והיינו מוגלא כדאמרינן כנדי הן צמחין גדולים כבדים טינרי גדולים מכנדי וקשים כסלע והראב״ד זכר לברכה פי׳ כנרי כנדי טנרי זוגות זוגות סלעים סלעים כנדי זוגות וחברו פרק אלו טגלחין שמואל קרע עליה דרב תליסר כנרי פי׳ י&quot;ב זוגות של בגדים ואעפ״י שנתברר לנו בראיות נמורות וברורות להתיר מים סרוחין בריאה כתבתי אותם להלכה אבל לא למעשה כי לא ראיתי מי שהקיל בדבר להתירם. הני תרתי בועי דסמכינן להדדי לית להוא בדיקותא פרש&quot;י זכר לברכה דקים ליה לרבא דלא נסמכו אלא מחמת נקב שבריאה והעלה נקב את הבועות הללו סביבו והר&quot;מ זכר לברכה נמי כתב שאי אפשר שיש נקב ביניהן ואין להם דרך בדיקת ויש מי שפירש דחישינן דשמא תרחק זו על זו ותבקע באחת מחמת דוחק הברתה והיינו דלא בדקינן אי מינקיב בינתים וסמיכן דקאמר רבא כדי שתוכל כאחרת לדחוק חברתה הא לאו הכי לא חיישינן להו כי היכי דלא חיישינן לחדא ולא מינקבו הדא ומתחזיא כתרתי ר&quot;ל שנראה כעין סדק באמצעיתה והופה לשתים מיתינן סילוא ובזעינן להו פי׳ פותחין אותה כקוץ מצידה אחת אי שפכי אהדדי חדא היא וכשרה ואי לא תרתי אינון וטרפה. הביא הרשב״א ז&quot;ל בחבורו אכעבוע שעלה כשיפולי ריאה הורה כעל הלכות שאם הקיף אותה בשר הריאה מכל צד ואפי׳ כל שהוא כשרה ואם לאו הרי הוא כיתר וכל יתר כנטול דמי והרי היא כנקיבה וטיפה ואעפ&quot;י שדברים אלו אינם מתקבלים אל הדעת ראוי לחוש לדבריו שדברי הגאונים דברי קבלה הם. בועה שניקבה בריאה ואץ ידוע אם קורם לשחיטה או לאחר שחיטה אץ צריכין בועה להקיף ולקורבה אצלה ולראות אם מראה הנקנים שוים כפו שאפרנו שמקימין בריאה דשאני הבא כיון דאיכה בועה אי אפשר לעמוד עליה שעשוי הנקב להשתנות כל שעה ושמא מראה אחר היה לה ונשתנה ופרש&quot;י זכר לברכה דזה הוא במקום דלא משמשא ידא דטבחא אכל כרקום דמשמשא ידא דטבחא תלינן כידא דטבחא ולאחר שחיטה ולשון מקיפין כקרני; זו לזו שפוטות גף בעוף טרפה הישינן שפא ניקבה הריאה ושמואל אפר תבדק ופסק הרי&quot;ף כמותו כיצד יעשה מבנים קש או קנה או כנף דק בגרגרת ונופה אם יצא ממנה רוח טרפה ואם לאו אלא שתעלה בנפיחה כל הצד שאין דבוק בצלעות בידוע שלא ניקבה הריאה וכשדה ואינו צריך להפריש הריאה מצלעותיה שמא ניקבה במקום דיבוקה כי הואיל ואמרינן בריאה שניקבה ודופן סותמתה במקום רביתא שהיא סתימה מעליא וכשרה וכי&quot;ש בעיף שמוסדקת בין הצלעות ונחבאת ביניחן שסותמת כאלו סבוך בבשרה. ומצאתי שכתב חכם אהד מחכסי עירנו כי אלו טרפות שכתבנו בריאה אין צריך לחזור אחריהן אלא אם כן נולד בה דבר שחוששין לה כמו שאין מחזירין על שאר הטרפות כי גם כן לבדיקות הסרכות הוצרכנו לבקש טעם למנהג כפו שבארנו לפעלה במשפטי הבריקה ואעפ&quot;י שהחמירו כה יותר כשאר אברים לא נופלת מהם היא ואם בא זאב ונטל את הריאה וההזירה כשהיא מנוקבת תלינן בזאב וכתב הרמ&quot;זל מי ששחט את הבהמה וקרע את הבטן וקודם שיבדוק את הריאה בא כלב או נוי ונטל את הריאה והלך לו הרי זו כותרת ואין א ומרין שמא נקובה היתה או סמוכה היתה, שאין מחזיקין איסור אלא הרי היא בהזקת היתר עד שיורע לך במה נטרפה וכשם שאין חוששין לקרום של כוח ולשדרה כך לא נחוש לריאה שאבדה ואין כזה כנהג שדבר שאינו מצוי אין בו מנהג בא נוי או ישראל והוציא את הריאה קודם שתבדק והרי היא קיימת נופחין אותה אעפ&quot;י שאין אנו יודעים אם היו שם צמחים או לא היו וזה הוא מה שראיתי לחקור על דת הריאה ולבאר משפטיה אל החברים המקשיבים למצוא דברי חפץ ממני אני יצחק) הקטן כ&quot;ד דוד זלה״ה בנל״ך ואע&quot;י.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-35">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-bedikat-hasakin-text-36">Chapter 36</h4>
+          <section class="unit" id="bedikat-hasakin-36" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Bedikat HaSakin:36</h4></div>
+              <a class="anchor" href="#bedikat-hasakin-36" aria-label="Copy link to Bedikat HaSakin:36">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שחה במיעוט הסימנין שחיטה פסולה פירש&quot;י ז&quot;ל שחט הרוב ושהה במעוט האחרון ונמר שחיטתו מה אמרינן כיון דעביד לה רובה הא אתכשר או דלמה כיון דהדר נטרה כולה חרא שחיטה היא וסלקא בתיקו ולחומרא כיון שמצות שחיטה הוא לשחוט הכל כשגמרה בפסול פסולה ובמיעוט קמיא דגרנרת לאו מידי עבד ולא שהיה היא דהא קי&quot;לן מצא חצי קנה פסוק כשרה אי במיעוט קמא דושט נקיבתו במשהו וכיון במשהו והוה ליה מעוט קמא והוה נקב בעלמא וטרפה ומיהא נראה דהשוחט רוב סימנין והשליך העוף מידו שהוא למות אסור לחזור ולחתוך המיעוט בתורת שחיטה מוטב שיכנה בסכין או שימתין ער שיטות ויש מפרש כמיעוט קמא דושט קא מבעי ליה מי אמרינן כיון השהיה הוה ליה כנקובת הושט במשהו או דלמא כיון דבשחיטה קא איתא ליה לאו נקב הוא וכי היכי דלא שהה שהייה לא מטרפה דבי גמרינן שהיה בחצי סימן ויש מפרש דקימא הא כעיא עלה דאמרינן לעיל השוחט בסכין רעה ומבעיא ליה בבהמה פי׳ שחט רוב סימן אחר ושוהה בהולכה והובאה המיעוט בשחיטה ואחר כך גמר סימן שני כהלכתו מהו מי אמרינן כיון שמיעוט הסימנין חשוב בחתוך אם כן שוהה בשחיטה אעפ״י שמוליך ומביא פסולה דהוי כולו חותך דבר בההיא שעתא או דילמא כשר וקיימת בתיקו ואינה מותרת תיקו הוא כמו תיקום ר״ל מובלעת המ&quot;ם וכמו שמצנו בכל מ&quot;ם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-bedikat-hasakin-text-36">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/bedikat-hasakin.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/bedikat-hasakin.manifest.json","occurrence_url":"../../data/lexical/occurrences/bedikat-hasakin.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

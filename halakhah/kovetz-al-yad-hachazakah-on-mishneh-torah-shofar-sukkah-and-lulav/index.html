@@ -1,0 +1,1681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Shofar, Sukkah and Lulav</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Shofar, Sukkah and Lulav</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">43 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>620 matched</strong> / 1783 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-6-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:6:1">1:6:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-6-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-7-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:7:1">2:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-10-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:1">3:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:3:1">4:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:4:1">4:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-6-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:6:1">4:6:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-10-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:10:1">4:10:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-13-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:13:1">4:13:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-16-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1">4:16:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:3:1">5:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:4:1">5:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:5:1">5:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-12-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:12:1">5:12:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-16-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:16:1">5:16:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-17-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:17:1">5:17:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-22-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:22:1">5:22:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-25-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1">5:25:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-12-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:12:1">6:12:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-13-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:13:1">6:13:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-15-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:15:1">6:15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:2:1">7:2:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1">7:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-18-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:18:1">7:18:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-20-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:20:1">7:20:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1">8:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-2" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:2">8:1:2</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:2:1">8:2:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:3:1">8:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1">8:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-6-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:6:1">8:6:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:1">8:7:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-2" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:2">8:7:2</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-10-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:10:1">8:10:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-11-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:11:1">8:11:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-1">Chapter 1</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל השופרות פסולין כו׳.</strong> עי׳ השגת הראב&quot;ד. ומ&quot;ש אם תקע בשל יעל לרבותא משום דלא איקרי שופר ולא קרן כדאמרינן בירושלמי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפני המלך ה׳.</strong> ועי׳ ברמב&quot;ם פי&quot;א מהל׳ מעשר שני ובהשגת הראב&quot;ד שם ובספר יד דוד. ומה הוא החצוצרות כתב בס׳ ט&quot;א שהוא של כסף כמבואר בדברי רבינו פ&quot;ד מהל׳ כלי המקדש ע&quot;ש. וצע&quot;ק הא דאמרינן שבת ס&quot;פ ב&quot;מ שופר חצוצרות למאי נ&quot;מ לשופר של ר&quot;ה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן שופר של עולה.</strong> כ׳ הכ&quot;מ היינו בשתלשה קודם זריקה כו׳. עיין ברמב&quot;ם הל׳ מעילה פ&quot;ב הי&quot;ב ויש לחלק בין עצמות לקרנים ובס׳ יום תרועה הניח דברי הכ&quot;מ בצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויו&quot;ט עשה ול&quot;ת וכו׳.</strong> ועמ&quot;ש בש&quot;י דבירושלמי סובר דיו&quot;ט אינו אלא ל&quot;ת ולחד תירוץ בתוס׳ מס׳ שבת גם בבבלי מצינו מחלוקת אמוראי בזה ולמ&quot;ד דלא הוי כ&quot;א ל&quot;ת אין קושיא ממשנתנו משום דלא הוי בעידנא ועי׳ בתוי&quot;ט אי בעינן בעידנא בעשה דרבים. ובזה כתבתי ליישב מפני מה לא אשמעינן הך דינא גם בסוכה ולולב דשופר לרבותא נקט משום דשופר מקרי עשה דרבים דיחיד מוציא רבים ע&quot;ש. אלא דצ&quot;ע גבי מצה אם מחלל את היו&quot;ט כדי לקיים המצוה דהא לחד תירוץ בתוס׳ קידושין דף ל&quot;ד ד&quot;ה מעקה נשים פטורות ממ&quot;ע דיו&quot;ט ועשה דמצה נשים חייבות וא&quot;כ הוי עשה דשוה בכל וידחה לעשה שאינו ש&quot;ב ועי׳ בתוס׳ ב&quot;מ דף ל׳ ע&quot;א ד&quot;ה והא אין עשה. ובאמת כתב הרב פ&quot;ח בא&quot;ח סי׳ תנ&quot;ד בשם ספר בית מועד יש מי שאומר שאם הוציא מצה מרה&quot;י לרה&quot;ר אין יוצא בה משום מהב&quot;ע וע&quot;כ צ&quot;ל כמו שהוכיחו התוס׳ בקידושין דהלאו אלים עכ&quot;פ הו&quot;ל לתנא דמשנתנו למיתני הך דינא דאין מחללין את היו&quot;ט גבי מצה והוי ידענא שופר מק&quot;ו וצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:6:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צפהו זהב כו׳.</strong> עמ&quot;ש בזה בש&quot;י ד&quot;ה ופיו מצופה זהב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-2">Chapter 2</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אנדרוגינוס כו׳.</strong> עי׳ השגת הראב&quot;ד כ׳ הה&quot;מ המחלוקת הזה הוא מחלוקת תנאים. ובס׳ יום תרועה ר&quot;ה דף כ&quot;ט ע&quot;א כתב דיש לתמוה על הה&quot;מ שלא נמצא סברא זו דחציה זכר וחציה נקבה בגמרא דידן ורק בירושלמי הביאו מרן הכ&quot;מ פ&quot;ד מהלכות תרומות דין ט&quot;ז ודבר זה לא נמצא בביאור רק בירושלמי כפי פי׳ הראב&quot;ד שם והראב&quot;ד שהשיג כאן אזיל לשיטתו אבל לשיטת רבינו דס&quot;ל בכ&quot;ד שהוא ספק א&quot;ש דמוציא מינו. גם מה שחילק הה&quot;מ בין אנדרוגינוס שהוא בי&quot;ש קשה שהרי טעם הראב&quot;ד הוא לפי שיטתו דס&quot;ל דהירושלמי א&quot;ל דאנדרוגינוס שבעל אנדרוגינוס אחר פסלו לנבעל מן התרומה משום צד נקבות שיש בו הרי דאין לחלק בין בי&quot;ש בין בי&quot;א ע&quot;ש. ובאמת י&quot;ל לפי קושית הראב&quot;ד על רבינו דהוי דומיא לח&quot;ע אם כן גם לעצמו אינו מוציא והא דנקט הראב&quot;ד בלשונו אינו מוציא לא את מינו ולא את שא&quot;מ לאו דוקא וכן מוכח מדברי הב&quot;י בא&quot;ח סי׳ תקפ&quot;ט וע&quot;ז יפה כ׳ הה&quot;מ די&quot;ל דל&quot;ד לח&quot;ע דהתם בי&quot;א הוא משא&quot;כ באנדרוגינוס דבי&quot;ש נחשב כ&quot;א ח&quot;ז וממילא דנם לעצמו מוציא משא&quot;כ בדבר התלוי בי&quot;א א&quot;א לקרותו מין אחד דאולי חלק עבדות של זה אינו חזק כ&quot;כ כמו של חבירו אמנם קושיתו הראשונה צ&quot;ע. ועי׳ מה שאכתוב בזה בס&quot;ד בפ&quot;ב מהל׳ אישות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יו&quot;ט של ר&quot;ה שחל בשבת וכו׳.</strong> עי׳ מ&quot;ש בזה פ&quot;א מהל׳ מגילה וחנוכה הלכה י&quot;ג. ועי׳ מ&quot;ש בש&quot;י ר&quot;פ ד׳ דר&quot;ה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:7:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומותר לגדול וכו׳.</strong> פי׳ חוזר ללא הגיע ותימה שהרי כתב בפי׳ המתני׳ ובתנאי שיהיו קרובים להיותם גדולים כדי שיהיו יודעין לצאת וכו׳. ומה שכתב הה&quot;מ וכן נראה מן הירושלמי הוא מפני שסובר הירושלמי דבקטן שהגיע מותר בשבת דיש הנאה וכו׳ וכמו שהביא מגדל עוז אבל בלא הגיע לא דכי ליכא הנאה חיישינן לשנה הבאה שיתקעו בשבת במקום שאין ב&quot;ד וכו׳, ד&quot;ע ועי׳ מ&quot;ש בש&quot;י:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-3">Chapter 3</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיעור תרועה כשתי תקיעות וכו׳.</strong> הראב&quot;ד השיג על רבינו שהוא סובר בפי׳ דשלש יבבות שלשה טוטין הן וכן הביאו הר&quot;ן. ומ&quot;ש הה&quot;מ בזה צ&quot;ע, תירוץ הא׳ שנסתפק לו שיעור התקיעה לפיכך לא הביאה מה יענה לקושית הר&quot;ן כי איך יקרא פשוטה טו וחצי כי בפירוש אמרה המשנה שיעור תרועה כשלש יבבות ושיאמר שהיבבא שלשה טוטין לדעת רבינו אע&quot;פ שכבר אמר הוא להיפך בפירושו דברי הרב וכן הוא וכו׳ היה מודה זה אלא שאי אפשר כי היכן נזכר שהיבבות הן ט׳ שאמר הרב שיעור שלשה שברים כט׳ יבבות באמרו תרועה גם שנאמר שיעור כל אחד מג׳ שברים דוחק גדול וגם עיקר חסר שהיה לו לפרש שיעור תרועה ג׳ יבבות כדי שיתלה השבר בתרועה, סוף דבר שדברי רבינו צריכין פירוש, ולקושית הר&quot;ן אפשר לומר כיון שנסתפק לנו התרועה וכו׳ ואפשר שהוא שברים וכו׳ ואפשר שהוא שניהם ביחד וכו׳ הרי שתי פשוטות כתרועה א׳ אלא שהרב מיד אמר שיעור ג׳ שברים כתרועה הנה שידע התרועה ועם זה יוקשו ג&quot;כ דברי הה&quot;מ. עוד היה אפשר לומר שהרב תירץ קושית הר&quot;ן באומרו שנית שיעור ג׳ שברים כתרועה כי שיעור התקיעה יהיה שבר וחצי ודוק. מ&quot;מ לשון רבינו אינו נכון כי איך אמר שיעור ג׳ שברים כתרועה כי התרועה הידועה במשנה היא שלש יבבות שהם ג׳ טוטין ואם פסק כברייתא להיפך הל&quot;ל שיעור תרועה כשלשה שברים שהברייתא סוברת שהשברים הם התרועה וכמו שפי׳ אביי ודוק. סוף דבר שדברי רבינו מגומגמים הרבה למי שעיין בגמ׳ ואפילו עם תיקון הראב&quot;ד לא די כי מאחר שכתב רבינו שהתרועה נסתפק בה וכו׳ איך יאמר שיעור תרועה כשלשה שברים שהוא לשון הברייתא ופירושו שהתרועה ג׳ שברים עצמן הרב ד&quot;ע ועי׳ מ&quot;ש בש&quot;י בפ&quot;ד דר&quot;ה ד&quot;ה לא וכו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר שגומר הש&quot;ץ ברכה רביעית וכו׳.</strong> ודלא כריב&quot;נ דס&quot;ל במתני׳ דכולל מלכיות בר&quot;ה עם קדושת השם ואינו תוקע אלא כר׳ עקיבא דאמר ליה אם אינו תוקע למלכיות למה הוא מזכיר ובגמ׳ מקשה רחמנא אמר ליתקע אלא לימא תשע הואיל ואשתני וכו׳. ובאמת קשה מאד למה דוקא תשע, ואפשר לומר דהא אמרי׳ שם בגמ׳ לחד מ&quot;ד דהני עשרה כנגד עשרה מאמרות שבהם נברא העולם ומקשה תלמודא ט׳ הויין ומשני בראשית נמי מאמר הוא דכתיב בדבר ה׳ שמים נעשו, והקשה בס׳ י&quot;ת למה לא קשיא להמקשה על מתני׳ דאבות בעשרה מאמרות נברא העולם וכו׳ ע&quot;ש תירוצו. ונראה דהנה אמרי׳ במס׳ מכות דף י&quot;א אמירה רכה דבור קשה וא&quot;כ ט׳ מאמרות המה רכים ובראשית שנאמר בדבר ה׳ היינו קשה להפרע מה&quot;ד מן הרשעים ומעתה בר&quot;ה לא היה לנו להזכיר מה&quot;ד כלל ומש&quot;ה קשיא ליה להמקשה דבר&quot;ה לא היה לנו להזכיר מאמר דבראשית שלא להזכיר מה&quot;ד בר&quot;ה ומש&quot;ה על המתני׳ לא הוה קשיא ליה דידע לה להא דבראשית מאמר הוא רק על שנתן טעם זה לאמירת עשרה פסוקים בר&quot;ה ע&quot;ז קשיא ליה וע&quot;ז תירץ לו התרצן אעפ&quot;כ אמרי׳ בר&quot;ה י׳ פסוקים ע&quot;ש עשרה מאמרות ואע&quot;פ שאין להזכיר מה&quot;ד בר&quot;ה מ&quot;מ כיון שתוקעין נסתלק מה&quot;ד ובא מדה&quot;ר כדכתיב עלה אלהים בתרועה ה׳ בקול שופר. ומעתה כל זה אי תוקעין למלכיות אבל לריב&quot;נ דס&quot;ל דאין תוקעין למלכיות שפיר אקשי ליה ר&quot;ע כיון דאין תוקעין ואשתני בזה לא היה לנו לומר כ&quot;א תשע שלא להזכיר מה&quot;ד במלכיות והיה סבור ר&quot;ע דטעם דעשרה פסוקים כנגד עשרה מאמרות. והארכתי בזה בדרוש ר&quot;ה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Chapter 4</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רחבה אין פחות מז&quot;ט על ז&quot;ט.</strong> ולענין אם ארוך יותר מז׳ ומשלים לרוחב שהוא פחות מז׳ עמ&quot;ש בזה בש&quot;י ריש סוכה והוא מחלוקת בין בבלי וירושלמי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו לה ב׳ דפנות זו כנגד זו.</strong> מלשון רבינו נראה דאפילו הוא בחצר שיש דופן רחוק נגד הפלוש אפ&quot;ה בעינן פס ד׳ ודלא כמ&quot;ש בש&quot;ע סי׳ תר&quot;ל ס&quot;ד בשם הר&quot;ן וע&quot;ש במג&quot;א וכ&quot;מ לישנא דגמ׳ הכא דליכא ב׳ דפנות כהלכתן. ועע&quot;ש במג&quot;א אות ג׳ ומ&quot;ש בש&quot;י ריש סוכה ד&quot;ה שנים של ד׳ ודו&quot;ק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תלה מחיצה כו׳.</strong> עיין הה&quot;מ ומהר&quot;י בן לב ח&quot;א דף קכ&quot;ו ע&quot;ג כנה&quot;ג סי׳ תר&quot;ל בהגהת הטור:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:6:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין עולין לה ביו&quot;ט.</strong> עיין פמ&quot;ג בט&quot;ז סי׳ תרכ&quot;ח צ&quot;ע באין לו סוכה אחרת כ&quot;א באילן או ע&quot;ג בהמה אי עולין ביו&quot;ט דהוי כאו&quot;נ וכביתו שנשרף עיין א&quot;ח סי׳ תקי&quot;ד, וקצת ראיה מחי׳ רשב&quot;א מפ׳ הישן במ&quot;ש בדף כ&quot;ג ד&quot;ה מ&quot;ט דר&quot;י דאמר קרא חג הסכת תעשה לך שבעת ימים, וזו אינה ראיה לז׳ רצופים ששבת בא לעולם בתוך ז׳ ובהמה אינה ראויה לשבת ע&quot;ש ומה צריך לזה הא בלא&quot;ה הא ביו&quot;ט אין עולין אלא משמע דמשכחת לה דעולין ביו&quot;ט. ויש לדחות דמשכחת לה אם כבר עלה מעיו&quot;ט דאפשר דאין מחייבין אותו לירד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:10:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך ע&quot;ג מבוי כו׳.</strong> ובהלכות לא הביא דין זה ובחידושי הארכתי בדרך פלפול. ונראה ע&quot;פ מ&quot;ש הפ&quot;י במס׳ סוכה דף ד׳ ע&quot;ב סד&quot;ה סבר אביי למימר גוד אסיק דהלכתא דג&quot;א אפילו בעמוד שייך נמי לענין סוכה מה&quot;ת והא דאמר רבא בעינן מחיצה הניכרת היינו מדרבנן כיון דלאו להכי עבידן ע&quot;ש שהביא ראיה מדברי הרא&quot;ש ועפי&quot;ז משמע דמחיצת שבת וסוכה שוים להדדי מה&quot;ת וכל דהוי מחיצה לשבת ה&quot;ה לענין סוכה אלא דרבנן החמירו גבי סוכה שיהיה דומה לדירה ובעינן מחיצות מעלייתא, ובזה ארווח לנו להבין סברת רבינו מגו דהוי דופן לשבת הוי דופן לסוכה בשבת ולכאורה קשה מאי ענין זו לזו ומאי טעם יש בדבר אבל רבא לטעמיה דסובר דמחיצות שבת וסוכה כהדדי נינהו ומה&quot;ת כל מה דהוי דופן לשבת הוי דופן לסוכה ומה שהצריכו מחיצות עודפות אינו אלא מדרבנן ושפיר אמר רבא דלא שייך להחמיר כ&quot;א בשאר ימים אבל בשבת של סוכות לא החמירו רבנן משום דהוי כתרתי דסתרי. אמנם בסוגיא דגמ׳ שם דף ז׳ דמשמע סתמא דתלמודא ס&quot;ל דמחיצות סוכה מקרא נ&quot;ל ור&quot;ש ס&quot;ל דג׳ מחיצות שלימות בעינן ולא תליא סוכה בשבת וכמ&quot;ש הפ&quot;י בעצמו בסוגיא דשתים כהלכתן מהירושלמי ולפ&quot;ז אדחי סברת רבא מהלכה מסתמא דתלמודא ודוק כי קצרתי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:13:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואצ&quot;ל עפר ובטלו.</strong> עיין הה&quot;מ יש מי שכתב דעפר לא בעי ביטול אלא כל שאין עתיד לפנותו כו׳. ודעת רבינו כדעת ההלכות דבעינן ביטול גמור וסברת י&quot;א משום דקתני בהדיא בית שמלאוהו עפר ובטלו בטל משם אינו ראיה והא דקתני בטל אינו אלא לאפוקי עפר סתם ובחידושי ריטב&quot;א פ&quot;ק דסוכה כתב אף שמדברי הרי&quot;ף נ׳ דבעי ביטול ממש העיקר כי&quot;א, כ&quot;נ לענ&quot;ד שהוא דעת רבינו במ&quot;ש ואצ&quot;ל עפר ובטלו היינו שאין דעתו לפנותו לעולם וסתם עפר דאינו מיעוט היינו שלא נראה מדעתו שאין דעתו לפנותו וכ&quot;מ מדברי רבינו בה׳ טומאת מת פ&quot;ז ה&quot;ו שכתב שם בית שמלאוהו עפר או צרורות ה&quot;ז בטל להבית משמע דלא בעי ביטול בפירוש רק אם נראה מדעתו שאין עתיד לפנותו ה&quot;ז בטל ועי׳ בתויו&quot;ט פט&quot;ו מאהלות עלה דהך מתני׳ ובס׳ ש&quot;ל כנ&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-16-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דפני סוכה.</strong> עיין מ&quot;ש בס&quot;ד בש&quot;י סוכה דף ג׳ ע&quot;א ד&quot;ה וסכות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Chapter 5</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך בירקות.</strong> עיין כנה&quot;ג א&quot;ח סי׳ תרכ&quot;ט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם דק ונפץ אותן מפני שנשתנה צורתו.</strong> פירוש כיון שנגמרה מלאכתן יצאו מכלל פסולת גורן ויקב וכ&quot;כ הריטב&quot;א ובזה ע&quot;כ מ&quot;ש רבינו בריש דבריו שלא דק אותן ולא נפצן כשירה לאו דוקא וסמך עצמו על טעם הדבר ועיין לח&quot;מ. וטעם הראב&quot;ד מבואר ג&quot;כ בריטב&quot;א וז&quot;ל מפני שהן קרובים לבוא לכלל טומאה פי׳ דלהכי עבידן. ובזה אפשר ליישב קושית הה&quot;מ. ואפשר נמי דראב&quot;ד ס&quot;ל דבנקבות אינה פסולה אלא מדרבנן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בנקבות פסולה.</strong> עיין בתוס׳ סוכה דף י&quot;ב ע&quot;ב ד&quot;ה מ&quot;ד יראה מדבריהם דפסולה מה&quot;ת והמבי&quot;ט בקרית ספר כתב דבנקבות אינה פסולה אלא מדרבנן ועיין מ&quot;ש בש&quot;י בסוכה דף ג׳ ד&quot;ה ר&quot;י:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:12:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה סוכתו תחת האילן.</strong> אמרינן בגמ׳ אמר רבא ל&quot;ש אלא שצלתה מרובה וכו׳ והא קא מצטרף כו׳ אמר ר&quot;פ כשחבטן ופי׳ רש&quot;י כשחבטן שעירבן וכה&quot;ג כשירה לכתחילה כדין כל איסור המתבטל בהיתר באינו ניכר האיסור אבל בניכר האיסור לא שייך ביטול ובלבוש א&quot;ח סי׳ תרל&quot;ב כתב אפשר שגם זה הלמ&quot;מ דגם בניכר ועומד בפ&quot;ע אעפ&quot;כ בטל, א&quot;נ מה&quot;ת אפילו בניכר האיסור בטל ברוב דהא מסנהדרין ילפינן דבטל ברוב ע&quot;ש, ובאמת כבר תמה עליו הט&quot;ז שם ס&quot;ק ג׳, ולשיטת רש&quot;י גם אם לא חבטן שלא עירבן אם הסוכה צלתה מרובה מחמתה בלא האילן ג&quot;כ כשר. ולשיטת הריב&quot;א גם אם הסוכה צלתה מרובה מחמתה בלא האילן אעפ&quot;כ האילן שעל הסכך פוסל את מקום הסכך עיין ברא&quot;ש. והרז&quot;ה פי׳ חבטן שחבט ענפי האילן עד שנשרו כל עלין ממנה דגלי דעתיה שלא ניחא ליה בצלו של אילן כלל ונעשה האילן כעומד בפ&quot;ע ולא מצטרף לצל סוכה אפילו לכסות בהן לכתחילה מותר ובמתני׳ דפירש עליה סדין שהביא רבינו בה׳ י&quot;ז כתבו התוס׳ אבל אם יש צלתה מרובה מחמתה כשירה ואין הסדין פוסלתה וכתב הרש&quot;א דנראה מדבריהם דאף בשצל הפסול נמי מרובה מחמתה דומיא דסדין כשירה כיון דצל הכשר נמי מרובה מחמתה. ונ&quot;ל פירוש דבריהם דבדיעבד דוקא כשר בכה&quot;ג אבל לא לכתחילה ובזה מיושב קושית הרש&quot;א שם דרבא בא לאורויי לנו להכשיר לעשות סוכה כן לכתחילה והרש&quot;א שם מחלק בין קדים הפסול דאז לא נתכשר כ&quot;א בחמתה מרובה מצלתה והביא ראיה מדברי הר&quot;ן. ונראה דשיטת רבינו בפירוש חבטן הוא כשיטת הרז&quot;ה ומ&quot;ש ואח&quot;כ קצצן הכונה בזה על העלין ע&quot;י חיבוט ובזה אפשר לכוון דבריו במ&quot;ש בפי׳ המשנה ומיושב בזה הלשון או שקצצן עי׳ בהגה&quot;מ ובכ&quot;מ ועי׳ בסוגיא בריטב&quot;א באורך ודו&quot;ק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:16:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-16-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך בדבר פסול כו׳.</strong> עי׳ הה&quot;מ ובגמ׳ עירובין דף ה׳ ע&quot;ב דיש לחלק בין דבר שהוא מדרבנן לבין דבר שהוא מדאורייתא ע&quot;ש בתוס׳ ד&quot;ה וספק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:17:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-17-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרש עליה בגד.</strong> ובמתני׳ פרש עליה סדין מפני החמה או תחתיה מפני הנשר ופירש&quot;י תחתיה מפני הנשר שלא יהיו עלין וקיסמין יורדין על השולחן ועיין בתוס׳ שם מה שמקשה על פירש&quot;י ועיין בט&quot;ז סי׳ תרכ&quot;ט. ובס׳ ש&quot;ל כתב מדברי רבינו פה יש להוכיח דס&quot;ל כרש&quot;י מדלא כתב בלמעלה מפני החמה וכמו שהוא במתני׳ אלא נראה דקמ&quot;ל רבינו כל שלמעלה אסור ע&quot;ש. ולא נתבאר בדברי רבינו אי הסוכה צלתה מרובה מחמתה מלבד הסדין ופשטא דלישנא משמע דהסוכה צלתה מרובה מחמתה אעפ&quot;כ הסדין שלמעלה מבטל אותה, ועיין לעיל הי&quot;ב במ&quot;ש ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-22-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:22:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-22-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:22:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה סוכה ע&quot;ג סוכה כו׳ כמי שעשה כו׳.</strong> הא דכתב רבינו כמו שעשה בתוך הבית בא להורות לנו לטעם אחד לכולם וכמ&quot;ש רש&quot;י דף ט׳ ע&quot;ב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-25-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-25-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה שאולה כו׳.</strong> לא נתבאר בפוסקים סוכה העשויה מעצי אשירה מה דינה. ועיין בס׳ קול יעקב מס׳ סוכה פ&quot;ק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-6">Chapter 6</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים כו׳.</strong> אמרינן בגמרא כ&quot;ח סוכה הלכתא קרא ל&quot;ל לרבות את הגרים סד&quot;א האזרח בישראל ולא את הגרים קמ&quot;ל. ורבינו לא העתיק דגרים חייבים עיין בתוס׳ שם ד&quot;ה לרבות. ועי׳ בספר ברכי יוסף א&quot;ח סי׳ תר&quot;מ באריכות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:12:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ על הזמן וכו׳.</strong> אע&quot;פ שכתב רבינו בה׳ ברכות פי&quot;א ה&quot;ט שמברך זמן על עשיית הסוכה א&quot;כ שוב לא הוה ליה לברך זמן בשעת הקידוש כמ&quot;ש התוס׳ סוכה דף מ&quot;ו רבינו לא ס&quot;ל כסברת התוס׳ וכ&quot;ה דעת הרמב&quot;ן והריטב&quot;א כשטית רבינו ועי׳ בשיורי כנה&quot;ג ובס׳ ברכי יוסף סי׳ תרמ&quot;ג וחילא דידהו מהירושלמי פ&quot;ק דסוכה דף ב׳ ע&quot;ב ועמ&quot;ש שם בש&quot;י:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:13:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טומטום ואנדרוגינוס.</strong> עי׳ ראב&quot;ד. ויש מי שכתב אי אמרינן אנדרוגינוס בריה בפ&quot;ע אינו מברך גם אם נשים מברכות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:15:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-15-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין עצי דפנות.</strong> ויש מי שסובר דבדפנות ליכא איסור כלל אפילו מדרבנן, עי׳ רבינו ירוחם נתיב ח׳ ועי׳ ברכי יוסף סי׳ תרל&quot;ח ובט&quot;ז שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-7">Chapter 7</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והעלה השלישי למעלה מהן.</strong> עיין רש&quot;י סוכה דף ל&quot;ב ע&quot;ב ד&quot;ה תרי ועיין במהרי&quot;ק סי׳ שמ&quot;א ובהגהת מהרא&quot;ו סי׳ תרמ&quot;ו ס&quot;ק ח׳ וז&quot;ל הרא&quot;ש כתב ג׳ עלין של קן אחד יוצא מכאן ואחד יוצא מכאן והג׳ באמצע מורכב על שניהם ואפשר דרש&quot;י והרא&quot;ש בחדא שיטה קיימי ועיין שו&quot;ת תשב&quot;ץ חלק ב׳ סי׳ רנ&quot;ב. ומ&quot;ש הה&quot;מ ואני אומר כולה בדוקא נ׳ דאם יש עשר אצבעות בגודל גם לשיטת הה&quot;מ א&quot;צ להדר אחר אחרים אם לא ימצאם בנקל ועיין הלכה ח׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושיעור אתרוג א&quot;פ מכביצה.</strong> עי׳ ברכי יוסף סי׳ תרמ&quot;ח שהביא מחכמי הדור אתרוג שיש בו ביצה בצמצום ביום ראשון ולימים אחרונים בציר ליה שעורא אי יוצא בו ועמ&quot;ש בזה בש&quot;י:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:18:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גזרה שמא יעבירנו.</strong> ובפ&quot;ב מה׳ שופר ה&quot;ו כתב רבינו או מוציאו מרשות לרשות ועמ&quot;ש בזה בס&quot;ד בפ&quot;א הי&quot;ג מה׳ מגילה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:20:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפילו עלה אחד בבד אחד.</strong> עי׳ הה&quot;מ הלכה כר&quot;נ בדיני וכר&quot;ש באיסורי והר&quot;ן כתב דהלכתא כר&quot;ש משום דמנהג נביאים הוא והב&quot;י נתקשה בדבריו וכבר כתבתי בש&quot;י ישוב לדברי הר&quot;ן ע&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Chapter 8</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה אחד מהן של עכו&quot;ם לא יטול.</strong> עיין הה&quot;מ ועי׳ בתוס׳ סוכה דף ל&quot;א ע&quot;ב ד&quot;ה באשירה דמשה וא&quot;ת עכו&quot;ם דכותים מדאגבהיה קנייה כדאמרינן פ׳ כ&quot;ה דלמא מגבה לה והדר מבטל לה וי&quot;ל כגון שהגביהו ע&quot;מ שלא לקנות ובשמעתין המ&quot;ל דמתני׳ ביו&quot;ט ראשון ולא הוה צריך לאוקמי באשירה דמשה ע&quot;ש ועי׳ ב&quot;י יו&quot;ד סי׳ קמ&quot;ו שכתב בשם הסמ&quot;ג משבא לידו אינו אומר לעכו&quot;ם לבטלו דטעמא משום גזירה אטו אליל של ישראל עצמו יראה מדבריו דס&quot;ל דאינו אלא מדרבנן אבל מה&quot;ת יש לה ביטול אפילו מדאגבהה וכ&quot;מ מדברי הר&quot;ן פ׳ כ&quot;ה במ&quot;ש שם היאך יכול לזכות בו משום דא&quot;ל צד זכיה ע&quot;י ביטול. ולכאורה הדבר תמוה דהא עכשיו שהוא ביד ישראל שוב לא מהני ביטול אלא דס&quot;ל כהסמ&quot;ג וא&quot;כ כיון דמה&quot;ת יש לה ביטול שפיר א&quot;ל זכייה בגוה לקנותה והיינו שכתב הר&quot;ן שם וכן הדין בחמץ בפסח שאפשר ישראל לזכות בו הוא מהטעם מותר לאחר הפסח ואינו אסור אלא משום קנסא ולפי סברת הסמ&quot;ג והר&quot;ן א&quot;כ מה&quot;ת יוצא כיון שיכול לבטל ומדרבנן הוא דא&quot;י ומש&quot;ה מוקי לה בגמ׳ באשירה דמשה ומשמע קצת מדברי התוס׳ והריטב&quot;א דל&quot;ל סברת הסמ&quot;ג אלא כיון דזכי ביה דינו כדין עכו&quot;ם של ישראל שעובדה שאין לה ביטול מה&quot;ת ואין מקומו פה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:2</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובשעת הדחק כו׳ אבל לא שאר המינין.</strong> שיטת רבינו דעל לולב מברכין בשעת הדחק ודעת הראב&quot;ד דאין מברכין אבל ע&quot;ז לא פליג רבינו דלנקוט בידייהו כדי שלא תשתכח תורת אתרוג אלא דסברת רבינו דאס&quot;ד דלא יוצא בו בשעת הדחק לא היינו מתירין משום שלא תשתכח דלמא אתי לאכשורינהו ומה&quot;ט כתב אם אין כאן כ&quot;א אתרוג המורכב שלא יקחנו משום שלא תשתכח תורת אתרוג דלמא אתי לאכשורי בשאר השנים ושיטת הלבוש באתרוג המורכב שפסול מה&quot;ת משום שנעבדה בו עבירה עי׳ בשו&quot;ת פנים מאירות ח&quot;ש סי׳ קע&quot;ג:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אתרוג של ערלה.</strong> בש&quot;ג כתב גם בשל ערלה בח&quot;ל אין יוצאין. ועי׳ בכנה&quot;ג סי׳ תרמ&quot;ח חולק בזה דהא יש היתר לאכילה כעין מה דאמרינן ספק לי ואנא איכול במס׳ קידושין דף ל&quot;ט ובאמת הדין עם השה&quot;ג דהא רבינו והטור לא הביאו כלל הך דיכול לספוקי הדדי וכתב ב&quot;י יו&quot;ד סי׳ רצ&quot;ד דס&quot;ל דהנך רבנן דמספקי להדדי ס&quot;ל כמ&quot;ד הלכות מדינה אבל למ&quot;ד הלמ&quot;מ אסור לספוקי להדדי וא&quot;כ אינו יוצא בו ע&quot;ש ודוחק לומר משום דבספק גמור מותר יהיה נקרא היתר אכילה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה עקום לפניו פסול.</strong> בברייתא סוכה דף ל&quot;ב נזכר ג&quot;כ לולב כפוף ולא הזכירו רבינו עי׳ בס׳ כפות תמרים שהניח בצ&quot;ע. ואפשר מפני שבפירוש כפוף יש הרבה פירושים ולמאי דמסיק וצדדין כלפניו דמי י&quot;ל דהיינו כפוף ועקום דמחלקים בין מלאחריו ובין מלפניו עי׳ ב&quot;י סי׳ תרמ&quot;ה ובס׳ כפות תמרים מסיק דיש להחמיר בין עקום מלפניו ובין עקום מלאחריו וענין העיקום הוא כמ&quot;ש הכ&quot;מ דבעינן עקום ממש כמו מגל כגב בעל חטוטרת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הדס כו׳.</strong> עי׳ השגת הראב&quot;ד ועי׳ בס׳ מהר&quot;י בן לב ספר א׳ סי׳ ק&quot;ו כנה&quot;ג ובברייתא יבשו רוב עליו ונשתיירו ג׳ בדי עלין לחין ונחלקו רש&quot;י והרא&quot;ש בפירוש הדבר ולשיטת הרא&quot;ש בעי׳ שישתייר ג׳ קנים ודברי השו&quot;ע צ&quot;ע וכבר הארכתי בזה בש&quot;י ועי׳ ב&quot;י סי׳ תרמ&quot;ו שנתן טעם על מה שהקשה כאן בכ&quot;מ למה השמיט רבינו הך ברייתא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:6:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ערבה כו׳.</strong> עי׳ הה&quot;מ ולישנא דמתניתין מסייע לשיטת רבינו כיון דקתני גבי הדס דפסולה למה לי למתני תו גבי ערבה דהא הוי זו ואצ&quot;ל זו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם היה כאיסר או יותר פסול.</strong> אי קשיא השתא כאיסר פסול יתר מבעיא תריץ שבא לחדש לנו בין כגון שהיה מרובע או משולש צריך שיהיה יותר מכאיסר כדי שתוכל לעשות בו עיגול כאיסר כנה&quot;ג סי׳ תרמ&quot;ח בהגהת ב&quot;י בשם הרדב&quot;ז ח&quot;ש סי׳ קפ&quot;ד. אתרוג המורכב שהורכב יחור של לימונ&quot;א באילן אתרוגים פסול מהר&quot;ם אלשיך בתשובה סי׳ ק&quot;י ועמ&quot;ש לעיל בשם הלבוש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:2</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עלתה חזזית בב׳ וג׳ מקומות.</strong> עי׳ כ&quot;מ ומל&quot;מ ובס׳ א&quot;ר בשם לח&quot;מ פ׳ לולב הגזול ב׳ משני צדדים וג׳ מצד א׳. ופי׳ חזזית כמו אבעבועות. וזה שקורין חזזית באתרוגין שלנו רוב אותן שיש להם חזזית כ&quot;ש אינו ניכר מקומם במשמוש ואינו גבוה משאר אתרוג וכשירים והא דעל חוטמו פסול חזזית וכל שינוי מראה בכ&quot;ש אינו נקרא כ&quot;ש אלא כשנראה לכל שאינו הדר אבל באתרוגים שלנו שרוב אלו שאנו קוראין חזזית אינם נראין לעין מחמת דקותן וצריך להסתכל בהן כדי שתהא נראה ונרגש בראייה שאדם רואה את האתרוג כולו הדר בלי שום רושם ואדם אחר שיש לו יותר ראייה טובה רואה ואינו נקרא כ&quot;ש והדר נקרא למי שהוא בידו וכ&quot;ש לאחרים הרואים אותו הר&quot;מ מטראני כנה&quot;ג. ומראה אתרוג עי׳ תוס׳ סוכה דף ל&quot;א כחלמון ביצה ושעוה ירוק כעשב השדה עי׳ מג&quot;א. ומראה אודם מראה פסולה היא ואהינא סומקא אינו אודם כ&quot;כ. ועי׳ במס׳ עירובין בהא דאמר אתריגו לפחמין ופירש&quot;י דרך אתרוג להיות אדום ובפמ&quot;ג כתב אשרי מי שיוכל לקנות אתרוג נאה והדר מכל סיג גם כתב בשם היש&quot;ש בחולין באתרוגים המורים מרובים והיודעים מועטים מפני שאין גדילין בארצותינו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:10:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואינו מקנה לאחרים מה&quot;ת.</strong> עמ&quot;ש בזה באריכות בש&quot;י ר&quot;פ לה&quot;ג ד&quot;ה רבנן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:11:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שותפין שקנו לולב וכו׳.</strong> כתב הה&quot;מ אבל הרשב&quot;א כתב ומסתברא לי דהא דאחין בשלא לקחוהו לצאת בו הוא אלא לאוכלו ולהריח בו אבל לקחוהו לצאת בו ודאי בכל גוונא יוצאין בו דאמרינן יש ברירה שהרי בשעה שלקחוהו היו יודעין שאינו ראוי ליחלק ועל דעת כן לקחוהו שיטלנו כל אחד מהן לצאת בו שיהא כולו שלו דומיא דשותפין שנדרו הנאה זה מזה שהם נכנסים לחצר של שניהם שאין בה דין חלוקה כמו שמבואר בפ&quot;ו מה׳ נדרים והטעם שיש ברירה וכו׳ ואפשר שעל דעת זה סמכו בהרבה מקומות שלוקחין לולב אחד וכל הקהל יוצאין בו ע&quot;כ. אמנם בחידושי ריטב&quot;א מס׳ סוכה דף ק&quot;ז ד&quot;ה תניא מבואר שלא כדברי הרשב&quot;א במ&quot;ש שם. ויותר נראה לומר דמודה ר&quot;א דסוכה של שותפין יוצאין בו דל&quot;ד ללולב דהתם כי נפק ביה חד מנייהו בכוליה נפק ולא סגי דלא נפק בחולקיה דחבריה והוי שאול דכיון שמסתמא בכולו ליכא למימר ברירה והא ודאי אין כולו חלקו ודכותה אם נשתמש בכולו אסור במודר הנאה אא&quot;כ התנו קודם הנדר וכו׳ אבל הכא בשותפין כל אחד ואחד לשלו הוא נכנס ויש ברירה וכדאמרינן בנדרים בשותפין שנדרו הנאה שניהם מותרים ליכנס לחצר שיכול לומר לתוך שלי אני נכנס וכו׳ ואפילו למאן דאסר התם נדרים שאני דויתר אסור במודר הנאה וכו׳ אבל במצות סוכה דלתוך שלו נכנס לכם קרינן ביה עכ&quot;ד. הרי להדיא דלא ס&quot;ל סברת הרשב&quot;א דלולב ל&quot;ד לנדרים רק סוכה דמי לנדרים ור&quot;א בסוכת שותפין מודה ועי׳ בשו&quot;ת ריב&quot;ש סי׳ שמ&quot;ז ובס׳ ברכי יוסף הביא שו&quot;ת רשב&quot;ש סי׳ ח׳ שחלק עם הריב&quot;ש וסובר דסוכת השותפין גרע מסוכה שאולה דשאול תוך ימי שאלה הוא כולו שלו ובמקפידין באמת פסול דל&quot;ד להך דנדרים ע&quot;ש שהאריך דלדידן דקיי&quot;ל בדאורייתא אין ברירה סוכת שותפין המקפידין אין יוצאין בו ועי׳ בש&quot;ע סי׳ תרל&quot;ג. והנה לכאורה יש להביא ראיה לשיטת הרשב&quot;ש דלפ&quot;ד א&quot;ש מה דיליף ר&quot;י סוכה דף ל&quot;ו דאינה נוהגת אלא בד׳ מינים ק&quot;ו מלולב דנוהג ביום ולא בלילה וכו׳ והרגיש בספר כ&quot;ת והלא מעיקרא דדינא פירכא מה ללולב שכן שותפין ושאול פסול משא&quot;כ גבי סוכה ואף אי כר&quot;א ס&quot;ל דשאול פסול בסוכה מ&quot;מ הרי כתבו התוס׳ סוכה כ&quot;ז בסוכת השותפין מודה ר&quot;א וכו׳ ע&quot;ש שהניח בקושיא לפי שיטת הרשב&quot;ש גם בסוכה אליבא דכ&quot;ע פסול שותפין המקפידין דגרע משאול ובשותפין שאין מקפידין ה&quot;ל שאולה. וי&quot;ל דס&quot;ל כר&quot;א ול&quot;ק קושית הכ&quot;ת. אמנם גם לשיטת הריטב&quot;א שהבאתי לק&quot;מ קושית הכ&quot;ת דבאמת י&quot;ל דר&quot;י כר&quot;א ס&quot;ל דשאולה פסולה בסוכה ואי קשיא עכ&quot;פ בשותפות מודה זה הוא משום דגבי סוכה שייך ברירה משא&quot;כ גבי לולב משום דאינו יוצא כי אם בכולו ולא שייך ברירה וא&quot;כ שפיר יליף ר&quot;י בק&quot;ו משא&quot;כ לשיטת הרשב&quot;א דגם בלולב שייך ברירה אם לקחו לצאת בו עדיין הקושיא נשארת ויש ראיה דלא כהרשב&quot;א. היוצא מדברינו יש כאן שלש שיטות שיטת הרשב&quot;א דיוצא באתרוג השותפין אם לקחו מתחלה לצאת בו משום ברירה ודמי לשותפין שנדרו הנאה זה מזה דמותרין ליכנס לחצר באין בו דין חלוקה, ולשיטת הריטב&quot;א דהיכא דמחוייב לצאת בכולו כמו באתרוג ל&quot;ד לנדרים ולא שייך ברירה ואינו יוצא באתרוג השותפין אף אם לקחו מתחלה לכך לצאת בו דרחמנא פסליה, ולשיטת הרשב&quot;ש ומבואר שם שהרבה מן החכמים הסכימו אפילו בסוכת השותפין אין יוצאין בו אם הם מקפידים דלא שייך ברירה כיון דהקרא אסר לנו וכל האזרח לא אתי כי אם לרבות שאול דבעת שאולה כולו שלו היא משא&quot;כ בשותפות. והנה לפמ&quot;ש לשיטת הריטב&quot;א ליישב קושית הכ&quot;ת ע&quot;כ צ&quot;ל דר&quot;י אית ליה כר&quot;א דשאול פסול ושותפין ליכא פירכא משום ברירה וצ&quot;ל דכ&quot;ע אית ליה ברירה כה&quot;ג וכמ&quot;ש הריטב&quot;א דאפילו מאן דאוסר בנדרים מודה בסוכה דאל&quot;כ קשיא הא ר&quot;י לית ליה ברירה כדאמרינן בכמה דוכתין. אמנם אין מזה הכרח דאיכא למימר דמאן דלית ליה ברירה בכ&quot;מ גם כאן אמרינן אין ברירה וכמ&quot;ש בשו&quot;ת הרשב&quot;ש הנ&quot;ל אלא מאן דאית ליה ברירה בכל דוכתי ניחא ובאמת גם אליבא דר&quot;י מצינו דיש מחלוקת אי ס&quot;ל ברירה ואדרבה עפ&quot;ז יש ליישב קושית התוס׳ סוכה דף ל&quot;ז ע&quot;א ד&quot;ה מאי ארז וכו׳ מה שמקשים אליבא דרב די&quot;ל רב ס&quot;ל דתנא דס&quot;ל אליבא דר&quot;י דסוכה אינה נוהגת כ&quot;א בד׳ מינים ס&quot;ל דר&quot;י אית ליה ברירה ולתנא דס&quot;ל אליבא דר&quot;י אין ברירה באמת סוכה נוהגת בכל דבר דוק ותשכח. וגם לפי סברת הריטב&quot;א מוכח לומר דס&quot;ל לר&quot;י כר&quot;א דסוכה שאולה פסולה ומש&quot;ה יליף ק&quot;ו מיושב שפיר דלא קיי&quot;ל בהא כר&quot;י אלא סוכה נוהגת בכל דבר וכ&quot;ע מודים בזה עי׳ בתוס׳ שם ד&quot;ה כל דין כו׳. כיון דביררנו דירד ר&quot;י לשיטת ר&quot;א א&quot;כ לית הלכתא כוותיה אלא דסוכה שאולה כשרה ומיפרך הק&quot;ו. ובדרוש אמרתי בזה הוא פירוש בעזרא דכתיב צאו ההר והביאו עלי זית וכו׳ וכתב ויעשו כל הקהל סוכות וכו׳ ותהי להם שמחה גדולה פי׳ משום דעזרא חידש להם דסוכה נוהגת בכ&quot;ד וכמו שהשיבו חכמים לר&quot;י ואמאי לא ילפינן ק&quot;ו וצ&quot;ל דעזרא חידש להם דין זה דסוכה שאולה כשירה וא&quot;כ מיפרך הק&quot;ו ועל ידי זה כל אחד מישראל היה יכול לקיים מצות סוכה דקודם שלמד להם עזרא היה ס&quot;ל דשאולה פסולה והיה מקצתם שאין להם חלק בסוכה לא היו יכולים לקיים מצות סוכה משא&quot;כ עתה יודעים מזה דסוכה שאולה כשירה ויעשו כל הקהל סוכות ותהי שמחה גדולה בקיום המצוה. וה׳ יזכנו לקיים מצותיו בנפש חפצה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json","occurrence_url":"../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Prayer and the Priestly Blessing</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Prayer and the Priestly Blessing</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">37 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>946 matched</strong> / 2842 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-2" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:2">1:2:2</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-3" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:3">1:2:3</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-5-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:5:1">1:5:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-4-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-11-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:11:1">2:11:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-15-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:15:1">2:15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-2-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-4-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-7-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-10-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:10:1">3:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1">4:2:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-4-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:4:1">4:4:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-6-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:6:1">4:6:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-7-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:7:1">4:7:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-10-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:10:1">4:10:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-11-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:11:1">4:11:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-17-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:17:1">4:17:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-17-2" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:17:2">4:17:2</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-19-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:19:1">4:19:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-1-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-2-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:2:1">5:2:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-6-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:6:1">5:6:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-7-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:7:1">5:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-4-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:4:1">6:4:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-4-2" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:4:2">6:4:2</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-10-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:10:1">6:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-4-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:4:1">7:4:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-5-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:5:1">7:5:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-5-2" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:5:2">7:5:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-8-4-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 8:4:1">8:4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-10-2-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 10:2:1">10:2:1</a></li>
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-10-6-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 10:6:1">10:6:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 11</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-11">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-11-11-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 11:11:1">11:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 15</summary>
+                  <a class="toc-start" href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-15-9-1" title="Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 15:9:1">15:9:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Chapter 1</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות </strong>
+<strong> עשה להתפלל בכל יום וכו׳.</strong> וכ&quot;כ רבינו בספר המצוות וז&quot;ל מצות עשה ה׳ הוא שציונו לעובדו שהיא התפילה וכו׳. והשיגו הרמב&quot;ן מכמה דוכתין דאמרינן בש&quot;ס תפילה דרבנן. והמגילת אסתר הליץ בעד רבינו דהנוסח הוא דרבנן יעו&quot;ש, וכן הליץ כאן מרן. וקשיא לי בדבריהם דא&quot;כ דעיקר תפילה היא דאורייתא אלא דהנוסח לחוד הוא דרבנן א&quot;כ היאך חילק בש&quot;ס פ׳ מי שמתו גבי מתני׳ דבעל קרי וז&quot;ל אלא ברכת המזון וק&quot;ש דאורייתא תפילה דרבנן והא בהמ&quot;ז הוי דומיא דתפילה דעיקרה דאורייתא ומטבעה דרבנן כמ&quot;ש מרן גופיה פ&quot;ב דברכות משם הרמב&quot;ן ושכיוצא בזה כתבו הרא&quot;ש והרשב&quot;א, ובהל׳ ב׳ נראה שהשוה דעת רבינו לדעתם יעו&quot;ש א&quot;כ הוי דומה לתפילה ממש.<br><strong> גם</strong> מ&quot;ש עוד מרן וז&quot;ל א&quot;כ יש כח ביד חכמים לעקור דבר מן התורה. לא זכיתי להבינו דא&quot;כ מה יענה אבנ&quot;ר לקושיא שהזכרנו. ועוד מאי שנא הך דאורייתא מהך דאורייתא.<br><strong> עוד</strong> הקשה מרן לרבינו למה מנה מצוה זאת מדכתיב בכל לבבכם וכו׳ וסיים בסוף דבריו דקרא דועבדתם לא מצינו שדרשוהו לדבר אחר ע&quot;כ ושמעתי מקשים דבפרק החובל והמקבל דרש רבא ועבדתם זו תפילה וק&quot;ש ואיך כתב דלא דרשוהו לדבר אחר. ולק&quot;מ וכי ק&quot;ש מהכא נפקא מקרא מלא דבר הכתוב בק&quot;ש בשבתך וכו׳ ובלכתך בדרך אלא דרבא שם קאי ללמד דעת את העם דיאכל אדם בבוקר פת במלח וקיתון של מים ומפיק לה מהכא דרך רמז ועבדתם וכו׳ ואח&quot;כ ובירך את לחמך ואת מימיך ונקט ק&quot;ש בהדי תפילה שלא יאכל קודם ק&quot;ש משום ואותי השלכת אחרי גויך דלאו דוקא קודם תפילה הוא דאסור אלא גם ק&quot;ש. ולעיקר קושיית מרן נראה דמפיק ליה מועבדתם לפי דממנו נלמוד חיוב לכל יום וכמ&quot;ש הלח&quot;מ משם הרב קרית ספר דומיא דלחם ומים דצריך בכל יום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולפיכך </strong>
+<strong> נשים ועבדים וכו׳.</strong> אין להקשות אמאי השמיט קטנים דתני במתני׳ משום דכתב לפיכך וכו׳ ולכן אי אפשר למתני קטנים דלאו הא בהא תליא וכבר שנאו רבינו דין זה במקום אחר סוף פ&quot;ו ה&quot;י.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:2</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-2" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> שהיא</strong>
+<strong> מצות עשה שלא הזמן גרמא וכו׳.</strong> ובש&quot;ס דרחמי נינהו וכו׳ כן היא הגירסא לפירוש רש&quot;י דס&quot;ל דהוי דרבנן, והתוס׳ גרסי פשיטא כיון דכתיב וכו׳ כמצות עשה שהזמן גרמא דמי קמ&quot;ל רחמי נינהו, וכתבו דרש&quot;י לא גריס כן משום דס&quot;ל דהוי דרבנן וכו׳. ומהר&quot;ח אבולעפיה כתב דלא גריס רבינו בש&quot;ס דרחמי נינהו, והוא תימה דבין רש&quot;י בין תוס׳ גרסי גירסא זאת. ונראה דלעולם דרבינו גריס לה וכגירסת התוס׳ וה&quot;פ פשיטא מצוה דאין לה זמן היא ומשני כיון דכתיב וכו׳ נעשה כמי שיש לה זמן מדרבנן ויש כח ביד חכמים לעקור דבר מן התורה בשב ואל תעשה כדי לקיים דבריהם שקבעו זמנים קמ&quot;ל כיון דרחמי נינהו אוקמינהו אדאורייתא וליחייבו נשים כאנשים כדינייהו שהיא מצות עשה שלא הזמן גרמא. ושוב ראיתי להרי&quot;ף דלא גריס לה, ויש לצדד לדעת רבינו אי גריס לה או לא ואין כאן הכרח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:3</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-2-3" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אלא</strong>
+<strong> חיוב מצוה וכו׳ נותן שבח וכו׳.</strong> וכתב הלח&quot;מ יש לשאול מנין לו לרבינו שזה מן התורה ובעל קרית ספר כתב לא איתפרש לי היכא, ולשון זה העתיק גם הרב מעיל שמואל בנימוקיו לרבינו. וכתב הרב מרכבת המשנה נר&quot;ו דהבין המעיל שמואל בדברי הקרית ספר דקאי לכל מ&quot;ש רבינו מתחילת הלשון שכתב ומגיד שבחו וכו׳, והוא הכחיש דלא קאי אלא למ&quot;ש ואח&quot;כ נותן שבח וכו׳. ולא ידעתי היכן רמוז שהבין כן עד דמכחיש ליה דאדרבא כתב כן על מ&quot;ש רבינו ואח&quot;כ נותן שבח והודאה וכמו שנראה האמת דמ&quot;ש הקרית ספר הוא ע&quot;ז.<br><strong> עוד</strong> כתב הרב מרכבת המשנה נר&quot;ו שם וז&quot;ל ואי לא דמסתפינא הוה אמינא דמ&quot;ש ומגיד שבחו לא קאי למ&quot;ש חיוב מצוה וכו׳. ולענ&quot;ד דבר ה׳ בפיהו אמת מדקדוק לשון רבינו שכתב אלא חיוב מצוה זאת כך היא שיהא אדם מתחנן ומתפלל בכל יום והם דברי מותר דהכי הו&quot;ל למימר אלא וכו׳ כך דיגיד שבח הקב&quot;ה ואח&quot;כ שואל צרכיו וכו׳, אלא דתחילה כתב רבנו חיוב התפילה שהיא שאלת צרכיו וז&quot;ש שיהא אדם מתחנן ומתפלל דהיינו צרכיו שהם בקשה ותחינה ואח&quot;כ כתב שכך יעשה מדרבנן שיגיד שבחו וכו׳. ולדעת מרן דס&quot;ל דמ&quot;ש רבינו חיוב מצוה זאת קאי גם ללשון ומגיד שבחו של הקב&quot;ה ומפיק לה מההיא דרבי שמלאי לעולם יסדר אדם שבחו וכו׳ י&quot;ל דהלשון נמשך עד בבקשה ובתחינה, ומ&quot;ש אח&quot;כ הוא מילתא באנפי נפשא מצד הסברא ואח&quot;כ יתן שבח וכו׳ על הטובה שהשפיע לו וכמשל דאמר בש&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:5:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-1-5-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong>
+<strong> תקנו וכו׳.</strong> עיין מ&quot;ש מרן והלח&quot;מ והמעיל שמואל, ולא ימלט מהקושי גם לפי דבריהם. ולי הדיוט נראה דדעת רבינו לפסוק כר׳ יהושע בן לוי משום דאנו מתפללין תפלת מוסף ולכו&quot;ע הויא חיובא ובשלמא לריב&quot;ל דתיקנו אנשי כנה&quot;ג כנגד תמידין יבוא מרווח תפילת מוסף לא כן לר׳ יוסי בר חנינא דס&quot;ל אבות תקנום מוסף מאן דכר שמיה וצריך לידחק כמו שנדחק בש&quot;ס משו&quot;ה תפס כריב&quot;ל וזה הוא כוונת הש&quot;ס דקאמר לימא תיהוי תיובתא וכו׳ ומאי קושיא הא ברייתא אחרת הויא תיובתא דריב&quot;ל ומאי קשיא לריב&quot;ח טפי מריב&quot;ל אלא הכוונה דמקשה ליה לריב&quot;ח מכח תפילת מוסף דתני בברייתא ולריב&quot;ח היאך ימלט מזה דתני בברייתא דמוסף הוי כנגד מוסף דקרבן דלדידיה ליכא אב אחר ואהא מתרץ לעולם אמר לך וכו׳ דאי לא תימא הכי מאן תיקנה וכו׳ כלומר בלאו ברייתא תיקשי ליה לריב&quot;ח מי לא מודה בתפילת מוסף ומאן תיקנה אלא צ&quot;ל כדאמרן. או י&quot;ל על דרך זה דלאו קושיא ותירוץ הוא אלא הכל מדברי אחד דרוצה להכריח דהך ברייתא לא הוי נגד ריב&quot;ח וז&quot;ש נימא וכו׳ כלומר כשם שבברייתא אחרת הויא תיובתיה דריב&quot;ל כך ברייתא זאת תיהוי תיובתא דריב&quot;ח ואהא קאמר דאינו, דאמר לך וכו׳ דאי לא תימא הכי וכו׳ זה אפשר בפשטא דש&quot;ס. ולפי מ&quot;ש בדברי רבינו דמ&quot;ש כאן הוא כריב&quot;ל צ&quot;ל דמ&quot;ש בהל׳ מלכים הוא כמ&quot;ש המעיל שמואל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-2">Chapter 2</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:4:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א </strong>
+<strong> וכו׳.</strong> עיין מ&quot;ש הלח&quot;מ על דברי מרן בב&quot;י סי׳ ק&quot;י וז&quot;ל ונראה דהוצרך לומר כן למנהג אשכנז שבכל זמן אומרים ברך עלינו אלא שבימות הגשמים אומרים ותן טל ומטר וכו׳, וקשה לי על תירוצו דא&quot;כ כשהקשה בש&quot;ס שם אי הכי הבדלה בחונן הדעת נמי וכו׳ ומאי קשיא הא י&quot;ל בין הביננו לאתה חונן שהיא ברכה די&quot;ח כמו שחילק הוא ז&quot;ל יעו&quot;ש. והרב מקראי קודש השיא כוונת הש&quot;ס לכוונה אחרת יעו&quot;ש.<br><strong> ואחר</strong> נשיקת ידיו ורגליו אין לשון הש&quot;ס סובלו אי מלשון אי הכי הבדלה בחונן הדעת (ואי) דאי כפירושו הו&quot;ל למימר השתא דאתית להכי וכו׳. גם לשון הבדלה בחונן הדעת דחונן הדעת הוא מהי&quot;ח ולא מהביננו. ועיין להרב יד אהרן נר&quot;ו מה שתירץ בתירוץ שני והוא נכון ע&quot;פ דברי הרשב&quot;א בחידושיו יעו&quot;ש והן אמת דלפי דברי הרשב&quot;א הנה נכון ברם דברי הרשב&quot;א לא ימלט מהדוחק, דהבדלה בחונן הדעת לאו הביננו הוא וכדכתבינן. וכן הרב פר&quot;ח פי׳ הסוגיא כפי הפשט ולקושיית הלח&quot;מ תירץ כתירוץ הלח&quot;מ יעו&quot;ש סדר לשונו. ועיין בב&quot;י סי׳ ק&quot;י מ&quot;ש משם ה&quot;ר יונה וז&quot;ל וה&quot;ר יונה נתן טעם לדבר דאפשר לתרץ מפני שההבדלה אינה ברכה בפ&quot;ע וכו׳. וראיתי להרב לחם יהודה בתשובה וז&quot;ל וקשה דלפי&quot;ז בשאלת מטר נמי למנהג אשכנזים שאומרים לעולם ברך עלינו וכוללין המטר בתוכה אמאי צריכינן לטעמא דטירדא בהביננו ותיפוק ליה דלא יאמרו דהיא ברכה בפני עצמה, ולא קשיא מידי דלא ראי זה כראי זה דגבי הבדלה שאינה ברכה בפני עצמה אלא היא כלולה עם אתה חונן ועכשיו כלולה בהביננו יכול לטעות שהיא ברכה בפני עצמה לא כן גבי ותן טל ומטר דהיא היא ברכת השנים היאך יטעה ויאמר שהיא ברכה בפני עצמה וכי משום דמוסיף בברכת השנים יבוא לטעות הא הכל מענין א׳ וליכא חששא והוא פשוט.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:11:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-11-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבת </strong>
+<strong> וכו׳.</strong> עיין מ&quot;ש מרן וז&quot;ל מאמצע וא&quot;כ היה מפרש רבינו לא הו&quot;ל לכתוב ומשלים בשל שבת ולפיכך נראה שרבינו מפרש וכו׳. ואחר נשיקת ידיו ורגליו לא היה צריך לומר שיפרש כן הברייתא אלא כפי׳ רש&quot;י ותוס׳, ומ&quot;ש ומשלים הוא כמ&quot;ש איהו אלא שהוא לשון דידיה ולא מלשון הש&quot;ס והיינו מרויחין בזה דלא תיקשו מה שהקשה הרב מקראי קודש על דברי מרן יעו&quot;ש. ולענ&quot;ד י&quot;ל לקושיא זאת דמ&quot;ש אין הלכה כאותו הזוג הוא לשון חידוש דאף שהם רבים לית הלכתא כוותייהו וק&quot;ל, ברם מי הכניסו למרן בזה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:15:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-2-15-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 2:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong>
+<strong> ימות הגשמים וכו׳ מאימתי אומר מוריד הגשם וכו׳.</strong> עיין מ&quot;ש מרן. ובירושלמי הביאו הטור סי׳ קי&quot;ד דאמר אסור להתחיל עד שיזכיר הש&quot;ץ, וכתב שם הטור בשם הראב&quot;ד דה&quot;פ אסור להזכיר עד שיזכיר ש&quot;ץ משיב הרוח ומוריד הגשם או מוריד הטל כדי שלא יהא דבר מעורב ביניהם יעו&quot;ש. ודבריו תמוהים וכמ&quot;ש עליו מרן יעו&quot;ש. ועיין להרב ט&quot;ז שם מה שתירץ בזה. וצריך אני לפרש דבריו בלשון הירושלמי וז&quot;ל הירושלמי אסור ליחיד להזכיר עד שיזכיר ש&quot;ץ ופי׳ לא מבעיא בציבור דאיכא עירוב במקום אחד דזה מזכיר וזה אינו מזכיר אלא אף ביחיד צריך שישמע מציבור רבי סימון בשם ר׳ יהושע בן לוי אמר בש&quot;ץ הדבר תלוי בתמיה וכי אף ביחיד תלוי בש&quot;ץ כיון שהוא יחיד א&quot;א לש&quot;ץ ואהא שאל ר׳ מנא אי פליג ריב&quot;ל עליו דר׳ חגי וא&quot;ל לא, דא דאת אמר בש&quot;ץ הדבר תלוי שהוא מימרת ריב&quot;ל ויוצא מדבריו דיחיד אם רצה להזכיר מזכיר איירי בטל, (והיא) [ודאי] מימרת דר׳ חגי דאף ביחיד הצריך ש&quot;ץ איירי בגשם ונמצא לפ&quot;ז דבציבור בין בגשם בין בטל בש&quot;ץ הדבר תלוי וביחיד בגשם בש&quot;ץ תלוי אבל לא בטל זהו כונת הרב ט&quot;ז. ומפרש דברי הראב&quot;ד כך על מ&quot;ש בירושלמי אסור להזכיר וכו׳ דה&quot;פ בין משיב הרוח ומוריד הגשם בין מוריד הטל כדי שלא יהיה מעורב והיינו בציבור דביחיד ליכא האי טעמא דעירוב ומשו&quot;ה השמיט הטור מלשון הירושלמי תיבת ליחיד להורות דהראב&quot;ד איירי בציבור. והוצרכתי לזה משום דעפ&quot;ז נתבארו באר היטב דברי הר&quot;ן ז&quot;ל על מ&quot;ש במתני׳ ריש תעניות ר׳ יהודה אומר העובר לפני התיבה וכו׳ וזה לשונו הא דנקיט בעובר ולא תנא דביו&quot;ט אחרון של חג במוסף מזכירין ולא בשחרית וביו&quot;ט ראשון של פסח בשחרית ולא במוסף היינו טעמא לפי שאמרו בירושלמי אסור ליחיד להזכיר עד שיזכיר ש&quot;ץ פי׳ כיון דתלוי בש&quot;ץ נקט הכי. וכתב עוד וז&quot;ל ומיהו דוקא בגשם אבל בטל אם רצה להזכיר יחיד יזכיר כדאיתא התם כלומר דקשיא ליה דא&quot;כ תירוץ זה ניחא בהעובר דגשם ברם בטל מאי איכא למימר ואהא תירץ וז&quot;ל ואיידי דנקט ר׳ יהודה מילתיה בש&quot;ץ ביו&quot;ט האחרון של חג נקט נמי ביו&quot;ט ראשון של פסח אף שאין תלוי בש&quot;ץ. ושוב כתב א&quot;נ דאפילו בטל אין מזכיר בציבור עד שיכריז הש&quot;ץ וכן נראה בירושלמי שאכתוב בסמוך עכ&quot;ל. פי׳ דבריו (דא&quot;כ) [דא&quot;צ] למה שתירץ דאיידי דיו&quot;ט אחרון של חג נקט ביו&quot;ט של פסח נמי בעובר, אלא דכולה איירי בדוקא ומתני׳ כולה קאי בציבור וכיון שכן אף בטל תלוי בש&quot;ץ כדי שלא יהא דבר מעורב זה מזכיר וזה אינו מזכיר וכמ&quot;ש מהירושלמי שהביא בסמוך שהוא הך ירושלמי שכתבנו ונתבארו דברי הר&quot;ן בפשיטות. והרב יד אהרן לא הבין כן בכוונת הר&quot;ן וכתב עליו מ&quot;ש יעו&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Chapter 3</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:1:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-1-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תפילת </strong>
+<strong> השחר וכו׳ עם הנץ החמה.</strong> ועיין בב&quot;י ריש סימן פ&quot;ט דאחר שהביא דברי רבינו כתב על שם רבינו ירוחם וז&quot;ל ור&quot;י כתב זמן תפילה משיכיר את חבירו וכו׳ ונראה שהוא סובר וכו׳ ולא ידעתי וכו׳. ולי הדיוט דבריו תמוהים דאיך הבין לדעת רבינו ירוחם דמשיראה את חבירו תוך ד׳ אמות ויכירנו, ואם עלה ברק השחר אחד, ואינו דביראה את חבירו כתב ר&quot;י דהוא זמן תפילה ובעלה ברק השחר כתב דאם התפלל בדיעבד יצא, נמצא ג׳ זמנים מחולקים דמשעלה ברק השחר בדיעבד יצא ומשיראה את חבירו ברחוק ד׳ אמות הוא זמן תפילה שהוא זמן מאוחר יותר דהיינו עד הנץ החמה משום יראוך עם שמש ואיך השוום מרן יחד. וכפי זה גם אינו מובן מ&quot;ש שפירש כן ר&quot;י כי היכי דלא תיקשי הא דאביי על מ&quot;ש הרא&quot;ש, והא אינם זמן אחד. גם קשה איך אפשר דיפרש ר&quot;י דמ&quot;ש אביי לתפילה כאחרים ר&quot;ל לתפילה ממש והא סיים שם ולק&quot;ש כוותיקין דאמר ר׳ יוחנן ותיקין גומרים אותה עם הנץ החמה תניא נמי הכי ותיקין גומרים אותה עם הנץ החמה כדי לסמוך גאולה לתפילה וידוע דהתפילה היא אחר ק&quot;ש וזמנה משיראה את חבירו ברחוק ד׳ אמות ויכירנו הוא קודם להנץ החמה וק&quot;ש כוותיקין שהוא מאוחר, ובשלמא אם הוא תפילין ניחא שהוא כסדר זה תפילין תחילה ואח&quot;כ ק&quot;ש וכמ&quot;ש רש&quot;י ודוק.<br><strong> עוד</strong> כתב מרן שם וז&quot;ל ונראה שלמדו כן וכו׳ דלא גרע קודם חצות וכו׳ הרואה יראה דבין לפי׳ א׳ בין לפי׳ ב׳ לעולם קודם חצות לר׳ יהודה הוא נלמד או מאחר חצות לכו&quot;ע לפי׳ א׳, או דלא נשוי כ&quot;כ פלוגתא בין ר׳ יהודה לרבנן, ובין הכי ובין הכי קשה דאמאי צריך הרא&quot;ש ז&quot;ל להוציא הדין באופן זה ונפק&quot;מ לדרך הב׳ שכתב מרן דאחר חצות לר&quot;י אינו מועיל אפילו לשכר תפילה שלא בזמנה, ולדרך הא׳ ברור לעין כל דוחק הלשון בדברי הרא&quot;ש ובפשיטות היה יכול להוציא הדין לר&quot;י אפילו אחר חצות יש לו שכר תפילה שלא בזמנה שכשם שקשה לרבנן שאמרו עד חצות כן קשה לר׳ יהודה במכל שכן דס&quot;ל עד ד׳ שעות וצריך לתרץ דעד ד׳ שעות שכר תפילה יהבו ליה שכר תפילה בזמנה לא יהבו ליה ונמצא הדין כמ&quot;ש וגם לרבות עד הלילה.<br><strong> וראיתי</strong> להלח&quot;מ הקשה כמו כן בפשט דברי הרא&quot;ש וכתב וכבר תמה עליו הרב ב&quot;י. ולא ידעתי איך כתב דעל קושיא זאת מתרץ, והא מזה לא איירי מרן ומה שקשה על הרא&quot;ש בסתם קשה גם בפי׳ מרן וכמ&quot;ש, הן אמת דלפי׳ א׳ דמרן יש לדוחה לדחות ולפרש כמ&quot;ש הלח&quot;מ דבדבריו מתיישב קושיא זאת ברם בתירוץ האחרון לא נגע ולא פגע בזה.<br><strong> עוד</strong> כתב בב&quot;י שם וז&quot;ל הילכך ממעטינן בפלוגתייהו וכו׳ והקשה הלח&quot;מ ז&quot;ל שם כיון דטעמא דרבנן היינו משום דתמיד היה קרב עד חצות וטעמא דר׳ יהודה היינו משום דתמיד היה קרב עד ד׳ שעות מנין לו לתת זמן לר&quot;י עד חצות כלל. ועוד קשה מה שהקשה הרב לחם יהודה וז&quot;ל ועוד קשה דאדרבא מוכח בש&quot;ס דלר&quot;י אחר ד׳ שעות לא יצא דהא גבי מוספין קאמר עד ז׳ שעות ומוכח בש&quot;ס ופוסק דלרבנן דקיי&quot;ל כוותייהו בדין המוספין אם התפלל אחר ז׳ שעות נקרא פושע ויצא ידי חובתו ומדרבנן נשמע לר&quot;י וכו׳. ועוד קשה דהתם דף כ&quot;ח אמרו כל המתפלל תפילת המוספין לאחר ז׳ שעות לר׳ יהודה עליו הכתוב אומר נוגי ממועד וכו׳ וכיון דאתרוייהו קאי קרא משמע דשוין נינהו דלאחר זמנן אף בדיעבד לא יצא עכ&quot;ל.<br><strong> ולענ&quot;ד</strong> ליישב הכל נקדים מ&quot;ש התוס׳ ד&quot;ה איבעיא להו וכו׳ לא בעי אם טעה ולא התפלל תפילת מוסף דהא ודאי אינו מתפלל בערבית דהיאך יקרא את הקרבנות וכבר [עבר] זמן מוסף וכו׳ עד סוף דבריהם. היוצא מדבריהם דשנא תפילת מוסף מתפילת שחרית כיון דתפילת שחרית וכן השאר רחמי נינהו לא כן מוסף ואף דכולן כנגד קרבנות תקנום וא&quot;כ משו&quot;ה לר׳ יהודה אף דזמנה עד ד׳ שעות מ&quot;מ מודה דיכול להתפלל אח&quot;כ כיון דרחמי נינהו ולא דמי למוספין. גם מ&quot;ש מקרא דנוגי ממועד דמוקי ר&quot;י בין לשחרית בין למוסף לא קשיא כיון דלאחר ד׳ שעות לר&quot;י אין לו שכר תפילה בזמנה קרי ביה נוגי ממועד ומה שמתפלל אח&quot;כ משום דרחמי נינהו ולכן במוסף דלא שייך רחמי אינו מתפלל ונמצא יישוב לכל.<br><strong> והב&quot;ח</strong> לא נראה לו דברי מרן אלו ובחר לו דרך לעצמו והעלה דבין לר׳ יהודה עד ד׳ שעות ובין לרבנן עד חצות שכר תפילה בזמנה יש לו מכאן ואילך למר כדאית ליה ולמר כדאית ליה עד המנחה שכר תפילה שלא בזמנה יש לו ואפי׳ איחר במזיד ומכאן ואילך מתפלל של מנחה תחילה ואח&quot;כ שחרית ודוקא בשוגג וכו׳ עכ&quot;ל. ודבריו תמוהים דאיך השוה להרי&quot;ף והרא&quot;ש ורבינו והטור בזה והא הרי&quot;ף והרא&quot;ש כתבו היכא דטעי וצלי לאחר ד׳ לר&quot;י מתפלל וכו׳ נמצא דדוקא בטעה ברם בהזיד לר&quot;י אינו מתפלל כלל ולא כן להרמב&quot;ם והטור דכתבו עבר או טעה וכו׳ ואיך הוא השוום בדרך זה וי&quot;ל.<br><strong> עוד</strong> שם הב&quot;ח חולק עם מרן בפי׳ דברי הרשב&quot;א דלדעת מרן פי׳ דבריו הוא שאחר חצות קודם המנחה אינו יכול להתפלל מכל וכל אלא דלאחר חצות שהגיע שעת המנחה מתפלל מנחה תחילה ואח&quot;כ שחרית ולהב&quot;ח כוונת הרשב&quot;א הוא לאשמועינן דין אחר לענין תשלומים והוא דר&quot;ל דאם לא התפלל שחרית והגיע זמן מנחה גדולה לא יאמר התפלל שחרית ואח&quot;כ מנחה אלא להיפך וכו׳ יעו&quot;ש.<br><strong> ולענ&quot;ד</strong> לא ראיתי בדברי הרשב&quot;א אופן לפרש כן וז&quot;ל ומיהו דוקא בזמן תפילה לפי שכיון שהוא זמן תפילה וכו׳ חוזר ומשלים וכו׳ אבל שלא בזמן תפילה וכו׳. ובדברים אלו היכן רמוז מ&quot;ש הב&quot;ח, ומה גם שזה פשוט והוא ש&quot;ס ערוך דהתשלומין הוא אחר התפילה שהיא זמנה ותניא טעה ולא התפלל מנחה בערב שבת וכו׳ טעה ולא התפלל מנחה בשבת מתפלל במוצ&quot;ש שנים של חול מבדיל בראשון וכו׳ הרי בפירוש דהשני הוא לתשלומין.<br><strong> גם</strong> הרב פר&quot;ח כתב דלא כמ&quot;ש מרן בב&quot;י ומור&quot;ם ז&quot;ל דליתא וכ&quot;כ הב&quot;ח וכו׳. ובסי׳ ק&quot;ח ס&quot;ק ג׳ על מ&quot;ש מרן בסעי׳ ג׳ וז&quot;ל הא דמשלים התפילה שהפסיד דוקא בזמן תפילה אבל בשעה שאינה זמן תפילה לא וכתב עליו [הפר&quot;ח] דוקא בזמן תפילה כלומר בעודו עסוק בתפילה העיקרית אחר ששהה כדי הילוך ד׳ אמות וכו׳ אבל אם הפסיק בין תפילה לתפילה והלך לעסקיו שוב אינו מתפלל תשלומין ודקדק כן הרשב&quot;א וכו׳ וזו היא כוונת הרשב&quot;א שמשם לקח המחבר מ&quot;ש כאן ודלא כהבנת ב&quot;י ומור&quot;ם סי׳ פ&quot;ט. ולא ידעתי מי הכריחו לפרש כן בדברי הרשב&quot;א דאין דבריו סובלין פי׳ זה כמו שיראה המעיין.<br><strong> עוד</strong> שם בב&quot;י וז&quot;ל ואחר שכתבתי כל זה מצאתי להרשב&quot;א וכו׳, וראיתי להלח&quot;מ פ&quot;ג מהל׳ תפלה הקשה וז&quot;ל וקשה עליו דא&quot;כ למה לא תירץ בש&quot;ס כשהקשה וכו&quot;ע ותו לא דמאי דקאמר עד חצות הוא לומר דעד חצות יכול להתפלל כל זמן שירצה אבל מחצות ואילך אינו זמן תפלה עד לאחר חצי שעה שאינו זמן שום תפילה, ותירץ וז&quot;ל ומיהו לזה י&quot;ל דאי הוה הכי לא אהני מיעוטא דמתני׳ דעד חצות אלא לחצי שעה לבד אלא להוסיף ג&quot;כ לגבי דר׳ יהודה. ולענ&quot;ד נראה לעיקר קושייתו דאינו יכול לתרץ הכי בש&quot;ס דאי מתרץ הכי נמצא דנשאר הענין כפשוטו דאין חילוק בין זמן לזמן לשכר תפלה ובין הכי ובין הכי יש לו שכר תפלה בזמנה אלא דחצי שעה אחר חצות אינו יכול להתפלל וא&quot;כ מאי טעה דקאמר דמשמע דוקא טעה ואם הזיד אינו מתפלל והא כל דאם הזיד אינו מתפלל איך אם טעה יהיה לו שכר תפלה בזמנה. ועוד כיון דבאמצע יש זמן שעבר זמן תפילה מ&quot;מ, איך אפשר שיהיה לו אח&quot;כ שכר תפילה בזמנה ולכן תירץ בש&quot;ס כדתירץ ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:2:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבר </strong>
+<strong> אמרנו וכו׳.</strong> עיין מ&quot;ש הלח&quot;מ ובכלל דבריו הביא דברי התוס׳ דפרק תפילת השחר שהקשו מנא ליה הא דבשלמא עד תשע שעות ומחצה דעד אותו זמן הוי וכו׳ מנחה קטנה יעו&quot;ש. ולענ&quot;ד חילייהו מדתני בסיפא דהאי ברייתא דאפליגו ר׳ יהודה ורבנן ואיזהו מנחה גדולה משש שעות ומחצה ולמעלה ואיזהו מנחה קטנה מתשע שעות ומחצה ולמעלה ע&quot;כ, וסתמא קתני דמשמע בין לר&quot;י בין לרבנן ותיבת ולמעלה משמע עד הלילה וא&quot;כ קשיא ליה אמאי קאמר עד פלג המנחה ואהא תירץ שפיר דר&quot;י ס&quot;ל דתפילת מנחה הוי כנגד קטורת וקטורת היה עסקו חמשה רביעי שעה דהיינו שעה ורביע ומתחיל זמנו מתשע שעות ומחצה, ולמעלה דקאמר ר&quot;י היינו עד אחת עשרה שעות חסר רביע שאז כלה זמן הקטורת משא&quot;כ לת&quot;ק דהוי כנגד תמיד של בין הערבים שכלה זמנו עד הלילה ולמעלה ר&quot;ל עד הלילה וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:4:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וזמן </strong>
+<strong> מנחה קטנה וכו׳.</strong> וכתב מרן ויש לדקדק בלשון רבינו שהו&quot;ל לכתוב וזמן מנחה קטנה וכו׳. ועיין להרב מקראי קדש מה שכתב ע&quot;ז וליתא וכו׳ יעו&quot;ש. ומי יתן ידעתי מה הכוונה בדבריו דהלא דבריו הם דברי מרן שכתב לתרץ קושיא זאת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:7:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-7-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המתפלל </strong>
+<strong> תפלה וכו׳</strong> וכתב מרן כבר אפשר וכו׳ והיינו אם לא יתפלל מנחה מפלג המנחה ולמעלה וכו׳. וכתב הרב מרכבת המשנה וז&quot;ל וקצת קשה דאמאי בתפילת המנחה לקח רבינו לעיל סברת ר׳ יהודה לעיקר מדכתב וזמן מנחה קטנה וכו׳ ויש לו להתפלל אותה עד שתשקע החמה וכאן בתפילת ערבית כתב בתחילה שזמנה מתחילת הלילה והיינו כת&quot;ק ואח&quot;כ כתב ויש לו להתפלל תפילת ערבית של ליל שבת בער&quot;ש והיינו כר׳ יהודה וי&quot;ל עכ&quot;ל. ונראה דלעיל גבי מנחה רבינו נחית לכתוב כסדר היום דתחילה בא זמן ר׳ יהודה ואחר כך בא זמן ת&quot;ק וז&quot;ש וקטנה מתשע שעות ומחצה וכו׳ עד שישאר מן היום שעה ורביע דהיינו קודם הלילה ואח&quot;כ ויש וכו׳ עד שתשקע החמה דהיינו זמן מאוחר יותר וכאן כתב דעת ת&quot;ק קודם דמסתבר לכתחילה כוותיה וק&quot;ל.<br><strong> ובני</strong> יצחק נר&quot;ו תירץ דבכל אחד נקט רבינו מילתא דשוייא לתרוייהו דבין לרבנן בין לר׳ יהודה יוצא ידי חובה ולכתחילה עדיף לעשות כן לצאת ידי ספק ולכן גבי מנחה נקט תחילה דזמן מנחה קטנה עד י&quot;א שעות דאליבא דכו&quot;ע מתשע [שעות] עד אחת עשרה חסר רביע הוא זמנה אלא דרבנן הוסיפו דעד הלילה ג&quot;כ הוא זמנה ומשו&quot;ה נקט תחילה סברת ר&quot;י ואח&quot;כ סברת רבנן דלכתחילה יעשה כן לצאת ידי ספק וגבי ערבית נקט תחילה שזמנה מתחילת הלילה דהיינו סברת רבנן משום דאף לר&quot;י נמי הוא זמנה אלא דר&quot;י הוסיף דאף מאחת עשרה שעות מתחיל זמנה ויעשה כן גם בערבית לכתחילה לומר מתחילת הלילה כדי לצאת ידי ספק וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:10:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-3-10-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טעה </strong>
+<strong> וכו׳.</strong> עיין בב&quot;י סי׳ ק&quot;ח וז&quot;ל וכתב עוד הרשב&quot;א ומיהו דוקא בזמן תפלה וכו׳. פי׳ דבריו כמ&quot;ש מרן גופיה שם לעיל סי׳ פ&quot;ט והכי פירושו דוקא בזמן תפלה דהיינו שהוא שאר תפילות לאפוקי זמן שאינו ראוי לשום תפילה כמו חצי שעה אחר חצות והוא עוסק בתפילתו פי׳ כיון שהוא זמן תפילה נקרא עוסק בתפילתו וסיים אבל שלא בזמן תפלה לא ודוק. וכ&quot;כ בסעי׳ ה׳ הא דמשלים התפלה דוקא בזמן תפלה אבל באינו זמן תפלה לא, וזמן משמע כדכתיבנא.<br><strong> וראיתי</strong> להפר&quot;ח סי׳ זה כתב ע&quot;ז וז&quot;ל כלומר בעודו עוסק בתפילה העיקרית וכו׳ יעו&quot;ש ודבריו תמוהים וכמ&quot;ש לעיל ה&quot;א (וכמ&quot;ש) [ובמ&quot;ש] עוד הרב ז&quot;ל וז&quot;ל וזו היא דעת הראב&quot;ד בהשגות פ&quot;ג מהל׳ תפילה, גם בזה לענ&quot;ד ליתא ודברי הראב&quot;ד ה&quot;פ והם ממש כמ&quot;ש בפי׳ דברי הרשב&quot;א במ&quot;ש עכ&quot;ל וכו׳ עד סוף הלשון. וה&quot;פ אינן אלא עם התפילה שבאה בזמנה כלומר כיון שהוא זמן תפילה וזה הוא שסיים הואיל ושעת תפילה הוא וראיתי למהריק&quot;ש הביאו היד אהרן נר&quot;ו שדקדק דדעת רבינו דדוקא תפילת תשלומין צריך שתהיה סמוכה לתפילת העיקר אבל אם עבר זמן מה שוב אין לה תשלומין וכתב שלא בא זה מפורש בהרשב&quot;א והראב&quot;ד. ודבריו תמוהים דאדרבא מדברי רבינו ליכא הוכחה אבל מדברי הרשב&quot;א והראב&quot;ד יש להוכיח כן וכמ&quot;ש הרב פר&quot;ח ושוב ראיתי להרב בני חיי הביא לשון מהריק&quot;ש כת&quot;י היפך ממש ממ&quot;ש היד אהרן נר&quot;ו אלא דגם לפי מ&quot;ש הרב ב&quot;ח ז&quot;ל דנהי דיש להוכיח כן מלשון רבינו ברם אפשר שהוא לכתחילה אבל אם עבר ולא התפלל בסמוך מי יאמר דהפסיד התפילה. ועיין מ&quot;ש הלח&quot;מ וז&quot;ל והא דכתב רבינו כן וכו׳ עד מיהו ישלים ולענ&quot;ד נראה דאי הוה נקיט הכי הו&quot;א דוקא במציאות זה דבג׳ נזכר שלא התפלל הראשונה כיון דהתפילה השניה שהיא סמוכה הו&quot;ל ליתן דעתו שלא התפלל ראשונה והוי כפושע לא כן בשכח מכל וכל הוי כאנוס וסד&quot;א דיתפלל שניים קמ&quot;ל אלא השניה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Chapter 4</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ורוחץ </strong>
+<strong> ואחר [כך] יתפלל וכו׳.</strong> עיין למרן בב&quot;י בדין זה וסיים שם ולענין הלכה כיון דהרי&quot;ף והר&quot;מ וכו׳ הכי נקטינן עכ&quot;ל. והקשה הט&quot;ז דכפי זה אפילו אם מתיירא שיעבור זמן התפלה צריך שימתין על המים וא&quot;כ איך פסק בספרו הקצר שאם מתיירא שיעבור זמן התפילה יקנח ידיו במידי דמנקי הא לדעת הרי&quot;ף וסיעתיהו צריך שיעבור זמן התפלה זה תוכן דבריו.<br><strong> וראיתי</strong> להיד אהרן נר&quot;ו תירץ וז&quot;ל ונראה דאף לדעת הרי&quot;ף אם מתיירא שיעבור זמן התפלה ודאי דשרי לקנח ידיו במידי דמנקי שהרי כתב רש&quot;י משום דזמנה כל היום הא לא נשאר שהות ביום ואינו מוצא מים אלא עד פרסה ודאי דיכול להתפלל בלא נטילה אף במידי דמנקי עכ&quot;ל. ואחר המחילה הכוונה לרש&quot;י הוא דאף שיעבור זמן התפלה ימתין דוכי לא ידע רש&quot;י זמני התפילות השנויות במתני׳ ומ&quot;ש דכל היום זמנה ר&quot;ל דלהך עניינא כל היום הוי זמנה כיון דקפדינן אמיא ולא אתפילה בזמנה ומשום דמסתמא ביום שלם ימצא מים נקט כל היום וכן ראיתי להרב מעדני יו&quot;ט ד&quot;ה וגם רב אשי יעו&quot;ש ולדבריו דזמנה שכתב מרן הוי כל היום קשה היכן גילה רז זה לבניו.<br><strong> ולדידי</strong> חזי לי אחר המחילה דלא קשיא דלאו הא בהא תליא דאף דיסבור כהרי&quot;ף וסייעתיה דגרסינן בש&quot;ס ולא אמרן וכו׳ יכול לומר דה&quot;ה כשלא יעבור זמן התפלה והוא ע&quot;פ דברי הרשב&quot;א שהקשה על רש&quot;י כמה קושיות ופירש הוא וז&quot;ל דק&quot;ש שהוא דאורייתא לא החמירו עליו למיהדר אמיא כמו שהקלו בה לגבי בעל קרי לפי שאין דברי תורה מקבלין טומאה אבל לתפילה החמירו עד פרסה עכ&quot;ל הביאו מרן שם. הרי דמצא מקום לחלק בין תפילה לק&quot;ש בלי יסוד דלתפילה אפי׳ שיעבור הזמן צריך להמתין אלא בין לק&quot;ש בין תפלה איירי בנדון דאינו עובר זמן תפלה אלא דלהרי&quot;ף וסייעתיה צריך להלוך עד פרסה כשאינו עובר זמן תפלה ולהרא&quot;ש דלא גריס הכי אפי׳ כשאינו עובר זמן תפלה לא אטריחוהו ולכן אף דפסק כהרי&quot;ף וסייעתיה דהולך עד פרסה מ&quot;מ בעובר זמן תפילה מנקי ידיו בעפר וצרור וכל מידי דמנקי וכמ&quot;ש בספר הקצר ויפה דן. וכן רבינו דס&quot;ל הכי מוכח דס&quot;ל כחילוק הרשב&quot;א וכ&quot;כ בס׳ מעשה רוקח יעו&quot;ש. ברם איכא מאן דסובר דאפי׳ שיעבור זמן תפילה צריך להלוך עד פרסה הלא המה רש&quot;י ורב עמרם הביאו הטור סי׳ רל&quot;ב יעו&quot;ש, וריא&quot;ז הובאו דבריו בשלטי גבורים יעו&quot;ש. ומן התימה על הרב כנה&quot;ג [ב]הגהת הטור כתב דעת ריא&quot;ז והשמיט דעת רש&quot;י ורב עמרם דסוברים כן וכדכתיבנא.<br><strong> ועיין</strong> למרן באו&quot;ח בספרו הקצר סי׳ ד׳ ס&quot;א כתב מים הפסולים לנטילת ידים לסעודה כשרים לנטילת ידים לתפילה מיהו יש מי שאומר דלא מברך עלייהו ע&quot;כ. והנה מור&quot;ם ציין על מ&quot;ש לסעודה לקמן סי׳ ק&quot;ס. וכתב מג&quot;א דכוונתו דדוקא מים שנשתנו מראיהן או נעשה בהם מלאכה המוזכרים בסי׳ ק&quot;ס, ובס&quot;ק ד׳ כתב עוד כשרים אבל כלי וכח גברא אינו מעכב ומברך כמ&quot;ש בס&quot;ז עכ&quot;ל. ואין בדבריו אלו השניים מובן כאשר יראה הרואה.<br><strong> ואיך</strong> שיהיה אל זה אביט בדברי מרן גופיה שכתב מיהו יש מי שאומר דלא מברך עלייהו דהרא&quot;ה גופיה כ&quot;כ שהוא מאריה דשמעתתא וז&quot;ל הובא בב&quot;י כל מים דפסלי לנטילת ידים דוקא לסעודה אבל לתפילה כיון דסגי לן בכל מידי דמנקה מהני אפילו לכתחילה נמי מיהו לא מברך בהו כיון דלא איתקון לנטילה עכ&quot;ל. ואיך עשאו מחלוקת, ומן התימה על המחברים כולם שלא הרגישו בזה. ונראה דמ&quot;ש מרן בתחילת דבריו לאו מדברי הרא&quot;ה אלא הוא מ&quot;ש בב&quot;י על דברי הרא&quot;ש והר&quot;ן וז&quot;ל ומשמע דה&quot;ה לשאר דברים המעכבים בנטילת ידים לסעודה שאינן צריכין לנטילת ידים שחרית דנטילה זו אינה אלא משום נקיות בעלמא ועל זה הביא אח&quot;כ סברת הרא&quot;ה בשם יש מי שאומר דלא מברך עלייהו ואף דלא נמצא חולק בזה כן דרך מרן לפעמים כמ&quot;ש ביד מלאכי כללי מהר&quot;י קארו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:4:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong>
+<strong> הטמאים וכו׳ אף לתפילה.</strong> זה סותר למ&quot;ש מרן הל׳ ק&quot;ש סוף פ&quot;ד וז&quot;ל וכיון דתקנת עזרא היתה שיטבול בין לק&quot;ש ותפילה בין לדברי תורה וכו׳ יעו&quot;ש, וכאן כתב רבינו בהיפך. ויש ליישב דמ&quot;ש וכיון דתקנת עזרא לאו דווקא אלא תקנת עזרא ובי&quot;ד שאחריו ולא דקדק לכתוב כך שכאן לא בא אלא לפרש מה שנהגו עכשיו לקרות מפני שבטלה או שנהגו כר׳ יהודה בן בתירא ע&quot;ז כתב וכיון שהתקנה היה תחילה על הכל כשבטלו לית לן לאפלוגי ובכולהו א&quot;צ לטבול.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:6:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-6-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל </strong>
+<strong> חולה שראה קרי וכו׳.</strong> עיין מ&quot;ש הלח&quot;מ. והקשה עליו הרב מקראי קודש וז&quot;ל וליתא דביורה דעה אמרו דברים המותרים ואחרים נהגו איסור איכא מ&quot;ד אין לו התרה ואיכא מ&quot;ד יש לו התרה ולכו&quot;ע מיהא מועיל המנהג. ולענ&quot;ד י&quot;ל דעד כאן לא כתב הלח&quot;מ כן אלא בנידון דידן שהוא מנהג בטעות דמי שנהג כן הוא משום שדימה קרי לאונסו לשלא לאונסו ומשו&quot;ה הוי מנהג בטל משא&quot;כ כשידע שהוא היתר גמור ואפ&quot;ה אוסרו עליו בההיא הוא דפליגי ביו&quot;ד ולכו&quot;ע מועיל המנהג.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:7:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-7-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיסוי </strong>
+<strong> וכו׳ ולכתחילה לא יעשה.</strong> לכאורה דברים אלו הם דברי מותר דזה נכלל במ&quot;ש רבינו קודם ואם לא כיסה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:10:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-10-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דברים </strong>
+<strong> וכו׳ וחוזר ומתפלל.</strong> וכתב מרן ומדתניא בסיפא תפילתו וכו׳. ואין צריך לזה דאפילו לגירסא דידן דגרסי מותר הוי דינא הכי דהא תני בברייתא דף כ&quot;ב ע&quot;ב היה מתפלל ומצא צואה במקומו וכו׳ אלא אמר רבא אע&quot;פ שהתפלל תפילתו תועבה ופסק רבינו בהל׳ ט׳ דחוזר ומתפלל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:11:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-11-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong>
+<strong> שגיהק או פיהק וכו׳.</strong> מה שקשה לרבינו מסוגיא דפ׳ מי שמתו עיין להלח&quot;מ ז&quot;ל שכתב שאינו גורס כגירסת רש&quot;י יעו&quot;ש ועיין שם בפי׳ רש&quot;י שכתב למטה מפיח בקול עכ&quot;ל. וכתב הרב מעדני יו&quot;ט על דברי רש&quot;י הללו לפי׳ גירסתו ברש&quot;י וז&quot;ל ונראה שר&quot;ל דוקא ע&quot;י שמפיח בקול שמתבייש מהשומעים דהיינו דיש אומרים ניכר שהוא מכוער שהרי שומעים הקול ש&quot;מ דמיירי שמפיח בקול וכו׳ דמשו&quot;ה קאמר ת&quot;ק וכו׳ עכ&quot;ל. וקשה דא&quot;כ אמאי לא שני בש&quot;ס שניהם מלמטה הא שמפיח בקול הא שאינו מפיח בקול ולמה חילק מלמעלה למטה.<br><strong> ויש</strong> ליישב דאי אפשר לתרץ הכי משום דאמר ר׳ חנינא אני ראיתי את רבי שנתעטש ואי לא שמע מנא ידע משו&quot;ה מוכרח לתרץ שהיה מלמעלה ואם ידחה הדוחה שלעולם לא שמע אלא שהריח ריח ולא היה שם כי אם רבי ומינה ידע א&quot;כ הוי ג&quot;כ סימן רע דהא מיהא יתבייש דידע ביה חברו דליכא לתלות כי אם בו ומסתברא דלא כתב הרב דכל דליכא קול אינו מתבייש אלא משום דלא נודע מי הוא המפיח ולא שייך זה כי אם בדאיכא הרבה בני אדם דיש לתלות זה בזה ברם בדליכא כי אם שניים אפילו דלא שמע חבירו בקול סימן רע לו שמתבייש ולפי גירסתו ברש&quot;י גרס כן ברם לפי גירסתינו והוא אמת דלשון רש&quot;י זה חציו הוא מלשון דלעיל וחציו הוא דבר אחר וכן ג&quot;כ דבמקום בקול הוא בקל כוונתו פשוטה דקשיא ליה לרש&quot;י אמאי לא שני בש&quot;ס דעיטוש כמו דשני בגיהק ופיהק בין לרצונו לאונסו ואהא תירץ דאין עיטוש אלא לאונס דלמטה מפיח בקל ואינו בידו וסלקא דעתיה (דס&quot;ס) [דמקשן] דלא מיקרי עיטוש אלא מלמטה והתרצן חילק דגם מלמעלה נקרא עיטוש וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:17:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-17-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיכור </strong>
+<strong> אל יתפלל וכו׳.</strong> וכ&quot;כ הטור סי׳ צ&quot;ט. וכתב שם בב&quot;י וז&quot;ל מאחר שכתב בתחילה שתוי אל יתפלל היכי שייך למימר ואעפ&quot;כ לכתחילה לא יתפלל וכו׳ ותי׳ בתירוץ ב׳ וז&quot;ל ואפשר דה&quot;ק שתוי כל שיוכל לדבר לפני המלך ואפילו שיוכל לדבר לפני המלך מ&quot;מ לא יתפלל לכתחילה עכ&quot;ל. ואינו מובן דעדיין הקושיא במקומה עומדת שכבר כתב שתוי אל יתפלל ואם התפלל תפילתו תפילה ושתוי הוא כל שיכול לדבר לפני המלך הרי בפירוש דלא יתפלל לכתחילה וא&quot;צ לכופלו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-17-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:17:2</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-17-2" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:17:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הואיל</strong>
+<strong> ושתה רביעית יין לא יתפלל.</strong> וכתב מרן וז&quot;ל ומ&quot;ש דברביעית יין מיקרי שתוי וכו׳ הכי משמע התם בההוא פירקא עכ&quot;ל. פירוש לדבריו מדאמרינן שם [עירובין] דף ס&quot;ד ע&quot;ב אמר רמי בר אבא דרך מיל ושינה כל שהוא מפיגין את היין אמר רב נחמן לא שנו אלא ששתה כדי רביעית אבל יותר כל שכן שדרך טורדתו וכו׳ והתניא וכו׳ ונשא ונתן שם בש&quot;ס יעו&quot;ש. וכל זה הוא לתפילה דלאו במס׳ שיכורים עסקי כאן ופשוט. והלח&quot;מ ז&quot;ל כתב וז&quot;ל שם אמר רב יהודה אמר שמואל שתה רביעית יין אל יורה והוזכרו בתוס׳ גירסא אחרת שהיא אל יתפלל ונראה שזהוא גירסתו של רבינו עכ&quot;ל. ואחר נשיקת ידיו ורגליו א&quot;צ להכניס עצמינו בחילוק גירסאות ופשט דברי רבינו כדכתיבנא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-19-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:19:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-4-19-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 4:19:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה </strong>
+<strong> מהלך.</strong> עיין מ&quot;ש מרן בב&quot;י סי׳ ק&quot;י וז&quot;ל והר&quot;מ לא הזכיר תפילת הדרך. והפר&quot;ח רצה להליץ בעדו יעו&quot;ש. ודבריו תמוהים והכי איתא התם א&quot;ל אליהו לרב יהודה וכו׳ כשאתה יוצא לדרך המלך בקונך וצא מאי הוא אמר רב חסדא זו תפילת הדרך מאי הוא יהי רצון מלפניך בא&quot;י שומע תפילה עכ&quot;ל, ואיך אפשר לומר שהיא תפילה קצרה והא כאן איירי קודם יציאה לדרך דהיא תפילת הדרך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-5">Chapter 5</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:1:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-1-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמונה </strong>
+<strong> דברים וכו׳. עמידה כיצד וכו׳.</strong> הנה דס&quot;ל דאי התפלל מיושב א&quot;צ לחזור ולהתפלל מעומד ומרן ב&quot;י סי׳ צ&quot;ד בסופו הוכיח דצריך לחזור ולהתפלל מעומד. ונראה דרבינו ס&quot;ל כמ&quot;ש מרן וז&quot;ל מיהו אפשר לומר דהיינו דוקא כגון רב אשי שהיה מכוון לתפילתו אבל כגון אנו שאין אנו מכוונים בתפילותינו לא יחזור להתפלל דקרית ביה למה לי רוב זבחיכם. אך קשה (ב)מה שהקשה הרב לחם יהודה דאמאי לא הזכיר לרבינו לחולק. ומרן בספרו הקצר פסק דצריך לחזור ולהתפלל מעומד, וכתב הט&quot;ז [סק&quot;ה] שלמד כן מדברי התוס׳ יעו&quot;ש, והקשה בדברי התוס׳ במ&quot;ש הר&quot;מ דר׳ שמעון בן אלעזר דס&quot;ל מסמך גאולה לתפילה עדיף ס&quot;ל דחוזר ומתפלל מעומד א&quot;כ מאי פריך בגמ׳ וליעבד מר כאבוה דשמואל הא כרשב&quot;א ס&quot;ל שהוא תנא אחרינא אלא ודאי דהקושיא היא דהוי דלא כמאן וכו׳ יעו&quot;ש ולא ידעתי מ&quot;ש הרב יד אהרן נר&quot;ו לזה דא&quot;כ נפל פיתא בבירא דהוי רב אשי דלא כמאן, דלהט&quot;ז זו היא קושיית הגמ׳ ותירוץ הגמ׳ דלא חזינן לרבנן וכו׳ דעבדי הכי להקדים תפילה לק&quot;ש ולא היה יכול לכוין מיושב וכו׳. ומ&quot;ש היד אהרן נר&quot;ו שם ליישב קושיית הט&quot;ז לא הבנתי דבריו.<br><strong> ולענ&quot;ד</strong> אפשר לומר דאדרבא לפירוש הט&quot;ז קשה דאמאי קאמר וליעבד מר כאבוה דשמואל ולא קאמר רב אשי דעבד כמאן אלא צ&quot;ל דהקושיא היא כיון דעבד אבוה דשמואל הכי כת&quot;ק למה רב אשי לא עבד הכי ג&quot;כ שכן דרך הש&quot;ס לאקשויי מגדולי האמוראים להאחרונים כך נ&quot;ל פשוט. ובני יצחק הי&quot;ו תירץ דודאי מעולם לא עלה על דעתם לומר דרשב&quot;א ס&quot;ל דחוזר ומתפלל אלא כוונתם דתחילה הביאו דברי בה&quot;ג דפסק כרשב&quot;א דהיינו שלא להקדים ולהתפלל משום דצריך לסמוך גאולה לתפילה ועל זה הקשו על דבריו דמשמע מדפסק כרשב&quot;א דאין מעכב התפילה אם יהיה במהלך דלרשב&quot;א כיון דצריך לסמוך גאולה לתפילה הרי הוא מתפלל בדרך וא&quot;כ נמצא דדברי בה&quot;ג הוא היפך הש&quot;ס דפסקינן בש&quot;ס בפירוש גבי תפילת הביננו דצריכה מעומד ועל זה תירץ בתירוץ ב׳ דודאי לא קשיא לבה&quot;ג דאה&quot;נ דס&quot;ל לבה&quot;ג דחוזר ומתפלל כדי להתפלל מעומד כמ&quot;ש רב אשי בסמוך ומה שפסק בה&quot;ג כרשב&quot;א הוא לגבי ת&quot;ק דסבר דמקדים ומתפלל ואינו סומך גאולה לתפילה דלא קי&quot;ל הכי אלא כרשב&quot;א דס&quot;ל מסמך גאולה לתפילה עדיף ואה&quot;נ לדידן דקי&quot;ל גבי הביננו דצריך מעומד ה&quot;נ דחוזר ומתפלל מעומד ודוק.<br><strong> וראיתי</strong> להרא&quot;ש שכתב וז&quot;ל רבינו חננאל פסק כאבוה דשמואל ולוי דאפי׳ רב אשי דבסמוך לא פליג עלייהו אלא דלא חזינן לרבנן קשישי קאמר והיינו טעמיה דמהלך בדרך הלכך טוב יותר שיקדים ויתפלל מעומד אבל רב אשי וכו׳ עכ&quot;ל, ולא זכיתי להבין תירוץ זה דכיון דמה שלא היה רוצה להקדים היינו משום דהוא מיושב ויכול לכוין למה היה מחזר להתפלל שנית ומכיון שהיה מתפלל שנית למה היה מתפלל מיושב יתפלל מעומד קודם שילך לדרוש אלא ודאי דמה שלא היה מקדים ומתפלל היינו משום דס&quot;ל דצריך לסמוך גאולה לתפילה ודלא כאבוה דשמואל ולוי דהוו מקדמי ומצלי ולא היו מסמכי גאולה לתפילה וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:2:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמונה </strong>
+<strong> דברים וכו׳. עמידה כיצד וכו׳.</strong> הנה דס&quot;ל דאי התפלל מיושב א&quot;צ לחזור ולהתפלל מעומד ומרן ב&quot;י סי׳ צ&quot;ד בסופו הוכיח דצריך לחזור ולהתפלל מעומד. ונראה דרבינו ס&quot;ל כמ&quot;ש מרן וז&quot;ל מיהו אפשר לומר דהיינו דוקא כגון רב אשי שהיה מכוון לתפילתו אבל כגון אנו שאין אנו מכוונים בתפילותינו לא יחזור להתפלל דקרית ביה למה לי רוב זבחיכם. אך קשה (ב)מה שהקשה הרב לחם יהודה דאמאי לא הזכיר לרבינו לחולק. ומרן בספרו הקצר פסק דצריך לחזור ולהתפלל מעומד, וכתב הט&quot;ז [סק&quot;ה] שלמד כן מדברי התוס׳ יעו&quot;ש, והקשה בדברי התוס׳ במ&quot;ש הר&quot;מ דר׳ שמעון בן אלעזר דס&quot;ל מסמך גאולה לתפילה עדיף ס&quot;ל דחוזר ומתפלל מעומד א&quot;כ מאי פריך בגמ׳ וליעבד מר כאבוה דשמואל הא כרשב&quot;א ס&quot;ל שהוא תנא אחרינא אלא ודאי דהקושיא היא דהוי דלא כמאן וכו׳ יעו&quot;ש ולא ידעתי מ&quot;ש הרב יד אהרן נר&quot;ו לזה דא&quot;כ נפל פיתא בבירא דהוי רב אשי דלא כמאן, דלהט&quot;ז זו היא קושיית הגמ׳ ותירוץ הגמ׳ דלא חזינן לרבנן וכו׳ דעבדי הכי להקדים תפילה לק&quot;ש ולא היה יכול לכוין מיושב וכו׳. ומ&quot;ש היד אהרן נר&quot;ו שם ליישב קושיית הט&quot;ז לא הבנתי דבריו.<br><strong> ולענ&quot;ד</strong> אפשר לומר דאדרבא לפירוש הט&quot;ז קשה דאמאי קאמר וליעבד מר כאבוה דשמואל ולא קאמר רב אשי דעבד כמאן אלא צ&quot;ל דהקושיא היא כיון דעבד אבוה דשמואל הכי כת&quot;ק למה רב אשי לא עבד הכי ג&quot;כ שכן דרך הש&quot;ס לאקשויי מגדולי האמוראים להאחרונים כך נ&quot;ל פשוט. ובני יצחק הי&quot;ו תירץ דודאי מעולם לא עלה על דעתם לומר דרשב&quot;א ס&quot;ל דחוזר ומתפלל אלא כוונתם דתחילה הביאו דברי בה&quot;ג דפסק כרשב&quot;א דהיינו שלא להקדים ולהתפלל משום דצריך לסמוך גאולה לתפילה ועל זה הקשו על דבריו דמשמע מדפסק כרשב&quot;א דאין מעכב התפילה אם יהיה במהלך דלרשב&quot;א כיון דצריך לסמוך גאולה לתפילה הרי הוא מתפלל בדרך וא&quot;כ נמצא דדברי בה&quot;ג הוא היפך הש&quot;ס דפסקינן בש&quot;ס בפירוש גבי תפילת הביננו דצריכה מעומד ועל זה תירץ בתירוץ ב׳ דודאי לא קשיא לבה&quot;ג דאה&quot;נ דס&quot;ל לבה&quot;ג דחוזר ומתפלל כדי להתפלל מעומד כמ&quot;ש רב אשי בסמוך ומה שפסק בה&quot;ג כרשב&quot;א הוא לגבי ת&quot;ק דסבר דמקדים ומתפלל ואינו סומך גאולה לתפילה דלא קי&quot;ל הכי אלא כרשב&quot;א דס&quot;ל מסמך גאולה לתפילה עדיף ואה&quot;נ לדידן דקי&quot;ל גבי הביננו דצריך מעומד ה&quot;נ דחוזר ומתפלל מעומד ודוק.<br><strong> וראיתי</strong> להרא&quot;ש שכתב וז&quot;ל רבינו חננאל פסק כאבוה דשמואל ולוי דאפי׳ רב אשי דבסמוך לא פליג עלייהו אלא דלא חזינן לרבנן קשישי קאמר והיינו טעמיה דמהלך בדרך הלכך טוב יותר שיקדים ויתפלל מעומד אבל רב אשי וכו׳ עכ&quot;ל, ולא זכיתי להבין תירוץ זה דכיון דמה שלא היה רוצה להקדים היינו משום דהוא מיושב ויכול לכוין למה היה מחזר להתפלל שנית ומכיון שהיה מתפלל שנית למה היה מתפלל מיושב יתפלל מעומד קודם שילך לדרוש אלא ודאי דמה שלא היה מקדים ומתפלל היינו משום דס&quot;ל דצריך לסמוך גאולה לתפילה ודלא כאבוה דשמואל ולוי דהוו מקדמי ומצלי ולא היו מסמכי גאולה לתפילה וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:6:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-6-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong>
+<strong> מתפלל בחורבה. </strong> עיין בב&quot;י סי׳ צ׳ שכתב וז&quot;ל וי&quot;ל דהתם איירי בהר המוריה וכו׳. וכתב הב&quot;ח כלומר שנקרא בשם שדה אבל לא היה פרוץ אלא מוקף מחיצה וכו׳ עכ&quot;ל. ולי פירוש זה תמוה דהא אותו המקום היה מקום רחוק הפקר בלי בעלים, שהיה הר, וראיה דאי היו בעלים שם היאך הניחו לו לעשות שם מזבח ולא מצינו שקנאו קודם העקידה וא&quot;כ מי הקיפו כיון שלא היה מקום זרע ותאנה. ופירוש דבריהם נראה דכיון שהיה הר המוריה וידוע שהיה שם השראת שכינה אימת שכינה עליו וחשיב מקום מוצנע להתפלל שם. ושוב ראיתי להרב הלבוש כתב כן ולא נראו דבריו להב&quot;ח שם ולא ידעתי למה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:7:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-5-7-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 5:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא </strong>
+<strong> יעמוד וכו׳ לא ע&quot;ג מיטה וכו׳.</strong> ויש לדקדק למה שינה לשון הברייתא דהתחילה במיטה כסא וכו׳ וסיימה במקום גבוה. ונראה דכיוון למ&quot;ש מהר&quot;י אבוהב הביאו בב&quot;י סי׳ צ׳ דכשהוא ע&quot;ג מיטה כסא וספסל אפילו בשיעור מעט אסור משום דנטרד שמא יפול אבל כשאינו כלי אית ליה שיעורא דבפחות מג׳ יתפלל אבל לא ביותר ולאפוקי מי שכתב דלא אתי כמהרי&quot;א דלא דק.<br><strong> והב&quot;ח</strong> כתב על דברי מהרי&quot;א אלו וז&quot;ל וצ&quot;ל לפי׳ הא דתני מטה כסא וכו׳ לא הוי בדרך לא זו אף זו דבחדא בבא לא תני תנא לא זו אף זו אלא דוקא בב׳ או ג׳ בבות וכמ&quot;ש התוס׳ בדוכתין טובא אלא ה&quot;ק בין מטה בין כסא בין ספסל. ולענ&quot;ד לא באתי לכוונתו דהיאך קוראו בבא אחת והינם שלשה לא על גבי מיטה ולא על גבי כסא ולא על גבי ספסל ולא תני תנא לא על גבי מיטה כסא וספסל דאז היה [בבא] א׳ דומיא דמתני׳ האיש מקדש בו ובשלוחו דהוי בבא א׳ דלא תני מקדש בו ומקדש בשלוחו כמו שהוא פשוט שם וא&quot;כ שפיר יכול להיות כאן לא זו אף זו אלא דבלא&quot;ה לדעת מהרי&quot;א א&quot;א להיות לא זו אף זו משום דטעם כולם היינו שלא יפול ואדרבא במטה ליכא למיחש כ&quot;כ ועוד איך פי׳ הוא עצמו לפי דרכו לא זו אף זו והא הן בבא אחת.<br><strong> וראיתי</strong> להפר&quot;ח שהקשה דכאן משמע דמקום נמוך עדיף ואילו בפ&quot;ק דשבת אמר כל [עיר] שגגותיה גבוהין מבית הכנסת לסוף חרבה. ותירץ וז&quot;ל דהתם כיון דכל הציבור הוא במקום גבוה ליכא למיחש למידי אבל הכא מיירי ביחיד דייקא נמי דקתני לא יעמוד אדם. פי׳ דבריו דכיון דיחיד מתפלל במקום גבוה ושאר הציבור בנמוך אסור אבל ביחיד ממש דליכא ציבור בהדיה מותר אפילו בגבוה דליכא טעם גבהות וכמ&quot;ש הלבוש אלא טעם אחר אית בה יעו&quot;ש. ועיין במעשה רוקח שלא דק בדברי הפר&quot;ח יעו&quot;ש. גם מ&quot;ש שם מההיא דתעניות דאבא חלקיה דאמר לדביתהו ניסק לאיגרא יש לחלק [ב]א׳ מב׳, או שהלכו לאיגרא כדי לראות פני רקיע כמו שצריך להתפלל במקום חלונות או שהלכו לאיגרא להתפלל שלא יראו(ה) החכמים שבשבילם באו העננים ושלא יחזיקו להם טובה וכמו שנראה מעובדא שם ואין צריך למ&quot;ש הוא שם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Chapter 6</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:4:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור </strong>
+<strong> לו לאדם שיטעום כלום וכו׳ מאחר שיעלה עמוד השחר וכו׳.</strong> נראה מדבריו דמשעלה עמוד השחר הוא זמן תפילה וכמ&quot;ש מדברי הטור סי׳ פ&quot;ט שכתב זמן תפילת השחר מתחיל וכו׳. ופירוש דבריו דזמנה הוי משעלה עמוד השחר והאיר פני המזרח שהיא כנגד תמיד השחר וכמתיא בן שמואל דתנן ביומא פ&quot;ג האיר פני מזרח עד שבחברון וזמן זה הוא אחר שיעלה עמוד השחר וכמו שנראה משם והטעם שהיו ממתינים עד זמן זה הוא שלא יטעו וכדתנן שם שפעם אחת עלה מאור הלבנה וכו׳ יעו&quot;ש, ברם אפילו מ[ש]עלה עמוד השחר הוא זמן התמיד וכמו שנראה ממתני׳ דמגילה דמשעלה עמוד השחר הוי יום יעו&quot;ש בהרב ז&quot;ל שם, ומ&quot;מ עיקר זמנה הוא מהנץ החמה ומשום יראוך עם שמש אלא דאם התפלל עם עמוד השחר יצא אפילו בלא האיר כל המזרח כיון שהוא זמן התמיד אלא כדי שלא יטעו לכתחילה אין להתפלל אכן אם התפלל יצא כן נראה פשוט בפירוש דבריו ונימוקו עמו. ברם מדברי הרא&quot;ש לא משמע הכי שכתב וז&quot;ל וזמנה משיעלה ברק השחר והאיר פני המזרח מידי דהוה אתמיד של שחר וכו׳ ונפק&quot;מ אם התפלל בזו יצא דתנא לא חש לפרשו דמילתא דפשיטא היא כיון דזמן המאוחר הוא בזמן התמיד הוא הדין המוקדם עכ&quot;ל, הרי משמע דעל מ&quot;ש דזמנה הוא משהאיר פני המזרח כתב דנפק&quot;מ דאי התפלל יצא הא בעלות השחר ממש לא יצא. ועוד דמאחר שהאיר פני מזרח לכתחילה יכול להתפלל דומיא דתמיד ולדידיה בדיעבד דוקא ולכאורה חלוקים הם זה מזה. גם מרן בספרו הקצר נמשך אחר דברי הרא&quot;ש שכתב ואם התפלל משעלה עמוד השחר והאיר פני המזרח יצא הרי שהצריך לשיצא בדיעבד האיר פני מזרח וכפשט הרא&quot;ש. ואפשר בדוחק להשוות דברי הטור לדברי הרא&quot;ש וראיתי להפר&quot;ח שחלק עליה דמרן וכתב כדכתבינן לדעת הטור אלא שכתב בסוף דבריו ודלא כדמשמע מדברי רבינו ירוחם שהביא בב&quot;י ומדברי ה&quot;ה וכו׳ ולמה לא כתב ג&quot;כ שכן דעת הרא&quot;ש ג&quot;כ כרבינו ירוחם והרב המחבר, וגם לא כתב ג&quot;כ שדברי הטור דלא כרי&quot;ו כנראה מלשונו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:4:2</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-4-2" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ולא</strong>
+<strong> יצא לדרך קודם וכו׳.</strong> וכ&quot;כ הרי&quot;ף אסור לאדם לצאת לדרך קודם שיתפלל שנאמר צדק לפניו יהלך. ועפי&quot;ז אין מובן למ&quot;ש מרן בב&quot;י סי׳ פ&quot;ט וז&quot;ל וכיון דהרשב&quot;א והרא&quot;ש מסכימין לדעת א׳ הכי נקטינן. נראה מדבריו דס&quot;ל לדעת הרי&quot;ף ורבינו דלא סברי כת&quot;ק מדלא כללם עם הרשב&quot;א (והרא&quot;ה) [והרא&quot;ש], ובכן תמהו כל המחברים עליה דהרי&quot;ף ורבינו שלא הביאו ההיא ברייתא, ברם עפי&quot;ז לא קשה כלל שסמכו אהא דכתבו הכא ואדרבא יש לתמוה על הב&quot;י כפי מה שהבין שהרי&quot;ף ורבינו לא פסקו הכי אמאי פסק כהרא&quot;ש דהא כללא כייל לן מרן דאחר הב׳ מג׳ הרועים הנזכרים גררינן אלא דלקושטא דמילתא כפי מ&quot;ש הדין דין אמת כמ&quot;ש מרן דהרי הרי&quot;ף ורבינו והרא&quot;ש והרשב&quot;א מסכימין לדעת אחת והכי נקטינן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:10:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-6-10-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 6:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל </strong>
+<strong> המלוין את המת וכו׳.</strong> עיין מ&quot;ש הב&quot;י סי׳ ק&quot;ו וז&quot;ל כתב הרמב&quot;ם וכו׳ ופירש בפירוש המשנה וכו׳ יעו&quot;ש. ולענ&quot;ד י&quot;ל שדעת רבינו כדעת כל הפוסקים דאלו ואלו פטורים אנושאי המטה ודוקא אם נשאו ברם מלוים לחוד חייבים, ומ&quot;ש וכל המלוים וכו׳ פטורים פירוש נושאי המטה שכבר נשאו וקרי להו מלוים משום דכל עצמם עכשיו אינו אלא ללוות ומשו&quot;ה פטורים. ומ&quot;ש בפירוש המשנה ואם לא היה מן המזומנים, (הם) [הן] נושאי המטה דלפניו (הם) [הן] שלאחר המטה שכבר נשאו ורוצים לשאת שנית וכמ&quot;ש רש&quot;י וע&quot;ז אמר ואם אינו לא זה ולא זה חייבים בק&quot;ש ופטורים מתפילה וכדעת התוס׳ דאף שאין דעתם לשאת המטה פטורים דלא כרש&quot;י יעו&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Chapter 7</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:4:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשנוטל </strong>
+<strong> ידיו מברך על נטילת ידים.</strong> כתב הטור סי׳ ד׳ וז&quot;ל וירחץ בנקיון כפיו ויברך על נטילת ידים וכו׳. ועיין מ&quot;ש הב&quot;ח שם. ועני הדיוט לא מצאתי כן בדברי הרא&quot;ש סוף פרק הרואה דלא כ&quot;כ אלא כשמקנח ידיו בעפר מברך על נקיון ידים ואין לומר דמדכתב דמקנח בעפר יברך על נקיון מכלל דבמים הפסולים לנטילת ידים לסעודה מברך דאדרבא נידוק איפכא הא במים פסולים אינו מברך כלל וכדעת הרא&quot;ה. ואפשר דדייק כן מדכתב הרא&quot;ש דראוי היה דיברך על נקיות אף אם רוחץ במים אלא כיון דתקנו בנט&quot;י דסעודה לברך על נטילת ידים משום הכלי דשמו נטלא תקנו ג&quot;כ בנט&quot;י דשחרית לברך על נט&quot;י עכ&quot;ל, משמע מדבריו דאע&quot;פ דעיקר נטילה הוא בכלי ועיקר הברכה דנט&quot;י הוא על שם זה אפ&quot;ה מברך על נט&quot;י בשחרית כיון דלשחרית שפיר חזי שלא בכלי וכבר תקנו נוסח דנט&quot;י דסעודה לברך על נט&quot;י תקנו נמי לנט&quot;י דשחרית א&quot;כ ה&quot;ה והוא הטעם למים הפסולים לנט&quot;י דסעודה דכיון דהם כשרים לנט&quot;י דשחרית שפיר מצי לברך על נט&quot;י מאחר דכבר תקנו נוסח זה בנט&quot;י דסעודה. ועיין בב&quot;י שכתב על דברי הרא&quot;ש וז&quot;ל ומשמע מדברי הרא&quot;ש דלא בעינן כלי לנט&quot;י דשחרית וכו׳ דה&quot;ה לשאר דברים המעכבים לנט&quot;י דסעודה וכו׳ יעו&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:5:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-5-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר </strong>
+<strong> שיצא מברך אשר יצר.</strong> עיין מ&quot;ש הגהות מיימוני כאן ופ&quot;ז מהל׳ ברכות ובטור או&quot;ח סי׳ ז׳ ומ&quot;ש מרן על שם מהר&quot;י אבוהב דמ&quot;ש הטור וכ&quot;ש אם רוצה ללמוד אחר הגדולים דקאי לב׳ הסברות וכתב עליו מרן ב&quot;י דאינו הכרע יעו&quot;ש, וכתב עליו הרב בית חדש וז&quot;ל ולענ&quot;ד נראה דמ&quot;ש מהרי&quot;א ללמוד אחר קטנים מבעי ליה אינו ר&quot;ל לחוד דא&quot;כ יהיו דבריו סותרים שהרי פי׳ דלא נקט רבינו וכ&quot;ש אם רוצה ללמוד אלא לאפוקי מדברי הרא&quot;ש והשתא איכא למימר נמי הא דנקט גדולים הוא לאפוקי מדברי הרא&quot;ש דס&quot;ל דאפילו בגדולים אין צריך לברך על נט&quot;י אלא ודאי דמהרי&quot;א הכי קאמר דאמאי נקט אחר גדולים לחוד גדולים וקטנים מיבעי ליה. ולפי&quot;ז אין ממש בדברי הב&quot;י וחס ליה למרן שיאמר דברים כאלו דבשלמא במאי דנקט וכ&quot;ש אם רוצה ללמוד שהוא דבר פשוט אמרינן דנקט כן לחידושא דהרא&quot;ש דאפ&quot;ה לא היה מברך על נט&quot;י אלא כשהיה מתפלל, ברם במאי דנקט גדולים לא שוה זה, דשפיר מצי למימר כן וכ&quot;ש אם רוצה ללמוד אחר קטנים דצ&quot;ל על נט&quot;י וא&quot;א הרא&quot;ש ז&quot;ל לא היה מברך אף לגדולים והוי פלוגתייהו מן הקצה אל הקצה ואדרבא לשון זה שפיר נאה ומתקבל ואשמועינן חילוק דבריהם וא&quot;כ דברי מהרי&quot;א לא סתרי אהדדי וא&quot;כ מ&quot;ש מהרי&quot;א שאל&quot;כ וכו׳ ללמוד אחר קטנים מבעי ליה הוי קטנים לחוד כמו שהבין מרן בדעתו ומשו&quot;ה כתב עליו אין כאן הכרע.<br><strong> אמנם</strong> יש לגמגם בדברי מרן דהן אמת דאפשר לומר כן דנקט הכי במכל שכן טפי ברם במקום מסוכן כזה דיש לטעות דנקט בדוקא אבל קטנים לא לפי דקאי ליש אומרים קמא יותר היה לו לכתוב קטנים וכ&quot;ש גדולים ולא לכתוב גדולים כי היכי דליתי במכל שכן טפי ודין חיליה דמהרי&quot;א לענ&quot;ד. שוב ראיתי להר&quot;מ מטיוולי כתב כן הביאו הרב יד אהרן יצ&quot;ו, וכתב עליו הרב וז&quot;ל ונ&quot;ל דבין הכי ובין הכי ילפינן דבין אחר הקטנים בין אחר הגדולים אם רוצה ללמוד צריך לברך על נט&quot;י א&quot;כ עדיף טפי לומר כ&quot;ש אחר גדולים כי היכי דליתי במכ&quot;ש טפי עכ&quot;ל ולפי הנ&quot;ל בכוונת מהר&quot;ם הנז׳ אין מובן לדבריו.<br><strong> ומרן</strong> בספרו הקצר סי׳ ז׳ ס&quot;א כתב כל היום כשעושה צרכיו בין גדולים בין קטנים מברך אשר יצר לחוד ולא על נט&quot;י אף אם רוצה ללמוד ולהתפלל מיד. וכתב עליו הט&quot;ז דוקא בשחר תקנו כן קודם תפילה משום דרוב פעמים ידו נגע במקום מטונף ולהרשב&quot;א משום בריה חדשה עכ&quot;ל. ואנכי לא ידעתי לאיזה טעם כ&quot;כ דרוב פעמים נגע וכו׳ אם הוא להרא&quot;ש דלא ס&quot;ל טעמא דבריה חדשה אין לו לכתוב זה כאן בדין זה דהוי דלא כוותיה דהא להרא&quot;ש אם עשה צרכיו קודם תפילה מברך על נט&quot;י ומרן פסק דזה אינו מברך על נט&quot;י והיינו כר&quot;י ור&quot;ת יעו&quot;ש בב&quot;י מי הם בעלי הסברות ולדידהו ודאי טעמא כטעם הרשב&quot;א לפי שהוא בריה חדשה וכן דעת ר&quot;ת הרי דדין זה שכתב מרן אינו אלא מאותם הסוברים דטעם ברכה זו הוא משום בריה חדשה וא&quot;כ מה לו לכתוב טעם דנגע ידו ועוד שכתב דרוב פעמים נגע מה לי פעם א׳ מה לי שנים.<br><strong> עוד</strong> כתב מרן שם ס&quot;ג הטיל מים והסיח דעתו מלהטיל עוד ואח&quot;כ נמלך והטיל פעם ב׳ צריך לברך ב׳ פעמים אשר יצר עכ&quot;ל. וכתב הלכות קטנות והמני&quot;ח בנו בח&quot;א סי׳ פ&quot;ו דבשותה הפורג&quot;א וכיוצא דיש בדעתם לפנות הבני מעים עד שתכלה הזוהמה מהם הרי דעתו על כך ולא הסיח דעתו ולא יברך אלא פעם אחת יעו&quot;ש. והרב יד אהרן נר&quot;ו בסי׳ זה חלק עליהם באומרו כיון דאינו יודע כמה פעמים יצא ובאיזה זמן יגמור הזוהמא א&quot;כ באיזה פעם יברך ולא באתי לכוונתו שדברי השלמים נכונים שימתין עד כדי שידע שלא יצטרך עוד לנקביו ואין קפידת הזמן בזה דבאיזה זמן שיהיה חשיב זימניה דהוי הודאה וכמ&quot;ש הוא עצמו לעיל סי׳ ו׳ בהגהת הטור על דברי הר&quot;ן שפירא יעו&quot;ש והיא סברא נכונה, ואה&quot;נ דאי אחר שנראה לו שלא יצטרך עוד לנקביו ובירך ושוב הוצרך יברך שנית ברם הא הרווחנו שלא יברך עוד פעמים ג׳ הן חסר הן יתר ולפי דעתו אזלינן, באופן לענ&quot;ד הדין אמת כמ&quot;ש הלק&quot;ט והמני&quot;ח בנו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:5:2</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-7-5-2" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 7:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> חלולים</strong>
+<strong> חלולים וכו׳.</strong> ובטור או&quot;ח סי׳ ו׳ כתב דלא יאמר חללים בלא וא&quot;ו. וכתב שם הב&quot;י שטעמו דבחלל לא שייך בריאה שאין בו ממש יעו&quot;ש. והקשה עליו הב&quot;ח דהלא כתיב ובורא חשך וחשך אינו כי אם העדר האור עכ&quot;ל. ולענ&quot;ד טעם מרן נכון ושאני חשך דשייך ביה בריאה ואינו העדר האור דהא מצינו במצרים דכתב קרא וימש חשך ופי׳ רש&quot;י ויחשיך עליהם חשך יותר מחשכו של לילה וכו׳ ואם החשך הוא העדר האור מה שייך חשך יתירא ומה גם לפי דרשת רז&quot;ל שהיה החשך עב כדינר שהיה בו ממש א&quot;כ שפיר שייך למימר בורא חשך דלא הוי העדר האור, לא כן בחלל דלא שייך בריאה. וכפל דחלולים חלולים כתב מרן שם משום דנקבים טובא איכא בגוף האדם וכן אברים חלולים טובא איכא בגוף האדם ולהורות על רבויים כפלם, אלו דבריו. והרב בני חיי הביא משם מ&quot;כ ויש להקשות דאמאי צריך לטעם זה שהרי כתב הטעם הטור להורות על רמ&quot;ח אברים שבאדם ומנא לן שהוא להורות על רבויים ועי&quot;ש מה שנדחק טובא. ולי קושיא מעיקרא ליתא דלא כתב הטור אלא רמז לדבר מאחר דאיצטריך הכפל מטעם מרן והוא אמת דהא איצטריך טעם זה לנקבים נקבים וה&quot;ה לחלולים אלא לכדי שלא יאמרו חללים בלא וא&quot;ו רמז לדבר וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-8">Chapter 8</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-8-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 8:4:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-8-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 8:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong>
+<strong> עושין כן בפחות מעשרה וכו׳ וש&quot;ץ אחד מהם.</strong> וכ&quot;כ הטור בסי׳ קכ&quot;ד וכשאין תשעה בבית הכנסת וכו׳ יעו&quot;ש. ומשם דקדק מרן החבי&quot;ב בשיירי כנה&quot;ג שם בהגהת הטור אות ד׳ וז&quot;ל מכאן הוכחתי בתשובה שלא כדברי אותם המהנדזים שאין אומרים חזרה בעשרה מצומצמים אלא א&quot;כ יהיו עשרה מלבד הש&quot;ץ וכו׳ יעו&quot;ש, דדבריו סתרי אהדדי ממ&quot;ש כאן למ&quot;ש בסי׳ קכ&quot;ח הגהת הטור אות ב׳ וז&quot;ל עוד כתבתי בתשובה דכל שיש בבית הכנסת עשרה שאין מתפללין בחזרה אלא הש&quot;ץ וציבור וכו׳, נראה מדבריו דכשאין בבית הכנסת אלא י׳ עם הש&quot;ץ אין מתפללין בחזרה ויש ליישב בדוחק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-10">Chapter 10</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-10-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 10:2:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-10-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 10:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל </strong>
+<strong> אם טעה ש&quot;ץ וכו׳.</strong> עיין בטור סי׳ קכ&quot;ו שהביא דברי רבינו אלו. ויש להקשות עליו למה הביאו כיון דעדיפא מינה כתב הוא סי׳ קכ&quot;ד דאפי׳ יחיד שטעה אינו חוזר וסומך על תפילת הש&quot;ץ וכ&quot;ש הוא עצמו. וי&quot;ל דהוה טעינן דדוקא ליחיד מועיל כך משום דאינו אומר בקול רם כש&quot;ץ לא כן בש&quot;ץ שאומר בקול רם וקי&quot;ל כל המגביה קולו בתפילתו ה&quot;ז מקטני אמנה קמ&quot;ל דכיון דהוי משום הכרח לית לן בה וכמ&quot;ש מרן משם הכלבו סי׳ קכ&quot;ד יעו&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-10-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 10:6:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-10-6-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 10:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong>
+<strong> שנסתפק וכו׳.</strong> עיין מ&quot;ש מרן ב&quot;י סי׳ ק&quot;ז ומכלל דבריו כתב וז&quot;ל ויותר נראה לפרש דהרי&quot;ף לא קאמר אלא במחדש בה דבר וכו׳ עכ&quot;ל. וקשיא לי דא&quot;כ כשם שכתב הרי&quot;ף וה&quot;מ וכו׳ הו&quot;ל לומר וע&quot;י חידוש ולא לסתום, ועוד שכתב וה&quot;מ בנדבה אבל בחובה לא ואי דאיכא חידוש ובנדבה היאך כתב אבל בחובה לא וכי בחידוש איכא חובה אלא ודאי דאיירי בנדבה וכפשט דברי הרי&quot;ף.<br><strong> והלח&quot;מ</strong> ז&quot;ל כתב דברי מרן הללו שהשוה דעת הרי&quot;ף לדעת רבינו דבחידוש דוקא צריך ובתוך דבריו כתב לתרץ מ&quot;ש מרן לעיל דמדברי הטור משמע דפליגי רב האי ורבינו יונה ולכאורה לא נפק&quot;מ לענין דינא, ותירץ דהאי דינא דספק התפלל מתפלל אפי׳ בלא חידוש דאין לך חידוש גדול מזה לאו רב האי קאמר לה אלא רבינו יונה, ומ&quot;ש הטור כ&quot;כ הר&quot;י קאי למתפלל בנדבה דלהרי&quot;ף א&quot;צ חידוש ולר&quot;ה צריך חידוש ולזה כתב וכ&quot;כ הר&quot;י וכו׳ יעו&quot;ש. וקשה כיון דהוא קאי לפי׳ הרב ב&quot;י דהרי&quot;ף ורבינו שוים דצריך חידוש נמצאו עם ר&quot;ה שוים וא&quot;כ איך כתב הטור וכ&quot;כ ר&quot;ה לאפוקי דלא ס&quot;ל כהרי&quot;ף. ועוד דאי כתב כן הרב ב&quot;י לא כ&quot;כ לדעת הטור וכמ&quot;ש בפירוש וכעת צריך אני להתיישב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-11">Chapter 11</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-11-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 11:11:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-11-11-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 11:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתי </strong>
+<strong> כנסיות וכו׳ כך נוהגים בחרבנם וכו׳.</strong> וקשה דבפ׳ בני העיר דף כ&quot;ח ע&quot;ב אמר ר׳ אסי בתי כנסיות שבבבל על תנאי הן עשויין פי׳ שישתמשו בהן, לפי׳ רש&quot;י בישובן ולפי׳ התוס׳ דוקא בחרבנן, ובין הכי ובין הכי היה לו לרבינו להעתיק דין זה דאין שוין לשל א&quot;י מפני התנאי. וראיתי להמג&quot;א סי׳ קנ&quot;א ס&quot;ק י&quot;ב על מ&quot;ש מרן התנו עליו וכו׳, דוקא שהתנו בפירוש אבל מסתמא לא אמרינן על תנאי הן עשויות דדוקא בבבל היה כן בזמניהם וכו׳ גם הרמב&quot;ם השמיט דין זה וכו׳ משום דס&quot;ל דדוקא בבבל היה כן בזמניהם וכו׳ עכ&quot;ל. ואין זה מספיק דאעפ&quot;כ היה לו לפסוק דאם התנו בפירוש על בית הכנסת שבחוצה לארץ התנאי קיים. ומה שנראה לי כמ&quot;ש מהר&quot;ח עשאל הובאו דבריו בלשון למודים חלק או&quot;ח סי׳ ס&quot;ז דרבינו ס&quot;ל דרב אסי איירי אפי׳ בבניינם וא&quot;כ אין הלכה כמותו דמצינו רבים חולקים עליו רבינא ורב אדא בר מתנא דעיילו לבי כנישתא ואמרו דלאו משום מיטרא נראה בפירוש דלא מהני תנאה כלל ומשו&quot;ה לא חילק הר&quot;מ ע&quot;כ. ואני אבוא אחריו להחזיק פירוש זה שפי׳ רבינו לרב אסי וכן פי׳ רש&quot;י שם וכן הגהות אשרי ויעו&quot;ש בהגהות מיימוני משום דאי כפירוש התוס׳ שם ד&quot;ה בתי כנסיות שכתבו דדוקא בחרבנן איירי רב אסי א&quot;כ צריך לידחק טובא בסיום דבריו דאמר ואעפ&quot;כ אין נוהגין בהן קלות ראש ומאי ניהו חשבונות דקאי בבניינם ואיצטריך לאשמועינן דסד&quot;א דשרי וכמ&quot;ש התוס׳ בסמוך ד&quot;ה ואע&quot;פ ועין רואה כמה דחוק פירוש זה דאיך אתי על מ&quot;ש קודם על תנאי הן עשויין ומותר להשתמש בחרבנן ואעפ&quot;כ בבניינם אסור וכו׳ דלא תימא דשרי וכי מתחילה בבניינם התיר ר׳ אסי והיאך אתי ואע&quot;פ דא&quot;א לפרש דקאי לחרבנם וכי חשבונות יהיו אסורים אחר החרבן אחר דהתנו משא&quot;כ לפירוש רש&quot;י והג&quot;א שהבינו דרב אסי קאי בבניינם אתי שפיר לישנא דואע&quot;פ דר&quot;ל אף דהתרנו להשתמש אף בבנויין מ&quot;מ אין נוהגים בו קלות ראש דהיינו חשבונות משו&quot;ה נייד רבינו מפירוש התוס׳ ונמצא רבים חולקים עם רב אסי ואין הלכה כמותו ומתוך הכתוב הזה בין תבין כי מ&quot;ש התוס׳ בד&quot;ה ואע&quot;פ הוא מוכרח ממ&quot;ש מקודם בד&quot;ה בתי כנסיות והיו לאחדים. ועיין להרב יד אהרן ז&quot;ל חלק או&quot;ח סי׳ קנ&quot;א הגהת הטור דאגב ריהטא נתקשה בדבריהם דקשו דבריהם אהדדי יעו&quot;ש.<br><strong> ובדברי</strong> התוס׳ דכתבו דהתנאי מועיל דוקא לאותן שבבבל משום דבביאת הגואל תפקע קדושתן ולא לבתי כנסיות שבא&quot;י, והקשה הרב גופי הלכות כלל צ&quot;ח ממה שאמרו בסמוך שם בגמ׳ עתידין בתי כנסיות שבבבל שיקבעו בא&quot;י וכו׳, ותירץ דמה שעתידין להיות נקבעים בא&quot;י היינו דוקא הנמצאים בגוים באותו זמן וכו׳ יעו&quot;ש. וכן הקשה המג&quot;א שם ס&quot;ק י&quot;ד ותירץ כן ואפ&quot;ה סיים וצ&quot;ע. וכן מהר&quot;ח עשאל שם כתב דלא נתקררה דעתו דהא דברי תורה דקראו בבתי כנסיות ובתי מדרשות על גבי קרקע נאמרו ומה בנין שייך בהרים ואיהו דידיה תריץ יתיב דדיו לבא מן הדין להיות כנדון מה תבור וכרמל שנקבעו בא&quot;י ודאי מותר להשתמש בהן ככל א&quot;י א&quot;כ ה&quot;ה בבתי כנסיות שבבבל שהוקבעו בא&quot;י מותר להשתמש בהן.<br><strong> ולענ&quot;ד</strong> קושיא כדקאי קאי דא&quot;כ לדבריו שמותר להשתמש בהם למאי קובען הקב&quot;ה אותן בא&quot;י ומה מעלה היא בשלמא אי קיימי בקדושתן כמאז ומקדם ניחא דלכבוד התורה קובע אותן בא&quot;י שלא ישתמשו בהן ותבור וכרמל דהוקבעו בא&quot;י אף דהותר בהן תשמיש זאת היא דאהני להו שיהיה להם קדושת א&quot;י לכמה דברים דיש מעלה בא&quot;י מחו&quot;ל ודי להן מעלה זו מה שלא היה להן מקודם משא&quot;כ בבתי כנסיות ומדרשות שבבבל דאי הותרו בתשמיש נמצא גרעה קדושתן שהיה להן לכבוד התורה אלא ודאי דהאי קביעות משום כבוד שלא ישתמשו שם תשמיש הדיוט וא&quot;כ חזרה קושיא לדוכתא.<br><strong> ולענ&quot;ד</strong> נראה דהתוספות לא חשו להך דר׳ אלעזר הקפר דאמר עתידין בתי כנסיות ובתי מדרשות שבבבל שיקבעו בא&quot;י דהא איכא תנא אחרינא פליגא עליה והוא בר קפרא דס&quot;ל דתבור וכרמל באו מאליהן כדי שיתן הקב&quot;ה עליהם התורה ופסלן הקב&quot;ה ואמר להם כולכם בעלי מומין אצל סיני וכן ר׳ יוסי הגלילי דריש ליה כוותיה בב&quot;ר סדר ויחי פ׳ צ&quot;ט למה תרצדון הרים גבנונים ר&quot;י הגלילי פתר ליה בהרים בשעה שבא הקב&quot;ה ליתן תורה בסיני היו ההרים רצים (ומדנים) [ומדיינים] אלו עם אלו זה אומר עלי התורה ניתנת וזה וכו׳ תבור בא מבית אלים וכרמל מאספמיא הדא הוא דכתיב חי אני וכו׳ כי כתבור בהרים וכו׳ אמר להם הקב&quot;ה כולכם וכו׳ ע&quot;כ, נמצא ב׳ נביאים מתנבאים בסיגנון אחד דקרא דכי כתבור וכו׳ איירי שבאו הן כדי שיתן התורה עליהן וא&quot;כ התוס׳ נגררו אחריהן וכתבו מה שכתבו. ושוב ראיתי למהרש&quot;א בח&quot;א כתב כן דבר קפרא פליג אר׳ אלעזר הקפר ואף דלא קאמר הש&quot;ס ופליגא משום דכיון שהוא ברור ונראה דפליגי א&quot;צ לומר ופליגא דלא קאמר הש&quot;ס ופליגא אלא היכא דהיה אפשר לומר דלא פליגא וכמ&quot;ש הרב בני חיי לשונות הרמב&quot;ם דף י&quot;ד משם מוהר&quot;ר אהרן בן חיים יעו&quot;ש והך דהכא הוי סייעתיה דזה הכלל. ובההיא אגדה דב&quot;ר סיים אעפ&quot;כ אף ה׳ ישכון לנצח בבית העולמים ע&quot;כ. ומהר&quot;ש יפה פי׳ שם אף שנתן התורה בסיני אינו אלא לשעה אבל עיקר שכינתו בבית עולמים יעו&quot;ש שנדחק בלשון האגדה וחוץ מדוחקו בלשון האגדה גם הוא דחוק מהענין עצמו.<br><strong> ולענ&quot;ד</strong> נראה נכון ע&quot;פ המדרש שהביא מהרש&quot;א עצמו לעיל מיניה גבי קרא דנכון יהיה הר בית ה׳ בראש ההרים עתיד הקב&quot;ה להביא תבור וכרמל וסיני ובונה בית המקדש עליהם, דהיינו ההרים שהיו כבר יעו&quot;ש. וז&quot;ש אף שפסלן באותה שעה מ&quot;מ לעתיד יבנה עליהם בית המקדש בזכות שבאו כדי שינתן התורה עליהן. איך שיהיה זכינו לומר דהתוס׳ נגררו אחר הני תנאי דפליגי אר׳ אלעזר הקפר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-11">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Chapter 15</h4>
+          <section class="unit" id="yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-15-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 15:9:1</h4></div>
+              <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-15-9-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Prayer and the Priestly Blessing 15:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשיאות </strong>
+<strong> כפים בעשרה וכו׳.</strong> גרסינן בכתובות דף כ&quot;ד איבעיא להו מהו להעלות מנשיאות כפים ליוחסין וכו׳ ולאו הבא מכלל עשה עשה ע&quot;כ. אלמא דאסור לזר לישא כפיו וקשה מהא דאיתא בשבת דף קי&quot;ח אמר ר׳ יוסי מימי לא עברתי על דברי חברי יודע אני בעצמי שאיני כהן אם יאמרו לי חברי עלה לדוכן אני עולה והיאך עובר העשה משום חבריו דאפילו אינו מברך אשר קדשנו במצותיו וציונו עובר העשה דכה תברכו אתם ולא זרים. עוד תימה במ&quot;ש התוס׳ דלא ידע ר&quot;י מה איסור יש בדבר וכו׳, והא איכא עשה. ועוד במ&quot;ש אם לא משום ברכה לבטלה, וכי גרע האי איסורא דעובר אלא תשא משאר איסורים, וכבר הרגישו האחרונים בזה הלא בספרתם. והבית חדש סי׳ קכ&quot;ח תירץ וז&quot;ל ונראה דודאי ר׳ יוסי לעלות לדוכן ולברך קאמר אלא שהיה מברך בלא נשיאות כפים וגם אינו מברך אקב&quot;ו וס&quot;ל דאיסור עשה ליכא אלא בנשיאות כפים דכה תברכו אתם ולא זרים קאי אברכת כהנים בנשיאות כפים כדכתיב וישא אהרן את ידיו אבל בלא נשיאות כפים וברכה דאקב&quot;ו ליכא איסור עשה ולהכי לא ידע ר&quot;י מה איסור יש בדבר אלו דבריו. והשתא לדידיה סיום דבריהם כך הוא אם לא משום ברכה לבטלה כלומר ולא מצינו אלא זו וצ&quot;ל דהיה מברך ככל הכהנים, וכי היה עובר אלא תשא משום כבוד חברים וסלקא להו בקושיא. אך קשה מה דנקטו משום ברכה לבטלה ולא משום איסור עשה דכה תברכו וצ&quot;ל דה&quot;ה וכמ&quot;ש מהרש&quot;א בחידושי הלכות והוא דוחק.<br><strong> והנראה</strong> לענ&quot;ד ע&quot;פ מ&quot;ש הטור או&quot;ח סי׳ קכ&quot;ח על שם הר&quot;פ וז&quot;ל כתב הר&quot;פ שאם אין שם אלא אחד אינו עובר דילפינן ליה מאמור להם דמשמע דוקא לרבים וכו׳ וכן דעת ר&quot;י בעלי התוס׳. והשתא כשם שהכהן אינו עובר כשהוא יחיד העשה דכה תברכו גם אם קראוהו לו לעלות כן הישראל יחיד שעלה לדוכן אינו עובר דהא בהא תליא דבמאי דאיכא עשה איכא לאו הבא מכלל עשה וא&quot;כ מ&quot;ש ר׳ יוסי אם יאמרו לי חברי היינו לי לחוד אבל אי איכא כהנים בהדיה עובר העשה דכה תברכו, וע&quot;ז קא מתמה ר&quot;י לא ידעתי מה איסור יש בדבר בזה כיון שהוא יחיד ומאי רבותיה. ומה טוב ומה נעים לגירסאות דגרסי בזה שעולה לדוכן פי׳ שהוא יחיד אם לא משום איסור ברכה לבטלה והדרא קושיא לדוכתא דאיך עובר אלאו דלא תשא וסלקא בקשיא וכדרך החידושי הלכות ולא קשיא מה שהקשה בסוף דבריו יעו&quot;ש. או נלך לדרך זה אם לא משום איסור ברכה לבטלה כלומר וליכא אלא איסורא דרבנן וקרא אסמכתא וכמאן דס&quot;ל הכי כלומר ומוכרח שכן דעת ר&quot;י.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing-text-15">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json","occurrence_url":"../../data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-prayer-and-the-priestly-blessing.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

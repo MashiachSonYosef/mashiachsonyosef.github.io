@@ -1,0 +1,30 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 1:1 | mishneh-torah-rest-on-the-tenth-of-tishrei-1-1 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 1:2 | mishneh-torah-rest-on-the-tenth-of-tishrei-1-2 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 1:3 | mishneh-torah-rest-on-the-tenth-of-tishrei-1-3 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 1:4 | mishneh-torah-rest-on-the-tenth-of-tishrei-1-4 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 1:5 | mishneh-torah-rest-on-the-tenth-of-tishrei-1-5 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 1:6 | mishneh-torah-rest-on-the-tenth-of-tishrei-1-6 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 1:7 | mishneh-torah-rest-on-the-tenth-of-tishrei-1-7 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:1 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-1 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:2 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-2 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:3 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-3 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:4 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-4 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:5 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-5 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:6 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-6 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:7 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-7 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:8 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-8 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:9 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-9 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:10 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-10 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 2:11 | mishneh-torah-rest-on-the-tenth-of-tishrei-2-11 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:1 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-1 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:2 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-2 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:3 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-3 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:4 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-4 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:5 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-5 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:6 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-6 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:7 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-7 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:8 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-8 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:9 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-9 |  |  | not_done |  |
+| mishneh-torah-rest-on-the-tenth-of-tishrei | Mishneh Torah, Rest on the Tenth of Tishrei | Mishneh Torah, Rest on the Tenth of Tishrei 3:10 | mishneh-torah-rest-on-the-tenth-of-tishrei-3-10 |  |  | not_done |  |

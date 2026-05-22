@@ -1,0 +1,34 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 1:1:1 | kiryat-sefer-on-mishneh-torah-hiring-1-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 1:4:1 | kiryat-sefer-on-mishneh-torah-hiring-1-4-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 2:1:1 | kiryat-sefer-on-mishneh-torah-hiring-2-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 2:6:1 | kiryat-sefer-on-mishneh-torah-hiring-2-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 2:8:1 | kiryat-sefer-on-mishneh-torah-hiring-2-8-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 2:9:1 | kiryat-sefer-on-mishneh-torah-hiring-2-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 3:1:1 | kiryat-sefer-on-mishneh-torah-hiring-3-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 3:2:1 | kiryat-sefer-on-mishneh-torah-hiring-3-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 3:4:1 | kiryat-sefer-on-mishneh-torah-hiring-3-4-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 3:9:1 | kiryat-sefer-on-mishneh-torah-hiring-3-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 4:1:1 | kiryat-sefer-on-mishneh-torah-hiring-4-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 5:1:1 | kiryat-sefer-on-mishneh-torah-hiring-5-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 6:1:1 | kiryat-sefer-on-mishneh-torah-hiring-6-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 7:1:1 | kiryat-sefer-on-mishneh-torah-hiring-7-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 8:1:1 | kiryat-sefer-on-mishneh-torah-hiring-8-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 9:1:1 | kiryat-sefer-on-mishneh-torah-hiring-9-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 10:1:1 | kiryat-sefer-on-mishneh-torah-hiring-10-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 10:2:1 | kiryat-sefer-on-mishneh-torah-hiring-10-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 10:3:1 | kiryat-sefer-on-mishneh-torah-hiring-10-3-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 11:1:1 | kiryat-sefer-on-mishneh-torah-hiring-11-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 11:2:1 | kiryat-sefer-on-mishneh-torah-hiring-11-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 11:4:1 | kiryat-sefer-on-mishneh-torah-hiring-11-4-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 11:5:1 | kiryat-sefer-on-mishneh-torah-hiring-11-5-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 11:6:1 | kiryat-sefer-on-mishneh-torah-hiring-11-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 12:1:1 | kiryat-sefer-on-mishneh-torah-hiring-12-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 12:2:1 | kiryat-sefer-on-mishneh-torah-hiring-12-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 12:3:1 | kiryat-sefer-on-mishneh-torah-hiring-12-3-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 12:4:1 | kiryat-sefer-on-mishneh-torah-hiring-12-4-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 12:5:1 | kiryat-sefer-on-mishneh-torah-hiring-12-5-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 12:10:1 | kiryat-sefer-on-mishneh-torah-hiring-12-10-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 12:14:1 | kiryat-sefer-on-mishneh-torah-hiring-12-14-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-hiring | Kiryat Sefer on Mishneh Torah, Hiring | Kiryat Sefer on Mishneh Torah, Hiring 13:1:1 | kiryat-sefer-on-mishneh-torah-hiring-13-1-1 |  |  | not_done |  |

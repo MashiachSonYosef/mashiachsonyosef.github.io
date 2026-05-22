@@ -1,0 +1,28 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:1:1 | maaseh-rokeach-on-substitution-1-1-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:1:2 | maaseh-rokeach-on-substitution-1-1-2 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:1:3 | maaseh-rokeach-on-substitution-1-1-3 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:1:4 | maaseh-rokeach-on-substitution-1-1-4 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:2:1 | maaseh-rokeach-on-substitution-1-2-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:6:1 | maaseh-rokeach-on-substitution-1-6-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:6:2 | maaseh-rokeach-on-substitution-1-6-2 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:8:1 | maaseh-rokeach-on-substitution-1-8-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:9:1 | maaseh-rokeach-on-substitution-1-9-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:16:1 | maaseh-rokeach-on-substitution-1-16-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 1:17:1 | maaseh-rokeach-on-substitution-1-17-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 2:1:1 | maaseh-rokeach-on-substitution-2-1-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 2:3:1 | maaseh-rokeach-on-substitution-2-3-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 2:3:2 | maaseh-rokeach-on-substitution-2-3-2 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 2:4:1 | maaseh-rokeach-on-substitution-2-4-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 3:1:1 | maaseh-rokeach-on-substitution-3-1-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 3:3:1 | maaseh-rokeach-on-substitution-3-3-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 3:6:1 | maaseh-rokeach-on-substitution-3-6-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 3:7:1 | maaseh-rokeach-on-substitution-3-7-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 4:3:1 | maaseh-rokeach-on-substitution-4-3-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 4:3:2 | maaseh-rokeach-on-substitution-4-3-2 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 4:4:1 | maaseh-rokeach-on-substitution-4-4-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 4:4:2 | maaseh-rokeach-on-substitution-4-4-2 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 4:8:1 | maaseh-rokeach-on-substitution-4-8-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 4:10:1 | maaseh-rokeach-on-substitution-4-10-1 |  |  | not_done |  |
+| maaseh-rokeach-on-substitution | Maaseh Rokeach on Substitution | Maaseh Rokeach on Substitution 4:11:1 | maaseh-rokeach-on-substitution-4-11-1 |  |  | not_done |  |

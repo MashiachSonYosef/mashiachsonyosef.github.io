@@ -1,0 +1,1501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiryat Sefer on Mishneh Torah, Substitution</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kiryat Sefer on Mishneh Torah, Substitution</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Substitution</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p><a href="../../halakhah/mishneh-torah-substitution/">Open Mishneh Torah, Substitution</a></p>
+            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Substitution</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">34 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>619 matched</strong> / 1957 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-substitution.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kiryat Sefer on Mishneh Torah, Substitution <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kiryat Sefer on Mishneh Torah, Substitution <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-1-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-2-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-3-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-4-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-5-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-6-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-7-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-8-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-9-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-13-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:13:1">1:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-14-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:14:1">1:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-15-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:15:1">1:15:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-16-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:16:1">1:16:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-17-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:17:1">1:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-18-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:18:1">1:18:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-1-21-1" title="Kiryat Sefer on Mishneh Torah, Substitution 1:21:1">1:21:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-2-1-1" title="Kiryat Sefer on Mishneh Torah, Substitution 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-2-2-1" title="Kiryat Sefer on Mishneh Torah, Substitution 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-2-4-1" title="Kiryat Sefer on Mishneh Torah, Substitution 2:4:1">2:4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-3-1-1" title="Kiryat Sefer on Mishneh Torah, Substitution 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-3-3-1" title="Kiryat Sefer on Mishneh Torah, Substitution 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-3-4-1" title="Kiryat Sefer on Mishneh Torah, Substitution 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-3-5-1" title="Kiryat Sefer on Mishneh Torah, Substitution 3:5:1">3:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-3-6-1" title="Kiryat Sefer on Mishneh Torah, Substitution 3:6:1">3:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-3-7-1" title="Kiryat Sefer on Mishneh Torah, Substitution 3:7:1">3:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-1-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-2-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:2:1">4:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-4-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:4:1">4:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-6-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:6:1">4:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-7-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:7:1">4:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-8-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:8:1">4:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-11-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:11:1">4:11:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-12-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:12:1">4:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-substitution-4-13-1" title="Kiryat Sefer on Mishneh Torah, Substitution 4:13:1">4:13:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Chapter 1</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעא </strong> שלא ימיר בהמת קדש בבהמה אחרת דכתיב לא יחליפנו ולא ימיר וכו׳ ואם המיר לוקה ואף על פי שלא עשה מעשה מפי השמועה למדו שכל מצות לא תעשה שאין בה מעשה אין לוקין עליה כדילפינן מדכתיב אם לא תשמור לעשות חוץ מנשבע ומימר ומקלל חברו בשם נשבע מנלן אמר רבי יוחנן משום רבי מאיר בפרק קמא דתמורה כתיב כי לא ינקה את אשר ישא את שמו לשוא ב&quot;ד של מעלה אין מנקין אותו אבל ב&quot;ד של מטה מלקין אותו ומנקין אותו דמדכתיב לא ינקה ה׳ את אשר ישא את שמו לשוא ב&quot;ד של מעלה דוקא הוא דאין מנקה אותו אבל ב&quot;ד של מטה מנקין אותו כדא׳ אשכחן שבועת שוא דלוקה אם נשבע לשקר אכלתי ולא אכל או לא אכלתי ואכל דמה שוא לשעבר אף שקר לשעבר ולית בה מעשה דאי אוכל ולא אכל לא לקי משום לאו שאין בו מעשה דלא מרבינן משבועת שוא אלא לשעבר כדא׳ ואי נשבע שלא יאכל ואכל הרי יש בו מעשה ולקי אלא באכלתי ולא אכל כדאמ׳ דומיא דלשוא דמרבי׳ לה מינה דהוי לשעבר דכי נשבע על עמוד של אבן שהיא של כסף היינו לשעבר דקודם שנשבע הויא אבן כמו השתא ואמר ליה רבי יוחנן לתנא לא תיתני מימר בכלל לאוין שאין בהם מעשה משום דבדיבורו עושה מעשה שעושה מחולין קדש ולהכי לקי ומקלל חברו בשם מנלן אמר ר׳ אלעזר אמר רבי אושעיא אמר קרא אם לא תשמור לעשות וגו׳ ליראה את ה׳ הגדול שיתיירא שלא להוציא את השם לבטלה ומקלל חברו בשם הוא מוציא שם שמים לבטלה וכתיב בהאי קרא והפלה ה׳ את מכותך דהפלאה זו היינו מלקות כדכתיב והפילו השופט וגו׳ וכיון דהוא מוזהר מלקלל חברו בשם כדכתיב לא תקלל חרש משמע בין קללה סתם בין קללה בשם קאתי קרא דליראה את ה׳ לאשמועינן דלוקה כדכתיב והפלא ה׳ את מכותך כדאמ׳ ולמה לוקין על התמורה והרי לאו שניתק לעשה היא דכתיב ואם המר ימיר בהמה בבהמה והיה הוא ותמורתו וגו׳ משום דהוו תרי לאוי וחד עשה ולא אתי חד עשה ועקר תרי לאוי ממלקות ועוד דלאו דמימר הוא לאו ששוה בכל שאחד מן השותפין שהמיר או המיר בקרבן צבור לוקה ואין תמורתם קדש נמצא שאין העשה שוה בכל להיות התמורה קדש ואין כח בעשה שאין שוה בכל להוציא מלאו ששוה בכל כדאמ׳ ושותפין דלא עבדי תמורה תנן פרק קמא דתמורה הצבור והשותפין אין עושין תמורה שנאמר לא יחליפנו ולא ימיר אותו יחיד עושה תמורה ואין צבור ושותפין עושין תמורה ולוקה בתמורה על כל בהמה ובהמה כדתניא בריש תוספת׳ משום דכתיב בהמה בבהמה נמצאת אומר שהיחיד שהמיר הרי תמורה קדש ואפילו בשבת כדתניא בריש תוספתא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> הממיר בזדון או בשגגה עושה תמורה ולוקה במשנה פרק שני דתמורה רבי יוסי ברבי יהודה אומר עשה שוגג כמזיד בתרומה ולא עשה שוגג כמזיד במוקדשין ובגמרא מאי טעמא דר׳ יוסי ברבי יהודה אמר קרא יהיה קדש לרבות שוגג כמזיד היכי דמי שוגג כמזיד ר&quot;ל ור׳ יוחנן אמרי כסבור לומר תמורת עולה ואמר תמורת שלמים תמורת שלמים ואמר תמורת עולה גבי תמורה לקי דרבי ביה קרא יהיה לרבות שוגג כמזיד גבי קדשים אם בעל מום הוא למזבח לא לקי דהא לא קדיש בטעות דכסבור לומר שחור ואמר לבן אבל אם דמה שמותר להמיר והמיר או שאמר אכנס לבית זה ואמיר מדעתי ונכנס ושכח והמיר שלא מדעתו הרי זו תמורה ואינו לוקה עליה הני תרי גווני הוו כחזקיה ורב ששת דאמרי הכי בגמרא דכהני גווני הוי שוגג כמזיד ולקי והרב ז&quot;ל נקט כר&quot;ל ור׳ יוחנן דלא לקי אלא כסבור לומר תמור עולה ואמר שלמים או איפכא אבל בהני גווני לא לקי אבל לענין תמורה מיהא הוו תמורה דלא פליגי אלא לענין מלקות דגרסינן גבי תמורה לקי גבי קדשים לא לקי ולא נראה גבי תמורה קדיש גבי קדשים לא קדיש וכמו שכתבו התוספת שם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אדם ממיר בהמתו בקרבן שאינו שלו פ&quot;ק דתמורה ת&quot;ר לא יחליפנו בשל אחרים ולא ימיר אותו בשל עצמו היכי דמי אילימא בהמה דהקדש דעלמא וחולין דידיה מי מתפיס בדבר שאינו שלו לעולם בהמה דהקדש דעלמא כדאמ׳ וכגון דאמר מריה דבהמה דהקדש כל הרוצה להמיר בבהמתו ימיר. המיר קרבנו בבהמה שאינה שלו אינה תמורה שם גבי לא יחליפנו בשל אחרים אילימא בהמה דהקדש דידיה וחולין דעלמא מי מצי מקדיש איש כי יקדיש את ביתו קדש לה׳ כתיב מה ביתו ברשותו אף כל ברשותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המתכפר </strong> הוא שעושה תמורה לא מקדיש שם בריש פרקין דתמורה א&quot;ר אבהו א&quot;ר יוחנן המקדיש מוסיף חומש אם רוצה לפדות הקדשו ולא מתכפר ומתכפר עושה תמורה שאם הפריש ישראל קרבן כדי שיתכפר בו ישראל חברו ואמר המתכפר זו תחת זו תמורתו תמורה ולוקה דכיון דהופרש לצרכו קרינא ביה קרבנו דבתר מתכפר אזלינן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היורש </strong> ממיר בריש מכלתין תנן הכל ממירין ובגמרא הכל לאיתויי מאי לאיתויי יורש שהמיר בקרבן שהפריש אביו בחייו שתמורתו תמורה ור׳ מאיר היא מ&quot;ט דכתיב אם המר ימיר לרבות את היורש דהכי מצי למכתב ואם ימיר בהמה בבהמה המר ימיר למאי הלכתא לרבות את היורש דתמורתו תמורה ואם הניח בהמה לב׳ בניו הוו שותפין בה ואין אחד מהם ממר כדילפינן לעיל דיחיד עושה תמורה ולא צבור ושותפין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> קדשי גוי עושים תמורה מן התורה הקדיש הגוי בהמה שיתכפר בה ישראל והמיר בה הגוי הרי זו ספק תמורה שם בעיא דרמי בר חמא גוי מהו שימיר מי אמרינן מדאקדושי מקדיש דתניא איש איש מבית ישראל לרבות את הגוים שנודרים נדרים ונדבות כישראל אמורי נמי ממיר או דילמא כיון דלא אתי לכלל עונשים כי עביד תמורה לא קדשה ובעיא למפשט מדתניא גבי קדשי גוים דאין עושין תמורה ומדרבנן דבמקדיש גוי להתכפר גוי לא קמיבעי ליה לרמי בר חמא כי קא מיבעי ליה במקדיש גוי להתכפר ישראל בתר מקדיש אזלינן או בתר מתכפר אזלינן דאף על גב דאמר ר׳ יוחנן המתכפר הוא העושה תמורה ולא מקדיש כדאמר׳ לעיל התם הוא דקאתי מכח ישראל ומשום הכי אזלינן בתר דמתכפר והוה ליה תחלתו וסופו ביד ישראל אבל הכא הכי קמיבעי ליה מיבעיא מתחלה ועד סוף דתיקום ברשות מאן דעביד תמורה כלומר בהקדיש גוי להתכפר ישראל מיבעיא מתחלת הקדש ועד סופו שתעמוד ברשות האדם הראוי לעשות תמורה כגון ישראל והך בהמה כיון דתחלת קדושתה הויא מכח גוי אף על גב דהוי המתכפר ישראל אינו עושה תמורה או דילמא כיון דלבסוף אתיא ביד מתכפר וחזי למעבד תמורה תפסה בה קדושת תמורה תיקו זהו לשון רש&quot;י ז&quot;ל ומשמע דבעיין לא הוי אלא לענין המתכפר עצמו שהוא ישראל אם מצי ממר האי בהמה דאתיא מכח גוי כיון דלא היתה מתחלה ועד סוף ביד ישראל וסלקא בתיקו אבל גוי שהקדישה שימיר אותה משמע דלא איבעיא לן דפשיטא דאפילו ישראל המקדיש לשיתכפר ישראל חברו אין המקדיש ממיר אבל הרב ז&quot;ל כתב שאם המיר הגוי המקדיש הוי ספק תמורה משמע דסבירא ליה דבעיא דרמי בר חמא הגוי המקדיש הוא דמספקא ליה אם המיר אי הויא תמורה או לא והכי משמע לישנא דגמרא ולכן נראה שהרב ז&quot;ל מפרש לישנא דגמרא דקאמר התם הוא דאתי מכח ישראל דמשום הכי אזלינן בתר מתכפר והוה ליה תחלתו וסופו ביד ישראל דישראל כי מקדיש לה׳ אדעתא שיתכפר בה חברו ישראל נמי בדעתו שיתכפר בה ישראל ואלימא קדושתיה לזכותה לישראל חבריה ולהכי ישראל חבריה עביד תמורה דקרינא ביה קרבנו כיון דהוא מתכפר בו אבל הקדש הגוי אף על גב דילפינן מקרא דמקדיש כדכתיב איש איש אילימא קדושתיה לזכותה לישראל שיתכפר בה ושזה המתכפר ימיר בה כיון שבא מכח גוי ולא אזלינן בתר מתכפר אבל אם המיר הוא מספקא לן אי הויא תמורה כיון דמתכפר דאתי מכחו לא עביד תמורה או לא וסלקי בתיקו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> אנשים ואחד נשים עושים תמורה שם במתני׳ בריש מכלתין הכל ממירין אחד אנשים ואחד נשים ותניא בגמרא לפי שהענין כולו מדבר בלשון זכר דכתיב לא יחליפנו ולא ימיר אשה מנין ת&quot;ל ואם המר ימיר לרבות את האשה ולרבי מאיר דדריש להאי אם המר ימיר לרבות את היורש כדאמר׳ לעיל אשה מנא ליה נפקא ליה מואם מוא&quot;ו דואם דמצי למכתב אם המר ימיר וכתב ואם ואף על גב דהשוה הכתוב אשה לאיש לכל עונשין שבתורה כדכתיב איש או אשה כי יעשו מכל חטאת האדם וגו׳ איצטריך לרבויי אשה דמהו דתימא עונש דשוה בין ביחיד בין בצבור אבל הכא כיון דעונש דאינו שוה בכל הוא דתנן אין הצבור והשותפין עושין תמורה כדילפינן לעיל הוה אמינא אשה נמי כי עבדנא תמורה לא לקייא קמ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטן </strong> שהגיע לעונת נדרים שהמיר אף על פי שאינו לוקה שלא הגיע לכלל עונשין יש בו ספק אם עושה תמורה או לא שם בעיא דרמי בר חמא מי אמרינן כיון דאמר מר איש כי יפליא נדר לרבות מופלא הסמוך לאיש דהקדשו קדושי מדאקדושי מקדיש אמורי ממיר או דילמא כיון דלאו בר עונשין הוא בתמורה נמי לא מיתפיס ואם תמצא לומר קטן עביד תמורה דהא אתי לכלל עונשין גוי מהו וכו׳ והאי אם תמצא לומר רבותא אתא לאשמועינן ולאו משום דאיתיה הכי כן כתב רש&quot;י ז&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> הכהנים ממירין בחטאת ובאשם שם במשנה פ&quot;ק אין הכהנים ממירין לא בחטאת ולא באשם ולא בבכור טעמא דאין לכהן חלק בחטאת ואשם אפילו המקריב אותו אלא לאחר הקטרת אימורין הוא זוכה בבשר ותניא אין אדם מתפיס בתמורה בדבר שאינו שלו ומחיים אינו של כהן עד שעת הקטרת כדאמר׳ ואמר רבי יוחנן בן נורי מפני מה אין ממירין בבכור והלא כלו של כהנים הוא ומחיים הוא לכהן ואין ישראל מתכפר בו אמר לו רבי עקיבא חטאת ואשם מתנה לכהן ובכור מתנה לכהן מה חטאת ואשם אין ממירין בו אף בכור אין ממירין בו דאע&quot;ג דמחיים זכי ביה כהן הלז כבר נאמר והיה הוא ותמורתו יהיה קדש היכן קדושה חלה בבית בעלים אף תמורה בבית בעלים דהקיש התמורה להקדש עצמו היכן קדושה חלה על ההקדש בבית בעלים אף תמורה לא תחול אלא בבית בעלים אבל בבית כהן לא חיילא לגמרי הילכך אין כהן ממיר בו אבל ישראל אם המיר בו נתפס בקדושה שהרי ברשותו חלה קדושה בבכור ודוקא בזמן שהוא בביתו עושה בו תמורה כדתניא התם בכור בבית הבעלים עושין תמורה בבית כהן אין עושה תמורה וכהן שהמיר בבכור שנולד לו עושה תמורה דלא גרע מישראל והרי הוא בבית בעלים. אילו של כהן גדול עושה תמורה דהרי שלו הוא אבל בפר אינו עושה תמורה שאחיו הכהנים מתכפרים בו והרי הם כשותפין דלא עבדי תמורה כדילפינן לעיל. המנחות והעופות אין עושין תמורה שלא נאמר אלא בהמה כדתנן שם במשנה שלא נאמר אלא בהמה ואם המר ימיר בהמה בבהמה. קרבנות בדק הבית אינן עושים תמורה כדתנן התם משום דגבי תמורה כתיב קרבן וקדשים בדק הבית לא איקרו קרבן אמר רבי שמעון והרי מעשר בכלל הקדשים היה ולמה יצא דכתיב ביה לא יבקר בין טוב לרע ולא ימירנו לומר לך מה מעשר קרבן יחיד הוא העושה תמורה דבמעשר כתיב יהיה לך ולא של שותפות אף כל קרבן יחיד עושה תמורה יצאו קרבנות צבור ומה מעשר קרבן מזבח יצאו קרבנות בדק הבית ולרבי שמעון הוא דאיצטריך למילף ממעשר משום דסבירא ליה דקדשי בדק הבית איקרו קרבן אבל לת&quot;ק דלא איקרו קרבן גבי תמורה כתיב קרבן ולא הוו קדשי בדק הבית בכלל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong> בעל מום קבוע אינו עושה תמורה מפני שלא נתקדש גופו קדוש גמור ואינו אלא קדושת דמים אבל בעלי מום עובר או הקדיש תמים ונעשה אח&quot;כ בעל מום קבוע עושה תמורה בשלהי מכילתין דתמורה מייתי האי מתני׳ דפ&quot;ב דבכורות דתנן כל הקדשים שקדם מום קבוע להקדשן ונפדו חייבים בבכורה ובמתנות וכו׳ ואין עושין תמורה ובגמרא מאי טעמא דאמר קרא לא יחליפנו ולא ימיר אותו טוב ברע או רע בטוב השתא רע בטוב אמרת לא שלא יביא בהמת חולין תמימים אצל בהמת קדש בעלת מום ויאמר זאת תמורה זאת טוב ברע מיבעיא אלא להכי כתיב טוב ברע לומר טוב מעיקרו עושה תמורה שנתפס בקדושה כשהוא תמים עושה תמורה אף כשהומם כדכתיב או רע בטוב דמשמע רע של קדש בטוב של חולין דרע של קדש עושה תמורה כשלא היה רע מעיקרו אבל רע מעיקרו אינו עושה תמורה ואפילו קודם פדיון דמתניתין דקתני ונפדו לא קאי אלא אבכורה ומתנות וכו׳ אבל בעל מום מעיקרו אפילו לא נפדה אינו עושה תמורה וכדאמרינן בבריתא קדשים שקדם מום קבוע להקדישה וכו׳ בין לפני פדיונן בין לאחר פדיונן אין עושין תמורה דטוב מעיקרו בעינן אבל קדם הקדשן את מומן או מום עובר להקדשן ואח&quot;כ נולד לו מום קבוע דכמאן דליתיה דמי וחל קדושה עליו בין לפני פדיונן בין לאחר פדיונן עושין תמורה דהא הוי מעיקרו ואע&quot;ג דהשתא הוי רע כדא׳ או רע בטוב כדא׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>א׳ </strong> הממיר תמים בבעל מום או בעל מום בתמים או בקר בצאן או צאן בבקר או כבשים בעזים או עזים בכבשים או נקבות בזכרים או זכרים בנקבות או אחד במאה או מאה בא׳ בין בבת אחד בין בזה אחר זה עושין תמורה ולוקה על כל אחד פ&quot;ק דתמורה במתני׳ מיתנו כולהו ובגמרא מנא הני מילי דת&quot;ר בהמה בבהמה מכאן שממירים מן הצאן על הבקר ומן הבקר על הצאן מן הכבשים על העזים ומן העזים על הכבשים מן הזכרים על הנקבות ומן הנקבות על הזכרים מבעלי מומין על התמימים ומן התמימים על בעלי מומין יכול אפילו קדם מום קבוע להקדשן ת&quot;ל לא יחליפנו ולא ימיר אותו טוב ברע ולא רע בטוב ואי זהו טוב ברע שקדם הקדישן את מומן כדילפינן לעיל מיתורא דקרא וטוב מעיקרו עושה תמורה ואין רע מעיקרו עושה תמורה ואחד במאה או מאה באחד הוי פלוגתא דרבנן ור׳ שמעון במתני׳ וטעמא דרבנן כדמפרש בבריתא ת&quot;ר בהמה בבהמה מכאן שממירין אחד בשנים ושנים בא׳ אחד במאה ומאה בא׳ ומצינו בהמות שקרויה בהמה כדכתיב ובהמה רבה ומשמע בהמה בבהמה אפילו בבת אחת שאמר הרי אלו תחת זו דחולין או אלו דחולין תחת זו דהקדש דאי שלא בבת אחת מודה ר׳ שמעון דממירין וחוזרים וממירים כדא׳ ריש לקיש התם בגמרא דכתיב ביה הוא ותמורתו אפילו במאה ולכך לוקה במנין הבהמות שהמיר אבל בבת אחת נראה דאינו לוקה אלא אחת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:15:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> התמורה עושה תמורה שם במשנה ובגמרא מ&quot;ט אמר קרא ותמורתו יהיה קדש ולא תמורת תמורתו ואין הוולד עושה תמורה דכתיב הוא הוא ולא ולד שנולד מבהמת קדש וממיר בבהמה וחזר והמיר בה אפילו כולן תמורה כדאמר׳ לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:16:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> ממירין איברים או עוברין בשלימין ולא שלימים בהם שם במשנה אין ממירין לא איברין בעוברין ולא עוברין באיברים איברים דחולין בעוברין דהקדש שאם אמר תהא רגל בהמה זו תמורת עובר הקדש שבמעי בהמה זו אין הקדשה חלה על האבר או אם אמר הרי עובר שבמעי בהמת חולין זו תמורת רגל בהמת קדש זו אין העובר קדש ונראה דטעמא דכולהו משום דכתיב בהמה בבהמה לאפוקי איברים ועוברים דבעינן שלם בשלם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הממר </strong> בכלאים או בטריפה או ביוצא דופן או בטומטום ואנדרוגינוס אין הקדושה חלה עליהם פ׳ יש בקרבנות במשנה ר׳ אליעזר אומר הכלאים והטריפה וכו׳ לא קדושים ולא מקדישים ובגמרא אמר שמואל לא קדישי בתמורה ולא מקדישין לעשות תמורה ואמר רב פפא מ&quot;ט דרבי אליעזר כבהמה טמאה מה בהמה טמאה לא קרבה ולא נחתה להו קדושת הגוף אף הנך לא קרבי ולא נחתא להו קדושת הגוף ואקשו עליה ואסיק רבא מה בהמה טמאה דליכא קרב במינה אף כל דליכא במינה והני חמשה לא קרבו במינן מאי אמרת טרפה איכא דקרב במינה לא דמיא לבעל מום דקרב במינו דבהמה טמאה אסורה באכילה וטריפה אסורה באכילה לאפוקי בעל מום דמותר באכילה ויוצא דופן לא חשיב ליה קרב במינה שאינה יוצא דופן דיוצא דופן תמיה אנשי ולא חשיב ליה מין שאר בהמה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרובע </strong> והנרבע הרי הם כבעל מום דמותרים באכילה ועושים תמורה פ&quot;ק דתוספתא דתמורה בהמה שחצייה קדש וחצייה חול לא עושה תמורה ולא נעשת תמורה בתוספתא וכן משמע נמי בפ׳ כיצד מערימין גבי בהמה של ב׳ שותפין הקדיש חציה שלו וכו׳ ונראה טעמא משום דכתיב בהמה בבהמה ובעיא בהמה דחולין שלימה כבהמה דקדש שלימה ולא חצי בהמה דחולין או דקדש וכדא׳ לעיל גבי איברין ועוברין כל החטאות שדינן שימותו אינן עושין תמורה וכל שדינה שתרעה עושה תמורה פ׳ חטאת דתמורה ומעילה תנן להני חמשה חטאות מתות דלא עבדי תמורה משום דלא אלימי למתפס אחרים בתמורה משום דלא קרבי ואע&quot;ג דבעל מום עושה תמורה כדכתיב או רע בטוב הכא לא תפיס דהא למיתה אזלי אבל אותם שדינן לרעות הוו כבעל מום ועבדי תמורה כיון דדמיה עתידין ליקרב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-1-21-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:21:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-21-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:21:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפריש </strong> נקבה לפסחו או לעולתו או לאשמו פרק אלו קדשים בתמורה ת&quot;ר המפריש נקבה לעולתו ולפסחו ולאשמו עושה תמורה וטעמא דאע&quot;ג דאינן ראויין ליקרב דזכר בעינן כיון דירדו לקדושת דמים והוו תמימים ירדו לקדושת הגוף לעשות תמורה. אבל המפריש שעיר לשעירתו ונשיא שהפריש שעירה לשעירו וכהן גדול שהפריש פרה לחטאתו אינן עושין תמורה שם פרק אלו קדשים פריך מהני לר׳ שמעון דאמר דדוקא במפריש נקבה לעולתו הוא דעושה תמורה וס&quot;ד דטעמיה משום דהאיכא שם עולה עלה בעולת העוף דתמות וזכרות בבהמה ואין תמות וזכרות בעוף ופרכי׳ עליה אלא מעתה כ&quot;ג שהפריש פרה לפרו תקדוש דהא איכא פרה חטאת ויחיד שהפריש שעיר לשעירתו תקדש דהא איכא שעיר נשיא אי נמי נשיא שהפריש שעירה האיכא יחיד דמפריש שעירה ומשני להו משום דלא קדשי כלל ולהכי לא עבדי תמורה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-substitution-text-2">Chapter 2</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 2:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קע </strong> שיהיה התמורה קדש אם המיר כדכתיב והיה הוא ותמורתו יהיה קדש. התמורה היא שיאמר בעל הקרבן על בהמה חולין שיש לו הרי זו תחת זו או תמורת זו או חליפת זו כדתנן במתני׳ דפרק כיצד מערימין דלשון תמורה נינהו כדכתיב לא יחליפנו ולא ימיר ותחת נמי אשכחן דהוא לישנא דאתפוסי כדכתיב ואם תחתיה תעמוד הבהרת דעמדה במקומה והיינו דומיא דאתפוסי שהקדש עומד במקומו אבל זו מחוללת על זו אין זו תמורה דלשון חילול הוא ולא אמר כלום שאין בהמת קדש תמימה יוצאה לחולין ותחת עולה זו ותחת עולה או חטאת שיש לו בבית שם במשנה דכיון שמזכיר שמם או מקומם פשיטא דהוי תמורה אבל אמר הרי זו תמורת חטאת תמורת עולה לא אמר כלום כיון שלא אמר זו או שיש לו בתוך הבית דהכי משמע פשטיה דקרא לא יחליפנו ולא ימיר אותו דקאי אבהמה דקדש שלא יחליף אותם וכיון שלא אמר זו או שיש לו בתוך הבית אף על גב דאמר תמורת עולה לא אמר כלום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 2:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו </strong> לפניו ב׳ בהמות א׳ חולין וא׳ הקדש שנפל בה מום שם בעי׳ דאביי היו לפניו ב׳ בהמות של קדש בעלת מום וב׳ בהמות של חולין תמימות ואמר הרי אלו תחת אלו מהו מי אמרינן לאתפוסי מתכוין ולקי או לאחולי בעלות מום לפדותם מתכוין וה&quot;ה נמי דמצי למבעי בחדא אלא איידי דבעי מיבעיא הך בעיא אחריתי בתרתי נקט סרכא דתרתי משמע מהכא דאי אמר בפי׳ התפסה כגון שהניח ידו על בהמת חולין ואמר זו תמורה זו שהיא תמורה ולקי ואי אנח ידיה אבהמה הקדש ואמר הרי זו תמורה זו הרי חללה על בהמת חולין והוא כפודה בעלת מום שעומדת לפדיון על בהמה זו ולא איבעי׳ לן אלא היכא דאמר סתם מי אמרינן לאתפוסי איכוון ולקי או לאחולי ולא לקי ואם תמצא לומר כל היכא דאיכא היתרא לא שביק אינש היתרא דאחולי ועביד איסורא דאתפוסי אכתי איבעיא לן ב׳ בהמות של קדש א׳ תמימה ואחת בעלת מום וב׳ בהמות של חולין כמותן ואמר הרי אלו תחת אלו מהו מי אמרינן תמימה תחת תמימה לאתפוסי בעל מום תחת בעלת מום לאחולי או דילמא תמימה דחולין תחת בעלת מום דהקדש בעלת מום דחולין תחת תמימ׳ דהקדש תרוייהו לאתפוסי ולקי ואם תמצא לומר כל היכא דאיכא היתרא דאחולי בעלת מום תחת בעל מום ולא עביד איסורא ולאחולי הוא ולא לקי אלא חדא ואף על גב דפשיט לעיל דלא שבק היתרא ועביד איסורא איכא למיבעי הכא הואיל ואי איפשר דלא עביד איסורא בחדא איכא למימר כי היכי דבהא עביד איסורא דהא נמי לא איכפת לן קמ&quot;ל דכל היכא דאיכא היתרא לא עביד איסורא ואכתי אבעיא לן שלש בהמות של קדש וא׳ מהן בעלת מום וג׳ בהמות של חולין תמימות ואמר הרי אלו תחת אלו מהו מי אמרינן מדתמימות תחת תמימות לאתפוסי תמימות נמי תחת בעלת מום לאתפוסי דאע&quot;ג דפשטינא כל היכא דאיכא היתרא לא עביד איסורא איכא הכא למיבעי דאיכא למימר זיל בתר רובא וכיון דעל כרחין רובא לאתפוסי דהשתים דהקדש תמימו׳ וליכא אחולי בהו שלישית נמי אתפוסי או דילמא הכא נמי כל היכא דאיכא היתרא לא עביד איסורא וההוא בתריתא לאחולי בעל מום דהקדש תחת תמימה דחולין הוי ואם תמצא לומר הכא נמי כיון דאכתי גברא לא איתחזק באיסורי דבבציר מתלתא זימני לא הויא חזקה לא שביק היתרא ועביד איסורא אכתי איבעי ליה לרב אשי היו ד׳ בהמות הקדש ואחת מהן בעלת מום וד׳ בהמות של חולין ואמר הרי אלו תחת אלו מהו הכא ודאי כיון דאתחזק גברא באיסורא לקי ד׳ מלקיות בכולן או דילמא אע&quot;ג דאיתחזיק באיסורא לא שביק איניש היתרא ועביד איסורא והוי בתריתא לאחולי ולא לקי עלה תיקו וכיון דסלקא בתיקו לא לקי דהתראה ספק היא ואמרי להתראה נתכוון והרב ז&quot;ל נקט עשר תחת ד׳ דבעי׳ דרב אשי דארבע לאו דוקא וה&quot;ה עשר או יותר ובעי׳ דאביי דב׳ בהמות של קדש אחת תמימה ואחת בעלת מום וא׳ ושתים של חולין אחת תמימה וא׳ בעלת מום נקט׳ בתרתי משום דלא הוי בהנהו גווני דלעיל דכל בהמות חולין הוו תמימות ובבהמות דקדש איכא חדא בעלת מום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-2-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 2:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר </strong> הרי זו תמורת עולה ושלמים דבריו קיימים ויביא בדמיה תמורת עולה ושלמים אמר הרי זו תמורת עולה תמורת שלמים אם נתכון לכך מתחלה דבריו קיימים ואם היה נמלך אפילו תוך כדי דיבור לשון ראשון עיקר והויא תמורת עולה שם פרק כיצד מערמין במשנה הרי זו תמורת עולה תמורת שלמי׳ הרי זו תמורת עולה דברי ר׳ מאיר דאית ליה תפוס לשון ראשון א&quot;ר יוסי אם לכך נתכון מתחלה הואיל וא&quot;א לקרות שני שמות כאחת דבריו קיימים וחציה תמורת עולה וחציה תמורת שלמים אחר שתמכר ואם משאמר תמורת עולה נמלך ואמר תמורת שלמים הרי זו תמורת עולה ובהכי עסקינן שהיו לפניו עולה ושלמים כשהמיר את זו בהן ובגמרא אמר רבי יוחנן הכל מודים באומר תחול זו ואחר כך תחול זו דברי הכל תפוס לשון ראשון לא תחול זו אלא א&quot;כ חלתה זו תרויהו קדשו לא נחלקו אלא כגון משנתינו דאמר תמורת עולה תמורת שלמים ר׳ מאיר סבר מדהוה ליה למימר תמורת עולה ושלמים ואמר תמורה תמורה הוה ליה כאומר תחול זו ואח&quot;כ זו ור׳ יוסי סבר אי אמר תמורת עולה ושלמים הוה אמינא קדושה ואינה קריבה וטעה האי גברא בהכי דסבר אימא תמורה אכל חד וחד ותהוי קדושה גמורה ליקרב הילכך אע&quot;ג דאמר בהאי לישנא לתרויהו אינון והוה ליה כאומ׳ לא תחול זו אלא א&quot;כ חלה זו אם לכך נתכון מתחלה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Chapter 3</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> דין תמורות תמורת עולה תקרב עולה פרק אלו קדשים במשנה תמורת עולה וולד תמורה וכו׳ הרי אלו כעולה וטעונה הפשט וניתוח וכליל לאישים ובגמרא על מתניתין דלעיל דאלו קדשים שוולדותיהן ותמורותיהן כיוצא בהן וכו׳ אמרינן בגמרא ותנא מייתי לה מהכא רק קדשיך אשר יהיו לך וגו׳ רק קדשיך אלו התמורות אשר יהיו לך אלו הוולדות תשא ובאת יכול יכניסנו לבית הבחירה וימנע מהן מים ומזון כדי שימותו דהא אוקים ליה תשא ובאת תלמוד לומר ועשית עולותיך הבשר והדם ודם זבחיך ישפך והאי קרא סמיך לרק קדשיך לומר כדרך שאתה נוהג בעולה אתה נוהג בתמורה. ואם היתה תמורתה נקבה או בעלת מום תרעה הנקבה ותפדה ויביא בדמיה עולה וכדתנן פרק קמא ממירין מן הצאן על הבקר וכו׳ מן הזכרים על הנקבות ואחד [בב׳] משום דכתי׳ בהמה בבהמה. תמורת חטאת תמות כדתנן ריש פרק וולד חטאות דהוי מחמש חטאות מתות הלכה למשה מסיני תמורת האשם תרעה כדתנן פרק אלו קדשים דתרעה בין זכר בין נקבה דהלכתא גמירי לה כל שבחטאת מתה באשם רועה ואי עבר ומקרב קאי בעשה דכתיב רק קדשיך אשר יהיו וגו׳ מיניה מרבינן לכל התמורות שיקרבו וכתיב רק קדשיך למעוטי תמורת אשם לרבי ישמעאל תמורת שלמים כשלמים לכל דבר כדתנן התם ריש פרקא וולד שלמים ותמורתן וכו׳ הרי הם שלמים וטעונין סמיכה ונסכים ותנופת חזה ושוק ובגמרא מנא הני מילי דתנו רבנן וכו׳ זכר לרבות את הוולד נקבה לרבות את התמורה דכתיב גבי שלמים ואם זבח שלמים קרבנו וגו׳ והוה ליה למיכתב אם מן הבקר הוא מקריב תמים יקריבנו אם זכר אם נקבה למה לי אי לאו לדרש׳ ואף על גב דכתיב והיה הוא ותמורתו יהיה קדש איצטריך קרא לרבויי דקרבה תמורת התודה כדתנן התם וולד תודה הרי אלו כתודה אלא שאין טעונה לחם ובגמרא מנין לרבות וולדות תמורות וחליפות תודה להקרבה תלמוד לומר אם על תודה יכול יהו כולן טעונות לחם תלמוד לומר על זבח התודה התודה טעונה לחם ולא וולדה ותמורתה וחליפה דהיינו כגון שאבדה והפריש אחרת תחתיה. תמור׳ הפסח אם המיר בו קודם חצות יום י&quot;ד לניסן אין תמורתו קרבה אלא תרעה ויביא בדמיה שלמים ואם המיר בו אחר חצות התמורה עצמה תקרב שלמי׳ כדתנן פרק מי שהיה טמא אמר רבי יהושע שמעתי שתמורת פסח קרבה שלמים ותמורת פסח אינה קרבה ואין לי לפרש אמר רבי עקיבא אני אפרש הפסח שאבד ונמצא קודם שחיטת הפסח ירעה עד שיסתאב ויביא בדמיו שלמים וכן תמורתו נמצא אחר שחיטת הפסח קרב שלמי׳ וכן תמורתו ובגמ׳ כשב מה תלמוד לומר אם כשב לרבות תמורת הפסח אחר הפסח שקרבה שלמים יכול אף לפני הפסח כן ת&quot;ל הוא הוא קרב ואין תמורת הפסח קרבה וכרבי זירא דאמר קודם חצות ולאחר חצות שנינו בשעת חצות היא הקובעתו לפסח אם נמצא קודם חצות קבעתיה חצות שהרי נראה וכי לא אקרביה דחייה אבל נמצא אחר חצות אפילו קודם שחיטה אין כאן קביעות ולא דיחוי ויקרב שלמים. תמורת הבכור והמעשר אינם קרבים לעולם דתנן התם באלו קדשים תמורת הבכור והמעשר וולדן וכו׳ הרי אלו כבכור ומעשר ויאכלו במומן לבעלים ובגמרא רחמנא מעטינהו דכתיב לא תפדה קדש הם הם קרבים ואין תמורתן קרבה ולכך תרעה עד שיפול בה מום ותיאכל דמיעוטא לא אתי אלא להקרבה. וכשם שאין פודין אותם כך אין פודין את תמורתן אלא תמורת הבכור לכהנים ותמורת המעשר לבעליו כדתנן התם ויאכלו במומן לבעלים וכו׳ וכל הקדשים יש להם פדיון ולתמורותיהם פדיון חוץ מן הבכור והמעשר דכתי׳ בבכור לא תפדה ובמעשר כתיב לא יגאל וכן תמורותיהן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-3-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהמה </strong> שהקדישה חציה עולה וחציה שלמים תמורתה כמוה פרק כיצד מערימין תנו רבנן האומר בהמה זו חציה תמורת עולה וחציה תמורת שלמים תקרב עולה דברי רבי מאיר וחכמים אומרים תרעה עד שתסתאב ותמכר ויביא בדמי חציה עולה ובדמי חציה שלמים ותניא אידך אמר בהמה זו חציה עולה וחציה שלמים קדושה ואינה קרבה עושה תמורה ותמורתה כיוצא בה דכיון דהיא לא קרבה דהויא לה קדושה דחויה תמורתה נמי מכח קדושה דחויה אתיא אמר רבי יוחנן בהמה של שני שותפין הקדיש חציה שלו וחזר ולקח חציה אחרת והקדישה קדושה ואינה קרבה ועושה תמורה ותמורתה תמורה כיוצא בה. אמר חציה בהמה זו תמורה וחציה עולה הרי זו תקרב עולה חציה עולה וחציה מעשר תקרב עולה שם אמר אביי הכל מודים היכא דאמר חציה עולה וחציה מעשר דברי הכל עולה קרבה אפילו נתכוון מתחלה לכך דלא חשיבא מילתא בתריתא מידי דאין מעשר קדושה כי האי גונא אלא דרך מנין ויהא הוא עשירי והוא הדין נמי אם אמר חציה עולה וחציה תמורה לא חיילי תמורה לגבי עולה דלא קאי שום בהמה גבי שהוא ממר בה כך כתב רש&quot;י ז&quot;ל ונראה דהיינו כשאחר כך קדש חציה האחר לעולה אז קרבה עולה ואף על גב דאמר קודם על חציה שתהא מעשר או תמורה דלא חשיב כדאמ׳ דאי לא קדש חציה זו גם כן לעולה הוה ליה בהמה דחציה עולה וחציה חולין ואינה קרבה דהא אמרן דמעשר ותמורה לא חשיבי מעשר דאין דרך הקדישו בכך ותמורה משום דלא קאי שום בהמה גבי שימיר בה ואם כן לא חיילי עליה כלל שם מעשר ותמורה ומדברי הרב ז&quot;ל שכתב חציה תמורה וחציה עולה משמע דהמיר חצי׳ בחציה האחרת שהקדיש לעולה ולהכי תקרב כולה עולה דעולה ותמורתה כמוה כדילפינן לעיל ובעי אביי היכא דאמר חציה תמורה וחצי׳ מעשר מאי תמורה קרבה שכן נוהגת בכל הקדשים או דילמא מעשר קרבה שכן מקדש לפניו ולאחריו תיקו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong> בעל מום עובר או תמימה ונולד בה אח&quot;כ מום קבוע ונפדת והמיר בה הרי זו תמורה ואינה קרבה שבאת מכח קדושה דחויה ואינה נפדית שאין בכח קדושתה לתפוס פדיונה הואיל ונפדית כדתנן פרק הזרוע כל הקדשים שקדם הקדשן את מומן או מום עובר להקדישן ואחר כך נולד להם מום קבוע ונפדו פטורין מן הבכורה וכו׳ ועושים תמורה ובבכורות פרק ב׳ תנן נמי כי האי גוונא ובגמרא אמר רב נחמן אמר רבה בר אבוה ותמורתו לאחר פדיונו מתה דהיכי ליעביד לקרביה מכח קדושה דחויא קא אתיא שכבר נפדו ליפרקה לא אלימא למתפס פדיונה הילכך מתה ותניא כוותיה מנין לתמורת פסולי המוקדשין שמתה תלמוד לומר ממעלי הגרה וכתי׳ בסיפיה דקרא טמא הוא ודרשינן הכי יש לך דבר שיש בו סימני טהרה ואסור באכילה וזהו תמור׳ פסולי המוקדשין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-3-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> התמורות שהיו בעלי מומין קבועין מתחלתן הרי אלו יפדו ואינן יוצאין לחולין לכל דבר שהקדושה חלה על בעלי מומין קבועין פרק ב׳ דתמורה חומר בתמורה מבקדשים שהקדושה חלה על התמורה בבעלת מום קבוע וכו׳ וכדתנן נמי פרק קמא ממירין מן התמימים על בעלי מומין ומבעלי מומין על התמימים שנאמר לא יחליפנו ולא ימיר אותו וגו׳ רע בטוב היינו בעל מום וכיוצא בו שאינו ראוי לקרבן ואף על פי כן כתוב יהיה קדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-3-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולה </strong> שנתערבו בזבחים והמיר באחד מן התערובות ואינו יודע אם בעולה המיר והרי זו עולה או בזבחים המיר והרי היא שלמים מביא בהמה אחרת אצל זו שהמיר ואומר אם תמורה עולה היא זו הרי בהמה זו שלמים ואם תמורה שלמים היא הרי בהמה זו עולה ונמצא הבהמה שהביא התמורה בעולה ושלמים שנתערבו זה בזה ממה נפשך. חזר והמיר באחד משניהם ואין ידוע באי זה מהם דאם הוא בתמורה אין תמורה עושה תמורה ואם הוא בעולה ושלמים הרי זו תמורת עולה או שלמים ואם כן היא ספק תמורה ולכך מביא זבח אחר מתוך ביתו ואומר על התמורה השניה אם תמורה תמורה היא זו הרי שהבאתי חולין שהרי תמורת התמורה עצמה חולין דאין תמורה עושה תמורה ואם כן פשיטא דזה נמי חולין ואם תמורת עולה או שלמים היא הרי זה שהבאתי עולה או שלמים והרי זה שהביא עם התמורה השניה כזבח וספק תמורה שנתערבו זה בזה כך נראה פי׳ דברי הרב ז&quot;ל ופירשו התוספתא סוף פ&quot;ג כי מה שאמר התוספתא בתמורה האחד והרי הן כשתי זבחים שנתערבו זה בזה ולא אמר בשתי זבחים כדקתני ברישא משום דבסיפיה הויא ספק תמורה כדפי׳ ולא הוי כשני זבחים וכבר באר הרב ז&quot;ל פרק ששי דהלכות פסולי המוקדשים דקדשים שנתערב זה בזה ירעו כלם ויביא בדמי היפה ממין זה כמו ששנינו בתוספתא זו דעולה שנתערבה בזבחים ירעו ויביא בדמי יפה שבהן ממין זה וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלמים </strong> שנתערבו בבכור או במעשר והמיר באחד מהם ירעו כדתניא התם בתוספתא פרק שלישי המיר באחד מהן הרי זה לא יקרב ומה שכתב הרב ז&quot;ל ויאכל כבכור או מעשר כמו שבארנו ר&quot;ל דתמורה בכור ומעשר הוא קרב ואין תמורתו קרבה כדאמר׳ לעיל ולרבי כיון דהוי ספק תמורה שלמים ספק תמורה בכור או מעשר לא יקרב כדתניא בתוספתא אלא ירעה כדאמרינן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Chapter 4</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> דין וולדות הקדשים וולד שלמים ולד תמורת שלמים הרי אלו כשלמים והן עצמן כשלמים לכל דבר כדתנן ריש פרק אלו קדשים וולד קדשים ותמורתן וולד ולדן הרי הן כשלמים וכו׳ בגמרא זכר לרבות את הוולד דכתיב גבי שלמים ואם זבח שלמים קרבנו והוה ליה למכתב אם מן הבקר הוא מקריב תמים יקריבנו אם זכר אם נקבה למה לי אלא לדרשה ותנן לא נחלקו על וולד וולד שלמים ותמורה שלא יקרב על מה נחלקו על הוולד רבי אליעזר אומר לא יקרב וחכמים אומרים יקרב ובגמרא אמר ר׳ יהושע בן לוי לא נחלקו שיקרבו אלא לא יקרבו דע&quot;כ לא פליגי רבנן עליה דרבי אליעזר אלא בוולד אבל וולד דולד מתוך מעשיה ניכרת מחשבתו דלגדל קא בעי ליה ותני רבי חייא לסיועי לרבי יהושע בן לוי אם כשב הוא מקריב וולד ראשון קרב וולד שני אינו קרב דכשב וולד הוא והאי קרא גבי קדשים כתיב והיינו ע&quot;כ כרבנן דאי לרבי אליעזר וולד ראשון נמי אינו קרב והך דרשה אינה אלא אסמכתא דהא ודאי הא דוולד שני אינו קרב הוי מדרבנן שמא יגדל ממנו עדרים עדרים כן כתבו התוספות שם פרק אלו קדשים וכן וולד התודה וולד תמורתה כדתנן התם ובגמרא מנין לרבות וולדות תמורות וכו׳ ת&quot;ל אם על תודה וגו׳ יכול יהו כולן טעונות לחם תלמוד לומר על זבח התודה תודה טעונה לחם ולא וולדה ותמורתה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולד </strong> החטאת ימות ואין צריך לומר וולד התמורה פרק וולד חטאת דתמורה ומעילה במשנה חמש חטאות מתות וולד חטאת ותמורת חטאת וכו׳ ואסיקנא דהוו הלכתא כדאמ׳ לעיל ולד תמורה הוי בכלל ולד חטאת דוולד חטאת להכי מתה שהרי אינה ראויה לכפרה שלא הפריש׳ מתחלה לכך והוא הדין נמי בוולד תמורה מהאי טעמא. השוחט את החטאת ומצא בה בן שמנה חי הרי זו נאכלת כבשר החטאת שוולדי קדשים במעי אמן הן קדושים ונראה דהיינו כשהיתה מעוברת כשהקדישה לחטאת דלא חשיב וולד חטאת הואיל והפרישה מעוברת דדעתיה נמי אוולד דעובר ירך אמו הואי ואפילו ילדו א&quot;ר יוחנן רצה מתכפר בה רצה בוולדה מהאי טעמ׳ דלא איקרי ולד חטאת כדא׳ פ׳ התודה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולד </strong> תמורת אשם ולד ולדן עד סוף העולם ירעו כדתנן פ׳ אלו קדשים תמורת אשם וולד תמור׳ וכו׳ ירעו ויפלו דמיו לנדבה ותמורת אשם וכו׳ ובין זכר בין נקבה תרעה דגמירי כל שבחטאת מתה באשם רועה ואם ילדה זכר התמורה לאחר שהקריב אשמו הוולד עצמו יקרב עולה כדאמר רב נחמן אמר רבה בר אבוה מחלוקת קודם כפרה אבל לאחר כפרה הוא עצמו קרב עולה אלא דסלקא בקשיא בגמרא משום דתני רב חנניה לסיועיה לרבי יהושע בן לוי וולד ראשון קרב וולד שני חשיבי דתמורה גופא קרי וולד הואיל ומכח אחר אתי. הפריש נקבה לאשמו וילדה תרעה היא ובנה שם במשנה המפריש נקבה לאשם תרעה וכו׳ ולעיל מיהא מתני׳ גבי מתני׳ דתמורה עולה אמר ר׳ יוסי ברבי חנינא ומודה רבי אליעזר במפריש נקבה לאשם דאין בנה קרב אשם דלא אמר אלא במפריש נקבה לעולה וילדה דיקרב עולה משום דאיכא שם עולה על אמו בעולת העוף אבל גבי אשם נקבה דליכא שם אשם על אמו מודה דאין בנה קרב ולהכי ירעו ויביא בדמי שניהם אשמו ואם כבר הקריב אשמו יפלו דמיהן לנדבה כדתנן גבי מפריש נקבה לאשם. הפריש נקבה לעולתו וילדה אף על פי שילדה זכר ירעה ויביא בדמי עולה כרבנן דפליגי ארבי אליעזר במתניתין יפלו לנדבה הוא שיתן המעות כשנפדות ומקריבין מהן עולות נדבה ונסכים משל ציבור ואינם טעונים סמיכה ומקום שנאמר יקרב הוא עולה או יביא בדמיו עולה טעון סמיכה ונסכים משלו כדא׳ התם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וולד </strong> המעשר תמורת המעשר וולד תמורת הבכורה וולדי וולדותיהן עד סוף העולם הרי אלו לא יקרבו דכתיב בהו מיעוטא לומר דהם קרבים ולא תמורתם כדא׳ לעיל וכדתנן פרק אלו קדשים גבי וולדות גם כן דיאכלו במומן לבעלים ולעיל בגמרא גבי תני ר׳ חייא לסיועיה לרבי יהושע בן לוי אם כשב הוא מקריב וולד ראשון קרב וולד שני אינו קרב הוא קרב ואין וולד כל הקדשים קרב ואמרינן ולד דמאן אי דעולה ואשם זכרים הם אי דחטאת הלכתא גמירי לה דלמיתה אזלי אמר רבינא לאיתויי ולד המעושרת מעשר בהמה שיצאה נקבה בעשירי ואחר כך ילדה וולדה אינו קרב אלא ירעה ויאכל במומו לבעלים כדין מעשר ופריך למה לי קרא עברה עברה מבכור קא גמר לה ובבכור לא קרב ולד דידיה דהא ליכא ולד בבכור דהא זכר הוא ומשני אפ&quot;ה איצטריך קרא דהוא קרב ואין וולד כל הקדשים קרב משום דסלקא דעתך אמינא אין דנין איפשר משאי איפשר קמ&quot;ל וולד תמורה דבכור נראה דכיון דולד הבכור לא קרב דהא לית ליה דזכר הוא הכי נמי ולד תמורתו כמעשר דאיתקדשו תרוייהו אלא הוו לכהן כבכור.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולד </strong> תמורת הפסח כתמורת הפסח אם שלמים שלמים אם דמיה שלמים ולדה נמי דמיו שלמים דאף על גב דבפסח גופיה ליכא ולד דהא זכר הוא אפ&quot;ה אם הפריש נקבה לפסחו וילדה איכא מאן דאמר דקרב הוולד כדא׳ פרק אלו קדשים ולהכי בתמורה נמי אי היא קרבה ולדה נמי קרב שלמים כמוה דאף על גב דאמרינן ולד ראשון קרב מדכתיב אם כבש ולד שני אינו קרב כדאמרינן בתוספת׳ דרבי חייא והכא ולד שני הוא דתמורה גופה מכח אחר היא באה היינו דאין ולד שני קרב כזבח גופיה כי הכא במקום פסח אבל שלמים כמו אמו דהוי תמורת פסח וקרבה שלמים ולד נמי קרב כדאמר׳. הפריש נקבה לפסחו וילדה או הפרשה מעוברת היא וולדה ירעו ויביא בדמיהן פסח ואם נשארה לאחר הפסח או ילדה אחר הפסח יביא בדמיהן שלמים אחר רעיה כדתניא פרק אלו קדשים ור׳ אליעזר אומר הוא עצמו יקרב שלמים אבל רבנן סברי דכיון דהיא עצמה לא קרבה שלמים אף ע&quot;ג דפסח בשאר ימות השנה שלמים הוי ושלמים באים נקבה האי הואיל ומחמת קדושה פסולה באה דהפרשה לפסח ולא חזיא לפסח משום דהויא נקבה אידחו נמי משלמים היא וולדה אלא דמיהן יהיו שלמים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולדות </strong> הקדשים שיצאו דרך דופן או שהיו טומטום ואנדרוגינוס וכלאים וטריפה יפדו ויביא בדמיהן קרבן הראוי להביא פ׳ יש בקרבנות תנן רבי אליעזר אומר הכלאים והטרפה וכו׳ לא קדושים ולא מקדישים אחרים כתמורה דקדש הם ואמרינן בגמ׳ מאחר שאין קדושים מהיכן מקדישים אלא אי אתה מוצא אלא במקדיש בהמה ואח&quot;כ נטרפה דחיילה על הקדושה קודם ובמקדיש ולד ויצא דרך דופן אבל כלאים וטומטום ואנדרוגינוס אי אתה מוצא אלא בולדי קדשים שקדשה אמם קודם שנתעברה מהם דהשתא ממילא הם קדושים דעובר ירך אמו הוא ובהא הוצרך לומר דאין עושין תמורה לרבי יהודה דולד בעלמא עושה תמורה ומכל מקום שמעינן דוולדות אלו קדשי מצד אמן ואינן ראוים ליקרב ולהכי נראה דירעו ויפדו ויביא בדמיהן קרבן הראוי להביא בדמי ולד הנולד (כתקנו שלחו) כדא׳ לעיל. ולד בעלת מום הרי הוא כוולד התמימה לכל דבר ויקרב כראוי לו פרק קמא דתמורה פלוגתא דבן פדת ור׳ יוחנן סבר אף על גב דאימיה לא קדשה לגופה ולד מיהא קדש לגופיה. קדשים שהפילו נפל או שליא אסורים בהנאה ויקברו כדתנן פרק בהמה המקשה המבכרת שהפילה שליא ישליכנה לכלבים ובמוקדשים תקבר כגון בהמת שלמים שהפילה שליא דבין זכר בין נקבה דנפיק מבהמת הקדש קדש ובגמרא מאי טעמא משום דרובא בר קדושה הוא דבין זכר בין נקבה חוץ מנדמה למ&quot;ד ולדות קדשים בהוייתן הם קדושים והכא נפל קדיש משום דילפינן מבכור דקדיש נפל זכר בבכור כדכתיב שגר כדדרשינן בכריתות וכמו שכתבו התוספות פרק בהמה המקשה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעב </strong> שלא ישנה הקדשים מקדושה לקדושה כדכתיב לא יקדיש איש אותו גבי בכור ותנן פרק בתרא דתמורה אחד קדשי מזבח ואחד קדשי בדק הבית אין משנין אותם מקדושה לקדושה דקדשי בדק הבית שהקדישן למזבח לא עשה כלום ובקדשי מזבח אין משנין מקדושת עולה לשלמים או איפכא ובערכין פרק המקדיש תנן רבי ישמעאל אומר כתוב א׳ אומר תקדיש גבי בכור וכתוב אחר אומר אל תקדיש וכו׳ הא כיצד מקדישו אתה הקדש עילוי להעלות הבכור בדמים ויתן טובת הנאתו לכהן ואי אתה מקדישו הקדש מזבח שיהא שם זבח אחר חל עליו ובגמר׳ ורבנן דנפקא להו הך דרשא מכל חרם קדש קדשים מיבעי להו האי קרא דלא תקדיש בלאו שאם מתפיסו שם לזבח אחר עובר בלאו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> מערימין על הבכור להקדישו למזבח הקדש אחר מקדישו בבטן קודם שיוולד דכתיב אשר יבוכר לה׳ לא יקדיש איש אותו משיבוכר אי אתה מקדישו אבל אתה מקדישו בבטן כדתנן במתני׳ דכיצד מערימין על הבכור מבכרת שהיתה מעוברת אומר מה שבמעיה של זו אם זכר עולה ואם נקבה שלמים בכור לא קדיש אלא בכור ברחם וכיון דמעיקרא אתפסיה בקדושה אחריתי תו לא חיילא קדושת בכורה ואמרינן בגמרא דסיפא דאמר אם נקבה זבחי שלמים לא איצטריך להערים בכור דנקבה לא קדשה בבכור אלא סיפא אתיא לבהמת הקדש דאם חטאת היא ונתעברה ורוצה להערים שלא ילך למיתה ישנהו לקדושה אחרת ואתיא כמאן דאמר דולדות קדשים בהוויתן הן קדושים כלומר ביציאתן ולא במעי אמן וכיון דאכתי לא קדיש בקדושת אמו מצי לארכובי עליה קדושה אחריתי דלכי מיתיליד לא להוי ולד חטאת אבל על זכר בכור לא מצי למימר זבחי שלמים שאינו מפקיע אותו מקדושתו כדי ליהנות בו ונראה דלא אסיר הא אלא מדרבנן ואם אמר עם יציאת רוב ראשו יהיה עולה הרי זה בכור ואינו עולה שם בעיא דרב עמרם לרב ששת אמר על הבכור עם יציאת רובו עולה עולה הוי או בכור הוי עולה הוי דכל פורתא ופורת׳ דקא נפיק הוי כליל או בכור הוי דכל פורתא ופורתא במלתיה קאי שכן קדושת בכור חלה על כל בכורות דעלמא מרחם ופשטי׳ לה מבעיא דאלפא גבי לקט דאמר אביי דברי הרב ודברי התלמיד דברי מי שומעים ולכך כיון דהוי בשעת יציאת רובו דבעי למיחל קדושת בכור דברי הרב קודמים ובכור הוא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-substitution-4-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> מערימין על ולד בהמת הקדש לשנותו לקדושה אחרת דתנן התם רבן שמעון בן גמליאל אומר אין קדוש׳ חלה עליהם ואפילו קדושת אמן דקסבר בהוייתן כשהם נולדים והלכך אין שום קדושה חלה עליהם ואמרי׳ בגמ׳ והאי תנא סבר ולדי קדשי׳ ממעי אמן קדושים דגבי קרא דבכור דילפינן מיניה שיכול להקדישו קדושה אחרת בבטן כתיב אך למעוטי שאר קדשים דאין אדם מקדיש אותם קדושה אחרת בבטן דבמעי אמן קדושים קדושת אמן ונקטינן כהאי תנא כדמשמע התם בגמרא. כתב הרב ז&quot;ל טעם היות התמורה קדש ותוספת חומש לפודה הקדשו דירדה תורה לסוף דעתו שאיפשר שניחם על מה שהקדיש ורוצה להחליפו בפחות ממנו או רוצה לפדות הקדשו בפחות לכך אמרה תורה שיהיה קדש מה שיחליף ושיוסיף חומש על שווי ההקדש מי שפודה הקדשו כדי לתקן דעותיו ולפי שקדושת מזבח חמורה מקדוש׳ בדק הבית החמיר׳ תורה שיהי׳ קדש כל חילוף קדושת מזבח ובקדושת ב&quot;ה שיוסיף חומש לבד על הפדיון ונאמר הלא כתבתי לך שלישים במועצות ודעת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-substitution.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-substitution.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-substitution.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,1450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Sheqel Dues</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p><a href="../../halakhah/mishneh-torah-sheqel-dues/">Open Mishneh Torah, Sheqel Dues</a></p>
+            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Sheqel Dues</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">31 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>1134 matched</strong> / 3540 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-1-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-6-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-2" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:2">1:7:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-3" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:3">1:7:3</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-9-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-9-2" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:9:2">1:9:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-10-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:10:1">1:10:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-10-2" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:10:2">1:10:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-1-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-2-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-4-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-5-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-6-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-7-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-9-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:9:1">2:9:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-1-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-2-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-2-2" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:2:2">3:2:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-3-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-2" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:2">3:8:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-3" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:3">3:8:3</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-4" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:4">3:8:4</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-10-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-10-2" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:10:2">3:10:2</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-12-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:12:1">3:12:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-2-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:2:1">4:2:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-4-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:4:1">4:4:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-6-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:6:1">4:6:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-12-1" title="Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:12:1">4:12:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Chapter 1</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:1:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע מהתורה ליתן כל איש מישראל מחצית השקל בכל שנה ושנה אפי׳ עני המתפרנס מן הצדקה חייב ושואל מאחרים או מוכר כסות שעל כתיפו ונותן מחצית השקל כסף שנאמר העשיר לא ירבה והדל לא ימעיט וכו׳ ואינו נותנו בפעמים רבות היום מעט ולמחר מעט אלא נתנו כולו כאחת בפעם אחת.</strong> עי׳ ברמב&quot;ן פרשת כי תשא שמברר מקראי דמצות שקלים חיוב בכל שנה בלעדי מנין העם עיי&quot;ש ולא כתב רבינו כמפורש בקרא מבן עשרים שנה ומעלה נדבר להלן בס&quot;ד.<br><strong> אפי׳</strong><strong> עני המתפרנס וכו׳.</strong><strong> הנה בכל מצות שבתורה העני מחויב כמו העשיר ומצינו כן במס׳ פסחים בפ׳ ערבי פסחים ואפי׳ עני שבישראל לא יאכל עד שיסב ולא יפחתו לו מד׳ כוסות של יין ואפי׳ מן התמחוי ומקשינן שם פשיטא ומתרצין משום דר׳ עקיבא דאמר עשה שבתך חול וכו׳ קמ&quot;ל דפרסומי ניסא וכו׳ אבל גם בתורה נאמר בזה הדל לא ימעיט על כי מצינו בקרבן עולה ויורד.</strong><br><strong> ואינו</strong><strong> נותנו בפעמים רבות וכו׳. </strong><strong> כי נתינת המחצית השקל אינו לטובת ההקדש והתורה עשאו כחוב להקדש אלא גם מצוה על גופו דמטעם טובת ההקדש לא שנא בבת אחת לא שנא לפעמים רבות אבל מצד המצוה יהיה הנתינה בפ&quot;א דמלטובת הקדש בלבד לא היתה התורה אומרת העשיר לא ירבה ושאני מתרומה ומעשר משום דתורה הקפידה על הוספה והפחת, צריך שיהיה בפעם אחר בלי הפסק כמו כל הדברים התלוין בשיעור מוגבל דצריך שיהיה בלי הפסק וראיתי בקרית ספר למבי&quot;ט שכתב דכתיב לא ימעיט ממחצית השקל דאי למימר שיתן חצי שקל הוי סגי לכתוב יתן חצי שקל וקאמר לא ימעיט דר&quot;ל אפי׳ בנתינה לא ימעיט מחצית שקל עכ&quot;ל עיי&quot;ש:</strong></p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:6:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-6-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בזמן שהיה מטבע של אותו זמן דרכונות היה כל אחד ואחד נותן במחצית השקל שלו סלע ובזמן שהיה המטבע סלעים היה נותן כל אחד במחצית השקל שלו חצי סלע שהוא שני דינרין ובזמן שהיה המטבע חצי סלע היה כל אחד ואחד נותן במחצית השקל אותו הסלע ומעולם לא שקלו ישראל במחצית השקל פחות מחצי שקל של תורה.</strong> ובראב&quot;ד ע&quot;ז כי מקודם שהיו יושבין מעטים היו צריכין להרבות ולא כמ&quot;ש רבינו שהרי מקודם היו עניים ואח&quot;ז העשירו ובעניים היו נותנין ביותר מבעושרם עיי&quot;ש וברמב&quot;ן בפרשת כי תשא כדעת הראב&quot;ד ובברטנורא שקלים פ&quot;ב מ&quot;ד כתב היו שוקלין דרכונות מטבע של מלכות מדי שעלה עמהן מן הגולה ושל זהב היה והיא שוה ב׳ סלעים ורגילין לישא וליתן באותו דרכונות וכמו שבזמן בית ראשון שהיה מטבע שלהן שקל היו נותנים מחצית השקל וכו׳ עיי&quot;ש:<br><strong> ועי׳</strong> בערוך ערך דרכון במוסף הערוך שם א&quot;ב פי׳ בלשון יוני ורומימין מטבע פרסית של זהב והיה צורת דריוש חקוקה עליו ועל שמו נקרא ואולי הוא אדרכין שכתוב בעזרא עכ&quot;ל. הנה כנראה היה מטבע שהביאו ממדי ולכן הביאו בענים ואח&quot;ז היה להם מטבעות אחרות:<br><strong> והנה</strong> לדעת הרמב&quot;ם העשיר לא ירבה והדל לא ימעיט לפי המטבע השולטת רק לא תהיה פחות משקל התורה ולראב&quot;ד ורמב&quot;ן לא ירבה מעשיר ולא יפחות אבל כשהסכימו יחד רשאי להוסיף ולהפחית עד שקל התורה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל חייבים ליתן מחצית השקל כהנים לויים וישראלים וגרים ועבדים משוחררים אבל לא נשים ולא עבדים ולא קטנים ואם נתנו מקבלין מהם אבל הכותים שנתנו מחצית השקל אין מקבלין מהם וקטן שהתחיל אביו ליתן עליו מחצית השקל שוב אינו פוסק אלא נותן עליו בכל שנה ושנה עד שיגדיל ויתן על עצמו.</strong> הנה בפי׳ קטן בהרע&quot;ב במשנה ג׳ פ&quot;א דשקלים מפרש וקטנים אפי׳ הביא שתי שערות והוא פחות מבן עשרים ורבינו בפי׳ המשנה כתב קטן שלא הביא ב׳ שערות וכן נראה כאן שסתם קטן ובהל׳ א׳ כתב מצוה וכו׳ ולא כתב מעשרים ולמעלה. ונראה כמו בכל המצות משהביא ב׳ שערות בן י&quot;ג ורמב&quot;ן בפרשת כי תשא כתב כמו כן דשקלים לקרבנות משהביא ב׳ שערות ובתוס׳ יו&quot;ט העיר על זאת ותליא דלר&quot;ע ברטנורא קרא דבן עשרים קאי על מחצית השקל לקרבנות ורבינו ורמב&quot;ן וסייעתם דקרא קמא דכתיב סתם כל העובר וכו׳ קאי לקרבנות דלא כתיב מעשרים וכו׳:<br><strong> אמנם</strong> לשון הירושלמי יקשה לדעת רבינו וסייעתם דעל משנה ג׳ בפ&quot;א בשקלים דאיתא את מי ממשכנין וכו׳ אבל לא נשים ועבדים וקטנים וכו׳ ובגמ׳ שם אין ממשכנין את הקטנים הא לתבוע תובעין הדא דתימר בשהביא ב׳ שערות אבל אם לא הביא ב׳ לא בדא ולמשכן אין ממשכנין אע&quot;פ שהביא ב׳ שערות ונוסחא אחריתי אין ממשכנין עד שיהיה בן עשרים. [ועוד נוסחא ולמשכנין אין ממשכנין עד שיביא ב׳ שערות]. והנה בהנוסחות תליא אם כפי׳ הרע&quot;ב או רבינו:<br><strong> ועוד</strong> שם על משנה ד׳ דאיתא אע&quot;פ שאמרו אין ממשכנין נשים ועבדים וקטנים אבל אם שקלו מקבלין מידן ובגמ׳ שם אע&quot;פ שאמרו וכו׳ הא לתבוע אין תובעין הכא את אמר תובעין והכא את אמר אין תובעין כאן בשהביא ב׳ שערות וכאן בשלא הביא ב׳ שערות עכ&quot;ל. וכמ&quot;ש בקרבן העדה לרבינו ורמב&quot;ן על כרחך בשהביא ב׳ שערות לאחר זמן דקודם י&quot;ג מאי אהני שערות עיי&quot;ש והנה בשערות אחר י&quot;ג כמ&quot;ש בשיירי קרבן דיקשה דנראה מירושלמי ג׳ זמנים זמן שמקבלין ואין תובעין וזמן שתובעין וזמן שממשכנין לרע&quot;ב מקבלין לפני הזמן ולאחר זמן תובעין ולאחר עשרים ממשכנין אבל לדעת רבינו הניח בצ&quot;ע:<br><strong> ולדעת</strong> רבינו נראה ג׳ זמנים קודם הזמן מקבלין ולאחר זמן קודם שהביא ב׳ שערות תובעין ומשהביא ב׳ שערות לאח&quot;ז ממשכנין ומובן לדעת רבינו דלדעת הרע&quot;ב יקשה כיון דלדעתו שקלי קרבנות נתמעטו בתורה עד עשרים למה תובעין ואם תובעין למה אין ממשכנין מאי מסתבר לחלק בכך ואין לומר דתובעין מדרבנן ומשו&quot;ה אין ממשכנין למ&quot;ש הרע&quot;ב במ&quot;ה פ&quot;א בנשים ועבדים וקטנים שמקבלין מהם ובתנאי שימסרם לציבור לגמרי כדי דלא יבוא קרבן ציבור משל יחיד עיי&quot;ש וא&quot;כ בע&quot;כ לא יקנו אותם לגמרי זה אינו דמאי שנא מכופין עד שיאמר רוצה אני וכמ&quot;ש ברמב&quot;ם בפ&quot;ב מגירושין דלאחר הכפיה מקנה בלב שלם עיי&quot;ש ולמה נאמר תובעין אחרי שצריכין התנאי להיות ראוין לשקלים לקרבן:<br><strong> אמנם</strong> לרבינו י&quot;ל בהגיע לשנים ולא הביא שערות עי׳ באהע&quot;ז בסי׳ קנ&quot;ה סעיף כתב ומקורו ממס׳ נדה בפ׳ יוצא דופן בסוגיא דחזקה דרבא בדאורייתא בהגיע לשנים בלי שערות חיישינן שמא נשרו עיי&quot;ש וא&quot;כ מובן דמספק חיובו למצוה באיסורא דאית בממון תובעין אבל לא נוכל לכופו מספק. אמנם בנשים ועבדים כנראה דהנה בהל׳ ג׳ בגמ׳ איתא אין ממשכנין את הקטנים הא לתבוע וכו׳ נקטו רק קטנים ולא נשים ועבדים ובהל׳ ד׳ בגמ׳ דמקשינן הא לתבוע וכו׳ ומשני כאן כשהביא ב׳ שערות וכו׳ דבנשים ועבדים דאין דנין לענין גדלות וקטנות יקשה עוד. ונראה דאין תובעין להם וכ&quot;כ במהר&quot;א בפי׳ שם וז&quot;ל ונשים ועבדים נמי אין תובעין והא דתנינן להו לעיל גבי אין ממשכנין איידי דתני בקטנים תני ליה בהן עכ&quot;ל ויש ליישב מה שעמד בשיירי קרבן על המג&quot;א בסי׳ תרצ&quot;ד שכתב על הגהות מיימוני שכתב דנשים וקטנים חייבין מנ&quot;ל כן והקשה דמפורש דתובעין להם עיי&quot;ש וי&quot;ל המג&quot;א עמד עמ&quot;ש נשים חייבין:<br><strong> ולפ&quot;ז</strong> לדעת רבינו מובן דתובעין ואין ממשכנין ועי׳ במהרי&quot;ט חלק א׳ סי׳ נ&quot;א שהחליט דחשש שמא נשרו הוי חשש מדאורייתא ודעת הב&quot;ש דהוי חשש דלא שכיח עיין בספר שערי תורה ח&quot;ב כלל ל׳ פרט ז׳ שם בזה עיי&quot;ש ולמ&quot;ש דעת רבינו ורמב&quot;ן ותוס׳ יו&quot;ט נראית כן כדעת מהרי&quot;ט דעל כרחך חשש שמא נשרו מדאורייתא:<br><strong> ואחר</strong> שכתבתי ראיתי במרכבת המשנה שמפרש ג&quot;כ הג׳ זמנים קודם י&quot;ג ולאחר י&quot;ג בלא הביא משום שמא נשרו ואח&quot;ז כמ&quot;ש:<br><strong> ורבינו</strong> כאן בחיבורו כתב שאלו ג׳ זמנים דלאחר י&quot;ג והביא שערות זה הנכלל בלשון כל איש מישראל וכו׳ המובן כמו בכל המצות בגדולים ומ&quot;ש הכל וכו׳ ואם נתנו מקבלין וכו׳ בקטנים ממש קודם י&quot;ג ומ&quot;ש בה&quot;י כל מי וכו׳ ותובעין אותן עד שיתנו י&quot;ל קאי על המחויב מספק ג&quot;כ וצ&quot;ע למה לא פירוש רבינו כדרכו לפרש ולא כתב כלל בפירוש מענין תובעין בקטנים ונראה שנכלל במ&quot;ש או הוא עתיד ליתן בי&quot;ג בלא הביא שערות וראיתי במרכבת המשנה שמפרש והוא עתיד קרוב להביא ב׳ שערות עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:2</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואם נתנו מקבלין מהם.</strong> יש להבין כיון דמדינא אין חייבין בשקלים האיך נצרפם לתרום לקרבן אלא כמ&quot;ש בהרע&quot;ב דהוי בתנאי שימסרם לציבור וכל זה שייך בנשים ועבדים אבל בקטנים דלאו בר אקנוי נינהו האיך מקבלין. וראיתי בשעה&quot;מ כאן שהקשה כן לדעת רבינו ורמב&quot;ן בקטן ממש דלרע&quot;ב בקטן קודם עשרים לא יקשה אבל לרבינו בקטן ממש כבר כתב רבינו בכמה דוכתי בהלכות לולב וכיו&quot;ב דלאו בר אקנוי הוא עיי&quot;ש:<br><strong> אמנם</strong> לדעת רבינו י&quot;ל דבנשים א&quot;צ לומר משום בתנאי שימסרם לציבור וכמו כן בקטנים דהנה עי׳ בקרית ספר שכתב דנשים ועבדים וקטנים אין חייבין משום שנאמר כל העובר על הפקודים ואין אשה ועבד וקטן עוברים על הפקודים דאע&quot;ג דהוי מ&quot;ע שהז&quot;ג ונשים ועבדים פטורין הכא דכתיב כופר נפשו הו&quot;א דחייבין אי לא דכתיב פקודים ואם נתנו מקבלין מהם דהא הוו בכלל כופר נפש ולא תימא אם מי שהוא חייב שהוא העשיר אינו מרבה כ&quot;ש מי שאינו חייב שלא יתן עכ&quot;ל. ואם כן לדבריו א&quot;צ להקנות לציבור גם למ&quot;ש בתוספות במסכת ר&quot;ה ל&quot;ג ע&quot;א בד&quot;ה הא דקיי&quot;ל כר׳ יוסי ור׳ שמעון דנשים סומכות רשות ומשו&quot;ה נשים יכולין לברך במ&quot;ע שהז&quot;ג עש&quot;כ דיכולים לקבל לחיוב המצות הפטורות מדינא עיי&quot;ש. ואפי׳ בקטנים דלא שייך קבלה אבל כנראה דקטנים שמקבלים מהם במופלא סמוך לאיש שיודע להפלאות עי׳ נדה מ&quot;ו דחשוב קבלה ע&quot;ע וגם להקדיש אם מדרבנן או מדאורייתא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:3</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-7-3" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:7:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> קטן שהתחיל אביו ליתן עליו שוב אינו פוסק אלא נותן עליו בכל שנה ושנה עד שיגדל ויתן על עצמו.</strong> וברע&quot;ב משנה ג׳ פ&quot;א דשקלים שוב אינו פוסק. אביו משהתחיל ואם מת אביו הוא שוקל ע&quot;י עצמו עיי&quot;ש ובתוס׳ יו&quot;ט עמד ע&quot;ז דהאיך יוכל האב להטיל חובה על הבן וכתב ואולי כשירש מאביו קאמר וס&quot;ל דחובה חל על הנכסים עיי&quot;ש אבל דעת רבינו אינו כן אלא קאי על אביו שאינו פוסק לו בלבד:<br><strong> והנה</strong> לרע&quot;ב שמפרש קטן לאחר י&quot;ג וב׳ שערות ודאי יקשה למה יחויב אביו לעולם יהיה עד עשרים שנים מה לאב בבנו הגדול המחוייב בכל המצות אף לדעת רבינו ורמב&quot;ן יש להבין למה בהתחיל אינו פוסק ועי׳ בפי׳ המשנה לרבינו שם שכתב ואם אביו נתן בעבורו והוא קטן אמרינן לו מאחר שנתת עליו השנה שעברת והעמדת עליו זאת המצוה תן עליו תמיד עד שיגיע ולא תפסוק וזה ענין אמרם כל קטן שהתחיל אביו לשקול על ידו אינו פוסק עכ&quot;ל:<br><strong> הנה</strong> מטעם חינוך כמו האב מדיר את בנו בנזיר לא שייך כאן דהאב העושה המצוה ולא הבן ונראה דכמ&quot;ש בשם קרית ספר דמשום כופר נפש נשים וקטנים בכלל אלא שאינם בחובה וא&quot;כ כשהאב נותן משום כופר נפש בשנה אחת מסתמא דעתו לתת כן בכל שנה עד שיגדיל דמאי אהני ליה לשנה אחת בלבד והוי כקיבל עליו ככה עד שיגדל הבן ואף באומר שלא היה דעתו אלא לשנה אחת בלבד י&quot;ל שאינו נאמן דהעושה כן עושה מסתמא תמיד ויש להעמיס זה בדברי רבינו בפי׳ המשנה הנ&quot;ל וצ&quot;ע דבה&quot;י איתא שאין כופין בכה&quot;ג ואם כן נפק&quot;מ לתובעין בלבד. ומאי אהני באומר שלא היה דעתו לעולם וי&quot;ל נפק&quot;מ כמ&quot;ש בתוס׳ במסכת שבועות כתב דנשאלו ותירצו בשכח עיי&quot;ש. ועי׳ מ&quot;ש לקמן בה&quot;י עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:9:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-9-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באחד באדר משמיעין על השקלים וכו׳ ומכאן ואילך כופין את מי שלא נתן עד שיתן וכל מי שלא יתן ממשכנין אותו ולוקחין עבוטו בע&quot;כ ואפי׳ כסותו.</strong> עי׳ בתוס׳ יו&quot;ט ה&quot;ג פ&quot;א מהל׳ שקלים שכתב על דברי רבינו זה וממ&quot;ש בפי׳ המשניות למשכן כלומר שמוציאין העבוט מביתו וכו׳ ואין כאן משום בחוץ תעמוד דהכא מצות גבוה עליו משא&quot;כ פריעת בע&quot;ח אע&quot;ג דנמי מצוה היא אין למדין ממנה למצות גבוה עכ&quot;ל. ועיין בשו&quot;ע חו&quot;מ בסי׳ צ&quot;ז סעיף ט&quot;ז די&quot;א דבהגיע זמן פרעון השליח בי&quot;ד הולך לביתו למשכנו עיי&quot;ש. וא&quot;כ בפריעת חוב ג&quot;כ הדין כן אבל דעת רבינו בפ&quot;ג מהל׳ מלוה ולוה לא נראה כן וצ&quot;ל כמ&quot;ש בתוס׳ יו&quot;ט לחלק בין גבוה. אמנם במ&quot;ש ואפי׳ כסותו ועל כרחך כונתו שא&quot;צ להחזיר כסות יום ביום וכסות לילה בלילה ונראה כדאיתא בגמ׳ דבע&quot;ח קונה משכון מולך תהיה צדקה אם אינו קונה משכון צדקה מנין ובהקדש לא שייך צדקה דא&quot;צ ולא שייך החזרה וביותר למ&quot;ש רבינו בה&quot;א או מוכר כסותו שעל כתיפו וכו׳ הרי מחויב למכור אפי׳ כסות יום ולילה משו&quot;ה שייך ממשכנין גם בזה ואח&quot;כ ראיתי בקרית ספר שכתב כמו כן דלא שייך לך צדקה בהקדש עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-9-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:9:2</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-9-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:9:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בחמשה עשר בו ישבו השולחנים בכל מדינה ומדינה ותובעין בנחת כל מי שיתן להם יקבלו ממנו ומי שלא נתן אין כופין אותו ליתן בחמשה ועשרים בו ישבו במקדש לגבות ומכאן ואילך כופין וכו׳.</strong> הנה חייבי חטאת ואשמות אין ממשכנין כדאי׳ במשנה ערכין כ&quot;א משום דלכפרה לא משהי עיי&quot;ש והרי שקלים כמו כן כופר נפש הם י&quot;ל למ&quot;ש בתוס׳ במס׳ ר&quot;ה ו׳ ע&quot;א בד&quot;ה יקריב דבעבר בל תאחר אפי׳ בחטאות כפינן ורק הנפק&quot;מ בלא עבר זמנו אלא שרואים שמבזבז ממונו עיי&quot;ש. ומשו&quot;ה בב׳ זמנים אין כופין רק בהאחרונה שרואין שפושע שייך כפיה דכיון דליכא עוד זמן לגבות ואין מביא נראה פושע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:10:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-10-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מי שאינו חייב בשקלים אע&quot;פ שדרכו ליתן או הוא עתיד ליתן אין ממשכנין אותו ואין ממשכנין את הכהנים מפני דרכי השלום אלא כשיתנו מהן ותובעין אותן עד שיתנו.</strong> הנה בלתי מבואר במשנה ובגמ׳ אלא שאין ממשכנין הנשים ועבדים וקטנים ומקבלין כשיתנו אבל באם דרכו ליתן כמו האב שהתחיל להביא ע&quot;י בנו שאינו פוסק לא נמצא בפי׳ שאין ממשכנין:<br><strong> והנה</strong> ותובעין אותן וכו׳ נראה דקאי על כל הנאמרים והוא עתיד ליתן וכו׳ כמ&quot;ש בשם מרכבת המשנה דקאי על בן י&quot;ג שלא הביא ב׳ שערות דאל&quot;כ יקשה למה לא הביא רבינו המפורש בירושלמי דתובעין אותו ובנשים נראה דעת רבינו ג&quot;כ שאין תובעין שכתב לעיל שאין חייבין ובנשים לא שייך לחלוקים הנאמרים בקטנים ואפשר לומר לדעת רבינו למ&quot;ש לעיל דמסתמא דעתו על כל שנה ושנה אבל אם כן תליא בדעתו ונראה מה היה בדעתו והנה כה&quot;ג במס׳ שבועות דף כ׳ ע&quot;א עי׳ בתוס׳ בד&quot;ה לישנא וא&quot;ת נשיילה מה היה בדעתו י&quot;ל כגון שאומר שבדעתו כל מה שיהיה ממשמעות לשונו אי נמי כגון ששכח מה היה בדעתו וכו׳ עכ&quot;ל. ודעת רבינו אף דנאמר דמסתמא היה בדעתו כן מ&quot;מ אין להוציא ממון בכפיה ממנו באומדן דעת הזה אלא שתובעין אותו והוא בשכח מחויב להביא ואף באומר ששכח לא שייך כפיה משום אומדנא זאת ועי׳ בהל׳ נדרים בסי׳ ר&quot;ד דוקא נגד רוב במליח שם אינו נאמן עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-10-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:10:2</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-1-10-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 1:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואין ממשכנין את הכהנים מפני דרכי השלום.</strong> ברע&quot;ב בפ&quot;א מ&quot;ג כתב לפי שעבודת הקרבנות עליהם חולקין להם כבוד וסומכים עליהם שלא יעכבו את שקליהם וכי יעכבו לב בי&quot;ד מתנה עליהם שיהיה חלף עבודתם כמו שנותנין מתרומת הלישכה לשאר עושי מלאכת הקודש עיי&quot;ש. ועיין בתוס׳ יו&quot;ט שכתב לתרץ בדבריו למה לא נשנה במס׳ גיטין בפ׳ חמישי בהני דקתני התם מפני דרכי השלום עיי&quot;ש ובפי׳ לר׳ דוד ערמא&quot;ה ז&quot;ל כתב ואין ממשכנין את הכהנים וכו׳ מפרש במשנה שהיו דורשין לעצמן כל מנחת כהן כליל וכו׳ ומתרומת הלישכה היו באין שתי הלחם וכו׳ וחכמים סוברים דבמנחה פרטית הכתוב מדבר ועם כל זה לא היו כופין אותן שלא לבוא לידי מחלוקת עכ&quot;ל:<br><strong> והנה</strong> יקשה כיון דהלכה כחכמים משום לא אתי לאנצוי נפטור אותם ובכל אדם נאמר כן בכל מקום דממשכנין בכפיה. ולמ&quot;ש ברע&quot;ב בכהנים משום כבוד אבל לדברי ר׳ דוד ערמא&quot;ה ז&quot;ל יקשה. אמנם נראה דבריו ברורים דכדאיתא במס׳ קדושין נ׳ כי יקריב לרצונו וכו׳ כופין אותו עד שיאמר רוצה אני וכמ&quot;ש רבינו בפ&quot;ב מהל׳ גירושין לפרש כי אחרי הכפיה כונתו רצויה שיהיה נעשה ברצונו עיי&quot;ש. אבל כל זה אם לפי דעתו ג&quot;כ מחויב בהמצוה אלא דיצרו תמנעהו משום אהבת ממון וכיו&quot;ב וא&quot;כ שייך לומר דאחרי הכפיה לרצון יהיה לו בהמצוה אבל בכה&quot;ג דכהנים דלפי דעתם אין מחויבים כלל וא&quot;כ לא שייך כפיה כיון דיהיה לעולם שלא לרצונם. וא&quot;כ מיושב נמי בדבריו מ&quot;ש בתוס׳ יו&quot;ט למה לא נמנה במס׳ גיטין במה שתיקנו מפני דרכי השלום דבהאי אין עיקר טעמו מפני דרכי השלום אלא משום אתו לאנצוי לא שייך כפיה:<br><strong> אמנם</strong> לפי הלשון המשנה מפני דרכי השלום וכדאיתא בירושלמי מפני הכבוד לא נראה מהאי טעמא שכתב ויש להבין באמת למה לא נאמר מה&quot;ט שכתבתי דלא שייך כפיה. ונראה דבחיוב שקלים כמו חיוב בפדיון הבן וצדקה וכיו&quot;ב דכופין ואפי׳ לא יתרצה מ&quot;מ גובין החוב המוטל עליו ושאני בקרבן דבעי שיהיה מוקדש מרצונו דאל&quot;כ נשאר חולין משא&quot;כ בשקלים וביותר למ&quot;ש ז&quot;ל בכל מצות הוי שעבוד נכסים דגובים אפי׳ שלא מדעתו ושלא בפניו גם י&quot;ל אף דהיו דורשים לעצמן אח&quot;ז הודו לחכמים ומשו&quot;ה צ&quot;ל מפני דרכי שלום אלו מדפטרו מקלבון נראה דלא הודו כולמו עי׳ בפ&quot;ג ה&quot;ב עיי&quot;ש במ&quot;ש שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Chapter 2</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:1:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד כונסין השולחנים את השקלים בכל מדינה ומדינה מניחין לפניהם שתי תיבות שולי התיבה רחבין מלמטה ופיה צר מלמעלה כמין שופר כדי שישלכו לתוכן ולא יהיה אפשר ליקח מהן בנחת ולמה עושין שני תיבות אחד שמשליכין בה שקלים של שנה זו והשנייה מניחין בה שקלי שנה שעברה שגובין ממי שלא שקל בשנה שעברה.</strong> ובכ&quot;מ ומדקתני שופרות במדינה משמע דשנים היו עכ&quot;ל ובתוס׳ יו&quot;ט פ&quot;ב מ&quot;א כתב דדייק רבינו משופרות יתירא דכלום היה חסר אילו שנאה. כך היו במדינה אלא לומר ששתי שופרות היו לכל עיר ועיר לפי׳ רבינו אלא שכתב ותו קשיא דבירושלמי מתני׳ בתקלין חדתין אבל בתקלין עתיקין לא בדא ותני כן עתיקין במקדש ואין עתיקין במדינה ע&quot;כ ומפני כך לבי אומר לי שהגירסא בירושלמי הויה ליה להרמב&quot;ם כאשר כתב בחיבורו עכ&quot;ל התוס׳ יו&quot;ט שם:<br><strong> ובמרכבת</strong> המשנה כתב דמ&quot;ש בירושלמי עתיקין במקדש ואין עתיקין במדינה לא דלא היו עתיקין במדינה אלא דין עתיקין לא היה אלא במקדש דבירושלים שהיה יכול להביאו קודם ר&quot;ח ניסן ואיחר וכיון דקיי&quot;ל תורמין על הגבוי ועל וכו׳ וכיון שראוי להביא ובידו לאו כמחוסר מעשה והו&quot;ל כמונח בלשכה ונעשו שיריים ועתיקין שאין תורמין מהם לשנה הבאה משא&quot;כ במדינה שא&quot;א להביא ממרחק בר&quot;ח ניסן אע&quot;ג שתורמין על הגבוי וכו׳ מ&quot;מ אינם כמובא ללשכה דאינם בידו והוי כמחוסר מעשה ולא נעשו שיריים ומותר לתרום לשנה הבאה אפי׳ מכמה שנים וכתב דלישנא דרבינו בה&quot;ד שכתב והכל מתקבצין למקדש דמשמע דבין שקלי שנה זו ובין שקלי שנה שעברה הבאין ממדינה מתערבין מדלא כתב דשקלי שנה שעברה יפלו לשופר השני שבמקדש של עתיקין אלא ודאי הכל מתקבצין לתרום לשנה הבאה וב׳ שופרות היו במדינה שלא יתבלבלו הגבאים בחשבון בחדתין בפני עצמו ובעתיקין בפני עצמו זה גובה שקלי שנה זו וזה גובה שקלי הנשארין חייב מאשתקד עיי&quot;ש. הנה לא ביאר למה לא מכמה שנים שהיה לו זמן להביא ממדינה בתרומה השנית ששלשה פעמים תורמין מפני הרחוקים. ואח&quot;ז כתב דאפי׳ בירושלים כל שלא בא ללישכה לא נעשה שיריים ותורמים לשנה הבאה והנה בזה מיושב ביותר ועי׳ מ&quot;ש דהירושלמי קאי על סוגיא דנגנבו וכו׳ שם עיי&quot;ש:<br><strong> אמנם</strong> יש להבין ממאי דאיתא במס׳ שקלים ולהלן בפ&quot;ג ה&quot;ט נשבע וגבו שקלים שנית ואח&quot;כ החזירום הליסטים אלו ואלו שקלים ואין עולין לשנה אחרת וכו׳ עיי&quot;ש וכמ&quot;ש ברש&quot;י במס׳ ב&quot;מ נ&quot;ח ע&quot;א דכיון דקדוש קדוש עיי&quot;ש ולמה לא נאמר אלו שנגנבו ונמצאו כיון שלא באו ללישכה ובשלוחין. על כרחך מיירי הנשלח ממדינה. וביותר למ&quot;ש אפי׳ בירושלים כל שלא בא ללישכה לא הוי שיריים ולמה לא יהיו הנמצאים לתרום לשנה הבאה. דהנה אם אמרינן דהוי בכל פעם כבא ללישכה כבר וא&quot;כ שפיר הוי שיריים ואין תורמין לשנה הבאה אבל למ&quot;ש במרכבת המשנה י&quot;ל דלא הוי בנגנבו בכלל שיריים ואם לומר מטעם יאוש בעלים למאן דס&quot;ל סתם גניבה יאוש בעלים וכדמסקינן בליסטים מזוין סתם גזילה יאוש בעלים ומשו&quot;ה לא שייך לתרום עבור הבעלים לשנה הבאה. אבל במשנה איתא נאבדו ונגנבו נמצאו או שהחזירו וסתם אבידה לא שייך לומר דהוי יאוש בעלים. ורבינו נקיט להלן ואח&quot;ז החזירו הליסטים עיי&quot;ש ועל כרחך לאו דוקא ה&quot;ה נמצאו כדאיתא במשנה ואם גם נאמר דמשנה מיירי בלאחר יאוש אשר יקשה לומר כן מסתימת לשון המשנה וגמ׳ יקשה למ&quot;ש ברשב&quot;א במס׳ חולין קל&quot;ט דשייך יאוש בהקדש בהגזבר עיי&quot;ש וא&quot;כ למה הוי של הקדש לאחר היאוש ומ&quot;ש נגנבו דודאי אינו בידו מלא בא ממרחק לאחר שנתרמה ונראה דמה&quot;ט שכתבתי דעת רבינו להוכיח להיפוך ממ&quot;ש המרכבת המשנה אלא דיש דין עתיקין ג&quot;כ במדינה וממילא היו ב׳ שופרות במדינה ועל אשר יקשה מירושלמי הנ&quot;ל לא נשאר לומר אלא אם כמ&quot;ש בתוס׳ יו&quot;ט שרבינו היה לו גירסא כמ&quot;ש כאן בחיבורו או כמ&quot;ש בקרבן העדה ותני כן וכו׳ לשון קושיא הוא עיי&quot;ש:<br><strong> ובפי׳</strong> מדינה ברע&quot;ב ירושלים ולרבינו בגבולין ובכל מדינה ומדינה פי׳ בכל עיר ועיר ועי׳ בתוס׳ יו&quot;ט בפ&quot;א מ&quot;ג משקלים ועי׳ מ&quot;ש לעיל בהל׳ שבת פ׳ י&quot;ד ה&quot;א עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:2:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובמקדש היה לפניהם תמיד י&quot;ג תיבות כל תיבה כמין שופר וכו׳ שמינית למותר חטאות וכו׳.</strong> עי׳ בכ&quot;מ שכתב אין דבריו מכונין עם ירושלמי ובתוספתא מכוין כדברי רבינו ובירושלמי ט&quot;ס עיי&quot;ש ובמרכבת המשנה מראה מקום במס׳ מנחות ק&quot;ח ע&quot;א כדברי רבינו עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:4:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכל מדינה וכו׳ והכל מתקבצין וכו׳.</strong> עי׳ בכ&quot;מ מ&quot;ש על הראב&quot;ד שמפרש כתוס׳ במס׳ קדושין עיי&quot;ש כונתו לתוס׳ במס׳ קדושין נ&quot;ד ע&quot;א בד&quot;ה מועלין עיי&quot;ש ועי׳ בתוס׳ יו&quot;ט בפ&quot;ג מ&quot;ב דמס׳ שקלים עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:5:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בשלשה פרקים בשנה תורמין את הלישכה בר&quot;ח ניסן ובר&quot;ח תשרי קודם יו&quot;ט או אחריו וקודם עצרת בחמשה עשר יום וכו׳.</strong> עיין בתוס׳ יו&quot;ט בפ&quot;ג מ&quot;א שעמד על דברי רבינו דבפ&quot;ז מהל׳ בכורות כתב ט&quot;ו קודם החג וכאן כתב דהחג בכלל עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:6:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-6-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחוזר וממלא אותן פעם שלישית מן השלש קופות הגדולות בתשרי ומסתפקין מהן עד שיכלו עד ראש חודש ניסן ובראש חודש ניסן תורמין מתרומה חדשה לא הספיקו להן השקלים שבשלש קופות הגדולות וכלו עד שלא הגיע ניסן חוזרין ותורמין משיורי הלישכה.</strong> ובכ&quot;מ כתב אף דר&quot;מ ור&quot;י קיי&quot;ל כר&quot;י דאין תורמין משיירי הלישכה רבינו סמך על בבלי קדושין נ&quot;ד ע&quot;א דאיתא לא תימא ר׳ מאיר אלא ר׳ יהודה אומר מועלין בעתיקין עיי&quot;ש ועי׳ בשעה&quot;מ ובמרכבת המשנה שעמדו על דבריו שהרי רבינו כתב בפ&quot;ו מהל׳ מעילה דאין מועלין בשיירי הלישכה וכדאיתא במס׳ שקלים בפ&quot;ג מ&quot;ג ר&quot;מ אומר חוזר לשיריים שהיה ר&quot;מ אומר מועל בשיריים שמא יצטרכו להן בסוף גם בסוגיא דקדושין דאיתא ר&quot;י אומר מועלין בעתיקין היינו אליבא דרב ולא לבר פדא ור׳ יוחנן ובשעה&quot;מ כתב והביא סמך לזה דגם לבר פדא צריכין לומר ר&quot;י אומר מועלין בעתיקין כבר פדא. ואנן דס&quot;ל דאין מועלין בלתי תליא בתורמין בשיריים כדאיתא בירושלמי להאי ברייתא אלא אף דתורמין משיריים אין מועלין שמא לא תבוא לידי תרומה עוד מהשיריים וכתב לפרש שלא יקשה מסוגיא עיי&quot;ש:<br><strong> הנה</strong> מ&quot;ש דלא שייך מעילה משום ספק שמא יבואו לתרום נראה לומר דאם נאמר דשיירי לישכה הורדו מקדושתם מלהיות עומדין למה שעמדו מקודם ועל כרחך מטעם לב בי&quot;ד מתנה וכו׳ ועי׳ במס׳ שבועות י&quot;ד ובמס׳ כתובות בסוגיא דמותר הקטורת עיי&quot;ש. וא&quot;כ האיך שייך עלוי קדושה מחדש דאין ביד בי&quot;ד אלא להתנות דעל דרך זה יחול אבל לא אחרי שיצא מקדושתו לחול מחדש הקדש לעלוי ואם גם נאמר דיש בכח הבי&quot;ד להוריד ואח&quot;ז להעלות בקדושה דלפ&quot;ז יפה כחם מכח הבעלים אשר כפי הנראה וכמ&quot;ש ברש&quot;י שם דכח הבי&quot;ד שדעת הבעלים על דעת הבי&quot;ד ואפי׳ עם כל זה נאמר דיפה כחם מ&quot;מ לר&quot;מ כל זמן שאפשר שיבוא לידי התרומה עוד הפעם לא היה לב הבי&quot;ד להוריד השיריים ונשארו במעלתם עד אחרי כי יספיקו כל הקופות וא&quot;כ לא הוי ספק קודש אלא ודאי קודש למעילה לר&quot;מ דמה&quot;ט שמא יבואו לתרום הניחו בקדושתם הראשונה למעילה ג&quot;כ ממילא:<br><strong> ובס׳</strong> מרכבת המשנה דרך אחר לפניו בדעת רבינו דגרס חוזר ותורם כבבלי קדושין נ&quot;ד דת&quot;ק ס&quot;ל דצריך תרומה חדשה משיריים ולר&quot;מ א&quot;צ לתרום אלא נוטל מהשיריים בלי תרומה מחדש ולכו&quot;ע משלימין החסר מהשיריים ומשום לר&quot;מ א&quot;צ לתרומה חדשה מועלין שמא יצרכו לבסוף ולמ&quot;ש כשיצרכו לבסוף נתרם מחדש ועד שלא נתרם אין מועלין בהם ובשתרם מועלין בתרומה ולא בשיריים עיי&quot;ש:<br><strong> גם</strong> לדבריו צריכין לומר דאחרי שהיה לשיריים יצאו מקדושתם הראשונה ולאחרי התרומה נקדשו מחדש ולכאורה כל מה שאין ביד הבעלים אין ביד הבי&quot;ד ונראה ביותר למ&quot;ש שלא יצא לר&quot;מ ולת&quot;ק יצא מקדושה ואין עולה עוד:<br><strong> אמנם</strong> יש לעיין בהאי דאיתא במשנה ובדברי רבינו בהל׳ הקודמת מהתרומה בקופות ומהקופות וכיו&quot;ב דמקרא אין רמז מזה ולא נאמר אלא שיביאו שקלים ובמס׳ ר&quot;ה ז׳ שיביאו בכל שנה מתרומה חדשה. ואף בזה דעת התוס׳ קדושין נ&quot;ד ע&quot;א למאן דאמר מועלין בעתיקין סובר דהוי למצוה ולא לעכוב. אבל מנ&quot;ל דצריך תרומה לג׳ קופות ומקופות שיהיה מותר ושיריים אם הוי כן מדאורייתא מהלכה למשה מסיני או מדרבנן או משום סידור בלבד כמו שאר דברים שעשו משום סידור ולא יהיה טעות ובלבול בחשבון וכיו&quot;ב ולכאורה כנראה מדקדוקים רבים בזה דהוי מדינא כן וכנראה תליא הרבה בהתרומה מהקופות כדאיתא תורמין על הגבוי ועל האבוד וכו׳ ובנגנבו משנתרמה התרומה וכו׳ עי׳ ב&quot;מ נ&quot;ח ולהלן בפ&quot;ג ה&quot;ט. ועי׳ להלן בפירקין ה&quot;ט כשהוא תורם מתכוין לתרום על הגבוי וכו׳. והנה בירושלמי שקלים בפ&quot;ב מ&quot;ב ותני דבית רבי אם קרבה הבהמה ועיין בפי׳ מהר&quot;א מפולדא ז&quot;ל שכתב הא דתנן בר&quot;פ אם נתרמה התרומה נשבע לגזברין נמי בהכי מיירי וקרבה הבהמה עיי&quot;ש ורבינו כתב להלן בפ&quot;ג בלשון המשנה אם נתרמה עיי&quot;ש ועכ&quot;פ מלשון תורמין וכו׳ ואם נתרמה וכו׳ נראה דתנאי בי&quot;ד משעת התרומה אף דאחריות עד ההקרבה התנאי בי&quot;ד מאז שנתרמה. ויש להבין מאי ענין ושורש דבר התרומה ועי׳ שקלים פ&quot;ג מ&quot;ב מפני הברכה דמפרשים שמברך על הרמה הרי הוי מצוה כמו שאר הרמות עיי&quot;ש גם לשום לב למה אין מעילה בשיריים לת&quot;ק ולר&quot;מ רק משום שמא לבוא לידי תרומה מחדש הרי משירי לשכה עי׳ בפ&quot;ז ה&quot;ט מותר הלשכה ושירי הלשכה לוקחין בהן זכרים ויקריבו כולן עולות שתנאי בי&quot;ד וכו׳ אלא שאמת המים שבירושלים וחומת ירושלים ומגדלותיה וכל צרכי העיר משירי הלשכה עי׳ שם בהל׳ ח׳ וכמ&quot;ש בריטב&quot;א במס׳ קדושין הנ&quot;ל דמשום דאקילו בשירי לשכה לעשות מהן צרכי הדיוט וע&quot;מ זה הקדישום וכמו שאין מועלין בהם כשעושין במזיד לצרכי הדיוט אפי׳ בגופייהו לא יהיה מעילה ומאן דס&quot;ל דלמאן דאשתרי אשתרי עיי&quot;ש בד&quot;ה והא דמדבריו יש להוציא מ&quot;ש ומ&quot;ש דס&quot;ל דלמאי דאשתרי וכו׳ כנראה בירושלמי טעמא דר&quot;מ שמא יצרכו:<br><strong> והנה</strong> כנראה דצריך תרומה כסף מבורר ומיוחד רק לתמידין ומוספין וכיו&quot;ב דלציבור ולא להיות כלול עם מה שנוטלין ממנו לצרכי העיר של הדיוט. ולכאורה למאן דס&quot;ל ברירה יהיה די מבלי תרומה בפ&quot;ע לומר דזה שנקח לקרבן תמיד וכיו&quot;ב מבורר שנקדש ע&quot;ז ומה שנלקח לצרכי העיר ג&quot;כ ע&quot;ז ויהיה אפשר ליקח בפעם אחת לתמיד ופעם לצרכי העיר. ולכאורה תליא בברירה דבמעות לתמידין וכיו&quot;ב וגם לצרכי העיר והגזבר מברר לזה ולזה אלא כיון דלב בי&quot;ד כדאיתא במס׳ שבועות להפקיע קדושה וא&quot;כ אין תליא כלל בברירה וי&quot;ל דמשו&quot;ה היו מפרישין מקודם מאי לתמידין וכיו&quot;ב דכל זמן שצריכין לזה אין רשאי ליתנו לדברים אחרים דהקדימה להם וגם מדעת הבעלים שיהיה לקרבנות אלה וכדאי׳ בפ&quot;ג מ&quot;ג ממס׳ שקלים מביתו של רבן גמליאל שראו שיבוא שקלים לתרומת הלשכה ולא לשיירי הלשכה להקריב בהם אלה המיוחדים לתרומה עצמה ומסתמא דעת כל ישראל כן לכן לא נתנו לדברים אחרים אלא ממותר והיו תורמין מיד כדי שיתנו מיד לתמידין וכיו&quot;ב ולשאר דברים ממותר ולב בי&quot;ד מתנה ע&quot;ז:<br><strong> וכל</strong> זה לתרומה עצמה אבל למותר כשיחזור לתרום ממנו וכמ&quot;ש במרכבת המשנה פליגי הת&quot;ק ור&quot;מ בזה אם צריכין לתרום מחדש לא שייך מ&quot;ש לומר למה תורמין להפריש המיועד לתמידין וכיו&quot;ב עם אשר גם צרכי הדיוט בו וא&quot;כ לא שייך לכאורה תרומה חדשה בהשירי לשכה למ&quot;ש דקדימה לתמידין וכיו&quot;ב שהרי כבר קדמו אלא דעם כל זה הרי שיירי לשכה ג&quot;כ מה שלוקחים עכשיו מחדש לתמידין וכיו&quot;ב וגם יש בו אשר נקח לצרכי העיר ובזה צ&quot;ל אם דנאמר ברירה או משום דלב בי&quot;ד לא שייך ברירה כמ&quot;ש. והרי בשיריים לעולות וצרכי העיר וע&quot;כ בזה צריכין ג&quot;כ לומר אם ברירה או דלב בי&quot;ד וכו׳. אבל מ&quot;מ לא שייך להקדים דלצורך תמידין וכו׳ במותר אחרי שהקדימו כבר וא&quot;כ יש להבין למה לפמ&quot;ש במרכבת המשנה לת&quot;ק תרומה חדשה וצ&quot;ל אחרי שחוזר למותר גם בהמותר להקדים להנצרך לתמידין וכיו&quot;ב ואח&quot;ז לצרכי העיר וכיו&quot;ב לת&quot;ק ולר&quot;מ י&quot;ל דבזה י&quot;ל דלא אסקי דעתי דמקדשים להקדים מטעם שכתב לעיל ולמ&quot;ש כדעת המפרשים בירושלמי הנ&quot;ל מפני הברכה בפי׳ אחר עיי&quot;ש ורבינו לא כתב כמו כן מברכה בהרמה:<br><strong> אמנם</strong> נראה כמ&quot;ש דלב בי&quot;ד משום דעת המקדישים על דעת בי&quot;ד א&quot;כ לא עדיפי מהבעלים ושייך ברירה אלא די&quot;ל דשאני שקלים דהוי דבר שבחובה וממשכנין עליה ועומדין לתמידין וכיו&quot;ב וגם לצרכי העיר ודבר זה מסור להקדש ואין תליא בברירה ולמה שבחרו בחרו וא&quot;כ לפ&quot;ז לא אזלינן בתר דעת המקדישים ועם כל זה י&quot;ל להקדים לצורך תמידין דמוקדש קודם בכ&quot;מ וא&quot;כ במותר כשיחזור להשלים החסרון ג&quot;כ מה&quot;ט הראוי לתמידין וכיו&quot;ב קודם לת&quot;ק ומשום הכי צריך לתרום וי&quot;ל עוד דלכאורה יקשה דהאיך רשאי הגזבר לתת לצרכי העיר והתורה לא אמרה אלא לקרבנות ולזולתו לצרכי גבוה כקושית הגמ׳ במס׳ שבועות וקדושה היכא הלכה וצ&quot;ל לב בי&quot;ד וכדאיתא התם ותליא בדעת המקדישים וי&quot;ל דודאי מה לצורך הגבוה לא שייך דעת בעלים דחיוב שקלים לחוב עליו אלא על המותר שא&quot;צ לקרבן עוד ולשנה הבאה בלתי ראוין ע&quot;ז אמרינן דאזלינן בתר דעת המקדישים דחיוב מהתורה רק עבור הקרבן ולקרבן תמיד וכיו&quot;ב כבר הספיק ונעשה נותר ע&quot;ז אמרינן דתורה חייבו להקדיש מחצית השקל לקרבנות והמותר דחל קדושה אינו נפקע ולא תבוא לחזרה לבעלים אבל מ&quot;מ ינוח דעתם לעשות כרצונם בהם והם יסכימו עם דעת בי&quot;ד וא&quot;כ על המותר שייך ברירה לכאורה אלא דעל המותר לא שייך דחל למפרע ע&quot;ז דבשעת הקדש לא היה אפשר להקדיש לעולות ולצרכי העיר ואינו חל אלא לאח&quot;ז ולמ&quot;ש במהרי&quot;ט ברירה לא שייך אלא לחול למפרע ולא בלחול לאח&quot;ז שאז מבורר. אבל כשנצרך לצורך תמידין ע&quot;ז שהיה עיקר הקדישו מקודם וכשבא לקחת מהשירים אשר בהם ג&quot;כ לצרכי העיר וכיו&quot;ב שייך ברירה דבזה שייך שיחול למפרע אלא דאפשר שיתרום עוד הפעם בהמותר שעומד לתרום כשיחסר להשלים וא&quot;כ י&quot;ל כל זמן שעומד לתרום לא נפקע שמו ממנו ותורם והנשאר מותר ולא שייך ברירה אבל כשיקח ממותר פעם לתמידין ופעם לצרכי העיר תליא בברירה וא&quot;כ י&quot;ל ר׳ מאיר דס&quot;ל ברירה א&quot;צ לתרומה חדשה בהשיריים ור׳ יהודה דס&quot;ל אין ברירה עי׳ במס׳ גיטין כ&quot;ה צריך לתרום דוקא בהשיריים שאז לא הוי בכלל מותר דכ&quot;ז שלא נשלם השיעור לא הוי בכלל מותר ממש שיוכל לתרום עוד ממנו והנותר אח&quot;ז הוי מותר בכלל אין ברירה אם לא יתרום ויתן פעם לזה ופעם לזה ואנן דקיי&quot;ל בדאורייתא אין ברירה משו&quot;ה צריך לתרום בהשיריים ועי׳ בתוס׳ במס׳ גיטין שם מה שמחלקים בין עומד להתברר ובסוגיא שם בין תולה בדעת אחרים ובתוס׳ שם עיי&quot;ש ועל דרך זה יש לישב במ&quot;ש ע&quot;פ דרך שכתב במרכבת המשנה. ועי׳ מ&quot;ש בפ&quot;ד ה&quot;ב עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:7:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-7-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלש קופות וכו׳.</strong> עי׳ בפר&quot;ח בחי׳ על הרמב&quot;ם ובמרכבת המשנה עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:9:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-2-9-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשהוא תורם מתכוין לתרום על הגבוי שיש בלשכה ועל הגבוי שעדיין לא הגיע ללשכה ועל העתיד לגבות כדי שיהיו אלו השקלים שהוציאן להסתפק מהן כפרה על ישראל וכאלו הגיעו כל שקליהן ללשכה ונתרמה מהן תרומה זו.</strong> רבינו לא גרס ועל האבוד וכ&quot;כ במרכבת המשנה ורבינו מפרש כמ&quot;ש בתוס׳ במס׳ כתובות ק&quot;ח ובמס׳ ב&quot;מ נ&quot;ח ולא כרש&quot;י שם ובמעשה רוקח עמד על הכ&quot;מ שהביא פי׳ רש&quot;י. ועי׳ מ&quot;ש לקמן בפ&quot;ג ה&quot;ח וט׳ בס&quot;ד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Chapter 3</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:1:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חציי השקלים הכל צריכין להן כדי שיתן כל אחד ואחד חצי שקל שהוא חייב לפיכך כשהיה אדם הולך אצל השולחני ומצרף שקל בשני חצאין יתן לו תוספות על השקל ואותה התוספות נקראת קלבון לפיכך שנים שנתנו שקל על שניהם חייבין בקלבון.</strong> ולכאורה יש להבין למה לא הוי בתוספות הקלבון בכלל העשיר לא ירבה ולמ&quot;ש הרמב&quot;ן שהבאתי לעיל בתחילת הלכות זו בכלל לאו ועי׳ בירושלמי שקלים פ&quot;א מ&quot;ד לר&quot;מ הקלבון מהתורה עיי&quot;ש בכלל לא ירבה לא הוי לר&quot;מ דס&quot;ל דהנותן מחצית השקל ג&quot;כ נותן קלבון אבל לדידן יש להבין ואולי משום כמ&quot;ש רבינו וכדאיתא שם דצריך להוסיף לחנוני אם כן בשקל שלם חסר הוספה אשר ב׳ מחצית השקל בשויו ועם כל זה יקשה דנראה שא&quot;צ ליתן מהתורה אלא מחצית המטבע אלא שלא תהיה פחותה משקל שהיה בימי משה כמ&quot;ש רבינו בפ&quot;א ה&quot;ו. וראיתי בספר מעין חכמה דף כ&quot;ו ע&quot;א שכתב להוכיח מזה דעשיר לא ירבה אינו בלאו וכן רוצה להוכיח ממאמרו כל כהן ששוקל אינו חוטא עיי&quot;ש. והנה מכהן ששוקל וכו׳ אינו ראיה כמ&quot;ש לעיל דיכולים לקבל ע&quot;ע כמו בכל מצות כמ&quot;ש לעיל. ועי׳ להלן בכהן שאין נותן קלבון ואם היה משום דהוספה להשלים השקל יהיה מהתורה ולמה יפטרו הכהנים וכיו&quot;ב גם בלא&quot;ה כנראה מירושלמי לדידן מדרבנן והנה לומר לא ירבה לא נאמר בכה&quot;ג דעל דרך זה העשיר כעני מוסיפין וי&quot;ל דתליא בפי׳ לא ירבה כדאיתא לעיל בפ&quot;א ה&quot;ו אם לרבינו לפי המטבע השולטת או כראב&quot;ד ורמב&quot;ן לפי שנותן העשיר יתן העני ויכולים להסכים ליתן בשוה כל מה שירצו עיי&quot;ש וא&quot;כ י&quot;ל בכה&quot;ג דרבנן תיקנו עליו בשוה באופן זה כשיביאו שנים שקל שלם ועיין מ&quot;ש בהל׳ ב׳ בזה עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:2:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מי שאינו חייב בשקלים כגון שתי נשים או שני עבדים שנתנו שקל פטורין מן הקלבון וכן אם היה אחד חייב ואחד פטור ונתן החייב ע&quot;י הפטור וכו׳ וכן הכהנים פטורין מן הקלבון והשוקל ע&quot;י הכהן פטור מן הקלבון.</strong> ועי׳ בקרית ספר למבי&quot;ט בפ&quot;ג וז&quot;ל שנים שנתנו שקל שניהם חייבין בקלבון דילפינן לעיל מעשרים גרה הוא דלא יפחות מחצי שקל וכיון דאם בא לצרף שקל בב׳ חצאים צריך ליתן תוספות דהיינו קלבון א&quot;כ כשנותן שקל לשנים הוי פחות מחצי שקל לכל אחד ולכך צריכין לתת קלבון ובירושלמי מפיק ליה מדכתיב זה יתנו כמין מטבע הוציא הקב&quot;ה וכו׳ כזה יתנו ולכך הקלבון מן התורה עכ&quot;ל. הנה פשיטא ליה דקלבון משום להשלים השיעור הראוי וא&quot;כ יהיה מיושב במ&quot;ש לעיל דלא שייך לא ירבה ומשו&quot;ה כמ&quot;ש הוי מהתורה אבל בירושלמי נאמר דוקא לר&quot;מ הוי מהתורה ולא לרבנן גם אם הוי מהתורה למה נפטור הכהנים והשוקל על עני וכו׳ בהל׳ אח&quot;ז גם למה לא הוי כדין שקלים ממש ובירושלמי פליגי למה הוצרכו הקלבונות ועי׳ בהל׳ ז׳ והקלבונות אינם כשקלים וכו׳ מכ&quot;ז נראה דלא הוי אלא מדרבנן. והנה בענין פי׳ חיוב הקלבון דעת רש&quot;י במס׳ בכורות דף נ&quot;ו ע&quot;ב נהפוך מפי׳ רבינו שכתב שאין חצאי סלע יוצאין בסלע שלם בלי חילוף מעט ולפיכך צריך ליתן קלבון להכריע וכתב דמשו&quot;ה אפי׳ בנותן שקל שלם ע&quot;י עצמו וחבירו חייב ג&quot;כ בקלבון משום דרוב בני אדם נותנים כל אחד ואחד מחצית השקל קולבונו עמו עיי&quot;ש ולרש&quot;י לר&quot;מ אפי׳ שקל שלם מדאורייתא וסוגיא דמס׳ שקלים יקשה לפרש לדעת רש&quot;י וצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:2:2</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-2-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן הכהנים פטורין וכו׳.</strong> עי׳ בתוס׳ יו&quot;ט דתליא בגירסא עיי&quot;ש ובכ&quot;מ אע&quot;פ שחייבין בשקלים פטורין מקלבון כיון שאין ממשכנין אותם עיי&quot;ש וכונתו דכמו מפני דרכי השלום הקילו המחויב שלא למשכן אותם משו&quot;ה לא הטילו עליהם חיוב חדש וכמ&quot;ש דקלבון מדרבנן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:3:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-3-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנותן שקל עליו ועל העני או על שכינו או על בן עירו אם נתנו להם מתנה פטור מן הקלבון שהרי נתן חצי שקל מתנה כדי להרבות בשקלים ואם נתן להם החצי ששקל ע&quot;י דרך הלואה עד שיחזירו לו כשתמצא ידם חייב בקלבון.</strong> מפרש רבינו שהרי נתן וכו׳ כדי להרבות וכו׳ דחיוב קלבון משום כשמביא שקל שלם בעבור שלו וחבירו כמקפיד וצר עין בהקדש שלא הביא ב׳ חצאי שקלים דשויא ביותר וכמ&quot;ש רבינו ומשו&quot;ה שלא יראה עינו רע בהקדש חייבו בקלבון משא&quot;כ בנותן מתנה לחבירו וכמ&quot;ש רבינו להיפוך עינו יפה בהקדש כדי להרבות וכו׳ פטור. ומדברי רבינו מובן חיוב הקלבון דעוד יקשה אם הוי להשלים יהיה מדאורייתא ואם לאו למה חייבו ואתי שפיר:<br><strong> ויש</strong> עוד לשום לב בשוקל ע&quot;י חבירו ועני וכיו&quot;ב וכמו כן במס׳ נדרים ל&quot;ג ע&quot;א המודר הנאה מחבירו שוקל לו את שקלו ועי׳ פ&quot;ו ה&quot;ד מהל׳ נדרים ועל כרחך צריכין לומר שמקנה אותו למי שנותן בעבורו וכאלו הקדישו הלה. ויש לעיין במה זכה הלה בהם קודם שיגיעו לידו ולא זיכו להם ע&quot;י אחר. ובמודר הנאה קודם ההקדש להקנות לו ודאי אסור. וא&quot;כ יקשה במאי זכה בו וי&quot;ל דשאני שקלים משאר הקדשות בשביל חבירו דשקלים הוי חוב על הנשקל בעבורו וממשכנין אותו ויש שיעבוד נכסים ע&quot;ז למ&quot;ש ז&quot;ל דבכל מצות שעבודא דאורייתא והוי כפריעות חוב דא&quot;צ הלוה לזכות מקודם בהמעות שמשלם אחר בעבורו וכן הדבר הזה אלא דבזה עוד לדון על דבר אחר שיהיה לו חלק בהקרבן ע&quot;י השקלים בזה יש לומר במאי זכה בו שיהיה לו חלק עי&quot;ז אבל הרי תורמין על האבוד והגבוי וכו׳ וכמ&quot;ש ברש&quot;י כתובות אפי׳ בלא הביא כלל ולכו&quot;ע בכה&quot;ג שהביא אחר בעבורו וא&quot;כ חלקו בקרבן מטעם אחר. ועי׳ במס׳ כתובות ק&quot;ח ע&quot;א מצוה קעביד וברש&quot;י שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בני העיר ששלחו את שקליהן ביד שליח ונגנבו או אבדו אם שומר חנם הוא הרי זה נשבע להם ונפטר כדין כל שומרי חנם והן חוזרין ונותנין שקליהן פעם שנייה ואם אמרו אנשי העיר הואיל ואנו משלמין שקלינו אין רצונינו שישבע השליח שהוא נאמן לנו אין שומעין להן לפי שתקנת חכמים היא שאין הקדש יוצא בלא שבועה נמצאו השקלים הראשונים אחר שנשבע השליח אלו ואלו שקלים הם ואין עולין לשנה אחרת והראשונים יפלו לשקלי השנה והאחרונים יפלו לשקלי שנה שעברה. שלחו את שקליהם ביד שומר שכר שהרי הוא חייב בגניבה ואבידה ואבדו ממנו באונס כגון שלקחוהו ליסטין מזוינים שהוא פטור רואין אם אחר שנתרמה התרומה נאנס נשבע השליח לגזברים ובני העיר פטורים שהתורם תורם על הגבוי ועל העתיד לגבות וברשות הקדש הן ובני העיר מה היה להם לעשות הרי לא מסרו אלא לש&quot;ש שהוא חייב בגניבה ואבידה אבל האונס אינו מצוי ואם אבדו קודם שנתרמה התרומה עדיין ברשות בני העיר הם והשליח נשבע לפני אנשי העיר והן משלמין וכו׳.</strong> ועי׳ בכ&quot;מ שעמד ע&quot;ז אם בשומר חנם בכל פעם בני העיר חייבין בס&quot;ד במס׳ ב&quot;מ נ&quot;ח ע&quot;א דמוקי בש&quot;ח אמאי לא מקשינן למה בנתרמה תרומה נשבעין לגזברין גם דמוקי כר׳ אלעזר דאמר שבועה זו תקנת חכמים היא א&quot;צ לומר כמו דאיתא מעיקרא בנושא שכר עסקינן אלא כס&quot;ד אפי׳ בש&quot;ח ותירוצו בלתי מובן כמו שעמדו ז&quot;ל על זה:<br><strong> והנה</strong> בטעמא בדעת רבינו דבמסרו לשומר חנם הבני עיר חייבין יש לומר דכנראה בהאי דאמרינן תורמין על הגבוי ועל האבוד אינו מטעם הפקר בי&quot;ד דתליא אם כחם גם להקנות ולדעת הרשב&quot;א במס׳ גיטין בפ׳ השולח תליא בב׳ למודים בהפקר בי&quot;ד מקראי עיי&quot;ש. אלא משום דאמרינן לב בי&quot;ד מתנה עליה כדאיתא בשאר דברים בענין שקלים לב בי&quot;ד וכו׳ וגם זה בכלל וי&quot;ל ג&quot;כ בזה כמו דאמרינן במס׳ ב&quot;מ בסוגיא דסימנין ניח&quot;ל לבעל אבידה וכו׳ וכמו כן בזה ניחא לכו&quot;ע שאם יגנב ויאבד להם שיהיה נקנה להם מחלק אחרים. (ואף למ&quot;ש במל&quot;מ בהל׳ שקלים בפ&quot;ד ה&quot;ו בנדבת יחיד לא שייך לב בי&quot;ד עיי&quot;ש כה&quot;ג הוי של ציבור עי׳ שקלים פ&quot;ק מ&quot;ג בגמ׳ עיי&quot;ש ואפי׳ ביחיד דעת התוס׳ מנחות ע&quot;ט ע&quot;ב וט&quot;ו ע&quot;ב בד&quot;ה אפשר דשייך ג&quot;כ לב בי&quot;ד וכו׳) ואף לרבי שמעון דל&quot;ל לב בי&quot;ד וכו׳ במס׳ שבועות י&quot;ד שאני שם דהוי להפקיע הנקדש כבר משא&quot;כ בכה&quot;ג דעומד בקדושתו י&quot;ל גם ר&quot;ש מודה. אלא די&quot;ל דהרי מדינא כל זמן שלא הגיע ליד הגזבר הוי כחוב מלוה למלוה כל שלא הוי שליח מהמלוה לא נפטר הלוה בנאבד מיד השליח וכמו כן בשקלים אלא משום תקנת עולם תיקנו כן שיהיו כל ישראל מתכפרים כמ&quot;ש רבינו לעיל בפ&quot;ב ה&quot;ט עיי&quot;ש ומסתברא שלא עשו כן למי שפשע שמסרו לש&quot;ח שומר גרוע שאינו חייב בגניבה ואבידה:<br><strong> וראיתי</strong> בתומים בסי׳ ס&quot;ו שכתב דמשו&quot;ה הוי פושעים הבני העיר משום דבעלים הוי שומר שכר משום פרוטה דרב יוסף ובמסרו לשומר חנם לדעת רבינו דש&quot;ש שמסר לש&quot;ח גרועי גרעי לשמירתו ומשו&quot;ה חייב אלא דמזיק בקדשים פטור מהתורה ומדרבנן מחויב כמ&quot;ש בתוס׳ במס׳ ב&quot;ק ובמס׳ גיטין וזה דמשני שבועה זו תקנת חכמים היא עיי&quot;ש:<br><strong> אמנם</strong> יקשה על דבריו דהרי השליח ג&quot;כ שומר שכר מפרוטה דרב יוסף גם אם הוי שומר חנם בלי שכר מהבעלים אלא דעם כל זה י&quot;ל דגרועי גרעי לשמירתו דבש&quot;ש נשבע לקבל שכרו כדאי׳ בסוגיא וישמר היטב משום שכירתו משא&quot;כ בש&quot;ח דמשום פרוטה דר&quot;י לא שייכא שבועה ומובן ויהיה מיושב קושית הכ&quot;מ מס&quot;ד דמוקי בש&quot;ח דבס&quot;ד גם כן ס&quot;ל דש&quot;ח הוי ש&quot;ש משום פרוטה דר&quot;י אלא דא&quot;צ לישבע ומשני בנושא שכר דשייך שבועה משום שכרו ובזה שאני מש&quot;ש ע&quot;י פרוטה דר&quot;י דלא שייך בו שבועה בהקדש. ומובן במ&quot;ש בתוס׳ שם בד&quot;ה ש&quot;ח דף נ&quot;ז ע&quot;ב דש&quot;ש ג&quot;כ פטור בפשע עיי&quot;ש דהרי כמ&quot;ש הש&quot;ח בכלל ש&quot;ש משום פרוטה דר&quot;י ולפ&quot;ז ש&quot;ח אינו נשבע דנקרא ש&quot;ח על שאין מקבל שכר ונפק&quot;מ נגד ש&quot;ש כמ&quot;ש בהשבועה לקבל שכר. ומיושב דאיתא ש&quot;ח אינו נשבע ולא נאמר אינו משלם משום דבאמת הוי ש&quot;ח כש&quot;ש אלא בש&quot;ש ממש ימצא שבועה ולא בש&quot;ח שאינו מקבל שכר ולא נפק&quot;מ אלא שאינו נשבע. אלא דיקשה עוד למסקנא דאיתא שבועה זו תקנת חכמים היא. וא&quot;כ צריך גם בש&quot;ח לישבע וע&quot;כ במאי גרעי במסרו לש&quot;ח דכמ&quot;ש משום פרוטה דר&quot;י כש&quot;ש לגניבה ואבידה וגם צריך לישבע ג&quot;כ וא&quot;כ יקשה עוד למה שכתב רבינו דבש&quot;ח הבני עיר לשלם בכל גוונא דמאי פשעו והנה כמ&quot;ש בתומים דשבועה בפשיעה משום מזיק ובזה תיקנו. אבל כמ&quot;ש רבינו דבמסרו לש&quot;ח חייבין הבעלים בכ&quot;ג והשבועה לגזבר לאחר שנתרמה בש&quot;ש שחייבין בגניבה ואבידה וא&quot;כ יקשה במאי גרעי לשמירתו במסרם לש&quot;ח דהוי ש&quot;ש משום פרוטה דר&quot;י וצריך ג&quot;כ לישבע לאחר התקנה:<br><strong> אמנם </strong> למ&quot;ש במקום אחר בהל׳ סוכה פ&quot;ו ה&quot;ד בהאי דאיתא במס׳ סוכה כ&quot;ה ע&quot;א במשנה שם שלוחי מצוה פטורין מסוכה וברש&quot;י שם שלוחי מצוה הולכי בדרך מצוה כגון ללמוד תורה ולהקביל פני רבו ולפדות שבוים עכ&quot;ל. והנה שלוחי מצינו בכ&quot;מ להנשלחים מאחרים ולמה פי׳ רש&quot;י הולכי בדרך וכו׳ שבעצמם הולכים לעשות מצוה המוטלת עליהם והנה מצינו כמו כן לעושי מצוה בעצמם לשון שליח מצוה כמו שלוחי מצוה אינן ניזקין וי&quot;ל דנקטי לשון שליח ולא עושי מצוה או עוסקי מצוה פטורין וכו׳ הרגיל בגמ׳ לאשמעינן כמ&quot;ש ברשב&quot;א בפ&quot;ק דמס׳ ברכות דבס&quot;ד שם לא הוי עוסק במצוה בהולך לעשותה כי אם בעת עשיתה עיי&quot;ש. וא&quot;כ אשמעינן דהולך כעושה ובשליח שנשלח מאחר לעשות בעבורו מצוה י&quot;ל כיון דבלעדי שליחתו יעשנה האחר בעצמו ומצוה בו יותר מבשלוחו והוא אינו מרויח במצוה שהרי פטור עי&quot;ז ממצוה אחרת ויש מקום לומר דהנשלח מאחרים אינו בכלל עוסק במצוה להיות פטור ממצוה. ולכאורה בדעת רבינו דס&quot;ל לחלק בין ש&quot;ח לש&quot;ש על כרחך לא הוי השלוחים ש&quot;ש משום פרוטה דרב יוסף נראה דס&quot;ל כמ&quot;ש דשליח אינו בכלל העוסק וכו׳ לפטור ממצוה ותליא ג&quot;כ במ&quot;ש לקמן בס&quot;ד בעוסק במצוה דפטור וכו׳ אם אזלינן בתר העוסק ותליא אם הוא בכלל עושי מצוה כמו בש&quot;ש די&quot;ל שאינו בכלל עושה מצוה כיון שעושה בשכר או בכה&quot;ג דשליח כמ&quot;ש או דאזלינן בתר המצוה שאינה נדחית בשביל אחרת וא&quot;כ לא תליא כלל בהעוסק אם מקיים מצוה מצ&quot;ע ג&quot;כ או לא וגם בדעת הסוברים דעוסק במצוה פטור אפי׳ באפשר לקיים שניהם. ולפ&quot;ז דברי רבינו אתי שפיר. [ועיין בשו&quot;ת מהר&quot;א ששון בסי׳ ע&quot;ג שמסופק אם תקנת החכמים שלא יזלזלו גם בגניבה ואבידה עיי&quot;ש ומפורש כן בדברי רבינו כאן]:<br><strong> גם </strong> נראה לומר דסוגיא אזלא כדעת רבינו עם מ&quot;ש בתומים בסי׳ ס&quot;ו ליישב קושית הריטב&quot;א למה לא משני במס׳ ב&quot;מ הנ&quot;ל בהקושיא מבני העיר וכו׳ ג&quot;כ בשקנו מידו כדמשני בגמ׳ אח&quot;ז ותירץ דכה&quot;ג דמקבל על עצמו הוי אסמכתא ולא מהני קנוי מידו ולהלן דאמרינן בשוכר את הפועל בשקנו מידו לאו בקדשים כמ&quot;ש הרז&quot;ה אלא משום קרקעות וכל לאו דהקדש שייך בהאי הנאה כמ&quot;ש בתוס׳ בסוגיא ובהאי הנאה מסלק אסמכתא כדמוכח בפ׳ הפועלים במתנה ש&quot;ח עיי&quot;ש. והנה י&quot;ל גם כמ&quot;ש ברש&quot;י דלהלן בשוכר את הפועל וכו׳ ג&quot;כ מקדשים פי׳ ומשני בשקנו מידו דבהקדש כמ&quot;ש ז&quot;ל לא שייך אסמכתא אבל לעיל כדמקשינן מבני העיר וכו׳ דג&quot;כ שם דנשבעין לבני העיר דלא שייך הקדש לר&quot;ש וניח&quot;ל לתרץ לכו&quot;ע דמשו&quot;ה נאדי מתירוץ הקודם שם בגמ׳ משום דלא הוי אלא כר׳ שמעון וכמו כן מתורץ ביותר דהוי לכו&quot;ע גם לא נגד ר&quot;ש והרי לר&quot;ש בבעלים שייך אסמכתא גם נראה אפי׳ לדידן דלא כר&quot;ש מ&quot;מ לענין אסמכתא בהנוגע להבעלים שייך אסמכתא דלא שייך אמירה לגבוה וכו׳ נגד הנוגע להבעלים. אלא דיקשה עוד לישני בקנו מידו דלכאורה מסתברא דאסמכתא לא שייך אלא במחייב א&quot;ע בגניבה ואבידה ואונסין אבל במחייב א&quot;ע לענין פשיעה נראה דלא הוי אסמכתא דודאי נחית בדעתו ודעת כל אדם למצוא מחויב א&quot;ע בפשיעה וביותר לדעת רבינו דהוי מזיק וכיון דהוי כעושה בדעת לא שייך אסמכתא וא&quot;כ לישני בקנו מידו האי דאיתא בשלא נתרמה התרומה לענין בעלים ולענין פשיעה דלא שייך אסמכתא ומשנתרמה התרומה לענין הקדש דבכ&quot;ג לא שייך אסמכתא ומדלא תירץ כן על כרחך לענין בעליה רק בש&quot;ש פטורין ולענין ש&quot;ח ופשיעה הבני עיר חייבין בכ&quot;ג אפי׳ אחרי שנתרמה ובש&quot;ש שייך אסמכתא וזה כדעת רבינו:<br><strong> אמנם</strong> לשון הירושלמי במס׳ שקלים בפ&quot;ב מ&quot;א בגמ׳ שם מתני׳ בש&quot;ח אבל בש&quot;ש לא בדא א&quot;ר אדא אפי׳ תימר בש&quot;ש נגנבו בליסטים מזוין אבדו שטבעה ספינתו בים עיי&quot;ש דנראה דס&quot;ד יותר לאוקמי בש&quot;ח מבש&quot;ש ועי׳ בשיירי קרבן שם שעמד ע&quot;ז דהוי נגד דברי רבינו ולמ&quot;ש סוגית הבבלי מסכים לדעת רבינו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:2</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> שתקנת חכמים היא שאין הקדש יוצא בלי שבועה.</strong> ויש לעיין אם התקנה לשבועה והחיוב מדינא או גם החיוב עם השבועה מתקנה:<br><strong> ומצינו</strong> בזה דעת הש&quot;ך בחו&quot;מ בסי׳ ס&quot;ו [ס&quot;ק קכו] שהביא ראיה לדעת רבינו דפשיעה מזיק חייב אף באלו שאין נשבעין עליהן כמ&quot;ש בפ&quot;ב מהל׳ שכירות דלדעת התוס׳ דס&quot;ל דאפי׳ מודה או שיש עדים שפשע פטור א&quot;כ לא שייך שבועה דלא מצינו שיתחייב בתשלומין מתקנת חכמים עיי&quot;ש ובפנ&quot;י כתב ע&quot;ז למ&quot;ש בתוס׳ בכמה דוכתי דמזיק בהקדש חייב מדרבנן וא&quot;כ לענין פשיעה תיקנו החכמים שיתחייב מטעם מזיק אלא שהקשה ע&quot;ז דא&quot;כ מאי מקשינן במס׳ ב&quot;מ שם מלשמור את הפרה עיי&quot;ש ובלתי מובן הרי הראב&quot;ד וסייעתו דס&quot;ל דפטור מפשיעה ס&quot;ל דפשיעה לא הוי מזיק וראיה מפשיעה בבעלים כמ&quot;ש בראב&quot;ד בפ&quot;ב מהל׳ שכירות שם:<br><strong> אמנם</strong> לענ&quot;ד נראה דהרי כמ&quot;ש דלא הוי חיוב השקלים כמו תרומה דלאחר הפרשה כבר קיים המצוה אלא דמחוסר מצות הנתינה ובנאבדה אין מחויב באחרת דהרי בנאבדו השקלים קודם שנתרמה ולתוס׳ עכ&quot;פ קודם שבא ליד הגזבר חייב באחריותן ומחיובו להביאם ליד הגזבר וא&quot;כ כמ&quot;ש לעיל כמו בכל חוב דעלמא כשאין המלוה עושה שליח לקבל חובו ונאבד ביד שלוחו של הלוה על הלוה לשלם חובו במעות אחרות. וא&quot;כ כמו כן בשקל שנאבד ביד השליח אף באונס מ&quot;מ לא נפטר מחיובו להקדש כל זמן שלא בא ליד הגזבר ולא נעשה שליח מהגזבר אלא כדאיתא תורמין על האבוד והגבוי וכו׳ והקילו בזה לתקנת העולם וא&quot;כ לפי זה י&quot;ל דמשום זלזול הקדש באם לא ישבע השליח לפטרו מתשלומין הניחו בזה על דינא דחייב עד לגזבר ממש או לתרומה. ולפ&quot;ז לא הוי חיוב חדש אלא הניחו בכה&quot;ג על החוב ודינא דמקודם שנאמר האי דתורמין וכו׳. אלא די&quot;ל דניהו האי דתורמין וכו׳ הוי לקולא להבעלים ואם כן יש לומר דחוזר לדינא אבל למה ישבע השליח דלו לא הקילו בזה כלל ולמה ישלם הוא ע&quot;ז נאמר כיון דאם לא יהיה נאמר תורמין וכו׳ כיון שלא ישבע השליח וכמ&quot;ש א&quot;כ יהיה החיוב חוזר להבעלים מדינא ואז ממילא השליח מחויב לישבע ולשלם דהרי הוי ממון בעלים וא&quot;כ מה שמשביעין השליח הניחו על דינא בזה וזה יש לומר לא שנא בפשיעה ולא שנא בגניבה ואבידה לדעת התוספת וקושית הש&quot;ך מיושבת לענ&quot;ד:<br><strong> ויש</strong> להבין במ&quot;ש הש&quot;ך לדעת רבינו דעל כרחך בפשיעה חייב מטעם מזיק דאל&quot;כ למה ישבע וכנ&quot;ל הרי לדעת רבינו הרי בש&quot;ש מחייב לישבע על גניבה ואבידה כמ&quot;ש בהל׳ זאת והרי בש&quot;ש בגניבה ואבידה מי תיקן חיוב חדש ויקשה לרבינו לפי דבריו מגניבה ואבידה מה שהקשה על תוספת מפשיעה:<br><strong> ועי׳</strong> בירושלמי שקלים פ&quot;ב מ&quot;א בגמ׳ שם הפריש שקלו ואבד ר׳ יוחנן אומר חייב באחריותו עד שימסרנו לגזבר ר׳ שמעון בן לקיש אומר הקדש ברשות הגבוה בכ&quot;מ שהוא מתני׳ פליגא על רשב&quot;ל נשבעין לבני העיר ובני העיר שוקלין תחתיהן לא עוד היא משום שבועות התקנה ועי׳ בקרבן העדה דאם הוי בגזא דרחמנא אף קודם שנתרמה יהיו בני העיר פטורין ותירץ אף זו מן התקנה עיי&quot;ש וקיי&quot;ל כר&quot;י וכמ&quot;ש רבינו בהל׳ ז׳ ועכ&quot;פ לר&quot;ל לירושלמי צריכין לומר דעשו חיוב חדש משום תקנת הקדש דלאחר שהביאו לר&quot;ש למקום גבוה החיוב ע&quot;כ חיוב חדש מתקנה דלא שייך כמ&quot;ש דהרי הוי כבא ליד גזבר ועי׳ בבלי חולין קל&quot;ט ע&quot;א מנה זה לבדק הבית פלוגתא דר&quot;י ור&quot;ל כעין זה עיי&quot;ש ובזה אם הוי חיוב חדש לא פליגי וי&quot;ל לכו&quot;ע היכא דמוכרע לומר כן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:3</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-3" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואם משנתרמה התרומה נאנס נשבע השליח לגזברים וכו׳.</strong> עיין בירושלמי שקלים בפ&quot;ב מ&quot;ב במשנה הנותן שקלו לחבירו לשקול ע&quot;י ושקלו ע&quot;י עצמו אם משנתרמה התרומה מעל השוקל וכו׳:<br><strong> ובגמרא</strong> שם אנן תנינן אם קרבה הבהמה ותני דבי רבי אם נתרמה התרומה ונ&quot;א אנן תנינן אם נתרמה התרומה ותני דבית רבי אם קרבה הבהמה א&quot;ר לעזר מאן תנא אם קרבה הבהמה ר׳ שמעון וכו׳ ובפי׳ מהר&quot;א מפולדא ז&quot;ל שם בד&quot;ה מה נהנה וכו׳ ולפי מסקנא זו הא דתנן בריש פירקין אם נתרמה התרומה נשבע לגזברים נמי בהכי מיירי וקרבה הבהמה כמו ושקל ע&quot;י עצמו דתנין הכא וכו׳ עכ&quot;ל ורבינו כתב כלשון המשנה אם נתרמה התרומה ולא כתב מקרבה הבהמה ועיי&quot;ש נוסחת הקרבן העדה מאן תנא ר&quot;ש אם נתרמה התרומה וכו׳ עיי&quot;ש ונראה דמפרש אם קריבה לענין מעילה בלבד ולא לענין נגנבה אבל גם לענין מעילה בהל׳ שאח&quot;ז כתב רבינו ג&quot;כ אם נתרמה דלפי הנ&quot;ל כר&quot;ש אתיא ועי׳ בכ&quot;מ שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:4</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-8-4" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:8:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> יש מי שאומר שהשקלים הראשונים שיפלו לשקלי השנה הם השקלים שנגנבו בתחילה ואבדו או נאנסו וחזרו ויש מי שאמר שהשקלים הראשונים הן שהגיעו ליד הגזבר תחילה.</strong> ויש לעיין למ&quot;ש ברשב&quot;א חולין קל&quot;ט דגם בהקדש שייך יאוש בנתיאש הגזבר וא&quot;כ האיך חל ההקדש מחדש בלי בעלים והרי אין יד להקדש ועי׳ ברמב&quot;ן ב&quot;ב ע&quot;ט דלמ&quot;ש שם לא יקשה עיי&quot;ש אבל לדעת התוספת על כרחך צ&quot;ל דלא ס&quot;ל כרשב&quot;א ובאמת דברי הרשב&quot;א צ&quot;ע ובמ&quot;א כתבתי בזה ובראב&quot;ד דמחלוקת בירושלמי ובמרכבת המשנה כתב ובספק כזה יעשה כמו שירצה ועי׳ לעיל הל׳ ד׳ כיו&quot;ב וכמ&quot;ש בראב&quot;ד שם מחלוקת בירושלמי עיי&quot;ש וי&quot;ל דגם זה בכלל לב בי&quot;ד שבספק יעשו כמו שירצה ועי׳ להלן ט&quot;ו בספק להחמיר ובזה י&quot;ל בודאי במאי דשייך לחומרא אזלינן לחומרא ובשוין שייך לב בי&quot;ד וכו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:10:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-10-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנותן חצי שקל לחבירו להוליכו לשולחני לשקול אותו על ידו הלך ושקלו ע&quot;י עצמו כדי שלא ימשכנו אותו אם נתרמה התרומה מעל השוקל שזה השקל ברשות הקדש הוא שכבר תרמו על העתיד לגבות ונמצא זה הציל עצמו בממון ההקדש ונהנה בשקל הזה ואם לא נתרמה התרומה לא מעל וחייב ליתן לחבירו חצי שקל שנתן לו.</strong> אין לפרש דלא שייך מעילה קודם שנתרמה התרומה דמאי שנא שקלים מהקדש דעלמא קודם שהביאם ליד גזבר דשייך מעילה גם כמ&quot;ש רבינו ומקורו מתוספתא בפ&quot;ו מהל׳ מעילה הי&quot;ג &quot;המפרש שקלו והוציאו בשאר צרכיו בין הוא ובין חבירו מעל נתנו לחבירו לשוקלו ע&quot;י והלך ושקלו ע&quot;י עצמו אם כבר נתרמה התרומה מעל השוקל שהתורם תורם על העתיד להגבות כמו שביארנו בשקלים וכאלו הגיע שקל זה ללשכה ולפיכך מעל ואם עדיין לא נתרמה תרומה לא מעל וכו׳ עכ&quot;ל הרי כתב בהפריש שקלו והוציאו מעל ולא חילק בין נתרמה או לא רק בנתנו לחבירו ושקל לעצמו כתב חילוק זה כדאיתא במשנה במס׳ שקלים וזה דקודם שנתרמה תרומה צריך השליח לשלם להבעלים ולא נהנה ולא מעל רק לאחר שנתרמה דא&quot;צ הבעלים להביא אחרים וא&quot;צ לשלם להם שייך מעילה ומ&quot;ש רבינו שזה השקל ברשות הקדש הוא וכו׳ ונמצא זה הציל עצמו בממון הקדש לאו משום דקודם שנתרמה לא הוי ברשות הקדש ולא שייך מעילה וא&quot;כ למה בהפריש שקלו והוציאו מעל כמ&quot;ש אלא שמפרש בזה למה הוי מעילה בשביל הנאה מהקדש משום דא&quot;צ הבעלים ליתן אחרים וא&quot;כ זה הנקדש דשייך מעילה בו ומ&quot;ש רבינו להוליכו לשולחני וכו׳ כמ&quot;ש בפ&quot;א ה&quot;ט בט&quot;ו בו ישבו השולחנים וכו׳. ועם כל זה הלשון וביותר למ&quot;ש רבינו בפי׳ המשנה בפ&quot;ב מ&quot;ב אם נתרמה תרומה מעל השוקל לפי העקרים שהקדמתי לך כי כשהוא תורם תורם על הגבוי ועל העתיד לגבות ואותו השקל כשנתנו לחבירו מיד קנאו ההקדש כשתרם וכשנתנו על עצמו נהנה מן ההקדש ונתחייב קרבן מעילה והנאה שהוא נהנה הוא שלא ימשכננו אותו עכ&quot;ל נראה מלשונו שרק בשעת תרומה קנאו ההקדש ויקשה מ&quot;ש לעיל גם ממאי דאמרינן בנמצאו בנגנבו אלו ואלו שקלים וכו׳ כמ&quot;ש רבינו בהל׳ ט׳ וזה בשלא נתרמה עוד וכבר נתנו הבעלים שקלים אחרים מיניה וכמ&quot;ש ברש&quot;י שכבר חל הקדושה על השקלים ואין נפקעים גם במס׳ ב&quot;מ נ&quot;ח התינח עד שלא נתרמה וכו׳ דנראה דגם עד שלא נתרמה צ&quot;ל כר&quot;ש:<br><strong> והנה</strong> כנראה יצא המועל דאל&quot;כ לא הציל עצמו בממון הקדש שכתב רבינו. ויש להבין במאי קנאו והנה לרש&quot;י שפי׳ במס׳ כתובות דאפי׳ בלא נתן כלל הוי בכלל תורמין על הגבוי וא&quot;כ המועל ג&quot;כ יצא כבר. ומאי נהנה הרי בלא&quot;ה אין ממשכנין וי&quot;ל שנתנו להקדש קודם שנתרמה אלא שנודע אחרי שנתרמה שהוא לאחר ואמרינן דשוב אין לאחר לתבוע ממנו ולא להשלים להקדש ושייך מעילה להקדש אבל לדעת רבינו דוקא בנגבה אח&quot;ז אמרינן תורמין וכו׳ וצריך להבין במאי זכה הלה שיהיה שלו ובירושלמי מקשינן אלו הגוזל עולתו של חבירו ושחטו סתמא לא לשם בעלים הראשונים מכפרת א&quot;ר יודן תפתר במסוים וכו׳ עיי&quot;ש ובקרבן העדה שניכר וידוע שהוא של שני עיי&quot;ש. ועוד יקשה במה נפקע מהראשון ובמה זכה בו השני וי&quot;ל באמת שאינו זוכה ואינו יוצא אלא דמ&quot;מ הרויח שאי׳ ממשכנין אותו ומיירי כמ&quot;ש שהביאו קודם שנתרמה ונודע להמשלח לאחר שנתרמה וראיתי בס׳ לחם שמים שכתב דמדברי רבינו שיצא המועל עיי&quot;ש ולענ&quot;ד נראה כמ&quot;ש ועל מ&quot;ש מקודם עי׳ מ&quot;ש לקמן בס&quot;ד בהל׳ אח&quot;ז:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-10-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:10:2</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-10-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן הגוזל או הגונב חצי שקל ושקלו יצא והוא חייב לשלם לבעלים שנים או להוסיף חומש וכו׳.</strong> ונראה קודם שנתרמה חייב לבעלים שנים ולאחר שנתרמה להקדש חומש והנה כאן יש לעיין ג&quot;כ למה יצא ובמה חל ויש לומר דמיירי לאחר יאוש ולא חיישינן משום הבאה בעבירה ועי׳ בהל׳ לולב פ&quot;ח ה&quot;א עיי&quot;ש בלח&quot;מ ובהל׳ ה׳ שם מ&quot;ש בזה עיי&quot;ש. ולאחר יאוש שייך ג&quot;כ כפל:<br><strong> והנה</strong> שמעתי להקשות עמ&quot;ש רבינו והוא חייב לשלם שנים דזה לר׳ שמעון דס&quot;ל קדשים שחייב באחריות בכלל רעיך עי׳ ב&quot;ק ע&quot;ו ובמס׳ ב&quot;מ נ&quot;ח ואנן לא קיי&quot;ל כותיה כמ&quot;ש רבינו בפ&quot;ב ה&quot;א מהל׳ גניבה וכן הגונב קדשים מבית בעליהן בין ק&quot;ק בין קדשים קלים בין קדשים שאין הבעלים חייבין באחריותן בין קדשים שהבעלים חייבין באחריותן פטור מן הכפל ומתשלומי ד׳ וה׳ שנאמר וגונב מבית האיש ולא מבית הקדש עכ&quot;ל וא&quot;כ למה כתב רבינו בגונב שקלים דמשלם כפל לבעלים כ&quot;ז שאחריותן על הבעלים:<br><strong> ונראה</strong> לומר דכבר כתבתי בהל׳ הקודמת דנראה מדברי רבינו דעד שלא נתרמה לא הוי ברשות הקדש וכתבתי מה שיש להקשות ע&quot;ז:<br><strong> ונאמר</strong> דהנה בירושלמי בפ&quot;ב מ&quot;א בגמ׳ שם הפריש שקל ואבד ר׳ יוחנן אמר חייב באחריותו עד שימסרנו לגזבר רשב&quot;ל אומר הקדש ברשות הגבוה בכל מקום שהוא וכו׳ עיי&quot;ש ובבלי במס׳ חולין קל&quot;ט ע&quot;א מנה זה לבדק הבית ונגנבו או נאבדו ר&quot;י אמר חייב באחריותן עד שיביאו ליד גזבר ור&quot;ל אמר כל היכא דאיתא בי גזא דרחמנא איתיה ולמסקנא שם דפליגי באומר הרי עלי בבדק הבית ואינו בעין אלא שנאבד ולר&quot;ל כל היכא וכו׳ אבל בליתא בעולם גם לר&quot;ל חייב עיי&quot;ש. והנה שם בנדבה לבדק הבית. אמנם בשקלים דהוי דבר שחוב עליו ומאי שנא מהפריש קרבן לחטאתו ונאבד דודאי גם ר&quot;ל מודה דחייב באחרת ועי׳ במל&quot;מ בפי&quot;ד מהל׳ מעשה קרבנות הל׳ ה׳ עיי&quot;ש ולא אמרינן דבי גזא דרחמנא איתיה אלא דשאני הקדש קרבן חובה דעיקר הקדישו להקריבו ומחלוקת בגמ׳ אם כהנים שלוחי דידן או שלוחי דרחמנא ועכ&quot;פ כל זמן שלא נקרב כראוי לא עלה לכפרה לו משא&quot;כ שקלים שאין להבעלים אלא להביאם להקדש ומה שנעשה בהם לצורך גבוה אינו נוגע להם והרי אם נאבדו מהגזבר ודאי פטורין לכו&quot;ע ובחטאת שנאבד ברשות הקדש לא יצא עד שהביא אחרת ועל כרחך מהאי טעמא דשאני שקלים מקרבן וכיו&quot;ב. וא&quot;כ הוי לר&quot;ל אף דהוי חובה עם כל זה דומה להקדש לבדק הבית דלדידיה אמרינן כל היכא דאיתיה בי גזא דרחמנא איתיה ובהפרשה נתקיימה המצוה וא&quot;כ לר&quot;י דס&quot;ל דחייב באחריות עד שיביאו ליד הגזבר ויש להבין כיון כמ&quot;ש דאין דומה לקרבן שבא בחובה וא&quot;כ כיון דרק ההבאה להקדש מצותו ולמה נאמר דוקא ליד הגזבר ואינו דומה להאי דמס׳ חולין הנ&quot;ל דאמר עלי ועל כרחך דס&quot;ל דהבאה למקום ההקדש ליד הגזבר מקרי הבאה וכ&quot;ז שהמה בביתו לא נתקיים מצות הבאה ולפ&quot;ז לא שייך כל היכא דאיתיה בי גזא דרחמנא כמו בשאר הקדש דעל כרחך ר&quot;י מודה דמשו&quot;ה אמרינן אמירה לגבוה כמסירה להדיוט דמי ובאומר הרי זו גם לר&quot;י פטור בנאבד כדאי׳ במס׳ חולין הנ&quot;ל רק בשקלים מדיוקא דקרא או זולת זה ס&quot;ל דצריך הבאה למקדש או לגזבר בלא&quot;ה לא יצא וא&quot;כ לא שייך בי גזא וכו׳ בדבר שצריך רשות אחר דוקא ורק ההבאה התחלות וקיום המצוה והפרשה לאו ממצוה כמו בשאר הקדש:<br><strong> אמנם</strong> יקשה כיון דנאמר דלא שייך בי גזא וכו׳ ולפ&quot;ז לא שייך אמירה לגבוה כמסירה דמי וא&quot;כ הוי תורת חולין על השקלים עד שיבואו לגזבר לר&quot;י דקיי&quot;ל כותיה ויקשה מכל הסוגיא הנ&quot;ל ונראה לומר דכל זה לענין אם הוי דבר הנקנה להקדש ממש וברשות הגבוה ולענין מעילה וכיו&quot;ב שייך לומר דלא הוי השקלים הקדש מצ&quot;ע קודם שבאו ליד הגזבר דלא שייך אמירה לגבוה כמסירה להדיוט בשקלים משום דלא שייך כל היכא דאיתיה בי גזא דרחמנא איתיה ואינו נקדש בהפרשה עד שיגיעו לגזבר:<br><strong> אבל</strong> עם כל זה י&quot;ל דהוי תורת הקדש עליו מצד אחר דלא יגרע מכל נדרי מצוה שכתב הר&quot;ן במס׳ נדרים ובריטב&quot;א במס׳ תענית אף שאין בכלל נדר איסורא חפצא מ&quot;מ הוי בכלל בפיך דאמרינן זו צדקה וה&quot;ה כל קבלת מצות דנתחייבו באמירה אלא דנפק&quot;מ דמשום אמירה לגבוה כמסירה להדיוט חל ההקדש על הדבר והוי קדוש מצ&quot;ע ושייך בו מעילה וכיו&quot;ב אבל משום בפיך לא שייך מעילה דעיקר החיוב משום בפיך הוי חובת גברא ולא חל אחפצא וכמו כן נפק&quot;מ לענין כפיה דמשום אמירה לגבוה ההקדש גובה את שלו משא&quot;כ משום בפיך הוי כמו כפיה על כל המצות סוכה ואין עושה וכו׳ ועי׳ בחו&quot;מ בסי׳ קכ&quot;ה סעיף ה׳ ובסמ&quot;ע ס&quot;ק כ&quot;ה עיי&quot;ש:<br><strong> והנה</strong> יש לחשוב אם משום בפיך צריך להביא דבר זה דוקא או יוכל להביא אחר תחתיו כיון שאינו חל על הדבר אלא עליו ובזה נראה לומר כיון דמשום בפיך אמרינן דנתחייב באמירה כבמעשה בקנין ובקנין ודאי צריך לתת אותו הדבר הנקנה כמו כן משום בפיך צריך להביא אותם שקלים שהפריש בראשונה וחל חיוב הקדש עליהם:<br><strong> ולפ&quot;ז</strong> מובנים דברי הנ&quot;ל די&quot;ל דאין ההקדש חל על השקלים לענין מעילה עד שיבא לידי גזבר או שנתרמה התרומה דהוי עי&quot;ז כאלו באו להקדש כיון שקיים עי&quot;ז מצות ההבאה אף שלא באו עוד להקדש וכיון דהוי קיום ההבאה שייך כל היכא דאיתיה בי גזא וכו׳ ועם כל זה אמרינן שפיר בנגנבו או נאבדו ונמצאו אלו ואלו להקדש דלא נפקע שם הקדש דעליו משום בפיך וכמ&quot;ש רק מעילה לא שייך משום בפיך וכמ&quot;ש דלא חל עד עתה מצד עצמו:<br><strong> אלא</strong> דיקשה נגד זה דברי רבינו בהל׳ מעילה בפ&quot;ו הי&quot;ג הנ&quot;ל. ונראה דהנה יש להבין בדברי רבינו שם במה שכתב המפריש שקלו להוציא בשאר צרכיו בין הוא ובין חבירו מעל נתנו לחבירו לשקלו על ידו והלך ושקלו על ידי עצמו אם כבר נתרמה התרומה מעל השוקל וכו׳ ויש להבין מ&quot;ש: במ&quot;ש בתחילה בין הוא ובין חבירו שפי׳ שחבירו הוציא שקלו ולא כתב כלל לחלק בין נתרמה התרומה או לא ואח&quot;ז בנתנו לחבירו לשקול ע&quot;י וכו׳ כתב אם כבר נתרמה וכו׳ ומאיזה סברא לחלק בין לקחו חבירו בלי שליחתו ללקחו בשנוי בשליחתו לחלק בזה מה שאין מחלקין בזה גם יש להעיר שכתב מעל השוקל והו&quot;ל מעל חבירו ובמשנה איתא מעל ולא נאמר שם השוקל ומדרכו של רבינו לכתוב לשון המשנה בליכא נפק&quot;מ לדברים:<br><strong> והנה</strong> בתוספתא שלפנינו איתא המפריש שקלו להוציא [נראה שצ&quot;ל והוציאו] הרי זה מעל המוציא שקלו של חבירו הרי זה מעל עכ&quot;ל הנה התוספתא לא פי׳ בחבירו אם משנתרמה או בשלחו וכו׳ וקאי על המשנה דמחלקת בין נתרמה והאי דלא אשמעינן במשנה בהוציא הוא ולמה דוקא בשלוחו שמעל דאשמעינן רבותא כמו דמקשינן בירושלמי מאי שנא מהקריב עולתו של חבירו וכמ&quot;ש לעיל גם בשלוחו י&quot;ל דזכה בשביל ההקדש עיי&quot;ש וי&quot;ל דקמ&quot;ל דלא אמרינן הולך כזכי בחוב של שקלים ועי׳ חו&quot;מ קכ&quot;ה משום דצריך להביאו לגזבר דוקא ואשמעינן בתוספתא דאפי׳ ע&quot;י עצמו שייך מעילה בנתרמה התרומה כדאי׳ במשנה בשליח:<br><strong> ולפ&quot;ז</strong> נאמר דרבינו כשכתב &quot;המפריש שקלו להוציא בשאר צרכיו בין הוא ובין חבירו מעל&quot; העתיק לשון התוספתא הנ&quot;ל ואח&quot;ז ביאר מה שסתמה התוספתא ומבואר במשנה הענין בחבירו במ&quot;ש אח&quot;ז &quot;נתנו לחבירו לשקלו ע&quot;י והלך ושקלו ע&quot;י עצמו&quot; ואח&quot;ז חוזר לתחילת דבריו במ&quot;ש בין הוא ובין חבירו &quot;אם כבר נתרמה התרומה מעל השוקל&quot; לא כתב חבירו וכמ&quot;ש לעיל אלא השוקל יהיה מי שיהיה הוא בעצמו או חבירו לאחר שנתרמה התרומה מעלו:<br><strong> ולפ&quot;ז</strong> מובן שפיר דחייב הגנב בכפל קודם שנתרמה התרומה דלענין עצמם של השקלים לא הוי בתורת הקדש עוד אלא דיש להבין עוד סוגיא דמס׳ ב&quot;מ נ&quot;ח דאמרינן התינח עד שלא נתרמה התרומה וכו׳ דנראה דגם קודם שנתרמה צ&quot;ל דאתיא כר׳ שמעון דס&quot;ל קדשים שחייב באחריותן ממון בעלים יש לפרש דעד שלא נתרמה יוכל לומר דאתיא כר&quot;ש אף דבאמת א&quot;צ לומר כן. אבל משנתרמה יקשה גם י&quot;ל אם נאמר כר&quot;ל דס&quot;ל כל היכא דאיתיה בי גזא דרחמנא גם בשקלים א&quot;כ גם עד שלא נתרמה צ&quot;ל כר&quot;ש ואתי שפיר:<br><strong> והנה</strong> בירושלמי פ&quot;ב מ&quot;ב הקשו על ושקלו ע&quot;י עצמו וקשיא אלו הגונב עולתו של חבירו ושחטו סתם סתמא לאו לשם בעלים הראשונים מכפרת א&quot;ר יודן תפתור במסוים משל בית רבן גמליאל וכו׳ ורבינו לא כתב כן. ונראה די&quot;ל אחרי דמסקינן שם בירושלמי מה נהנה א&quot;ר אבין וכו׳ מכיון שבי&quot;ד ראוין למשכנו ולא משכנו כמו שנהנה עיי&quot;ש. וא&quot;כ על כרחך במסוים וניכר מיירי דאל&quot;כ ימשכנו עוד. אלא דמקשינן עוד שם וחש לומר שמא לשיריים הן נופלין וכי יש מעילה בשיריים אלא כר׳ מאיר דר&quot;מ אומר מועלין בשיריים עוד היא במסוים של בית ר&quot;ג שהיו מתכונין ותרמו לשמו עיי&quot;ש ויקשה למה לא פי׳ רבינו דמיירי בכה&quot;ג דהרי רבינו ס&quot;ל אין מעילה בשיריים ועי׳ בשירי קרבן שם בד&quot;ה תפתור עיי&quot;ש ומ&quot;ש שם בפ&quot;ג מ&quot;ג בד&quot;ה שהיה עיי&quot;ש תמוה שהרי רבינו כתב כמ&quot;ש אין מעילה בשיריים וצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:12:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-3-12-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 3:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפריש שקלו וסבר שהוא חייב וכו׳.</strong> ועי׳ בראב&quot;ד ועיין בקרבן העדה בשירי קרבן בירושלמי שקלים בפ&quot;ב מ&quot;ג בד&quot;ה ה&quot;נ דדעת רבינו כראב&quot;ד ולפי הירושלמי שהשמיט הכ&quot;מ סופו שם עיי&quot;ש וגם במרכבת המשנה כ&quot;כ עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-4">Chapter 4</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:2:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל פר העלם דבר של ציבור וכו׳ ואין באין וכו׳ המנורה וכלי שרת מצותן שיבואו ממותר הנסכים ואם לא היה להן מותר נסכים יביאו מתרומת הלשכה וכו׳.</strong> ועי׳ בכ&quot;מ שכתב בסוה&quot;ד יש לתמוה דמשמע דפליג א&quot;ר ישמעאל ור׳ עקיבא דמר אמר מתרומת הלשכה ומר אמר ממותר נסכים אבל מקדשי בדק הבית לא וצ&quot;ל דכי לב בי&quot;ד מתנה עליהם חזרו אותם מעות כמותר נסכים או כתרומת הלשכה עיי&quot;ש ובמל&quot;מ שם שכתב שיאמרו בי&quot;ד שאם לא הוצרכו שיהיה מותר נסכים או ללשכה לא שמענו עיי&quot;ש ועי׳ בכ&quot;מ מה שעמד על דעת רבינו ובמל&quot;מ ע&quot;ז עיי&quot;ש:<br><strong> והנה</strong> נשים דברינו בסוגיא דמס׳ כתובות ק&quot;ו ע&quot;ב בעי רב הונא מרב כלי שרת מה שיעשו מקדשי בדק הבית צורך מזבח נינהו ומקדשי בדק הבית אתו או צורך קרבן נינהו ומתרומת הלשכה עושין אותן א&quot;ל אין נעשין אלא מתרומת הלשכה. איתביה וככלותם הביאו לפני המלך וכו׳ את שאר הכסף עשהו כלים לבית ה׳ כלי שרת וכו׳ (ד&quot;ה ב׳ כ&quot;ד) א&quot;ל דאקרייך כתובי לא אקרייך נביאי אי הכי קשיא קראי אהדדי לא קשיא כאן שגבו והותירו כאן שגבו ולא הותירו וכי גבו והותירו מאי הוי א&quot;ר אבהו לב בי&quot;ד מתנה עליהן אם הוצרכו הוצרכו ואם לאו יהיה לכלי שרת תנא דבי ר׳ ישמעאל כלי שרת באין מתרומת הלשכה ואימא שיריים גופייהו כדאמר רבא העולה עולה הראשונה ה&quot;נ הכסף כסף הראשון וכו׳:<br><strong> וברש&quot;י</strong> כלי שרת שמשרתין בבית החיצון שהיה בנין של אבנים. ובד&quot;ה ככלותם לחזק את בדק הבית בימי יהואש ופסוק זה בדברי הימים ובד&quot;ה שגבו לצורך בדק הבית והותירו שאין צריכין לכולו עושין מן המותר כלי שרת ובד&quot;ה מאי הוי הא לאו לקדושת קרבן גבו ובד&quot;ה כסף שיש לו שיריים כסף הקופות שהוא נתרם מן הלשכה ושיריים נשארים בלשכה עכ&quot;ל ועיין בשיטה מקובצת שכתב דמלשנא דגמ׳ משמע דהבעיא לא היה אם הוי מבדק הבית וגם מלשכה כיון דהוי לצורך מזבח ולצורך קרבן. אלא האבעיא אם מזה או מזה עיי&quot;ש:<br><strong> נראה</strong> דפשיטא לרב הונא דאם יהיה לצורך קרבן בלבד היה מלשכה אף דבמשנה במס׳ שקלים איתא רק לקרבנות ועל שאר הדברים מקשינן בגמ׳ ומתרצין לב בי&quot;ד וכו׳ ועל כרחך ס&quot;ל לר&quot;ה דאמרינן צורך קרבן כקרבן דמי וא&quot;כ יש להבין למה אם הוי ג&quot;כ צורך בדק הבית לא יהיה מלשכה וי&quot;ל דקדושת קרבן עדיפא ואין לשנותו אלא לצרכו בלבד ואם אפשר להביא הכלי שרת מבדק הבית משום דגם לצרכו הוא וא&quot;כ יביאו מבדק הבית ולא ירויח הבדק הבית במה שמיוחד לקרבנות גם כיון שאפשר במקום אחר מבדק הבית לא מקרי צורך הקרבן דהרי הוי מורידין בזה ורק באי אפשר מותר דהוי לצורך משא&quot;כ באפשר ממקום אחר לא מקרי לצורך ואסור:<br><strong> גם</strong> י&quot;ל כמו הכלי שרת וכן המזבח מכשירי צורך הקרבן נינהו אלא המזבח משום דהוי בבנין וכמ&quot;ש ברש&quot;י היה מבדק הבית וכלי השרת ומזבח כאחת דמי דאי אפשר לזה בלא זה להקריב וא&quot;כ בתר המזבח גרירי דהוי חלק ממכשירי הקרבן והכלי השרת טפילים למזבח או שאני המזבח דהוי בנין אבל כלים דלא הוי בנין נשאר צורך קרבן בפ&quot;ע וא&quot;כ מובן למה לא נאמר דהבעיא הוי דנאמר מזה ומזה וכמ&quot;ש בשיטה מקובצת הנ&quot;ל:<br><strong> אמנם</strong> יש להבין דהנה בדברי הימים הנ&quot;ל ויקרא המלך ליהודע הראש ויאמר לו מדוע לא דרשת על הלוים להביא וכו׳ את משאת משה עבד ה׳ והקהל לישראל לאוהל העדות כי וכו׳ פרצו את בית האלוקים וכו׳ וברש&quot;י משאת משה עבד ה׳ כלומר שקלים שצוה עליהם במדבר עכ&quot;ל ובמלכים הנ&quot;ל ויאמר וכו׳ כל הכסף הקדשים אשר יובא בית ה׳ כסף עובר נפשות ערכו כל כסף אשר יעלה על לב איש להביא בית ה׳ יקחו להם הכהנים איש מאת מכרו והם יחזקו את בדק הבית לכל אשר ימצא שם בדק:<br><strong> וברש&quot;י</strong> שני כספים יש כאן כסף עובר הוא כסף השקלים שבכל שנה וכו׳ וברד&quot;ק ג׳ כספים ובתרגום שם שהיה שקל של שקלים ושל ערכין ושל נדבות:<br><strong> וברד&quot;ק</strong> שם וז&quot;ל וא&quot;ת כיון שנתנו השקלים לבדק הבית ממה היה להם התמידין באותה השנה שהיו לוקחין אותן מכל שנה מתרומות הלשכה ונראה כי נתרשלו מלהביא אותה תרומה אותן שנים שמלכה עתליה והיו וכו׳ ולא היו מעלים עולת תמיד כמ&quot;ש בד&quot;ה וכו׳ והטובים שבהם שבו אל ה׳ מה שהם חייבין מהשנים שעברו והספיק לזה ולזה עכ&quot;ל:<br><strong> ובאברבנאל</strong> שם תירץ שהיו מתנדבים בלעדי זאת לקרבנות עיי&quot;ש ולפי פירושם יקשה מאוד לפרש סוגית הגמ׳ דכאן אשר הביאו הרד&quot;ק שם בעצמו עיי&quot;ש:<br><strong> וכנראה</strong> מפשטות הכתובים נראה כמ&quot;ש הרד&quot;ק והאברבנאל שנעשה לבדק הבית מכסף השקלים וא&quot;כ מאי מקשינן מוכלותם וכו׳ הרי שם הכל הי׳ כסף השקלים ולקרבנות מיוחדים וא&quot;כ אם נאמר דכלי שרת מלשכה שפיר היו מביאין משם ומה שעשו לבדק הבית בזה הפכו הסדר שעשו לבדק הבית מה שמוכן לקרבן ולכלי שרת ומאי השיבו כשגבו והותירו ומשום לב בי&quot;ד וכו׳ תיפו&quot;ל בלא&quot;ה הרי היה הכל משל הלשכה כסף השקלים:<br><strong> וראיתי</strong> בשיטה מקובצת שכתב וז&quot;ל וככלותם וכו׳ כלומר בכלותם לחזק מכסף הנדבה המובא לבדק הבית בימי יואש קא משתעי האי קרא בד&quot;ה אלמא מקדשי בדק הבית היו באין כלי שרת עכ&quot;ל וכ&quot;כ בשם רש&quot;י מה&quot;ק ותנא דבי ר׳ ישמעאל מפרש ואת שאר וכו׳ על תרומת הלשכה וא&quot;כ הקרא מיירי מב׳ כספים הראשונה לבדק הבית והשניה לכלי שרת מתרומת הלשכה:<br><strong> וכנראה</strong> ממלכים הי׳ ג׳ כספים וא&quot;כ בד&quot;ה נפרש ג&quot;כ לבדק הבית היה מנדבה ולא משקלים [ועי׳ בש&quot;ס מ&quot;ש על תנא דבי ר&quot;י עיי&quot;ש] ולכן דייק בשיטה מקובצת הנ&quot;ל בשם רש&quot;י קא משתעי קרא בד&quot;ה עכ&quot;ל כלומר כמו שראה במלכים שהי׳ ג׳ כספים נפרש בד&quot;ה ומצינו כיו&quot;ב סתירות בין מלכים וד&quot;ה וצריכין לאחדם וכן כאן ברש&quot;י שלפנינו דייק פסוק בד&quot;ה עכ&quot;ל נראה שהעיר על השנויים להשותם:<br><strong> ובדעת</strong> רד&quot;ק ואברבנאל הנ&quot;ל נראה לומר דיש להבין דהנה דינא דשקלים ותרומתו לשם הקרבנות עי׳ במס׳ שקלים בפ&quot;ד וברבינו בהל׳ שקלים לא נתפרש ולא נמצא למודא ע&quot;ז ועי׳ מ&quot;ש לעיל בפ&quot;ב ה&quot;ו שמוכח מכמה דוכתי דהוי מדינא כן עיי&quot;ש [ועי׳ ברמב&quot;ן וטור על התורה ובאדרת אליהו להגאון מהר&quot;א ווילנא ז&quot;ל שם] ויקשה כיון דהוי מדינא בתורה כן האיך אמרינן במס׳ שבועות י&quot;א במותר הקטורת לב בי&quot;ד מתנה עליהן וכיו&quot;ב במס׳ מנחות ע&quot;ט וכיו&quot;ב זבחים י׳ בקרבנות ציבור לב בי&quot;ד וכו׳ וכמ&quot;ש בתוס׳ כאן בד&quot;ה וכי ובשיטה מקובצת דלא מהני לב בי&quot;ד אלא משום דאמרינן דדעת ישראל המתנדבין על דעת בי&quot;ד הקדישו עיי&quot;ש דכל זה שייך לומר בדבר דתליא בדעת המקדיש אבל שקלים דהוי דבר שבחובה והתורה קבעה לקרבנות וא&quot;כ האיך תלינן בבי&quot;ד או בדעת המקדישין הרי אם גם יפרשו בפיהם שנותנין השקלים לשם דבר אחר לא יהני אלא לקרבן בלבד ולמאי דמפורש במשנה ועי׳ במסכת שבועות י&quot;א ע&quot;א דאמר רבה לב בי&quot;ד וכו׳ א&quot;ל אביי והא מר הוא דאמר הקדיש זכר לדמיו קדוש קדושת הגוף וברש&quot;י בד&quot;ה קדוש וה&quot;נ למאי אהני תנאה דלב בי&quot;ד כי אמרי נמי יהיה לדמיהן קדשי להו גופייהו עכ&quot;ל וברשב&quot;א שם בד&quot;ה א&quot;ל אביי וכו׳ ולא עדיף לב בי&quot;ד להתנות מדברי הבעלים עצמם שהם מפורשים וכו׳ עכ&quot;ל עיי&quot;ש וא&quot;כ לפ&quot;ז יקשה עודנו דאם גם אמר כשאינו לדמי וכו׳ דעכ&quot;פ האיך מהני לב בי&quot;ד וכו׳ ורשות ודעת הבעלים במאי דלא תליא כלל בדעתם אלא בדעת התורה:<br><strong> אבל</strong> לפי דעת רד&quot;ק ואברבנאל הנ&quot;ל י&quot;ל דמהתורה רק להביא השקלים לצורך עבודה של ציבור. והכתוב מסרו לחכמים והם קבעו לקרבנות ולמה דנזכר במשנה ונתנו ביד הבי&quot;ד להתנות ע&quot;ז. ומשו&quot;ה בימי יהואש שהיה מצורך גדול לבדק הבית אף שהבית לא היה לצורך קרבן דמקריבין אף שאין בית במס׳ מגילה דף י׳ ע&quot;א ומ&quot;מ היה בידם לשנות. וקושית הגמ׳ כאן כיון שלקחו וגבו וקבעו כבר לבדק הבית האיך שינו לכלי שרת ומשני לב בי&quot;ד וכו׳ ובזה מיושב שפיר דשייך לב בי&quot;ד אף בשקלים ולא ס&quot;ל דתליא בדעת המקדישין אלא בדעת הבי&quot;ד בלבד ובידם להתנות:<br><strong> אמנם</strong> לדעת השיטה מקובצת ותוס׳ דתליא בדעת המקדישין בלב בי&quot;ד וכו׳ וכי במקרא הנ&quot;ל היה קרבנות לשקלים ולבדק הבית היה בפ&quot;ע וכמ&quot;ש בשם הש&quot;מ. ולפי דבריהם מהתורה השקלים לקרבנות ולמ&quot;ש במשנה בלבד ומהלמ&quot;מ. ויקשה כנ&quot;ל ונראה לענ&quot;ד ליישב לפי דרכם דהנה כנראה מסוגיא דאף דשקלים לקרבנות מ&quot;מ מאי דהוי צורך קרבן כקרבן דמי כנראה בהאבעיא בכלי שרת וכו׳ ועי׳ בר&quot;ע מברטנורא במס׳ שקלים בפ&quot;ד גבי שומרי ספיחין נוטלין שכרן מתרומת הלשכה וז&quot;ל דצורך קרבן כקרבן דמי עכ&quot;ל ובתוס׳ יו&quot;ט וז&quot;ל פי׳ הרע&quot;ב דצורך קרבן כקרבן דמי ועי׳ מ&quot;ה עכ&quot;ל וכונתו דשם במותר הקטורת וכו׳ פי׳ הרע&quot;ב משום לב בי&quot;ד וכו׳ וכדאיתא בגמ׳ עיי&quot;ש:<br><strong> ונראה</strong> דדעת הר&quot;ע ברטנורא דצריכין לומר דצורך קרבן כקרבן דמי ולב בי&quot;ד מתנה עליהן דכמ&quot;ש דעל דבר המחויב מהתורה להביא לא שייך לומר לב בי&quot;ד וכו׳ אלא כיון דצורך קרבן כקרבן דמי. ועם כל זה צריכין ללב בי&quot;ד וכו׳ דכיון דכבר נתפס בה קדושה חמורה קדושת הגוף בקטורת כדאיתא במס׳ שבועות הנ&quot;ל דמקשינן וקדושה וכו׳ ומשני לב בי&quot;ד וכו׳ דלא נפקע הקדושה אם לא נאמר לב בי&quot;ד וכו׳ אבל במה דנאמר דתליא בכח הבעלים וכמ&quot;ש התוס׳ ובשיטה מקובצת הנ&quot;ל בזה יש לעיין:<br><strong> ונראה</strong> לומר דאף דהוי שקלים דבר שבחובה ואינם בתורת נדבה בזה מ&quot;מ ביד הבעלים לקבוע הממון איזה שירצו וע&quot;ז חל קדושת שקלים וא&quot;כ עכ&quot;פ קדושת השקלים מכח הבעלים קאתיא וכל המשכת קדושה מקלה לחמורה ולהיפוך הכל מכח קדושה ראשונה של הבעלים ואחרי שהופרש לקטורת דהוי קדושת הגוף אף דהוי ע&quot;י הבי&quot;ד מ&quot;מ מכח המשכת הקדושה ע&quot;י הבעלים באה ואמרינן הוברר לזה הקדישו אותו ולכן צריכין לדעת הבעלים לומר דע&quot;ד בי&quot;ד הקדישו למען נאמר לב בי&quot;ד וכו׳:<br><strong> גם</strong> נראה לומר דהנה במס׳ נדרים וקדושין אבעיא אם כהנים שלוחי דידן או שלוחי דרחמנא נינהו ובמס׳ קדושין כ&quot;ג דעל כרחך שלוחי דרחמנא משום דכל מלתא דאיהו לא מצי עביד לא משוי שלוחא ומקשינן והא עבדא דאיהו לא מצי מקבל גיטו ושליח מצי משוי ולא היא ישראל לא שייכי בתורת קרבנות כלל עבד שייך בגיטין וכו׳ עיי&quot;ש ובס׳ אורח מישור הקשה ממס׳ נזיר י&quot;א דאיתא כל מלתא דלא מצי עביד השתא לא מצי משוי שלוחיה ובמס׳ קדושין תליא רק בשייכות בשליחות והניחו בתימה וכתבתי שם לישב דהנה הטעם דאמרינן כל מלתא דלא מצי עביד לא מצי משוי שלוחא נראה משום דשלוחו כמותו ולא יהיה יפה כח השליח מכח המשלח שבא מכוחו. אבל כל זה בשליח שנעשה מדעת המשלח אבל בשליח שעשה אותו התורה כמו הכהנים בזה לא שייך לומר כן שלא תליא בכח ודעתו של הבעלים ואפי׳ מאי דלא מצי עביד שלוחא אלא כדאיתא במס׳ קדושין דעכ&quot;פ בעי שיהיה לו שייכות בשליחות דאל&quot;כ לא בחרה התורה בשליחות כזה ואתי שפיר. וא&quot;כ לפ&quot;ז במה שלפנינו דדוקא עבודת כהונה לית להו לבעלים שייכות בהו ואמרינן שלוחא דרחמנא נינהו אבל בהפרשת שקלים ולהקטורת דלא הוי תורת עבודת כהונה ויש שייכות להבעלים במעשה הזאת י&quot;ל התורם שלוחא דבעלים הוא וא&quot;כ שפיר י&quot;ל בלב בי&quot;ד וכו׳ דתליא בדעת הבעלים המקדישין שיסכימו להבי&quot;ד:<br><strong> ובמ&quot;ש</strong> מובנים דברי המל&quot;מ להלן בהל׳ י&quot;ב דבקדושת דמים לא צריכין ללב בי&quot;ד וכו׳ עיי&quot;ש דכמ&quot;ש דבקדושת דמים בכה&quot;ג דהוי צורך קרבן דכקרבן נינהו אלא בהוי קדושת הגוף דהקושיא קדושה שבה היכא הלכה צריך לומר לב בי&quot;ד וכו׳ אבל בקדושת דמים די לומר דלצורך קרבן כקרבן דמי ולא יקשה מהאי דאי׳ בסוגיא בגבו והותירו וכו׳ לב בי&quot;ד וכו׳ אף דלא הוי רק קדושת דמים דכאן בס&quot;ד דהוי צורך בדק הבית בתורת נדבה ופירשו לזה ולמאי דס&quot;ל דכלי שרת לא הוי צורך קרבן ועל כרחך צ&quot;ל לב בי&quot;ד וכו׳ אף בקדושת דמים אבל היכא דשייך לומר צורך קרבן כקרבן א&quot;צ ללב בי&quot;ד וכו׳ רק בקדושת הגוף וכמ&quot;ש במל&quot;מ הנ&quot;ל:<br><strong> ונראה</strong> להביא ראיה לדעת המל&quot;מ דהנה במס׳ נדרים דף כ&quot;ט בסוגיא דבר פדא דס&quot;ל דאמרינן בקדושת הגוף לא פקעה עיי&quot;ש וצ&quot;ל במותר הקטורת למאי דמסקינן דהוי קדושת הגוף דע&quot;י התנאי בי&quot;ד לא חל הקדושה מעיקרא רק להצורך בלבד ולא על המותר וא&quot;כ לא הוי הפקעת קדושת הגוף בזה ועי׳ בריטב&quot;א במס׳ שבועות י&quot;א בד&quot;ה אמר רבה וז&quot;ל פי׳ על התמידין בעת קניתם שאם לא הוצרכו יהיו לדמיהן ודשלא הוצרכו אין כאן קדושת הגוף והכי הם כתלוים ועומדים אם הוצרכו או לא. ולא שייך להכא לומר בדאורייתא אין ברירה אלא כמתנה על אחד משני דברים כמו בדוכתא במס׳ עירובין בס&quot;ד ומדנקיט לב בי&quot;ד וכו׳ משמע שאין צריך תנאי מפורש והוי דברים דמסתמא כל מה שיכולין בי&quot;ד לתקן בם יתקנו עכ&quot;ל. ומ&quot;ש במס׳ עירובין נראה למ&quot;ש שם דכל דבר שאין צריך להיות מבורר למפרע לא תליא בברירה עיי&quot;ש וכמו כן כאן דא&quot;צ הקטורת להיות מבורר למפרע אלא בשעה שתורם ונודע מהצורך חל עליה הקטורת והמותר לא הוי קטורת וא&quot;צ בירור למפרע ונשאר קדושת דמים עכ&quot;פ דל&quot;צ כמ&quot;ש ללב בי&quot;ד וכו׳ אבל אם יהיה נאמר דגם לקדושת דמים צ&quot;ל לב בי&quot;ד וכו׳ וא&quot;כ צ&quot;ל דהוברר למפרע דזה נתן לשם קטורת וזה לשם חולין להאומנין וכיו&quot;ב והוי חולין למפרע והוברר למפרע על מאי חל שם קדושה ועל מה לא. וא&quot;כ תליא עודנו בברירה. אבל אם נאמר כמל&quot;מ אתי שפיר דל&quot;צ לעקור הקדושה למפרע כלל דבקדושת דמים ל&quot;צ ללב בי&quot;ד וכו׳ ואתי שפיר ועיין בתוס׳ במס׳ שבועות דף י׳ ע&quot;ב בד&quot;ה מפרישין עיי&quot;ש:<br><strong> אמנם</strong> נשאר עוד להבין האי דאי׳ בסוגין מגיהי ספרים וכו׳ היו נוטלין שכרן מתרומת הלשכה ולעיל דף ק&quot;ה גוזרי גזירות וכו׳ ובירושלמי שקלים דייני גזירות וכו׳ והרי בזה לא שייך צורך קרבן:<br><strong> ראיתי</strong> בשירי קרבן במס׳ שקלים בפ&quot;ד ה&quot;ד בד&quot;ה מגיה שעמד ע&quot;ז וכתב האי דאיתא בירושלים לאו דוקא רק בעזרה אבל גם בזה יקשה ועל דייני גזילות כתב דהוי שלא יגנבו מבהמ&quot;ק ושלא ימנעו העם מלהביא קרבנות עיי&quot;ש. אבל במגיהי ספרים יקשה עודנו. והנה לדעת רד&quot;ק ואברבנאל הנ&quot;ל מובן שפיר די&quot;ל גם בזה לב בי&quot;ד וכו׳ ובידם לקבוע לכל מה דהוי לצורך הציבור אבל לדעת שאר הראשונים ז&quot;ל וכמ&quot;ש יקשה להבין:<br><strong> אמנם</strong> עי׳ ברש&quot;י שנראה שנשמר מזה בד&quot;ה מגיהי וכו׳ שכתב וראו בי&quot;ד שהיו מתעצלין בדבר והפקירו תרומת הלשכה לכך עכ&quot;ל הנה בכ&quot;מ דאיתא לב בי&quot;ד וכו׳ לא פי׳ כן אלא בזה אבל יקשה מנ&quot;ל הפקר בי&quot;ד בהקדשות דלא מצינו אלא בנכסי הדיוט במס׳ גיטין ושקלים מאלה הנחלות וכו׳ וכיו&quot;ב שם אבל לא בשל הקדש בגזא דרחמנא:<br><strong> וצריכין</strong> לומר בדעת רש&quot;י דאף למה שכתבתי במקום אחר דלא שייך לומר הפקר בי&quot;ד למפרע היינו בדבר שהוא ברשותו עד עתה ועשה בו כרצונו ואין יד אדם לשלוט בו חוץ ממנו והאיך נאמר שהיה הפקר אשר מתורת הפקר דאין לו רשות בו ולכו&quot;ע בידם לזכות בו והרי עד עתה לא הוי אלא ברשותו בלבד וא&quot;כ מסתברא דלא שייך הפקר למפרע אבל בדבר שאינו ברשותו כמו גבי אפקינהו רבנן וכו׳ דכתב ברש&quot;י דהפקר בי&quot;ד הפקר על קדושי כסף בזה שייך אף למפרע משום דלא הוי ברשותו וזכותו בו עד עתה ג&quot;כ וכמו כן נאמר בזה דלא הוי ברשות הבעלים הפקר בי&quot;ד למפרע ולא חל שם הקדש ע&quot;ז ואין לתבוע שקלים אחרים ממנו דאינו יודע ממי לתבוע וכולמו יוצאין ידי שקלים דלא יגרע מתורמין על האבוד כדאי׳ במס׳ שקלים וב&quot;מ נ&quot;ח אלא דמסתברא דלא עשו כן היכא דאפשר בענין אחר שלא להוציא לחולין של קודש ולכן היכא דאפשר אמרינן לב בי&quot;ד וכו׳ וקיים השקל לצורך קרבן ולב בי&quot;ד רק להפקיע קדושת הגוף ולומר ג&quot;כ דמסכימים לדעתם אבל היכא דא&quot;א לומר כן במגיהי ספרים בזה כתב ברש&quot;י משום הפקר בי&quot;ד למפרע ואתי שפיר:<br><strong> ובמ&quot;ש</strong> יש ליישב קושית התוס׳ בסוגיא שכתבו אבל הנך דלעיל לא פי׳ בבית גרמי ובית אבטינוס דבכל הנהו היו בית ישראל מקדישין לצורך כך כמו לצורך קרבנות שכל אותן דברים רגילות הן וכו׳ עכ&quot;ל:<br><strong> הנה</strong> נקטי בית גרמי ואבטינוס ולא מלמדי וכו׳ דבזה אמרינן ג&quot;כ במס׳ שבועות לב בי&quot;ד וכו׳ ולכאורה על מה שתירץ יקשה מאי דאיתיה במס׳ שבועות י&quot;א דכשאינו מצוי לא אמרינן לב בי&quot;ד וכו׳ כלל עיי&quot;ש וקשה לחלק בין שאינו מצוי ושאינו מצוי. וא&quot;כ קושית התוס׳ עומדת למה לא מקשינן גם על לעיל כמ&quot;ש בתוס׳. וע&quot;ע בשיטה מקובצת ופנ&quot;י שהקשו בסוגיא מאי אבעיא לרב הונא כיון דידע כן מקרא דכלותם וכו׳ ותירצו שניהם כאחד דר&quot;ה ידע בגבו והותירו רק בליכא מותר קמבעיא ליה אם מתרומת הלשכה או מבדק הבית ועל דקאמר רב אלא מתרומת הלשכה ומקשינן ליה מקרא הנ&quot;ל עיי&quot;ש ולכאורה מסוגיא דשמעתא נראה דר&quot;ה לא ידע מגבו והותירו דהרי מקשינן אח&quot;ז ע&quot;ז ומשני ליה לב בי&quot;ד וכו׳ אבל לפמ&quot;ש י&quot;ל דעי׳ במהרש&quot;ל שכתב בפי׳ התוס׳ שדעתם לפרש בגבו והותירו קאי על תרומת הלשכה ועי׳ במהרש&quot;א מ&quot;ש ע&quot;ז ובהפלאה כתב לקיים דברי מהרש&quot;ל עיי&quot;ש. וא&quot;כ י&quot;ל דזה דידע מסתירות המקראות ופי׳ בבדק הבית בגבו והותירו ומזה אין להוכיח דבבדק הבית אף דכלי שרת יהיו לצורך קרבן בנדבה פשיטא ליה דשייך לב בי&quot;ד וכו׳ משום דתליא בדעת המתנדבין שמסכימין עם הבי&quot;ד ובנדבה בדעתם תליא. אבל בליכא מותר הוי מתרומת הלשכה עודנו. אבל רב דאמר אלא מתרומת הלשכה משום דס&quot;ל דעיקר מהלשכה ומוקי הקרא בגבו והותירו וכמ&quot;ש במהרש&quot;ל בתרומת הלשכה בהותירו הוי לבדק הבית ע&quot;ז פריך ר&quot;ה וכי גבו וכו׳ בשקלים דלא תליא בדעת הבעלים ולא הוי צורך קרבן דכקרבן דמי בזה לא שייך לר&quot;ה לב בי&quot;ד וכו׳. וא&quot;כ קושית התוס׳ מיושבת מבית גרמי ובית אבטינוס דשם שייך לומר לצורך קרבן כקרבן דמי ולא הוי קדושת הגוף בזה לא קשיא לר&quot;ה דלא צריכין לומר לב בי&quot;ד ג&quot;כ ואתי שפיר:<br><strong> ובמ&quot;ש</strong> יש לפרש דברי הכ&quot;מ הנ&quot;ל שכתב וצ&quot;ל דכי לב בי&quot;ד וכו׳ חזרו אותם מעות כמותר הנסכים או כתרומת הלשכה ובמל&quot;מ הקשה כנ&quot;ל וכי יש לבי&quot;ד כח לשנות קדשי בדק הבית ולומר שהם מותר הנסכים עיי&quot;ש ולמ&quot;ש י&quot;ל בכונת הכ&quot;מ דהוי כמו מותר הנסכים דעל כרחך צ&quot;ל לב בי&quot;ד מתנה עליהם. ובתרומת הלשכה לא צריך לומר כן משום דהוקבע לזה מלשכה ולא הוי ג&quot;כ קדושת הגוף וכמ&quot;ש וכמו כן נאמר בבדק הבית דשייך לכו&quot;ע לב בי&quot;ד וכו׳ ואם במותר נסכים מהני לב בי&quot;ד דהוי קדושת הגוף ומכ&quot;ש בבדק הבית ועכ&quot;פ הוי לאחר הלב בי&quot;ד וכו׳ כתרומת הלשכה דאח&quot;ז קבעו הבי&quot;ד כאלו מתחילה הוקדשו לכלי שרת ולא לבדק הבית:<br><strong> ומיושב</strong> קושית הכ&quot;מ למה לא הביא רבינו דבגבו והותירו מבדק הבית דהוי מכח מכ&quot;ש ממותר הנסכים וי&quot;ל דס&quot;ל כרב ועכ&quot;פ לא כתנא דבי ר׳ ישמעאל דמוקי בשיירי לשכה:<br><strong> (ב) גם</strong> נאמר במ&quot;ש בהאי דאיתא במס׳ שבת כ&quot;א ע&quot;א תני רמי בר חמא פתילות וכו׳ שאמרו חכמים אין מדליקין בהן בשבת אין מדליקין בהן בביהמ&quot;ק משום שנאמר להעלות נר תמיד וכו׳ תנן מבלאי מכנסי כהנים וכו׳ היו מפקיעין ומהן מדליקין שמחת בית השואבה שאני ת&quot;ש דתני רבה בר מתנה בגדי כהונה שבלו מפקיעין אותן ומהן היו עושין פתילות למקדש מאי לאו דכלאים לא דבוץ:<br><strong> וברש&quot;י</strong> בד&quot;ה שמחת בית השואבה שאני דלא כתיב להעלות בה ולאו דאורייתא היא עכ&quot;ל. ובתוס׳ שם בד&quot;ה שמחת תימה היכי שרי להדליק והא לאו צורך קרבן נינהו ואמר במס׳ קדושין נ&quot;ד בגדי כהונה שבלו מועלין בהן ודוחק לומר לב בי&quot;ד מתנה עליהן דמה צורך להן להתנות בשביל זה ונראה לר&quot;י דהואיל ולכבוד קרבן היו עושין דכתיב ושאבתם מים בששון צורך קרבן חשיב ליה וכו׳ עכ&quot;ל. בתוס׳ ישנים עמ&quot;ש בתוס׳ דהוי דוחק לומר לב בי&quot;ד וכו׳ וז&quot;ל ועוד דלא מצינו לב בי&quot;ד בזה כיון דכבר קידש בבגדי כהונה לא נפקי לחולין בלא פדיון עכ&quot;ל:<br><strong> והנה</strong> במ&quot;ש בתוס׳ ישנים דלא נפקי לחולין בלא פדיון דנשמע בפדיון יוצאין לחולין. עי׳ במל&quot;מ בפ&quot;ח מכלי מקדש הל׳ ה׳ שהוכיח דלית להו פדיון והוי קדושת הגוף והביא דעת הריטב&quot;א במס׳ קדושין נ&quot;ד שכתב דלא הוי קדושת הגוף והקשה ע&quot;ז עיי&quot;ש וכנראה דעת התוס׳ ישנים כדעת הריטב&quot;א:<br><strong> והנה </strong> לדעת דבגדי כהונה קדושת הגוף יקשה ביותר דהאיך שייך פקעה לבר פדא בקדושת הגוף ולב בי&quot;ד לעקור למפרע וגם כמ&quot;ש בשם רש&quot;י הפקר בי&quot;ד למפרע לא שייך בזה דא&quot;כ שמשו הכהנים בבגדי חול עד עתה. ועיין במל&quot;מ פ&quot;ח ה&quot;ו הנ&quot;ל דהקשה דלמה התירו כמ&quot;ש בתוס׳ משום כבוד קרבן איסור דאורייתא והרי החליל דהוי רק שבות אמרו במס׳ סוכה בפ׳ החליל דאסרו ביו&quot;ט עיי&quot;ש וכתב לצרף ב׳ דברי התוס׳ מ&quot;ש דהוי לצורך קרבן וא&quot;כ כונתם למ&quot;ש לעיל לב בי&quot;ד וכו׳ רק בס&quot;ד כתבו דלא הוי טעם לזה ועתה תירצו דהוי צורך קרבן וא&quot;כ יש טעם וצורך לומר לב בי&quot;ד וכו׳ עיי&quot;ש:<br><strong> אבל</strong> למ&quot;ש בתוס׳ ישנים וכמ&quot;ש בדעת הסוברים דהוי קדושת הגוף ולא שייך פקעה א&quot;כ גם לב בי&quot;ד לא יהני אף בצורך וטעם למה יתנו כן:<br><strong> ונראה</strong> לומר כהמל&quot;מ דתוס׳ כיונו ללב בי&quot;ד וכו׳ גם בתירוץ אבל לא מטעמיה ונראה דתוס׳ ס&quot;ל כיון דהוי לצורך קרבן כקרבן דמי אף בעודן בקדושתן מותר לעשות בהן לצורך בית השואבה דהוי דאורייתא משום ושאבתם וכו׳ ולא ס&quot;ל כרש&quot;י וצ&quot;ל מ&quot;ש בתוס׳ בס&quot;ד דלא שייך לב בי&quot;ד וכו׳ משום דאין בו צורך הרי תיפו&quot;ל גם ביש בו צורך לא מהני משום דהוי קדושת הגוף וצ&quot;ל שכונתם דלא הוי צורך קרבן דמותר אף בקדושתן וכן נראה דהזכירו גם בתחילת דבריהם בקושיא צורך קרבן עיי&quot;ש אבל עודנו יקשה מ&quot;ש בקושיא דלא שייך לב בי&quot;ד וכו׳ משום דאין בו צורך וכו׳ ואם נפרש כמ&quot;ש צורך קרבן וא&quot;כ יקשה ממ&quot;נ דאם הוי צורך קרבן למה לי לב בי&quot;ד וכו׳ ואי ליכא צורך קרבן מאי אהני לב בי&quot;ד וכו׳ להפקיע קדושה:<br><strong> אלא</strong> למ&quot;ש י&quot;ל דס&quot;ל כדעת הסוברים דבגדי כהונה הוי קדושת הגוף וא&quot;כ צריכין לב בי&quot;ד וכו׳ להפקיע קדושת הגוף ולהעמיד על קדושת דמים ואז מותר משום צורך קרבן כקרבן דמי. וא&quot;כ צריכין לב בי&quot;ד וכו׳ עם צורך קרבן גם בתירוץ וכמ&quot;ש במל&quot;מ אבל לא מטעמיה:<br><strong> אמנם</strong> לכאורה דברינו אינם דכמ&quot;ש לעיל דבבגדי כהונה לא שייך הפקעה למפרע דא&quot;כ שמשו עד עתה בבגדי חול וכמו כן נאמר דכיון דהוי בגדי כהונה קדושת הגוף ובעקרו קדושת הגוף שמשו הכהנים עד עתה בבגדים שאינם קדושת הגוף אמנם בזה נראה לענ&quot;ד לומר דהנה זה שנאמר דבגדי כהונה הוי קדושת הגוף משום דהוי כמו כלי שרת. ועי׳ בתוס׳ במס׳ קדושין דף נ&quot;ד בד&quot;ה בכתונת שכתבו דקודם שנתחנכו לא הוי קדושת הגוף רק אח&quot;ז עבודתן מחנכתן ואז הוי קדושת הגוף עיי&quot;ש:<br><strong> ונראה</strong> לומר אף דע&quot;י השמוש בבגדי כהונה יעלו מקדושת דמים לקדושת הגוף משום דנתפס בהם קדושת העבודה. אבל לא כי מהצורך השמוש והעבודה שיהיה קדושת הגוף דוקא דדי בקדושת דמים אלא דהשמוש גורם שיהיה עי&quot;ז קדושת הגוף ולאו דצריך לזה. והדבר מסתבר כיון דהשמוש הוא הגורם לו להעלותו מקדושת דמים לקדושת הגוף וע&quot;כ השמוש כראוי וא&quot;כ אם נאמר דרק ע&quot;י קדושת הגוף הוי בבגדי כהונה ובלעדי זאת לא הוי שמוש כראוי. וא&quot;כ האיך נאמר דהשמוש גורם הקדושה והשמוש תלוי בהקדושה ובלעדיה לא הוי שמוש והאיך שייך גורם ונגרם כאחת ועל כרחך להשמוש די בקדושת דמים אלא דממילא נתעלה להיות קדושת הגוף אף דאינו לצורך עבודה. והשמוש מביא הקדושה ולא הקדושה השמוש דטרם ששמשו לא היה בו קדושה זאת אלא אח&quot;ז בנעשה בהם מעשה קדושה נתעלו ממילא וכמ&quot;ש בתוס׳ הנ&quot;ל דהחינוך גורם קדושת הגוף ועבודתן מחנכתן ונראה כמ&quot;ש וא&quot;כ לפ&quot;ז בלב בי&quot;ד מתנה להפקיע קדושת הגוף בזה לא נגרעה העבודה אשר עשו הכהנים עד עתה למפרע בקדושת דמים בלבד וא&quot;כ אתי שפיר למ&quot;ש וביותר הרי לדעת הריטב&quot;א בכל פעם בקדושת דמים בבגדי כהונה נוכל לומר להחולקים דעכ&quot;פ אין הקדושת הגוף מצורך העבודה כנ&quot;ל לומר:<br><strong> והנה</strong> למ&quot;ש לעיל בדעת רש&quot;י דהוי הפקר בי&quot;ד יש לעיין למאי דקי&quot;ל אין יד להקדש לזכות מהפקר ועי׳ במס׳ ב&quot;ב ע&quot;ט ע&quot;א וברמב&quot;ן שם וי&quot;ל דלא חל ההפקר אלא בעת כי יבוא המעות ליד המגיהי הספרים הנ&quot;ל ועד אז הוי הקדש ולא שייך לומר דא&quot;כ יזכו המה מהפקר והוי שלהם בלי שיגיהו הספרים דעל דעת זה בלבד הפקירו הבי&quot;ד ופשוט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:4:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גר שמת וכו׳ כה&quot;ג שמת וכו׳.</strong> עי׳ בכ&quot;מ ובתוס׳ יו&quot;ט פ&quot;ז מ&quot;ו משקלים ובלח&quot;מ פ&quot;ג הכ&quot;ב מהל׳ תמידין ומוספין עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:6:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-6-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהתנדב לשמור בחינם אין שומעין לו משום בעלי זרוע שמא יבאו ויטלום מהן לפיכך תיקנו להם חכמים שיטלו שכר מן הלשכה כדי שיפרשו הכל מאותו מקום שאלו שומרים שם.</strong> עי׳ במל&quot;מ ובשעה&quot;מ ובתוס׳ יו&quot;ט מה שהקשו למה בנשים ועבדים שהביאו לא נאמר שמא לא ימסרו יפה ולרבינו לא נמצא כלל שצריכין למסרו לציבור עיי&quot;ש. ועיין מ&quot;ש בפ&quot;א ה&quot;ז לדעת מבי&quot;ט וגם מבלעדי זאת באלה דשייך קבלה ע&quot;ע בזמן גרמא וכמ&quot;ש בתוס׳ דמברכין עליה א&quot;צ למסרו לציבור עיי&quot;ש וכמ&quot;ש לעיל. ובשעה&quot;מ כתב דשקלי נשים ועבדים וקטנים נתבטלו דמתורה מהני ביטול במטבע עיי&quot;ש:<br><strong> ויש</strong> לעיין למאי דאיתא במס׳ ביצה ל&quot;ח ע&quot;ב מי קמדמית איסורא לממונא איסורא בטיל ממונא לא בטיל וברש&quot;י שם בד&quot;ה א&quot;ל וכו׳ איסורא אמרו רבנן לבטל ברובא אבל ממונא לא בטל מועט ברוב להיות קנוי ממון המועט לבעליו של המרובה וכו׳ עכ&quot;ל עיי&quot;ש. ועיין בר&quot;ש במס׳ שביעית פ&quot;ה מ&quot;ג שכתב ואע&quot;ג דאמרינן בסוף הנודר מן הירק גידולי התר מעלין את האיסור אפקועי ממונא שאני וכו׳ עיי&quot;ש. וא&quot;כ לא שייך ביטול להפקיע שם הבעלים. ויש לומר דבזה יש לחלק בין הקדש לדבר אחר דהרי ע&quot;י ההקדש יוצא מרשות הבעלים אלא דמתחילה בא ליד ההקדש ע&quot;י יחידים וע&quot;ז שייך ביטול כיון דא&quot;צ לבטל שם הבעלים מעכשיו ואינו בגדר ממון של המועט שיהיה של מרובה שכתב ברש&quot;י שעכשיו אינו של המועט ג&quot;כ בלא&quot;ה אחרי שנסתלק ממנו ע&quot;י ההקדש. אלא במס׳ הוריות ו׳ מקרי שמתו בעלים נראה דהוי שם בעלים תמיד עליו עיי&quot;ש:<br><strong> ויש</strong> לעיין בהאי דימסרנו לציבור אם צריך המסירה לציבור קודם ההקדש דלאחר ההקדש הוי כשאינו ברשותו גם יש לעיין אם כמו בכל דבר שמזכה לאחרים שלא בפניו דצריך זכוי ע&quot;י האחר ונראה דהגזבר זוכה עבור כל הציבור והנה א&quot;כ הוי הזכוי לציבור אחר ההקדש כבר. ועי׳ במס׳ יומא ל&quot;ה ע&quot;ב בבגדי כהונה דנראה שא&quot;צ זכוי ע&quot;י אחר לציבור דהרי שם איתא מסרה לגזבר ונשארו לו ועי׳ בהל׳ כלי מקדש בפ&quot;ח ה&quot;ז וא&quot;כ י&quot;ל דקודם ההקדש צריך שימסרנו לציבור ומהני בינו לבין עצמו ויש לפרש לולא דברי רש&quot;י שמא לא ימסרנו יפה יפה שמא לאחר שבא להקדש ימסרנו לציבור. וגם י&quot;ל גם להסכים עם דברי רש&quot;י שכתב שנוח לו שיהיה משלו עיי&quot;ש. דמשו&quot;ה נאמר דמעיקרא רצה לזכות בו לעצמו עבור ההקדש ואף כי עתה ע&quot;י כי נאמר לו ימסרנו לציבור מ&quot;מ שמא היה דעתו מעקרא להקדיש משלו ובלתי מועיל מסירתו עכשיו ועי׳ במל&quot;מ שכתב דחיישינן שמא חפץ לזכותו וחיישינן שמא לא ימסרנו יפה עיי&quot;ש ולמ&quot;ש י&quot;ל דשמא לא ימסרנו הוי שמא חפץ לזכותו ולהקדישו וא&quot;כ לא מהני המסירה אחרי ההקדש וצ&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:12:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-4-12-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sheqel Dues 4:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכך היו עושין במותר הקטורת וכו׳.</strong> עי׳ במל&quot;מ ובמ&quot;ש לעיל ה&quot;ב ומ&quot;ש במל&quot;מ דאין אומרים לב בי&quot;ד וכו׳ אלא בהקדש ציבור עיי&quot;ש ועי׳ בתוס׳ מנחות ט&quot;ו ע&quot;ב בד&quot;ה אפשר ודף ע&quot;ט ע&quot;ב עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sheqel-dues-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-sheqel-dues.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-sheqel-dues.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

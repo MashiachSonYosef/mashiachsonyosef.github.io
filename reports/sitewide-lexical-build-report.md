@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-21T18:59:07.083Z
+Generated: 2026-05-22T03:11:46.558Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-21T18:59:07.083Z
 
 ## Counts
 
-- Total work-surface rows: 4643248
-- Total sitewide unique surface forms: 930654
-- Sitewide unique surface forms matched at least once: 97913
-- Sitewide unique surface forms unmatched everywhere: 832741
-- Total token occurrences: 35933730
-- Matched before prefix/suffix parser: 986860
-- Newly resolved by prefix/suffix parser: 175816
-- Total matched after parser: 1203475
-- Percent matched: 25.9%
-- Matched via Wikidata: 884404
-- Enriched via OpenScriptures: 989318
-- Unmatched: 3439773
+- Total work-surface rows: 4896504
+- Total sitewide unique surface forms: 938397
+- Sitewide unique surface forms matched at least once: 98066
+- Sitewide unique surface forms unmatched everywhere: 840331
+- Total token occurrences: 37172759
+- Matched before prefix/suffix parser: 1049813
+- Newly resolved by prefix/suffix parser: 183353
+- Total matched after parser: 1278919
+- Percent matched: 26.1%
+- Matched via Wikidata: 938209
+- Enriched via OpenScriptures: 1049032
+- Unmatched: 3617585
 
 ## Newly Resolved Parsed Forms
 
@@ -86,6 +86,7 @@ Generated: 2026-05-21T18:59:07.083Z
 - אאבא -- beit-yosef
 - אאבא -- drisha
 - אאבא -- sefer-yereim
+- אאבא -- shorshei-hayam-on-mishneh-torah-creditor-and-debtor
 - אאבד -- avot-derabbi-natan
 - אאבד -- ein-yaakov
 - אאבד -- imrei-binah
@@ -95,7 +96,6 @@ Generated: 2026-05-21T18:59:07.083Z
 - אאבוה -- beit-yosef
 - אַאֲבוּהָ -- ein-yaakov
 - אאבוהי -- yaarot-devash-i
-- אאבוי -- ohr-hachammah-on-zohar
 
 ## Top 50 Remaining Unmatched By Frequency
 

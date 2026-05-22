@@ -1,0 +1,1596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Sanctification of the New Month</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Sanctification of the New Month</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">38 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Tzafnat Pa&#39;neach on Mishneh Torah, Warsaw-Piotrk&#243;w, 1903-1908 | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>501 matched</strong> / 1390 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-1-2" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-2-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-5-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-8-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:8:1">1:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-1-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-5-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-8-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-8-2" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:8:2">2:8:2</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:9:1">2:9:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-3-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-7-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-12-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:12:1">3:12:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-15-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:15:1">3:15:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-18-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:18:1">3:18:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-19-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:19:1">3:19:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-2-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:2:1">4:2:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-3-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:3:1">4:3:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-5-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:5:1">4:5:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-10-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:10:1">4:10:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-13-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:13:1">4:13:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-14-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:14:1">4:14:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-16-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:16:1">4:16:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-17-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:17:1">4:17:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-1-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-1-2" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:1:2">5:1:2</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-10-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:10:1">5:10:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-11-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:11:1">5:11:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-13-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:13:1">5:13:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-3-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 6:3:1">6:3:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-5-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 6:5:1">6:5:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-10-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 6:10:1">6:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-9-4-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 9:4:1">9:4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 18</summary>
+                  <a class="toc-start" href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-18">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-18-8-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 18:8:1">18:8:1</a></li>
+                    <li><a class="toc-unit" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-18-9-1" title="Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 18:9:1">18:9:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Chapter 1</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:1:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כך אמרו חכמים כו׳ הראה הקב&quot;ה למשה כו׳.</strong> הנה רבינו ז&quot;ל כתב במראה הנבואה ועיין במכילתא ורש&quot;י מנחות דף כ&quot;ט ע&quot;ב ור&quot;ה דף כ&quot;ה ע&quot;א ד&quot;ה ואמאי ובירושלמי כאן והנה באמת כונת רש&quot;י ז&quot;ל כך דגבי עדות בכ&quot;מ תיכף בשעת הראיה נעשים עדים ואח&quot;כ כשהם באים לב&quot;ד הם אומרים העדות והארכתי בזה בהך דכריתות ד׳ י&quot;ב ע&quot;ב ובדברי רבינו ז&quot;ל בהלכות שבועות ובהל׳ עדות, נמצא דהעדים הם שני פעולות הראיה שלהם וההגדה בב&quot;ד וזהו הך מחלוקת דמכות דף ו׳ גבי קרוב או פסול ע&quot;ש וסנהדרין דף ט׳ וכ&quot;מ ויש בזה נ&quot;מ בין עדי קנס לעדי נפשות ואכמ&quot;ל, אך בעדות החודש הנה באמת הראיה הוא רק ראיה דמיונית דהא באמת אינו רואה את הלבנה וכן ההגדה בב&quot;ד הוא גדר מצוה ולא משום קדוש החודש דהא קיי&quot;ל אם קדשוהו בלא עדים או בעדים ונמצאו זוממים מקודש, ועיין כאן ד׳ כ׳ ע&quot;א דמצוה לקדש עפ&quot;י הראיה ולכך ס&quot;ל לר&quot;ש דף כ&quot;ב דקרובים כשר נמצא לפי&quot;ז כל ראיה והגדה שאינו עושה פעולה גבי קה&quot;ח הוה כמו שלא ראה כלום ולא הגיד כלום וזהו כוונת הירושלמי פ&quot;א דהוריות הובא בתוס׳ דף ד׳ ע&quot;ב דכל מי שאינו ראוי להוראה נעשה כאבן ר&quot;ל דאינו בגדר הדבר כלל ועיין במה דפליגי רבינו והראב&quot;ד ז&quot;ל בהל׳ סנהדרין פי&quot;א ה׳ ז׳ ח׳ ובהל׳ עדות פי&quot;ב ה&quot;ב ע&quot;ש וכן נ&quot;ל דגבי גיטין וקדושין לא שייך נמצא אחד מהם קרוב או פסול עדותן בטלה משום דקדושין וגט העדות הם עושין הפעולה ובלא עדים הוה כמו שלא נעשה כלל וכן עדים פסולים וא&quot;כ הוה עדים פסולים כמו שלא ראו כלל והוה כאבן ואכמ&quot;ל, א&quot;כ כך גבי עדות החודש באמת הא לא ראו הלבנה האמיתית רק שהתורה אמרה שאם יראו כך וכך אז יאמרו בב&quot;ד ויוכלו ב&quot;ד לקדשו וא&quot;כ ע&quot;כ היה צריך לראות למשה רבינו את הלבנה כמו שנדמה לנו וזה ע&quot;כ היה במראה הנבואה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:1:2</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-1-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והשנים שאנו מחשבין כו׳.</strong> עיין חולין ד׳ ס׳ ע&quot;ב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:2:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-2-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאי אפשר להיות כו׳.</strong> עיין נזיר דף ז׳ ע&quot;א ומגילה דף ה׳ ע&quot;א אין מונין ימים לשנים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:5:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-5-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין ראית הירח כו׳.</strong> עיין ב&quot;ב דף קכ&quot;א ועי׳ ברכות דף מ&quot;ט ע&quot;א ופסחים דף קי&quot;ז ע&quot;ב וביצה דף י&quot;ז ע&quot;א ועיין מנחות דף ס&quot;ה ע&quot;ב יצא שבת בראשית:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:7:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע מה&quot;ת.</strong> עיין ר&quot;ה דף כ׳ ע&quot;א ודף כ&quot;א ע&quot;ב ועי׳ בירושלמי יומא פ&quot;ד שהביא ראיה מזה דדבר שאינו מעכב דוחה את השבת ע&quot;ש והטעם דזה הוה גדר דין וכמו שכתבתי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 1:8:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-1-8-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מחשבין וקובעין כו׳.</strong> עיין רש&quot;י קדושין דף ל&quot;ז ע&quot;ב דגם קדוש החודש המצוה לקדש ביהודה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Chapter 2</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:1:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-1-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אב ובנו שראו כו׳.</strong> הנה מדברי התוס׳ שם בע&quot;ב מוכח דיכולין לחלל את השבת ולילך אב ובנו. ובאמת עיין במש&quot;כ רבינו ז&quot;ל בהל׳ עדות פט&quot;ז ה&quot;ה דגבי ז׳ של עיבור השנה דכשר אפילו קרובים מ&quot;מ מבואר בהל׳ סנהדרין פי&quot;א ה&quot;ז דאב ובנו אין מונים להם אלא אחד וע&quot;ש בסנהדרין דף ל&quot;ו ע&quot;א ובתוס׳ שם פ&quot;ב דסנהדרין מבואר שם דדוקא שהם עומדים בחדא סברא אבל כשהם חולקים הרי הם כשנים ועיין בירושלמי בסנהדרין דהוה שם ספיקא אם חתן עם חמיו אם ג&quot;כ כן ע&quot;ש וה&quot;ה כאן לענין עדות החודש י&quot;ל דלא נתבטל אלא הם חשובים כעד אחד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:2:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונמצאו זוממים בעדות זו כו׳.</strong> עיי׳ לקמן סוף פ&quot;ג אך שם ר&quot;ל קודם שקדשו ועיין בירושלמי פ&quot;ב ה&quot;ח ופ&quot;ג ה&quot;א ובתוספתא כאן אך באמת נ&quot;מ בין היכא שעפ&quot;י חשבון הוצרך להיות כך כמו שהעדים אומרים דאז יכולים לקדשו בלא עדים רק דאי אפשר לומר לשון מקודש כמבואר בר&quot;ה דף כ׳ ע&quot;א וכמ&quot;ש רבינו ז&quot;ל לקמן פי&quot;ח ה&quot;ח ובאו עדים ואמרו מקודש אז אף אם הוזמו הוה מקודש ובין שעפ&quot;י חשבון א&quot;צ להיות כך. ובאמת הנה בגמ׳ שם ד׳ כ&quot;ה ע&quot;ב דאמר ראוהו ב&quot;ד וכתב בתוס׳ ב&quot;ד של כ&quot;ג ולמה כ&quot;ג אך באמת כך דהיכא שעפ&quot;י חשבון הוא כן די בב&quot;ד של ג׳ ע׳ סנהדרין דף י׳ ע&quot;ב חישוב לא קתני ע&quot;ש רק דצריך ראש ב&quot;ד כמבואר שם ד׳ כ&quot;ד ע&quot;א וע&quot;ש ד׳ ל&quot;א ע&quot;ב אבל היכא דעפ&quot;י חשבון אין הדבר כן אז צריך דוקא ב&quot;ד של כ&quot;ג וגם נשיא כמו בעיבור השנה דצריך נשיא דוקא אך זה ג&quot;כ אם אין עפ&quot;י חשבון תקופה רק מפני גליות ישראל וכדומה אבל אם מפני התקופה אז בדיעבד אף בלא נשיא הוה מעובר ועי׳ מש&quot;כ לקמן פ&quot;ד הל׳ י&quot;ו ע&quot;ש וגם קדוש החודש אם אין עפ&quot;י החשבון צריך ג&quot;כ ביהודה כמ&quot;ש רש&quot;י קדושין דל&quot;ו ע&quot;ב וגם מאי דקי&quot;ל אתם אפילו שוגגים כו׳ זה ג&quot;כ בב&quot;ד של כ&quot;ג וגם מופלא שבב&quot;ד שם כמו דמבואר בהוריות דף ד׳ ע&quot;ב ע&quot;ש ולכך ר&quot;י בר&quot;ה ד׳ כ&quot;ה לא הוה ס&quot;ל זה משום דהוא היה אב&quot;ד וכמבואר ב&quot;ק ד׳ ע&quot;ה ע&quot;א והוא לא הסכים עם ר&quot;ג ועי׳ בירושלמי דהוריות פ&quot;א גבי הוראת ב&quot;ד אם סלקו את היחיד אם הויא הוראה ע&quot;ש בבלי דף ג׳ ע&quot;ב ודף ז׳ ע&quot;א ברש&quot;י ד&quot;ה אי ובדברי רבינו שם בהלכות שגגות ועוד י&quot;ל דר&quot;י ס&quot;ל כך דנהי דאמרינן אתם זה רק היכא דכעת אין נ&quot;מ רק לענין ר&quot;ח אף דלאחר כך לפי החשבון יהיה נ&quot;מ לענין יו&quot;ט לא איכפת לן כיון שכבר הוחזק וכעין דמבואר בירושלמי פ&quot;ו דסוטה גבי עד אחד באשה שזינתה דנאמן ג&quot;כ ממילא להפסיד כתובתה אבל אם בא לכתחלה רק להפסיד כתובתה כגון שכבר העידה אשה מחמש נשים שזנתה אינו נאמן על כתובתה ועיין רש&quot;י יבמות ד׳ קי&quot;ז ע&quot;א גבי תנו לי כתובתי ועי׳ בירושלמי פ&quot;ח דנזיר ובהך דגיטין ד׳ ח׳ ע&quot;ב גבי פלגינן דיבוריה ע&quot;ש וא&quot;כ גבי ר&quot;ה דנ&quot;מ גם ליו&quot;ט תיכף ס&quot;ל לר&quot;י דלא שייך אתם וא&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:5:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-5-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר האחד ראיתיו כו׳.</strong> עמש&quot;כ רבינו ז&quot;ל בהל׳ עדות פ&quot;ב הלכה ג׳ אבל אם הכחיש את שניהם כו׳ אפילו בבדיקות עי׳ שבועות ד׳ מ&quot;ח ע&quot;א וכאן דלכאורה מבואר להיפך וצ&quot;ל דכאן מיירי שלא באו בבת אחת ועי׳ בסנהדרין ד׳ מ&quot;א ע&quot;ב כמאן כר&quot;ע ועי׳ במכות דף ו׳ וסנהדרין דף ס׳ ע&quot;א ע&quot;ש בתוס׳ דף ט׳ וכן ר&quot;ל הך דאמרינן בר&quot;ה ד׳ כ&quot;ג ע&quot;ב ושאר כל הזוגות דלא בעי דרישה וחקירה שם משום דהיו כיתות בפני עצמם ועיין בירושלמי שבועות פ&quot;ד ה&quot;ב גבי אמרה אינו ידוע דוקא בשני כיתות אבל בכת אחת עדות שבטלה מקצתה כו׳ וכן ר&quot;ל הך דר&quot;ה ד׳ כ&quot;א ע&quot;ב גבי הך דעיכבן ר&quot;ע משום דהיו זוגות בפ&quot;ע אבל הלכו בב&quot;א אז לא היה מעכבן וזהו דס&quot;ל בירושלמי שם ע&quot;ש, והך דשם ד׳ כ&quot;ב ע&quot;א גבי אב ובנו שאם יפסל אחד מהם כו׳ התם משום דהוה אב ובנו דשניהם לא חזו כלל לעדות ולכך אם נפסל אחד מהם לא בטלה כולה, אך י&quot;ל דכיון דבאמת זה לא הוה ראיה גמורה כמ&quot;ש דהוה רק דרך דמיון ואומדנא ובזה הולכין אחר רוב כמבואר ביומא ד׳ פ&quot;ג ע&quot;א ושבועות ד׳ מ&quot;ב ע&quot;א ותמורה ד׳ כ&quot;ז ע&quot;ב לא בטלה העדות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:6:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרו עדים ראינוהו כו׳.</strong> עי׳ במפרש ועיין בבעה&quot;מ הטעם כך דעדים לא מהימני רק בדבר הנוגע לעדות אבל בדבר שאין נוגע לעדות לא מקרו עדים וי&quot;ל דגם הם אומרים בדדמי וזהו מהו דאמרינן ביבמות ד׳ קט&quot;ו ע&quot;א גבי עד אחד דנאמן בעדות אשה אי משום דהוה מלתא דעבידא לגלויי דזה הוה גדר עדות ושם לא שייך בדדמי או דדייקא דזה לא הוה גדר עדות רק אומדנא בעלמא ע&quot;ש בדברי הרי&quot;ף ז&quot;ל דגבי אם נטבע במים שאין להם סוף אז לאחר שהוציאוהו והכירוהו אף בב׳ עדים שייך בדדמי דהטעם כיון דמה&quot;ת א&quot;צ לעדותן רק מדרבנן וזה לא הוה גדר עדות ושייך בדדמי ועי׳ במש&quot;כ הרמב&quot;ן ז&quot;ל במלחמות סוף פ&quot;י דסנהדרין גבי עדי גנבה וכעין דאמרינן בהך דשבועות דל&quot;ד ע&quot;ב ודמ&quot;א ע&quot;ב וכמו שפירש רבינו ז&quot;ל בהל׳ טוען פ&quot;ו ה&quot;ד דקאי אעדים הך מלתא דלא רמיא ע&quot;ש וה&quot;נ גבי הני ראיות דאין נ&quot;מ לדינא גבי עה&quot;ח לא הוי ראיות כלל וא&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:8:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-8-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ אחר שתתקיים ראש ב&quot;ד אומר כו׳.</strong> ולא אמרו ב&quot;ד, אך זה רק בזמן שהחודש שלפניו היה חסר אבל אם היה מלא אז אף אם לא היו עדים ע&quot;כ צריך לעשות אותו חסר רק דאי אפשר לומר מקודש כמ&quot;ש רבינו ז&quot;ל לקמן פי&quot;ח וזה מה דאמר בתוספתא פ&quot;ב שכבר קדשהו החודש שלפניו ע&quot;ש וזהו באמת מה דאמרינן בגמ׳ ד׳ כ&quot;ד ע&quot;א שכבר קדשוהו שמים ועיין סנהדרין * דף י׳ ע&quot;ב ע&quot;ש בתוס׳ בשם יש מפרשים והוא שיטת רש&quot;י ור&quot;ל כך דזה הוה כמו שכבר קדשוהו לענין דנ&quot;מ שמה שכתב רבינו לקמן ספ&quot;ג דיכולים לקדש למפרע ועי׳ בר&quot;ה דף כ׳ ע&quot;א גבי ונקדשיה למחר דר&quot;ל למפרע וכשיטת רבינו אך זה אם נימא דהוה ממילא מעובר כמו דאמרינן בסנהדרין דף י׳ ע&quot;ב אבל אם נאמר כמו דאמרינן שכבר קדשו שמים ר&quot;ל דהוה זה כמו שקידש לא כמו שלא אמר כלום שוב אי אפשר לקדשו למפרע וזהו מה דקאמר שם בגמ׳ הב&quot;ע דאיקלע יום ל&quot;א בשבת דמצוה לקדש עפ&quot;י הראיה והא קי&quot;ל דשלא בזמנו א&quot;צ לקדשו אך נ&quot;ל כך וכן הוא שיטת רש&quot;י ר&quot;ה דכ&quot;א גבי הך דלוי דזה דא&quot;צ לקדשו זהו רק בשאר חדשים אבל בניסן ותשרי צ&quot;ל מקודש ושוב אינם יכולים לחסרו למפרע ועובדא דלוי הוה באמת הלבנה נראה בזמנו אך לא באו עדים ועברו את החודש אך לא שמע מקודש א&quot;כ יכולין אח&quot;כ כשיבואו עדים לקדשו למפרע אבל אם אמר מקודש אז אין יכולים ולכך בשאר ירחי דאין אומרים מקודש אין מחללין את השבת משום דיכולים לקדשו למפרע כיון דאין אומרים מקודש בשלא בזמנו ובזה א&quot;ש דדף כ׳ וד׳ כ&quot;א אבל בזמן שיש קרבן אז מחללין משום תקנת קרבן ובזה יתבאר מאי דאמרינן בגמ׳ ד׳ כ&quot;ד ע&quot;א אמר אביי אף אנן כו׳ מעובר אין מקודש לא ר&quot;ל דאין יכול לקדשו למפרע דהוה כמו שכבר קדשו ודחי דר&quot;ל דיכול להניחו מעובר אם ירצה ולא הוה כמו מקודש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-8-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:8:2</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-8-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 2:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[<span class="source-small">השמטה</span><strong> על מה שהקשו התוס׳ בסנהדרין דף י׳ ע&quot;ב ד&quot;ה שכבר על יש מפרשים. אך </strong>באמת ר&quot;ל כך דקידש ב&quot;ד של מעלה ר&quot;ל היינו מולד הלבנה אך הלבנה אינה נולדה רק באמצע היום או הלילה וחצי היום הוא מחדש שעבר רק משום דאנן קי&quot;ל במגילה דף ה׳ ע&quot;א דאין מונין שעות לחדשים רק לזה צריך קידש ב&quot;ד ובלי ב&quot;ד א&quot;א לעשות מן החדש שעבר שיהא להבא. אך כשב&quot;ד מקדשין נתקדש למפרע כמבואר בירוש׳ ספ&quot;א דר&quot;ה אבל ביום ל&quot;א א&quot;צ ב&quot;ד ובזה יש לבאר דברי הפסקתא פט&quot;ו ע&quot;ש משום דאז עדיין לא היו ב&quot;ד סמוכין ע׳ במכילתא פ׳ בא פ׳ י&quot;א ויקרא משה כו׳ מלמד שעשאן ב&quot;ד ר&quot;ל שאז סמכן דדי בשמא ע׳ סנהדרין דף י&quot;ד ע&quot;ב ולא היה אפשר לקדש למפרע ואכמ&quot;ל: <span class="source-small">ע&quot;כ השמטה</span>]</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 2:9:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראוהו ב&quot;ד כו׳. אם עדיין לא יצא כוכב כו׳.</strong> עיין במפרש ועי׳ בירושלמי פ&quot;א דברכות ע&quot;ש והנה לפי המבואר בדברי רבינו ז&quot;ל בפיה&quot;מ דהא דלא מיקרי לילה רק עד צאת הכוכבים זה רק לענין דינא אבל לענין קה&quot;ח לענין חשבון מיקרי לילה לגבי לבנה ולענין קידוש הוה יום וזהו מה דאמר בירוש׳ כאן ספ&quot;ב משקיעת החמה אתה מונה ללבנה ע&quot;ש ועי׳ בהך דברכות דף ל׳ ע&quot;ב גבי אין ב&quot;ד מקדשין החודש אלא ביום ועי׳ בר&quot;ה דף ז׳ ע&quot;ב דאמר שם כי חשיב מידי דחייל מאורתא ע&quot;ש והרי אין מקדשין את החודש בלילה ולשיטת רבינו א&quot;ש דמיירי כה&quot;ג ועיין בירושלמי כאן ספ&quot;א דהלילה קדוש למפרע ועי׳ בהך דסנהדרין ד׳ י&quot;ב ע&quot;ב גבי הך מחלוקת דרבא ור&quot;נ אם בטל העיבור אם לא וכבר כתבתי בזה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Chapter 3</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:3:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-3-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומחלל מספק כו׳.</strong> עי׳ ערכין דף ז׳ ע&quot;א אך שם רק גבי פ&quot;נ ועי׳ במנחות ד׳ ס&quot;ד ע&quot;א גבי נמצא כחוש ופסחים ד׳ ס&quot;ט גבי הזאה דכיון דגברא לא חזי לא מחללינן וצ&quot;ל דכאן שאני דכבר כתבתי דזה לא הוה גדר עדות רק מצוה עליהם שילכו ויעידו ולכך מחללין אף מספק אף דכעת אין עדותו מועיל ועיין תוס׳ חולין דף י&quot;א ע&quot;א:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:7:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-7-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין עולין שם בלילה כו׳.</strong> הנה רבינו ז&quot;ל מפרש דלא כרש&quot;י בסנהדרין ד&quot;ע ע&quot;ב דעולין בלילה רק ר&quot;ל קודם נץ החמה וכן הוא בירושלמי פ&quot;ב דמגילה ואנן חמיא רבנן מקדמי לעיבורא ר&quot;ל דהיאך מקדימין קודם להנץ ואמר כדי לזרז במצות וכן הוא בירושלמי פ&quot;ב דשבת ועי׳ בירושלמי ר&quot;ה פ&quot;ד סה&quot;ד דאמר ר&quot;י כו׳ שיהיו נכנסין עד שהוא יום כדי שיתעבר תיכף כשיבוא הזמן משמע כפי׳ רש&quot;י וכן הוא בירושלמי דתענית פ&quot;ד ה&quot;ה וט&quot;ס שם ומפרש דהך פסוק דשאול קאי אסעודת עיבור החודש והשניה היתה סעודת ר&quot;ח ע&quot;ש וכדי שיאמרו בזמנו עיבורו ועי׳ סנהדרין דף י׳ ע&quot;ב לא לקדשו כו׳ ומכאן ראיה דאף שלא בזמנו א&quot;צ לקדשו זה רק לשון קידוש אבל מ&quot;מ צריך לומר שיהיה היום ר&quot;ח וזה יכול אף בלילה ובזה א&quot;ש מה דרצה לחלק בברכות דף ל׳ ע&quot;ב בין חודש חסר לחודש מלא ע&quot;ש ברש&quot;י ותוס׳ ועי׳ בתוספתא פרק ב׳ דר&quot;ה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:12:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-12-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 3:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש מקומות כו׳.</strong> עי׳ סוכה ד׳ מ&quot;ג ע&quot;א, ופסחים ד׳ נ&quot;א ע&quot;ב ועי׳ מש&quot;כ לעיל בהל׳ עירובין דגם יו&quot;ט של ר&quot;ה הוא רק משום שלא לחלוק במועדות וכמו עצרת ובאמת החשבון מיום ראשון אף לפי התקנה שלא יהא מקבלין אלא עד המנחה וזה ר&quot;ל הירוש׳ דר&quot;ה פ&quot;ד ה&quot;ח גבי שניא היא שמצות היום במוסף דיליף לה מקרא יום תרועה ועשיתם ר&quot;ל שהתרועה הזה הוה קידוש החודש, ועי׳ בתוספתא דלתקיעה אף אם באו מן המנחה ולמעלה היו תוקעין בו ביום ועי׳ בתענית דף ה׳ גבי יוהכ&quot;פ ותוס׳ פסחים ד׳ נ&quot;ד ע&quot;ב ע&quot;ש ובפסקי תוס׳ מנחות ד׳ ס&quot;ח ועי׳ מנחות דף מ׳ השתא חמץ בפסח ויוהכ&quot;פ כו׳ ע&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:15:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-15-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 3:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם עמדו ואם הוצרכו כו׳.</strong> ונ&quot;ל דזה רק כשהיה ב&quot;ד הגדול ובזה א&quot;ש מה דאמרינן בירושלמי תענית פ&quot;ד ה&quot;ח מה דהקשה גבי הך קרא באחד לחודש כו׳ ואמר שם קלקל חשבונות ע&quot;ש בהך דר&quot;י ור&quot;ל ומה דמקשה שם ר׳ מני ור&quot;ל כך דבאמת היו עדים שראו את הלבנה בזמנו רק שלא יכלו לבוא לב&quot;ד אז מפני המלחמה ועברו את החודש ואח&quot;כ כשחרב העיר באו עדים והעידו שראו את הלבנה בזמנה וקדשו החודש למפרע ונמצא שהחורבן היה בעשירי לפי החשבון שאחר הקדוש ובתשיעי לפי חשבון הראשון ולכך נאמר בפסוק באחד לחדש משום שאז נתקדש ונתקדש למפרע וזהו דאמר קלקל חשבונות ובזה י&quot;ל הך דתענית ד׳ כ&quot;ט הך דר&quot;י דקבעתיה בעשירי ועי׳ בירושלמי שם ובפ&quot;א דמגילה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:18:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-18-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 3:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יראה לי שאין וכו׳.</strong> עי׳ כאן דף כ׳ ועי׳ בירושלמי ריש פ&quot;ג דלא משמע כן ועי׳ בסנהדרין ד׳ מ&quot;א ע&quot;ב לא שנו אלא שלא עבר רובו של חודש כו׳ וע&quot;ש במה דפליגי רבינו עם רש&quot;י מה קרוי רובו אם כ&quot;א או י&quot;ז ור&quot;ל דאז מאיימין עליהם כדי שישאר העיבור ולא שייך טעות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-19-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 3:19:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-3-19-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 3:19:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל כו׳.</strong> אך באמת אין הפירוש כן בגמ׳ רק דשם מיירי דעפ&quot;י חשבון צריך לקדשו בזמנו רק דאז אי אפשר לומר מקודש כיון שאין עדים דלשון מקודש א&quot;א לומר רק אם יש עדים כמ&quot;ש ועי׳ לקמן פי&quot;ח לכך מאיימין ורק בניסן ותשרי משום דאין השלוחין יכולין לצאת עד שישמעו מפי ב&quot;ד מקודש לכך מאיימין כדי שיהיו יכולין לומר מקודש, אבל אם עפ&quot;י חשבון א&quot;צ שיראה הירח בזמנו אז אין מאיימין לכו&quot;ע:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Chapter 4</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:2:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-2-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועל סימן זה סומכין כו׳.</strong> עיין בהשגות ועי׳ גיטין דף ל&quot;א ע&quot;ב וע&quot;ז דף ג׳ ע&quot;ש אך באמת ס&quot;ל לרבינו כך דלכך ס&quot;ל לת&quot;ק דאין מעברין על התקופה בלבד משום דהנה בירוש׳ אמר בפ&quot;ק דסנהדרין דצריך שיהיה העומר קרב אף לאחר העיבור עכ&quot;פ בסוף ימי ניסן של תקופה. והנה למ&quot;ד בסנהדרין ד׳ י&quot;א ובערכין דף ט׳ דעיבור דוקא ל׳ יום וא&quot;כ אם יארע י&quot;ו של ניסן דלבנה בר&quot;ח ניסן דחמה ומחמת זה יתעבר השנה ל׳ יום וא&quot;כ יהיה י&quot;ו דניסן דלבנה בר&quot;ח אייר דחמה וא&quot;כ התקופה לא נתקנה בשביל זה ולכך ס&quot;ל לת&quot;ק דאין מעברין על התקופה לבדה אבל לרשב&quot;ג דס&quot;ל דיכולין לעבר כ&quot;ט יום וא&quot;כ יהיה י&quot;ו דניסן דלבנה בכ&quot;ט דניסן דחמה ושפיר יכולין לעבר בשביל תקופת ניסן ועי׳ מה שכתבו התוס׳ סנהדרין ד׳ י&quot;ג ע&quot;ב ד&quot;ה שמור ע&quot;ש ושם קאי לאחרים ואחרים לשיטתייהו בערכין דף ט׳ ע&quot;ב ע&quot;ש ומ&quot;ש התוס׳ שם תיפוק ליה משום תקופת תשרי לא קשה מידי דעל תקופת תשרי לחודא לכו&quot;ע אין מעברין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:3:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-3-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם ראו ב&quot;ד כו׳.</strong> הנה רבינו ז&quot;ל מפרש דלא כפירוש רש&quot;י דרש&quot;י ז&quot;ל פירוש דפירות האילן הוא בעצרת מחמת בזמן בכורים, ועי׳ בבכורות דף ח׳ דתאנה זמנה חמשים יום ועי׳ בירושלמי שביעית פ&quot;ה דתאנה מן פגה עד גמר בשולו יש שני פעמים נ׳. והנה גמר בישול של תאנה הוא חצי סיון כמבואר ב&quot;מ ד׳ ק&quot;ה ועי׳ תוס׳ ב&quot;ב ד׳ כ&quot;ח ע&quot;א אך מ&quot;מ בכורים יכולים להביא קודם שנגמרה לגמרי עי׳ תוס׳ ר&quot;ה ד׳ י&quot;ג ע&quot;א ע&quot;ש גבי עומר וה&quot;ה גבי בכורים דתרווייהו כתיב בהו לשון בכורים ועיין בירושלמי פ&quot;ד דשביעית דפגי תאנה חשובים פרי ועי׳ ביומא ד׳ פ&quot;ג ע&quot;ב רצתי למזרחה של תאנה ובזה א&quot;ש מה דאמרי הג׳ רועים בסנהדרין ד׳ י&quot;ח ע&quot;ב דחד אמר הבכיר ולקיש דהיינו אביב וחד אמר על תאנה דהיינו פירות האילן דכיון דהגמר צריך שיהיה בחצי סיון וא&quot;כ באדר צריך שיהיה פגין וזהו בטול תאנה ידמוך וא&quot;כ אמרו על אביב ועל פירות האילן ועי׳ בירושלמי סנהדרין פ&quot;א דאף דאמרו מב׳ טעמים מ&quot;מ כיון שמסכימים זה לזה מצטרפין, אך רבינו ז&quot;ל לא ס&quot;ל כן וס&quot;ל דפירות האילן ג&quot;כ בזמן האביב דהיינו בפסח והטעם משום דרבינו ז&quot;ל אזיל לשיטתיה בפ&quot;ז דהני טעמים של סעד לא מצטרפי לאביב כלל דלא כרש&quot;י ותוס׳ ע&quot;ש בה&quot;ח, והנה בסנהדרין ד׳ י&quot;א בהך ברייתא לא נקיט רק אביב לבד והני טעמי דסעד וא&quot;כ היאך עברוהו וע&quot;כ משום דבאביב יש גם פירות האילן אך באמת עיין בתוספתא דסנהדרין פ&quot;ב ובירושלמי פ&quot;א דבהך דרשב&quot;ג לא חשיב אף אביב רק הני דסעד ובאמת נ&quot;ל דזהו דאמר בגמ׳ דלמא בתר דעברוהו ר&quot;ל דקשיא ליה הא אין מעברין על אלו ותירץ דזה רק לכתחלה אבל בדיעבד מעוברת וא&quot;ש. עוד י&quot;ל דהנה לקמן הלכה י׳ וכן בגמ׳ שם ד׳ י&quot;א ועי׳ במסכת עדיות פ&quot;ז מ&quot;ז דעיברו את השנה על תנאי לכשירצה כו׳ וזהו דאמר דלבתר דעברוהו הב&quot;ד רק דע&quot;כ צריך שיסכים ובהסכמתו סגי אף הני דרק סעד וזהו דקאמר הל׳ ושפרית מילתא באנפיי ר&quot;ל שהוא מסכים למה שעשו הב&quot;ד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:5:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-5-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד עושין אותה כו׳.</strong> הנה לפי שיטת רבינו מה צריך לזה עי׳ בתוס׳ שם ונ&quot;ל כך דהנה רבינו ס&quot;ל פרק ו׳ מהל׳ סנהדרין ה&quot;ה דאין נמנים ב׳ רק אם אומרים מחמת ב׳ טעמים גבי ד&quot;נ והנה לענין זה גם בעיבור כן דהא משוה גם לענין האב ובנו והרב ותלמידו לד&quot;נ ולא כד&quot;מ לפי גירסתו שם פי&quot;א ה&quot;ז ועיין בירושלמי פ&quot;א דסנהדרין ופ&quot;א דהוריות גבי הנך ג׳ רועי בקר שם ד׳ י&quot;ח ע&quot;ב וא&quot;כ הנך הוה סעד לענין הטעמים ויחשבו בשנים ולכך לבד הנך שעליהם סומכים יש ז׳ טעמים לעבר ולמה חשיב כך משום דבעי ז׳ אנשים לכתחלה כנ&quot;ל בזה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:10:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-10-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והוא שיהא הנשיא עמהן או שירצה וכו׳.</strong> ר&quot;ל כמו אם עברוהו על תנאי ועי׳ בעדיות פרק ז׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:13:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-13-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא אחר ראש השנה הוא שאומר וכו׳.</strong> ונ&quot;ל דזהו דאמר שנים אתה מקדש ואין אתה מקדש חדשים כמבואר בר&quot;ה דף ח׳ ע&quot;ב ור&quot;ל דקאי על עיבור השנה דמבואר בירושלמי פ&quot;ב דר&quot;ה ופ&quot;א דסנהדרין דצריך לומר הרי השנה הזאת מקודשת בעיבורה ע&quot;ש ועי׳ בתוס׳ סנהדרין דף י׳ ע&quot;ב ד&quot;ה איידי ולכך אמרינן בסנהדרין ד׳ י&quot;ב דאין מעברין לפני ר&quot;ה משום דצריך לומר שנה זו ולפני ר&quot;ה לא שייך לומר שנה זו וכמ&quot;ש רבינו כאן וזהו ג&quot;כ מה דאמרינן בגמ׳ אין מעברין משנה לחברתה ולפי׳ השני של רש&quot;י י&quot;ל דמיירי שהשנה שלאחריה הויא שביעית ואין מעברין וא&quot;ש בזה מ&quot;ש התוס׳ ועי׳ מש&quot;כ רבינו ז&quot;ל לקמן בהל׳ י&quot;ו דאם השנה צריכה לעבר מפני התקופה אז מעברין אף בשביעית ועי׳ בירושלמי פ&quot;ה דפאה ה&quot;א עכשיו שאין השנים כסדרן כו׳ וכן הוא בירושלמי שקלים פ&quot;א ובאמת י&quot;ל דבזה אין צריך הנשיא ג&quot;כ כיון דעפ&quot;י החשבון צריך להתעבר ובפרט לפי שיטת רבינו דפסק דעל התקופה לבד מעברין ועי׳ רש&quot;י סנהדרין ד׳ י&quot;א ע&quot;ב בהך דעל התקופה מעברין משום דהוא מה&quot;ת וע&quot;ש בתוס׳ אך באמת הטעם משום דהתקופה שוה בכל הארצות ועי׳ במה דפליגי בירושלמי תענית פ&quot;א בהך פלוגתא דר׳ ורשב&quot;ג ה&quot;ג, אם השנה הולכת אחר סדרה ושם בסוף פ׳ גבי ובלבד ניסן של תקופה ע&quot;ש וזהו מה דר&quot;ל הגמרא בסנהדרין ד׳ י&quot;ח ע&quot;ב שתא בתר ירחי אזיל ר&quot;ל דלא כרש&quot;י רק אם העיבור הוה התיקון על שנה שעברה או על להבא ובזה א&quot;ש מה דאמר שם דכה&quot;ג לא מסכים בעיבור ועי׳ בהך דב&quot;מ ד׳ ק&quot;ו ע&quot;ב אימת מתחיל קור במרחשון או בתשרי ועי׳ בב&quot;ב ד׳ קכ&quot;א גבי ט&quot;ו באב דתשש כחה של חמה וזה ג&quot;כ מחלוקת בב&quot;מ שם אך זה בחודש של תקופה ולא בחודש של לבנה ועי׳ בר&quot;ה ד׳ ט&quot;ו ע&quot;א דבעי שם אם שבט של תקופה או של לבנה ובזה א&quot;ש מ&quot;ש הרמ&quot;ה ז&quot;ל בהלכה י&quot;ו כאן ומה דאמר בגמ׳ דר&quot;ה דף כ׳ ע&quot;א כשם שמעברין את השנה לצורך זה ר&quot;ל מפני צורך הגליות וכדומה ובזה צריך דוקא נשיא והנה עי׳ בירושלמי פ&quot;א דסנהדרין וכן פסק רבינו ז&quot;ל לעיל בהלכה י׳ דעיבור השנה מתחילין מן הצד והנה בתוספות דסנהדרין פ&quot;ז מבואר דגם בזה מתחילין מן הגדול ולכאורה זה תליא אם גם בעיבור השנה שייך לומר אתם אפילו שוגגים דאז אין לנו לחוש משום לא תענה על רב, ועי׳ סנהדרין ד׳ י&quot;ב בהך מחלוקת דאם עברוהו אם הוה מעוברת ותוס׳ ר&quot;ה ד׳ כ&quot;א ע&quot;א אך בתו&quot;כ מבואר דאף בעיבור השנה שייך אתם אפילו שוגגים אתם אפילו מזידים ע&quot;ש ועיין מש&quot;כ רבינו לעיל בהלכה ו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:14:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-14-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם עברוהו כו׳ באו עדים כו׳.</strong> ורבינו ז&quot;ל מפרש כך מה דאמרינן בגמ׳ אין מקדשין ר&quot;ל רק מעברין דלא כרש&quot;י שם. והך דרבא ור&quot;נ תליא במה דמבואר בירוש׳ ספ&quot;ק דר&quot;ה אם אמרינן קדוש למפרע ע&quot;ש ועי׳ תוס׳ סנהדרין ד׳ פ&quot;ז ע&quot;א ד&quot;ה דאי מ&quot;ש שם אך באמת זה רק אם העיבור הוה עפ&quot;י דין אבל אם רק משום תקנת הדרכים וכדומה י&quot;ל דזה רק אם עברוהו כדת אז הוה עיבורם עיבור אבל אם עיברו לאחר הפורים לא הוה עיבור וכעין מ&quot;ש רבינו ז&quot;ל כאן בהל׳ י&quot;ו, ועי׳ בהך דיבמות ד׳ צ&quot;ב ע&quot;א גבי הורוהו ב&quot;ד לינשא והלכה וקלקלה ובירושלמי פ&quot;א דשקלים גבי אין מעברין שנה בשביעית ע&quot;ש ועי׳ ב&quot;מ ד׳ צ&quot;ו ע&quot;ב גבי הך דאמר שם נמעלו ב&quot;ד איסורו כו׳ ועמ&quot;ש רבינו ז&quot;ל בהל׳ זכיה ומתנה פ&quot;ט ה&quot;י גבי ש&quot;מ שצוה ליתן לגוי כו׳ וכ&quot;מ בזה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:16:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-16-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יראה לי כו׳.</strong> ובזה א&quot;ש מ&quot;ש התוס׳ בסנהדרין ד׳ כ&quot;ו ע&quot;א וד׳ י&quot;א ע&quot;ב ע&quot;ש בד&quot;ה אין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 4:17:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-4-17-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 4:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשמעברין ב&quot;ד את כו׳.</strong> עיין מנחות דף מ׳ השתא חמץ בפסח ע&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-5">Chapter 5</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:1:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-1-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל שאמרנו מקביעות כו׳.</strong> וזהו הנקרא סוד העיבור עי׳ שבת ד׳ ע&quot;ה וחגיגה ד׳ י&quot;ד וכתובות ד׳ קי&quot;א וקי&quot;ב דאמר שם שתחלה סמכו אותו ואח&quot;כ העלו אותו לעיבור ועיין בירושלמי פ&quot;א דסנהדרין דאמר שם חברים מהו שיכנסו כו׳ ר&quot;ל בלא סמיכה ועי׳ סנהדרין ד׳ פ&quot;ז ע&quot;א ברש&quot;י ד&quot;ה ממך, ושם דף ק&quot;י ע&quot;א וזה הוא החשבון שבידינו ולזה א&quot;צ ב&quot;ד הגדול ועי׳ ד׳ כ&quot;ו וי&quot;ב וזה לא בעי שיקדש ב&quot;ד ולומר מקודש רק שיחשבו עיין בסנהדרין דף י&quot;ב ע&quot;ב ברש&quot;י ד&quot;ה אין מקדשין אך בזמן סנהדרין נ&quot;ל כך דבשאר חדשים אם גם על פי חשבון צריך שיהיה כך אז אצ&quot;ל מקודש לענין שיעכב אבל בניסן ותשרי מעכב ונ&quot;ל דגם הא דאמר דשלא בזמנו א&quot;צ לקדש זה רק בשאר ירחי אבל לא בניסן ותשרי ובזה א&quot;ש הך דף כ׳ ע&quot;א וד׳ כ&quot;א ע&quot;ב ע&quot;ש בתוס׳ ובפ&quot;ה, ועי׳ בירושלמי פ&quot;ב בהל׳ א׳ גבי הך דאמר שם ר&quot;ז בעי קומי ר&quot;א אילן דחמיין צפת ע&quot;ש אך לפי הטעם שאמר כאן בתוספתא שכבר קדשו החודש שלפניו אז גם כאן מהני אך זה רק אם חסר אבל אם היה מעובר אין יוצאין עליו וכבר כתבתי בזה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:1:2</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-1-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 5:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או ב&quot;ד הסמוכים כו׳.</strong> עי׳ מש&quot;כ רבינו ז&quot;ל בס׳ המצות מ&quot;ע קנ&quot;ג ע&quot;ש וברמב&quot;ן אך רבינו ז&quot;ל שם ר&quot;ל כגון אם עברו אותו או קדשו שלא כדין דאתם אפילו שוגגין זה רק בב&quot;ד הגדול או בשלוחים מב&quot;ד הגדול אבל בלא זה די בסמוכים בלבד ועיין בתוס׳ ר&quot;ה ד׳ כ&quot;ה ע&quot;ב ד&quot;ה עד ע&quot;ש מ&quot;ש אך באמת שם ר&quot;ל כך דלמה נקט במשנה יושיבו מחבריהם אצל היחיד דמשמע רק שיהיו כולם סמוכים ואמאי לא סגי באחד מומחה והשנים אינם מומחים כמ&quot;ש רבינו ז&quot;ל בהל׳ סנהדרין פ&quot;ד ה&quot;א וה&quot;ג דגבי סמיכה די רק באחד סמוך ולכך קאמר כאן דצריך שיהו כולם סמוכים כמו משה ואהרן וא&quot;ש ועי׳ בסנהדרין דף ח׳ ע&quot;א גבי קנסות ע&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:10:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-10-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 5:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו היה הדבר כו׳.</strong> עי׳ בירוש׳ ספ&quot;ג דערובין דר&quot;א צוה ליטול לולב בשבת באלכסנדריא ובזה א&quot;ש ועי׳ כתובות ד׳ כ&quot;ה ע&quot;א דשם הוה ב&quot;ד קבוע ועי׳ ירושלמי ר&quot;ה פרק ב׳ דהשלוחים היו מהלכים עד נימורין וכתובות פ&quot;ב בירושלמי בהל׳ ח׳ ועי׳ בירושלמי שביעית פ&quot;ט ע&quot;ש בהל׳ ב׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:11:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-11-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 5:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רבינו חשב מן כיבוש שני יבנה ונוב.</strong> ועי׳ בירושל׳ פ&quot;ב דדמאי ה&quot;א מוכח דנוב הוה מכיבוש ראשון ועי׳ בתוספתא פ&quot;ב דערכין דאמר שם ר&quot;י אומר חילת יבנה ומה הוסיף בזה על ת&quot;ק רק נ&quot;ל דקמ&quot;ל דאף דקי&quot;ל ערכין ד׳ כ&quot;ט ע&quot;א דאין שדה אחוזה נוהגת אלא בא&quot;י ובזמן שהיובל נוהג קמ&quot;ל דאף באותן דנתקדשו מכיבוש ראשון ולא מכיבוש שני מ&quot;מ נוהג בהם דין שדה אחוזה וע&quot;ש ד׳ י&quot;ד ע&quot;א בתוס׳ ד&quot;ה ובנכרי דכתבו משום דמצוה זו אינה נוהגת אלא בארץ ועכו&quot;ם אין להם חלק בארץ משמע דאם היה להם חלק בארץ הוה שייך בהם דין שדה אחוזה ואמאי אדרבא כיון דיש להם קנין פקע הקדושה ובזה א&quot;ש דזה לא גרע מן כיבוש ראשון דאף דכעת פקע הקדושה מ&quot;מ מתחלה הוה בקדושת א&quot;י ועיין בתוספתא פ&quot;א דקדושין דאמר שם דשדה אחוזה נוהגת בין בארץ בין בחו&quot;ל ובזה א&quot;ש ועי׳ בערכין ד׳ כ&quot;ט דקרקע של א&quot;י כמטלטלי דמי ועי׳ תוס׳ ע&quot;ז ד׳ כ&quot;א ע&quot;א דאין קנין לישראל בחו&quot;ל ע&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 5:13:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-5-13-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 5:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה שאנו מחשבין כו׳.</strong> עי׳ במפרש מש&quot;כ בשם רבינו בס׳ המצות שאם ח&quot;ו יאבדו בני ישראל מא&quot;י כו׳ ובאמת היכן מצינו זה שיהיו לעולם ישראלים בא&quot;י משום דהא מבואר ב&quot;ב ד׳ קט&quot;ו ע&quot;ב גמירי דלא כלו שיבטא ועי׳ בתוס&quot;י יומא דף נ׳ ע&quot;ש ועי׳ בהוריות דף ו׳ ע&quot;ב דהא דאפרים ומנשה נחשבים לשני שבטים זה רק בא&quot;י לנחלה ע&quot;ש וא&quot;כ אם לא יהיה שום ישראל בא&quot;י שוב לא יהיה נ&quot;מ כלל ויהיה שבט אחד ונמצא דכלה שיבטא ועי׳ ב&quot;ב ד׳ קכ&quot;ב ע&quot;א דלעתיד לבא יהיה שבט אחד וסוטה דף ט׳ ע&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-6">Chapter 6</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 6:3:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-3-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 6:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתחלת לילו כו׳.</strong> ר&quot;ל תיכף משקיעת החמה ועמ&quot;ש לעיל פרק ב׳ הלכה ט׳ ע&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 6:5:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-5-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 6:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן כשתשליך כו׳.</strong> עי׳ ערכין דף ט׳ ור&quot;ה דף כ׳ ע&quot;א בתוס׳ וסוכה ד׳ נ&quot;ד ע&quot;ב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 6:10:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-6-10-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 6:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חוץ משעה אחת כו׳.</strong> עי׳ תוס׳ שבועות דף י׳ ע&quot;ב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-9">Chapter 9</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-9-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 9:4:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-9-4-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 9:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תקופת ניסן כו׳.</strong> עי׳ עירובין דף נ&quot;ו ע&quot;א:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-18">Chapter 18</h4>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-18-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 18:8:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-18-8-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 18:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין מקדשין אלא על הראיה כו׳.</strong> עי׳ ר&quot;ה ד&quot;כ דבעינן לקדשו עפ&quot;י הראיה ודכ&quot;ד ע&quot;א וכבר כתבתי בזה לעיל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-18">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-18-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sanctification of the New Month 18:9:1</h4></div>
+              <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-18-9-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sanctification of the New Month 18:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומתכוונין כו׳ לא שיראה כו׳.</strong> עי׳ לעיל פ&quot;ה ה&quot;ב שכתב שיהיה ר&quot;ח לאחר הראיה הוה פלא וזהו ר&quot;ל מה דאמרינן בגמ׳ דר&quot;ה דף כ׳ ע&quot;ב כל ספיקא לקמיה שדינן ר&quot;ל דהוה ידע בחשבון רק שמא עפ&quot;י הראיה נשתנה ואמר דלזה לא חיישינן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month-text-18">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month.manifest.json","occurrence_url":"../../data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-sanctification-of-the-new-month.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

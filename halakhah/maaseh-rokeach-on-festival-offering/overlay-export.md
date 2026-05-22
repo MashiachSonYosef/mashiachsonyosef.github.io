@@ -1,0 +1,33 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:1:1 | maaseh-rokeach-on-festival-offering-1-1-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:1:2 | maaseh-rokeach-on-festival-offering-1-1-2 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:1:3 | maaseh-rokeach-on-festival-offering-1-1-3 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:1:4 | maaseh-rokeach-on-festival-offering-1-1-4 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:3:1 | maaseh-rokeach-on-festival-offering-1-3-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:3:2 | maaseh-rokeach-on-festival-offering-1-3-2 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:4:1 | maaseh-rokeach-on-festival-offering-1-4-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:4:2 | maaseh-rokeach-on-festival-offering-1-4-2 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:8:1 | maaseh-rokeach-on-festival-offering-1-8-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:9:1 | maaseh-rokeach-on-festival-offering-1-9-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 1:10:1 | maaseh-rokeach-on-festival-offering-1-10-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:1:1 | maaseh-rokeach-on-festival-offering-2-1-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:1:2 | maaseh-rokeach-on-festival-offering-2-1-2 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:1:3 | maaseh-rokeach-on-festival-offering-2-1-3 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:1:4 | maaseh-rokeach-on-festival-offering-2-1-4 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:3:1 | maaseh-rokeach-on-festival-offering-2-3-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:4:1 | maaseh-rokeach-on-festival-offering-2-4-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:6:1 | maaseh-rokeach-on-festival-offering-2-6-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:7:1 | maaseh-rokeach-on-festival-offering-2-7-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:10:1 | maaseh-rokeach-on-festival-offering-2-10-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:10:2 | maaseh-rokeach-on-festival-offering-2-10-2 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:13:1 | maaseh-rokeach-on-festival-offering-2-13-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 2:14:1 | maaseh-rokeach-on-festival-offering-2-14-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:1:1 | maaseh-rokeach-on-festival-offering-3-1-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:2:1 | maaseh-rokeach-on-festival-offering-3-2-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:4:1 | maaseh-rokeach-on-festival-offering-3-4-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:5:1 | maaseh-rokeach-on-festival-offering-3-5-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:6:1 | maaseh-rokeach-on-festival-offering-3-6-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:6:2 | maaseh-rokeach-on-festival-offering-3-6-2 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:7:1 | maaseh-rokeach-on-festival-offering-3-7-1 |  |  | not_done |  |
+| maaseh-rokeach-on-festival-offering | Maaseh Rokeach on Festival Offering | Maaseh Rokeach on Festival Offering 3:7:2 | maaseh-rokeach-on-festival-offering-3-7-2 |  |  | not_done |  |

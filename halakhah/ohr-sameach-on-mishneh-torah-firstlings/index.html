@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ohr Sameach on Mishneh Torah, Firstlings</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Ohr Sameach on Mishneh Torah, Firstlings</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Firstlings</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Firstlings</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">31 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>726 matched</strong> / 2429 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/ohr-sameach-on-mishneh-torah-firstlings.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Ohr Sameach on Mishneh Torah, Firstlings <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Ohr Sameach on Mishneh Torah, Firstlings <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-1-1-1" title="Ohr Sameach on Mishneh Torah, Firstlings 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-1-1-2" title="Ohr Sameach on Mishneh Torah, Firstlings 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-1-6-1" title="Ohr Sameach on Mishneh Torah, Firstlings 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-1-13-1" title="Ohr Sameach on Mishneh Torah, Firstlings 1:13:1">1:13:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-1-15-1" title="Ohr Sameach on Mishneh Torah, Firstlings 1:15:1">1:15:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-1-19-1" title="Ohr Sameach on Mishneh Torah, Firstlings 1:19:1">1:19:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-2-4-1" title="Ohr Sameach on Mishneh Torah, Firstlings 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-2-7-1" title="Ohr Sameach on Mishneh Torah, Firstlings 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-2-13-1" title="Ohr Sameach on Mishneh Torah, Firstlings 2:13:1">2:13:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-3-5-1" title="Ohr Sameach on Mishneh Torah, Firstlings 3:5:1">3:5:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-4-13-1" title="Ohr Sameach on Mishneh Torah, Firstlings 4:13:1">4:13:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-4-13-2" title="Ohr Sameach on Mishneh Torah, Firstlings 4:13:2">4:13:2</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-4-14-1" title="Ohr Sameach on Mishneh Torah, Firstlings 4:14:1">4:14:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-4-17-1" title="Ohr Sameach on Mishneh Torah, Firstlings 4:17:1">4:17:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-5-3-1" title="Ohr Sameach on Mishneh Torah, Firstlings 5:3:1">5:3:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-5-3-2" title="Ohr Sameach on Mishneh Torah, Firstlings 5:3:2">5:3:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-2-1" title="Ohr Sameach on Mishneh Torah, Firstlings 6:2:1">6:2:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-3-1" title="Ohr Sameach on Mishneh Torah, Firstlings 6:3:1">6:3:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-5-1" title="Ohr Sameach on Mishneh Torah, Firstlings 6:5:1">6:5:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-5-2" title="Ohr Sameach on Mishneh Torah, Firstlings 6:5:2">6:5:2</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-8-1" title="Ohr Sameach on Mishneh Torah, Firstlings 6:8:1">6:8:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-9-1" title="Ohr Sameach on Mishneh Torah, Firstlings 6:9:1">6:9:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-10-1" title="Ohr Sameach on Mishneh Torah, Firstlings 6:10:1">6:10:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-10-2" title="Ohr Sameach on Mishneh Torah, Firstlings 6:10:2">6:10:2</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-6-11-1" title="Ohr Sameach on Mishneh Torah, Firstlings 6:11:1">6:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-7-5-1" title="Ohr Sameach on Mishneh Torah, Firstlings 7:5:1">7:5:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-7-6-1" title="Ohr Sameach on Mishneh Torah, Firstlings 7:6:1">7:6:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-8-1-1" title="Ohr Sameach on Mishneh Torah, Firstlings 8:1:1">8:1:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-8-2-1" title="Ohr Sameach on Mishneh Torah, Firstlings 8:2:1">8:2:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-8-8-1" title="Ohr Sameach on Mishneh Torah, Firstlings 8:8:1">8:8:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-firstlings-8-12-1" title="Ohr Sameach on Mishneh Torah, Firstlings 8:12:1">8:12:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Chapter 1</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:1:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע להפריש כל פטר רחם כו׳ (והעברת כל פטר רחם).</strong><br><strong> נ&quot;ב </strong> במכילתא אין העברה אלא הפרשה וכן הוא אומר והעברתם נחלתו לבתו, פירוש דכן כאן בבכור יוצא מרשות בעלים לרשות כהן ולכך אצל כהן עצמו כתיב תקדיש לד׳ כי אינו יוצא לרשות אחר רק הכהן הבעלים מקריבו ואוכלו בעצמו וכמו שסיים לפני ד׳ כו׳ תאכלנו ועיין לקמן הלכה ו׳, ולכן כתוב קדש לי כל בכור משום שבמצרים לא נתקדשו הכהנים לכן כתיב קדש ולמשנתינו היה כן עד שהוקם המשכן רק בוהיה כי יביאך כתוב והעברת לשון הפרשה ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-1-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:1:2</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-1-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין שהיו שלימים בין שהיו טריפות.</strong><br><strong> נ&quot;ב </strong> חולין (דף קל&quot;ו) ולילוף צאן צאן מבכור מה בכור אפילו טריפה כו׳ ומנחות (דף ו׳) מה ליוצא דופן שכן אינו קדוש בבכורה ועיין רש&quot;י שם, ומזבחים פרק טבו&quot;י אין ראיה דאימור אחר כך נטרף. ואם האם טריפה מפורש בירושלמי פרק אין צדין ה&quot;ד עגל בכור שנולד מן הטריפה, ובכור אדם אם נטרף קודם ל׳ יום פטור מפדיון ורבינו כייליה משום דשני ראשין חייב עיין סוף הקומץ רבה אע&quot;ג דטריפה הוי ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:6:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-6-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואע&quot;פ שבכור לכהן כו׳ ואוכל שאר הבשר כו׳ שנאמר כל הבכור אשר יולד.</strong><br><strong> נ&quot;ב </strong> וסיפא דקרא לפני ה&quot;א תאכלנו כו׳ ומי אוכלו הכהן עיין רש&quot;י וראב&quot;ע, וא&quot;כ הא מיירי קרא בכהן שהנולד בעדרו מצוה להקדישו ולהקריבו ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-1-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:13:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-13-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבר ואיחר הבכור לאחר שנתו אע&quot;פ שהוא עובר בל&quot;ת כו׳.</strong><br><strong> גמרא </strong> ערוכה אחד בכור ואחד כל הקדשים כיון שעברו עליהם שנה בלא רגלים כו׳ עובר בבל תאחר. וברור דלא מחייב על שנה בלא תאחר רק בקדשי מזבח דבקרא כתיב כל הבכור ומרבה בספרי כל הקדשים מקרא דבקרך וצאנך הזכר תקדיש כו׳ שכל שמקדיש לד׳ הוא בזמן דשנה בשנה תאכלנו יעו&quot;ש, ושם כתוב לא תעבוד בבכור שורך ולא תגוז בכור צאנך כו׳ ומרבה מקרא זה דבקרך וצאנך תקדיש כל הקדשים לאיסור גיזה ועבודה ושם מפיק קדשי בדה&quot;ב דאינן אסורין בגיזה ועבודה דמה בכור \שהוא קדשי מזבח יעוין בספרי, וכן אמרו בר&quot;פ ראשית הגז ובכ&quot;מ דקדשי בדה&quot;ב אינן אסורין בגיזה ועבודה רק מדרבנן, כן לענין זמן דבשנה יעברו בבל תאחר אינו רק בקדשי מזבח לא בקדשי בדק הבית. ובזה א&quot;ש השמועה בשלמא רגלים בלא שנה כו׳ אלא שנה בלא רגלים כו׳ הניחא למ&quot;ד כו׳ כסדרן משכחת לה כו׳ ואם כן הך דאמר ר&quot;ש פעמים חמשה כיצד נדר לפני עצרת חמשה פירושו בקדשי בדק הבית דשם אינו עובר בשנה בלא רגלים ודוק, ורש&quot;י והרז&quot;ה נדחקו בזה. שוב אחרי כותבי מצאתי קצת מזה בטורי אבן יעו&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-1-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:15:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-15-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהבכור נותנו לכל כהן שירצה.</strong><br><strong> פירוש </strong> ולא לכהני משמר שאינו מתחלק למשמר רק לכל כהן שירצה להקריבו וכן פרש&quot;י זבחים (דף ק&quot;ב) ד&quot;ה את דמם תזרוק. ועיין פ&quot;ו מהלכות ערכין הי&quot;ד כמה אדם רוצה ליתן בבכור זה כו׳ כדי כו׳ ליתנו לכל כהן שירצה, ועיין פ&quot;א מבכורים ה&quot;י החמש שבירושלים כו׳ והבכור מקריבין חלבו ודמו. וקראי דנחמיה ק׳ יו&quot;ד. ולהביא בכורות בקר וצאן כו׳ לכהנים ובסוף הספר ואעמידה משמרות כו׳ לעצים ולבכורים ולא חשיב בכור בקר וצאן, רואין אנו שאינו נתון למשמר רק לכל כהן שירצה כרש&quot;י ורבינו ודלא כהגירסא ירושלמי חלה פ&quot;ד ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-1-19-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:19:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-19-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:19:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפשיט בכור בע&quot;מ הר&quot;ז מותר להפשיטו כו׳ אם רצה להרגיל מרגיל כו׳.</strong><br><strong> בגמרא </strong> בכורות אין מרגילין בבכור ולא בפסולי המוקדשין מאן תנא אין מרגילין בבכור כו׳ אמר רב חסדא ב&quot;ש היא דאמרי אין מאכילין אותו לנדות כו׳, ובתמורה איתא אמר ר&quot;ח מני ב&quot;ש היא דאמרי בכור בקדושתיה קאי דתנן ב&quot;ש אומרים לא ימנה ישראל עם הכהן על הבכור כו׳. ובאמת תמוה מאוד דבבכורות דשם עיקר מתניתין דפליגי ב&quot;ש שביק ב&quot;ש דמתניתין ונקיט ב&quot;ש דברייתא דאמרי אין מאכילין אותו לנדות הלא דבר הוא. ונראה דבברייתא איכא תלתא תנאי ב&quot;ש וב&quot;ה אומרים אפילו זרים רע&quot;ק מתיר אפילו עו&quot;ג ובמשנה תני במילתיה דב&quot;ה וב&quot;ה מתירין אפילו עו&quot;ג. וע&quot;כ צ&quot;ל דר&quot;ע דברייתא בשם ב&quot;ה אמר למילתיה, וצריך להבין מדוע נשמט במשנה דעת הת&quot;ק בשם בית הלל. ונראה לנו משום דב&quot;ש ילפי מקרא דובשרם יהיה לך כחזה התנופה דלכהנים אין לישראל לא וב&quot;ה סברי דהני מילי תם אבל בעל מום לא וזה נגד פשטות הכתוב דאמרו בפ&quot;ד דבכורות דובשרם יהיה לך מיירי בבעל מום דמזה ילפינן דהוא מתנה לכהן יעו&quot;ש אך ילפי מקו&quot;ח דמה טמא שאינו אוכל בקדשים קלים אוכל בבכור זר שאוכל בקדשים קלים אינו דין שיאכל בבכור, וזה קו&quot;ח אלים, אולם אם ניזיל בתר טעמא תו ליכא לקו&quot;ח דנאמר הואיל והוא ממתנות כהונה עשתה התורה סייג שלא יאכלנו רק הכהן וכיון שאינו מותר לאכילה רק לכהן תו יתננו לכהן אבל קדושה לית ביה לאחר שהומם ונשחט ומותר כהן טמא לאוכלו שלחמו הוא ואין בו כלל קדושה, רק דמשום דהוא מתנה לכהן אית ביה קדושה שלא יאכלנו זר ולא משום קדושה רק סייג שלא יעכבנו הישראל לעצמו, וכיו&quot;ב אמרו בפרק מי שמתו (דף כ&quot;ג) הא מילתא תיתי בתורת טעמא ולא בתורת קו&quot;ח דאי אתיא לה בתורת קו&quot;ח זהו קו&quot;ח שאין עליו תשובה. אך היכן מצאנו כהאי גוונא, הנה מצאנו לר&quot;מ דסובר מעשר ראשון אסור לזרים בפ&quot;ט דיבמות ואפילו כן אמרו תמן ואכלתם אותו בכל מקום אפילו בקבר ושריא רחמנא בטומאת הגוף לאכול, וכבר פירשו שם בתוס׳ דאע&quot;ג דאסור לזרים גזירת הכתוב שלאכלו בטומאת הגוף מותר, וצ&quot;ל דקדושה ליתא ביה רק כיון דהיא מתנה של לוי אסרתו התורה לאכלו לזר כי היכי דליתביה ללוי ולא יעכב אותו הישראל לעצמו, וזה עד נאמן לטעמא דילן, וא&quot;כ על כרחין אמרי בית הלל מילתייהו מקרא דכצבי וכאיל תאכלנו וצבי ואיל הלא מותרין המה לעו&quot;ג כיון דאתא להורות היתר אכילה איך תוכל לחלק בין זרים לעו&quot;ג כיון דבצבי ואיל שניהם שווין ולכן סתם משנתינו דכר׳ מאיר, ובפרק יש מותרות סתים לן תנא כוותיה דמעשר ראשון אסור לזרים ואף בנשאת לזר אינה אוכלת יעו&quot;ש, א&quot;כ תו ליכא לומר אליבא דב&quot;ה דבשר בכור בע&quot;מ מותר לזרים ואסור לעו&quot;ג כדפרישית, ולכן נשמט במשנתינו מילתא דב&quot;ה אליבא דת&quot;ק ונשנית רק דעתם אליבא דרבי עקיבא דאף לעו&quot;ג מותר מקרא דכצבי וכאיל דקאי לענין היתר אכילה למי ודוק:<br><strong> וכיון </strong> שעלה זה בידינו מעתה א&quot;ש מה דרב חסדא אמר הא מני ב&quot;ש היא דאמרי אין מאכילין אותו לנדות, דאי ב&quot;ש דמשנה דלא יאכלו ממנו רק כהנים אין ראיה דקדושה עליו רק כי היכי דליתביה לכהן אבל אין ה&quot;נ דממון כהן הוא ולהכי שריא רחמנא אף לטמאי כהונה, וא&quot;כ כש&quot;כ דנחוס על ממונו של כהן ולהפשיט מן הרגל כי היכי דלירווח כהן דכל עיקר האיסור דרמי רחמנא שלא יאכלנו זר הוא כדי שלא למנוע זה מליתנו לכהן ורחמנא חס על ממונו אבל לא משום קדושה כלל, ולכן אמר מני ב&quot;ש דברייתא דאסרו אותו לכהן אם הוא טמא היוצא מגופו וזה רק משום טכסיסי קדושה דאית ביה לכן לא שרי להפשיט מן הרגל אע&quot;ג דהוי רווחא לכהן כיון דהוא פוגם בבשר דאיכא עליה קדושה דגם לכהן טמא בטומאה היוצאה מגופו לא שריא רחמנא, רק בתמורה דשם הובאה אגב גררא נקיט עיקר דברי ב&quot;ש דמשנתינו הידועים ולא דברי הברייתא, וזה נכון בס&quot;ד:<br><strong> ומה </strong> מאוד מיושב לפ&quot;ז הא דאמר רמי ב&quot;ח פ׳ כל הזבחים (דף ע&quot;ה) בכור לב&quot;ש אין מאכילין אותו לנדות תמורתו מהו, דגם שם קשה לימא לב&quot;ש דלא ימנה ישראל עם הכהן על הבכור תמורתו מהו, ולפ&quot;ז מחוור, דרבנן בתוס׳ שם פירשו דתמורת בכור אינו מתנה לכהן רק נאכל במומו לבעלים יעו&quot;ש ובפסקי תוספות, א&quot;כ לפי מה דבארנו דממשנתינו הוי אמינא טעמא דאסור לאכול לישראל משום דרחמנא עשתה סייג שיתננו לכהן וחס על ממונו של כהן אבל לא משום קדושה דאית ביה ולכן מותר להיאכל לטמאים וכמוש&quot;ב, א&quot;כ פשיטא דתמורתו דאינו לכהן ודאי דנאכל לישראל כיון דקדושה ליכא ביה וממונו של בעלים ישראל הוי מהיכי תיתי לאסרו לישראל, ולכן מייתי ב&quot;ש דברייתא דבכור אין אוכלין אותו טמאים היוצאים מגופם, וזה על כרחין משום קדושה דאיכא ביה, וא&quot;כ תמורתו דמעולם לא היה ראוי להיקרב על גבי מזבח מי גרע קדושתו הואיל ותמורת בכור אינו קרב או לא. ונכון:<br><strong> אמנם </strong> לרבינו גם תמורת בכור מתנה לכהן כמוש&quot;פ בהלכות תמורה פ&quot;ג ה&quot;ב ושם פירשתי טעמו, וצ&quot;ל אדרבה איפכא, דאי ממשנתינו הו&quot;א טעמא דלאו משום קדושה הוי רק דרחמנא עשאה זה לסייג שלא יעכבנו הישראל לעצמו ויתנו לכהן הוה&quot;ד תמורה ג&quot;כ דמ&quot;ש כיון דגם התמורה מתנה לכהן, אבל לברייתא דמוכח דמשום קדושה הויא דרמי רחמנא עליה אימור דוקא בבכור דקדוש מרחם וקרב בתמימותו לגבי מזבח אבל תמורה דקדושתו אינו מרחם ולא היה ראוי מתחלת קדושתו לגבי מזבח אף בתמימותו אימור דמותר להאכילו לנדות. ורבינו פירש דאינך אמוראי דמסקי משום שנראה כעובד בקדשים ומשום שמא יגדל מהן עדרים קאי אליבא דב&quot;ש וראב&quot;ש וכיו&quot;ב פירש&quot;י בתמורה, וכן מוכרח דאל&quot;כ ניתני בברייתא אין מרגילין בבכור ומעשר ובפסוהמ&quot;ק, אבל לפ&quot;ז א&quot;ש דראב&quot;ש לא אמר רק בהנך דתפסי פדיונן לא במעשר דאינו נפדה ודוק בכ&quot;ז:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-2">Chapter 2</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-2-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 2:4:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-2-4-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יוצא דופן והבא אחריו שניהן אינן בכור כו׳.</strong><br><strong> הנה </strong> בדעת ר׳ טרפון דסבר בכור לדבר אחד הוי בכור ומספקא ליה בהא סוף פרק ב׳ נראה דאע&quot;ג דפטר רחם כתיב סבר דביוצא דופן אימור קדוש משום דסבר א&quot;א לצמצם וא&quot;כ לא מסתברא ליה למידרש קרא דהזכרים ביצאו שני ראשים כאחד וע&quot;כ דריש קראי כל פטר רחם לד׳ זה הנולד מן הרחם הראשון כדרכו וכל פטר שגר בהמה פירוש ולד הנולד ונשלח מן האם ראשון ואף שאינו נפל קרוי שגר כמו שגר אלפיך [לשון רש&quot;י] וזה פטר הבהמה רק בכח ההולדה אבל לא מן הרחם וזה יוצא דופן, הזכרים תקדיש לד׳ פירוש שראשון יצא מן הדופן והשני מן הרחם שני הזכרים תקדיש לד׳, אבל יצאתה נקיבה לפניו דלית ביה לא פטר רחם ולא פטר שגר ודאי לא קדוש בבכורה ומסולק קושיית תוס׳ שם ד&quot;ה רישא, ולכן ר&quot;ש אף דסבר (בדף מ&quot;ז) גבי בכור אדם דלדבר אחד הוי בכור אבל פטר רחם מיהא בעי דבאדם לא כתיב פטר שגר, ותוס׳ שם נדחקו, ומש&quot;כ נכון:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-2-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 2:7:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-2-7-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המטיל מום בבכור הואיל ועשה עבירה קונסין אותו ואינו נשחט על מום זה עד שיפול בו מום אחר.</strong><br><strong> רש&quot;י </strong> פירש במשנתינו דהצורם אוזן לא ישחוט דבכהן קא מיירי, ונראה מדבריו דאם עשה הישראל בו מום ישחוט עליו הכהן, דלכהן לא קנסוהו עבור הישראל, וצ&quot;ל דשאני מקטנים ועו&quot;ג דנתכוונו להתיר דאסרו חכמים משום דלאו בני חיובא נינהו וא&quot;כ יטילו מומים בכל הבכורות לכן כדי למיגדר מילתא שיזהרו הכהנים בבכוריהן אסרו חכמים לשחוט על מום זה, אבל ישראל גדול דבר חיובא ומוזהר בעצמו על הטלת מום דרחמנא גדרה בעדו רק שנקנוס אותו שלא ישחוט עליו זה דוקא בכהן עצמו שעבר והטיל בו מום אבל משום ישראל לא קנסוהו לכהן דלישראל אין פסידא בזה דלא ישחוט עליו. וכיו&quot;ב שיטת רבינו בהלכות שבת פ&quot;ו דבעו&quot;ג בעי כדי שיעשו ולא בישראל דבני חיובא. ובאמת אפשר לפרש דרש&quot;י סבר דאם הישראל עשה מום גם ר&quot;א סבר דלא קנסוהו שלא ישחוט עולמית דמה לן לקנוס לכהן עבור ישראל, אבל לשחוט על אותו מום אף אם עשאו ישראל הלא אין צריך הכהן להרוויח בדבר עבירה ויהא דומה כאילו לא נעשה העבירה ולכן צריך להמתין על מום אחר, אבל לר׳ אליעזר דאסר לשחוט לעולם זה קנס גמור ואין לקנוס לכהן עבור הישראל, אבל א&quot;כ הא דמסיק דאם מת לא קנסוהו לבנו אחריו אלמא דלא קנסו רק להחוטא לבדו א&quot;כ אם הישראל עשה המום אין לקנוס בזה לכהן וגדולה מזו כתב רש&quot;י בביצה (דף כ&quot;ז) בשחטו ישראל אחר שלא ע&quot;פ מומחה לא קנסוהו לכהן משום אחר יעו&quot;ש באורך. וזה שפירש דמתניתין דוקא דאינה חשובה יותר מראית טריפה רק דלכהן קניס ובבכורות פירש באופן אחר כדמוכח שם ועיין ברא&quot;ש בשם רמב&quot;ן שם:<br><strong> לכן </strong> נראה לפרש דרש&quot;י פירש כן לפום מה דמסיק לעיל ריש פרק עד כמה דבבכור ליכא טובת הנאה לבעלים דאסור לישראל ליקח סלע מאחד כדי ליתנו לבן בתו כהן, א&quot;כ אין לישראל שום קנסא בהא דלא ישחטו הבכור על מום זה לכן משום זה לא קנסוהו לכהן, אבל רבינו דפסק בפי&quot;ב מהלכות תרומות דישראל רשאי ליקח סלע מישראל אחר כדי ליתנו לבן בתו כהן א&quot;כ אית ליה ממונא בגויה דבכור ומיגו דהוי קנסא לדידיה במה דלא ישחטו עליו ויפסידו אותו הסלע שיקח מאבי אמו של כהן לכן גם הכהן אסור לשחוט על מום זה, דאל&quot;ה ירוויח הישראל ונמצא דאם הישראל הבעלים עשו בו מום תלוי בזה שבארנו דפליגי בזה הטור ורבינו ז&quot;ל ודוק. ולפ&quot;ז אם ישראל אחר יצרום אוזן בכור ודאי שרי להכהן והוי כמו בשבת דלא בעי כדי שיעשו בישראל שבישל לאכול לאחרים יעו&quot;ש. אמנם בפסקי מוהרא&quot;י סימן קס&quot;ט כתב דאין חילוק בין שישראל אחר מצוה לעו&quot;ג או הבעלים ודאי דאסור. ואולי אפשר לחלק דמוהרא&quot;י מיירי היכי דהמום נעשה ע&quot;י אמירה לגוי דכתב החות יאיר סימן ל&quot;א דכו&quot;ע חשידי בזה דלא חשיב להו איסורא קנסינן כמו בקסדור ותינוקת, אבל היכי דישראל אחר עשה מום בידים דלא שכיח זה דאין אדם חוטא ולא לו אפשר דמותר לשוחטו ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-2-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 2:13:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-2-13-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 2:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכור שאחזו דם יקיז ובלבד שלא יתכוון לעשות בו מום כו׳.</strong><br><strong> ירושלמי </strong> פסחים סוף פ&quot;ק תמן תנינן הבכור שאחזו דם אפילו מת אין מקיזין לו את הדם דר&quot;י וחכ&quot;א יקיז ובלבד שלא יעשה בו מום כו׳ ר&quot;ש אומר יקיז אע&quot;פ שהוא עושה בו מום ר&quot;א בשם ר&quot;א אתיא דר&quot;י כר&quot;ג [בחבית שנולד לה ספק טומאה דאמר אל יחדש בה דבר כן אמר ר&quot;י אל יקיז דם ויניחנה כמו שהיא] דרבנן כר׳ אליעזר [שכמו דר&quot;א אמר אם היה מגולה יכסנה אלמא חיישי לתקנה כן אמרי רבנן יקיז ובלבד שלא יעשה בו מום כמו התם שלא יטמאנה] דר&quot;ש כמו ר׳ יושע, [כמו שר&quot;י אמר שמניחה במקום התורפה כו׳ ומייתי לה לידי טומאה כן ר&quot;ש אמר שיקיז אעפ&quot;י שהוא עושה בו מום] תני בשם ר&quot;ש יקיז אעפ&quot;י שהוא מתכוון לעשות בו מום ואתיא כר׳ יושע אחרינא [פירוש בחבית שנשברה בגת העליונה והתחתונה טמאה כו׳ ר׳ יושע אמר יטמאנה ביד וזהו כר׳ שמעון בברייתא דיקיז אעפ&quot;י שמתכוון לעשות מום] א&quot;ר בון בר חייא קומי ר׳ זעירא תיפתר בקדשים שהוא חייב באחריותן כר׳ שמעון, והוא תמוה מאוד באין פותר. והנ&quot;ל פירושו פשוט ע&quot;פ מה דאמר לעיל מאי כדון אמר ריב&quot;ב תמן כדי לחוס על נכסיהן של ישראל, פירושו כמו דאמר בבלי משום הפסד חולין דכיון דאין בתחתונה כדי להעלות אישתכח דיפסדו החולין והתרומה תלך לאיבוד לכן מותר לטמאותה ולהצילה שלא תתערב בחולין. והנה במנחות פרק התכלת (דף מ&quot;ח) תני ר&quot;ח כו׳ שחט ארבעה כבשים על ב׳ חלות מושך שנים מהם וזורק דמן שלא לשמן שאם אי אתה אומר כן הפסדת את האחרונים א&quot;ל ר׳ יוחנן וכי אומר לו לאדם עמוד וחטא בשביל שתזכה ושקיל וטרי ומסיק עמוד וחטא בשבת כדי שתזכה בשבת אמרינן עמוד וחטא בשבת כדי שתזכה בחול לא אמרינן, ובתרתי מילי לא אמר והתנן חבית שנשברה בגת כו׳ ר׳ יהושע אומר יטמאנה ביד אלמא אמרינן חטא בתרומה כדי שתזכה בחולין [רש&quot;י] שאני התם דלטומאה קא אזיל, א&quot;כ הכא דהבכור אם לא יקיזו לו דם קא מיית ואזיל לאיבוד דמיין להדדי בכור לחבית של תרומה, אך בכ&quot;ז לא דמי כי גם בכור הוא עמוד וחטא בבכור כדי שתזכה בבכור כי אם לא יקיז דם ימות הבכור ויפסיד כולו וכי מקיז דם עושה בו מום, ובתרומה הוא אם לא יטמא התרומה יופסד החולין שהתרומה תפסד כיון שהיא משקה ואינה צריכה הכשר ותטמא ותשרוף ובין כך וב&quot;כ תשרף התרומה ואין ההצלה לתרומה מעלה ומוריד רק לחולין שבגת התחתונה א&quot;כ הוא עמוד וחטא בתרומה עבור שתזכה בחולין ובכה&quot;ג לא שמענו לר׳ שמעון, ואפשר דר&quot;ש סבר כר&quot;א בתרומה דתרד ותטמא ואל יטמאנה ביד, ע&quot;ז אמר תיפתר בקדשים שהוא חייב באחריותן [ולר&quot;ש] כצ&quot;ל, כי בכה&quot;ג אם יקיז דם יעשה מום בקדשים ואם לא יעשה בו מום ולא יקיז דם וימות לא יהיה פסידא להקדש כלל רק שהבעלים יביא אחר, א&quot;כ בעשייתו בו מום ירוויח ממון של הבעלים ואז דומה להך דחבית דמטמא התרומה בשביל הפסידא דחולין והוא עמוד וחטא בדבר זה כדי שתזכה במילי אוחרי, כי בהאי גוונא דמי לר&quot;י דיטמאנה ביד וזה פירוש נכון והיה צ&quot;ל לר&quot;ש, אך שיטפא דלישנא דלקמן פרק כ&quot;ש ה&quot;ב אמר ר׳ בון ב&quot;ח קומי ר&quot;ז תיפתר בקדשים שהוא חייב באחריותן וכר&quot;ש, דשם שייך האי לישנא נקיט לי׳ גם הכא ודוק:<br><strong> ודע </strong> דכפי שיטת הירושלמי כל חידושו דר׳ שמעון בברייתא דאפילו מתכוון לעשות בו מום שרי וזה קרוב קצת למה שפירשו תוס׳ שם בבכורות, ודלא כפסק רבינו שדוקא אם אינו מתכוין, רק שברייתא מחדש דאם נעשה בו מום מותר לשחוט עליו ולזה פסק שמואל כוותיה משום דסבר כוותיה בדבר שאינו מתכוין, וטעמא דרבנן דפליגי עליה דר&quot;ש משום דסברי דבר שאינו מתכוין אסור, ובפירוש המשנה פירש דבעינן שלא יהא מוכרח להיעשות מום ע&quot;י הקזה זו דא&quot;כ הוי פסיק רישא ולא שרי ר&quot;ש, ולפי הירושלמי ר&quot;ש שרי אפילו במתכוין, רק דבירושלמי לשון אחר בדברי ר&quot;ש דברייתא, ר&quot;ש אומר יקיז אע&quot;פ שהוא מתכוין לעשות בו מום, וא&quot;ש מה דמפרש ר&quot;י טעמיה דר&quot;ש מקרא דתמים יהיה לרצון דשרי להטיל מום מה&quot;ת בבע&quot;מ, אבל לשיטת רבינו בבבלי דרק באינו מתכוין שרי ובאופן דלא הוי פסיק רישא למאי מועיל קרא הלא בכל האיסורים של תורה שרי ר&quot;ש דבר שאינו מתכוין, ועיין ביאורי הגר&quot;א סימן שי&quot;ג אות ט׳ בזה, ודוק בכ&quot;ז:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-3">Chapter 3</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-3-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 3:5:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-3-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 3:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכור שהיתה לו ביצה אחת ושני כיסים כו׳.</strong><br><strong> מהמשך </strong> לשון רבינו ומסידורו הבנתי פשטו דמפרש כך, דאם לא נמצא רק ביצה אחת ושני כיסים אסור לו לשחוט פן ע&quot;י מיעוך ע&quot;ג עכוזו יצא הביצה הטמונה אצל הכסלים ורק כי מיעך אותו ולא יצא מותר לו לשחוט, אבל כי לא מיעך אותו ע&quot;ג עכוזו ושחטו ונמצא הביצה השניה דבוקה בכסלים דכיון שהיא דבוקה בכסלים ואז יודעים אנחנו שאף אם מיעך אותו ע&quot;ג עכוזו ג&quot;כ לא היה יוצא הביצה כיון דהדבוק שלהכסלים אינו מניח לו לצאת בכ&quot;ז יקבר כיון שלא עשה כדין שהיה צריך לחוש שמא אינו מדובק להכסלים רק מונח אצל הכסלים ובמיעוך ע&quot;ג עכוזו תצא הביצה, לכן לא עשה המומחה כדין ואינו מומחה לזה והוי כאלו נשחט שלא ע&quot;פ מומחה ולכן יקבר דקיי&quot;ל כר&quot;מ בגזרותיו דאם נשחט שלא ע&quot;פ מומחה אפילו במומין שאינן משתנין ואיגלאי מילתא דאותו המום הוה מקודם בכ&quot;ז יקבר, ולכן כאן אע&quot;ג שכיון שהוא דבוק לכסלים ודאי דלא היתה יוצאת ע&quot;י מיעוך בכ&quot;ז כיון שהמומחה שהתיר לשחוט בלא מיעוך עשה שלא כדין דהיה לו לחוש שמא היא טמונה ואינה דבוקה וסופה לצאת ע&quot;י מיעוך ולכן לא הוי מומחה והוי כאלו נשחט שלא ע&quot;פ מומחה ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-4">Chapter 4</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-4-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:13:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-13-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמא דבר שאינו פוטר בבכורה כו׳.</strong><br><strong> בגמרא </strong> נדה הגירסא לפנינו רוב היולדות מטנפות וזו הואיל ולא טינפה איתרע רובא, וטינוף אמרו במשנה ובגמרא סימן ולד בבהמה דקה טינוף ולעיל הלכה י׳ וי&quot;ג, וצריך לומר דאם כי הלשון אחד הכוונה אחרת ותוס׳ הביאו מזה לדוגמא בכ&quot;מ ומהם ריש פרק בהמה המקשה וזה מוזר. עוד תימה דא&quot;כ הי&quot;ל לבאר דאם שהתה זמן מה בחוץ ניחוש שמא טנפה קודם לידה וילדה ולא איתרע רובא כמוש&quot;כ בתוס׳. לכן רואה אנכי מתוך סידור דברי רבינו אשר גירסתו הי׳ בגמ׳ כל היולדות חולבות וזו הואיל ולא חלבה איתרע רובא ולכן קצר רבינו, דע&quot;כ באינה חולבת מיירי הכא דאילו בחולבת כבר כתב בהלכה ח׳ שהיא פטורה מן הבכורה בלא&quot;ה, וזו גירסא נכונה ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-4-13-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:13:2</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-13-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:13:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין לנפלי בהמה פטירת רחם כו׳.</strong><br><strong> נ&quot;ב </strong> עיין ברמב&quot;ן הלכות בכורות שהשיג ע&quot;ז הרבה יעו&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-4-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:14:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-14-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם חתך אבר כו׳ ונפטרה מן הבכורה כו׳ נתקדש למפרע.</strong><br><strong> סברת </strong> רבינו דבמחתך תליא אם מונחים עד שיצא רובו ונתקדש למפרע אז נפטר מן הבכורה ואם האכילו לכלבים אז הבא אחריו בכור וכפשטא דמשנתינו, ולפ&quot;ז דוקא אם חל קדושת בכורה על האברים הנחתכים חשיב פטר רחם, אבל אם יצא השליש ומכרו לעו&quot;ג היינו שמכר השליש שיצא [דהא דלמפרע קדוש אינו קדוש רק האבר שיצא בלבד לא מה שבפנים ומסולק קושיית תוס׳ ובחידושי הארכתי] לעו&quot;ג תו לא חייל למ&quot;ד מכאן ולהבא הוא קדוש על מה שכבר נמכר קדושת בכורה, וכיון דהוא יצא מחותך אינו פוטר מן הבכורה לכן כתב רבינו דהמכר לא מועיל דהוא נתקדש למפרע ומה שחתך השליש וחזרו וחתכו הוי לידה מעליא לכן נפטרה מן הבכורה, וזה שדייק בהלכה ט&quot;ו נתקדש למפרע ונפטרה מן הבכורה ובמחותך מיירי רבינו שיצא שליש וחתכו ועל דרך שכתב קודם שרק משום שנתקדש למפרע פטר המחותך הבא אחריו מן הבכורה ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-4-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:17:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-17-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכור שכרכו בסיב כו׳.</strong><br><strong> וכן </strong> מש&quot;כ בהלכה י&quot;ט נפתחו כו׳ ובה&quot;כ נעקרו כו׳ ובהכ&quot;א נגממו, בכל הנך מספקא אם הוי פטר רחם ואם לא הוי פטר רחם אינו קדוש אבל הבא אחריו אינו בכור דלא גרע מאלו יצא ראשון דרך דופן דהבא אחריו אינו בכור ופשוט. ובהלכה ט&quot;ו יצא שליש דרך דופן ושני שלישי דרך רחם אינו קדוש ונפטרה מן הבכורה כצ&quot;ל דלא גרע מאלו יצא כולו דרך דופן, ומה שכתוב גבי מכרו לעו&quot;ג כו׳ ונפטרה מן הבכורה ט&quot;ס הוא דפשיטא וצריך לגרוס כמוש&quot;כ. ועיין מש&quot;כ בדיבור הקודם לקיים הגירסא שלפנינו ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-5">Chapter 5</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-5-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 5:3:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-5-3-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 5:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל בכור שהוא ספק דינו שירעה עד שיפול בו מום ויאכל לבעליו ואם תפסו הכהן אין מוציאין מידו.</strong><br><strong> הכס&quot;מ </strong> בפ&quot;ב פירש דהוי איפכא ממסקנא דאסיק בפ&quot;ק דב&quot;מ דמוציאין מידו. והנה מלעיל אין ראיה דתמן הוי ספיקא דדינא ושם אפשר דאם תקפו אין מוציאין מידו אבל מכאן קשה, ותירץ דדחייה בעלמא היא וסייעתא דר&quot;ח לאו סייעתא דכיון דברשות ישראל והמע&quot;ה אע&quot;ג דאם תקפו כהן אין מוציאין מידו לא נפיק מידי ממונו של ישראל ושפיר יכול לפטור עצמו בו. ובאמת נראה דלא פריך הגמ׳ מהא דתנן בבכורות גבי ספק פדיון פטר חמור דמפרישו והוא לעצמו דתנן תמן ופודה בו וחוזר ופודה כמו שפירש ר&quot;ת שם (דף ד׳) ד&quot;ה ופודה בו, דיקשה איך מפקיע איסור דפטר חמור בממון דכהן דאם תקפו כהן אין מוציאין מידו הלא ספק ממון דכהן הוא, וע&quot;כ דפסיקא ליה כסברת מרן דכל זמן שלא תפס עדיין הוי ממונו ויכול למוכרו ולעשות בו כל חפצו לכן הוי כממונו לגמרי, רק הכי מקשה אם תאמר תקפו כהן אין מוציאין מידו הרי אינו שלו רק כל זמן שהוא ברשותו אבל אם יתפוס הכהן הלא יהיה של כהן, א&quot;כ גם עכשיו אינו של הבעלים בעתיד רק כל זמן שהוא תפוס בו והוא ברשותו, וא&quot;כ בכל הקדש וגבי פדייה אמרינן דשלו הוא, אבל לענין מעשר הלא אמרינן עשירי מאליו הוא קדוש א&quot;כ חזינא דכיון שמנה אחד שני שלישי עד עשרה העשירי הוא קדוש אע&quot;פ שלא יצא שעומד להיות העשירי בדיר תחת השבט עשירי והוא קדוש הואיל ויהיה עשירי, וכן מנין הראוי פוטר היינו כיון שהיו ראוים שיצאו עד העשירי לכן פטורים שראוי לעבור העשירי, א&quot;כ הקדושה והפטור בא מסיבת שעתיד לצאת בעשירי, א&quot;כ כיון שתפסו כהן אין מוציאין מידו אינו ממונו של הישראל רק מסיבת תפיסתו ובהוה לא בעתיד א&quot;כ כשהתחיל לצאת הראשון הלא לא היה בהחלט כשיצא העשירי שיהיה שלו דשמא יתפסנו כהן בנתיים ויהיה של כהן, א&quot;כ איך שייך צירוף עשרה להיפטר ולהתקדש כיון שאין זכייתו בא רק משעת תפיסתו וכאן הצירוף אינו רק כשיוצאים זה אח&quot;ז ובזא&quot;ז הלא על העתיד כשיוצא אחריו הלא אינו מבורר עדיין זכייתו בהטלה הספק שבעתיד עדיין לא תפס, וזה עיון דק:<br><strong> אולם </strong> ליישב דברי רבינו אמינא, דבחולין פרק הזרוע פליגי אם מתנות כהונה נגזלות או אין נגזלות, ורבינו פסק דהקונה אותם אעפ&quot;י שאינו רשאי ה&quot;ז מותר לאוכלן מפני שהמת&quot;כ נגזלות. וכבר פרשתי טעמו שם דמוכח מסוגיין שם דאם אינם בעין דאמרינן דלמאן דלית ליה דרב חסדא דרצה מזה גובה רצה מזה גובה רק גובה מן הראשון לבדו, כן הוה&quot;ד אם נתן הלוקח מן הטבח דמים אעפ&quot;י דאיתא בעין אינו מחזיר, א&quot;כ לדידן דקיי&quot;ל דהמזיק מת&quot;כ פטור מלשלם מפני שהוא ממון שאין לו תובעין אע&quot;ג דהיכי דאיתנהו בעין אמר התם דמשו&quot;ה נותנן הלוקח מן הטבח לכהן זה דוקא היכי דלא נתכוין לגזלן או בלא נתינת מעות, אבל כי נתכוין הטבח לגזלן וא&quot;כ גבי הלוקח הוי כמו דליתנהו בעינא דכיון שנתן מעות עבורם לטבח לכן אינו נותן לכהן אעפ&quot;י דאיתנהו בעינא, א&quot;כ א&quot;ש טובא דאעפ&quot;י דתקפו כהן אין מוציאין מידו בכ&quot;ז לאו ממונו דכהן הוא כיון שיכול למוכרו שלא יבוא עליו הכהן ואם יתפסנו הכהן אחרי כך ודאי דלא הוי שלו וכיון שיכול לעשות באופן שיהיה בעין ולא יוציאנו הכהן לכן אין זה פוטר עצמו בממון כהן, וסוגיית הגמרא אזלא למ&quot;ד דמת&quot;כ אינן נגזלות ותו כל זמן דאיתא בעינא בודאי הוי של כהן וכן בספק אם תפסו כהן אין מוציאין מידו לכן הוי ממון של כהן, ופריך איך פוטר עצמו בממון כהן ודוק. אולם מדלא הזכיר רבינו גבי פדיון פ&quot;ח דאם תקפו כהן אין מוציאין מידו נראה דמחלק משום דשם איכא חזקת מ&quot;ק וכתירוץ שו&quot;ת רשב&quot;א שהביא הכס&quot;מ:<br><strong> והנני </strong> להציג פה מה שנראה לי להעיר בקונטרס הספיקות להקצות מידי הביטי שם. וכי הוא זה:<br><strong> בכלל (א) </strong> בסופו הביא ראיה דבממון של ספק נדר אזלינן להחמיר ודלא כהר&quot;ן מהא דבעי ר&quot;ז הרי עלי לחמי תודה מהחמץ או מן המצה והו&quot;ל למיבעי באומר הרי עלי מהחמץ לחוד מהו שיביא שאור דאי ספק הוא נפטר הוא מידי נדרו ואם בריה הוא לא יצא. ובמחכ&quot;ת ז&quot;א דאף בספיקא דממונא קיי&quot;ל דאיני יודע אם פרעתיך חייב ואף באינו טוען אידך ברי כיון דלא הו&quot;ל למידק חייב דאין ספק פרעון מפקיע חיוב הודאי וכמוש&quot;כ הרשב&quot;א פרק הזורק גבי הא דתני לענין החוב מחצה ע&quot;מ יחלוקו ועיין משל&quot;מ פ&quot;ד מהלכות שאלה. ובל&quot;ז לפטור עצמו מחיוב ודאי בספק האם יכול, הגע בעצמך מי שנתחייב לשלם מטבעות של זהב לחבירו האם יכול לפטור עצמו במטבע מסופקת שמא היא של זהב או לא, וזה פשוט:<br><strong> בכלל (ג) </strong> כתב הש&quot;ך דבתיקו דש&quot;ס הוי תמיד תפיסה אחרי שנולד הספק דבשעת חתימת הש&quot;ס נולד הספק, והקשה מדברי הסמ&quot;ג במת ביום שלשים דסבר רע&quot;ק אם נתן לא יטול משום דהוי תפיסה קודם שנולד הספק. וזה לק&quot;מ דדוקא בכל תיקו כמו בשנוי לצרורות דמספקא לן אם אין לו רק רביעי ומספיקא נפשט דהמוציא מחבירו עליו הראיה א&quot;כ כי תפס אח&quot;כ לא מבטל תפיסתו את מה שכבר נפטר ונפסק לפטורא מעת חתימת הש&quot;ס, אבל גבי בכור הרי כי נפטר מספיקא לא נשאל הדין על זה האיש דהוי ממון שאין לו תובעין ואטו יכול לתבוע אותו, א&quot;כ כי נפסק הדין בעת דמספקא לרע&quot;ק הלא לא נפסק שלזה אין תביעה אצלו שלא היה שייך כלל אל הדין רק כי תפס והיינו שנתן לו מעות אז נולד הספק על זה האיש אם יש לו ממון אצלו, ואם תאמר שכבר נפסק הדין מעת הספק דהמוציא מחבירו עליו הראיה ואין תביעה לזה האיש הוא הכהן אל הבעלים ז&quot;א אם כבר אסיקו אדעתייהו דאם יתן לכהן מעות יפטר דהמוציא מחבירו ע&quot;ה, ז&quot;א דאם שקלי וטרי ע&quot;ז האיש הלא כבר הוי כתפס קודם שנולד הספק ומהני תפיסה ופסקו אז דמהני תפיסה, משא&quot;כ בכל תיקו הלא היה הספק בש&quot;ס על דין שבין אדם לחבירו וכבר פסקו דעל זה האיש עליו הראיה והמוחזק פטור, א&quot;כ כי תפס קודם הוי כתפס לאחר שנולד הספק דכבר נפסק הדין דאין לו שום תביעה על הנתפס, אבל גבי בכור דמעיקרא לא נפסק הדין על הכהן שאטו היה לכהן שום תביעה על הבעלים, ואם תאמר שלהכהן לא היה כח לתפוס דהמוציא מחבירו ע&quot;ה ז&quot;א דאם כבר אסיקו דעתייהו על כהן פרטי תובע מאתו הלא אטו פסקו דלא מהני תפיסה, הלא הוי תפיסה קודם שנולד הספק דכ&quot;ז דלא הוי פשיטא ולחכמי הש&quot;ס בספיקא הוי אז מהני תפיסה ודוק:<br><strong> כלל (ו) </strong> אות ה׳ השיג על הרב צמח צדק באשה שנמלטה מחרב ואינה יודעת אם אביה היה כהן כו׳ והמליטה זכר שפסק שפטור מלפדותו דאיכא חזקת ממון ואין הולכין אחרי הרוב ואמרינן שמא אביה כהן ופטורה מבכורה, והקשה דבחזקה אמרינן במת&quot;כ דצדק משלך ותן לו כש&quot;כ ברובא דעדיפא מחזקה וכדמוכח סוף פרק הזרוע. ובמחכ&quot;ת הלא בבכורות פ&quot;ג כתבו התוס׳ ד&quot;ה ור׳ יהושע סבר חוששין לטינוף דמשו&quot;ה דאין הולכין בממון אחרי הרוב לכן סבר רבי יהושע דאינו ניתן לכהן ואף לרב דסבר דאזלינן גם בממון בתר רובא בממון שאין לו תובעין גרע טובא יעו&quot;ש וזה היפך מסברתו. ושם פרק הזרוע תנן בכור שנתערב במאה בזמן שמאה שוחטין כולן פטורים אע&quot;ג דרוב חייבין מצי אמר כל חד אנא המיעוט שאני שוחט בכור, והיינו דבממון הזה שאין לו תובעין אין הולכין אחר הרוב, אולם תמן הוא מטעם אוחרי דאם נחייבם נוציא ממון מאחד שאינו חייב לכן אין מוציאין כלל שלא נוכל לחייב את מי שבודאי אינו חייב:<br><strong> והנה </strong> הטורי אבן ברה&quot;ש באבני מלואים האריך הרבה להקשות על הא דמדמה הגמרא מתנות כהונה לספק ממון עניים, דבכ&quot;מ קיי&quot;ל גבי מתנות עניים דהמוציא מחבירו ע&quot;ה וכן הביא מירושלמי דרע&quot;ק הפריש מע&quot;ש ופדאו ונתן דמיו לעניים דמספקא ליה אם ר&quot;ה אחד בשבט או ט&quot;ו בשבט אלמא דספיקא דממון עניים הוי לחומרא משום צדק משלך ותן לו, ודוקא גבי דמאי הקילו דרוב ע&quot;ה מעשרין הן. ומזה נסתר מה שהמהרי&quot;ט בסוף חלק חו&quot;מ העלה לחלק בין היכי דאיכא חזקת ממון לחוד בין היכי דאיכא חזקת מ&quot;ק עם חזקת ממון דגבי הך דרע&quot;ק איכא חזקת מ&quot;ק ואפ&quot;ה ספק מתנות עניים להחמיר, וכן נשאר בקושיא מהך דפ&quot;ב דבכורות ברועה כהן וחצר בעה&quot;ב ומת אחד מהן וא&quot;י מי מת אם הבכור או החולין דשם ליכא חזקת מ&quot;ק. והנראה לי דלאו כל מת&quot;כ מדמה הגמרא למתנות עניים, וטעמא אמינא דנחזי בכל מתנות עניים דעיקרן מתורת צדקה דאפילו עני המחזיר על הפתחים מחוייב ליתן צדקה וכמו שאמרו פ&quot;ק דגיטין על קרא דעניתיך לא אענך עוד, וכן במתנות עניים קיי&quot;ל דעני מוזהר על שלו להניח פאה ולהפריש מעשר עני ואפילו עני שבישראל מוציאין מידו. והנה במת&quot;כ קיי&quot;ל דאין מוציאין מכהן לכהן, אולם בזרוע ולחיים וקיבה איכא מילתא חדתא דדוקא בשוחט לעצמו הא בשוחט למכור כתיב מאת זובחי הזבח דאפילו טבח כהן במשמע ושוחט בהמות שלו כיון דשוחטן למכור לאחרים מוציאין מידו לכהן מה&quot;ת כדפרש&quot;י ז&quot;ל (דף קל&quot;ב) עיי&quot;ש, וקושיית תוס׳ דא&quot;כ אפילו ב׳ וג׳ שבתות לתחייב תירצו הקדמונים דעל ב׳ וג׳ שבתות בדעתו שאם לא ימכור יהיה לעצמו והוי כשוחט לעצמו ולכן פטור ולכן בקבע מסחתא תיכף חייב להפריש מתנות עיי&quot;ש בחידושי הריטב&quot;א ועיין בפרק כל שעה (דף ל&quot;ח) שאמרו סברא כזו על הא שאדם יוצא בחלות תודה ורקיקי נזיר עיי&quot;ש, וכיון שאפילו כהן חייב אם הוא שוחט למכור לאחרים לכן דמי ממש למתנות עניים, ולכן פריך הגמ׳ מהזרוע והלחיים על ספק לקט, אבל כל מת&quot;כ כמו בכורים וכיו&quot;ב שאפילו אם משהה אצלו לדו אצלו כשהוא משהה למוכרן הלא ממונו הוא וד׳ הוא נחלתו כנחלת כל שבטי ישראל והוי ממון ככל דיני ממונות שבספיקות המוציא מחבירו ע&quot;ה:<br><strong> וקצת </strong> יש לדון לפי מה שרצה הרב לומר דמשום צדק משלך אמרינן דהולכין בתר רוב לאפוקי מת&quot;כ, א&quot;כ מאי רמי בפ&quot;ב דבכורות מר׳ טרפון דאמר דנותן היפה שבהן לכהן על הא דאמר מת אחד מהן יחלוקו לימא דאחד מהן הוא היפה שבהן [וכיו&quot;ב איכא אוקימתות בש&quot;ס] ורוב פעמים הך דברי נפיק ברישא ולכן משום צדק משלך ותן לו במת&quot;כ אזלינן בתר רובא ויהיב ליה היפה שבהן, אבל כי מת הלא כי מקנה מקום בחצירו לכהן יחלוקו דלא מצי לאפוקי מרשות כהן ברובא דאין הולכין בממון בתר רובא ודוק בכ&quot;ז:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-5-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 5:3:2</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-5-3-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 5:3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם תפשו הכהן אין מוציאין אותו מידו.</strong><br><strong> יעוי׳ </strong> ביאורי הגר&quot;א ראיות הרבה. ועוד אחת מהא דבריש מכילת׳ דף ג׳ לית דחש לה להא דר׳ יהודא דאמר שותפות עכו&quot;ם חייבת בבכורה. והא אי נמי הוי חייש הוי כרבים דפליגי עם רבים והוי ספיקא דדינא והמוציא מחבירו עליו הראיה ואין צריך ליתן לכהן ואי משום דנחוש לאכילה בלא מום כיון דסבר ר׳ יהודא דלא תעבוד בבכור שורך הא בשלו ושל אחרים אתה עובד וכיון דשרי בגיזה ועבודה כ&quot;ש דלא חלה עליו קדושה כלל ונאכל בלא מום וצריך לומר דנפ&quot;מ לענין תפיסה דאם תקפו כהן מוציאין מידו משום דלית דחש אבל אי הוי ספק אז אין מוציאין מידו ודו&quot;ק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Chapter 6</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:2:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם עבר ועשה בזה&quot;ז ה&quot;ז מעשר ויאכל במומו.</strong><br><strong> נ&quot;ב </strong> תוספתא ערוכה בהמה שנתערב בה ספק מעשר בזה&quot;ז ירעו כולן עד שיסתאבו כו׳ ובחידושי הארכתי בזה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:3:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-3-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל חייבים במעשר בהמה כהנים כו׳.</strong><br><strong> נ&quot;ב </strong> עיין משל&quot;מ שני ראיות ושניהן הביאן רבינו בעצמו בתשובותיו, ובפירוש המשנה דייק הכל נאמנין על מומי מעשר ופירש אפילו כהנים דחשודים על הבכור, הרי מוכח דחייבין במעשר דאינו נמכר מע&quot;ב, וע&quot;כ דמפרישין ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:5:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעשר בהמה אסור למוכרו כשהוא תמים.</strong><br><strong> הנה </strong> בגמרא מפורש דגם בעל מום אסור למוכרו מן התורה ורק לאחר שחיטה מותר למוכרו מה&quot;ת, אמנם לאחר שחיטה בתמים נראה מסוגיא דפ&quot;ק דזבחים דאמר אימר שחטי׳ לשם מעשר ליהוי מעשר כו׳ ולמילקא עליה בלא ימכר ולא יגאל כו׳. וכתבו רבנן בתוס׳ היכי לקי אחר שחיטה אלא יגאל הא אמרינן פרק כל פסוהמ&quot;ק דלאחר שחיטה מדרבנן הרי דלמדו מסוגיא דתמן דאף בתמים לאחר שחיטה מדרבנן, ודעתם צ&quot;ע, דבאמת לרבא דיליף מוהיה הוא ותמורתו כו׳ לא יגאל אימתי עושה תמורה מחיים [ומשום זה אף בעל מום אסור למוכרו מה&quot;ת דבע&quot;מ עושה תמורה ולשון הכס&quot;מ אינו מדוקדק] א&quot;כ לאחר שחיטה בתם ג&quot;כ נמכר אבל לרב שמואל בר יצחק דיליף מרק בכל אות נפשך כו׳ דבר שאין בו ברכה מחיים אלא לאחר שחיטה כו׳ א&quot;כ דלאחר שחיטה איכא ביה ברכה וזה מכירה דוקא בבעלי מומין דביה כתיב קרא דתזבח בשר כו׳ אבל בתמין לא כתיב ברכה ולא הותר מכירה אף לאחר שחיטתו, ורומיא דגמרא נקיט מה דאיכא נפ&quot;מ וחומרא לרב שמואל בר יצחק, ואף דהגמרא אמר ואף רשב&quot;י סבר להא דרבא מכל מקום אינו ממש כמו רבא רק בהא דסבר בע&quot;מ לאחר שחיטה מותר מה&quot;ת סבר כוותיה ובפרט דיליף דהתורה התירה בפירוש וכתבה ברכה על מכירה א&quot;כ לא יאסרו חכמים לגמרי לכן התירו על ידי הבלעה וכמש&quot;כ התוס׳ פרק איזהו נשך (דף ע׳) לענין ריבית דעו&quot;ג:<br><strong> אולם </strong> העיקר נראה כדברי התוס׳ דהגמרא שקיל וטרי מנא לן דלא נמכר ויליף מגז&quot;ש דחרמים דכתיב לא יגאל ולא ימכר אף כאן לא ימכר עמו ואף לרב אשי דמוכיח מקרא גופיה יעו&quot;ש פריך ולכתוב לא ימכר ומשני להכי כתב רחמנא לא יגאל דלא אפרוקי מיפרק, וא&quot;כ לכל הני לא יצא ממשמעותו דלא יגאל שאינו נפדה, א&quot;כ מיירי בבעלי מומין דנפדין קמ&quot;ל במעשר דאינו רשאי לפדותו אבל בתם מנא לן דאינו נמכר כיון דקרא מיירי בבע&quot;מ, וצ&quot;ל דהוא קל וחומר ויותר עדיף עד דהוי גילוי מילתא דע&quot;ז לא שייך אין מזהירין מן הדין וכיון דכתבה רחמנא היתר לאחר שחיטה בבעלי מומין תו מאיזה מקום תלמוד איסור לתם כיון דכל עיקר מכירה של תם למדתה מבעל מום, א&quot;כ גם תם מותר למכור לאחר שחיטה אף לרב שמואל ב&quot;י ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:5:2</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-5-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויראה לי שהמוכר מעשר לא עשה כלום ולא קנה לוקח.</strong><br><strong> כן </strong> מוכח מתוספתא בקדושין דהמקדש בבשר מעשר אינה מקודשת ורבנן הפקיעו הקידושין לאחר שחיטה כמו דהוי מה&quot;ת מחיים ומוכרח דלא קנה לוקח, וכן משמע כולא סוגיא דבכורות (דף ל&quot;ב) ולכתוב רחמנא לא ימכר כו׳ הו&quot;א איזדבני הוא דלא מיזדבן אבל כו׳ קמ&quot;ל לא יגאל דלא איזדביני מזבן ולא אפרוקי מיפרק, הרי דבדיעבד לא מהני כמו פדיון. ובירושלמי פ&quot;ק דמע&quot;ש ה&quot;א מייתי תני היה אומר אדם לחבירו כו׳ והוא תוספתא בכורות פ&quot;ג. היה אומר לו מן והוא יודע שהוא מעשר בהמה מה מן ניתן במתנה אף מעשר בהמה ניתן במתנה הרי מעשר בהמה ד&quot;ה כו׳ הרי מעשר בהמה ד&quot;ה אינו כנכסיו כו׳, וט&quot;ס בירושלמי שם וצ&quot;ל הגירסא כן כמו בתוספתא, ומוכח דאינו כנכסיו ובדיעבד אין מכירתו כלום. ומה שאינו לוקה בארתי בחידושי בדברים עמוקים דלכו&quot;ע לא לקי ואכמ&quot;ל ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:8:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-8-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם היו דמי העצמות יקרין כו׳.</strong><br><strong> נ&quot;ב </strong> כן מפורש בגמרא ולא פליגי עיי&quot;ש, ודברי כס&quot;מ תמוהין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:9:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-9-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ורואה אדם מומי מעשר שלו.</strong><br><strong> נ&quot;ב </strong> מפורש שם (דף ל&quot;א) עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:10:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בלח&quot;מ. </strong> וטעם מחלוקתן:<br><strong> נ&quot;ב </strong> עיין רש&quot;י ביצה (דף ל&quot;ט) הביא בשם י&quot;מ שיטת רבינו בקוצר עיי&quot;ש ובחידושי הארכתי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-10-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:10:2</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-10-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:10:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מסתפקנא </strong> בנפלו לה לאשה הנשואה נכסי מלוג מבית אביה והם בהמות אי מחייבא במעשר בהמה מי אמרינן דהוו כמו שותפין היא והבעל ופטורין ממעשר או לא ויעוי׳ פרק היה נוטל דף כ&quot;ג תו׳ ד&quot;ה כל הנשואות משום דקנין הבעל הוי כמו שותף יעוי&quot;ש. ובירושלמי שקלים פרק א׳ הלכה ד׳ היא שני אחין שירשו את אביהן היא שני גיסין שירשו את חמיהן. ונתבונן איך ירשו גיסיהן הלא אין הבעל יורש את אשתו בראוי ואם מתה אינו יורש את חמיו וצריך לומר דכשהיו נשיהן חיות נפלו להן נכסי אביהן והבעל יורש את אשתו כשהיא מתה ואם כן בעודה בחיים הוי של שותפות הבעל ואשתו וכבר נפטרו ממעשר בהמה. ונפשט ספיקן דלא הוו כשותפות למיפטר ממעשר. אמנם יש לדחות דמיירי כגון שכתבו להן דו&quot;ד אין לי בנכסייך ופירותיהן ומירת ירית לה בעל ועיי׳ תוס׳ כתובות דף נ׳ ע&quot;א בזה ודו&quot;ק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-6-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:11:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-11-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מסתפקנא </strong> בנפלו לה לאשה הנשואה נכסי מלוג מבית אביה והם בהמות אי מחייבא במעשר בהמה מי אמרינן דהוו כמו שותפין היא והבעל ופטורין ממעשר או לא ויעוי׳ פרק היה נוטל דף כ&quot;ג תו׳ ד&quot;ה כל הנשואות משום דקנין הבעל הוי כמו שותף יעוי&quot;ש. ובירושלמי שקלים פרק א׳ הלכה ד׳ היא שני אחין שירשו את אביהן היא שני גיסין שירשו את חמיהן. ונתבונן איך ירשו גיסיהן הלא אין הבעל יורש את אשתו בראוי ואם מתה אינו יורש את חמיו וצריך לומר דכשהיו נשיהן חיות נפלו להן נכסי אביהן והבעל יורש את אשתו כשהיא מתה ואם כן בעודה בחיים הוי של שותפות הבעל ואשתו וכבר נפטרו ממעשר בהמה. ונפשט ספיקן דלא הוו כשותפות למיפטר ממעשר. אמנם יש לדחות דמיירי כגון שכתבו להן דו&quot;ד אין לי בנכסייך ופירותיהן ומירת ירית לה בעל ועיי׳ תוס׳ כתובות דף נ׳ ע&quot;א בזה ודו&quot;ק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-7">Chapter 7</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-7-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 7:5:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-7-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 7:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויראה לי שאם עישר כו׳ משנה כו׳.</strong><br><strong> פירוש </strong> אבל להצטרף חמשה משנה זו וחמשה משנה זו אינן מצטרפין ואם עישר אינו מעשר ולענין זה תני תנא רה&quot;ש למעשר בהמה אע&quot;ג דלתרומת שקלים דלכתחילה לא תני דהוי רה&quot;ש לענין צירוף כמש&quot;כ בהלכה ו׳ הסמוכה ואין צורך למה שכתב בטורי אבן בשהם יעוי&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-7-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 7:6:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-7-6-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 7:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הנולדים באחד בתשרי כו׳.</strong><br><strong> ירושלמי </strong> ר&quot;ה פ&quot;א ה&quot;א ר&quot;מ אומר באחד באלול ר&quot;ה למעשר בהמה כו׳ אמר ר&quot;ח טעמיה דר&quot;מ עד כאן הן מתמצות לילד מן הישינות מיכן והילך הן מתחילות לילד מן החדשות. ונראה טעמא דסבר דניסן הוי שנה שלהן רק דחמש חדשים הוי עיבור דקה וא&quot;כ הן יולדות עד אחד באלול. וקצ&quot;ע דהא קאמר בירושלמי נדה פ&quot;ק דבהמה טהורה יולדת למקוטעין, א&quot;כ קשה טובא דהא אפשר דהנך דמתעברות אחר ניסן נולדו קודם אלול ומעשר משנה זו על של שנה אחרת דזה נראה דר&quot;מ אזיל בתר חנטה ועיין בכורות (דף כ&quot;א) דר&quot;ש סבר יולדת למקוטעין עיי&quot;ש בתוס׳ [ולכך אזיל בתר שליש היינו משעת לידה דדמי לגידול שליש דאילו עיבור לא נדע זמן העיבור כמבואר שם בירושלמי]. ולפי שיטת רבינו דאם עישר משנה זו על שנה זו הוי מעשר מדלא הקפידה תורה בפירוש, א&quot;כ ל&quot;ק דאע&quot;ג דיעשר משל שנה זו על של שנה אחרת ג&quot;כ הוי מעשר לכן קבע ר&quot;מ ר&quot;ח אלול ללידה דרובן הוי הנך דנתעברו קודם ניסן:<br><strong> ובזה </strong> א&quot;ש מה דאמר רבא לדברי בן עזאי נולדו לו חמשה באב כו׳ נוטל אחד מן האלולים כו׳ מה&quot;ד ליגזור דילמא אתי למישקל מהנך כו׳. פירוש דלא גזר כיון דבדיעבד מעושר לא גזר, וכמה תנאי ת&quot;ק וריה&quot;ג ורבי דרשי קראי דמצוה לעשר מקראי אחרינא (עיין בתו&quot;כ סוף פ׳ בחוקתי) לבד רע&quot;ק דיליף מעשר תעשר ואימור דיברה תורה כלב&quot;א יעוין תוס׳ ב&quot;מ (דף ל&quot;ב) ועוד דרשות לכן אינו בפירוש ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-firstlings-text-8">Chapter 8</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-8-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:1:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין בטעות בין בכוונה.</strong><br><strong> נ&quot;ב </strong> דרב נחמן נשאר בקושיא, ועוד יחיד הוא גבי רב חסדא ורבה בר הונא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-8-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:2:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואינו עושה תמורה מפני שהוא עצמו כתמורה.</strong><br><strong> לא </strong> נתפרש בדברי רבינו אם היא בעל מום מי חלה עלה קדושה כיון דהיא כתמורה ותמורה חל על בע&quot;מ ליקדש. ובסוף פ&quot;ק דתמורה תמורת גופו חלה על דבר הראוי ועל דבר שאינו ראוי תמורת שמו אינה חלה אלא על דבר הראוי ופרש&quot;י שהוא כשאר קדשים שאינן קדושים כשקדם להקדשן עיי&quot;ש. אמנם לא מכרעא דלדעתי פירושו כמו מנין הראוי וזה שתמורת גופו חלה על שאינו נטבל למעשר הוא אפילו מטלאים שכבר נתעשרו או מיפטרי בלקוח ויתום, ותמורת שמו בעי להיות האחד עשר ראוי להיות מעשר כ&quot;א מאותן טלאים שלא נתעשרו וחייבים במעשר וברור. ומש&quot;כ רבינו וטעון נסכים נ&quot;ב מנחות (דף צ&quot;א) יעו&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-8-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:8:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-8-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מת העשירי בדיר כו׳ שהמנין הראוי פוטר.</strong><br><strong> נראה </strong> פשוט בהך דעשירי מאליו הוא קדוש דוקא דליכא רק חד כגון דלא הכניס רק י׳ טלאים בדיר דמבורר על העשירי מי הוא אבל אם נשתיירו הרבה בדיר ואינו מבורר מי הוא העשירי ואינו מתייחס מאליו להנך תשעה אם לא דיעבור בפתחם אחריהם ומבורר מי הוא העשירי. ובזה מיושב מה דמרבה הגמרא מקרא דקדוש יהיה אף אם לא קרא שמו עשירי, דהיינו בכה&quot;ג דיש הרבה בדיר צריך שיעבור דיתברר מי הוא. ומסולק קושיית הלח&quot;מ על רבינו יעו&quot;ש דצריך להך טעמא אם נשתיירו הרבה בדיר ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-firstlings-8-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:12:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-12-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה מונה והוציא הטלה ראשו.</strong><br><strong> נ&quot;ב </strong> כן מפורש בתוספתא במקומו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-firstlings.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ohr-sameach-on-mishneh-torah-firstlings.manifest.json","occurrence_url":"../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-firstlings.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,33 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 1:1:1 | kiryat-sefer-on-mishneh-torah-mourning-1-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 1:9:1 | kiryat-sefer-on-mishneh-torah-mourning-1-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 1:10:1 | kiryat-sefer-on-mishneh-torah-mourning-1-10-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 2:1:1 | kiryat-sefer-on-mishneh-torah-mourning-2-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 2:6:1 | kiryat-sefer-on-mishneh-torah-mourning-2-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 2:10:1 | kiryat-sefer-on-mishneh-torah-mourning-2-10-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 2:12:1 | kiryat-sefer-on-mishneh-torah-mourning-2-12-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 2:13:1 | kiryat-sefer-on-mishneh-torah-mourning-2-13-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 2:14:1 | kiryat-sefer-on-mishneh-torah-mourning-2-14-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 3:1:1 | kiryat-sefer-on-mishneh-torah-mourning-3-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 3:6:1 | kiryat-sefer-on-mishneh-torah-mourning-3-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 3:8:1 | kiryat-sefer-on-mishneh-torah-mourning-3-8-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 3:11:1 | kiryat-sefer-on-mishneh-torah-mourning-3-11-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 3:12:1 | kiryat-sefer-on-mishneh-torah-mourning-3-12-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 3:13:1 | kiryat-sefer-on-mishneh-torah-mourning-3-13-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 4:5:1 | kiryat-sefer-on-mishneh-torah-mourning-4-5-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 4:6:1 | kiryat-sefer-on-mishneh-torah-mourning-4-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 4:7:1 | kiryat-sefer-on-mishneh-torah-mourning-4-7-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 4:9:1 | kiryat-sefer-on-mishneh-torah-mourning-4-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 5:1:1 | kiryat-sefer-on-mishneh-torah-mourning-5-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 6:1:1 | kiryat-sefer-on-mishneh-torah-mourning-6-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 7:1:1 | kiryat-sefer-on-mishneh-torah-mourning-7-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 7:6:1 | kiryat-sefer-on-mishneh-torah-mourning-7-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 8:1:1 | kiryat-sefer-on-mishneh-torah-mourning-8-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 9:2:1 | kiryat-sefer-on-mishneh-torah-mourning-9-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 10:1:1 | kiryat-sefer-on-mishneh-torah-mourning-10-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 11:7:1 | kiryat-sefer-on-mishneh-torah-mourning-11-7-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 12:6:1 | kiryat-sefer-on-mishneh-torah-mourning-12-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 13:1:1 | kiryat-sefer-on-mishneh-torah-mourning-13-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 14:1:1 | kiryat-sefer-on-mishneh-torah-mourning-14-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-mourning | Kiryat Sefer on Mishneh Torah, Mourning | Kiryat Sefer on Mishneh Torah, Mourning 14:13:1 | kiryat-sefer-on-mishneh-torah-mourning-14-13-1 |  |  | not_done |  |

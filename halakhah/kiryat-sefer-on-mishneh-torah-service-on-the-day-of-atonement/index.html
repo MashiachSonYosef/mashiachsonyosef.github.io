@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Service on the Day of Atonement</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Service on the Day of Atonement</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">29 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>931 matched</strong> / 2655 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-1-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-2-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-3-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-4-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:4:1">1:4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-1-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-2-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-3-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-6-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-7-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:7:1">2:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-1-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-2-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-3-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-4-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-7-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-8-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:8:1">3:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-4-1-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-4-2-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 4:2:1">4:2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-1-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-2-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:2:1">5:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-4-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:4:1">5:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-5-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:5:1">5:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-9-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:9:1">5:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-10-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:10:1">5:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-13-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:13:1">5:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-14-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:14:1">5:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-16-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:16:1">5:16:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-17-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:17:1">5:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-23-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:23:1">5:23:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-25-1" title="Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:25:1">5:25:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-1">Chapter 1</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קמט </strong> לעשות כל מעשה יום הכפורים על הסדר כמו שכתוב בפרשת אחרי מות הקרבנות והוידויין ושילוח השעיר ושאר העבודות ובשחר מקריבין התמיד ובין הערבים כסדר כל יום כדכתיב בפרשת פנחס מלבד חטאת הכיפורים ועולת התמיד וגו׳ ומקריבין מוסף היום פר ואיל ושבעה כבשים כלם עולות כדכתיב שם והקרבתם עולה לה׳ וגו׳ פר בן בקר אחד איל אחד כבשים בני שנה שבעה וגו׳ שעיר עזים אחד חטאת ונעשה בחוץ ונאכל לערב כסתם חטאת דנעשה בחוץ ונאכל ליום ולילה אלא דהוא יום צום ונאכל לערב ועוד מקריבין על מוסף זה פר בן בקר לחטאת ואיל לעולה ושניהם משל כהן גדול כדכתיב בזאת יבא אהרן וגו׳ בפר בן בקר לחטאת ואיל לעולה והפר נשרף כדכתיב בסוף הפרשה ואת פר החטאת וגו׳ ושרפו באש וגו׳ ועוד איל הבא משל צבור האמור בפרשת אחרי מות כדכתיב ומאת עדת בנ&quot;י יקח וגו׳ ואיל אחד לעולה והוא האמור במוסף בתורת כהנים רבי אומר הוא האמור בחומש הפקודים ובפרק בא לו מייתי לה ואמרינן מאי טעמא דרבי דכתיב אחד הכא והתם וקרא דחומש הפקודים נמי משמע דכתיב מלבד חטאת הכיפורים דהיינו חברו של עזאזל ועולת התמיד משמע דליכא עולה אחריתי לצבור אלא הני דכתיבי בחומש הפקודים ועולת תמיד ועוד מביאין משל צבור שני שעירי עזים אחד קרב חטאת כדכתיב ועשהו חטאת והוא נשרף כדכתיב בסוף הפרשה ואת שעיר החטאת אשר הובא וגו׳ ושרפו באש וגו׳ והשני שעיר המשתלח כדכתיב על שני השעירים גורלות וגו׳ וגורל אחד לעזאזל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבודות </strong> כל ט&quot;ו בהמות אלו ביום זה אינו אלא בכ&quot;ג דכתיב וכפר הכהן אשר ימשח אותו כפרה זו של יום הכיפורים אינה כשרה אלא בכהן גדול לפי שנאמר כל הפרשה באהרן הוצרך לומר בכהן גדול הבא אחריו שיהא כמותו ואין לי אלא משוח בשמן המשחה מרובה בגדים מנין תלמוד לומר ואשר ימלא וגו׳ והם כל הכהנים גדולים שעמדו מיאשיהו ואילך שבימיו נגנזה צלוחית של שמן המשחה וקרבן מוסף הכתוב בחומש הפקודים נמי בכ&quot;ג דתנן כל עבודות יו&quot;ה אינן כשרות אלא בו וילפינן לה מדכתיב [וכפר וגו׳] אחד משוח או מרובה בגדים כדאמ׳ דאין ביניהם אלא פר הבא על כל המצות כדתנן פרק בתרא דהוריות ואם היתה שבת אף מוסף שבת אין מקריב אותו אלא כהן גדול וכן שאר עבודות כגון קטרת והטבת הנרות של כל יום דאיל אחד הוא כאן ובפנחס כדאמר׳ וכולם מוספין נמי נכללו באחרי מות כדנילף בפרק ב׳ הכל בכהן גדול נשוי דכתיב וכפר בעדו ובעד ביתו זו אשתו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבעת </strong> ימים קודם ליום הכיפורים מפרישין כהן גדול מביתו ללשכתו שבמקדש משנה פרק קמא דיומא ובגמרא יליף ליה רבי יוחנן ממלואים דפירש שבעה ושמש יום אחד ור&quot;ל יליף מסיני כדאיתא התם ואסמכתא הוא דהוי בין לרבי יוחנן בין לריש לקיש ומה שכתב דבר זה קבלה ממשה רבינו ע&quot;ה נראה דאינו הלכה למשה מסיני דבגמרא משמע דהוי דרבנן לתרוייהו וקרא אסמכתא בעלמא כדא׳. ומתקינין לו כהן גדול אחר לשאם יארע לו פיסול שיעבוד תחתיו כדתנן במתניתין קמא. ואינו צריך חנוך אלא עבודתו מחנכתו שם פשיטא אירע בו פיסול קודם תמיד של שחר מחנכין אותו בתמיד של שחר בשמונה בגדים ויהא מחונך לכהונה גדולה קודם שיגיע עבודת יום הכיפורים אלא אירע בו פיסול אחר תמיד של שחר במה מחנכין אותו רב פפא אמר עבודתו מחנכתו עבודת יום הכיפורים עצמה שאינה כשרה אלא בכהן גדול מחנכתו לכהונה גדולה מי לא תניא כל הכלים שעשה משה משיחתן מקדשתן כדכתיב וימשחם ויקדש אותם מכאן ואילך עבודתן מחנכתן לחדשים הנעשים כדכתיב אותם במשיחה ולא אחרים במשיחה הכא נמי ל&quot;ש עבודתו מחנכתו כדאמר׳ ומתחיל מעבודה שפסק בה הראשון כיון דאמרן דעבודתו מחנכתו. עבר י&quot;ה הראשון חוזר לעבודתו דאי אפשר לכהן גדול שלא יארע לו פיסול ואפילו הכי כהן גדול (הוא) השני כל מצות כהונה עליו דברי רבי מאיר ורבי יוסי אומר אינו ראוי לא לכהן גדול משום איבה ולא לכהן הדיוט משום דמעלין בקדש ואין מורידין ואמר רבי יוחנן הלכה כרבי יוסי ומודה רבי יוסי שאם עבד עבודתו כשרה כיון דאינו אלא משום איבה או משום מעלין בקדש וכו׳ ומודה רבי יוסי שאם מת שחוזר לעבודתו פשיטא מהו דתימא הויא ליה צרות מחיים דמצפה מתי ימות וישמש תחתיו קמשמע לן דלא חיישינן להכי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומזין </strong> עליו ומרגילין אותו בעבודות ומלמדין אותו מפי השמועה למדו חכמים שאין נותנין הקטרת אלא בקדש הקדשים לפני הארון כדכתיב ונתן את הקטרת על האש לפני ה׳ כשצץ המינות בצדוקים היו משביעים אותם כדאיתא התם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-2">Chapter 2</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> מעשה התמידין והמוספין של יום זה כהן גדול עושה אותם לבוש בגדי זהב כדכתיב ולבש את בגדיו דהיינו בגדי זהב והדר ועשה את עולתו ואת עולת העם דהיינו איל של מוספי׳ שהוזכר כאן ובפנחס ועבודות המיוחדות ליום זה דהיינו פרו ושני השעירים וקטרת לפני לפנים בבגדי לבן דכתיב בראש הפרשה כתונת בד קדש ילבש וגו׳ ובתר כל הני עבודות כתיב ופשט את בגדי הבד וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> עת שישנה הבגדים טעון טבילה דכתיב ופשט את בגדי הבד ורחץ את בשרו וגו׳ ולבש את בגדיו שמנה בגדים המיוחדים לו כל ימות השנה הא למדת שכל המשנה מעבודת פנים לעבודת חוץ טעון טבילה והוא הדין מחוץ לפנים דחמש טבילות ועשרה קדושין טובל ומקדש כהן גדול בו ביום משנה פרק הממונה ואמר רב חסדא חמש טבילות ועשרה קדושין גמירי הלכה למשה מסיני דעושה כהן גדול בו ביום ואי לאו הלכתא הוה אמינא אינו משנה מעבודה לעבודה אלא ג׳ פעמים דהוו להו שלש טבילות ותו לא ואי לאו קרא הוה אמינא חמש טבילות יטבול אפילו בזה אחר זה כולם ביחד להכי איצטריך קרא ור׳ מפיק להו להני חמש טבילות ועשרה קדושין מדכתיב בראש הפרשה כתונת בד קדש ילבש ומכנסי בד וגו׳ ורחץ במים את בשרו ולבשם הרי כשהוא משנה מעבודת תמיד להתחיל בעבודת היום שהיא פנימית כדכתיב בתריה ולקח את שני השעירים וגו׳ וכוליה ענינא אשכחן מבגדי זהב לבגדי לבן מבגדי לבן לבגדי זהב מנין תלמוד לומר בגדי קדש הם ורחץ במים וגו׳ תלה הכתוב טעם הטבילה בשביל שהם בגדי קדש ללמדך שכל חליפות בגדי קדש ביום זה טעונין טבילה ובגדי זהב בגדי קדש הם וכיון דילפינן טבילה לכל עבודה אם כן הוו חמש טבילות דחמש עבודות הן תמיד של שחר בבגדי זהב דאין דבר קודם לתמיד של שחר ומקריבו כהן גדול בבגדיו של כל השנה דהיינו בגדי זהב עבודת היום בבגדי לבן דכתיב כתנת בד קדש ילבש וגו׳ והקריב את פר החטאת אשר לו ולקח את שני השעירים וגו׳ אילו ואיל העם בבגדי זהב כדכתיב ולבש את בגדיו דהיינו בגדי זהב כדאמרינן ויצא את עולתו ואת עולת העם דהיינו איל לעולה הכתוב בו ואיל לעולה הכתוב בעם דהיינו איל דמוספין דפנחס כדאמר׳ כף ומחתה בבגדי לבן דתנו רבנן ובא אהרן אל אהל מועד למה הוא בא (אינו בא) אל ההיכל הרי גמר כל עבודותיו אינו בא אלא להוציא כף ומחתה שהניח בין הבדים כדכתיב ונתן את הקטרת על האש וגו׳ שכל הפרשה כולה נאמרה על הסדר כסדרן בפרשה כך סדר עבודתן חוץ ממקרא זה שכתב הוצאת כף ומחתה עם עבודות הפנימיות ולא הפסיק בעבודת אילו ואיל העם בנתיים והיה לו לכתוב ויצא ועשה את עולתו וגו׳ ואחר כך ובא אהרן להוציא כף ומחתה ואחר כך ופשט את בגדי הבד ורחץ וגו׳ ולבש בגדיו של כל השנה ועשה מוספין ותמיד של בין הערבים ומאי טעמא צריך להפסיק באילו ואיל העם בין עבודת היום להוצאת כף ומחתה דגמירי הלכה למשה מסיני חמש טבילות בו ביום ואי כסדרן של עבודות כתיב מקרא זה לא משכחת להו אלא שלש אחד לתמיד של שחר ואחד בינו ובין עבודת היום כלה עם הוצאת כף ומחתה ואחת בין הוצאת כף ומחתה לאילו ואיל העם ועמהם המוספין ותמיד של בין הערבים לפיכך צריך להפסיק אילו ואיל העם בין עבודת היום להוצאת כף ומחתה והוצאתן תפסיק בין אילו ואיל העם לתמיד של בין הערבים הרי חמש עבודות תמיד של שחר בבגדי זהב עבודת היום בבגדי לבן אילו ואיל העם בבגדי זהב הוצאת כף ומחתה בבגדי לבן מוספין ותמידין של בין הערבים בבגדי זהב וקרא דובא אהרן הכי משמע דהוי שלא כסדר דאי כסדר למה נאמר ובא אהרן והא התם קאי אלא שמע מינה משום דאפסקה בעבודת חוץ להכי כתב ובא ואפילו הכי איצטריך להלכתא דאי לאו הלכתא הוה אמינא גזרת הכתוב היא שאחר שיגמור עבודת פנים ויצא יחזור להוציא כף ומחתה ומשום דגמירי חמש טבילות אמרינן דהוי שלא על הסדר דהפסיק באילו ואיל העם כדאמרן ולא מצינן לאוקומי האי ובא לעבודה אחרת דבכולהו עבודות כתיב ובא והביא אבל הוצאת כף ומחתה לא כתיב להכי איכא למימר דבהוצאת כף ומחתה איירי ומנין שכל טבילה צריכא ב׳ קדושין דכתיב ופשט ורחץ ולבש ואם אינו ענין לטבילה דנפקא לן מבגדי קדש הם כדא׳ תנהו ענין לקידוש וילפינן מיניה תרי קדושי דשדינן ורחץ אופשט אולבש כאלו כתיב ורחץ תרי זמני ואמר רב אחא בר יעקב הכל מודים בקידוש שלאחר טבילה שלובש ואחר כך מקדש דאמר קרא או בגשתם מי שאינו מחוסר אלא גישה יצא זה שמחוסר לבישה וגישה דקידוש שני הוי אחר לבישה אפילו לרבי כדאמר דרשי ליה לקרא הכי כרבנן דרבי מאיר דכיון דורחץ קאי אפשיטה ואלבישה הקיש קדוש פשיטה ללבישה מה לבישה כשהוא לבוש מקדש כדילפינן מבגשתם אל המזבח אף פשיטה כשהוא לבוש מקדש ואם כן ופשט ורחץ ולבש לא בעי למימר דפשט והדר רחץ ורחץ והדר לבש אלא דאיכא רחיצה אפשיטה ואלבישה וכשהוא לבוש כדאמ׳ ותניא בתוספת׳ ופשט בגדי הבד אשר לבש כלום אדם פושט אלא מה שלובש אלא מקיש פשיטה שתטען קידוש כמו הלבישה כשהוא לבוש ואמרינן התם דלרבנן לא עביד קדוש קמא אטבילה קמייתא כיון שעדיין לבוש בגדי חול לא הוצרך לקדש על הפשיטה ואם כן תשעה קדושין הוו אלא כי פשיט בגדי קדש ולביש בגדי חול עביד ליה התם כשבא לפשוט בגדי קדש. בתמיד של שחר מקריב הפר ושבעה כבשים של מוסף היום דבפ׳ בא לו פליגי במשנ׳ רבי אליעזר ורבי עקיבא בשבעה כבשים ונקטינן כרבי עקיבא דתוספתא דתניא התם דפר העולה נמי לרבי עקיבא היה קרב עם שבעת כבשים כתמיד של שחר דכת׳ במוספי כל הרגלים מלבד עולת הבקר אלמא מוספין עם עולת הבקר נעשים בסמוך לה וילמוד יום הכיפורים מהם ואחר כך בטבילה שניה עבודת היום כולה הוידוים וההגרלה וזריקת דמים בפנים והקטרת ושילוח שעיר עזאזל ואימורי פר ושעיר ושריפתן כסדר האמור בפרשה כדנילף פ&quot;ד בס&quot;ד ואחר כך בטבילה שלישית שעיר הנעשה בחוץ ואף על פי שהוא מן המוסף אינו יכול להקדימו לעבודת היום לפי שנאמר בו ושעיר חטאת א׳ מלבד חטאת הכפורים למדנו ששעירה פנימי קדמו ואילו ואיל העם ואימורי פר ושעיר הנשרפין כדכתיב את עולתו ואת עולת העם וגו׳ ואת חלב החטאת יקטיר המזבחה דהיינו אימורי פר ושעיר ומקריב תמיד של בין הערבים וטבילה רביעית להוצאת כף ומחתה ובטבילה חמישית מקטיר קטרת של בין הערבים כדתנן התם פרק בא לו בתר הוצאת כף ומחתה נכנס להקטיר וכו׳ ורש&quot;י כתב תמיד של בין הערבים נמי בטבילה חמישית ומוספין דאמרינן לעיל בתמיד של בין הערבים היינו שעיר החטאת של מוסף היום ואיל העם דפר ושבעה כבשים עם תמיד של שחר היו קרבין כדילפינן לעיל טעמא דכולהו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל&#160;</strong> הטבילות במקום קדוש במשנה פרק אמר להם הממונה וכולם בקדש על בית הפרוה דכתיב ורחץ את בשרו במים במקום קדוש וקידוש כתיב ביה ונתת אותו בין אהל מועד ובין המזבח וגו׳ וילפינן מיניה לכל טבילות מחלפות היום דליהוו במקום קדוש דלהכי אפקיה רחמנא לקידוש בלשון טבילה למימר טבילה כקדוש מה קידוש במקום קדוש אף טבילה במקום קדוש דמקרא דהכא דכתיב במקום קדוש לא הוה ילפינן לכולהו טבילות וטבילה ראשונה היא בחול דלא הוי מדאוריתא והא דאמר רב חסדא גמירי הלכה למשה מסיני חמש טבילות ועשרה קידושין. [פשטא אתיא כבן זומא פ׳ הממונה (יומא ל, א) דסביר ליה דאפילו טבילה ראשונה הויא דאורייתא מק&quot;ו ולרבי יהודה דסבר דהויא טבילה אחת דרבנן נקט הל&quot;מ משום ד׳ טבילות דהוי דאורייתא לכו&quot;ע ואגבן אמר דחמשה הל&quot;מ משום דכולהו הוו כחדא בי&quot;ה ואפי׳ במה שהוא מדרבנן אשכחן ביה הל&quot;מ בכמה דוכתי והכי נמי תניא (שם לב, א) אמר רבי יהודה מנין לה׳ טבילות וכו׳ אע&quot;ג דאיהו גופיה קאמר לעיל דטבילה ראשונה מדרבנן.] כל כהן שלא טבל או לא קדש בין בגד לבגד ובין עבודה לעבודה ועבד עבודתו כשרה ברייתא פרק ב׳ דזבחים דאף על גב דכתיב בהו חוקה והיתה להם לחוקת עולם בחדש השביעי וגו׳ ומשמע דמעכבי הא כתיב ולבשם שינה הכתוב בלבישה לעכב דכתיב ילבש ולבשם לבישה מעכבת ואין דבר אחר מעכב ופסוק זה דחוקה אשאר דברים הכתובים בפרשה כתיב אי הכי קדוש דצפרא נמי לא תעכב אמר חזקיה אמר קרא והיתה להם חוקת עולם לו ולזרעו לדורותם דבר המעכב בזרעו מעכב ביום הכפורי׳ דחוקה לדורות כתיב וזרעו אחריו להקישא אתא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה </strong> שנאמר בתורה וכפר בעדו ובעד ביתו ושחט את פר החטאת וגו׳ מפי השמועה למדו שזה וידוי דברים פרק הממונה תנו רבנן וכפר בכפרת דברים הכתוב מדבר והם דברי וידוי או אינו אלא כפרת דמים הרי אני דן נאמרה כאן כפרה ונאמר להלן בשעיר המשתלח כפרה יעמד חי לפני ה׳ לכפר עליו מה כפרה האמורה בשעיר דברים דכתיב וסמך וגו׳ והתודה עליו וגו׳ אף כפרה האמורה בפר דברים וכי תימא נילף משעיר הנעשה בפנים שכפרתו בדמים דכתיב וכפר על הקדש מטומאות וגו׳ וההוא בתר מתן דמים היא כתובה ועוד שאין בו וידוי לא איפשר למימר הכי שהרי אומר והקריב אהרן את פר החטאת אשר לו וכפר בעדו ובעד ביתו וגו׳ ואחר כך ושחט את פר החטאת אשר לו ע&quot;כ וכפר ועדיין לא נשחט אלמא כפרה זו דברים הוא דהיינו וידוי נמצאת למד שהוא מתודה ביום זה שלשה וידויין אחד ע&quot;י עצמו כדכתיב וכפר בעדו וידוי שני על ידי עצמו עם שאר הכהני׳ ושניהם על פר החטאת אשר לו כדכתיב ברישא וכפר בעדו ובעד ביתו דהיינו בני ביתו ואחר כך כתיב וכפר בעדו ובעד ביתו והוא וידוי שני עליו ועל אחיו הכהנים שהם קרויין גם כן ביתו כדכתיב בית אהרן ברכו את ה׳ מכאן שהכהנים מתכפרים בו וכל כפרתן אינה אלא על טומאת מקדש וקדשיו כמו שנאמר וכפר על הקדש מטומאות בני ישראל מה שהפר מכפר על הכהנים מכפר שעיר שהוא לשם על ישראל. וידוי ג׳ על ידי ישראל על שעיר המשתלח כדכתיב וכפר את מקדש הקדש ואת אהל מועד ואת המזבח יכפר ועל הכהנים ועל כל עם הקהל יכפר ובפרק הוציאו לו פליג רבי יהודה ארבי שמעון וקאמר הכהנים כמשמען עם הקהל אלו ישראל יכפר אלו הלוים הושוו כולם לכפרה אחד שכולן מתכפרין בשעיר המשתלח בשאר עבירות דבטומאת מקדש וקדשיו אי איפשר להשוותן שהפר מכפר על הכהנים והשעיר הנעשה בפנים על ישראל כדא׳ ובאי זו כפרה הושוו מלמד שכולם מתכפרים בוידוי של שעיר המשתלח בשאר עבירות דבהאי יכפר בתרא הושוו כהנים לוים וישראלים. ומזכיר את השם בכל וידוי מהם שלשה פעמים ואומר אנא השם וכו׳ פרק הממונה ומנין שבאנא נאמר כאן כפרה ונאמר כפרה בחורב דכתי׳ אולי אכפרה מה להלן באנא דכתי׳ אנא חטא העם הזה אף כאן באנא ומנין שבשם נא׳ כאן כפרה ונא׳ בעגלה ערופה כפרה כפר לעמך ישראל מה להלן בשם דכתי׳ אשר פדית ה׳ אף כאן בשם ושלשה פעמים איפשר דילפינן להו תרתי דכתיבי בכפר אשר פדית ה׳ בעיני ה׳ וחדא דלפני ה׳ תטהרו וכן בכל וידוי ואומר חטאתי עויתי פשעתי כרבנן דפליגי ארבי מאיר בברייתא וכן בדוד ושלמה ודניאל כתיב חטאנו העוינו והרשענו ומה שאמר משה עון ופשע וחטאה היינו נושא עון ופשע כחטאה דהויא שוגג ואמר רב הלכה כדברי חכמים. וכשנותן את הגורל על שעיר החטאת אומר לה׳ חטאת דכתיב הגורל לה׳ ועשהו חטאת שיאמר לה׳ חטאת כרבנן דרבי ישמעאל בתורת כהנים נמצא מזכיר את השם י׳ פעמים כנגד י&quot;פ דכתיב ה׳ בפרשה עד לפני ה׳ תטהרו פרק טרף תנו רבנן עשרה פעמים מזכיר כהן גדול את ה׳ בו ביום וכו׳ ובכולן הוא מזכיר ככתבו שהוא השם המפורש כדילפינן מדכתיב בכל המקום אשר אזכיר את שמי וגו׳ דבאהל מועד ושילה ובית עולמים דכתיב בהו אבא אליך הוא מצוה להזכיר את שמו דהיינו המיוחד לו ודרשי׳ לקרא מסורס בכל המקום אשר אבא אליך וברכתיך תזכיר את שמי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-2-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשהיו </strong> שומעים את שם המפורש היו כורעים ואומרים ברוך שם וכו׳ דכתיב כי שם ה׳ אקרא הבו גודל לאלהינו אמר משה לישראל בשעה שאני מזכיר שמו של הקב&quot;ה אתם הבו גודל. כל היום כשר לוידוי יום הכפורי׳ ולוידוי פרים הנשרפים משנה במגילה פרק הקורא למפרע ויליף טעמא בגמרא מדכתיב כי ביום הזה יכפר עליכם אלמא כפרה דהיינו וידוי ביום וידוי פרים יליף כפרה כפרה מיום הכיפורים כתיב הכא וכפר עליו הכהן בפר העלם דבר ופר כהן משיח וכתיב ביום הכיפורים יעמד חי לפני ה׳ לכפר מה להלן כפרת דברים וביום כדילפינן אף כאן כפרת דברים וביום:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Chapter 3</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני </strong> הגורלות אחד כתוב בה לה׳ ואחד כתוב בה לעזאזל והן כשרין מכל דבר ושניהם שוים פרק הממונה תנו רבנן גורלות גורלות של כל דבר יכול יתן שנים על זה ושנים על זה והכי קאמר קרא ונתן על כל אחד משניהם גורלות דמשמע שנים תלמוד לומר גורל אחד גורל אחד אין כאן לכל אחד אלא גורל אחד אין כתיב שם אלא על אחד מהם ועזאזל על אחד מהם יכול יתן של שם ושל עזאזל על זה ושל שם ושל עזאזל על זה לקיים על כל אחד מהם ונתן גורלות שנים ואי זה שירצה יעשה לשם תלמוד לומר אחד ממשמע שנאמר גורל יודע אני שהוא אחד וכי כתיב אחד לדרשא כתיב אם כן מה ת&quot;ל גורלות שיהיו שוין שלא יעשה אחד של כסף ואחד של זהב אחד גדול ואחד קטן וגורלות דמרבינן כל דבר לא איצטריך אלא לגורל של שם שמצינו בציץ שהשם כתוב עליו והוא של זהב יכול אף זה כן תלמוד לומר גורל גורל ריבה ריבה של זית ריבה של אגוז ריבה וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היכן </strong> מגריל במזרח העזרה בצפון המזבח שם במשנה וטעמא שיהיו בתוך חלל העזרה כדכתיב והעמיד אותם לפני ה׳ ואף על גב דלא שחיט ליה הכא מכל מקום כל מעשיו טעונים צפון.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ההנחה </strong> מצוה ואינה מעכבת וההגרלה מעכבא פרק טרף אמר רבי ינאי עליית גורל מתוך קלפי מעכבא עבודה שאין השעירים מתפרשים זה לשם וזה לעזאזל אלא על פי הגורל לפיכך צריך לראות אי זו עלה בימין ויהא שעיר של ימין נקבע בו ואיזה עלה בשמאל ויהא שעיר של עזאזל נקבע בו דכתיב אשר עלה עליו הגורל דהיינו ימין בימין ושמאל בשמאל דהכי משמע עליו וכתיב ברישא גורל אחד לה׳ דהיינו של ימין דסליק ברישא כבזמן שמעון הצדיק והנחה אינה מעכבת שאפילו לא הניחו הגורל על השעיר אינה מעכבא שהרי הוקבע של ימין בגורל שעלה בימין ושל שמאל בגורל שמאל ורבי יוחנן אמר אף עליה אינה מעכבת וסליק בתיובתא בשלהי שמעתין ורבי ינאי אף על גב דאית ליה דרבי יהודה דפליג ארבי נחמיא ואמר דלא כתיבא חוקה אלא בדברים הנעשים בבגדי לבן מבפנים והגרלה מבחוץ היא ולא מעכבא שאני הכא דתנא בה קרא דאף על גב דחקה לאו עלה קיימא לעכב מעכבא שהרי שנה בה הכתוב לעכב ומקרא יתירא נפקא לה עיכובא דכתיב אשר עלה אשר עלה תרי זמני ומשום דלא תנייה בה קרא בלשון ציוי איצטריך קרא דועשהו חטאת לומר דגורל עושה אותו חטאת ואין השם עושה אותו חטאת אם קרא לו שם בלא גורל אלמא הגרלה מעכבא ואי לא תני ביה קרא לא הוה דרשינן ועשהו אלא למעוטי דלא מהני הגרלה בעלמא כי ההוא דיגאלנו לזה ולא לאחר כדכתבו התוספות התם לפיכך הנחה כשרה בזר ועליית הגורלות מן הקלפי פסולה בזר כיון דמעכבא כדילפינן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקושר </strong> לשון של זהורית משקל שני סלעים פרק טרף אמר רבי יוחנן שלשה לשונות שמעתי של פרה ושעיר המשתלח ומצורע אחת משקל עשרה זוז ואחת משקל שני סלעים ואחת משקל שקל ואין לי לפרש כי אתא רבין פירשה משמיה דרבי יונתן של שעיר המשתלח דבעיא חלוקה משקל שני סלעים ואתה חוצהו חציו בסלע וחציו בין שתי קרניו לראות אם הלבין כדכתיב אם יהיו חטאיכם כשנים כשלג ילבינו והיינו מדרבנן בעלמא לסימנא. ושוחט את פר החטאת אשר לו ואת השעיר שעלה עליו הגורל לשם כדכתיב ושחט את פר החטאת אשר לו וכתיב ושחט את שעיר החטאת אשר לעם. ומכניס דמן להיכל ומזה מדם שניהם ארבעים ושלשה הזיות מדם הפר שמנה הזיות בקדש הקדשים בין שני בדי הארון קרוב לכפרת בטפח אחת למעלה ושבע למטה ואחר כך מדם השעיר גם כן שמנה אחת למעלה ושבע למטה וחוזר ומזה בהיכל על הפרכת מדם הפר שמנה אחת למעלה ושבע למטה וחוזר ומזה כן מדם השעיר שמנה אחת למעלה ושבע למטה ואחר כך מערב ב׳ הדמים פר ושעיר ומזה משניהם ארבע הזיות על ארבע קרנות מזבח הזהב שבהיכל ושבע על אמצעו של מזבח זה פ׳ הוציאו לו משנה ובגמרא מנה&quot;מ דאינו מזה על הכפרת אותן שתים אחת של מעלה בפר ואחת של מעלה בשעיר על גג הכפרת ממש א&quot;ר זירא אמר קרא בשעיר והזה אותו על הכפרת ולפני הכפרת לא יאמר למטה בשעיר דהיינו ולפני הכפרת דסוף סוף גמר ממטה דפר שהרי לא פורש בו כמה הזאות וילפינן ליה לקמן ממטה דפר דכתיב ביה ולפני הכפרת יזה שבע פעמים וכיון דסוף סוף יליף מיניה לישתוק קרא מיניה וליגמר לכולה מילתא דמטה דשעיר ממטה דפר דאיתקיש להדדי דכתיב ועשה את דמו כאשר עשה לדם הפר דבשלמא למעלה דידיה איצטריך דמפורש בו אחת דכתיב והזה אותו על הכפרת ואותו חדא משמע ובמעלה דפר לא פורש אחד וא&quot;כ מטה דשעיר למה נאמר לאקושי ליה למעלה דשעיר ולומר על הכפרת כלפני הכפרת מה לפני דלאו נוגע ממש בכפרת דלפני על הארץ משמע אף על גב דלאו ממש נוגע בכפרת אלא לענין שיהא מצדד ידו למטה ולמעלה דפר אף על גב דלא הוה צריך דסוף סוף גמר ממעלה דשעיר שפי׳ בו אחת אפ&quot;ה איצטריך לכדתניא דבי ר׳ אליעזר בן יעקב כל מקום שנאמר פני אינו אלא קדים כדכתיב על פני הכפרת קדמה. ואחת למעלה ושבע למטה ילפינן לה הכי התם ת&quot;ר והזה אותו על הכפרת ולפני הכפרת למדנו כמה למעלה בשעיר אחד דאותו חדא משמע כדאמר׳ למטה בשעיר איני יודע כמה הרי אני דן נאמרו דמים למטה בפר ונאמרו דמים למטה בשעיר מה למטה דפר שבע כדכתיב ולפני הכפרת יזה שבע פעמים אף למטה בשעיר שבע ודנין מטה ממטה וכתיב נמי ועשה את דמו כאשר עשה לדם הפר שאין ת&quot;ל כאשר עשה שהרי אף כאן בשעיר פורש והזה על ולפני ומה ת&quot;ל כאשר עשה שיהו כל עשיותיו שוות כשם שלמטה בפר שבע כך למטה בשעיר שבע למדנו למטה בפר ובשעיר שבע למעלה בפר איני יודע כמה הריני דן נאמרו דמים למעלה בשעיר ונאמרו דמים למעלה בפר מה למעלה בשעיר אחת כדכתיב אותו אף למעלה בפר אחת ודנין מעלה ממעלה וכתיב נמי ועשה את דמו כאשר עשה שאין ת&quot;ל כאשר עשה אלא לשיהיו כל עשיותיו שוות כשם שלמטה בפר שבע כך למטה בשעיר שבע כדאמר׳ וכשם שלמעלה בשעיר אחת כך למעלה בפר אחת הזאות דהיכל שמנה דפר ושמנה דשעיר ילפינן לה התם הכי ת&quot;ר וכן יעשה לאהל מועד מה ת&quot;ל כשם שמזה לפני לפנים כך מזה בהיכל מה לפני לפנים אחת למעלה ושבע למטה משניהם כדילפינן כך בהיכל שמנה אחת למעלה ושבע למטה בפר ובשעיר דבתר תרוייהו כתיב האי קרא ואע&quot;ג דאין למדין בקדשים היקש מן ההיקש והכא פר ושעיר ילפי מהדדי כדאמר׳ והיכי ילפינן מינייהו להזאות שבהיכל אפ&quot;ה מקומות הוא דגמרי מהדדי ואין זה היקש הלמד מן ההיקש שהרי בהקש ראשון בהמות למדו זו מזו כאשר עשה לדם הפר ובהיקש השני לא הוקש שום דבר לאחת מן הבהמות ללמוד הימנה מה שלמדה בהיקש מחבירתה אלא המקומות הוקשו זה לזה וכן יעשה לאהל מועד כאשר כפר על הקדש והקדש לא למד כלום מתחלה בהקש אלא הפר הוקש לשעיר והשעיר לפר במתנות הקדש ואבע&quot;א חוץ מפנים בחד זמנא גמר מה שכתוב בו בפי׳ ומה שלמד בהיקש דכיון דהוצרך ללמוד ממנו את המפורש בו למד הכל בבת אחת הזאות דמזבח הזהב ילפינן להו נמי התם דכתיב ולקח מדם הפר ומדם השעיר ונתן על קרנות המזבח סביב והזה עליו מן הדם באצבעו שבע פעמים וכו׳ מדם הפר ומדם השעיר שיהו מעורבין כר׳ יאשיה דאמר אף על גב דלא כתיב יחדיו כמאן דכתיב יחדיו דמי וכתיב נמי וכפר אהרן על קרנותיו אחת בשנה ולא שתים דפר ושעיר אלא הכל בבת אחת ועל קרנות המזבח סביב היינו ד׳ הזיות על ד׳ קרנות והזה עליו מן הדם שבע הזאות על גגו כדכתיב עליו. והזאות של לפני לפנים והיכל היה מונה אחת אחת ואחת אחת ושתים וכו׳ מ&quot;ט ר׳ אלעזר אמר שלא יטעה בהזאות ורבי יוחנן אמר אמר קרא ולפני הכפרת יזה שאין ת&quot;ל יזה ומה ת&quot;ל יזה לימד על הזאה ראשונה שצריכה מנין עם כל אחת ואחת דמשמע שיהא מונה הזאה ראשונה עם כל הזאה והזאה של ז׳ פעמים דכתיב יזה שבע פעמים וכתיב חקה לעיכובא ואיכא בינייהו דלא מנה ולא טעה. ולא היה מתכוין להזות לא למעלה ולא למטה אלא כמצליף דבביאת פנים כתיב אל פני הכפרת אשר על הארן מדכתיב אל פני ולא על פני משמע שאינו מתכוין לא למעלה וכו׳ דעל פני משמע למעלה אל פני לא משמע לא למעלה ולא למטה ובגמרא תנא כשהוא מזה אינו מזה על הכפרת על גגה אלא כנגד עביה ולא היו דמים נוגעי׳ בה וכשהוא מזה אחד למעלה מצדד גב ידו למטה ומזה כלפי מעלה וכשהוא מזה השבע למטה מצדד ידו למעלה ומזה למול פניו אחד גבוה ואחד בנמוך הימנה וכולן נופלות לארץ כל אלו המ&quot;ג הזיות טובל אצבעו בדם טבילה על כל הזיה לא שיזה ב׳ הזיות מטבילה א׳ ושיירי הדם שופך על יסוד מערבי של מזבח החיצון משנה פרק הוציאו לו ובגמרא דאמר קרא גבי פר כהן משיח ואת כל דם הפר ישפוך ותניא בת&quot;כ הפר לרבות פר יום הכיפורים שיהו שייריו נשפכין ליסוד אשר פתח אהל מועד זה יסוד מערבי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר </strong> כך משלח את השעיר ביד איש המוכן להוליכו כדכתיב וכלה מכפר וגו׳ וסמך ושלח ביד איש עתי וגו׳ איש עתי המוכן לכך מבעוד יום. והכל כשרים להוליכו אלא שעשו הכהנים קבע להוליכו משנה שם ובגמרא ת&quot;ר איש להכשיר את הזר דמהו דתימא כפרה כתיבא ביה קמ&quot;ל. עתי שיהא מזומן לכך מאתמול עתי ואפילו בשבת דמשמע בעתו ובמועדו ישלחנו ולא יעבור ואפילו בשבת ובטומאה וקמ&quot;ל דאם חלה השעיר מרכיבו על כתפו ואם נטמא המשלח נכנס טמא לעזרה ומשלחו שהכהן מוסרו לו שם ואם כשל כחו בדרך וצריך לאכול אוכל דכיון דכתיב ושלח ביד איש עתי המדברה אם כשל כחו ולא יוכל לשלחו מעכב כפרתן של ישראל הילכך דחי עינוי יום הכיפורים ומעולם לא הוצרך אדם לכך כדאיתא התם. וכשהגיע לשם דוחפו לאחוריו ונעשה איברים פרק שני שעירים ת&quot;ר עזאזל שיהא עז וקשה אל לשון קשה יכול בישוב ת&quot;ל במדבר ומנין שבצוק והוא הר זקוף תלמוד לומר גזרה חתוכה. ובא ויושב לו תחת סוכה האחרונה דשילוחו הוא דהותר ולא חזרתו. וחוזר כ&quot;ג אצל הפר והשעיר העומדים לישרף ומוציא את אימוריהם להקטירם על גבי המזבח שם במשנה וכתיב את חלב החטאת יקטיר המזבחה דהיינו אימורי פר ושעיר יקטיר המזבחה על מזבח החיצון דאלו בפנימי כתיב לא תעלו עליו קטרת זרה. ומחתך שאר בשרן חתיכות גדולות מעורות זו בזו כמין קליעה ואינו (מפרש) [מפרק] אותן שם לא היה מנתחן ניתוח בשר עולה שהוא מופשט מן העור קודם ניתוח כדכתיב והפשיט ונתח אלא עור ע&quot;ג בשר ואינו מפשיטן מה&quot;מ דתניא רבי אומר נאמר כאן עור ובשר ופרש את עורותם ואת בשרם ואת פרשם ונאמר בפר כהן משיח עור ובשר ופרש ואת עור הפר ואת כל בשרו על ראשו ועל כרעיו וקרבו ופרשו מה להלן על ידי ניתוח ולא על ידי הפשט אף כאן על ידי ניתוח ולא על ידי הפשט והתם מנא לן דתניא וקרבו ופרשו והוציא מלמד שמוציאו שלם יכול ישרפנו שלם נאמר כאן ראשו וכרעיו ונאמר להלן בעולה ראשו וכרעיו בהקטרתה והקרב והכרעים מה להלן על ידי ניתוח אף כאן על ידי ניתוח אי מה להלן על ידי הפשט אף כאן על ידי הפשט תלמוד לומר וקרבו ופרשו הקיש עור ובשר דכתיב ואת עור הפר ואת כל בשרו להוצאת קרבו ופרשו דאכולהו כתיב והוציא את כל הפר וגו׳ מה פרשו בקרבו אף בשרו בעורו כתיב והוציא והדר ושרף מה הוצאתו בשרו בעורו אף שריפתו כן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 3:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיון </strong> שהגיע שעיר למדבר יצא כ&quot;ג לעזרת נשים לקרוא בתורה ובזמן קריאתו שורפין הפר והשעיר דאין רשאי להתחיל בעבודה אחרת עד שיגיע שעיר למדבר דכתיב ושלח את השעיר למדבר ואח&quot;כ ואת חלב החטאת וגו׳ ואת פר החטאת וגו׳ ושרפו באש וגו׳ וקריאה זו אינה עבודה לפי׳ אם רצה לקרות בבגדי חול קורא וילפינן לה להאי קריאה ממילואים דאמרינן בפרק קמא מנין שאף מקרא פרשה מעכב ת&quot;ל ויאמר משה זה הדבר אשר צוה ה׳ אפילו דיבור מעכב והכא נמי קורא בענינא דיומא ואפשר דמדרבנן בעלמא הוי אסמכתא. ומברך לפניה ולאחריה לפניה מן התורה כדילפינן בדוכתיה ומוסיף לאחריה שבע ברכות כדאיתא ריש פרק בא לו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-4">Chapter 4</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 4:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סדר </strong> כל המעשים שביום זה בחצות הלילה תורמין את הדשן כדאמר׳ במצות קל&quot;א ומסדרין המערכה ומדשנין כבכל יום טובל ולובש בגדי זהב ומקדש כדילפינן לעיל דכל עבודות תמידין ומוספין שבי&quot;ה בבגדי זהב ושוחט רוב שנים וגומר אחר שחיטה על ידו שאין קבלת הדם כשרה אלא בכ&quot;ג וצריך למהר ולקבל ולזרוק כדתנן פרק הממונה נכנס להקטיר קטרת ולהטיב את הנרות ולהקטיר איברי התמיד והחביתין והנסכים בכל יום כדילפינן במצות קל&quot;ו ומקריב הפר ושבעה כבשים של מוסף היום הכל עם תמיד של שחר כדילפינן לעיל מדכתיב מלבד עולת הבקר וגו׳ ומקדש ופושט וטובל ולובש בגדי לבן ומקדש כדילפינן נמי לעיל. ובא לו אצל פרו שהיה עומד בין האולם ולמזבח ולאוקומי בין כותל מזבח צפוני לכותל עזרה צפוני הוה סגי דהא איכא ירך המזבח צפונה אלא משום חולשא דכ&quot;ג כדאיתא התם. ראשו לדרום ופניו למערב משנה התם פרק הממונה ואמר רב בעוקם את ראשו ומשום דשמא ירביץ גללים לא מוקמי׳ ליה להדיא אחוריו למזבח כדאיתא התם והכהן עומד במזרח ופניו למערב במשנה נמי איתא ובעינן פניו למערב בפני הפר דהוא עומד בצדו וסומך על ראשו בין קרניו דראשו עקום כדאמר׳ וסומך ומתודה אנא ה׳ חטאתי וכו׳ במשנה עצמה ובשעת סמיכה וידוי כדילפינן ס&quot;פ שלישי דמעשה הקרבנות. אח&quot;כ מגריל על ב׳ השעירים דבתר דכתיב וכפר בעדו ובעד ביתו דהיינו וידוי ראשון כתיב ולקח אהרן שני השעירים וגו׳ על שני השעירים גורלות וקושר לשון זהורית בראש המשתלח ומעמידו כנגד בית שילוחו ולנשחט כנגד בית שחיטתו כדתנן פרק טרף וכתיב והשעיר אשר עלה עליו וגו׳ לשלח אותו לעזאזל וגו׳ ובא לו אצל פרו שנייה וסומך ומתודה אנא השם וכו׳ כדתנן התם וכתיב והקריב אהרן את פר החטאת אשר לו וכפר בעדו ובעד ביתו וגו׳ דהיינו וידוי שני בתר קרא דלשלח אותו. אח&quot;כ שוחטו ומקבל דמו כדתנן התם דסמיך לכפר בעדו ובעד ביתו ושחט את פר החטאת אשר לו ונוטל את המחתה וחותה בה אש מן הסמוך למערב כדכתיב מלפני ה׳ דהיינו מצד שלפני הפתח והוא צד מערב ובתר שחיטה כתיב ולקח מלא המחתה גחלי אש וגו׳ וכלי מלא קטרת דקה מן הדקה וחופן ממנה מלא חפניו כדכתיב ומלא חפניו קטרת סמים דקה והא דבעינן כף דלא אפשר בלאו הכי כדאיתא ריש פרק הוציאו לו דהיכי נעביד נעייל מחתה והדר מלא חפניו קטרת הבאה אחד אמר רחמנא בגחלים ובקטרת ולא שני הבאות דכתיב ולקח מלא המחתה גחלי אש מעל המזבח ומלא חפניו והביא וגו׳ נשקליה לקטרת בחפניו ומחתה עלה וליעול כי מטי התם היכי ליעביד נשקליה בשיניה וניחתיה למחתה השתא לפני מלך בש&quot;ו אין עושין כן לפני מלך מלכי המלכים הקב&quot;ה עאכ&quot;ו הילכך לא אפשר וכיון דלא אפשר עבדינן כדאשכחן בנשיאים כף אחת מלאה קטרת לא מחוקות ולא גדושות אלא טפיפות לשון דבר צף בגובה מעט שם בריתא ומלא חפניו נראה דהכי משמע הגדול לפי גדלו והקטן לפי קטנו משנה התם ריש פרק הוציאו לו וחפניו נמי הכי משמע. נוטל המחתה בימינו והכף בשמאלו דאף על גב דהוה בעיא כף בימין דכולהו עבודות בימין ולא בשמאל כיון דלא אפשר מחתה בשמאל דאין יכול לסובלה והבאה אחד בעינן ולא שתי הבאות נוטל הכף בשמאל כדאמר׳ דהיכא דיכול בימין פסול בשמאל. הגיע לארון מניח המחתה בין ב׳ הבדים ומערהו לתוך חפניו דכתיב ונתן את הקטרת על האש לפני ה׳ וכסה ענן הקטרת את הכפרת אשר על העדות דמשמע דמיד כשנותן הקטרת מכסה את הכפרת והיינו מבין ב׳ בדי הארון ובבית שני שלא היה ארון היה מניחה על אבן השתיה והתם פרק הוציאו לו ילפינן שמה שמה דורות דורות משמרת משמרת דהארון נגנז כדאיתא התם צובר הקטרת כדתנן התם וממתין עד שימלא הבית כלו עשן ויוצא דכתיב וכסה ענן הקטרת את הכפורת והדר יוצא ולקח מדם הפר וכו׳ וכיון דכתיב וכסה ענן הקטרת את הכפרת משמע דנתמלא הבית כלו עשן דאי לאו הכי אינו מכסה ענן הקטרת את הכפרת דעשן עולה למעלה. ויוצא מהלך אחורנית דאף על גב דכתיב אח&quot;כ ויצא אל המזבח וכו׳ יציאה דרך אחוריו נקראת יציאה כתלמיד הנפטר מרבו וכתיב בשלמה ויבא שלמה הבמה אשר בגבעון לירושלם וכי מה ענין גבעון אצל ירושלם אלא מקיש יציאתו מגבעון לירושלם לביאתו מירושלם לגבעון מה ביאתו מירושלם לגבעון פניו כלפי במה בדרך ביאתו אף יציאתו מגבעון לירושלם פניו כלפי במה בדרך יציאתו והכי משמע קרא ויבא שלמה הבמה אשר בגבעון דרך הליכתו וכן לירושלם בשובו מגבעון היתה כביאה ראשונה. ומתפלל שם בהיכל תפלה קצרה כדתנן התם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-4-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 4:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בשעת </strong> הקטרת הקטרת בקדש הקדשים כל העם פורשין מן ההיכל בלבד ואין פורשין מבין האולם ולמזבח אלא בשעת הקטרה בהיכל בכל יום ובשעת מתן דמים פרק טרף נתנו למי שהוא ממרס בו על הרובד הרביעי שבהיכל נטל מחתה וכו׳ ופרכי׳ בגמרא והכתיב וכל אדם לא יהיה באהל מועד ומוקמי׳ ליה בשעת הקטרה והיכי אמרת ממרס בו על הרובד הרביעי שבהיכל אמר רב יהודה תני של היכל כשיוצא מן ההיכל לעזרה מונה את הרובדין והוי האי רביעי להיכל ת&quot;ר וכל אדם לא יהיה באהל מועד יכול אפילו בעזרה לא יהא אדם עומד כשכהן מקריב קטרת לפני לפנים ת&quot;ל באהל מועד אין לי אלא באהל מועד שבמדבר שילה ובית עולמים מנין ת&quot;ל בקדש אין לי אלא בשעת הקטרה דכיון דכתיב בהאי קרא וכפר בעדו ובעד ביתו ובעד כל קהל ישראל משמע דבהקטרה משתעי דאי זו היא כפרה ששוה לו ולביתו ולאחיו הכהנים ולכל קהל ישראל הוי אומר זו קטרת דאלו מתן דמים אין שוה בכולם שהפר מכפר עליו ועל הכהנים והשעיר על ישראל וקטרת מכפרת כדכתיב ויתן את הקטרת ויכפר על העם ותנא דבי ר׳ ישמעאל על מה קטרת מכפרת על לשון הרע כי ההיא דקרח דכתיב בהו אתם המיתם את עם ה׳ וסתם לשון הרע בחשאי הוא יבא דבר שבחשאי דהיינו קטרת שאין אדם עומד בהיכל בשעת קטרת ויכפר על לשון הרע שהוא מעשה חשאי כדאמרינן בשעת מתן דמים מנין ת&quot;ל בבאו לכפר וכתיב במתן דמים פר כהן משיח ופר העלם דבר של צבור ושעירי ע&quot;ז כפרה ואתיא כפרה כפרה מי&quot;ה כדאמר׳ ופר כהן משיח דלא כתיב ביה כפרה איתקש לפר יום הכיפורים דכתיב ועשה לפר זה פר יום הכיפורים כאשר עשה לפר זה פר כהן משיח ופרישה דבין האולם למזבח בקטרת דהיכל מדרבנן דקרא לא קאמר אלא באהל מועד ופרישה מהיכל מיהא בעי דכל קטרת מכפר על מעשה חשאי כדאמרינן. ואחר כך נוטל דם הפר ומזה ממנו שם שמנה הזיות דבתר דכתיב וכסה ענן הקטרת וגו׳ כתיב ולקח מדם הפר והזה וגו׳ שיצא והניחו על כן הזהב כדתנן פרק הוציאו לו ואחר כך שוחט את השעיר ומזה ממנו שמנה הזיות כדתנן התם דקרא כתיב ושחט את שעיר החטאת אשר לעם והביא את דמו וגו׳ והזה אותו וגו׳ בתר הזאה דפר ואחר כך נוטל דם הפר מעל הכן ומזה על הפרכת ומניחו ונוטל דם השעיר ומזה ממנו ג&quot;כ על הפרכת כדתנן נמי התם דכתיב בתר הכי וכפר על הקדש וגו׳ וכן יעשה לאהל מועד השוכן אתם וגו׳. כשם שהזה משניהם בפנים אח׳ למעלה ושבע למטה כך מזה על הפרכת מבחוץ משניה׳ אחת למעלה ושבע למטה ואח&quot;כ מערה דם הפר לדם השעיר ומחזיר הכל למזרק של פר כדתנן התם עירה דם הפר לתוך דם השעיר ונתן את המלא בריקן כדכתיב במתנות המזבח ולקח מדם הפר ומדם השעיר מדם שניהם יחדיו כר׳ יאשיה דאמר דאע&quot;ג דלא כתיב יחדיו כמאן דכתיב דמי כדאמר׳ לעיל ואי לא הוו יחדיו ה&quot;ל למיכתב הזאה דפר קודם ואח&quot;כ הזאה דשעיר כדכתיב בהזאות שבפנים ועומד בפנים ממזבח הזהב בין המזבח והמנורה כדכתיב ויצא אל המזבח אשר לפני ה׳ דהיינו מזבח הזהב דאלו מזבח החיצון לאו לפני ה׳ הוא ומה ת&quot;ל ויצא לפי שהזה ההזאות על הפרכת עמד מן המזבח ולפנים. ומתחיל להזות מן הדמים על קרנות מזבח הזהב כדכתיב ונתן על קרנות המזבח סביב מקרן מזרחית צפונית צפונית מערבית מערבית דרומית דרומית מזרחי׳ משנה שם מקום שהוא מתחיל בחטאת על מזבח החיצון משם היה גומר על מזבח הפנימי ובגמרא בריתא פלוגתא דרבי עקיבא ור׳ יוסי הגלילי ודכ&quot;ע מיהא בההו׳ קרן דפגע ברישא לא עביד מ&quot;ט דכתיב ויצא אל המזבח אשר לפני ה׳ עד דנפיק מכוליה מזבח וכשגמר מתנות פנים לרבי יוסי הגלילי יצא דרך הצפון ופגע תחלה בצפונית מערבית במזבח ושם לא נתן עד שיצא מכוליה מזבח ובא לו למזרחית צפונית ונותן שם וחוזר לצפונית מערבית דרך ימין כדילפינן מים שלמה וסבר ר׳ יוסי הגלילי דאתי כת&quot;ק דמתניתן דהקפה ברגל בעינן [כתיב] סביב במזבח הפנימי וכתיב סביב במזבח החיצון מה סביב דמזבח החיצון ברגל אף סביב דפנימי ברגל דלא כרבי אלעזר דמתניתין. ועל כולן הוא נותן מלמטה למעלה חוץ מן האחרונה שהיתה לפניו ולא היה יכול לצדד ראשי אצבעותיו למטה אלא למעלה שאם מושכת מלמטה למעלה הדם זב לתוך בית יד כתנתו אבל שלשת הקרנות שאין סמוכות לו יכול ליתן מלמטה למעלה. ומזה מדם התערובת על טהרו של מזבח שבע פעמים כדכתיב והזה עליו מן הדם באצבעו שבע פעמי׳ ומזה בצד הדרום מקום ששלמו מתנות קרנותיו דכתיב וטהרו וקדשו במקום שקדשו בקרנותיו שם טהרו בהזאו׳ דהיינו דרומית מזרחית מקום שגמר המתנות ושופך שיירי הדם על יסוד מערבי כדילפינן לעיל. אח&quot;כ בא אצל שעיר המשתלח וסומך שתי ידיו עליו ומתודה כדכתיב וסמך אהרן את שתי ידיו על ראש השעיר החי והתודה וגו׳ ומשלח השעיר למדבר כדכתיב ושלח ביד איש עתי וגו׳. ומוציא אימורי פר ושעיר ונותנן בכלי והשאר משלח לבית השריפה משנה פרק ב׳ שעירי כדכתיב ואת חלב החטאת יקטיר המזבחה וגו׳ וכתיב יוציא אל מחוץ למחנה ושרפו באש וגו׳. ויוצא לעזרה וקורא שם כדאמ׳ לעיל ומקדש ופושט בגדי לבן וטובל ולובש בגדי זהב ומקדש ומקריב שעיר של מוסף היום ומקריב האילים כדכתיב ויצא ועשה את עולתו ואת עולת העם ומקריב האימורים כדכתיב ואת חלב החטאת וגומ׳ דמקודם הוציאן ונתנן בכלי להקטירן שלא היה יכול להקטירן שעדין היה לבוש בבגדי לבן והקטרתן היא בבגדי זהב מבחוץ ומקריב תמיד של בין הערבים כדילפינן לעיל. ומקדש ופושט וטובל ולובש בגדי לבן ומקדש ונכנס להוציא כף ומחתה כדכתיב ובא אהרן וגו׳ דמשום דאפסקה בעבודת חוץ כתיב ובא כדאמרינן לעיל ומקדש ופושט בגדי לבן וטובל ולובש בגדי זהב ומקדש ומקטיר קטרת של בין הערבים ומטיב את הנרות כדתנן התם פ׳ בא לו ומקדש ופושט ולובש בגדי עצמו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Chapter 5</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> עבודות שעובד בבגדי לבן בפנים מן ההיכל צריך לעשותן על הסדר שנתבאר ואם הקדים מעשה לחברו לא עשה כלום משנה פרק הוציאו לו כל מעשה יום הכיפורים האמור על הסדר אם הקדים מעשה לחברו לא עשה כלום ובגמרא בריתא אמר ר׳ יהודה אימתי בדברים הנעשים בבגדי לבן מבפנים אבל דברים הנעשים בבגדי לבן מבחוץ כגון הגרלה וידוי שפיכות שירים וכל מתנות הפרכת ומזבח הזהב אם הקדים להם דבר מאוחר אין מעכבין עליו לפוסלו ורבי נחמיא פליג עליה ואמר ר׳ יוחנן ושניהם מקרא אחד דרשו והיתה זאת לכם לחקת עולם אחת בשנה אלמא כי כתיב חקה לעכובא אאחת בשנה כתיב ר׳ יהודה סבר מקום שמתכפרים בו פעם אחת בשנה בו כתיבא חקה אבל אהיכל ואעזרות אפילו דברים הנעשים בבגדי לבן שאין כפרתן אלא בכ&quot;ג אחת בשנה לא כתיבא חקה ורבי נחמיא סבר דברים המתכפרים בהם אחת בשנה בין אמקום בין אבגדים ומקשינן אטו לרבי יהודה מקום כתיב אלא היינו טעמיה דרבי יהודה דכתי׳ זאת וכתיב אחת חד למעוטי בגדי לבן מבחוץ דזאת משמע חקה על זאת כתיבה ולא על אחרת וחד למעוטי בגדי זהב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטרת </strong> שחפנה קודם שחיטת הפר לא עשה כלום אעפ&quot;י שהחפינה בעזרה צורך פנים בעבודת פנים היא שם מימרא דרבי חנינא אפילו תימא רבי יהודה צורך פנים כפנים דמי. וכן שעיר ששחטו קודם מתן דמו של פר לא עשה כלום אף על פי שהשחיטה בעזרה הרי דמו נכנס לפנים שם מימרא דעולא דלא ממעט זאת אלא עבודת חוץ כדאמר׳ אבל צורך פנים לא. איל ושעיר המוספין שעשאן קודם עבודת היום לא עשה כלום דאיל העם כתיב בהדי עבודת היום כדכתיב את עולתו ואת עולת העם ובשעיר כתיב מלבד חטאת הכיפורים דמשמ׳ דשעיר הפנימי קדמו כדאמרינן לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקדים </strong> דם השעיר לדם הפר בקדש הקדשים קודם שיגמור עבודתו יזה מדם הפר כמצותו ואחר כך יביא שעיר אחר ויזה מדמו ויפסל הראשון שם פ׳ הוציאו לו מימרא דעולא ואקשינן ליה ממתניתין דתנן הקדים דם השעיר לדם הפר יחזור ויזה מדם השעיר אחר דם הפר דס&quot;ד דבמתנות שבפנים קאמר ותרגמה עולא דבמתנות שבהיכל קאמר אבל שחיטת השעיר במקומה היתה לאחר מתן דם הפר בפנים דאי לאו הכי לא עשה ולא כלום כדאמ׳ עולא דכתיב בשעיר כאשר עשה לדם הפר משמע דפר קדמו אבל הזאות שבהיכל כתיבי אהדדי דפר ושעיר כדכתיב וכן יעשה לאהל מועד כשם שהז׳ משניהם בפנים כך יזה משניה׳ בחוץ כדאמר׳ לעיל. הקדים דם השעיר לדם הפר במתנות ההיכל יחזור ויזה אחר דם הפר כדתנן בהאי מתניתן דאייתינן מטעמא דאמרן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשפך </strong> הדם עד שלא גמר מתנות שבפנים או מתנות שבחוץ או שעל מזבח הזהב יביא דם אחר ויתחיל מתנות שבפנים או שבחוץ או של מזבח הזהב שם משנה נשפך הדם יביא דם אחר ויחזור בתחלה מבפנים וכן בהיכל אם נתן מקצת מתנות ונשפך הדם יביא פר אחר ויתחיל המתנות ואין צריך להתחיל ממתנות שבפנים וכן במזבח הזהב שכולן כפרה בפני עצמה היא לפיכך כפרה שנגמרה נגמרה ובגמרא תנו רבנן וכלה מכפר את הקדש זה לפני לפנים אלו הזאות של בין הבדים ואת אהל מועד זה היכל הזאות שעל הכפרת ואת המזבח במשמעו מלמד שכולן כפרה כפרה בפני עצמן מכאן אמרו גמר מתנות שבפנים ונשפך הדם אין צריך לחזור ולעשות את זאת שגמר שהרי כפרה בפני עצמה היה וכן בהיכל ובמזבח כרבנן ולא כרבי אלעזר ור&quot;ש דאמרו אינו מתחיל אלא ממקום שפסק ואמר רבי יוחנן ושניהם מקרא אחד דרשו מדם חטאת הכפורים אחת בשנה חטאת אחת אמרתי לך להתכפר הכפרה בה ולא שתי חטאות לעשות כפרה אחת משתי בהמות ורבי אלעזר ורבי שמעון סברי חיטוי אחת ולא שתי חיטויין לשנות ההזאה שני פעמים. גמר מתנות המזבח ואחר כך נשפך הדם אינו צריך להביא דם אחר ששפיכת שיירים לא מעכבא שם בברייתא גמר מתנות שבמזבח ונשפך הדם דברי הכל לא מעכבי דם הפר שנשפך קודם גמר המתנות שמביא פר אחר כדאמר׳ צריך לחפן קטרת פעם שניה קודם שחיטת הפר ויקטיר ואחר כך יביא הדם ויזה שם מימרא דרבי חנינא ואקשי׳ ליה ממתני׳ דנשפך הדם יביא דם אחר יחזור ויזה ואם איתא יחזור ויחפון נמי מיבעי ליה ומשנינן בקטרת לא קא מירי ומיהו צריך להקטי׳ קטרת אחרת אחר שחיטת פר זה וחפינה הויא צורך פנים וכפנים דמי אפילו לרבי יהודה כדאמרן לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> מטמא [בגדים] ואין נשרף בבית הדשן אלא הפר הזה האחרון שבו נגמרה הכפרה מתניתין וכולם מטמאים בגדים ונשרפים אבית הדשן דברי רבי אליעזר ורבי שמעון וחכמים אומרים אין מטמא ואין נשרף בבית הדשן אלא באחרון הואיל וגמר כפרה דאחר גמר כל הכפרות כתיב את פר החטאת ואת שעיר החטאת וגו׳ ושרפו אותם וגו׳ והשורף אותם יכבס בגדיו וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נתערב </strong> לו דם הפר בדם השעיר קודם גמר ההזאות שם נתערבו לו דמים בדמים אמר רבא נותן אחת למעלה ושבע למטה עולה לו לכאן ולכאן אמרוה קמיה דרב ירמיה אמר בבלאי טפשאי משום דדיירי בארעא חשוכא אמרי שמעתא דמחשכן הא קא יהיב למעלה דשעיר מקמיה מטה דפר שנותן אחת למעלה לשם פר ולשם שעיר והתורה אמרה וכלה מכפר את הקדש כלה דם הפר כמו שאמור בענין ואחר כך כלה דם השעיר דאי מדכתיב דם הפר ברישא וכתיב חקה לעיכובא הוה אמינא דלא ילפי׳ מחקה אלא היכא דשינה הסדר של מעשה שלם אבל כהאי גוונא דלא הוי אלא אחד ממתנות דשעיר מקמיה שבע דפר לא להכי מייתי דהתורה אמרה וכלה דם הפר ברישא לגמרי והדר שעיר אלא אמר רבי ירמיה נותן אחת למעלה ושבע למטה לשם פר וחוזר ונותן אחת למעלה ושבע למטה לשם שעיר כדכתיב וכלה מכפר כדאמ׳. נתערבו במתנה אחרונה נותן שבע למטה לשם פר שם נתערבו במתנות אחרונות אחר שנתן אחת למעלה מן הפר סבר רב פפא וכו׳ אלא אמר רבא נותן שבע למטה לשם פר וחוזר ונותן אחת למעלה ושבע למטה לשם שעיר דאי שבע למטה לשם פר ושעיר הא קא יהיב מטה דשעיר מקמי מעלה דשעיר והתורה אמרה תן למעלה ואחר כך למטה. נתחלפו כוסות דם פר ושעיר שם נתערבו לו כוסות שאינו מכיר אי זה כוס של פר ואי זו של שעיר נותן וחוזר ונותן ג׳ פעמים בכל עבודה ועבודה נותן אחת למעלה ושבע למטה מן הא׳ וחוזר ונותן מן השני וחוזר ונותן מן הראשון דמה נפשך אם ראשון של פר היה ושני משעיר יצא בראשון ובשני ואי ראשון של שעיר היה והרי הוא כמי שאינו כדתניא פר מעכב את השעיר יצא בשני ובשלישי שהרי קדם פר לשעיר וכן בהיכל. קבל דם הפר בשני כוסות וכן דם השעיר ונתערבו אחת מכאן ואחת מכאן שם מקצת דמים נתערבו לו ומקצת לא נתערבו פשיטא דכי יהיב מתנות מוודאן יהיב מיהו הך מיבעיא לי הנך שנתערבו שיירים הוו כאלו לא נתערבו וליסוד מזבח החיצון אזלי או דילמא דחויין הוו הואיל ולא ניתנו מהם מתנות הראשונו׳ ולאמה שבעזרה המביאה את כל לכלוך העזרה לנחל קדרון אזלי אמר רב פפא אפילו למאן דאמר כוס עושה חברו שירים הני מילי היכא דבעי למיהב מצי יהיב אבל האי דאי בעי למיהב לא מצי יהיב לא כדתניא וכו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פר </strong> יום הכיפורים אף על פי שכהן גדול קונה אותו משלו כדכתיב פר החטאת אשר לו שם פרק הוציאו לו אשר לו משלו הוא מביא ולא משל צבור יכול לא יביא משל צבור שאין מתכפרין בו אבל יביא משל אחיו הכהנים שהם מתכפרים בו תלמוד לומר אשר לו יכול לא יביא ואם הביא כשר תלמוד לומר שוב אשר לו שנה הכתוב עליו לעכב ואי לאו דקנו בגויה היכי מכפר להו אלא שאני בי גזא דאהרן דרחמנא אפקריה גבי אחיו הכהנים לפיכך אם מת כהן גדול קודם שישחט הפר העומד תחתיו אינו מביא פר אחר אלא שוחט של ראשון ואינו חטאת שמתו בעליו שאין חטאת הרבים מתה שם עלה דבעיין דשחט ומת מהו שיכנס אחר בדמו פריך תלמודא תיפוק לי דאין אחר נכנס בשחיטתו דחטאת שמתו בעליה למיתה אזלא אמרי חטאת צבור היא ולא למיתה אזלא ומסקי׳ לא תימא חטאת צבור כדי שלא יאמרו התלמידים שאם הורו בית דין של כהנים לעבור על אחת מן המצות ועשו כהנים על פיהם שיהו מביאים פר העלם דבר של צבור כאחד מכל השבטים דקי&quot;ל שבט אחד איקרי קהל דכהנים ודאי לא איקרו קהל שלא נטלו נחלה אלא אימא חטאת של שותפין הוי ולא למיתה אזלא דחמש חטאות המתות בחד מקום אגמרינהו רחמנ׳ למשה מה תמורת חטאת מתה ליתא בשותפות שאין קרבן השותפות עושה תמורה דכתיב ואם המר ימיר לשון יחיד אף כולן אינן מתות בצבור ולא בשותפין אפי׳ המצויות בהם כדמפרש בהוריות. שחט את הפר ומת קודם שיכפר בדמו הכהן האחר נכנס בדם ומכפר בו בעיא דאמרן איבעיא להו שחט ומת מהו שיכנס אחר בדמו מי אמרינן בפר ואפילו בדמו של פר או דילמא בפר ולא בדמו של פר רבי חנינא ורבי יצחק אמרי בדם ואפילו בדמו של פר ור&quot;ל ור׳ אמי פליגי עליהו ואמר רב אשי מסתברא כמאן דאמר דם איקרי פר דכתיב בזאת יבא אהרן אל הקדש בפר בן בקר אטו בקרניה מעייל ליה אלא בדמו וקרי ליה פר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני </strong> שעירי יום הכיפורים מצותן שיהו שוין במראה ובקומה ובדמים ולקיחתן כא׳ ואף על פי שאינן שוים כשרים משנה ריש פרק שני שעירי ובגמרא תנו רבנן יקח שני שעירי עזים מיעוט שעירי שנים מה תלמוד לומר שני שיהיו שניהם שוין ומנין שאף על פי שאין שניהם שוין כשרים תלמוד לומר שעיר שעיר ריבה טעמא דרבי רחמנא הא לאו הכי הוה אמינא פסולין עיכובא מנא לן סלקא דעתך אמינא שני שני שני כתיב והשתא דרבי רחמנא שעיר שעיר שני שני שני למה לי חד למראה וחד לקומה וחד לדמים ולמצוה ולא לעכב ולקיחתן כאחד נראה דילפי׳ מפשטיה דקרא דכתיב ולקח את שני השעירים דמשמע שתהא לקיחת שניהם כאחת ואף על פי שאינן שוים כשרים היינו דאמרן דלמצוה ולא לעכב דשעיר שעיר ריבה שיהיה שעיר מכל מקום לקח אחד היום ואחד למחר כשרים שם במשנה דאף על גב דילפינן לקיחה כאחד מפשטיה דקרא לא מעכב דלכולי עלמא לא כתיבא עיכובא אלא על דברים שהם מן העבודה אבל לא על הלקיחה שהיא מתמול שלשום. מת אחד מהם אם עד שלא הגריל מת יקח זוג לשני ואם משהגריל יביא שנים ויגריל בתחלה ויאמר אם של שם מת זה שעלה עליו הגורל לשם יתקיים תחתיו ואם של עזאזל מת יאמר זה שעלה עליו הגורל לעזאזל יתקיים תחתיו והשני מן השנים שהגריל בסוף ירעה וימכר ויפלו דמיו לנדבה שאין חטאת צבור מתה שם במשנה קרוב ללשון רבינו וטעמא דלא הגריל יקח זוג לשני דלא בעינן לקיחתן כאחד אלא למצוה ולא לעכב ואם משהגריל יביא שנים ויגריל דהגרלה מעכבת וקבעה כדאמרן לעיל ולהכי לא יקח מזוג שני אלא מה שעלה עליו גורל המת ושני שבזוג ראשון יקרב ושני שבזוג שני ירעה כרב לגבי רבי יוחנן דסבר דאין בעלי חיים נידחין כדיליף מבעל מום עובר ומתני׳ נמי דייקא כותיה דתנן אם של שם מת זה שעלה עליו הגורל לשם יתקיים תחתיו ואידך כדקאי קאי בקדושתיה ולא אמרינן ידחה ורבי יוחנן סליקא בקשיא כדאיתא התם וטעמא דרעייה ולא נפיק לחולין משום דהיה ראוי ליפול עליו גורל המת ולהתקיים תחתיו אבל למיתה לא אזיל כרבי יהודה אף על גב דנקראו חטאת כדכתיב שני שעירי עזים לחטאת משום דאין חטאת צבור מתה כדילפינן לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:16:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פר </strong> ושעיר של יום הכיפורים שאבדו והפריש אחרים תחתיהם וקרבו ונמצאו הראשונים ירעו וימכרו לנדבה שם ופרק קמא דשבועות ברייתא כרבי אלעזר ורבי שמעון דפליגי ארבי יהודה וסברי דאין חטאת צבור מתה כדילפינן משעיר ר&quot;ה דאתי מתרומת לשכה וכן אם נמצאו הראשונים ירעו השניים ויפלו לנדבה ונראה דאפילו רבי יהודה מודה בהא דברייתא לא איירי אלא בראשונים שירעו כדפירש רש&quot;י התם אבל נמצאו הראשונים וקרבו לא חל שם חטאת כל כך על השניים לשימותו לרבי יהודה אלא ירעו כדאמרן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המום </strong> פוסל בשעיר המשתלח ואפילו הוא עובר דכתיב בבעלי מומין ואשה לא תתנו מהם וגו׳ לרבות שעיר המשתלח כדתניא התם מחוסר זמן פסול דכתיב ומיום השמיני והלאה ירצה לקרבן אשה לה׳ לרבות שעיר המשתלח ואף על גב דאין גורל קובע אלא בראוי לשם איצטריך קרא כדמוכח רבינא כגון שהומם משהגריל עליו וחללו על אחר וזה אין צריך להגריל שהרי מכח הראשון בא ורבא אמר כגון שהיה לו למי שמכרן לצבור חולה בתוך ביתו שמותר לחלל עליו יום הכיפורים ושחט אמו של שעיר ועשה הוא מחוסר זמן משום אותו ואת בנו לאחר שהגריל עליו ופרכי׳ וכי האי גונא מי אסיר להוליכו לשוק משום אותו ואת בנו והא לאו שחיטה היא אמרי במערבא דחייתו לצוק היא שחיטתו דנעשית מצותו. היה טרפה פסול דכתיב יעמד חי דמשמע חי ולא טרפה. חלה השעיר מרכיבו על כתפו ואפילו בשבת דכתיב עתי ואפילו בשבת להוליכו על כתפו כדאמר׳ לעיל פרק ג׳ חלה המשלח משלחו ביד אחר שם חלה מרכיבו חלה המשלח משלחו ביד אחר. נטמא נכנס למקדש ונוטלו ויוצא דכתיב עתי ואפילו בטומאה יהיה שילוחו על ידו דחפו ולא מת ירד אחריו וימיתנו שם וחכמים אומרים דחפו ולא מת ירד אחריו וימיתנו ובת&quot;כ לפני ה׳ לכפר עליו לשלח אותו שילוחו למיתה דלהכי משלחי ליה כי היכי דלימות יכול שילוחו לחיים תלמוד לומר יעמד חי לפני ה׳ לכפר עליו הא כיצד עמידתו לפני ה׳ חי [ומיתתו] בצוק עד אימתי הוא זקוק לו להיות חי עד שיכפר דכתיב וכלה מכפר דהיינו מתן דמים דשעיר הנעשה בפנים. ואיברי שעיר זה מותרין בהנייה שם פרק ב׳ שעירי איבעיא להו אותן איברים מהו בהנאה רב ושמואל חד אמר מותרין וחד אמר אסורין מאן דאמר מותרים דכתיב במדבר ושלח את השעיר במדבר וקרא יתירא הוא למדרש שיהא הפקר כמדבר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-23-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:23:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-23-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:23:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נפחתה </strong> תקרה של היכל לא היה מזה דכתיב באהל מועד כשהוא שלם. מזבח שלא נתחנך בקטרת לא יזה עליו דכתיב מזבח קטרת הסמים גבי פר כהן משיח והביא בתורת כהנים מזבח קטרת שיתחנך בקטרת ולא שיתחנך בדם ונראה דילפינן ליה הכא מפר כהן משיח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-25-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:25:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-5-25-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Service on the Day of Atonement 5:25:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חסר </strong> מן הקטרת אחד מן סממניה או מעלה עשן חייב מיתה עליה שנאמר ולא ימות כי בענן אראה וגומר וכן חייב מיתה על ביאתו בלא מצוה לפיכך אם שגג בביאה והזיד בקטרת או שנכנס בקטרת שלימה עם החסרה חייב מיתה פרק הוציאו לו מה תלמוד לומר כי בענן אראה על הכפרת מלמד שנתן בה מעלה עשן הא לא נתן בה מעלה עשן או שחסר אחת מסמניה חייב מיתה דכתיב הקטרת שלימה ולא חסרה וכתיב ולא ימות ופרכי׳ ותיפוק לי׳ דקא מעייל ביאה ריקנית וכתיב ואל יבא בכל עת ולא ימות אמר רב ששת הכא במאי עסקינן כגון ששגג בביאה ריקנית והזיד בהקטרה שידע שיש מיתה במקטיר קטרת חסרה ואין עונש על ביאה ריקנית שאין מיתה על השוגג. רב אשי אמר אפילו תימא הזיד בזו ובזו כגון דעייל שתי הקטרות בביאה אחת אחד שלמה ואחד חסרה אביאה לא מחייב דהא עייל ליה שלימה אהקטרה מחייב דקא מקטר קטורת חסרה. הקטיר מן הקטרת של קדש הקדשים כזית בהיכל חייב מיתה. חפינת הקטרת עבודה ומחשבה פוסלת בה פרק הוציאו לו בעי רב פפא חישב בחפינת קטרת על מנת להקטירה למחר מהו מי אמרינן יליף מלא מלא ממנחה מה התם מהניא מחשבה בקמיצתה דנפקא לן במנחות מזאת התורה וגו׳ ולשלמים מה שלמים מפגלים ומתפגלי׳ וכו׳ הכא נמי מהניא מחשבה בחפינתה או לא תא שמע הקומץ והקטרת וכו׳ אם נגע טבול יום במקצתן פסל את כולן ומדפסיל טבול יום אלמא קדשה כלי קדושת הגוף הילכך פסלה נמי לינה ומדפסלא לינה פסלא נמי מחשבה משמע דילפינן מלא מלא וכן חתיית גחלים לקטרת נפסלת במחשבה שמכשירי קרבן כקרבן שם חישב בחתיית גחלים מהו מכשירי מצוה כמצוה דמו או לא תיקו ותימא הוא דסלקא בתיקו והרב ז&quot;ל נקטה בפשיטות דמכשירי קטרת חפינה וחתייה כקטרת ואיפשר דהאי דקאמר נפסלת במחשבה הוי משום דאזלי׳ לחומר׳ כבעיא דלא איפשיטא. חפן בראשי אצבעותיו או מן הצדדין או ממטה למעלה או חפן בידו זו ובידו זו וקרב זו לזו שם אמר רב פפא פשיטא לי מלא חפניו כדחפני אינשי חודה של פס היד למטה בעי רב פפא חפן בראשי אצבעותיו מלמטה למעלה מן הצד חפן בזו ובזו וקרבן מהו תיקו. נתפזרה קטרת על הארץ ואספו שם בעי רב פפא נתפזרה קטרת ממלא חפניו מהו ידו כצואר בהמה דמי ופסולה או דילמא ככלי שרת דמיא ולא פסלה תיקו חפן חברו ונתן לתוך חפניו שם נמי בעיא דרב פפא מלא חפניו בעיא והא איכא או דילמא לקח והביא בעיא והא ליכא דולקח נמי אומלא חפניו נמי קאי תיקו. חפן ומת שם בעיא דרבי יהושע בן לוי מהו שיכנס אחר בחפינתו ואין צריך לחזור ולחפן מאי הוי עלה אמר רב פפא אי חופן חוזר וחופן חברו נכנס בחפינתו דה׳ מקיימא ליה חפינה אי אין חוזר וחופן תיבעי לך אמר ליה רב הונא אדרבא אי חופן חוזר וחופן לא יכנס אחר בחפינתו אי איפשר שלא יחסר חברו ושלא יותיר שאין חפניו של ראשון שוים לחפניו של שני ואי אין חופן וחוזר וחופן תיבעי לך דאיבעי להו חופן חוזר וחופן או לא ופשטו׳ דחופן וחוזר וחופן והשתא בעיא דחפן ומת מהו שיכנס אחר בחפינתו הויא פלוגתא דרב פפא ורב הונא בריה דרב יהושע דכיון דפשטיה דחופן חוזר וחופן לרב פפא נכנס אחר בחפינתו ולרב הונא לא יכנס אחר בחפינתו כדא׳ ונראה דכהאי סברא דהני אמוראי בעי לה רבי יהושע בן לוי ולא איפשיטא ליה ולהכי כללה הרב ז&quot;ל בהדי הנך ספקי דלא יקטיר ואם הקטיר הורצה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-service-on-the-day-of-atonement.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

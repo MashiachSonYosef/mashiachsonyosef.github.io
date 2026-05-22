@@ -1,0 +1,1783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Levirate Marriage and Release</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Levirate Marriage and Release</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">49 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>749 matched</strong> / 2684 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-6-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-7-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-12-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:12:1">1:12:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-13-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:13:1">1:13:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-19-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:19:1">1:19:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-20-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:20:1">1:20:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-12-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:12:1">2:12:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-15-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:15:1">2:15:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-16-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:16:1">2:16:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-20-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:20:1">2:20:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:5:1">3:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-11-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:11:1">3:11:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-15-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:15:1">3:15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:5:1">4:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:8:1">4:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-14-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:14:1">4:14:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-17-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:17:1">4:17:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-20-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:20:1">4:20:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-28-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:28:1">4:28:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-29-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:29:1">4:29:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-35-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:35:1">4:35:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-35-2" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:35:2">4:35:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:2:1">5:2:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:8:1">5:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-17-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:17:1">5:17:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-18-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:18:1">5:18:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-24-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:24:1">5:24:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-28-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:28:1">5:28:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:4:1">6:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:8:1">6:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-9-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:9:1">6:9:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-14-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:14:1">6:14:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-18-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:18:1">6:18:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-29-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:29:1">6:29:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:4:1">7:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-10-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:10:1">7:10:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-12-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:12:1">7:12:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-17-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:17:1">7:17:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-8-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 8:3:1">8:3:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Chapter 1</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע מה&quot;ת וכו׳.</strong> ומ&quot;ע זו פשוט דהוא כשאר מצות כמו שופר ולולב ודומיהם אם היא והוא מרוצים שלא לייבם ולא לחלוץ רצונה לשבת גלמודה ועגונה ב&quot;ד כופין אותם לקיים המצוה וראי׳ ברורה מהא דמק׳ הגמ׳ יבמות דף כ׳ ניתי עשה וידחי ל&quot;ת ואס&quot;ד דאין בו מצוה כ&quot;א ברוצים בכ&quot;ה אין ע׳ דוחה ל&quot;ת כדאמרי׳ בכתובות דף מ׳ גבי אונס שותה בעציצו דלא אתי עשה ודחי ל&quot;ת כיון דאי אמר׳ לא בעינ׳ לי׳ לא אלים עשה למדחי ל&quot;ת א&quot;כ ה&quot;נ דכוותי׳ א&quot;ו דהכא מצוה מוטלת עליהם כמ&quot;ש ועי׳ בשו&quot;ת רשב&quot;א סי׳ י&quot;ח למה אין מברכין על מצוה זו ומוכח ג&quot;כ להמעיין שם כמ&quot;ש ודלא כמו שראיתי בשו&quot;ת ח&quot;צ סי׳ א׳ דף ב׳ ע&quot;ב שאין כופין על מצוה זו שאם היא רוצה להתעגן וגם הוא אינו מקפיד אנן לא אכפית לן במ&quot;ע כזו ע&quot;ש ולי נראה ברור כמ&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל מד&quot;ס וכו׳.</strong> כבר האריך הה&quot;מ להביא שי׳ הפוסקים ועי׳ ביבמות דף פ׳ בתוס׳ וברא&quot;ש ועי׳ בס׳ דגול מרבבה יו&quot;ד סי׳ י&quot;ד מ&quot;ש ביבמה מיד כשנולד הולד ואיכא רובא החזקה מסתלקת משא&quot;כ גבי שחיטה ומצרפי׳ מעוטה לחזקת איסור דבהמה בחי׳ ועמ&quot;ש בזה באריכות בספרי שלום ירושלים ר&quot;ה דף ג׳ ד&quot;ה תמן ומ&quot;ש בס&quot;ד פ&quot;ד מה׳ מ&quot;א הל׳ ד׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:6:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שיש לו אח מ&quot;מ וכו׳.</strong> הה&quot;מ הביא מחלוקת ביבם מומר אי יש להתירה בלא חליצה והב&quot;י באה&quot;ע סי׳ קנ&quot;ו כ׳ הוי למי שמיקל ביבם מומר מ&quot;מ כ׳ שם בשם מהרי&quot;ק אם ע&quot;א מעיד ביבם מומר שמת אעפ&quot;י דאנן קיימ&quot;ל דע&quot;א ביבמה לא סמכי׳ מ&quot;מ במומר סמכי׳ בצירוף שיט׳ מהר&quot;ם וסייעתו וכ&quot;כ בשו&quot;ת הגאונים בתראי כיון דרוב הפוסקים סוברים דסמכי׳ ביבמה בע&quot;א מצרפין לס&quot;ס ובאמת דברי מהר&quot;ם המה נגד דברי התוס׳ ב&quot;ק דף ק&quot;י דכ׳ שם דוקא בארוסה אבל בנשואין ודאי דלא אמרי׳ אדעתא דהכי לא קדשה נפשה וכ&quot;כ בהגהת מרדכי ביבמות להרגיש על דברי מהר&quot;ם מדברי התוס׳ ואפשר לומר דלא ניחא לי׳ למהר&quot;ם לאוקמי הסוגי׳ דוקא בארוסה אלא מיירי בסתם אפי׳ בנשואין וס&quot;ל דגבי דידה לא שייך לומר אין אדם עושה בעילתו בעילת זנות ומה גם דבדבר גדול כזה שתשיירא עגונא אמרי׳ דעל דעת ראשונה היא נבעלת דלא מחלה התנאי דבשעת קידושין.<br><strong> ובלימוד </strong> הישיבה אמרתי לפרש בדרך פלפול סוגי׳ דריש כתובות ובכ&quot;ד כל דמקדש אדעתא דרבנן מקדש ואפקעינהו רבנן לקידושין מיני׳ תינח קדיש בכספא קדיש בביאה מא&quot;ל שוי׳ רבנן לבעילתו בעילת זנות ונתחבטו בו כל מפרשי ש&quot;ס הלא בקדיש בכספא ממילא הבעילות אח&quot;כ המה בעילות זנות ומה איכפת לי׳ להמקשה אם גם בקדש בביאה ג&quot;כ בעילתו בעילת זנות ויש לפרש ע&quot;ד זה דהא לפי שי׳ המקשה שם בב&quot;ק אמרי׳ דכל היכא דלא ניחא לה אח&quot;כ שע&quot;י קדושין זה אפשר לה להתעגן אדעתא דהכי לא קדשה נפשה ויש מקום לומר דכל כה&quot;ג היכא דאפשר לה להיותה יושבת אח&quot;כ עגונה מאמדינן דעתא דלא קדשה נפשה ואינה מקודשת מה&quot;ת כלל כיון דלא נתקיים התנאי וא&quot;כ גם אם נותן לה גט בתנאי וכה&quot;ג היכא דאפשר שיבוא מזה חשש עיגון לא חלו הקדושין למפרע מה&quot;ת משא&quot;כ לשי׳ המתרץ שם בב&quot;ק דטב למיתב טן דו וכו׳ אמרי׳ בכל ענין קדשה נפשה בלא תנאי כלל ודלא כשי׳ מהר&quot;מ אבל לשי׳ המקשה שם וודאי דר&quot;ל אדעתא דהכי לא קדשה נפשה ואפי׳ בנשואין וכמו שסובר מהר&quot;ם אליבא דאמת א&quot;כ ה&quot;ק המקשה ס&quot;ד הא דמשני הגמ׳ אין כל דמקדש אדעתא דרבנן מקדש וכו׳ אין הכונה דרבנן תקנו זאת נגד דברי תורה משום תקנת עגונות אלא ה&quot;ק כל דמקדש אדעתא דרבנן מקדש אין מאמדינן דעתה ומה&quot;ת אינה מקודשת וה&quot;נ אפקעינהו רבנן לקידושין מיני׳ מדין תורה משום דאדעתא דהכי לא קדשה נפשה והוא נמי ניחא לי׳ בזה ולא אכפת לי׳ כמ&quot;ש התוס׳ שם בב&quot;ק ומעתה לא קשי׳ לי׳ מה עבדו בבעילותיהן דממילא מה&quot;ת הוי ביאת זנות וע&quot;ש בתוס׳ שכ׳ היכא דאית לה הנאה מיד וודאי מחלה לתנאי ויש מקום וסברה דעד כאן לא אמרי׳ אדעתא דהכי וכו׳ אלא דקדש בכספא דאז לית לה הנאה משא&quot;כ בקידש בביאה דאז לא איכפת לה ולא עלתה על לבה להתנות שום תנאי וע&quot;ש באס&quot;ז וזו שהקשה שוב תינח קדיש בכספא אבל קדיש בביאה מא&quot;ל דזה לא הי׳ ניחא לי׳ להמקשה דרבנן מצד תקנתן יעשו בעילתן בעילת זנות והתרצן ס&quot;ל דטב למיתב טן דו כתי׳ הגמ׳ ב&quot;ק ובכל גונא צריכין אנו לומר דרבנן מצד תקנתן משם חשש עיגון שוי׳ לבעילתן בעילת זנות ועי׳ מ&quot;ש בס&quot;ד בפ&quot;ג הלכה ד׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:7:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחים מן האם וכו׳.</strong> עי׳ בגמ׳ דף י&quot;ז בהא דאמר רבה יליף אחוה אחוה מבני יעקב ועי׳ בירושלמי פ&quot;א דיבמות הלכה א׳ בדפוס ברלין עם פי׳ הק&quot;ע בהא דאמר ר׳ יונתן נאמר כאן ישיבה ומה שהק׳ שם בש&quot;ק עי׳ בח&quot;ר וצע&quot;ג והא דלא ניחא לי׳ בגז&quot;ש דאחים י&quot;ל בהא דמקש׳ שם ולילף אחים מעריות ולא ניחא לי׳ בשנוי׳ דתלמודא דסבר כמ&quot;ש התוס׳ כתובות דף ל&quot;ד ע&quot;א ד&quot;ה ר&quot;ש בשם מהר&quot;י דנין דבר הנאמר בסיני מדבר הנאמר בסיני וכו׳ עי׳ תוס׳ חולין דף פ&quot;ה ד&quot;ה דנין א&quot;כ מאי משני התלמודא דנין אחים מאחים דבני יעקב לא נאמר בסיני ע&quot;ש ועי&quot;ל דלפי ילפותא דאחים מבני יעקב דאין גז&quot;ש למחצה יהי׳ בעינן אחים דומי׳ דיעקב דכשרים היו ואנן לא קיימ&quot;ל הכי אלא הכל חייבים במצות יבום כמ&quot;ש הרב בעל קרית ספר דלהכי לא ילפינן מבני יעקב ועי׳ בתוס׳ ד&quot;ה אחוה ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:12:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכולן אסורות עליהן מד&quot;ס וכו׳.</strong> עי׳ ירושלמי פ&quot;ג הלכה ד׳ במראה הפנים ד&quot;ה בלא כך דיש משם קצת סייעתא לשיט׳ רבינו דחלוצה אינה אסורה עליו אלא מד&quot;ס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:13:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כאלו היתה אשתו וכו׳.</strong> עי׳ הה&quot;מ וגרסי׳ בירושלמי עלה דהך מתני׳ מפני שחלץ לה הא לא חלץ לא וכו׳ ר׳ אבין דייק לה מן דבתרא וכו׳ ע&quot;ש ובש&quot;ק ונ&quot;ל דאנן דקיימ&quot;ל יש זיקה כמ&quot;ש רבינו דלא חיישי׳ להך דיוקא משום די&quot;ל לפמ&quot;ש בהגהת אה&quot;ע סי׳ קס&quot;ב שיט׳ המרדכי דאפי׳ בספק חלוצה אסור בקרובותיה וי&quot;ל דמודה המרדכי בס׳ ומתה דמותר בקרובותיה ובזה א&quot;ש דקדוק לשון המתני׳ בחלוץ לה אסור בקרובותיה אפי׳ בס׳ חלוצה משא&quot;כ במתה בעודה זקוקה ובזה י&quot;ל ג&quot;כ הא דלא תני במתני׳ שניות וכמ&quot;ש התוס׳ יבמות דף מ׳ ע&quot;ב ד&quot;ה ש&quot;מ משום די&quot;ל דבס׳ לא גזרו וצ&quot;ע לדינא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-19-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:19:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-19-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:19:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעת שהיא עולה ליבום וכו׳.</strong> עי׳ בשו&quot;ת ח&quot;צ סי׳ א׳ מ&quot;ש בשם מהראנ&quot;ח למניעת האוננות מן מהחליצה ועי׳ בק&quot;ע ריש יבמות א&quot;כ לפי&quot;ז אף נדה יש למנוע מהחליצה כיון דבהאי שעתא אינה עולה ליבום ולית מאן דחש לזה ועי׳ בשו&quot;ת רי&quot;ט אה&quot;ע סי׳ ט&quot;ז ועי׳ ברא&quot;ש רפ&quot;ק דיבמות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:20:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-1-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 1:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>החולץ וכו׳ ואם הפילה וכו׳.</strong> לא כ׳ רבינו אם אין הולד של קיימא אי מפסלה מכהונה ובנ&quot;י כ׳ דבדיעבד מפקינן לה מן הכהן ועי׳ בד&quot;מ באה&quot;ע סי׳ קס&quot;ד ובמראה הפנים ר&quot;פ החולץ ד&quot;ה ופסלה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Chapter 2</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מד&quot;ס וכו׳.</strong> משמע קצת מדברי רבינו דמאמר הוי קנין מה&quot;ת במקצת כיון דקרו לה ד&quot;ס ועי׳ גמ׳ יבמות דף כ׳ קרי לדרבנן ד&quot;ס ועי׳ בכ&quot;מ ריש הלכות אישות ורש&quot;י במתני׳ דעשה בה מאמר בפ&quot;ב כתב דמאמר אינה אלא מדרבנן ועי׳ בתוס׳ יבמות דף י&quot;ט ע&quot;ב ד&quot;ה גמרי׳ דג&quot;כ ס&quot;ל דמאמר מדרבנן בעלמא הוא וכ&quot;מ מדקרו לה מאמר וכמ&quot;ש הנ&quot;י משום דאינם קידושין גמורים והוי כמו דבורא בעלמא מש&quot;ה קרי לה מאמר ועי׳ בתי&quot;ט דכ׳ הטעם משום שצריך אמירה והרמ&quot;ז סתר לזה דא&quot;כ גם קדושי נשים הוי לקרותו מאמר ובק&quot;ע פ&quot;ב דיבמות הלכה ב׳ הקש׳ מי דחיק רש&quot;י לפרש דהוי מדרבנן דהא מבואר בירושלמי דבין לר&quot;ש ובין לרבנן מאמר מה&quot;ת קני במקצת ע&quot;ש ואפשר שמזה הוכיח רבינו מ&quot;ש מד&quot;ס ונראה לי דרש&quot;י ותוס׳ הוכיחו דמאמר מדרבנן מדמקשה התלמודא יבמות דף י&quot;ח טעמא דעביד בה מאמר וכו׳ וקשה דלמא לעולם גם בלא עביד מאמר אסור מצד זיקה אלא דנקיט מאמר דמצד זיקה אינה אלא מדרבנן כמ&quot;ש הב&quot;ש וזיקה כה&quot;ג שמת הבעל פשיטא דאינו אלא מדרבנן ועי׳ בתי&quot;ט בפ&quot;ב דיבמות משנה א׳ ד&quot;ה עשה בה וכו׳ למאי דפסקי׳ כריב&quot;ב וכו׳ ובק&quot;ע השיג עלי׳ די&quot;ל דבמת היבם פקעה זיקה והגמ׳ קאי למ&quot;ד שומרת יבם שמתה אסור באמה ע&quot;ש וכ&quot;מ בתוס׳ דף י&quot;ח ד&quot;ה והאי וכו׳ ואנן קיימ&quot;ל דיש זיקה ואסור מיהת מדרבנן ואמאי לא קאמר בגמ׳ דמש&quot;ה נקיט מאמר דהוי מה&quot;ת ומזה מוכח דס&quot;ל לתלמודא דידן דמאמר אינו אלא מדרבנן ועמ&quot;ש בס&quot;ד בפ&quot;ה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד המערה וא׳ הגומר קנה.</strong> כ&quot;ה במתני׳ א׳ המערה וא׳ הגומר ולא חילק בין ביאה לביאה ועי׳ בתוס׳ שם מה שמקש׳ על רש&quot;י וברש&quot;י שלפנינו כתב תרווייהו ברישא ונראה דס&quot;ל לרש&quot;י בהא דקתני ולא חילק בין ביאה לביאה ה&quot;ק דאין חילוק לענין קני׳ כי היכא שביאת הגומר קונה לכל הדברים בארוסה כ&quot;ה המערה כמ&quot;ש התוס׳ שם דף נ&quot;ו ע&quot;א ד&quot;ה לדברים וכו׳ אף שלא נזכר בדבריהם כ&quot;א בהעראה ה&quot;ה לשלא כדרכה דהא חד טעמא הוא כיון דקונין בעלמא כדדרשי׳ משכבי אשה ומיושב קושי׳ התוס׳ ולכונה זו הביא הרע&quot;ב בפי׳ המתני׳ והרמב&quot;ם קרא דמשכבי אשה ע&quot;ש בתי&quot;ט שנתקשה בזה ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מבקשים ממנו וכו׳.</strong> ומה שלא הזכיר הרב דין היתר הצרה לרוב באורו כי לעולם אנו מזכירי׳ כנס וכו׳ ומחזיקים אותה כבעולה לכל דבר אם לא לטענותיהם כשיש טענת אלה בינו לבינה אבל הוא אינו נאמן לה וכ&quot;ש לצרתה ופשוט הוא ד&quot;ע. ומה שנתקשה בתי&quot;ט על רבינו למה השמיט תי׳ דר&quot;א בגמ׳ דף קי&quot;ב דקאמר התם גט לזיקתה הכא גט לביאתה י&quot;ל דס&quot;ל לרבינו כפירש&quot;י שהוא מפרש גט לזיקתה בשכתב לה מפורש גט לזיקתו והוא אומר בעלתי אחר הגט וכמ&quot;ש בח&quot;ר שם א&quot;כ פשיטא דצריך גט שנית בכה&quot;ג דיש ביאה אחר הגט וכמ&quot;ש רבינו בפ&quot;ו ופשוט הוא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או עד שיבריא החרש.</strong> עי׳ בש&quot;ע קס&quot;א ס&quot;ד והוא פי׳ הרע&quot;ב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:12:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא לייבם ולא לחלוץ וכו׳.</strong> יראה מדברי רבינו פה מדכתב ולא לחלוץ וגם בהלכה ו׳ הוסיף על מתני׳ או לחלוץ דס&quot;ל כל&quot;ב יבמות דף ל&quot;ט בפלוגתא דר&quot;י וריב&quot;ל דר&quot;י ס&quot;ל דחליצת גדול עדיפא גם היכא דליכא יבום ודלא כמ&quot;ד דבחליצה ליתא לדין דמצוה בגדול ושי׳ הרמ&quot;ה משמע דס&quot;ל דלחומרא בעלמא פסקי׳ כמ&quot;ד דחליצה עדיף בגדול אבל לא לעיקר דינא ומש&quot;ה ס&quot;ל להרמ&quot;ה דוקא היכא דאפשר בגדול אבל אין כופין לגדול אם לא ירצה ועי׳ ב&quot;י אה&quot;ע סי׳ קס&quot;א והעיקר כדברי רבינו וכ&quot;נ מדברי הרא&quot;ש בקיצור פסקיו וכופין אותו אלא דאם ביקש ממון הרבה מה שא&quot;א לה ליתן כפי מה שתקנו מדינות כמ&quot;ש בהגהת רמ&quot;א סי׳ קס&quot;ה והולכין בזה אחר מנהג המקומות והב&quot;ד מחויבין להשתדל בכל עז וכח שלא יחליץ הקטן במקום שיש גדול ויכולים לכופו עד שיאמר רוצה אני ואף שכ׳ הב&quot;ש ססי׳ קס&quot;א דגם בטור לא כתב דכופין לא נהירא לי דאין מזה ראי׳ דלא צריך לפרש כיון דסתם הטור דקיימ&quot;ל חליצת גדול עדיפא ולא כ׳ מצד החומרא כדס&quot;ל להרמ&quot;ה א&quot;כ ממילא מצוה מה&quot;ת הוא לחלוץ הגדול וכופין אותו וכשיטת רבינו גם הרב בהגהת רמ&quot;א בסי׳ קס&quot;א הוסיף או לחלוץ משמע דדעתו כדעת רבינו ובאמת דברי הב&quot;ש שם תמוהים וקיצר במקום שהי׳ לו להאריך דכ׳ שם דאם יש להגדול אשה אז חולץ הקטן והביא דברי הריטב&quot;א שכ׳ הב&quot;י וזה הדבר תמוה מאוד דתקנת ר&quot;ג ידחה מצות של תורה לשי׳ רבינו דחליצת גדול עדיפא ותמהני על הב&quot;ש שהוא גופי׳ בסדר חליצה בקצרה אות ל&quot;ו כ׳ דדעת הרמב&quot;ם דקימ&quot;ל כמ&quot;ד חליצת גדול עדיפא ולדידי׳ וודאי דכופין א&quot;ו דלענין דינא צריך הגדול לחלוץ גם אם יש לו בנים ופי׳ דברי הריטב&quot;א י&quot;ל דמיירי שנשתהה הדבר הרבה אם ישתדל חליצה מן הגדול א&quot;נ היכא דהגדול אינו רוצה כלל ויש אח קטן ממנו הגדול מיתר אחים וגם הוא אינו רוצה ויש לו אשה אז לפי שיט׳ רבינו כולם שווים ונראה דגם לשי׳ רבינו הגם דס&quot;ל דכולם שווים עכ&quot;פ וודאי דלכתחילה הגדול שבאחים עליו מוטל ביותר אלא דלא כ׳ רבינו דכולם שווים אלא לענין שלא נקראת מורדת ובזה נסתלק השגת הראב&quot;ד מעל דברי רבינו כנ&quot;ל ועי׳ הה&quot;מ. ועי׳ שו&quot;ת פנים מאירות ח&quot;ב סי׳ א׳ אם הגדול מתגורר בעיר אחרת אם יחלוץ הקטן ע&quot;ש וצ&quot;ע לדינא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:15:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-15-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יבמה שנדרה וכו׳.</strong> מ&quot;ש הה&quot;מ על דברי רש&quot;י במתני׳ דיבמות קי&quot;א תמה עליו בתי&quot;ט דאין דברי הה&quot;מ כהוגן ע&quot;ש ובס׳ קול הרמ&quot;ז מיישב דברי הה&quot;מ בטוב טעם ע&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:16:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-16-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהרי היבם אומר לה וכו׳.</strong> אפי׳ לפמ&quot;ש ברפ&quot;א דעל מצוה זו ב&quot;ד כופין לקיים המצוה מ&quot;מ הוצרך רבינו לטעם זה ונ&quot;מ היכא דהיא מרוצה להתיבם ולא לחלוץ לדעת רבינו כמו שביאר המגיד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:20:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-2-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 2:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היבמה שזנתה.</strong> נראה אפי׳ אם נתייחדת עם א׳ בפני עדים לא אמרי׳ אין אדם עושה בעילתו בעילת זנות וקדשה ותהי׳ אסורה ליבם ז&quot;א כיון שעביד איסורא שבא על הזקוקה ליבם עי׳ במל&quot;מ פ&quot;ו מה׳ גירושין מ&quot;ש בשם תשו׳ הרדב&quot;ז ומ&quot;ש בס&quot;ד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Chapter 3</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר זה בני וכו׳.</strong> עי׳ תוס׳ קידושין דף ס&quot;ד ע&quot;ב ד&quot;ה רבי שסיימו דאם מוחזק לן באחין אינו נאמן וכו׳ דשמא אין לו כח וכ&quot;ה בפסקי תוס׳ שם ורבינו סתם דבריו משמע אפי׳ בשעת מיתה נאמן אפי׳ מוחזק באחין וכ&quot;כ הב&quot;ש סי׳ קנ&quot;ו ונראה דהכל לפי הענין ואין כאן מחלוקת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שזנה עם אשה בין פנוי׳ ובין א&quot;א וכו׳.</strong> עי׳ הה&quot;מ מה שהאריך בסתירת פסקי רבינו והרדב&quot;ז בתשו׳ ח&quot;ג סי׳ קנ&quot;ה כ׳ דגם רבינו מודה בלא דיימא מעלמא ולא משמע כן מסתימת לשון רבינו ואפשר לומר לפמ&quot;ש התוס׳ במס׳ חגיגה דף י&quot;ד ע&quot;ב ד&quot;ה בתולה ושמא כאן שאף היא בכלל איסור פי׳ ומש&quot;ה נאמנת אף לר&quot;י וסברא כזו מצינו ברא&quot;ש סוף נדרים מ&quot;ש טעם לדין דרב המנונא האשה שאמרה לבעלה גרשתני נאמנת וא&quot;כ בתרומה מש&quot;ה נאמנת אם היא מודה דוודאי לא עבדה איסורא משא&quot;כ אם היא מודה לו שהוא בנו נאמנתה דידה תועיל להתיר אשה אחרת בהא ס&quot;ל לרבינו דאינה נאמנת ובזה י&quot;ל מה דכייל רבינו פנוי׳ עם א&quot;א ולמה לו להזכיר א&quot;א כלל דאם בפנוי׳ צריכה חליצה ק&quot;ו בא&quot;א דרוב בעילות אחר הבעל ודוחק לומר דסד&quot;א בא&quot;א מתירין להתייבם כיון דהוא והיא מודים מהכ&quot;ת שתתייבם ולפמ&quot;ש י&quot;ל דכייל לה עם א&quot;א כמו דבא&quot;א שוב א&quot;א לו ליקח אותה וע&quot;כ עדותה מהני לאחרים דומי׳ דהכא בפנוי׳ מיירי דוקא בכה&quot;ג שהודאתה אינה לעצמה אלא לאחרים ומש&quot;ה ס&quot;ל לרבינו דאינה נאמנת ולפי&quot;ז באם לקח את הפנוי׳ בעצמה ואח&quot;כ מת בלא וולד כ&quot;א זה הוולד שהוא והיא מודים שבעודה פנוי׳ נתעברה ממנו אז מודה רבינו דא&quot;צ חליצה ועכ&quot;פ יועיל לצרף סברא זו במעשה אשר נשאלתי עלי׳ בפנוי׳ שנתעברה והוא והיא מודים שהולד מהם ולקחה לו לאשה בנשואין גמורין ומת הבעל בלא בנים כ&quot;א הולד הזה והי׳ לו אח מומר אשר לא יוכל בקל להשתדל ממנו חליצה דיש שיטת הסוברים דא&quot;צ חליצה כמ&quot;ש לעיל בפ&quot;א הל׳ ו׳ שיש לפוטרה בלא חליצה בכה&quot;ג הארכתי בתשובה ואין פה מקומו להאריך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נאמן ע&quot;א להעיד ליבמה וכו׳.</strong> רבינו לא כתב פה אם מהני כתב כמ&quot;ש בפי&quot;ג מה׳ גירושין הלכה כ&quot;ה גבי אשה שמת בעלה דמהני אפי׳ בע&quot;א אפי׳ בלא נתקיים כמ&quot;ש הה&quot;מ שם והי׳ נראה דגבי יבמה לא מהני כתב דהרי גם בע&quot;א מספקא לי׳ לגמ׳ אי מהני א&quot;כ מנ&quot;ל להקל בכתב אבל לדינא נראה דגם ביבמה מועיל כתב והכי משמע מדברי הב&quot;י אה&quot;ע סי׳ י&quot;ז שכ׳ בשם רי&quot;ו שכל שהאמינה בו ע&quot;א הה&quot;ד עד מפי עד דאע&quot;ג דלא כ׳ רבינו כן מ&quot;מ זה ממילא הוא מסברא ומ&quot;ש שם שכ&quot;כ רבינו פ&quot;ג לא מצאתי כעת מבואר בפירוש. וז&quot;ל הירושלמי סוף יבמות מצאו כתוב בשטר מת פלוני נהרג פ׳ ר׳ ירמי׳ אמר משיאין את אשתו ר׳ בון ב&quot;כ אמר אין משיאין את אשתו מתניתא מסייע לדין ומתניתא מסייע לדין מתניתא מסייע לר&quot;י ע&quot;פ עדים ולא ע&quot;פ כתבם לא ע&quot;פ מתורגמן ולא על עד מפי עד ועכשיו אין משיאין עד מפי עד ודכוותי׳ ע&quot;פ כתבם וע&quot;פ מתורגמן משיאין ופי׳ הפ&quot;מ ועכשיו אין משיאין עד מפי עד בתמיה שהרי הוחזק להיות משיאין ודכוותי׳ ע&quot;פ כתבם משיאין הואיל ומקילין בעדות אשה עד מפי עד וכן ע&quot;פ כתבם ע&quot;כ הרי דלמד ר׳ ירמי׳ דמשיאין ע&quot;פ כתב ודהקילו ע&quot;פ עד מפי עד ואס&quot;ד דעד מפי עד נאמן טפי מכתב בלתי מקוים איך יליף מדהקילו בזה מקילין נמי בזה אלא ש&quot;מ דלפחות שקולים הם א&quot;כ אם מקילינן בעד מפי עד בעדות אשה שמת יבמה א&quot;כ ממילא לדידן דקיימ&quot;ל כר&quot;י א&quot;כ גם בכתב סמכי׳ לשיט׳ הרמב&quot;ם ביבמה שמת יבמה.<br><strong> וראיתי </strong> ברא&quot;ש סוף יבמות שהביא להך דירושלמי וז&quot;ל מסייע לר&quot;י דתני׳ ע&quot;פ עדים ולא ע&quot;פ כתבם ולא ע&quot;פ מתורגמן ולא ע&quot;פ ע&quot;א ועכשיו משיאין ע&quot;פ ע&quot;א ודכוותי׳ ע&quot;פ מתורגמן וע&quot;פ כתב משיאין ע&quot;כ הנה ברור דקיצר הרא&quot;ש בלשון הירושלמי ובמקום ע&quot;א צ&quot;ל עד מפי עד דאל&quot;כ ק׳ מאי ראי׳ מע&quot;א דמהני דגם מפי כתב מהני ואם רצה לדמותו א&quot;כ הו&quot;ל לאתוי׳ סייעתא ממתני׳ דסמכו על ע&quot;א בעדות אשה א&quot;כ ממילא סמכו בכתב א&quot;ו דל&quot;ד א&quot;כ ע&quot;כ דכל ראי׳ הוא מדסמכו על עד מפי עד כמ&quot;ש בס׳ פ&quot;מ וברי&quot;ף סוף יבמות שהביא וז&quot;ל עכשיו הלא משיאין ע&quot;פ אחד ועל פי עד מפי עד וכו׳ הרי ג&quot;כ מבואר מדבריו דעיקר ראיית ר&quot;י מדסמכו על עד מפי עד ותמהני מאוד מהגאון בעל נב&quot;י חלק אה&quot;ע סי׳ ל&quot;ג שרצה להוכיח מדברי הירושלמי הנ&quot;ל דע&quot;א נאמן מה&quot;ת מדהביא ראי׳ לר&quot;י מע&quot;א הבין שם שעיקר ראי׳ מע&quot;א ודחיק עצמו מאוד וכ&quot;ז גרם לו שבתחילת התשו׳ שם העתיק הירושלמי מתוך דברי הרא&quot;ש ומהרי&quot;ף ולא ראה הגירסא שלפנינו דעיקר הראי׳ מעד מפי עד וברי&quot;ף הלא מבואר כן והוא העתיק גי׳ הרא&quot;ש והרי&quot;ף בחדא מחתא ובאמת הרא&quot;ש קיצר בלשון יצא מדברינו דלשי׳ רבינו גם ביבמה סמכי׳ ע&quot;פ כתב ועי׳ בר&quot;ן ר&quot;פ מי שאחזו ודוק וכבר כתב בתשו׳ רשב&quot;א אלף רנ&quot;ב בשם בעל ה&quot;ג והשתא דע&quot;א כשר ביבמה דשווי׳ רבנן כאשה שהלך בעלה למדה&quot;י וקתני גבי אשה הוחזקו להיות משיאין עד מפי עד וכו׳ הדא יבמה שרי׳ לנשואין ע&quot;פ וכ&quot;ה בתשו׳ מהרמ&quot;פ סי׳ פ&quot;א יראה מדבריהם דדין יבמה שוה לדין אשה שהלך בעלה למדה&quot;י לכל מלי לשיט׳ רבינו אבל הרמ&quot;א פסק כשי׳ החולקי׳ על רבינו דלא סמכי׳ בע&quot;א ביבמה וק&quot;ו דלא סמכי׳ על כל הני ובמקום עיגון כ׳ הב&quot;ח דגם רמ&quot;א מודה ועי׳ בב&quot;ש דבזה&quot;ז מודה הרא&quot;ש ולא החליט הדבר ובשו&quot;ת פנים מאירות סי׳ מ&quot;ה הביא ראי׳ דמודה הרא&quot;ש בזה&quot;ז שהרי השיב הרא&quot;ש לשואלו אם האשה בעצמה נאמנת לומר שכלו לוולד חדשיו והאריך שם דאין לה נאמנות וע&quot;כ בזה&quot;ז מיירי ע&quot;ש שהאריך ודבריו תמוהים מאוד דהא אשה בעצמה וודאי דאינה נאמנת ולא הי׳ כוונת השואל שם דרצה לדמות נאמנות האם על חדשי העיבור כמו באב דנאמן על בנו מדכתיב יכיר ובזה לא נסתפק הגמ׳ אי משום סברת סני לי׳ דיתקנו רבנן שלא להאמינה מה שהאמינתה התורה לזה הוצרך הרא&quot;ש להעמיד את השואל על האמת דאין נאמנות לאם כלל וביותר היכא דאיכא לברורי אף שיש בו טורח צריכין לברר היטב ולחקור אחר אמיתתן של דברים אפי׳ בזה&quot;ז וביותר בכתב צ&quot;ל המורה מתון בדבר באיזה שטר וכמ&quot;ש האחרונים בסי׳ י&quot;ז סי&quot;א ע&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הי׳ לאחת מהן עד.</strong> שם במתני׳ קי&quot;ט אלא דתנן שם לזו יש עדים ורבינו שינה לישנא דמתני׳ עי׳ בתי&quot;ט ועי׳ ב&quot;ש סי׳ קנ&quot;ח דלשיטת הרא&quot;ש ע&quot;א לא מהני ובעינן עדים ועי׳ בתוס׳ חדשים דלשי׳ רבינו י&quot;ל דמתני׳ דקתני עדים אתי׳ כהנך תנאי דס&quot;ל אין משיאין אשה ע&quot;פ ע&quot;א וגם לשיט׳ הרא&quot;ש צריכין אנו לזה דאל&quot;כ אלא דתני עדים דוקא משום דלא מהני ע&quot;א קשיא מאי מספקא לי׳ לתלמודא אי ע&quot;א מהני לזה ממתני׳ דלא מהני ונראה דהא דתני יבמות דף י&quot;ט ע&quot;ב לזו עדים ובנים ולזו לא עדים ולא בנים שתיהן מותרות מאי קמ&quot;ל פשיטא אלא דברייתא זו אתי׳ כהנך תנאי וקמ&quot;ל דבעינן דוקא עדים ומש&quot;ה השמיט רבינו הך ברייתא ועי׳ הה&quot;מ הלכה ט׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:11:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא משום התרת עגונה.</strong> עי׳ ב&quot;ש סי׳ קנ&quot;ח ס&quot;ק א׳ בזה&quot;ז דיש חרם ר&quot;ג שלא ישא אשה על אשתו אין ע&quot;א נאמן שמתה אשתו אע&quot;ג דבמילי דרבנן ע&quot;א נאמן באיסורין וכ&quot;מ מהירושלמי שהביא הרא&quot;ש פ׳ במה אשה דע&quot;א נאמן דקמיע מומחה היא לצאת בה בשבת היינו משום דגם אם יוצא בקמיעה שאינה מומחה פטור מ&quot;מ בחרם יש מי שסובר דהוי מה&quot;ת וגם יש כאן ב׳ חזקות א׳ חזקת חי של אשה וגם הוא אתחזק באיסור לקחת אשה אחרת כה&quot;ג כ׳ הריב&quot;ש בתשו׳ דמה&quot;ט מחמרי׳ בספינה המטורפת בים ועי׳ בתוס׳ ב&quot;מ דף כ׳ ע&quot;ב משמע דלא ס&quot;ל סברת הריב&quot;ש וכבר האריך לחלוק על דברי הב&quot;ש הרב הגאון בנב&quot;י בהרבה מקומות.<br><strong> ומ&quot;ש </strong> רבינו משום דהוא איסור לאו קיל בעיני׳ והרע&quot;ב כ׳ הטעם משום דזמנין סני׳ לי׳ וכ&quot;ה בגמ׳ דף צ&quot;ד ע&quot;א ועי׳ בנב&quot;י חלק אה&quot;ע שאלה מ&quot;ב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:15:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-3-15-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 3:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א וכו׳.</strong> עי׳ הה&quot;מ ועי׳ בתוס׳ ב&quot;ב דף קל&quot;ה ע&quot;א ד&quot;ה הא וכו׳ דלא חיישי׳ מעצמינו דלמא איכא סהדי וכן הרי&quot;ף והרא&quot;ש השמיטו הך אוקימתא ועי׳ ב&quot;ח אה&quot;ע סי׳ קנ&quot;ו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Chapter 4</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היבמה הולכת וכו׳.</strong> כתב הה&quot;מ דהכי אית׳ בסנהדרין דף ל&quot;ח מדרשא דזקני עירו ולא זקני עירה ובירושלמי פ׳ מצות חליצה הלכה ו׳ גרסי׳ ר&quot;י בעי ביבמה מי מרדף אחר מי היתיב ר&quot;א הא כתיב ועלתה יבמתו השערה כד שמעה ר&quot;י אמר יפה למדנו ר&quot;א ונראה דהא דשיבח ר&quot;י דרשא זו ולא ניחא לי׳ בדרש דמייתי תלמודא דבבלי משום די&quot;ל דגם ר&quot;י אי&quot;ל דרשא דזקני עירו אלא דמשם לא ידענו כ&quot;א היכא דאיכא ב&quot;ד בעירו אבל היכא דליכא ב&quot;ד בעירו יש מקום לספק כמ&quot;ש המל&quot;מ בשם מהריב&quot;ל וכיון דחזית לי׳ ר&quot;א דרשא דועלתה יבמתו והך דרשא יתירא אתי׳ להורות דבכ&quot;מ היא רודפת אחריו למקום שהיבם רוצה ושיבחו ר&quot;י ואין כאן מחלוקת בין בבלי לירושלמי ועי׳ בפ&quot;מ שם והנראה לענ&quot;ד כתבתי ועי׳ בכנה&quot;ג בהגהת הטור סי׳ קס&quot;ב אות ב׳ ובקיצור פסקי רא&quot;ש ס&quot;פ ז&quot;ב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומצותה בה׳.</strong> עי׳ לח&quot;מ ובאה&quot;ע סי׳ קס&quot;ט בסדר חליצה בקצרה כ׳ להכשיר לכתחילה בב׳ הנוספין תרי בעל כאשתו ובלבוש ריש סי׳ קס&quot;ט משמע להדי׳ מדבריו דאסור לכתחילה משום דאתי לאחלופי להכשיר פעם אחרת בדיינין ע&quot;ש ובשו&quot;ת תה&quot;ד כתב בפירוש כבעל סדר חליצה ואפשר לומר דעד כאן לא נכשיר בסדר חליצה כ&quot;א בעיר שהב&quot;ד הקבוע המה שלשה. ואח&quot;כ יבחרו עוד שני אנשים מהקהל להיותם נוספים ובכה&quot;ג לא שייך סברת אתי לאחלופי אבל בעיר גדולה שיש שם בקביעות יותר משלשה דיינין אם יש בהם שנים שהם קרובים זל&quot;ז בתרי בעל כאשתו בכה&quot;ג שייך סברת לבוש דמאן מפיס ואתי לאחלופי לקחת אותן לדיינים לב&quot;ד של ג׳ ואין כאן מחלוקת ומ&quot;ש הלבוש דבג׳ דיינין תרי בעל כאשתו בדיעבד פסול לחליצה לא משמע כן בכל אחרונים ועי׳ בש&quot;ע חוה&quot;מ סי׳ ל&quot;ג.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והסומא אינו חולץ וכו׳.</strong> בסומא בא׳ מעיניו כתב בהגה&quot;מ בשם ר&quot;ת דכשר והר&quot;מ מינץ בתשו׳ סי׳ כ&quot;ט כ׳ דיש להחמיר כדי להוציא נפשין מפלוגתא אפי׳ בשאר מומי הגוף כגון קטע או חיגר וכה&quot;ג דיש להחמיר בחליצה. גם בענין קורבה כ׳ בשו&quot;ת כרם שלמה סי׳ נ&quot;ז דלכתחילה לא יהי׳ קרובים אפי׳ רביעי ברביעי אם לא במקום הדחק ע&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:14:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ה&quot;ז כחליצה פסולה וכו׳.</strong> הייתי אומר שפה דקדק הרב ז&quot;ל שהיא מדרבנן ומ&quot;ש אח&quot;כ שהמעשה וכו׳ הוא נתינת טעם לקריאה ואפי׳ שתהי׳ הב׳ למה לא נגזור בה לפסול וע&quot;ז כ׳ שכיון שלא ראו שם מעשה הו&quot;ל כלא ראו כלל דהכל יודעין הפסוק וכו׳ דוק. אבל ממ&quot;ש הרב ז&quot;ל למעלה שמא יאמרו שהרקיקה לבדה אינה כלום נראה שפי׳ פה שהיא יותר כשרה משאר מקומות שנאמר בהו חליצה פסולה וזהו פירוש בחליצה וכו׳ כי לדעת הפוסקים נ&quot;ל ההיא עובדא שהביא המ&quot;מ על ההוא דלעיל שמא יאמרו רקיקה קמייתא לית בה מששא פירושו שלא כסדר אבל אי לא הוה התם חליצה כלל יאמרו ולית לן בה דוק. ד&quot;ע.<br><strong> ועי׳ </strong> בתשו׳ רש&quot;ל סי׳ כ&quot;ב דהך רקיקה דפוסלת דוקא בנתכונו שניהם ע&quot;ש שהאריך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:17:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-17-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צריך לנעוץ וכו׳.</strong> עי׳ השגת הראב&quot;ד בהא דאמר אמימר האי מאן דמסגי אפשר דגם הראב&quot;ד מודה אלא דס&quot;ל דלאו מזה הטעם שכתב רבינו אלא משום דלא מקרי רגל ובהא דאמר אמימר צריך למדחסי׳ וכו׳ גם הרא&quot;ש ס&quot;ל דכשר בדיעבד ועי׳ ב&quot;י סי׳ קס&quot;ט שנסתפק בדעת רבינו ובנב&quot;י אה&quot;ע מהד&quot;ק סי׳ צ&quot;ד מסיק בדברי רבינו דרק למצוה ולא לעכב והא דמק׳ בתלמודא מברייתא דעומד ויושב ומוטה ולא מקשה מבריי׳ שהק׳ על אידך מימרא דאמימר עי׳ בלח&quot;מ לשיט׳ הסוברים דמימרא קמא דאמימר ג&quot;כ פוסל בדיעבד י&quot;ל משום דס&quot;ל דאפי׳ לכתחילה יכול לחלוץ במוטה הקוש׳ יותר חזקה כמ&quot;ש הנ&quot;י דמוטה דומי׳ דעומד ואין הכרח מזה נגד שיטת הסוברים דבדיעבד פסול אם לא נעץ רגליו. וז&quot;ל הטור וכיצד הוא חליצת המנעל וידחק רגליו בקרקע וכו׳ ותתיר היא קשירת המנעל בידה הימנית ותתפוש רגלו בידה השמאלית ותחלץ המנעל בידה הימנית כדי שתהי׳ התרה והחליצה בידה הימנית כ׳ הב&quot;ח פי׳ בשעה שתתפוש בידה הימנית בעקב המנעל לחלוץ אותה אז תתפוש בידה השמאלית עובי בשר השוק באויר כדי שלא ינוד ויזוז ותשמט המנעל מן העקב בידה הימנית ותחלוץ אותה ואפשר שמ&quot;ש רבינו בשם ר&quot;ת שלפתו בימין ושמאל מסייעתה ר&quot;ל ג&quot;כ שהשמאל מסייענה במה שאוחזת בו בבשר השוק שלא יניד באויר ותוכל לחלוץ אותו מן הרגל בימינה בטוב אלא לפי שאפשר לפרש לשון ר&quot;ת כפשוטו דמתיר לכתחילה שהשמאל מסייע בחליצה ממש לכן הביא רבינו הא דכ׳ בסמ&quot;ק שכל החליצה תהי׳ בימין דהיינו התרת קשר הרצועות וקשר הלולאות וחליצת המנעל הכל בידה הימנית וממילא צריך לפרש דברי הר&quot;ת דלא תהי׳ שמאל מסייע אלא לאחוז בבשר השוק בלחוד ע&quot;ש והכי ראוי לנהוג.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:20:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סנדל של תקרובת וכו׳.</strong> פירש&quot;י תקרובת ע&quot;ז אין לה ביטול עולמית וכתותי מכתית שעורי׳ אפי׳ לפי מה שנסתפקו התוס׳ במס׳ ב&quot;ק דף ע&quot;ב ד&quot;ה דאי דתקרובת ע&quot;ז אין אסור בהנאה מה&quot;ת אעפ&quot;כ כיון דאין לו ביטול עולמית מדרבנן אין חולצין בו ועמ&quot;ש בפ&quot;ד מה׳ גירושין הלכה ב׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-28-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:28:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-28-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:28:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמא נתכוונה לחליצה וכו׳.</strong> בא לאפוקי אם היא אומרה בפירוש דאינה מתכוונה לחליצה דלא הוי חליצה פסולה דאע&quot;ג דגם בלא נתכווין לא הוא ולא היא אפ&quot;ה חליצה פסולה היינו דוקא בסתמא דלמא מצות לא בעי כוונה אבל לא בגלתה דעתה להיפך וכמ&quot;ש רבינו יונה בסוגי׳ דכסא דחמרא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-29-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:29:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-29-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:29:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אא&quot;כ מכירין.</strong> כ׳ בסוף ס׳ בית הילל בהג&quot;ה כ׳ בא&quot;ז דבשעת הדחק כגון שהיבם רוצה לילך למדה&quot;י ואין כאן עדים שמכירין אותן יחליצו אעפ&quot;י שאין מכירין וצ&quot;ע עכ&quot;ל ואני ראיתי פעם אחת שבאו שניהם איש ואשה באסיפת המדינה לחלוץ ולא הי׳ מכירין אותו שום אדם ונתנו חליצה באסיפת המדינה והי׳ שם בפעם הזאת כמה גאונים ולא מיחו ברב המסדר חליצה ע&quot;כ. ורבינו לא הביא בפרקין דין איטר כיצד יתנהג בחליצה ועי׳ בשו&quot;ת כרם שלמה לפסק הלכה ומעשה שנעשה בב&quot;ד שלו עפ&quot;י מ&quot;ש הרח&quot;ש יראה לי שיש תיקון שיחבר היבם שתי רגלים ביחד וידחקם בקרקע ע&quot;ש כל הסדר. ואם עקום רגל שמאל של היבם אין בכך כלום ולרוב פשיטותן השמיטוהו הפוסקים כ&quot;כ בשו&quot;ת תשב&quot;ץ ח&quot;א סי׳ קס&quot;ז.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-35-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:35:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-35-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:35:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאסור לכתוב ג׳ תיבות.</strong> עמ&quot;ש פ&quot;ז מה׳ תפילין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-35-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:35:2</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-4-35-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 4:35:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויבמה שחלצה וכו׳.</strong> אם היבמה היתה רגילה באהבה ואחוה עם החולץ החמיר הרשב&quot;א שלא לדור יחד בחצר אחת כמבואר בב&quot;י אה&quot;ע סי׳ קי&quot;ט דכבר האריכו אחרונים בזה ועי׳ בתשו׳ מ&quot;ב סי׳ קי&quot;ב. וקודם החליצה לא נזכר איסורא ויש להחמיר ועי׳ הלכה כ&quot;ח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Chapter 5</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המאמר וכו׳.</strong> הה&quot;מ הבין בדברי רבינו שהוא מדרבנן ועמ&quot;ש בפ&quot;ב הלכה ב׳ ומה שפסק רבינו הלכה ד׳ כלישנא בתרא אין מזה ראי׳ דהוא מדרבנן די&quot;ל דמשו&quot;ה פסק כל&quot;ב דמסתבר טעמי׳ וגם יש מי דסובר דבכ&quot;מ הלכה כל&quot;ב וי&quot;ל ג&quot;כ דמה&quot;ט סובר רבינו דהיא אסורה כיון דמד&quot;ס הוא לא מקילינן כולי האי והראב&quot;ד ס&quot;ל דמדרבנן הוא כנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שזו היא כהלכתה.</strong> וכ&quot;ה בגמ׳ שם דף נ&quot;א הא דתנן עשה מאמר ובעל ה&quot;ז כמצותה וכמ&quot;ש הה&quot;מ ולא בדרך אחרת וכ&quot;ה בש&quot;ע סי׳ קס&quot;ו דאסור לבוא עלי׳ עד שיקדשנה וכ&quot;כ רבינו בפ&quot;ב והקידושין צריכין להיות בפני עדים ועי׳ מל&quot;מ פ&quot;ב דין ד׳ במה שהביא בשם שלטי הגבורים שכשם שקידושין בגירושין צריכים עדים כך יבום וחליצה צריכה עדים ע&quot;ש ולכאורה עדיין יש מקום לספק אם כונת השה&quot;ג דבעי מה&quot;ת עדים מדכתב כך יבום וחליצה ובחליצה מה&quot;ת היא כדמשמע ביבמות דף ק&quot;ה ע&quot;ב דאין דבר שבערוה פחות משנים עי׳ בתי&quot;ט פי&quot;ב דיבמות במתני׳ מעשה בבא מבית האסורים א&quot;כ דומי׳ דהכא יבום יש מקום לומר דלא בעי עדים כ&quot;א מדרבנן דאס&quot;ד דבעי׳ עדים מה&quot;ת גבי ביאה הא אמרי׳ בגמ׳ דף נ&quot;ב אי בעל בלא מאמר לוקה מ&quot;מ וכ׳ שם התוס׳ בשם ר&quot;ת משום דתחלת קנינה בביאה מה איכפת לנו בזה כיון דהתורה לא נתן לנו קנין אחר ואי משום דצריך עדים והוי פריצותא הא גם בעביד בה מאמר צריך עדים ביחוד ביאה ועי׳ בב&quot;ש שם דמשמע כיון דהי׳ עדים אצל המאמר שוב לא צריך עדים בביאה א&quot;כ שפיר י&quot;ל דלוקה מ&quot;מ דהא השתא דלא עביד מאמר צריך ליקח עדי ייחוד והוי פריצותא ונשמע מזה דא&quot;צ עדים אלא מדרבנן וכמ&quot;ש הב&quot;ש שם דאי אמרי׳ דביאה צריך עדים מה&quot;ת לא מהני עדי מאמר וזה הנראה בטעם הרב בהג&quot;ה שם שהכריע כן וגם מדברי רבינו בפ&quot;ב משמע כשי׳ הרמ&quot;א להמדקדק שם שוב מצאתי בס׳ ידי אלי׳ תיקונין סי׳ פ&quot;ב שכ׳ והדבר תמוה בעיני שהרי כל תקנת חכמים הוי משום טעמי אלימתא והכא משום טעמא קלישותא הוכפל רבנן לתקן מאמר ביבמה ומי איכא מידי דהתורה לא חששה לפריצותה שהרי אין בה קנין אחר ורבנן חששו לזה. ולזה י&quot;ל כיון שכבר הוצרכו לתקן שיהי׳ מאמר מהני ביבמה כדאמרי׳ בגמ׳ דף מ&quot;ט מאמר ביבמה מהני משום דמהני בעלמא וכו׳ מדהוצרכו לתקן תקנו נמי שלא יהי׳ תחלת קנינה בביאה ע&quot;כ תורף דבריו ול&quot;נ כמ&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:17:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-17-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מונעין אותו.</strong> עי׳ כ&quot;מ מ&quot;ש מאשה שהלך בעלה וצרתה למדה&quot;י ובל&quot;מ ומל&quot;מ כתבו לחלק הענינים נשמע מדבריהם דס&quot;ל לשיט׳ רבינו באם נודע אח&quot;כ שהאח חלץ לצרתה מקודם חליצה זו אינה כלום ומכריזין עלי׳ שמותרת לכהן ועי׳ בחי׳ רשב&quot;א ר&quot;פ החולץ במ&quot;ש שם דוקא בבן הנולד במדה&quot;י דאין כאן הוכחה אז חיישי׳ דלמא איכא דשמע בחליצה ולא שמע בהכרזה משא&quot;כ אם יש דבר המוכח וגם בדין זה יש כאן מוכח האשה השני׳ צרתה שנחלצת. וראיתי בכנה&quot;ג אה&quot;ע סו׳ סי׳ ע׳ בהגהת הטור שכ׳ וז&quot;ל הא דלא חיישי׳ שמא יבואו עדים שקודם חליצה עשה אחיו מעשה ונמצאת אין חליצה זו כלום ותנשא לכהונה וכו׳ אלא כיון דיבמה זו צריכה חליצה רק מחמת שנחלצה צרתה א&quot;צ חליצה אם נחלצה נפסלת לכהונה הר&quot;ם מטראני חלק ב׳ סי׳ קל&quot;ה בשם הר&quot;ש בן וירג׳ ועי׳ במר&quot;מ איסרלס סי׳ מ׳ עכ&quot;ל הנה סובר הרב דפסולה לכהן ולא מכריזין עלי׳ להתירה ונראה אפי׳ לפמ&quot;ש התוס׳ במס׳ שבת דף קל&quot;ז ע&quot;ב דהא דמכריזין להתירה לכהונה היינו משום לעז הבנים ופי׳ דבריהם דאולי תנשא לכהן מעצמה כיון שיודעת שלא היתה צריכה חליצה וא&quot;כ ה&quot;נ יש לחוש דאם לא יכריזו עלי׳ היא מעצמה תנשא לכהן וצ&quot;ל דמודיעי׳ לה מיד בשעת חליצה שלא תנשא לכהן מעולם אפי׳ לאחר שתוודע לה כי עשה אחיו מעשה מקודם. וסברת הר&quot;ם מטראני ברורה דהא הכא עכ&quot;פ ב׳ היבמות זקוקות למצות חליצה וודאי ועל היבם החיוב לקיים המצוה ומש&quot;ה מקרי חלוצה בכל ענין לאפוקי גבי אשה שהלך בעלה וצרתה למה&quot;י ומ&quot;ש רבינו לעיל ספ&quot;ג יש ספק בעיקר הדבר אי זקוקה לחליצה יצא לנו מזה דיש שיטות חלוקות ולשי׳ הכ&quot;מ נתעגנת עד שיודע אם עשה אחיו מעשה ולשי׳ הלח&quot;מ ומל&quot;מ וגם הב&quot;ח מחלק בע&quot;א דיש כאן עוד ספק אולי לא נודע לאחיו כלל שמת אחיו ולפי שיטתם מכריזין ולשי׳ הר&quot;ם לעולם היא אסורה לכהן ועי׳ בדרישה ססי׳ ע׳ שגם דעתו כדעת הר&quot;ם ולפי מה שנסתפק רי&quot;ו בנתיב כ&quot;ה דף רמ&quot;ה בשם הר&quot;ש אם יש לדבר פתח היתר כשתדור האשה זו ע&quot;ד רבים שלא תנשא לכהן ע&quot;ש שהאריך מביאו הב&quot;י בקצרה ססי׳ ע׳ א&quot;כ י&quot;ל הגם דלא אפשטא להו הך ספיקא בכה&quot;ג להוציא מידי כל השיטות יש להדיר אותה ע&quot;ד רבים שלא תנשא לכהן כנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:18:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יבם קטן וכו׳.</strong> עי׳ הה&quot;מ שי׳ הרמב&quot;ן דס&quot;ל דמדאוריי׳ קנה אותה לכל דבר של יבום והטעם כיון דהביאה א&quot;צ דעת משמע דלא בעינן עדים מה&quot;ת גבי ביאה דאל&quot;כ הלא קיימ&quot;ל אין עדות לקטן ועמ&quot;ש בהלכה ח׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-24-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:24:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-24-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:24:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מלמדין הקטנה שתמאן.</strong> עי׳ השגת הראב&quot;ד כתב הה&quot;מ והדבר צריך לי הכרע ולי צ&quot;ע לשיט׳ רבינו וסייעתו מהא דאמרי׳ במס׳ נדה דף ח׳ ע&quot;א אלא מדהכא קתני אשה והתם קתני קטנות ש&quot;מ דוקא קטנות דלמא מש&quot;ה נקיט קטנות להורות לנו דגם בנשואי דרבנן ג&quot;כ מלמדין ולעולם לא קאי כ&quot;א אקטנות דר&quot;א וקאי בנשואי דרבנן היכא דצריך להוציא תרווייהו ועי׳ ברא&quot;ש היטב סי׳ ח׳ ואכתי אין ראי׳ מדריב&quot;ב דכר&quot;א ס&quot;ל והי׳ נראה מזה סייעתא לשי׳ הראב&quot;ד ובחידושי הארכתי ליישב שי׳ רבינו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-28-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:28:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-5-28-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 5:28:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא היבם וכו׳.</strong> עי׳ בזה בירושלמי פ׳ ב&quot;ש הלכה י׳ והלכה י&quot;א ובה&quot;פ שם ד&quot;ה לא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Chapter 6</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והטומטום וכו׳.</strong> ואשת טומטום איכא פלוגתא בכורות ס&quot;פ אלו מומין וכ׳ בכנה&quot;ג בהגהת הטור סי׳ קע&quot;ב בשם המרדכי פ׳ החולץ דהלכה כמ&quot;ד חולצת ולא מתייבמת ואע&quot;ג דהוי ס&quot;ס ספק זכר ס׳ נקבה ואת&quot;ל זכר שמא אינו סריס ובת יבום הוא מ&quot;מ הוי ס&quot;ס שאינו מתהפך וכחד ספק דיינינין ועי׳ מהריב&quot;ל ספר א׳ דף מ&quot;ב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואנדרוגינוס וכו׳.</strong> במתני׳ פ׳ אנדרוגינוס כיצד שוה לאנשים זוקק ליבום כאנשים וסבר תנא דמתני׳ בר אולידו הוא וקרינן בי׳ ולא ימחה שמו מישראל ולמ&quot;ד הרי הוא כזכר וודאי רשאי ליבם וכדאמרי׳ בירושלמי ס&quot;פ הערל ואיכא תנא דפליג על משנתינו והיינו תנא דתוספתא דס&quot;ל דלאו בר אולידו הוא ורבינו פסק כהאי תנא ועמ&quot;ש בפ&quot;ב מהל׳ אישות וזוקק ליבום דנקט האי תנא עיקרא דמילתא נקיט למ&quot;ד דהוי זכר וודאי ומינה למ&quot;ד ספיקו זוקק לחליצה ועי׳ בס׳ וזאת ליהודה והנראה לענ&quot;ד כתבתי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:9:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנאמר ולקחה לו לאשה.</strong> עי׳ הה&quot;מ ולפמ&quot;ש המהרש&quot;ל ביבמות דף ד׳ דדוקא רבא הוא דס&quot;ל דאין עשה דוחה ל&quot;ת שיב&quot;כ אבל אבי׳ ס&quot;ל לפי האמת דעשה דוחה ל&quot;ת שיב&quot;כ וכן סובר הר&quot;ש מקינין ודלא כהרש&quot;א שם שחלק עליו דלכ&quot;ע אין עש׳ דוחה ל&quot;ת שיב&quot;כ ואמרי׳ בגמ׳ סנהדרין דף י&quot;ח ע&quot;ב קפסיק ותני ל&quot;ש מן האירוסין ל&quot;ש מן הנשואין בשלמא מן הנשואין וכו׳ והקש׳ הר&quot;ן בחי׳ דהו&quot;ל להש&quot;ס להקש׳ ממתני׳ דקתני חולץ בשלמא מן האירוסין מש&quot;ה חולץ שאחר שמה&quot;ת היתה ראוי׳ ליבם דאתי עשה ודחי ל&quot;ת אלא אלמנה מן הנשואין כיון דלא אתי עשה ודחי ל&quot;ת ועשה א&quot;כ אינה ראוי׳ לייבם ולמה חולץ הא כל שאינו עולה ליבום אינו עולה לחליצה ותי׳ דאפילו באלמנה מן הנשואין ראוי׳ היא להתייבם מדאוריי׳ אע&quot;ג דאית בה עול&quot;ת מ&quot;מ אתי עשה דיבום דשוה בכל ודחי עול&quot;ת דאלמנה שאינו ש&quot;ב וכי אקשינן בשלמא מן הנשואין וכו׳ לרווחא דמילתא קאמר דאפי׳ לא פסיקא לן דעשה הש&quot;ב דוחה עול&quot;ת מ&quot;מ מאי אמרת באלמנה מן האירוסין ומתרץ גזירה ביאה ראשונה אטו ביאה שני׳ ובהאי תי׳ אתרצא קוש׳ קמייתא דאפי׳ אמרי׳ דעשה דיבום דוחה ל&quot;ת ועשה שאינו ש&quot;ב גזרי׳ ביאה ראשונה אטו ביאה שני׳ ומש&quot;ה חולץ עכ&quot;ת דברי הר&quot;ן וס&quot;ל דגם באלמנה מן הנשואין ראוי׳ היא להתייבם מה&quot;ת וזה הוא דלא כדעת רבינו בהלכה י&quot;א והרב הגאון מ&quot;ו בחי׳ הביא קוש׳ בשם רבו הגאון מהר&quot;ם פישלס ז&quot;ל דהא אמרינן ביבמות דף כ׳ ע&quot;ב ביאת כה&quot;ג באלמנה ר&quot;י ור&quot;א חד אמר אינה פוטרת וכו׳ ואלמנה מן הנשואין כ&quot;ע לא פליגי דלא פטרה דאין עשה דוחה ל&quot;ת ועשה כי פליגי באלמנה מן האירוסין הרי לך בהדי׳ דקאמר הש&quot;ס באלמנה מן הנשואין לא אתי עש׳ ודחי ל&quot;ת ועשה והתוס׳ בפ&quot;ק דיבמות דף ה׳ ע&quot;א אהא דאי׳ שם דעשה הש&quot;ב דחי לאו ועשה שאינן ש&quot;ב מהך סוגי׳ הנ&quot;ל ותי׳ שם איסור אלמנה לכ&quot;ג הוי קצת כש&quot;ב ע&quot;ש אבל לשיט׳ הר&quot;ן דס&quot;ל דמקרי אינו ש&quot;ב קוש׳ התוס׳ במק&quot;ע והגאון מ&quot;ו ז&quot;ל כ׳ ליישב הקוש׳ דתלי הדבר בפלוגתא דאבא שאול ורבנן אי יבום קודם אי חליצה קודם בפ׳ החולץ והסוגי׳ דסנהדרין קאי לשי׳ רבנן דיבום קודם ושפיר א&quot;ל דדחי עש׳ דיבום הש&quot;ב הלאו ועשה ואי משום דר&quot;ל דאפשר בחליצה חליצה במקום יבום לאו מצוה הוא והסוגי׳ דיבמות קאי לאבא שאול דחליצה קודמת לכן ס&quot;ל להש&quot;ס באלמנה מן הנשואין דאיכא תרתי לריעותא דאפשר בחליצה ואיכא עול&quot;ת לכן לא דחי ע׳ דיבום אף שש&quot;ב כיון דאפשר בחליצה אבל מן האירוסין ס&quot;ל למ&quot;ד דדחי אף דחליצה קודמת ויכול לקיים המצוה בחליצה אפ&quot;ה כיון דהוי ל&quot;ת שאינו ש&quot;ב הוי האי ל&quot;ת לגבי עשה דיבום כמאן דליתא מאחר דאיכא תרתי לטיבותא חדא ל&quot;ת גבי עשה ועוד דאינו ש&quot;ב ושרו לייבם מדאורייתא רק דרבנן גזרו ביאה ראשונה אטו ביאה שני׳ ופוטרת צרותי׳ ע&quot;כ ופלוגתא זו דאבא שאול מבואר בגמ׳ דף ל&quot;ט ושיט׳ ר&quot;ת לפסוק כא&quot;ש כמבואר בתוס׳ שם ד&quot;ה אמר רב חולק עם רבינו וראיתי בשו&quot;ת שב יעקב חלק אה&quot;ע סי׳ ל&quot;ו במעשה שאירע באחד שא&quot;א לו לעמוד על העקב מפני עקימת רגלו הימנית וברגל השמאלית א&quot;א בחליצה ואין לו עוד אח והיבמה עדין ילדה וגם הוא עדין פנוי ומבואר ברמ&quot;א סי׳ קנ&quot;ט בזה&quot;ז אסור לפנוי לישא אשה אחרת עד שיחליץ ליבמתו ורצה בעל שבות יעקב להתיר גם בזה&quot;ז ליבמה ע&quot;ש שהאריך וראיתי לא׳ קדוש בכת&quot;י הרב הגאון מהר&quot;ם המבורג ולולי דמסתפינא להרים ראשי נגד רבותי אמרתי היכא דא&quot;א לחלוץ אף דידעי׳ בוודאי שכוונתו לשם נוי ולשם אישות שרי להתיבם ולא הוי כפוגע בערוה דדוקא היכא דאפשר לחלוץ כופין אותו לחלוץ משא&quot;כ בא&quot;א לחלוץ דא&quot;א לכפות אותו להתיבם לשם מצוה דקמי שמיא גלי׳ ודייק אבא שאול בלישני׳ הנושא יבמתו לשם נוי וכו׳ כאלו פוגע וכו׳ וקרוב בעיני וכו׳ אמאי לא אמר כפשוטו הנושא אשה לשם נוי וכו׳ פוגע בערוה והולד ממזר א&quot;ו דסבר א&quot;ש היכא דנושא לשם אשות לא קיים מצות חליצה ויבום כדינא ע&quot;ש שהאריך והמעיין בירושלמי פ&quot;ק דיבמות הלכה א׳ בהא דמותיב מה אבא שאול כר&quot;ע יראה סייעתו לדברי הגאון הנ&quot;ל ושפיר קשי׳ לי׳ דירד לשיט׳ ר&quot;ע ע&quot;ש.<br><strong> ובדרך </strong> פלפול נ&quot;ל ליישב דברי הר&quot;ן הנ&quot;ל הנה וודאי לפי שיטות ריב&quot;א סוף מס׳ חולין דכל היכא דאיכא עול&quot;ת הל&quot;ת נדחית ואין לוקין רק דהעשה קיים א&quot;כ יש מקום וסברא היכא דעשה שוה בכל א&quot;כ לא שייך לומר מאי אלמא דהאי עשה מהאי ע׳ גם הע׳ נדחית משא&quot;כ אי לא אמרי׳ סברת ריב&quot;א אלא דמכח העשה הל&quot;ת אלים ליתא לסברא זו ולפמ&quot;ש בשם הרש&quot;ל דאליבא דאבי׳ עשה דוחה ל&quot;ת שוב&quot;כ ולדידי׳ הע׳ דוחה לל&quot;ת החמורה משמע דלא תלו הדבר משום דהלאו אלים וחמור אלא כסברת הריב&quot;א שפיר כ׳ הר&quot;ן משא&quot;כ לרבא דס&quot;ל דאין עשה דוחה ל&quot;ת שוב&quot;כ משום דחמור ואלים א&quot;כ י&quot;ל ג&quot;כ הא דאין ע׳ דוחה עול&quot;ת משום דאלים וחמור הל&quot;ת ולדידי׳ ליתא לסברת הר&quot;ן א&quot;כ שפיר כ׳ הר&quot;ן ליישב הקוש׳ הא דלא מקש׳ הגמ׳ מכ&quot;ג חולץ משום די&quot;ל דס&quot;ל כאבי׳ וסוגי׳ הגמ׳ דיבמות דף כ׳ קאי אליבא דרבא ודברי הר&quot;ן נכונים. ורבינו אליבא דאמת ס&quot;ל דאין ע׳ דוחה עול&quot;ת ונראה דגם רבינו ס&quot;ל סברת הר&quot;ן דעשה דיבום אלים מעשה אחרת שאינו שוה בכל. ועפי&quot;ז י&quot;ל דברי רבינו במ&quot;ש בהלכה יו&quot;ד לפיכך אם עבר ובעל יבמתו דאסורה לו משום לאו או איסור עשה ה&quot;ז חולצת ולא מתייבמת וכו׳ והיש&quot;ש ביבמות פ&quot;ב סי׳ ג׳ כתב ונ&quot;ל כמו שאינה קונה בביאה כ&quot;ג באלמנה מן הנשואין ולא פטרה צרתה הה&quot;ד חייבו עשה לחוד כגון בעולה לכ&quot;ג וכגון דור ראשון ושני דמצרי ואדומי נמי אין ביאתה פוטרת צרתה דהא אין עשה דוחה ע׳ בכל התורה ולא כמ&quot;ש הרמב&quot;ם והטור שחייבי לאווין או חייבי עשה בכולן אם עבר ובא עלי׳ קנאן ונפטרו צרתי׳ וכ׳ עוד הרמב&quot;ם בהלכה י&quot;א אבל יבמה שהיא מן הנשואין לא הותרה וכו׳ ותימא מ&quot;ש בין חייבי עשה לחייבי לאווין ועשה הלא שניהם אין עולה ליבום מדאוריי׳ ואפשר דסבר הרמב&quot;ם דחייבי עשה עולין ליבום מדאוריי׳ מ&quot;מ לא נראה לי כלל דבריו כי ליכא מ&quot;ד דס&quot;ל ע׳ דוחה ע׳ וכשגגה היוצאה מלפני השליט ואין חולקין כבוד לרב וכו׳ להתיר ע&quot;ש והגאון בעל נב&quot;י מהד&quot;ק בסוף הספר דחק מאוד ליישב דברי רבינו ולפמ&quot;ש גבי מצות עשה דבתולה יקח וודאי דלק&quot;מ קושי׳ היש&quot;ש דעשה דיבום הוי שוה בכל וכמ&quot;ש הר&quot;ן אלא דס&quot;ל לרבינו במקום שיש עול&quot;ת דהל&quot;ת אלים לכך לא נפטרו צרותי׳ וא&quot;כ דינו של רבינו גבי בעולה לכ&quot;ג וודאי ניחא אלא דנראה לפמ&quot;ש במ&quot;א דהא דאמרי׳ דאין עשה דוחה ע׳ דוקא היכא דעשה מפורשת אבל היכא דהעשה בא מכח הלאו דיש פלוגתא אי הוי ל&quot;ת כמבואר במס׳ מכות דף י&quot;ט ובמס׳ זבחים דף ל&quot;א הגם דלא קיימ&quot;ל כן דדינו אלא עשה היינו דגרוע מל&quot;ת אבל נדחת מפני עשה וא&quot;כ ל&quot;ק מכל מצות עשה שביאר רבינו ספ&quot;א מהל׳ אישות. שוב מצאתי שהפ&quot;י בחי׳ לכתובות דף מ׳ ע&quot;א ד&quot;ה ניתי ע׳ שהעלה בדעת התוס׳ דעשה דוחה לאו הבא מכלל עשה והארכתי בזה הרבה ומפני שמצאתי בס׳ מחנה ראובן בפסחים נ&quot;ט ד&quot;ה מאי אילמא שעמד בחקירה זו קצרתי.<br><strong> והרשב&quot;א </strong> בחי׳ ליבמות דף כ׳ הקש׳ קושית הר&quot;ן באו&quot;א וז&quot;ל ומן הנשואין מי שויא דהא לא אתי ע׳ ודחי ל&quot;ת ועשה ואמאי חולצת תפטר אף מן החליצה דכחייבי כריתות דמי וי&quot;ל דצריכה חליצה מדרבנן א&quot;נ י&quot;ל דאף חייבי לאווין ועשה חולצת ד&quot;ת דזיקה בכדי לא פקעה כיון דבעלמא תופסה בהו קידושין וזיקה כעין קידושין ע&quot;ש ונראה דהרשב&quot;א בתי׳ הא׳ ס&quot;ל דמיבמתו לא מרבינן כ&quot;א חייבי לאווין גרידא אבל חייבי עשה ול&quot;ת דמי לחייבי כריתות כיון דכללא בידינו דאין עשה דוחה ל&quot;ת וע׳ הדרא לאיסורא קמא באיסור דאשת אח והוי בכללא כל שאינו עולה ליבום וכו׳ ובתי׳ הב׳ סבר דגם בחייבי לאוין אמרי׳ דהדרא לאיסורא קמא ואעפ&quot;כ רבתה התורה לחייבי לאוין מיבמתו דעולה לחליצה משום דתפסה קידושין וזיקה בכדי לא פקע א&quot;כ הה&quot;ד לחייבו עול&quot;ת וע&quot;ש היטב ותראה כמ&quot;ש ובשעה&quot;מ בפרקין כ׳ ודע שראיתי להרשב&quot;א ז&quot;ל ברפ&quot;ק דבריו תמוהים המגרש לאשתו ע&quot;מ שלא תנשא לראובן ונפלה לפני ראובן ליבום מסתברא דאפילו היא עצמה חולצת ואין אני קורא בה כל שאינו עולה ליבום וכו׳ כיון דע&quot;י תנאי הוא ובתנאי לא מיירי קרא כ&quot;א באיסור ערוה וה&quot;ז כנודר הנאה מיבמה בחיי בעלה וכו׳ ולא זכיתי להבין דבריו דהא דבעי חליצה בנודרת הנאה לאו משום דד&quot;א גרם לה אלא משום דרבוי הכתוב יבמתו לחייבי עול&quot;ת דבעי חליצה וראי׳ אלמנה מן הנשואין דאסורה מחמת עצמה ולא דמי׳ ליבום מה&quot;ת אפ&quot;ה בעי חליצה משא&quot;כ באומר ע&quot;מ כיון דלא חזי ליבום כלל ולא תפסי קידושין וקאי עלי׳ באיסור ערוה א&quot;ל דכחייבי כריתות ממש הוא ע&quot;ש ולפמ&quot;ש הרשב&quot;א בעצמו בחי׳ הא דחייבי עול&quot;ת דמי לח&quot;כ א&quot;כ יפה הביא ראי׳ דהא שם איכא עול&quot;ת ודמי לח&quot;כ ובנודר הנאה משמע דכופין לחלוץ דבת חליצה מה&quot;ת היא ולא ניחא לי׳ להרשב&quot;א לומר דגם שם חליצה מדרבנן בעינן משום דמילתא דל&quot;ש הוא לא שייך לגזור ושפיר הביא ראי׳ וע&quot;ש בח&quot;ר שהאריך עוד בראיות ועי׳ במל&quot;מ פ׳ י&quot;ח מהל׳ אסורי ביאה סוף דין א׳ שמסתפק באלמנה לכ&quot;ג או עבר ובא עלי׳ או חייב כרת או לא והניח בספיקא ולפמ&quot;ש מבואר הדבר לחי׳ רשב&quot;א דהדרא לאסורא דאשת אח ועי׳ ביבמות דף פ&quot;ד ע&quot;א ברש&quot;י ד&quot;ה והא כולא ובח&quot;ר שם.<br><strong> ולעיקר </strong> קוש׳ הר&quot;ן והרשב&quot;א י&quot;ל דמקשן ס&quot;ד כמו דאסיק התלמודא ביבמות דף פ&quot;ד למ&quot;ד נשואין ראשונים מפילין אמרי׳ אפילו להקל וכ&quot;ג רשאי לישא אותה א&quot;כ י&quot;ל דמתני׳ מספקא לי׳ או כמ&quot;ד מיתה מפלת או נשואין מש&quot;ה חולצת ולא מתייבמת ומש&quot;ה אקשה עכ&quot;פ מן האירוסין ליתי עשה ולדחי ל&quot;ת ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:14:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנאמר אשר לא יבנה וכו׳.</strong> ובגמרא מצינו דרשא אחרת ורבינו הוסיף דרש זה מדעתו ועי׳ יבמות דף מ&quot;ד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:18:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עשה שמעון מאמר.</strong> עי׳ הה&quot;מ ועי׳ במתני׳ פ&quot;ב משנה א׳ בתי&quot;ט ד&quot;ה עשה וכו׳ וכתב ע&quot;ז בס׳ ק&quot;ע די&quot;ל דבמת היבם פקעה זיקה והגמרא לא קאי כ&quot;א למ&quot;ד שומרת יבם שמתה אסור באמה ועי׳ בתוס׳ דף י&quot;ח ד&quot;ה והאי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-29-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:29:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-6-29-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 6:29:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עשה מאמר.</strong> עי׳ פ&quot;ה הלכה ה׳ ובמ&quot;ע שם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-7">Chapter 7</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חזרה הראשונה להתירה וכו׳.</strong> במימרא דר&quot;י ובגמ׳ דף כ&quot;ח אקשי׳ עלה דר&quot;י ליקום חתן ולייקם ע&quot;ש וכ׳ בח&quot;ר שם מיהו רב אלפס ז&quot;ל פסקו בהלכותיו ולפ&quot;ד א&quot;ל דלאחלופי דחלץ לשני׳ איכא למיחש משום דלא דייקו אינשי שפיר בין חלץ לראשונה תחלה בין חלץ לשני׳ תחלה וכיון דחלץ לה לאחת משמע להו לאינשי כיון דאסתלקו מינה זיקה לגמרי שני׳ הותרה לגמרי אבל לאחלופי דמיבם לאחות זקוקתו לה כי לא חיישי דחמירא להו לאינשי וכ&quot;ע וכו׳ וסיים עוד שם שהרב ז&quot;ל סבר דחיישי׳ אף לביטול מצות יבמין ואע&quot;ג דר&quot;י לא חייש אנן חיישי׳ ע&quot;ש ונראה שדעת האלפסי לפרש הא דאמרי׳ שם דף כ&quot;ז ע&quot;ב אחיות א&quot;י מי שנאן אין פירושו כמ&quot;ש רש&quot;י דזו אינה משנה דזה דוחק רק פי׳ א&quot;י מי שנאן ולא נודע לו טעם המתני׳ אבל מודה הוא לדין המתני׳ וכן משמע בירושלמי דגרסינן שם אמר ר׳ חיי׳ משם ר&quot;י אינו יודע טעם אחיות מה הן משמע להדי׳ דאיננו חולק על מתני׳ אלא דלא ידע להשיב טעם נכון לחלק בין דינו ובין דין דמתני׳ ועי׳ בתי&quot;ט במתני׳ מה שהקש׳ שם ולפ&quot;ד מיושב ומה שתמה שם על הטור כבר כ׳ הב&quot;ח בסי׳ קע&quot;ה שט&quot;ס יש בדברי הטור ועי׳ ב&quot;ש סי׳ קע&quot;ה סק&quot;ד מ&quot;ש מיהו כל הפוסקים אם חלץ לשני׳ הותרה הראשונה משמע אבל ביבום השני׳ לא הותרה הראשונה וסברתו נראה הואיל ויש כאן איסור שהשני׳ נתיבמה באיסור לא שייך לומר הותרה ראשונה וכ&quot;כ הבית דוד ומה שהקש׳ עליו בס׳ שושנים לדוד מגמרא דף כ&quot;ח ע&quot;א בהא דאמר אלא שני׳ אמר חבראי שני׳ ייבם ולפמ&quot;ש מיושב עי׳ ירושלמי דף י׳ ע&quot;א ובק&quot;ע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:10:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יראה לי וכו׳.</strong> עי׳ חיד׳ רשב&quot;א יבמות דף כ&quot;ז ע&quot;א סד&quot;ה ר&quot;א.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:12:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן ב׳ אחין וכו׳.</strong> ובגמרא דף ל׳ פרכי׳ ל&quot;ל למתני הך דב׳ אחין ע&quot;ש ועי׳ ב&quot;ח סי׳ קע&quot;ה שכ׳ שלשון וכן שכ׳ רבינו אינו מדוקדק לפי&quot;ז. ואפשר דדעת רבינו דלפי מה דמשמע בגמרא דף ל׳ דיש מקום לחלק היכא דאחזי בנפילה ראשונה יותר מסתבר להתיר ולא הוי זו ואצ&quot;ל זו וסוגי׳ דגמ׳ דף ל&quot;ב לא נחית לחלק בסברא זו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:17:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-7-17-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 7:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ה&quot;ז החרש מוציא את אשתו בגט וכו׳.</strong> ולפי מ&quot;ש בחי׳ רשב&quot;א ר&quot;פ חרש בשם הירושלמי אם קדשה בביאה קידושיו מעשיו וגירושיו אינו מעשה א&quot;כ אם קידש בביאה א&quot;י להוציאה עי׳ ב&quot;י סי׳ קכ&quot;א שמביא להירושלמי הנ&quot;ל בשם הנ&quot;י וכו׳ הפוסקים השמיטוהו ויש להחמיר ובאמת צריך ליתן טעם מפני מה לא הביאו הפוסקים ואין לומר מדתנן בפ׳ חרש ואם היו נכריות וכו׳ אם רצה להוציא וכו׳ הא איכא למיחש דלמא קדשה אחיו בביאה די&quot;ל דלא חיישי׳ לזה כיון דאין דרך לקדש בביאה וספיקא דרבנן הוא ונראה דמוכח מתלמודא דידן גיטין דף ע&quot;א מה דדחיק שם לאוקמי בריי׳ דחרש אינו מוציא ברמיזה ולא משכחת פתרא כ&quot;א ביבם ואמאי לא מוקי לה בידענו שקדשה בביאה דהוי רבותא יתירא כדמשמע בגמרא שם א&quot;ו דלית לי׳ לתלמודא דידן חילוק זה ומשמע לי׳ לתלמודא הכי מדתנן ר&quot;פ חרש אם רצה יוציא אם רצה יקיים וכ׳ התוס׳ אגב דתני יוציא וי&quot;ל דבכיון תני יוציא כמו שיכול לקיים הוא בקדשה בכל דבר כן הוא היציאה שיכול להוציאה אף דקדשה בביאה כנ&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-8">Chapter 8</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-8-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 8:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-8-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Levirate Marriage and Release 8:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם קדמו וכנסו.</strong> אמרי׳ ביבמות דף כ&quot;ד תני שילא אפילו ב׳ כהנים וספק חלוצה לא גזרו רבנן ויראה מלשון רש&quot;י ד&quot;ה רבנן דוקא בדיעבד אם כנסו אבל בהא דתנן אחיו של זה מיבם חלוצתו של זה וכו׳ וכמ&quot;ש רבינו פה לא מיירי בכהנים והכי מפורש בירושלמי בפרקן ועי׳ במשנה ז׳ בתי&quot;ט ד&quot;ה אין מוציאין דמשמע מדבריו דדיוקא דשילא מדתני סתמא ולפי&quot;ז בבא דזה מיבם וכו׳ ג&quot;כ סתמא קתני ואעפ&quot;כ לא מיירי בכהנים וע&quot;ש בק&quot;ע דסובר בדעת רבינו דגם בהלכה ג׳ מיירי בכהנים ע&quot;ש שכ׳ שהוא נגד הירושלמי אפשר דחיילא דיד׳ מדמבי׳ התלמודא להך דשילא על המתני׳ משמע דשילא מסתמא דמתני׳ הוכיח לה מדלא קא מחלק ועי׳ ב&quot;ח אה&quot;ע סי׳ קע&quot;ו ואין זה ראי׳ ולא מצינו חולק על הירושלמי וגם שי׳ רבינו אינו מוכרח דלא סבר הכי ועי׳ בשבת דף קל&quot;ו ע&quot;ב בתוס׳ ד&quot;ה ואם ואפשר לתלות הדבר בפלוגתא דאמוראי דהתם ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release.manifest.json","occurrence_url":"../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-levirate-marriage-and-release.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

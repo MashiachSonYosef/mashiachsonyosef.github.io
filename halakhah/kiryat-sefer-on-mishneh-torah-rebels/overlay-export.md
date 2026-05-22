@@ -1,0 +1,31 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 1:1:1 | kiryat-sefer-on-mishneh-torah-rebels-1-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 1:2:1 | kiryat-sefer-on-mishneh-torah-rebels-1-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 2:1:1 | kiryat-sefer-on-mishneh-torah-rebels-2-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 2:2:1 | kiryat-sefer-on-mishneh-torah-rebels-2-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 2:5:1 | kiryat-sefer-on-mishneh-torah-rebels-2-5-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 2:9:1 | kiryat-sefer-on-mishneh-torah-rebels-2-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 3:1:1 | kiryat-sefer-on-mishneh-torah-rebels-3-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 3:8:1 | kiryat-sefer-on-mishneh-torah-rebels-3-8-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 4:1:1 | kiryat-sefer-on-mishneh-torah-rebels-4-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 5:1:1 | kiryat-sefer-on-mishneh-torah-rebels-5-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 5:5:1 | kiryat-sefer-on-mishneh-torah-rebels-5-5-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 5:6:1 | kiryat-sefer-on-mishneh-torah-rebels-5-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 5:9:1 | kiryat-sefer-on-mishneh-torah-rebels-5-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 5:12:1 | kiryat-sefer-on-mishneh-torah-rebels-5-12-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 5:13:1 | kiryat-sefer-on-mishneh-torah-rebels-5-13-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 6:1:1 | kiryat-sefer-on-mishneh-torah-rebels-6-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 6:6:1 | kiryat-sefer-on-mishneh-torah-rebels-6-6-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 6:7:1 | kiryat-sefer-on-mishneh-torah-rebels-6-7-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 6:11:1 | kiryat-sefer-on-mishneh-torah-rebels-6-11-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 6:12:1 | kiryat-sefer-on-mishneh-torah-rebels-6-12-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 6:13:1 | kiryat-sefer-on-mishneh-torah-rebels-6-13-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:1:1 | kiryat-sefer-on-mishneh-torah-rebels-7-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:5:1 | kiryat-sefer-on-mishneh-torah-rebels-7-5-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:7:1 | kiryat-sefer-on-mishneh-torah-rebels-7-7-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:8:1 | kiryat-sefer-on-mishneh-torah-rebels-7-8-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:9:1 | kiryat-sefer-on-mishneh-torah-rebels-7-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:10:1 | kiryat-sefer-on-mishneh-torah-rebels-7-10-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:11:1 | kiryat-sefer-on-mishneh-torah-rebels-7-11-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-rebels | Kiryat Sefer on Mishneh Torah, Rebels | Kiryat Sefer on Mishneh Torah, Rebels 7:13:1 | kiryat-sefer-on-mishneh-torah-rebels-7-13-1 |  |  | not_done |  |
