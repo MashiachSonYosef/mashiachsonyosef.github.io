@@ -1,0 +1,19 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 1:1:1 | ohr-sameach-on-mishneh-torah-substitution-1-1-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 1:14:1 | ohr-sameach-on-mishneh-torah-substitution-1-14-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 1:20:1 | ohr-sameach-on-mishneh-torah-substitution-1-20-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 1:21:1 | ohr-sameach-on-mishneh-torah-substitution-1-21-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 2:2:1 | ohr-sameach-on-mishneh-torah-substitution-2-2-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 3:1:1 | ohr-sameach-on-mishneh-torah-substitution-3-1-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 3:2:1 | ohr-sameach-on-mishneh-torah-substitution-3-2-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 3:2:2 | ohr-sameach-on-mishneh-torah-substitution-3-2-2 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 3:3:1 | ohr-sameach-on-mishneh-torah-substitution-3-3-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 3:4:1 | ohr-sameach-on-mishneh-torah-substitution-3-4-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 3:7:1 | ohr-sameach-on-mishneh-torah-substitution-3-7-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 4:1:1 | ohr-sameach-on-mishneh-torah-substitution-4-1-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 4:4:1 | ohr-sameach-on-mishneh-torah-substitution-4-4-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 4:6:1 | ohr-sameach-on-mishneh-torah-substitution-4-6-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 4:8:1 | ohr-sameach-on-mishneh-torah-substitution-4-8-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 4:11:1 | ohr-sameach-on-mishneh-torah-substitution-4-11-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-substitution | Ohr Sameach on Mishneh Torah, Substitution | Ohr Sameach on Mishneh Torah, Substitution 4:13:1 | ohr-sameach-on-mishneh-torah-substitution-4-13-1 |  |  | not_done |  |

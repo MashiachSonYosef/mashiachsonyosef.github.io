@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ohr Sameach on Mishneh Torah, Festival Offering</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Ohr Sameach on Mishneh Torah, Festival Offering</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Festival Offering</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Festival Offering</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">10 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>507 matched</strong> / 1355 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/ohr-sameach-on-mishneh-torah-festival-offering.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Ohr Sameach on Mishneh Torah, Festival Offering <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Ohr Sameach on Mishneh Torah, Festival Offering <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-1" title="Ohr Sameach on Mishneh Torah, Festival Offering 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-2" title="Ohr Sameach on Mishneh Torah, Festival Offering 1:1:2">1:1:2</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-3" title="Ohr Sameach on Mishneh Torah, Festival Offering 1:1:3">1:1:3</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-8-1" title="Ohr Sameach on Mishneh Torah, Festival Offering 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-8-2" title="Ohr Sameach on Mishneh Torah, Festival Offering 1:8:2">1:8:2</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-10-1" title="Ohr Sameach on Mishneh Torah, Festival Offering 1:10:1">1:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-1-1" title="Ohr Sameach on Mishneh Torah, Festival Offering 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-2-1" title="Ohr Sameach on Mishneh Torah, Festival Offering 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-10-1" title="Ohr Sameach on Mishneh Torah, Festival Offering 2:10:1">2:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#ohr-sameach-on-mishneh-torah-festival-offering-3-2-1" title="Ohr Sameach on Mishneh Torah, Festival Offering 3:2:1">3:2:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Chapter 1</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:1:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הראיה האמורה בתורה היא שנראה פניו בעזרה כו׳ ומי שבא לעזרה ביום ראשון ולא הביא עולה כו׳ אלא עובר על ל&quot;ת כו׳.</strong><br><strong> מלשון </strong> זה הבין הטורי אבן בדעת רבינו שאין תשלומין אלא לראיית קרבן אבל ראיית פנים אין תשלומין לראשון ודוקא בראשון בעי להראות פנים בעזרה ומזה רצה להשיג עליו הרבה. ובמחכ&quot;ת נעלם ממנו לשון רבינו לקמן פ&quot;ב ה&quot;ו מי שבא לעזרה בתוך ימי החג אינו חייב להביא עולה כו׳ שזה שנאמר לא יראו פני ריקם אינו אלא בעיקר הרגל בלבד שהוא יום ראשון או תשלומי ראשון, הרי שאומר שאינו חייב להקריב על ביאתו בעזרה שנית רק כשבא או ביום ראשון או תשלומי ראשון היינו מי שבא ראשונה בשני של רגל או בשאר הימים עליו כתיב לא יראו פני ריקם בתשלומי ראשון, וברור דעת רבינו דתשלומין יש לראיית פנים, ומה שכתב ומי שבא לעזרה ביום ראשון, כוונתו לאפוקי אם בא עוד הפעם להראות ברגל אינו עובר בלאו כמו שכתב לקמן וז&quot;ב:<br><strong> ומה </strong> שכתב רבינו לא די שלא עשה מצות עשה כו׳ הנה כן משמע מתו&quot;כ ריש פ׳ אחרי דמדמה לביאת כה&quot;ג ביוהכ&quot;פ דשם שלא עם הקרבן אין שום מצוה בביאתו כלל כן בישראל ברגל בלא קרבן לא קיים מ&quot;ע כלל. והא דמחלק הירושלמי בין ראיית פנים לראיית קרבן לא חילק רק על קטנים לא על נשים והיינו דעל קטנים לא שייך שום מצוה להם דלאו בני דיעה נינהו רק דיליף מהקהל שמצוה על האב להביאן א&quot;כ שפיר שייך שאביו מצווה להראות פנים בעזרה עם בניו הקטנים ושלא להראות ריקם להביא קרבן וכולא חדא מצוה לאביהם, אבל נשים כיון שפטורין מקרבן תו אינם מצוות להראות פנים דלאו מצוה היא כלל ודוק ומה שחקר עוד בטו&quot;א בחגיגה וראיה אם באין בשותפות כמו פסח, לא ראה בתוספתא פ&quot;א דחגיגה דיוצאין בשל שותפות וז&quot;ל אם יש לו להביא מתוך ביתו הרי הוא מביא ואם לאו משתתף עם אחרים ובלבד שלא יפחות מכשיעור יעו&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-1-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:1:2</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין מן העוף.</strong><br><strong> ראיה </strong> לגירסת רבינו מהא דאמר בזבחים (דף ה׳) ומה עולה כו׳ אשם שמכפר כו׳ מה לשלמים שכן טעונין נסכים כו׳ עולה תוכיח כו׳ מה להצד השוה שבהן שכן ישנו בציבור, ועל כרחין הכוונה על עולת העוף שאינו טעון נסכים ואיך אמר שכן ישנן בצבור הלא עולת העוף אינו בציבור וכמו דאיתא בשבועות (דף י&quot;ב) אין עולת עוף בצבור, ובתו&quot;כ ויקרא פרשה ו׳ היחיד מביא עוף ואין הצבור מביא עוף, ויעוין בשטמ&quot;ק בש&quot;ס ווילנא החדש שהרגישו בזה, וע&quot;כ דעולת ראיה באה מן העוף ואתי בכנופיא כמוש&quot;כ ביומא (דף נ&quot;א) לכן קרי לזה שישנו בצבור וכדאמר שם (דף י&quot;ג) שכן ישנן בצבור על פסח ועיין רש&quot;י שם, וכן הא דתנן בריש כל התדיר תודה ואיל נזיר קודמין לשלמים שהן נאכלין וטעונים לחם, ובגמרא אדרבא שלמים קדמו שכן ישנן בצבור כביחיד ג&quot;כ ליכא לפרש על כבשי עצרת דהן קדשי קדשים ונאכלין ליום ולילה וטעונים לחם, רק הפירוש שלמי חגיגה דהן קדשים קלים ובאין בלא לחם והא דאמר בציבור היינו בכנופיא ודוק:<br><strong> וכן </strong> מוכח מהא דשלח ר&quot;ג [והוא ר&quot;ג הזקן כדמוכח שם] לעבר השנה על גוזלות שלא פרחו, ובמאי צריך עוף אם ליולדות אטו הני תנאי דפטרי נשים גם בפסח ראשון פליגי על ר&quot;ג הזקן ואי משום זבים הא הוי מיעוטא דלא שכיח ועל כרחין דלעולת ראיה צריך עוף, וכן כתב רבינו בפ&quot;ד מהלכות קדוש החודש ה&quot;ז. ולפ&quot;ז הא דאמר בפרק מעשר בהמה (דף נ&quot;ו) על קרא דכן תעשה לשורך ולצאנך ואימא תנהו ענין לעולת ראיה, ודא לק&quot;מ דעולת ראיה הא אינו מן הבקר וצאן לבד דגם מן העוף בא רק דהו&quot;מ לאקשויי ואימא על חגיגה ולכן מתרץ כו׳ שאין קבוע לו זמן ומיושב הכל. ונראה ברור בדעת רבינו דמביא רק פרידה אחת לראייתו והא דאמרו פ&quot;ב דכריתות להביא פרידה אחת א&quot;א שלא מצאנו בכה&quot;ת כולה כו׳ חובה מיהא לא אשכחן, פירושו דהכא מביא חגיגה בהדיה, דראיה בלא חגיגה ליכא כמוש&quot;כ רבינו כל החייב בראיה חייב בחגיגה, והוי כיולדת עשירה דמביאה חטאת עוף ועולת בהמה ולא מקרי שבא לבדו ופשוט, ועיין קרית ספר להמבי&quot;ט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-1-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:1:3</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-3" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונשים חייבות במצוה זו.</strong><br><strong> חגיגה </strong> (דף ו׳) אמר אביי ולטעמיך חנה גופא מי לא מחייבי בשמחה כו׳. הא דאמר ולטעמיך לרבי צריך ביאור, ונראה משום דבשילהי זבחים פליגי ר&quot;י ור&quot;ש דחד אמר מנוחה זו שילה נחלה זו ירושלים כו׳ ור&quot;ש סבר דשניהן ירושלים ולמ&quot;ד דשניהן ירושלים בשילה לא נאסרו הבמות ומש&quot;ה מנוח הקריב על הצור וא&quot;כ שלמי שמחה באין מן המעשר והם כנידר ונידב ומביאין בבמה ובבמה אשה ג&quot;כ כשירה להקריב יעוין בתו&quot;כ פרשת אחרי ובתוספתא סוף זבחים, ולכן מפרש באגדת בראשית פרק כ&quot;ט על פסוק דעלה האיש ההוא כו׳ מימים ימימה כו׳ מפסח לפסח שנאמר ושמרתם את החוקה כו׳ מימים ימימה, היינו משום שכל המועדים לא עלו נשיו שהיו מקריבין שלמי שמחה בבמה, רק בפסח דנשים חובה עלו גם הנשים משום דהפסח אינו קרב בבמה קטנה, וא&quot;כ הלא היתה חנה יכולה להקריב שלמי שמחה בבמה קטנה ואינה צריכה לעלות לשילה, רק עולת ראיה דהוי חובה אינו קרב בבמה קטנה. ולזה אמר ולטעמיך פירוש לדברי רבי דסתם במשנה דסוף זבחים משבאו לשילה נאסרו הבמות א&quot;כ קשה חנה גופא מי לא מחייבא כו׳, ובזה יש לכוון התוספתא הכריעו חכמים לסייע דברי ר׳ יהודה וחנה לא עלתה כו׳ וצ&quot;ל לדברי ר&quot;י האומר דבשילה נאסרו הבמות ולא עלתה משום מפנקותא ראיה מדברי ב&quot;ש, היינו דלר&quot;י קשיא אמאי לא עלתה חנה הא היא מחייבא בשמחה וסייעו לדבריו מדבית שמאי דאמרי דקטן שיכול לרכוב חייב ואמאי לא העלו את שמואל אלא חנה מנפקותא יתירא חזיה בשמואל לכן גם היא היתה אנוסה להיות בבית דקטן הצריך לאמו היה שמואל, ועיין בפירוש ר&quot;ח דאמר מר חולה ומשמשיו פטורין מן הראיה יעו&quot;ש היטב ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:8:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-8-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולות ראיה ושלמי חגיגה אינן דוחות [לא] את השבת כו׳.</strong><br><strong> ירושלמי </strong> חגיגה פ&quot;א ה&quot;ו יודא ספרא כו׳ וחגותם אותו חג לד׳ שבעת ימים וכי שבעה הם והלא שמונה הם אלא צא שבת מהם הרי שבעה אר&quot;י וכי מכאן למדנו שאין חגיגה דוחה את השבת לא ממקום אחר, [פירוש שכל שאין זמנו קבוע אינו דוחה את השבת וחגיגה אין זמנו קבוע שיכול להביאו כל שבעה] התיב ר&quot;י אחוה דרב ספרא והא תני אף בפסח כן מעתה צא שבת מהן הרי ששה, עיין ש&quot;ק, ופירוש הפ&quot;מ אינו, דמוספין דוחה שבת. ודכוותיה אמר בסוכה פ&quot;ג הי&quot;א והקרבתם כו׳ שבעת ימים אין שבעת ימים בלא שבת. אבל הפירוש האמיתי עפ&quot;י מה דגרסינן במכילתא פרשת בא פ׳ ז׳ ריה&quot;ג אומר שבעת ימים תחוג לד׳ אלקיך [שהוא מיותר לדרשה] להביא שבעת ימי פסח שיטענו חגיגה או אינו מדבר אלא בחג כשהו&quot;א וחגותם כו׳ הרי חג אמור ומה אני מקיים שבעת ימים תחוג לד׳ להביא שבעת ימי פסח שיטענו חגיגה. ומי לא יראה כי הירושלמי כוון אל מכילתא זאת, וזה שאמר והא תני [במכילתא] אף בפסח כן מעתה צא שבת מהן הרי ששה וא&quot;כ תלמוד שחגיגה דוחה שבת, וז&quot;ב. ובאמת מה שהקשה רבי יוסי דבלא זה ידענא דחגיגה שאין זמנו קבוע אינו דוחה את השבת יש לתרץ דהוי אמינא כמו דדריש בבבלי פסחים (דף ע׳) דחגיגת חמשה עשר דוחה שבת [עיין תוס׳ שם] דכתיב צאן ובקר צאן לפסח ובקר לחגיגה וחגיגה דוחה שבת קמ&quot;ל קרא דחגיגה אינה דוחה שבת, וע&quot;ז שפיר מקשה הא לפי דרשא זו צ&quot;ל בפסח דחגיגה דוחה שבת, ובבלי בפסחים מסיק כהך דיודא ספרא עיי&quot;ש. ובשיטת ב&quot;ש אם חגיגה דוחה יום טוב עיין תוס׳ חגיגה (דף י&quot;ז) ד&quot;ה יום טבוח ומיהו בירושלמי כ&quot;ו משמע דאף בחגיגה פליגי כו׳, ולפלא כי הגירסא הישרה הובא בבלי ביצה פ&quot;ב (דף כ׳) דעל עולת ראיה קאי וכן מוכח בירושלמי פסחים פרק אלו דברים ה&quot;ב הרי חגיגת יו&quot;ט בשיטתך תוכיח ועיין פירוש הפשוט בגליון הש&quot;ס דמפורש דחגיגה קרב לב&quot;ש, אמנם בתו&quot;כ פרשת אמור יכול אדם חוגג ביו&quot;ט יעו&quot;ש מפורש דגם בחגיגה פליגי ב&quot;ש ויעוין תוספות שנ&quot;ץ דפירש כהבבלי יעו&quot;ש ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-1-8-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:8:2</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-8-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:8:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואע&quot;פ שאין מקריבין ביו&quot;ט נדרים ונדבות מקריבין עולת ראיה כו׳.</strong><br><strong> במשל&quot;מ </strong> כתב ז&quot;ל דע דנסכים שלא הביאו הצבור עם הקרבן דקיי&quot;ל דמביא אותם אף לאחר כמה ימים כו׳ קרבים ביו&quot;ט כ&quot;כ רש&quot;י פ&quot;ד דתמורה (דף י&quot;ד) עכ&quot;ל. הנה על נסכים לא ידענא חקירתו, דאטו יש איזה מלאכה במה שמזלפו לשיתין דכן דין נסכים הבאים עם קרבנות הצבור ופשיטא דקרבין ביו&quot;ט, ואפשר דאף בשבת דאין רק איסור טלטול איסור מוקצה דרבנן כדאמר יבמות (דף ל&quot;ג) ואי בקבלה כו׳ טלטול בעלמא הוא יעו&quot;ש, ואולי דאמנחת נסכים קאי דנקטרין על המזבח. אולם מה שמביא מרש&quot;י תמורה אין זכר ראיה כלל, דתמן דריש הגמרא הך דכתיב מלבד שבתות ד׳ ופרש&quot;י דה&quot;ק זבח ונסכים דבר יום ביומו מלבד שבתות ד׳, ומשום דדרשינן סמוכים דבר יום ביומו הקרב נסכים מלבד אותן של שבתות דאם יו&quot;ט אחר שבת הוא הקרב נסכיו עם קרבנותיו כו׳ ששכח אתמול ולא קרבתה, וזה הוי כחלבי שבת שקרבין ביו&quot;ט ומילי דפשיטא נינהו ואיך סתם רבינו שכל נסכים של קרבנות צבור שלא הביאום קרבין ביו&quot;ט, ויפלא הלא אך שבתות ד׳ כתיב ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-1-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:10:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפריש עולת ראיה ומת היורשין חייבין להביאה כו׳.</strong><br><strong> הנה </strong> בירושלמי איתא דאם ירשו קרקע אפילו לא הפרישה ומת חייבין היורשים להביא, ויש להעיר לפסק רבינו דמה&quot;ת אין לה שיעור רק מד&quot;ס מעה כסף ושתי כסף א&quot;כ לא הוי מלוה הכתובה בתורה ולאו ככתובה בשטר דמי ואינו גובה כשיעור מן היורשין, אמנם הירושלמי לטעמיה דסובר דהך שיעור הוי מה&quot;ת, ואולי משום זה נקט רבינו המפריש כו׳ ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-2">Chapter 2</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 2:1:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טומטום ואנדרוגינוס פטורין מפני שהן ספק אשה כו׳.</strong><br><strong> בגמרא </strong> (דף ד) אלא טומטום ספיקא הוא איצטריך קרא למעוטי ספיקא. יתכן לפרש דכמו דדריש יראה יראה מה אני בחנם אף אתה בחנם וכן מה הוא בשתי עינים כו׳ כן יש להקיש מה הוא אינה רואה אותך בספק דמי איכא ספיקא קמי שמיא כן כשאתה רואה אותו לא יהיה מספק, וכיוצא בזה מצאנו ביבמות (דף ק&quot;א) מה למעלה שאין בה שותפות אף למטה שאין בה שותפות, פירוש דלברכת השם אין צריך לשתף להחיוב עוד אחר, כן לאביו פרט לספק שצריך להיות חייב ע&quot;י שיתוף עוד אחד, כן הכא מקשינן מה יראה שאינו בספק כן יראה שאינו בספק ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 2:2:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראה </strong> במשל&quot;מ שהעיר מהא שכתבו התוס׳ דמי שאין לו קרקע דפטור מן הראיה דהוה&quot;ד דפטור מפסח שזה חידוש גדול. ולכאורה נראה מוכרח כוותייהו מהא דבריש תמיד נשחט אמר בשלמא לת&quot;ק יבוא עשה דפסח שיש בו כרת וידחה עשה שאין בה כרת אלא לריב&quot;ב מאי אולמא דהאי עשה מהאי עשה כו׳ הכא בחטאת העוף עסקינן שאין למזבח אלא דמה כו׳, ולפ&quot;ז קשה לת&quot;ק איך דחי עשה דפסח לעשה דהשלמה הלא מצי לקיים את שניהם ולהפקיר נכסיו ויביא חטאת העוף וליכא עשה דהשלמה, ואין לאמר דעשה דהשלמה מוכרח לדחות בהקטרה דאשם, דאטו מי לא מיירי בגוונא דכבר הקריב אשמו וכמו דמיירי ר&quot;י בנו של ריב&quot;ב, וכמו דאמר הגמרא בריש פרק ר&quot;א דמילה דמשו&quot;ה לר&quot;א לא דחו מכשירי מצוה דמזוזה וציצית לשבת שכן בידו להפקירן יעו&quot;ש. וע&quot;כ משום דאם יפקיר נכסיו ויהיה עני יפטר גם מעשיית פסח דלא יהיה לו קרקע וזה אינו תקנה דיפטר גם מעשיית פסח וכמו דאמרה תורה שפסח דוחה שבת אף דבידו להפקיר קרקעותיו ויפטר מפסח דלזה לא חשבה התורה תקנה וצותה לדחות השבת כן הכא דוחה לעשה דהשלמה:<br><strong> אמנם </strong> נראה דאין ראיה מכאן, דהא התוספות בפ&quot;ק דב&quot;ק כתבו גבי הא דעד שליש במצוה דאף מצוה עוברת אין צריך ליתן כל ממונו לקיימה, אבל במצות ל&quot;ת כתב הר&quot;ן בפ&quot;ב דסוכה והריב&quot;ש דצריך ליתן כל ממונו דרק יעבור ואל יהרג אמרו הא בכל מאודך חייב, ולפ&quot;ז אם יאנסוהו לחלל שבת יהא מוכרח ליתן כל ממונו ושלא לחלל שבת א&quot;כ שפיר אמר דלא דחי מזוזה לשבת שכן בידו להפקיר ביתו ולא יהא עדיף האונס דמצוה מאונס דאונסין והלא מצווה ועומד לאבד נכסיו ושלא לעבור שבת ע&quot;י אונס ולכן לא דחי שבת, ותו לא צריך להפקיר ביתו בכדי שלא יעבור על מצות מזוזה דאין זה רק שב וא&quot;ת שאינו עושה מזוזה והוא אנוס שלא לעשות מזוזה בשביל שבת ובשביל קיום מ&quot;ע אינו צריך ליתן ממונו ברבוי ואף יותר משליש, אבל כאן שפיר דחי עשה דפסח לעשה דהשלמה מאי תאמר דיפקיר נכסיו הלא בשביל לקיים מ&quot;ע דפסח שהיא קום ועשה אינו מחוייב לבזבז ממונו דאם יעבור ולא יעשה פסח הלא לא יהא רק בשב וא&quot;ת ואף אם חבשוהו בבית האסורים שאין שוחטין עליו לא יהא מחוייב לבזבז ממונו לקיים עשה דפסח דאף ע&quot;ג שיש כרת במ&quot;ע דפסח מכל מקום הא יש לו תשלומין בפ&quot;ש ולכן לא שייך לומר דיהא מקרי אפשר לקיים שניהם מה שבידו להפקיר נכסיו ויוכל להביא חטאת העוף כיון שאינו מחוייב לזה ופשוט:<br><strong> אולם </strong> לשיטת הריב&quot;א דפירש דאע&quot;ג דעשה דאכילת פסח לא הוי בעידנא ופי׳ דישחטו עליו טרם שיקרב כפרתו ורק כיון דראוי להביא כפרתו שוחטין וזורקין עליו את פסחו, דאם תאמר דאסור להביא כפרתו הלא גברא דאינו ראוי לאכילה הוי ואין שוחטין וזורקין עליו, קשה טובא דאמאי אין שוחטין וזורקין עליו מדם פסחו הלא ראוי להפקיר נכסיו ויהיה עני ויביא קרבנו חטאת העוף דאין למזבח אלא דמו וראוי הוא שכן בידו להפקיר נכסיו אף דאינו מחוייב לזה וצריך לומר דאם יפקיר את נכסיו הלא לא יהיה לו קרקע ויהא פטור מפסח ואנן בעינן שיהא מחוייב במצות פסח ויהא ראוי לאכול את הפסח באופן שהוא מחוייב במצותו אבל באופן שאינו ראוי לאכול את הפסח רק באופן שהוא פטור מקיום מצותה שלא יהא לו קרקע לא מקרי גברא דחזי לאכילה ודוק. אך באמת ז&quot;א דהרי אמרו בירושלמי פ&quot;ג דפאה גבי קרקע כ&quot;ש חייב בפאה תני והראיון אלמא דמצות ראיה בקרקע כ&quot;ש חייב בראיה דקרינא ביה ולא יחמוד איש ארצך, וא&quot;כ מצי להפקיר נכסיו ולשייר לעצמו קרקע כ&quot;ש ויהא עני ויוכל להביא קרבן עני חטאת העוף ועוד יהא חייב בעשיית פסח דהא יש לו קרקע כ&quot;ש ואמאי אין שוחטין וזורקין עליו. וצ&quot;ל דת&quot;ק סבר או כראב&quot;י דצפרים קבעו או כר׳ יהודה דאשמו קובעו וכיון שכבר קרב אשמו הרי אף אם יפקיר את נכסיו ויהא עני יהא מחויב להביא קרבן עשיר ולכך אתי עשה ודחי עשה דהשלמה דאם לא ידחה לא יהא תקנתא אף אם יפקיר את נכסיו ויהיה עני יהא מחוייב להביא קרבן עשיר, יעוין כריתות (דף ט׳) ודוק היטב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-2-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 2:10:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אין אדם יוצא בה ידי חובת חגיגה כו׳.</strong><br><strong> ובהשגות </strong> אבל לרבנן כיון דרשות היא יוצא בה אף משום חגיגה אם התנה עליה לצאת בה ושחטה בי&quot;ד, ורבוותא בתוס׳ פליגי ע&quot;ז וסברי כרבינו דאף אם הקדישה לשם חגיגה ושחטה בי&quot;ד אינו יוצא בה משום דבעי שחיטה בשעת חגיגה. ונראה להתבונן כיון דבחגיגה יוצא אם ישחט אותה מערב יום טוב א&quot;כ קשה דרב הונא אמר פ&quot;ב דביצה לדברי האומר נדרים ונדבות אין קרבין ביו&quot;ט לא תימא כו׳ אלא אפילו מדאורייתא נמי לא חזו דהא שתי הלחם דחובת היום נינהו וליכא למיגזר כו׳ ואינו דוחה יו&quot;ט א&quot;כ כמו דאפיית שתי הלחם אינן דוחין יום טוב משום שיכול לאפותן מערב יו&quot;ט כן חגיגה להראב&quot;ד הלא שחיטתה מצי להיות מערב יום טוב ואיך דחי יום טוב דהוי דומיא דנדרים ונדבות ועמד ע&quot;ז המהר&quot;ם ברבי. לכן נראה דחזינן דאוכל נפש דחי יום טוב ומכשיריו דוחין יו&quot;ט ואפ&quot;ה ביארו רבנן בתוס׳ שבת (דף צ&quot;ה) וביצה (דף ג׳) דבאוכל נפש כו&quot;ע מודו דאפילו אפשר לעשותן מערב יום טוב דחי רק במכשירין אסרה רחמנא היכי דיכול לעשותן מערב יו&quot;ט, כן כי דחייא רחמנא יום טוב לצורך גבוה לחובת היום מילי דבתר הקדישו שחל עליו קדושת הגוף לשם חובתו וכמו שחיטת חגיגה דמקדשתו סכין דלא לפרוק ע&quot;י מום כדאמרו ריש פ&quot;ב דסוטה דקדשתו סכין בצואר בהמה הוי מידי דשייך לגוף חובת היום והותרה ביום טוב שחובתו להביא משום היו&quot;ט אף שאפשר לעשותו מערב יו&quot;ט כמו מלאכה באוכל נפש דשריא אפילו שאפשר לעשותו מערב יו&quot;ט, אבל מידי דהוה קודם הקדישו קדושת הגוף לשם חובת היום הוי בגדר מכשירין באוכל נפש ואם אפשר לעשותו מבעוד יום לא שייך לחובת היום והוי בגדר נדרים ונדבות ואינן דוחין יו&quot;ט וכיון שכן א&quot;ש דהקשה אדם קשה כברזל אפייתן בפנים אלמא תנור מקדש וא&quot;כ אמאי אינן דוחין את השבת הא איפסול בלינה, ופירשו רבנן בתוס׳ דתנאי הוי ותברא מי ששנה זו לא שנה זו, א&quot;כ כיון דאפייתן בחוץ ותנור אינו מקדש הוי האפייה מילי דקודם ההקדש ולא שייך לעצם החובה דצותה התורה להביא משום יו&quot;ט ולכן הוי בגדר נדרים ונדבות ואינן דוחין יום טוב דאינו מגוף הקדש לשם חובת היום וכמו דהבדילה תורה במכשירין דאוכל נפש בין אפשר לעשותן מערב יום טוב דאז לא דחו כיון שאינן בגוף האוכל נפש, ואי משום דהאפייה צורך הדיוט שיהיו נאכלים בטלה חיובו לגבוה את הצורך הדיוט כמו בשלמי נדרים ונדבות שביטלה הצורך גבוה את הצורך הדיוט הראויה להיאכל לאדם כמו שפירשו בתוס׳ ודוק. אמנם לרבינו שפוסק דאפייתן בפנים ואפ&quot;ה אינן דוחין השבת ויו&quot;ט דגלי רחמנא עריכתן דוחה שבת ואין אפייתן דוחה, א&quot;כ חזינא אע&quot;ג דהאפייה הוי מידי דהקדישו לשם חובת היום בכך ואפ&quot;ה אינו דוחה יו&quot;ט א&quot;כ אם הוי שחיטת חגיגה מצי להיות מערב איך דחייא יו&quot;ט, אבל להראב&quot;ד דוקא אפייה דאינה מקדשא ללחם ליפסול בלינה וכמו שנתבאר, אבל שחיטת חגיגה וזריקתו דעיקר קרבן הוי דאם נאבדה החגיגה לבתר הזריקה הלא כבר יצא ידי חובתו והוי כאוכל נפש גופיה דאפילו אפשר לעשותו מערב יו&quot;ט דוחה יו&quot;ט כן הכא משום חובת היום גופיה ועיין פסחים (דף מ&quot;ז) ברש&quot;י ודוק:<br><strong> והנה </strong> הטורי אבן במגילה (דף ה׳) יצא לחלק דתלוי בהקטרת אימורים אם מקטירן בליל יו&quot;ט אז אף אם שחטן מערב יו&quot;ט יוצא משום חגיגה ולא הוי כחלבי חול שאינן קרבין ביו&quot;ט יעו&quot;ש. וזה נסתר מדברי ירושלמי דפ&quot;ב דביצה דמוקי דפליגי ב&quot;ש וב&quot;ה אם הותרה סמיכה שלא בשעת שחיטה דבאשם מצורע שסמך עליו ביום ז׳ כיון דלשחוט עדיין מחוסר זמן ואינו ראוי לשחוט, אם סמך עליו לא יצא וצריך למחר לחזור ולסמוך, ובשלמי נדבה דמצי שחיט לכן כי סמך מאתמול אין צריך לחזור ולסמוך [וכן פי׳ דברי רבינו לעיל פ&quot;ג ממעה&quot;ק יעו&quot;ש] רק בשלמי חגיגה פליגי דב&quot;ה עבדי לה כאשם מצורע דפירוש דכיון דאם הביא מאתמול הקרבן כשר אלא שאינו יוצא בו ידי חובתו בזה פליגי אם צריך לחזור ולסמוך, ולפ&quot;ז אם נאמר דהיכי דמקטיר בליל יו&quot;ט יוצא ידי חובת חגיגה אף ששחטן מערב יו&quot;ט א&quot;כ אמאי פליגי ב&quot;ה הא הוי כשלמי נדבה ומוכח דלצאת י&quot;ח אינו יוצא ובזה פליגי וכשיטת התוס׳:<br><strong> ומה </strong> שכתב רבינו כבר בארנו שחגיגת י&quot;ד רשות לפיכך אין אדם יוצא בה ידי חובת חגיגה כו׳. פירושו דאם היה חובה לא היו יוצאים משום שמחה כיון דגם היא מצוה לפסח וכמו דאינו יוצא בחגיגה חובת שלמי שמחה דהא שלשה מצות נצטוו לחג, כן אם היתה חגיגת י&quot;ד חובה אף דאינה רק בפסח, ושמחה כתיב בחג וא&quot;כ כמו שיוצא כהן בשעיר המוספין חובת שלמי שמחה כן יכול לצאת בחגיגת י&quot;ד, ז&quot;א דר&quot;י הגלילי במכילתא דריש קרא דשבעת ימים תחוג על פסח ושם כתיב והיית אך שמח, א&quot;כ כתיב שמחה בחג פסח ואם היה חגיגת י&quot;ד חובה הרי שמחה מצוה לבד חגיגת י&quot;ד וכמו שהיא לבד חגיגת ט&quot;ו ואינו יוצא בה ידי שמחה ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-3">Chapter 3</h4>
+          <section class="unit" id="ohr-sameach-on-mishneh-torah-festival-offering-3-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 3:2:1</h4></div>
+              <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-3-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הפטור מן הראיה פטור ממצות הקהל חוץ מן הנשים כו׳.</strong><br><strong> לא </strong> חשיב רבינו עבדים דכתיב כל ישראל וכתיב הקהל את העם ועבדים לא מקרי עם כמו דאמר בפרק הזרוע כו׳ יכפר לרבות העבדים אלמא דלא נכללו בכלל עם ובעי קרא לרבות יעו&quot;ש ופשוט. ובמתנות כהונה חייבי׳ בודאי רק משום דאין דרך לעבד להיות לו נכסים בפ&quot;ע כתבה רחמנא מאת העם ופשוט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-festival-offering.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ohr-sameach-on-mishneh-torah-festival-offering.manifest.json","occurrence_url":"../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-festival-offering.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

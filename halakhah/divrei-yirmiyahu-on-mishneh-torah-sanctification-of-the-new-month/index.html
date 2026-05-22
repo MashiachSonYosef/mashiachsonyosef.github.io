@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Sanctification of the New Month</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Sanctification of the New Month</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">11 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>903 matched</strong> / 2342 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-8-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:8:1">1:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:9:1">2:9:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-4-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-5-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:5:1">3:5:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-14-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:14:1">3:14:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-4-6-1" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 4:6:1">4:6:1</a></li>
+                    <li><a class="toc-unit" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-4-6-2" title="Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 4:6:2">4:6:2</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-1">Chapter 1</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:1:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חדשי השנה הם חדשי הלבנה שנאמר עולת חדש בחדשו ונאמר החודש הזה לכם ראש חדשים כך אמרו חכמים הראה לו הקב&quot;ה למשה במראה הנבואה דמות לבנה ואמר לו כזה ראה וקדש והשנים שאנו מחשבין הם שני החמה שנאמר שמור את חדש האביב.</strong> עיין בראב&quot;ע בפרשת בא במקרא החדש הזה לכם מה שכתב נגד האומר כי ישראל היו מונים כפי שנות החמה וחדשים חדשי החמה עיי&quot;ש גם רבינו נחת לזה וכמ&quot;ש בס׳ נאוה קודש דמלשון חדש בחדשי דלשון חידוש בלתי נופל כי אם על הלבנה ולא בהשמש שנופל בו לשון שנה בעבור השנויים מהזמנים קור וחום קיץ וחורף וכו׳ הנולדים מהשמש עיי&quot;ש והביא אשר רמזו רז&quot;ל גם כן ע&quot;ז ועבור כי בעולת חודש בחדשו מפורש ביותר הביא מקרא מאוחר קודם להמוקדם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:7:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-7-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע מן התורה על בי&quot;ד שיחשבו וידעו אם יראה הירח וכו׳.</strong> ובהגהות שם סמ&quot;ג עשין מ&quot;ו מונה מצוה זו מיוחדת ואח&quot;כ מונה מצוה אחרת כללית לחשב תקופות ומולדות מקרא דושמרתם וכו׳ כי היא חכמתכם וכו׳ ואחז&quot;ל בפ׳ כלל גדול איזה חכמה וכו׳ עיי&quot;ש וכן בס׳ יראים סדר זמנים סי׳ ק&quot;ד עיי&quot;ש:<br><strong> ורבינו</strong> לא הביא האי דמצוה לחשב בתקופות וכו׳ דמפורש במס׳ שבת ע&quot;ה גם בשו&quot;ע בלתי מדובר מזה ולפי דבריו יהיה כל ישראל מחויבים לחשוב תקופות ובגמ׳ שבת הנ&quot;ל כל היודע וכו׳ ואין חושב עליו הכתוב אומר ואת פועל ה׳ לא יביטו וכו׳ מנין שמצוה על האדם לחשב תקופות ומזלות שנא׳ ושמרתם וכו׳ לעיני העמים וכו׳ וקודם לזה שם והיודע לחשב תקופות ומזלות ואינו חושב אסור לספר ממנו וגדולי ישראל לא נזהרו בזה והראב&quot;ד כתב בפ&quot;ז מקדוש החודש ה&quot;ז שהוא ורבותיו לא הגיעו לחכמה זאת עיי&quot;ש:<br><strong> גם</strong> בלשון הסמ&quot;ג יש להעיר שכתב בעשה מ&quot;ז צוה הקב&quot;ה לחשב התקופות והמזלות ומולדת הלבנה כדדרשינן במסכת שבת ע&quot;ה וכו׳ לעיני העמים זו היא חישוב תקופות ומזלות לפי שבישול התבואות והפירות אחרי תקופת החמה הם הולכים ועוד כי על ידי חישוב התקופות ומולדות יודע מתי יצטרך לעבר החודש ולעבר השנה וכו׳ שיהיה פסח בחודש האביב וכו׳ שיהיה החג בזמן האסיף ותקופות השנה היא לחשבון החמה כמו שנאמר מקצה השמים מוצאו ותקופתו על קצותם ואין נסתר מחמתו עכ&quot;ל:<br><strong> הנה</strong> כתב בראשונה בטעם דרישה בתקופות משום שהבישול התבואות והפירות אחריהם הולכים ואח&quot;ז ועוד לידע לעבר החודש וכו׳ תפס הטפל לעיקר ועיקר להטפל ועי׳ ברש&quot;י שבת ע&quot;ה ע&quot;א בד&quot;ה לעיני העמים שחכמה הניכרת היא שמראה להן סימן לדברים בהילוך החמה והמזלות שמעידין כדבריו שאמר שנה זו גשומה והיא כן וכו׳ עיי&quot;ש:<br><strong> גם</strong> לפי הגמ׳ הנ&quot;ל גדול ערכו עד כי היודע וכו׳ אסור לספר ממנו ובמסכת אבות פ&quot;ג נאמר תקופות וכו׳ פרפראות לחכמה ועי׳ בתוס׳ יו&quot;ט ובתשב&quot;ץ שכתבו דלא קאי במה שנוגע לקידוש החודש דזה מגופי התורה אלא מבלעדי זאת במהלך הכוכבים עיי&quot;ש:<br><strong> והנה</strong> בגמ׳ לעיני העמים חכמה לעיני העמים תקופות ומזלות יש לפרש על תקופות וחשבונות בעיבור שלנו השלם ונפלא עד כי אחד מחכמי העמים הראשונים אמר כי מזה נדע כי יש רוה&quot;ק בישראל כי העמים הלכו תוהו בחשבונם וזה שלשה פעמים שינו אותו ועוד למאות שנים ימצאו יתרון שעות ואנחנו בני ישראל אין יתרון ולא גרעון בחשבון שלנו זה אלפי שנים אף רגע אחת ולהנאמר יאות לעיני העמים על העיבור שלנו ויפלא למה שהצריכו ברש&quot;י ובסמ&quot;ג לומר כי נדע עי&quot;ז מטבע השנה ובישול הפירות. אמנם נראה דעם כל זה המקרא שמובא בגמ׳ פועל ה׳ לא יביטו מסייע למ&quot;ש ברש&quot;י ובסמ&quot;ג וזה יאות לומר על כל חכמת הטבע וציינו בראש חכמת תקופות ומזלות. ולטעם הזה לעיני העמים לא יאות על מה שקידוש החודש תלוי בו אלא על שאר ידיעות שבה הנצרכים ועיני העמים עליהם נשואות ובסמ&quot;ג שכתב קודם לזה בעשה מ&quot;ו מ&quot;ע על הבי&quot;ד לקדש וכו׳ מקידוש החודש כתב אח&quot;ז בעשה מ&quot;ז צוה הקב&quot;ה לחשוב בתקופות וכו׳ וכתב בראשונה משום בישול פירות וכו׳ להורות על פועל ה׳ אשר יחשב כל אדם ולא על הבי&quot;ד בלבד ואח&quot;ז משום עיבור החודש דלא הוי אלא על הבי&quot;ד בלבד והוי כמו למוד כל התורה ובלתי מיוחד למוד זו משאר למודים כן נראה לפרש דברי הסמ&quot;ג:<br><strong> ונראה</strong> דעם כל זה לא החשיבו הלמוד בחכמה זאת הבלתי נוגע לדיני עיבור להחשיבו חלילה כדברי התורה ויחסו אותו לפרפראות וכו׳ כדאיתא במס׳ אבות הנ&quot;ל ובחרו רז&quot;ל לשום לב בפועל ה׳ יותר בחכמה זאת משאר חכמת הטבע על כי נוגעת ג&quot;כ בקידוש החודש וזה כונת הסמ&quot;ג שכתב ועוד כי ע&quot;י חישוב וכו׳ לפרש למה נבחרה חכמה זאת משאר חכמות הטבע כי יתרון לה בזה ג&quot;כ גם כנראה כי בשאר חכמת הטבע פושעים יכשלו בהם כמ&quot;ש בשו&quot;ת הרשב&quot;א כנודע משא&quot;כ בחכמה זאת אין בה דרך עיקש ועכ&quot;פ בימים מקדם ולכן בחרו רז&quot;ל בה:<br><strong> נמצא</strong> לומר דכל מה שאמרו רז&quot;ל בחיוב לחשוב הסמיכו למקרא את פועל ה׳ לא יביטו להסתכל במעשי ה׳. וכמ&quot;ש למה נשאו זאת בראש לכן רבינו בהל׳ יסודי התורה הרחיב בזה ובפ&quot;ב ה&quot;ב סיים כמו שאמרו חכמים בענין אהבה שמתוך כך אתה מכיר את מי שאמר והיה העולם ולפי דרכו בקודש כי הצדיקים ילכו בטוהר נפשם כמוהו זה שער השמים לחזות בנועם ה׳ למצוא לב רגש באהבת ה׳ ע&quot;י השתכלות בנפלאות מעשי הטבע ותפס מה שארז&quot;ל על תקופות וכו׳ אלא על כל השתכלות בנפלאות ה׳ בהטבע כאשר החובות הלבבות בשער הבחינה וכיו&quot;ב הלכו בדרך הזה. אבל מ&quot;ש רבינו בשם רז&quot;ל שמתוך כך וכו׳ לא נמצא כן ועמד ע&quot;ז במזרחי בפרשת ואתחנן אלא כך איתא שע&quot;י הדברים האלה שהם המצות וכו׳ ועמד ע&quot;ז לפרש הגאון בעל סדר המשנה ז&quot;ל עיי&quot;ש ואנכי מצאתי כמ&quot;ש לעיל בשו&quot;ת פאר הדור לרבינו ז&quot;ל בסי׳ נ&quot;ג על מאמרם ז&quot;ל היודע לחשוב בתקופות וכו׳ הנ&quot;ל וז&quot;ל על מה ששאלתם מה תועלת יש ממנו בידיעתו כבר אמר ר׳ מאיר בברייתא השתכל במעשי שמתוך כך אתה מכיר מי שאמר והיה העולם. ובחיבורינו יפורש לכם כל אלה הדברים וכו׳ עכ&quot;ל וברייתא דר&quot;מ לא נמצא לנו כהרבה מדרשים וירושלמי שהיה לו ולא לנו כנודע. ומזה כמ&quot;ש ולכן לא הביא רבינו בפרט מצות לחשב חשבון תקופות וכו׳ וכמ&quot;ש שכבר נכלל בהנאמר בהל׳ יסודי התורה הנ&quot;ל:<br><strong> ובמדרש</strong> רבה פרשת נצבים לא בשמים היא שמואל אמר אין התורה מצויה באסטרלוגין שאומנתן בשמים אמרו לשמואל הרי אתה איסטרלוגין וגדול בתורה א&quot;ל לא הייתי מביט באיסטרולוגים אלא בשעה שהייתי פנוי מן התורה אימתי כשהייתי נכנס לבית המים עכ&quot;ל. ונראה מזה שלא אמרו שמצוה ללמוד אלא היודע לחשב ואינו מחשב וכן הלשון שם היודע וכו׳ ואינו חושב מצוה לחשוב וכו׳ הכל בשכבר ידע אז כאשר לא ישים בהשכלה לחזות מפעלי ה׳ בכלל פועל ה׳ לא יביטו. אבל ללמדה מה שאינו נוגע לקידוש החודש בכלל שאר חכמה אשר יתרון למוד התורה שלא להחליפה בלמוד דעת האנשי חלילה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:8:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-1-8-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מחשבין וקובעין חדשים אלא בא&quot;י שנא׳ כי מציון תצא תורה ודבר ה׳ מירושלים ואם היה אדם גדול בחכמה ונסמך בא&quot;י ויצא לחו&quot;ל ולא הניח בא&quot;י כמותו הרי זה מחשב וקובע חדשים ומעבר שנים בחו&quot;ל ואם נודע לו שנעשה בא&quot;י אדם גדול כמותו ואין צריך לומר גדול ממנו הרי זה אסור לקבוע ולעבר בחו&quot;ל ואם עבר וקבע ועיבר לא עשה כלום.</strong> עי׳ במפרש שעמד ע&quot;ז דהלא כי מציון תצא תורה קאי על כל המצות ועי׳ מ&quot;ש ע&quot;ז ועיין בצל&quot;ח במס׳ ברכות דף ס&quot;ג ע&quot;ב שתירצו לא נוח לו ועי׳ מ&quot;ש בזה ועי׳ בס׳ שערי תורה ח&quot;ב לאאמ&quot;ו הגאון ז&quot;ל כלל ט׳ פ&quot;ב עיי&quot;ש. וברש&quot;י במס׳ ברכות שם בד&quot;ה מעבר שנים וכו׳ ותנן מעברין את השנים אלא ביהודא דכתיב לשכנו תדרשו כל דרשות שאתה דורש לא יהיו אלא בשכנו של מקום בפ&quot;ק דסנהדרין י&quot;א עכ&quot;ל. והקשו עליו למה עזב הנאמר בגמ׳ שם וכל כך למה משום שנאמר כי מציון תצא תורה וכו׳, ועי׳ בתוס׳ סנהדרין י&quot;א ע&quot;ב בד&quot;ה אין שהקשו דשם מייתי מלשכנו ובמס׳ ברכות ס&quot;ג מכי מציון תצא תורה עיי&quot;ש:<br><strong> והנה</strong> כאשר נתבונן במעשה הנאמר במס׳ ברכות הנ&quot;ל ובירושלמי במס׳ סנהדרין פ&quot;א מ&quot;ב ובמס׳ נדרים פ&quot;ו מ&quot;ח אשר רעשו ורגזו לאיש אשר מקדם כדאיתא בירושלמי שלחו לו לקדושת חנניה ואח&quot;ז הקילו בכבודו עד שהקשו וכל כך למה וכו׳. נראה מזה כמה היה דבר זה גדול וחמור מאוד. ועי׳ בסה&quot;מ עשה קנ&quot;ג שכתב ודע שהחשבון זה וכו׳ אי אפשר לעשותו אלא בא&quot;י בלבד וכו׳ ובכאן שורש גדול משרשי האמונה לא ידעהו ולא יתבונן במקומו אלא מי שדעתו עמוקה וזה שהיותינו היום בחו&quot;ל וכו׳ לא מפני חשבונינו וכו׳ אבל מפני שהבי&quot;ד הגדול שבא&quot;י כבר קבעהו וכו׳ עיי&quot;ש וברמב&quot;ן ובמג&quot;א שם:<br><strong> הנה</strong> עיבור שנים שמצד חמור מאוד ונוגע ויסוד להרבה מצות ומועדי ה׳ אשר ל&quot;ת ועשה ואיסורי כרת חמץ בפסח ואכילה ביו&quot;כ תלוי בזה וכיו&quot;ב כדאיתא בירושלמי סנהדרין פ&quot;א מ&quot;ב ובמס׳ נדרים פ&quot;ו ה&quot;ח ר׳ הושיעה כד הוה מקבל סהדייא בעין טוב הוו אמר להון הוו יודעין כמה עדות יצא מפיכם כמה שכר בתים יצא מפיכם א&quot;ר [אבינא] וכו׳ אפי׳ דיני נפשות וכו׳ עיי&quot;ש. הנה דבר גדול כזה שיסודי התורה ומזון ומחית האדם הכל צרכי הנפש והגוף תליא בהם כנאמר יהיה ביד ראשי הבי&quot;ד הגדול שבא&quot;י המה ראשי מקבלי תורה שבע&quot;פ ואשר בידם המשרה ועלינו לשמוע אפי׳ על שמאל ימין ולמען הכל יהיו נגררין אחריהם ויהיה לתל שהכל אליו פונים. ולהשמר שלא ירבה כיתות מחכמת התורה שיסוד וסובב הכל העובר יהיה בידם ועי&quot;ז ידם בכל להשמר דרכי התורה שבכתב וביותר שבע&quot;פ ואחדות האומה שיהיה הכל בתר רישא גריר זולתו שיהיה אדם שלא הניח כמותו בא&quot;י ונסמך בא&quot;י כמ&quot;ש רבינו שם ועדות ע&quot;ז הכותים והקראים שפקרו פקרו בעיבור ואולי הצדוקין ג&quot;כ כי עי&quot;ז אחזו יד שלא יהיה תחת הבי&quot;ד וראשי התורה וכמה נאה הסמיכה למקרא כי מציון תצא תורה הנאמר בישעיה ב׳ בפ׳ והלכו עמים רבים ואמרו לכו ונעלה אל הר ה׳ וכו׳ המדבר באחדות כל העמים לשום את ירושלים לראש לכל פינות ומה שהוא יעוד לע&quot;ל על האומות יהיה עתה כי לא יאבד שולטן מירושלים ומאלופי ראשי הבי&quot;ד וכל זמן שהעיבור היה ביד ראשי צדיקי הדור לא היה ביד הרשעים לפרוץ כ&quot;כ לכן אף כי מלשכנו תדרשו נלמד שיהיה מירושלים ולא מקרא כי מציון וכו׳ שנאמר על כל המצות אלא בסוגיא דמקשינן וכל כך למה וכו׳ למה הקילו בו יותר מזקן ממרא ומשום שנאמר כי מציון תצא וכו׳ וכמ&quot;ש עבור שכל קיום הדת ואחדות האומה תליא בזה לכן רעשו מה שלא יעשו ככה בשאר דברים ורבינו נקיט מקרא כי מציון אף שקאי על כל המצות מ&quot;מ נכלל בו שלא נהיה מעברין בחו&quot;ל יותר משאר מצות וכמ&quot;ש ומשו&quot;ה אפי׳ בדיעבד אין מעובר ועי׳ בצל&quot;ח הנ&quot;ל ובש&quot;ת לאאמ&quot;ו הגאון ז&quot;ל הנ&quot;ל אם שאין מעברין בחו&quot;ל הוי מדאורייתא לכו&quot;ע עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-2">Chapter 2</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:2:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דין תורה שאין מדקדקין בעדות החודש שאפי׳ קדשו את החודש על פי עדים ונמצאו זוממין בעדות זו הרי זו מקודש לפיכך היו בראשונה מקבלין עדות החודש מכל אדם מישראל שכל ישראל בחזקת כשרות עד שיודע לך שזה פסול משקלקלו האפיקורסים והיו שוכרין אנשים להעיד שראו והם לא ראו התקינו שלא יקבלו בי&quot;ד עדות החודש אלא מעדים שמכירין בי&quot;ד אותן שהם כשירים ושיהיו דורשין וחוקרים בעדות.</strong> בלח&quot;מ דמ&quot;ש רבינו ונמצאו זוממין וכו׳ נפקא מהאי דאי׳ אתם אפי׳ שוגגין אפי׳ מוטעים עיי&quot;ש ואאמ&quot;ו הגאון ז&quot;ל כתב בשולי היריעה במעכ&quot;ת הוא תוספתא בפ&quot;ב מר&quot;ה וז&quot;ל עשו את החודש בזמנו ונמצאו העדים זוממין ה&quot;ז מקודש עכ&quot;ל. ולשון רבינו כלשון הירושלמי בפ&quot;ב ה&quot;ב ר׳ יעקב בר אחא ר׳ אימי בשם ר׳ יודא בר פזי קידשהו ואח&quot;כ נמצאו זוממין ה&quot;ז מקודש קם ר׳ יוסה עם ר׳ יודא בר פזי א&quot;ל אתה שמעתה מן אבוך הדא מלתא א&quot;ל כן אמר אבא בשם ר׳ יוחנן אין מדקדקין בעדות החודש עכ&quot;ל. ובטעמא דמלתא י&quot;ל כמ&quot;ש בלח&quot;מ משום למודא דאתם אפי׳ מוטעין ובתוספתא אחרי דאיתא הנ&quot;ל קדשו החודש וכו׳ זוממין ה&quot;ז מקודש קדשהו בלילה אינו מקודש קדשהו אנוסין שוגגין ומוטעין הרי זה מקודש עכ&quot;ל. גם י&quot;ל כמ&quot;ש רבינו לעיל בפ&quot;א ה&quot;ו ב&quot;ד מחשבין בחשבונות וכו׳ וכמ&quot;ש במפרש שצריך לחשוב בחשבון וגם לקבל עדות ובפ׳ זה ה&quot;ד בי&quot;ד מחשבין וכו׳ משו&quot;ה כיון דעולה בחשבון והזמה חידוש אין לך בחידושו בכה&quot;ג דחשבון מסכים עמהם:<br><strong> ועל</strong> מ&quot;ש רבינו לפיכך וכו׳ עי׳ במפרש ובלח&quot;מ בזה ובלח&quot;מ עמד דנראה דבשאר עדות בעלמא צריכין להכיר העדים אלא בעדות החודש יצא מהתורה בזה דנלמד מדלא נבטל בהזמה אלא משום קלקול עשו עדות החודש כשאר עדות והרי לא מצינו שיהיו צריכין להכיר העדים בעדות דבעלמא עיי&quot;ש:<br><strong> ונראה</strong> דבלח&quot;מ השיב על המפרש שהקשה ממ&quot;ש רבינו בהל׳ עדות בפי&quot;א מהל׳ עדות שכל עם הארץ פסול עד שיוחזק שהולך בדרך הכשרים ותירץ ששם כתב רבינו דמדרבנן וכאן מדאורייתא וכתב ע&quot;ז בלח&quot;מ דתירוצו אינו עולה שהרי גם פסולי דרבנן כתב רבינו אלא דקושיתו אינה קושיא דדוקא במוחזק לע&quot;ה אינו נאמן עד שיוחזק שהולך בדרך הכשרים אבל לא מחזקינן שום אדם לע&quot;ה עיי&quot;ש:<br><strong> ולענ&quot;ד</strong> נראה לומר דדעת רבינו כאן וכמ&quot;ש בהמפרש דאין מדקדקין וכו׳ דאפי׳ מע&quot;ה מקבלין ומפרש כן בכונת ר׳ יעקב בירושלמי שאמר כן על נמצאו זוממין וכמו בזוממין מקודש לא דקדקו מעיקרא כ&quot;כ לפיכך היו בראשונה מקבלין עדות החודש מכל אדם מישראל וכו׳ אפי׳ מע&quot;ה והיו מקילין מבשאר עדות כמו שהקילה התורה ולדעת הטו&quot;ז בכ&quot;מ בהתר מפורש בתורה אין ביד החכמים להחמיר ועכ&quot;פ לא ראו להחמיר במה שהקילה התורה. אלא משום קלקול הכותים אז מצאו נחוץ להחמיר ביותר מבשאר העדות דעלמא שצריך בעדות החודש שיהיו מכירין העדים ובזה עולה יפה תירוץ המפרש ג&quot;כ דכאן נאמר מדין תורה ואתי שפיר:<br><strong> ועל</strong> מ&quot;ש רבינו &quot;ושיהיו דורשין וחוקרים בעדות&quot; עיין בלח&quot;מ שעמד ע&quot;ז שזה מהתורה דרישה וחקירה בעדות החודש וכמ&quot;ש רבינו בפ&quot;א ה&quot;ז מ&quot;ע מן התורה על הבי&quot;ד וכו׳ ושידרשו את העדים וכו׳ וא&quot;כ אין זה מהתקנה:<br><strong> ונראה</strong> דשנוי לשון יש כאן דבפ&quot;א כתב ושידרשו את העדים וכאן כתב רבינו ושיהיו דורשין וחוקרין בעדות דכאן כשכתב דמשום קלקול הכותים שהטעו הבי&quot;ד וגם כמצינו במשואות כמ&quot;ש בפ&quot;ג ה&quot;ח והכרה לעדים כמו דרישה וחקירה מהתורה הכל בעדים אבל גם העדות צריכה לדרישה אם לא טעו שסברו שראו ולא ראו כמ&quot;ש רבינו בפ&quot;א ה&quot;ו ובפ׳ זה ה&quot;ה אמרו העדים ראינו במים וכו׳ ובה&quot;ו. ועי׳ בירושלמי בפ&quot;ב דר&quot;ה מ&quot;ד עיי&quot;ש ונראה דמשום הכותים שהטעו העם היו צריכין דרישה יתירה בגוף העדות ביותר אם ראו כשורה פן נתעו מהכותים לאמר שהיא ראיה נכונה ובאמת אינו וז&quot;ש רבינו שידרשו בעדות גוף העדות מבלעדי הדרישה בעדים שלא יהיה העדות בטעות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:6:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-6-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרו ראינוהו בלא כונה וכיון שהתבוננו בו ונתכונו לראותו להעיד שוב לא ראינוהו אין זו עדות ואין מקדשין עליה שמא עבים נתקשרו ונראה כלבנה וכו׳.</strong> בהל׳ עדות בפ&quot;ה ה&quot;ה &quot;וכיצד וכו׳ אבל אם כולם כשרים אחד שנתכוין להעיד או שלא נתכוין להעיד הואיל וראה הדבר וכיון עדותו והיה שם התראה חותכין הדין על פיו בין בדיני ממונות בין בדיני נפשות&quot; שלא כדעת התוס׳ ישנים במס׳ כריתות י&quot;ב בד&quot;ה לא נתכונתי להעיד עיי&quot;ש דעכ&quot;פ כונה לראות הדבר צריך ואף דלא מצינו ג&quot;כ שצריך שהעד יהיה מכוין לראות מ&quot;מ היכא דשייך טעות כמו בקידוש החודש צריך כונה לראות ועי׳ במלתא דלא רמיא על אנשי לאו אדעתא בהגהות אשר&quot;י במס׳ שבועות דף מ&quot;ג שמפרש על העדים עיי&quot;ש וכיו&quot;ב באיסורא דמצינו כן דכל אדם בכלל עד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:9:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-2-9-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראוהו בי&quot;ד עצמן בסוף יום תשעה ועשרים אם עדיין לא יצא כוכב ליל שלשים בי&quot;ד אומרין מקודש שעדיין יום הוא ואם ראוהו בליל שלשים אחר שיצאו שני כוכבים למחר מושיבין שני דיינין אצל אחד מהם ויעידו השנים בפני השלשה ויקדשוהו השלשה.</strong> ועי׳ במפרש ובמהרל&quot;ח ובמרכבת משנה לישב דברי רבינו עיי&quot;ש. והנה בהקושיא שהקשו דכאן כתב רבינו עד לא יצא כוכב ליל שלשים וכו׳ והרי במס׳ שבת ל&quot;ה ע&quot;ב כוכב אחד יום. גם מדבריו בפ&quot;ה מהל׳ שבת ה&quot;ד &quot;משתשקע החמה עד שיראו שלש כוכבים בינונים הוא הזמן הנקרא ביה&quot;ש בכל מקום והוא ספק מן היום ספק מן הלילה ודנין בו להחמיר בכ&quot;מ וכו׳&quot; ובכ&quot;מ בשם הרמ&quot;ך דמשתשקע וכו׳ ומשיראו ב׳ כוכבים עד ג׳ חדא שיעורא דרב יהודה אמר שמואל אמר שניהם ובלח&quot;מ הקשה למה לא כתב רבינו כוכב אחד יום שניים ביה&quot;ש וכו׳ עיי&quot;ש:<br><strong> והנה</strong> הסוגיא במס׳ שבת ל&quot;ה ע&quot;ב א&quot;ר יהודה אמר שמואל כוכב אחד יום שנים ביה&quot;ש שלשה לילה תנ&quot;ה כוכב אחד וכו׳ א&quot;ר יוסי לא כוכבים גדולים הנראים ביום ולא כוכבים קטנים שאין נראין אלא בלילה אלא בינונים:<br><strong> וכנראה</strong> לכאורה כאשר מפרש ר&quot;י אלא בינונים ר&quot;י אמר שמואל שאמר כוכב אחד יום שנים ביה&quot;ש שלשה לילה. הכל בבינונים דכוכב אחד בינוני מקרי עוד יום:<br><strong> אמנם</strong> בירושלמי במס׳ ברכות בפ&quot;ק בה&quot;א כמה כוכבים יצאו ויהא לילה שלשה ודאי ללילה שנים ספק והכתיב עד צאת הכוכבים אלא מיעוט כוכבים שנים וקדמאי לא מתחשב ובפני משה שם הכוכב הראשון שהוא ודאי יום לא קחשיב ליה ועד צאת הכוכבים דקאמר אשנים האחרונים הוא דקאי עכ&quot;ל ועוד שם הדא דתימור באילן דלית אורחותיהן מתחמיא ביממא ברם באילין דארחותיהן מתחמיא ביממא לא משערין בהון א&quot;ר יוסי בר׳ בון ובלחוד דיתחמון תלתא כוכבא בר מן הדא כוכבתא:<br><strong> ובפני</strong> משה ובלחוד וכו׳ דלא תימא ג׳ כוכבים דמחשבין לילה בהדי כוכב הראשון הוא דהא ליתא שהרי כוכב אחד ודאי יום הוא ואנן לא משערין באלו הכוכבים שדרכן להיות נראין ביום והילכך קאמר דבלבד שיהיו נראין ג׳ כוכבים חוץ מן הדא כוכבתא קמייתא שאינו מן החשבון של הג׳ כוכבים דמחשבין להו לילה עכ&quot;ל:<br><strong> והנה</strong> קדמאי לא מתחשב אם קאי על כוכב בינוני מג׳ הכוכבים בלתי מובן עוד דצאת הכוכבים מיעוט כוכבים שנים והאיך נאמר דכוכב האחד יום עד ג׳ דהוי לילה ואם נפרש כוכב אחד יום על כוכב הגדול איככה נפרש ובלחוד דיתחממון תלתא כוכבא בר מן הדא כוכבתא הרי צריך ג׳ בלעדי הכוכב הגדול ויקשה עוד מיעוט כוכבים שנים:<br><strong> וראיתי</strong> בס׳ מנחת כהן בשער מבוא השמש פ&quot;ג שהביא הירושלמי וכתב שאין לפרש קדמאי לא מתחשב שמא מהנראה בהיום שהרי כמה כוכבים גדולים נראים ביום כדאי׳ בירושלמי. ופי׳ דספק שמא כוכב הא׳ הבינוני אינו נמנה דבעי שלשה משום חזקה או דדי בשנים עיי&quot;ש:<br><strong> והנראה</strong> לומר דהנה יש לדייק עוד ברם באילין דאורחותיהן מתחממא ביממא לא משערון בהון. וא&quot;כ נראה שהם כוכבים רבים הנראים ביום מגודלם וכמ&quot;ש במנחת כהן הנ&quot;ל. וא&quot;כ למה אמר אח&quot;ז ר׳ יוסי בר׳ בון וכו׳ בר מהדא כוכבתא הרי יש הרבה כוכבים ומה הוסיף ר&quot;י על דברי הראשונים וכנראה גורע שאינו חושש אלא לכוכב אחד שלא לצרפו ואולי יש הרבה כוכבים גדולים הנראין ביום אבל בכל יום רק כוכב אחד פעם זה פעם זה לפי מהלך הלבנה וצ&quot;ע:<br><strong> ויש</strong> לומר דודאי כלישנא דקראי יציאת הכוכבים מיעוט כוכבים שנים אלא דקרא על כרחך לא מיירי בכוכב הנראה ביום אלא בבינוני ולזה אמר כוכב אחד יום על כוכב הגדול וב׳ כוכבים לילה ב׳ כוכבים בינונים כלישנא דקראי אלא בב׳ בינונים לא נדע אם שניהם בינונים וכוכב הב׳ להגדול והאחד להבנונים ג&quot;כ בספק למה נחשבו לכן הוי מהספק וצריך ג׳ בינונים לומר דהוי ודאי לילה דבכלל ג׳ ב׳ בינונים כלישנא דקרא. ומשו&quot;ה כדמקשינן מיעוט כוכבים שנים משני קדמאי לא מתחשב משום דהוי ספק וא&quot;כ אחד בודאי ואחד בספק וצריכין לב׳ ודאין עוד ג׳ בינונים שיהיה ב׳ כוכבים ודאי בינונים ובר מהדא כוכבתא דאמר ר׳ יוסי בר בון ג&quot;כ כונתו על האי קדמאי דלא מתחשב משום ספק ולכן אמר בר מהדא בלשון יחיד:<br><strong> וסוגיא</strong> דבבלי יש לפרש לדעת רבינו ג&quot;כ דלר׳ יהודה אמר שמואל ובברייתא כוכב אחד יום בכוכב שאינו בינוני וב׳ ביה&quot;ש בבינונים משום ספק שמא האחד אינו בינוני שלשה לילה דהוי שניים בינונים ור&quot;י מפרש לא כוכבים וכו׳ אלא שלשה בינונים וכמ&quot;ש וא&quot;כ כיון שכתב רבינו בהל׳ שבת הנ&quot;ל עד שיראו שלש כוכבים בינונים א&quot;צ לכתוב אחד יום דלדעתו קאי על הכוכב הגדול ואפי׳ אחד ביה&quot;ש בהבינונים דמשו&quot;ה צריך שלשה משום דהאחד בספק וא&quot;כ מכוכב אחד הבינוני עד הג׳ ביה&quot;ש ומשו&quot;ה כתב עד שיראו שלשה כוכבים בינונים ביה&quot;ש לאו דוקא שניים אלא כוכב אחד הוי ביה&quot;ש וב׳ ביה&quot;ש בגמ׳ מפרש דאפי׳ בשנים הוי ספק על האחד וממילא השני ג&quot;כ בספק ושניהם בספק אפי׳ כוכב אחד בכלל ביה&quot;ש ומשו&quot;ה כתב כאן שפיר לענין קידוש החודש אם עדיין לא יצא כוכב ליל שלשים וכו׳ דמיירי בכוכבים קטנים דבאחד ושתים הוי ביה&quot;ש בשוה והנה לפ&quot;ז לדעת רבינו יהיה ביה&quot;ש בכוכב אחד מהבינונים משתשקע החמה משום ספק כן נוטה רהיטא דלישנא בהל׳ שבת הנ&quot;ל וכאן אלא דמ&quot;ש אח&quot;ז כאן ואם ראוהו בליל שלשים אחר שיצאו שני כוכבים וכו׳ יהיה בסותר לזה ולדבריו כמו שעמדו ע&quot;ז עיי&quot;ש (ועי׳ בביאורי הרמב&quot;ם ברדב&quot;ז ח&quot;א סי׳ ו׳ עיי&quot;ש ובר׳ דוד ערמאה ז&quot;ל שהגיה אלא כוכב עיי&quot;ש):<br><strong> ונראה</strong> לומר והנה בהאי בר מהדא כוכבתא יש לפרש לפי מ&quot;ש לעיל כי יש כוכב בינוני ידוע שיש לספק עליו אם למנותו בכלל גדולים או בינונים ומדויק לשון מהדא וכו׳ או דפי׳ דבסתם כוכב אחד להסתפק שמא אין מהבינונים אבל בשתים לא שייך טעות כמו כן יש לעיין בהאי דאין מקדשין בלילה ואפי׳ בקידש לא מהני מה דינו בביה&quot;ש בדיעבד די&quot;ל דלא שייך מספיקא לחומרא דלכל צד הוי חומרא שוה וכמ&quot;ש במג&quot;א בסי׳ שמ&quot;ג לומר משום חזקת יום וא&quot;כ י&quot;ל בדיעבד בביה&quot;ש מקודש ובכוכב אחד ממ&quot;נ אם הוי מבינונים הוי ביה&quot;ש ואם מגדולים יום ממש ורבינו בהל׳ הקודמת כתב ואין מקדשין אלא ביום ואם קדשהו בלילה אינו מקודש וכו׳ ולא הספיקו וכו׳ עד שחשכה וכו׳ כתב בראשונה עד הלילה ואח&quot;ז עד שחשכה נראה דלומר בדיעבד אינה מקודשת דוקא בלילה ממש וי&quot;ל כמ&quot;ש בכוכב בינוני אחד לומר מקודשת משום ביה&quot;ש וחזקת יום ושמא מגדולים אלא דלכתחילה אין מקדשין בכוכב אחד וכמ&quot;ש דעכ&quot;פ כביה&quot;ש נחשבים. אבל בב׳ כוכבים בינונים בשאין נראין בבת אחת כיון דכוכב אחד ספק לא שייך על השנים חזקת יום ואפי׳ בנראין בבת אחת י&quot;ל אם נאמר כמ&quot;ש דבסתם כוכב אחד בינוני חוששין י&quot;ל למ&quot;ש בהמהרל&quot;ח כאן כעין זה בבי&quot;ד אין לחוש וי&quot;ל דב׳ בינונים הוי לילה ממש. וגם כמ&quot;ש לפרש כוכב ידוע מ&quot;מ חילוק בין כוכב אחד לשני כוכבים דרק מחומרא לחוש שאין בקיאין ובמקרא נאמר צאת הכוכבים דמיעוט שנים כדאי׳ בירושלמי לא מקילין לומר דהוי בחזקת יום וכל זה לענין בקידוש בדיעבד. אבל בראו הבי&quot;ד ולא קידשהו אם לומר לא תהיה שמיעה גדולה מראיה בביה&quot;ש בכוכב אחד לענין לומר מקודש ולענין להושיב בי&quot;ד ולהעיד בפניהם. הנה במשנה במס׳ ר&quot;ה כ&quot;ה איתא ראוהו בי&quot;ד וכו׳ ולא הספיקו לומר מקודש עד שחשיכה וכו׳ ראו שלשה וכו׳ ובגמ׳ ואמאי לא תהיה שמיעה וכו׳ כגון שראו בלילה ומסתברא שלא לומר מקודש. ולהושיב בי&quot;ד בל&quot;א שייך לומר לחומרא כיון דלא אמר מקודש בלא&quot;ה יהיה מעובר והנפק&quot;מ רק בדיעבד באמר מקודש לחלק בין בכוכב אחד לשני כוכבים וכמ&quot;ש וא&quot;כ י&quot;ל דברי רבינו ראוהו בי&quot;ד עצמן בסוף יום תשעה ועשרים אם עדין לא יצא כוכב ליל שלשים הבי&quot;ד אומרים מקודש שעדיין יום הוא וכו׳ וזה לענין לכתחילה שאין לקדש אפי׳ בכוכב אחד דהוי ביה&quot;ש לדעת רבינו וכמ&quot;ש לעיל בכוכב בינוני. ואח&quot;ז כתב ואם ראוהו בליל שלשים אחר שיצאו שני כוכבים למחר מושיבין שני דיינין וכו׳ דשני כוכבים כלילה ממש ואפי׳ בדיעבד בלתי מקודש ולא כתב בפי׳ דאפי׳ בדיעבד אינו מקודש דמובן דאם בכוכב אחד לכתחילה לא ומאי אולמי משני כוכבים אם לא אף בדיעבד לא מהני. ומצינו לרבינו שכתב כמה פעמים בדרך קצרה. (ואולי לא רצה להחליט כתב בלשון כזה) והנה ראיתי בס׳ קרית ספר להמבי&quot;ט שכתב ואם ראוהו בליל שלשים אחר שיצא כוכב של לילה שהם ב׳ כוכבים עם כוכב של יום למחר מושיבין וכו׳ עיי&quot;ש אף דדבריו אין עולין עם מ&quot;ש ובלתי מתורץ עוד הקושיא הנ&quot;ל מ&quot;מ נראה מדבריו ג&quot;כ דכוכב אחד בינוני משוי לביה&quot;ש לדעת רבינו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-3">Chapter 3</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:4:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה העד שראה את החודש בליל השבת חולה מרכיבין אותו על החמור ואפי׳ במטה ואם יש להן אורבים לוקחין העדים בידן כלי זיין ואם היה דרך רחוקה לוקחין בידם מזונות. ואפי׳ ראוהו גדול ונראה לכל לא אמרו כשם שראינוהו אנחנו ראוהו אחרים ואין אנו צריכין לחלל את השבת אלא כל מי שיראה החדש ויהיה ראוי להעד ויהיה בינו ובין המקום שקבוע בו בי&quot;ד לילה ויום או פחות מצוה עליו לחלל את השבת ולילך ולהעיד.</strong> הנה בפ&quot;ק דר&quot;ה בב׳ משניות קודמים נאמר דמחללין השבת בשביל קדוש החודש ובמשנה האחרונה אי׳ מי שראה את החודש וכו׳ כמ&quot;ש רבינו בהל׳ זאת:<br><strong> ועיין</strong> בפנ&quot;י במס׳ ר&quot;ה דף כ&quot;א אחרי שכתב דמלמודא מקרא נראה אפי׳ מלאכה גמורה ואף דהוי ל&quot;ת דבכרת הכא אתרבי קרא ולא ילפינן בעלמא מיניה דהוי עשה דלפני הדיבור. אלא דהקשה דבפסח ומילה אין מכשירין [דוחים] ובאפשר לקיים שניהם ובליכא בעידנא אין דוחה שבת ואמאי לא ילפינן מכאן דעשה על הבי&quot;ד והעדים כמכשירין דמי ואפשר לקדש למחר וכתב ע&quot;ז ויש ליישב מיהו בלא&quot;ה דכולה סוגיא אינה אלא בלאו דמחמר כדמשמע במתניתן דסוף פירקין עיי&quot;ש. הנה עוד יקשה מלמודא דקרא נראה כל מלאכות להתיר וגם בטורי אבן רפ&quot;ב דר&quot;ה כתב דדוחק לומר דדוקא שבות התירו עיי&quot;ש. והנה ביותר שייך לומר דרק שבות התירו ולמודא ממקרא אסמכתא כדמצינו בכמה דוכתי מלומר דהוי למודא ממש ודוחה מלאכה דאורייתא אבל לחלק בין מלאכה ומלאכה דלא אמרינן כן במילה וכיו&quot;ב דדחי:<br><strong> והנה</strong> בלאו דמחמר לא יקשה דאין עשה דוחה ל&quot;ת דבכרת גם למ&quot;ש ברמב&quot;ן במס׳ יבמות במחמר לא הוי עשה דשבתון וא&quot;כ לא שייך דשבת עשה ול&quot;ת. אלא דלאו בעידנא ומכשירין באפשר לקיים שניהם אין לחלק בין מחמר לשאר מלאכות ובאמת האי שכתב בפנ&quot;י דעדים כמכשירין דמצוה על הבי&quot;ד מ&quot;מ במצות קידוש החודש קבלת עדים ואמירת מקודש מבי&quot;ד והוי מגוף המצוה גם מ&quot;ש דאפשר לקיים שניהם לא שייך בלקיימו בזמנו ולא ידעתי למה בדעת פנ&quot;י מכח קושיות אלו להחליט דמיירי במחמר בלבד. וכנראה המשנה הביאו לזה דבלא&quot;ה מיותרת למה לפרש אם היה חולה אם מלאכות החמורות מותרין אמנם מאי דאיתא לוקחין בידם מזונות וכו׳ הוצאה מרשות לרשות מלאכה דאורייתא וזה ודאי דוחק לפרש דדוקא ברשות אחת דא&quot;כ אשמעינן לומר דמשום כרמלית אין לחוש דברה&quot;ר ד׳ אמות ברה&quot;ר הילכתא גמירי מדאורייתא וכל זה בלתי נראה וע&quot;ז כיון הטורי אבן שכתב דדוחק לפרש דדוקא בשבות התירו וי&quot;ל דמשום דמצינו העמידו דבריהם במקום עשה בהזאה ואזמל וכו׳ קמ&quot;ל בקדוש החודש העמידו על דבר תורה לחלל בשבות ומפרש דרכי החילול המצוים בקידוש החודש בהליכות העדים ואפי׳ על ספק עיכוב לחלל השבת:<br><strong> ועי׳</strong> במפרש מ&quot;ש באיסור משא ובתוס׳ יו&quot;ט בר&quot;ה פ&quot;ק מ&quot;ט בשם הלבוש נגד המפרש וכתב דידוע הוא שאין איסור שביתת הבהמה חמור כאיסור שביתת האדם אלא כדי להקל באיסורו אמרו כן. ועי׳ מ&quot;ש בתוס׳ יו&quot;ט ע&quot;ז שם עיי&quot;ש. ועי׳ מ&quot;ש בהל׳ שבת בפ׳ כ׳ ה&quot;א ומ&quot;ש בשם מהרשד&quot;ם שם עיי&quot;ש:<br><strong> ועי׳</strong> במפרש שהקשה מאי שנא במילה דאין דוחה בספק לקדוש החודש דמחללין על הספק. ועי׳ בלח&quot;מ ע&quot;ז והנה יש מקום לחלק במילה הספק בחיוב קיום המצוה משא&quot;כ הספק אם יהיה לקיומה במצוה ע&quot;י חילול זה דהמצוה לא הוי בספק ואף דהוי חילוקא מ&quot;מ יקשה מנ&quot;ל עוד דבספק כה&quot;ג מחללין דודאי במילה אם ימצא ספק כה&quot;ג ג&quot;כ לא נחלל אף די&quot;ל שאין בכלל ערלתו ודאי דהוי ספק בחיובא. ולולי דמסתפינא הייתי אומר דמדאורייתא ודאי דוקא בודאי ולא בספק כמו בפסח ומילה אלא מדרבנן כמ&quot;ש בתוס׳ בכמה דוכתי למגדר מלתא ביד החכמים לעקור דאורייתא בקום ועשה וראו בקדוש החודש לחלל אפי׳ בספק מה שלא אמרו כן במילה מהטעם שכתב בלח&quot;מ ומ&quot;ש י&quot;ב לחלק בין מילה וקה&quot;ח דבקה&quot;ח כל המועדים תלוי התירו ביותר ובדרבנן י&quot;ל כן אבל לומר מדאורייתא מבלי הכרח מקרא יקשה לכאורה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:5:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בראשונה היו מקבלין עדות החודש בכל יום שלשים פעם אחת נשתהו העדים מלבוא עד בין הערבים ונתקלקלו במקדש ולא ידעו מה יעשו אם יעשו עולה של בין הערבים שמא יבואו העדים ואי אפשר שיקריבו מוסף היום אחר תמיד של בין הערבים עמדו בי&quot;ד והתקינו שלא יהיה מקבלים עדות החודש אלא עד המנחה כדי שיהיה שהות ביום להקריב מוספין ותמיד של בין הערבים ונסכיהם. ואם הגיע מנחה ולא באו עדים עושין תמיד של בין הערבים ואם באו עדים מן המנחה ולמעלה נוהגין אותו היום קודש ולמחר קודש ומקריבין מוסף למחר לפי שלא היו מקדשין אותו אחר מנחה משחרב בהמ&quot;ק התקין ר׳ יוחנן בן זכאי ובית דינו שיהיו מקבלין עדות החודש כל היום כולו ואפי׳ באו עדים יום שלשים בסוף היום סמוך לשקיעת החמה מקבלין עדותן ומקדשין יום שלשים בלבד.</strong> ועי׳ בלח&quot;מ דבגמ׳ איתא קלקלו בשיר שלא אמרו כל עיקר ור׳ זירא אמר שאמרו שיר של חול עם תמיד של בין הערבים ורבינו כתב שלא כחד מנייהו ועמ&quot;ש בזה. והנה רבינו לא הזכיר כלל מענין שיר:<br><strong> במס׳</strong> ביצה ד׳ ע&quot;ב בראשונה היו מקבלין עדות החודש כל היום פעם וכו׳ ונתקלקלו הלוים בשיר התקינו וכו׳ אמר רבה מתקנת ריב&quot;ז ואילך ביצה מותרת וכו׳ ובתוס׳ בד&quot;ה ונתקלקלו וכו׳ והקשה ר׳ פרץ והאיכא קילקול גבי מוספין ואמאי לא חשו אלא על עבודת התמיד וכו׳ עיי&quot;ש ובמס׳ ר&quot;ה דף ל׳ עיי&quot;ש:<br><strong> גם</strong> להלן דף ו׳ שם נהרדעי אמרי אף ביצה דמה דעתך דילמא מעברי ליה לאלול הא אמר וכו׳ מימות עזרא ואילך לא מצינו אלול מעובר. ועי׳ ברש&quot;י שם ועי׳ שם להלן כ&quot;ב. יש להבין בטעם מחלוקת הזה:<br><strong> ונראה</strong> לענ&quot;ד דלכאורה כנראה דמשום ספק הולכין לחומרא שמא עיברו. ועי׳ במס׳ ר&quot;ה י&quot;ח ע&quot;א על ששה חדשים שלוחים יוצאים וכו׳ על אלול מפני ר&quot;ה. וברש&quot;י ועל אלול וכו׳ מודיעין מתי התחיל אלול וכו׳ דרוב שנים אין אלול מעובר ואע&quot;פ שספק הוא בידם שמא יעברוהו בי&quot;ד אי אפשר להן לדעת וע&quot;כ הולכין אחרי רוב שנים ואם לא ידעו מתי התחיל אלול לא ידעו יום שלשים שלו עכ&quot;ל:<br><strong> ועי׳</strong> בשו&quot;ת תשב&quot;ץ ח&quot;ב סי׳ ר&quot;ז שכתב דמרש&quot;י ומרמב&quot;ם בפי׳ משניות שהיו סומכין על הרוב אם ידעו מתי נתקדש אלול ועשו יום השלשים עיי&quot;ש. אבל כאן בחיבורו יד החזקה שלא היו סומכין על רוב השנים וכן דעת התוס׳ בסוגיא שם ובמס׳ ר&quot;ה שם בד&quot;ה ועל עיי&quot;ש:<br><strong> ובס׳</strong> טורי אבן הקשה דרש&quot;י סותר את עצמו ממ&quot;ש בדף כ&quot;ג ע&quot;א משום ביטול מלאכה לעם שני ימים ופי׳ רש&quot;י דאר&quot;ה קאי ש&quot;מ דמספיקא עבדינן ב׳ ימים בגולה. וגם הקשה ממס׳ פסחים נ&quot;ד אין בין ט&quot;ב ליו&quot;כ אלא שזה ספיקא אסור וזה מותר ובגמ׳ שם מה ספיקא מותרת לקביעה דירחא עיי&quot;ש וברש&quot;י לעשות ב׳ ימים מספיקא אי עברי בי&quot;ד החודש שעבר הרי ביו&quot;כ החמירו ובר&quot;ה הקילו עי׳ בתוס׳ שם עיי&quot;ש:<br><strong> ונראה</strong> לומר דיש לחלק בין קודם התקנה לאחר התקנה. דקודם התקנה שהיו מקבלים בכל היום כולו היה ברוב פעמים אלול מעובר. אבל לאחר התקנה שאם באו ממנחה ולמעלה לא היו מקבלים העדים לא הוי עוד רובא וי&quot;ל מה&quot;ט דפליגי על נהרדעי ולא סמכינן על רובא שאין מעובר משום דהוי לאחר התקנה. ועי׳ ברש&quot;י שם בד&quot;ה מימות עזרא וכו׳ ואע&quot;פ שתיקנו לא אירע שבאו עדים מן המנחה ולמעלה חוץ מאותה הפעם ועדיין לא נתקנה וכו׳ עכ&quot;ל. והנה לא מצינו תקנה בלא שכיח כלל אלא דחשו למיעוט המצוי מדרבנן ובזה פליגי נהרדעי דלדידהו סמכינן עוד על רוב כזה. ולפ&quot;ז יש ליישב הסתירות ברש&quot;י שעמד עליה בטורי אבן הנ&quot;ל ולחלק בין קודם התקנה וכמ&quot;ש ברש&quot;י הנ&quot;ל דרוב פעמים אין אלול מעובר. אבל לאחר התקנה והקלקול לא הוי רוב גמור ועשו בני הגולה ב׳ ימים מספיקא ולפ&quot;ז ר&quot;ה וסוכות קילי בזה משארי יו&quot;ט דבהם שייך האי רובא מה שאין בשאר יו&quot;ט של גליות:<br><strong> והנה</strong> לפי דברינו יש ג&quot;כ לשום לב בדברי רש&quot;י בסוגיא בד&quot;ה ונתקלקלו וכו׳ ובשל שחר אין טעות דבתמיד של שחר אפי׳ הוקדש החודש קודם הקרבתו שיר של חול היו אומרים לפי שברוב השנים אין העדים ממהרים לבוא כל כך עכ&quot;ל וכיו&quot;ב בתוס׳ בד&quot;ה ונתקלקלו וכתבו וכדאמרינן במס׳ ר&quot;ה דף ל׳ ע&quot;ב:<br><strong> ויש</strong> להבין למה חששו ביותר לתיקון של בין הערבים משל שחרית ואם בין הערבים היה במקרה רחוק בלבד הוסיפו יום משום של שחר שהיה ברוב פעמים שא&quot;א לידע ליתקנו שאם לא באו עד סוף זמן של שחר היום קודש ומחר קודש ואם יהיה ברוב פעמים כן ואם כמ&quot;ש בשחר לא תיקנו כלל ולא הוי קלקול גם בערבית שכבר תיקנו יקשה לחלק מה&quot;ט דחזינן דשיר גדול להוסיף יום בעבורו:<br><strong> והנה </strong> כנראה במס׳ ר&quot;ה דלא תיקנו בר&quot;ה בשחר רק של חול וכנראה מה&quot;ט שכתבו ברש&quot;י ובתוס׳. וא&quot;כ למ&quot;ש יקשה למה לא סמכו על הרוב שאין אלול מעובר לענין זה דהנה בערבית י&quot;ל כיון דאיכא לברורי מבררין אבל בשחר כמ&quot;ש ז&quot;ל דברוב פעמים עבר זמנו קודם שבאו העדים וא&quot;כ ליכא לברורי למה לא סמכי על הרוב בזה:<br><strong> וי&quot;ל</strong> כיון דברוב פעמים לא באו העדים קודם זמן השיר וכמ&quot;ש בס׳ טורי אבן אף דשיר דאורייתא לומר שיר זה דוקא הוי מדרבנן וקודם שהוקבע היו&quot;ט ואמרו הבי&quot;ד מקודש לא היו אומרים שיר של יו&quot;ט דבאמת מתחיל היו&quot;ט רק מעת שקבעו הבי&quot;ד ומאז הוי למפרע קודש ולא רצו משום זה לתקן שיר של יו&quot;ט קודם דהוי יו&quot;ט טרם שקבעו הבי&quot;ד וי&quot;ל דכל זה שייך לענין שיר של דרבנן. אבל לענין קרבן מוסף דאורייתא שלא יבטלו למפרע קרבנות דמוסף למפרע בזה י&quot;ל דסמכינן על הרוב דא&quot;א להמתין ולברר הרוב דעל כרחך נעבור על עשה דהשלמה וכמ&quot;ש ברש&quot;י וא&quot;כ הוי רובא דליכא לברורי וא&quot;כ מסתברא דהוי סומכין על הרוב להקריב מוספין משום דלמפרע יהיה קידוש היום. אמנם יש לעיין בזה כיון דבזמן הקרבתו לא היה קדוש היום אלא דהרוב מסייעו שיהיה קדוש למפרע אם שייך לומר להקריב בכה&quot;ג. ואם נאמר כן וא&quot;כ מיושב קושית התוס׳ דלמה לא אמרינן משום קלקול דמוספין תיקנו דלמ&quot;ש נהפוך הוא דקודם התקנה הוי רוב גמור והקריבו שפיר מוספין אלא דלאחר התקנה לא הוי רובא ואז לא שייך להקריב וצריך להוסיף יום אחר אבל קודם התקנה היו יכולין להקריב בכל גונא ואתי שפיר:<br><strong> ויש</strong> להבין במ&quot;ש ולשמואל קשיא מתני׳ הא לן הא להו. וברש&quot;י לבני א&quot;י שעושין יום אחד מותרת אבל לדידן בני גולה אסורה שהרי עדיין עושין ב׳ ימים ועודנה כבתחילה מפני אותה תקנה הראשונה לא מפני ספק הילכך הואיל ולא פסקה מאצלנו משהתחלנו אין להקל ולומר אין מנהגינו זה מפני התקנה הראשונה אלא מפני הספק וביצה מותרת הא לא אמרינן דכיון דלא פסקה אצלנו אותה התקנה שנה אחת לעשות יום אחד עדיין באיסור הראשונה העמדנו להיותם כיום ארוך עכ&quot;ל ועי׳ בר&quot;ן שכ&quot;כ דאע&quot;ג דמדינא שריא כיון דלא מנכר לן טעמא דשריותא אסרינן לה אבל לבני א&quot;י שנשתנה להם יו&quot;ט של ר&quot;ה וכו׳ דקא מנכר טעמא דשריותא עיי&quot;ש:<br><strong> ולכאורה</strong> למה בעי מינכר נימא מסתמא עבדינן מחמת ספיקא וגם הוי ספיקא דרבנן. אבל למ&quot;ש י&quot;ל דקודם הקלקול לא היו צריכין לעשות רק יום אחד דהוי רובא דאלול שאין מעובר וכמ&quot;ש רק לאחר התקנה היה כשני יו&quot;ט של גליות דעלמא. אבל מתקנת ריב&quot;ז ואילך שהחזירה ליושנה וא&quot;כ הוי ג&quot;כ השתא בגדר רוב ועם כל זה אנחנו עושים ב׳ ימים דנראה דהוי מהתקנה עודנו במנהגא דהא מצד ספק יהיה בגדר רוב רק יומא חדא ועל כרחך משום תקנה הראשונה דאז לא היה רוב וכמ&quot;ש ואתי שפיר:<br><strong> אמנם</strong> דעת רבינו אינו כרש&quot;י הנ&quot;ל שכתב בפירקין ה&quot;ט &quot;ואם לא נודע להם נוהגים יום שלשים ויום אחד ושלשים קודש עד שיבואו להם שלוחי תשרי וכו׳&quot; עיי&quot;ש ובלח&quot;מ שכתב כמו כן דרבינו דלא כרש&quot;י עיי&quot;ש מ&quot;ש בזה וכן בפ&quot;ה ה&quot;ז כתב &quot;יו&quot;ט של ר&quot;ה בזמן שהי׳ קובעין על הראיה רוב בני א&quot;י עושין אותו ב׳ ימים מספק וכו׳&quot; עיי&quot;ש ובהל׳ זאת כתב דקלקול משום שלא ידעו להקריב המוספין:<br><strong> ויש</strong> להבין למה לא היו סומכין על האי רובא דאלול שאין מעובר. והנה אם נאמר דקודם שבאו העדים אין רשאי להקריב וכיו&quot;ב משום דקודם שקבלו הבי&quot;ד ואמרו מקודש לא היה מקודש אף דלמפרע הוי יו&quot;ט אין רשאי לעשות כן מקודם זה וא&quot;כ י&quot;ל מהאי טעמא שייך קלקול מוספין וכמ&quot;ש לעיל. אבל להרחוקין אף דלא הוי להם בכלל רובא דבאו העדים בתחילת היום או באמצעו ואף דנעצרים ממלאכה מ&quot;מ בקידוש החודש מספק בקידוש היום שמא הוי קודם קבלת היום אבל מה&quot;ט לא שייך להוסיף יום דמאי אהני להו הוספה דעכ&quot;פ האי יומא קודש משום רובא הוי וצ&quot;ע למה לא יסמכו על הרוב. ואין לומר משום דקידוש היום נפק&quot;מ למלקות ומיתה וכיו&quot;ב דלא אזלינן בהו בתר רובא הרי כמ&quot;ש ז&quot;ל דקודם שדנין על מלקות ומיתה וממון מהני רוב וממילא גם לאח&quot;ז כשהוחזק הדבר ע&quot;י הרוב וכמ&quot;ש ברמב&quot;ם איסור עצמו בע&quot;א יוחזק ועי׳ בשב שמעתא בזה. והנה י&quot;ל דרבינו מיירי אחרי התקנה והקלקול שאז לא הוי רובא כמ&quot;ש לעיל וכמ&quot;ש דלא כנהרדעי הוי מה&quot;ט וכמ&quot;ש ברש&quot;י הא לן וכו׳ דלאחר ריב&quot;ז הוי כמו לאחר התקנה ממנהגא וצ&quot;ע. אלא מ&quot;ש בהל׳ זאת דקלקול קודם התקנה במוספין ולמ&quot;ש לעיל קודם התקנה לא שייך קלקול במוספין. וי&quot;ל דלענין שלא להקריב ולסמוך על רובא י&quot;ל אף קודם התקנה כמ&quot;ש לעיל דקודם קבלת העדים אין רשאין להקריב אף דיהיה אותו היום למפרע יו&quot;ט וא&quot;כ שייך קלקול אבל להוסיף יום כמ&quot;ש דלא מהני הוספה באמת לרבינו רק לאחר התקנה דלא הוי רובא וכמ&quot;ש אלא דיקשה עוד למה בגמ׳ לא אמרינן משום קלקול דמוספין אלא משום שיר ורבינו לא הביא משיר אלא מקלקול ועי׳ בלח&quot;מ וביתר ביאור בס׳ כפות תמרים עיי&quot;ש:<br><strong> ונראה</strong> דאיתא בגמ׳ א&quot;ל ר׳ זירא פוק תני להו התקינו שלא יהיו מקבלין עדות החודש אלא כדי שיהא שהות ביום להקריב תמידין ומוספין ונסכיהם ולומר שירה שלא בשיבוש וכו׳ ולרבינו אין פירושו דהכל משום השירה בלבד אלא משום להקריב תמידין ומוספין וגם משום לומר שירה שלא בשיבוש ולדעתו עיקר משום תמידין ומוספין דכמו שכתב בכפות תמרים לדעת רבינו השיר בלתי מעכב בדיעבד עיי&quot;ש. אלא דבמשנה איתא משום שיר לאשמעינן מעלת השיר דבעבורו ג&quot;כ היו חוששין לתקן כן. ובברייתא מפורש משום תיקון מוספין ותמידין ג&quot;כ. ובכל זה יקשה דאין מדרך רבינו לשנות לשון המשנה ולמה לא הביא ג&quot;כ משום שיר כדאי׳ בברייתא ובכפות תמרים כתב דרבינו כתב הסיבה בהקלקול ובכל זה צ&quot;ע. ואולי י&quot;ל דדעת רבינו דסתם משנה ר&quot;מ דס&quot;ל במס׳ ערכין י&quot;א דשיר מעכב את הקרבן משו&quot;ה קלקול השיר די לתקנה זאת ודעת רבינו כחכמים שאין מעכב וכמ&quot;ש בכפות תמרים שם ומשו&quot;ה כתב משום קלקול התמיד ומוספין בלבד זה הנראה ביותר ליישב דברי רבינו לענ&quot;ד ועי׳ עוד במ&quot;ש לעיל בהל׳ ט׳ ובלח&quot;מ שם עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:14:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-3-14-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 3:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין השלוחין צריכין להיות שנים אלא אפי׳ אחד נאמן ולא שליח בלבד אלא אפי׳ תגר משאר העם שבא כדרכו ואמר אני שמעתי מפי בי&quot;ד שקידשו את החודש ביום פלוני נאמן ומתקנין את המועדות על פיו שדבר זה דבר העשוי להגלות ועד אחד כשר נאמן עליו.</strong> ומ&quot;ש ולא שליח בלבד וכו׳ אפי׳ תגר שבא כדרכו וכו׳ נראה אפי׳ הולך מאתנו ולא נודע לנו מקודם די&quot;ל דלא אכפת ליה שיתגלה שקרו מ&quot;מ מקרי עשוי להגלות משום דאפשר שיבוא לפנינו עוד כמ&quot;ש ז&quot;ל דאפי׳ במדינת הים באפשר בשום מקום מקרי עשוי להגלות. ומ&quot;ש רבינו ועד אחד כשר וכו׳ עי׳ מ&quot;ש בזה בשו&quot;ת דברי אמת בסי׳ א׳ עיי&quot;ש ואפשר שכתב כשר שנדע שאינו מכת בייתוסים אשר ראו להביא קלקול בעדות החודש והוי כנוגעים וכמ&quot;ש ברי&quot;ף במס׳ יבמות גבי ואשתמודעינהו דנוגע אינו נאמן בעשוי להגלות עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-4">Chapter 4</h4>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-4-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 4:6:1</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-4-6-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל אין מעברין לא מפני השלג ולא מפני הצינה ולא מפני גליות וכו׳ ולא מפני הטומאה כגון שהיו רוב הקהל או רוב הכהנים טמאים אין מעברין את השנה כדי שיהיה להם פנאי למחר ויעשו בטהרה אלא יעשו בטומאה ואם עברו את השנה מפני הטומאה הרי זו מעוברת.</strong> מ&quot;ש רבינו או רוב הכהנים וכ&quot;כ בפ&quot;ד מביאת מקדש הי&quot;ד אם היו רוב הכהנים נכנסים שם בירושלים בזמן הקבוע טמאין יעשו בטהרה עיי&quot;ש:<br><strong> במס׳ </strong> יומא ו׳ ע&quot;ב אתמר טומאת המת רב נחמן אמר הותרה היא בציבור ור׳ ששת אמר דחויה היא בציבור היכא דאיכא טמאין וטהורין בהאי בית אב כו&quot;ע לא פליגי דטהורי עבדי וכו׳ איכא דאמרי אפי׳ היכא דאיכא טהורין וטמאין בהאי בית אב פליג ר&quot;נ ואמר עבדי נמי טמאים דכל טומאת מת בציבור רחמנא שריא:<br><strong> ויש להבין </strong> הנה טומאה הותרה או הודחה בציבור אם כשהציבור טמאין או כשכהנים טמאים וא&quot;כ יבטלו הציבור מקרבנם אז נדחה הטומאה וכדאיתא במס׳ פסחים ע&quot;ט ע&quot;א הרי שהיו ישראל טמאים וכהנים וכלי שרת טהורים או שהיו ישראל טהורין וכהנים וכלי שרת טמאין ואפי׳ ישראל וכהנים טהורים וכלי שרת טמאים יעשו בטומאה וכו׳ וא&quot;כ הכל בשביל הציבור שלא יודחו וברוב הציבור תליא וכהנים טמאין הכל משום רוב הציבור. וא&quot;כ למה נלך בתר רוב הכהנים כיון דהכל תליא שלא לדחות הציבור וביש מיעוט כהנים טהורים ואף אחד טהור אם יספיק מנ&quot;ל לדחות הטומאה משום רוב הכהנים טמאים ולפי הא&quot;ד הטמאין הותרו אף באיכא טהורין וברמב&quot;ם דס&quot;ל הודחה אפ&quot;ה ברוב טמאין ס&quot;ל דנדחה הטומאה:<br><strong> והנה</strong> ממעלת המשמר עי׳ ב&quot;ק ק&quot;ט וק&quot;י ומבית אב בריטב&quot;א דטהורין עבדי וטמאים לא עבדי פי׳ ומבטלין הפייס מן הטמאים ואפי׳ הם חכמים וחשובין יותר מן הטהורין עכ&quot;ל ובד&quot;ה דכל טומאת מת בציבור שריא רחמנא פי׳ שריא התר גמור בין לענין הבעלים בין לענין המקריבין ובין לענין טומאת הקרבן ואין מבטלין בשביל זה פייסות של כהנים עכ&quot;ל ובכל זאת יש להבין מנ&quot;ל כן מהני קראי דדרשינן לדחות טומאה בציבור:<br><strong> ונראה</strong> דתליא דאם נאמר כדאיתא במס׳ יומא נ׳ ע&quot;א נקוט האי כללא בידך כל שזמנו קבוע דוחה אפי׳ דיחיד וכל שאין זמנו קבוע אינו דוחה אפי׳ דציבור. ועי׳ בתוס׳ יומא ו׳ בד&quot;ה פרים ובתוס׳ במס׳ סנהדרין י&quot;ב ע&quot;ב בד&quot;ה שטומאה שאין הדבר תליא בציבור וכדאיתא במס׳ יומא הנ&quot;ל ובס׳ תורת חיים סנהדרין שם דמשו&quot;ה נקטו בציבור אף דתליא בקביע זמן משום דרוב קרבנות שזמנן קבוע של ציבור הן ושאין זמנן קבוע של יחיד והו&quot;ל כאלו אמר שטומאה הותרה בקרבן קבוע עיי&quot;ש:<br><strong> אמנם</strong> בתוס׳ במס׳ פסחים ע׳ ע&quot;ב בד&quot;ה הא דסוגיות חלוקות ואיכא תנא דתולה בציבור וכדאיתא ביומא בקביע זמנו עיי&quot;ש. וי&quot;ל דאם תליא בקביע זמנו וא&quot;כ שטומאה הותרה ואפי׳ כהן אחד שטמא יוכל להקריב אבל אם תליא ברוב וצריך רובא בתמיד וכיו&quot;ב כמו בפסח וי&quot;ל הלישנא קמא והאיכא דאמרי פליגי בזה. וא&quot;כ רבינו שפוסק הודחה ומ&quot;מ ברוב כהנים ס&quot;ל הודחה וצ&quot;ע בדעתו אם אזלינן בתר רובא או בתר קביעי זמנו לחוד או שניהם ביחד ובמפרש בד&quot;ה ולא מפני וכו׳ בסופו ונראה לענ&quot;ד שיתכן כגון שהיו מחוסרי כפרה ולא היתה כפרתם ראוים לקרב אלא לאחר פסח וכו׳. עיין בשעה&quot;מ בפ&quot;ד מהל׳ ביאות מקדש הט&quot;ז שעמד עליו דלא אמרינן הודחה אלא בטומאת מת בלבד עיי&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-4-6-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 4:6:2</h4></div>
+              <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-4-6-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Sanctification of the New Month 4:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואם עיברו את השנה מפני הטומאה הרי זו מעוברת.</strong> עי׳ בס׳ שאגת אריה בסי׳ ל&quot;ח לפרש דלא יקשה ממ&quot;ש אם הודחה בציבור אפי׳ בדיעבד לא ואם הותרה אפי׳ לכתחילה ישתרי עיי&quot;ש. ועי׳ בחי׳ הר&quot;ן ר&quot;י אמר אינה מעוברת אע&quot;ג דאמרינן לעיל שהרשות ביד בי&quot;ד לעבר מפני הצורך אע&quot;פ שאין שם סימנין הידועים ס&quot;ל לר&quot;י שחכמים גזרו מפני הטומאה כדי שלא יבואו להרהר על טומאה בציבור משום דר&quot;י ס&quot;ל הותרה בציבור עכ&quot;ל וא&quot;כ מובן למה לת&quot;ק אין מעברין לכתחילה ואם עיברה מעוברת ואף למאן דס&quot;ל הודחה וכדעת רבינו מ&quot;מ י&quot;ל לכתחילה חששו שלא יקילו בטומאה בציבור בעבודה כשיראו שנעשה מעשה גדול לעבר החודש מפני הטומאה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month.manifest.json","occurrence_url":"../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

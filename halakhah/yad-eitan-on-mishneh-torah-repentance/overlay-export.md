@@ -1,0 +1,10 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 1:1:1 | yad-eitan-on-mishneh-torah-repentance-1-1-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 2:11:1 | yad-eitan-on-mishneh-torah-repentance-2-11-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 3:6:1 | yad-eitan-on-mishneh-torah-repentance-3-6-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 3:6:2 | yad-eitan-on-mishneh-torah-repentance-3-6-2 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 4:1:1 | yad-eitan-on-mishneh-torah-repentance-4-1-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 6:3:1 | yad-eitan-on-mishneh-torah-repentance-6-3-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 6:5:1 | yad-eitan-on-mishneh-torah-repentance-6-5-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-repentance | Yad Eitan on Mishneh Torah, Repentance | Yad Eitan on Mishneh Torah, Repentance 10:6:1 | yad-eitan-on-mishneh-torah-repentance-10-6-1 |  |  | not_done |  |

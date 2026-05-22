@@ -1,0 +1,11 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 1:1:1 | benei-binyamin-on-mishneh-torah-reading-the-shema-1-1-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 1:1:2 | benei-binyamin-on-mishneh-torah-reading-the-shema-1-1-2 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 1:9:1 | benei-binyamin-on-mishneh-torah-reading-the-shema-1-9-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 2:2:1 | benei-binyamin-on-mishneh-torah-reading-the-shema-2-2-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 2:5:1 | benei-binyamin-on-mishneh-torah-reading-the-shema-2-5-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 2:7:1 | benei-binyamin-on-mishneh-torah-reading-the-shema-2-7-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 3:2:1 | benei-binyamin-on-mishneh-torah-reading-the-shema-3-2-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 4:1:1 | benei-binyamin-on-mishneh-torah-reading-the-shema-4-1-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | Benei Binyamin on Mishneh Torah, Reading the Shema | Benei Binyamin on Mishneh Torah, Reading the Shema 4:1:2 | benei-binyamin-on-mishneh-torah-reading-the-shema-4-1-2 |  |  | not_done |  |

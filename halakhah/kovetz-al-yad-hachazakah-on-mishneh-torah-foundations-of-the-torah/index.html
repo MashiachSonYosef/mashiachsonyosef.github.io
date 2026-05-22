@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Foundations of the Torah</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Foundations of the Torah</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">17 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>668 matched</strong> / 2024 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-6-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-6-2" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:6:2">1:6:2</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-3-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:3:1">5:3:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:4:1">5:4:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:5:1">5:5:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-7-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:7:1">5:7:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:8:1">5:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-8-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:8:1">6:8:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-9-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:9:1">6:9:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-7-1-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 7:1:1">7:1:1</a></li>
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-7-4-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 7:4:1">7:4:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-8-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 8:2:1">8:2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-9-2-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 9:2:1">9:2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-10-5-1" title="Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 10:5:1">10:5:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-1">Chapter 1</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יסוד היסודות ועמוד החכמות לידע שיש שם כו׳.</strong> עיין כ&quot;מ ועיין מה שאכתוב בזה בס&quot;ד פרק ה׳ מהל׳ תענית הל׳ ו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:6:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וידיעת דבר זה מ&quot;ע וכו׳.</strong> הבה&quot;ג לא מנה זה בכללי דרמ&quot;ח מ&quot;ע והרמב&quot;ן הסכים לדעת רבינו גם בסמ&quot;ג וסמ&quot;ק מנאו אותו יען כי זה עיקר ושורש האמונה שהוא אדון כל ממציא כל הנמצאים ואשר הראנו אותות ומופתים בזרוע נטויה והוציאנו ממצרים להיות לו לעם סגולה ליראה את ה׳ אלהינו ולשמור את מצותיו וחקותיו כל הימים, ומסיים הסמ&quot;ק מאחר שהוא דיבור ה&quot;ק כשם שאני רוצה שתאמינו בי שאני ה׳ אלהיכם אשר הוצאתי אתכם ממצרים כן תאמינו בי שאני עתיד לקבץ אתכם ולהושיעכם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-6-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:6:2</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-1-6-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 1:6:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל המעלה וכו׳.</strong> וכ&quot;כ הסמ&quot;ג שלא להעלות במחשבתו ח&quot;ו שיש אלוה זולתו יתברך שנאמר לא יהיה לך וכו׳, ואע&quot;ג דתניא במכילתא לפי שנאמר לא תעשה לך פסל העשוי כבר מנין שלא יקיים ת&quot;ל לא יהיה לך אתא קרא שלא יקיים בביתו מ&quot;מ אין מקרא יוצא מידי פשוטו ועיקר קרא שלא להעלותו במחשבתו דזה הוא עיקר דיבורו של השי&quot;ת. כ&quot;כ מהרש&quot;ל בהגהותיו לסמ&quot;ג. ול&quot;נ דנפקא לרבינו וסמ&quot;ג דרשא זו ממלת על פני כי השי&quot;ת מלא כל העולם ואין דבר סתור ונעלם ממנו ויודע מחשבות בני אדם בטרם יעלו על לב וא&quot;כ אם ח&quot;ו חושב מחשבה רעה השי&quot;ת רואה מה שבסתר לבבו. והזהיר על זה שלא להעלות במחשבתו שמץ דבר רע כי מחשבת ב&quot;א גלוים לפני השי&quot;ת. וז&quot;ש דע כי מחשבות לבך הם נגד פני: ועיין בר&quot;א מזרחי שכתב דדבר זה במחלוקת שנויה במכילתא, ובס׳ גור אריה חולק עליו ע&quot;ש. וראיתי בספר משנת חכמים שכתב דהוכרח הרמב&quot;ם לפרש דלא כמכילתא מתלמודא דידן דהא אמרינן סנהדרין (דף צ&quot;ט) ת&quot;ר כי דבר ה׳ בזה ר&quot;י אומר זה העובד כוכבים מאי משמע דתני דבי ר&quot;י כו׳ אנכי ולא יהיה לך מפי הגבורה שמענום. וא&quot;כ אי נימא דקרא דלא יהיה לך קאי על קיום א&quot;כ עבר וקיים הוי בכלל כריתות. ועיין ריש כריתות דילפינן כרת בעובדים מדכתיב כי דבר ה׳ בזה. ובאמת מבואר להמעיין שם דקיום לא הוי בכרת וע&quot;ש שסיים ואף דאין לחדש דבר ולומר דאמחשבה גרידא מבלי מעשה חייב כרת מ&quot;מ הדברים ברורים דלא יהיה לך קאי על המחשבה. ואני אומר דדבר זה ברור דהזהיר על המחשבה כמ&quot;ש דכ&quot;ע הכי ס&quot;ל וכרת דעובדים מ&quot;ש דילפינן כרת בריש כריתות לא נראה לענ&quot;ד כן דעיקר כרת מהך ילפותא נפקא דהא בסנהדרין שם אסמוך הרבה דרשות על קרא זה ור&quot;י דדרש על עובדים מקשה התלמודא שם מאי משמע יראה דלאו דרשא פשוטה היא. ועיקר חיובא דכרת נראה מדברי הרמב&quot;ם (פרק ב׳) מה׳ עכו&quot;ם דנפק מקרא דוהנפש אשר תעשה ביד רמה את ה׳ הוא מגדף ונכרתה וכ&quot;כ רבינו בפירוש המשניות פ׳ נגמר הדין גבי הא דתנן כל הנסקלין נתלין וז&quot;ל מגדף בלבד ועובד נקרא ג&quot;כ מגדף הוא מה שנאמר והנפש אשר תעשה וכו׳ את ה׳ הוא מגדף ופירשו בספרי כי אותו פסוק בעובד מדבר ע&quot;כ א&quot;כ הרי דכרת ילפינן מהתם וא&quot;כ אף דבכלל קרא ולא יהיה לך נכלל מחשבה ומקיים אבל כרת לא ילפינן כ&quot;א מהנפש אשר תעשה ביד רמה דמיירי בעובד ממש וע&quot;כ מוכח כן דאל&quot;כ למה לא תני במתני׳ מקיימו ע&quot;י מעשה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Chapter 5</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל בית ישראל וכו׳.</strong> למעוטי ב&quot;נ דאינם מצווים על קד&quot;ה אע&quot;ג דהוא בעיא דלא אפשיטא בש&quot;ס סנהדרין (דף ע&quot;ד ע&quot;ב) לפי הגירסא שלפנינו אפשר דרבינו ס&quot;ל כגירסת התוס׳ שם (דף ע&quot;ה ע&quot;א) דלפי האמת אין ב&quot;נ מוזהרים על קידוש השם. וגם אי הגירסא שלפנינו עיקר מ&quot;מ בירושלמי פ&quot;ד דשביעית הלכה ב׳ מסיק דאין מצווים ודרך הרמב&quot;ם לפסוק כפשטות הירושלמי וכמ&quot;ש בכלל דבני מערבא וכ&quot;פ רבינו בפ&quot;י מהלכות מלכים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:3:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל הדברים אלו שלא בשעת הגזירה.</strong> כתב הר&quot;ן בחידושיו לסנהדרין ד&quot;ה אבל בשעת הגזירה מאי דמשמע מדברי רבינו פה דאחר שהתיר הנאת עצמן כתב וכל הדברים וכו׳ משמע בשעת הגזירה אפילו להנאת עצמן חייב למסור. וכתב שם בשם הר׳ דוד שכתב בלי שום חולק דאם להנאת עצמן גוזרין גזירה בין בצנעה בין בפרהסיא יעבור ואל יהרג והביא שם ראיה מהירושלמי. ולפי מ&quot;ש הלח&quot;מ א&quot;כ שפיר כתב הרמב&quot;ם אפילו להנאת עצמן אסור ואין סתירה מן הירושלמי דשם מיירי להנאת עצמן שהיה גזירה על הכל ואין כאן מחלוקת ודוק היטב בר&quot;ן שם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מי שנאמר בו וכו׳ הרי זה מתחייב.</strong> אע&quot;ג דכתב רבינו דין זה בהלכה א׳ אפשר משום דסד&quot;א דוקא במ&quot;ע אז אם לא עבר מתחייב וכמ&quot;ש בכ&quot;מ בשם הר&quot;ן דאינו מחוייב למסור כיון שבידם לבטלו ממנו וגם הוא בשב וא&quot;ת אבל במצות ל&quot;ת ה&quot;א דרשאי להחמיר לזה כתב רבינו כל מי שנאמר בו יעבור אפילו בל&quot;ת יעבור. וכתב בכ&quot;מ רבים וכן שלמים חולקים בזה והוא שיטת התוס׳ בפ׳ אין מעמידין (דף כ&quot;ז) ד&quot;ה יכול וכן בהרא&quot;ש שם ומה שהביאו ראיה מדברי הירושלמי שביעית פ&quot;ד הל׳ ב׳ ובסנהדרין פ׳ י&quot;ב הלכה ה׳ יע&quot;ש כבר תמה עליהם בפני משה דנעלם מהם סיום הירושלמי שם. אילו שמע ר׳ אבא בר זמינא מיליהון דרבנן וחי בהם הוה אכל. וקשה דלמא שמע אלא החמיר על עצמו אלא ע&quot;כ כשיטת רבינו. ובאמת צ&quot;ל דהך סיומא דירושלמי לא היה כתוב בגירסתם. א&quot;נ היה כתוב בגירסתם והיו מפרשים מלת שמע הוא כמו וישמע יעקב. ודחק להו לפרש כך דאילו הפירוש כפשוטו דלא ידע קשה הא דרשא פשוטה היא וחי בהם ואין בזה מחלוקת ועוד מאי בעי בירושלמי בהאי סיומא אע&quot;כ דקמ&quot;ל דלא שמע והחמיר ע&quot;ע ומותר בכה&quot;ג דהרי חזינן מכח שהחמיר על עצמו זכה לחיים ונתקדש ש&quot;ש על ידו:<br><strong> ועיין </strong> פסחים פ׳ מקום שנהגו בהא דאמרו מה ראו חנניה מישאל ועזריה כו׳ נשאו ק&quot;ו מצפרדעים. ולכאורה משמע כדברי התוס׳ דרשאי להחמיר וע&quot;ש בח&quot;א ובהרי&quot;ף וע&quot;ע בתוס׳ סנהדרין (דף ע&quot;ד ע&quot;ב) ד&quot;ה בן נח וכו׳ וקושייתם אינה אלא לפי שיטתם דס&quot;ל דרשאי להחמיר ובב&quot;נ מסופק אם מחוייב כלל או לא. עכ&quot;פ יצא לנו מזה דפליגי בזה תוס׳ והרי&quot;ף ורבינו:<br><strong> והנה </strong> הב&quot;ח יו&quot;ד סי׳ קנ&quot;ז כתב דגם לשיטת התוס׳ דרשאי להחמיר היינו דוקא היכא דלא מכוין להנאתו אבל אם עושה להנאתו אסור לו להחמיר והביא ראיה לזה מדברי התוס׳ סנהדרין (דף ע&quot;ד ע&quot;ב) ד&quot;ה קטן וכו׳ במ&quot;ש על הך מעשה דמס׳ יבמות (דף קכ&quot;א) דאמר ליה כותי לישראל קטול אספסתא ואי לא קטילנא לך כדקטילנא לפלוני בר ישראל דאמרי ליה בשיל לי קדירה בשבתא ולא בשיל לי וקטלתיה שמא לא היה בקי בהלכה ע&quot;כ. ואמאי לא מתרצים דמחמיר ע&quot;ע היה אלא ודאי דבהנאתו אינו רשאי להחמיר ע&quot;ע אלא דהב&quot;ח סבר אפילו בפרהסיא אינו רשאי להחמיר ע&quot;ע והבין בהגהת מ&quot;ל דגם זה מוכח מדברי התוס׳ מדלא כתבו דבפרהסיא היה המעשה וזה ליתא דמסתמא מעשה זה בצנעה היה וכמ&quot;ש התוס׳ בפ׳ א&quot;מ במעשה דחייט ועוד דאילו היה בפרהסיא בפני ישראל היו מודיעים להאשה. אולם גם הכרח הב&quot;ח אפשר לדחות ועיין בת&quot;ח ובעט&quot;ז ואין להאריך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים שאמרו תנו לנו אחת מכם וכו׳.</strong> הוא מתני׳ פ&quot;ח דתרומות תנו לנו אחת מכם וכו׳ יטמאו את כולן, ויש להקשות לשיטת רבינו דפסק כר&quot;ל דוקא אם יחדוהו להם וגם חייב כשבע בן בכרי א&quot;כ גבי נשים לא מהני יחדו דא&quot;א בעולם שתהיה היא מחוייבת לטמאותה ולא קתני רבותא יותר תנו לנו פלונית ג&quot;כ אל יתנוה. וראיתי בס׳ פרי אדמה (דף ד׳ ע&quot;ג) שהאריך מאוד בקושיא זו ועיין בס׳ בית הילל יו&quot;ד סי׳ קנ&quot;ו. ואם רשאים למסור המחוללת כבר דעת הרשב&quot;א דאל ימסרו, והיינו דע&quot;כ היה בגירסתו בירושלמי לא מסתברא אם היתה כבר טמאה, אמנם הגירסא שלפנינו בירושלמי לא מסתברא אם היתה כבר טמאה משמע אם היא מחוללת רשאי למוסרה וכ&quot;פ הר&quot;פ. והיה נראה לענ&quot;ד דגם לשיטת הרשב&quot;א היינו דוקא בלא יחדוה אבל אם יחדוה והיא מחוללת כבר דאז לר&quot;י אפילו בהריגה מוסרים ק&quot;ו בטומאה ובאם היא כבר מחוללת דאיכא תרתי גם ר&quot;ל מודה וא&quot;כ אתיא מתני׳ שפיר דלא קתני פלונית משום דמתניתין סתמא קתני אל ימסרו נפש אחת מישראל אפילו היא מחוללת כבר וזה הדין לא שייך ביחדוה לפלונית. שוב ראיתי שגם הרב פרי אדמה שם האריך בסברא זו וכתב דגם הרשב&quot;א היה לו גירסא בירושלמי כגירסתנו אלא דהוא מיירי בלא יחדוה ובירושלמי קאמר ביחדוה. ודבריו צ&quot;ע דהרי נראה דגירסת הרשב&quot;א לא היתה כגירסתנו דהרי כתב דלא דמי לככר, ככר מאן דכר שמיה:<br><strong> ועיין </strong> ברמב&quot;ם הל׳ חובל פ&quot;ח אם נשא ונתן ביד, ובהשגות הראב&quot;ד שם אין הגאון מודה בזה דאין לך דבר שעומד בפני פיקוח נפש, ובספר כפות תמרים ביומא (דף ט&quot;ז ע&quot;ב) ועיין כתובות (דף י&quot;ט) בהא דאמר ר&quot;ח קסבר ר&quot;מ עדים שאמרו להם חתמו שקר ואל תהרגו יהרגו ואל יחתמו שקר וכו׳. וכתב הרא&quot;ה שמצא במדרש ובמכילתן על שלש עבירות יהרג ואל יעבור ר&quot;מ אומר אף על הגזל וא&quot;כ ר&quot;מ לטעמיה אזל ע&quot;ש. וא&quot;כ יש מקום לומר אע&quot;ג דאנן לא קי&quot;ל כר&quot;מ בהא היינו דאינו מחוייב ליהרג אבל בנשא ונתן ביד כדי לצאת י&quot;ש חייב. ועיין בחידושי מהר&quot;ם ברבי ח&quot;ש בסוף ספרו בשם חתנו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:7:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והריגת נפש מישראל וכו׳. דבר שהדעת נוטה לו הוא.</strong> בהג&quot;מ כתב היינו דוקא להרוג בידים וכו׳ והוא מדברי תוס׳ סנהדרין ואע&quot;ג דלא העתיקו רבינו מ&quot;מ כיון שכתב דבר שהדעת נוטה לו כמ&quot;ש התוס׳ ופשוט הוא ודלא כמ&quot;ש בתוס׳ יוה&quot;כ (דף ט&quot;ז ע&quot;ג) מדלא הביא רבינו חילוקים אלו ש&quot;מ בשלש עבירות החמורים אפילו בלא מעשה יהרג ואל יעבור ותמה שם על מהר&quot;ם בהגהה סי׳ קנ&quot;ז דע&quot;כ הרמב&quot;ם והטור חולקים על התוס׳ ולענ&quot;ד כמ&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-5-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 5:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א וכו׳ כגון שעושין לו רטיה וכו׳.</strong> עיין מ&quot;ש הכ&quot;מ בשם הא&quot;ח. והפר&quot;ח בא&quot;ח סי׳ תס&quot;ו כתב דבר זה נראה קצת זר ולא מלאני לבי להתירה דהא ניכר מתוך מעשיו של הישראל דחפץ במלוגמא וחייב לבערו אפ&quot;ת דחצי זית לא מיחייב לבערו אלא מדרבנן ע&quot;ש שהאריך ומסיק להחמיר. הנה יתכן דבריו אי אמרינן כמו שהבין המש&quot;ל בשיטת רבינו בהא דאמרינן אין לוקין עליהן שלא כדרך הנאתן אבל איסור תורה יש וכ&quot;מ ג&quot;כ קצת בחידושי הר&quot;ן חולין במ&quot;ש להקשות לשיטת הסוברים דדם שמלחו אין עובר עליו דא&quot;כ למה לא תני במתני׳ חומר בחלב מבדם שחלב חייב בין חי ובין מבושל משא&quot;כ בדם. וצ&quot;ע דנקט בלשונו חלב חי וכבר תמה בזה בספר מחנה ראובן. ואי ס&quot;ל דיש איסור תורה א&quot;ש. א&quot;כ אז יש סברא להחמיר כיון דעכ&quot;פ יש כאן איסור תורה. אבל לפי הבנת ה&quot;ה בדברי רבינו דכן הוא העיקר כמ&quot;ש התוספות במסכת ע&quot;ז (דף י&quot;ב ע&quot;ב) ובמס׳ שבועות (דף כ&quot;ג ע&quot;ב ד&quot;ה דמוקי ודף כ&quot;ב ע&quot;ב ד&quot;ה אהיתרא). וכ&quot;כ הר&quot;ן בעצמו מפורש בפ&quot;ב דקידושין במתני׳ דהמקדש בערלה ע&quot;כ מהיכא תיתי להחמיר כיון דמדרבנן הוא. וביותר לפ&quot;מ דמשמע בדברי התוס׳ בקידושין שם דשלכה&quot;נ אין בו איסור אפילו מדרבנן. והמש&quot;ל כתב דדברי התוס׳ סטראי נינהו וגם הקשה אי מדרבנן הוא הא קי&quot;ל באיסור הנאה דרבנן שיש להם עיקר מה&quot;ת אינה מקודשת אליבא דכ&quot;ע. והב&quot;ש סי׳ כ&quot;ח אות נ&quot;ד כתב לשיטת התוס׳ דאף דהיא בריאה מ&quot;מ יכולה למכור לחולה שאין בו סכנה. ובאמת דבריו תמוהים דהרי עכ&quot;פ היא נהנית במכירה וקא מתהניא מאיסורי הנאה וכ&quot;כ הריטב&quot;א שם בקידושין ע&quot;ש. וע&quot;כ צ&quot;ל דס&quot;ל להב&quot;ש דהתוס׳ סוברים דלא גזרו כלל על שלכדה&quot;נ במקום חולי דאל&quot;כ שלא התירו גם למכור אותו לפעמים לא ימצא מי שיתן לו בחנם. וכיון שלא גזרו בענין זה שפיר כתב התוס׳ דהוי כמו חולין שנ&quot;ב למ&quot;ד דרבנן דמקודשת משום דלא תקנו איסורא בשלכה&quot;נ כמ&quot;ש הריטב&quot;א שם. א&quot;כ ה&quot;נ גבי חמץ כיון שהתירו שלכה&quot;נ לחולה בכ&quot;ע התירו אף אם צריך לקנות ממנו ויהיה באחריותו של ישראל אעפ&quot;כ לא חששו שיעבור עליו באיסור דבל יראה. ולא עוד אלא שגם לדעת הר&quot;ן דלית ליה סברת הב&quot;ש. דמ&quot;ש הב&quot;ש שם דהר&quot;ן מיירי כשהיא אינה יודעת אינו ברור למעיין שם בר&quot;ן ובתוס׳. אלא דנלע&quot;ד דגם הר&quot;ן מודה לגבי חמץ דהתירו בכ&quot;ע גבי חולה שא&quot;ב סכנה רטיה של חמץ ולא חשיד לעבור על ב&quot;י דהר&quot;ן גופיה כתב ר&quot;פ קמא דפסחים דכל איסור דבל יראה שאסרה תורה הוא משום שלא יבוא לאכלה וסובר דפירוש הקרא לא יראה לך וכו׳ כי כל אוכל חמץ וכו׳ הוא נ&quot;ט לב&quot;י כמ&quot;ש בס&quot;ד ברפ&quot;א דחמץ ומצה שכן הוא גם כן דעת רבינו. ואם כן כיון דהתירו האכילה לחולה שאין בו סכנה שלכה&quot;נ שוב אין מקום וסברא כלל לאסור אותו להשהותו שיעבור עליו על ב&quot;י לפי סברת הר&quot;ן וע&quot;פ מ&quot;ש דברי הכ&quot;מ נכונים ומיושב היטב סתירת התוספות שהקשה המש&quot;ל:<br><strong> ויש </strong> עוד מקום ליישב סתירת התוס׳ ולחלק דאף דקי&quot;ל ח&quot;ש אסור מה&quot;ת. בשלכה&quot;נ שאין אסור אלא מדרבנן ל&quot;ג רבנן כ&quot;א בשיעור וח&quot;ש שלא כדרך הנאתן אפילו איסורא מדרבנן ליכא וקושית התוס׳ בקידושין הא שרי ליהנות בשלכה&quot;נ כוונת קושייתם דמשכחת לה כשיש בו ש&quot;פ אפילו פחות מכזית ובפחות מכזית שרי ליהנות. ובזה י&quot;ל מ&quot;ש המש&quot;ל בשם התוס׳ דגם גבי מעילה כיון דילפינן חטא חטא מתרומה שלכה&quot;נ מותר וטרח מאוד ליישב דברי רבינו פ&quot;ה הלכה ה׳ מהל׳ מעילה דנראה מדבריו היפך. ובאמת גם התוס׳ בסנהדרין דף פ׳ בד&quot;ה בשור וכו׳ כגון חלב מוקדשין ע&quot;ג מכתו דשרי בשור הנסקל משא&quot;כ במוקדשין. ע&quot;ש במהרש&quot;א דשלכה&quot;נ בקדשים אסור ובשאר איסורין מותר. וע&quot;כ צ&quot;ל דס&quot;ל להתוס׳ שם דהא דאמרינן בגמרא שאני היכל דלתוכו עשוי אין פירושו כמ&quot;ש רש&quot;י דהוי שלכה&quot;נ אלא פירושו דהתנה מתחלה דלא יאסור הנאה מהיכל כ&quot;א בפנים ולא בחוץ כדי שלא יכשלו בו ב&quot;א כענין שאמר גנין ועליות לא נתקדשו. ומצאתי שכבר הרגיש בזה בשעה&quot;מ. וא&quot;כ גם רבינו מצי סובר כן. ועיין בשעה&quot;מ שהאריך ליישב סתירת התוס׳. ועיין גם בס׳ טהרת הקודש ר&quot;פ התערובות שגם הוא טרח ליישב סתירת התוספות:<br><strong> ועפמ&quot;ש </strong> דיש סברא לומר דלא אסרו בח&quot;ש כיון שאין בו לאו א&quot;כ לפי שיטת רבינו דסובר דאה&quot;נ הם כמו ח&quot;ש ואין בו לאו כ&quot;א איסורא בעלמא א&quot;כ י&quot;ל נמי הא דאסרו בשלכה&quot;נ מדרבנן היינו דוקא באכילה ויש ל&quot;ת ולוקין עליה אז גזרו גם שלכה&quot;נ אטו כדרך הנאתן. אבל לענין איסור הנאה ליהנות שלכה&quot;נ י&quot;ל דמותר דלא גזרו כלל כיון דאף אם יבוא ליהנות כדה&quot;נ אין בו איסור לאו וכהאי חילוקא מצינו במש&quot;ל פ&quot;א מהל׳ יו&quot;ט הלכה י&quot;ז דאפילו באיסורי לאוין שאין בהן מלקות לא עבדו הרחקה. והנה רבינו כתב בפרק א׳ מהל׳ מעילה דלוקין על הנאתן ע&quot;ש בה&quot;ה, א&quot;כ לפ&quot;ז במעילה שפיר אמרינן דגזרו בשלכה&quot;נ גם לענין הנהנה ממנו משא&quot;כ בשאר איסורים דאין לוקין על הנאתן ומיושב דברי רבינו בהלכות מעילה. וגם התוספות שם בסנהדרין להך תירוצא דמחלקין. בין מעילה לשאר איסור לענין לאסור בהנאה שלכה&quot;נ סוברים כשיטת רבינו דאין מלקות על הנאה כ&quot;א במעילה ודלא כמשמע מדבריהם בפסחים וגם התוס׳ בקידושין דכתבו דשרי ליהנות בשלכה&quot;נ גם שם כשיטתם בסנהדרין. ומקשין שפיר אמאי א&quot;מ הא שרי ליהנות שלכה&quot;נ דעל הנאה לא גזרו משא&quot;כ באכילה דודאי גזרו בשלכה&quot;נ דלמא אתי למיכל בכדה&quot;נ ועובר על לאו שיש בו מלקות. ודוק היטב:<br><strong> עוד </strong> יש מקום וסברא לחלק מפני מה החמירו במעילה בשלכה&quot;נ משא&quot;כ בשאר איסורים עפמ&quot;ש המהרש&quot;ל ומהריב&quot;ל בתוס׳ שבועות (דף כ&quot;ג ד&quot;ה דמוקי) בתירוץ הב׳ דמצי לאוקמי שלכה&quot;נ ור&quot;ש דפליג משום דסבר כ&quot;ש למכות גם שלכה&quot;נ אסור לדידיה וכן לר&quot;ע דאמר אדם אוסר עצמו בכ&quot;ש ונ&quot;מ לדידן במפרש. וטעמייהו משום כיון דלר&quot;ש לא בעינן אכילה בכזית ולא תלי התורה חיוב בשיעורין דלא בעינן אכילה ממש גם שלכה&quot;נ אסרה התורה. א&quot;כ במעילה דג&quot;כ לא תלי התורה בשיעור אכילה אין לחלק בין דרך הנאתן לשלכה&quot;נ כיון דעכ&quot;פ נהנה בפרוטה. ומהרש&quot;א השיג עליהם דהא גם לר&quot;י ח&quot;ש אסור מה&quot;ת אעפ&quot;כ ס&quot;ל דשלכה&quot;נ מותר. והשעה&quot;מ תמה עליו דמאי ענין זה לזה דגבי ח&quot;ש שייך סברת חזיא לאצטרופי משא&quot;כ בשלכה&quot;נ ע&quot;ש. ונ&quot;ל דיפה פקפק המהרש&quot;א על סברתם דהנה בסברתו של ר&quot;ש דס&quot;ל כ&quot;ש למכות כתב הריטב&quot;א במסכת מכות (דף ט&quot;ז) משום דאדם האוכל כ&quot;ש אחשביה ומש&quot;ה גבי קרבן בשוגג מודה ר&quot;ש דלא שייך אחשביה. ועוד יש טעם דאכילה דכתיב בקרא משמע ליה בכ&quot;ש ע&quot;ש והתוס׳ כתבו בכמה דוכתא בשם ה&quot;ר יקר דר&quot;ש מודה בכ&quot;ש בתערובות דאינו לוקה והיינו דס&quot;ל כסברת הריטב&quot;א דבתערובות ל&quot;ש אחשביה. ובשבועות (דף כ&quot;א ע&quot;ב) דמבעיא להו אי טעמא דר&quot;ע דאמר גבי שבועה שאוכל ואכל כ&quot;ש חייב אי ס&quot;ל כר&quot;ש ושם איירי לענין קרבן ע&quot;ש ברש&quot;י ותוס׳. ומוכח דהגמ׳ הוה ס&quot;ל דאין הטעם משום דאחשביה וליתא לסברת ה&quot;ר יקר לפי הסוגיא שם. ובזה מיושבים כל הקושיות שמקשין על ה&quot;ר יקר ודוק. והנה התוס׳ שם בשבועות בתירוץ הא׳ דשבועה חל על ח&quot;ש אע&quot;ג דעל איסור עשה לא חל ח&quot;ש קיל מעשה. והרשב&quot;א חולק עם התוספות והביא ראיה מסוגיא דיומא. ונ&quot;ל להסביר פלוגתתן. דסברת התוס׳ ח&quot;ש קיל מעשה היינו טעמא מפני שאינו מפורש בתורה ולא אתיא אלא מדרשא דכל משא&quot;כ בעשה מפורשת בתורה ועיין בר&quot;ן בשבועות. וזה ניחא אי אמרינן הא דקי&quot;ל ח&quot;ש אסור מה&quot;ת הוא מדרשא דכל ועיקר אכילה דכתיב בקרא מפורש בכזית א&quot;כ שפיר כתבו התוספות דקיל ח&quot;ש מעשה מפורשת. והרשב&quot;א י&quot;ל דסובר כמ&quot;ש הרא&quot;מ הביאו המל&quot;מ פ&quot;א ה&quot;ז מהלכות חו&quot;מ דס&quot;ל דאכילה דכתיב בקרא כ&quot;ש משמע והלמ&quot;מ גרעו דאינו חייב מלקות אלא בכזית וסד&quot;א דמיעטה התורה גם שלא יהיה בו איסור כלל לזה איצטריך קרא דכל שיהא בו איסור תורה עכ&quot;פ ולפי פי׳ הרא&quot;ם א&quot;כ נהפוך הוא דבקרא מפורש יותר לאיסורא דבכ&quot;ש ועכ&quot;פ לא גרע מעשה וא&quot;כ מסתבר יותר דלא חל איסורא על ח&quot;ש ק&quot;ו מדלא חל איסורא על עשה ועפ&quot;ז התוס׳ בתירוץ הב׳ משמע דרוצים ליישב הק&quot;ו גם אי אמרינן דאין איסור חל על ח&quot;ש כשיטת רשב&quot;א וא&quot;כ הא דר&quot;י אסור ח&quot;ש מה&quot;ת היינו משום דקרא דכתיב לא יאכל משמע בכ&quot;ש והיינו משום דאחשביה כמו לר&quot;ש דס&quot;ל סברא זו לענין חיוב מלקות כן ס&quot;ל לענין איסורא. ולא סמך על סברת אצטרופי לחוד כ&quot;א על פשטא דקרא כמ&quot;ש הרא&quot;ם. ומעתה אי אמרינן כסברת מהריב&quot;ל ומהרש&quot;ל דגם שלכה&quot;נ מקרי אחשביה וחייב לר&quot;ש א&quot;כ גם לר&quot;י יהא עכ&quot;פ איסור תורה דהא באותה סברא דס&quot;ל לר&quot;ש מלקות ס&quot;ל לר&quot;י לענין איסור תורה ודברי המהרש&quot;א נכונים. ועיין היטב במל&quot;מ הנ&quot;ל כי יש להאריך בדברים האלה ואין עת האסף פה:<br><strong> ודע </strong> דנ&quot;מ במחלוקת זו בשבועה במפרש בח&quot;ש גם לדידן כמ&quot;ש מהרש&quot;ל ואף כי בזה יש לדון ולומר דאדם האוסר דבר על עצמו אין כוונתו ודעתו כ&quot;א על דרך הנאתו מ&quot;מ יש נ&quot;מ לפי מה שפסק רבינו בפ&quot;ט הל׳ י׳ מהל׳ מלכים שלא ניתנו שיעורין לב&quot;נ אלא לישראל בלבד א&quot;כ לב&quot;נ שיעור איסורם בכ&quot;ש אפילו לדידן כמו לר&quot;ש בכל איסורין לישראל וכשם שאליבא דר&quot;ש גם שלא כה&quot;נ אסור ה&quot;ה לב&quot;נ באיסורין דידהו ואסור לנו להושיט לב&quot;נ איסור בעין אפילו הוא שלכה&quot;נ. ובאמת יש לדון בדין זה גופא שכתב רבינו שם יתכן ע&quot;פ סברת רא&quot;ם שהבאתי דשיעור אכילה בתורה בכ&quot;מ בכ&quot;ש והלמ&quot;מ מגרע כמ&quot;ש והלכתא לישראל נאמר ויש לתלות דבר זה בפלוגתא דר&quot;י ור&quot;ל עיין היטב במש&quot;ל פ&quot;א דחו&quot;מ. ולפ&quot;ז יש מקום ליישב מ&quot;ש התוס׳ חולין (דף ל&quot;ג) דלר&quot;ש לית ליה האי כללא דמשכחת לה דישראל אינו אסור אלא בכזית ולב&quot;נ במשהו וכו׳ ולפמ&quot;ש לר&quot;ש ב&quot;נ שווין בשיעורין לדידן כיון דסתם אכילה בכזית והבן זה. ודע דבכלל שלכה&quot;נ איכא נמי דבר שנשתנה כגון פרה שפטמה בחמץ בפסח לשתות החלב ממנה דהוי שלא כה&quot;נ כי אין זה דרה&quot;נ שיתחלק האיסור לשפע מזון הבהמה ובאכילת החלב נהנה מהאיסור וכ&quot;כ בפליתי סי׳ ס׳ ואע&quot;פ שבס׳ פ&quot;מ א&quot;ח סי׳ תמ&quot;ח כתב לשתות החלב תוך מעל&quot;ע לאכילת חמץ ישראל נהנה מאיסורי הנאה ואין לשתותו ע&quot;ש והיינו משום דאע&quot;ג דהוא שלכה&quot;נ מ&quot;מ לא פלטינן מאיסורא דרבנן וביותר לפמ&quot;ש דגם התוס׳ בקידושין דכתב דשרי משמע אפילו מדרבנן היינו דוקא לענין הנאה אבל לענין אכילה מודים התוס׳ ובהל׳ מ&quot;א אי&quot;ה אבאר יותר:<br><strong> ומה </strong> שעמד המל&quot;מ בחקירה אם נאמר ג&quot;כ במ&quot;ע דרחמנא אמר תאכל כגון מצה וק&quot;פ אם אכלן שלכה&quot;נ יצא י&quot;ח ונראה דל&quot;ש וכו׳ אלא שלא ראיתי דין זה כעת בפירוש, ע&quot;כ. ועיין בספר הנכבד הורה גבר שהשיג עליו וז&quot;ל ואנכי מצאתי כמעט מפורש דהתוס׳ מס׳ נזיר (דף כ&quot;ג ד&quot;ה פסח) וקשה וכו׳ ע&quot;ש, והשתא אי ס&quot;ד דסברת התוס׳ דאף דאין לוקין במאכלי איסורים שלכה&quot;נ אפ&quot;ה יוצא ידי קיום מ&quot;ע באכלו שלכה&quot;נ א&quot;כ לא הקשו תוספות מידי דלענין איסור דאסור לאכול ביוה&quot;כ ל&quot;מ אכילה ולענין מ&quot;ע דפסח מקרי אכילה א&quot;ו דאין לחלק ע&quot;כ ת&quot;ד. ולפי הבנת הרב הנ&quot;ל יותר הוה ליה לפשוט ספק הרב מהא דמקשי תלמודא (יבמות דף מ׳ ע&quot;א) וכ&quot;ת רצה לתיאבון אוכלה רצה אכילה גסה אוכלה. אכילה גסה מי שמה אכילה האמר ר&quot;ל האוכל אכילה גסה ביוה&quot;כ פטור מלא תעונה וכו׳ יע&quot;ש. א&quot;כ מאי מקשה הגמ׳ דלמא לעולם דאוכלה אכילה גסה ואין ראיה מיוה&quot;כ דהוי איסורא משא&quot;כ מצות תאכל דהוא מ&quot;ע דמקיים אף שלכה&quot;נ. אשר ע&quot;כ נלע&quot;ד דאין משם ראיה דכוונת התוספות בק&quot;ו דאכילה גסה ל&quot;ש אכילה כלל ומותר אפילו באיסורין שחייב עליהם אפילו שלכה&quot;נ דאכילה גסה גרע משלכה&quot;נ, וכ&quot;מ ממ&quot;ש הפ&quot;י דלחזקיה דנ&quot;ל איסור הנאה מלא יאכל כל איסורין שבתורה אסורין שלכה&quot;נ ודין זה דאוכל אכילה גסה מוסכם אליבא דכ&quot;ע. גם בשו&quot;ת שאגת אריה הל׳ יוה&quot;כ רצה לאסור ביוה&quot;כ שלכה&quot;נ משום דלא כתיב ביה אכילה ואעפ&quot;כ פשיטא ליה דבאכילה גסה פטור. ואף שדברי השאגת אריה לא נתחוורו אצלי כמ&quot;ש בשלום ירושלים ר&quot;פ יוה&quot;כ והבאתי ראיה מדברי רבינו פה מ&quot;מ זו ברירא ליה א&quot;כ שפיר מקשה תלמודא והתוספות שפיר. והספק של המש&quot;ל בשלכה&quot;נ עדיין לא נמצא מפורש. ומ&quot;ש בס׳ מחנה לוי לפשוט ספק זה מהא דאמרינן נזיר (דף ד׳) דמקשי תלמודא קדושא ואבדלתא מושבע ועומד הוא דלמא שותה הכוס שלכה&quot;נ וכו׳ ע&quot;ש ג&quot;כ אינה ראיה דקידוש על היין לשיטת הסוברים דקידוש על היין דאורייתא הטעם הוא משום עונג שבת וקראת לשבת עונג ואין זה עונג שבת לשתות שלכה&quot;נ:<br><strong> ומה </strong> דפשיטא ליה להמש&quot;ל דלא יצא י&quot;ח במ&quot;ע אם אכלו שלכה&quot;נ נראה בהיפוך בפשטות דבריו של הת&quot;ח במס׳ חולין (דף ק&quot;כ ע&quot;א) כתב וז&quot;ל לחם עוני אמר רחמנא נראה דלא מצי למימר נמי אכילה כתיב ביה דהא דקאמר גבי חלב חמץ ונבילה והא אכילה כתיב בהו לאו משום דשתייה מלתא אחריתא היא דהא שתייה בכלל אכילה כמ&quot;ש התוס׳ אלא משום דכשממחה את החלב גרועי גרעיה ואינו דה&quot;נ דדרך הנאתו הוא לאכלו כמות שהוא בעין וקיי&quot;ל בכל האיסורין דאין חייבין עליהן עד שיאכל אותן כדה&quot;נ כדאיתא בפ׳ כ&quot;ש ולכך קאמר בשלמא הקפא את הדם אשבח אלא המחה את החלב כיון דגרועי גרעיה אמאי חייב והא אכילה כתיב ביה ונימא דלא מחייב רחמנא אלא בשאכלו דהוי דרך הנאתן אבל גבי מצה דלאו בהנאה תליא מילתא דמצות לאו ליהנות ניתנו הילכך אי לאו דלחם עוני אמר רחמנא אם המחה וגמעו יצא בו י&quot;ח אע&quot;ג דאכילה כתיב ביה והיינו דבעי בסמוך גבי כלאים מנ&quot;ל אע&quot;ג דלא כתיב ביה אכילה משום דלא אסרה התורה אלא דה&quot;נ עכ&quot;ל. והנה מרהיטא של דבריו נראה דבמ&quot;ע קיים אפילו שלכה&quot;נ ולא כדברי המש&quot;ל וכן הרב הגאון נב&quot;י מהדק&quot;מ סי׳ ל&quot;ה הבין כן. ועוד למדנו מדברי הת&quot;ח מראיה שהביא מהא דקי&quot;ל בלע מצה יצא דס&quot;ל להת&quot;ח דבלוע מיקרי שלכה&quot;נ ונ&quot;מ לכל איסורי תורה היכא דבלען ליכא איסור תורה ראה זה דבר חדש הוא. ובנב&quot;י שם הקשה עליו מהא דמסיק תלמודא (חולין דף ק&quot;ג) דלא משכח לרשב&quot;ל דלקי משום אמ&quot;ה רק בגרומתא זעירתא שבלעה כולה ואם יאמר הת&quot;ח כיון שהוא קטן דרך לבלעה אף במצה קטנה דרך הוא לבלוע וחלק שם עליו דבליעה מקרי כדה&quot;נ. והנה השגה זו י&quot;ל דכ&quot;ז לר&quot;ל דס&quot;ל הנאת מעיו והת&quot;ח כ&quot;כ לדידן דקי&quot;ל כר&quot;י דהנאת גרונו בעינן ובבליעה י&quot;ל דלא מקרי הנאת גרון. ועוד יש לומר דאין ללמוד מאמ&quot;ה לשאר איסורין כיון שחידוש הוא. והנה אם נתפוס דברי הת&quot;ח כפשטן ושלא לחלק בין דבר קטן לגדול יש למצוא פתחון פה שלא ליכשל בעונש המילבי&quot;ן כ&quot;א נימוחו בפה במעט הם בטילים ואם אינם נימוחים ובולע אותם שלימים אינו נהנה מהם הגרון כלל והוי שלא כה&quot;נ. וכשאני לעצמי נראה מביאור דברי הת&quot;ח דגם הוא ס&quot;ל לדינא כהמש&quot;ל וגם ס&quot;ל דבליעה לא מיחשב לפי האמת לשלכה&quot;נ ותוכן כוונתו ליישב קושית התוס׳ שם למ&quot;ל קרא הא שתייה בכלל אכילה ולא ניחא ליה בתירוץ התוס׳ שם וגם קושית התוס׳ למה לא אמר במצה ג&quot;כ אכילה לזה כתב דגבי איסורין לא חייב הכתוב אם אכלו בעירוב דבר מר וכדומה ש&quot;מ דבעי דוקא שיהיה נהנה מאיסור דאל&quot;כ לא מקרי אכילת איסור א&quot;כ סד&quot;א כיון שהקפידה התורה בהא הקפידה נמי בהא שיהיה אוכל כדרך שבני אדם אוכלין דהיינו כשהוא בעין לזה אצטריך נפש לרבות המחה דגם זה מיקרי אכילת איסור כיון שאוכל אותו הדבר בעצמו. ובזה מיושב ג&quot;כ דגבי מצה אע&quot;ג דכתיב ביה אכילה מ&quot;מ אין סברא לומר דגם במצה לא מקרי אכילה אלא אם אכלו כדרך אכילה דז&quot;א דהא מצות לאו ליהנות נתנו וראיה דבלע מצה יצא אע&quot;ג דבבליעה לא נהנה כ&quot;כ אפ&quot;ה מקיים המצוה ולא מצי להקשות אכילה כתיב ביה ומש&quot;ה מקשה תלמודא נמי גבי כלאים אע&quot;ג דלא כתיב ביה אכילה כיון דסד&quot;א דגם זה מקרי אכילה שלא כה&quot;נ. וכל זה לסד&quot;א לזה אצטריך נפש וכל הדרשות דגם הממחה חייב והיינו דבא להורות לנו דגם זה מקרי דרך אכילה כיון דעכ&quot;פ אוכל האיסור גופא בלי תערובות והא דפטרה התורה שלכה&quot;נ היינו דוקא בעירב דבר מר. והשתא לפי האמת גם אם בלעו ולא לעסו ג&quot;כ חייב כיון דעכ&quot;פ אוכל האיסור בעין וא&quot;כ לדינא גם הת&quot;ח מודה דלא מקרי שלכה&quot;נ וגם מודה הוא לדין המש&quot;ל דאם אכל מצה שלכה&quot;נ כגון שעירב דבר מר וכדומה דאינו יוצא ולא כתב אלא דבלע מצה יצא דבכה&quot;ג גם לפי האמת גם באיסורין חייב ובמ&quot;ע לא הוי מקום לטעות כלל דלא יצא כיון דמצות לאו ליהנות ניתנו. והוא פשוט בדברי ת&quot;ח למדקדק בדבריו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-6">Chapter 6</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המאבד וכו׳ לא תעשון כן לה׳ אלהיכם.</strong> ובכלל דלא תעשון אזהרה למוחק את השם ושלא לנתץ אבן מהעזרה ושלא לשרוף עצי הקדש והעובר על אחד מאלו לוקה, ובספרי מניין לנותץ אבן וכו׳ ר&quot;י אומר מניין למוחק את השם שעובר בל&quot;ת שנאמר לא תעשון כן לה׳ וכו׳ ר&quot;ג אומר וכי תעלה ע&quot;ד שישראל נותצין מזבחותיהן וכו׳. וכתב הרמב&quot;ן דאין מחלוקת ביניהם ולכ&quot;ע גם נותץ מזבחות עובר בל&quot;ת וכתב מהר&quot;י אבוהב אע&quot;ג דהוי לפ&quot;ז לאו שבכללות מ&quot;מ במס׳ מכות בסוגיא דיש חורש קאמר דלוקין, והר&quot;מ ז&quot;ל כתב דר&quot;י בא לחלוק עם הת&quot;ק שאמר שהיא אזהרה למוחק ולנותץ ואמר הוא שא&quot;א שיהיה אזהרה לנותץ דבשלמא למוחק מצינו למימר שלא כיון למחוק דרך השחתה אלא מפני שנכתב שלא במקומו או שלא בכוונה וכו׳ אלא הנותץ אבן מן המזבח או מן ההיכל שאינו מוזהר בו אלא כשנותץ דרך השחתה בעלמא כמ&quot;ש הרא&quot;ם והסמ&quot;ג איך אפשר שיעלה על הדעת שישראל נותצין וכו׳ אלא סובר ר&quot;י שאינו אזהרה אלא על המוחק לא על הנותץ וחולק על הת&quot;ק שאמר אזהרה על הנותץ ועל המוחק והלכה כת&quot;ק מהאי דשלהי מכות, עכ&quot;ל. וצע&quot;ג על הרא&quot;ם דהא עכ&quot;פ צריכין אזהרה למלקות ואין לומר דילפינן מק&quot;ו דהא אין מזהירין מה&quot;ד ואף אם נאמר כסברת הה&quot;מ בפ&quot;ב מהל׳ מ&quot;א היכא דאיכא עשה מפורש מזהירין מה&quot;ד וכאן הוי עשה דשם תעלה עולותיך ולא תתוץ. זה אינו דאין במשמעות זה לאו הבא מכלל עשה, ועוד אם נאמר כן א&quot;כ מאי קאמר דהלכה כת&quot;ק מהך דמכות הא גם לר&quot;י לקי עליה ועיקר אזהרתיה מק&quot;ו דהאי קרא דלא תעשון. וצ&quot;ע כעת:<br><strong> ובהלכה </strong> ו׳ כתב רבינו וכ&quot;כ בפ&quot;א מהל׳ בהב&quot;ח דאין איסור בנתיצה כ&quot;א דרך השחתה וכן מוכח מדברי הרב הנ&quot;ל והביא הרב א&quot;ר בא&quot;ח סי׳ קנ&quot;ב מזה לסתור דברי הט&quot;ז שם מ&quot;ש דוקא צריך למלאות מקום הנתיצה אבל בלא&quot;ה אסור דאין סברא וטעם להחמיר בזה דודאי אם מניחו ריקם אז השחתה מקרי אבל אם עושה לצורך כמו שרוצה לעשות חלון להאיר או באופן אחר מותר וכ&quot;כ בשו&quot;ת תשב&quot;ץ ס&quot;ב אלא שכתב שם דגם מחיקת השם אינו אסור למוחקו כ&quot;א במתכוין למוחקו ולאבדו אבל אם כוונתו לתקן בזה שרי דהא מחד קרא נפקי ודינם שוה ע&quot;ש שהאריך בזה, ועיין שם בש&quot;ג מסכת שבת ס&quot;פ הבונה שגם דעתו נוטה להתיר מחיקת השם ע&quot;מ לתקן והאריך בראיות ע&quot;ש. ומדברי ספרי הנ&quot;ל מוכח להדיא דגם על מנת לתקן אסור בשם דהא קאמר דלא קאמר על נתיצת מזבחות דמאי ס&quot;ד אלא על מחיקת השם קאי דהוי לתקן ואפ&quot;ה אזהר רחמנא ובזה לא פליג הת&quot;ק. ואפשר לדחות ולומר דגבי שם סד&quot;א אם כתב סתם שרי למוחקו קמ&quot;ל דסתמא לשמו קאי ועיין בתוס׳ גיטין דף כ׳ ע&quot;א. וכ&quot;נ מדברי הרמב&quot;ם מדקדוק לשונו גבי מחיקת השם כתב המאבד את השם ה&quot;ז לוקה ובנתיצת מזבחות כתב דוקא דרך השחתה ועיין שו&quot;ת עה&quot;ג סי׳ צ&quot;ה ובס׳ משנת חכמים שהאריכו בזה ואין מקומו פה להאריך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:8:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שכתב ס&quot;ת וכו׳ ומצוה לשורפו וכו׳.</strong> בש&quot;ס גיטין דף מ&quot;ה אמר ר&quot;נ נקטינן ס&quot;ת שכתבו מין וכו׳ ישרף עיין רש&quot;י, ורבינו כתב אפיקורוס ועיין בזה בס׳ בני חייא חלק יו&quot;ד דף ס&quot;ג ע&quot;ב שתמה על רבינו דדבריו מ&quot;ש פה סותרין למ&quot;ש בהלכות ס&quot;ת פ&quot;י נמצאת אומר כתב דברים שכל אחד מהם פוסל ס&quot;ת וכו׳ ומלמדין בו התינוקות. ומה שכתב בסי׳ יו&quot;ד אין קורין בו הא כאן כתב דישרוף לאבד מזכרון ואין לך זכרון גדול מזה אם ילמדו בו התינוקות, והמעיין בהל׳ תשובה פ&quot;ג הל׳ ח׳ והל׳ י&quot;ד דיש שמקבלין אותן בתשובה א&quot;כ בהל׳ ס&quot;ת מיירי בהנך שמקבלין אותן ואין קורין בהן בציבור אבל עכ&quot;פ מותרין התינוקות ללמוד בהן דבהנך לא קפדינן לאבד זכרם, קצרתי ודוק:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:9:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-6-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 6:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל שלמה האמור בשה&quot;ש קודש וכו׳ וה&quot;ה לשאר הכינוים.</strong> פי׳ דמותר למוחקן ולא הוי קודש אלא לענין שבועה שהמשביע את חבירו בשלמה האמור בשה&quot;ש הוי כמשביע במי שהוא רחום וחלה עליו השבועה כ&quot;כ בשו&quot;ת תשב&quot;ץ ח&quot;ר קע&quot;ז וע&quot;ע שם כמה דברים בשמות הקודש דברים מחודשים. ועיין כ&quot;מ מ&quot;ש בשם תשובת הרא&quot;ש:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-7">Chapter 7</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-7-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 7:1:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-7-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 7:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גיבור במדותיו.</strong> עיין בזה בפ&quot;ז משמנה פרקים לרבינו שכתב שם והוא אמרם אין הנבואה שורה אלא על חכם גבור ועשיר וחכם הוא כולל כל המעלות השכליות בלי ספק ועשיר הוא מעלות ומדות ר&quot;ל הסתפקות כמאמרם איזהו גבור הכובש את יצרו ועיין בכ&quot;מ וצע&quot;ק ועי׳ בל&quot;מ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-7-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 7:4:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-7-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 7:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פלוני מתגדל.</strong> פי׳ אע&quot;ג דלא שייך זה הלשון עד שיהיה גדול שהוא נגזר מגדולה מ&quot;מ נקרא ע&quot;ש מעשיו לסופו, כ&quot;כ בפירוש הרמב&quot;ם להרב דוד ערמאה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-8">Chapter 8</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-8-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 8:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-8-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 8:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בתחילת נבואתו.</strong> עיין שו&quot;ת מהר&quot;ל ן׳ חביב דף ע&quot;ח ע&quot;ג:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-9">Chapter 9</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-9-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 9:2:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-9-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 9:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>א&quot;כ למה נאמר בתורה נביא אקים וכו׳ להזהיר העם שלא יעברו עליו.</strong> וכ&quot;כ בס׳ גור אריה שזה הוא פירוש נביא מקרב אחיך כמוני יקים לך ה׳ אלהיך אליו תשמעון, אם הוא כמוני שיצוה אותך על התורה והמצות אליו תשמעון כדאמרינן במגילה מ&quot;ח נביאים נתנבאו לישראל וכולם לא הוסיפו ולא פחתו על תורת משה ע&quot;ה שמי שלא יהיה כמשה אל תאבה ואל תשמע לו ועיין פ&quot;י הל׳ ב׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-10">Chapter 10</h4>
+          <section class="unit" id="kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-10-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 10:5:1</h4></div>
+              <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-10-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Foundations of the Torah 10:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנאמר לא תנסו וכו׳.</strong> ובכלל אזהרה זו שלא יאמר אדם אעשה מצוה זאת ואראה אם אתברך רק במצות מעשר כתוב ובחנוני נא בזאת כ&quot;ה בסמ&quot;ג. ועיין בס׳ משנת חכמים הל׳ יסוה&quot;ת שהאריך בביאור הגמ׳ תענית ט׳ ע&quot;א. וטעם הדבר דשרי לנסות במצות מעשר כתב העט&quot;ז והדרישה בשם מהרש&quot;ל משום דבשאר נסיונות אפשר שינסה ולא יבוא ויכול לבוא לידי הרהור מחשבה רעה ח&quot;ו אבל בנסיון זה ודאי יבוא ויתעשר דכתיב עשר בשביל שתתעשר וצ&quot;ע. ועיין בס׳ סמיכות חכמים בהקדמה הרבה טעמים ולא מצאתי דבר דרשאי לנסות במצות מעשר בדברי רבינו לא בהל׳ מעשר ולא בהל׳ מ&quot;ע פ&quot;ו ופ&quot;ז. ונראה דדעתו משום דיש בכפל קרא דעשר תעשר דרשות אחרות והא דכתיב ובחנוני נא בזאת היינו בכלל ישראל אם ישראל שומרים מעשרות כדתנן אבות פ&quot;ה גמרו שלא לעשר רעב של מהומה בא מקצתן אינם מעשרין רעב של בצורת בא מקצתן רעבין אבל כשרובן מעשרין ע&quot;ז נאמר ובחנוני נא בזאת אם לא אפתח וכו׳. והטור בסי׳ רמ&quot;ז הביא דין זה דשרי לנסות ואין מקומו כאן להאריך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah.manifest.json","occurrence_url":"../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

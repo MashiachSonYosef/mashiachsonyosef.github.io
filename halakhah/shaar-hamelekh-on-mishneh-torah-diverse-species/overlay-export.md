@@ -1,0 +1,11 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 1:1:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-1-1-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 1:3:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-1-3-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 1:7:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-1-7-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 5:24:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-5-24-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 9:5:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-9-5-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 9:11:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-9-11-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 10:2:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-10-2-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 10:12:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-10-12-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species | Sha'ar HaMelekh on Mishneh Torah, Diverse Species 10:32:1 | shaar-hamelekh-on-mishneh-torah-diverse-species-10-32-1 |  |  | not_done |  |

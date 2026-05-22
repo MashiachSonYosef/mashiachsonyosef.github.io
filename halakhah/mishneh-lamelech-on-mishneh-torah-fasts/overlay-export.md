@@ -1,0 +1,4 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| mishneh-lamelech-on-mishneh-torah-fasts | Mishneh LaMelech on Mishneh Torah, Fasts | Mishneh LaMelech on Mishneh Torah, Fasts 1:1:1 | mishneh-lamelech-on-mishneh-torah-fasts-1-1-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-fasts | Mishneh LaMelech on Mishneh Torah, Fasts | Mishneh LaMelech on Mishneh Torah, Fasts 1:9:1 | mishneh-lamelech-on-mishneh-torah-fasts-1-9-1 |  |  | not_done |  |

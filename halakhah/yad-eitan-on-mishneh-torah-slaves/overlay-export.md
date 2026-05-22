@@ -1,0 +1,12 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 1:1:1 | yad-eitan-on-mishneh-torah-slaves-1-1-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 1:2:1 | yad-eitan-on-mishneh-torah-slaves-1-2-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 1:7:1 | yad-eitan-on-mishneh-torah-slaves-1-7-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 2:5:1 | yad-eitan-on-mishneh-torah-slaves-2-5-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 2:8:1 | yad-eitan-on-mishneh-torah-slaves-2-8-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 2:12:1 | yad-eitan-on-mishneh-torah-slaves-2-12-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 3:1:1 | yad-eitan-on-mishneh-torah-slaves-3-1-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 3:5:1 | yad-eitan-on-mishneh-torah-slaves-3-5-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 4:4:1 | yad-eitan-on-mishneh-torah-slaves-4-4-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-slaves | Yad Eitan on Mishneh Torah, Slaves | Yad Eitan on Mishneh Torah, Slaves 4:13:1 | yad-eitan-on-mishneh-torah-slaves-4-13-1 |  |  | not_done |  |

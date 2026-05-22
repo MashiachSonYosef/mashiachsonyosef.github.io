@@ -1,0 +1,9 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance 1:1:1 | kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-1-1-1 |  |  | not_done |  |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance 1:2:1 | kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-1-2-1 |  |  | not_done |  |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance 2:2:1 | kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-2-2-1 |  |  | not_done |  |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance 2:9:1 | kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-2-9-1 |  |  | not_done |  |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance 3:5:1 | kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-3-5-1 |  |  | not_done |  |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance 3:14:1 | kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-3-14-1 |  |  | not_done |  |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance | Kovetz Al Yad HaChazakah on Mishneh Torah, Repentance 7:5:1 | kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-7-5-1 |  |  | not_done |  |

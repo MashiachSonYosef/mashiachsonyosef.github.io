@@ -1,0 +1,9 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| nachal-eitan-on-mishneh-torah-fringes | Nachal Eitan on Mishneh Torah, Fringes | Nachal Eitan on Mishneh Torah, Fringes 1:1:1 | nachal-eitan-on-mishneh-torah-fringes-1-1-1 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fringes | Nachal Eitan on Mishneh Torah, Fringes | Nachal Eitan on Mishneh Torah, Fringes 1:11:1 | nachal-eitan-on-mishneh-torah-fringes-1-11-1 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fringes | Nachal Eitan on Mishneh Torah, Fringes | Nachal Eitan on Mishneh Torah, Fringes 1:11:2 | nachal-eitan-on-mishneh-torah-fringes-1-11-2 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fringes | Nachal Eitan on Mishneh Torah, Fringes | Nachal Eitan on Mishneh Torah, Fringes 1:11:3 | nachal-eitan-on-mishneh-torah-fringes-1-11-3 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fringes | Nachal Eitan on Mishneh Torah, Fringes | Nachal Eitan on Mishneh Torah, Fringes 1:11:4 | nachal-eitan-on-mishneh-torah-fringes-1-11-4 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fringes | Nachal Eitan on Mishneh Torah, Fringes | Nachal Eitan on Mishneh Torah, Fringes 2:1:1 | nachal-eitan-on-mishneh-torah-fringes-2-1-1 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fringes | Nachal Eitan on Mishneh Torah, Fringes | Nachal Eitan on Mishneh Torah, Fringes 3:10:1 | nachal-eitan-on-mishneh-torah-fringes-3-10-1 |  |  | not_done |  |

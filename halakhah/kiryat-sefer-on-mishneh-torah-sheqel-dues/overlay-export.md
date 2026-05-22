@@ -1,0 +1,18 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:1:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-1-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:2:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-1-2-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:7:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-1-7-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:8:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-1-8-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:9:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-1-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 2:4:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-2-4-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 2:9:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-2-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:1:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-3-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:8:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-3-8-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:10:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-3-10-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:11:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-3-11-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:12:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-3-12-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:1:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-4-1-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:3:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-4-3-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:9:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-4-9-1 |  |  | not_done |  |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues | Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:11:1 | kiryat-sefer-on-mishneh-torah-sheqel-dues-4-11-1 |  |  | not_done |  |

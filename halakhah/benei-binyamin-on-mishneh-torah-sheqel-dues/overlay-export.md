@@ -1,0 +1,13 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 1:1:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-1-1-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 1:8:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-1-8-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 2:1:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-2-1-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 2:6:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-2-6-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 4:1:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-4-1-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:2 | benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-2 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:3 | benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-3 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:4 | benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-4 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 4:4:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-4-4-1 |  |  | not_done |  |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | Benei Binyamin on Mishneh Torah, Sheqel Dues | Benei Binyamin on Mishneh Torah, Sheqel Dues 4:8:1 | benei-binyamin-on-mishneh-torah-sheqel-dues-4-8-1 |  |  | not_done |  |

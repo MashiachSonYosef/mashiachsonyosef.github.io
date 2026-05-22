@@ -1,0 +1,12 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 1:1:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-1-1-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 1:2:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-1-2-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 2:2:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-2-2-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 2:3:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-2-3-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 2:4:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-2-4-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 4:2:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-4-2-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 6:5:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-6-5-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 6:14:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-6-14-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 7:4:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-7-4-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | Yitzchak Yeranen on Mishneh Torah, Torah Study | Yitzchak Yeranen on Mishneh Torah, Torah Study 7:11:1 | yitzchak-yeranen-on-mishneh-torah-torah-study-7-11-1 |  |  | not_done |  |

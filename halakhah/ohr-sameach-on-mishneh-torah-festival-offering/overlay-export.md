@@ -1,0 +1,12 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 1:1:1 | ohr-sameach-on-mishneh-torah-festival-offering-1-1-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 1:1:2 | ohr-sameach-on-mishneh-torah-festival-offering-1-1-2 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 1:1:3 | ohr-sameach-on-mishneh-torah-festival-offering-1-1-3 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 1:8:1 | ohr-sameach-on-mishneh-torah-festival-offering-1-8-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 1:8:2 | ohr-sameach-on-mishneh-torah-festival-offering-1-8-2 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 1:10:1 | ohr-sameach-on-mishneh-torah-festival-offering-1-10-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 2:1:1 | ohr-sameach-on-mishneh-torah-festival-offering-2-1-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 2:2:1 | ohr-sameach-on-mishneh-torah-festival-offering-2-2-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 2:10:1 | ohr-sameach-on-mishneh-torah-festival-offering-2-10-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-festival-offering | Ohr Sameach on Mishneh Torah, Festival Offering | Ohr Sameach on Mishneh Torah, Festival Offering 3:2:1 | ohr-sameach-on-mishneh-torah-festival-offering-3-2-1 |  |  | not_done |  |

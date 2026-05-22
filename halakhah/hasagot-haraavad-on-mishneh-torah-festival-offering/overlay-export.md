@@ -1,0 +1,8 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| hasagot-haraavad-on-mishneh-torah-festival-offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering 1:1:1 | hasagot-haraavad-on-mishneh-torah-festival-offering-1-1-1 |  |  | not_done |  |
+| hasagot-haraavad-on-mishneh-torah-festival-offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering 2:1:1 | hasagot-haraavad-on-mishneh-torah-festival-offering-2-1-1 |  |  | not_done |  |
+| hasagot-haraavad-on-mishneh-torah-festival-offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering 2:8:1 | hasagot-haraavad-on-mishneh-torah-festival-offering-2-8-1 |  |  | not_done |  |
+| hasagot-haraavad-on-mishneh-torah-festival-offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering 2:10:1 | hasagot-haraavad-on-mishneh-torah-festival-offering-2-10-1 |  |  | not_done |  |
+| hasagot-haraavad-on-mishneh-torah-festival-offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering 2:14:1 | hasagot-haraavad-on-mishneh-torah-festival-offering-2-14-1 |  |  | not_done |  |
+| hasagot-haraavad-on-mishneh-torah-festival-offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering | Hasagot HaRa'avad on Mishneh Torah, Festival Offering 3:7:1 | hasagot-haraavad-on-mishneh-torah-festival-offering-3-7-1 |  |  | not_done |  |

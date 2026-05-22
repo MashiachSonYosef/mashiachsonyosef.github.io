@@ -1,0 +1,5 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| nachal-eitan-on-mishneh-torah-fasts | Nachal Eitan on Mishneh Torah, Fasts | Nachal Eitan on Mishneh Torah, Fasts 1:1:1 | nachal-eitan-on-mishneh-torah-fasts-1-1-1 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fasts | Nachal Eitan on Mishneh Torah, Fasts | Nachal Eitan on Mishneh Torah, Fasts 1:5:1 | nachal-eitan-on-mishneh-torah-fasts-1-5-1 |  |  | not_done |  |
+| nachal-eitan-on-mishneh-torah-fasts | Nachal Eitan on Mishneh Torah, Fasts | Nachal Eitan on Mishneh Torah, Fasts 4:1:1 | nachal-eitan-on-mishneh-torah-fasts-4-1-1 |  |  | not_done |  |

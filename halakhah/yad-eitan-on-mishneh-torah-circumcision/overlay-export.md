@@ -1,0 +1,3 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yad-eitan-on-mishneh-torah-circumcision | Yad Eitan on Mishneh Torah, Circumcision | Yad Eitan on Mishneh Torah, Circumcision 1:1:1 | yad-eitan-on-mishneh-torah-circumcision-1-1-1 |  |  | not_done |  |

@@ -1,0 +1,11 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 1:1:1 | ben-aryeh-on-mishneh-torah-paschal-offering-1-1-1 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 1:14:1 | ben-aryeh-on-mishneh-torah-paschal-offering-1-14-1 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 5:9:1 | ben-aryeh-on-mishneh-torah-paschal-offering-5-9-1 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 6:2:1 | ben-aryeh-on-mishneh-torah-paschal-offering-6-2-1 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 6:2:2 | ben-aryeh-on-mishneh-torah-paschal-offering-6-2-2 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 7:1:1 | ben-aryeh-on-mishneh-torah-paschal-offering-7-1-1 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 7:6:1 | ben-aryeh-on-mishneh-torah-paschal-offering-7-6-1 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 9:7:1 | ben-aryeh-on-mishneh-torah-paschal-offering-9-7-1 |  |  | not_done |  |
+| ben-aryeh-on-mishneh-torah-paschal-offering | Ben Aryeh on Mishneh Torah, Paschal Offering | Ben Aryeh on Mishneh Torah, Paschal Offering 10:6:1 | ben-aryeh-on-mishneh-torah-paschal-offering-10-6-1 |  |  | not_done |  |

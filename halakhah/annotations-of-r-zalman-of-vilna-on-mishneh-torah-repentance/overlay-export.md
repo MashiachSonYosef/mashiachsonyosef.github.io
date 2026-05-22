@@ -1,0 +1,3 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| annotations-of-r-zalman-of-vilna-on-mishneh-torah-repentance | Annotations of R' Zalman of Vilna on Mishneh Torah, Repentance | Annotations of R' Zalman of Vilna on Mishneh Torah, Repentance 1:1:1 | annotations-of-r-zalman-of-vilna-on-mishneh-torah-repentance-1-1-1 |  |  | not_done |  |

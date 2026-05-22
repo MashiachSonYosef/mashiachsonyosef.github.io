@@ -1,0 +1,5 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing | Yad Eitan on Mishneh Torah, Prayer and the Priestly Blessing | Yad Eitan on Mishneh Torah, Prayer and the Priestly Blessing 1:1:1 | yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-1-1-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing | Yad Eitan on Mishneh Torah, Prayer and the Priestly Blessing | Yad Eitan on Mishneh Torah, Prayer and the Priestly Blessing 13:5:1 | yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-13-5-1 |  |  | not_done |  |
+| yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing | Yad Eitan on Mishneh Torah, Prayer and the Priestly Blessing | Yad Eitan on Mishneh Torah, Prayer and the Priestly Blessing 15:3:1 | yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-15-3-1 |  |  | not_done |  |

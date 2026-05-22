@@ -1,0 +1,10 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 1:1:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-1-1-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 1:3:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-1-3-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 1:6:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-1-6-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 3:6:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-3-6-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 5:21:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-5-21-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 6:12:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-6-12-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 9:11:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-9-11-1 |  |  | not_done |  |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | Mishneh LaMelech on Mishneh Torah, Diverse Species | Mishneh LaMelech on Mishneh Torah, Diverse Species 10:32:1 | mishneh-lamelech-on-mishneh-torah-diverse-species-10-32-1 |  |  | not_done |  |

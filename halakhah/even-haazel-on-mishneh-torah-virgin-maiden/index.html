@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Even Ha&#39;azel on Mishneh Torah, Virgin Maiden</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Even Ha&#39;azel on Mishneh Torah, Virgin Maiden</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Virgin Maiden</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Virgin Maiden</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">5 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>505 matched</strong> / 1409 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/even-haazel-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Even Ha&#39;azel on Mishneh Torah, Virgin Maiden <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Even Ha&#39;azel on Mishneh Torah, Virgin Maiden <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-1-1" title="Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-2-1" title="Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-3-1" title="Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-11-1" title="Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:11:1">1:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#even-haazel-on-mishneh-torah-virgin-maiden-2-15-1" title="Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 2:15:1">2:15:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-1">Chapter 1</h4>
+          <section class="unit" id="even-haazel-on-mishneh-torah-virgin-maiden-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:1:1</h4></div>
+              <a class="anchor" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-1-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Virgin Maiden 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שפיתה בתולה קונסין אותו משקל חמשים סלעים של כסף מזוקק והוא הנקרא קנס, וכן אם אנס אותה, וקנס זה מצות עשה של תורה שנאמר ונתן האיש השוכב עמה לאבי הנערה חמשים כסף.</strong><br><strong> הנה </strong> בדין חמשים שקלים שכתב הרמב&quot;ם בפ&quot;א מהל׳ שקלים הל׳ ב׳ וז&quot;ל מנין כסף האמור בתורה באונס ובמפתה ובמוציא שם רע והורג עבד הוא שקל הנאמר בכל מקום בתורה, ומשקלו שלש מאות ועשרים שעורה, וכבר הוסיפו חכמים עליו ועשו משקלו כמשקל המטבע הנקרא סלע בזמן בית שני, וכמה הוא משקל הסלע שלש מאות וארבע ושמונים שעורה בינונית, והריטב&quot;א הביאו הרי&quot;ט אלגזי בהלכות בכורות כתב דחוץ מה׳ סלעים של בן ותמה עליו ע&quot;ש, והנה בדין המלוה את חברו על המטבע איפסקא להדיא דאם לא הוזלו הפירות בשביל זה שהוסיפו על המטבע צריך ליתן ממטבע החדשה, והרמב&quot;ם בפ&quot;ד מהל׳ מלוה הל׳ י&quot;א כתב המלוה את חבירו על המטבע וכן הכותב לאשתו בכתובתה מטבע ידוע ופירש משקלו והוסיפו על משקלו אם הוזלו הפירות מחמת התוספת מנכה לו שיעור התוספת, ואם לא הוזלו מחמת התוספת אינו מנכה לו אלא נותן לו ממטבע היוצאת באותה שעה, וביאור דבריו במה שכתב ופירש משקלו היינו שהלוה לו על מטבע ידוע והמטבע נקראת על שם משקל ידוע, מ&quot;מ אם הוסיפו על המטבע נותן לו מטבע חדשה משום דחד שם מטבע הוא, ולכאורה לפ&quot;ז למה צריך לן קרא דיהא דאם הוסיפו צריך ליתן מן החדשים, ואפשר דהא גופא אשמעינן קרא דיש רשות להוסיף והיינו דינא דהמלוה על המטבע היינו מטבע של מלך, ובודאי דלא שייך לומר דאין לו רשות להוסיף וממילא קם דינא דגמ׳ דכיון שהוסיף ועכשיו אינה יוצאת רק החדשה צריך ליתן החדשה ואינו מנכה לו מחמת התוספת.<br><strong> והנה </strong> בגמ׳ שם יכול אם פחתו ת&quot;ל הוא, ולכאורה בדין המלוה את חבירו על המטבע הדין נותן דגם אם פחתו אם לא הוקרו הפירות בשביל זה דנותן מהחדשים, אכן לפמש&quot;כ אפשר לומר דזה גופא אשמעינן קרא דאין רשות לפחות משקל הקודש ורק דלהוסיף יש רשות איברא דלשון הגמ׳ אינו משמע כן דבאופן זה הי׳ צריך לומר ומנין שיש רשות להוסיף, ולשון הגמ׳ ומנין שאם הוסיפו עליהם וכו׳ יכול אם פחתו, אך אפשר לומר דזה ודאי דבהנהגת המדינה יש רשות להוסיף רק דקרא אשמעינן דיש רשות להוסיף בשקל הקדש, גם יש נ&quot;מ אם הוזלו הפירות בזמן שהוסיפו, והנה בל&quot;ז שכתבנו אפשר דיש לחלק מדין המלוה את חברו על המטבע דהכונה לשלם במטבע היוצאת בהוצאה, אבל מה דמחייב קרא אפשר דאינו נותן אלא כמשקל שהי׳ בימי משה, והוא קרוב עם מש&quot;כ מקודם.<br><strong> והנה </strong> הר&quot;י מיגאש הביא דבריו בשטמ&quot;ק הרחיק מאד סברת הדינים שדנו באחד שהלוה לחברו משקל ידוע זהב מהמשקלות ההולכות בתורת מטבע ונקרא בלשון ערבי &quot;מתקאל&quot; והוסיף המלך על המטבע ודנו הדינים שצריך לפרוע ממטבע החדשה והר&quot;י מיגאש הרחיק שיטה זה וכתב דדייני דדנו להך דינא עליהם נאמר כי רבים חללים הפילה שלא הגיעו להוראה ומורים, וטעמו שבמטבע אין מתחשבין עם המשקל כלל דהיינו אם יהי׳ בסלע זה תוספת מעט במשקלו לא יקח עבורו יותר וכן אם יתחסר מעט מן המטבע לא יוזל המטבע כלל [וצריך לעיין ממטבע שפחתה] אבל ב&quot;מתקאל&quot; מתחשבין כמה גרעינים יש בו ולכן אף שה&quot;מתקאל&quot; היוצא עתה הוא &quot;מתקאל&quot; נוסף, מ&quot;מ אין צריך ליתן אלא מן הישנים.<br><strong> והנה </strong> הרמב&quot;ם כתב ופירש משקלו, וצריך לומר דהכונה דאף שפירש משקל המטבע אבל עכ&quot;פ דעתו בעיקר על המטבע, ובאמת הוסיף עוד שם הר&quot;י מיגאש שה&quot;מתקאל&quot; אינו מטבע אחת אלא הוא מקובץ מהרבה גרעינים זהב אבל כאן הלא הוא מטבע אחת, עכ&quot;פ לפ&quot;מ שבארנו מיושב שיטת הרמב&quot;ם במה שפסק דגם בכל הקנסות צריך ליתן ממטבע החדש ולכאורה יש להקשות כיון דצריך קרא בערכין ופדיון הבן בודאי ילפינן מערכין אבל בקנס איך ילפינן הא קנסא מממונא לא ילפינן, אבל לפי מה דבאמת דינא דמלוה את חברו על המטבע הוא דינא דגמ׳ בלא קרא וע&quot;כ דהסברא הוא כן וקרא דיהי׳ הוי רק דיש רשות להוסיף על שקל הקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="even-haazel-on-mishneh-torah-virgin-maiden-1-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:2:1</h4></div>
+              <a class="anchor" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-2-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Virgin Maiden 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואיזה הוא מפתה ואי זה הוא אונס, מפתה לרצונה אונס שבא עליה בעל כרחה, כל הנבעלת בשדה הרי זו בחזקת אנוסה ודנין אותה בדין אנוסה עד שיעידו העדים שברצונה נבעלה, וכל הנבעלת בעיר הרי זו בחזקת מפותה מפני שלא זעקה עד שיעידו העדים שהיא אנוסה כגון ששלף לה חרב ואמר לה אם תזעקי אהרוג אותך.</strong><br><strong> כתב </strong> הראב&quot;ד ז&quot;ל חיי ראשי חזקה זו איני יודע מה תועלת יש בה אם יש שם עדים יבואו ויעידו ואם אין שם עדים קנס אין שם ואם לענין ג׳ דברים אם יש טענה ביניהם זה כלל גדול בדין המוציא מחברו עליו הראיה והעיר והשדה שוות הם עכ&quot;ל.<br><strong> כתב </strong> המ&quot;מ י&quot;ל כמש&quot;כ בעל מגדל עוז שאם ראו העדים מרחוק ששכב עמה ולא ידעו אם באונס אם ברצון אם היה בעיר חזקה שהיא מפותה אם לא צעקה ולא העידו ששלף וכו׳ ואם היה בשדה חזקה שהיא אנוסה, והנה בודאי שגם ע&quot;ז חולק הראב&quot;ד דהא כתב דלענין ג׳ דברים הממע&quot;ה ואם היה כונת הראב&quot;ד דהא יש לו מגו דאי בעי הי׳ כופר לא היה כותב הממע&quot;ה אלא דנאמן במגו.<br><strong> והנה </strong> מתחילה עלינו להבין עיקר הך חזקה דאיזה ראיה היא ממה שהי׳ בשדה שהיה באונס אימא דגם היא נתרצית, ואין ראיה כלל מקרא דבקרא מיירי לענין מיתה ובודאי דדיינינן דבשדה הי׳ באונס ופטורה ממיתה אבל בקנס דאנו באין לחייבו ולדון שבודאי אנסה מנא לן, ובאמת דבקרא גופא הוא תימה הא דבעיר חייבת מיתה דממ&quot;נ אם הי׳ עדים והתראה הא העדים יודעים אם הי׳ ברצון ואם אין עדים והתראה פטורים ממיתה וכבר עמד על זה הרמב&quot;ן בפירושו על התורה וכתב שאם ראו עדים מרחוק ואין יודעים אם ברצון או באונס והתרו בה מרחוק אם בעיר חזקה שברצון, והנה פי׳ הרמב&quot;ן הוא תמוה דהא קיי&quot;ל דבעינן עד שיתיר עצמו למיתה, והתרו בו ושתק פטור, אלא עד שאומר יודע אני וע&quot;מ כן אני עושה וא&quot;כ אם התירה עצמה למיתה ע&quot;כ הוא ברצון ואם לא התירה א&quot;ע למיתה בל&quot;ז פטורה.<br><strong> והנה </strong> בספורנו כתב על קרא דואם בשדה מצאה בהא דכתב בקרא צעקה הנערה וגו׳ וכתב ע&quot;ז הספורנו דלכן אף שאח&quot;כ נתרצתה פטורה כדאמר הגמ׳ בכתובות דף נ&quot;ב דתחלתה באונס וסופה ברצון מותרת לבעלה, וכונת הספורנו מבואר דרוצה ליישב הא דלא צעקה בעיר שחייבת בשביל זה מיתה, וכמו שהקשינו, וע&quot;ז בא הספורנו ליישב דבאמת עכשיו כשמצאו אותם העדים כדרך המנאפים הם שניהם ברצון ומקבלים התראה, ומ&quot;מ בשדה תלינן שמעיקרא הי׳ באונס ולכן אף שעכשיו הוא ברצון נחשב אונס משום דיצרה אלבשה אבל בעיר כיון דתלינן דבודאי נתרצתה שאם לא כן היתה צועקת אף דאכתי לא הי׳ התראה מ&quot;מ אין זה חשוב אונס גמור לפטור אותה אח&quot;כ בעת שתהי׳ מזידה ותקבל התראה, ואמנם שיש בזה חידוש גדול דכיון דבלא התראה לא נחשב למזידה ואח&quot;כ כשמרוצית הא איכא כאן סברא דיצרה אלבשה, ולכן לכאורה צריכה להיות פטורה, ורק דצריך לומר דבאמת יצרה אלבשה בלחוד אינה סברא לפטור דכל המזנים יצרם אלבשם, אלא דהעיקר דמשום דנמשך מתחילת המעשה שהי׳ באונס והלבשת היצר הי׳ ע&quot;י מעשה שהי׳ באונס מתחילה לכן חשיבא אונס, ולכן כ&quot;ז דוקא באונס ממש אבל היכי שעפ&quot;י החזקה לא הי׳ אונס רק שהי׳ בלא התראה ונחשב זה לשוגג זה לא יפטור מה שעשה אח&quot;כ במזיד דלא נוכל לומר דהי׳ אנוס דהא מקודם ג&quot;כ לא הי׳ אנוס, ומצאתי אח&quot;כ בפנ&quot;י בכתובות דף נ&quot;א שהחליט ג&quot;כ לסברא ברורה דהיכי שמקודם פשעה ולא הי׳ באונס אינה מותרת לבעלה, אכן דלכאורה לא יתיישב זה אלא לרבא ולאבוה דשמואל תיקשי קרא, ולפ&quot;מ שהביא הפנ&quot;י שם דברי התרגום ירושלמי על קרא דאין לנערה משפט מות וכתב התרגום אלא בעלה יפטריני׳ בגט, וכתב ע&quot;ז הפנ&quot;י דהתרגום יסבור כאבוה דשמואל דחיישינן שמא תחילתה באונס וסופה ברצון ולא נחית שם הפנ&quot;י לדברי הספורנו.<br><strong> אכן </strong> לדברינו יתיישב ביותר דנימא דגם אבוה דשמואל דאינו סובר זה לאונס היינו דוקא לענין לאסור על בעלה משום דשמא רוצית זה ברצון גמור ונשתנה דעתה אבל לענין חיוב מיתה אפשר דסבר ג&quot;כ דמקרי זה אונס כיון דמעיקרא נאנסה, ומצאתי אח&quot;כ שהנוב&quot;י תנינא באהע&quot;ז תשו׳ ק&quot;נ כתב להדיא כן בשיטת אבוה דשמואל ליישב בזה דברי רש&quot;ל, ומיושב ביותר דברי התרגום דנחית לדברי הספורנו ומיירי כאן דע&quot;כ בסוף הי׳ ברצון גמור מדמחייב מיתה בעיר אלא דמ&quot;מ בשדה אינה חייבת מיתה כיון שמתחילה הי׳ באונס כנ&quot;ל, אלא דבזה דברי הפנ&quot;י קיימים לכאורה דע&quot;כ סובר התרגום כאבוה דשמואל דלרבא גם לבעלה שרי רק דיסבור התרגום כמש&quot;כ דלאבוה דשמואל דאף דלבעלה אסורה מ&quot;מ ממיתה פטורה וכמש&quot;כ כן להדיא הנוב&quot;י.<br><strong> ולפ&quot;ז </strong> נוכל לומר דהתרגום יוכל לסבור כהלכה וכרבא ומ&quot;מ כיון דלפנינו מצאנו אותם ומתרים בהם ושניהם רוצים לא מהני מה דבשדה להתירה לבעלה ונאמר הוכיח סופו על תחילתו וכדאמרינן בכמה דוכתי, ובפרט לפ&quot;מ דמשמע בריש זבחים ובחולין דהוכיח סופו על תחילתו הוי ספק א&quot;כ פשוט דלבעלה אסורה וממיתה פטורה ואף דלפ&quot;מ שכתבו הפנ&quot;י והנוב&quot;י מה דחושש אבוה דשמואל משום דרוב כן הוא שלבסוף תתרצה מ&quot;מ אינו מוכח דסבר כן רבא אף דמלשון הרמב&quot;ם שכתב אין בידה וכמו שמציין הנוב&quot;י משמע דלהלכה כן הוא שהוא ודאי מ&quot;מ אפשר דכ&quot;ז אם ידענו באונסה מקודם אבל בסתמא ניחוש להוכיח סופו על תחילתו.<br><strong> והנה </strong> אפשר לומר דלגבי דידה גם בלא סברא דאונס היא פטורה ונאמר דהא רחמנא קרי׳ מעשה לגבי דידה היינו במה שמנחת עצמה ברצון אבל בכאן כיון שהוא אנסה ואם היתה רוצית להשתמט ממנו אינה יכולה אף שמרוצית אינה כמעשה, ולכן מיושב שפיר דבשדה כיון דתלינן דמעיקרא הי׳ באונס שוב לא הוי כמעשה דאף שהתרו בה עתה וקבלה התראה ואמרה אעפ&quot;כ מ&quot;מ כיון שאם תחפוץ להשמט אינה יכולה לא איכפת לן אף שמרוצית אבל בעיר גם מה שמרוצית עכשיו הוי מעשה אך מ&quot;מ אינו מיושב אופן זה דהא העדים יכולים לראות באיזה אופן הוא אם יכולה להשמט או שאינה יכולה שתופש בה או מאיים עלי׳ בחרב.<br><strong> וארווחנא </strong> במה שכתבתי דבזה נראה שאפשר ליישב דברי הרמב&quot;ן שמפרש כגון שראו עדים מרחוק והתרו בהם ואינם יודעים אם ברצון אם באונס והקשינו עליו דהא בעינן עד שיתיר עצמו למיתה אך לפ&quot;ז אפשר לומר דבאמת איירי דהתירה עצמה למיתה ומ&quot;מ כיון שתופש בה בשביל האונס דמעיקרא אף שעכשיו מרוצית לא מיקריא מעשה דמעשה לא מיקריא אלא במה שהניחה את עצמה ברצון וכן מצאתי שסתם כסברא זו הנוב&quot;י בתשו׳ הנ&quot;ל, ולפ&quot;ז נאמר דגם הרמב&quot;ן בחומש נחית לדברי הספורנו רק שלא רצה בזה ליישב הקרא דא&quot;א ליישב הפסוק בשיטת רבא דמה יעשה אבוה דשמואל עם הקרא ולכן יישב ע&quot;כ בדוחק דמיירי שהתרו עדים מרחוק ואינם יודעים אם ברצון או באונס, ולכן בשדה אף שקבלה התראה והתירה עצמה למיתה מ&quot;מ כיון שחזינן שבודאי מעיקרא אנסה ואם עכשיו בודאי אינה יכולה להשמט ממנו אם בשביל שתופש בה בחזקה או בשביל שמאיים עליה בחרב ולכן אף שנתרצתה עכשיו לא מיקרי מעשה כיון שהרצון שלה אינו פועל כלל בזמן העבירה, אבל בעיר תלינן שהיא ברצון גמור מתחילה ועד סוף ולכן כיון שקבלה עתה התראה חייבת.<br><strong> והנה </strong> כ&quot;ז כתבנו על הקרא דמיירי לענין מיתה אבל הרמב&quot;ם דמיירי לענין ממון וקנס באמת אינו מובן לכאורה איך אפשר לדון חזקה זו דאפשר גם בשדה נתרצתה. ומה דמפורש בקרא דבשדה היא בחזקת אנוסה היינו דמכיון דאפשר לומר שהיא אנוסה ממילא בודאי פטורה ממיתה, אבל בעיר מדלא צעקה היא בחזקת מזידה אבל מנלן שודאי היא אנוסה דאמאי לא אפשר שהיא מזידה כמו שהוא מזיד ושניהם רוצים בחטא.<br><strong> והנה </strong> מצינו בב&quot;ק דף צ&quot;א ע&quot;ב נטיעותי קצצת אתה אמרת לי לקוצצו נאמן ופריך בגמ׳ לא שבקת חיי לכל בריה ומשני באילן העומד לקציצה ולכן אפשר דבבתולה כיון דנחשב מזיק במה שהוא פוגמה אינו נאמן במה שיאמר שברצון הי׳ ואתה אמרת לקוצצו, אלא כיון דחזינן דהוא הזיק ועלי׳ אין אנו יודעין אנו מחזיקין שבודאי הי׳ שלא ברצונה ולא נוכל לומר שכמו שהוא רצה כך רצתה היא דהוא המזיק ובודאי היה ברצונו דמי אנסו וא&quot;א אלא מדעתו אבל עליה כיון שהיא הניזוקה אין אנו יכולים לומר דשמא נתרצתה כמו שאינו מועיל טענת אתה אמרת לי, ואף דהתם אין בה יצרא דעברה וכאן אפשר בשביל תאות העברה נתרצתה גם היא, מ&quot;מ כיון שעכ&quot;פ היא הניזוקה אינו נאמן לומר שנתרצתה להיות ניזוקה.<br><strong> והנה </strong> אי נימא דלא כדברינו ורק דבשביל תאות העברה אפשר דנתרצתה להיות ניזוקה יהי׳ זה חלוק מדין אתה אמרת לי לקוצצו בזה דאתה אמרת לי לקוצצו הוי כמו מתנה ומחילה דאינו נאמן אלא במגו כמבואר בש&quot;ך ומשום תאות עברה יהי׳ נחשב כמו מכירה דנאמן לומר מכרת לי, אכן בגמ׳ בב&quot;ב אמרינן דמאן דנקיט מגלא ותובליא ואמר איזיל איגדרי׳ לדיקלא דפלניא דזבנא ניהלי מהימן לא חצף אינש למגזר דיקלא דלאו דילי׳, והנה אם נימא דקאי גם לאחר שלקח הפירות וכדמייתי מזה על הא דטעון ואמר לפירות ירדתי אלמא דבלא סברא דלא חציף לא הי׳ נאמן, איברא דשם משני דירד מעצמו והוי כמו גודרות דאין חזקת תפיסתם ראי׳ על מכירה, ורק הא דלא חציף מברר קניתו, ומ&quot;מ אפשר דגם בהא דטענת מכירה דודאי נאמן היינו משום דאינו מועיל טענת גזלת ממני משום דאחזוקי אינשי בגזלני לא מחזקינן וא&quot;כ אפשר דכאן כיון דאם פיתה אותה ג&quot;כ הוא חצוף שוב ל&quot;ש וכאן חזקה דלא חציף ומועיל טענתה דאנסת אותי כיון שעכ&quot;פ הזיקה ופגמה ואינו נאמן לומר דברצון זינתה אפי׳ אם נדמה זה במקצת למכירה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="even-haazel-on-mishneh-torah-virgin-maiden-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:3:1</h4></div>
+              <a class="anchor" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-3-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Virgin Maiden 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפותה שלא רצתה להנשא למפתה או שלא רצה אביה ליתנה לו או שלא רצה הוא לכנוס ה&quot;ז נותן קנס והולך, ואין כופין אותו לכנוס ואם רצו וכנסה אינו משלם קנס אלא כותב לה כתובה כשאר הבתולות. אבל האנוסה שלא רצה היא או אביה להנשא לאונס הרשות בידם ונותן קנס והולך. רצתה היא ואביה ולא רצה הוא כופין אותו וכונס ונותן קנס שנאמר ולו תהיה לאשה הרי זו מצות עשה אפילו היא חגרת או סומא או מצורעת כופין אותו לכנוס ואינו מוציא לרצונו לעולם שנאמר לא יוכל לשלחה כל ימיו הרי זו מצות לא תעשה.</strong><br><strong> הנה </strong> הפשוט בדעת הרמב&quot;ם דמה דמהני מיאון דידה היינו לענין קנס וא&quot;צ לדחוק כמש&quot;כ התוס׳ בתי׳ שני דדוקא אם מת מהני מיאון דידה שתוכל היא לתבוע הקנס אלא אפי׳ האב קיים מהני מיאון דידה שאין מקיים בזה הך דמהר ימהרנה דגלי קרא בהא דכתיב ואם מאן ימאן שאם תמאן היא כבר חייב בקנס ואף דהאב יש לו רשות להשיאה אבל כבר נתחייב קנס, וממילא ע&quot;כ יתחייב כתובה לבד הקנס שלא תהא קלה עיניו להוציאה דהא מפותה יכול להוציאה.<br><strong> אך </strong> במה שכתב הרמב&quot;ם דכותב לה כתובה כשאר הבתולות תמה המל&quot;מ דהא בעולה היא ולמה יש לה כתובת בתולה, ותי׳ המל&quot;מ דכיון דדרך הוא לכתוב כתובה לכן חייב אותו הכתוב כפי מה שהוא הדרך לכל נושא אשה, והביא המל&quot;מ ראי׳ מהא דעבדים חייב במזונות אשתו וביתו, ובאמת אין ראיה משם דשם שפיר חייבה תורה לאדון לפרנס אשתו כיון דבודאי רוצה העבד בכך ומה לנו שאינו מחוייב, אבל הכא כיון דכל נושא אשה אין לו התחייבות על כתובה למה יהי׳ המפתה מחויב לכתוב כתובה, ורק שיש לומר שכיון שרוב נושאי נשים נותנים כתובה א&quot;כ אם יבוא ליפטר מקנס בזה שישא אותה מחויב להתחייב כדרך העולם שמתחייבים כתובה, אך לפי הסבר זה עוד אינו מוכרח שיתן כתובת בתולה, אכן עיקר ההסבר הוא שהרמב&quot;ם מפרש מה דכתיב כסף ישקול כמהר הבתולות היינו שיתן קנס במקום מהר הבתולות שהי׳ רגיל ליתן, והיינו דלא כפרש&quot;י דמהר הבתולות הוא כתובה, ומזה למד רשב&quot;ג דכתובה דאורייתא. אלא דחכמים סברי דאף שאינו חיוב דאורייתא מ&quot;מ כיון שהוא רגילות ליתן כן חייבה תורה למפתה בזה, ולזה אמר הכתוב דמהר ימהרנה ופי׳ חז&quot;ל במכילתא דמהר הוא כתובה א&quot;כ קאי ג&quot;כ על מהר הבתולות וא&quot;כ מפורש בקרא שמחוייב כתובת בתולה, אלא שהרמב&quot;ם מדייק וכתב וכותב לה כתובת בתולה היינו שאם אינו רוצה ליתן קנס שזהו במקום שהפסידה כסף כתובתה יכול ליקח אותה לאשה מחוייב להתחייב עצמו בסך של כתובת בתולה שהיה ראוי ליתן לה, ומצאתי להנוב&quot;י תנינא סימן ל&quot;ג שכתב כן דהא דחייבו הכתוב בקנס היינו במקום כתובת בתולה שהפסידה.<br><strong> והנה </strong> המל&quot;מ תמה על הרמב&quot;ם שהשמיט הא דאמרינן ביבמות דף כ&quot;ט דאם נשא כה&quot;ג מפותת עצמו נשוי ומפורש בגמ׳ לענין שאינו משלם קנס במפותה, אך לדעתי אין זה קושיא דכיון דביאר הרמב&quot;ם בפירוש דאם נשא אותה לאשה אינו מחוייב ליתן קנס, וזה הא כתב להדיא בהלכה ו׳ דגם בחייבי לאוין חלים הנשואין שהרי כתב ואם כנס מוציא בגט, וממילא דפטור מליתן קנס, ובפרט לפ&quot;מ שבארנו מקודם דדין קנס הוא במקום חיוב הכתובה וממילא כשנשא אותה הא מחוייב כתובה, אפי׳ באשה אסורה לו, דהא אלמנה לכה&quot;ג יש לה כתובה וממילא פטור מקנס, ובאמת זהו קושית התוס׳ שהקשו דמאי נ&quot;מ בזה שאינו משלם קנס הא צריך ליתן לה כתובה [ומוכח מדברי התוס׳ כהנ&quot;ל דדין קנס הוא במקום חיוב הכתובה, דאי לא&quot;ה מאי הקשו ואמאי לא נימא דחייב בשניהם קנס נתחייב על הביאה וכיון שאינו יכול לכנוס והכניסה אינו פוטר עצמו מקנס לפי ההו&quot;א כיון שאינו רשאי להיות עמה ומחויב להוציאה, ומ&quot;מ כתובה ג&quot;כ ישלם כיון שנשאה].<br><strong> והייתי </strong> סבור לבאר דברי התוס׳ כמו דתנן המגרש את אשתו והחזירה ע&quot;מ כתובה הראשונה החזירה, וגם כאן כיון שכל מפותה אינו נותן קנס וגם כתובה ולכן גם כאן שכשנשאה נתחייב אדעתא ככל מפתי דעלמא שבכתובה פוטר את עצמו מקנס וכיון שחייב קנס פטור מכתובה, אך עוד אין זה מבורר ואינו דומה לגמרי להא דמגרש אשתו והחזירה.<br><strong> אך </strong> לפמש&quot;כ מקודם מיושבים דברי התוס׳ שפיר דתוס׳ ס&quot;ל כהרמב&quot;ם וכפשטי׳ דקרא דקנס הוא במקום כתובה ודין מהר ימהרנה הוא ג&quot;כ ליתן לה כתובה כד׳ המכילתא ולכן מקשה התוס׳ שפיר דכיון דנשאה בתורת מפתה וצריך ליתן לה כתובה בתורת מפתה וע&quot;כ דהוא כתובת בתולה וכד׳ הרמב&quot;ם וא&quot;כ מאי אהני שאין נותן קנס, ולזה תירצו התוס׳ דאדרבה כיון דהיינו אומרים דאם נשא אינו נשוי לענין זה וממילא לא נתקיים מהר ימהרנה ומה שצריך ליתן לה כתובה כשאר הנשים אינו אלא כתובת בעולה, וממילא הייתי אומר שישלם קנס לבד כתובת בעולה, ולזה אשמעינן דאם נשא נשוי וממילא מחוייב במהר ימהרנה ומחוייב לכתוב לה כתובה כשאר בתולות.<br><strong> העולה </strong> מדברינו דמה שעשה המל&quot;מ מחלוקת בין התוס׳ והרמב&quot;ם לענין כתובת מפתה דהרמב&quot;ם פוסק כתובת בתולה ותוס׳ ס&quot;ל דהוא כתובת בעולה, ולדברינו יש להוכיח מדברי התוס׳ דאדרבה ס&quot;ל כהרמב&quot;ם, ודוקא בזה מיושבים דברי התוס׳, דאי לא&quot;ה אין מקום לקושייתם מתרי טעמי חדא מאי פסיקא דאינו משלם אלא אחת ואמאי לא נימא דמשלם קנס לחוד וכתובה לחוד, אם לא נימא דנשא נשוי לענין זה והיינו סוברים דכיון דאינו רשאי להחזיקה, מחוייב קנס אף שנשאה, ועוד דבודאי כתובת בעולה אינו אלא מנה אכן לשיטת הרמב&quot;ם מיושב שפיר דהא דפטרה התורה מקנס במפותה כשישאנה הוא משום דחייבתו תורה בכתובה מדין מהר ימהרנה והוא ממש קצבת הקנס דכתיב במהר הבתולות, וממילא שפיר הקשו התוס׳ דכיון דקנס הוא בשביל הפסד כתובה וכתובת מפתה הוא כתובת בתולה אף שהיא בעולה בשביל פטור הקנס א&quot;כ נ&quot;מ דכיון שמשלם כתובה בודאי לא משלם קנס, ולזה תירצו התוס׳ דאה&quot;נ דכיון דהיינו סוברים דלא נפטר בשביל זה מקנס באמת לא נתחייב כלל בכתובה מדאורייתא כיון דאינו בכלל מהר ימהרנה ונשאר רק מה שנשא אותה עכ&quot;פ וחייב לה כתובה כמו בכל דוכתא אלמנה לכה&quot;ג, אבל אם בשביל זה בלא דין דמהר ימהרנה אין כתובתה אלא מדרבנן ואין מגיע לה אלא מנה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="even-haazel-on-mishneh-torah-virgin-maiden-1-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 1:11:1</h4></div>
+              <a class="anchor" href="#even-haazel-on-mishneh-torah-virgin-maiden-1-11-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Virgin Maiden 1:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה בתולה זו אסורה על האונס או המפתה אם היתה מחייבי כריתות כגון אחותו או דודתו והנדה וכיוצא בהן או שהיתה מחייבי לאוין אם התרו בו הרי זה לוקה ואינו משלם קנס שאין אדם לוקה ומשלם, ואם לא היתה שם התראה הואיל ואינו חייב מלקות הרי זה משלם קנס.</strong><br><strong> ואם </strong> לא היתה שם התראה נ&quot;ב היש&quot;ש בפ&quot;ג דכתובות סי׳ ד׳ חולק וסובר דקייל&quot;ן דפטור ע&quot;ש וכן כתב בב&quot;ק בפ&quot;ז סימן כ׳. ע&quot;כ.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-2">Chapter 2</h4>
+          <section class="unit" id="even-haazel-on-mishneh-torah-virgin-maiden-2-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Virgin Maiden 2:15:1</h4></div>
+              <a class="anchor" href="#even-haazel-on-mishneh-torah-virgin-maiden-2-15-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Virgin Maiden 2:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפותה או אנוסה שלא תבעה עד שבגרה או עד שנשאת או עד שמת האב הארבעה דברים או השלשה שלה, עמדה בדין ותבעה אותן ואח&quot;כ בגרה או שנשאת הרי הן של אב, ואם מת האב אחר עמידתה בדין הרי הן של אחין שהן יורשי האב שמעת שעמדה בדין זכה בהן האב.</strong><br><strong> הארבעה </strong> דברים, והנה יש בזה ב׳ שיטות דשיטת הרמב&quot;ן דדוקא קנס, אבל בושת ופגם כיון דממונא היא זכה בהם האב והרי הוא של אחים, ושיטת התוס׳ לחלוק משום דאיתקש להדדי, ועיקר הא דאיתקש הוא משום דכתיב ונתן לא זיכתה תורה לאב אלא משעת נתינה, אך לפ&quot;ז נצטרך לומר דקודם נתינה לא שייך לאב, וא&quot;כ במפותה אין לה קנס כלל דהא מחלה, ומה שתי׳ הרא&quot;ש והריטב&quot;א משום דכיון שהיא של אב לא מהני מחילתה, זה לא מהני אלא אי נימא דמעיקרא דמילתא הוי שבח נעורים לאב ולא שייך מחילתה כלל, ולכן אף אם בגרה חזרה התביעה שלה, מ&quot;מ לא שייך מחילה דידה משום דבשעת מעשה הוי כקרע שיראים של חבירו כיון שאין נתינת הרשות מועלת, ולא היה לה רשות כלל ע&quot;ז, וכיון דלא היה לו רשות לכן אח&quot;כ כשמת האב יכולה גם היא לתבוע, אכן כל זה לא שייך אלא אם נימא ההסבר דשבח נעורים הוא מעיקרא דמילתא של האב, אבל אי נימא דשבח נעורים אינו של האב ולא זיכתה תורה לאב אלא משעת נתינה, א&quot;כ מעיקרא דידה הוי ומחלה, אם לא דנימא דכיון דאשכחן דהם שני דברים דרשות הנשואין שלה הוי של אב מנעוריה בית אבי׳, ומ&quot;מ איצטריך ונתן לגלות לן על צערה דגופא דחייב לו, ונמצא דעל רשות הוי מעיקרא דמילתא משבח נעורים לאבי׳, ומ&quot;מ על חיוב הממון דילפינן מונתן ע&quot;ז אמרינן לא זיכתה תורה לאב אלא משעת נתינה.<br><strong> והנה </strong> התוס׳ רי&quot;ד מפרש הטעם דבושתו ופגמו נמי של עצמה ולא זכו האחים משום דכיון דמחוסרין שומת ב&quot;ד, והביא ראי׳ ממטלטלי דכפרי׳ דלא כתבינן הרשאה, ובאמת שם הוא משום דהוי כמו גזילה ואין אדם מקנה דבר שאינו ברשותו אבל להוריש לבניו מוכח בכ&quot;ד דאדם מוריש, ונראה דס&quot;ל דאף דאדם מוריש דבר שאינו ברשותו, אבל הכא עדיין ליתא דבר מסוים מה להוריש דהא לא נקבע החוב, וכמו דחזינן נ&quot;מ אף דיכול לכתוב הרשאה על ממון שכבר הלוהו, אבל על ממון שעוד לא בא לידו לא שייך שיכתוב עליו הרשאה אף שלא כפרי׳, והיינו דאין כאן ממון מבורר, ולכן אף שמצינו שמוריש לבניו אינו מוריש אלא התביעה והיינו זכות התביעה ולא עצם הממון, והיינו שבא מכח אביו כמו שאביו הי׳ לו התביעה כן הוא נמי יש לו התביעה, אבל הכא כיון שגילתה תורה שאין אדם מוריש זכות בתו לבנו שאין לו עיקר התביעה, וממון מבורר עוד אין כאן ונמצא שנשאר התביעה להבת עצמה.<br><strong> אכן </strong> בעיקר מילתא מה שיש להבת זכות לתבוע אף דההזק לא נעשה ברשותה מוכרח עכ&quot;פ לומר דההיזק נעשה גם לה רק דגזה&quot;כ הוא ליתן לאביה והיינו דהממון הוא לאבי הנערה אבל ההיזק נעשה גם לה [ועי׳ השגת הראב&quot;ד בהלכה י&quot;ג ובהשגתו סוף הלכה ט&quot;ז].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-even-haazel-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/even-haazel-on-mishneh-torah-virgin-maiden.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/even-haazel-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"../../data/lexical/occurrences/even-haazel-on-mishneh-torah-virgin-maiden.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

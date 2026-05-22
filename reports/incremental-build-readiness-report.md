@@ -1,24 +1,24 @@
 # Incremental Build Readiness Report
 
-Generated: 2026-05-21T17:56:40.871Z
+Generated: 2026-05-22T00:39:33.207Z
 
 ## Summary
 
-- Works: 496
-- Source units: 394849
-- Source bytes: 948639247
-- HTML bytes: 1145210243
-- Lexical chunk bytes: 4236147595
+- Works: 654
+- Source units: 396657
+- Source bytes: 957280379
+- HTML bytes: 1163380559
+- Lexical chunk bytes: 4445116284
 - Global artifacts tracked: 6
-- Artifacts at/above 50 MB: 15
-- Artifacts at/above 45 MB: 16
+- Artifacts at/above 50 MB: 13
+- Artifacts at/above 45 MB: 14
 
 ## Large Artifact Risks
 
 | Work | Artifact | Path | Bytes | Level |
 | --- | --- | --- | ---: | --- |
 | sitewide | global | data/public-lexical | 631453879 | warning |
-| sitewide | global | data/search | 336715675 | warning |
+| sitewide | global | data/search | 339945124 | warning |
 | beit-yosef | occurrence | data/lexical/occurrences/beit-yosef.json | 67358262 | warning |
 | arukh-hashulchan | lexical_chunks | data/lexical/arukh-hashulchan-chunks | 66569263 | warning |
 | arukh-hashulchan | occurrence | data/lexical/occurrences/arukh-hashulchan.json | 62224943 | warning |
@@ -27,8 +27,6 @@ Generated: 2026-05-21T17:56:40.871Z
 | ein-yaakov | lexical_chunks | data/lexical/ein-yaakov-chunks | 59791041 | warning |
 | akeidat-yitzchak | lexical_chunks | data/lexical/akeidat-yitzchak-chunks | 59635665 | warning |
 | ohr-hachammah-on-zohar | lexical_chunks | data/lexical/ohr-hachammah-on-zohar-chunks | 59018952 | warning |
-| sitewide | global | overlay-export.md | 58372076 | warning |
-| sitewide | global | overlay-export.csv | 57582750 | warning |
 | beit-yosef | html | halakhah/beit-yosef/index.html | 54999587 | warning |
 | arukh-hashulchan | html | halakhah/arukh-hashulchan/index.html | 54968476 | warning |
 | shenei-luchot-haberit | lexical_chunks | data/lexical/shenei-luchot-haberit-chunks | 52616309 | warning |

@@ -1,0 +1,9 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor 1:1:1 | yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-1-1-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor 4:2:1 | yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-4-2-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor 4:14:1 | yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-4-14-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor 5:1:1 | yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-5-1-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor 11:3:1 | yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-11-3-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor 18:6:1 | yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-18-6-1 |  |  | not_done |  |
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor 25:14:1 | yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-25-14-1 |  |  | not_done |  |

@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-21T02:01:39.041Z
+Generated: 2026-05-21T18:59:07.083Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-21T02:01:39.041Z
 
 ## Counts
 
-- Total work-surface rows: 4464107
-- Total sitewide unique surface forms: 927120
-- Sitewide unique surface forms matched at least once: 97889
-- Sitewide unique surface forms unmatched everywhere: 829231
-- Total token occurrences: 35415286
-- Matched before prefix/suffix parser: 935649
-- Newly resolved by prefix/suffix parser: 171200
-- Total matched after parser: 1141203
-- Percent matched: 25.6%
-- Matched via Wikidata: 842731
-- Enriched via OpenScriptures: 941344
-- Unmatched: 3322904
+- Total work-surface rows: 4643248
+- Total sitewide unique surface forms: 930654
+- Sitewide unique surface forms matched at least once: 97913
+- Sitewide unique surface forms unmatched everywhere: 832741
+- Total token occurrences: 35933730
+- Matched before prefix/suffix parser: 986860
+- Newly resolved by prefix/suffix parser: 175816
+- Total matched after parser: 1203475
+- Percent matched: 25.9%
+- Matched via Wikidata: 884404
+- Enriched via OpenScriptures: 989318
+- Unmatched: 3439773
 
 ## Newly Resolved Parsed Forms
 
@@ -60,6 +60,7 @@ Generated: 2026-05-21T02:01:39.041Z
 - א״א -> Arikh Anpin (workspace) -- shaar-hagilgulim
 - א״א -> Arikh Anpin (workspace) -- shaar-hahakdamot
 - א״א -> Arikh Anpin (workspace) -- shaar-hakavanot
+- א״א -> Arikh Anpin (workspace) -- shaar-hamelekh-on-mishneh-torah-diverse-species
 - א״א -> Arikh Anpin (workspace) -- shaar-hamitzvot
 - א״א -> Arikh Anpin (workspace) -- shaar-hapesukim
 - א״א -> Arikh Anpin (workspace) -- shaar-maamarei-rashbi
@@ -72,7 +73,6 @@ Generated: 2026-05-21T02:01:39.041Z
 - א״כ -> if so, therefore (workspace) -- akeidat-yitzchak
 - א״כ -> if so, therefore (workspace) -- arukh-hashulchan-heatid
 - א״כ -> if so, therefore (workspace) -- arukh-hashulchan
-- א״כ -> if so, therefore (workspace) -- avodat-yisrael
 
 ## Sample Unmatched Words
 

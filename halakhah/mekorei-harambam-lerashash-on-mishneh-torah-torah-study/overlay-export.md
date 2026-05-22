@@ -1,0 +1,5 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| mekorei-harambam-lerashash-on-mishneh-torah-torah-study | Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study | Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 1:1:1 | mekorei-harambam-lerashash-on-mishneh-torah-torah-study-1-1-1 |  |  | not_done |  |
+| mekorei-harambam-lerashash-on-mishneh-torah-torah-study | Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study | Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 5:5:1 | mekorei-harambam-lerashash-on-mishneh-torah-torah-study-5-5-1 |  |  | not_done |  |
+| mekorei-harambam-lerashash-on-mishneh-torah-torah-study | Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study | Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 5:9:1 | mekorei-harambam-lerashash-on-mishneh-torah-torah-study-5-9-1 |  |  | not_done |  |

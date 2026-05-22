@@ -1,0 +1,3 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| shaar-hamelekh-on-mishneh-torah-circumcision | Sha'ar HaMelekh on Mishneh Torah, Circumcision | Sha'ar HaMelekh on Mishneh Torah, Circumcision 1:1:1 | shaar-hamelekh-on-mishneh-torah-circumcision-1-1-1 |  |  | not_done |  |

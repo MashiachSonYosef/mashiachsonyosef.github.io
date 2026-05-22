@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Melekhet Shelomoh on Mishneh Torah, Agents and Partners</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Melekhet Shelomoh on Mishneh Torah, Agents and Partners</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Agents and Partners</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Agents and Partners</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">24 total source units | imported 2026-05-21</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>925 matched</strong> / 3022 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/melekhet-shelomoh-on-mishneh-torah-agents-and-partners.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Melekhet Shelomoh on Mishneh Torah, Agents and Partners <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Melekhet Shelomoh on Mishneh Torah, Agents and Partners <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-1-1-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 1:1:1">1:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-2-7-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-2-8-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 2:8:1">2:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-1-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-7-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-11-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:11:1">3:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-4-2-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 4:2:1">4:2:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-4-3-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 4:3:1">4:3:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-1-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-2-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:2:1">5:2:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-7-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:7:1">5:7:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-9-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:9:1">5:9:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-10-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:10:1">5:10:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-11-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:11:1">5:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-6-2-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 6:2:1">6:2:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-8-4-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 8:4:1">8:4:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-8-7-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 8:7:1">8:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-1-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:1:1">9:1:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-2-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:2:1">9:2:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-3-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:3:1">9:3:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-4-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:4:1">9:4:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-7-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:7:1">9:7:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-10-1-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 10:1:1">10:1:1</a></li>
+                    <li><a class="toc-unit" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-10-6-1" title="Melekhet Shelomoh on Mishneh Torah, Agents and Partners 10:6:1">10:6:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-1">Chapter 1</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 1:1:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-1-1-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר לשלוחו וכו׳.</strong> יש להסתפק במי שהיה לו חפץ למכור ואמר לחבירו קח חפץ זה והבא לי בעדו כך וכך מעות והלך השליח וקנאה לעצמו באותו סך ונתן המעות ואחר זמן ידע בעל החפץ שלקחו השליח ורוצה להחזיר לו מעותיו ליקח החפץ והשליח ממאן בדבר הדין עם מי.<br><strong> והנה</strong> בענין שליח שנתנו לו מידי למכור אי מצי ליקח לעצמו או לא דעת רש&quot;י והתוס׳ והרשב&quot;א והר&quot;ן והרא&quot;ש והטור ז&quot;ל דעת כולן דלא מצי לקנות וכתב הר&quot;ן הטעם דכיון שהוא שליח הרי הוא כיד הבעלים ולפיכך אינו יכול להקנות לעצמו שאין המכר אלא הוצאת דבר מרשות לרשות וזה לא יצא מרשותו שהרי במקום השליח בעלים עומד עד כאן ודעת הגאונים שהביא הריטב&quot;א בפ׳ אלמנה נזונת והרב בצלאל בשטמ&quot;ק הוא בהיפך זה וס&quot;ל דשפיר מצי לקנות השליח לעצמו יעו&quot;ש. וראיתי להרב מחנה אפרים ז&quot;ל בהל׳ שלוחין סי׳ כ׳ שכתב בדעת הרמב&quot;ם דנראה שדעתו כדעת הגאונים שיכול ליקח השליח לעצמו ועפ&quot;ז הקשו למרן ז&quot;ל דבאה&quot;ע סי׳ ק&quot;ג פסק כוותיה ואילו בחו&quot;מ סי׳ קפ&quot;ה פסק כהרשב&quot;א וסיעתיה יעו&quot;ש ועיין מ&quot;ש מוהר&quot;י כולי ז&quot;ל בפ&quot;א מהל׳ שלוחין בדעת הרמב&quot;ם ז&quot;ל ובמ&quot;ש ישב ג&quot;כ פסקי מרן ועוד בה דהכריח החילוק מפסקי מרן יעו&quot;ש.<br><strong> עוד </strong> כתב הרב מחנה אפרים וז&quot;ל והמרדכי בפ׳ האומנים הביא משם מהר&quot;מ על ראובן שמסר טבעת לסרסור למכור ונאבד דהסרסור שומר שכר הוי וכו׳ עד כיון שאם ירגיש שיש בה ריוח יקחנו לעצמו וכו׳ משמע דהסרסור יכול לקנות לעצמו ע&quot;כ. ואחר המחילה רבה אי משום הא לא איריא דהכונה הוא דאם ירגיש שיש ריוח בידיעת הבעלים שיתפייסו לבעלים ויקנו לו דבכה&quot;ג כתב מרן ז&quot;ל דלית דין ולית דיין שקנה השליח אי נמי אפי׳ בלא דעת הבעלים יקחנו ואף דלא קנה כיון דמשכחת לה ריוח ע&quot;י שיעכבם החפץ ויאמר שמכרה לאחר ואח&quot;כ ימכור אותה לחשבונו אמטו להכי חשיב ליה שומר שכר ועדין אין מכאן ראיה.<br><strong> עוד </strong> כתב הרב שם וז&quot;ל ולענ&quot;ד היה נראה דאין ראיה מפרש&quot;י אלא בהיכא שלא הרשהו הבעלים למכור בכך וכך דאז ודאי השליח הוא המקנה אותו ואינו יכול להקנותו לעצמו אבל היכא שהרשהו הבעלים למכור בכך וכך איכא למימר דהבעלים עצמם מקנים אותו לכל מי שיתן כך וכך ובפ׳ הספינה כתב הר&quot;ן ז&quot;ל בשם המפרשים שחפץ שדמיו קצובים ובא אחר ולקחו שלא מדעתו של חנוני ע&quot;מ ליתן דמיו זכה בו דדעתו של חנוני שכל מי שיתן דמיו יזכה בו עד כאן א&quot;כ ה&quot;ה כאן וכו׳ יעו&quot;ש. ואחר המחילה רבה לא זכיתי להבין דבריו דהתם אף דנימא דדעתו של חנוני להקנות לכל מי שיתן דמיו התם שאני דכיון שנטל מרשותו דהיינו מהחנות ע&quot;כ מכחו של חנוני זוכה והוא ניהו המקנה ברם בנותן לשליח למכור בכך וכך הרי נתרוקן רשותו מעליו דכי זכה לוקח לאו מכח בעל החפץ זכי. תדע דעל כרחך צריך לחלק בהכי דאל&quot;כ תיקשה להר&quot;ן ז&quot;ל דהא כבר כתבתי לעיל דס&quot;ל דשליח אינו יכול להקנות לעצמו ואפי׳ דא&quot;ל בכך וכך ואילו בפ׳ הספינה כתב דחפץ שדמיו קצובים יכול ליטלו שלא מדעתו של בעלים דמשמע שבעל החפץ הוא המקנה ואפי׳ דנימא דמ&quot;ש הרב והר&quot;ן כתב כיון להרב נמוק&quot;י ז&quot;ל מ&quot;מ אנן בדידן הא קא חזינן דהר&quot;ן ז&quot;ל ג&quot;כ ס&quot;ל הכי ומביאו הרב בצלאל בשטמ&quot;ק שם דף פ&quot;ח יעו&quot;ש אלא ודאי דצ&quot;ל כמ&quot;ש. ומה שהקשה להרא&quot;ש ז&quot;ל מ&quot;ש בפ׳ אלו מציאות למ&quot;ש בפ׳ אלמנה ורצה לישב בזה עיין במהרימ&quot;ט ז&quot;ל חלק א׳ סי׳ צ&quot;ג מה שתירץ לזה.<br><strong> עוד </strong> כתב וז&quot;ל אמנם נראה לענ&quot;ד דאם נתן השליח הדמים למשלח כדי להקנותם לעצמו אע&quot;פ שלא הודיעו למשלח שקנאה לעצמו כיון שלקח הדמים ה&quot;ז גמר והקנה למי שנתן הדמים דדעתו של מוכר לאקנויי לבעל המעות ומעותיו קונות לו בכה&quot;ג ע&quot;כ. ולענ&quot;ד קשה לי מ&quot;ש מהרשד&quot;ם ז&quot;ל בסי׳ שכ&quot;ה וז&quot;ל דה&quot;ה אפוטרופוס שנכנסו בידו נכסי יתומים וטוען שלקחם לעצמו בדמים יכולים היתומים ליתן דמיהם וליקח המטלטלין שלהם וכו׳ ומביאו מרן החבי&quot;ב ז&quot;ל בסי׳ קכ&quot;ה בהגהות הטור אות י׳ הרי דאף בנתן הדמים כתב דלא קנה דאף דנימא דהתם שאני דליכא מקנה דליקני דמיירי באפוטרופוס מ&quot;מ דעתו ז&quot;ל נראה דאף בשליח דעלמא דנתן הדמים דינא הכי ועיין במהרימ&quot;ט ז&quot;ל בחלק א׳ סי׳ צ&quot;ג וקכ&quot;ז יעו&quot;ש. נמצא מכל האמור דשליח שקנה לעצמו רובא דרבוותא ס&quot;ל דלא קנה ועיין בס׳ בני חיי סי׳ קפ&quot;ה שכתב שם דיכול לומר השליח קים לי כמ&quot;ד דקנה יעו&quot;ש ומ&quot;מ נראה לענ&quot;ד דבנדון דידן לכו&quot;ע קנה דעד כאן לא אמרו הרבנים הנ&quot;ל ז&quot;ל דלא מצי לקנות לעצמו אלא דוקא בשויה שליח למכור לו אז אמרינן דלא מצי לקנות לעצמו אבל באומר צא והביא לי כך וכך בעדו אז הדעת נוטה שכונתו הוא להקנות לכל מי שירצה לקנות ולא שויה שליח למכור זה נראה לענ&quot;ד להלכה ולמעשה עדיין צריך אני מרבותי ועיין במהרש&quot;ך ח&quot;ב סי׳ ק&quot;ג דנראה דלא נחית לחילוק זה וכעת אין הספר מצוי בידי לעיין בו ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-2">Chapter 2</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-2-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 2:7:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-2-7-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 2:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל סרסור וכו׳.</strong> עיין במל&quot;מ ז&quot;ל שהקשה על מ&quot;ש הראב&quot;ד ז&quot;ל וז&quot;ל שלא אמר המוכר לסרסור כלום בכמה יתנהו ומשו&quot;ה אין המכר כלום קשה דלמה הצריך רבינו שיאמר ללוקח מכור לך בכך וכך כשיאמר לסרסור מכור לי בכך וכך ומכרו קיים המקח כיון דכל שאין מכר הוא משום שלא פסק דמים עם הסרסור אלא א&quot;ל מכור לי זה סתם וצ&quot;ע עכ&quot;ל. ולענ&quot;ד נראה לישב לדעת הראב&quot;ד ז&quot;ל דלא היה כתוב כגירסתנו מכור לך בכך וכך ומדבר המוכר עם הלוקח אלא כגרסת המגדל עוז והטור בסי׳ קפ&quot;ה ומרן בס&quot;ה שכך כתוב מכור בכך וכך ואז הוי דמדבר המוכר עם הסרסור כמבואר וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-2-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 2:8:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-2-8-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הלוקח כלים מבית האומן וכו׳.</strong> עיין בהרב מל&quot;מ ז&quot;ל שכתב שדברי רבינו תמוהין שלא פירש לומר דמיירי לדקייצי דמיו והוי זבינא חריפא כמ&quot;ש בפ&quot;ד מהל׳ מכירה שהצריך דמיו קצובים וחביב על הלוקח גבי לוקח כלים לבקרן ונאנסו מידו וכו׳ וצ&quot;ע יעו&quot;ש.<br><strong> ואנכי</strong> הרואה להרמ&quot;ה בשיטתו לבתרא בפ׳ הספינה דף פ&quot;ח בעיקר מימרא דשמואל שכתב וז&quot;ל (וק׳) [ואי קשיא] לך ומי מצית אמרת בזבינא דרמי על אפיה אע&quot;ג דיד הלוקח על העליונה לא מחייב באונסין והא ברייתא דהלוקח כלים מבית האומן דסייעיה התם לשמואל [מינה] ועובדא דההוא גברא דזבין חמרא לחבריה תרוייהו בזבינא דרמי על אפיה קיימי דאי לאו הכי לא הוה מזבין ליה ניהלי[ה] על הדין תנאה ולא עוד אלא דעובדא דההוא חמרא מוכח דאפי׳ התם לא אזדבן ליה ללוקח ואפ&quot;ה (חייבין) חייביה] באונסיו (אלא) [לא] תקשי לך דכי שאני לן בין זבינא חריפא לזבינא דרמי על אפיה בנוטל מקח מבעליו לבקרו בפניו דאי ניחא ליה בגויה דזבין לגמרי תו לא מצי חד מנייהו למהדר ביה ואי לא ניחא ליה מהדר ליה מיד ולאו הנאת לוקח היא דלא יכיל מוכר למיהדר ביה כיון דזבינא דרמי על אפיה הוא אי נמי זבינא מציעא דסמכה דעתיה דלוקח דמוכר גופיה לא ניחא ליה דליהדר ואי נמי הדר ביה איכא אחרינא טובא למזבן בהני דמי וכו׳ ולא עוד אלא דהאי לוקח גופיה לא מצי מזבין לאחרינא אלא לבתר דזכי ביה זכיה גמורה דאי נמי הדר ביה לוקח חייב איהו בדמי למרי קמא ואשתכח דאפילו בזבינא מציעא לאו הנאת לוקח היא אבל בלוקח מבעליו להוליכו לבקרו שלא בפני בעליו אדעתא דאי ניחא קניה ליה למפרע בהני זוזי דקייץ אי נמי בשויו דאפשר דאתרמי ליה באורחא מאן דזבין ליה מיניה בדמי יתירי וכל שכן היכא דשקלי אדעתא לאמטויי לדוכתא פלן דאי מזדבן ליה דמיה דפסיק בהדיה ואי לא מהדר ליה למריה אפי׳ זבינא דרמי על אפיה נמי כיון דלא מחייב ליה בדמים אלא דבתר דמטי ליה רווחא מיניה אין לך (הנאה) [הנאת לוקח] גדולה מזאת וה&quot;ה בלוקח כלים מבית האומן לשגרם לבית חמיו דאי מקבלי להו מיניה כמאן דזבין להו ברווחא דמי יעו&quot;ש באורך ומעתה אנן בדידן מצינן למימר דדעת רבינו נמי הכי הוא ומשו&quot;ה לא הצריך לא קציצת דמים ולא זבינא חריפא ועיין למרן החבי&quot;ב ז&quot;ל בסי׳ קפ&quot;ו הגהת ב&quot;י אות ג׳ שנטה לדרך כזה ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-3">Chapter 3</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:1:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-1-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהיה לו קרקע וכו׳.</strong> עיין בטור סי׳ קכ&quot;ג סי&quot;ב שהביא תשובת הרמב&quot;ן מורשה שהורשה וכו׳ וראיתי למהרשד&quot;ם ז&quot;ל בחו&quot;מ סי׳ י&quot;ז שכתב בסוף התשובה וז&quot;ל ולגבי השאלה הב׳ נראה ג&quot;כ דא&quot;צ לפנים שהרי גדולה מזאת אמרו דשליח יכול להיות עד וכו׳ ולגבי ממון מצינו שהביא הטור בסי׳ קכ&quot;ג תשובת הרמב&quot;ן ז&quot;ל וכו׳ הרי שלא פסל העדים אלא כשיש לשליח הנאה בגוף הממון ממש וזה הוא הטעם בנדון דידן שכשרים העדים להעיד על השליח שהוא שליח מפני כיון שאין לשליח שום הנאה בשליחות זה וכו׳ יעו&quot;ש והביא דבריו הכנסת הגדולה בסי׳ קכ&quot;ג הגהת הטור אות כ&quot;ג וכתב וכל שכן הוא כמ&quot;ש הסמ&quot;ע יעו&quot;ש והרב בני חיי כתב עליו וז&quot;ל ופליאה דעת ממני דלכאורה נראה דאין הנדון דומה לראיה דנדון הרמב&quot;ן ז&quot;ל שאני דנודע בעדים כשרים שהמרשה האמינו ועשאו שליח ולכן יכולים להעיד בין הוא בין עדים קרובים על גוף הממון אבל בשאין עדים כשרים על השליחות איך יעידו הקרובים על השליחות וכל שכן הוא עצמו שאין נאמן להעיד על השליחות דאיכא למימר שהשליח רוצה להחזיק בממון המשלח ולטעון עליו אתה חייב לי ממקום אחר ונאמן במיגו דהחזרתי וכו׳ יעו&quot;ש.<br><strong> ולענ&quot;ד</strong> נראה להליץ בעד מהרשד&quot;ם ז&quot;ל ולומר דאי חיישינן להכי לשמא יעשה מעצמו שליח ויתפוס ממון המשלח ויטעון אתה חייב לי ממקום אחר וכדברי הרב ז&quot;ל א&quot;כ היא גופא תקשי להרמב&quot;ן ז&quot;ל דאף דאיכא עדים כשרים למורשה ופסק לו שכר ידוע בין יזכה בדין בין לא יזכה אמאי נאמן עד הקרוב כיון דאיכא למיחש שמא אמת הדבר שחייב לו ממון והרשהו על ממון זה כדי שיגבה חובו ממנו ואין הנאה גדולה מזו ובפרט כשאין למרשה לפרוע ממקום אחר ומה יושיענו מה שקצץ לו שכר או אם הוא בחינם דמתיר הרמב&quot;ן ז&quot;ל כיון דאיכא למיחש להכי שהיא הנאה גדולה עד דאם ידענו שכן הוא הענין הדבר ברור דלא יעיד הקרוב כמ&quot;ש הרב הכנסת הגדולה בתשובה ח&quot;ב סי׳ נ&quot;ו אלא על כרחך לומר דבכה&quot;ג לא חיישינן וכמו כן לא חיישינן שיבא ויעשה עצמו שליח כדי לתפוס ממון חבירו ויטעון עליו שחייב ממקום אחר זה אפשר להליץ לדעת הרב ז&quot;ל וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:7:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-7-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והדברים אלו וכו׳.</strong> עיין במהרימ&quot;ט ז&quot;ל בחו&quot;מ סי׳ י&quot;ז שכתב בדעת רבינו דמ&quot;ש <strong> שאין אומרים בזה יקוב הדין את ההר </strong> לא קאי אלא אמאי דתקון <strong> שאם לא היה למקנה קרקע מקנהו מד׳ אמות שבארץ ישראל</strong> אבל מה שתקנו שכותבין הרשאה אף אמלוה תקנה טובה היא וכמ&quot;ש מרן ז&quot;ל בכ&quot;מ שלא כדברי מהרשד&quot;ם ז&quot;ל ומהר&quot;י אדרבי ז&quot;ל וכתב עוד וז&quot;ל וגם מדברי הרמב&quot;ן ז&quot;ל בחי׳ לבתרא דף מ&quot;ז גבי עשה שורו וחמורו אפותקי דאמרינן ביה דילמא אקני ליה מטלטלין אגב מקרקעי ומשני דלית ליה ארעא וז&quot;ל וש&quot;מ דלא סמכינן אד׳ אמות שבא&quot;י ולא אקרקע חצר מות וקשיא לן האי מנהגא דנהוג עלמא למכתב אע&quot;ג דלית ליה ארעא ושדרו ממתיבתא דתקנא היא דתקון רבנן בתראי ושדרו נמי דוקא להרשאה דפקדון או מלוה אבל לשאר מילי לא תקון הרי שלא הוקשה להם להגאונים אלא היכא דלית ליה ארעא למיסמך אקרקע דא&quot;י אבל דהרשאת מלוה עצמה לא הוקשה להם שיהיו צריכים לתקנתא בתראי דתקנתא בתראי דקמאי היא וכו׳ עכ&quot;ל.<br><strong> ולענ&quot;ד</strong> לא זכיתי להבין דאיך יש ללמוד מדבריו דהגאונים לא קשיא להו בהרשאת מלוה תקנתא דקמאי היא והלא הרמב&quot;ן ז&quot;ל הוא מכת הסוברים דמעיקרא דינא דש&quot;ס היא דכותבין הרשאה אף אמלוה כמו בפקדון ולא משום תקנת הגאונים כדמוכח בפ׳ יש נוחלין (בבא בתרא דף קכ&quot;ז) שכתב וז&quot;ל כותבין הרשאה זה לזה ואי קשיא לך הא ס&quot;ל לרב פפא אליבא דרבה אין לו לבכור קודם חלוקה והיכי מצי מרשה ואיכא למימר כי מלוה דאע&quot;ג דלא מצי לאקנויי מצי מרשה בה עכ&quot;ל וכ&quot;כ בפ׳ מרובה במלחמות וכן ראיתי בחי׳ לשבועות הנדפס מחדש בפ׳ שבועת העדות (שבועות דף ל&quot;ג) יעו&quot;ש וא&quot;כ לדידיה תקנת הגאונים אינה אלא לקניית ד׳ אמות שבארץ ישראל ולסמוך עלייהו ומשו&quot;ה לא קשיא להו להרשאת מלוה היכי מרשה שזהו דינא דנהרדעי כמפורש במקומות הנ&quot;ל ובודאי לדעתו הגאונים הכי ס&quot;ל כמפורש בדברי הריטב&quot;א ז&quot;ל בפ׳ שבועת העדות וז&quot;ל ומעתה יש לדקדק מכאן לדברי הגאונים שכתבו דאלישנא דנהרדעי כתבינן אורכתא אמטלטלי דמלוה ע&quot;פ דלא כפריה וכו׳ יעו&quot;ש וכמ&quot;ש הרב בעצמו לקמן וא&quot;כ מה יקשה להם בהרשאת מלוה שהוא מדין התלמוד ברם לדעת רבינו דהרשאת מלוה הוא מתקנת הגאונים ולא מדין התלמוד מאן לימא דפלגו בהדייהו.<br><strong> עוד</strong> כתב וז&quot;ל ושוב כתב הרמב&quot;ן דאם יש להם בית הכנסת בשותפות יכולין להקנות אגבן לא מתקנת הגאונים אלא מדין התלמוד אלמא לא נצרכה תקנת הגאונים אלא למי שאין לו עד כאן ולא הבנתי כונתו מה הוכחה היא זאת שכתב שהיא מדין התלמוד לסברת רבינו דס&quot;ל שהיא תקנת הגאונים. עוד כתב וז&quot;ל ותדע שהטור בסי׳ קכ&quot;ג בהעתיקו דברי הרמב&quot;ם כתב והדברים אלו קלים עד מאד שנאמר שיקנה לו ד׳ אמות שבארץ ישראל משמע שהבין דבריו שלא אמר אלא על דבר זה בלבד ולא על עיקר ההרשאה כשיש לו קרקע עכ&quot;ל והנה מ&quot;ש שהטור כתב ודברים אלו קלים עד מאד וכו׳ כונתו פשוטה דמדנחית לכתוב כן משמע שהבין דזה לא קאי אלא לתקנת ד׳ אמות שבא&quot;י לחוד ולא לתקנת הרשאת מלוה ועליה נמי קאי מ&quot;ש אח&quot;כ והגאונים עצמן וכו׳ דאי לא אמאי אצטריך לכתוב ודברים אלו קלים עד מאד לא הו&quot;ל למימר אלא והגאונים עצמן כתבו וכו׳ והוה קאי אתרתי תקנות אלא ודאי דנחית להורויי לן להיכא קאי האי דלא מצי לכוף וכתב ומ&quot;ש רבינו ודברים אלו קאי [אד׳ אמות שבא&quot;י] וכמ&quot;ש בכ&quot;מ דזה אין שייכות להרשאת מלוה כדי שנבין מ&quot;ש והגאונים בעצמן וכו׳ והוצרכתי לזה לפי שראיתי בס׳ ידי אליהו סי׳ קנ&quot;ב שהבין שמ&quot;ש הרב ז&quot;ל ודברים אלו קלים הם מדברי הטור ומזה הוכיח דעת הטור והקשה עליו שדברי הטור הם דברי הרמב&quot;ם ז&quot;ל וליכא למילף מיניה יעו&quot;ש. ולפי קוצר עניות דעתי נראה כונת הרב ז&quot;ל [כמ&quot;ש] יעו&quot;ש.<br><strong> איברא</strong> שמ&quot;ש ומרן ז&quot;ל שפי׳ דבריו שהדברים קלים שכתב אינו אלא לד׳ אמות שבא&quot;י ולא עייל נפשיה במ&quot;ש אח&quot;כ והגאונים עצמן וכו׳ אי קאי לתקנת שנייה או לתקנת הרשאה דלא תליא הא בהא ע&quot;כ. בזה אשכחנא פתרי למרן ז&quot;ל דאילו בכ&quot;מ כתב דמ&quot;ש ודברים אלו קלים עד מאד קאי לתקנת ד׳ אמות שבא&quot;י דמשמע דס&quot;ל בדעת רבינו כמ&quot;ש מהרימ&quot;ט ז&quot;ל ואילו בסי׳ קכ&quot;ב ס&quot;ז כתב בהיפך וז&quot;ל ובפ&quot;ג מהל׳ שלוחין כתב הרמב&quot;ם ז&quot;ל שהגאונים תקנו שכותבים הרשאה אף אמלוה ושלא תקנו אלא לאיים על הנתבע וכו׳ וכבר הקשה כן בפרישה יעו&quot;ש ולפי דברי הרב ז&quot;ל דברי מרן נכונים דס&quot;ל למרן כמ&quot;ש בב&quot;י ודברים אלו לא תלייא באם יכול לכוף או לא ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:11:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-3-11-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 3:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראובן שבא בהרשאת שמעון ללוי וכו׳ נתחייב לוי שבועה אין יכול לעכב וכו׳.</strong> וכן פסק הטור בסי׳ קכ&quot;ג סי&quot;א וכ&quot;כ עוד ויש אומרים שבי&quot;ד ישלחו כתבם לבי&quot;ד שבמקום המרשה ויחרימו [בפניו] ואז ישבע זה עד כאן ומבואר הדבר שהי&quot;א זה להחמיר באו ולומר שלא ישבע כי אם שיקבל המרשה תחילה חרם שמחרימים בי&quot;ד שבעירו שלא כדעת רבינו והטור שישבע הנתבע אף שלא יחרימו בפניו וזה פשוט.<br><strong> וראיתי</strong> למהרשד&quot;ם ז&quot;ל בחו&quot;מ סי׳ ס&quot;ג שנשאל על מי שבא בהרשאה והנתבע רוצה שיבא המרשה לעירו ויעשו חשבון שלדעתו חייב לו כמו שמראה שטר ע&quot;ז והשיב שהדין עם הנתבע ונסתייע ממ&quot;ש רבינו בדין שלפנינו יבא המרשה וישבע ויטול ואע&quot;ג שכתב הטור דיש אומרים שבי&quot;ד ישלחו כתבם לבי&quot;ד שבמקום המרשה ויחרימו בפניו ואז ישבע זה עכ&quot;ז אני אומר שיש לדון כמו שאמרתי שאין לכוף לנתבע אחר שהרמב&quot;ם כתב שהדין הוא שיבא ויתבע וכמ&quot;ש ג&quot;כ הטור בעצמו ואין לנו להניח דעת הרמב&quot;ם והנמשכים אחריו ללכת אחר יש אומרים וכו׳ עד סוף התשובה. ואחר בקשת מחילה לא זכיתי להבין דבריו דמה שייך סברת יש אומרים למ&quot;ש רבינו שיניח המעות ביד בי&quot;ד ויבא הנתבע וישבע ויטול דהתם הוא שירד לדין עם המורשה וכפר ונתחייב שבועה ולא רצה לישבע והפכה למרשה וטוען שיבא וישבע ולזה כתבו רבינו והטור שיבא וישבע ומזה הביא הרב דבנדון דידיה נמי יבא התובע ויעשה חשבון עם הנתבע אבל סברת י&quot;א היא היכא דהנתבע רוצה לישבע וטוען שרוצה שיבא המרשה ויחרימו בפניו לדעת רבינו אין צריך לבא שזה הוא תקנה קלה היא ואין מעכבין שבועתו של זה בכך ולהי&quot;א צריכים בי&quot;ד לשלוח כתבם לעיר המרשה ויחרימו בפניו ומאן לימא לן דהי&quot;א פליגי נמי בהך דינא היכא שהפך השבועה ורוצה הנתבע שיבא המרשה דאין שומעין לנתבע כדי שיכתוב עליהם עכ&quot;ז אני אומר שיש לדון כמ&quot;ש שאין לכוף לנתבע אחר שהרמב&quot;ם כתב שהדין הוא שיבא התובע ואין לנו להניח דעת הרמב&quot;ם ללכת אחר י&quot;א וכו׳ דמי יימר דהי&quot;א חולקים בחלוקה זאת והדברים נראין דאין חולקים וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-4">Chapter 4</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-4-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 4:2:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-4-2-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומנים שנשתתפו וכו׳.</strong> כתב הראב&quot;ד ז&quot;ל א&quot;א ורבותי הורו שאדם יכול להקנות את עצמו לחברו בקנין כדין עבדים וכשם שמצינו באומר יקדשו ידי לעושיהן עד כאן עיין במהרי&quot;ק ז&quot;ל בשורש קפ&quot;ג שכתב דמה שהצריך הראב&quot;ד ז&quot;ל קנין הוא משום שלא יחזור להבא יעו&quot;ש ונראה דהרשב&quot;א ז&quot;ל חולק ע&quot;ז וס&quot;ל דאף בקנין חוזר שכתב בח&quot;ב סי׳ פ&quot;ז וז&quot;ל ואף רצו שלא לחזור בו אחד מהם אין להם תקנה אלא בחיוב ובקנין גמור כגון שיכתבו שכל החוזר בו יתחייב לחברו כך וכך עכ&quot;ל משמע דאם ירצה ליתן הקנס ולחזור מצי הדר ביה וכן ראיתי להרב מחנה אפרים הל׳ שותפין סי׳ ב׳ שכן כתב המגיה והקשה למרן ב&quot;י שכתב בהל׳ שותפין שדעת הרשב&quot;א ז&quot;ל כדעת הראב&quot;ד והצריך עיון יעו&quot;ש.<br><strong> ומעתה</strong> אסורה נא ואראה למרן החבי&quot;ב ז&quot;ל בסי׳ קע&quot;ו הגהת ב&quot;י אות ד׳ על מ&quot;ש מרן ז&quot;ל ודעת הרשב&quot;א ז&quot;ל בתשובה כדעת הראב&quot;ד ז&quot;ל וז&quot;ל בח&quot;ב סי׳ כ&quot;ז כתב בפירוש דכל שנתחייב בפירוש בחיוב ובקנין אפי׳ להבא אינו יכול לחזור בו ולשעבר מה שכבר הרויחו אפי׳ בלא קנין קנו והוא דעת הראב&quot;ד כפי מה שפי׳ מהרי&quot;ק בשורש קפ&quot;ב יעו&quot;ש. ואחרי המחילה רבה לא זכיתי להבין דבריו דמה הוכחא איכא מדברי הרשב&quot;א אלו דאדרבא מהתם מוכח היפך דעת הראב&quot;ד ז&quot;ל וכדכתיבנא. גם מ&quot;ש עוד וז&quot;ל וכן ראיתי למהר&quot;א ששון סי׳ קי&quot;ג שכתב בפשיטות דהרמב&quot;ן והרשב&quot;א ז&quot;ל מיירי בדליכא קנין אבל בקנין אינו יכול לחזור בו וכו׳ אם על תשובה זאת כיון אחרי נשיקת ידי ורגלי קדשו אינו כן אלא דעת הרשב&quot;א דאף בקנין אם רצה לחזור חוזר כמבואר וזה פשוט וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-4-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 4:3:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-4-3-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 4:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפי׳ לקחו שור לטביחה וכו׳.</strong> עי׳ בכ&quot;מ שהביא משם הר&quot;ן ז&quot;ל דלרב המנונא לאו דוקא לקחו מתחילה לחרישה אלא אפילו לקחו לטביחה ומכרוהו חי השכר לאמצע יעו&quot;ש ומיהו הרא&quot;ש ז&quot;ל הביא משם יש מפרשים דר&quot;ה לא אמר אלא שור לחרישה אבל שור לטביחה ועומד לטביחה מודה ר&quot;ה דחולקים לפי המעות ולא תקשי ליה אדתני סיפא לקח זה בשלו וכו׳ לפלוג וליתני בדידיה כדלעיל דטפי קרי ליה בדידיה מאי דמוקי הכל בשור לחרישה ומפליג בין הטילו לכיס ובין לקח זה בשלו וזה בשלו ממאי דהוה תני הכל בהטילו והוה מפליג בין שור לחרישה ובין שור לטביחה יעו&quot;ש. ולענ&quot;ד דברים אלו לא זכיתי להבינם דאם איתא דמאי דלא הקשו לר&quot;ה מסיפא הוא משום דטפי עדיף ליה לתנא דברייתא לשנות דינא דחולקים לפי המעות במאי דפתח דהיינו שור לחרישה ומשום הכי הוצרך לחלק בין הטילו לכיס ובין לקח זה בשלו וזה בשלו אם כן מאי מקשה לרבה דסבר דשור לחרישה ועומד לטביחה השכר לאמצע לפלוג וליתני בדידיה בד&quot;א בשור לחרישה ועומד לחרישה אבל שור לחרישה ועומד לטביחה זה נוטל לפי מעותיו וכו׳ לימא דטפי עדיף ליה לתנא דברייתא לסיים במאי דפתח דהיינו שור לחרישה ועומד לחרישה דאפי׳ הכי השכר לפי מעותיו היכא שלקח זה בשלו וזה בשלו ואח&quot;כ נשתתפו ממאי דהוה תני שור לחרישה ועומד לטביחה דלא הוי דומיא דרישא דהוי שור לחרישה ועומד לחרישה כמ&quot;ש הרב ז&quot;ל לר&quot;ה דלא קשיא לדידיה לפלוג וליתני משום דלא הוה מסיים במאי דפתח.<br><strong> והרב</strong> לח&quot;מ ז&quot;ל כתב ז&quot;ל בפי׳ דברי הרב [אלפסי] נפל מחלוקת בהר&quot;ן והרא&quot;ש וכו׳ אבל לטביחה הוי לפי מעותיו [וכו׳] זה א&quot;א דכיון דהרי&quot;ף מפרש דברי רב המנונא כשמכרוהו חי וכשמכרוהו לא היה ראוי לחלק א&quot;כ אפי׳ לקחו לטביחה נמי לא הוי לפי מעותיו אלא לאמצע ודייק לשון הרי&quot;ף שכתב הואיל ומכרוהו חי ועדיין לא חלקו משמע דאע&quot;ג דלקחו לטביחה כיון שמכרוהו חי הוי לאמצע א&quot;כ איך פי׳ בדברי הרי&quot;ף כן יעו&quot;ש. והנה מה שהבין הרא&quot;ש ז&quot;ל בדברי הרי&quot;ף לפי דברי הלח&quot;מ כבר נפתח דברי הרמב&quot;ן בסוגיין והביאו הרב בשטמ&quot;ק וז&quot;ל אבל מ&quot;ש בפי׳ דשמעתתא דר&quot;ה דוקא כשלקחוהו לחרישה קאמר ומכרוהו כשהוא חי דש&quot;מ דאי מכרוהו לאחר שחיטה חולקים לפי המעות וכן אם לקחוהו מתחילה לטביחה ומכרוהו כשהוא חי חולקים לפי מעות הא (ל&quot;מ) [לא אתחוורא] וכו׳ יעו&quot;ש הרי שהבין בדברי הרי&quot;ף כמ&quot;ש הרא&quot;ש.<br><strong> ומרן </strong> החבי&quot;ב ז&quot;ל בסי׳ קע&quot;ו הגהת ב&quot;י אות נ&quot;ח הקשה להרב לח&quot;מ ז&quot;ל דאינו רואה שום גילוי בדברי הרא&quot;ש שסובר דהרי&quot;ף מפרש דוקא בשור לחרישה ועומד לטביחה הא שור לטביחה ועומד לטביחה ומכרוהו כשהוא חי השכר לפי מעותיו וכו׳ ואין לומר דמ&quot;ש הרא&quot;ש בסוף דבריו אלא שהרב אלפסי ז&quot;ל פירש דוקא שור לחרישה ועומד לטביחה השכר לאמצע אם מכרוהו כשהוא חי אבל אם טבחוהו חולקים לפי המעות וכל שכן אם לקחוהו לטביחה וכו׳ דהכונה וכו׳ לקחוהו לטביחה ומכרוהו חי דהא ודאי כונת הרב מבוארת דה&quot;ק וכל שכן לקחוהו לטביחה וטבחוהו ומכרוהו ע&quot;כ. איברא דאין ספק לפי קוצר עניות דעתי דכונת דברי הרא&quot;ש שהוא כמ&quot;ש מרן ז&quot;ל דמדקאמר וכל שכן לקחוהו לטביחה שהרי הרמב&quot;ן ז&quot;ל שהבין לקושטא דמילתא בדעת הרי&quot;ף ז&quot;ל בלקחוהו לטביחה ועומד לטביחה ומכרוהו דחולקים לפי המעות לא קאמר אלא וכן אם לקחוהו לטביחה וכו׳ ועשהו כלקחוהו לחרישה ועומד לטביחה וטבחוהו כמבואר לעיל אבל לעשותו כל שכן לא שמענו אלא ודאי לא כיון הרא&quot;ש אלא לשור לטביחה וטבחוהו וכדברי הרב.<br><strong> אמנם</strong> מה שהקשה עוד וז&quot;ל ועוד היכן ראה בדברי הרי&quot;ף כן שהרי&quot;ף לא הביא אלא לשון הגמרא ומה שפי׳ הרא&quot;ש בדברי הגמ׳ יפרש בדברי הרי&quot;ף וכו׳ ולא באתי לכונתו דהדקדוק שיש בדברי הרי&quot;ף הוא שכתב וז&quot;ל ואם מכרוהו בעודו חי יעו&quot;ש ומינה יש לדקדק דאם שחטוהו דחולקים לפי המעות וכ&quot;כ נמי אם לקחוהו לטביחה ומכרוהו בעודו חי וכמבואר אלא דמכל שכן לא אתי ומרן ב&quot;י עלה ונסתפק בדעת הרי&quot;ף אם שור לטביחה ועומד לטביחה אם מכרוהו חי אי חולקים לפי המעות והביא להגהות מיימוני וז&quot;ל וכבר עלה בדעת הגהות מיימוני לפרש כפי׳ הראשון יעו&quot;ש משמע דהגהות מיימוני מפרשין כן דברי הרי&quot;ף ז&quot;ל וכן מבואר מדברי מרן החבי&quot;ב סי׳ קע&quot;ו אות נ&quot;ח יעו&quot;ש ואני בעוניי לא ראיתי שום הוכחה בדברי ההגהות דמפרשי כן בדברי הרי&quot;ף כי לפי הנראה אינו אלא לסברא דנפשייהו דסברין כן הכי וכמו דס&quot;ל להי&quot;מ שהביא הרא&quot;ש בסוגיין.<br><strong> והרי</strong> &quot;ף בשערים כתב וז&quot;ל והדין הב׳ הוא במקום שיוסיף מעות על חבירו והתנו לעסוק בדבר מיוחד אם עשו מה שהתנו ונתעסקו באותו עסק מיוחד הדין עליהם שוים בריוח ובהפסד וכו׳ ואם לא עשו מה שהתנו ושינו לעסוק בדבר אחר שלא התנו תחילה הדין שיטול כל אחד מן הריוח ומן ההפסד כנגד מעותיו וכו׳ יעו&quot;ש ומרן ב&quot;י בסי׳ קע&quot;ו כתב לא נפקא לן מידי כיון דדבריו שבהלכות מסכימים דהלכה כרב המנונא יעו&quot;ש ומרן החבי&quot;ב ז&quot;ל בהגהת ב&quot;י אות נ&quot;ג כתב וז&quot;ל לא (נר׳) [נפקא לן] מידי נ&quot;ב פי׳ לא נ&quot;ל במה שפסק כרבה כיון שפסק בהלכות כר&quot;ה אבל לענין שינוי אם שינו ממה שהתנו בתחילה נוטלים כפי מעותיהם וכן פסק בספר המפה ולפי&quot;ז יש לי [לומר] דהרי&quot;ף בשערים אינו חולק עם מה שפסק בהלכות כר&quot;ה ומה שפסק בשערים אבל אם לא עשו מה שהתנו ושינו וכו׳ וכדאמרינן בגמ׳ מסתברא מילתא דשמואל וכו׳ לאו דס&quot;ל דכן הלכה אלא ה&quot;ק אם שינה דינו כהא דקאמר בגמ׳ דשור לחרישה חולקים לפי המעות עד כאן.<br><strong> והנה </strong> מ&quot;ש הרב ז&quot;ל אבל לענין שינוי אם שינה ממה שהתנו וכו׳ נראה לענ&quot;ד דהכונה היא אם התנו לעסוק בדבר פלוני ואדעתא דהכי נשתתפו וקודם שנשאו ונתנו שינו ולקחו דברים אחרים אז השכר הוא לפי מעותיהם ולא שלקחו שור לחרישה ושינו לטביחה דזה הוא מחלוקת דרבה ורב המנונא ומהו ההפרש ששם הרב בין דין השערים למימרא דרבה כדי שיאמר אבל לענין שינוי אם שינו וכו׳ וכן מ&quot;ש ולפי&quot;ז י&quot;ל דהרי&quot;ף בשערים אינו חולק עם מה שפסק (בה) [בהלכות] כר&quot;ה וכו׳ אלא ודאי נראה דהכונה כמו שכתבתי והכי דייקי דברי השערים שכתב אם עשו מה שהתנו ונתעסקו באותו עסק מיוחד וכו׳ ואם לא עשו מה שהתנו ושינו לעסוק בדבר אחר שלא התנו מתחילה וכו׳ דמשמע דלא מיירי שלקחו שור לחרישה ואח&quot;כ נמלכו כן נראה ברור. ואל כונת זאת הוא מ&quot;ש שם באות נ&quot;ה וז&quot;ל יראה לי דלטעם זה שכתב בשערים דמפני ששינו כל אחד נוטל כפי מעותיו אין לך דבר שחולקים לאמצע אלא בשור לחרישה ועומד לחרישה שלא שינו אבל אם שינו אפי׳ בשור לטביחה ועומד לחרישה נוטל כל אחד כפי מעותיו וכו׳ ור&quot;ל דאם שינו ממה שהתנו מתחילה לא מיבעי אם התנו ליקח שור לחרישה ושינו ולקחו לטביחה ועומד לטביחה דאפילו אם לא שינו דחולקים כפי מעותיהם אלא אפי׳ שהתנו שור לטביחה ושינו ולקחו שור לחרישה ועומד כיון ששינו נוטלין ג&quot;כ כפי מעותיהם כיון ששינו אלא דמ&quot;ש דומיא דשור לחרישה ועומד לחרישה לא ידענא מה אידון ביה.<br><strong> וראיתי</strong> להרב פני משה ז&quot;ל בח&quot;ב סי׳ קט&quot;ו שכתב משם הרב משה הכהן ז&quot;ל ועוד כתב כבוד תורתו וז&quot;ל ולכאורה יראה דלהרי&quot;ף אם הסחורות הם בעין וראויות ליחלק יחלוקו לפי מעות ואם כבר נמכרו השכר לאמצע דהא אפסיקא הילכתא כרב המנונא וכו׳ וא&quot;כ יצא לנו מזה דבנדון דידן דאם הסחורות נמכרו השכר לאמצע לפי ההלכה בידנו עד כאן וכתב עליו הרב פני משה וז&quot;ל ומ&quot;מ לענ&quot;ד נראה דאין דינו צודק אליבא דהרי&quot;ף דלהרי&quot;ף בטבחוהו אף אם מכרוהו קודם שנחלק לאבריו ובסחורות אף הראויות ליחלק אף אם נמכרו קודם חלוקה חולקין לפי מעות כיון שבשעת מכירה ראויות ליחלק היו וגם שהרי&quot;ף כתב בסברת רבה וז&quot;ל הואיל ואילו טבחוהו וחלקוהו באבריו היה זה נוטל שליש מגופו וכו׳ האי לישנא דחלקוהו לאבריו לאו דוקא הוא אלא הכונה הוא הואיל ואילו טבחוהו שראוי ליחלק לאבריו וטעמא הוא דיהיב למילתיה דהו&quot;ל כמי שחלקוהו לאבריו והעד ע&quot;ז דהרי&quot;ף ז&quot;ל גופיה בדקאי בסברת רב המנונא קאמר ועומד לטביחה ונמלכו וכו׳ השכר לאמצע הואיל וכשהוא חי מכרוהו ועדיין לא חלקו משמע דדוקא כשמכרוהו כשהוא חי אז מקרי דלא חלקו אבל אם טבחוהו אז שפיר מקרי חלקו אף שמכרוהו קודם שנתחוהו לנתחיו וכ&quot;כ הטור בהדיא בסי׳ קע&quot;ו על דעת הרי&quot;ף וז&quot;ל פי׳ ר&quot;ח ורב אלפס הא דאמרינן דשכר לאמצע וכו׳ אבל אם טבחוהו שראוי ליחלק לאבריו או שלקחו פירות או סחורות כיון שראוי ליחלק חולקין לפי המעות עכ&quot;ל יעו&quot;ש באורך.<br><strong> והנה </strong> ראיתי למרן החבי&quot;ב ז&quot;ל בהגהת ב&quot;י אות נ&quot;ט שכתב וז&quot;ל וכדברי הר&quot;ן נראה מדברי הרי&quot;ף עצמו בביאור הלכה זו הובאו בס׳ תמים דעים סי׳ ר&quot;כ שכתב וצריך שתדע שמ&quot;ש שור לחרישה אין הכונה שדין זה לא יהיה אלא בשור בלבד אלא כן הדין בכל מיני סחורות וכו׳ באם לקחו על צד השותפות ואח&quot;כ נתחרטו השותפין והעמידו אותם לחלק לדעת רבה חולקין לפי המעות ולדעת רב המנונא בשוה כל זמן שהשור קיים שלא נשחט או אותה סחורה קיימת עד כאן נראה מדבריו דבכל סחורה קאמר ואפילו ראויה ליחלק והכל תלוי בשעת לקיחה שאם לקחוהו על דעת שלא לחלקה אלא למוכרה כמו שהיא אע&quot;פ שנמלכו לחלק כל שלא חלקוה ומכרוה כך חולקין בשוה יעו&quot;ש.<br><strong> ואמת</strong> אגיד שהספר אינו מצוי אצלי לראות הדבר על בוריו מ&quot;מ ממ&quot;ש מרן החבי&quot;ב ז&quot;ל נראה שלא כמ&quot;ש הרב פני משה אלא כמ&quot;ש הרמ&quot;ך ז&quot;ל וגם דלא כמ&quot;ש הטור ז&quot;ל בעד הרי&quot;ף ומינה דקדוק שהיה נראה מדברי הרי&quot;ף ממ&quot;ש בדברי רבה דקדוק נכון הוא וכן ראיתי להרב מחנה אפרים בהל׳ שותפין סי׳ א׳ שדקדק כן מדברי הרי&quot;ף וז&quot;ל שהרי כתב שנמלכו עליו לחלקו באבריו ובהא פליגי וכו׳ הרי דלהרי&quot;ף לא כתב אלא כשהסכימו לחלוק לאבריו אז הוא דאמרינן חולקין לפי מעותיו אבל אם לא הסכימו לחלוק באבריו אלא שרוצים למכור הבשר ולחלוק ודאי שהיה הריוח לאמצע יעו&quot;ש והוא כמ&quot;ש הרי&quot;ף הובא בס׳ תמים דעים כדכתיבנא אלא דקשה לי על הרב מחנה אפרים ז&quot;ל שמדברי הטור נראה היפך ולא נרגש מזה כלום.<br><strong> עוד </strong> ראיתי להרב פני משה שכתב וז&quot;ל אך אני בעצמי אלמלא דברי הרמב&quot;ם ז&quot;ל הייתי אומר שאין מדברי הר&quot;ן שום הכרח דאם הר&quot;ן אית ליה בלקחוהו לטביחה ומכרוהו חי השכר לאמצע הוא לפי שיטתו דאית ליה דאף בנשתתפו בדבר הראוי ליחלק דהוי השכר לאמצע דלא עדיף לקחו לטביחה מפירות הראוים ליחלק ואפ&quot;ה אית ליה דהשכר לאמצע כל שכן בלקחוהו לטביחה ומכרוהו חי אך כפי מה שהבין מרן בב&quot;י בכונת הרי&quot;ף א&quot;כ כפי שיטה זו עדיין אפשר לומר בדעת הרי&quot;ף דהיכא דלקחוהו לטביחה אע&quot;ג דמכרהו חי דיחלוקו לפי המעות דבתר שעת לקיחה אזלינן וכו׳ יעו&quot;ש. ולא זכיתי להבין דבריו דממקום שבא להסתייע מדברי הטור משם נראה בהיפך דהא הטור כתב דלהרי&quot;ף לקחו פירות הריוח לפי המעות ושם כתב וז&quot;ל פי׳ ר&quot;ח ורב אלפס ז&quot;ל דהא דאמרינן השכר לאמצע דוקא שלקחו שור לחרישה או אפי׳ לטביחה ומכרוהו חי אבל אם טבחוהו שראוי ליחלק לאברים או לקחו פירות או סחורה כיון שראוי ליחלק חולקין לפי המעות עד כאן וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Chapter 5</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:1:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-1-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המשתתף עם חברו בסתם לא ישנה וכו׳.</strong> לא נתבאר בדברי רבינו אם שותפין שומר שכר הם או לא וגם דין בעליו עמו שפטור עיין במהרי&quot;ק שורש ק&quot;ד והביאו מרן בסי׳ קע&quot;ו מחודש ג׳ ובמור&quot;ם ראיתי בכנסת הגדולה סי׳ קע&quot;ו (הגה&quot;ט) [הגהת ב&quot;י] אות פ&quot;ז שכתב בתוך הלשון וז&quot;ל אמר המאסף מדברי כולם נלמוד שאם פשע ההפסד לעצמו וכו׳ ותימה הוא דהלכה רווחת דפשיעה בבעלים פטור ושותפין שמירה בבעלים הוא וכו׳ ושמא מהרשד&quot;ם ז&quot;ל ס&quot;ל דמ&quot;ש המרדכי בשם מהר&quot;ם דאפי׳ בסתם שותף לא הוי שמירה בבעלים ולכן חייב בפשיעה וה&quot;ה בגניבה ואבידה עכ&quot;ל ולא זכיתי להבין דבריו דממקום שבא בסי׳ קס&quot;ו שם כתב מהרשד&quot;ם ז&quot;ל בשותפין דבגניבה ואבדה פטור משום שאלה בבעלים וצ&quot;ע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:2:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-2-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד מן השותפין שעבר ומכר בהקפה וכו׳.</strong> כתב מהר&quot;א ששון ז&quot;ל בסי׳ ק&quot;צ וז&quot;ל ואע&quot;פ שכתבתי שזה נראה מדברי הרא&quot;ש ז&quot;ל עכ&quot;ז אפשר לי לומר דלעולם לא ס&quot;ל להרא&quot;ש דבסתמא ר&quot;ל שלא לקח רשות מחבירו שחייב אם שינה וכמו שנראה מדברי רש&quot;י ז&quot;ל שכתב שצריך לימלך וכן נראה מדברי בעל העיטור שלדעת כולם אם שינו ממנהג חייב בסתם אלא דלהרא&quot;ש לא מחייב אלא כשמיחה חברו והוא שינה וכמעט שעיינתי בכל תשובותיו שבענין השותפין ולא נתבאר לי דבסתם אם שינה דחייב אלא דיכול לעשות בשל חבירו מה שהוא עושה בשלו וכו׳ ואלמלא דמסתפינא אמינא דקושטא דמילתא הכי הוא דפליג הרא&quot;ש בדין וסיוע לזה מההיא דפ׳ כל הגט שהזכרתי וכו׳ יעו&quot;ש.<br><strong> ואנכי</strong> הרואה להרא&quot;ש ז&quot;ל בתשובה הביאה הטור ז&quot;ל בסי׳ קע&quot;ו סי&quot;ז שכתב וז&quot;ל ומה שאומר ראובן שלא הרשהו למכור בהקפה תנאי זה איני רואה לו הוכחה מתוך השטר וכו׳ ואם המנהג למכור בהקפה אז לא פשע אבל אם אין המנהג למכור בהקפה אז פשע שמעון וכו׳ אבל אם מנהג הסוחרים למכור בהקפה אז יחלק גם ההקפות כפי תנאם וכו׳ יעו&quot;ש הרי להדיא דעת הרא&quot;ש ז&quot;ל דהמשנה מהמנהג חייב השותף שלא כדברי מהר&quot;א ששון ז&quot;ל וצריך לי עיון.<br><strong> ועל </strong> מ&quot;ש רבינו <strong> לפיכך הנותן מעות לחבירו בתורת שותפות וכו׳ </strong> עיין למרן כ&quot;מ. ודע דכתב הרא&quot;ש ז&quot;ל וליתא לחוכא דבני מערבא דאע&quot;ג דשני שליח מ&quot;מ אין מתכוין לקנות ודעתו לזכות לבעל המעות אע&quot;פ שבעל החיטין מזכה לשליח החיטין ידו כיד בעל המעות שהוא מתכוין לזכות ולא בעינן שידע בעל החיטין שהוא מזכה לבעל המעות ואע&quot;ג דרבי אבא משני הך דערכין אליבא דבני מערבא דאי לאו דכל מקדיש אין דעתו על כסות אשתו ובניו הוה אמרינן מי הודיעו לצבע שיקנה צבע לאשה שאני התם דכיון דהצבע מקנה צבע לבעל האשה אפי׳ אם ירצה הבעל לזכות לאשתו בגד הצבוע אין אדם זוכה בשלו לאחר אם לא יזכה לו ע&quot;י אחר וכו׳ יעו&quot;ש.<br><strong> וראיתי</strong> להרב ש&quot;ך בסי׳ קפ&quot;ג סק&quot;ב שהקשה לדברי הרא&quot;ש וז&quot;ל אך קשה על הרא&quot;ש גופיה דא&quot;כ היכי קאמר הש&quot;ס התם גבי הלוקח שדה בשם ריש גלותא לימא פליגי אבני מערבא דהא אפי׳ למאן דפליג אבני מערבא בעינן שיהיה בעל המעות והא התם לא נתן הריש גלותא מעות וא&quot;כ דומה לצבע שצבע לשמן דאין אדם זוכה בשלו לאחר וכו׳ וצ&quot;ע עכ&quot;ל ועיין להרב בצלאל בשטמ&quot;ק שהביא משם הרא&quot;ש בתוספותיו וז&quot;ל לימא פליגי אבני מערבא בשלמא אי אמרת שדעת המוכר להקנות את המקח לבעל המעות לכל מי שיהיה הכא נמי במפרש שלוקח לצורך ריש גלותא אפ&quot;ה דעת המוכר להקנות לבעל המעות אפי׳ אינו ריש גלותא אבל לבני מערבא דאמרי מי הודיעו לבעל החיטים וכו׳ וס&quot;ל דבלא דעת המוכר לא קנה בעל המעות והכא סבר המוכר להקנות לריש גלותא והוא אינו קונה היאך יקנה הלוקח עד כאן הרי לדעת הרא&quot;ש הוא דמאן דפליג אבני מערבא ס&quot;ל דדעת המוכר הוא להקנות למי שהמעות שלו ואע&quot;פ שיאמר לו בשם אחר ומשו&quot;ה לדידהו היה קונה הלוקח ולא קשיא להו הך ברייתא אמנם לבני מערבא דס&quot;ל דבעינן שידע לבעל המעות קשיא להו הך ברייתא וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:7:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-7-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שותפין שמחלו להם מוכסין מחלו לאמצע וכו׳.</strong><br><strong> שאלה</strong> ראובן ושמעון שהיו שותפין בזה האופן שראובן הוציא הקרן של השותפות ושמעון היה מתעסק בלי שום קרן וראובן היה הולך ובא בשעת לקיחת הסחורות ומכירתן והיו חולקים ביניהם כמו שהתנו ובהמשך הזמן לקח ראובן מרתף אחד יידי&quot;ק במקום אחד ולפי שאותה שעה לא היה לראובן מעות מזומנים לקח ממעות העסק ופרע למוכר ובתוך הימים מועטים החזיר המעות שלקח לעסק ובכן תובע המתעסק שיתן ראובן הריוח מן לקיחת היידי&quot;ק יען כי ממעות העסק לקח וזה ג&quot;כ נקרא ריוח מחמת העסק והלה טוען כי מה לו במקח זה שלא לקחו להרויח אלא לעצמו להיות לו לנחלה והגע עצמך שהיה לוקח מלבוש אחד לצורכו ויש בו ריוח ומשום שלא היו נמצאין מעות אצלו לוקח ממעות השותפין הנאמר בזה שחייב לתת לו ריוח הא ודאי שאין הדעת סובלתו והלה משיב שאין זה שוה לזה ואף אם כתבת אותו היידי&quot;ק על שמך לא כל כמינך סוף סוף ממעות השותפות לקחת יד שניהם זוכות כאחד יורנו הדין עם מי ושכרו כפול מן השמים.<br><strong> תשובה</strong> לכאורה נראה דהדין עם שמעון מהא דכתב מהרשד&quot;ם ז&quot;ל חו&quot;מ סי׳ י&quot;א שנשאל על נדון כיוצא בזה והשיב וז&quot;ל תשובה נראה בעיני דעל הסתם הדין עם שמעון דסתם מה שעושין השותפין בעסק השותפות הכל הוא לתועלת שניהם בעסק השותפות וכמו שנראה מההיא דכתב הרא&quot;ש ז&quot;ל בפסקיו שהביא תוספתא וז&quot;ל שותפין שמחלו להם מוכסין מחלו לאמצע ואם אמרו בשביל פלוני מחלנו מה שמחלו מחלו (לא׳) [לו] וכו׳ ונראה שכן הוא מסקנת הרא&quot;ש ובנו הטור בסי׳ קע&quot;ח וז&quot;ל שותף שבקש אחד מהם מהמוכס שימחול לו מה שמחלו מחל לאמצע כאילו הוא שלוחם לבקש בשביל כולם ואם מעצמו בלא פיוס אמר אני מוחל בשביל פלוני הוא שלו לבדו עכ&quot;ל וכ&quot;כ המרדכי הטעם דדרך השותפין לטרוח בשביל חבריהם ואם כן בנדון דידן נמי נימא הכי דכיון שהעביר עסק השותפות ליידי&quot;ק הזה אשר לקח ומה גם שלקח ופרע ממעות העסק מסתמא לתועלת השותפות לקח ודינא קא בעי שמעון כך היה נראה לכאורה.<br><strong> אמנם </strong> כד מעיינת שפיר נראה דלא דמי כלל דנדון הרב ז&quot;ל היה ששמעון המתעסק היה מוכרח לצאת מהחנות שהיה שם וליקח חנות אחרת לצורך העסק כמבואר שם בשאלה ובא ונמלך עם ראובן שותפו וא&quot;ל עשה כטוב בעיניך וכיון שהחנות היה לצורך השותפות א&quot;כ גם הריוח הנמשך מלקיחת החנות ריוח הנמשך מהשותפות מקרי ושפיר חייבו הרב ז&quot;ל דומה למוכסין שמחלו לאמצע דהתם נמי ריוח הסחורות הוא והו&quot;ל כאילו השתדל למכור הסחורות ביוקר או ליקח בזול שהריוח לאמצע. ברם בנדון דידן שהיו בחנות מתעסקין ואין דובר להם דבר זמן מרובה ולהיות נמכר ייד&quot;יק אחד וישר בעיני ראובן והלך ולקחו להיות לו לאחוזה וחזק בדקיו ואם לפי שעה לקח איזה מעות ובתוך ימים מועטים החזירם מאן לימא לן כי לצורך השותפות עשה. ואף אם בהמשך הזמן (ו)העביר העסק לזה היידי&quot;ק לשמור הקרן שלו מדלקה וכיוצא לא מפני כך נאמר שלצורך השותפות לקח וריוח השותפות הוי. ועוד אני אומר דבנדון דידן לא שייך לומר שלקח לאמצע דבנדון הרב ז&quot;ל לא היה שם שכירות אלא לקח המולק&quot;י שכן משמע מסתמות דבריו אבל בנדון דידן שהוא יידי&quot;ק ופורע השכירות לגוי בשביל הקרקע כך וכך לחדש וכל זה פרע ראובן לבדו ולא נכנס בחשבון העסק מיום שלקח זה היידי&quot;ק מנא לן לומר דסתם טרח לצורך שותפו ופורע השכירות משלו ועכשיו שיתיקרו הקרקעות יתן לו ריוח מזה ועוד מטעמא אחרינא נראה שאין לפקפק בדבר כלל והוא זה כי אחר שלקח זה היידי&quot;ק וקודם שחזק את בדקיו השכירו ראובן לחבירו ולקח השכירות לעצמו ועד היום חוזק את בדקיו כגון פתח היידי&quot;ק מנסר ברזל והכל משלו מכל הני טעמי וכל אחד בפני עצמו נראה לענ&quot;ד דהדין עם ראובן ותו לא מידי ושוב ראיתי להרב מטה שמעון ז&quot;ל סי׳ קע&quot;ו הגהת ב&quot;י אות ק&quot;ב מ&quot;ש בזה וק&quot;ל.<br><strong> ומ&quot;ש</strong> רבינו <strong> היו באין בדרך ועמדו עליהם ליסטים וגזלו את השיירה והציל אחד מן השותפין וכו׳.</strong> עיין בפי&quot;ב מהל׳ גזילה ה&quot;ח שהביא הרב מל&quot;מ ז&quot;ל תשובת הרשב&quot;א ז&quot;ל שבסי׳ תתקל&quot;ח שנראה בדעתו בדין שיירה דאי ליכא עדים אינו נאמן בשבועה ומשו&quot;ה הצריך בנדון שלו שיאמר בפני עדים ושכן נראה מתשובה אחרת שהביא מרן בסי׳ קע&quot;ו על ב׳ שהיה להם חוב אצל אלם וכמו שהכריח מהרש&quot;ך ז&quot;ל בח&quot;א סי׳ ק&quot;ל וקמ&quot;ג ברם המרדכי בפ׳ הגוזל כתב משם ראבי&quot;ה על דין זה דשיירה דאם אין עדים שאומר כן נשבע שלא נתכוון אלא להציל לעצמו וזוכה ולפי&quot;ז יש לתמוה על מור&quot;ם במפה שבסי׳ קפ&quot;א פסק שאם אמר שאמר לעצמי מציל ואין לו עדים נשבע על כך ומחזיק לעצמו ואילו בסי׳ רצ&quot;ב ס&quot;ז כתב ואם גילה דעתו שעסק לצורכו או במקום שאסור להשתמש שמסתמא עסק בהם לצורך בעל הפקדון אינו נאמן לומר לעצמי עסקתי עד שיביא עדים והיא התשובה שבסי׳ תתקל&quot;ח ואיך זיכה שטרא לבי תרי ותירץ דהנראה לו לומר דס&quot;ל למור&quot;ם ז&quot;ל דהמרדכי יודה בנדון הרשב&quot;א דבעינן עדים דשאני גבי שיירה דלא משוי עצמו רשע במה שטוען שהציל לעצמו ומשו&quot;ה נאמן בשבועה אבל בנדון הרשב&quot;א שבטענתו נעשה גזלן וכמ&quot;ש הרשב&quot;א ז&quot;ל שאם אמר בפני עדים הו&quot;ל גזלן אז לא נאמן בטענתיה עד שיביא עדים שאמר כן בפניהם ואפשר דחילק כן הרב המפה כי היכי דלא לפלוג ראבי&quot;ה והרשב&quot;א ז&quot;ל וס&quot;ל דהרשב&quot;א מודה דבאמירה לחודיה סגי וההיא שהביא מרן בסי׳ קע&quot;ו דמהניא משום מיגו היינו לפוטרו משום שבועה ומ&quot;ש כאן דבעינן עדים היינו משום דבטענתו נעשה גזלן וכו׳ אלו תוכן דבריו יעו&quot;ש באורך.<br><strong> ולענ&quot;ד</strong> לא זכיתי להבין דבריו שהרי התשובה שהביא בסי׳ קע&quot;ו היא בח&quot;א סי׳ אלף ס&quot;ג שבטענתו לא נעשה גזלן כמו שנראה שם להדיא ואפי׳ הכי כתב וי&quot;ל אם קבל הפרעון בפני עדים ואמר בפניהם לעצמי אני מציל זכה לעצמו ע&quot;כ. הרי שמצריך אמירה ואף שלא נעשה גזלן ועוד קשה לפי מה שהבין במ&quot;ש מור&quot;ם ז&quot;ל בסי׳ קע&quot;ו סכ&quot;ח וז&quot;ל ואם אמר לעצמי אני מציל וכו׳ שהיא אמירה בלא עדים תקשי לפי&quot;ז שדין זה הוא מהרשב&quot;א ז&quot;ל ואיהו ס&quot;ל בהיפך. אלא נראה לענ&quot;ד דלעולם הרשב&quot;א וראבי&quot;ה פליגי ומור&quot;ם ס&quot;ל כהרשב&quot;א היכא שנעשה גזלן בטענתו ומשו&quot;ה פסק בסי׳ רצ&quot;ב ההיא דהרשב&quot;א ובסי׳ קפ&quot;ה דלא נעשה גזלן ופסק כראבי&quot;ה ובסי׳ קע&quot;ו הביא ההיא דהרשב&quot;א והשמיט אמירה בפני עדים כיון שלא נעשה גזלן. וכתב מהריב&quot;ל ז&quot;ל בח&quot;ב סי׳ מ&quot;ב על דברי רש&quot;י שכתב הציל לאמצע וכל אחד מכיר את שלו ונוטל עד כאן וז&quot;ל אין ספק דרש&quot;י ז&quot;ל לא כתב זה לההיא אוקמתא דרמי בר חמא דפריך בשותפי עסקינן דלא שייך לומר כל אחד מכיר את שלו ואי שייך שייך בההיא אוקמתא דבפועלים עסקינן ובההיא אוקמתא דרב אשי בדיכול להציל ע&quot;י הדחק גלי דעתיה לעצמו לא גלי דעתיה לאמצע ע&quot;כ.<br><strong> וראיתי</strong> להרב פרי האדמה בדף י&quot;ד ע&quot;ד שכתב דלדעתו ז&quot;ל רש&quot;י ז&quot;ל לא אמרה לאוקמתא דפועלים ולא גילה לנו טעמו של דבר דאם רש&quot;י אמרו לאוקמתא ביכולים להציל ע&quot;י הדחק ולא אמר לעצמי אני מציל והציל משל אחרים שכל אחד מכיר את שלו ונוטל ואם לא הציל את שלו מפסיד אפי׳ שכל הטורח היה לו כמ&quot;ש הסמ&quot;ע בסי׳ קפ&quot;א ס&quot;ב כל שכן בשכרו כולם פועל והציל מקצתו או כולו שכל אחד מכיר את שלו ונוטל ברם מדברי הרמ&quot;ה ז&quot;ל נראה לדקדק כדברי הרב פרי האדמה והביאו הרב בצלאל בשטמ&quot;ק בסוגיין וז&quot;ל והרמ&quot;ה כתב היה פועל נשכר לכל בני השיירה והציל וכו׳ לא אמר(י׳) לא הדר ביה והציל לאמצע לכל בני חבורה אע&quot;ג (דאינו) [דאין] יכולים להציל וכו׳ ובאוקמתא דרב אשי כתב וז&quot;ל רב אשי אמר בשיכולים להציל ע&quot;י הדחק הלכך אי לא אמר לעצמי אני מציל וכו׳ הציל לאמצע דשקיל כל חד מנייהו ממונא דנפשיה וכו׳ יעו&quot;ש הרי דבאוקמתא דרבא דמוקי בפועלים פי׳ לכל בני השיירה ובאוקמתא דר&quot;א פי׳ דכל חד שקיל ממונא דידיה כפי׳ רש&quot;י ז&quot;ל והטור לא הביא הך דרש&quot;י כי אם לאוקמתא דר&quot;א ולא בפועל ועיין בכנסת הגדולה הגהת הטור אות ד׳.<br><strong> והרב </strong> דרכי נועם בחו&quot;מ סי׳ ח׳ נשאל על שנים שנתפסו בעלילה ולקח שר העיר בעד שניהם ר&quot;נ (א&quot;ת) [גרושוש] וריחם ראובן על שמעון העני ונתן ראובן ר׳ ושמעון נ׳ ולימים הלך משרת השר לעיר של שמעון והוליכו למשרת לערכאות של גוים והוציא ממנו ק&quot;נ (א&quot;ת) [גרושוש] ועתה תובע ממנו ראובן ד׳ ידות ממה שלקח כי כן פרעו בעלילה והביא הרב ז&quot;ל הך ברייתא דשיירה שהיתה מהלכת במדבר ואוקמתות שנאמרו עלה וכתב וז&quot;ל ולכאורה נדון שלפנינו היא אוקמתא של רב אשי דהוי כאחד מבני השיירה שעמד והציל וגם יכולים להציל ע&quot;י הדחק מקרי שהרי לפעמים קובלים על השר המעליל עליהם להוציא את בלעו מפיו וכו׳ א&quot;כ הוי דינא הכי שאם אמר לעצמי אני מציל הציל לעצמו וזוכה בכל מה שהציל וזוכה מן ההפקר וצריך להביא עדים שאמר כן כשעמד להציל ואם אין שם עדים כתבו בהגהות מיימוני משם ראבי&quot;ה שצריך שישבע שלא הציל אלא לעצמו עד כאן יעו&quot;ש.<br><strong> ואנא</strong> חכים ולא בחכמה לא זכיתי להבינו דהא בהך אוקמתא דאיירי הרב ז&quot;ל ביכולים להציל ע&quot;י הדחק דאי גלי דעתיה לעצמו פרש&quot;י ז&quot;ל וז&quot;ל אמר לעצמי אני מציל ושמעו הבעלים ושתקו ולא מסרו עצמן אסחו דעתייהו וגלו דאייאוש ולא בעו לממסר נפשייהו וכו׳ יעו&quot;ש הרי להדיא דאמירה צריך היות בפני הבעלים כדי לידע אי מיאש או לא וכן הוא דעת הרי&quot;ף והרא&quot;ש ורבינו ז&quot;ל כמבואר א&quot;כ בנדון הרב ז&quot;ל שהמציל הציל בעירו וראובן היה בעיר אחרת וכגון דא איש במעון ומעשהו בכרמל מקרי ומה יושיענו זה שאמר לעצמי אני מציל ומביא עדים ע&quot;ז או נשבע שאמר כן בעת ההצלה ודברים אלו נאמרו אלא לאוקמתא דרמי בר חמא דמוקי בשותפין דדרכו לטרוח חד על חבריה בסתם וכשמפרש לעצמו הציל מהני לחלקו או לכל בשאין יכולים כלל וכן באוקמתא דרבא דמוקי בשכיר אבל בהך אוקמתא צריך שיאמר בפניו כדי לידע אם מייאש או לא באופן שדברי הרב ז&quot;ל צ&quot;ע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:9:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-9-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המעות כחלוקים הם וכו׳.</strong> עיין בהגהות מיימוני אות ד׳ וכתב מהרשד&quot;ם ז&quot;ל בחו&quot;מ סי׳ קס&quot;ח על שטר שהיה כתוב בכל אשר יזמין ה׳ וכו׳ דאפי׳ מאן דפליג בגניבה ומציאה יודו בנידון דידן דפשיטא שנכנס מציאה ואבדה וכל שכן סרסרות יעו&quot;ש והנה נכנס הרב במציאה וגניבה ויצא במציאה ואבדה כנראה שלא גמר דעתו ז&quot;ל דנכנס גניבה ועיין למרן החבי&quot;ב בסי׳ קע&quot;ו הגהת ב&quot;י אות קע&quot;ז שהקשה עליו דלא נכנס דשונא גזל בעולה כתיב יעו&quot;ש כנראה שהבין בפשיטות בדעת הרב שנכנס גזל בכל אשר יזמין ולענ&quot;ד צריכא רבה לדעתו וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:10:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-10-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור להשתתף עם הגוי וכו׳.</strong> עיין בהגהות מיימוני אות ה׳ שכתב משם רשב&quot;ם שאם נשתתף וחייב שבועה שמותר לקבל מפני שמציל וכו׳ יעו&quot;ש וזה הוא סברת ר&quot;ת אבל סברת רשב&quot;ם הוא שאסור לקבל כמ&quot;ש התוס׳ והרא&quot;ש ושאר פוסקים וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:11:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-5-11-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 5:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד מן השותפין שמת וכו׳.</strong> עי׳ בכנסת הגדולה בסי׳ קע&quot;ו הגהת הטור אות קע&quot;ב שהביא משם הפוסקים שכתבו דהא דמתבטל היינו דוקא כשבטלו השותפין בפירוש אבל כל עוד שלא בטלו השותפין בפירוש עדיין השותפות קיימת יעו&quot;ש ועיין בתשובת הרשב&quot;ש בסי׳ ר&quot;ב דנראה דלא ס&quot;ל הכי וגם בתשובת בעי חיי בח&quot;ב סי׳ כ&quot;א כתב וז&quot;ל ואע&quot;ג דאיכא פלוגתא דרבוותא במת אחד מן השותפין שנתפרדה החבילה שיש אומרים דממילא נתבטל וי&quot;א דוקא ביטלוהו בפירוש בפני עדים ביתומים גדולים וכו׳ יעו&quot;ש ועיין בס׳ שמחת יו&quot;ט הנדפס מחדש בסי׳ כ&quot;ג שכתב וז&quot;ל איך שיהיה נמצינו למידין דלכו&quot;ע ס&quot;ל כל שלא גילו דעתייהו לחלוק לא נתבטל השותפות כלל ובזה כל אפייא שוין והוא מוסכם מכל הפוסקים בלי שום חולק יעו&quot;ש ולפי מ&quot;ש אחר המחילה רבה זה אינו וצ&quot;ע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-6">Chapter 6</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-6-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 6:2:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-6-2-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 6:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם היה לו עסק אחר וכו׳.</strong> עיין במ&quot;ש מרן ז&quot;ל בכ&quot;מ על דברי רבינו ועיין בס׳ פרח מטה אהרן ח&quot;א סי׳ קט&quot;ו בסוף התשובה מה שהקשה עליו ומסיים לכך נראה דפירושא דהא תירוצא לדעת הרמב&quot;ם כך היא מעיקרא פריך היכי קאמר רב דמותר שליש סגי והא איכא צד אחד בריבית ורב אמר ריש עגלא לפטומי ובודאי דלא קאמר רב ריש עגלא לחוד מהני שהוא דבר מועט ובודאי דקאמר שצריך שיקצץ עמו דאי לא הוי מותר שליש דיתן לו דבר קצוב דהיינו ריש עגלא והו&quot;ל כקוצץ דינר דקאמר שמואל וכו׳ ואיבעית אימא דכי אמר רב מותר שליש וכו׳ פי׳ בין בההיא דמותר שליש בין בההיא דריש עגלא דמיירי דאית ליה הבהמה לדידיה ומשום הכי מהני או במותר שליש או בריש עגלא לאפוקי דבעלמא (דא&quot;ל) [דלית ליה] בהמה אחריתי בעינן שכרו כפועל וכו׳ או כההיא דרבא בפלגא באגר תרי תילתי וכו׳ ומעתה אנו מוכרחים לומר דההיא דרבא דקאמר בחדא במותר שליש וכו׳ ואידך ריש עגלא כולהו מיירו בדאית ליה בהמה היינו שהתנה מתחילה על כך והכל לפי תנאו וכו׳ יעו&quot;ש באורך.<br><strong> ולענ&quot;ד</strong> קשה לי טובא דאם רבינו סובר דתרתי מימרי דרבא מיירו בדאית ליה בהמה למקבל א&quot;כ למה פסק לקמן בריש פ&quot;ח וז&quot;ל וכן השם בהמה וכו׳ ואם א&quot;ל הרי הראש והאלייה שלך בעמלך יתר על המחצית שכר מותר היו לפני מפטם בהמות אחרות וכו׳ אפי׳ לא העלה לו אלא דבר מועט בכל ימי השותפות הזאת דיו וכו׳ עד כאן הרי דהא דריש עגלא ס&quot;ל דמיירי בדלית ליה בהמה אחרת ומותר שליש בדאית ליה בהמה אחרת ועוד יש לעמוד עליו במ&quot;ש בתירוץ קמא בגמ׳ ודוק.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-8">Chapter 8</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-8-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 8:4:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-8-4-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 8:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מקום שנהגו שלא לגדל חייב המתעסק להטפל בולדות בדקה ל׳ יום וכו׳.</strong> עיין במרן כ&quot;מ ז&quot;ל שכתב אע&quot;ג שר׳ יוסי פליג אהא הלכה כתנא קמא עד כאן ור&quot;ל דס&quot;ל לר&quot;י בדקה שלשה חדשים מפני שטיפולה מרובה וכן פסקו הרי&quot;ף והרא&quot;ש ז&quot;ל ממאי דהביאו הברייתא בסתם וכן נראה דעת מרן ביו&quot;ד סי׳ קע&quot;ז וכן פסק הטור שם.<br><strong> וראיתי</strong> (בפסקי) [בקיצור פסקי] הרא&quot;ש ז&quot;ל בסי׳ מ&quot;ג שכתב ובמקום שאין מנהג יטפל בולדות בדקה ג׳ חדשים וכו׳ והוא היפך ממ&quot;ש בטור דסגי בל׳ יום וכת&quot;ק וכאן פסק כר׳ יוסי ומה מקום מצא לפסוק כר&quot;י בדברי הרא&quot;ש שלא הביא כי אם הברייתא כצורתה וכמו שהביאה הרי&quot;ף ז&quot;ל ומיהו לזה אפשר לומר ממאי דמייתי הרא&quot;ש ז&quot;ל מאי דאמרינן בש&quot;ס מאי טיפולה מרובה תנא מפני ששיניה דקות ולאיזה צורך הביא זה אם לא שרוצה לפסוק כר&quot;י ומ&quot;מ בטור פסק בהיפך וצריך לי ישוב ודע דרבינו והטור חולקים בדין שלשים יום והוא דרבינו ס&quot;ל דהא דאמרינן עד מתי חייב לה ליטפל בולדות בדקה ל׳ יום הוא במקום שנהגו שלא לגדל אפי׳ הכי חייב ליטפל ל׳ יום וכל שכן במקום שאין מנהג וכן נראה שהוא דעת רש&quot;י ז&quot;ל בפי׳ המשנה ואילו הטור ז&quot;ל לא כתב כן אלא כתב וז&quot;ל ובולדות מקום שנהגו לחלקם מיד חולקים מיד ובמקום שאין מנהג כלל יגדלם המקבל בדקה ל׳ יום יעו&quot;ש והוא כדברי הרא&quot;ש ז&quot;ל ואילו מרן ז&quot;ל לא נתעורר בזה ובשו&quot;ע פסק כהרא&quot;ש והטור וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-8-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 8:7:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-8-7-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 8:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד מן האחין או מן השותפין דנפל לאומנות המלך וכו׳.</strong> בפ׳ מי שמת (בבא בתרא דף קמ&quot;ד) וראיתי לרבינו יונה בעליות שכתב וז&quot;ל עוד נראה לפרש השותפין שהן שותפין בכל ריוח שירויחו באומנותן ובכל דבר ולא הוצרך לומר אם למד וכו׳ אלא כי אצטריך ליה לאשמועינן כגון שנפל לאומנות המלך שאין זה ביד האדם אלא כפי שיעלה רוח המושל וסד&quot;א במילתא דלא שכיח ואין בידו לא אסיק אדעתיה קמ&quot;ל דאפי׳ הכי השכר לאמצע והיינו דתני עלה לאומנות המלך ומתני׳ כגון דנפל לאומנות ומחמת עצמו והא דתני בברייתא אם מחמת אחין לאחין מיירי שלא נשתתפו בכל ריוח יעו&quot;ש.<br><strong> ואפשר</strong> דמשום הא כתב הטור בסי׳ קע&quot;ז ס&quot;ב משם ה&quot;ר יוסף הלוי ז&quot;ל דדוקא לאומנות המלך אבל לאומנות אחרת אע&quot;פ שמנוהו מחמת אחיו הוא לעצמו עד כאן והקשה מרן החבי&quot;ב ז&quot;ל בהגהת הטור אות א׳ דלמה כתבו משם הר&quot;י הלוי ז&quot;ל והוא תלמוד ערוך וגם על מור&quot;ם במפה ז&quot;ל הקשה שמביאו בשם יש אומרים יעו&quot;ש מה שתירץ ולפי מ&quot;ש ניחא שהביאו משם הר&quot;י הלוי ז&quot;ל דלא נימא בכונת הש&quot;ס כמ&quot;ש ר׳ יונה בעליות להכי מביא משם הר&quot;י הלוי דדוקא לאומנות המלך הוא דשכר לאמצע אבל לאומנות אחרת השכר לעצמו וראיתי למרן החבי&quot;ב ז&quot;ל בתשובה חו&quot;מ ח&quot;ב סי׳ מ׳ שכתב וז&quot;ל וראיתי להנמוק&quot;י ז&quot;ל שכתב ואם נפל אחד מאלו לאומנות המלך או לאומנות אחרת הריוח לאמצע ע&quot;כ. ודבריו תמוהים דהא בגמ׳ אמרינן תנא לאומנות המלך כלומר לאפוקי אומנות אחרת כמו שפירשו כל המפרשים ואולי ט&quot;ס הוא ובמקום או צ&quot;ל (לו) [לא] ואי נמי דהנמוק&quot;י ז&quot;ל מפרש דכי אמרינן בגמ׳ לאומנות המלך לא בא לאפוקי אומנות אחרת אלא בא לרבויי אומנות המלך דסד&quot;א דלא תני חלה ונתרפא נתרפא משל עצמו אלא דוקא באומנות אחרת אבל באומנות המלך מתרפא מן האמצע קמ&quot;ל דמתני׳ מיירי אף נפל לאומנות המלך כיון דמתני׳ מיירי בחלה בפשיעה ולפי דרכו למדנו ישוב אחרת לדברי הר&quot;י הלוי דכדי שלא נפרש דבגמ׳ אתא לרבויי אומנות המלך וכל שכן אומנות אחרת פי׳ דאין הפירוש כך אלא דאתי לאפוקי אומנות אחרת עכ&quot;ל ולענ&quot;ד אחר המחילה רבה נראה דהכי צ&quot;ל והילך לשון (הר&quot;ן) [הנמוק&quot;י] ז&quot;ל ואם נפל אחד מאלו לאומנות המלך כדאיתא בגמ׳ שנוטלן מכל בית פעם בחדש וממנין אותו למוכס או לאומנות אחרת הריוח לאמצע דהא מתפיסת הבית מינהו וכו׳ יעו&quot;ש ומ&quot;ש לאומנות אחרת קאי למינוי והכונה דממנין אותו למוכס או שהמינוי הוא לאומנות אחרת ועכ&quot;פ המנוי הוא מאת המלך ובעבודת המלך ולא בא לומר שנפל הוא לאומנות שלא מחמת המלך כמו שהבין הרב ז&quot;ל או לעשות ט&quot;ס. ומ&quot;ש רבינו עוד <strong> חלה אחד מהן ונתרפא וכו׳ </strong> כתבו התוס׳ וז&quot;ל תני בתוספתא בד&quot;א ברפואה שיש לה קצבה אבל ברפואה שאין לה קצבה הרי הוא כמזונות וירפא מן האמצע וכו׳ ועי׳ בדרישה שכתב שרבינו כתב לב׳ הדינים ואיני יודע בדברי רבינו רמז לדין זה וצריך ישוב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-9">Chapter 9</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:1:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-1-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השותפין וכו׳ מפני שאלו מורין לעצמן וכו׳.</strong> הכי איתא בהנשבעין דף מ&quot;ח מאי שנא הני דנשבעין בטענת שמא משם דמורו התירא עד כאן וכתבו התוס׳ ר&quot;ת פסק דבמלוה למחצית שכר אין יכול להשביעו דכיון דלוקח שכר לא מורה היתרא ע&quot;כ. וראיתי להרב משפט צדק בח&quot;א סי׳ ע&quot;ג שהקשה וז&quot;ל ויש לדקדק עליו שא&quot;כ למה האריסין ישבעו שהרי נוטלין שכר טורחן ותקשי ליה מהתם ואי משום שהגם שנוטלין שכר חושבין שיותר יש להם ליקח כפי טורחן ומורו היתר א&quot;כ בדין מקבל עיסקא נימא הכי וי&quot;ל דשאני התם דחוץ ממה שנותן לו אפלגא מלוה שכל ההנאה שלו עכ&quot;ז נותן לו שכר טורחו ודוחק עכ&quot;ל.<br><strong> והנה</strong> תם אני על הרב ז&quot;ל איך לא הביט בשורש דברי ר&quot;ת הלא המה בהגהות מרדכי בהנשבעין תשובת ר&quot;ת וז&quot;ל על מה שחייבתם לשמעון שבועה שלא עכב מן הריוח ומן העיסקא כלום מכח שבועת השותפין (ב)הנשבעין שלא בטענה פליאה היא בעיני דבעיסקא לא ינהג מנהג השותפין שהרי חציו מלוה וחציו פקדון ופי׳ דמתני׳ דשבועות הכי איתא אלו נשבעין וכו׳ השותפין ששניהם עוסקים מורו היתרא דסמכין אהדדי והאריסין דמשתעבדי למרי ארעא לאתויי ליה רעיא בלא שכר ידוע ומורי היתר דמדישיה קא אכיל ואפוטרופא וכו׳ ואין נוטלין שכר ידוע על אלו דברים דמורו היתרא וכו׳ אבל עסקא דפקדון גמור הוא וצריך שכר ידוע הוי כשכיר יום או כשכיר חדש או כשכיר שנה כמו אומן ומקבלי קבלנות ואע&quot;ג דהקלו בשכרו כגון טיבול בציר מה בכך דריבית דרבנן הוא והקלו ביה רבנן אבל שכר ידוע הוא ושם שומר שכר עליו יעו&quot;ש באורך הרי להדיא דדעת ר&quot;ת הוא דחלוקת האריסין הוא על מה שעוסקים להביא רעייא למרי ארעא וע&quot;ז הוא דמורו היתרא דאין נוטלין שכר ידוע לא על מה שעוסקים באריסות דהתם ליכא היתרא דהא יש להם חלק באריסות ושאר חלוקות נמי אין להם שכר ידוע על טורחם כמו שבארם ז&quot;ל וא&quot;כ מה מקשה הרב ז&quot;ל מחלוקת האריסין וכן יש לדקדק במה שתירץ דשאני התם דחוץ ממה שנותן לו אפלגא מלוה שכל הנאה שלו עכ&quot;ז נותן לו שכר טורחו וכו׳ ולפי דדברי ר&quot;ת אינו תלוי בהנאה פלגא מלוה כי אם כיון שנותן לו שכר ידוע על מה שטרח בחלק הפקדון סגי בהכי לחוד.<br><strong> איברא</strong> דלא על הרב משפט צדק ז&quot;ל לחוד אני תמיה כי אם גם על הרדב&quot;ז ז&quot;ל בח&quot;צ סי׳ ר&quot;ב ומביאו מרן החבי&quot;ב ז&quot;ל בסי׳ צ&quot;ג הגהת ב&quot;י אות ג׳ שכתב וז&quot;ל אפי׳ לדעת ר&quot;ת ז&quot;ל דוקא בזמן שנוטל שכר טורחו משלם אבל אם מתנה ליקח שכר טורחו דינר מודה הוא שעדיין מורה התר לעצמו ומשביעין וכו׳ ואע&quot;פ שהרדב&quot;ז ז&quot;ל בלשון אפשר אמרו לפי מ&quot;ש ההגהות מרדכי דברי ר&quot;ת א&quot;א לומר כן דהא כתב ואע&quot;ג דהקלו בשכרו כגון טיבול בציר וכו׳ אבל שכר ידוע הוא ושם שומר שכר עליה וכו׳ הרי דאפי׳ קצץ דינר ואפי׳ פחות ס&quot;ל לר&quot;ת דלאו מורה היתרא הוא ופטור וכן ראיתי בס׳ מטה שמעון הנדפס מחדש עתה בסי׳ צ&quot;ג בהגהת ב&quot;י אות י׳ שכתב כסברת הרדב&quot;ז בדעת ר&quot;ת וסיעתיה דעיסקא שעושין עתה ומתנין מתחילה בדבר מועט דלא מהני ומשביעין ליה ובזה רצה לתרץ מ&quot;ש מרן בספרו הקצר בסי׳ צ&quot;ג ס&quot;ה דאם היה אחד מן השותפין נושא ונותן והשני לא נתעסק אין נשבעין אלא אותו שנתעסק וכו׳ ולא כתב שיש חולקין וגם מור&quot;ם ז&quot;ל לא הגיה עליו שיש חולקין וכן נמי בסי׳ קע&quot;ו ס&quot;ל דבזה ניחא דמיירי שאין נותן לו שכר טורחו משלם ולכו&quot;ע אפי׳ לר&quot;ת ודעימיה מורה היתרא ונשבע על הספק ופקפק על מהריק&quot;ש ז&quot;ל אי ס&quot;ל הכי בדעת ר&quot;ת או לא יעו&quot;ש ואני אומר על הראשונים אנו מצטערין שלא הביטו בדברי ההגהות מרדכי והוא בא להוסיף דהכי ס&quot;ל למרן ומור&quot;ם ז&quot;ל. ועוד קשה למה לא הזכיר להרדב&quot;ז ולמרן החבי&quot;ב ז&quot;ל שכתבו כן בדעת ר&quot;ת סוף דבר צ&quot;ע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:2:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-2-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין כל אחד מאלו נשבע בטענת ספק עד וכו׳.</strong> עיין בכ&quot;מ שהביא דעת רש&quot;י ז&quot;ל שסובר דגם שם צריך הודאה בפרוטה שלא כדברי רבינו והר&quot;י בן מיגאש רבו ז&quot;ל והטור בסי׳ צ&quot;ג מסכים לדעת רש&quot;י ז&quot;ל ועיין בכנסת הגדולה שם מ&quot;ש בזה. וראיתי להרדב&quot;ז בח&quot;ד סי׳ ר&quot;ב שפסק ג&quot;כ כרש&quot;י וסיעתו אלא שכתב אח&quot;כ דהאידנא לא נפקא לן מידי אחר שתיקנו שבועת היסת דאפי׳ בכופר בכל נשבע ואע&quot;ג דאין נשבעין היסת על טענת שמא מ&quot;מ כיון דשבועת השותפין עיקרא אינה בא כי אם בטענת ספק גם בכופר בכל נשבע היסת אפי׳ בטענת ספק אלו דבריו ז&quot;ל.<br><strong> ולענ&quot;ד</strong> נראה להביא ראיה לדברי הרב ז&quot;ל מדברי רש&quot;י בפ׳ אלו מציאות (בבא מציעא דף כ&quot;ו) דאמרינן התם אמר רב נחמן ראה סלע שנפל מב׳ חייבי(ם) להחזיר מ&quot;ט ההוא דנפל מיניה לא מיאש מימר אמר מכדי איניש אחרינא לא הואי בהדאי אלא האי נקטינא ליה ואמינא אנת הוא דשקילתיה נפל מג׳ אינו חייב להחזיר מ&quot;ט ההוא דנפל מיניה ודאי מיאש מימר אמר מכדי תרי הואי בהדאי אי נקטינא להאי אמר לא שקלתיה ואי נקטינא להאי אמר לא שקלתיה עד כאן ופרש&quot;י ברישא דנפל מב׳ וז&quot;ל נקטינא ליה משתבענא ליה שבועת היסת ולא מתיאש מיד כשמשמש בכיס וכו׳ ובסיפא פי׳ וז&quot;ל ואי נקטינא ליה ואינו יכול להשביעו בטענת שמא אלא אותן השנויין במשנה ואלו נשבעין שלא בטענת וכו׳ יעו&quot;ש והשתא קשיא עליה דרש&quot;י ז&quot;ל דמה לו בשבועת המשנה דהא בדבור הקודם פי׳ משבעינא ליה שבועת היסת ובכאן נמי הו&quot;ל למימר ואינו יכול להשביע בטענת שמא שאין נשבעין על טענת שמא אלא נראה דדעתו לומר דאף דאין נשבעין על טענת שמא היינו בטענת מלוה ולוה שהיא טענת בריא ומודה [במקצת] חייב שבועת התורה ובכופר בכל תקן רב נחמן שבועת היסת אבל שבועת המשנה דהאריסין וכיוצא דעיקרא היא בא על הספק כשתיקן ר&quot;נ אף ע&quot;ז היתה התקנה ונשבע היסת אף על הספק שלו וזה הוא שאמר ואינו יכול להשביעו בטענת שמא אלא אותן השנויין במשנה ואלו וכו׳ והיינו אותה שבועה שפירש ברישא שהיא היסת וכדברי הרב ז&quot;ל וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:3:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-3-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהרי היורשין משביעין את האשה שנעשית אפוטרופא וכו׳.</strong> עיין בכ&quot;מ שכתב וז&quot;ל איני יודע מה ראיה מביא רבינו מדמשביעין את האשה שנעשית אפוטרופא בחיי בעלה דהא איכא לאוקומה בשחושדין אותה בשתי כסף וכו׳ יעו&quot;ש.<br><strong> וראיתי</strong> בס׳ פרח מטה אהרן ח&quot;ב סי׳ ל&quot;ז שכתב וז&quot;ל מהר&quot;א ששון ומהרד&quot;ב ז&quot;ל הקשו על דברי הרב כ&quot;מ גם בעיני יפלא דהיכי דמי מאי דקאמר דאיכא לאוקומה שחושדין אותה בשתי כסף אי מיירי שחושדין היתומים עצמם ודאי דלא מהני על מה שנעשית אפוטרופא בחיי בעלה ומאי קאמר רב נחמן והוא שיש ביניהם שתי כסף אפי׳ תימא דקאי נמי אף על האשה הנושאת ונותנת בתוך הבית ולא אשארא היינו דוקא כשבעלה משביעה במה שחושד אותה בשתי כסף ולא היתומים וכו׳ יעו&quot;ש. ועיין בכנסת הגדולה סי׳ צ&quot;ג הגהת הטור י&quot;א דתריץ יתיב כונת מרן כ&quot;מ ותמה על מהר&quot;א ששון ז&quot;ל דמנא ליה דכשחושדין היתומים בטענת עצמן שאין משביעין אותה יעו&quot;ש ומהתימה שהרי מדברי הראשונים נראה שהיורשים יכולים להשביעה דבמתני׳ דפ׳ הכותב (כתובות דף פ&quot;ו) כתב הרשב&quot;א הביאו הרב בצלאל בשטמ&quot;ק וז&quot;ל ולפי דבריהם כתב לה [נדר] ושבועה אין לי עליך היורשין משביעין אותה על אפוטרופא שנעשית בחיי בעלה שלא פטרה אלא ממנו וכו׳ ואפי׳ להחולקים ע&quot;ז היינו משום שכתב לה פטור אבל בשלא כתב לה כלום נראה שיכולים להשביע וכן מתבאר שם מדברי הרמב&quot;ם והריב&quot;ש ז&quot;ל ועיין בהר&quot;ן שם שהביא תשובת הרי&quot;ף שכתב שאין היורשים יכולין להשביעה משום דכיון דלא השביעה הוא ולא צוה להשביע מחל יעו&quot;ש ות&quot;ם אני על מרן החבי&quot;ב שלא הזכיר מזה כלום מדברי הר&quot;ן וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:4:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-4-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ שאין עדים שזה אריסו וכו׳ ה&quot;ז נשבע וכו׳.</strong> עיין בכ&quot;מ ז&quot;ל וראיתי להרמב&quot;ן בחי׳ לשבועות בפ׳ כל הנשבעין שהביא הך דינא דרבינו משם הר&quot;י הלוי ז&quot;ל וכתב ע&quot;ז וז&quot;ל ובהא מודינא ליה להרב ז&quot;ל משום דדמיא לשבועת השומרים וכי תקון להו רבנן משום דדומיא דשומרים תקון אבל בשאר דוכתא אמרינן מיגו לאפטורי משבועה עד כאן יעו&quot;ש.<br><strong> ומעתה</strong> מ&quot;ש מרן החבי&quot;ב בסי׳ צ&quot;ג הגהת הטור אות י&quot;ב וז&quot;ל שאין אומרים מיגו לאפטורי משבועה נ&quot;ב וכ&quot;כ בסי׳ רצ&quot;ו ודעת תשובה שהביא רבינו ב&quot;י מחודש וכו׳ יעו&quot;ש ולענ&quot;ד אינו מוכרח דהכי הוא התשובה יתמי ראובן יכולין להשביע את שמעון שבועת השותפין בין בטענת [ראינו] שאבינו הוציא לך ממון בין בטענת שמענו שאבינו הוציא לך ממון מאחר שמודה שמעון שלקח הממון לא אמרינן מיגו לאפטורי דהא בכל שבועת השותפין שנשתתפו בלא עדים איתא ואפ&quot;ה נשבע עד כאן ולפי מ&quot;ש משם הרמב&quot;ן דאף דאמרינן מיגו לאפטורי משבועה אפ&quot;ה בדין זה מודה להר&quot;י בן מיגאש ולרבינו א&quot;כ ה&quot;ה נמי לדעת אותה תשובה וליכא למימר לדעת הרב כנסת הגדולה ז&quot;ל דדעתו הוא לומר דבכה&quot;ג דוקא דעת אותה תשובה כדעת רבינו והר&quot;י בן מיגאש ז&quot;ל אבל בעלמא לא נתברר ולא הולך עמהם אלא בדין השותפין כמו שנתבאר בסי׳ פ&quot;ב בכללי מיגו אות קס&quot;ה יעו&quot;ש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:7:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-9-7-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 9:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חלקו השותפין [וכו׳] אינו יכול להשביעו בטענת וכו׳.</strong> עיין בחי׳ הריטב&quot;א ז&quot;ל בפ׳ כל הנשבעין שכתב משם יש מפרשים דאם חלקו אף על טענת בריא אינו יכול להשביעו דכיון שחלקו ולא תבעו כלום מחלו וכתב עליהם דאינו כלום דא&quot;כ כשנתגלגל לו שבועה ממקום אחר למה משביעו דהא מחל ליה לכך הנכון כמו שפי׳ דדוקא בטענת שמא אינו יכול להשביעו דלא תקון ליה רבנן אבל בטענת בריא משביעו ואם נתגלגל ליה שבועה ממקום אחר אף על טענת שמא משביעו בגלגול וכו׳ יעו&quot;ש.<br><strong> ולענ&quot;ד</strong> קשה לי טובא דמאי מקשה להיש מפרשים דס&quot;ל דטעמא דחלקו דאינו משביעו משום מחילה דא&quot;כ כשנתגלגלו לו שבועה דהא מחל והא הוא ז&quot;ל ס&quot;ל באשה שמחל לה בעלה שבועה ואינו משביעה דאם נתגלגל לה שבועה משביעה וכמו שהביא באה&quot;ע סי׳ צ&quot;ח בחלקת מחוקק ס&quot;ק י&quot;ג ובית שמואל ס&quot;ק י&quot;א משם הרמב&quot;ן והריטב&quot;א דאם פטרה משבועה יכול להשביעה ע&quot;י גלגול וא&quot;כ הכא לו יהי דהא דחלקו סתם הוי כמו מחילה בפירוש אפ&quot;ה לא מהני אלא שלא להשביע שבועה בפני עצמה אבל ע&quot;י גלגול שפיר מצי להשביעו ואפשר שזה הוא היתה דעת רבני צרפת שהביא מרן ב&quot;י בחו&quot;מ סי׳ צ&quot;ג מחודש ו׳ בשותפין שלוה מאחד והטילו לכיס והפסידו הכל ולא באו לחשבון מי דמי לחלקו או לא והשיבו אם טעם שחלקו דפטורים הוא משום דמחלו זה לזה השבועה אחר שלא תבעו זה לזה בשעת חלוקה הא לא דמייא לחלקו שההפסד בא מאליו וכו׳ והייתי במושב זקנים וכו׳ והיה ממנו שאומרים טעם חלקו משום מחילה וממנו היו אומרים משום דבעינן כעין דאורייתא ונמנו ורבו האומרים משום מחילה וחייבוהו שבועה עד כאן ולכאורה קשה דאם באמת הטעם דחלקו הוא משום מחילה מ&quot;ט כשנתחייבו שבועה ממקום אחר מגלגלין עליו הך שבועה וכמו שהקשה הריטב&quot;א ז&quot;ל להיש מפרשים אמנם דעתם ז&quot;ל הוא כדעת הרמב&quot;ן והריטב&quot;א ז&quot;ל שהביא הרב חלקת מחוקק באה&quot;ע דאף דפטרו בפירוש משבועה אפ&quot;ה בגלגול מצי לאשבועי וכדכתיבנא לעיל שלא כסברת בעל העיטור שהביא הטור בחו&quot;מ סי׳ צ&quot;ג סי&quot;ג דאם פטרו בפירוש זה את זה משבועה אין יכולין לגלגל עוד יעו&quot;ש.<br><strong> אי </strong> נמי אפשר דאם פטרו בפירוש שאני וכמו שנראה מדברי הרא&quot;ש ז&quot;ל בפ׳ הכותב יעו&quot;ש ועיין במרן החבי&quot;ב ז&quot;ל בהגהת ב&quot;י אות י&quot;ז שכתב וז&quot;ל אך קשה דאם הטעם הוא משום מחילה קשה למה מגלגלין ואיך נמנו וגמרו במושב זקנים דהטעם הוא משום מחילה ומה יענו שפתי זקנים למה שמגלגלין עליו יעו&quot;ש ולפי מ&quot;ש לעיל דעת הני זקנים הם כדעת הריטב&quot;א והרמב&quot;ן ומהתימה שלא הזכיר מהם. איברא דהא דכתבו הרב חלקת מחוקק והרב בית שמואל באה&quot;ע משם הרמב&quot;ן והריטב&quot;א ז&quot;ל דס&quot;ל דע&quot;י גלגול יכול להשביעו ושכן כתב בנמוק&quot;י ז&quot;ל לא ראיתי להנמוק&quot;י ז&quot;ל שכתב משם הריטב&quot;א כלום מזה כי אם משם הרמב&quot;ן ז&quot;ל וכמו שיראה הרואה שם בפ׳ הכותב ולהריטב&quot;א מביאו לדין אחר ואדרבא הרואה להריטב&quot;א בשיטה לכתובות בפ׳ הכותב ולהרב אסיפת זקנים הביא משם הריטב&quot;א ז&quot;ל וז&quot;ל וכל שפטרו משבועה או מנדר אינו יכול להשביעו אפי׳ ע&quot;י גלגול עד כאן יעו&quot;ש ועיין למרן בסי׳ ע&quot;א מחודש י&quot;ז שלא כתב משם הנמוק&quot;י כי אם להרמב&quot;ן והגאונים ולא הזכיר להריטב&quot;א ומעתה סרו מהר תלונותינו מעל הריטב&quot;א ממה שהקשנו לעיל ממ&quot;ש בהנשבעין וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-10">Chapter 10</h4>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-10-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 10:1:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-10-1-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 10:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שותף שטען על חבירו שכך היה תנאי ביניהם וכו׳.</strong> ראיתי בתשובת הר&quot;י בן מיגאש ז&quot;ל סי׳ ע&quot;ט על ראובן שנתן לשמעון ממון על צד העסק וכשתבעו ממנו אמר לו מכרתי מקצת בהקפה ואמר ראובן כי לא הרשיתי אותך למכור בהקפה והורה מורה וחייב לראובן שבועה שלא הרשאו למכור בהקפה ושיפסיד חצי הממון הנמכר בהקפה וכו׳. והשיב וז&quot;ל תשובה מה שהורה זה המורה אינו נכון והדין בזה הוא שישבע ראובן שלא נתן לו רשות למכור בהקפה ויתן לו שמעון וזה אם טוען שמעון שראובן נתן לו רשות למכור בהקפה אבל אם לא פירש זה ואמר שהענין היה על הסתם נסתלקה שבועה ועל שני פנים אלו דלא כהוראת זה המורה שיפסיד ראובן החצי אחר שנשבע היא הוראת בלתי נכונה וכו׳ יעו&quot;ש.<br><strong> ולענ&quot;ד</strong> לא זכיתי להבין לא הוראת המורה ולא הוראת הרב ז&quot;ל במה שחייבו שבועה לראובן דכפי הנראה השבועה היא לשמעון דנשבע ונפטר מידי דהוה הכל תביעות דעלמא וכן ראיתי להרב מעשה חייא סי׳ י&quot;ט ונסתייע מלשון רבינו בדין שלפנינו והטור וסמ&quot;ג יעו&quot;ש ומ&quot;ש ולא כהוראת זה המורה שיפסיד זה (המורה) [ראובן] החצי וכו׳ מה שאני מבין מדעת המורה הוא שאינו מדברי המורה שפוסק הדין אלא הם דברי הבעל דין שטען שראובן הרשהו ואז היה ההפסד ביניהם הורה מורה שישבע שלא הרשהו ושיפסיד החצי אלא אז כשנשבע אז יפסיד כולו שמעון ואולי ידע הרב שפיר הוראת המורה וק&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="melekhet-shelomoh-on-mishneh-torah-agents-and-partners-10-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Melekhet Shelomoh on Mishneh Torah, Agents and Partners 10:6:1</h4></div>
+              <a class="anchor" href="#melekhet-shelomoh-on-mishneh-torah-agents-and-partners-10-6-1" aria-label="Copy link to Melekhet Shelomoh on Mishneh Torah, Agents and Partners 10:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכיצד דנין בדין זה לוי כבר נפטר בהודאת שמעון וכו׳.</strong> עיין בכ&quot;מ ז&quot;ל שכתב וז&quot;ל ומ&quot;ש נפטר לוי בהודאת שמעון מיירי כשהשטר ביד שמעון ולענין כל החוב אי נמי אפי׳ אם השטר ביד ראובן ואפ&quot;ה כתב שנפטר לוי לענין שיגבה ראובן תחילה משמעון מחצה ואם לא יוכל להוציא משמעון יגבה מלוי עכ&quot;ל.<br><strong> ולענ&quot;ד</strong> נראה דלפי תירוץ בתרא אתיא סברת רבינו כדעת הרא&quot;ש בתשובה הביאה הטור בסוף סי׳ ע&quot;א וז&quot;ל ששאלת שטר שכתוב בו נתחייב פלוני לפלוני (ולפ׳) [או לפלוני] והאמין למוציא השטר ואחד מהם הוציא השטר וטוען הלוה שפרע לחבירו וחבירו מודה לו וכו׳ אם היו שותפין בחוב כיון שאחד מהם מודה שנפרע אם יש לו נכסים למודה בי&quot;ד יורדין לנכסיו ופורעין לחבירו חלקו ואם אין לו נכסים לא מהימן להפסיד כיון שהשטר בידו אבל על חלקו הוא נאמן ובי&quot;ד מגבין לאחד חלקו עד כאן הרי שכתב שהמודה אינו נאמן כי אם על חלקו לבד כשאין לו נכסים כדעת רבינו לתירוץ בתרא דמ&quot;ש נפטר לוי בהודאת שמעון לענין שיגבה ראובן משמעון תחילה ואם לא יוכל להוציא משמעון יגבה מלוי וכמ&quot;ש מרן. וראיתי למרן החבי&quot;ב ז&quot;ל בסי׳ צ&quot;ג הגהת הטור אות ל&quot;ה שכתב וז&quot;ל אבל אי מיירי שהשטר ביד ראובן כתירוץ בתרא של רבינו ב&quot;י הא ודאי פליגי תשובת הרא&quot;ש אהרמב&quot;ם ז&quot;ל וכו׳ יעו&quot;ש ולא ידעתי למה וצריך ישוב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-melekhet-shelomoh-on-mishneh-torah-agents-and-partners-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/melekhet-shelomoh-on-mishneh-torah-agents-and-partners.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/melekhet-shelomoh-on-mishneh-torah-agents-and-partners.manifest.json","occurrence_url":"../../data/lexical/occurrences/melekhet-shelomoh-on-mishneh-torah-agents-and-partners.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

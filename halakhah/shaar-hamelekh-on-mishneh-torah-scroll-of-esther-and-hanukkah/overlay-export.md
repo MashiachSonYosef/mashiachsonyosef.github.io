@@ -1,0 +1,4 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| shaar-hamelekh-on-mishneh-torah-scroll-of-esther-and-hanukkah | Sha'ar HaMelekh on Mishneh Torah, Scroll of Esther and Hanukkah | Sha'ar HaMelekh on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1 | shaar-hamelekh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-scroll-of-esther-and-hanukkah | Sha'ar HaMelekh on Mishneh Torah, Scroll of Esther and Hanukkah | Sha'ar HaMelekh on Mishneh Torah, Scroll of Esther and Hanukkah 1:11:1 | shaar-hamelekh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-11-1 |  |  | not_done |  |

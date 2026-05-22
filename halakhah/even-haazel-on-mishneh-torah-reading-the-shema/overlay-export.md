@@ -1,0 +1,14 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 1:1:1 | even-haazel-on-mishneh-torah-reading-the-shema-1-1-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 1:3:1 | even-haazel-on-mishneh-torah-reading-the-shema-1-3-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 1:7:1 | even-haazel-on-mishneh-torah-reading-the-shema-1-7-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 1:8:1 | even-haazel-on-mishneh-torah-reading-the-shema-1-8-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 1:11:1 | even-haazel-on-mishneh-torah-reading-the-shema-1-11-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 1:12:1 | even-haazel-on-mishneh-torah-reading-the-shema-1-12-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 1:13:1 | even-haazel-on-mishneh-torah-reading-the-shema-1-13-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 2:6:1 | even-haazel-on-mishneh-torah-reading-the-shema-2-6-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 2:10:1 | even-haazel-on-mishneh-torah-reading-the-shema-2-10-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 2:13:1 | even-haazel-on-mishneh-torah-reading-the-shema-2-13-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 3:2:1 | even-haazel-on-mishneh-torah-reading-the-shema-3-2-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-reading-the-shema | Even Ha'azel on Mishneh Torah, Reading the Shema | Even Ha'azel on Mishneh Torah, Reading the Shema 3:5:1 | even-haazel-on-mishneh-torah-reading-the-shema-3-5-1 |  |  | not_done |  |

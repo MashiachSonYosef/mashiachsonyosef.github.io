@@ -1,0 +1,7 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| maharam-of-padua-on-mishneh-torah-foundations-of-the-torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah 1:1:1 | maharam-of-padua-on-mishneh-torah-foundations-of-the-torah-1-1-1 |  |  | not_done |  |
+| maharam-of-padua-on-mishneh-torah-foundations-of-the-torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah 1:10:1 | maharam-of-padua-on-mishneh-torah-foundations-of-the-torah-1-10-1 |  |  | not_done |  |
+| maharam-of-padua-on-mishneh-torah-foundations-of-the-torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah 2:11:1 | maharam-of-padua-on-mishneh-torah-foundations-of-the-torah-2-11-1 |  |  | not_done |  |
+| maharam-of-padua-on-mishneh-torah-foundations-of-the-torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah 6:4:1 | maharam-of-padua-on-mishneh-torah-foundations-of-the-torah-6-4-1 |  |  | not_done |  |
+| maharam-of-padua-on-mishneh-torah-foundations-of-the-torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah | Maharam of Padua on Mishneh Torah, Foundations of the Torah 6:9:1 | maharam-of-padua-on-mishneh-torah-foundations-of-the-torah-6-9-1 |  |  | not_done |  |

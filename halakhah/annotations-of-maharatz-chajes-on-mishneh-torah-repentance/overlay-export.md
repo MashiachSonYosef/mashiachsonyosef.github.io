@@ -1,0 +1,7 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| annotations-of-maharatz-chajes-on-mishneh-torah-repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance 1:1:1 | annotations-of-maharatz-chajes-on-mishneh-torah-repentance-1-1-1 |  |  | not_done |  |
+| annotations-of-maharatz-chajes-on-mishneh-torah-repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance 1:2:1 | annotations-of-maharatz-chajes-on-mishneh-torah-repentance-1-2-1 |  |  | not_done |  |
+| annotations-of-maharatz-chajes-on-mishneh-torah-repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance 3:5:1 | annotations-of-maharatz-chajes-on-mishneh-torah-repentance-3-5-1 |  |  | not_done |  |
+| annotations-of-maharatz-chajes-on-mishneh-torah-repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance 4:2:1 | annotations-of-maharatz-chajes-on-mishneh-torah-repentance-4-2-1 |  |  | not_done |  |
+| annotations-of-maharatz-chajes-on-mishneh-torah-repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance | Annotations of Maharatz Chajes on Mishneh Torah, Repentance 7:6:1 | annotations-of-maharatz-chajes-on-mishneh-torah-repentance-7-6-1 |  |  | not_done |  |

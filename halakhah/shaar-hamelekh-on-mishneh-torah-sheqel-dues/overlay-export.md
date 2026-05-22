@@ -1,0 +1,6 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| shaar-hamelekh-on-mishneh-torah-sheqel-dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues 1:1:1 | shaar-hamelekh-on-mishneh-torah-sheqel-dues-1-1-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-sheqel-dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues 2:6:1 | shaar-hamelekh-on-mishneh-torah-sheqel-dues-2-6-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-sheqel-dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues 4:6:1 | shaar-hamelekh-on-mishneh-torah-sheqel-dues-4-6-1 |  |  | not_done |  |
+| shaar-hamelekh-on-mishneh-torah-sheqel-dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues | Sha'ar HaMelekh on Mishneh Torah, Sheqel Dues 4:8:1 | shaar-hamelekh-on-mishneh-torah-sheqel-dues-4-8-1 |  |  | not_done |  |

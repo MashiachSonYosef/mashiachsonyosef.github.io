@@ -57,6 +57,13 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | akeidat-yitzchak | 91170 | 7805 | data/public-lexical/by-work/akeidat-yitzchak-token-claims-min60.csv |
 | alphabet-of-ben-sira | 4510 | 758 | data/public-lexical/by-work/alphabet-of-ben-sira-token-claims-min60.csv |
 | amos | 1437 | 241 | data/public-lexical/by-work/amos-token-claims-min60.csv |
+| annotations-of-maharatz-chajes-on-mishneh-torah-mourning | 45 | 17 | data/public-lexical/by-work/annotations-of-maharatz-chajes-on-mishneh-torah-mourning-token-claims-min60.csv |
+| annotations-of-maharatz-chajes-on-mishneh-torah-repentance | 187 | 39 | data/public-lexical/by-work/annotations-of-maharatz-chajes-on-mishneh-torah-repentance-token-claims-min60.csv |
+| annotations-of-minchat-chinukh-on-mishneh-torah-diverse-species | 80 | 17 | data/public-lexical/by-work/annotations-of-minchat-chinukh-on-mishneh-torah-diverse-species-token-claims-min60.csv |
+| annotations-of-minchat-chinukh-on-mishneh-torah-fasts | 185 | 52 | data/public-lexical/by-work/annotations-of-minchat-chinukh-on-mishneh-torah-fasts-token-claims-min60.csv |
+| annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering | 390 | 69 | data/public-lexical/by-work/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-token-claims-min60.csv |
+| annotations-of-r-yeshaya-berlin-on-mishneh-torah-sabbath | 755 | 132 | data/public-lexical/by-work/annotations-of-r-yeshaya-berlin-on-mishneh-torah-sabbath-token-claims-min60.csv |
+| annotations-of-r-zalman-of-vilna-on-mishneh-torah-repentance | 172 | 47 | data/public-lexical/by-work/annotations-of-r-zalman-of-vilna-on-mishneh-torah-repentance-token-claims-min60.csv |
 | aramaic-targum-to-ecclesiastes | 2895 | 173 | data/public-lexical/by-work/aramaic-targum-to-ecclesiastes-token-claims-min60.csv |
 | aramaic-targum-to-esther | 3063 | 139 | data/public-lexical/by-work/aramaic-targum-to-esther-token-claims-min60.csv |
 | aramaic-targum-to-job | 5396 | 203 | data/public-lexical/by-work/aramaic-targum-to-job-token-claims-min60.csv |
@@ -77,8 +84,19 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | beit-aharon | 25863 | 3390 | data/public-lexical/by-work/beit-aharon-token-claims-min60.csv |
 | beit-elohim | 29766 | 3696 | data/public-lexical/by-work/beit-elohim-token-claims-min60.csv |
 | beit-yosef | 124127 | 5967 | data/public-lexical/by-work/beit-yosef-token-claims-min60.csv |
+| ben-aryeh-on-mishneh-torah-festival-offering | 317 | 81 | data/public-lexical/by-work/ben-aryeh-on-mishneh-torah-festival-offering-token-claims-min60.csv |
+| ben-aryeh-on-mishneh-torah-mourning | 129 | 26 | data/public-lexical/by-work/ben-aryeh-on-mishneh-torah-mourning-token-claims-min60.csv |
+| ben-aryeh-on-mishneh-torah-paschal-offering | 202 | 35 | data/public-lexical/by-work/ben-aryeh-on-mishneh-torah-paschal-offering-token-claims-min60.csv |
+| ben-aryeh-on-mishneh-torah-repentance | 126 | 35 | data/public-lexical/by-work/ben-aryeh-on-mishneh-torah-repentance-token-claims-min60.csv |
 | ben-ish-hai | 28204 | 3335 | data/public-lexical/by-work/ben-ish-hai-token-claims-min60.csv |
 | ben-sira | 5302 | 966 | data/public-lexical/by-work/ben-sira-token-claims-min60.csv |
+| benei-binyamin-on-mishneh-torah-circumcision | 916 | 148 | data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-circumcision-token-claims-min60.csv |
+| benei-binyamin-on-mishneh-torah-fasts | 474 | 89 | data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-fasts-token-claims-min60.csv |
+| benei-binyamin-on-mishneh-torah-fringes | 571 | 85 | data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-fringes-token-claims-min60.csv |
+| benei-binyamin-on-mishneh-torah-reading-the-shema | 683 | 125 | data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-reading-the-shema-token-claims-min60.csv |
+| benei-binyamin-on-mishneh-torah-sanctification-of-the-new-month | 500 | 107 | data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-sanctification-of-the-new-month-token-claims-min60.csv |
+| benei-binyamin-on-mishneh-torah-scroll-of-esther-and-hanukkah | 354 | 67 | data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| benei-binyamin-on-mishneh-torah-sheqel-dues | 231 | 45 | data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-sheqel-dues-token-claims-min60.csv |
 | beur-eser-sefirot | 1405 | 365 | data/public-lexical/by-work/beur-eser-sefirot-token-claims-min60.csv |
 | beur-hagra-on-jerusalem-talmud-bikkurim | 2487 | 371 | data/public-lexical/by-work/beur-hagra-on-jerusalem-talmud-bikkurim-token-claims-min60.csv |
 | beur-hagra-on-jerusalem-talmud-challah | 3544 | 458 | data/public-lexical/by-work/beur-hagra-on-jerusalem-talmud-challah-token-claims-min60.csv |
@@ -99,6 +117,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | chafetz-chaim-on-sifra | 29588 | 2926 | data/public-lexical/by-work/chafetz-chaim-on-sifra-token-claims-min60.csv |
 | chayyei-adam | 31497 | 2851 | data/public-lexical/by-work/chayyei-adam-token-claims-min60.csv |
 | chesed-leavraham | 22564 | 3020 | data/public-lexical/by-work/chesed-leavraham-token-claims-min60.csv |
+| chidushim-of-machaneh-ephraim-on-mishneh-torah-mourning | 29 | 8 | data/public-lexical/by-work/chidushim-of-machaneh-ephraim-on-mishneh-torah-mourning-token-claims-min60.csv |
 | chokhmat-adam | 31659 | 2602 | data/public-lexical/by-work/chokhmat-adam-token-claims-min60.csv |
 | crescas-on-guide-for-the-perplexed | 2767 | 545 | data/public-lexical/by-work/crescas-on-guide-for-the-perplexed-token-claims-min60.csv |
 | daniel | 4269 | 499 | data/public-lexical/by-work/daniel-token-claims-min60.csv |
@@ -109,6 +128,9 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | derekh-hashem | 7432 | 1283 | data/public-lexical/by-work/derekh-hashem-token-claims-min60.csv |
 | deuteronomy | 8113 | 1334 | data/public-lexical/by-work/deuteronomy-token-claims-min60.csv |
 | divrei-emet | 13953 | 2037 | data/public-lexical/by-work/divrei-emet-token-claims-min60.csv |
+| divrei-yirmiyahu-on-mishneh-torah-fasts | 1869 | 343 | data/public-lexical/by-work/divrei-yirmiyahu-on-mishneh-torah-fasts-token-claims-min60.csv |
+| divrei-yirmiyahu-on-mishneh-torah-rest-on-the-tenth-of-tishrei | 2476 | 343 | data/public-lexical/by-work/divrei-yirmiyahu-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv |
+| divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month | 2342 | 408 | data/public-lexical/by-work/divrei-yirmiyahu-on-mishneh-torah-sanctification-of-the-new-month-token-claims-min60.csv |
 | drisha | 62857 | 3807 | data/public-lexical/by-work/drisha-token-claims-min60.csv |
 | duties-of-the-heart | 7383 | 1340 | data/public-lexical/by-work/duties-of-the-heart-token-claims-min60.csv |
 | ecclesiastes | 2047 | 442 | data/public-lexical/by-work/ecclesiastes-token-claims-min60.csv |
@@ -128,6 +150,13 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | etz-yosef-on-shemot-rabbah | 6882 | 1211 | data/public-lexical/by-work/etz-yosef-on-shemot-rabbah-token-claims-min60.csv |
 | etz-yosef-on-shir-hashirim-rabbah | 20691 | 2652 | data/public-lexical/by-work/etz-yosef-on-shir-hashirim-rabbah-token-claims-min60.csv |
 | etz-yosef-on-vayikra-rabbah | 7738 | 1246 | data/public-lexical/by-work/etz-yosef-on-vayikra-rabbah-token-claims-min60.csv |
+| even-haazel-on-mishneh-torah-kings-and-wars | 2024 | 333 | data/public-lexical/by-work/even-haazel-on-mishneh-torah-kings-and-wars-token-claims-min60.csv |
+| even-haazel-on-mishneh-torah-leavened-and-unleavened-bread | 2892 | 360 | data/public-lexical/by-work/even-haazel-on-mishneh-torah-leavened-and-unleavened-bread-token-claims-min60.csv |
+| even-haazel-on-mishneh-torah-mourning | 3662 | 502 | data/public-lexical/by-work/even-haazel-on-mishneh-torah-mourning-token-claims-min60.csv |
+| even-haazel-on-mishneh-torah-reading-the-shema | 3690 | 505 | data/public-lexical/by-work/even-haazel-on-mishneh-torah-reading-the-shema-token-claims-min60.csv |
+| even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah | 314 | 67 | data/public-lexical/by-work/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| even-haazel-on-mishneh-torah-testimony | 3764 | 469 | data/public-lexical/by-work/even-haazel-on-mishneh-torah-testimony-token-claims-min60.csv |
+| even-haazel-on-mishneh-torah-virgin-maiden | 1409 | 207 | data/public-lexical/by-work/even-haazel-on-mishneh-torah-virgin-maiden-token-claims-min60.csv |
 | exodus | 8879 | 1289 | data/public-lexical/by-work/exodus-token-claims-min60.csv |
 | ezekiel | 10759 | 1748 | data/public-lexical/by-work/ezekiel-token-claims-min60.csv |
 | ezra | 2665 | 305 | data/public-lexical/by-work/ezra-token-claims-min60.csv |
@@ -143,6 +172,8 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | haemunot-vehadeot | 9840 | 1572 | data/public-lexical/by-work/haemunot-vehadeot-token-claims-min60.csv |
 | haggai | 406 | 87 | data/public-lexical/by-work/haggai-token-claims-min60.csv |
 | hagra-on-sefer-yetzirah-gra-version | 2250 | 410 | data/public-lexical/by-work/hagra-on-sefer-yetzirah-gra-version-token-claims-min60.csv |
+| hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary | 494 | 109 | data/public-lexical/by-work/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-token-claims-min60.csv |
+| hasagot-haraavad-on-mishneh-torah-festival-offering | 144 | 28 | data/public-lexical/by-work/hasagot-haraavad-on-mishneh-torah-festival-offering-token-claims-min60.csv |
 | hosea | 1828 | 327 | data/public-lexical/by-work/hosea-token-claims-min60.csv |
 | i-chronicles | 6945 | 928 | data/public-lexical/by-work/i-chronicles-token-claims-min60.csv |
 | i-kings | 7590 | 1151 | data/public-lexical/by-work/i-kings-token-claims-min60.csv |
@@ -172,15 +203,49 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | ketem-paz-on-zohar | 57156 | 5026 | data/public-lexical/by-work/ketem-paz-on-zohar-token-claims-min60.csv |
 | keter-malkhut | 2394 | 494 | data/public-lexical/by-work/keter-malkhut-token-claims-min60.csv |
 | kinnot-for-tisha-bav-ashkenaz | 8346 | 1081 | data/public-lexical/by-work/kinnot-for-tisha-bav-ashkenaz-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-agents-and-partners | 371 | 72 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-agents-and-partners-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-blessings | 466 | 110 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-blessings-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-borrowing-and-deposit | 732 | 110 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-circumcision | 829 | 146 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-circumcision-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-fasts | 143 | 32 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-fasts-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-festival-offering | 1800 | 256 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-festival-offering-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-foundations-of-the-torah | 755 | 191 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-fringes | 790 | 134 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-fringes-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-immersion-pools | 869 | 173 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-immersion-pools-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-leavened-and-unleavened-bread | 1072 | 199 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-leavened-and-unleavened-bread-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-neighbors | 239 | 56 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-neighbors-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-ownerless-property-and-gifts | 699 | 136 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-ownerless-property-and-gifts-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-prayer-and-the-priestly-blessing | 1167 | 233 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-prayer-and-the-priestly-blessing-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-reading-the-shema | 1025 | 202 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-reading-the-shema-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-repentance | 948 | 183 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-repentance-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-rest-on-a-holiday | 756 | 121 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-rest-on-a-holiday-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei | 899 | 159 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-sanctification-of-the-new-month | 1075 | 205 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-sanctification-of-the-new-month-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-scroll-of-esther-and-hanukkah | 103 | 25 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-sheqel-dues | 892 | 154 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-sheqel-dues-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-tithes | 604 | 104 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-tithes-token-claims-min60.csv |
+| kiryat-sefer-on-mishneh-torah-torah-study | 621 | 139 | data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-torah-study-token-claims-min60.csv |
+| kitzur-sefer-haredim-of-rabbi-elazar-azcari | 3059 | 540 | data/public-lexical/by-work/kitzur-sefer-haredim-of-rabbi-elazar-azcari-token-claims-min60.csv |
 | kitzur-shulchan-arukh | 28587 | 3456 | data/public-lexical/by-work/kitzur-shulchan-arukh-token-claims-min60.csv |
 | kohelet-rabbah | 2205 | 428 | data/public-lexical/by-work/kohelet-rabbah-token-claims-min60.csv |
 | kol-hator | 4308 | 843 | data/public-lexical/by-work/kol-hator-token-claims-min60.csv |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-circumcision | 1112 | 221 | data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-circumcision-token-claims-min60.csv |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah | 2024 | 296 | data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-fringes | 1458 | 204 | data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-fringes-token-claims-min60.csv |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-repentance | 309 | 56 | data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-repentance-token-claims-min60.csv |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah | 1009 | 169 | data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-sheqel-dues | 775 | 137 | data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-sheqel-dues-token-claims-min60.csv |
+| kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity | 1209 | 196 | data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv |
 | kuzari | 15998 | 2566 | data/public-lexical/by-work/kuzari-token-claims-min60.csv |
 | lamentations | 1264 | 222 | data/public-lexical/by-work/lamentations-token-claims-min60.csv |
+| lechem-mishneh-on-mishneh-torah-eruvin | 949 | 174 | data/public-lexical/by-work/lechem-mishneh-on-mishneh-torah-eruvin-token-claims-min60.csv |
+| lechem-mishneh-on-mishneh-torah-human-dispositions | 1609 | 295 | data/public-lexical/by-work/lechem-mishneh-on-mishneh-torah-human-dispositions-token-claims-min60.csv |
+| lechem-mishneh-on-mishneh-torah-rest-on-the-tenth-of-tishrei | 1952 | 269 | data/public-lexical/by-work/lechem-mishneh-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv |
 | lekha-dodi | 119 | 30 | data/public-lexical/by-work/lekha-dodi-token-claims-min60.csv |
 | letter-from-ramban-to-his-son | 883 | 227 | data/public-lexical/by-work/letter-from-ramban-to-his-son-token-claims-min60.csv |
 | letter-of-aristeas | 4299 | 745 | data/public-lexical/by-work/letter-of-aristeas-token-claims-min60.csv |
 | letter-to-the-ten-lost-tribes-of-israel | 2106 | 469 | data/public-lexical/by-work/letter-to-the-ten-lost-tribes-of-israel-token-claims-min60.csv |
+| lev-shalem-on-mishneh-torah-fringes | 434 | 82 | data/public-lexical/by-work/lev-shalem-on-mishneh-torah-fringes-token-claims-min60.csv |
 | leviticus | 6089 | 822 | data/public-lexical/by-work/leviticus-token-claims-min60.csv |
 | maalot-hamiddot | 15700 | 2103 | data/public-lexical/by-work/maalot-hamiddot-token-claims-min60.csv |
 | maamar-hador | 1965 | 485 | data/public-lexical/by-work/maamar-hador-token-claims-min60.csv |
@@ -188,9 +253,11 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | maaneh-lashon-chabad | 3971 | 637 | data/public-lexical/by-work/maaneh-lashon-chabad-token-claims-min60.csv |
 | maaseh-rav | 2700 | 454 | data/public-lexical/by-work/maaseh-rav-token-claims-min60.csv |
 | maaseh-rokeach-on-mishnah | 15665 | 2000 | data/public-lexical/by-work/maaseh-rokeach-on-mishnah-token-claims-min60.csv |
+| maaseh-rokeach-on-virgin-maiden | 1394 | 215 | data/public-lexical/by-work/maaseh-rokeach-on-virgin-maiden-token-claims-min60.csv |
 | maavar-yabbok | 41276 | 5320 | data/public-lexical/by-work/maavar-yabbok-token-claims-min60.csv |
 | maggid-devarav-leyaakov | 11428 | 1861 | data/public-lexical/by-work/maggid-devarav-leyaakov-token-claims-min60.csv |
 | maggid-meisharim | 20513 | 1822 | data/public-lexical/by-work/maggid-meisharim-token-claims-min60.csv |
+| maharam-of-padua-on-mishneh-torah-foundations-of-the-torah | 241 | 61 | data/public-lexical/by-work/maharam-of-padua-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv |
 | maharzu-hakatzar-on-bereshit-rabbah | 198 | 60 | data/public-lexical/by-work/maharzu-hakatzar-on-bereshit-rabbah-token-claims-min60.csv |
 | malachi | 676 | 146 | data/public-lexical/by-work/malachi-token-claims-min60.csv |
 | maor-vashemesh | 37461 | 4162 | data/public-lexical/by-work/maor-vashemesh-token-claims-min60.csv |
@@ -208,6 +275,13 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | matnot-kehunah-on-vayikra-rabbah | 2518 | 441 | data/public-lexical/by-work/matnot-kehunah-on-vayikra-rabbah-token-claims-min60.csv |
 | megalleh-amukkot-on-parashat-vaetchanan | 15768 | 1971 | data/public-lexical/by-work/megalleh-amukkot-on-parashat-vaetchanan-token-claims-min60.csv |
 | megillat-taanit | 2491 | 426 | data/public-lexical/by-work/megillat-taanit-token-claims-min60.csv |
+| mekorei-harambam-lerashash-on-mishneh-torah-admission-into-the-sanctuary | 57 | 10 | data/public-lexical/by-work/mekorei-harambam-lerashash-on-mishneh-torah-admission-into-the-sanctuary-token-claims-min60.csv |
+| mekorei-harambam-lerashash-on-mishneh-torah-marriage | 657 | 120 | data/public-lexical/by-work/mekorei-harambam-lerashash-on-mishneh-torah-marriage-token-claims-min60.csv |
+| mekorei-harambam-lerashash-on-mishneh-torah-ritual-slaughter | 194 | 35 | data/public-lexical/by-work/mekorei-harambam-lerashash-on-mishneh-torah-ritual-slaughter-token-claims-min60.csv |
+| mekorei-harambam-lerashash-on-mishneh-torah-torah-study | 117 | 29 | data/public-lexical/by-work/mekorei-harambam-lerashash-on-mishneh-torah-torah-study-token-claims-min60.csv |
+| mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law | 42 | 10 | data/public-lexical/by-work/mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law-token-claims-min60.csv |
+| melekhet-shelomoh-on-mishneh-torah-agents-and-partners | 3022 | 398 | data/public-lexical/by-work/melekhet-shelomoh-on-mishneh-torah-agents-and-partners-token-claims-min60.csv |
+| melekhet-shelomoh-on-mishneh-torah-prayer-and-the-priestly-blessing | 177 | 47 | data/public-lexical/by-work/melekhet-shelomoh-on-mishneh-torah-prayer-and-the-priestly-blessing-token-claims-min60.csv |
 | menorat-hamaor | 44414 | 4320 | data/public-lexical/by-work/menorat-hamaor-token-claims-min60.csv |
 | meor-einayim | 21489 | 2898 | data/public-lexical/by-work/meor-einayim-token-claims-min60.csv |
 | mesillat-yesharim | 9603 | 1603 | data/public-lexical/by-work/mesillat-yesharim-token-claims-min60.csv |
@@ -231,6 +305,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | midrash-tannaim-on-deuteronomy | 2712 | 530 | data/public-lexical/by-work/midrash-tannaim-on-deuteronomy-token-claims-min60.csv |
 | midrash-tehillim | 20099 | 2617 | data/public-lexical/by-work/midrash-tehillim-token-claims-min60.csv |
 | midrash-yelamdenu-selections-from-yalkut-talmud-torah | 523 | 117 | data/public-lexical/by-work/midrash-yelamdenu-selections-from-yalkut-talmud-torah-token-claims-min60.csv |
+| migdal-oz-on-mishneh-torah-fasts | 106 | 20 | data/public-lexical/by-work/migdal-oz-on-mishneh-torah-fasts-token-claims-min60.csv |
 | mikdash-melekh-on-zohar | 42974 | 3860 | data/public-lexical/by-work/mikdash-melekh-on-zohar-token-claims-min60.csv |
 | minchat-kenaot | 23023 | 2946 | data/public-lexical/by-work/minchat-kenaot-token-claims-min60.csv |
 | mishnah-arakhin | 1052 | 186 | data/public-lexical/by-work/mishnah-arakhin-token-claims-min60.csv |
@@ -297,10 +372,28 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | mishnat-derabbi-eliezer-on-eichah-rabbah | 407 | 97 | data/public-lexical/by-work/mishnat-derabbi-eliezer-on-eichah-rabbah-token-claims-min60.csv |
 | mishnat-derabbi-eliezer-on-ruth-rabbah | 46 | 13 | data/public-lexical/by-work/mishnat-derabbi-eliezer-on-ruth-rabbah-token-claims-min60.csv |
 | mishnat-rabbi-eliezer | 12809 | 1908 | data/public-lexical/by-work/mishnat-rabbi-eliezer-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit | 1890 | 253 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-diverse-species | 721 | 120 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-diverse-species-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-fasts | 48 | 9 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-fasts-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-festival-offering | 315 | 58 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-festival-offering-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-paschal-offering | 2810 | 384 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-paschal-offering-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-reading-the-shema | 84 | 21 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-reading-the-shema-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-red-heifer | 1723 | 265 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-red-heifer-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement | 483 | 96 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-token-claims-min60.csv |
+| mishneh-lamelech-on-mishneh-torah-those-who-defile-bed-or-seat | 2080 | 326 | data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-those-who-defile-bed-or-seat-token-claims-min60.csv |
 | mitpachat-sefarim | 3139 | 563 | data/public-lexical/by-work/mitpachat-sefarim-token-claims-min60.csv |
 | mivchar-hapeninim | 3756 | 631 | data/public-lexical/by-work/mivchar-hapeninim-token-claims-min60.csv |
 | moreh-nevukhei-hazeman | 35370 | 4548 | data/public-lexical/by-work/moreh-nevukhei-hazeman-token-claims-min60.csv |
 | musar-avikha | 567 | 148 | data/public-lexical/by-work/musar-avikha-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-circumcision | 1402 | 228 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-circumcision-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-fasts | 317 | 67 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-fasts-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-fringes | 931 | 156 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-fringes-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-leavened-and-unleavened-bread | 2588 | 361 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-leavened-and-unleavened-bread-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing | 1176 | 224 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-reading-the-shema | 1359 | 225 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-reading-the-shema-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-repentance | 809 | 150 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-repentance-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah | 566 | 103 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| nachal-eitan-on-mishneh-torah-virgin-maiden | 1553 | 215 | data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-virgin-maiden-token-claims-min60.csv |
 | naftali-seva-ratzon-on-pesach-haggadah | 6511 | 927 | data/public-lexical/by-work/naftali-seva-ratzon-on-pesach-haggadah-token-claims-min60.csv |
 | nahum | 503 | 83 | data/public-lexical/by-work/nahum-token-claims-min60.csv |
 | narboni-on-guide-for-the-perplexed | 14869 | 2135 | data/public-lexical/by-work/narboni-on-guide-for-the-perplexed-token-claims-min60.csv |
@@ -318,6 +411,16 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | ohr-hachammah-on-zohar | 102152 | 6954 | data/public-lexical/by-work/ohr-hachammah-on-zohar-token-claims-min60.csv |
 | ohr-hameir | 29885 | 3689 | data/public-lexical/by-work/ohr-hameir-token-claims-min60.csv |
 | ohr-hashem | 7563 | 1202 | data/public-lexical/by-work/ohr-hashem-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-agents-and-partners | 1972 | 261 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-agents-and-partners-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-borrowing-and-deposit | 1876 | 267 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-eruvin | 2345 | 317 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-eruvin-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-festival-offering | 1355 | 203 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-festival-offering-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-mourning | 2198 | 325 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-mourning-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-neighbors | 2095 | 288 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-neighbors-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-repentance | 2427 | 479 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-repentance-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah | 636 | 124 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-substitution | 1834 | 234 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-substitution-token-claims-min60.csv |
+| ohr-sameach-on-mishneh-torah-woman-suspected-of-infidelity | 2441 | 341 | data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv |
 | orchot-chaim-lharosh | 1492 | 302 | data/public-lexical/by-work/orchot-chaim-lharosh-token-claims-min60.csv |
 | orchot-tzadikim | 16587 | 2590 | data/public-lexical/by-work/orchot-tzadikim-token-claims-min60.csv |
 | orot | 17307 | 4754 | data/public-lexical/by-work/orot-token-claims-min60.csv |
@@ -328,6 +431,7 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | pardes-rimmonim | 38362 | 3971 | data/public-lexical/by-work/pardes-rimmonim-token-claims-min60.csv |
 | pat-lechem | 9964 | 1653 | data/public-lexical/by-work/pat-lechem-token-claims-min60.csv |
 | pele-yoetz | 27333 | 3259 | data/public-lexical/by-work/pele-yoetz-token-claims-min60.csv |
+| peri-chadash-on-mishneh-torah-human-dispositions | 1211 | 200 | data/public-lexical/by-work/peri-chadash-on-mishneh-torah-human-dispositions-token-claims-min60.csv |
 | peri-etz-hadar | 1947 | 413 | data/public-lexical/by-work/peri-etz-hadar-token-claims-min60.csv |
 | peri-haaretz | 12763 | 2012 | data/public-lexical/by-work/peri-haaretz-token-claims-min60.csv |
 | peri-tzadik | 57464 | 5169 | data/public-lexical/by-work/peri-tzadik-token-claims-min60.csv |
@@ -387,6 +491,14 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | shaar-hagilgulim | 13104 | 1816 | data/public-lexical/by-work/shaar-hagilgulim-token-claims-min60.csv |
 | shaar-hahakdamot | 9189 | 1314 | data/public-lexical/by-work/shaar-hahakdamot-token-claims-min60.csv |
 | shaar-hakavanot | 10910 | 1530 | data/public-lexical/by-work/shaar-hakavanot-token-claims-min60.csv |
+| shaar-hamayim-hakatzar | 813 | 151 | data/public-lexical/by-work/shaar-hamayim-hakatzar-token-claims-min60.csv |
+| shaar-hamelekh-on-mishneh-torah-circumcision | 571 | 96 | data/public-lexical/by-work/shaar-hamelekh-on-mishneh-torah-circumcision-token-claims-min60.csv |
+| shaar-hamelekh-on-mishneh-torah-diverse-species | 2761 | 366 | data/public-lexical/by-work/shaar-hamelekh-on-mishneh-torah-diverse-species-token-claims-min60.csv |
+| shaar-hamelekh-on-mishneh-torah-festival-offering | 1401 | 192 | data/public-lexical/by-work/shaar-hamelekh-on-mishneh-torah-festival-offering-token-claims-min60.csv |
+| shaar-hamelekh-on-mishneh-torah-plaintiff-and-defendant | 981 | 142 | data/public-lexical/by-work/shaar-hamelekh-on-mishneh-torah-plaintiff-and-defendant-token-claims-min60.csv |
+| shaar-hamelekh-on-mishneh-torah-sabbatical-year-and-the-jubilee | 2018 | 255 | data/public-lexical/by-work/shaar-hamelekh-on-mishneh-torah-sabbatical-year-and-the-jubilee-token-claims-min60.csv |
+| shaar-hamelekh-on-mishneh-torah-scroll-of-esther-and-hanukkah | 1030 | 175 | data/public-lexical/by-work/shaar-hamelekh-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| shaar-hamelekh-on-mishneh-torah-sheqel-dues | 1800 | 258 | data/public-lexical/by-work/shaar-hamelekh-on-mishneh-torah-sheqel-dues-token-claims-min60.csv |
 | shaar-hamitzvot | 11959 | 1529 | data/public-lexical/by-work/shaar-hamitzvot-token-claims-min60.csv |
 | shaar-hapesukim | 16032 | 2102 | data/public-lexical/by-work/shaar-hapesukim-token-claims-min60.csv |
 | shaar-maamarei-rashbi | 19780 | 2189 | data/public-lexical/by-work/shaar-maamarei-rashbi-token-claims-min60.csv |
@@ -401,6 +513,13 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | shevet-musar | 35711 | 4015 | data/public-lexical/by-work/shevet-musar-token-claims-min60.csv |
 | shir-hashirim-rabbah | 2477 | 513 | data/public-lexical/by-work/shir-hashirim-rabbah-token-claims-min60.csv |
 | shivchei-habesht | 10821 | 1419 | data/public-lexical/by-work/shivchei-habesht-token-claims-min60.csv |
+| shorshei-hayam-on-mishneh-torah-plaintiff-and-defendant | 6721 | 668 | data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-plaintiff-and-defendant-token-claims-min60.csv |
+| shorshei-hayam-on-mishneh-torah-red-heifer | 454 | 83 | data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-red-heifer-token-claims-min60.csv |
+| shorshei-hayam-on-mishneh-torah-repentance | 2234 | 302 | data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-repentance-token-claims-min60.csv |
+| shorshei-hayam-on-mishneh-torah-sabbath | 2964 | 372 | data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-sabbath-token-claims-min60.csv |
+| shorshei-hayam-on-mishneh-torah-scroll-of-esther-and-hanukkah | 3498 | 449 | data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| shorshei-hayam-on-mishneh-torah-service-on-the-day-of-atonement | 5126 | 574 | data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-service-on-the-day-of-atonement-token-claims-min60.csv |
+| shorshei-hayam-on-mishneh-torah-sheqel-dues | 377 | 81 | data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-sheqel-dues-token-claims-min60.csv |
 | siddur-edot-hamizrach | 30949 | 4971 | data/public-lexical/by-work/siddur-edot-hamizrach-token-claims-min60.csv |
 | sifrei-aggadah-on-esther | 6654 | 1009 | data/public-lexical/by-work/sifrei-aggadah-on-esther-token-claims-min60.csv |
 | sifrei-bamidbar | 9816 | 1507 | data/public-lexical/by-work/sifrei-bamidbar-token-claims-min60.csv |
@@ -517,10 +636,35 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | tractate-semachot | 272 | 66 | data/public-lexical/by-work/tractate-semachot-token-claims-min60.csv |
 | tractate-soferim | 4288 | 760 | data/public-lexical/by-work/tractate-soferim-token-claims-min60.csv |
 | treatise-on-logic | 2273 | 453 | data/public-lexical/by-work/treatise-on-logic-token-claims-min60.csv |
+| tzafnat-paneach-on-mishneh-torah-circumcision | 1498 | 210 | data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-circumcision-token-claims-min60.csv |
+| tzafnat-paneach-on-mishneh-torah-fringes | 984 | 147 | data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-fringes-token-claims-min60.csv |
+| tzafnat-paneach-on-mishneh-torah-repentance | 1443 | 209 | data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-repentance-token-claims-min60.csv |
+| tzafnat-paneach-on-mishneh-torah-rest-on-the-tenth-of-tishrei | 922 | 158 | data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv |
+| tzafnat-paneach-on-mishneh-torah-sheqel-dues | 1460 | 202 | data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-sheqel-dues-token-claims-min60.csv |
+| tzafnat-paneach-on-mishneh-torah-virgin-maiden | 1156 | 160 | data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-virgin-maiden-token-claims-min60.csv |
 | tzavaat-harivash | 3662 | 742 | data/public-lexical/by-work/tzavaat-harivash-token-claims-min60.csv |
 | tzidkat-hatzadik | 15864 | 2140 | data/public-lexical/by-work/tzidkat-hatzadik-token-claims-min60.csv |
+| tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary | 465 | 94 | data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-token-claims-min60.csv |
+| tziunei-maharan-on-mishneh-torah-appraisals-and-devoted-property | 335 | 76 | data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-appraisals-and-devoted-property-token-claims-min60.csv |
+| tziunei-maharan-on-mishneh-torah-firstlings | 102 | 24 | data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-firstlings-token-claims-min60.csv |
+| tziunei-maharan-on-mishneh-torah-mourning | 594 | 110 | data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-mourning-token-claims-min60.csv |
+| tziunei-maharan-on-mishneh-torah-repentance | 526 | 115 | data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-repentance-token-claims-min60.csv |
 | yaarot-devash-i | 28924 | 3477 | data/public-lexical/by-work/yaarot-devash-i-token-claims-min60.csv |
 | yaarot-devash-ii | 26795 | 3061 | data/public-lexical/by-work/yaarot-devash-ii-token-claims-min60.csv |
+| yad-david-on-mishneh-torah-robbery-and-lost-property | 24 | 4 | data/public-lexical/by-work/yad-david-on-mishneh-torah-robbery-and-lost-property-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-appraisals-and-devoted-property | 593 | 95 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-appraisals-and-devoted-property-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-circumcision | 145 | 31 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-circumcision-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-firstlings | 386 | 71 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-firstlings-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-leavened-and-unleavened-bread | 643 | 125 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-leavened-and-unleavened-bread-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-mourning | 143 | 27 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-mourning-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing | 167 | 41 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-prayer-and-the-priestly-blessing-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-repentance | 287 | 63 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-repentance-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-ritual-slaughter | 241 | 49 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-ritual-slaughter-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-sabbatical-year-and-the-jubilee | 399 | 68 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-sabbatical-year-and-the-jubilee-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-sacrificial-procedure | 818 | 140 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-sacrificial-procedure-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-slaves | 312 | 60 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-slaves-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-substitution | 405 | 66 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-substitution-token-claims-min60.csv |
+| yad-eitan-on-mishneh-torah-the-chosen-temple | 592 | 122 | data/public-lexical/by-work/yad-eitan-on-mishneh-torah-the-chosen-temple-token-claims-min60.csv |
 | yahel-ohr-on-zohar | 4871 | 838 | data/public-lexical/by-work/yahel-ohr-on-zohar-token-claims-min60.csv |
 | yakar-mipaz | 3892 | 713 | data/public-lexical/by-work/yakar-mipaz-token-claims-min60.csv |
 | yedei-moshe-on-bereshit-rabbah | 2172 | 466 | data/public-lexical/by-work/yedei-moshe-on-bereshit-rabbah-token-claims-min60.csv |
@@ -538,9 +682,23 @@ A compact `*-token-claims-min60.csv` file was generated for every work with a to
 | yefeh-toar-on-devarim-rabbah | 263 | 70 | data/public-lexical/by-work/yefeh-toar-on-devarim-rabbah-token-claims-min60.csv |
 | yefeh-toar-on-shemot-rabbah | 4774 | 951 | data/public-lexical/by-work/yefeh-toar-on-shemot-rabbah-token-claims-min60.csv |
 | yefeh-toar-on-vayikra-rabbah | 2548 | 543 | data/public-lexical/by-work/yefeh-toar-on-vayikra-rabbah-token-claims-min60.csv |
+| yekhahen-peer-on-mishneh-torah-daily-offerings-and-additional-offerings | 636 | 129 | data/public-lexical/by-work/yekhahen-peer-on-mishneh-torah-daily-offerings-and-additional-offerings-token-claims-min60.csv |
+| yekhahen-peer-on-mishneh-torah-service-on-the-day-of-atonement | 393 | 92 | data/public-lexical/by-work/yekhahen-peer-on-mishneh-torah-service-on-the-day-of-atonement-token-claims-min60.csv |
 | yesod-hayirah | 2802 | 432 | data/public-lexical/by-work/yesod-hayirah-token-claims-min60.csv |
 | yesod-veshoresh-haavodah | 24417 | 2758 | data/public-lexical/by-work/yesod-veshoresh-haavodah-token-claims-min60.csv |
 | yismach-moshe | 51130 | 4944 | data/public-lexical/by-work/yismach-moshe-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor | 898 | 155 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-creditor-and-debtor-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-fasts | 759 | 145 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-fasts-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-festival-offering | 1523 | 257 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-festival-offering-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-foundations-of-the-torah | 1492 | 262 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-fringes | 2478 | 357 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-fringes-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-paschal-offering | 2028 | 308 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-paschal-offering-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-reading-the-shema | 2757 | 407 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-reading-the-shema-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-repentance | 410 | 80 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-repentance-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-scroll-of-esther-and-hanukkah | 2220 | 359 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-shofar-sukkah-and-lulav | 2791 | 400 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-shofar-sukkah-and-lulav-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-substitution | 1066 | 176 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-substitution-token-claims-min60.csv |
+| yitzchak-yeranen-on-mishneh-torah-torah-study | 869 | 154 | data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-torah-study-token-claims-min60.csv |
 | zechariah | 2181 | 421 | data/public-lexical/by-work/zechariah-token-claims-min60.csv |
 | zephaniah | 618 | 113 | data/public-lexical/by-work/zephaniah-token-claims-min60.csv |
 | zera-kodesh | 29424 | 3677 | data/public-lexical/by-work/zera-kodesh-token-claims-min60.csv |
@@ -566,9 +724,9 @@ Rows are skipped from the public JSONL export when they have no renderings or wh
 | data/public-lexical/sitewide/claim-index.jsonl | 9193 | Deduplicated claim-shaped lexical rows across all imported works |
 | data/public-lexical/sitewide/claim-index.csv | 9193 | CSV mirror of the compact claim index |
 | data/public-lexical/sitewide/normalized-lookup.json | 19235 | Normalized Hebrew form to claim ID lookup |
-| data/public-lexical/sitewide/work-summary.jsonl | 496 | Per-work compact-export coverage summary |
-| data/public-lexical/sitewide/work-summary.csv | 496 | CSV mirror of per-work compact-export coverage summary |
-| data/public-lexical/sitewide/work-downloads.csv | 496 | Per-work download index for lexical manifests, token indexes, and public export files |
+| data/public-lexical/sitewide/work-summary.jsonl | 654 | Per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-summary.csv | 654 | CSV mirror of per-work compact-export coverage summary |
+| data/public-lexical/sitewide/work-downloads.csv | 654 | Per-work download index for lexical manifests, token indexes, and public export files |
 
 The compact sitewide files are intended for AI/tool import. They preserve source/license metadata per claim and avoid repeating the same source-backed lexical row for every work-token occurrence.
 
@@ -576,9 +734,9 @@ The compact sitewide files are intended for AI/tool import. They preserve source
 
 | Item | Count |
 | --- | ---: |
-| manifests scanned | 496 |
-| chunks scanned | 4701 |
-| candidate rows without renderings | 884283 |
+| manifests scanned | 654 |
+| chunks scanned | 4967 |
+| candidate rows without renderings | 931479 |
 | candidate rows without source/license | 0 |
 
 ## User-Facing Prompt

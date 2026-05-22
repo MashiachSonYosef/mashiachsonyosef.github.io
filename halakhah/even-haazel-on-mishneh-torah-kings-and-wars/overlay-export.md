@@ -1,0 +1,20 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 1:1:1 | even-haazel-on-mishneh-torah-kings-and-wars-1-1-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 1:3:1 | even-haazel-on-mishneh-torah-kings-and-wars-1-3-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 1:9:1 | even-haazel-on-mishneh-torah-kings-and-wars-1-9-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 2:1:1 | even-haazel-on-mishneh-torah-kings-and-wars-2-1-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 3:1:1 | even-haazel-on-mishneh-torah-kings-and-wars-3-1-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 3:3:1 | even-haazel-on-mishneh-torah-kings-and-wars-3-3-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 3:5:1 | even-haazel-on-mishneh-torah-kings-and-wars-3-5-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 3:6:1 | even-haazel-on-mishneh-torah-kings-and-wars-3-6-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 3:8:1 | even-haazel-on-mishneh-torah-kings-and-wars-3-8-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 3:10:1 | even-haazel-on-mishneh-torah-kings-and-wars-3-10-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 4:3:1 | even-haazel-on-mishneh-torah-kings-and-wars-4-3-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 4:4:1 | even-haazel-on-mishneh-torah-kings-and-wars-4-4-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 5:1:1 | even-haazel-on-mishneh-torah-kings-and-wars-5-1-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 5:12:1 | even-haazel-on-mishneh-torah-kings-and-wars-5-12-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 8:6:1 | even-haazel-on-mishneh-torah-kings-and-wars-8-6-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 9:4:1 | even-haazel-on-mishneh-torah-kings-and-wars-9-4-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 10:1:1 | even-haazel-on-mishneh-torah-kings-and-wars-10-1-1 |  |  | not_done |  |
+| even-haazel-on-mishneh-torah-kings-and-wars | Even Ha'azel on Mishneh Torah, Kings and Wars | Even Ha'azel on Mishneh Torah, Kings and Wars 10:3:1 | even-haazel-on-mishneh-torah-kings-and-wars-10-3-1 |  |  | not_done |  |

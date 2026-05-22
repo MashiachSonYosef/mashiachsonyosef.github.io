@@ -1,0 +1,5 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| shorshei-hayam-on-mishneh-torah-repentance | Shorshei HaYam on Mishneh Torah, Repentance | Shorshei HaYam on Mishneh Torah, Repentance 1:1:1 | shorshei-hayam-on-mishneh-torah-repentance-1-1-1 |  |  | not_done |  |
+| shorshei-hayam-on-mishneh-torah-repentance | Shorshei HaYam on Mishneh Torah, Repentance | Shorshei HaYam on Mishneh Torah, Repentance 1:2:1 | shorshei-hayam-on-mishneh-torah-repentance-1-2-1 |  |  | not_done |  |
+| shorshei-hayam-on-mishneh-torah-repentance | Shorshei HaYam on Mishneh Torah, Repentance | Shorshei HaYam on Mishneh Torah, Repentance 2:3:1 | shorshei-hayam-on-mishneh-torah-repentance-2-3-1 |  |  | not_done |  |

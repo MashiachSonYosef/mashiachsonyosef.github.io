@@ -1,0 +1,5 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law | Mekorei HaRambam LeRashash on Mishneh Torah, Transmission of the Oral Law | Mekorei HaRambam LeRashash on Mishneh Torah, Transmission of the Oral Law 1:1 | mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law-1-1 |  |  | not_done |  |
+| mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law | Mekorei HaRambam LeRashash on Mishneh Torah, Transmission of the Oral Law | Mekorei HaRambam LeRashash on Mishneh Torah, Transmission of the Oral Law 2:1 | mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law-2-1 |  |  | not_done |  |
+| mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law | Mekorei HaRambam LeRashash on Mishneh Torah, Transmission of the Oral Law | Mekorei HaRambam LeRashash on Mishneh Torah, Transmission of the Oral Law 19:1 | mekorei-harambam-lerashash-on-mishneh-torah-transmission-of-the-oral-law-19-1 |  |  | not_done |  |

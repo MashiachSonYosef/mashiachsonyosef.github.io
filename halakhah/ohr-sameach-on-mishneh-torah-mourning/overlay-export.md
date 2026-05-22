@@ -1,0 +1,18 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 1:1:1 | ohr-sameach-on-mishneh-torah-mourning-1-1-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 1:1:2 | ohr-sameach-on-mishneh-torah-mourning-1-1-2 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 1:8:1 | ohr-sameach-on-mishneh-torah-mourning-1-8-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 1:9:1 | ohr-sameach-on-mishneh-torah-mourning-1-9-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 3:2:1 | ohr-sameach-on-mishneh-torah-mourning-3-2-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 3:4:1 | ohr-sameach-on-mishneh-torah-mourning-3-4-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 3:5:1 | ohr-sameach-on-mishneh-torah-mourning-3-5-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 3:8:1 | ohr-sameach-on-mishneh-torah-mourning-3-8-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 3:11:1 | ohr-sameach-on-mishneh-torah-mourning-3-11-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 6:5:1 | ohr-sameach-on-mishneh-torah-mourning-6-5-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 11:7:1 | ohr-sameach-on-mishneh-torah-mourning-11-7-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 11:8:1 | ohr-sameach-on-mishneh-torah-mourning-11-8-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 14:1:1 | ohr-sameach-on-mishneh-torah-mourning-14-1-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 14:7:1 | ohr-sameach-on-mishneh-torah-mourning-14-7-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 14:15:1 | ohr-sameach-on-mishneh-torah-mourning-14-15-1 |  |  | not_done |  |
+| ohr-sameach-on-mishneh-torah-mourning | Ohr Sameach on Mishneh Torah, Mourning | Ohr Sameach on Mishneh Torah, Mourning 14:21:1 | ohr-sameach-on-mishneh-torah-mourning-14-21-1 |  |  | not_done |  |
