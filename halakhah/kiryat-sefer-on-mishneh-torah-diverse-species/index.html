@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiryat Sefer on Mishneh Torah, Diverse Species</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kiryat Sefer on Mishneh Torah, Diverse Species</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Diverse Species</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Diverse Species</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">58 total source units | imported 2026-05-22</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>685 matched</strong> / 1985 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-diverse-species.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kiryat Sefer on Mishneh Torah, Diverse Species <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kiryat Sefer on Mishneh Torah, Diverse Species <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-3-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-4-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-5-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-7-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-8-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 1:8:1">1:8:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-11-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 2:11:1">2:11:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-12-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 2:12:1">2:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-13-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 2:13:1">2:13:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-3-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-3-7-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-3-16-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 3:16:1">3:16:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-4-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-4-9-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 4:9:1">4:9:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-6-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:6:1">5:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-7-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:7:1">5:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-8-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:8:1">5:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-10-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:10:1">5:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-13-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:13:1">5:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-17-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:17:1">5:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-18-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:18:1">5:18:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-19-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:19:1">5:19:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-21-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:21:1">5:21:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-23-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 5:23:1">5:23:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-3-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 6:3:1">6:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-4-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 6:4:1">6:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-5-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 6:5:1">6:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-7-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 6:7:1">6:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-9-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 6:9:1">6:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-11-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 6:11:1">6:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 7:1:1">7:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-15-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 7:15:1">7:15:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-17-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 7:17:1">7:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-20-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 7:20:1">7:20:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-8-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 8:1:1">8:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 9</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:1:1">9:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-3-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:3:1">9:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-4-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:4:1">9:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-6-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:6:1">9:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-7-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:7:1">9:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-9-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:9:1">9:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-10-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:10:1">9:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-11-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 9:11:1">9:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 10</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-1-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:1:1">10:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-4-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:4:1">10:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-6-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:6:1">10:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-12-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:12:1">10:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-18-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:18:1">10:18:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-24-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:24:1">10:24:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-25-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:25:1">10:25:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-27-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:27:1">10:27:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-29-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:29:1">10:29:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-30-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:30:1">10:30:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-31-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:31:1">10:31:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-32-1" title="Kiryat Sefer on Mishneh Torah, Diverse Species 10:32:1">10:32:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Chapter 1</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 1:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת קסא </strong> שלא לזרוע כלאים דכתיב שדך לא תזרע כלאים ואם זרע שני מיני זרעים כאחד בארץ ישראל לוקה כדכתיב שדך דהוא בארץ ישראל ולא בחוצה לארץ וכתיב כלאים שהם שני מינים דאף על גב דבלא תזרע כרמך כלאים אמרינן שני מינים עם חרצן דכתיב כרמך וכלאים הכא שאני דכתיב שדך דמשמע קרקע בלא זרעים דנקראת שדה אבל כרם בלא גפנים לא מיקרי כרם. ואחד זורע או מנכש שעוקר עשבים רעים כדי שיגדלו האחרים יותר חשיב כזורע כלאים או מחפה זרע שהיה מונח בעפר לוקה דמה דרכו של זורע לצמוחי פירא מכוין הא נמי לצמוחי פירא מכוין ובין בידו בין ברגלו בין בכלי לצמוחי קא מכוין. ואחד הזורע בארץ או בעציץ נקוב דהוי כמחובר כדאמרי׳ לענין הכשר זרעים דהוי כמחובר דהתורה ריבתה אצל זרעים דכתיב על כל זרע זרוע אשר יזרע כדרך שאדם מוציא לזריעה למעוטי מחובר כל דהו דלהכי אהני זריעות יתירי דקרא ומיהו שאינו נקוב תלוש גמור הוא מדאוריתא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 1:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור </strong> לזרוע כלאים לגוי דאין קנין לגוי בארץ ישראל דשדך לא אתא למעוטי אלא חוצה לארץ ומותר לומר לגוי לזרוע לו כלאי זרעים דאין האיסור אלא למי שזרע שדהו כלאים דלא נאמר הארץ לא תזרע כלאים דמהכא נפקא דמותר לזרוע שעורים בצד שדה חברו הזרועה חטין. ואסור לאדם לקיים כלאים זרעים בשדהו אלא עוקרן דכתיב בהמתך לא תרביע כלאים שדך לא תזרע כלאים ושמעינן ליה הכי כלאים שדך לא דמשמע שמזהיר הכתוב שלא יקיים כלאים בשדה דהוי מצי למיכתב בהמתך כלאים לא תרביע ומדסמכן כלאים לשדה שמע מינה להכי הוא דאתא ואם קיימן אינו לוקה דהוי לאו שאין בו מעשה דילפינן בעלמא דאין לוקין עליו. ומותר לישראל לזרוע כלאי זרעים בחוצה לארץ ואפילו לערבן לכתחלה ולזורען דשדך כתיב למעוטי חוצה לארץ ודברים אלו דברי קבלה הם גם כן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-1-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 1:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עשבים </strong> מרים ושאינם ראויים אלא לרפואה אין בהם משום כלאי זרעים [דאין אסור משום כלאי זרעים אלא שבני אדם נוהגים לזרוע כדכתיב אשר תזרע (ויקרא יט, יט)].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-1-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 1:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כלאי </strong> האילנות הרי הם בכלל מה שנאמר שדך לא תזרע כלאים בין אילן באילן בין ירק בהרכבה ולוקה בכל מקום דכתיב שדך לא תזרע כלאים בתר בהמתך לא תרביע כלאים וילפינן מינה מה בהמתך בהרבעה אף שדך בהרכבה דהוי דבר המסוים דומיא דהרבעת בהמה ומה בהמתך אף בחוצה לארץ דהא חובת הגוף היא אף שדך בהרכבה אפילו בחוצה לארץ לוקה דהא דכתיב שדך למעוטי חוצה לארץ היינו בזרעים לא בהרכבת אילן באילן או בירק או ירק באילן. ואסור לישראל להניח לגוי שירכיב לו אילנות כלאים דהוי כהרבעת בהמה דילפינן מינה ואין כלאים באילנות אלא בהרכבה לא בזריעה דלא הוי דבר המסוים בהרבעה דבהמה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 1:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כלאים </strong> דזרעים והרכבת אילנות אף על פי שלוקה מותרין באכילה מדגלי רחמנא בכלאי הכרם דאסירי דכתיב פן תקדש פן תוקד אש מכלל דכלאי זרעים שרו ולא תימא כלאי הכרם אסורים אפילו בהנאה אבל כלאי זרעים שרו בהנאה ואסירי באכילה דהא איתקוש לכלאי בהמה כדכתיב בהמתך לא תרביע כלאים שדך לא תזרע וגו׳ מה בהמתך כלאים היוצא ממנה מותר אף שדך כלאים היוצא ממנה מותר וכלאי בהמה גופייהו דשרו ילפינן מדאסר רחמנא כלאים לגבוה דכתיב שור או כשב או עז פרט לכלאים מכלל דלהדיוט שרי דאי לאו הכי לא הוה צריך קרא. ומותר ליטע יחור מן האילן שהורכב ולזרוע זרע הירק שנזרע כלאים נראה דכיון דשרו באכילה ולא אסרתן תורה משום כלאים תו ליכא בהו כלאים ואפילו בנטיעה או בזריעה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 1:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תבואה </strong> היא חמשת המינים חטה ושעורה שבולת שועל ושיפון וכוסמין חטים ב׳ מינים ושעורה ג׳ מינים כדילפינן בהלכות חמץ ומצה וקטנית הם כמו פול ואפונים כל זרע שהוא נאכל וזרעוני גינה הן אותן שאינו נאכל אלא הפרי שלהם כבצלים ושומים וכיוצא בהם והכל נקרא זרעונין וכשיצמחו נקראים דשא או ירק וזרעוני גנה שדרכן לזרוע מהם שדות נקראים מיני זרעים ומה שדרכן לזרוע ערוגות קטנות נקראים מיני ירקות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-2">Chapter 2</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 2:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זרע </strong> שנתערב בזרע אחר שהוא כלאים עמו חלק אחד בעשרים ושלשה אסור לזרוע ולוקה עליו. וכל שהוא כלאים עם הזרע מצטרף לאחד מעשרים וארבעה כשנתערבו תבואה זה עם זה וקטניות זה בזה או מיני קטניות בתבואה וזרעוני גנה שאין נאכלין מצטרפין אחד מכ&quot;ד ממה שזורעים בבית סאה מאותו המין לסאה של תבואה או קטנית עד שימעט או יוסיף ושיעור זה הלכה למשה מסיני. ונראה דשיעור חלק אחד מכ&quot;ד בתבואה וקטנית הוו בכלל שיעורין הלכה למשה מסיני משום דהוי מילתא פסיקא אחד מכ&quot;ד בזרע אבל בזרעוני גנה לא משערינן בזרע אלא כפי מה שזורעים בבית סאה מאותו המין ולהכי איצטרך הלכתא למשה מסיני באפי נפשה לומר דאחד מכ&quot;ד ממה שנופל לבית סאה הוי כלאים בסאה של תבואה או קטנית. ואם נתכוון לערב או לזרוע הב׳ מינים אפילו חטה אחד בכרי של שעורים אסור לזורעה דהא בכל שהו הוי כלאים בזריעה דכיון דאיכוון ליה מעיקרא בשעת כינוס תבואה לזורעה מעורבת או שערבה לזורעה אחשבה ואסיר מדאוריתא אבל איפשר דלא לקי אלא על שיעור אחד מכ&quot;ד דהא לא מחייב מן התורה לעקור כשזרע כלאים אלא אם הם אחד מכ&quot;ד דהוי כלאים בשדה אבל אם זרע כל שהו בכוונה לא מחייב למיעקר דלא הוי כלאים בשדה כיון דלא מינכר ואם לא זרע כלאים אלא שעלה מאיליו אפי׳ אחד מכ&quot;ד לא מיחייב מן התורה לעקור כיון דלא זרע אלא מין אחד אלא אם כן רצה בקיומן דהא ילפינן לה למקיים כלאים כדכתיב כלאים שדך לא כדלעיל פרק א׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-2-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 2:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 2:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> נוטעין ירקות בתוך סדן של שקמה שהיא תאנה מדברית דהוי ירק באילן והוי דבר המסוים. והרכבת אילן סרק באילן מאכל ילפינן מדכתיב את חקותי תשמורו וגו׳ חוקות שחקקתי לבני נח דכתיב למינהו באילנות אבל עץ סרק על עץ סרק חשיבי כמין אחד. הטומן לפת וצנונות תחת האילן או הגפן אם אינן אגודה או שלא היו העלין [מגולין] חושש משום כלאים כיון דהוי דרך שתילה ונראה דחששא זו מדרבנן כיון דלא השרישו עדין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-2-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 2:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 2:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שדה </strong> שהיתה זרועה וקצרה ונשארו השרשין בארץ לא יהיה זורע עד שיעקר ואיפשר דלא אסיר אלא מדרבנן כל שלא צמחו העיקרין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-2-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 2:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-2-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 2:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה </strong> שדהו זרועה חטים ונמלך לזורעה שעורים כשהתליעו החטים יהפכם במחרישה ויזרע שעורים דהא לא יצמחו החטים כיון שהתליעו והפכם במחרישה כדרך שחורשין האדמה קודם המטר כדי שתרוה. ואם צמחו החטים יהפך ואחר כך זורע ואם קרסמה בהמ׳ את הצמח הרי זו מותר דתו לא צמח:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-3">Chapter 3</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 3:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני </strong> מיני זרעים או פירות אף על פי שהן דומין זה לזה כצנון ונפוס בירקות או כתפוח וחזרד בפירות שדומין זה לזה בעלין או בפירות הם כלאים זה בזה כיון שהם שני מינים אבל מין אחד אף על פי שאין דומים זה לזה ונראים כשני מינין כחזרת עם חזרת גלים בירקות ואגסים עם קרוסטומלין בפירות אינם כלאים זה בזה דכתיב שדך לא תזרע כלאים וגו׳ ובגד כלאים שעטנז לא יעלה עליך מה בבגדים אסר שני מינים לא זה ממין זה ולא זה ממין זה כדכתיב לא תלבש שעטנז צמר ופשתים אף כל כלאים שאסר הכתוב הם שני מינים לא זה ממין זה ולא זה ממין זה וכן אפילו הם שני מינים אלא שדומין זה לזה בפרי או בעלין דמיון גדול עד שיראו כשני גוונין ממין אחד כלפת עם צנון בירקות שדומין בפרי ולפת עם נפוס שדומין בעלין הרי אלו אינם כלאים זה בזה דלא הוו כצמר ופשתים שהם נכרים שני מינים וצנון עם נפוס אף על פי שדומין זה לזה בפרי ובעלין הם כלאים זה בזה הואיל וטעם פרי זה רחוק מטעם פרי זה על ידי הטעם ניכר שהם שני מינים והוו כצמר ופשתים דהוו&#160;כלאים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 3:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זרעים </strong> שהם כלאים זה עם זה שנזרעו בערבוביא אסור דכלאים היינו ערבוביא ואם מובדלים זה מזה כשיעור אין חוששין ליניקה וכשהן מובדלים כשיעור יניקה דאוריתא אין חוששין למראית העין שנראים מעורבים ושיעור הרחקה בין שדה מין תבואה לשדה תבואה אחרת מדאוריתא ולמלקות ששה טפחים ובין שדה ירק לשדה ירק אחר מדאוריתא ולמלקות טפח ושדה תבואה משדה ירק נמי ששה טפחים כתבואה ותבואה ובין שדה ירק לשורה של ירק ובין שדה תבואה לשורה של ירק נראה דסגי בטפח מדאורייתא ושיעורין אלו [מדרבנן]. וכשהרחיק כשיעור לא חיישינן לנטיית העלין זו על גב זו דכל שהן מרוחקים כשיעור מדאורייתא אין חוששין למראית העין שנראים מעורבין וכל שאינן נראים מעורבין אלא מובדלים כצורת זריעתן אין חוששין ליניקה אפילו אינם מרוחקים כשיעור תורה דכלאים דקרא היינו כשאינם מרוחקים זה מזה כשיעור וגם שנראים מעורבין למראית העין דלישנא דכלאים הכי משמע שהוא קרוב זה לזה ונראין מעורבין. והפסק בור וכיוצא בו נראה דמהני אפי׳ אין ביניהם ו׳ טפחים (דהוי) [דלא הוי] כלאים דאוריתא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-3-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 3:16:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-3-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 3:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong> זרע חברו בצדו שדה של מין אחר אינו צריך הרחקה דלא כתיב הארץ לא תזרע כלאים אלא לא תזרע כלאים שאין האיסור אלא למי שזרע שדהו כלאים ואפילו זרע הוא בתוך שדהו ונראה כסוף שדה חברו כגון שסמכו לו מותר. וכל שמתכוין לבדוק אם יצלח שדה זה לזרע זה נראה דלא אסיר מן התורה ואפילו באמצע שדהו משום דלא תזרע כתיב והיינו כשזורע לקיים והאי אינו מכוין אלא לבדוק כדי שיזרע שנה אחרת. ומה שזורעים ממנו תלם אחד כחרדל וחריע אסור דהא זורע כלאים והויא זריעה כיון שדרך לזרוע ממנו מעט ובין שני שדות של ירקות מותר דכיון שאין שני מינים אלו חריע וחרדל מפסידין את הירקות הרואה אומר של אחר הם ובעלי הירקות אינם מקפידים אם הם סמוכים לירקות שלהם כיון שאינם מזיקין להם. וכן זוית בזוית או זוית בצלע מותר בלא הרחקה והבדלה שהרי נראה כסוף שדה ונראין מובדלין זה מזה כיון שאין צלע זה אצל צלע זה ונראה דמדאוריתא אפילו הוא ידוע שאינו של אדם אחר אלא שהוא זרע הכל מותר דלא הוו כלאים כיון שנראים מובדלים בצורת הזריעה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-4">Chapter 4</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 4:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> שיש טפח בין ירק לירק אפילו בין שורה לשורה לא אסיר מדאוריתא אלא מדרבנן משום דמחזי כערבוביא בהני גווני דמייתי הרב ז&quot;ל. וכן כשבא לזרוע תבואה אפילו אצל דלעת אין צריך להרחיק מן התורה אלא ששה טפחים אלא דרבנן גזרו עד בית רובע משום המשכת העלין. לא גזרו חכמים שלא לזרוע בתלם עמוקה טפח שלשה מיני זרעים וכן ארבעה מינים לתוך גומא ומהפך עלין לד׳ רוחותיה והפוך העלין בעינן אפילו מדאוריתא דאי לאו הכי הא איכא יניקה וערבוב דהוי כלאים מדאוריתא. ואם הרחיק בין משר ומשר של שני מיני תבואה ששה טפחים אע&quot;פ שמיצר והולך עד כל שהו בסוף התחום נראה דלא אסיר אלא מדרבנן וכן בין קרחת לקרחת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-4-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 4:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-4-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 4:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ערוגת </strong> ששה טפחים על ששה זורעין בתוכה חמשה מינין בארבע רוחות ובאמצע וערוגה שהיא ששה נפקא לן מדכתיב לחייו כערוגת הבשם ומשמע לחייו לשון לוחות והם היו ששה על ששה מכלל דערוגה נמי כן הוא וה׳ זרעונין נפקא לן מדכתיב כי כארץ תוציא צמחה תוציא חד צמחה חד זרועיה תרי תצמיח חד הרי ה׳ ומנא לן דבערוגה מיירי קרא ולא נימא בפחות מערוגה דקים להו לרבנן דחמשה מינין בשתא לא יניקי מהדדי ואל תתמה לומר מי הודיע את הבריות שיעור יניקה ואיך יוכלו לעמוד על כן דהא כתיב לא תסיג גבול רעך אשר גבלו ראשונים ליטע סמוך למצר להכחיש קרקעו כשיעור אשר גבלו ראשונים שהם אמוריים וחוים שהיו בקיאים בכך כדאשכחן בבני שעיר דכתיב בני שעיר החרי יושבי הארץ אטו כ&quot;ע יושבי רקיע נינהו אלא שהיו בקיאים בישוב של ארץ שהיו אומרים מלא קנה זה ראוי לגדל זתים וזה לתאנה בריחה וטעמה וממילא שהיו בקיאין בשיעור יניקה. ולדעת הרב שאין מלקות בירק וירק אלא א&quot;כ הם קרובים בתוך טפח נראה דכל הני קראי הוו אסמכתא בעלמא ומדרבנן דלא ליזרעו טפי מה׳ מינין בערוגה בת ששה משום דהוו כנטועים בערבוביא דמדאוריתא כל שהרחיק בין ירק לירק אחר אפילו בין שדה ושדה טפח לא לקי ואיסור נמי מדאוריתא לא אשכחן בהא עד דליהוו תוך טפח ולא יהו מובדלין בצורת הזריעה אבל אי מובדלין בצורת הזריעה אפילו תוך טפח או אינם מובדלים בזריעה ורחוק זה מזה טפח לא וא&quot;כ מן התורה היו יכולין לזרוע י&quot;א מינין בערוגה בי&quot;ח טפחים מה׳ לו׳ שבערוגה אחד זרוע ואחד חלק כזה ואם נרצה להרבות במינים ובזריעה נוכל לזרוע עוד ט׳ טפחים וי&quot;ח מינים אחרים תוך כל טפח חלק על טפח מרובע אחד של חצי טפח על חצי טפח זויותיו נוגעות באמצע צלעות טפח על טפח אלא שריבוי מינין במקום צר נראה ערבוב וכלאים דאוריתא או י&quot;ג מינין בערוגה בת ששה עשרה בסביבות ושלשה באמצע ויהיה שיעור הנזרע בה י&quot;ח טפחים כזה עשרה טפחים בסביבות טפח זרוע וטפח חרב וששה עשר טפחים שבאמצע השמנה טפחים הם נזרעים ששה טפחים מה שבין שני אלכסונים של מרובע ג׳ וחומש על שלשה וחומש וטפח מה שבין אלכסון מרובע טפח על טפח לאלכסון מרובע בטפחים פחות חומש על שני טפחים פחות חומש וכן בצד האחד טפח הרי הם שמנה עשר נמצא בין זרע לזרע שיעור טפח חלק שהרי בין אלכסון ג׳ על ג׳ וחומש לאלכסון שניה על ב׳ פחות חומש יש טפח אחד ואם נרצה להרבות יותר במינים ובזריעה נאמר שאפשר לזרוע עוד שבעה טפחים בארבעה עשר מינים אחרים שנעשה בכל טפח חלק מרובע חצי טפח על חצי טפח זויותיו נוגעות באמצע צלעות של טפח על טפח החרב כזה אלא שאפשר לומר שכיון שיש יניקה וריבוי מינין במקום צר כזה הוי ערבוב וכלאים דאוריתא אבל י&quot;ח או י&quot;ג מינין בערוגה נראה דלא אסיר אלא מדרבנן כדאמר כיון דאיכא בין זרע לזרע שיעור טפח דאוריתא ואם היתה ערוגה שיש לה גבול גבוה טפח היה יכול מן התורה לזרוע מינין הרבה ג&quot;כ ובעיגולין שבתוך הערוגה היה יכול מן התורה לעשותה בערוגת חמשה על חמשה או ארבעה על ארבעה אלא מדרבנן הוא דלא התירו אלא בערוגת ששה&#160;דבבציר מהכי לא הוה חשיב עיגול הנראה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Chapter 5</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת קסב </strong> שלא לזרוע תבואה או ירק בכרם דכתיב לא תזרע כרמך כלאים ואם זרע ב׳ מיני תבואה או ירק עם זרע הכרם לוקה דכתיב כרמך וכלאים דהיינו שני מינים בכרם ולוקה נמי משום שדך לא תזרע כלאים דהא זרע שני מינים וכן אם חפה בעפר חטה ושעורה וחרצן שהיו מונחין בארץ לוקה דהוי כזורע כדאמר לעיל. ואינו חייב בירק בכרם אלא על קנבוס ולוף וכיוצא בהם שנגמרים עם תבואת הכרם אבל שאר זרעים אינם אלא מדבריהם דכתיב כרמך כלאים זרעים הדומים לכרם ובהנך תולין אשכולות כעין ענבים קנבוס ולוף אסרה תורה בכרם דאין זרעה כלה שיש להם שורש. אין עודרים עם הגוי וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אסור משום כלאי הכרם אלא תבואה וירק דומיא דקנבוס ולוף כדאמר מדאוריתא ומיני זרעים ושאר אילנות מותר לזורעם בכרם אפילו מדרבנן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ </strong> שאינו לוקה אלא בזריעת שני מינים עם זרע כרם או במחפן (א)[ע]ם זרע כרם (או&#160;במחפן) אם זרע ירק או תבואה בצד גפן או נטע גפן בצד תבואה או ירק הרי זה קדש ונאסרו שניהם בהנאה דכתיב פן תקדש פן תוקד אש שישרפם ולא יהנה בהם אפילו במין אחד עם הכרם כדכתיב מלאה וכרם דהיינו מין אחד עם כרם מקדש ואפילו הקש של תבואה ועצים של גפן אסורים בהנאה דבכלאים לא כתיב פרי ולא יסיק בהם תנור וכירים ולא יבשל בהם בעת שריפתן שהרי אסור בהנאתן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> הנוטע ואחד המקיים כיון שראה כלאים שהם ב׳ מינים שצמחו בכרמו והניחה הרי זה קדש דכתיב לא תזרע כרמך כלאים אין לי אלא הזורע מקיים מנין ת&quot;ל כרם לא כלאים ואם קיים על ידי מעשה לוקה ואין אדם מקדש מה שאינו שלו דכתיב כרמך ולא כרם אחרים וכתיב נמי לא תזרע מה זורע דניחא ליה והא כיון שאינו נהנה פשיטא דלא ניחא ליה מקיים כלאים בכרם חברו דאסור הוא בהנייתן נראה דהוי מדרבנן דכיון דאין אדם אוסר דבר שאינו שלו לא אסרן כדאמר ואם קיימן בעל הכרם קדשן לכל כדילפינן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האנס </strong> שזרע כלאים בכרם חברו ונשתקעו שם הבעלים מן השדה אפילו לא נתיאשו הרי זה קדש מן התורה ואפילו עומד וצווח הוי כצווח על ספינתו שטבעה בים ואנן סהדי דנתיאש אף על גב דלא שמעיניה דאמר ווי ליה לחסרון כיס והרי היא של האנס ואיתסרא מדאוריתא. פארות הגפן שעקרן הרוח על התבואה לא קדשו עד שיקיימן. אנס שזרע כלאים ויצא ונשתהא בעל הכרם לקוצרן עד עונת שיקדש הרי זה יקדש ואסור בהנאה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תבואה </strong> או ירק מתקדשים משישרישו וענבים כשיעשו כפול הלבן דכתיב המלאה הזרע אשר תזרע ותבואת הכרם ובבציר מהכי לא חשיב מלאה ולא תבואת הכרם. וכן תבואה שיבשה כל צרכה וענבים שבשלו כל צרכן אין מתקדשות דכתיב מלאת זרע ותבואת כרם דמשמע דהם בענין גדול ותוספת ואם הגיעו לשלימותן לא מיקרו מלאת זרע ותבואת כרם אלא ענבים וחטים וכל שלקט הזרע קודם שהשריש אף על פי שהענבים נעשו כפול הלבן מותר דתרוייהו בעינן מלאה בתבואות ותבואת כרם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה </strong> עובר בכרם ונפלו ממנו זרעים או שיצאו עם הזבלים ועם המים או סערתו הרוח לאחוריו כשהיה זורע שדה לבן ונפלו הזרעים בכרם וצמחו הרי זה לא קדש דלא תזרע כרמך בכונה משמע והני כולהו שלא בכוונה נזרע ושרי אבל קיימן קדש כדאמר׳. סערתו הרוח לפניו הוי כזורע כיון שראה אותם כשנפלו ואם צמחו יהפכם במחרישה ואם נעשו אביב ינפץ וישחית הכל ואם מצאה שנעשית דגן הרי זו תשרף ואפילו הקשין שהכל בשרפה כדכתיב פן תקדש פן תוקד אש ומתרגמים נמי תתוקד והיינו במידי שדרכו בשריפה אבל בעשבים לחים שדרכן בקבורה יקברו כדאמר׳ שיהפך או ינפץ.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עשב </strong> שאין דרך בני אדם לזרעו אף ע&quot;פ שרוצה בקיומו לבהמה ולרפואה לא קדש עד שיקיים דבר שרוב העם מקיימין באותו מקום דאשר תזרע משמע מה שנהגו בני אדם לזרוע ורוצין בקיומן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-19-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:19:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-19-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:19:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קנדס </strong> וצמר גפן הם כמיני ירקות שמקדשין בכרם דהם דומיא לכרם כדאמר לעיל וכן דשאים שעולים מאיליהם אי הוו כי האי גונא מקדשין בכרם ופול המצרי מין זרעים הוא ולא קדש קנים וורד ואטדין הם מיני אילן ולא מקדשי דכתיב לא תזרע ואין זרעי אילן קרוים זרעים וכל שמוציא עלין מעיקרו הוי ירק ואי לא הוי אילן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-21-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:21:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-21-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:21:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>
+הרואה </strong> ירק בכרם ועבר מעליו אם שהה עד שהוסיף אחד ממאתים הרי זה קדש דכתיב פן תקדש המלאה דמשמע מילוייו ותוספתו וכתיב הזרע דמשמע זריעה עצמה הא כיצד זרוע מעיקרו בתוך הכרם בהשרשה נאסר מיד זרוע ובא שהיה נשרש כבר בהתר חוץ לכרם בעינן מלאה היינו תוספת ונראה דלא אסיר מדאוריתא אלא היכא דליכא רובא דהתר אבל אי רובא גדל בהתר אף על גב דניתוסף הרבה באיסור ליכא איסור דאוריתא דקרא דמלאה דמשמע מילוי ותוספת היינו שהיה נשרש כבר בהתר וניתוסף אחר כך באיסור וליכא רובא בהתר כדאמר דשיעור מאתים מדרבנן וילפינן אסמכתא בגזירה שוה דמלאה מלאה מתרומה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-5-23-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 5:23:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-5-23-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 5:23:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עציץ </strong> נקוב ששהא בארץ עד שהוסיף עד שאין במה שגדל בהתר כדי לבטל הנוסף ברוב אסור מדאוריתא שהרי קדש כדאמר וגידולי התר אין מעלין את העיקר האסור היינו מדרבנן דמדאוריתא ברובא דהתר&#160;בטיל האיסור כדאמר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Chapter 6</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-6-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 6:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזורע </strong> ירק או תבואה בכרם או המקיימו עד שאין במעט גדול הירק שגדל בהתר לבטל מה שגדל באיסור הרי זה מקדש [ומקיים בכרם ילפי׳ בת&quot;כ (קדושים פ&quot;ד פי׳ ט&quot;ז) שדך לא תזרע מנין שלא יקיים ת&quot;ל לא כלאים, לא אמרתי אלא משום כלאים, ובכרם נמי כתיב הכי ודרשי׳ בספרי (כי תצא פי׳ רל) מה אני צריך מלמד שכל המקיים כלאים בכרם עובר בשני לאוין] ובפחות מכן נראה דלא נאסרו מדאוריתא אבל הירק או התבואה שהשרישה באיסור אף על גב דהכרם לא גדלה כלל קדשה ואסירי תרוייהו מדאוריתא כדכתיב הזרע דמשמע הזריעה שהשרישה מקדשה ושיעור מה שאוסר מן הכרם מדאוריתא נראה דהוי שמנה אמות לכל צד דהא עבודת הכרם ד׳ אמות שהיה בוצרים בשוורים ובעגלות ובעת החרישה חורשים אותה בשוורים הילכך אותם ד׳ אמות ככרם דמו ואם זרע תוך ד׳ אמות פחות משהו מד׳ אמות מן הכרם הרי זה קדש שתי שורות שבכרם&#160;דכתיב ותבואת הכרם ולא מיקרי כרם בפחות משתי שורות גפנים נטועות מארבע אמות בין שורה לשורה שהוא שיעור הפחות שבין שורה לשורה נמצא שמקדש עד סוף שמנה ואם כן כשזרע ירק או תבואה באמצע הכרם הרי הוא אוסר שמנה אמות לכל צד שהיא עגולה שיש באלכסונה ששה עשר אמות ומשום דפחות משהו מששה עשר אמות בקרחת הכרם מצטרף לשלא יביא זרע באמצע וחשיב כרם אמרינן דמקדש מ&quot;ה גפנים כשהן נטועות על ארבע ארבע או על חמש חמש או ששה עשר אמה לכל רוח כשהן נטועות על שיעור יותר והוי מדרבנן דאמרינן בירושלמי אמר רבי יוסי אין לוקין אלא על עיקר הכרם דמשמע דעל מה שמצטרף לכרם לאסור זריעה באמצע כקרחת הכרם אין לוקין אלא על עיקרה שהיא ח׳ אמות כדפרישית ואמרינן נמי בירושלמי אמר רבי אלעזר מד׳ אמות ועד שמנה אסור ומקדש משמנה ועד שש עשרה אסור ואינו מקדש ומתני׳ דהיו נטועות על שש שש ועל שבע שבע מסייעא ליה לרבי אלעזר כדאמרינן התם פ׳ קרחת ופ׳ כרם שחרב משמע דשמנה על שמנה הוי דאוריתא וששה עשר על ששה עשר הוי דרבנן מטעמא דאמרן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-6-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 6:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 6:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong> זרע חוץ לכרם וסמוך לו מקדש שתי שורות של גפנים אפילו הן רחוקות זו מזו פחות כל שהו משמנה אמות דאיקרו כרם וחוץ לזרע ד׳ אמות ומתקדש מן הזרע ארבע אמות רוחב באורך כל השורה של כרם שכיון דמקדש חוץ לכרם בארבע אמות פחות כל שהוא מתקדש נמי כי האי שיעורא ואם זרע בצד גפן אינו מקדש הזרע אלא ששה טפחים לכל רוח כשיעור ריחוק הזרע מגפן יחידית שהוא ששה טפחים והני שיעורין בכלל הלכה למשה מסיני.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-6-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 6:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 6:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ילדה </strong> פחות מטפח אינה מקדשת הזרעים והיינו שאר זרעים דלא אסירי אלא מדרבנן ובכי הא כרם שתים כנגד שתים ואחד יוצאה זנב לא גזור רבנן אשאר זרעים אבל כולי כרם גדול שהיא שפלת קומה הואיל וחשיבא גזור עליה וכן פרש&quot;י ז&quot;ל התם אבל קנבוס ולוף דאסירי מדאוריתא נראה דאפילו ילדה יחידית פחות מטפח מקדש להו ששה טפחים אי הוו תוך עבודת גפן דהוי ששה טפחים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-6-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 6:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 6:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב׳ </strong> גנות זו על גב זו זורע העליונה עד שהוא מגיע לאויר עשרה טפחים קרוב לאויר הכרם ואיפשר דמדאוריתא בג׳ טפחים סגי דהוי רשות בפני עצמו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-6-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 6:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 6:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המבריך </strong> את הגפן בארץ חוץ לששה טפחים מעיקרה מותר לזרוע על גבה אם היה עליה שלשה טפחים עפר ונראה דהוי מדאוריתא משום דבבציר משלשה טפחים הוי מרכיב ירק באילן דאסיר מדאוריתא אבל המבריך בתוך הדלעת שיבשה או בתוך סילון נראה דלא בעינן שלשה טפחים אלא מדרבנן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-6-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 6:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 6:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבריך </strong> שלשה גפנים ועיקריהן נראין מצטרפין לשמנה אמות שבין שורה לשורה למיהוי כרם היו הגפנים פחות משלשה אינם מצטרפות לכרם אלא הוו כגפן יחידית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-6-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 6:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-6-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 6:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזורע </strong> תחת השריגים והעלים קדש ואפילו רחוק כמה אמות וכן כתבו התוספות פ׳ הספינה. מותר האפיפירות ומותר האילן וקנים שהניחם שיהלך עליהם שריג היוצא ופרח היוצא מן העריס ומותח זמורה ומותח חבל באפיפירות איסור הכל מדרבנן כיון שהוא רחוק מעיקר הגפנים כדי עבודתן אם כרם ארבע אמות ואם גפן ששה טפחים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-7">Chapter 7</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-7-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 7:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 7:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הני גווני דמיקרו כרם צריך להרחיק ד׳ אמות כדי עבודה דחשיב ככרם כדאמר וכל מה שאינו כרם אין צריך להרחיק מעיקרה אלא ששה טפחים כדאמר׳ קרחת הכרם ומחול הכרם לא יביא זרע תוך פחות מששה עשר או משנים עשר מדרבנן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-7-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 7:15:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 7:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גדר </strong> אפילו על ידי לבוד מבדיל בין הכרם והירק בלא הרחקה ופרצה יותר מעשר צריך להרחיק כנגד הפרצה ופרוץ מרובה על העומד זורע כנגד העומד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-7-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 7:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 7:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מחיצה </strong> שנפרצה ונתיאש ולא גדרה קדש מן התורה אם הוסיף כשיעור שאין בהתר כדי לבטלו ואמרינן הכא פי תקרה יורד וסותם כשבת וסוכה דהלכה גמירי לה הכי בכל דוכתיה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-7-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 7:20:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-7-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 7:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חריץ </strong> הרי הוא כגת דלא יביא זרע לשם ונראה דהוי דרבנן ושביל הוא ככרם&#160;שחרב ושאר מה שנזכר פ׳ זה הוי דרבנן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-8">Chapter 8</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-8-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 8:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 8:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן </strong> התורה אין צריך להרחיק מעיקרי הגפנים של כרם או של עריס אלא ד׳ אמות דתוך ארבע אמות חשיב ככרם כדאמרינן לעיל ומעיקרי הגפן שאינם אלא גפן יחידית ששה טפחים ומחיצה מפסקת לכל כדאמר ארכובת הגפן נראה דאין צריך למדוד מעיקר השני אלא מדרבנן שרשי הגפן שנתפשטו לתוך ארבע אמות של תבואה יעקר אבל לא שרשי תבואה. הרחקת ארבע אמות וששה טפחים באמה בת ששה טפחים ושוחקות&#160;להחמיר דהוי איסורא דאוריתא:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Chapter 9</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת קסג </strong> שלא להרביע בהמת כלאים דכתיב בהמתך לא תרביע כלאים ואם הרכיב זכר על נקבה שאינו מינו לוקה מן התורה בבהמה דכתיב בהמתך וחיה בכלל בהמה היא כדכתיב זאת הבהמה וגו׳ איל וצבי ויחמור וגו׳ וילפינן נמי בהמתך בהמתך משבת דכתיב וכל בהמתך מה להלן חיה ועוף בכלל אף כאן וגבי שבת מנא לן דנאמר בהמתך בדברות הראשונות ובדברות האחרונות נאמר שורך וחמורך וכל בהמתך והלא שור וחמור בכלל כל בהמתך האמור בצידן היו ויצאו לומר לך מה שור וחמור האמור כאן חיה ועוף כיוצא בהם דוכל משמע ריבוי וריבה הכל אף כל חיה ועוף כיוצא בהם ואפילו על מיני חיה שבים לוקה דאתיא למינהו למינהו מיבשה דנוהג בהם כלאים ובין בארץ בין בחוצה לארץ דכתיב בהמתך לא תרביע כלאים והוי חובת הגוף דנוהג בכל מושבות ואחד בהמה חיה ועוף שלו או של חברו [משום דדרשי׳ בת&quot;כ (קדושים פ&quot;ד פי׳ יד) מנין בהמתך על בהמת אחרים, בהמת אחרים על בהמתך, בהמת אחרים על בהמת אחרים, ת&quot;ל את חקותי תשמורו]. ואינו לוקה עד שיכניס בידו כמכחול בשפופרת אבר הזכר בנקיבה דכתיב לא תרביע כלאים דמשמע דומיא דמין במינו שדרך בני אדם להכניס כמכחול בשפופרת דבעיבידתיה טריד וליכא פריצותא ובלאו הכי לא אסיר אלא מדרבנן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שעבר והרכיב כלאים הנולד מהם מותר בהנאה ובאכילה אם הוא מין טהור מדאסר רחמנא כלאים לגבוה כדכתיב שור או כשב או עז פרט לכלאים מכלל דלהדיוט שרי דאי לאו הכי מיעוטא למה לי בגבוה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני </strong> מיני בהמה וחיה שדומין זה לזה הם כלאים זה בזה כיון שהם שני מינים דכתיב בהמתך לא תרביע כלאים והייתי אומר אפילו שור שחור על גבי שור לבן תלמוד לומר בגד כלאים שעטנז לא יעלה עליך מה התם שני מינין לא זה ממין זה ולא זה ממין זה כדכתיב צמר ופשתים אף כאן שני מינין אע&quot;פ שדומין ככלב עם זאב הם כלאים זה בזה ומדברי בישובי כשור הבר עם שור הישוב הוו מין אחד ואווז בר עם אווז כיון שחלוקים זה מזה בבצים שזה ביציו מבחוץ אווז ביציו מבפנים הם שני מינים. הכוי כלאים עם הבהמה ועם החיה ואין לוקין עליו דהוי התראת ספק אי חוששין לזרע האב אי לא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הילודים </strong> מן הכלאים אם היו אמותיהן מין אחת כפרד שאמו חמורה עם פרדה שאמה חמורה מותר להרכיבם ואסור להרכיבו אפילו על החמור משום זרע האב דמספקא לן אבל פרד שאמו סוס אסור&#160;להרכיבו על פרדה שאמה חמורה ולוקה דהוו שני מינין ובקול וזנב ואזנים ניכר אם אמן ממין א׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת קסד </strong> שלא לעשות מלאכה בשני מיני בהמה דכתיב לא תחרוש בשור ובחמור ואינו חייב מן התורה אלא בשני מינין אחד טמא ואחד טהור כדכתיב שור וחמור וילפינן שור שור משבת דכתיב שורך וחמורך וכל בהמתך מה התם בהמה וחיה ועוף אף כאן ובספרי מפיק להו מדכתיב לא תחרוש מכל מקום והיינו שהאחד טמא והאחד טהור דומיא דשור וחמור ואחד החורש או הזורע או המושך בהם עגלה או אבן כל שמשכן והנהיגן אפילו בקול לוקה דכתיב יחדיו מכל מקום והנהגה בקול ואינו אוחז במרדע הויא נמי בכלל מלקות דעקימת פיו הויא מעשה והוי לאו שיש בו מעשה ולוקין עליו והמזווגן פטור דלא תחרוש כתיב דהיינו מושכו או מנהיגו. שני מינים שהם כלאים בהרבעה ושניהם טמאים או טהורים אין אסור לחרוש בהם אלא מדרבנן דבהמה חיה ועוף דמרבינן לאיסור חרישה היינו כשהם דומיא דשור וחמור כדאמר׳ ואסור להנהיג בהמה מן היבשה עם חיה שבים דהוי ספיקא דאוריתא ולחומרא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עגלה </strong> שהיו מושכין אותה כלאים היושב בעגלה לוקה דאזלא מחמתיה וחשיב כמנהיג וכן אם היה יושב ומנהיג שניהם לוקין ואפילו מאה שהנהיגו כאחד כולן לוקין דכולן הנהיגו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אדם </strong> יכול למשוך עם כל בהמה או חיה דלמה נאמר שור וחמור לומר לך בשור וחמור אי אתה חורש אבל אתה חורש בשור ואדם או בחמור ואדם ונראה דמשום דבשר אדם אסור בעשה לדעת הרב ז&quot;ל נקט שור ואדם דכיון דאסור מן התורה הוה כשור וחמור אי לאו מיעוטא דקרא וחמור ואדם דכיון דלא אסיר בלאו כחמור אלא בעשה הוה כשור וחמור אי לאו מיעוטא דקרא דאי לאו הכי שור ואדם תיפוק לי דשניהם טהורים ואינם באיסור כלאים ולא צריך קרא ולסברת האומר שהאדם הוא טהור מן התורה לא איצטריך קרא אלא לאדם וחמור דהוי טהור וטמא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-9-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 9:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-9-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 9:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהמת </strong> פסולי המוקדשים קדש וחול מעורבין בה ונמצאת כבהמה טהורה עם טמאה מעורבין כאחד הרי הוא אומר ואם כל בהמה טמאה אשר לא יקריבו וגו׳ מפי השמועה למדו שאינו מדבר אלא בפסולי המוקדשין וקראה טמאה לפיכך החורש בשור פסולי המוקדשין או המרביע הרי זה לוקה משום כלאים ואסור זה מדברי קבלה ורש&quot;י ז&quot;ל כתב שלהי מכות ולא שמעתי ראיה מנא לן דחולין וקדשים כלאים זה בזה ודבר תימה הוא עכ&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-9">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Chapter 10</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת קסה </strong> שלא ללבוש כלאים כאחד דכתיב לא תלבש שעטנז צמר ופשתים יחדיו. ואין אסור אלא צמר ופשתים בלבד לא שאר מינין דצמר ופשתים לחוד קאמר רחמנא וכיון שנתחבר הצמר עם הפשתן צד חיבור בעולם כמו אם עשה מהם לבדים או טווי וארגו או תפר מזה לזה או קשרן אפי׳ בגדיל או גדלן וכיוצא בו הכל כלאים דכתיב צמר ופשתים יחדיו כיון שנתאחד נאסר מכל מקום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מנין </strong> שכל איסורין אלו מן התורה שהרי הוצרך הכתוב להתיר כלאים בציצית מדסמכו לכלאי בגדים והציצית חוטין קשורין לבד הן מכלל שחבור כזה שלא במקום מצוה אסור מן התורה דאי לאו הכי לא הוה צריך קרא למעט ואפילו חוט כל שהו של צמר בבגד פשתן או של פשתן בבגד צמר אסור דהא הוי כלאים ולא בטיל ברוב דעל ידי תערובת הוא דנאסר ובשר בחלב דבטיל ברוב שאני דדרך בישול אסרה תורה דלא מיקרי בשר בחלב אלא בנתינת טעם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צמר </strong> דקרא היינו דרחלים ואילים לא מגמלים וארנבים דכתיב ומישע מלך מואב היה נוקד מהו נוקד רועה והשיב למלך ישראל מאה אלף פרים ומאה אלף אילים צמר אין לך קרוי צמר אלא צמר אילים וכן פשתים הוו דוקא שאין לו שם ליווי אבל לא פשתן קנבוס וכיוצא בהם שיש להם שם ליווי דלאו פשתים סתמא כפשתים דקרא איקרו. צמר גמלים וצמר רחלים שטרפן זה בזה או פשתן שטרפו עם קנבוס אם הצמר של הרחלים והפשתן הם מיעוט לגבי צמר גמלים וקנבוס הרי נתבטלו ברוב ומותר לערב פשתן וצמר עמהם ואם הצמר או הפשתן הם מחצה על מחצה וכל שכן אם הם רוב אסור לערב עמהם פשתן וצמר דהוי כלאים וכן בגד שכולו צמר גמלים או ארנבים או קנבוס וארג בו חוט של צמר וחוט של פשתן חייב משום כלאים דחוטי חשיבי ולא בטלי. בגד צמר שנפרם מותר לפרוף אותו בפשתן בקשירה ולא בתפירה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אסור כלאי בגדים אלא בלבישה או בכיסוי דכתיב לא יעלה עליך וכתיב לא תלבש שעטנז ולבישה גלי אלא יעלה לומר שהעליה שהיא דרך לבישה היא שאסור אבל שאינה דרך לבישה כאהל שהוא כלאים מותר. וכן מותר מן התורה לישב על מצעות של כלאים דכתיב לא יעלה עליך אבל אתה מציעו תחתיך מנעל כלאים ואין לו עקב מותר ללובשו שאינו נהנה כשאר עור הגוף שעור הרגל הוא קשה אבל אם יש לו עקב אסור שהרי נהנה כשאר הגוף.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כלאים </strong> שלבשו אפי׳ דרך עראי ואפילו על עשרה בגדים ואפילו להבריח מן המכס אסור ולוקה דהא לבש כלאים וכתיב לא תלבש מכל מקום. כל כלאים שאינם דרך חמום כצלצולין קטנים או סמרטוט שמניחין בו רטיה ומלוגמא אף על פי שנגע בבשרו מותר דלא אסרה תורה אלא מה שהוא דרך לבישה וחימום כדכתיב לא תלבש כלאים וחבלים ומטפחות נראה דלא אסירי מדאוריתא ואפילו אותות כובסין וגרדין כיון דלא חשיבי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-24-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:24:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-24-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:24:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תכיפה </strong> אחת אינה חיבור שהרי נמשך החוט אבל קבץ שני ראשי החוטין או עשה שתי תכיפות הוי כלאים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-25-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:25:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-25-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:25:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תכריכין </strong> אין בהם משום כלאים דגלי קרא דבמתים חפשי דכיון דמת אדם נעשה חפשי מן המצות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-27-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:27:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-27-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:27:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בגד </strong> צמר שאבד בו בגד של פשתן צובעו שאין הצמר והפשתים עולים בצבע אחד ומיד הוא ניכר ואם לא ניכר מותר דאמר נשמט והלך לו כיון שלא מצאו וכל איסורי ספקות מדברי סופרים ולפיכך הקלו בספק זה וכבר כתבתי בכמה דוכתי דספיקא דאוריתא לחומרא דבר תורה היא דאם לא כן אשם תלוי למה וקולא דספק ערלה מהלכה וספק ממזר מקרא נמי לא הוו צריכי הלכתא וקרא אי לאו דבעלמא ספקא דאוריתא לחומרא מדאוריתא ואיפשר שגם הרב ז&quot;ל לא כתב דהוי ספיקא איסור מדרבנן אלא כי האי ספקא דכלאים אבל בספק שהוא קרוב יותר לודאי איפשר דהוי חומרתו דבר תורה אפילו לדעת הרב ז&quot;ל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-29-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:29:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-29-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:29:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המוצא </strong> כלאים בבגדו פושטו ואפילו בשוק שאין כבוד הבריות דוחה את לא תעשה המפורש בתורה ולמה נדחה בהשבת אבדה דפעמים שהוא מתעלם ממנה כדכתיב והתעלמת והיא בבית הקברות או זקן ואינה לפי כבודו מפני שהוא לאו של ממון וקל מאיסורא ולהכי לא ילפינן מיניה ולמה נדחה בטומאת מת הואיל ופרט הכתוב ולאחותו הבתולה דמפי השמועה למדו דלאחותו הוא דאינו מטמא אבל מטמא הוא למת מצוה ומה שאיסורו מדבריהם נדחה מפני הבריות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-30-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:30:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-30-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:30:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הלובש </strong> כלאים או שהתכסה בו לוקה אבל היה לבוש כל היום כולו אינו לוקה אלא אחת אלא אם כן הוציא ראשו והחזירו או שהתרו בו ואמרו פשוט דחייב על כל הוצאת ראשו והחזרה או על כל שהיה ושהיה ששהה כדי לפשוט וללבוש דאי אין שהות לפשוט וללבוש אין כאן עבירה אחר דעדין הלבישה הראשונה קיימת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-31-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:31:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-31-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:31:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלביש </strong> את חבירו כלאים ולא ידע&#160;הלובש&#160;שהוא כלאים והמלביש הוא מזיד המלביש לוקה והלובש פטור. [ולא מצאתי מאין לומד הרב ז&quot;ל דין זה כי אפי׳ שהלובש הוא שוגג והמלביש מזיד נראה שאינו חייב מלקות אלא שעובר על לפני עור וגו׳. ומצאתי להרא&quot;ש ז&quot;ל בתשובה (כלל ב סי׳ טז) שתמה הרב ז&quot;ל על זה וכתב לא ידענא מנין מלקות זה למלביש דלא תלבש אלובש קאי ואי דריש נמי לא תלביש אם כן אפילו הלובש מזיד נמי ילקה המלביש גם הוא, דאין זה לאו שבכללות כיון דאתרי גברי קאי ע&quot;כ. ונ&quot;ל שהרב ז&quot;ל סובר דאע&quot;ג דלא אשכחן שדרשו חז&quot;ל לא תלביש אשכחן דדרשי כי האי גוונא בת&quot;כ (שמיני פרק יב) דכתיב גבי שרצים לא יאכל ודרשי׳ לא יאכיל , ואית דמפרשי (ר׳ אברהם זעירא בפי׳ המזרחי ויקרא יא, ג ועי׳ בקרבן אהרן שם) דאיירי במאכיל לחבריה עוף טמא בחזקת טהור כדכתבי׳ סוף הל׳ מאכלות אסורות, וגבי מלביש מסתברא טפי למידרש הכי, משום דמאכיל לאו מידי עביד אלא אלא דיהיב ליה למיכל ואכיל איהו גופיה, ומלביש הוא גופיה מלבישו, וחיובא לא אתי אלא אלבישה דאם לבש ונשאר לבוש כל היום כולו אינו חייב אלא אחת אלבישה והוא לא לבש אלא שהלבישוהו בשוגג וכדאמרן].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-diverse-species-10-32-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Diverse Species 10:32:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-diverse-species-10-32-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Diverse Species 10:32:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כהנים </strong> שלבשו בגדי כהונה שלא בשעת עבודה אפילו במקדש לוקין מפני כלאים שבהם ולא הותרו אלא בשעת עבודה ככלאים בציצית דלובשו ביום דאיכא מצות ציצית ולא בלילה שאינה זמן חיוב ציצית כדכתיב וראיתם אותו בשעת ראיה והוא באור היום. ויש במצות הלכות איסורין דרבנן סמוכים אלאו דלא תסור וחייבים אנו מן התורה להזהר בהם כמו שצונו חכמים ז&quot;ל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-diverse-species-text-10">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-diverse-species.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-diverse-species.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-diverse-species.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

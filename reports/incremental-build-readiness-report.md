@@ -1,14 +1,14 @@
 # Incremental Build Readiness Report
 
-Generated: 2026-05-22T10:24:46.209Z
+Generated: 2026-05-23T02:04:13.675Z
 
 ## Summary
 
-- Works: 735
-- Source units: 399638
-- Source bytes: 975037051
-- HTML bytes: 1185089612
-- Lexical chunk bytes: 4711269838
+- Works: 849
+- Source units: 407743
+- Source bytes: 1012373223
+- HTML bytes: 1226021428
+- Lexical chunk bytes: 5155846331
 - Global artifacts tracked: 6
 - Artifacts at/above 50 MB: 13
 - Artifacts at/above 45 MB: 14
@@ -17,8 +17,8 @@ Generated: 2026-05-22T10:24:46.209Z
 
 | Work | Artifact | Path | Bytes | Level |
 | --- | --- | --- | ---: | --- |
-| sitewide | global | data/public-lexical | 648028271 | warning |
-| sitewide | global | data/search | 339945124 | warning |
+| sitewide | global | data/public-lexical | 670776546 | warning |
+| sitewide | global | data/search | 355963048 | warning |
 | beit-yosef | occurrence | data/lexical/occurrences/beit-yosef.json | 67358262 | warning |
 | arukh-hashulchan | lexical_chunks | data/lexical/arukh-hashulchan-chunks | 66569263 | warning |
 | arukh-hashulchan | occurrence | data/lexical/occurrences/arukh-hashulchan.json | 62224943 | warning |

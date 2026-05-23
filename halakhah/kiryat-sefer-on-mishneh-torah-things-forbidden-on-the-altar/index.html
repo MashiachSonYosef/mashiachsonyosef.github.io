@@ -1,0 +1,2117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Things Forbidden on the Altar</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p><a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/">Open Mishneh Torah, Things Forbidden on the Altar</a></p>
+            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Things Forbidden on the Altar</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">69 total source units | imported 2026-05-22</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>707 matched</strong> / 2056 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-1-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-2-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:2:1">1:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-3-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-4-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:4:1">1:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-5-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-6-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-7-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-8-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-9-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-10-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:10:1">1:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-11-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:11:1">1:11:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-1-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-2-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:2:1">2:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-6-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-8-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-9-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:9:1">2:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-10-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:10:1">2:10:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-1-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-2-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:2:1">3:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-3-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-4-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-5-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:5:1">3:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-6-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:6:1">3:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-8-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-9-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:9:1">3:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-10-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-12-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:12:1">3:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-14-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:14:1">3:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-15-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:15:1">3:15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-1-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-3-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:3:1">4:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-4-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:4:1">4:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-5-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:5:1">4:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-6-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:6:1">4:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-7-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:7:1">4:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-8-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:8:1">4:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-9-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:9:1">4:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-10-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:10:1">4:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-11-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:11:1">4:11:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-13-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:13:1">4:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-14-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:14:1">4:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-16-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:16:1">4:16:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-17-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:17:1">4:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-18-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:18:1">4:18:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-1-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:1:1">5:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-2-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:2:1">5:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-3-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:3:1">5:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-5-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:5:1">5:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-6-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:6:1">5:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-7-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:7:1">5:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-9-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:9:1">5:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-10-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:10:1">5:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-11-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:11:1">5:11:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-12-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:12:1">5:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-13-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:13:1">5:13:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-1-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-3-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:3:1">6:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-4-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:4:1">6:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-6-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:6:1">6:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-7-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:7:1">6:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-8-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:8:1">6:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-9-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:9:1">6:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-11-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:11:1">6:11:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-13-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:13:1">6:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-14-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:14:1">6:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-15-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:15:1">6:15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-1-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:1:1">7:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-9-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:9:1">7:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-11-1" title="Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:11:1">7:11:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Chapter 1</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קטו </strong> שיהיו כל הקרבנות תמימים ומובחרים דכתיב תמים יהיה לרצון זו מצות עשה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רכב </strong> שלא להקדיש בעלת מום למזבח דכתיב כל אשר בו מום לא תקריבו מפי השמועה למדו שזו אזהרה למקדיש בעלי מומין למזבח דאי לבל תשחטו הרי נאמר למטה לא תקריבו גבי עורת או שבור וגו׳ ואפילו הקדישו לדמי נסכין דכל לגבי מזבח פסול כדכתיב לא תקריבו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המתכוין </strong> לומר שלמים ואמר עולה או עולה ואמר שלמים אינו לוקה אם היה בעל מום דבעיא פיו ולבו שוים דהקדש טעות לאו הקדש הוא. מי [שדימה] להקדיש בעל מום למזבח והקדיש הרי זו הקדש לדעת הרב ז&quot;ל דפיו ולבו שוין ואינו לוקה משום דהוי כשוגג:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רכג </strong> שלא לשחוט בעל מום לקרבן דכתיב בבעלי מומין לא תקריבו אלה לה׳ מפי השמועה למדו שזו אזהרה לשוחט דאם בל תקדישו הרי כבר אמור למעלה א&quot;כ מה ת&quot;ל לא תקריבו לא תשחטו:<br><strong> אזהרת רכד </strong> שלא לזרוק דם בעלי מומין למזבח דכתיב לא תקריבו אלה לה׳ מפי השמועה למדו דהאי ריבוייא לאזהרת זריקת דם אתא:<br><strong> אזהרת רכה </strong> שלא להקטיר אימורין של בעלי מומין על גבי מזבח דכתיב ואשה לא תתנו מהם על המזבח נמצאת למד שאם עבר והקדיש בעל מום למזבח ושחטו וזרק דמו והקטיר אימוריו לוקה ד׳ מלקיות דכל חד הוי לאו באנפי נפשיה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רכו </strong> שלא יקריב בעל מום עובר דכתיב לא תזבח לה׳ אלהיך שור ושה אשר יהיה בו מום מפי השמועה למדו שזו אזהרה לבעל מום עובר שאם הקריבה לוקה דכתיב כל דבר רע לרבות מום עובר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רכז </strong> שלא להקריב בעל מום מיד הגוי דכתיב ומיד בן נכר לא תקריבו את לחם אלהיכם מכל אלה והיינו בקרבן יחיד דמרבי׳ גוי כישראל דכתיב איש איש לרבות הגוים שנודרים נדרים ונדבות כישראל ולא יקבלוהו ממנו אלא תמים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רכח </strong> שלא להטיל מום בקדשים דכתיב בקרבן כל מום לא יהיה בו מפי השמועה למדו שזו אזהרה שלא יתן בו מום דכל מום לא יהיה בו קרינא ביה לא יהיה בו שלא יטיל בו מום וכתיב ברישיה דקרא ואיש כי יקריב זבח שלמים וגו׳ אין לי שלא יטיל מום אלא בשלמים מנין לרבות העולה ת&quot;ל נדר מנין לרבות התודה ת&quot;ל נדבה מנין לרבות יולדת ונזיר מצורע ת&quot;ל לפלא מנין לרבות התמורות והולדות ת&quot;ל בבקר ומנין לרבות הבכור והמעשר והפסח ת&quot;ל בצאן מנין לרבות חטאת ואשם ת&quot;ל או בצאן. ואינו לוקה אלא בזמן שבית המקדש קיים שהרי היה ראוי ליקרב ופסלו אבל בזמן הזה אף על פי שעבר על ל&quot;ת אינו לוקה דכיון דאינו עומד לקרבן לאו מידי פסל ביה ללקות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הטיל </strong> מום בבעלת מום אינו לוקה דדרשינן כולי קרא תמים יהיה לרצון כל מום לא יהיה בו דמשמע תמים הראוי לרצון אמרתי לך דכל מום לא תטיל בו אבל בעל מום לא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> המטיל מום בקדשים או בתמורתן כדילפינן מריבויי דקרא ותמורת בכור ומעשר או תשיעי של טעות עשירי אינו לוקה בהטלת מום דלא חזו להקרבה דכתיב הם בבכור ומעשר לומר דהם קרבין ואין תמורתם קרבים וכתיב העשירי להוציא את התשיעי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong> בעלת מום למזבח אע&quot;פ שלוקה הרי זו נתקדשה דכתיב בבעל מום ולנדר לא ירצה ריצוי הוא דאיני מרצה הא מקדש קדישי וכיון שנתקדשה תפדה ותצא לחולין ויביא בדמיה קרבן:<br><strong> מצות קיו </strong> לפדות פסולי המוקדשין ויצאו לחולין דכתיב רק בכל אות נפשך תזבח ואכלת בשר מפי השמועה למדו שפסוק זה מדבר בפסולי המוקדשין שיפדו דאי בבשר תאוה להתירה בלא הקטרת אימורין הרי כבר כתוב במקום אחר כי ירחיב ה׳ אלהיך וגו׳ ואמרת אכלה בשר אלא בבעלי מומין שיפדו כדאמר׳ וביארנו בהלכות ערכין דקרא דאם כל בהמה אשר לא יקריבו ממנה וגו׳ שמדבר בבעלי מומין שנפדו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-1-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 1:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובעלת </strong> מום קבוע שילדה אפילו תמים יפדה ויצא לחולין נראה דוולד קדוש מן התורה כיון דבעלת מום עצמה מיתפיס בה קדושה כדילפינן מלא ירצה וולדה נמי כמוה דהא מרבינן וולד בעלי מומין מדכתיב אם זכר וגו׳ ואף ע&quot;ג דהתם הוה בעל מום בתר דאקדשיה ולהכי וולד קרב דאמו נמי היתה ראויה ליקרב כשהקדישה קודם שנפל בה מום אפ&quot;ה לענין קדושה בעלת מום מעיקרא נמי הא אית בה קדושה מדאוריתא כדילפינן ולהכי וולדה נמי אית בה קדושה מדאוריתא כדאמר׳ אלא דאינו נקרב כיון שאמו שבא הוא מכחה לא היתה ראויה ליקרב שקדם מומה להקדשה ולא יהא טפל חמור מן העיקר ואם ילדה אחר פדיון הוולד חולין דכיון דנפדית וולדה נמי נפדה דהוי ירך אמו ואם מתה קודם שתפדה נפדת מתה דלא בעי׳ העמדה והערכה כדכתיב והעמיד והעריך אלא בקדם הקדשן את מומם אבל קדם מום קבוע להקדשן לא בעי׳ העמדה והערכה דכתיב אותה למעוטי בעל מום מעיקרו דלא הוי בכלל העמדה כדאמ׳ אבל מקדיש בעלת מום עובר או תמימה ונולד בה מום קבוע צריכה העמדה והערכה דכתיב אשר לא יקרב ממנה קרבן וגו׳ שאינה קריבה כל עיקר יצתה זו שאינ׳ קריבה היום וקריבה למחר שיעבור מומה וקאמר רחמנ׳ עביד לה העמדה והערכה וכל זמן שהוא מפרכסת תפדה דהוי העמדה והערכה כיון דאינה מטמאה טומאת נבלה כדילפינן בדוכתא ואם ילדה יקרב וולדה דכתיב אם זכר גבי שלמים וקרא יתירא הוא דנשתיק קרא מיניה ומדלא קבע ליה זכר כדקבע בעולה ממילא דנקבה נמי חזיא זכר ונקבה תו למה לי אלא לרבות וולד ותמורה אין לי אלא תמימים וולד ותמורה של בעלי מומין מנין אם אם לרבות וולד ותמורה של בעלי מומין ילדה אחר שנפדית אסור מדרבנן דמדאוריתא עובר ירך אמו הוא ופקעה קדושתן בפדיון אמן. קדשים שהנאתן להקדש נוהגין בהם ביזיון להוסיף בדמיהם ושהנאתן לבעלים כבכור ומעשר אין נוהגים בהם בזיון וכתבו בתוספות דאף על גב דמפרש הטעם משום דהנאתו לבעלים על כרחין מדאוריתא הוא דדרשינן גבי עיר הנדחת בהמתך מי שנאכל בתורת בהמתך יצאו בכור ומעשר שאין נאכלין בתורת בהמתך דאין נמכרין באיטליז וכו׳ ושמא משום קרא דנפקא דאין נוהגין ביזיון בדבר שאין הנאתו להקדש עד כאן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Chapter 2</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> המומין הפסולין באדם ובבהמה חמשים כדילפינן להו לעיל בתרוייהו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויש </strong> מומין אחרים מיוחדין בבהמה ואינם ראויים להיות באדם ולהכי לא ילפינן להו דשלשה ועשרים הם עינו עגול כאדם עינו א׳ כשל עגל וא׳ כשל אווז דהוו מום שבגלוי יבלת בעינו ויש בה שיער דאף על גב דאין מומין בלבן היכא דאית בה שיער מגונה הוא והוי מומא בכלל יבלת דכתיבא בבהמה ניקב עור שבין חוטמה במקום הנראה פיה דומה לשל חזיר פרום חטייה החיצונות שנקבו או שנגממו אף על פי שנשאר מקצתן או שנפגמו אם נעקרו חטיה הפנימיות נטלו קרניה וזכרותן עמהם נפגם עור הגיד נפגמה הערוה של נקבה נפגם הזנב מן העצם היה ראש הזנב מפוצל לשנים בשני עצמים כל הני הוי מומא ונראה דהוו כולהו בכלל חרוץ הכתוב בבהמה זנב קצר רך ומדולדל נראה דהני נמי הוו בכלל חרוץ דכיון דתרבית עגלים אינו כן הוי כמי שנחרץ נשבר עצם מן הזנב הוי בכלל שבור דכתי׳ שבר יד ושבר רגל מה אלו אינם חוזרים ובגלוי אף כל שנשבר שהוא בגלוי ואינו חוזר לאפוקי נשבר עצם הצלע שאינו בגלוי בעל חמש רגלים או אין לה אלא שלשה רגלים איפשר דהוו בכלל שרוע הכתוב בתורה ובעל שלש דהוי חסר ומום שבגלוי וילפינן בכלל ופרט וכלל כל מומין שבגלוי פרסת רגלו או ידו עגולה כשל חמור דפרסות בהמה טהורה אינן עגולות ידו או רגלו קלוטות כשל חמור וזהו קלוט האמור בתורה נגמם זכרות וטלפיה נראה דהוי בכלל חרוץ הרי אלו כ&quot;ב ובין חוליא לחוליא כמלא אצבע כשר הא יותר פסול הרי כ&quot;ג.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> מום מע&quot;ג מומין המנויין בבהמה פוסלין אותה מן הקרבן דכתי׳ ולנדר לא ירצה. ואם נפל אחד מהם בתמימה שהיא קדש תפדה ותצא לחולין כדכתיב תזבח ואכלת בשר דמיירי בפסולי המוקדשין שיפדה חוץ מזקן וחולה ומזוהם דאף על גב דאינם כשרים לקרבן כדילפינן לעיל אינם נפדים עד שיפול בהם מום קבוע.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש </strong> ד׳ חולים בבהמה שאינה מקריבין אותה לפי שאינה מן המובחר וכתיב מבחר נדריך וגו׳ יבלת בלובן עיניו בלא שיער נגממו קרניו אע&quot;פ שנשאר מזכרותן נפגמו חטיו הפנימיות (נגממו) אין הבהמה נפדית על אלו ואם הקריבה הורצה דמבחר נדריך דכתיב למצוה הוא ולא לפסול.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong> בהמת קדשים שנעבדה בה עבירה שיש בה חיוב מיתה דאלו חרש בשור וחמור לא נפסל דכתיב אלה מאלה אי אתה מקריב אבל אתה מקריב קדשים שנעבדה בהם עבירה או שהמיתה את האדם בעד אחד או על פי הבעלים דאינה נסקלת הבהמה דמודה בקנס פטור [אינה קריבה] דכתי׳ מן הבהמה להוציא רובע ונרבע מן הבקר להוציא את הנעבד מן הצאן להוציא את המוקצה שהוקצה והופרש לצורך עבודה זרה ומן הצאן להוציא את הנוגח וצריכי כולהו ולא נפדין דאין בהמה נפדית אלא על מום הניכר בה נראה משום דכתיב ואם כל בהמה טמאה וגו׳ דמיירי בבעלי מומין שיפדו וקרי לה טמאה שניכר מומה כטמאה שניכרת בסימניה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-2-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נולד </strong> בבהמה טרפות האוסרה באכילה אסורה לגבי מזבח כדכתיב הירצך או הישא פניך דכיון דאינו ראוי להדיוט אינו ראוי לגבוה וכתיב נמי אם עולה קרבנו מן הבקר וגו׳ מן הבקר מה תלמוד לומר אלא להוציא את הטרפה ואין פודין אותה דאין פודין את הקדשים להאכילן לכלבים כדאמר׳ לעיל מדכתיב ואכלת ולא לכלביך וכן אם נמצא אחד מן האיברים הפנימיי׳ חסר אף על פי שאינה טרפה אסורה למזבח דכתיב תמימים יהיו לכם מלמד שאין מקריבין חסר ואם היה יתר כל יתר כנטול דמי ופסולה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Chapter 3</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מומין ולא נקבות פסול בעוף דכתיב תמים זכר בבקר בכשבים בעזים מלמד דתם וזכר בבהמה כדכתיב כולה בהמה בקר כשב ועז ואין תם וזכר בעוף יכול שיבש גפה ושנסמית עינה וכן כל חסרת אבר תלמוד לומר ואם מן העוף ולא כל העוף וכן טרפה נפסל לקרבן משום הקריבהו נא לפחתך הירצך או הישא פניך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תורים </strong> קטנים פסולים ובני יונה גדולים פסולים דכתיב מן התורים דמשמע גדולים או מן בני היונה דמשמע קטנים ולא לישתמיט קרא למיכתב בשום דוכתא מן בני התורים או מן היונה. תחלת הציהוב בזה ובזה פסול דיצאו מכלל קטנים ונפסלו מבני יונה ולכלל גדולים לא באו שיוכשרו בתורים וכתיב מן התורים ולא כל התורים מן בני היונה ולא כל בני היונה פרט לתחלת הציהוב שבזה ושבזה כדאמר׳ והאי לא הוי אלא אסמכתא בעלמא דפיסולייהו משום ספקא דמסקנא דתלמודא הוי דאיצטריך קרא למעוטי נרבע ונעבד אי נמי דתחלת ציהוב ממילא אימעוט מבתורים דומיא דבני יונה מה בני [יונה] תחלתם דוקא קטנים אף תורים תחלתם דוקא גדולים למעוטי תחלת הציהוב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הטומטום </strong> והאנדרוגינוס הן ספק זכר ספק נקבה והרי הם כמין אחר ובקרבנות נאמר זכר תמים ונקבה תמימה עד שיהא זכר ודאי ונקבה ודאית לפיכך העוף שהוא טומטום ואנדרוגינוס פסול למזבח דאף על גב דאין זכרות בעוף אפילו הכי בעינן או זכר ודאי או נקבה ודאית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong> הכלאים ויוצא דופן ומחוסר זמן פסולין אף על פי שאין בהם מום דכתיב שור או כשב או עז עד שיהא כל מין ומין בפני עצמו לא שיהא מעורב כבש ועז כי יולד פרט ליוצא דופן והיה שבעת ימים פרט למחוסר זמן תחת אמו פרט ליתום שנולד אחר שנשחטה אמו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנדמה </strong> כגון רחל שילדה מין עז פסול לגבי מזבח כבעל מום דכתיב או עז פרט לנדמה וכתיב נמי גבי קרבן חובה בראש חדש ושעיר עזים א׳ המיוחד ובא מששת ימי בראשית ממשפחות עזים וצריכי תרי קראי כדאיתא התם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong> הרובע והנרבע והמוקצה לע&quot;ז והנעבד אף על פי שמותרים באכילה פסולין לגבי מזבח כדילפינן לעיל בבהמה ובעוף נמי פסילי מדכתיב מן התורים ולא כל התורים ומן בני היונה ולא כל בני היונה למעוטי נרבע ונעבד דס&quot;ד אמינא הואיל וכתיב כי משחתם בהם מום בם ואין השחתה אלא דבר ערוה ועבודה זרה כדכתיב כי השחית כל בשר וכתיב פן תשחיתון ועשיתם לכם פסל וגו׳ דמשמע דכל שהמום פוסל בו דהיינו בהמה דבר ערוה וע&quot;ז פוסלין בה כדכתיב משחתם בהם מום בם ועוף דלא פסיל ביה מומא אימא דבר ערוה ועבודה זרה נמי לא ליפסיל ביה קמ&quot;ל מן התורים כדאמר׳ ונראה דמוקצה נמי הוי בכלל האי דרשה דהא הוקצה לע&quot;ז וכן בהמה ועוף שהרגו את האדם הוו כרובע ונרבע ופסולין לגבי המזבח דלא גרעי מנוגח דכתיב ומן הצאן [לרבות] את הנוגח ואינו לוקה עליהם מן התורה דלא נתפרשה אזהרתן בתורה אלא דנמעטו מקראי כדאמ׳ אבל אתנן זונה ומחיר כלב לוקה עליהם דנתפרשה אזהרתן בתורה כדכתיב לא תביא אתנן זונה וגו׳ ומשום דנאמרו בלאו אחת אינו לוקה על שניהם אלא אחת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קיז </strong> להקריב מיום השמיני והלאה דקודם זמן זה נקרא מחוסר זמן ואין מקריבין אותו דכתיב והיה שבעת ימים תחת אמו ומיום השמיני והלאה ירצה וגו׳ וכל שבעת ימים נקרא מחוסר זמן כדכתיב שבעת ימים תחת אמו ואם עבר והקריבו אינו לוקה דהוי לאו הבא מכלל עשה ולא נרצה הקרבן כדכתיב ומיום השמיני והלאה ירצה הא קודם לא נרצה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תורים </strong> שלא הגיע זמנם הוי כמחוסר זמן בבהמה ובני יונה שעבר זמנם הוו כבעל מום אלא שאינו לוקה אף ע&quot;פ שהקרבן פסול ולא נרצה דכיון דתורים הוו כמחוסר זמן ואינו לוקה דהוי לאו הבא מכלל עשה בני יונה דאיתקשו לתורים לא לקי עלייהו אי עבר זמנן א&quot;נ דלא נתפרשה אזהרתן אלא ממיעוטא כדאמ׳ לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong> טומטום ואנדרוגינוס וטרפה וכלאים ויוצא דופן למזבח הרי זה כמקדיש עצים ואבנים דהוו כחולין לכל דבר וימכרו ויביא בדמיהן כל קרבן שירצה ואינם כבעל מום אלא כבהמה טמאה מה בהמה טמאה דליכא במינה קרב דטומטום ואנדרוגינוס בריות משונות הם והוי כאלו לא קרב במינו וכך יוצא דופן תהי בה אינשי והוי כאלו לא קרב במינו וכן כלאים משונה הוא והוי כאלו לא קרב במינו מאי אמרת טרפה דאיכא במינה קרב שאר בהמות תמימות ולא דמי לטמאה אלא לבעל מום לא היא דאי לא דמיא לטמאה להא מילתא דיש במינה קרב דמיא לה במילתא אחריתי דאסירי באכילה כמותה לאפוקי בעלת מום דלא דמיא לה דמותרת באכילה ולהכי כל הני לא נחתא להו קדושת הגוף אבל המקדיש רובע ונרבע ומוקצה ונעבד ואתנן ומחיר הוו כמקדיש בעל מום עובר וירעו עד שיפול בהם מום קבוע ויפדו עליו דכיון דיש במינן קרב הוו כבעל מום משום דאין מומם ניכר לא יפדו עד שיפול בהם מום קבוע כמקדיש בעל מום עובר וכן מחוסר זמן הוי כמקדיש בעל מום עובר מטעמא דאמרן. נמצאו כל האסורין למזבח ט&quot;ו עם יתום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> האסורין לגבי מזבח אסורין בכל שהן אפילו נתערב אחד בריבוא נפסד הכל ונפסל למזבח והיינו מדרבנן דמדאוריתא בטלי ברובא כדכתיב אחרי רבים להטות וליכא חומרא במוקדשין טפי מחולין אלא מדרבנן דהא באיברי בעלי מומין שנתערבו באיברי תמימין אם עלו לא ירדו אפילו לרבנן דפליגי אדרבי אליעזר דאית להו דרשא דמום בם לא ירצו הא על ידי תערובת ירצו אלא דלכתחלה אסירי מדרבנן כדאמ׳. וכולן וולדותיהן מותרי׳ לגבי מזבח חוץ מוולד נרבעת ונעבדת ומוקצת ושהמית את האדם דהיא וולדה נרבעו ונגחו ונעבדת ומוקצת דניחא ליה בניפחיה דדעתו להשתחוות ולהקצות לכל הנפח אבל אי אחר כך נתעברו לא פסילי וכן אפרוח שנולד מביצת יונה טרפה מותר לגבי המזבח דהא גופא אחרינא הוא וגוף זה לא היה במעי הטרפה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המשתחוה </strong> לקמה חטיה מותרין למנחות דאין דעתו להשתחוות אלא למה שהוא רואה לא לסלת ועוד דנשתנו ונדמו לוולדות של איסורי מזבח דלא נאסרו אלא הם ולא וולדותיהם כאתנן דגלי ביה קרא הם ולא וולדותיהם. וכן בהמה שפטמה בכרשיני עבודה זרה מותרת למזבח שהרי נשתנו ודרשינן נמי גבי אתנן זונה הם ולא שנוייהן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:15:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-3-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 3:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לוקחין </strong> קרבנות מן הגוים ואין חוששין לאיסורי מזבח דאזלינן בתר רובא וכתיב נמי מעמלקי הביאום וגו׳ למען זבוח לה׳ אלהיך:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Chapter 4</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> הבהמה ואחד העוף שנרבע או המית את האדם או הוקצה או נעבד הכל פסול לגבי מזבח כדילפינן רובע ונרבע ומוקצה ונעבד בבהמה ובעוף נמי נרבע ונעבד מדכתיב מן התורים ואם המיתו את האדם הוו כרובע ונרבע דחייבים מיתה ופסילי הכא נמי דחייבין מיתה פסילי ואם היו שם שני עדים הרי הבהמה או העוף נסקלין דכתיב ואת הבהמה תהרוגו וכתיב השור יסקל וגו׳ היה שם עד א׳ והבעלים שותקים או על פי הבעלים בלי עד זו היא המותרת להדיוט ואסורה לגבי מזבח דכיון דאשכחן מיעוטא בהני לאוסרם למזבח כדאמרינן לא איצטריך אלא לכהאי גוונא דלהדיוט [לא] אסירי דאלו איכא עדים ונסקל לא הוה צריך מיעוטא דפשיטא דנסקלין ואפילו להדיוט אסירי כדאמרינן היה שם עד אחד והבעלים מכחישים הרי זה מותר אף&#160;למזבח&#160;דעד אחד אינו קם לממון. ואי אסורה על פיו למזבח הרי קם לממון.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שור </strong> האיצטדין הרי הוא כשר למזבח דהוי כאנוס וכתיב והמית איש וגו׳ דמשמע מרצונו וכתיב כי יגח ולא שיגח הוא אחרים. אין הבהמ׳ נפסלת משום רובע ונרבע אלא ברביעה בן תשע שנים דבבציר מהכי לאו רביעה היא וכן האשה פחותה מבת שלש שנים ויום אחד אין הבהמה נפסלת על ידה דלאו ביאה היא כדילפינן בדוכתא וגוי ועבד נמי פוסלים הבהמה ברביעה [כיון שנעשה בה מעשה כמו שנאסרת ברביעה בין שתהיה שלו ובין שתהיה של חבירו משום דעבד בה מעשה, ועוד דגוי נמי מוזהר על הבהמה כדכתיב והיו לבשר אחד (בראשית ב, כד) ולהכי פוסל אותה].</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מאימתי </strong> תפסל הבהמה [או עוף] משום מוקצה משיעשו בה הכומרים מעשה דאין הקדש לעבודה זרה אלא בגזיזה או עבודה לשם עבודה זרה איקרי מוקצה לעבודה זרה ואיסור מוקצה לגבוה ילפינן ליה נמי מדכתיב תשמרו להקריב לי במועדו לי ולא מה שהוקצה לאדון אחר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרובע </strong> והנרבע בין בהמה שלו בין של חברו דכיון דעבד בה מעשה אסרה ובין באונס בין ברצון דאין קישוי אלא לדעת וכן מצינו הבהמה הנרבעת היא נסקלת ואף על פי שהיא אנוסה ובין בזדון בין בשגגה דאף על גב דבשוגג אדם אינו במיתה וכתיב מות יומת ואת הבהמה תהרוגו דמשמע כשימות האיש הבהמה תהרוגו אפילו הכי כיון שבאת תקלה לאדם על ידה ואפילו בשוגג היא נסקלת ובין לפני הקדשה בין לאחר הקדשה אסורה למזבח דכתיב זאת התורה לעולה וגו׳ זאת מיעוטא שאם עלו רובע ונרבע נמי ירדו ולא איצטריכו תרי קראי אלא חד לחולין שנרבעה ואקדשה וחד לנרבעה כשהיא הקדש אבל מוקצה בעינן שלו וקודם שיקדיש דאם הקדיש הרי אינה שלו ואינו יכול להקצותה דאין אדם אוסר דבר שאינו שלו והוא אינו מעשה דהכומרים הם שעושים מעשה להקצותה כדאמ׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנעבד </strong> בין שעבד שלו בין של חברו בין באונס בין ברצון בין בזדון בין בשגגה בין לפני הקדש בין אחר כך אסורה דאף על גב דבאונס פטור ממיתה אפ&quot;ה איכא עשה דבכל נפשך שחייב למסור עצמו אפילו בכל אונסא ומשום הכי נאסרה דהא עבדה באיסור כדאמרינן וכל ציפוי נעבד אסורין בהנאה דכתיב לא תחמוד כסף וזהב עליהם וגו׳ וכתיב נמי ואבדתם את שמם כל העשוי לשמה אבל מוקצה מה שעליו מותר דלא אסרה תורה אלא הוא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואבני </strong> ההר שהשתחוה לו פסולין למזבח דקל וחומר ומה אתנן שמותר בתלוש להדיוט אסור במחובר לגבוה ואפילו למכשירי קרבן דכתיב בית ה׳ אלהיך דמשמע אפילו לבנין הבית וכתיב אתנן זונה סתמא לא שנא תלוש ולא שנא מחובר נעבד שאסור בתלוש להדיוט אינו דין שאסור במחובר לגבוה ולא תימא ק&quot;ו לקולא דקולא וחומרא לחומרא דיינינן וכן מי מעין שהשתחוה לה פסולין למזבח דדילמא לקילוח המעיין והלוכו השתחוה והרי כל המעיין נעבד ויש נעבד במחובר אצל גבוה כדילפינן מקל וחומר דאתנן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> שיש בו שם לעבודה זרה לא יעשה למלאכת הקדש אף על פי שמותר בהנאה נראה דלא אסירי כל הני אלא מדרבנן דמדאוריתא כיון דנשתנו שרו דדיו לבא מן הדין להיות כנדון דבאתנן איכא שינוי [שרי] כדדרשינן הם ולא שנוייהם:<br><strong> אזהרת רכט </strong> שלא להקריב אתנן זונה ומחיר דכתי׳ לא תביא אתנן זונה ומחיר כלב וגו׳ והמקריב אחד מהם או שניהם כאחד לוקה אחת מפני שנאמרו בלאו אחד. ואי זהו אתנן האומר לזונה הא לך דבר זה בשכרך אחת זונה שפחה או גויה או ישראלית שהיא ערוה עליו או ממחוייבי לאוין דכתיב הכא לא תביא אתנן זונה וגו׳ כי תועבת וגו׳ וכתיב התם גבי עריות כי כל אשר יעשה מכל התועבות וגו׳ מה להלן עריות שאין קידושין תופסין בה הכא נמי עריות שאין קדושין תופסין בה ושפחה וגויה נמי דאין קדושין תופסין בהם כדילפי׳ בדוכתייהו ומחוייבי לאוין נמי אף על גב דתפסי בהו קדושין [הוי אתנן דהא גבי כהן דאסור בזונה כדכתיב (ויקרא כא, ז) אשה זונה וכו׳ הויא זונה נמי מחייבי לאוין כדילפינן התם פי&quot;ח מהלכות איסורי ביאה, והכא נמי כתיב זונה] אבל פנויה אפילו היה כהן אתננה מותר דלא מקרייא זונה לגבי כהן אלא זונה דעריות וכן אשתו נדה אתננה מותר דלא הויא זונה דהא מותרת לאחר זמן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשא </strong> אחד מחייבי לאוין [כל שיתן לה מחמת בעילה הרי זה אסור דאתנן זונה כתיב (דברים כג, יט) אתנן מחמת זנות] והזכור אתננו אסור דכתיב הכא תועבה וכתיב התם מכל התועבות האלה וגו׳ גבי עריות וזכר נמי דאיכתיב בהדייהו. נתנה האשה אתנן לבועל מותר משום אתנן אף על פי שאין ראיה לדבר דלשתרי להקרבה זכר לדבר ואתנן לא נתן לך ותהי להפך מדכתי׳ להפך משמע דאין קרוי אתנן אלא מן האיש לאשה לא בהפך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר </strong> לחברו הא לך דבר זה ותלין שפחתך אצל עבדי העברי ואין לו אשה ובנים דאסיר בשפחה הרי זה אתנן וכן הבעלי לפלוני הישראלי הרי זה אתנן דכל מה שהוא שכר בעילתה הוי אתנן בין נתנו הבועל או אחר דאתנן זונה איקרי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פסק </strong> לתת לה טלה ונתן לה מאה כולן אתנן ואסורין למזבח דכולהו מכח אתנן קאתו וכולהו אתנן נינהו ולא מתנה. נתן לה אתננה ולא בא עליה לא הוי אתנן עד שיבא עליה ואם קדמה והקריבתו כשר כשאמר לה אי מיצטריך ליך ניקני לך מעכשיו דהוי ברשותה להקדישו ואי לא איצטריך ליך לא מיקני לך עד שעת ביאה ולהכי איצטריך לאשמועינן דמותר אם קדמה והקריבתו דלא תימא אתנן הוה קדמה והקדישתו קודם שיבא עליה ואחר כך בא עליה הרי זה ספק אם הוא אתנן הואיל ובא עליה קודם שתקריבנו או אינו אתנן שהרי הקדישתו קודם דאמירתו לגבוה כמסירתו להדיוט.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא </strong> עליה ולא נתן לה ולאחר זמן נתן לה הרי זה אתנן [בד&quot;א] בזונה גויה דאינה צריכה משיכה ואמר בטלה זה או בישראלית שהי׳ הטלה בחצרה ואמר הרי היא שלך אם לא אתן לך מעות ביום פלוני אבל אמר לה טלה סתם ובא עליה בין זונה בין ישראלית ולאחר זמן שלח לה טלה הרי זה מותר משום אתנן דהא דמשדר לה בתר הכי מתנה בעלמא הוא דאין אתנן אלא המיוחד בשעת ביאה כדכתיב אתנן זונה שהוא אתנן בשעת ביאת זנות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אסור משום אתנן ומחיר אלא גופן שהוא דבר הראוי ליקרב על גבי המזבח אבל נתן לה מה שאינו ראוי ולקחה בו קרבן הרי זה כשר דכתיב לא תביא אתנן זונה וגו׳ אתנן גופיה הוא דאסיר ולא חילופיה ואפילו אתנן גופיה אם נשתנה כחטים שעשאם סולת כשר כיון שנשתנו דכתיב גם שניהם ולא שינוייהם ונראה דעיקר דרשא דהם היא הם ולא וולדותיהם דחטים ועשאם סולת כיון דחטים גופייהו לא חזו להקרבה פנים חדשות באו לכאן אבל טלה ונעשה איל אף על גב דנשתנה כיון דמעיקרא חזי להקרבה והשתא נמי חזי להקרבה לא הוי שינוי ואסור. נתן לה בהמת מוקדשין לא נאסרה למזבח ואפי׳ מנה אותם על פסחו לא נפסל שכבר זכה בהן גבוה משעה שהקדישן דכתיב לכל נדר להוציא את הנדור כבר והאי לא איצטריך אלא לפסחו דכתיב ואם ימעט הבית מהיות משה החייהו משה שימנה אחרים עמו על פסחו ויתנו לו מעות דהא אית ליה זכיה בגויה אבל מוקדשין אחרים דלית ליה זכיה בגוייהו לא איצטריך קרא דפשיטא דלאו ממוניה הוא ואין אדם אוסר דבר שאינו שלו וכן כל דבר שאינו שלו לא פסלו אלא אם כן נתיאשו הבעלים דקנייה בייאוש ובעופות אף על פי שהן מוקדשין אתנן חל עליהם דהכי גמירי לה משום דעוף בא בנדר ונדבה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:16:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי </strong> זהו מחיר כלב זה האומר לחברו הא לך טלה זה תחת כלב זה דמחיר כלב היינו חליפי כלב כדכתיב תמכור עמך בלא הון ולא רבית במחיריהם אלמא מחיר היינו דמים וכן אם החליף כלב בכמה בהמות ועופות כולן אסורות לגבי מזבח דהא כלהו הוו מחיר הכלב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני </strong> שותפין שחלקו זה לקח עשרה טלאים וזה תשעה וכלב נראה דמדאוריתא כולהו טלאים מותרים דטלה שכנגד הכלב נתערב ובטיל מדאוריתא ואפי׳ דמי כל אחד פחותין מדמי הכלב איפשר נמי דלא אסירי חד מינייהו מדאוריתא דאף על גב דנשרי טיפונא דכלב אכולהו אפ&quot;ה רובא דכולהו הוי היתר ובטיל מדאוריתא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-4-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 4:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשתנה </strong> המחיר כגון חטין ונעשו סלת מותר כדילפינן לעיל מדכתיב הם ולא שינוייהם. אתנן כלב ומחיר זונה מותרין דכתיב גבי שניהם שנים ולא ארבעה אתנן בזונה ומחיר בכלב ואתנן זונה ומחיר כלב מותרין לבדק הבית שהרי נשתנו ושינוייהן מותרין כדילפינן אבל גופן של אתנן לא יעשה ריקועים לבית דכתיב לכל נדר להביא את הריקועים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Chapter 5</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רל </strong> שלא להקטיר שאור ודבש לגבי המזבח דכתיב כי כל שאור וכל דבש לא תקטירו ממנו וגו׳ ואיסורין בכל שהן דכתיב כי כל שאור וגו׳ אין לי אלא מרובה ממועט מנין תלמוד לומר כל שאור וכל דבש וגו׳ ואינו חייב אלא אם הקטירן עם הקרבן או לשם קרבן כדכתיב ברישיה דקרא כל המנחה אשר תקריבו וגו׳ לא תעשה חמץ כי כל שאור וכל דבש דמשמע לשם קרבן ואחד המקטיר עצמן או תערובת שלהן [לוקה] דכתיב כי כל לרבות עירובו ובדבש נמי כתיב וכל דבש כל לכל שהו וכל לעירובו וי&quot;ו דוכל דבש מוסף לענין ראשון ולוקה על כל א׳ מהם בפני עצמו דלא תקטירו ממנו אכל חד קאי ואם הקטיר שניהם כאחת אינו לוקה אלא אחת לפי ששניהם נאמרו בלאו אחד ואינו נמנה אלא לאו אחד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נפל </strong> מהם כל שהו בקטרת נפסלה כדילפינן מדכתיב כל שאור וגו׳ דאתי לרבות ממועט ואם הקטיר ממנה בהיכל לוקה כיון דהקטיר כזית קטרת שהיה בו כל שהו משאור או דבש דאין הקטרת קטרת פחותה מכזית דלגבי פגול איתקש אכילת&#160;מזבח&#160;לאכילת אדם כדדרשינן מאם האכל יאכל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העלה </strong> שאור או דבש בפני עצמן למזבח לשם עצים פטור דכתיב קרבן ראשית תקריבו אותם לה׳ אשאור ודבש הכתוב בראש המקרא העליון קאי וקאמר יש לך להביא מהם בכורים מן הדבש ושתי הלחם מן השאור ואל המזבח לא יעלו לריח ניחוח ודרשינן לריח ניחוח הוא דאינם עולים שאור ודבש אבל עולים לשם עצים אפילו הקטיר דבר שאינו ראוי להקטרה כבשר חטאת ואשם וקדשים קלים וכו׳ בדבש או בשאור הואיל והוא מן הקרבן לוקה אף על פי שאין כל אלו ראויים להקטרה הן קרויין קרבן וחייב עליהם דכתיב קרבן ראשית תקריבו אותם לה׳ משמע דשאור ודבש נמי קרויין קרבן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong> כל דברים אלו שאינם ראויים להקטרה אסור להקטירם על גבי המזבח דכתיב לא תקטירו ממנו והאי ממנו יתירא הוא ודרשינן ביה לא תקטירו כל שממנו לאישים שקרב מהם כבר לאישים האימורין וכן הקומץ וכן הבזיכים קיימי שיירים בבל תקטירו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקטיר </strong> איברי בהמה טמאה על המזבח לוקה ואף על פי שאיסור הקרבתה מכלל עשה שהרי נאמר מן הטהורה אכול כדכתיב זאת הבהמה אשר תאכלו וגו׳ ומן הטהורה תקריב כדכתיב מן הבהמה מן הבקר וגו׳ הא טמאה לא תאכל ולא תקריב אפילו הכי כשם שלוקה על אכילת הטמאה כדכתיב אך את זה לא תאכלו וגו׳ כך לוקה על הקרבתה דכיון דגלי אאכילת אדם דלקי הכי נמי אאכילת מזבח אבל מקריב אברי חיה טהורה עובר בעשה דכתיב מן הבהמה מן הבקר מן הצאן תקריבו את קרבנכם הא מן החיה לא תקריבו ולאו הבא מכלל עשה הוא עשה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגוזל </strong> או הגונב והקריבו הקרבן פסול דכתיב קרבנו ולא הגזול וכיון דלא נתיאשו הבעלים לאו קרבנו הוא והקב&quot;ה שונאו דכתיב שונא גזל בעולה ואם נתיאשו הבעלים הקרבן כשר ושפיר קרינא ביה קרבנו. הגונב עולת חבירו והקריבה סתם נתכפרו בה בעלים הראשונים ואפילו לאחר יאוש דקרבן אינה נגזלת דכל היכא דאיתיה ביה גזא דרחמא איתיה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מביאין מנחות ונסכים לא מן הטבל ולא מן החדש קודם לעומר ולא מן המדומע ואין צריך לומר מערלה וכלאי הכרם דבעינן ממשקה ישראל מן המותר לישראל ודרשא גמורה הוא דמהאי קרא נמי ילפינן דטרפה אסורה לגבוה והני אסירי והוי מצוה הבאה בעבירה שהקב&quot;ה שונאה ואם הביא לא נתקדשו להיותן ראויין לקרבן ונתקדשו ליפסל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> המנחות אין מביאין אותן מן החדש קודם שתי הלחם דכתיב בכורים לה׳ בשתי הלחם ואם הביא כשר כיון דהותר להדיוט:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קיח </strong> למלוח כל הקרבנות קודם שיעלו למזבח דכתיב על כל קרבנך תקריב מלח ואין לך דבר שקרב למזבח בלא מלח חוץ מיין הנסכים והדם והעצים דכתיב וכל קרבן כלל מנחתך פרט על כל קרבנך חזר וכלל כלל ופרט וכלל אי אתה דן אלא כעין הפרט מה הפרט מפורש מנחה שאחרים באים חובה לה שצריך לה עצים אף כל אחרים באים לה חובה יצאו עצים ודם דאין אחרים באים חובה להם דאין טעונין מלח אימא קרבן מנחתך דבר המתיר אף כל דבר המתיר אביא את הדם שמתיר את הקרבן תלמוד לומר מעל מנחתך ולא מעל דמך יכול תהא כל המנחה כולה טעונה מלח תלמוד לומר קרבן מנחתך הוא הקומץ בלבד שטעון מלח אין לי אלא קומץ מנין לרבות לבונה תלמוד לומר על כל קרבנך תקריב מלח. ומצוה למלוח כמולח בשר לצלי שמהפך את האבר ומולח דכתיב במלח יכול תבינהו יתן בו טעם כביצה שיתן בו מלח הרבה תלמוד לומר תמלח שבא לרבות יכול במי מלח ת&quot;ל במלח שבא למעט ולא תשבית מלח הבא מלח שאינה שובתת והיא מלח סדומית ומנין שאם לא מצא מלח סדומית שמביא איסתרוקנית תלמוד לומר תקריב תקריב מכל שהו בין סדומית בין אסתרוקנית תקריב אפילו בשבת תקריב אפילו בטומאה ואם מלח כל שהו אפילו בגרגיר מלח אחד כשר דהא כתיב תמלח לרבות שהוא כשר אפילו לא נתן מלח הרבה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רלא </strong> שלא להשבית מלח מעל הקרבנות ואם הקריב בלא מלח כלל לוקה דכתיב ולא תשבית מלח ברית אלהיך ואף על פי שלוקה הקרבן כשר והורצה דכל מקום שהחזיר הכתוב בצו את אהרן מה שאמור כבר בפרשת ויקרא אינו אלא לעכב והכא במלח לא שנה בה הכתוב חוץ מן המנחה&#160;שהמלח&#160;מעכב בקמיצה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-5-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 5:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלח </strong> שמולחין בו הקרבנות משל צבור היא כמו העצים דאמרה תורה הבא מלח והבא עצים דכתיב על העצים אשר על האש אשר על המזבח מה מזבח משל צבור אף עצים ואש משל צבור אף מלח משל צבור דדנים דבר הנוהג בכל הזבחים מדבר הנוהג בכל הזבחים או כלך לדרך אחר ולא יוכיחו עצים שאינם באים עמה בכלי אחד תלמוד לומר בלחם הפנים ברית מלח עולם הוא מה להלן משל צבור כדכתיב מאת בני ישראל אף כאן משל צבור ולהכי לא יביא היחיד מלח עם קרבנו ובשלשה מקומות היו נותנים אותה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Chapter 6</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם </strong> שמצוה להיות כל קרבן תמים ונבחר כדילפינן לעיל כך נסכים יהיו תמימים ונבחרים דכתיב תמימים יהיו לכם ונסכיהם שיהיו הנסכים תמימים שלא יביא נסכים שריחם וטעמם רע. וכן עצי המערכה לא יהיו אלא נבחרים ועץ לח מותלע פסול למזבח דאינו יכול ליגרר ממנו מה שהתליע בלח כמו דיבש ומותלע אינו ראוי להבער וכתיב ובער עליה הכהן עצים וגו׳ עצים שהם ראויים להבער ויבש גורר את מקום המותלע ועצי סתירה פסולים לעולם איפשר דילפי׳ מדכתיב ובער וגו׳ עצים דנראה עצים שהם עשויים להבערה מתחלתם הילכך בעינן חדשים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong> נסכים או עצים פסולים הוי ספק אי לקי משום מקדיש בעל מום או דילמא אין בעל מום אלא בבהמה הילכך לא לקי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נסכים </strong> ולבונה ועופות ועצים וכלי שרת שנפסלו או שנטמאו אין פודין אותם דכתיב והעמיד והעריך כל שישנו בהעמדה נערך ואלו אינם בכלל העמדה דכתיב והעמיד את הבהמה בהמה נפדית ולא אלו וקודם שיתקדשו בכלי פודין אותן דלא קדשי אלא קדושת דמים ולא קדושת הגוף כיון דלא נתקדשו בכלי וטהורין אף על פי שלא קדשו בכלי אין פודין אותן דאי פריק להו לחולין תו לא משכחי גזברין מידי אחרינא לצורך העבודה חוץ ממנחת חוטא דכתיב בה מחטאתו דמשמע מקצת חטאתו שאם העני יביא מקצת דמים תורים והשאר הם חולין וכתיב נמי על חטאתו דמשמע יוסיף דאם היה עני והפריש עשירית האיפה והעשיר יפדנה ויוסיף עליה מעות ויביא כבשה או שעירה לפיכך פודין אותם אע&quot;פ שהיא טהורה כיון שלא נתקדשה בכלי שרת. וכל הנסכים שנטמאו עושה להם מערכה בפני עצמה ושורפן במזבח כיון דאין נפדין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> החג שנטמאו אפילו הקדישן ואחר כך נטמאו אם השיקן טהרו מדאוריתא דזו היא זריעתן שעברו עליהם מי המקוה ונעשו חבור ובטלו ומעלה הוא דעשו בקדשים מדרבנן שלא להשיקן כשהקדישן ואחר כך נטמאו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זתים </strong> וענבים שנטמאו דורכן פחות מכביצה דאוכל טמא פחות מכביצה לא מטמא אחרים כדילפינן בדוכתיה ויינן כשר לנסכים דמשקין מופקדין הם בתוך הזג ואינן חבור לו אלא כמי שנותנן בכלי וכשנטמא הזג לא נטמא משקה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> זריעה מועלת לטהר בקדשים מדרבנן דמדאוריתא מהני עצים ולבונה מתטמאין כאוכל לענין קרבן ופסולין לגבי מזבח דכתיב והבשר כל טהור יאכל בשר וי&quot;ו יתירה לרבות עצים ולבונה של קדש לטומאה וקאי אדלעיל והבשר אשר יגע בכל טמא לא יאכל והבשר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יין </strong> מתוק ומעושן ומבושל עד שנשתנה טעמו פסול לגבי מזבח דבעינן תמימים ונבחרים כדכתי׳ תמימים יהיו לכם ונסכיהם והני לאו תמימים הוו ויין שנתגלה פסול לגבי מזבח דלא חזי להדיוט וכתיב הקרבהו נא לפחתך. הדלה גפן על גבי תאנה יינה פסול לנסכים מפני שנשתנה ריחו וכתיב זבח ונסכים מה זבח שלא נשתנה דהא נדמה פסול לקרבן אף נסכים שלא נשתנה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סלת </strong> שהתליעה רובה או רוב החטים שנעשה מהם פסולה דבעינן תמימים וליכא וכל סלת שנשאר בה קמח פסולה דכל שעולה אבק כשמכניס ידו לתוכה לאו סלת תמימה הויא וכתיב תמימים יהיו וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חטין </strong> שלקטן מגללי בהמה וזרען הוי ספק אי אזדא מאיסותייהו והני אחריני נינהו או דילמא משום כחישותא דכיון שנתעכלו שוב אין מגדלין חטים מלאים ובריאים כדמעיקרא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השמנים </strong> הפסולין שמן של גרגרים שנשרו במים או של זתים כבושין או שלוקין או שמן של שמרים או שריחו רע דכתיב תמימים יהיו לכם וגו׳ והני לאו תמימים הוו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:15:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-6-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 6:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> המנחות והנסכים כשרים אפילו מחוצה לארץ ומן הישן ובלבד מן המובחר חוץ מן העומר ושתי הלחם שאין באים אלא מן החדש ומארץ ישראל דכתיב כי תבאו אל הארץ אשר אני נותן לכם וקצרתם וגו׳ והבאתם את עומר ראשית קצירכם וכתיב בשתי הלחם ממושבותיכם תביאו לחם תנופה וכתיב והקרבתם מנחה חדש׳ וגו׳ וכת׳ וחג הקציר בכורי מעשיך וגו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-7">Chapter 7</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא </strong> כל דבר שאינו פוסל מביא אותו לכתחלה אלא כל שיביא לקרבן יביא מן המובחר וכן כל שיביא למנחות ונסכים יביא מן המובחר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תשעה </strong> מינין בשמן מפני שינוי מעשיו משלשה לקיטות שבזתים הראשון שבכל לקיטה כשר למנורה והשאר למנחות דלמנורה בעינן כתית דכתיב שמן זית זך כתית למאור זך כתית למאור ולא זך כתית למנחות ולא הוי כתית אלא ראשון שבכל זית ולמנחות כולן שריין דכתיב ועשרון סולת בלול בשמן כתית אם כן מה תלמוד לומר למאור אלא מפני שחסה תורה על ממונן של ישראל דאלו היה צריך לחזר במנחות אחר זך וכתית כמו למנורה היו מפסידין שהיו לוקחין אותו ביוקר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-7-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar 7:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל </strong> דבר שהוא לשם האל הטוב שיהא מן הנאה הקדיש דבר יקדיש מן היפה וכן הוא אומר כל חלב לה׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-things-forbidden-on-the-altar.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

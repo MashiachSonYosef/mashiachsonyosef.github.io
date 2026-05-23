@@ -1,0 +1,3 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| ohr-sameach-on-mishneh-torah-the-sanhedrin-and-the-penalties-within-their-jurisdiction | Ohr Sameach on Mishneh Torah, The Sanhedrin and the Penalties within their Jurisdiction | Ohr Sameach on Mishneh Torah, The Sanhedrin and the Penalties within their Jurisdiction 1:1:1 | ohr-sameach-on-mishneh-torah-the-sanhedrin-and-the-penalties-within-their-jurisdiction-1-1-1 |  |  | not_done |  |

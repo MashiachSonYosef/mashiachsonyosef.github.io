@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-22T03:11:46.558Z
+Generated: 2026-05-22T13:43:09.227Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-22T03:11:46.558Z
 
 ## Counts
 
-- Total work-surface rows: 4896504
-- Total sitewide unique surface forms: 938397
-- Sitewide unique surface forms matched at least once: 98066
-- Sitewide unique surface forms unmatched everywhere: 840331
-- Total token occurrences: 37172759
-- Matched before prefix/suffix parser: 1049813
-- Newly resolved by prefix/suffix parser: 183353
-- Total matched after parser: 1278919
-- Percent matched: 26.1%
-- Matched via Wikidata: 938209
-- Enriched via OpenScriptures: 1049032
-- Unmatched: 3617585
+- Total work-surface rows: 5319398
+- Total sitewide unique surface forms: 951412
+- Sitewide unique surface forms matched at least once: 98430
+- Sitewide unique surface forms unmatched everywhere: 852982
+- Total token occurrences: 39480284
+- Matched before prefix/suffix parser: 1154355
+- Newly resolved by prefix/suffix parser: 196695
+- Total matched after parser: 1403384
+- Percent matched: 26.4%
+- Matched via Wikidata: 1027972
+- Enriched via OpenScriptures: 1149433
+- Unmatched: 3916014
 
 ## Newly Resolved Parsed Forms
 
@@ -61,6 +61,7 @@ Generated: 2026-05-22T03:11:46.558Z
 - א״א -> Arikh Anpin (workspace) -- shaar-hahakdamot
 - א״א -> Arikh Anpin (workspace) -- shaar-hakavanot
 - א״א -> Arikh Anpin (workspace) -- shaar-hamelekh-on-mishneh-torah-diverse-species
+- א״א -> Arikh Anpin (workspace) -- shaar-hamelekh-on-mishneh-torah-divorce
 - א״א -> Arikh Anpin (workspace) -- shaar-hamitzvot
 - א״א -> Arikh Anpin (workspace) -- shaar-hapesukim
 - א״א -> Arikh Anpin (workspace) -- shaar-maamarei-rashbi
@@ -72,7 +73,6 @@ Generated: 2026-05-22T03:11:46.558Z
 - א״כ -> if so, therefore (workspace) -- aggadat-bereshit
 - א״כ -> if so, therefore (workspace) -- akeidat-yitzchak
 - א״כ -> if so, therefore (workspace) -- arukh-hashulchan-heatid
-- א״כ -> if so, therefore (workspace) -- arukh-hashulchan
 
 ## Sample Unmatched Words
 
@@ -80,6 +80,8 @@ Generated: 2026-05-22T03:11:46.558Z
 - א־תִירָ֣א -- siddur-edot-hamizrach
 - אאא -- otzar-midrashim
 - אאב -- beit-yosef
+- אאב -- kiryat-sefer-on-mishneh-torah-offerings-for-unintentional-transgressions
+- אאב -- lechem-mishneh-on-mishneh-torah-torah-study
 - אאב -- peri-tzadik
 - אאב -- prisha
 - אאב -- sefer-yereim
@@ -94,8 +96,6 @@ Generated: 2026-05-22T03:11:46.558Z
 - אאבד -- raavad-on-sifra
 - אאבד -- shevet-musar
 - אאבוה -- beit-yosef
-- אַאֲבוּהָ -- ein-yaakov
-- אאבוהי -- yaarot-devash-i
 
 ## Top 50 Remaining Unmatched By Frequency
 
@@ -114,6 +114,7 @@ Generated: 2026-05-22T03:11:46.558Z
 - 5775x ה׳ -- ohr-hachammah-on-zohar
 - 5773x עיין -- arukh-hashulchan
 - 5669x נמי -- beit-yosef
+- 5604x דף -- tzafnat-paneach-on-mishneh-torah-heave-offerings
 - 5448x שכתב -- beit-yosef
 - 5425x ה׳ -- peri-tzadik
 - 5307x משמע -- beit-yosef
@@ -148,7 +149,6 @@ Generated: 2026-05-22T03:11:46.558Z
 - 3287x דכיון -- beit-yosef
 - 3250x והרא״ש -- beit-yosef
 - 3231x כגון -- beit-yosef
-- 3211x הר״ן -- beit-yosef
 
 ## Exact Orot Refs To Test
 

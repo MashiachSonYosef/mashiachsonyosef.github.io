@@ -1,0 +1,1936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiryat Sefer on Mishneh Torah, The Chosen Temple</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kiryat Sefer on Mishneh Torah, The Chosen Temple</h1>
+        <p class="work-label">Commentary on Mishneh Torah, The Chosen Temple</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p class="placeholder">[Base text not imported or not linked yet]</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, The Chosen Temple</p>
+            <p class="placeholder">Commentary text appears below.</p>
+          </section>
+        </div>
+        <p class="meta">58 total source units | imported 2026-05-22</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>946 matched</strong> / 2359 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-the-chosen-temple.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kiryat Sefer on Mishneh Torah, The Chosen Temple <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kiryat Sefer on Mishneh Torah, The Chosen Temple <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-3-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:3:1">1:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-5-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:5:1">1:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-6-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:6:1">1:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-8-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-9-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-10-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:10:1">1:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-12-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:12:1">1:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-13-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:13:1">1:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-14-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:14:1">1:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-17-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:17:1">1:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-18-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:18:1">1:18:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-20-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:20:1">1:20:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-3-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-4-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:4:1">2:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-5-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:5:1">2:5:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-6-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:6:1">2:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-9-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:9:1">2:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-10-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:10:1">2:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-13-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:13:1">2:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-16-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:16:1">2:16:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-17-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:17:1">2:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-18-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:18:1">2:18:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-3-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-6-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:6:1">3:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-7-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:7:1">3:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-8-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-10-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-12-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:12:1">3:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-13-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:13:1">3:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-16-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:16:1">3:16:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-17-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:17:1">3:17:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-18-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:18:1">3:18:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:1:1">4:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-2-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:2:1">4:2:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-3-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:3:1">4:3:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-5-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 5:1:1">5:1:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 6</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-6">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:1:1">6:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-7-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:7:1">6:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-10-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:10:1">6:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-14-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:14:1">6:14:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 7</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:1:1">7:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-7-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:7:1">7:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-11-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:11:1">7:11:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-12-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:12:1">7:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-13-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:13:1">7:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-14-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:14:1">7:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-15-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:15:1">7:15:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-18-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:18:1">7:18:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-20-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:20:1">7:20:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-21-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:21:1">7:21:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-22-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:22:1">7:22:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-23-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:23:1">7:23:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 8</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-8">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-1-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:1:1">8:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-4-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:4:1">8:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-11-1" title="Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:11:1">8:11:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Chapter 1</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קד </strong> לבנות בית המקדש לה׳ מוכן להיות מקריבים בו הקרבנות וחוגגין (עליו) [אליו] שלש פעמים בשנה דכתיב ועשו לי מקדש ושכנתי בתוכם וכיון שצוה בתורה להקריב בו הקרבנות ולראות בו לפני ה׳ משמע דלהכי צוה בבנינו ומשכן שעשה משה היה לפי שעה דכתיב כי לא באתם עד עתה אל המנוחה ואל הנחלה משמע שבית עולמים שהוא נחלה הוא בכלל מצות ועשו לי מקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכיון </strong> שנבנה בית המקדש בירושלם נאסרו כל המקומות כולן לבנות בית לה׳ ולהקריב בהם קרבן ואין בית לדורי הדורות אלא בירושלם דכתיב כי לא באתם עד עתה אל המנוחה ואל הנחלה ומשתעי קרא בהתר במות וקאמר עד מתי אני אומר לכם איש כל הישר בעיניו כי לא באתם עד עתה וגו׳ אבל לא משבאתם אל המנוחה שהיא שילה שנחו מלכבוש ואל הנחלה שהיא ירושלם ומדחלקן הכתוב לכתוב שניהן משמע שיש התר במות בין שילה לירושלם דאי לא הו&quot;ל למיכתב מנוחה לחוד ומדכתיב נחלה ש&quot;מ דהכי קאמר להו ואחר קדושת המנוחה תחזרו להתר הראשון עד בואכם אל הנחלה משמע דמבית עולמים שהיא נחלה נאסרו הבמות ולא הותרו אחר כך שהיא נחלה שאין לה הפסק דקדושה לשעתה ולעתיד לבא כדכתיב זאת מנוחתי עדי עד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והדברים </strong> שהן עיקר הבית הם הקדש וקדש הקדשים ולפני הקדש מקום הנקרא אולם ושלשתן נקראים היכל אלא שאין קדושתם שוה דקדושת היכל ואולם לאו קדושה חדא היא אלא אולם ובין האולם ולמזבח חדא קדושה היא דהא במשכן לא היה אולם ואף על גב דכל מדות הבית נמסר לדוד על פי נביאים כדכתיב הכל בכתב מיד ה׳ עלי השכיל כל מלאכת התבנית עלי השכיל אותי לימד אפילו הכי לענין קדושת הבית ליכא שינוי בין משכן למקדש דכמו דבמשכן ליכא אלא ג׳ קדושות קדש הקדשים וקדש וחצר אהל מועד כן במקדש הן שלש קדושות (לפנים) לפנים והיכל ועזרה והכל נקרא מקדש כמו במשכן שהכל נקרא גם כן משכן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועושין </strong> במקדש כלים מזבח לעולה ולשאר קרבנות וכבש שעולים בו למזבח דכתיב מזבח אדמה תעשה לי וזבחת עליו את עולותיך וגו׳ ואם מזבח אבנים תעשה לי וגו׳ בבית עולמי׳ ומדכתיב ולא תעלה במעלות שלא יעשה מעלות בכבש שלו אלא חלק למדנו שהיה לו כבש ומקומו לפני האולם משוך לדרום וכיור וכנו בין האולם ולמזבח משוך לדרום דכתיב על ירך המזבח צפונה שיהא צפון העזרה פנוי מכלים ואפילו מן המזבח מדהוה ליה למיכתב צפון וכתב צפונה לדרשא אתא כדאמר׳ משמע דמזבח משוך לדרום ובכיור כתיב ונתת את הכיור בין אהל מועד ובין המזבח ובעינן מזבח לפני פתח אהל מועד כדכתיב ואת מזבח העולה לפני פתח אהל מועד בלא דבר מפסיק בינה לפתח אהל מועד ולהכי היה כיור משוך קימעא מזויות המזבח ולדרום נמצא שאינו כנגד המזבח כלל אלא בין אהל מועד ולמזבח ומזבח לקטרת ומנורה ושלחן בקדש לפני קדש הקדשים מנורה בדרום ושלחן בצפון ושניהם בהיכל בצד שבפנים מחוץ לפרכת דכתיב ושמת את השולחן מחוץ לפרכת ואת המנורה נכח השלחן על צלע המשכן תימנה והשלחן תתן על צלע צפון וכיון דכתיב מחוץ לפרכת משמע אצלו בצד קדש הקדשים ומשום דכתיב ואת המנורה נכח השולחן בעינן דחזו אהדדי שלחן ומנורה ולהכי הוה מזבח משוך כלפי חוץ קימעא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בנין </strong> היכל ועזרה הוי אפילו בלבנים אם לא מצאו אבנים דלא הוזכרו אבנים אלא במזבח וכשבונין אותו באבנים אין מסתתין אותם אלא בחוץ דכתיב במזבח לא תבנה אתהם גזית ודרשינן בו אי אתה בונה גזית אבל אתה בונה גזית בהיכל ובקדש הקדשים משמע דמיעט בהיכל דומיא דמזבח דאבני מזבח שנגעו בהם ברזל אפילו בחוץ פסולות מה שאין כן באבני היכל והיינו דכתיב לא נשמע בבית בהבנותו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> בונין בו עץ כלל דכתיב לא תטע לך אשרה ודרשינן ליה לא תטע לך אשרה לא תטע לך כל עץ אצל מזבח וגו׳ דהיינו מעזרת ישראל ולפנים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומרצפין </strong> את כל העזרה באבנים יקרות והן מתקדשות בקדושת עזרה דמתקדשת בשירי מנחה בירושלם מה ירושלם דבר הנאכל בה דהיינו לחמי תודה מקדשה כדכתיב ואעמידה שתי תודות אף עזרה דבר הנאכל בה ואם יצאה ממנה נפסלה דהיינו שיירי מנחה הוא דמתקדשת בה ונראה דקדושת ירושלם בשתי תודות עד דאתא נחמיה גמרא גמירי לה ולהכי גמרינן מינה לקדושת עזרה בשיירי מנחה ולכך אם נעקרה אבן אחד אסור לכהן לעמוד עליה בשעת עבודה עד שתקבע בארץ דאבני הרצפה ומקומן הוא דנתקדשו בשיירי מנחה. ומצוה מן המובחר לרומם את בית ה׳ וליפותו כפי כח הצבור כדכתיב לרומם את בית אלהינו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> בונין אותו בלילה דכתיב במשכן וביום הקים את המשכן ביום מקימים ולא בלילה. והכל חייבין לבנות (ולחמד) [ולסעד] בעצמם ובממונם אנשים ונשים כמקדש המדבר דכתיב ביה ויבאו האנשים על הנשים. אין מבטלין תינוקות של בית רבן (לבדק) [לבנין] הבית [דאנשים ונשים כתיב (שמות לה, כב) ולא טף]. ואין בנין בית המקדש דוחה יום טוב דאין עשה דוחה לא תעשה ועשה וכל שכן שבת דאינו דוחה אלא משום דשכיח טובא הוה אמינא דלידחי להכי איצטריך קרא דאך את שבתותי תשמורו ומקדשי תיראו אני ה׳ כלכם חייבים בכבודי אתם והמקדש חייבים בכבודי שהזהרתי על השבת ויום טוב נמי שבתות מיקרו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> עושין מזבח אלא בנין אבנים דכתיב אבנים שלמות תבנה את מזבח וגו׳ וזה שנאמר ואם מזבח אדמה תעשה לי שיהא מחובר באדמה שלא יהא חלול על גבי כפין או מחילות וזה שנאמר ואם מזבח אבנים אינו רשות אלא חובה כמו ואם תקריב מנחת בכורים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> אבן שנפגמה כחגירת צפורן פסולה לכבש ולמזבח דכתיב אבנים שלימות תבנה את מזבח וגו׳ ובפגימה כל שהיא כחגירת צפורן לא הויא אבן שלימה וכן אבני ההיכל והעזרות שלימות היו ואם נפגמו פסולין ואין להם פדיון אלא נגנזין [דכיון דנתקדשו במקומם נתקדשו קדושת הגוף ואין להם פדיון דבעינן העמדה והערכה וליכא]:<br><strong> אזהרת קצח </strong> שלא לבנות המזבח גזית שהיא אבן שנגע בה ברזל דכתיב לא תבנה אתהן גזית אין גזית אלא גזוזות שהונף עליהם ברזל ובין במזבח בין בכבש המזבח פסולות אף על פי שאינן פגומות דכתיב כי חרבך הנפת עליה ותחלליה וכבש ילפינן דהוי כמזבח לענין אותם שעלו ולא ירדו דכתיב המזבח לרבות את הכבש. והבונה אבן פגום עובר בעשה דכתיב אבנים שלימות תבנה. אבן שנפגמה אחר כך או שנגע בה ברזל אותה האבן פסולה והשאר כשרות דכתיב לא תבנה אתהן גזית הן פסולות ולא המזבח כלו פסול:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת קצט </strong> שלא לעלות במדרגות למזבח דכתיב לא תעלה במעלות על מזבחי מכאן שיעשו כבש למזבח והעולה במעלות לוקה וכן נותץ אבן אחת מן המזבח או מן ההיכל או מבין האולם ולמזבח כל שהוא לפנים מן המזבח לוקה דכתיב ונתצתם את מזבחותם וגו׳ לא תעשון כן לה׳ אלהיכם וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המנורה </strong> וכליה ושלחן וכליו ומזבח הקטרת אין עושין אותם אלא מן המתכת דאף על גב דכתיב ככר זהב טהור יעשה אותה ואת כל הכלים האלה לאו לעיכובא כתיב אלא למצוה והא דכתיב זהב לומר דאם באה זהב באה ככר אינה באה זהב שהביאה משאר מיני מתכות אינה צריכה לבוא ככר אלא או פחות או יתר אלמא משאר מיני מתכות שמעינן דכשרה דאוקמי׳ ריבוייא דתיעשה לרבות שאר מיני מתכות דמשמע תעשה מ&quot;מ ואפילו השפודין וכל הכלים אם יש כח בצבור עושין אותם של זהב דכתיב כל כליה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:20:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> עושין כל הכלים מתחלתן אלא לשם הקודש דכתיב את תבנית המשכן ואת תבנית כל כליו וכן תעשו משמע דעשיית כל הכלים דומיא דמשכן דעשייתו לקודש מתחלתו כדמשמע ועשו לי מקדש שמתחלת עשייתו יהיה לשם הקודש ואם נעשו מתחלתן להדיוט אין עושין אותן לגבוה דתחלתן לקדש בעינן כדאמר׳. וכלי גבוה עד שלא נשתמש בו גבוה רשאי להשתמש בהם הדיוט ומשנשתמש גבוה אסורין להדיוט דכלי שרת עבודתן מחנכתן כדילפינן מדכתיב אשר ישרתו בהם בקדש תלאן הכתוב בשירות מדכפל קרא בלישניה כלי השרת אשר ישרתו בם משמע שנעשו כלים על ידי שירות. אבנים וקורות שחצבתן מתחלה לבית הכנסת אין בונין אותם בהר הבית ואי קדושת בית הכנסת לא הויא דאוריתא משום דבית הכנסת הוי לתפלה בקבע מיחזי קדושתיה חמירא מקדושת הר הבית אלא שנראה דרשה גמורה הא דרשינן והשמותי את מקדשכם לרבות בתי כנסיות ובתי מדרשות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Chapter 2</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המזבח </strong> מכוון ביותר ואין משנין אותו ממקומו שבנה אותו שלמה שהוא מקום העקידה ושבנה נח ושהקריבו עליו אדם ובניו ומשם נברא דכתיב וייצר ה׳ אלהים את האדם עפר מן האדמה אדם מכפרתו נברא דכתיב הכא מן האדמה וכתיב התם מזבח אדמה תעשה לי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מדות </strong> המזבח מכוונות ביותר דקפיד קרא אמדת ארכו ורחבו וקומתו וצורתו ידועה איש מאיש עד משה רבינו דבתורה לא נתפרשה ואין להוסיף על מה שבנו ועל מה שעתיד להבנות ולא לגרוע ממנו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה </strong> נביאים עלו עמהם מן הגולה אחד העיד להם על מקום המזבח שיהא בנוי במקום שנברא ממנו אדם הראשון ואחד העיד על מדותיו שיש לו מקום להוסיף עד ששים אמה דכתיב ויאמר דוד זה בית אלהים וזה מזבח לעולה בישראל כי בית מה בית ששים אמה ארכו כדכתיב והבית וגו׳ ששים אמה ארכו אף מזבח עד ששים אמה ראוי לו ומקודש המקום אם ירצו והם הוסיפו עליו כפי הצורך ל&quot;ב על ל&quot;ב ולא הוצרכו לששים והכי גמירי לה איש מפי איש עד משה כדאמרי׳ עד דאתא דוד ואסמכיה אקרא ונביא שלישי העיד להם שמקריבים על המזבח הזה כל הקרבנות אף על פי שאין שם בית דקדושת הבית קדשה לשעתה ולעתיד לבא דקדושת ירושלם ומקדש מפי השכינה ושכינה אינה בטלה משם דכתיב והשמותי את מקדשכם אף על פי ששוממין בקדושתן הם עומדים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:5:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המזבחות </strong> שנעשו ושעתיד לעשות כולן עשר אמות וזה שכתוב בתורה ושלש אמות קומתו מקום המערכה בלבד דנאמר כאן רבוע ונאמר להלן רבוע במזבח הזהב אמה ארכו ואמה רחבו רבוע ואמתים קומתו מה להלן גובהו פי שנים בארכו אף כאן גובהו פי שנים בארכו דכתיב חמש אמות אורך וגו׳ הרי עשר אמות גובה ולא תימא איפשר כהן עומד על גבי המזבח ועבודה בידו וכל העם רואים אותו מבחוץ דאין גובה היקף הקלעים של חצר אלא חמש אמות כדכתיב וקומה חמש אמות דכתיב ואת קלעי החצר ואת מסך שער החצר אשר על המשכן ועל המזבח מה משכן עשר אמות גובה הוא שצריך שיהיו הקלעים של חצר סביביו דהכי הוה גובה המשכן דכתיב עשר אמות אורך הקרש אף מזבח צריך הקף לבד עשר אמות דקלעים חמש עשרה אמות היו גבוהין שלא יראה כהן ועבודה בידו ומה תלמוד לומר וקומה חמש אמות למעלה מן המזבח היה גובהן חמש אמות ושלש אמות קומתו דכתי׳ במזבח היינו משפת סובב ולמעלה עד מקום הקרנות ולמטה הימנו ששה אמות וגובה הקרן אמה הרי עשרה כדאמר׳ ומזבח שעשו בני הגולה וכן העתיד ליבנות מדת ארכן ורחבן ל&quot;ב על ל&quot;ב דעד ששים היו יכולין להוסיף כדילפי׳ לעיל אלא דלא הוצרכו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עשר </strong> אמות של גובה המזבח באמה בת ששה חוץ מאמת יסוד ואמת קרן דהוו באמת בת חמש דעלה חמשה טפחים וכנס חמשה זהו יסוד עלה חמשה אמות שהם שלשה טפחים וכנס חמשה טפחים זהו סובב דכתיב ונתת אותה תחת כרכוב המזבח מלמטה כרכוב הוא הסובב שמקיף את כל המזבח וגובה מקום המערכה מן הסובב שלש אמות שהם י&quot;ח טפחים נמצא רוחב מקום המערכה כ&quot;ד אמות וד׳ טפחים על כ&quot;ד וד׳ טפחים אחר שחסרנו אמה סביב ממקום הקרנות ואמה סביב ממקום רגלי הכהנים וצורת ותבנית זה הוא שהיא ידוע איש מאיש עד משה רבינו והיא הצורה והתבנית שנתפרשה בבנין העתיד דכתיב ואלה מדות המזבח באמות אמה אמה וטופח וחיק האמה ואמה רוחב וגבולה אל שפתה סביב זרת האחד וזה גב המזבח מדות המזבח מזבח העולה באמות אמה אמה וטפח מדת המזבח יהיה באותן אמה שהאמה בינונית תחזיק מהן אמה וטפח הרי שעלה אמה בת חמשה טפחים שהוא יסוד כדכתיב וחיק האמה כלומר באלו האמות אני אומר שיהו בנות חמש האמה דהיינו יסוד דעלה אמה כדאמר׳ וחיק על שם שהוא חיקוייו ותיקונו של מזבח מלמטה ואמה רוחב כניסה דיסוד ודסובב בת חמש וגבולה אל שפתה סביב גובהו דקרן באמה בת חמש וכל שאר מדות המזבח באמה בת שש ורש&quot;י ז&quot;ל פירש פרק שתי הלחם ובריש ערובין דאמה רוחב לא קאי אלא אכניסה דסובב לא אכניסה דיסוד דהוא בת שש ולדבריו יתישב גרסא ל&quot;ש הכי ול&quot;ש הכי מה שאינה מתישבת לדברי הרב ז&quot;ל דקאמר דכניסה דיסוד נמי באמה בת חמש ורבוע כל קרן אמה על אמה דומיא דמזבח הזהב דהוה רבוע אמה על אמה וחלול דכתיב ומלאו במזרק בזויות המזבח אלמא קיבול יש במזרקים בזויות המזבח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:9:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחוט </strong> של סקרא היה חגור באמצע המזבח להבדיל בין דמים העליונים לדמים התחתונים דמים העליונים חטאת בהמה דמים התחתונים חטאת העוף ומנא לן דבעינן הבדל בין אלו לאלו דכתיב והיתה הרשת עד חצי המזבח. הרשת כעין ציור מצודה בקליעה ושל נחשת הויא בתחתיו של מזבח עשוי [כמו] נפה וגבוה עד חציו של מזבח כדכתיב עד חצי המזבח ומדקפיד קרא אחציה משמע דנתנה מחצה בין דמים העליונים לדמים התחתונים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הקרנות היה להן כנגדן מלמטה יסוד חוץ מקרן דרומית מזרחית שלא היה לה יסוד לפי שלא היתה בחלקו של טורף דכתיב ביה בנימין זאב יטרף שנתנבא עליו יעקב בבקר יאכל עד באחסנתיה יתבני מקדשא וקרן דרומית מזרחית לא היתה בחלקו אלא רצועה מחלקו של יהודה שהיתה נכנסת בחלק בנימן וכך התנו שהאויר של בנימן וקרקע של יהודה ולמעלה משלשה לאו קרקע&#160;הוא ובקרן מערבית דרומית היו השיתין שהדמים יורדים בהם ומתערבים באותה הקרן באמה ואית דסברי דשיתין מששת ימי בראשית נבראו דכתיב בראשית אל תיקרי בראשית אלא&#160;ברא&#160;שית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכבש </strong> היה בנוי לדרומו של מזבח דמדכתיב ולא תעלה במעלות משמע אלא כבש חלק ולדרומו דכתיב ושחט אותו על ירך המזבח צפונה שיהא ירך בצפון ופניו של מזבח שהיא מצד הכבש לדרום כאדם השוכב ארצה ורגליו לצפון נמצא ראשו ופניו שהם צד המזבח של כבש והכבש לדרום דשיער הכתוב באדם רבוע ומושכב ארצה כדכתיב רבוע ואף על גב דאיבעי ליה רבוע שיהא מרובע ולא עגול אפ&quot;ה מדה&quot;ל למיכתב מרובע וכתב רבוע משמע הכי ומשמע הכי הילכך תרוייהו יליף מינה ותנא מייתי לה מדכתיב ביחזקאל במזבח ומעלותיה פונות קדים כל פונות שאתה פונה לא יהו אלא דרך ימין למזרח דפנות קדים כתיב בקרא ואין לך רוח ראויה לכך אלא דרום דבעינן דרך ימין כדילפינן מים שלמה דכתי׳ פונים (פונים). ואורך הכבש ל&quot;ב ורחבה י&quot;ו שעולים בו במשא איברים כבדים והוא חלק צריך שיהא משופע ביותר ונוח לעלות לכך האריכוהו ל&quot;ב לתשעה אמות גובה ואויר היה מפסיק בין הכבש למזבח כדי ליתן האיברים למזבח בזריקה דכתיב ועשית עולותיך הבשר והדם הקיש בשר לדם מה דם בזריקה כדכתיב וזרקו אף בשר בזריקה אלמא אויר יש ומחמת האויר הויא זריקה שעומד בכבש וזורק אל עבר האויר למערכה דאי תימא זריקה הינו משום דלמערכה דלוקה הוא זורק דאין יכול לסדר סביב על ראשי העצים אלא הימנו והלאה במקום שדולקת הא לא איפשר בלאו הכי ולהא לא איצטריך קרא אלא לאשמועינן דיש אויר בין כבש למזבח אי נמי לא מצית אמרת עומד בצד המערכה וזורק דהפסק אויר בעינן בזריקה כי דם מה דם אויר מפסיק בינו למזבח דכשזורק מרחיק עצמו לזרוק אף בשר מפסיק אויר בזריקתו בינו למזבח. וגובה הכבש תשעה אמות פחות שתות עד כנגד המערכה ולא תימא הרי עולה במעלות על המזבח שתות אמה דהא אמרן לעיל דאמה גובה יסוד הויא אמה בת חמש הרי חסר שתות שלא היתה גבוהה מקום המערכה אלא תשעה אמות פחות שתות דאמה אחת בת חמשה כדאמר׳. ושני כבשים יוצאים פונים ליסוד ולסובב ומובדלים מן המזבח כמלוא נימא אי משום דכתיב במזבח סביב שיהא הקף למזבח כל דהו ואי הוו מחוברין שוב אין הקף ואפילו בחוט אין אדם יכול לסובבו אי משום דכתיב רבוע ואי מחוברין לא הוה בנינו של מזבח מרובע ואיצטריך למיכת׳ סביב ואיצטרי׳ למיכת׳ רבוע ואע&quot;ג דאפקינהו לתרוייהו להך דרשא שלא יהא בנין אחר מחובר בו דאי כתב רחמנא סביב הוה אמינא דעגיל מעגל ולא יהו לו זויות להכי כתב רחמנא רבוע ואי כתב רחמנא רבוע הוה אמינא ארכו יתר על רחבו וזויות יהו לו כתב רחמנא סביב שיהו כל סביביו שוין ואף על גב דכתיב במזבח חמש אמות אורך וחמש אמות רוחב הרי שסביבותיו שוין איפשר דהוי אמינא דהיינו למעלה אבל למטה לא קפיד להכי איצטריך סביב לומר שיהו כל סביביו שוין ואפילו מלמטה דאי תימא לעיכובא קשיא דלעכב מהמזבח נפקא (ורכובה) [ורבובה] ושתי שלחנות היו במערבו של כבש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:16:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> עושין המזבח חלל אלא אטום כדילפינן לעיל שלא יבננו על גבי כפין וגו׳ ונותן על גבי הבנין גוף של עץ בקרן דרומית מזרחית כמדת היסוד שהיה בחלק יהודה כדאמר׳ לעיל וכדי שלא ישאר הבנין פגום היה משים הגוף של עץ דכשהיה מסירו היה נשאר מקום חבורו חלק בלי שום פגימה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> מזבח שאין לו קרנות ויסוד וכבש וריבוע הרי הוא פסול שארבעתן מעכבין דכל מקום שנאמר המזבח לעכב דהמזבח משמע כשהוא כן הוא דמיקרי מזבח ואי לא לא ובקרנות כתיב קרנות המזבח וביסוד כתיב אל יסוד המזבח ובכבש כתיב אל פני המזבח והוא הכבש שאין פניו של מזבח שעולים לו דרך שם כי היכי דחשיב צד מזרחית פני אהל מועד מחמת שהפתח שם ובריבוע כתיב רבוע יהיה המזבח אבל מדת ארכו ומדת רחבו וקומתו אינם מעכבים דלא כתיב בהו המזבח והא דכתיב עלי השכיל ומיירי אף גבי מזבח דמה בית ששים אף מזבח ששים היינו שיהא קדוש עד ששים אם ירצו להרחיבו אבל לא שיהא חובה לעשות כן כדאמר׳ לעיל ובלבד שלא יפחות ממזבח מדבר אמה על אמה ברום שלש אמות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מזבח </strong> שנפגם מבנינו טפח פסול פחות מטפח כשר דכל שהו פחות מטפח חשיב מרובע אבל אי נפגם מבנינו טפח לא חשיב מזבח מרובע והוא שלא יהא נשאר אבן פגומה דכתיב אבנים שלמות:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Chapter 3</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המנורה </strong> מפורשת צורתה בתורה שנים ועשרים גביעים דכתיב שלשה גביעים משוקדים וגו׳ כן לששת הקנים היוצאים מן המנורה הרי י&quot;ח ובמנורה ארבעה גביעים הרי כ&quot;ב והפרחים תשעה דכתיב כפתור ופרח כן לששת הקנים היוצאים מן המנורה הרי שש ובמנורה שתים דכתיב משוקדים כפתוריה ופרחיה מיעוט רבים שנים דתפשת מעט תפשת ועוד פרח שלישי סמוך לירכה דכתיב עד ירכה עד פרחה הרי תשעה והכפתורים אחד עשר דכתי׳ כפתור ופרח כן לששת הקנים הרי ששה ובמנורה שנים דכתיב כפתוריה מיעוט רבים שנים ועוד שלשה כפתורים אחרים שהיו במנורה שמהן יוצאים הששה קנים מצדיה כדכתיב וכפתור תחת שני הקנים ממנה מתוך הכפתור היו נמשכים הקנים משני צידיה אילך ואילך וכפתור וכפתור הרי י&quot;א ושלש רגלים היו לה דירכה היא הרגל של מטה העשוי כמין תיבה וג׳ הרגלים יוצאים ממנה ולמטה וכל הגביעים וכפתורים ופרחים היו משוקדים מצויירים כשקדים בעשייתן דכתיב ארבעה גביעים משוקדים כפתוריה ופרחיה והוא אחד מן המקומות שאין להם הכרע שאין ידוע אם הגביעים משוקדים אם כפתוריה ופרחיה משוקדים ולהכי עבדינן לכולהו משוקדים וגביעי׳ וכפתורים ופרחים דששה קני מנורה קשיא דמשמע דאגביעים לחוד קאי משוקדים דכתיב שלשה גביעים משוקדי׳ והדר כתי׳ בקנה האחד [כפתו׳] ופרח ונראה כפי׳ התוספות פרק הוציאו לו דהאי דאין לו הכרע היינו משום דאיכא אתנחתא בגביעים ובמנורה ארבעה גביעים ומשמע משוקדים כפתוריה ופרחיה ובקרא דשלשה גביעים מוכח דמשוקדים לא קאי אלא אגביעים דכתיב שלשה גביעים משוקדים ולהכי אין לו הכרע והשתא איפשר לומר דכיון דמהאי טעמא הוא דאין לו הכרע אם כן עבדינן לכולהו דקני מנורה נמי משוקדים כיון דאין הכרע אמשוקדים דמנורה אי הוו משוקדים כולהו אי לא דאי תימא דמשוקדים דמנורה לא קאי אלא אכפתוריה ופרחיה בשלשה גביעים נמי קרא דמשוקדים בקנה הא׳ כפתור ופרח איהו דחיק ואוקי אנפשיה דקאי משוקדים אסופיה דקרא דכפתור ופרח דמ&quot;ש מנורה גופא מקני מנורה דעבדינן משוקדים לכפתורים ופרחים דידה ולא דקני׳ וכי היכי דהוו גביעים כפתורים ופרחים במנורה גופא הכא נמי הוו בקנים דידה ולהכי אי כולהו גביעים כפתורים ופרחים דמנורה בעו משוקדים משום דאין הכרע אהיכא קאי הכא נמי כולהו דקנים בעו משוקדים דמ&quot;ש הני מהני דקרא דידהו נמי לא קאי משוקדים בהדיא בגביעים לחוד כדפי׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכולם </strong> מעכבים זה את זה אפילו חסר אחד מן השנים וארבעים דהויה כתיב בהו גביעיה כפתוריה ופרחיה ממנה יהיו משמע לעכב והיינו כשבאה זהב אבל אם עשאוה משאר מיני מתכות לא מעכבי דכתיב זהב טהור וגו׳ גביעיה כפתוריה ופרחיה ממנה יהיה ודרשינן הכי באה זהב באה גביעים כפתורים ופרחים אינה באה זהב אינה באה גביעים וגו׳ ושאר מיני מתכות מרבינן להו בכלל ופרט דכתיב ועשית מנורה כלל דמשמע מכל דבר זהב טהור פרט תעשה המנורה חזר וכלל ואי אתה דן אלא כעין הפרט מה הפרט מפורש של מתכת אף כל של מתכת וכן של זהב בעינן ככר עם נרותיה ומקשה ושאר מיני מתכות אין מקפידין על משקלה דכתיב ככר זהב טהור יעשה אותה באה זהב באה ככר אינה באה זהב אינה באה ככר ואם היתה חלולה כשרה דלא קפיד קרא אלא אמקשה. ואין עושין אותה לעולם מן הגרוטאות זהב שבור דמקשה מקשה כתיב תרי זימני בויקחו לי תרומה לעכב דמקשה משמע חתיכה אחת כדמתרגמינן נגיד משוך שנמשך הכל מחתיכה אחת בין עשאה זהב בין שאר מיני מתכות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:6:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלקחים </strong> והמחתות וכלי השמן אינם מכלל הככר דכתיב אותה למעט מלקחים ומחתות וכתיב את כל הכלים לרבות נרותיה שהם מגופה שהרי נאמר במנורה זהב טהור ולא היה צריך לאומרו במלקחים ומחתות אלא מפני שלא היו מכלל הככר והרי שלא נאמר נרותיה זהב טהור מפני שהם מכלל הככר שהם קבועים במנורה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבעת </strong> קני מנורה מעכבין זה את זה דהויה כתיב בהו דמשמע לעכב דכתיב ירכה וקנה וגו׳ יהיו וכתיב כפתוריהם וקנותם ממנה יהיו ושבעה נרותיה נמי מעכבין בין היתה של זהב בין של שאר מיני מתכות איפשר משום דכתיב נרותיה תרי זימני בחד קרא משמע לעכב. וכל הנרות קבועים בקנים דכיון דהוו באות מן הככר כדילפינן הוו מקשה מחוברים לה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:8:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וששה </strong> הנרות פניהם לנר האמצעי שעל קנה המנורה והנר האמצעי כנגד קדש הקדשים והוא נקרא נר מערבי דכתיב אל מול פני המנורה שהיא הנר האמצעי יאירו שבעת הנרות הששה נרות היו פונים אל מול האמצעי הפתילות שבהם והאמצעי עצמו לא היה נוטה אל אחד מהצדדין ומאיר אל מול עצמו הוא וכתיב ביה יערוך אותו אהרן לפני ה׳ שהיה כנגד קדש הקדשים שהשלשה צפוניים פונים לדרום והדרומיים לצפון ואין שום אחת מהם פונה לצד ההיכל שהוא לפני השם אלא הנר האמצעי בלבד ונמצא שעליו כתוב יערוך אותו לפני ה׳ וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גובה </strong> של מנורה י&quot;ח טפחים שלשה טפחים ירכה ופרחה שמנה טפחים חלק בין חמשה מקומות טפח שבו גביע כפתור ופרח ג׳ טפחים מכפתר כפתר כפתר לששת הקנים היוצאים ממנה ושלשה טפחים לשלשה גביעים תשלום הארבעה כפתר ופרח הרי שמנה עשר.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השלחן </strong> היה ארכו שנים עשר טפח ורחבו ששה טפחים כדכתיב אמתים ארכו אמה רחבו אמה סתם שהיא בינונית בת ששה טפחים והיה מונח ארכו לארך הבית ורחבו לרוחב הבית וכן שאר כל הכלים חוץ מן הארון שהיה ארכו לרוחב הבית והיו הבדים דוחקים את הפרכת ובולטים ונראים כשני דדי אשה כדכתיב בין שדי ילין ומנא לן דבדיו לפותיא דארון הוו יתבי ולא לארכו דאי הוו לארכו לא הוו בין בד לבד אלא שתי אמות ומחצה כרחבו של ארון ותרי גברא באמתא ופלגא לא מסתגי להו ומנ&quot;ל דבארבעה הוו דרו ליה דכתיב ונסעו הקהתים תרי נושאי המקדש נמי תרי והקימו הלויים את המשכן כשהיו רוצים לחנות עד בוא אלו נושאי הארון וכן נרות המנורה היו בין צפון לדרום ולא היה לפניהם שהוא נגד קדשי הקדשים אלא נר האמצעי כדאמר׳ מדכתיב יערוך אותו אהרן וגו׳ לפני ה׳ דקאי אנר האמצעי וכיון דגלי קרא בארון ומנורה שיהו מונחים בין צפון לדרום משמע דשאר כלים היו מונחין כדרכן ארכן ורחבן לאורך ורוחב הבית דארון ומנורה הוו כשני כתובין הבאים כאחד ואין מלמדי׳ דלא קיימא כמ&quot;ד מנורה מזרח ומערב ולא כמ&quot;ד שלחן צפון ודרום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הסניפין </strong> שסומכין בהם שתי המערכות מכאן ומכאן הם קשותיו שמקשה את הלחם ומחזקו שלא ישבר. מנקיותיו אלו הקנים שמנקין הלחם מעיפוש אשר יוסך בהם זהב טהור שמסככין בהם את הלחם על הלחם מסככין אותם בין חלה לחברתה והבזיכין הם כפותיו והדפוסין שעושין בהם הלחם הם קערותיו ומנין אלו הכלים לא פחות משנים כשני בזיכין דכתיב כפותיו מיעוט רבים שנים ולא יותר מעשרים ושמנה קנים כפי מה שהיו צריכין ללחם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:16:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:16:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושתי </strong> שלחנות היו באולם ושל זהב נותנים לחם הפנים ביציאתו דמעלין בקדש ולא מורידין דהוי דאוריתא כדילפינן ממחתות החטאים דעשו אותם רקועי פחים ציפוי בתחלה תשמישי מזבח ועכשיו גופו של מזבח.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:17:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מזבח </strong> הקטרת היה אמה על אמה כדכתי׳ אמה ארכו ואמה רחבו רבוע ואמתים קומתו והוא נתון בהיכל מכוון בין צפון לדרום משוך בין השלחן והמנורה לחוץ דכתיב ביה ונתת אותו לפני הפרכת אשר על ארון העדות שמא תאמר משוך מכנגד הארון לצפון או לדרום תלמוד לומר לפני הכפרת מכוון כנגד ארון מבחוץ ומשוך קימעא כי היכי דליחזו שלחן ומנורה אהדדי דכתיב בהו ואת המנורה נכח השלחן ושלשתן היו מונחין משליש כל ההיכל ולפנים שהוא חצי ההיכל לצד קדש הקדשים מדכתיב מחוץ לפרכת לפני הפרכת משמע הצד שהוא לפניו וחוצה לו מיד.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכיור </strong> כמין דוד גדולה והוא מכלי הקדש כדכתיב ועשית כיור נחשת וגו׳ ומקדשים [ממנה] וכל דבר שיתקדש בכלי קדש אם לן נפסל דכלי קדש מקדשין דכתיב כל אשר יגע בהם יקדש ונפסל בלינה כמזבח כדילפינן בדוכתא לקמן ולכך עשו מוכני שהוא חול כדי שלא יפסלו המים כדאמ׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-4">Chapter 4</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבן </strong> היתה בקדש הקדשים במערבו דכתיב והאבן הזאת אשר שמתי מצבה יהיה בית אלהים ועליה היה הארון מונח ולפניו צנצנת המן דכתיב קח צנצנת אחת מלא העומר מן והנח אותו לפני ה׳ דהיינו לפני הארון כדכתיב ויניחהו אהרן לפני העדות למשמרת ומטה אהרן דכתיב השב את מטה אהרן לפני העדות למשמרת ונגנזו עם הארון ושמן המשחה ואורים ותומים נמי לא חזרו בבית שני.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:2:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בבית </strong> ראשון היה כותל מפסיק בין הקדש ובין קדש הקדשים דכתיב והבדילה הפרכת לכם בין הקדש ובין קדש הקדשים דבבית המקדש היה כותל בנין במקום פרכת ובבית שני נסתפקו אם היה עובי הכתל הזה ממדת הקדש או ממדת קדש הקדשים ולכך עשו שתי פרכת לקלוט ביניהם אויר המחיצה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> ההיכל שהוא קדש הקדשים והקדש והאולם הם מאה אמה על [מאה] אמה ברום מאה אמה אורך קדש הקדשים עשרים על עשרים אמה ואורך הקרש שהוא ההיכל ארבעים אמה על עשרים דכתיב וכן תעשו לדורות כתבנית משכן של מדבר דרחבו עשר אמות דרוחב שמנה קרשים של צד מערב י&quot;ב אמות אמה וחצי האמה רוחב הקרש האחד דלשתי אמות של עובי קרשי צפון ודרום נשארו עשר והאורך עשרים קרש שהם שלשים אמה כדכתיב בקרא הרי שהיה המשכן רחבו שליש ארכו וקדש הקדשים בפני עצמו היה מרובע עשר על עשר והקרש עשרים על עשר רוחב וכן בבית עולמים קדש הקדשים עשרים על עשרים מרובע וההיכל ארבעים על עשרים שהאורך כפל הרוחב שפירוש וכן תעשו לדורות אינו כתבנית ממש אלא שיהיו מתיחסים ארך ורוחב של בית עולמים לאורך ורוחב של משכן כדפרישי׳ ובגובה לא היה מתיחס בית עולמים למשכן שלא היה גבוה אלא עשר אמות נראה דהכי גמירי לה דלא קאי וכן תעשו לדורות אלא אאורך ורוחב לא אגובה דגובה קרשי המשכן לא הוו איפשר להיות יותר מעשר אמות גובה אבל בבנין בית עולמים כל כמה דהוה גבוה טפי מעלי כיון דהוה איפשר וכל שאר הבנין של בית עולמים עד תשלום מאה על מאה. האולם ויציעים ותאים אף על גב דבמשכן לא הוו דוגמתן אפי׳ הכי על פי נביאים נמסר דוגמתן לדוד כל מלאכת התבנית ארך ורחב ורום כדכתיב ויתן דוד לשלמה בנו את כל תבנית האולם ואת גנזיו ועליותיו וחדריו הפנימי ואת הכפרת וכתיב הכל בכתב מיד ה׳ עלי השכיל אותי לימד וקדושת כל שהיה סביב ההיכל שהוא ארך ששים על עשרים נראה דהוי כקדושת עזרה דהא מכלל ארך ורוחב העזרה הוו:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-5">Chapter 5</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-5-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 5:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 5:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הר </strong> הבית והוא הר המוריה היה חמש מאות אמה על חמש מאות אמה כדכתיב ביחזקאל מדד רוח הקדים חמש מאות קנים בקנה המדה סביב וכן צפון ודרום ומערב וכתיב לארבע רוחות מדדו חומה לי סביב סביב אורך חמש מאות ורוחב חמש מאות להבדיל בין הקדש לחול הרי שהיה מוקף הכל והיה קדש לגבי ירושלם שאין זבין וזבות נדות [ויולדות] נכנסות לשם שכל הר הבית מקודש כדכתיב בהר ה׳ יראה דמשמע דכל ההר הוא מקודש לה׳ כמחנה שכינה ולויה ונראה דקדושת הר הבית שוי לה אברהם אבינו שקראה הר וקדושת העזרה יצחק אבינו שקראה שדה דכתיב ויצא יצחק לשוח בשדה והעזרה היא כשדה שאינה מכוסה וקדושת הבית עצמו יעקב אבינו שקראו בית דכתיב אין זה כי אם בית אלהים וכל הר הבית הזה כפין על גבי כפין בנוי מתחתיו מפני אהל הטומאה ולפנים מן החיל העזרה שהיתה קפ&quot;ז על קל&quot;ה רחוקה מדרום הר הבית יתר מכל הרוחות וקרובה מן המערב ולא הוצרכו אלא לשיעור זה במקום זה ולכך לא קדשו יותר בשיירי מנחה וכל מה שבתוך ארך ורחב זה הוי מחנה שכינה וכל בנייני ההיכל כולו מאה אמה על מאה אמה הוי תוך אורך ורוחב העזרה שהיא קפ&quot;ז על קל&quot;ה כדאמרינן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-6">Chapter 6</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדש </strong> כלו לא היה במישור ולא רצו לישר אותו להנמיך הגבוה ולהגביה השפל משום דאיקרי הר ה׳ משמע דבעודו הר הוא דקדיש ומפני זה עשו כותל שע&quot;ג שער המזרחי של הר הבית נמוך כדי שיהא העומד בהר המשחה רואה פתח ההיכל כשמזה מדם הפרה נוכח ההיכל דכתיב והזה אל נוכח פני אהל מועד וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגגות </strong> והעליות לא נתקדשו בין גגי ירושלם בקדושתה לקדשים קלים בין גגי העזרה לקדשי קדשים. היו בנויות בחול ופתוחות לקדש תוכן קודש לענין אכילת קדשי קדשים דהתורה רבתה חצרות הרבה אצל אכילה אחת דכתיב בחצר אהל מועד יאכלוה דכיון דכתיב במקום קדוש אמאי הדר כתב בחצר אהל מועד יאכלוה דהיינו חצר אהל מועד היינו במקום קדוש אלא לרבות חצרות הרבה כדאמ׳ אבל לא לשחוט שם קדשים קלים דהא בעינן לפני אהל מועד למעוטי צדי צדדים והנכנס לשם בטומאה פטור דדוקא לאכילה הוא דאיתרבו כדאמ׳ דלטומאה ליכא חיובא אלא באורך קפ&quot;ז על רוחב קל&quot;ה. המחילות הפתוחות לעזרה קדש החלונות ועובי החומות בין לאכילת קדשי קדשים בין לטומאה דאף על פי שהלכו מבפנים בשיירי מנחה ובשיר של פגעים בקדושת עזרה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:10:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מוסיפין על העיר או על העזרות אם רצו למשוך העזרה או חומת ירושלם עד מקום שירצו אלא על פי מלך ועל פי נביא ואורים ותומים וסנהדרין של ע&quot;א דכתיב ככל אשר אני מראה אותך את תבנית המשכן ואת תבנית כל כליו וכן תעשו קרא יתירא למדרש לדורות ובימי משה שהוא מלך ונביא ואחיו כהן גדול ואורים ותומים ושבעים זקנים דוכן תעשו משמע דאתא לרבויי כל&#160;הנך&#160;לדורות. ובתוספת העיר עושין בית דין שתי תודות ולוקחים לחם חמץ שבהם והולכין בית דין אחר שתי התודות שהולכות זו אחר זו ועומדין בכלי השיר על כל פנה ופנה ועל כל אבן ואבן דכתיב בספר עזרא דקאמר נחמיה כשנבנית חומת ירושלם ובא לקדש את העיר ואעמידה שתי תודות גדולות אצל החומה מבחוץ ותהלוכות לימין מעל החומה להקיף את העיר בתהלוכות שהלכו דרך ימין כשפניהם לחלל העיר הלכו תמיד לצד ימינם עד שהקיפו את כולה ומדקאמר גדולות משמע דהיינו גדולות שבתודה ואשמועינן דשל חמץ היו שהן גדולות שבלחמי תודה דכתיב על חלות לחם חמץ יקריב וגו׳ כנגד מצה הבא חמץ שיהא סלת במין החמץ כנגד שלשה מינין שבמצה ובמצה שלשה מינין כדכתיב על זבח התודה חלות מצות וגו׳ הרי מין אחד ורקיקי מצות הרי שני מינין סלת מורבכת חלות הרי שלשה מינין ובכל מין עשר חלות כדילפינן התם אלמא חלות החמץ גדולות כשלש של מצה והליכת בית דין אחריהם דכתיב וילך אחריהם הושעיא וחצי שרי יהודה ואוכלין שם לחם אחד ועל פי נביא אוכלין את זו ושורפין זו דחגי זכריה ומלאכי היו שם ועל פיהם ברוח הקדש עשו ואין טעם בדבר ונראה דעד השתא גמרא גמירי לה הכי עד דאתא נחמיה. ואם הוסיפו על ירושלם מקדשין אותה בשיירי מנחה בירושלם מה ירושלם דבר הנאכל בה ויוצא ממנה נפסל אף בדבר הנאכל בה ויוצא ממנה נפסל דהיינו שיירי מנחה ובחמץ כתודה לא איפשר אלא במצה ואוכלין אותן בסוף המקום שקדשו בירושלם דהכי גמירי לה כדאמ׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> מקום שלא נתקדש בכל אלו כסדר הזה אין קידוש גמור ואי משום קדושת עזרא שהיתה בלי מלך ואורים ותומים לא היתה אלא זכר בעלמא דקדושה ראשונה שקדשה שלמה לעזרה וירושלם קדשה לשעתה ולעתיד לבא דקדושתן מפני השכינה ושכינה אינה בטלה כדכתיב והשמותי את מקדשכם אף על פי ששוממין בקדושתן הן עומדים אבל קדושת הארץ לתרומה ומעשרות ושביעית מפני שהוא כיבוש רבים והרי נתבטל ועזרא בחזקה הוא שקדש כל המקומות שהחזיקו בהם עולי בבל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-6">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Chapter 7</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קה </strong> ליראה מן המקדש דכתיב ומקדשי תיראו ולא מן המקדש אתה ירא אלא ממי שצוה על יראתו וכתיב והיה מחניך קדוש קדשהו מכאן אמרו לא יכנס אדם להר הבית במקלו וכו׳ וכתיב של נעליך מעל רגלך כי המקום אשר אתה עומד עליו קודש הוא משמע דבמקום קדוש אסור להכנס במנעל וכן בכל כיוצא בו וכל הדברים שאמר שלא יעשנו במקדש הם ליראה מן המקדש ונראה דישיבה בעזרה נמי הוי בכלל יראת מקדש אלא שהותרה למלכי בית דוד כדכתיב ויבא המלך דוד וישב לפני ה׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:7:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובזמן </strong> זה גם כן חייב אדם במוראו דהא קדשה לעתיד כדאמר׳ וכתיב הכא את שבתותי תשמורו ומקדשי תיראו מה שמירת שבת לעולם אף יראת מקדש לעולם שאף על פי שחרב בקדושתו עומד ומה שאסור חוץ למקדש נראה דהוי דרבנן דאי מדאוריתא אפילו בזמן הזה אסיר דיראת מקדש לעולם כדילפינן ואיסור עשיית בית תבנית היכל וגו׳&#160;איפשר דהוי נמי מדרבנן כל שלא איכוון לקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלש </strong> מחנות היו במחנה ישראל שהוא ארבע מחנות של דגלים ומחנה לויה דכתיב סביב למשכן יחנו ומחנה שכינה והוא מפתח חצר אהל מועד ולפנים וכנגדן לדורות מפתח ירושלם עד הר הבית מחנה ישראל מפתח הר הבית עד שער ניקנור מחנה לויה ומן השער ולפנים מחנה שכינה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:12:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> ארץ ישראל מקודשת מכל הארצות שמביאין ממנה העומר ושתי הלחם והבכורים מה שאין מביאין כן משאר ארצות דכתיב בעומר וקצרתם את קצירה ולא קציר חוצה לארץ והבאתם את עומר וכתיב בשתי הלחם ממושבותיכם תביאו לחם תנופה וכתיב בבכורים ולקחת מראשית כל פרי האדמה אשר תביא מארצך.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:13:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיירות </strong> המוקפות חומה מקודשות משאר הארץ שמשלחין מתוכה מצורעין ואיפשר דילפינן לה מדכתיב והשליכו אתהן אל מחוץ לעיר ודרשינן אתהן חוץ לעיר ולא אדם מצורע חוץ לעיר אלא חוץ לעיר המוקפת חומה משמע דמוקפת חומה קדשה לכך מדכתי׳ עיר סתם דלא הויא מוקפת חומה וכתיב אותם למעוטי ולהכי הוא דחשיב מחנה ישראל כיון דמוקפות חומה מימות יהושע הוו קדשי להא מילתא אבל לא לענין אכילת קדשים ונראה דכיון דמדאוריתא הוו מחנה ישראל עיירות המוקפות חומה אפי׳ לענין קדשים קלים הנאכלי׳ בכל מחנה ישראל נמי אי לאו משום דאיכא הפסק בין ירושלם לעיירות המוקפות חומה ונפסלין ביוצא אבל אי הוו סמוכות זו לזו הוו נאכלין כמחנה דמדבר דלא הוה הפסק מחנות והיו נאכלין בכל מחנה ישראל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:14:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ירושלם </strong> מקודשת משאר עיירות המוקפות חומה דאוכלים בה קדשים קלים ובמוקפת חומה לא דאי איפשר להוציאם כדאמרינן ומעשר שני דכתיב והבאתם שמה וגו׳ וכתיב לא תוכל לאכול בשעריך וגו׳ דמשמע דאפילו בעיירות המוקפות חומה דחשיבי מחנה ישראל לשילוח מצורעים אין יכולין לאכול שם מעשר שני ואין הבית נחלט בה דלא נתחלקה לשבטים ומאן קא מקנה ליה ואינה מטמאה בנגעים דכתיב ונתתי נגע צרעת בבית ארץ אחוזתכם ארץ אחוזתכם מיטמאה בנגעים ולא ירושלם מיטמאה בנגעים ואינה נעשית עיר הנדחת ולא מביאה עגלה ערופה דכתיב עירך וירושלם לא נתחלקה לשבטים וכתיב בעגלה ערופה כי ימצא חלל באדמה אשר ה׳ אלהיך נותן לך לרשתה (וירושלם לא נתחלקה לשבטים) ונראה דמהכא הוא דילפינן בעלמא דירושלם לא נתחלקה לשבטים לדידן דקיימא לן הכי דכיון דכתיב עירך וכתיב אשר ה׳ אלהיך נותן לך לרשתה משמע דאתא למעט מה שאינו עיר מיוחד לך ואינה ירושה מיוחדת לך אלא לכל ישראל והיינו ירושלם.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:15:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:15:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הר </strong> הבית מקודש הימנה דהוה מחנה לויה שאין זבין וזבות נדות ויולדות נכנסות לשם דכתיב וישלחו מן המחנה כל צרוע וכל זב וכל טמא לנפש וכתיב במצורע בדד ישב מחוץ למחנה מושבו שאין טמא אחר משולח שם זבים וטמאי מתים למדנו ששלוחו של מצורע קשה מכלן יכול יהו זבין משתלחין חוץ למחנה אחת תלמוד לומר מחניהם תן מחנה לזה ומחנה לזה מדלא כתיב מחנם משמע מחנה לכל אחד ואחד דתרתי מחנות כתיבי וישלחו מן המחנה מחוץ למחנה תשלחו ליתן מחנה שלישית למצורע ומדכתיב בדד ישב כדאמרינן משמע דמצורע חמור מכלן ומדכתיב מחניהם משמע תן מחנה לכל אחד מצורע וזב וטמא מת דכולן חמורין זה מזה בטומאותיהן מצורע ואחר כך זב ואחר כך טמא מת דאי כולהו שוין לענין שילוח לכתוב שלוח בקל ואנא ידענא כ&quot;ש דחמור ומדכתבינהו כולהו משמע שילוח של זה לא כשילוחו של זה ומדכתיב ויקח משה את עצמות יוסף עמו במחיצתו דהוא מחנה לויה משמע דטמא מת עצמו אינו משולח אלא ממחנה שכינה אם כן זב דחמיר טפי משולח חוץ למחנה לויה ומדזב הוא במחנה ישראל משמע דמצורע משולח ממנו כדי שיהיה בדד כדאמר׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-18-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:18:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:18:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עזרת </strong> ישראל מקודשת ממנה דהוה מחנה שכינה ואין מחוסר כיפורים נכנס לשם כדילפינן מדכתיב וטהרה מכלל דלא נגמרה טהרתה וטמא שנכנס לשם חייב כרת דמשכן ומקדש כתיב מעלת עזרת כהנים נראה דהויא מדרבנן דאי מדאוריתא הא איפשר לזר לשחוט בעזרת ישראל ולא היה צריך ליכנס בעזרת כהנים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-20-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:20:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:20:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין </strong> האולם ולמזבח מקודש מעזרה שאין בעלי מומין ופרועי ראש נכנסין לשם דכתיב כל אשר בו מום לא יקרב וכתיב ראשיכם אל תפרעו לאהרן ולבניו שהיו במקדש.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-21-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:21:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-21-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:21:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ההיכל </strong> מקודש ממנו שאין נכנס לשם אלא רחוץ ידים ורגלים דכתיב בבואם אל אהל מועד ירחצו מים או בגשתם אל המזבח לשרת למזבח לשרת בעינן רחיצה אבל להיכל אפילו בלא שירות בעינן רחיצה אם נכנס להשתחויה ואפילו ברחיצה מיחייב אכתי אם נכנס ביאה ריקנית.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-22-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:22:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-22-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:22:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית </strong> קדש הקדשים מקודש ממנו שאין נכנס לשם אלא כהן גדול ביום הכיפורים ד׳ פעמים כדילפינן בדוכתא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-23-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:23:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-23-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:23:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מקום </strong> שהיה בעליה מכוון על קדש הקדשים אין נכנסין לשם אלא פעם אחד בשבוע דאף על גב דעליות לא נתקדשו כדאמ׳ לעיל עליות היכל נתקדשו כדכתיב ועליותיו וחדריו וכתיב הכל מיד ה׳ עלי השכיל וקדושתה היא שלא יכנסו שם ללא לצורך דהא קדושת היכל נמי היא שלא יכנסו ללא לצורך. כשנכנסין להיכל להוציא את הטומאה ולתקן את ההיכל מצוה בתמימים אין תמימים יכנסו בעלי מומין דכתיב אך אל הפרכת לא יבא בבעלי מומין אך חלק דאכין ורכין מיעוטין דשרי לעיולי למלאכת ריקועין שמחפין בהם בית קדש הקדשים מתוכו וכן בשאר כיון דלא איפשר בלאו הכי דליכא אחריני נכנסין כדגלי קרא בבעל מום בעל מום וטמא יכנס טמא שהטומאה דחויה בצבור דכתיב מועדו ואפילו בטומאה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-7">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-8">Chapter 8</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קו </strong> לשמר את המקדש דכתיב ושמרו את משמרת אהל מועד ושמירה זו אינה מפחד אויבים אלא כבוד לו ושמירה זו מצותה כל הלילה כדרך השומרים והשומרים הם הכהנים הלוים דכתיב ואתה ובניך אתך כלומר אתם תהיו שומרים לו וכתיב והחונים לפני אהל מועד וגו׳ משה אהרן ובניו משה לוי אהרן ובניו כהנים:<br><strong> אזהרת ר </strong> שלא להשבית שמירתו דכתיב ושמרתם את משמרת הקדש ולשון שמירה אזהרה היא דהשמר פן ואל אינו אלא לא תעשה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות </strong> שמירתו שיהיו הכהנים שומרים מבפנים והלוים מבחוץ. הכהנים שומרים בשלשה מקומות דכתיב אהרן ובניו שומרי משמרת המקדש אהרן בחד מקום ובניו בשני מקומות דכתיב שומרים משמרת למשמרת הרבה שמירות ואי בחד מקום הוו כולהו אם כן לא הוי אלא שמירה אחת ובבית הניצוץ ובבית המוקד ובבית אבטינס היו שומרים שעליות לא נתקדשו בקדושת עזרה ובית המוקד חציה בחול ושם היו יושבין והיו במקום גבוה שהכהנים שומרים מלמעלה דכתיב וילוו עליך וישרתוך בעבודתך הכתוב מדבר דהיינו שמירה שהם שומרים כמו כן בא הכתוב ולימד שילוו עליך שיהיו טפלין לך בשמירתן שאינם שומרים בגובה כמותך אלא למטה אצל השערים דלכך קרי להו בקרא שוערים ושמירת לוים נמי ילפינן מדכתיב והחונים לפני המשכן קדמה לפני אהל מועד מזרחה משה והדר אהרן ובניו שומרי משמרת הקדש דהא קרא לא חשיב משה בהדי כהנים דמדכתיב והחונים בראש הפסוק שמע מינה הכי מידריש החונים לפני המשכן קדמה משה והדר אהרן דאם היה משה עמהם לא היה לו לכתוב והחונים אלא לפני המשכן קדמה משה אהרן ובניו ושיהיו הלוים שומרים בכ&quot;א מקומות ילפי׳ מדכתי׳ בדברי הימים למזרחה ליום ששה לצפונה ליום ארבעה לנגבה ליום ארבעה לאסופי שנים שנים לפרבר למערב ארבעה למסלה שנים ותלתא מינייהו כהנים וכ&quot;א לויים דבכ&quot;ד מקומות נקראו כהנים לויים.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:11:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וסמוך </strong> לעליית עמוד השחר בודקין את כל העזרה שזה מכלל השמירה ואומרים שלם הכל שלם והעמידו עושה חביתין להחם חמין לרבוכה של מנחת כהן גדול הנעשית במחבת דכתיב מורבכת תביאנה מלמד שנעשיה ברותחין כל צרכה. ויש בענייני הלכות אלו דברים מדרבנן משום סייג לתורה סמוכים אלא תסור ואקרא דושמרתם את משמרתי עשו משמרת למשמרתי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-8">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-the-chosen-temple.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-the-chosen-temple.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-the-chosen-temple.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>

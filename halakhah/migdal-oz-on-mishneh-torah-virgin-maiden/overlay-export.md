@@ -1,0 +1,29 @@
+| work_id | work_title | source_ref | anchor_id | translation | translator_notes | done_status | updated_at |
+|---|---|---|---|---|---|---|---|
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:1:1 | migdal-oz-on-mishneh-torah-virgin-maiden-1-1-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:2:1 | migdal-oz-on-mishneh-torah-virgin-maiden-1-2-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:2:2 | migdal-oz-on-mishneh-torah-virgin-maiden-1-2-2 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:3:1 | migdal-oz-on-mishneh-torah-virgin-maiden-1-3-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:6:1 | migdal-oz-on-mishneh-torah-virgin-maiden-1-6-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:7:1 | migdal-oz-on-mishneh-torah-virgin-maiden-1-7-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:7:2 | migdal-oz-on-mishneh-torah-virgin-maiden-1-7-2 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:1 | migdal-oz-on-mishneh-torah-virgin-maiden-1-8-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:2 | migdal-oz-on-mishneh-torah-virgin-maiden-1-8-2 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:3 | migdal-oz-on-mishneh-torah-virgin-maiden-1-8-3 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:4 | migdal-oz-on-mishneh-torah-virgin-maiden-1-8-4 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:5 | migdal-oz-on-mishneh-torah-virgin-maiden-1-8-5 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:1:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-1-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:9:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-9-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:12:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-12-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:13:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-13-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:14:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-14-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:15:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-15-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:15:2 | migdal-oz-on-mishneh-torah-virgin-maiden-2-15-2 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:16:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-16-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:17:1 | migdal-oz-on-mishneh-torah-virgin-maiden-2-17-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 2:17:2 | migdal-oz-on-mishneh-torah-virgin-maiden-2-17-2 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 3:1:1 | migdal-oz-on-mishneh-torah-virgin-maiden-3-1-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 3:3:1 | migdal-oz-on-mishneh-torah-virgin-maiden-3-3-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 3:4:1 | migdal-oz-on-mishneh-torah-virgin-maiden-3-4-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 3:5:1 | migdal-oz-on-mishneh-torah-virgin-maiden-3-5-1 |  |  | not_done |  |
+| migdal-oz-on-mishneh-torah-virgin-maiden | Migdal Oz on Mishneh Torah, Virgin Maiden | Migdal Oz on Mishneh Torah, Virgin Maiden 3:6:1 | migdal-oz-on-mishneh-torah-virgin-maiden-3-6-1 |  |  | not_done |  |

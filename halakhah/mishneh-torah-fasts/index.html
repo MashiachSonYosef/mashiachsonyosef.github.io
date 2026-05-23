@@ -1,0 +1,2345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mishneh Torah, Fasts</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Mishneh Torah, Fasts</h1>
+        <p class="meta">84 total source units | imported 2026-05-22</p>
+        <p class="meta source-citation">Hebrew version: Torat Emet 363 | Version source: <a href="http://www.toratemetfreeware.com/index.html?downloads">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>781 matched</strong> / 1717 unique forms.</p>
+        <div class="license-notice lexical-downloads">
+          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/sitewide/work-downloads.csv" download>Per-work download index CSV</a><a class="export-button" href="../../data/public-lexical/all-claims.csv" download>All lexical claims CSV</a></p>
+        </div>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Mishneh Torah, Fasts <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Mishneh Torah, Fasts <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-mishneh-torah-fasts-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-1" title="Mishneh Torah, Fasts 1:1">1:1</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-2" title="Mishneh Torah, Fasts 1:2">1:2</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-3" title="Mishneh Torah, Fasts 1:3">1:3</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-4" title="Mishneh Torah, Fasts 1:4">1:4</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-5" title="Mishneh Torah, Fasts 1:5">1:5</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-6" title="Mishneh Torah, Fasts 1:6">1:6</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-7" title="Mishneh Torah, Fasts 1:7">1:7</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-8" title="Mishneh Torah, Fasts 1:8">1:8</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-9" title="Mishneh Torah, Fasts 1:9">1:9</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-10" title="Mishneh Torah, Fasts 1:10">1:10</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-11" title="Mishneh Torah, Fasts 1:11">1:11</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-12" title="Mishneh Torah, Fasts 1:12">1:12</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-13" title="Mishneh Torah, Fasts 1:13">1:13</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-14" title="Mishneh Torah, Fasts 1:14">1:14</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-15" title="Mishneh Torah, Fasts 1:15">1:15</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-16" title="Mishneh Torah, Fasts 1:16">1:16</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-1-17" title="Mishneh Torah, Fasts 1:17">1:17</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-mishneh-torah-fasts-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-1" title="Mishneh Torah, Fasts 2:1">2:1</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-2" title="Mishneh Torah, Fasts 2:2">2:2</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-3" title="Mishneh Torah, Fasts 2:3">2:3</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-4" title="Mishneh Torah, Fasts 2:4">2:4</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-5" title="Mishneh Torah, Fasts 2:5">2:5</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-6" title="Mishneh Torah, Fasts 2:6">2:6</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-7" title="Mishneh Torah, Fasts 2:7">2:7</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-8" title="Mishneh Torah, Fasts 2:8">2:8</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-9" title="Mishneh Torah, Fasts 2:9">2:9</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-10" title="Mishneh Torah, Fasts 2:10">2:10</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-11" title="Mishneh Torah, Fasts 2:11">2:11</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-12" title="Mishneh Torah, Fasts 2:12">2:12</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-13" title="Mishneh Torah, Fasts 2:13">2:13</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-14" title="Mishneh Torah, Fasts 2:14">2:14</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-15" title="Mishneh Torah, Fasts 2:15">2:15</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-16" title="Mishneh Torah, Fasts 2:16">2:16</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-17" title="Mishneh Torah, Fasts 2:17">2:17</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-2-18" title="Mishneh Torah, Fasts 2:18">2:18</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-mishneh-torah-fasts-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-1" title="Mishneh Torah, Fasts 3:1">3:1</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-2" title="Mishneh Torah, Fasts 3:2">3:2</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-3" title="Mishneh Torah, Fasts 3:3">3:3</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-4" title="Mishneh Torah, Fasts 3:4">3:4</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-5" title="Mishneh Torah, Fasts 3:5">3:5</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-6" title="Mishneh Torah, Fasts 3:6">3:6</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-7" title="Mishneh Torah, Fasts 3:7">3:7</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-8" title="Mishneh Torah, Fasts 3:8">3:8</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-9" title="Mishneh Torah, Fasts 3:9">3:9</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-10" title="Mishneh Torah, Fasts 3:10">3:10</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-3-11" title="Mishneh Torah, Fasts 3:11">3:11</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 4</summary>
+                  <a class="toc-start" href="#chapter-mishneh-torah-fasts-text-4">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-1" title="Mishneh Torah, Fasts 4:1">4:1</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-2" title="Mishneh Torah, Fasts 4:2">4:2</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-3" title="Mishneh Torah, Fasts 4:3">4:3</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-4" title="Mishneh Torah, Fasts 4:4">4:4</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-5" title="Mishneh Torah, Fasts 4:5">4:5</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-6" title="Mishneh Torah, Fasts 4:6">4:6</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-7" title="Mishneh Torah, Fasts 4:7">4:7</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-8" title="Mishneh Torah, Fasts 4:8">4:8</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-9" title="Mishneh Torah, Fasts 4:9">4:9</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-10" title="Mishneh Torah, Fasts 4:10">4:10</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-11" title="Mishneh Torah, Fasts 4:11">4:11</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-12" title="Mishneh Torah, Fasts 4:12">4:12</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-13" title="Mishneh Torah, Fasts 4:13">4:13</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-14" title="Mishneh Torah, Fasts 4:14">4:14</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-15" title="Mishneh Torah, Fasts 4:15">4:15</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-16" title="Mishneh Torah, Fasts 4:16">4:16</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-17" title="Mishneh Torah, Fasts 4:17">4:17</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-18" title="Mishneh Torah, Fasts 4:18">4:18</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-4-19" title="Mishneh Torah, Fasts 4:19">4:19</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 5</summary>
+                  <a class="toc-start" href="#chapter-mishneh-torah-fasts-text-5">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-1" title="Mishneh Torah, Fasts 5:1">5:1</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-2" title="Mishneh Torah, Fasts 5:2">5:2</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-3" title="Mishneh Torah, Fasts 5:3">5:3</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-4" title="Mishneh Torah, Fasts 5:4">5:4</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-5" title="Mishneh Torah, Fasts 5:5">5:5</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-6" title="Mishneh Torah, Fasts 5:6">5:6</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-7" title="Mishneh Torah, Fasts 5:7">5:7</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-8" title="Mishneh Torah, Fasts 5:8">5:8</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-9" title="Mishneh Torah, Fasts 5:9">5:9</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-10" title="Mishneh Torah, Fasts 5:10">5:10</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-11" title="Mishneh Torah, Fasts 5:11">5:11</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-12" title="Mishneh Torah, Fasts 5:12">5:12</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-13" title="Mishneh Torah, Fasts 5:13">5:13</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-14" title="Mishneh Torah, Fasts 5:14">5:14</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-15" title="Mishneh Torah, Fasts 5:15">5:15</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-16" title="Mishneh Torah, Fasts 5:16">5:16</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-17" title="Mishneh Torah, Fasts 5:17">5:17</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-18" title="Mishneh Torah, Fasts 5:18">5:18</a></li>
+                    <li><a class="toc-unit" href="#mishneh-torah-fasts-5-19" title="Mishneh Torah, Fasts 5:19">5:19</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-mishneh-torah-fasts-text-1">Chapter 1</h4>
+          <section class="unit" id="mishneh-torah-fasts-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:1</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-1" aria-label="Copy link to Mishneh Torah, Fasts 1:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִזְעֹק וּלְהָרִיעַ בַּחֲצוֹצְרוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר. שֶׁנֶּאֱמַר <span class="source-small">(במדבר י ט)</span> &quot;עַל הַצַּר הַצֹּרֵר אֶתְכֶם וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת&quot;. כְּלוֹמַר כָּל דָּבָר שֶׁיָּצֵר לָכֶם כְּגוֹן בַּצֹּרֶת וְדֶבֶר וְאַרְבֶּה וְכַיּוֹצֵא בָּהֶן זַעֲקוּ עֲלֵיהֶן וְהָרִיעוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:2</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-2" aria-label="Copy link to Mishneh Torah, Fasts 1:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְדָבָר זֶה מִדַּרְכֵי הַתְּשׁוּבָה הוּא. שֶׁבִּזְמַן שֶׁתָּבוֹא צָרָה וְיִזְעֲקוּ עָלֶיהָ וְיָרִיעוּ יֵדְעוּ הַכּל שֶׁבִּגְלַל מַעֲשֵׂיהֶם הָרָעִים הוּרַע לָהֶן כַּכָּתוּב <span class="source-small">(ירמיה ה כה)</span> &quot;עֲוֹנוֹתֵיכֶם הִטּוּ&quot; וְגוֹ׳. וְזֶה הוּא שֶׁיִּגְרֹם לָהֶם לְהָסִיר הַצָּרָה מֵעֲלֵיהֶם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:3</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-3" aria-label="Copy link to Mishneh Torah, Fasts 1:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֲבָל אִם לֹא יִזְעֲקוּ וְלֹא יָרִיעוּ אֶלָּא יֹאמְרוּ דָּבָר זֶה מִמִּנְהַג הָעוֹלָם אֵרַע לָנוּ וְצָרָה זוֹ נִקְרָה נִקְרֵית. הֲרֵי זוֹ דֶּרֶךְ אַכְזָרִיּוּת וְגוֹרֶמֶת לָהֶם לְהִדַּבֵּק בְּמַעֲשֵׂיהֶם הָרָעִים. וְתוֹסִיף הַצָּרָה צָרוֹת אֲחֵרוֹת. הוּא שֶׁכָּתוּב בַּתּוֹרָה <span class="source-small">(ויקרא כו כז)</span> &quot;וַהֲלַכְתֶּם עִמִּי בְּקֶרִי&quot; <span class="source-small">(ויקרא כו כח)</span> &quot;וְהָלַכְתִּי גַּם אֲנִי עִמָּכֶם בַּחֲמַת קֶרִי&quot;. כְּלוֹמַר כְּשֶׁאָבִיא עֲלֵיכֶם צָרָה כְּדֵי שֶׁתָּשׁוּבוּ אִם תֹּאמְרוּ שֶׁהִיא קֶרִי אוֹסִיף לָכֶם חֲמַת אוֹתוֹ קֶרִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:4</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-4" aria-label="Copy link to Mishneh Torah, Fasts 1:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּמִדִּבְרֵי סוֹפְרִים לְהִתְעַנּוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר עַד שֶׁיְּרֻחֲמוּ מִן הַשָּׁמַיִם. וּבִימֵי הַתַּעֲנִיּוֹת הָאֵלּוּ זוֹעֲקִין בִּתְפִלּוֹת וּמִתְחַנְּנִים וּמְרִיעִין בַּחֲצוֹצְרוֹת בִּלְבַד. וְאִם הָיוּ בַּמִּקְדָּשׁ מְרִיעִין בַּחֲצוֹצְרוֹת וּבְשׁוֹפָר. הַשּׁוֹפָר מְקַצֵּר וְהַחֲצוֹצְרוֹת מַאֲרִיכוֹת. שֶׁמִּצְוַת הַיּוֹם בַּחֲצוֹצְרוֹת. וְאֵין תּוֹקְעִין בַּחֲצוֹצְרוֹת וְשׁוֹפָר כְּאֶחָד אֶלָּא בַּמִּקְדָּשׁ שֶׁנֶּאֱמַר <span class="source-small">(תהילים צח ו)</span> &quot;בַּחֲצֹצְרוֹת וְקוֹל שׁוֹפָר הָרִיעוּ לִפְנֵי הַמֶּלֶךְ ה׳&quot;:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:5</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-5" aria-label="Copy link to Mishneh Torah, Fasts 1:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תַּעֲנִיּוֹת אֵלּוּ שֶׁגּוֹזְרִין עַל הַצִּבּוּר מִפְּנֵי הַצָּרוֹת אֵינָן יוֹם אַחַר יוֹם. שֶׁאֵין רֹב הַצִּבּוּר יְכוֹלִים לַעֲמֹד בְּדָבָר זֶה. וְאֵין גּוֹזְרִין בַּתְּחִלָּה תַּעֲנִית אֶלָּא בְּשֵׁנִי בְּשַׁבָּת וּבַחֲמִישִׁי שֶׁלְּאַחֲרָיו וּבְשֵׁנִי שֶׁלְּאַחֲרָיו וְכֵן עַל הַסֵּדֶר הַזֶּה שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי עַד שֶׁיְּרֻחֲמוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:6</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-6" aria-label="Copy link to Mishneh Torah, Fasts 1:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֵין גּוֹזְרִין תַּעֲנִית עַל הַצִּבּוּר לֹא בְּשַׁבָּתוֹת וְלֹא בְּיָמִים טוֹבִים. וְכֵן אֵין תּוֹקְעִין בָּהֶן לֹא בְּשׁוֹפָר וְלֹא בַּחֲצוֹצְרוֹת וְלֹא זוֹעֲקִים וּמִתְחַנְּנִים בָּהֶם בַּתְּפִלָּה. אֶלָּא אִם כֵּן הָיְתָה עִיר שֶׁהִקִּיפוּהָ עַכּוּ&quot;ם אוֹ נָהָר אוֹ סְפִינָה הַמִּטָּרֶפֶת בַּיָּם. אֲפִלּוּ יָחִיד הַנִּרְדָּף מִפְּנֵי עַכּוּ&quot;ם מִפְּנֵי לִסְטִים וּמִפְּנֵי רוּחַ רָעָה (מִתְעַנִּין עֲלֵיהֶם בְּשַׁבָּת וְ) זוֹעֲקִין וּמִתְחַנְּנִים עֲלֵיהֶם בַּתְּפִלָּה. אֲבָל אֵין תּוֹקְעִין אֶלָּא אִם כֵּן תָּקְעוּ לְקַבֵּץ אֶת הָעָם לַעֲזֹר אוֹתָם וּלְהַצִּילָן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:7</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-7" aria-label="Copy link to Mishneh Torah, Fasts 1:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְכֵן אֵין גּוֹזְרִין תַּעֲנִית בַּתְּחִלָּה בְּרָאשֵׁי חֳדָשִׁים אוֹ בַּחֲנֻכָּה וּפוּרִים אוֹ בְּחֻלּוֹ שֶׁל מוֹעֵד. וְאִם הִתְחִילוּ לְהִתְעַנּוֹת עַל הַצָּרָה אֲפִלּוּ יוֹם אֶחָד וּפָגַע בָּהֶן יוֹם מֵאֵלּוּ מִתְעַנִּין וּמַשְׁלִימִין הַיּוֹם בְּתַעֲנִית:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:8</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-8" aria-label="Copy link to Mishneh Torah, Fasts 1:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תַּעֲנִיּוֹת אֵלּוּ שֶׁמִּתְעַנִּין עַל הַצָּרוֹת אֵין מִתְעַנִּין בָּהֶן לֹא עֻבָּרוֹת וְלֹא מֵינִיקוֹת וְלֹא קְטַנִּים. וּמֻתָּרִין לֶאֱכל בַּלַּיְלָה אַף עַל פִּי שֶׁמִּתְעַנִּין לְמָחָר חוּץ מִתַּעֲנִיּוֹת הַמָּטָר כְּמוֹ שֶׁיִּתְבָּאֵר. וְכָל תַּעֲנִית שֶׁאוֹכְלִין בָּהּ בַּלַּיְלָה בֵּין צִבּוּר בֵּין יָחִיד הֲרֵי זֶה אוֹכֵל וְשׁוֹתֶה עַד שֶׁיַּעֲלֶה עַמּוּד הַשַּׁחַר. וְהוּא שֶׁלֹּא יָשֵׁן אֲבָל אִם יָשֵׁן אֵינוֹ חוֹזֵר וְאוֹכֵל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:9</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-9" aria-label="Copy link to Mishneh Torah, Fasts 1:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כְּשֵׁם שֶׁהַצִּבּוּר מִתְעַנִּים עַל צָרָתָן כָּךְ הַיָּחִיד מִתְעַנֶּה עַל צָרָתוֹ. כֵּיצַד. הֲרֵי שֶׁהָיָה לוֹ חוֹלֶה אוֹ תּוֹעֶה בַּמִּדְבָּר אוֹ אָסוּר בְּבֵית הָאֲסוּרִין. יֵשׁ לוֹ לְהִתְעַנּוֹת עָלָיו וּלְבַקֵּשׁ רַחֲמִים בִּתְפִלָּתוֹ. וְאוֹמֵר עֲנֵנוּ וְכוּ׳ בְּכָל תְּפִלָּה שֶׁמִּתְפַּלֵּל. וְלֹא יִתְעַנֶּה בְּשַׁבָּתוֹת וְלֹא בְּמוֹעֲדוֹת וְלֹא בְּרָאשֵׁי חֳדָשִׁים וְלֹא בַּחֲנֻכָּה וּפוּרִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:10</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-10" aria-label="Copy link to Mishneh Torah, Fasts 1:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כָּל תַּעֲנִית שֶׁלֹּא קִבְּלָהּ עָלָיו הַיָּחִיד מִבְּעוֹד יוֹם אֵינוֹ תַּעֲנִית. כֵּיצַד מְקַבְּלָהּ. כְּשֶׁיִּתְפַּלֵּל תְּפִלַּת מִנְחָה אוֹמֵר אַחַר הַתְּפִלָּה מָחָר אֱהֵא בְּתַעֲנִית וְגוֹמֵר בְּלִבּוֹ לְהִתְעַנּוֹת לְמָחָר. וְאַף עַל פִּי שֶׁהוּא אוֹכֵל בַּלַּיְלָה לֹא הִפְסִיד כְּלוּם. וְכֵן אִם גָּמַר בְּלִבּוֹ וְקִבֵּל עָלָיו לְהִתְעַנּוֹת שְׁלֹשָׁה אוֹ אַרְבָּעָה יָמִים זֶה אַחַר זֶה אַף עַל פִּי שֶׁהוּא אוֹכֵל כָּל לַיְלָה וְלַיְלָה לֹא הִפְסִיד תַּעֲנִיתוֹ. וְאֵינוֹ צָרִיךְ כַּוָּנָה לְכָל יוֹם וָיוֹם מִבְּעוֹדוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:11</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-11" aria-label="Copy link to Mishneh Torah, Fasts 1:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">קִבֵּל עָלָיו מִבְּעוֹד יוֹם לְהִתְעַנּוֹת לְמָחָר בִּלְבַד וְהִתְעַנָּה. וּבַלַּיְלָה נִמְלַךְ לְהִתְעַנּוֹת בְּיוֹם שֵׁנִי. אַף עַל פִּי שֶׁלָּן בְּתַעֲנִיתוֹ אֵינָהּ תַּעֲנִית מִפְּנֵי שֶׁלֹּא קִבְּלָהּ עָלָיו מִבְּעוֹד יוֹם. וְאֵין צָרִיךְ לוֹמַר שֶׁהָיָה אוֹכֵל וְשׁוֹתֶה בַּלַּיְלָה וְהִשְׁכִּים בַּבֹּקֶר וְנִמְלַךְ לְהִתְעַנּוֹת שֶׁאֵין זוֹ תַּעֲנִית כְּלָל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:12</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-12" aria-label="Copy link to Mishneh Torah, Fasts 1:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָרוֹאֶה חֲלוֹם רַע צָרִיךְ לְהִתְעַנּוֹת לְמָחָר. כְּדֵי שֶׁיָּשׁוּב וְיֵעוֹר בְּמַעֲשָׂיו וִיחַפֵּשׂ בָּהֶן וְיַחֲזֹר בִּתְשׁוּבָה. וּמִתְעַנֶּה וַאֲפִלּוּ בְּשַׁבָּת. וּמִתְפַּלֵּל עֲנֵנוּ בְּכָל תְּפִלָּה אַף עַל פִּי שֶׁלֹּא קִבְּלָהּ מִבְּעוֹד יוֹם. וְהַמִּתְעַנֶּה בְּשַׁבָּת מִתְעַנֶּה יוֹם אַחֵר מִפְּנֵי שֶׁבִּטֵּל עֹנֶג שַׁבָּת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:13</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-13" aria-label="Copy link to Mishneh Torah, Fasts 1:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִתְעַנֶּה אָדָם שָׁעוֹת וְהוּא שֶׁלֹּא יֹאכַל כְּלוּם שְׁאָר הַיּוֹם. כֵּיצַד. הֲרֵי שֶׁהָיָה טָרוּד בַּחֲפָצָיו ומִתְעַסֵּק בִּצְרָכָיו וְלֹא אָכַל עַד חֲצוֹת אוֹ עַד תֵּשַׁע שָׁעוֹת וְנִמְלַךְ לְהִתְעַנּוֹת בַּשָּׁעוֹת שֶׁנִּשְׁאֲרוּ מִן הַיּוֹם. הֲרֵי זֶה מִתְעַנֶּה אוֹתָן שָׁעוֹת וּמִתְפַּלֵּל בָּהֶן עֲנֵנוּ. שֶׁהֲרֵי קִבֵּל עָלָיו הַתַּעֲנִית קֹדֶם שְׁעוֹת הַתַּעֲנִית. וְכֵן אִם אָכַל וְשָׁתָה וְאַחַר כָּךְ הִתְחִיל לְהִתְעַנּוֹת שְׁאָר הַיּוֹם הֲרֵי זֶה תַּעֲנִית שָׁעוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:14</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-14" aria-label="Copy link to Mishneh Torah, Fasts 1:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כָּל הַשָּׁרוּי בְּתַעֲנִית. בֵּין שֶׁהָיָה מִתְעַנֶּה עַל צָרָתוֹ אוֹ עַל חֲלוֹמוֹ בֵּין שֶׁהָיָה מִתְעַנֶּה עִם הַצִּבּוּר עַל צָרָתָם. הֲרֵי זֶה לֹא יִנְהֹג עִדּוּנִין בְּעַצְמוֹ וְלֹא יָקֵל רֹאשׁוֹ וְלֹא יִהְיֶה שָׂמֵחַ וְטוֹב לֵב אֶלָּא דּוֹאֵג וְאוֹנֵן כָּעִנְיָן שֶׁנֶּאֱמַר <span class="source-small">(איכה ג לט)</span> &quot;מַה יִּתְאוֹנֵן אָדָם חָי גֶּבֶר עַל חֲטָאָיו&quot;. וּמֻתָּר לוֹ לִטְעֹם אֶת הַתַּבְשִׁיל וַאֲפִלּוּ בִּכְדֵי רְבִיעִית וְהוּא שֶׁלֹּא יִבְלַע אֶלָּא טוֹעֵם וּפוֹלֵט. שָׁכַח וְאָכַל מַשְׁלִים תַּעֲנִיתוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:15</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-15" aria-label="Copy link to Mishneh Torah, Fasts 1:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יָחִיד שֶׁהָיָה מִתְעַנֶּה עַל הַחוֹלֶה וְנִתְרַפֵּא. עַל צָרָה וְעָבְרָה. הֲרֵי זֶה מַשְׁלִים תַּעֲנִיתוֹ. הַהוֹלֵךְ מִמָּקוֹם שֶׁמִּתְעַנִּין לְמָקוֹם שֶׁאֵין מִתְעַנִּין הֲרֵי זֶה מִתְעַנֶּה וּמַשְׁלִים תַּעֲנִיתוֹ. הָלַךְ מִמָּקוֹם שֶׁאֵין מִתְעַנִּין לְמָקוֹם שֶׁמִּתְעַנִּין הֲרֵי זֶה מִתְעַנֶּה עִמָּהֶן. שָׁכַח וְאָכַל וְשָׁתָה אַל יִתְרָאֶה בִּפְנֵיהֶם וְאַל יִנְהֹג עִדּוּנִין בְּעַצְמוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:16</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-16" aria-label="Copy link to Mishneh Torah, Fasts 1:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">צִבּוּר שֶׁהָיוּ מִתְעַנִּין עַל הַגְּשָׁמִים וְיָרְדוּ לָהֶן גְּשָׁמִים. אִם קֹדֶם חֲצוֹת יָרְדוּ לֹא יַשְׁלִימוּ אֶלָּא אוֹכְלִין וְשׁוֹתִין וּמִתְכַּנְּסִין וְקוֹרְאִין הַלֵּל הַגָּדוֹל. שֶׁאֵין אוֹמְרִין הַלֵּל הַגָּדוֹל אֶלָּא בְּנֶפֶשׁ שְׂבֵעָה וְכֶרֶס מְלֵאָה. וְאִם אַחַר חֲצוֹת הוֹאִיל וְעָבַר רֹב הַיּוֹם בִּקְדֻשָּׁה יַשְׁלִימוּ תַּעֲנִיתָן. וְכֵן אִם הָיוּ מִתְעַנִּין עַל צָרָה וְעָבְרָה אוֹ עַל גְּזֵרָה וּבָטְלָה. אִם קֹדֶם חֲצוֹת לֹא יַשְׁלִימוּ וְאִם אַחַר חֲצוֹת יַשְׁלִימוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-1-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 1:17</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-1-17" aria-label="Copy link to Mishneh Torah, Fasts 1:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּכָל יוֹם תַּעֲנִית שֶׁגּוֹזְרִין עַל הַצִּבּוּר מִפְּנֵי הַצָּרוֹת. בֵּית דִּין וְהַזְּקֵנִים יוֹשְׁבִין בְּבֵית הַכְּנֶסֶת וּבוֹדְקִים עַל מַעֲשֵׂי אַנְשֵׁי הָעִיר מֵאַחַר תְּפִלַּת שַׁחֲרִית עַד חֲצוֹת הַיּוֹם. וּמְסִירִין הַמִּכְשׁוֹלוֹת שֶׁל עֲבֵרוֹת. וּמַזְהִירִין וְדוֹרְשִׁין וְחוֹקְרִין עַל בַּעֲלֵי חָמָס וַעֲבֵרוֹת וּמַפְרִישִׁין אוֹתָן. וְעַל בַּעֲלֵי זְרוֹעַ וּמַשְׁפִּילִין אוֹתָן. וְכַיּוֹצֵא בִּדְבָרִים אֵלּוּ. וּמֵחֲצִי הַיּוֹם וְלָעֶרֶב רְבִיעַ הַיּוֹם קוֹרְאִין בִּבְרָכוֹת וּקְלָלוֹת שֶׁבַּתּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(משלי ג יא)</span> &quot;מוּסַר ה׳ בְּנִי אַל תִּמְאָס וְאַל תָּקֹץ בְּתוֹכַחְתּוֹ&quot;. וּמַפְטִירִין בַּנָּבִיא בְּתוֹכָחוֹת מֵעִנְיַן הַצָּרָה. וּרְבִיעַ הַיּוֹם הָאַחֲרוֹן מִתְפַּלְּלִים מִנְחָה וּמִתְחַנְּנִים וְזוֹעֲקִים וּמִתְוַדִּים כְּפִי כֹּחָם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishneh-torah-fasts-text-2">Chapter 2</h4>
+          <section class="unit" id="mishneh-torah-fasts-2-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:1</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-1" aria-label="Copy link to Mishneh Torah, Fasts 2:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֵלוּ הֵן הַצָּרוֹת שֶׁל צִבּוּר שֶׁמִּתְעַנִּין וּמַתְרִיעִין עֲלֵיהֶם. עַל הֲצָרַת שׂוֹנְאֵי יִשְׂרָאֵל לְיִשְׂרָאֵל. וְעַל הַחֶרֶב. וְעַל הַדֶּבֶר. וְעַל חַיָּה רָעָה. וְעַל הָאַרְבֶּה. וְעַל הֶחָסִיל. וְעַל הַשִּׁדָּפוֹן. וְעַל הַיֵּרָקוֹן. וְעַל הַמַּפּלֶת. וְעַל הֶחֳלָאִים. וְעַל הַמְּזוֹנוֹת. וְעַל הַמָּטָר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:2</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-2" aria-label="Copy link to Mishneh Torah, Fasts 2:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כָּל עִיר שֶׁיֵּשׁ בָּהּ צָרָה מִכָּל אֵלּוּ. אוֹתָהּ הָעִיר מִתְעַנָּה וּמַתְרַעַת עַד שֶׁתַּעֲבֹר הַצָּרָה. וְכָל סְבִיבוֹתֶיהָ מִתְעַנּוֹת וְלֹא מַתְרִיעוֹת אֲבָל מְבַקְּשִׁים עֲלֵיהֶם רַחֲמִים. וּבְכָל מָקוֹם אֵין צוֹעֲקִין וְלֹא מַתְרִיעִין בְּשַׁבָּת כְּמוֹ שֶׁאָמַרְנוּ. חוּץ מִצָּרַת הַמְּזוֹנוֹת שֶׁצּוֹעֲקִין עָלֶיהָ אֲפִלּוּ בְּשַׁבָּת. אֲבָל אֵין מַתְרִיעִין עָלֶיהָ בַּחֲצוֹצְרוֹת בְּשַׁבָּת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:3</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-3" aria-label="Copy link to Mishneh Torah, Fasts 2:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הֲצָרַת שׂוֹנְאֵי יִשְׂרָאֵל לְיִשְׂרָאֵל כֵּיצַד. עַכּוּ&quot;ם שֶׁבָּאוּ לַעֲרֹךְ מִלְחָמָה עִם יִשְׂרָאֵל אוֹ לִטּל מֵהֶם מַס אוֹ לִקַּח מִיָּדָם אֶרֶץ אוֹ לִגְזֹר עֲלֵיהֶם גְּזֵרָה אֲפִלּוּ בְּמִצְוָה קַלָּה הֲרֵי אֵלּוּ מִתְעַנִּין וּמַתְרִיעִין עַד שֶׁיְּרֻחֲמוּ. וְכָל הֶעָרִים שֶׁסְּבִיבוֹתֵיהֶם מִתְעַנִּין אֲבָל אֵין מַתְרִיעִין אֶלָּא אִם כֵּן תָּקְעוּ לְהִתְקַבֵּץ לְעֶזְרָתָן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:4</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-4" aria-label="Copy link to Mishneh Torah, Fasts 2:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הַחֶרֶב כֵּיצַד. אֲפִלּוּ חֶרֶב שֶׁל שָׁלוֹם כְּגוֹן שֶׁעָרְכוּ מִלְחָמָה עַכּוּ&quot;ם עִם עַכּוּ&quot;ם וְעָבְרוּ בִּמְקוֹם יִשְׂרָאֵל אַף עַל פִּי שֶׁאֵין בֵּינֵיהֶם וּבֵין יִשְׂרָאֵל מִלְחָמָה הֲרֵי זוֹ צָרָה וּמִתְעַנִּין עָלֶיהָ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כו ו)</span> &quot;וְחֶרֶב לֹא תַעֲבֹר בְּאַרְצְכֶם&quot; מִכְּלַל שֶׁרְאִיַּת הַמִּלְחָמָה צָרָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:5</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-5" aria-label="Copy link to Mishneh Torah, Fasts 2:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְעַל הַדֶּבֶר. אֵי זוֹ הִיא דֶּבֶר עִיר שֶׁיֵּשׁ בָּהּ חֲמֵשׁ מֵאוֹת רַגְלִי וְיָצְאוּ מִמֶּנָּה שְׁלֹשָׁה מֵתִים בִּשְׁלֹשָׁה יָמִים זֶה אַחַר זֶה הֲרֵי זֶה דֶּבֶר. יָצְאוּ בְּיוֹם אֶחָד אוֹ בְּאַרְבָּעָה יָמִים אֵין זֶה דֶּבֶר. הָיוּ בָּהּ אֶלֶף וְיָצְאוּ מִמֶּנָּה שִׁשָּׁה מֵתִים בִּשְׁלֹשָׁה יָמִים זֶה אַחַר זֶה דֶּבֶר. יָצְאוּ בְּיוֹם אֶחָד אוֹ בְּאַרְבָּעָה אֵין זֶה דֶּבֶר. וְכֵן לְפִי חֶשְׁבּוֹן זֶה. וְאֵין הַנָּשִׁים וְהַקְּטַנִּים וְהַזְּקֵנִים שֶׁשָּׁבְתוּ מִמְּלָאכָה בִּכְלַל מִנְיַן אַנְשֵׁי הַמְּדִינָה לְעִנְיָן זֶה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:6</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-6" aria-label="Copy link to Mishneh Torah, Fasts 2:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָיָה דֶּבֶר בְּאֶרֶץ יִשְׂרָאֵל מִתְעַנִּין שְׁאָר גָּלֻיּוֹת יִשְׂרָאֵל עֲלֵיהֶן. הָיָה דֶּבֶר בַּמְּדִינָה וְשַׁיָּרוֹת הוֹלְכוֹת וּבָאוֹת מִמֶּנָּה לִמְדִינָה אַחֶרֶת שְׁתֵּיהֶן מִתְעַנּוֹת אַף עַל פִּי שֶׁהֵן רְחוֹקוֹת זוֹ מִזּוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:7</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-7" aria-label="Copy link to Mishneh Torah, Fasts 2:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אֵין מִתְעַנִּין עַל חַיָּה רָעָה אֶלָּא בִּזְמַן שֶׁהִיא מְשֻׁלַּחַת. כֵּיצַד. נִרְאֲתָה בָּעִיר בַּיּוֹם הֲרֵי זוֹ מְשֻׁלַּחַת. נִרְאֲתָה בַּשָּׂדֶה בַּיּוֹם אִם רָאֲתָה שְׁנֵי בְּנֵי אָדָם וְלֹא בָּרְחָה מִפְּנֵיהֶם הֲרֵי זוֹ מְשֻׁלַּחַת. וְאִם הָיָה שָׂדֶה הַסְּמוּכָה לָאֲגַם וְרָאֲתָה שְׁנֵי בְּנֵי אָדָם וְרָדְפָה אַחֲרֵיהֶם הֲרֵי זוֹ מְשֻׁלַּחַת. לֹא רָדְפָה אַחֲרֵיהֶם אֵינָהּ מְשֻׁלַּחַת. וְאִם הָיָה בָּאֲגַם אֲפִלּוּ רָדְפָה אַחֲרֵיהֶם אֵינָהּ מְשֻׁלַּחַת אֶלָּא אִם כֵּן טָרְפָה שְׁנֵיהֶם וְאָכְלָה אֶחָד מֵהֶן. אֲבָל אִם אָכְלָה שְׁנֵיהֶם בָּאֲגַם אֵינָהּ מְשֻׁלַּחַת מִפְּנֵי שֶׁזֶּה הוּא מְקוֹמָהּ וּמִפְּנֵי הָרְעָבוֹן טָרְפָה לֹא מִפְּנֵי שֶׁהִיא מְשֻׁלַּחַת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:8</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-8" aria-label="Copy link to Mishneh Torah, Fasts 2:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בָּתִּים הַבְּנוּיִים בְּמִדְבָּרוֹת וּבָאֲרָצוֹת הַנְשַׁמּוֹת הוֹאִיל וְהֵן מְקוֹם גְּדוּדֵי חַיָּה. אִם עָלְתָה לַגַּג וְנָטְלָה תִּינוֹק מֵעֲרִיסָה הֲרֵי זוֹ מְשֻׁלַּחַת. וְאִם לֹא הִגִּיעָה לְמִדָּה זוֹ אֵינָהּ מְשֻׁלַּחַת. שֶׁאֵלּוּ בְּנֵי אָדָם הֵם שֶׁסִּכְּנוּ בְּעַצְמָם וּבָאוּ לִמְקוֹם הַחַיּוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:9</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-9" aria-label="Copy link to Mishneh Torah, Fasts 2:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שְׁאָר מִינֵי רֶמֶשׂ הָאָרֶץ וְרֶמֶשׂ הָעוֹף שֶׁשֻּׁלְּחוּ וְהִזִּיקוּ. כְּגוֹן שִׁלּוּחַ נְחָשִׁים וְעַקְרַבִּים וְאֵין צָרִיךְ לוֹמַר צְרָעִין וְיַתּוּשִׁין וְהַדּוֹמֶה לָהֶן אֵין מִתְעַנִּין עֲלֵיהֶם וְלֹא מַתְרִיעִין אֲבָל זוֹעֲקִין בְּלֹא תְּרוּעָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:10</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-10" aria-label="Copy link to Mishneh Torah, Fasts 2:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הָאַרְבֶּה וְעַל הֶחָסִיל אֲפִלּוּ לֹא נִרְאֶה מֵהֶן אֶלָּא כָּנָף אֶחָד בְּכָל אֶרֶץ יִשְׂרָאֵל מִתְעַנִּין וּמַתְרִיעִין עֲלֵיהֶן. וְעַל הַגּוֹבַאי בְּכָל שֶׁהוּא. אֲבָל עַל הֶחָגָב אֵין מִתְעַנִּין עָלָיו וְלֹא מַתְרִיעִין אֶלָּא זוֹעֲקִין בִּלְבַד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:11</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-11" aria-label="Copy link to Mishneh Torah, Fasts 2:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הַשִּׁדָּפוֹן וְעַל הַיֵּרָקוֹן מִשֶּׁיַּתְחִיל בַּתְּבוּאָה. וַאֲפִלּוּ לֹא הִתְחִיל אֶלָּא מִמָּקוֹם קָטָן כִּמְלֹא פִּי תַּנּוּר גּוֹזְרִין עָלָיו תַּעֲנִית וּמַתְרִיעִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:12</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-12" aria-label="Copy link to Mishneh Torah, Fasts 2:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הַמַּפּלֶת כֵּיצַד. הֲרֵי שֶׁרָבְתָה בָּעִיר מַפּלֶת כְּתָלִים בְּרִיאִים שֶׁאֵינָן עוֹמְדִים בְּצַד הַנָּהָר הֲרֵי זוֹ צָרָה וּמִתְעַנִּין וּמַתְרִיעִין עָלֶיהָ. וְכֵן עַל הָרַעַשׁ וְעַל הָרוּחוֹת שֶׁהֵן מַפִּילִין אֶת הַבִּנְיָן וְהוֹרְגִין מִתְעַנִּין וּמַתְרִיעִין עֲלֵיהֶן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:13</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-13" aria-label="Copy link to Mishneh Torah, Fasts 2:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הֶחֳלָיִים כֵּיצַד. הֲרֵי שֶׁיָּרַד חלִי אֶחָד לַאֲנָשִׁים הַרְבֵּה בְּאוֹתָהּ הָעִיר כְּגוֹן אַסְכָּרָה אוֹ חַרְחוּר וְכַיּוֹצֵא בָּהֶן וְהָיוּ מֵתִים בְּאוֹתוֹ הַחלִי הֲרֵי זוֹ צָרַת צִבּוּר וְגוֹזְרִין לָהּ תַּעֲנִית וּמַתְרִיעִין. וְכֵן חִכּוּךְ לַח הֲרֵי הוּא כִּשְׁחִין פּוֹרֵחַ. וְאִם פָּשַׁט בְּרֹב הַצִּבּוּר מִתְעַנִּין וּמַתְרִיעִין עָלָיו. אֲבָל חִכּוּךְ יָבֵשׁ צוֹעֲקִים עָלָיו בִּלְבַד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:14</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-14" aria-label="Copy link to Mishneh Torah, Fasts 2:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הַמְּזוֹנוֹת כֵּיצַד. הֲרֵי שֶׁהוּזְלוּ דְּבָרִים שֶׁל סְחוֹרָה שֶׁרֹב חַיֵּי אַנְשֵׁי אוֹתָהּ הָעִיר מֵהֶן. כְּגוֹן כְּלֵי פִּשְׁתָּן בְּבָבֶל וְיַיִן וְשֶׁמֶן בְּאֶרֶץ יִשְׂרָאֵל. וְנִתְמַעֵט הַמַּשָּׂא וְהַמַּתָּן עַד שֶׁיִּצְטָרֵךְ הַתַּגָּר לִמְכֹּר שְׁוִה עֲשָׂרָה בְּשִׁשָּׁה וְאַחַר כָּךְ יִמָּצֵא לוֹקֵחַ. הֲרֵי זוֹ צָרַת צִבּוּר וּמַתְרִיעִין עָלֶיהָ וְזוֹעֲקִין עָלֶיהָ בְּשַׁבָּת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:15</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-15" aria-label="Copy link to Mishneh Torah, Fasts 2:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עַל הַמָּטָר כֵּיצַד. הֲרֵי שֶׁרַבּוּ עֲלֵיהֶן גְּשָׁמִים עַד שֶׁיָּצֵרוּ לָהֶן הֲרֵי אֵלּוּ מִתְפַּלְּלִין עֲלֵיהֶן. שֶׁאֵין לְךָ צָרָה יְתֵרָה מִזּוֹ שֶׁהַבָּתִּים נוֹפְלִין וְנִמְצְאוּ בָּתֵּיהֶן קִבְרֵיהֶן. וּבְאֶרֶץ יִשְׂרָאֵל אֵין מִתְפַּלְּלִין עַל רֹב הַגְּשָׁמִים מִפְּנֵי שֶׁהִיא אֶרֶץ הָרִים וּבָתֵּיהֶם בְּנוּיִים בַּאֲבָנִים וְרֹב הַגְּשָׁמִים טוֹבָה לָהֶן וְאֵין מִתְעַנִּין לְהַעֲבִיר הַטּוֹבָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:16</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-16" aria-label="Copy link to Mishneh Torah, Fasts 2:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תְּבוּאָה שֶׁצָּמְחָה וְנִמְנַע הַמָּטָר וְהִתְחִילוּ צְמָחִין לִיבַשׁ הֲרֵי אֵלּוּ מִתְעַנִּין וְזוֹעֲקִין עַד שֶׁיֵּרְדוּ גְּשָׁמִים אוֹ עַד שֶׁיִּיבְשׁוּ הַצְּמָחִים. וְכֵן אִם הִגִּיעַ זְמַן הַפֶּסַח אוֹ קָרוֹב לוֹ בְּאֶרֶץ יִשְׂרָאֵל שֶׁהוּא זְמַן פְּרִיחַת הָאִילָנוֹת שָׁם וְלֹא יָרְדוּ גְּשָׁמִים הֲרֵי אֵלּוּ מִתְעַנִּין וְזוֹעֲקִין עַד שֶׁיֵּרְדוּ גְּשָׁמִים הָרְאוּיִין לְאִילָנוֹת אוֹ עַד שֶׁיַּעֲבֹר זְמַנָּם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:17</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-17" aria-label="Copy link to Mishneh Torah, Fasts 2:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְכֵן אִם הִגִּיעַ זְמַן חַג הַסֻּכּוֹת וְלֹא יָרְדוּ גְּשָׁמִים הַרְבֵּה כְּדֵי לְמַלְּאוֹת מֵהֶם הַבּוֹרוֹת הַשִּׁיחִין וְהַמְּעָרוֹת הֲרֵי אֵלּוּ מִתְעַנִּין עַד שֶׁיֵּרֵד גֶּשֶׁם הָרָאוּי לְבוֹרוֹת. וְאִם אֵין לָהֶם מַיִם לִשְׁתּוֹת מִתְעַנִּים עַל הַגְּשָׁמִים בְּכָל עֵת שֶׁלֹּא יִהְיֶה לָהֶם מַיִם לִשְׁתּוֹת וַאֲפִלּוּ בִּימוֹת הַחַמָּה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-2-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 2:18</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-2-18" aria-label="Copy link to Mishneh Torah, Fasts 2:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">פָּסְקוּ הַגְּשָׁמִים בֵּין גֶּשֶׁם לְגֶשֶׁם אַרְבָּעִים יוֹם בִּימוֹת הַגְּשָׁמִים הֲרֵי זוֹ מַכַּת בַּצֹּרֶת וּמִתְעַנִּים וְזוֹעֲקִים עַד שֶׁיֵּרְדוּ הַגְּשָׁמִים אוֹ עַד שֶׁיַּעֲבֹר זְמַנָּם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishneh-torah-fasts-text-3">Chapter 3</h4>
+          <section class="unit" id="mishneh-torah-fasts-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:1</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-1" aria-label="Copy link to Mishneh Torah, Fasts 3:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הֲרֵי שֶׁלֹּא יָרְדוּ לָהֶם גְּשָׁמִים כָּל עִקָּר מִתְּחִלַּת יְמוֹת הַגְּשָׁמִים. אִם הִגִּיעַ שִׁבְעָה עָשָׂר בְּמַרְחֶשְׁוָן וְלֹא יָרְדוּ גְּשָׁמִים מַתְחִילִין תַּלְמִידֵי חֲכָמִים בִּלְבַד לְהִתְעַנּוֹת שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וְכָל הַתַּלְמִידִים רְאוּיִין לְכָךְ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:2</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-2" aria-label="Copy link to Mishneh Torah, Fasts 3:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הִגִּיעַ רֹאשׁ חֹדֶשׁ כִּסְלֵו וְלֹא יָרְדוּ גְּשָׁמִים בֵּית דִּין גּוֹזְרִין שָׁלֹשׁ תַּעֲנִיּוֹת עַל הַצִּבּוּר שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וּמֻתָּרִין בָּהֶן לֶאֱכל וְלִשְׁתּוֹת בַּלַּיְלָה. וְאַנְשֵׁי מִשְׁמָר אֵין מִתְעַנִּין עִמָּהֶן מִפְּנֵי שֶׁהֵן עֲסוּקִין בַּעֲבוֹדָה. וְכָל הָעָם נִכְנָסִים לְבָתֵּי כְּנֵסִיּוֹת וּמִתְפַּלְּלִין וְזוֹעֲקִין וּמִתְחַנְּנִין כְּדֶרֶךְ שֶׁעוֹשִׂין בְּכָל הַתַּעֲנִיּוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:3</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-3" aria-label="Copy link to Mishneh Torah, Fasts 3:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עָבְרוּ אֵלּוּ וְלֹא נַעֲנוּ בֵּית דִּין גּוֹזְרִין שָׁלֹשׁ תַּעֲנִיּוֹת אֲחֵרוֹת עַל הַצִּבּוּר שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וּבְשָׁלֹשׁ אֵלּוּ אוֹכְלִין וְשׁוֹתִין מִבְּעוֹד יוֹם כְּמוֹ שֶׁעוֹשִׂין בְּצוֹם כִּפּוּר. וְאַנְשֵׁי מִשְׁמָר מִתְעַנִּין מִקְצָת הַיּוֹם וְלֹא מַשְׁלִימִין. וְאַנְשֵׁי בֵּית אָב וְהֵם הָעוֹסְקִין בַּעֲבוֹדָה בְּאוֹתוֹ הַיּוֹם לֹא יִהְיוּ מִתְעַנִּים כָּל עִקָּר. וְכָל תַּעֲנִית שֶׁאוֹכְלִין בָּהּ מִבְּעוֹד יוֹם אִם אָכַל וּפָסַק וְגָמַר שֶׁלֹּא לֶאֱכל אֵינוֹ חוֹזֵר וְאוֹכֵל אַף עַל פִּי שֶׁיֵּשׁ שְׁהוּת בַּיּוֹם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:4</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-4" aria-label="Copy link to Mishneh Torah, Fasts 3:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְּשָׁלֹשׁ תַּעֲנִיּוֹת אֵלּוּ כָּל הָעָם אֲסוּרִין בַּעֲשִׂיַּת מְלָאכָה בַּיּוֹם וּמֻתָּרִין בַּלַּיְלָה. וַאֲסוּרִין בִּרְחִיצַת כָּל הַגּוּף בְּחַמִּין אֲבָל פָּנָיו יָדָיו וְרַגְלָיו מֻתָּר. לְפִיכָךְ נוֹעֲלִין אֶת הַמֶּרְחֲצָאוֹת. וַאֲסוּרִין בְּסִיכָה. וְאִם לְהַעֲבִיר אֶת הַזֻּהֲמָה מֻתָּר. וַאֲסוּרִין בְּתַשְׁמִישׁ הַמִּטָּה. וּבִנְעִילַת הַסַּנְדָּל בָּעִיר אֲבָל בַּדֶּרֶךְ מֻתָּר לִנְעל. וּמִתְפַּלְּלִין בְּבָתֵּי כְּנֵסִיּוֹת וְזוֹעֲקִין וּמִתְחַנְּנִין כִּשְׁאָר תַּעֲנִיּוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:5</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-5" aria-label="Copy link to Mishneh Torah, Fasts 3:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עָבְרוּ אֵלּוּ וְלֹא נַעֲנוּ בֵּית דִּין גּוֹזְרִין שֶׁבַע תַּעֲנִיּוֹת אֲחֵרוֹת עַל הַצִּבּוּר שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי וַחֲמִישִׁי וְשֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וּבְאֵלּוּ הַשֶּׁבַע בִּלְבַד עֵבָּרוֹת וּמֵינִיקוֹת מִתְעַנּוֹת אֲבָל בִּשְׁאָר הַתַּעֲנִיּוֹת אֵין עֵבָּרוֹת וּמֵינִיקוֹת מִתְעַנּוֹת. וְאַף עַל פִּי שֶׁאֵינָן מִתְעַנּוֹת אֵין מְעַנְּגוֹת עַצְמָן בְּתַפְנוּקִים אֶלָּא אוֹכְלוֹת וְשׁוֹתוֹת כְּדֵי קִיּוּם הַוָּלָד:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:6</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-6" aria-label="Copy link to Mishneh Torah, Fasts 3:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּבְשֶׁבַע תַּעֲנִיּוֹת אֵלּוּ אַנְשֵׁי מִשְׁמָר מִתְעַנִּין וּמַשְׁלִימִין. וְאַנְשֵׁי בֵּית אָב מִתְעַנִּין מִקְצָת הַיּוֹם וְלֹא מַשְׁלִימִין. וְכָל דָּבָר שֶׁהוּא אָסוּר בְּשָׁלֹשׁ אֶמְצָעִיּוֹת אָסוּר בְּאֵלּוּ הַשֶּׁבַע הָאַחֲרוֹנוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:7</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-7" aria-label="Copy link to Mishneh Torah, Fasts 3:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וִיתֵרוֹת אֵלּוּ. שֶׁבָּהֶן בִּלְבַד מַתְרִיעִין וּמִתְפַּלְּלִין בִּרְחוֹב הָעִיר. וּמוֹרִידִין זָקֵן לְהוֹכִיחַ לָעָם כְּדֵי שֶׁיָּשׁוּבוּ מִדַּרְכָּם. וּמוֹסִיפִין שֵׁשׁ בְּרָכוֹת בִּתְפִלַּת שַׁחֲרִית וּבִתְפִלַּת מִנְחָה וְנִמְצְאוּ מִתְפַּלְּלִין כ&quot;ד בְּרָכוֹת. וְנוֹעֲלִין אֶת הַחֲנֻיּוֹת. וּבַשֵּׁנִי מַטִּין לְעֵת עֶרֶב וּפוֹתְחִין אֶת הַחֲנֻיּוֹת. אֲבָל בַּחֲמִישִׁי פּוֹתְחִין כָּל הַיּוֹם מִפְּנֵי כְּבוֹד הַשַּׁבָּת. וְאִם יֵשׁ לַחֲנוּת שְׁנֵי פְּתָחִים פּוֹתֵחַ אֶחָד וְנוֹעֵל אֶחָד וְאִם יֵשׁ לַחֲנוּת אִצְטַבָּה פּוֹתֵחַ כְּדַרְכּוֹ בַּחֲמִישִׁי וְאֵינוֹ חוֹשֵׁשׁ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:8</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-8" aria-label="Copy link to Mishneh Torah, Fasts 3:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עָבְרוּ אֵלּוּ וְלֹא נַעֲנוּ. מְמַעֲטִין בְּמַשָּׂא וּמַתָּן וּבְבִנְיָן שֶׁל שִׂמְחָה כְּגוֹן צִיּוּר וְכִיּוּר. וּבִנְטִיעָה שֶׁל שִׂמְחָה כְּגוֹן מִינֵי הֲדַס וּמִינֵי אֲהָלִים. וּמְמַעֲטִין בְּאֵרוּסִין וְנִשּׂוּאִין אֶלָּא אִם כֵּן לֹא קִיֵּם מִצְוַת פְּרִיָּה וּרְבִיָּה. וְכָל מִי שֶׁקִּיֵּם מִצְוַת פְּרִיָּה וּרְבִיָּה אָסוּר לוֹ לְשַׁמֵּשׁ מִטָּתוֹ בִּשְׁנֵי רְעָבוֹן. וּמְמַעֲטִין בִּשְׁאֵלַת שָׁלוֹם בֵּין אָדָם לַחֲבֵרוֹ. וְתַּלְמִידֵי חֲכָמִים לֹא יִשְׁאֲלוּ שָׁלוֹם אֶלָּא כִּנְזוּפִין וּכִמְנֻדִּין לַמָּקוֹם. וְעַם הָאָרֶץ שֶׁנָּתַן לָהֶם שָׁלוֹם מַחְזִירִין לוֹ בְּשָׂפָה רָפָה וְכֹבֶד רֹאשׁ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:9</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-9" aria-label="Copy link to Mishneh Torah, Fasts 3:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תַּלְמִידֵי חֲכָמִים חוֹזְרִין לְבַדָּם וּמִתְעַנִּים שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי עַד שֶׁיֵּצֵא נִיסָן שֶׁל תְּקוּפָה אֲבָל לֹא הַצִּבּוּר. שֶׁאֵין גּוֹזְרִין עַל הַצִּבּוּר בִּשְׁבִיל גְּשָׁמִים שֶׁלֹּא יָרְדוּ יֶתֶר מִשְּׁלֹשׁ עֶשְׂרֵה תַּעֲנִיּוֹת אֵלּוּ. וּכְשֶׁמִּתְעַנִּין הַיְחִידִים עַד שֶׁיָּצָא נִיסָן מֻתָּרִין לֶאֱכל בַּלַּיְלָה וּמֻתָּרִין בַּעֲשִׂיַּת מְלָאכָה וּבִרְחִיצָה וּבְסִיכָה וְתַשְׁמִישׁ הַמִּטָּה וּנְעִילַת הַסַּנְדָּל כִּשְׁאָר כָּל הַתַּעֲנִיּוֹת. וּמַפְסִיקִין לְרָאשֵׁי חֳדָשִׁים וּפוּרִים. יָצָא נִיסָן שֶׁל תְּקוּפָה וְהוּא כְּשֶׁהִגִּיעַ הַשֶּׁמֶשׁ לִתְחִלַּת מַזַּל שׁוֹר אֵין מִתְעַנִּים. שֶׁאֵין הַגְּשָׁמִים בַּזְּמַן הַזֶּה אֶלָּא סִימַן קְלָלָה הוֹאִיל וְלֹא יָרְדוּ כָּל עִקָּר מִתְּחִלַּת הַשָּׁנָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:10</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-10" aria-label="Copy link to Mishneh Torah, Fasts 3:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּמֶּה דְּבָרִים אֲמוּרִים בְּאֶרֶץ יִשְׂרָאֵל וְכָל הַדּוֹמֶה לָהּ. אֲבָל מְקוֹמוֹת שֶׁעוֹנַת הַגְּשָׁמִים שֶׁלָּהֶן קֹדֶם י&quot;ז בְּמַרְחֶשְׁוָן אוֹ אַחַר זְמַן זֶה כְּשֶׁיַּגִּיעַ זְמַנָּם וְלֹא יָרְדוּ גְּשָׁמִים יְחִידִים מִתְעַנִּים שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וּמַפְסִיקִין בְּרָאשֵׁי חֳדָשִׁים וּבַחֲנֻכָּה וּבְפוּרִים. וְשׁוֹהִין אַחֲרֵי כֵן כְּמוֹ שִׁבְעָה יָמִים. אִם לֹא יָרְדוּ גְּשָׁמִים בֵּית דִּין גּוֹזְרִין עַל הַצִּבּוּר שְׁלֹשׁ עֶשְׂרֵה תַּעֲנִיּוֹת עַל הַסֵּדֶר שֶׁאָמַרְנוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-3-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 3:11</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-3-11" aria-label="Copy link to Mishneh Torah, Fasts 3:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כָּל תַּעֲנִיּוֹת שֶׁגּוֹזְרִין הַצִּבּוּר בְּחוּצָה לָאָרֶץ אוֹכְלִים בָּהֶם בַּלַּיְלָה וְדִינֵיהֶם כְּדִין שְׁאָר הַתַּעֲנִיּוֹת. שֶׁאֵין גּוֹזְרִין עַל הַצִּבּוּר תַּעֲנִית כְּגוֹן צוֹם כִּפּוּר אֶלָּא בְּאֶרֶץ יִשְׂרָאֵל בִּלְבַד וּבִגְלַל הַמָּטָר. וּבְאוֹתָן עֶשֶׂר תַּעֲנִיּוֹת שֶׁהֵן שָׁלֹשׁ אֶמְצָעִיּוֹת וְשֶׁבַע אַחֲרוֹנוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishneh-torah-fasts-text-4">Chapter 4</h4>
+          <section class="unit" id="mishneh-torah-fasts-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:1</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-1" aria-label="Copy link to Mishneh Torah, Fasts 4:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בְכָל יוֹם וָיוֹם מִשֶּׁבַע תַּעֲנִיּוֹת הָאַחֲרוֹנוֹת שֶׁל מָטָר מִתְפַּלְּלִין עַל סֵדֶר זֶה. מוֹצִיאִין אֶת הַתֵּבָה לִרְחוֹבָהּ שֶׁל עִיר וְכָל הָעָם מִתְקַבְּצִים וּמִתְכַּסִּים בְּשַׂקִּים. וְנוֹתְנִין אֵפֶר מַקְלֶה עַל גַּבֵּי הַתֵּבָה וְעַל גַּבֵּי סֵפֶר תּוֹרָה כְּדֵי לְהַגְדִּיל אֶת הַבְּכִיָּה וּלְהַכְנִיעַ לִבָּם. וְאֶחָד מִן הָעָם נוֹטֵל מִן הָאֵפֶר וְנוֹתֵן בְּרֹאשׁ הַנָּשִׂיא וּבְרֹאשׁ אַב בֵּית דִּין בְּמָקוֹם הֲנָחַת תְּפִלִּין כְּדֵי שֶׁיִּכָּלְמוּ וְיָשׁוּבוּ. וְכָל אֶחָד וְאֶחָד נוֹטֵל וְנוֹתֵן בְּרֹאשׁוֹ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:2</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-2" aria-label="Copy link to Mishneh Torah, Fasts 4:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַחַר כָּךְ מַעֲמִידִין בֵּינֵיהֶן זָקֵן חָכָם וְהֵן יוֹשְׁבִין. לֹא הָיָה שָׁם זָקֵן חָכָם מַעֲמִידִין חָכָם. לֹא הָיָה שָׁם לֹא זָקֵן וְלֹא חָכָם מַעֲמִידִין אָדָם שֶׁל צוּרָה. וְאוֹמֵר לִפְנֵיהֶם דִּבְרֵי כִּבּוּשִׁין. אַחֵינוּ לֹא שַׂק וְלֹא תַּעֲנִית גּוֹרְמִין אֶלָּא תְּשׁוּבָה וּמַעֲשִׂים טוֹבִים. שֶׁכֵּן מָצִינוּ בְּנִינְוֵה שֶׁלֹּא נֶאֱמַר בְּאַנְשֵׁי נִינְוֵה וַיַּרְא הָאֱלֹהִים אֶת שַׂקָּם וְאֶת תַּעֲנִיתָם אֶלָּא <span class="source-small">(יונה ג י)</span> &quot;וַיַּרְא הָאֱלֹהִים אֶת מַעֲשֵׂיהֶם&quot;. וּבְקַבָּלָה הוּא אוֹמֵר <span class="source-small">(יואל ב יג)</span> &quot;קִרְעוּ לְבַבְכֶם וְאַל בִּגְדֵיכֶם&quot;. וּמוֹסִיף בְּעִנְיָנוֹת אֵלּוּ כְּפִי כֹּחוֹ עַד שֶׁיַּכְנִיעַ לִבָּם וְיָשׁוּבוּ תְּשׁוּבָה גְּמוּרָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:3</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-3" aria-label="Copy link to Mishneh Torah, Fasts 4:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַחַר שֶׁגּוֹמֵר זֶה דִּבְרֵי כִּבּוּשִׁין עוֹמְדִין בִּתְפִלָּה וּמַעֲמִידִין שְׁלִיחַ צִבּוּר הָרָאוּי לְהִתְפַּלֵּל בְּתַעֲנִיּוֹת אֵלּוּ. וְאִם הָיָה אוֹתוֹ שֶׁאוֹמֵר דִּבְרֵי הַכִּבּוּשִׁין רָאוּי לְהִתְפַּלֵּל מִתְפַּלֵּל וְאִם לָאו מוֹרִידִין אַחֵר:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:4</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-4" aria-label="Copy link to Mishneh Torah, Fasts 4:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאֵי זֶה הוּא הָרָאוּי לְהִתְפַּלֵּל בְּתַעֲנִיּוֹת אֵלּוּ. אִישׁ שֶׁהוּא רָגִיל בִּתְפִלָּה. וְרָגִיל לִקְרוֹת בַּתּוֹרָה נְבִיאִים וּכְתוּבִים. וּמְטוּפָּל וְאֵין לוֹ. וְיֵשׁ לוֹ יְגִיעָה בַּשָּׂדֶה. וְלֹא יִהְיֶה בְּבָנָיו וּבִבְנֵי בֵּיתוֹ וְכָל קְרוֹבָיו הַנִּלְוִים עָלָיו בַּעַל עֲבֵרָה. אֶלָּא יִהְיֶה בֵּיתוֹ רֵיקָן מִן הָעֲבֵרוֹת. וְלֹא יָצָא עָלָיו שֵׁם רַע בְּיַלְדוּתוֹ. שְׁפַל בֶּרֶךְ. וּמְרֻצֶּה לָעָם. וְיֵשׁ לוֹ נְעִימָה וְקוֹלוֹ עָרֵב. וְאִם הָיָה זָקֵן עִם כָּל הַמִּדּוֹת הָאֵלּוּ הֲרֵי זֶה מְפֹאָר. וְאִם אֵינוֹ זָקֵן הוֹאִיל וְיֵשׁ בּוֹ כָּל הַמִּדּוֹת הָאֵלּוּ יִתְפַּלֵּל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:5</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-5" aria-label="Copy link to Mishneh Torah, Fasts 4:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּשְׁלִיחַ צִבּוּר מַתְחִיל וּמִתְפַּלֵּל עַד בִּרְכַּת גּוֹאֵל יִשְׂרָאֵל. וְאוֹמֵר זִכְרוֹנוֹת וְשׁוֹפָרוֹת מֵעֵין הַצָּרָה. וְאוֹמֵר <span class="source-small">(תהילים קכ א)</span> &quot;אֶל ה׳ בַּצָּרָתָה לִּי קָרָאתִי וַיַּעֲנֵנִי&quot;. <span class="source-small">(תהילים קכא א)</span> &quot;אֶשָּׂא עֵינַי אֶל הֶהָרִים&quot; וְגוֹ׳. <span class="source-small">(תהילים קל א)</span> &quot;מִמַּעֲמַקִּים קְרָאתִיךָ ה׳&quot;. <span class="source-small">(תהילים קב א)</span> &quot;תְּפִלָּה לְעָנִי כִי יַעֲטֹף&quot; וְגוֹ׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:6</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-6" aria-label="Copy link to Mishneh Torah, Fasts 4:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאוֹמֵר דִּבְרֵי תַּחֲנוּנִים כְּפִי כֹּחוֹ. וְאוֹמֵר רְאֵה נָא בְעָנְיֵנוּ וְרִיבָה רִיבֵנוּ וּמַהֵר לְגָאֳלֵנוּ. וּמִתְחַנֵּן וְאוֹמֵר בְּסוֹף תַּחֲנוּנָיו מִי שֶׁעָנָה אֶת אַבְרָהָם אָבִינוּ בְּהַר הַמּוֹרִיָּה הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. בָּרוּךְ אַתָּה ה׳ גּוֹאֵל יִשְׂרָאֵל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:7</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-7" aria-label="Copy link to Mishneh Torah, Fasts 4:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וּמַתְחִיל לְהוֹסִיף שֵׁשׁ בְּרָכוֹת שֶׁהוּא מוֹסִיף זוֹ אַחַר זוֹ. וּמִתְחַנֵּן בְּכָל אַחַת מֵהֶן בְּדִבְרֵי תַּחֲנוּנִים וּפְסוּקִים מִדִּבְרֵי קַבָּלָה וּמִכִּתְבֵי הַקֹּדֶשׁ כְּפִי שֶׁהוּא רָגִיל וְחוֹתֵם בְּכָל אַחַת מֵהֶן בַּחֲתִימוֹת אֵלּוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:8</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-8" aria-label="Copy link to Mishneh Torah, Fasts 4:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בָּרִאשׁוֹנָה הוּא חוֹתֵם מִי שֶׁעָנָה אֶת משֶׁה וַאֲבוֹתֵינוּ עַל יַם סוּף הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. בָּרוּךְ אַתָּה ה׳ זוֹכֵר הַנִּשְׁכָּחוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:9</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-9" aria-label="Copy link to Mishneh Torah, Fasts 4:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּשְּׁנִיָּה הוּא חוֹתֵם מִי שֶׁעָנָה אֶת יְהוֹשֻׁעַ בַּגִּלְגָּל הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. בָּרוּךְ אַתָּה ה׳ שׁוֹמֵעַ תְּרוּעָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:10</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-10" aria-label="Copy link to Mishneh Torah, Fasts 4:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּשְּׁלִישִׁית הוּא חוֹתֵם מִי שֶׁעָנָה אֶת שְׁמוּאֵל בַּמִּצְפָּה הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. בָּרוּךְ אַתָּה ה׳ שׁוֹמֵעַ צְעָקָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:11</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-11" aria-label="Copy link to Mishneh Torah, Fasts 4:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בָּרְבִיעִית הוּא חוֹתֵם מִי שֶׁעָנָה אֶת אֵלִיָּהוּ בְּהַר הַכַּרְמֶל הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. בָּרוּךְ אַתָּה ה׳ שׁוֹמֵעַ תְּפִלָּה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:12</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-12" aria-label="Copy link to Mishneh Torah, Fasts 4:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּחֲמִישִׁית הוּא חוֹתֵם מִי שֶׁעָנָה אֶת יוֹנָה בִּמְעֵי הַדָּגָה הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. בָּרוּךְ אַתָּה ה׳ הָעוֹנֶה בְּעֵת צָרָה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:13</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-13" aria-label="Copy link to Mishneh Torah, Fasts 4:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּשִּׁשִּׁית הוּא חוֹתֵם מִי שֶׁעָנָה אֶת דָּוִד וּשְׁלֹמֹה בְּנוֹ בִּירוּשָׁלַיִם הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. בָּרוּךְ אַתָּה ה׳ הַמְרַחֵם עַל הָאָרֶץ. וְכָל הָעָם עוֹנִין אָמֵן אַחַר כָּל בְּרָכָה וּבְרָכָה כְּדֶרֶךְ שֶׁעוֹנִין אַחַר כָּל הַבְּרָכוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:14</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-14" aria-label="Copy link to Mishneh Torah, Fasts 4:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּשְּׁבִיעִית אוֹמֵר רְפָאֵנוּ ה׳ וְנֵרָפֵא וְכוּ׳. וְגוֹמֵר הַתְּפִלָּה עַל הַסֵּדֶר וְתוֹקְעִין בַּחֲצוֹצְרוֹת. וְכַסֵּדֶר הַזֶּה עוֹשִׂין בְּכָל מָקוֹם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:15</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-15" aria-label="Copy link to Mishneh Torah, Fasts 4:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כְּשֶׁהָיוּ מִתְפַּלְּלִין עַל הַסֵּדֶר הַזֶּה בִּירוּשָׁלַיִם הָיוּ מִתְכַּנְּסִין לְהַר הַבַּיִת כְּנֶגֶד שַׁעַר הַמִּזְרָח וּמִתְפַּלְּלִין כַּסֵּדֶר הַזֶּה. וּכְשֶׁמַּגִּיעַ שְׁלִיחַ צִבּוּר לוֹמַר מִי שֶׁעָנָה אֶת אַבְרָהָם אוֹמֵר בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ אֱלֹהַי יִשְׂרָאֵל מִן הָעוֹלָם וְעַד הָעוֹלָם בָּרוּךְ אַתָּה ה׳ גּוֹאֵל יִשְׂרָאֵל. וְהֵן עוֹנִין אַחֲרָיו בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד. וְחַזָּן הַכְּנֶסֶת אוֹמֵר לַתּוֹקְעִים תִּקְעוּ בְּנֵי אַהֲרֹן תִּקְעוּ. וְחוֹזֵר הַמִּתְפַּלֵּל וְאוֹמֵר מִי שֶׁעָנָה אֶת אַבְרָהָם בְּהַר הַמּוֹרִיָּה הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה וְאַחַר כָּךְ תּוֹקְעִין הַכֹּהֲנִים וּמְרִיעִין וְתוֹקְעִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:16</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-16" aria-label="Copy link to Mishneh Torah, Fasts 4:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְכֵן בַּבְּרָכָה הַשְּׁנִיָּה לָזוֹ שֶׁהִיא רִאשׁוֹנָה מִן הַשֵּׁשׁ שֶׁמּוֹסִיף חוֹתֵם בָּהּ בָּרוּךְ ה׳ אֱלֹהִים אֱלֹהֵי יִשְׂרָאֵל מִן הָעוֹלָם וְעַד הָעוֹלָם בָּרוּךְ אַתָּה ה׳ זוֹכֵר הַנִּשְׁכָּחוֹת. וְהֵן עוֹנִין בָּרוּךְ שֵׁם כְּבוֹד מַלְכוּתוֹ לְעוֹלָם וָעֶד. וְחַזַּן הַכְּנֶסֶת אוֹמֵר לָהֶן הָרִיעוּ בְּנֵי אַהֲרֹן הָרִיעוּ. וְחוֹזֵר שְׁלִיחַ צִבּוּר וְאוֹמֵר מִי שֶׁעָנָה אֶת משֶׁה וַאֲבוֹתֵינוּ עַל יַם סוּף הוּא יַעֲנֶה אֶתְכֶם וְיִשְׁמַע קוֹל צַעֲקַתְכֶם בַּיּוֹם הַזֶּה. וְאַחַר כָּךְ מְרִיעִין וְתוֹקְעִין וּמְרִיעִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:17</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-17" aria-label="Copy link to Mishneh Torah, Fasts 4:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְכֵן עַל כָּל בְּרָכָה וּבְרָכָה בְּאַחַת אוֹמֵר תִּקְעוּ וּבְאַחַת אוֹמֵר הָרִיעוּ עַד שֶׁיִּגְמֹר כָּל שֶׁבַע הַבְּרָכוֹת. וְנִמְצְאוּ הַכֹּהֲנִים פַּעַם תּוֹקְעִין וּמְרִיעִין וְתוֹקְעִין. וּפַעַם מְרִיעִין וְתוֹקְעִין וּמְרִיעִין שֶׁבַע פְּעָמִים. וְאֵין עוֹשִׂים הַסֵּדֶר זֶה אֶלָּא בְּהַר הַבַּיִת בִּלְבַד. וּכְשֶׁהֵן תּוֹקְעִין וּמְרִיעִין שָׁם תּוֹקְעִין בַּחֲצוֹצְרוֹת וּבְשׁוֹפָר כְּאֶחָד כְּמוֹ שֶׁאָמַרְנוּ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:18</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-18" aria-label="Copy link to Mishneh Torah, Fasts 4:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שֶׁבַע תַּעֲנִיּוֹת הָאֵלּוּ כָּל מָקוֹם שֶׁגּוֹזְרִין אוֹתָם שָׁם אַחַר שֶׁמִּתְפַּלְּלִין יוֹצְאִין כָּל הָעָם לְבֵית הַקְּבָרוֹת וּבוֹכִין וּמִתְחַנְּנִים שָׁם. כְּלוֹמַר הֲרֵי אַתֶּם מֵתִים כְּאֵלּוּ אִם לֹא תָּשׁוּבוּ מִדַּרְכֵיכֶם. וּבְכָל תַּעֲנִית מִתַּעֲנִיּוֹת הַצָּרוֹת שֶׁגּוֹזְרִין עַל הַצִּבּוּר מִתְפַּלְּלִין תְּפִלַּת נְעִילָה בְּכָל מָקוֹם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-4-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 4:19</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-4-19" aria-label="Copy link to Mishneh Torah, Fasts 4:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יָרְדוּ לָהֶם גְּשָׁמִים עַד מָתַי יִהְיוּ יוֹרְדִין וְיִפְסְקוּ הַצִּבּוּר מִן הַתַּעֲנִית. מִשֶּׁיֵּרְדוּ בְּעֹמֶק הָאָרֶץ הַחֲרֵבָה טֶפַח. וּבַבֵּינוֹנִית טְפָחַיִם. וּבַעֲבוּדָה עַד שֶׁיֵּרְדוּ בְּעֹמֶק שְׁלֹשָׁה טְפָחִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-4">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-mishneh-torah-fasts-text-5">Chapter 5</h4>
+          <section class="unit" id="mishneh-torah-fasts-5-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:1</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-1" aria-label="Copy link to Mishneh Torah, Fasts 5:1">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">יֵשׁ שָׁם יָמִים שֶׁכָּל יִשְׂרָאֵל מִתְעַנִּים בָּהֶם מִפְּנֵי הַצָּרוֹת שֶׁאֵרְעוּ בָּהֶן כְּדֵי לְעוֹרֵר הַלְּבָבוֹת לִפְתֹּחַ דַּרְכֵי הַתְּשׁוּבָה וְיִהְיֶה זֶה זִכָּרוֹן לְמַעֲשֵׂינוּ הָרָעִים וּמַעֲשֵׂה אֲבוֹתֵינוּ שֶׁהָיָה כְּמַעֲשֵׂינוּ עַתָּה עַד שֶׁגָּרַם לָהֶם וְלָנוּ אוֹתָן הַצָּרוֹת. שֶׁבְּזִכְרוֹן דְּבָרִים אֵלּוּ נָשׁוּב לְהֵיטִיב שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כו, מ)</span> &quot;וְהִתְוַדּוּ אֶת עֲוֹנָם וְאֶת עֲוֹן אֲבֹתָם&quot; וְגוֹ׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-2" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:2</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-2" aria-label="Copy link to Mishneh Torah, Fasts 5:2">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאֵלּוּ הֵן יוֹם שְׁלִישִׁי בְּתִשְׁרֵי שֶׁבּוֹ נֶהֱרַג גְּדַלְיָה בֵּן אֲחִיקָם וְנִכְבַּת גַּחֶלֶת יִשְׂרָאֵל הַנִּשְׁאָרָה וְסִבֵּב לְהָתָם גָּלוּתָן. וַעֲשִׂירִי בְּטֵבֵת שֶׁבּוֹ סָמַךְ מֶלֶךְ בָּבֶל נְבוּכַדְנֶאצַּר הָרָשָׁע עַל יְרוּשָׁלַיִם וֶהֱבִיאָהּ בְּמָצוֹר וּבְמָצוֹק. וְי&quot;ז בְּתַמּוּז חֲמִשָּׁה דְּבָרִים אֵרְעוּ בּוֹ. נִשְׁתַּבְּרוּ הַלּוּחוֹת. וּבָטֵל הַתָּמִיד מִבַּיִת רִאשׁוֹן. וְהֻבְקְעָה יְרוּשָׁלַיִם בְּחֻרְבָּן שֵׁנִי. וְשָׂרַף אַפּוֹסְטוֹמוֹס הָרָשָׁע אֶת הַתּוֹרָה. וְהֶעֱמִיד צֶלֶם בַּהֵיכָל:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-3" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:3</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-3" aria-label="Copy link to Mishneh Torah, Fasts 5:3">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְתִשְׁעָה בְּאָב חֲמִשָּׁה דְּבָרִים אֵרְעוּ בּוֹ. נִגְזַר עַל יִשְׂרָאֵל בַּמִּדְבָּר שֶׁלֹּא יִכָּנְסוּ לָאָרֶץ. וְחָרַב הַבַּיִת בָּרִאשׁוֹנָה וּבַשְּׁנִיָּה. וְנִלְכְּדָה עִיר גְּדוֹלָה וּבֵיתָר שְׁמָהּ וְהָיוּ בָּהּ אֲלָפִים וּרְבָבוֹת מִיִּשְׂרָאֵל וְהָיָה לָהֶם מֶלֶךְ גָּדוֹל וְדִמּוּ כָּל יִשְׂרָאֵל וּגְדוֹלֵי הַחֲכָמִים שֶׁהוּא הַמֶּלֶךְ הַמָּשִׁיחַ. וְנָפַל בְּיַד הָרוֹמִיִּים וְנֶהֶרְגוּ כֻּלָּם וְהָיְתָה צָרָה גְּדוֹלָה כְּמוֹ חֻרְבַּן בֵּית הַמִּקְדָּשׁ. וּבוֹ בַּיּוֹם הַמּוּכָן לְפֻרְעָנוּת חָרַשׁ טוּרְנוּסְרוּפוּס הָרָשָׁע אֶת הַהֵיכָל וְאֶת סְבִיבָיו לְקַיֵּם מַה שֶּׁנֶּאֱמַר<span class="source-small">(ירמיה כו יח)</span> <span class="source-small">(מיכה ג יב)</span> &quot;צִיּוֹן שָׂדֶה תֵחָרֵשׁ&quot;:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-4" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:4</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-4" aria-label="Copy link to Mishneh Torah, Fasts 5:4">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַרְבָּעָה יְמֵי הַצּוֹמוֹת הָאֵלּוּ הֲרֵי הֵן מְפֹרָשִׁין בַּקַּבָּלָה <span class="source-small">(זכריה ח יט)</span> &quot;צוֹם הָרְבִיעִי וְצוֹם הַחֲמִישִׁי&quot; וְגוֹ׳. צוֹם הָרְבִיעִי זֶה שִׁבְעָה עָשָׂר בְּתַמּוּז שֶׁהוּא בַּחֹדֶשׁ הָרְבִיעִי. וְצוֹם הַחֲמִישִׁי זֶה תִּשְׁעָה בְּאָב שֶׁהוּא בַּחֹדֶשׁ הַחֲמִישִׁי. וְצוֹם הַשְּׁבִיעִי זֶה שְׁלֹשָׁה בְּתִשְׁרֵי שֶׁהוּא בַּחֹדֶשׁ הַשְּׁבִיעִי. וְצוֹם הָעֲשִׂירִי זֶה עֲשָׂרָה בְּטֵבֵת שֶׁהוּא בַּחֹדֶשׁ הָעֲשִׂירִי:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-5" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:5</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-5" aria-label="Copy link to Mishneh Torah, Fasts 5:5">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְנָהֲגוּ כָּל יִשְׂרָאֵל בִּזְמַנִּים אֵלּוּ לְהִתְעַנּוֹת. וּבְי&quot;ג בַּאֲדָר זֵכֶר לַתַּעֲנִית שֶׁהִתְעַנּוּ בִּימֵי הָמָן שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט לא)</span> &quot;דִּבְרֵי הַצֹּמוֹת וְזַעֲקָתָם&quot;. וְאִם חָל י&quot;ג בַּאֲדָר לִהְיוֹת בְּשַׁבָּת מַקְדִּימִין וּמִתְעַנִּין בַּחֲמִישִׁי שֶׁהוּא י&quot;א. אֲבָל אֶחָד מֵאַרְבָּעָה יְמֵי הַצּוֹמוֹת שֶׁחָל לִהְיוֹת בְּשַׁבָּת דּוֹחִין אוֹתוֹ לְאַחַר הַשַּׁבָּת. חָל לִהְיוֹת בְּעֶרֶב שַׁבָּת מִתְעַנִּין בְּעֶרֶב שַׁבָּת. וּבְכָל הַצּוֹמוֹת הָאֵלּוּ אֵין מַתְרִיעִין וְלֹא מִתְפַּלְּלִין בָּהֶן תְּפִלַּת נְעִילָה. אֲבָל קוֹרִין בַּתּוֹרָה שַׁחֲרִית וּמִנְחָה בְּ<span class="source-small">(שמות לב יא)</span> &quot;וַיְחַל משֶׁה&quot;. וּבְכֻלָּן אוֹכְלִים וְשׁוֹתִין בַּלַּיְלָה חוּץ מִתִּשְׁעָה בְּאָב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-6" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:6</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-6" aria-label="Copy link to Mishneh Torah, Fasts 5:6">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִשֶּׁיִּכָּנֵס אָב מְמַעֲטִין בְּשִׂמְחָה. וְשַׁבָּת שֶׁחָל תִּשְׁעָה בְּאָב לִהְיוֹת בְּתוֹכָהּ אָסוּר לְסַפֵּר וּלְכַבֵּס וְלִלְבּשׁ כְּלִי מְגֹהָץ אֲפִלּוּ כְּלִי פִּשְׁתָּן עַד שֶׁיַּעֲבֹר הַתַּעֲנִית. וַאֲפִלּוּ לְכַבֵּס וּלְהַנִּיחַ לְאַחַר הַתַּעֲנִית אָסוּר. וּכְבָר נָהֲגוּ יִשְׂרָאֵל שֶׁלֹּא לֶאֱכל בָּשָׂר בְּשַׁבָּת זוֹ וְלֹא יִכָּנְסוּ לַמֶּרְחָץ עַד שֶׁיַּעֲבֹר הַתַּעֲנִית. וְיֵשׁ מְקוֹמוֹת שֶׁנָּהֲגוּ לְבַטֵּל הַשְּׁחִיטָה מֵרֹאשׁ הַחֹדֶשׁ עַד הַתַּעֲנִית:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-7" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:7</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-7" aria-label="Copy link to Mishneh Torah, Fasts 5:7">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תִּשְׁעָה בְּאָב לֵילוֹ כְּיוֹמוֹ לְכָל דָּבָר. וְאֵין אוֹכְלִין אֶלָּא מִבְּעוֹד יוֹם. וּבֵין הַשְּׁמָשׁוֹת שֶׁלּוֹ אָסוּר כְּיוֹם הַכִּפּוּרִים. וְלֹא יֹאכַל בָּשָׂר וְלֹא יִשְׁתֶּה יַיִן בַּסְּעֻדָּה הַמַּפְסִיק בָּהּ. אֲבָל שׁוֹתֶה הוּא יַיִן מִגִּתּוֹ שֶׁיֵּשׁ לוֹ שְׁלֹשָׁה יָמִים אוֹ פָּחוֹת. וְאוֹכֵל בָּשָׂר מָלִיחַ שֶׁיֵּשׁ לוֹ שְׁלֹשָׁה יָמִים אוֹ יֶתֶר. וְלֹא יֹאכַל שְׁנֵי תַּבְשִׁילִין:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-8" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:8</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-8" aria-label="Copy link to Mishneh Torah, Fasts 5:8">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁאָכַל עֶרֶב תִּשְׁעָה בְּאָב אַחַר חֲצוֹת. אֲבָל אִם סָעַד קֹדֶם חֲצוֹת אַף עַל פִּי שֶׁהוּא מַפְסִיק בָּהּ אוֹכֵל כָּל מַה שֶּׁיִּרְצֶה. וְעֶרֶב תִּשְׁעָה בְּאָב שֶׁחָל לִהְיוֹת בְּשַׁבָּת אוֹכֵל וְשׁוֹתֶה כָּל צָרְכּוֹ וּמַעֲלֶה עַל שֻׁלְחָנוֹ אֲפִלּוּ כִּסְעֻדַּת שְׁלֹמֹה. וְכֵן תִּשְׁעָה בְּאָב עַצְמוֹ שֶׁחָל לִהְיוֹת בְּשַׁבָּת אֵינוֹ מְחַסֵּר כְּלוּם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-9" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:9</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-9" aria-label="Copy link to Mishneh Torah, Fasts 5:9">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">זוֹ הִיא מִדַּת כָּל הָעָם שֶׁאֵינָן יְכוֹלִין לִסְבּל יֶתֶר מִדַּאי. אֲבָל חֲסִידִים הָרִאשׁוֹנִים כָּךְ הָיְתָה מִדָּתָן. עֶרֶב תִּשְׁעָה בְּאָב הָיוּ מְבִיאִין לוֹ לָאָדָם לְבַדּוֹ פַּת חֲרֵבָה בְּמֶלַח וְשׁוֹרֶה בְּמַיִם וְיוֹשֵׁב בֵּין תַּנּוּר וְכִירַיִם וְאוֹכְלָהּ וְשׁוֹתֶה עָלֶיהָ קִיתוֹן שֶׁל מַיִם בִּדְאָגָה וּבְשִׁמָּמוֹן וּבְכִיָּה כְּמִי שֶׁמֵּתוֹ מֻטָּל לְפָנָיו. כָּזֶה רָאוּי לַחֲכָמִים לַעֲשׂוֹת אוֹ קָרוֹב מִזֶּה. וּמִיָּמֵינוּ לֹא אָכַלְנוּ עֶרֶב תִּשְׁעָה בְּאָב תַּבְשִׁיל אֲפִלּוּ שֶׁל עֲדָשִׁים אֶלָּא אִם כֵּן הָיָה בְּשַׁבָּת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-10" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:10</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-10" aria-label="Copy link to Mishneh Torah, Fasts 5:10">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">עֻבָּרוֹת וּמֵינִיקוֹת מִתְעַנּוֹת וּמַשְׁלִימוֹת בְּתִשְׁעָה בְּאָב. וְאָסוּר בִּרְחִיצָה בֵּין בְּחַמִּין בֵּין בְּצוֹנֵן וַאֲפִלּוּ לְהוֹשִׁיט אֶצְבָּעוֹ בְּמַיִם. וְאָסוּר בְּסִיכָה שֶׁל תַּעֲנוּג וּבִנְעִילַת הַסַּנְדָּל וּבְתַשְׁמִישׁ הַמִּטָּה כְּיוֹם הַכִּפּוּרִים. וּמָקוֹם שֶׁנָּהֲגוּ לַעֲשׂוֹת בּוֹ מְלָאכָה עוֹשִׂין. וּמָקוֹם שֶׁנָּהֲגוּ שֶׁלֹּא לַעֲשׂוֹת אֵין עוֹשִׂין. וּבְכָל מָקוֹם תַּלְמִידֵי חֲכָמִים בְּטֵלִין. וְאָמְרוּ חֲכָמִים שֶׁהָעוֹשֶׂה בּוֹ מְלָאכָה אֵינוֹ רוֹאֶה סִימַן בְּרָכָה לְעוֹלָם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-11" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:11</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-11" aria-label="Copy link to Mishneh Torah, Fasts 5:11">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">תַּלְמִידֵי חֲכָמִים אֵין נוֹתְנִין זֶה לָזֶה שָׁלוֹם בְּתִשְׁעָה בְּאָב. אֶלָּא יוֹשְׁבִים דָּוִים וְנֶאֱנָחִים כַּאֲבֵלִים. וְאִם נָתַן לָהֶם עַם הָאָרֶץ שָׁלוֹם מַחֲזִירִים לוֹ בְּשָׂפָה רָפָה וְכֹבֶד רֹאשׁ. וְאָסוּר לִקְרוֹת בְּתִשְׁעָה בְּאָב בַּתּוֹרָה אוֹ בַּנְּבִיאִים אוֹ בַּכְּתוּבִים וּבְמִשְׁנָה וּבַהֲלָכוֹת וּבִגְמָרָא וּבְהַגָּדוֹת. וְאֵינוֹ קוֹרֵא אֶלָּא בְּאִיּוֹב וּבְקִינוֹת וּבַדְּבָרִים הָרָעִים שֶׁבְּיִרְמְיָהוּ. וְתִינוֹקוֹת שֶׁל בֵּית רַבָּן בְּטֵלִין בּוֹ. וּמִקְצָת הַחֲכָמִים נוֹהֲגִין שֶׁלֹּא לְהַנִּיחַ בּוֹ תְּפִלִּין שֶׁל רֹאשׁ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-12" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:12</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-12" aria-label="Copy link to Mishneh Torah, Fasts 5:12">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִשֶּׁחָרַב בֵּית הַמִּקְדָּשׁ תִּקְּנוּ חֲכָמִים שֶׁהָיוּ בְּאוֹתוֹ הַדּוֹר שֶׁאֵין בּוֹנִין לְעוֹלָם בִּנְיָן מְסֻיָּד וּמְכֻיָּר כְּבִנְיַן הַמְּלָכִים. אֶלָּא טָח בֵּיתוֹ בְּטִיט וְסָד בְּסִיד וּמְשַׁיֵּר מָקוֹם אַמָּה עַל אַמָּה כְּנֶגֶד הַפֶּתַח בְּלֹא סִיד. וְהַלּוֹקֵחַ חָצֵר מְסֻיֶּדֶת וּמְכֻיֶּרֶת הֲרֵי זוֹ בְּחֶזְקָתָהּ וְאֵין מְחַיְּבִים אוֹתוֹ לִקְלֹף הַכְּתָלִים:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-13" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:13</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-13" aria-label="Copy link to Mishneh Torah, Fasts 5:13">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְכֵן הִתְקִינוּ שֶׁהָעוֹרֵךְ שֻׁלְחָן לַעֲשׂוֹת סְעֻדָּה לָאוֹרְחִים מְחַסֵּר מִמֶּנּוּ מְעַט וּמַנִּיחַ מָקוֹם פָּנוּי בְּלֹא קְעָרָה מִן הַקְּעָרוֹת הָרְאוּיוֹת לָתֵת שָׁם. וּכְשֶׁהָאִשָּׁה עוֹשָׂה תַּכְשִׁיטֵי הַכֶּסֶף וְהַזָּהָב מְשַׁיֶּרֶת מִין מִמִּינֵי הַתַּכְשִׁיט שֶׁנּוֹהֶגֶת בָּהֶן כְּדֵי שֶׁלֹּא יִהְיֶה תַּכְשִׁיט שָׁלֵם. וּכְשֶׁהֶחָתָן נוֹשֵׂא אִשָּׁה לוֹקֵחַ אֵפֶר מַקְלֶה וְנוֹתֵן בְּרֹאשׁוֹ מְקוֹם הֲנָחַת הַתְּפִלִּין. וְכָל אֵלּוּ הַדְּבָרִים כְּדֵי לִזְכֹּר יְרוּשָׁלַיִם שֶׁנֶּאֱמַר <span class="source-small">(תהילים קלז ה)</span> &quot;אִם אֶשְׁכָּחֵךְ יְרוּשָׁלָםִ תִּשְׁכַּח יְמִינִי&quot; <span class="source-small">(תהילים קלז ו)</span> &quot;תִּדְבַּק לְשׁוֹנִי לְחִכִּי אִם לֹא אֶזְכְּרֵכִי אִם לֹא אַעֲלֶה אֶת יְרוּשָׁלַםִ עַל רֹאשׁ שִׂמְחָתִי&quot;:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-14" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:14</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-14" aria-label="Copy link to Mishneh Torah, Fasts 5:14">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְכֵן גָּזְרוּ שֶׁלֹּא לְנַגֵּן בִּכְלֵי שִׁיר. וְכָל מִינֵי זֶמֶר וְכָל מַשְׁמִיעֵי קוֹל שֶׁל שִׁיר אָסוּר לִשְׂמֹחַ בָּהֶן וְאָסוּר לְשָׁמְעָן מִפְּנֵי הַחֻרְבָּן. וַאֲפִלּוּ שִׁירָה בַּפֶּה עַל הַיַּיִן אֲסוּרָה שֶׁנֶּאֱמַר <span class="source-small">(ישעיה כד ט)</span> &quot;בַּשִּׁיר לֹא יִשְׁתּוּ יָיִן&quot;. וּכְבָר נָהֲגוּ כָּל יִשְׂרָאֵל לוֹמַר דִּבְרֵי תֻּשְׁבָּחוֹת אוֹ שִׁיר שֶׁל הוֹדָאוֹת לָאֵל וְכַיּוֹצֵא בָּהֶן עַל הַיַּיִן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-15" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:15</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-15" aria-label="Copy link to Mishneh Torah, Fasts 5:15">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">וְאַחַר כָּךְ גָּזְרוּ עַל עַטְרוֹת חֲתָנִים שֶׁלֹּא לְהַנִּיחָם כְּלָל. וְשֶׁלֹּא יַנִּיחַ הֶחָתָן בְּרֹאשׁוֹ שׁוּם כָּלִיל שֶׁנֶּאֱמַר <span class="source-small">(יחזקאל כא לא)</span> &quot;הָסֵר הַמִּצְנֶפֶת וְהָרֵם הָעֲטָרָה&quot;. וְכֵן גָּזְרוּ עַל עַטְרוֹת כַּלּוֹת אִם הָיָה שֶׁל כֶּסֶף אוֹ זָהָב אֲבָל שֶׁל גְּדִיל מֻתָּר לְכַלָּה:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-16" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:16</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-16" aria-label="Copy link to Mishneh Torah, Fasts 5:16">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מִי שֶׁרָאָה עָרֵי יְהוּדָה בְּחֻרְבָּנָם אוֹמֵר <span class="source-small">(ישעיה סד ט)</span> &quot;עָרֵי קָדְשְׁךָ הָיוּ מִדְבָּר&quot; וְקוֹרֵעַ. רָאָה יְרוּשָׁלַיִם בְּחֻרְבָּנָהּ אוֹמֵר <span class="source-small">(ישעיה סד ט)</span> &quot;יְרוּשָׁלַיִם מִדְבָּר&quot; וְגוֹ׳. בֵּית הַמִּקְדָּשׁ בְּחֻרְבָּנוֹ אוֹמֵר <span class="source-small">(ישעיה סד י)</span> &quot;בֵּית קָדְשֵׁנוּ וְתִפְאַרְתֵּנוּ&quot; וְגוֹ׳ וְקוֹרֵעַ. וּמֵהֵיכָן חַיָּב לִקְרֹעַ מִן הַצּוֹפִים. וּכְשֶׁיַּגִּיעַ לַמִּקְדָּשׁ קוֹרֵעַ קֶרַע אַחֵר. וְאִם פָּגַע בַּמִּקְדָּשׁ תְּחִלָּה כְּשֶּׁיָּבוֹא מִדֶּרֶךְ הַמִּדְבָּר קוֹרֵעַ עַל הַמִּקְדָּשׁ וּמוֹסִיף עַל יְרוּשָׁלַיִם:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-17" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:17</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-17" aria-label="Copy link to Mishneh Torah, Fasts 5:17">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כָּל הַקְּרָעִים הָאֵלּוּ כֻּלָּם קוֹרֵעַ בְּיָדוֹ מְעֵמָּד וְקוֹרֵעַ כָּל כְּסוּת שֶׁעָלָיו עַד שֶׁיְּגַלֶּה אֶת לִבּוֹ. וְאֵינוֹ מְאַחֶה קְרָעִים אֵלּוּ לְעוֹלָם. אֲבָל רַשַּׁאי הוּא לְשָׁלְלָן לְמָלְלָן לְלַקְּטָן וּלְתָפְרָן כְּמִין סֻלָּמוֹת:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-18" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:18</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-18" aria-label="Copy link to Mishneh Torah, Fasts 5:18">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הָיָה הוֹלֵךְ וּבָא לִירוּשָׁלַיִם הוֹלֵךְ וּבָא תּוֹךְ שְׁלֹשִׁים יוֹם אֵינוֹ קוֹרֵעַ קֶרַע אַחֵר. וְאִם לְאַחַר שְׁלֹשִׁים יוֹם חוֹזֵר וְקוֹרֵעַ:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="mishneh-torah-fasts-5-19" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh Torah, Fasts 5:19</h4></div>
+              <a class="anchor" href="#mishneh-torah-fasts-5-19" aria-label="Copy link to Mishneh Torah, Fasts 5:19">#</a>
+            </div>
+            <div class="unit-grid">
+              <div>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כָּל הַצּוֹמוֹת הָאֵלּוּ עֲתִידִים לִבָּטֵל לִימוֹת הַמָּשִׁיחַ. וְלֹא עוֹד אֶלָּא שֶׁהֵם עֲתִידִים לִהְיוֹת יוֹם טוֹב וִימֵי שָׂשׂוֹן וְשִׂמְחָה שֶׁנֶּאֱמַר <span class="source-small">(זכריה ח יט)</span> &quot;כֹּה אָמַר ה׳ צְבָאוֹת צוֹם הָרְבִיעִי וְצוֹם הַחֲמִישִׁי וְצוֹם הַשְּׁבִיעִי וְצוֹם הָעֲשִׂירִי יִהְיֶה לְבֵית יְהוּדָה לְשָׂשׂוֹן וּלְשִׂמְחָה וּלְמֹעֲדִים טוֹבִים וְהָאֱמֶת וְהַשָּׁלוֹם אֱהָבוּ&quot;: סָלִיק הִלְכוֹת תַּענִיוֹת</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
+            </nav>
+          </section>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/mishneh-torah-fasts.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishneh-torah-fasts.manifest.json","occurrence_url":"../../data/lexical/occurrences/mishneh-torah-fasts.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>
