@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-05-23T02:04:13.675Z",
+  "generated_at": "2026-05-24T02:46:57.531Z",
   "purpose": "Per-work artifact dependency graph for incremental static regeneration.",
   "totals": {
-    "works": 849,
-    "source_units": 407743,
-    "source_bytes": 1012373223,
-    "html_bytes": 1226021428,
-    "lexical_chunk_bytes": 5155846331,
+    "works": 910,
+    "source_units": 414981,
+    "source_bytes": 1040875750,
+    "html_bytes": 1254993463,
+    "lexical_chunk_bytes": 5433963747,
     "global_artifacts": 6,
     "large_artifact_count": 13,
     "near_large_artifact_count": 14
@@ -21,8 +21,8 @@
     },
     {
       "path": "overlay-export.json",
-      "bytes": 247201,
-      "sha256": "e6010dff18c1422dfdeae711369558c151e1c129457d08a54fcb7dd0683f4257",
+      "bytes": 266571,
+      "sha256": "02e2ec62810551859df3a383b165fbfc7837250cb22b2613a8757da9a98548cc",
       "level": "ok"
     },
     {
@@ -33,20 +33,20 @@
     },
     {
       "path": "corpus_stats.json",
-      "bytes": 862876,
-      "sha256": "8f2c1ad895e7293bb04a1e231040bbf9632f1f78ef8526dabfc97c50dad4cf71",
+      "bytes": 920905,
+      "sha256": "376d399b48786a6588ce1042017e4c5bc91291fa5c78b47e388e738287fc900a",
       "level": "ok"
     },
     {
       "path": "data/public-lexical",
-      "files": 762,
-      "bytes": 670776546,
+      "files": 876,
+      "bytes": 708890938,
       "level": "warning"
     },
     {
       "path": "data/search",
-      "files": 40,
-      "bytes": 355963048,
+      "files": 41,
+      "bytes": 362819813,
       "level": "warning"
     }
   ],
@@ -2000,6 +2000,77 @@
           "path": "halakhah/avodat-hakodesh/index.html",
           "bytes": 803097,
           "sha256": "e1eb1c7d1007b0e88e9ff2a9e89e022d8f33a5f3be1abb8a5ad5cef3f1f334a6"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "avodat-hamelekh-on-mishneh-torah-repentance",
+      "work_title": "Avodat HaMelekh on Mishneh Torah, Repentance",
+      "work_slug": "halakhah/avodat-hamelekh-on-mishneh-torah-repentance",
+      "work_type": "commentary",
+      "unit_count": 139,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/avodat-hamelekh-on-mishneh-torah-repentance.json",
+          "bytes": 446349,
+          "sha256": "91ca243b61029ad2935334dcc4dc0a8132c55e4d0a04a94b33863e3b2eb98ab6"
+        },
+        "overlay": {
+          "path": "data/overlays/avodat-hamelekh-on-mishneh-torah-repentance.json",
+          "bytes": 104,
+          "sha256": "8ae1f95b942311b2880e2d7561699f8b55c14261f1384c423af57f3dca285528"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/avodat-hamelekh-on-mishneh-torah-repentance.json",
+          "bytes": 430940,
+          "sha256": "1c4cbd4ad2d0b79bb86e58c32887dedb79ec3a82ed3935955d490f9341e5cb49"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/avodat-hamelekh-on-mishneh-torah-repentance.json",
+          "bytes": 2212202,
+          "sha256": "dd5f9c72a7c314734cdd5f2f7ad7a339795f9a737482365fd37997da74eb7300"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/avodat-hamelekh-on-mishneh-torah-repentance.manifest.json",
+          "bytes": 399686,
+          "sha256": "70f33c92240ee8a1da47497b39dd98f7b221e92c3fe36402311666ba19fdf112"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/avodat-hamelekh-on-mishneh-torah-repentance-chunks",
+          "files": 6,
+          "bytes": 6874052
+        },
+        "html": {
+          "path": "halakhah/avodat-hamelekh-on-mishneh-torah-repentance/index.html",
+          "bytes": 440986,
+          "sha256": "9c08ab869a6925e6137ca360f465e7549125a143ab58f3aafea32db21a4f8bab"
         }
       },
       "depends_on": {
@@ -4635,8 +4706,8 @@
         },
         "token_index": {
           "path": "data/lexical/token-indexes/midrash/beur-haradal-on-pirkei-derabbi-eliezer.json",
-          "bytes": 15903321,
-          "sha256": "7045376be22233f7e1b850d303f51718c27a32e023db7c2cb10318d81e98c4ac"
+          "bytes": 15903564,
+          "sha256": "3e57ef8693568431e031689da5c2c3ca81110fe2c669cbac0582c22942025ac1"
         },
         "lexical_manifest": {
           "path": "data/lexical/beur-haradal-on-pirkei-derabbi-eliezer.manifest.json",
@@ -5606,6 +5677,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary",
+      "work_title": "Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, Admission into the Sanctuary",
+      "work_slug": "halakhah/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary",
+      "work_type": "commentary",
+      "unit_count": 129,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 632057,
+          "sha256": "3b26678ba0feb23294b4c67b79754e14b0e680ae0106279263a9c902e0aa08a2"
+        },
+        "overlay": {
+          "path": "data/overlays/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 145,
+          "sha256": "5b04b1fca8c8b3979be401eadf39ddf0829dd729e9e9e7b2dc1bf91766a60b61"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 664983,
+          "sha256": "df1ee042fa1b50ad2a7be985d8481be4ce55114ee12faae162930563e208c9a8"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 2899945,
+          "sha256": "d1bf8713cb9636fb735ef018829631419dc1de3d8b603e86b0cad15c799eefc6"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary.manifest.json",
+          "bytes": 758122,
+          "sha256": "8d61f0378dd73184a9759dac9690f42ca830009ea85430fddb32baf56ea7baea"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary-chunks",
+          "files": 7,
+          "bytes": 6853155
+        },
+        "html": {
+          "path": "halakhah/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-admission-into-the-sanctuary/index.html",
+          "bytes": 610270,
+          "sha256": "a9900e92d7c043b2d84ea8817458d0cf49d2c0ade5f35945942aebc4e94d3853"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple",
+      "work_title": "Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, The Chosen Temple",
+      "work_slug": "halakhah/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple",
+      "work_type": "commentary",
+      "unit_count": 109,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 459347,
+          "sha256": "df63dab0d732bf0be9563275265267e16860389d884979da976674d059ae2346"
+        },
+        "overlay": {
+          "path": "data/overlays/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 134,
+          "sha256": "01ad84006c8965733f8bcbdb8f8e8ff589e70495ea516c3a009957b9efe32e8d"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 429051,
+          "sha256": "b3916a669bec0a3268612bb7823231f72b9da00d47c8ff0328104721958e269e"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 2188481,
+          "sha256": "a8924714071332f9d2658148644858bc294d7d3f25a2a3b59cf994851c492ad8"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple.manifest.json",
+          "bytes": 528073,
+          "sha256": "44b37fe0ef4850ec6798450517357e8dfbf66e56d8d36ed16db5f074080fa283"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple-chunks",
+          "files": 6,
+          "bytes": 5830408
+        },
+        "html": {
+          "path": "halakhah/commentary-of-mahari-kurkus-and-radbaz-on-mishneh-torah-the-chosen-temple/index.html",
+          "bytes": 454972,
+          "sha256": "cef783485a439ce047e9491d72b1db42e0d175e98826a71378cdf6b57d72e550"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "crescas-on-guide-for-the-perplexed",
       "work_title": "Crescas on Guide for the Perplexed",
       "work_slug": "jewish-thought/crescas-on-guide-for-the-perplexed",
@@ -6316,6 +6529,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "divrei-shaul-edut-beyosef-on-mishneh-torah-testimony",
+      "work_title": "Divrei Shaul Edut BeYosef on Mishneh Torah, Testimony",
+      "work_slug": "halakhah/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony",
+      "work_type": "commentary",
+      "unit_count": 123,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony.json",
+          "bytes": 794839,
+          "sha256": "5b493edb214766432a74c7b1933165ce4d37db285e348cd2ba0c7b2f8aa46e8b"
+        },
+        "overlay": {
+          "path": "data/overlays/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony.json",
+          "bytes": 113,
+          "sha256": "aa7a158f67ad5e5949c01440b67b9d93cef63653bf37de889410784e0ad06df9"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony.json",
+          "bytes": 1172218,
+          "sha256": "56927172b73fd4f3df3b06ea2b9809a5116fe63fe4cc35db6fcdd1d1f1c5b387"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony.json",
+          "bytes": 3524643,
+          "sha256": "d982f47c000e6ccd619bbe7de48972a11411cdd7392c763077343fe46383d4ca"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony.manifest.json",
+          "bytes": 708833,
+          "sha256": "f80aad45993ce9d7793d5d369b92c5c631e7cb7a39e5e2a5fb04d2abd5d21ca9"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony-chunks",
+          "files": 10,
+          "bytes": 8256877
+        },
+        "html": {
+          "path": "halakhah/divrei-shaul-edut-beyosef-on-mishneh-torah-testimony/index.html",
+          "bytes": 812194,
+          "sha256": "2b5ae8ea659f1ad1e76903831ca62a51206464c83460ed42f3880a10fc896474"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "divrei-yirmiyahu-on-mishneh-torah-blessings",
+      "work_title": "Divrei Yirmiyahu on Mishneh Torah, Blessings",
+      "work_slug": "halakhah/divrei-yirmiyahu-on-mishneh-torah-blessings",
+      "work_type": "commentary",
+      "unit_count": 111,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/divrei-yirmiyahu-on-mishneh-torah-blessings.json",
+          "bytes": 593635,
+          "sha256": "4761077846779ad407b729c57e2472bef1f63d224f179c5fb30d64a6c31cb4bd"
+        },
+        "overlay": {
+          "path": "data/overlays/divrei-yirmiyahu-on-mishneh-torah-blessings.json",
+          "bytes": 104,
+          "sha256": "dcbac72684e60e0cd8fb5d3f34e70f2629b3e07f912dd53d55d12ad8a0a984e8"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-blessings.json",
+          "bytes": 788559,
+          "sha256": "c117e2c3d81b21b50d5e25a6b6a338901a3109b6e3c8af3d03b8c2ed88114331"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/divrei-yirmiyahu-on-mishneh-torah-blessings.json",
+          "bytes": 3041995,
+          "sha256": "7f1769ce8f5cbb97784c19ae324e11555618262f5db6536483e5c1552a40aa0d"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/divrei-yirmiyahu-on-mishneh-torah-blessings.manifest.json",
+          "bytes": 548460,
+          "sha256": "8ef8e3641454a910963b011194ba72534fa5f7c8f553c5bf46408ace84d043c8"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/divrei-yirmiyahu-on-mishneh-torah-blessings-chunks",
+          "files": 8,
+          "bytes": 8455159
+        },
+        "html": {
+          "path": "halakhah/divrei-yirmiyahu-on-mishneh-torah-blessings/index.html",
+          "bytes": 610566,
+          "sha256": "648b7eff4de60a7038b783111f6a143212e579e6de10997656a90b44d211d6f9"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "divrei-yirmiyahu-on-mishneh-torah-fasts",
       "work_title": "Divrei Yirmiyahu on Mishneh Torah, Fasts",
       "work_slug": "halakhah/divrei-yirmiyahu-on-mishneh-torah-fasts",
@@ -6640,6 +6995,77 @@
           "path": "halakhah/divrei-yirmiyahu-on-mishneh-torah-leavened-and-unleavened-bread/index.html",
           "bytes": 438796,
           "sha256": "a6c4b079c04c35a030596d49a53888da1e02c7994a5625e4beb094a865e1f6d9"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing",
+      "work_title": "Divrei Yirmiyahu on Mishneh Torah, Prayer and the Priestly Blessing",
+      "work_slug": "halakhah/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing",
+      "work_type": "commentary",
+      "unit_count": 146,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing.json",
+          "bytes": 683237,
+          "sha256": "0ec5981cc57f2fb2e51e6ebec70e626f38d5224ce0623ac2741ac457c49bc524"
+        },
+        "overlay": {
+          "path": "data/overlays/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing.json",
+          "bytes": 127,
+          "sha256": "e434b0ce279329b69f7353fa2f83d54ea40465695fb5c6b04e1132b65679c769"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing.json",
+          "bytes": 787973,
+          "sha256": "25f16f16f0c56fafd8541b8b6f44b067bf687895873a1845a5aeb924fadccf60"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing.json",
+          "bytes": 3416975,
+          "sha256": "601c31f7487b2c8ab146d03a3f5e16679137adb6414b09dbb4c80f3adde25af4"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing.manifest.json",
+          "bytes": 772370,
+          "sha256": "44d5dc758edc56c3c18b074714f1c91fda92290f17a695807cca93be23e60995"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing-chunks",
+          "files": 9,
+          "bytes": 9343133
+        },
+        "html": {
+          "path": "halakhah/divrei-yirmiyahu-on-mishneh-torah-prayer-and-the-priestly-blessing/index.html",
+          "bytes": 665385,
+          "sha256": "5619880aae1b16e071e3920ea5e95d13087b48e2c7b5662972dbc95e727813a7"
         }
       },
       "depends_on": {
@@ -9021,6 +9447,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "even-haazel-on-mishneh-torah-damages-to-property",
+      "work_title": "Even Ha'azel on Mishneh Torah, Damages to Property",
+      "work_slug": "halakhah/even-haazel-on-mishneh-torah-damages-to-property",
+      "work_type": "commentary",
+      "unit_count": 123,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/even-haazel-on-mishneh-torah-damages-to-property.json",
+          "bytes": 2356265,
+          "sha256": "9721541d3cc4ab109c51a4c66bb64da3a0ba2c74e9becae1c7897cba299bf75b"
+        },
+        "overlay": {
+          "path": "data/overlays/even-haazel-on-mishneh-torah-damages-to-property.json",
+          "bytes": 109,
+          "sha256": "913ce11ba4b703d7ef286bb6d6d00b4c1afd3eed81c7568ee3235560bbf4c77a"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/even-haazel-on-mishneh-torah-damages-to-property.json",
+          "bytes": 4186676,
+          "sha256": "a9f1294bd0dea69f7bba3632c3bb9b11e9a40c14849e3d238141ace4aca89604"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/even-haazel-on-mishneh-torah-damages-to-property.json",
+          "bytes": 6492475,
+          "sha256": "7ee1c0bd525eb4aa7820171a7d8f0c58607454035686bc34fd8ccf8baaf9b9e0"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/even-haazel-on-mishneh-torah-damages-to-property.manifest.json",
+          "bytes": 1249726,
+          "sha256": "249f11b8d44a79381fa6be5f6c9b458d08a8d05661e08d45f217b3bbb3d2474c"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/even-haazel-on-mishneh-torah-damages-to-property-chunks",
+          "files": 17,
+          "bytes": 12759480
+        },
+        "html": {
+          "path": "halakhah/even-haazel-on-mishneh-torah-damages-to-property/index.html",
+          "bytes": 2370423,
+          "sha256": "cd88141b1674017a0212aaa13d7a08d62af2461fe06df68ab5630019496f95fc"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "even-haazel-on-mishneh-torah-divorce",
       "work_title": "Even Ha'azel on Mishneh Torah, Divorce",
       "work_slug": "halakhah/even-haazel-on-mishneh-torah-divorce",
@@ -9842,6 +10339,77 @@
           "path": "halakhah/even-haazel-on-mishneh-torah-sacrifices-rendered-unfit/index.html",
           "bytes": 1280810,
           "sha256": "864c9feba6705feeff966b73fb9249459317bfa4a38770d79db2bd20f0c92af5"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "even-haazel-on-mishneh-torah-sales",
+      "work_title": "Even Ha'azel on Mishneh Torah, Sales",
+      "work_slug": "halakhah/even-haazel-on-mishneh-torah-sales",
+      "work_type": "commentary",
+      "unit_count": 134,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/even-haazel-on-mishneh-torah-sales.json",
+          "bytes": 1648906,
+          "sha256": "9b2bd175de5060554a4cd595796a89ae4095dc298a87fdfa3e05aa7457c0bce2"
+        },
+        "overlay": {
+          "path": "data/overlays/even-haazel-on-mishneh-torah-sales.json",
+          "bytes": 95,
+          "sha256": "88f9629be297a37c28d96f4ad8d02db46befe554634bbdd07d8981971b392019"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/even-haazel-on-mishneh-torah-sales.json",
+          "bytes": 2825414,
+          "sha256": "670ce3cf28e174d61c9bfb2154393b30493b9e961526def5ec3fd7b356f5f0e5"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/even-haazel-on-mishneh-torah-sales.json",
+          "bytes": 4748803,
+          "sha256": "524e8dc0b8feef0da2b0e2d035e9559d695e0122f5f9151926c59b923b3389d6"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/even-haazel-on-mishneh-torah-sales.manifest.json",
+          "bytes": 767062,
+          "sha256": "5199d92c6ff020d2ca819343f338697abfffa73f7231f4640435039745a2545b"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/even-haazel-on-mishneh-torah-sales-chunks",
+          "files": 13,
+          "bytes": 10466724
+        },
+        "html": {
+          "path": "halakhah/even-haazel-on-mishneh-torah-sales/index.html",
+          "bytes": 1671271,
+          "sha256": "fb83ba1d01c04dcfa0ee1d567180203d52527f4a46c036dcf7396bcd389d2399"
         }
       },
       "depends_on": {
@@ -11475,6 +12043,148 @@
           "path": "gra/hagra-on-sefer-yetzirah-gra-version/index.html",
           "bytes": 303841,
           "sha256": "98e47ddce7bdf0447d36ea4f41359c2e0691bd7ad0c75f2ed136a9ce2e741f7f"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "har-hamoriyah-on-mishneh-torah-festival-offering",
+      "work_title": "Har HaMoriyah on Mishneh Torah, Festival Offering",
+      "work_slug": "halakhah/har-hamoriyah-on-mishneh-torah-festival-offering",
+      "work_type": "commentary",
+      "unit_count": 101,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/har-hamoriyah-on-mishneh-torah-festival-offering.json",
+          "bytes": 260683,
+          "sha256": "df7f433172f7f4d34d25761f4522c4feeaf6fea665edd1bc8b76db3d5b9c6e77"
+        },
+        "overlay": {
+          "path": "data/overlays/har-hamoriyah-on-mishneh-torah-festival-offering.json",
+          "bytes": 109,
+          "sha256": "9d718d892f86d4d77ef3e00b7e764cbbfd4ba41013c652263b833c350756b533"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/har-hamoriyah-on-mishneh-torah-festival-offering.json",
+          "bytes": 172616,
+          "sha256": "616759c7345136aeeb6e03641f5b57e2c1cc393bad06db3b38a73228d65883b2"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/har-hamoriyah-on-mishneh-torah-festival-offering.json",
+          "bytes": 879211,
+          "sha256": "453a42b9ac8283fe4a730638b3d9be6940524f9703d6ba7425b93a25dbfea8c3"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/har-hamoriyah-on-mishneh-torah-festival-offering.manifest.json",
+          "bytes": 168441,
+          "sha256": "51436285862ce1eeb7dda8c3b49147ab24457bf2b83b7a28fc475f29c5597b7a"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/har-hamoriyah-on-mishneh-torah-festival-offering-chunks",
+          "files": 3,
+          "bytes": 2578342
+        },
+        "html": {
+          "path": "halakhah/har-hamoriyah-on-mishneh-torah-festival-offering/index.html",
+          "bytes": 271342,
+          "sha256": "63d7ced0d0f4ff413c7f69c63c6111efff60d0772ca81d363bca36d6a84405e4"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "har-hamoriyah-on-mishneh-torah-substitution",
+      "work_title": "Har HaMoriyah on Mishneh Torah, Substitution",
+      "work_slug": "halakhah/har-hamoriyah-on-mishneh-torah-substitution",
+      "work_type": "commentary",
+      "unit_count": 123,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/har-hamoriyah-on-mishneh-torah-substitution.json",
+          "bytes": 306880,
+          "sha256": "f093bdb14de28a7eebcb4c5a7c1d9297804045bb30469832faa9e98dceabfdf3"
+        },
+        "overlay": {
+          "path": "data/overlays/har-hamoriyah-on-mishneh-torah-substitution.json",
+          "bytes": 104,
+          "sha256": "8ef935562dc1dd2e0f7ca2f233928e11dd2de43891604a517c132407dc5c3f85"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/har-hamoriyah-on-mishneh-torah-substitution.json",
+          "bytes": 200220,
+          "sha256": "b499f978c246bdeddcd96f26c47494cc3dd23f1253aeab2ba8e5c76fcdc40e88"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/har-hamoriyah-on-mishneh-torah-substitution.json",
+          "bytes": 984189,
+          "sha256": "801c8ff809e4ad1193bec73b6d08475f70b4e92a26341475da0ed5441e9173a6"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/har-hamoriyah-on-mishneh-torah-substitution.manifest.json",
+          "bytes": 178526,
+          "sha256": "f4fab8155163b4509f570352f82feefb37543ad34d782859e9c2cac52847bc13"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/har-hamoriyah-on-mishneh-torah-substitution-chunks",
+          "files": 3,
+          "bytes": 2849407
+        },
+        "html": {
+          "path": "halakhah/har-hamoriyah-on-mishneh-torah-substitution/index.html",
+          "bytes": 307451,
+          "sha256": "81a002b2424d6bd50ec51b10448163fdedaf8961fbafd10fb389eace1ba49c4e"
         }
       },
       "depends_on": {
@@ -13778,6 +14488,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "kessef-mishneh-on-mishneh-torah-fringes",
+      "work_title": "Kessef Mishneh on Mishneh Torah, Fringes",
+      "work_slug": "halakhah/kessef-mishneh-on-mishneh-torah-fringes",
+      "work_type": "commentary",
+      "unit_count": 112,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kessef-mishneh-on-mishneh-torah-fringes.json",
+          "bytes": 284279,
+          "sha256": "52d97e6e4d1179fdc3adbd57c54de4facf889f4ad5f95686bcd3f8f37674c8e1"
+        },
+        "overlay": {
+          "path": "data/overlays/kessef-mishneh-on-mishneh-torah-fringes.json",
+          "bytes": 100,
+          "sha256": "2250a49065f20942f3ab8ba3d278da144379cb15d40c19031c33234577f18a41"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-fringes.json",
+          "bytes": 204705,
+          "sha256": "6b4da9bdc3b2a7c034d9fd52c66b1a76449bb0eccad8a3117bd301e2044052b5"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kessef-mishneh-on-mishneh-torah-fringes.json",
+          "bytes": 1006923,
+          "sha256": "5309257a06a925de3721c6a8df399930589a8dac739f7d6ff73bfe5c71ad8834"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-fringes.manifest.json",
+          "bytes": 174877,
+          "sha256": "95ceb037ddcb26ac72b0aafd527c01a984edbb5687f929ef9dc992a4c2a1815a"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-fringes-chunks",
+          "files": 3,
+          "bytes": 2842628
+        },
+        "html": {
+          "path": "halakhah/kessef-mishneh-on-mishneh-torah-fringes/index.html",
+          "bytes": 289263,
+          "sha256": "38edc3ba3210f159dd20c247db1cc5e010e09a1184cc24ab6643fe23e7daf573"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "kessef-mishneh-on-mishneh-torah-offerings-for-those-with-incomplete-atonement",
       "work_title": "Kessef Mishneh on Mishneh Torah, Offerings for Those with Incomplete Atonement",
       "work_slug": "halakhah/kessef-mishneh-on-mishneh-torah-offerings-for-those-with-incomplete-atonement",
@@ -13849,6 +14630,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "kessef-mishneh-on-mishneh-torah-rebels",
+      "work_title": "Kessef Mishneh on Mishneh Torah, Rebels",
+      "work_slug": "halakhah/kessef-mishneh-on-mishneh-torah-rebels",
+      "work_type": "commentary",
+      "unit_count": 134,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kessef-mishneh-on-mishneh-torah-rebels.json",
+          "bytes": 329712,
+          "sha256": "9ac2bc478ce0709312b5e8e6707ac671e62ed9ab297eeb3c9bca7a729e573050"
+        },
+        "overlay": {
+          "path": "data/overlays/kessef-mishneh-on-mishneh-torah-rebels.json",
+          "bytes": 99,
+          "sha256": "9c69d3d813b81a71e4d3abb0a2b5f31f7ee88f710ed4915b139edd5a08035322"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-rebels.json",
+          "bytes": 227369,
+          "sha256": "6df7c9e7813f0a78818928b7f56faab3b9f51a29f0166239b1d42f0429a583ee"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kessef-mishneh-on-mishneh-torah-rebels.json",
+          "bytes": 1201034,
+          "sha256": "72f2a7b6d14c26a37e472f5e8b0e625885418a9a1cf7e240c10daa03454d5684"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-rebels.manifest.json",
+          "bytes": 205600,
+          "sha256": "c7e34b9fec8477de57c8413848760fb76680365afe2d86b6aa2317ba2ee5199f"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-rebels-chunks",
+          "files": 4,
+          "bytes": 3619326
+        },
+        "html": {
+          "path": "halakhah/kessef-mishneh-on-mishneh-torah-rebels/index.html",
+          "bytes": 324053,
+          "sha256": "6a51f8eda7b88cb4f69f8c5fc8e7482f6cefd5eee26e631cfd20594e19deb9c5"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "kessef-mishneh-on-mishneh-torah-repentance",
       "work_title": "Kessef Mishneh on Mishneh Torah, Repentance",
       "work_slug": "halakhah/kessef-mishneh-on-mishneh-torah-repentance",
@@ -13889,6 +14741,77 @@
           "path": "halakhah/kessef-mishneh-on-mishneh-torah-repentance/index.html",
           "bytes": 212641,
           "sha256": "aa5375c9c5514e10182ccf903a271db6fb5c5b856353260c3a7b790e0efd03e9"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement",
+      "work_title": "Kessef Mishneh on Mishneh Torah, Service on the Day of Atonement",
+      "work_slug": "halakhah/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement",
+      "work_type": "commentary",
+      "unit_count": 121,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement.json",
+          "bytes": 291480,
+          "sha256": "f9f7377f8acf1c23ed67b4ed1364b73309c837e6a7406a9633a114fbad630966"
+        },
+        "overlay": {
+          "path": "data/overlays/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement.json",
+          "bytes": 124,
+          "sha256": "5e594fa5812d161714de6cbc6850ad3aa388ddd96ff6c1088a71d3cea05bd0ef"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement.json",
+          "bytes": 130152,
+          "sha256": "6faae2380dd53827cf4ba10b87f8c9c55db2bc97b93b5611ea84342700e8ce32"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement.json",
+          "bytes": 694891,
+          "sha256": "945226a246439c9d83266bb6d45240ce6e1dae3f528f9c97315f1305cdf844f2"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement.manifest.json",
+          "bytes": 154057,
+          "sha256": "d24051246ec760798d7ca4a0e99adac590769be080eb793d48b6a27997828103"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement-chunks",
+          "files": 2,
+          "bytes": 2195667
+        },
+        "html": {
+          "path": "halakhah/kessef-mishneh-on-mishneh-torah-service-on-the-day-of-atonement/index.html",
+          "bytes": 277896,
+          "sha256": "e857834c25587ad9a2aa426f65719b496998264bfaddf88f6ea5287c4c2c04f5"
         }
       },
       "depends_on": {
@@ -14173,6 +15096,77 @@
           "path": "halakhah/kessef-mishneh-on-mishneh-torah-virgin-maiden/index.html",
           "bytes": 192250,
           "sha256": "d0259238888fa2796fb29d128552a3dcb97ee3efd4d53a6bac32514fe49c46b6"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity",
+      "work_title": "Kessef Mishneh on Mishneh Torah, Woman Suspected of Infidelity",
+      "work_slug": "halakhah/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity",
+      "work_type": "commentary",
+      "unit_count": 144,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity.json",
+          "bytes": 348887,
+          "sha256": "b5fafe186534cf239c6c0a92f62c5dd1b1b0aabd8830ad9bc4d1309f701b5eec"
+        },
+        "overlay": {
+          "path": "data/overlays/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity.json",
+          "bytes": 122,
+          "sha256": "43963ff048e526aab523bc582b80141dd94b1eb5ed3a66fb0fb2c09ab51db0c4"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity.json",
+          "bytes": 180184,
+          "sha256": "528a777f522be511ec02e39b4fe21d4dd35462a9c9eb03016a457d506221c7f9"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity.json",
+          "bytes": 840467,
+          "sha256": "880e846a159a13a770b434d7326e774d2aa864bc081b159dc42da38d2b9e1ef8"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json",
+          "bytes": 184966,
+          "sha256": "90de0717b3e9ffcc7736ec9f714c47babbee6f73370eec6c00f1bee966d6ab48"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity-chunks",
+          "files": 3,
+          "bytes": 2469233
+        },
+        "html": {
+          "path": "halakhah/kessef-mishneh-on-mishneh-torah-woman-suspected-of-infidelity/index.html",
+          "bytes": 327280,
+          "sha256": "1639c3d539f4d342637541b02efc385c9d709f4b8689fced0973366153d20cb6"
         }
       },
       "depends_on": {
@@ -15056,6 +16050,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "kiryat-sefer-on-mishneh-torah-defilement-by-leprosy",
+      "work_title": "Kiryat Sefer on Mishneh Torah, Defilement by Leprosy",
+      "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy",
+      "work_type": "commentary",
+      "unit_count": 122,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy.json",
+          "bytes": 483318,
+          "sha256": "52e91f60b46c281b1e362cda849c9057c4dfeb644bdd63a5d23b68f2517f00bd"
+        },
+        "overlay": {
+          "path": "data/overlays/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy.json",
+          "bytes": 112,
+          "sha256": "4d469cef00fa85da2b5e59dc139d7caadf84af9238ad87ebcc5596a0c4d9965c"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy.json",
+          "bytes": 557205,
+          "sha256": "7b6417c2af5a141fdb2f51762927c6a4ed32e22dc7134b4389294975475979d9"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy.json",
+          "bytes": 2013982,
+          "sha256": "91eab24b1ea8d9366e8919513b84f2b7f948b5646fefbbbe3c28ef4c7b18ad79"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy.manifest.json",
+          "bytes": 400198,
+          "sha256": "f9abcd09ce97af8cf20780145e58ef4d3139b6e67d8a7f5b89153629b4857ae9"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy-chunks",
+          "files": 6,
+          "bytes": 5457750
+        },
+        "html": {
+          "path": "halakhah/kiryat-sefer-on-mishneh-torah-defilement-by-leprosy/index.html",
+          "bytes": 483550,
+          "sha256": "98939501e01abe413541e3638532432657049e093a22470aec0c37217fb3163c"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "kiryat-sefer-on-mishneh-torah-defilement-of-foods",
+      "work_title": "Kiryat Sefer on Mishneh Torah, Defilement of Foods",
+      "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-defilement-of-foods",
+      "work_type": "commentary",
+      "unit_count": 109,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kiryat-sefer-on-mishneh-torah-defilement-of-foods.json",
+          "bytes": 286755,
+          "sha256": "704f7d7eed4ed4a202475f8350b1043c63191fd2eb1df4830a53f2a56cc969fc"
+        },
+        "overlay": {
+          "path": "data/overlays/kiryat-sefer-on-mishneh-torah-defilement-of-foods.json",
+          "bytes": 110,
+          "sha256": "bedbb78ecf9d5bcb421986b20633a6493e16417fb9a83242b4b869564c5a09fe"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-defilement-of-foods.json",
+          "bytes": 196893,
+          "sha256": "3f94ab89f8e7d2e9d8b153903b0dbc563be37912fefbe2515bf8a73caf3cea29"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kiryat-sefer-on-mishneh-torah-defilement-of-foods.json",
+          "bytes": 1102367,
+          "sha256": "164289881e15ce107e6738eeb4b557e4989cfeaf9daca5d3b61828db46b6c1a9"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-defilement-of-foods.manifest.json",
+          "bytes": 212792,
+          "sha256": "405e033ef9d2f0380bb93a8e43cd9532646833d146ff66adf545f603eeb0872c"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-defilement-of-foods-chunks",
+          "files": 3,
+          "bytes": 3118280
+        },
+        "html": {
+          "path": "halakhah/kiryat-sefer-on-mishneh-torah-defilement-of-foods/index.html",
+          "bytes": 294410,
+          "sha256": "c42bec74c34fbb4f6ac219c66a6581209c7e93b91e087ca6c856d2287e469056"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "kiryat-sefer-on-mishneh-torah-diverse-species",
       "work_title": "Kiryat Sefer on Mishneh Torah, Diverse Species",
       "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-diverse-species",
@@ -15096,6 +16232,77 @@
           "path": "halakhah/kiryat-sefer-on-mishneh-torah-diverse-species/index.html",
           "bytes": 193055,
           "sha256": "62b43ec8d18c9f7cf2431667817e9efbf667c1cf791b7cee8af972bf2f35837a"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "kiryat-sefer-on-mishneh-torah-divorce",
+      "work_title": "Kiryat Sefer on Mishneh Torah, Divorce",
+      "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-divorce",
+      "work_type": "commentary",
+      "unit_count": 114,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kiryat-sefer-on-mishneh-torah-divorce.json",
+          "bytes": 298351,
+          "sha256": "2b4f7ae9f5198aef41db9f45f4ba0b1ceab826daae47cd54c2840b98cc08dfdf"
+        },
+        "overlay": {
+          "path": "data/overlays/kiryat-sefer-on-mishneh-torah-divorce.json",
+          "bytes": 98,
+          "sha256": "2b0987d0873c2a5e398975059645befe5585a573b0693fc39ec0201140eb9683"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-divorce.json",
+          "bytes": 241953,
+          "sha256": "13ae811f9813d7a025cd7a42126e2357062f1957ac9e62c8cd2b17b9e07867ed"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kiryat-sefer-on-mishneh-torah-divorce.json",
+          "bytes": 1117014,
+          "sha256": "aa0072654d02ee4ae65ffbdf2f228dbdc499bdd9907343490e0befcbe18ff2a9"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-divorce.manifest.json",
+          "bytes": 187895,
+          "sha256": "59a44bf37dabb4c417817cd53bc358b05df9dbda477942a45e6ee37630f8944c"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-divorce-chunks",
+          "files": 3,
+          "bytes": 3438765
+        },
+        "html": {
+          "path": "halakhah/kiryat-sefer-on-mishneh-torah-divorce/index.html",
+          "bytes": 307817,
+          "sha256": "f337cd2be1ab70e0065145fb641a57341184e4d5b5349e75389ff6bdf0c448d7"
         }
       },
       "depends_on": {
@@ -15340,6 +16547,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "kiryat-sefer-on-mishneh-torah-forbidden-foods",
+      "work_title": "Kiryat Sefer on Mishneh Torah, Forbidden Foods",
+      "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-forbidden-foods",
+      "work_type": "commentary",
+      "unit_count": 118,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kiryat-sefer-on-mishneh-torah-forbidden-foods.json",
+          "bytes": 329798,
+          "sha256": "1ab9068c9bb6c8be36a44efd030ef0dad96998acda3d0ffd91f5d0decf1ba583"
+        },
+        "overlay": {
+          "path": "data/overlays/kiryat-sefer-on-mishneh-torah-forbidden-foods.json",
+          "bytes": 106,
+          "sha256": "f41a288e3f213ebf38c0bd5c858aa9b03b0c4351a2a4a2b5c95a41b9bf397dbe"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-forbidden-foods.json",
+          "bytes": 266169,
+          "sha256": "be03f06cf7f243762a6732dbf098340522de6963cb44267bbfadce004ba26c44"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kiryat-sefer-on-mishneh-torah-forbidden-foods.json",
+          "bytes": 1391971,
+          "sha256": "bfd67a390046beacede93f47bd5fb41c27616a3157261a6c24831d547d77d09f"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-forbidden-foods.manifest.json",
+          "bytes": 258182,
+          "sha256": "1c937d0f064a5545c0ddb765d2c6212cadb0bcd7d920e33074108110beaf98d0"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-forbidden-foods-chunks",
+          "files": 4,
+          "bytes": 3813411
+        },
+        "html": {
+          "path": "halakhah/kiryat-sefer-on-mishneh-torah-forbidden-foods/index.html",
+          "bytes": 332580,
+          "sha256": "ffdbf14a7a5614c9df21af1a869beb27e8fcd4385743ba1e49577be08350811c"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "kiryat-sefer-on-mishneh-torah-foundations-of-the-torah",
       "work_title": "Kiryat Sefer on Mishneh Torah, Foundations of the Torah",
       "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah",
@@ -15522,6 +16800,77 @@
           "path": "halakhah/kiryat-sefer-on-mishneh-torah-gifts-to-the-poor/index.html",
           "bytes": 235254,
           "sha256": "b4003048bba3d0137c34c4275cf7ed680f7ec660b779628b93d69d01c449ae13"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "kiryat-sefer-on-mishneh-torah-heave-offerings",
+      "work_title": "Kiryat Sefer on Mishneh Torah, Heave Offerings",
+      "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-heave-offerings",
+      "work_type": "commentary",
+      "unit_count": 118,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kiryat-sefer-on-mishneh-torah-heave-offerings.json",
+          "bytes": 299453,
+          "sha256": "7c4d86fc86a4d8b6fa3d046cff596644209a3b7d518bb0d81a3a56c7b7cb90c9"
+        },
+        "overlay": {
+          "path": "data/overlays/kiryat-sefer-on-mishneh-torah-heave-offerings.json",
+          "bytes": 106,
+          "sha256": "bdc1eb9f270f4eed63ae819c69ef7411180b8950d4f664f671d92f6f8de8f7a0"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-heave-offerings.json",
+          "bytes": 206959,
+          "sha256": "6ce423b3acc65a17c1e39d8a6d0bf84592227dc85d17af85fa59d17e1e8a5076"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kiryat-sefer-on-mishneh-torah-heave-offerings.json",
+          "bytes": 1048794,
+          "sha256": "b01d97aeb48cd948a042a74a90310c97fe7dc566db1118df095c18f8a76a66c9"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-heave-offerings.manifest.json",
+          "bytes": 195981,
+          "sha256": "6d93b03c3713a0ffcdc00fa2b721e3a05b9a5998eae0e6d14b77d6b51cb5c20a"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-heave-offerings-chunks",
+          "files": 3,
+          "bytes": 3128492
+        },
+        "html": {
+          "path": "halakhah/kiryat-sefer-on-mishneh-torah-heave-offerings/index.html",
+          "bytes": 305398,
+          "sha256": "b1d21fb7ee8af9dde5c3ceb3b1b6ffe0f1b9da4c3bb543d0727df047f4063069"
         }
       },
       "depends_on": {
@@ -18961,6 +20310,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "kiryat-sefer-on-mishneh-torah-vessels",
+      "work_title": "Kiryat Sefer on Mishneh Torah, Vessels",
+      "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-vessels",
+      "work_type": "commentary",
+      "unit_count": 103,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/kiryat-sefer-on-mishneh-torah-vessels.json",
+          "bytes": 255592,
+          "sha256": "51c3f47164a512fbb7018b644d2d33906634b96d7afa3ffb59175edc0d9d250f"
+        },
+        "overlay": {
+          "path": "data/overlays/kiryat-sefer-on-mishneh-torah-vessels.json",
+          "bytes": 98,
+          "sha256": "18038bb9de941e7579d096bda667f0fe593294a6b8a15dc63fb63d5f8802a5d3"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-vessels.json",
+          "bytes": 183757,
+          "sha256": "0498db09bf7207b3a08218be3c481f60e9e15ee2e21d0785204f41575dcf5088"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/kiryat-sefer-on-mishneh-torah-vessels.json",
+          "bytes": 1017055,
+          "sha256": "cd275f2a824128f2a8f5090e889a6be626a9f05b34ccf384a60b69801d658d3e"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-vessels.manifest.json",
+          "bytes": 171515,
+          "sha256": "2ab5b0e392e6851786e08329003cce7c80a3f7ea12f496a2f831ca25062175c3"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/kiryat-sefer-on-mishneh-torah-vessels-chunks",
+          "files": 3,
+          "bytes": 2849901
+        },
+        "html": {
+          "path": "halakhah/kiryat-sefer-on-mishneh-torah-vessels/index.html",
+          "bytes": 278353,
+          "sha256": "3917d2cac552e0d60d002c7db794c38637621e497d6c0433c3d6899893645578"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "kiryat-sefer-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein",
       "work_title": "Kiryat Sefer on Mishneh Torah, Vessels of the Sanctuary and Those who Serve Therein",
       "work_slug": "halakhah/kiryat-sefer-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein",
@@ -20313,13 +21733,13 @@
       "work_id": "kuntres-zikah",
       "work_title": "Kuntres Zikah",
       "work_slug": "halakhah/kuntres-zikah",
-      "work_type": "commentary",
+      "work_type": "primary_text",
       "unit_count": 86,
       "artifacts": {
         "source": {
           "path": "data/sources/kuntres-zikah.json",
-          "bytes": 296017,
-          "sha256": "3eae5a1a8df713ed8b1a559c86e866d8d083dfe28f2e095e67a8e21ec08b56e4"
+          "bytes": 296019,
+          "sha256": "4ed579a128d4a1e6b32a458738158f976b0cceb9f32429612df8c7a0c3f47076"
         },
         "overlay": {
           "path": "data/overlays/kuntres-zikah.json",
@@ -20348,8 +21768,8 @@
         },
         "html": {
           "path": "halakhah/kuntres-zikah/index.html",
-          "bytes": 347759,
-          "sha256": "ba64569d5a1b085119c66efc5ca5ebd99a6fdc5add7928735cce9fb959c379c0"
+          "bytes": 347413,
+          "sha256": "cfe54bcdd0243ef77a40f9ec27ddab671accd10fa30bd7e7fe7056c5cfcb497f"
         }
       },
       "depends_on": {
@@ -22085,6 +23505,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "maasai-lamelekh-on-mishneh-torah-the-chosen-temple",
+      "work_title": "Ma'asai LaMelekh on Mishneh Torah, The Chosen Temple",
+      "work_slug": "halakhah/maasai-lamelekh-on-mishneh-torah-the-chosen-temple",
+      "work_type": "commentary",
+      "unit_count": 131,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maasai-lamelekh-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 2870323,
+          "sha256": "bf9d30e6a7b4c50ad2ba0341111580777087b5ebd3de0b7fe8d6f9372bb14c2a"
+        },
+        "overlay": {
+          "path": "data/overlays/maasai-lamelekh-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 111,
+          "sha256": "8b37ff60dc17f5e8e63478679ac15b44738211ac33b1f9c91698f0e5e6f248bf"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maasai-lamelekh-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 5142372,
+          "sha256": "f48b5063ccd7340707e78b2fa73eba83376d7dd11fc7a12ec0a7fb0f4ae68f4b"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maasai-lamelekh-on-mishneh-torah-the-chosen-temple.json",
+          "bytes": 10685781,
+          "sha256": "b0701aae1a015a2d3950fcef5c4125451b8316befce110e26960485df12ef5dd"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maasai-lamelekh-on-mishneh-torah-the-chosen-temple.manifest.json",
+          "bytes": 2101161,
+          "sha256": "af6f4a15f3bd9a6be968486b44c9719f1131068214c7ae703a510bb15f07c20b"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maasai-lamelekh-on-mishneh-torah-the-chosen-temple-chunks",
+          "files": 28,
+          "bytes": 21385105
+        },
+        "html": {
+          "path": "halakhah/maasai-lamelekh-on-mishneh-torah-the-chosen-temple/index.html",
+          "bytes": 2910539,
+          "sha256": "2c7650c671c5194e73c7e627187c26b22c58301b9c131289626568da7f4bc0a0"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein",
+      "work_title": "Ma'asai LaMelekh on Mishneh Torah, Vessels of the Sanctuary and Those who Serve Therein",
+      "work_slug": "halakhah/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein",
+      "work_type": "commentary",
+      "unit_count": 1,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 24557,
+          "sha256": "82cf918f9d4edd511e8caf2731714f801c93fd05b477e425f0bc930006f6b33c"
+        },
+        "overlay": {
+          "path": "data/overlays/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 146,
+          "sha256": "743d87169d7dece0720d172fbf897314b3fbc3fdc49405ca80f1ecde89256f31"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 40271,
+          "sha256": "aeb50e9386b8c461531ccccde3a0ee5fc7462aed6733aac78794663d9aeeee30"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 465875,
+          "sha256": "6e7fe5928c181ce7e57845fdedfba3e2fe474217339dd00c641b41f252e77295"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein.manifest.json",
+          "bytes": 121963,
+          "sha256": "01a4a21acd1fc641ae49ae48d6f4bcc31ed1e509abe39fc4c9467c8bf480dd03"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein-chunks",
+          "files": 2,
+          "bytes": 1538070
+        },
+        "html": {
+          "path": "halakhah/maasai-lamelekh-on-mishneh-torah-vessels-of-the-sanctuary-and-those-who-serve-therein/index.html",
+          "bytes": 88750,
+          "sha256": "923a1ac4360209a61720774c7017c4518ffdd37ba548b806db5e1d64853d21e9"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "maaseh-rav",
       "work_title": "Maaseh Rav",
       "work_slug": "gra/maaseh-rav",
@@ -22338,6 +23900,290 @@
           "path": "halakhah/maaseh-rokeach-on-circumcision/index.html",
           "bytes": 203698,
           "sha256": "b253aabf267c0a390c1bb5312ce421b2eaf4a093fd47c793a703b2569d004191"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-daily-offerings-and-additional-offerings",
+      "work_title": "Maaseh Rokeach on Daily Offerings and Additional Offerings",
+      "work_slug": "halakhah/maaseh-rokeach-on-daily-offerings-and-additional-offerings",
+      "work_type": "commentary",
+      "unit_count": 107,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-daily-offerings-and-additional-offerings.json",
+          "bytes": 285471,
+          "sha256": "e4d9072c8b4d9070d1c373794d38f7073f8bfcf2c5081cf01f9548ee4470c866"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-daily-offerings-and-additional-offerings.json",
+          "bytes": 119,
+          "sha256": "2ebffb9fe924de430f4fc729d344e70f3ba288ec2393d8122c46375021c2276b"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-daily-offerings-and-additional-offerings.json",
+          "bytes": 195643,
+          "sha256": "e33677700e835bfd4b2b051fa5122f3c2678ee85157d2ca04661549a00b0b171"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-daily-offerings-and-additional-offerings.json",
+          "bytes": 1194284,
+          "sha256": "a7d794bdf6303b7cf8c4404f37b00acaa235ed3a52fc2152df28708930b3a5c2"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-daily-offerings-and-additional-offerings.manifest.json",
+          "bytes": 254026,
+          "sha256": "add8f4e3c981fb1d941a032868ed6f6c449513a2fa205237e0486f8cf9c95d38"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-daily-offerings-and-additional-offerings-chunks",
+          "files": 4,
+          "bytes": 3368050
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-daily-offerings-and-additional-offerings/index.html",
+          "bytes": 294916,
+          "sha256": "078e48ad469d6ea0d199f702ad0e43e0d5db79546190bc777de59a940195d306"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-damages-to-property",
+      "work_title": "Maaseh Rokeach on Damages to Property",
+      "work_slug": "halakhah/maaseh-rokeach-on-damages-to-property",
+      "work_type": "commentary",
+      "unit_count": 143,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-damages-to-property.json",
+          "bytes": 357491,
+          "sha256": "b735c279cd870fa9d3ad0ad90b0eaea9540d0016ce24e23c3ed7c98342233109"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-damages-to-property.json",
+          "bytes": 98,
+          "sha256": "ef546ba91226c2f2b469b53d6141ab347f56c68e54981c02eca95a8b5338183e"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-damages-to-property.json",
+          "bytes": 269661,
+          "sha256": "69ed93d42054a565d1647fe37f2b5f7f3b007442c2442e9a884d76369f5857af"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-damages-to-property.json",
+          "bytes": 1333557,
+          "sha256": "b209e0ae9e20bdbbff73974e66d20616892d43c42162c912d11ff364424d65eb"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-damages-to-property.manifest.json",
+          "bytes": 225952,
+          "sha256": "217e8948ffc2b1b25353be467d31827b3ae5230e77dec5d1e94b653fef359a12"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-damages-to-property-chunks",
+          "files": 4,
+          "bytes": 3769489
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-damages-to-property/index.html",
+          "bytes": 359141,
+          "sha256": "70f7e370bc72e6120cf625b8ded406b5967e4e2dbd628475e37180a82d5a2b94"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-defilement-of-foods",
+      "work_title": "Maaseh Rokeach on Defilement of Foods",
+      "work_slug": "halakhah/maaseh-rokeach-on-defilement-of-foods",
+      "work_type": "commentary",
+      "unit_count": 147,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-defilement-of-foods.json",
+          "bytes": 318868,
+          "sha256": "5303ee1f34e45760b0df95dae24fd12c4484b96cb1d2c5a66b3f75d96f81cc89"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-defilement-of-foods.json",
+          "bytes": 98,
+          "sha256": "47f93038f4a17749e26f58037cb96f310f534ed23db3e362906fee5ead59b5d5"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-defilement-of-foods.json",
+          "bytes": 172893,
+          "sha256": "838c3eed8b8ab7dc4aeed3e8c99a861f07957665c5e5bd7ef84de615d37e43db"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-defilement-of-foods.json",
+          "bytes": 952686,
+          "sha256": "297d36611f2a908614c6742ffc40d55d1f3c78ca99f53be1ed1ac9d828d2765f"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-defilement-of-foods.manifest.json",
+          "bytes": 160616,
+          "sha256": "51ea497da663a7f194afe90f4b8b94db8ef087624c7ca14faa7316df35b9eb47"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-defilement-of-foods-chunks",
+          "files": 3,
+          "bytes": 2730478
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-defilement-of-foods/index.html",
+          "bytes": 317609,
+          "sha256": "59efd7e59b669b05eca96451572ce0071263fb2edf24240d3e60f4e5cd06fbda"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-fasts",
+      "work_title": "Maaseh Rokeach on Fasts",
+      "work_slug": "halakhah/maaseh-rokeach-on-fasts",
+      "work_type": "commentary",
+      "unit_count": 118,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-fasts.json",
+          "bytes": 291732,
+          "sha256": "20260ed83e6fc68befeba0fb637952ada2ca0888482b898ee71728e2227b723b"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-fasts.json",
+          "bytes": 84,
+          "sha256": "bd979199d642645215388e35d0c33b15c3b0b9c44d991df8c98ad5a89082577e"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-fasts.json",
+          "bytes": 242856,
+          "sha256": "757245ca135f2469a0ce79c2ef802f5f10d7fab636d2b100c10f513657801b4d"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-fasts.json",
+          "bytes": 1337161,
+          "sha256": "1f7b1fd36e5f86746fa444166d52d9ae6df208ce7f3b0dc2ac6a6c7fbbfa1961"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-fasts.manifest.json",
+          "bytes": 181691,
+          "sha256": "79597cf64f54652c14b92c112d7e3ed8ff88b8c326f29387426d3c44d7f8c946"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-fasts-chunks",
+          "files": 4,
+          "bytes": 4101503
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-fasts/index.html",
+          "bytes": 309198,
+          "sha256": "a7c20e4d4e63cf6b0a6588f688673e1d02448cf04b7407de31952a09837fef39"
         }
       },
       "depends_on": {
@@ -22653,6 +24499,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "maaseh-rokeach-on-gifts-to-the-poor",
+      "work_title": "Maaseh Rokeach on Gifts to the Poor",
+      "work_slug": "halakhah/maaseh-rokeach-on-gifts-to-the-poor",
+      "work_type": "commentary",
+      "unit_count": 101,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-gifts-to-the-poor.json",
+          "bytes": 239693,
+          "sha256": "ec2c586b60d9603f1e4a9727f6453f2b369969349f611b27656fbaea883834cd"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-gifts-to-the-poor.json",
+          "bytes": 96,
+          "sha256": "6df96e13a2a711576c6767c74f61fdecb992a44fade54599de482260fdc6ac8e"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-gifts-to-the-poor.json",
+          "bytes": 165570,
+          "sha256": "d8eac6fb40c900fbd8d46ff3333251cdb9eee8f72adf3acee74c03a8fbc86291"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-gifts-to-the-poor.json",
+          "bytes": 994421,
+          "sha256": "4dc8ea4aa61b02684478d73cbe98e910a0b3ca2faac24f8c0024ad6982c16a58"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-gifts-to-the-poor.manifest.json",
+          "bytes": 163084,
+          "sha256": "50136e3421ab743f042f800df740272fd1fd2e115499242400b19729376edcf0"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-gifts-to-the-poor-chunks",
+          "files": 3,
+          "bytes": 3060144
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-gifts-to-the-poor/index.html",
+          "bytes": 260008,
+          "sha256": "c1c49e58687f7345cabd08969e7d7be07819ac4895d9ffe14c613ec2a8788ff3"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "maaseh-rokeach-on-human-dispositions",
       "work_title": "Maaseh Rokeach on Human Dispositions",
       "work_slug": "halakhah/maaseh-rokeach-on-human-dispositions",
@@ -22795,6 +24712,361 @@
       "large_artifacts": []
     },
     {
+      "work_id": "maaseh-rokeach-on-nazariteship",
+      "work_title": "Maaseh Rokeach on Nazariteship",
+      "work_slug": "halakhah/maaseh-rokeach-on-nazariteship",
+      "work_type": "commentary",
+      "unit_count": 145,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-nazariteship.json",
+          "bytes": 383873,
+          "sha256": "3e94f9fbdfeff5b8d521c1b4b880222df966131dea4687cb857b1e14dbbc7e7e"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-nazariteship.json",
+          "bytes": 91,
+          "sha256": "fbd465d18efa380d1528e145b25a3e1d87b26157a9f1cfb31ca687acaa465b9e"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-nazariteship.json",
+          "bytes": 337314,
+          "sha256": "5b9b1fde2a8d47b6f67f0a7376109e6481f7d8d5a1a72d31b11a9c83756f6fef"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-nazariteship.json",
+          "bytes": 1546187,
+          "sha256": "8a996a5cd1c4ac00184eac26b0e31385debe5b778675b00cce71160330310075"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-nazariteship.manifest.json",
+          "bytes": 236925,
+          "sha256": "bbf412608a3dc3b26b155a6a4e5e22d46213ac05c39efacc8038af387e71722c"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-nazariteship-chunks",
+          "files": 5,
+          "bytes": 4375839
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-nazariteship/index.html",
+          "bytes": 389499,
+          "sha256": "fe0fcfed87ffd11159026165ba7b5b39138a6ecb64f1ab9356575fdc3ea2808b"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-oaths",
+      "work_title": "Maaseh Rokeach on Oaths",
+      "work_slug": "halakhah/maaseh-rokeach-on-oaths",
+      "work_type": "commentary",
+      "unit_count": 118,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-oaths.json",
+          "bytes": 321813,
+          "sha256": "b0806521558420ca958c680e29094b1d505216b76b551bae680b7b608f8b734d"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-oaths.json",
+          "bytes": 84,
+          "sha256": "6e30caaeeb591b1a7d783b8d8303c7954d6357af606a43e3a6090943395461c2"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-oaths.json",
+          "bytes": 308308,
+          "sha256": "cb7145f2372ce0d0a810ea97938b7872e1d5f2d8aee7e914b04e7167258c758e"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-oaths.json",
+          "bytes": 1417354,
+          "sha256": "4b3bac321a63b1805287819696c61d9cd9bbf155647959381871094626da3e21"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-oaths.manifest.json",
+          "bytes": 194235,
+          "sha256": "22725b99d99eb3c1a7f7c6fbd8300c90d0ff7b26de815517c7527c01691a7b41"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-oaths-chunks",
+          "files": 4,
+          "bytes": 4161645
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-oaths/index.html",
+          "bytes": 342484,
+          "sha256": "0cbaf943d7377f69884a6824255dab141583f908092de769cae4e201603fe855"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-one-who-injures-a-person-or-property",
+      "work_title": "Maaseh Rokeach on One Who Injures a Person or Property",
+      "work_slug": "halakhah/maaseh-rokeach-on-one-who-injures-a-person-or-property",
+      "work_type": "commentary",
+      "unit_count": 104,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-one-who-injures-a-person-or-property.json",
+          "bytes": 332641,
+          "sha256": "8f29c0fdc40e0cefaa514d5c8550175018ab0c7f89ad9fb8f4b7a40e75042ae7"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-one-who-injures-a-person-or-property.json",
+          "bytes": 115,
+          "sha256": "6fd4d5f3fff3b1a45b6c0dfb2fb3786dc4739f256051c0ed3378daa0e4b64d5c"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-one-who-injures-a-person-or-property.json",
+          "bytes": 313354,
+          "sha256": "baeea25b5b691c30fa56aabab74b397968884e20630fa7e7b5046a06b5d532b8"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-one-who-injures-a-person-or-property.json",
+          "bytes": 1551639,
+          "sha256": "793f7cf8055543ca671edc7a97b8d905ddd63de0d65f75243df0d56f1d19aa6a"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-one-who-injures-a-person-or-property.manifest.json",
+          "bytes": 319377,
+          "sha256": "8d65fc377dd774289628865d0f41eaadc47704c329dd16162a5b2cfc3b1d6cb5"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-one-who-injures-a-person-or-property-chunks",
+          "files": 4,
+          "bytes": 4127444
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-one-who-injures-a-person-or-property/index.html",
+          "bytes": 345997,
+          "sha256": "88efd76b6f4172c81acb9049d68c4dbf6093c5381169bb94b2adaae9639d2bd9"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-reading-the-shema",
+      "work_title": "Maaseh Rokeach on Reading the Shema",
+      "work_slug": "halakhah/maaseh-rokeach-on-reading-the-shema",
+      "work_type": "commentary",
+      "unit_count": 112,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-reading-the-shema.json",
+          "bytes": 327811,
+          "sha256": "88ed3c78d819846bd21cd7728ff4a733bcb835a70d18d6ff503143d22b79b24a"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-reading-the-shema.json",
+          "bytes": 96,
+          "sha256": "df4a5c24ac86c354a2cbaa3f2db728891d55b1efba6a9c10b664bc976b995302"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-reading-the-shema.json",
+          "bytes": 314582,
+          "sha256": "e3a53a15dc01e4bdf8db776cfeffa10fd71c4b7d4915e69f36d3cf2647a000f1"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-reading-the-shema.json",
+          "bytes": 1559020,
+          "sha256": "6d5774ca6809f5bdf1f6e680913e21569709869961ab2bad21404edfb93d2e13"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-reading-the-shema.manifest.json",
+          "bytes": 254898,
+          "sha256": "721d71f0ed3d96dba25115569ccde22a8f00946a83d5bb8586546ba065275493"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-reading-the-shema-chunks",
+          "files": 5,
+          "bytes": 4502028
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-reading-the-shema/index.html",
+          "bytes": 343032,
+          "sha256": "ecb83081963001efc91dcf214153284b867510989a04c8c6c901ef3ad16784d5"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-red-heifer",
+      "work_title": "Maaseh Rokeach on Red Heifer",
+      "work_slug": "halakhah/maaseh-rokeach-on-red-heifer",
+      "work_type": "commentary",
+      "unit_count": 102,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-red-heifer.json",
+          "bytes": 231512,
+          "sha256": "7a5baf7ca15142afac696671212cdc892360f6eec41ad3d1b7922986c08015d6"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-red-heifer.json",
+          "bytes": 89,
+          "sha256": "cd07461b2b59153694938aea66bc221c23fff087f85f48aa4e812dccfafe182a"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-red-heifer.json",
+          "bytes": 159739,
+          "sha256": "68240f0f83b0a297ab787e4da41acb419565136f74980ee3c1cc794ae20aae43"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-red-heifer.json",
+          "bytes": 964895,
+          "sha256": "be8be3d49751aa4bf0c36be37439b0cc389c6ad65a35fe0ff4b685a7afeb67b1"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-red-heifer.manifest.json",
+          "bytes": 142976,
+          "sha256": "d5d12266c6f96298652f23d825a657a068c7c9994085c016e9f0a1787a6d2ce1"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-red-heifer-chunks",
+          "files": 3,
+          "bytes": 2939484
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-red-heifer/index.html",
+          "bytes": 256310,
+          "sha256": "45f646286d5ddb7e2bc9fd1ab07dbf8c2b2a10691519ab9aa1a63a338de725f9"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "maaseh-rokeach-on-repentance",
       "work_title": "Maaseh Rokeach on Repentance",
       "work_slug": "halakhah/maaseh-rokeach-on-repentance",
@@ -22906,6 +25178,148 @@
           "path": "halakhah/maaseh-rokeach-on-rest-on-the-tenth-of-tishrei/index.html",
           "bytes": 189202,
           "sha256": "d45ed59d20ddb8456f99a8bf61085458e56cbca5e8d06e8658662a6f6669e347"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-sabbatical-year-and-the-jubilee",
+      "work_title": "Maaseh Rokeach on Sabbatical Year and the Jubilee",
+      "work_slug": "halakhah/maaseh-rokeach-on-sabbatical-year-and-the-jubilee",
+      "work_type": "commentary",
+      "unit_count": 113,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-sabbatical-year-and-the-jubilee.json",
+          "bytes": 289999,
+          "sha256": "c9db12bbbfff0097e20afab6424879ba5174c5bd681d950b09ee3b8991f3c25f"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-sabbatical-year-and-the-jubilee.json",
+          "bytes": 110,
+          "sha256": "8c8a9b86dfc374e51f2e94ac4a6d0ee289fee349d76b70fbc0a92dd8250a163c"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-sabbatical-year-and-the-jubilee.json",
+          "bytes": 201839,
+          "sha256": "c4bf1f9957e0207fdba94e733f19b4f065bca210cc07cc9223638751f00f7d67"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-sabbatical-year-and-the-jubilee.json",
+          "bytes": 1200698,
+          "sha256": "9d67321fa681c948decd810581189cf3f803fd5d7ac1bd763b58ecaec55ecdfe"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-sabbatical-year-and-the-jubilee.manifest.json",
+          "bytes": 233495,
+          "sha256": "f2f548cd3a0f5ca40c466feca83d134941a4da4d28bc0aebe6dc5f81f2b72e84"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-sabbatical-year-and-the-jubilee-chunks",
+          "files": 4,
+          "bytes": 3454842
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-sabbatical-year-and-the-jubilee/index.html",
+          "bytes": 301919,
+          "sha256": "f132dfd3e2cc5ab6a9ab01d4768794ec275b9e9ad4c65a26557d32cef800cff5"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-scroll-of-esther-and-hanukkah",
+      "work_title": "Maaseh Rokeach on Scroll of Esther and Hanukkah",
+      "work_slug": "halakhah/maaseh-rokeach-on-scroll-of-esther-and-hanukkah",
+      "work_type": "commentary",
+      "unit_count": 127,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-scroll-of-esther-and-hanukkah.json",
+          "bytes": 369344,
+          "sha256": "18555c474e2b87b2310c5c7137eb1fb7a60d568eea881a8af7b607e9373395db"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-scroll-of-esther-and-hanukkah.json",
+          "bytes": 108,
+          "sha256": "505f3c49431339574667633c6759d018f64837467e893bdc360bbcf73cf73935"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-scroll-of-esther-and-hanukkah.json",
+          "bytes": 320459,
+          "sha256": "273a0bac8c2f1dece969483faa8c3ec92da60910adca883858723bcf257efc77"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-scroll-of-esther-and-hanukkah.json",
+          "bytes": 1675797,
+          "sha256": "a0843962cf5d26cd92ac00f56120175785f22cc374181d40ec2cd306741b72ab"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-scroll-of-esther-and-hanukkah.manifest.json",
+          "bytes": 319477,
+          "sha256": "061cc1bd828af1ae01cb638aaa38a97be18820012df6a028d90b2872722c2574"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-scroll-of-esther-and-hanukkah-chunks",
+          "files": 5,
+          "bytes": 4690820
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-scroll-of-esther-and-hanukkah/index.html",
+          "bytes": 372176,
+          "sha256": "588f9a862c94789da32da08942c9040ff2a3f032ddfc982d3c5992da6985dcec"
         }
       },
       "depends_on": {
@@ -23190,6 +25604,77 @@
           "path": "halakhah/maaseh-rokeach-on-theft/index.html",
           "bytes": 242787,
           "sha256": "b093c6cb9a8495feced58d1069ab2950a9487a7c5024269f6be1a837f444f728"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein",
+      "work_title": "Maaseh Rokeach on Vessels of the Sanctuary and Those who Serve Therein",
+      "work_slug": "halakhah/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein",
+      "work_type": "commentary",
+      "unit_count": 129,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 349378,
+          "sha256": "a1a653091061c8b404c0d01dd18a91346ecfd56e83610712bdd256f5a26d0c7d"
+        },
+        "overlay": {
+          "path": "data/overlays/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 131,
+          "sha256": "dbc9d78f30113c15c97df61b2ee8a0ba7b297b8fa5be1564db23728b45558e8e"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 228554,
+          "sha256": "315359ae497102dc065ec70c28db163335a2294273407b1dada746f165de01c7"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein.json",
+          "bytes": 1315354,
+          "sha256": "fcd91553b81871007570fcec6c28a65b9573302089aa2a2e6449d3847fa7e538"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein.manifest.json",
+          "bytes": 309696,
+          "sha256": "efe9c6977d6f41f0733add08ecf8e7ec11a7b085f63a8dc0d9a6bd7e98b4df81"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein-chunks",
+          "files": 4,
+          "bytes": 3760338
+        },
+        "html": {
+          "path": "halakhah/maaseh-rokeach-on-vessels-of-the-sanctuary-and-those-who-serve-therein/index.html",
+          "bytes": 344492,
+          "sha256": "464265be04ba2c24bb7b0dbd168c087af41c3b133d78e97930612e54de31b6cd"
         }
       },
       "depends_on": {
@@ -23576,6 +26061,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "maggid-mishneh-on-mishneh-torah-fasts",
+      "work_title": "Maggid Mishneh on Mishneh Torah, Fasts",
+      "work_slug": "halakhah/maggid-mishneh-on-mishneh-torah-fasts",
+      "work_type": "commentary",
+      "unit_count": 109,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maggid-mishneh-on-mishneh-torah-fasts.json",
+          "bytes": 254839,
+          "sha256": "5b2258deb0656d95dbb668da5515bfac946ff3e10c9139eadac656a003cae52d"
+        },
+        "overlay": {
+          "path": "data/overlays/maggid-mishneh-on-mishneh-torah-fasts.json",
+          "bytes": 98,
+          "sha256": "64dded087f30774ba471686ae9d1bf3dde15adbe9dd5556bc5ca0f99e0351925"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maggid-mishneh-on-mishneh-torah-fasts.json",
+          "bytes": 149689,
+          "sha256": "39cf30cb63fe1dc609a6186931127bd71e69a4936eb8622f3ca647300631436b"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maggid-mishneh-on-mishneh-torah-fasts.json",
+          "bytes": 833218,
+          "sha256": "d740ff3b70453828bcb14544d2e03d087df9983f9cb618cf137f70b13141d110"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maggid-mishneh-on-mishneh-torah-fasts.manifest.json",
+          "bytes": 139195,
+          "sha256": "25fd56bf263390d3e76a53ae00afe88191e13c07524715da55a02c38d6e08b41"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maggid-mishneh-on-mishneh-torah-fasts-chunks",
+          "files": 3,
+          "bytes": 2772797
+        },
+        "html": {
+          "path": "halakhah/maggid-mishneh-on-mishneh-torah-fasts/index.html",
+          "bytes": 260049,
+          "sha256": "b88fe6b8e82534ada730f53a6eedb8e1fc69717219f6c4e3e63170ec923f0d8c"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "maggid-mishneh-on-mishneh-torah-rest-on-the-tenth-of-tishrei",
       "work_title": "Maggid Mishneh on Mishneh Torah, Rest on the Tenth of Tishrei",
       "work_slug": "halakhah/maggid-mishneh-on-mishneh-torah-rest-on-the-tenth-of-tishrei",
@@ -23616,6 +26172,77 @@
           "path": "halakhah/maggid-mishneh-on-mishneh-torah-rest-on-the-tenth-of-tishrei/index.html",
           "bytes": 176155,
           "sha256": "3ecf454ca36448ff9ee874d40148c7a304fd68ed4571f576d87890cc75a2b610"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah",
+      "work_title": "Maggid Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah",
+      "work_slug": "halakhah/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah",
+      "work_type": "commentary",
+      "unit_count": 108,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json",
+          "bytes": 267147,
+          "sha256": "53ddf2f57c04c9754efc1f5c8189a8a9ff4c6ea8487ebc156f1811bbab8e2985"
+        },
+        "overlay": {
+          "path": "data/overlays/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json",
+          "bytes": 122,
+          "sha256": "3a81c44d8215204df522695a0e8025b1b0a258ca56bf01a33cac3a37e0bfa3f6"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json",
+          "bytes": 132518,
+          "sha256": "2c3cee77b4b9dbac03c52abcc8ce2202a60c82f1f02da42f849d9b947e7ad5f6"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json",
+          "bytes": 718217,
+          "sha256": "5075cc04960751c43c82cd496e0927715664020e20064a962ae9516bc70c6289"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json",
+          "bytes": 156339,
+          "sha256": "41ac47fbce55a011a6ef2052fbea5fc1131575ab7e7d314af5a9fc6e13dde6db"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-chunks",
+          "files": 2,
+          "bytes": 2315378
+        },
+        "html": {
+          "path": "halakhah/maggid-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah/index.html",
+          "bytes": 262221,
+          "sha256": "908293d3b547e1cbf1e23256b422cc945f08a34018ae10df58e29753d245ae4e"
         }
       },
       "depends_on": {
@@ -27379,6 +30006,219 @@
           "path": "halakhah/migdal-oz-on-mishneh-torah-foundations-of-the-torah/index.html",
           "bytes": 141733,
           "sha256": "6e9235e6dadbd7578013d7c07daa8c4eddd532d27503af862956f052de96c3c8"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "migdal-oz-on-mishneh-torah-fringes",
+      "work_title": "Migdal Oz on Mishneh Torah, Fringes",
+      "work_slug": "halakhah/migdal-oz-on-mishneh-torah-fringes",
+      "work_type": "commentary",
+      "unit_count": 53,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/migdal-oz-on-mishneh-torah-fringes.json",
+          "bytes": 110585,
+          "sha256": "5ad90b9da60d53cb5c7efa9385fb71521836ad3bddaecb258c0f884d0c18847d"
+        },
+        "overlay": {
+          "path": "data/overlays/migdal-oz-on-mishneh-torah-fringes.json",
+          "bytes": 95,
+          "sha256": "29b9e1b805398a4d6ec8a9101f0ce73fb82727a27a943739a91319f5bbd6081c"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/migdal-oz-on-mishneh-torah-fringes.json",
+          "bytes": 48498,
+          "sha256": "d4baa866d4e7dafc1092c161b282daf347c107b59aa7d011ba6cbfd750e5b13b"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/migdal-oz-on-mishneh-torah-fringes.json",
+          "bytes": 345084,
+          "sha256": "e745b76631fef5ea1c98dbb5709d786c52a4c0a02021dece347d22063e914435"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/migdal-oz-on-mishneh-torah-fringes.manifest.json",
+          "bytes": 55342,
+          "sha256": "7c65b43d42e75cb593e1217bb980214a9d6757a03c0ac03e62b9ae2e220807a3"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/migdal-oz-on-mishneh-torah-fringes-chunks",
+          "files": 1,
+          "bytes": 1233676
+        },
+        "html": {
+          "path": "halakhah/migdal-oz-on-mishneh-torah-fringes/index.html",
+          "bytes": 149223,
+          "sha256": "abdcbfb203c4bbaca6887f88d55c15ee1194ecb313105348b23cf456f3aafe5c"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "migdal-oz-on-mishneh-torah-inheritances",
+      "work_title": "Migdal Oz on Mishneh Torah, Inheritances",
+      "work_slug": "halakhah/migdal-oz-on-mishneh-torah-inheritances",
+      "work_type": "commentary",
+      "unit_count": 87,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/migdal-oz-on-mishneh-torah-inheritances.json",
+          "bytes": 183389,
+          "sha256": "d32e01c1c01ccd8038d12ad7746abdf93b9e1301972ea295890bcf995120be04"
+        },
+        "overlay": {
+          "path": "data/overlays/migdal-oz-on-mishneh-torah-inheritances.json",
+          "bytes": 100,
+          "sha256": "f501590d2a8ca353fd2e0bf2b5857c65c8bd593a0353b7ea399c28a828f1f9f2"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/migdal-oz-on-mishneh-torah-inheritances.json",
+          "bytes": 82439,
+          "sha256": "6be6ac0837a884b270daa915766ee886656ec1920ff3900eaec6746b6672180b"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/migdal-oz-on-mishneh-torah-inheritances.json",
+          "bytes": 452824,
+          "sha256": "a6cb215366b0a4758cc109183a9ef3adefe741394d8eebfd1eb9a635a3d2895e"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/migdal-oz-on-mishneh-torah-inheritances.manifest.json",
+          "bytes": 79061,
+          "sha256": "a4b71fb998c5e8900bae21225ead5ebc3f289f5813512c7df6a85c75e7ea4f38"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/migdal-oz-on-mishneh-torah-inheritances-chunks",
+          "files": 2,
+          "bytes": 1567211
+        },
+        "html": {
+          "path": "halakhah/migdal-oz-on-mishneh-torah-inheritances/index.html",
+          "bytes": 206754,
+          "sha256": "ec967915288f7e52907a453b962545fdf4584f961891bc453ddbc56fcc78b89c"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "migdal-oz-on-mishneh-torah-reading-the-shema",
+      "work_title": "Migdal Oz on Mishneh Torah, Reading the Shema",
+      "work_slug": "halakhah/migdal-oz-on-mishneh-torah-reading-the-shema",
+      "work_type": "commentary",
+      "unit_count": 66,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/migdal-oz-on-mishneh-torah-reading-the-shema.json",
+          "bytes": 147590,
+          "sha256": "a41fa4db4d8b4e3fa94703b069f614433bf7cf274f644bc41778a1a6824d7755"
+        },
+        "overlay": {
+          "path": "data/overlays/migdal-oz-on-mishneh-torah-reading-the-shema.json",
+          "bytes": 105,
+          "sha256": "379bc34ad9398d3b1ac81af91577e75073e8c0babaf437378ae3dde87b9bc9ea"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/migdal-oz-on-mishneh-torah-reading-the-shema.json",
+          "bytes": 70425,
+          "sha256": "d9c09bbe521791a60d8482a8c2face750a468f93595c31f2e451bbd6bc4daf15"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/migdal-oz-on-mishneh-torah-reading-the-shema.json",
+          "bytes": 452290,
+          "sha256": "deccb2efa2e52861667d48315b202dcf8432a62bd1452de897a388f9587e4f84"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/migdal-oz-on-mishneh-torah-reading-the-shema.manifest.json",
+          "bytes": 83806,
+          "sha256": "88d8026fab58cdb8a28a9f6db0d498787f181537e476adedb377245792423895"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/migdal-oz-on-mishneh-torah-reading-the-shema-chunks",
+          "files": 2,
+          "bytes": 1673011
+        },
+        "html": {
+          "path": "halakhah/migdal-oz-on-mishneh-torah-reading-the-shema/index.html",
+          "bytes": 177244,
+          "sha256": "d91436ddcda6d7d9718c5950d551ad3056c0cd7626d6bb0d79a04a7bca813125"
         }
       },
       "depends_on": {
@@ -33658,6 +36498,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "mishneh-torah-admission-into-the-sanctuary",
+      "work_title": "Mishneh Torah, Admission into the Sanctuary",
+      "work_slug": "halakhah/mishneh-torah-admission-into-the-sanctuary",
+      "work_type": "primary_text",
+      "unit_count": 147,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 360278,
+          "sha256": "dc498da6c4c191bacaf83bbfdc5f5c76a9aa13f8d9b73d43e5a06c464c1594a8"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 103,
+          "sha256": "3eb004fa268f5c075bbb4a070fa3c67f3d88a05aa2ddc24191faa2e8d77f0b54"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 169654,
+          "sha256": "bb007b8f5caeadd84e542a3e8bce12073bba4bd9d6a2cc61a877f12f3afdbf06"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-admission-into-the-sanctuary.json",
+          "bytes": 867156,
+          "sha256": "068bd79c244fc59a672df32429e850627b1b4a09c3439e53fdd4b5c9770d538a"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-admission-into-the-sanctuary.manifest.json",
+          "bytes": 152615,
+          "sha256": "b98c943dff28cc826105bbf4a98c8514566f00094f3949f8d8c4f3d632674181"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-admission-into-the-sanctuary-chunks",
+          "files": 3,
+          "bytes": 3236784
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-admission-into-the-sanctuary/index.html",
+          "bytes": 351105,
+          "sha256": "003575c40924ba93d65d73c50ddb0dc8d5e61b1265f0e31a6f7d5a198e00d4c4"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "mishneh-torah-agents-and-partners",
       "work_title": "Mishneh Torah, Agents and Partners",
       "work_slug": "halakhah/mishneh-torah-agents-and-partners",
@@ -33942,6 +36853,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "mishneh-torah-firstlings",
+      "work_title": "Mishneh Torah, Firstlings",
+      "work_slug": "halakhah/mishneh-torah-firstlings",
+      "work_type": "primary_text",
+      "unit_count": 123,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-firstlings.json",
+          "bytes": 277127,
+          "sha256": "c6678a5f369be265eebe5b29592f51b7ba7e1214c89989f67d34b3d1e6be98ab"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-firstlings.json",
+          "bytes": 85,
+          "sha256": "a1557a6c91e549e112bcf9be714cc6f64829d79d0964a022126aa001ed93661c"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-firstlings.json",
+          "bytes": 131451,
+          "sha256": "46b7615879591af8c3063ccaa38e3e0a0e351f460f36c2b3b45c0cf4fa41e14a"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-firstlings.json",
+          "bytes": 662905,
+          "sha256": "d4c3071e9dfbbb9a3a04a1a74de0909f30bff067f48718b37cacc57ac8287da5"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-firstlings.manifest.json",
+          "bytes": 90137,
+          "sha256": "c4d996a89601d9d54e53d87727b09f1f1c89b6362d9f8c928210d2f6c919a8e7"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-firstlings-chunks",
+          "files": 2,
+          "bytes": 2425021
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-firstlings/index.html",
+          "bytes": 287396,
+          "sha256": "5a9e00a82bba46c0579dc1215f4abd9da972a48099ac47c743a874ec90635553"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-foreign-worship-and-customs-of-the-nations",
+      "work_title": "Mishneh Torah, Foreign Worship and Customs of the Nations",
+      "work_slug": "halakhah/mishneh-torah-foreign-worship-and-customs-of-the-nations",
+      "work_type": "primary_text",
+      "unit_count": 148,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-foreign-worship-and-customs-of-the-nations.json",
+          "bytes": 450430,
+          "sha256": "8c292afaf573e458905dfd3924ee7dd71151155f654d33a6f05451e82e3f5051"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-foreign-worship-and-customs-of-the-nations.json",
+          "bytes": 117,
+          "sha256": "cd912e2a2b199026c2089801b5dcffbe5fd419f2b0831a076077c6ec0b49ea9b"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-foreign-worship-and-customs-of-the-nations.json",
+          "bytes": 244309,
+          "sha256": "280d9501f2d4f268b54501d1355d8e15bacaba2c3d5de8a54d52ff1c67baf27f"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-foreign-worship-and-customs-of-the-nations.json",
+          "bytes": 1445402,
+          "sha256": "5279275691e549176e6fb5318c4f4baa110a4a8db3ea03cf5e9375a78167123f"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-foreign-worship-and-customs-of-the-nations.manifest.json",
+          "bytes": 295215,
+          "sha256": "8e7ff715b5d7d63b903697fac05f1bf3ad38465019891f5e68c9aa709d3e7e09"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-foreign-worship-and-customs-of-the-nations-chunks",
+          "files": 4,
+          "bytes": 4955658
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-foreign-worship-and-customs-of-the-nations/index.html",
+          "bytes": 428667,
+          "sha256": "705379461833b9ca03a6a0b9fb44b47a71cb1abe7046dda03d6577919f96aca6"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "mishneh-torah-foundations-of-the-torah",
       "work_title": "Mishneh Torah, Foundations of the Torah",
       "work_slug": "halakhah/mishneh-torah-foundations-of-the-torah",
@@ -33982,6 +37035,77 @@
           "path": "halakhah/mishneh-torah-foundations-of-the-torah/index.html",
           "bytes": 296264,
           "sha256": "4dc5bfa1919d3dd99f674daaa5be0a8eaaf9e45558680246bf4ccee61b518c73"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-hiring",
+      "work_title": "Mishneh Torah, Hiring",
+      "work_slug": "halakhah/mishneh-torah-hiring",
+      "work_type": "primary_text",
+      "unit_count": 125,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-hiring.json",
+          "bytes": 326011,
+          "sha256": "06233d97ba2dac64d4ec05188c8c82382fc51e2b98c6f319c95a5270256460c0"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-hiring.json",
+          "bytes": 81,
+          "sha256": "211bb4b59fcacdf743e1193d5b50a51494d033f8d70d073d9a2fb732672f9faa"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-hiring.json",
+          "bytes": 192460,
+          "sha256": "f8c4d1496d01ba352cb06f25506d67a065b114d8a339e0973d945178a9d79758"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-hiring.json",
+          "bytes": 958985,
+          "sha256": "471908509c58810b8b9b8bedb5b01a25c125d4058f6d61cdc31e0537615aa10f"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-hiring.manifest.json",
+          "bytes": 121992,
+          "sha256": "95f065f94b22952df13c1ce96fd842bd6b5a96bceb0beaf06c67af035b9c495f"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-hiring-chunks",
+          "files": 3,
+          "bytes": 3403929
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-hiring/index.html",
+          "bytes": 338812,
+          "sha256": "81f1bb89fa84bf77a38a0304a56fbfd02c1cc1b9d88ffef377fc77256555b0d4"
         }
       },
       "depends_on": {
@@ -34084,6 +37208,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "mishneh-torah-inheritances",
+      "work_title": "Mishneh Torah, Inheritances",
+      "work_slug": "halakhah/mishneh-torah-inheritances",
+      "work_type": "primary_text",
+      "unit_count": 117,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-inheritances.json",
+          "bytes": 280180,
+          "sha256": "e0aae0591a93c615e7f42cf3eb3fcf5c1fcd4de523956c33034e1b3c5ea4b215"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-inheritances.json",
+          "bytes": 87,
+          "sha256": "fccfcaf9fbc69d881b837dcff76cfc04fc12c3048f528f9d67d239a6084a721a"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-inheritances.json",
+          "bytes": 145887,
+          "sha256": "5c6cacb442474450527102ca80b3efd84c3010a4688f146f6f4f0ccefe8dcdce"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-inheritances.json",
+          "bytes": 727151,
+          "sha256": "4eb0d166fd10449c09ccc668edabd50bf7fb830d46310e59d448e3fe4766f3aa"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-inheritances.manifest.json",
+          "bytes": 102371,
+          "sha256": "1c0fc7b7ec89747ab9e2bae7b6d653864a5e7f564847b8ad480c3b3ad7b659c0"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-inheritances-chunks",
+          "files": 2,
+          "bytes": 2685434
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-inheritances/index.html",
+          "bytes": 299753,
+          "sha256": "a3f3b9acffd0406f743fc1a08eed762180f6ac023faac6b1a6c01671b80aa3b6"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-kings-and-wars",
+      "work_title": "Mishneh Torah, Kings and Wars",
+      "work_slug": "halakhah/mishneh-torah-kings-and-wars",
+      "work_type": "primary_text",
+      "unit_count": 131,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-kings-and-wars.json",
+          "bytes": 333794,
+          "sha256": "ed449107fc551c27ed73dac98b5b9ff0b93cc3cfb7b1724e1482a2dcc174de17"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-kings-and-wars.json",
+          "bytes": 89,
+          "sha256": "4af7eb3b4744c05e232d9a9c97741f4e3e983b8d515166300ae562acd5bc5d13"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-kings-and-wars.json",
+          "bytes": 174946,
+          "sha256": "0dc115070582cc0ec55b143d7628ee5106dbdbdf169160265396fb08435010b6"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-kings-and-wars.json",
+          "bytes": 1141620,
+          "sha256": "51433430197bfeaf97e33b12a451092bc84e567d4976374b84c5a4d260453456"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-kings-and-wars.manifest.json",
+          "bytes": 164525,
+          "sha256": "5209869f60bd90fe8e39415de870e7d123953db38ea718f1f5e3e7481ef2a285"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-kings-and-wars-chunks",
+          "files": 4,
+          "bytes": 4571915
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-kings-and-wars/index.html",
+          "bytes": 337882,
+          "sha256": "6e9d52096b4880aadafc4f033f76f5c545d1f54e8ea1b836144b08981c2ecaa5"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "mishneh-torah-offerings-for-those-with-incomplete-atonement",
       "work_title": "Mishneh Torah, Offerings for Those with Incomplete Atonement",
       "work_slug": "halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement",
@@ -34124,6 +37390,290 @@
           "path": "halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/index.html",
           "bytes": 177125,
           "sha256": "baca224d41ec4f937891ddc7494b1c89c86021ec402d08f4578db10e200f92ab"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-offerings-for-unintentional-transgressions",
+      "work_title": "Mishneh Torah, Offerings for Unintentional Transgressions",
+      "work_slug": "halakhah/mishneh-torah-offerings-for-unintentional-transgressions",
+      "work_type": "primary_text",
+      "unit_count": 137,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-offerings-for-unintentional-transgressions.json",
+          "bytes": 411880,
+          "sha256": "29c26357497d8c9a6009922c04dc56f366ab78031786a313c3068bb4deb30cfe"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-offerings-for-unintentional-transgressions.json",
+          "bytes": 117,
+          "sha256": "c59accb192d9cc408836fa3254b12b39c6d9a6a12879f78017091fdabcbf5b9e"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-offerings-for-unintentional-transgressions.json",
+          "bytes": 242860,
+          "sha256": "2ca13b2963c2e47a391738cef18ef908e6ca5c49287cd2af1967828f9552979a"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-offerings-for-unintentional-transgressions.json",
+          "bytes": 954919,
+          "sha256": "ac86d69254102894a5c95c7743f82f5f7647aff53ff17bc85beae74703c93e26"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-offerings-for-unintentional-transgressions.manifest.json",
+          "bytes": 195826,
+          "sha256": "80c3d74d4563c2fcb1c14a1e16e2b165531677c555f1775804da29083cc9a3df"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-offerings-for-unintentional-transgressions-chunks",
+          "files": 3,
+          "bytes": 3256592
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-offerings-for-unintentional-transgressions/index.html",
+          "bytes": 406861,
+          "sha256": "c8f10ca088ae4fb531d7766175a4a83117176c0791284302ca5d9e8b5d08dad8"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-one-who-injures-a-person-or-property",
+      "work_title": "Mishneh Torah, One Who Injures a Person or Property",
+      "work_slug": "halakhah/mishneh-torah-one-who-injures-a-person-or-property",
+      "work_type": "primary_text",
+      "unit_count": 135,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-one-who-injures-a-person-or-property.json",
+          "bytes": 338108,
+          "sha256": "80e65a1d1a1158f8f4de3f74f89d02cc9278b86d11f7bfcf8ae0818f3fd7170b"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-one-who-injures-a-person-or-property.json",
+          "bytes": 111,
+          "sha256": "cc9a49b2cd239f473469cce57820cc88d00b69a94c508c6f7ebacb4d6ff23f4c"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-one-who-injures-a-person-or-property.json",
+          "bytes": 156928,
+          "sha256": "5e73a7d49693bab71df9cfe2903ce93106f65abfdcce616d6658cb4a1da66d0b"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-one-who-injures-a-person-or-property.json",
+          "bytes": 806076,
+          "sha256": "fef15496eaa6d3443909ebd4d60410ec868f34d7e5cf09a5569c4ca35dbfd113"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-one-who-injures-a-person-or-property.manifest.json",
+          "bytes": 157106,
+          "sha256": "1a8ba6a20407b8490c365a37c8b5ec97f35be27fbcf4881e62ace0f8d8a0806a"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-one-who-injures-a-person-or-property-chunks",
+          "files": 3,
+          "bytes": 2877442
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-one-who-injures-a-person-or-property/index.html",
+          "bytes": 330866,
+          "sha256": "c27f4027cdbc8b9d22f0385c05481c06d4f45fe6b412ad74393a69f7af29483f"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-overview-of-mishneh-torah-contents",
+      "work_title": "Mishneh Torah, Overview of Mishneh Torah Contents",
+      "work_slug": "halakhah/mishneh-torah-overview-of-mishneh-torah-contents",
+      "work_type": "primary_text",
+      "unit_count": 142,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-overview-of-mishneh-torah-contents.json",
+          "bytes": 330182,
+          "sha256": "6514f14ae44de739a5d02e50a2bc27136447cf3eb892fa8b79e9ddc35af2e0d4"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-overview-of-mishneh-torah-contents.json",
+          "bytes": 109,
+          "sha256": "75c23cee931a6f23bffe42dcf7934cb54050af77d45f2a44129b5eb805228063"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-overview-of-mishneh-torah-contents.json",
+          "bytes": 153515,
+          "sha256": "89949ca0e9d71b9f474e68caa15adb8533f23699f236429f9efc291150e489d8"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-overview-of-mishneh-torah-contents.json",
+          "bytes": 663998,
+          "sha256": "3bbd3c73da0ed05352b3c51c0efcae4ac4485532443d369c2061e49b4d6d326b"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-overview-of-mishneh-torah-contents.manifest.json",
+          "bytes": 129143,
+          "sha256": "a70d8fadc4b85744a8c9878ba8c8c449220b1058ecc4449d033370dacf44f065"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-overview-of-mishneh-torah-contents-chunks",
+          "files": 2,
+          "bytes": 2491993
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-overview-of-mishneh-torah-contents/index.html",
+          "bytes": 302008,
+          "sha256": "e006b660cc5dd7424f2106f81f963139379a964b9d9e51e765c4d1ba42172531"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-paschal-offering",
+      "work_title": "Mishneh Torah, Paschal Offering",
+      "work_slug": "halakhah/mishneh-torah-paschal-offering",
+      "work_type": "primary_text",
+      "unit_count": 125,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-paschal-offering.json",
+          "bytes": 306278,
+          "sha256": "f66725f84453c1a38a39380fc3fb0f03cb6603f11466cb1865bf809c1bfe47ee"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-paschal-offering.json",
+          "bytes": 91,
+          "sha256": "780f2551d46dd48340250af82e9a4d8c345df8923f8d1f8abfe69d1b0f1b0bde"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-paschal-offering.json",
+          "bytes": 156753,
+          "sha256": "7372e6005eef2245c8c697a28f1f7b1278c840c0e38639544ec5522b3f17dec0"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-paschal-offering.json",
+          "bytes": 802845,
+          "sha256": "637ba7d3c6ed341f5fb14ffa2757f95f7a9382c2b8e290693d1e8134bec86a8f"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-paschal-offering.manifest.json",
+          "bytes": 121163,
+          "sha256": "fec01aad609b4141f38b71f6370dfde056c16b6952daec2816c7983271510dc4"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-paschal-offering-chunks",
+          "files": 3,
+          "bytes": 2860767
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-paschal-offering/index.html",
+          "bytes": 313627,
+          "sha256": "7acbf34393b1cdcfa7a5582cdb36ee6134ccf17cb04fc0a75bb05a25dfae8973"
         }
       },
       "depends_on": {
@@ -34652,6 +38202,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "mishneh-torah-shofar-sukkah-and-lulav",
+      "work_title": "Mishneh Torah, Shofar, Sukkah and Lulav",
+      "work_slug": "halakhah/mishneh-torah-shofar-sukkah-and-lulav",
+      "work_type": "primary_text",
+      "unit_count": 130,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 331991,
+          "sha256": "83ab0602641b6487f337bdbe83f7649bd9670a66a02100e6d006c9eb8334de52"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 98,
+          "sha256": "f3bdcbbfa9bb222bce6b5e96bcdf76f685165015598579238249710b95d2c122"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 164190,
+          "sha256": "1a26e1bc0375d1bbe12f72f6a323a2b60f05bbcd425260081069ede53c829ae4"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 891428,
+          "sha256": "74cb2b729c2ebdcfcf1ac9ed0360358cafe5817f00b3e917a2dcfb002430e957"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-shofar-sukkah-and-lulav.manifest.json",
+          "bytes": 147512,
+          "sha256": "bdd49db7cb44b0cd11efb830deb275fc62f1f0d77b1b90f2c24437b18df2024c"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-shofar-sukkah-and-lulav-chunks",
+          "files": 3,
+          "bytes": 3369653
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-shofar-sukkah-and-lulav/index.html",
+          "bytes": 328818,
+          "sha256": "7a4b2141bdf043fa11fec47a136638b95615374525891ff47791419c1972490c"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-slaves",
+      "work_title": "Mishneh Torah, Slaves",
+      "work_slug": "halakhah/mishneh-torah-slaves",
+      "work_type": "primary_text",
+      "unit_count": 116,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-slaves.json",
+          "bytes": 274244,
+          "sha256": "004f4fc6c40950f6c684b442ad73b41979f6ce4faa72638f614c52536d3377da"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-slaves.json",
+          "bytes": 81,
+          "sha256": "db94ae85c46fe66924f5d9d4fa4690e3898477c12ce65e86f1431b93e70a511c"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-slaves.json",
+          "bytes": 147659,
+          "sha256": "c6d851765752a77e02ea3303da7424f893431f811e8115ad634fa72834166db8"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-slaves.json",
+          "bytes": 749563,
+          "sha256": "7f75dd0d0347bdf41739dfda94f403794f33d62f709016756c48093a1746e574"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-slaves.manifest.json",
+          "bytes": 95218,
+          "sha256": "f91f93a0305e64593ec0b52b4fbb00e452659ea16b28a324d6ccae2baffa605e"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-slaves-chunks",
+          "files": 3,
+          "bytes": 2734501
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-slaves/index.html",
+          "bytes": 290488,
+          "sha256": "10ea1cf462f59e4f9e684b61a20d37e119b52b1dbde45ea31b75bac199c0a80a"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "mishneh-torah-substitution",
       "work_title": "Mishneh Torah, Substitution",
       "work_slug": "halakhah/mishneh-torah-substitution",
@@ -34723,6 +38415,148 @@
       "large_artifacts": []
     },
     {
+      "work_id": "mishneh-torah-the-chosen-temple",
+      "work_title": "Mishneh Torah, The Chosen Temple",
+      "work_slug": "halakhah/mishneh-torah-the-chosen-temple",
+      "work_type": "primary_text",
+      "unit_count": 137,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-the-chosen-temple.json",
+          "bytes": 322650,
+          "sha256": "956baf8a056316eec492afa2231556e2078af62978942ebe64bbe61cf78f7692"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-the-chosen-temple.json",
+          "bytes": 92,
+          "sha256": "9b96c3ddbdbf2a657ee77ef7036d46b4ef86f3ac8720026b08e971b5eaa16232"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-the-chosen-temple.json",
+          "bytes": 147493,
+          "sha256": "edec5dca90d3e0748f0e09128184a622f7a1d1bc81cb99cf12d3806a740bea80"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-the-chosen-temple.json",
+          "bytes": 869832,
+          "sha256": "a368c0ebab23fcf7531254daef236893fe386ed2f615575fdced54f78b4cdb45"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-the-chosen-temple.manifest.json",
+          "bytes": 131192,
+          "sha256": "842fbceb9f82f2fec86f2f468afd8bb7dbcfff5d547bdedac24b665c6e9cd7cb"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-the-chosen-temple-chunks",
+          "files": 3,
+          "bytes": 3235977
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-the-chosen-temple/index.html",
+          "bytes": 321962,
+          "sha256": "8cc8b51e487021b11f9f19fb90cd2e8962283a0ba66e300f708d22a32122b287"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-theft",
+      "work_title": "Mishneh Torah, Theft",
+      "work_slug": "halakhah/mishneh-torah-theft",
+      "work_type": "primary_text",
+      "unit_count": 131,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-theft.json",
+          "bytes": 282978,
+          "sha256": "8c78fa78092ac6bac7a6f83c6fd8d616412239fba78fb8986d6435f5299760a1"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-theft.json",
+          "bytes": 80,
+          "sha256": "b6a65d86fa9852ad7f4ebfa1eab7fe3dbd73aa392e500189a79d591003addff0"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-theft.json",
+          "bytes": 130450,
+          "sha256": "e548ef89bdeb04e3acc33a3029858a7bc6ee9a4e4419c7c6c30f4952f6f4109d"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-theft.json",
+          "bytes": 652357,
+          "sha256": "86dd811defd13c9d90f40da63a49b56f06836791e64e329554f322c97c84afb8"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-theft.manifest.json",
+          "bytes": 81312,
+          "sha256": "d3fa65058b6666d2b6c682764e33d20196a8ca79a865fcf0488a0cfa1ed4db9c"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-theft-chunks",
+          "files": 2,
+          "bytes": 2416197
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-theft/index.html",
+          "bytes": 292433,
+          "sha256": "6000c6c42413cbee1827e971db4ff5de2b1961a5cea8f8f2319134b4906fb5dc"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "mishneh-torah-things-forbidden-on-the-altar",
       "work_title": "Mishneh Torah, Things Forbidden on the Altar",
       "work_slug": "halakhah/mishneh-torah-things-forbidden-on-the-altar",
@@ -34763,6 +38597,77 @@
           "path": "halakhah/mishneh-torah-things-forbidden-on-the-altar/index.html",
           "bytes": 265813,
           "sha256": "fc0a5dffd6a15c7ef655dacad7ad21160da48cc89971e915d38ba424f56ac94c"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-those-who-defile-bed-or-seat",
+      "work_title": "Mishneh Torah, Those Who Defile Bed or Seat",
+      "work_slug": "halakhah/mishneh-torah-those-who-defile-bed-or-seat",
+      "work_type": "primary_text",
+      "unit_count": 143,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-those-who-defile-bed-or-seat.json",
+          "bytes": 381388,
+          "sha256": "5022a30354febe897bfc3f444f1531f3f292b4cd64fcd02c66fc94cf553900d3"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-those-who-defile-bed-or-seat.json",
+          "bytes": 103,
+          "sha256": "adfbf34b40b0e845fff92078f6b1a4205abb50aa5fcc0b3540f29ab18292ada9"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-those-who-defile-bed-or-seat.json",
+          "bytes": 198146,
+          "sha256": "9e146dec124f31122412fb26e6ad44fee668d7129dc57a12b07ed59b33f830b2"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-those-who-defile-bed-or-seat.json",
+          "bytes": 943736,
+          "sha256": "7d7127d0a5c354264f28967669725e42a0549ae7e111a3ef282f17d19794607c"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-those-who-defile-bed-or-seat.manifest.json",
+          "bytes": 166828,
+          "sha256": "ceddb2b4dffbbb3e14d571f40a3097d5728d22b30371f2ff3cc496f51a3176f3"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-those-who-defile-bed-or-seat-chunks",
+          "files": 3,
+          "bytes": 3249820
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-those-who-defile-bed-or-seat/index.html",
+          "bytes": 372012,
+          "sha256": "dd4dac49a9b99f2373a75ce137db29ff089a2af41d92ac7c1b786657002bad8e"
         }
       },
       "depends_on": {
@@ -34905,6 +38810,77 @@
           "path": "halakhah/mishneh-torah-transmission-of-the-oral-law/index.html",
           "bytes": 173177,
           "sha256": "8103d33633977842618d2b902097fc1a6448b1e3d8a5e55e75fa29876c3aea64"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "mishneh-torah-trespass",
+      "work_title": "Mishneh Torah, Trespass",
+      "work_slug": "halakhah/mishneh-torah-trespass",
+      "work_type": "primary_text",
+      "unit_count": 101,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/mishneh-torah-trespass.json",
+          "bytes": 235929,
+          "sha256": "6398f330d07989c946c797e50d0923d0e4b17e9582f2f8c93630ba3e3d23b99e"
+        },
+        "overlay": {
+          "path": "data/overlays/mishneh-torah-trespass.json",
+          "bytes": 83,
+          "sha256": "3b368ee88aa2444ae2ae8728f471d7786ecf508ede1d7fbf033c106f67289f9b"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/mishneh-torah-trespass.json",
+          "bytes": 118173,
+          "sha256": "485fa717c613d12296bdf6f662168e5a294948a8d24c7d4211e160b4d18bdc6f"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/mishneh-torah-trespass.json",
+          "bytes": 643067,
+          "sha256": "c3805f3b644302d5f15a5fe7a12d69b71d03180a2b1a13d6dc28dc3743f81692"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/mishneh-torah-trespass.manifest.json",
+          "bytes": 84567,
+          "sha256": "8ef40a32dfbf5ddd48a15e71e984db0ca3a8e1edd60c11ebd5621873a70ab0d1"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/mishneh-torah-trespass-chunks",
+          "files": 2,
+          "bytes": 2460655
+        },
+        "html": {
+          "path": "halakhah/mishneh-torah-trespass/index.html",
+          "bytes": 257328,
+          "sha256": "d882b4979cd306e6449f12613bb78f82b1750c5c24d557d4b9cbec31364e8396"
         }
       },
       "depends_on": {
@@ -41853,8 +45829,8 @@
         },
         "token_index": {
           "path": "data/lexical/token-indexes/midrash/ruth-rabbah.json",
-          "bytes": 548963,
-          "sha256": "36e77d7e881f5f53cac530b9507e19fd28744950793dce8508b7af0370155d3d"
+          "bytes": 549206,
+          "sha256": "8cbc40324e12b66ac9ad244a77bb84ec1a46eeec77f69da6dd01e41c71daa0ea"
         },
         "lexical_manifest": {
           "path": "data/lexical/ruth-rabbah.manifest.json",
@@ -43006,6 +46982,148 @@
           "path": "kabbalah/sefer-hakanah/index.html",
           "bytes": 5692173,
           "sha256": "e764c26a60133d8a9883e87284e491abab8ffa1dba5f5360e20f519026c834ff"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread",
+      "work_title": "Sefer HaMenucha on Mishneh Torah, Leavened and Unleavened Bread",
+      "work_slug": "halakhah/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread",
+      "work_type": "commentary",
+      "unit_count": 112,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread.json",
+          "bytes": 514372,
+          "sha256": "2c7e4303b154785cb4e5b3092e71316cb65f36ac06467357476ee08e01336ae5"
+        },
+        "overlay": {
+          "path": "data/overlays/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread.json",
+          "bytes": 123,
+          "sha256": "4240ea0efa4d14487cc8a096e0c5767bad077fb7e5aba2b82e5b513ae572f067"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread.json",
+          "bytes": 620453,
+          "sha256": "95c5931a5c415c039117dc40a4ce4ef0de82f04026f4591644d44284e948bf94"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread.json",
+          "bytes": 2988599,
+          "sha256": "06a78f8ad74eb33fd092c1ea0520a8064d63769e65d33327affd414f2dabdb07"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread.manifest.json",
+          "bytes": 659589,
+          "sha256": "48a744a91013faada3debf42fba1087261c0787429949bd18bc0bac71407aca5"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread-chunks",
+          "files": 8,
+          "bytes": 7365346
+        },
+        "html": {
+          "path": "halakhah/sefer-hamenucha-on-mishneh-torah-leavened-and-unleavened-bread/index.html",
+          "bytes": 512460,
+          "sha256": "77a450f93d8bb3efe911a2b6ac83534e78934a9e8049c467440ec763780dc7e9"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav",
+      "work_title": "Sefer HaMenucha on Mishneh Torah, Shofar, Sukkah and Lulav",
+      "work_slug": "halakhah/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav",
+      "work_type": "commentary",
+      "unit_count": 125,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 533422,
+          "sha256": "d92a2ef875a89ab52880d3905c08e40ec425a55817484c4c5c48a8ceaaee3ef4"
+        },
+        "overlay": {
+          "path": "data/overlays/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 117,
+          "sha256": "d47435755152cc9aff50c91cb36f22b710fafe28601b85bcb1acb4f60c070d99"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 603927,
+          "sha256": "052dccc23f42e42ceb3720f81f633e427c4bb186506b8419bd9b533f4fd6a48c"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav.json",
+          "bytes": 2740012,
+          "sha256": "1ae64d02eb326660ae27b7665f9fd264ca0d4186593fc470620d813cfaa8bd72"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json",
+          "bytes": 573538,
+          "sha256": "0c108777c8cf1a971ccf85a046b7185586f5edd4316e202d6e29f708558dddf2"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav-chunks",
+          "files": 7,
+          "bytes": 7095335
+        },
+        "html": {
+          "path": "halakhah/sefer-hamenucha-on-mishneh-torah-shofar-sukkah-and-lulav/index.html",
+          "bytes": 521830,
+          "sha256": "c685f191655f692d9a7f123f3a8cd88f4f0c3bca33494533a56221620a312483"
         }
       },
       "depends_on": {
@@ -54688,6 +58806,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property",
+      "work_title": "Tzafnat Pa'neach on Mishneh Torah, Appraisals and Devoted Property",
+      "work_slug": "halakhah/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property",
+      "work_type": "commentary",
+      "unit_count": 111,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property.json",
+          "bytes": 818264,
+          "sha256": "f9b5132dc63b22bf5865464e099c11d86aad263584660fd587f1b1602ba0d340"
+        },
+        "overlay": {
+          "path": "data/overlays/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property.json",
+          "bytes": 125,
+          "sha256": "5780265b5b23eb4dea9e18ebb9d8f3ba5ec6ccddaa5baaaa5b7fdf7edd5546b4"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property.json",
+          "bytes": 1291161,
+          "sha256": "8cac05fb5613b7949ec0d420c2ed310450504b9535d3c0200ba8495c5d4cd8e4"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property.json",
+          "bytes": 3491808,
+          "sha256": "e2627476e2abbdbe377df7049b2385c8739a7b9f5e288d2bdb736f2bcb9625dd"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property.manifest.json",
+          "bytes": 786992,
+          "sha256": "5475db420c7863681ae5ca599170e5d079c9c29f66c2683e5455d2c4619d4636"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property-chunks",
+          "files": 9,
+          "bytes": 7969141
+        },
+        "html": {
+          "path": "halakhah/tzafnat-paneach-on-mishneh-torah-appraisals-and-devoted-property/index.html",
+          "bytes": 841419,
+          "sha256": "d1da5421eca8561455b66fa5368ab71c55f22cfacbe07d8eb000389ac4d5a8eb"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "tzafnat-paneach-on-mishneh-torah-circumcision",
       "work_title": "Tzafnat Pa'neach on Mishneh Torah, Circumcision",
       "work_slug": "halakhah/tzafnat-paneach-on-mishneh-torah-circumcision",
@@ -54901,6 +59090,77 @@
       "large_artifacts": []
     },
     {
+      "work_id": "tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor",
+      "work_title": "Tzafnat Pa'neach on Mishneh Torah, Gifts to the Poor",
+      "work_slug": "halakhah/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor",
+      "work_type": "commentary",
+      "unit_count": 143,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor.json",
+          "bytes": 1516506,
+          "sha256": "9fc2174e94bc146108070a1c547b3c250ced87a5e3dfc90c421f94c9a528dc99"
+        },
+        "overlay": {
+          "path": "data/overlays/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor.json",
+          "bytes": 111,
+          "sha256": "561994a5441693c574f1249faee6b2d8cb02f8fb038172a1eb1edaa8915a4c46"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor.json",
+          "bytes": 2679663,
+          "sha256": "ebc4f8f46a83e5925239db932a48a75e864dc8ce17779f35accceefa6fff82ca"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor.json",
+          "bytes": 5325555,
+          "sha256": "7843a92ec79872ade862fc1c1b0d740b8f2b2bce1d58f2601ef92c6360369a54"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor.manifest.json",
+          "bytes": 1052823,
+          "sha256": "7b249577e93dec8c96fb3907f32f5fedfacb4febf6a66ca15af1f5d52c0033e6"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor-chunks",
+          "files": 14,
+          "bytes": 11178149
+        },
+        "html": {
+          "path": "halakhah/tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor/index.html",
+          "bytes": 1560799,
+          "sha256": "8ab115a4843e310dfb6a1d4a848822e5ab18e7aa6129f7676ef8ef5d0d791f90"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
       "work_id": "tzafnat-paneach-on-mishneh-torah-heave-offerings",
       "work_title": "Tzafnat Pa'neach on Mishneh Torah, Heave Offerings",
       "work_slug": "halakhah/tzafnat-paneach-on-mishneh-torah-heave-offerings",
@@ -55083,6 +59343,77 @@
           "path": "halakhah/tzafnat-paneach-on-mishneh-torah-levirate-marriage-and-release/index.html",
           "bytes": 223881,
           "sha256": "3de40c26085562e2ecb6bd4164895fcaa10bc50d0a64f04f4351069a31e009ca"
+        }
+      },
+      "depends_on": {
+        "overlay": [
+          "source"
+        ],
+        "lexical_cache": [
+          "source",
+          "lexical_source_layers"
+        ],
+        "lexical_payload": [
+          "token_index",
+          "lexical_source_layers"
+        ],
+        "html": [
+          "source",
+          "overlay",
+          "occurrence",
+          "lexical_manifest",
+          "renderer"
+        ],
+        "public_exports": [
+          "source",
+          "token_index",
+          "lexical_manifest"
+        ]
+      },
+      "invalidated_phases": [],
+      "large_artifacts": []
+    },
+    {
+      "work_id": "tzafnat-paneach-on-mishneh-torah-nazariteship",
+      "work_title": "Tzafnat Pa'neach on Mishneh Torah, Nazariteship",
+      "work_slug": "halakhah/tzafnat-paneach-on-mishneh-torah-nazariteship",
+      "work_type": "commentary",
+      "unit_count": 105,
+      "artifacts": {
+        "source": {
+          "path": "data/sources/tzafnat-paneach-on-mishneh-torah-nazariteship.json",
+          "bytes": 528634,
+          "sha256": "b32786cddadfe946a2b177ac0a708c8184d4ddbf0924b1d4711dd1a0432c148c"
+        },
+        "overlay": {
+          "path": "data/overlays/tzafnat-paneach-on-mishneh-torah-nazariteship.json",
+          "bytes": 106,
+          "sha256": "f1a2328d9e20667d7c8bea05dc4cf06c9a82dbec515826944fe68e2fe31a4d0f"
+        },
+        "occurrence": {
+          "path": "data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-nazariteship.json",
+          "bytes": 738476,
+          "sha256": "6211f885a6e2c9d56a757bcb9c6533167e9e03b80418345103e0d632cc091bf1"
+        },
+        "token_index": {
+          "path": "data/lexical/token-indexes/halakhah/tzafnat-paneach-on-mishneh-torah-nazariteship.json",
+          "bytes": 2132416,
+          "sha256": "790861dbd6cdb767cdd8e0888690ad44d5720406cf2a3b44b17f491fb767c63b"
+        },
+        "lexical_manifest": {
+          "path": "data/lexical/tzafnat-paneach-on-mishneh-torah-nazariteship.manifest.json",
+          "bytes": 398559,
+          "sha256": "834a388849edb7714ab6a9bef2d01b33dab8b05e1c695af8681dbafc10805627"
+        },
+        "lexical_chunks": {
+          "path": "data/lexical/tzafnat-paneach-on-mishneh-torah-nazariteship-chunks",
+          "files": 6,
+          "bytes": 5549565
+        },
+        "html": {
+          "path": "halakhah/tzafnat-paneach-on-mishneh-torah-nazariteship/index.html",
+          "bytes": 548834,
+          "sha256": "4b11992b06fca3027db6563c257fe9e78a7b6b2fdf7a08010eb70d59571715f4"
         }
       },
       "depends_on": {
@@ -58048,8 +62379,8 @@
         },
         "token_index": {
           "path": "data/lexical/token-indexes/midrash/yefeh-anaf-on-ruth-rabbah.json",
-          "bytes": 479565,
-          "sha256": "8ccefa0f6cae08e9235cb02fce8f2085dcd11d73cdbeeb408dd2b892cba4e150"
+          "bytes": 479808,
+          "sha256": "f73427284d16c8d9ecca0977ec0a7ccdbd56ebf97acca9e9c3612e5572783692"
         },
         "lexical_manifest": {
           "path": "data/lexical/yefeh-anaf-on-ruth-rabbah.manifest.json",

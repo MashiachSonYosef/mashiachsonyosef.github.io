@@ -1,6 +1,6 @@
 # Sitewide Lexical Build Report
 
-Generated: 2026-05-22T13:43:09.227Z
+Generated: 2026-05-23T13:58:20.177Z
 
 ## Scope
 
@@ -15,18 +15,18 @@ Generated: 2026-05-22T13:43:09.227Z
 
 ## Counts
 
-- Total work-surface rows: 5319398
-- Total sitewide unique surface forms: 951412
-- Sitewide unique surface forms matched at least once: 98430
-- Sitewide unique surface forms unmatched everywhere: 852982
-- Total token occurrences: 39480284
-- Matched before prefix/suffix parser: 1154355
-- Newly resolved by prefix/suffix parser: 196695
-- Total matched after parser: 1403384
-- Percent matched: 26.4%
-- Matched via Wikidata: 1027972
-- Enriched via OpenScriptures: 1149433
-- Unmatched: 3916014
+- Total work-surface rows: 5586711
+- Total sitewide unique surface forms: 962647
+- Sitewide unique surface forms matched at least once: 98831
+- Sitewide unique surface forms unmatched everywhere: 863816
+- Total token occurrences: 41023650
+- Matched before prefix/suffix parser: 1219108
+- Newly resolved by prefix/suffix parser: 205088
+- Total matched after parser: 1480250
+- Percent matched: 26.5%
+- Matched via Wikidata: 1084084
+- Enriched via OpenScriptures: 1211850
+- Unmatched: 4106461
 
 ## Newly Resolved Parsed Forms
 
@@ -133,6 +133,7 @@ Generated: 2026-05-22T13:43:09.227Z
 - 4007x השי״ת -- sod-yesharim
 - 3972x בב״ת -- ohr-hashem
 - 3937x דאמר -- beit-yosef
+- 3876x דף -- tzafnat-paneach-on-mishneh-torah-gifts-to-the-poor
 - 3872x וזהו -- arukh-hashulchan
 - 3757x הכי -- beit-yosef
 - 3747x חייב -- beit-yosef
@@ -148,7 +149,6 @@ Generated: 2026-05-22T13:43:09.227Z
 - 3311x ג׳ -- beit-yosef
 - 3287x דכיון -- beit-yosef
 - 3250x והרא״ש -- beit-yosef
-- 3231x כגון -- beit-yosef
 
 ## Exact Orot Refs To Test
 
