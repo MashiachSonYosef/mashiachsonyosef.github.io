@@ -9,6 +9,7 @@ param(
   [switch]$OnlyLexicalPayloadFiles,
   [switch]$OnlyOverlayExports,
   [switch]$SkipSitePages,
+  [switch]$OnlySitePages,
   [int]$MaxTocUnitLinks = 2000
 )
 
@@ -63,6 +64,47 @@ function Write-Utf8 {
     $resolved = (Resolve-Path -Path '.').Path + '\' + $Path
   }
   [System.IO.File]::WriteAllText($resolved, $Content, [System.Text.UTF8Encoding]::new($false))
+}
+
+function Get-SourceUnitCount {
+  param([AllowNull()][object]$Source)
+  if ($null -eq $Source) { return 0 }
+  if ($Source.PSObject.Properties.Name -contains 'unit_count') {
+    return [int]$Source.unit_count
+  }
+  return @($Source.units).Count
+}
+
+function Ensure-SourceCatalog {
+  param(
+    [string]$SourceDirectory,
+    [string]$CatalogPath = 'data/catalog/source-catalog.json'
+  )
+
+  $scriptPath = 'scripts/generate_source_catalog.mjs'
+  if (-not (Test-Path -LiteralPath $scriptPath)) {
+    return $false
+  }
+
+  $needsCatalog = -not (Test-Path -LiteralPath $CatalogPath)
+  if (-not $needsCatalog) {
+    $catalogTime = (Get-Item -LiteralPath $CatalogPath).LastWriteTimeUtc
+    foreach ($sourceFile in @(Get-ChildItem -Path $SourceDirectory -Filter '*.json')) {
+      if ($sourceFile.LastWriteTimeUtc -gt $catalogTime) {
+        $needsCatalog = $true
+        break
+      }
+    }
+  }
+
+  if ($needsCatalog) {
+    & node $scriptPath --source-dir $SourceDirectory --out $CatalogPath
+    if ($LASTEXITCODE -ne 0) {
+      throw "Source catalog generation failed: $scriptPath"
+    }
+  }
+
+  return (Test-Path -LiteralPath $CatalogPath)
 }
 
 function Get-JsonHeaderCounts {
@@ -2048,31 +2090,60 @@ if ($OnlyWorkIdsPath) {
   $targetWorkIds = @($targetWorkIds | Select-Object -Unique)
 }
 
-$sourceFiles = if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
-  @($targetWorkIds | ForEach-Object { Join-Path $SourceDir "$_.json" } | Where-Object { Test-Path -LiteralPath $_ } | ForEach-Object { Get-Item -LiteralPath $_ })
-} else {
-  @(Get-ChildItem -Path $SourceDir -Filter '*.json')
+if ($OnlyLexicalPayloadFiles -and $SkipLexicalPayloadFiles) {
+  throw 'OnlyLexicalPayloadFiles cannot be combined with SkipLexicalPayloadFiles.'
 }
 
-$sources = @($sourceFiles | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
-if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
-  $knownSourceIds = @{}
-  foreach ($source in @($sources)) {
-    if ($source.work_id) { $knownSourceIds[[string]$source.work_id] = $true }
+if ($OnlyLexicalPayloadFiles -and $OnlyOverlayExports) {
+  throw 'OnlyLexicalPayloadFiles cannot be combined with OnlyOverlayExports.'
+}
+
+if ($OnlyLexicalPayloadFiles -and $OnlySitePages) {
+  throw 'OnlyLexicalPayloadFiles cannot be combined with OnlySitePages.'
+}
+
+if ($OnlyOverlayExports -and $SkipOverlayExports) {
+  throw 'OnlyOverlayExports cannot be combined with SkipOverlayExports.'
+}
+
+if ($OnlyOverlayExports -and $OnlySitePages) {
+  throw 'OnlyOverlayExports cannot be combined with OnlySitePages.'
+}
+
+if ($OnlySitePages -and $SkipSitePages) {
+  throw 'OnlySitePages cannot be combined with SkipSitePages.'
+}
+
+if ($OnlySitePages -and (Ensure-SourceCatalog -SourceDirectory $SourceDir)) {
+  $catalog = Read-Json -Path 'data/catalog/source-catalog.json'
+  $sources = @($catalog.sources | Sort-Object work_title)
+} else {
+  $sourceFiles = if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
+    @($targetWorkIds | ForEach-Object { Join-Path $SourceDir "$_.json" } | Where-Object { Test-Path -LiteralPath $_ } | ForEach-Object { Get-Item -LiteralPath $_ })
+  } else {
+    @(Get-ChildItem -Path $SourceDir -Filter '*.json')
   }
-  $baseSources = New-Object System.Collections.Generic.List[object]
-  foreach ($source in @($sources)) {
-    if (-not $source.base_work_id) { continue }
-    $baseId = [string]$source.base_work_id
-    if ($knownSourceIds.ContainsKey($baseId)) { continue }
-    $basePath = Join-Path $SourceDir "$baseId.json"
-    if (-not (Test-Path -LiteralPath $basePath)) { continue }
-    $baseSource = Read-Json -Path $basePath
-    $baseSources.Add($baseSource)
-    $knownSourceIds[$baseId] = $true
-  }
-  if ($baseSources.Count -gt 0) {
-    $sources = @($sources + @($baseSources) | Sort-Object work_title)
+
+  $sources = @($sourceFiles | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
+  if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
+    $knownSourceIds = @{}
+    foreach ($source in @($sources)) {
+      if ($source.work_id) { $knownSourceIds[[string]$source.work_id] = $true }
+    }
+    $baseSources = New-Object System.Collections.Generic.List[object]
+    foreach ($source in @($sources)) {
+      if (-not $source.base_work_id) { continue }
+      $baseId = [string]$source.base_work_id
+      if ($knownSourceIds.ContainsKey($baseId)) { continue }
+      $basePath = Join-Path $SourceDir "$baseId.json"
+      if (-not (Test-Path -LiteralPath $basePath)) { continue }
+      $baseSource = Read-Json -Path $basePath
+      $baseSources.Add($baseSource)
+      $knownSourceIds[$baseId] = $true
+    }
+    if ($baseSources.Count -gt 0) {
+      $sources = @($sources + @($baseSources) | Sort-Object work_title)
+    }
   }
 }
 $sourceById = @{}
@@ -2080,7 +2151,11 @@ foreach ($source in $sources) {
   $sourceById[[string]$source.work_id] = $source
 }
 
-$lexicalCache = Get-LexicalCache -WorkIds $targetWorkIds -OccurrencesOnly:($SkipLexicalPayloadFiles -or $OnlyOverlayExports)
+$lexicalCache = if ($OnlySitePages) {
+  $null
+} else {
+  Get-LexicalCache -WorkIds $targetWorkIds -OccurrencesOnly:($SkipLexicalPayloadFiles -or $OnlyOverlayExports)
+}
 
 function Find-SourceForFeature {
   param(
@@ -2122,7 +2197,7 @@ function Append-FeatureCard {
     if ($Role) {
       [void]$Builder.AppendLine("              <span class=""work-label"">$(Encode-Html $Role)</span>")
     }
-    [void]$Builder.AppendLine("              <span class=""meta"">$(@($Source.units).Count) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
+    [void]$Builder.AppendLine("              <span class=""meta"">$(Get-SourceUnitCount -Source $Source) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
     [void]$Builder.AppendLine('            </a>')
   } else {
     [void]$Builder.AppendLine('            <div class="work-card placeholder-card">')
@@ -2147,7 +2222,7 @@ function Append-LibraryWorkCard {
   if ($Source.display_label) {
     [void]$Builder.AppendLine("                <span class=""work-label"">$(Encode-Html $Source.display_label)</span>")
   }
-  [void]$Builder.AppendLine("                <span class=""meta"">$(@($Source.units).Count) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
+  [void]$Builder.AppendLine("                <span class=""meta"">$(Get-SourceUnitCount -Source $Source) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
   [void]$Builder.AppendLine('              </a>')
 }
 
@@ -2178,7 +2253,7 @@ function Append-LibrarySections {
   [void]$Builder.AppendLine('        <div class="library-stack">')
   foreach ($homeGroup in $homeGroups) {
     $groupSources = @($homeGroup.Group)
-    $groupUnits = [int](($groupSources | ForEach-Object { @($_.units).Count } | Measure-Object -Sum).Sum)
+    $groupUnits = [int](($groupSources | ForEach-Object { Get-SourceUnitCount -Source $_ } | Measure-Object -Sum).Sum)
     $groupCountText = "$(Format-CountPhrase -Count $groupSources.Count -Singular 'work' -Plural 'works') | $(Format-CountPhrase -Count $groupUnits -Singular 'source unit' -Plural 'source units')"
     [void]$Builder.AppendLine('          <details class="library-shelf">')
     [void]$Builder.AppendLine('            <summary>')
@@ -2200,7 +2275,7 @@ function Append-LibrarySections {
     } else {
       foreach ($subgroup in $subgroups) {
         $subgroupSources = @($subgroup.Group)
-        $subgroupUnits = [int](($subgroupSources | ForEach-Object { @($_.units).Count } | Measure-Object -Sum).Sum)
+        $subgroupUnits = [int](($subgroupSources | ForEach-Object { Get-SourceUnitCount -Source $_ } | Measure-Object -Sum).Sum)
         $subgroupCountText = "$(Format-CountPhrase -Count $subgroupSources.Count -Singular 'work' -Plural 'works') | $(Format-CountPhrase -Count $subgroupUnits -Singular 'source unit' -Plural 'source units')"
         [void]$Builder.AppendLine('              <details class="library-subgroup">')
         [void]$Builder.AppendLine('                <summary>')
@@ -2223,7 +2298,7 @@ function Append-LibrarySections {
   }
   if ($internalArchiveGroups.Count -gt 0) {
     $internalSources = @($internalArchiveGroups | ForEach-Object { $_.Group })
-    $internalUnits = [int](($internalSources | ForEach-Object { @($_.units).Count } | Measure-Object -Sum).Sum)
+    $internalUnits = [int](($internalSources | ForEach-Object { Get-SourceUnitCount -Source $_ } | Measure-Object -Sum).Sum)
     $internalCountText = "$(Format-CountPhrase -Count $internalSources.Count -Singular 'work' -Plural 'works') | $(Format-CountPhrase -Count $internalUnits -Singular 'source unit' -Plural 'source units')"
     [void]$Builder.AppendLine('          <details class="library-shelf">')
     [void]$Builder.AppendLine('            <summary>')
@@ -2371,6 +2446,10 @@ if (-not $SkipSitePages) {
   Write-Utf8 -Path 'library\index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '../' -HomeHref '../' -AboutHref '../about/')
 }
 
+if ($OnlySitePages) {
+  return
+}
+
 $renderSources = if ($targetWorkIds.Count -gt 0) {
   @($sources | Where-Object { $targetWorkIds -contains [string]$_.work_id })
 } else {
@@ -2384,6 +2463,9 @@ if ($OnlyLexicalPayloadFiles) {
   if ($OnlyOverlayExports) {
     throw 'OnlyLexicalPayloadFiles cannot be combined with OnlyOverlayExports.'
   }
+  if ($OnlySitePages) {
+    throw 'OnlyLexicalPayloadFiles cannot be combined with OnlySitePages.'
+  }
   foreach ($source in $renderSources) {
     $workOccurrence = if ($lexicalCache.occurrences_by_work.ContainsKey([string]$source.work_id)) { $lexicalCache.occurrences_by_work[[string]$source.work_id] } else { $null }
     if ($null -eq $workOccurrence) { continue }
@@ -2396,6 +2478,14 @@ if ($OnlyLexicalPayloadFiles) {
 
 if ($OnlyOverlayExports -and $SkipOverlayExports) {
   throw 'OnlyOverlayExports cannot be combined with SkipOverlayExports.'
+}
+
+if ($OnlyOverlayExports -and $OnlySitePages) {
+  throw 'OnlyOverlayExports cannot be combined with OnlySitePages.'
+}
+
+if ($OnlySitePages -and $SkipSitePages) {
+  throw 'OnlySitePages cannot be combined with SkipSitePages.'
 }
 
 if (-not $SkipOverlayExports) {
