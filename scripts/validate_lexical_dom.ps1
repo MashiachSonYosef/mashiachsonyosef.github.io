@@ -34,7 +34,7 @@ $samples = @(
     ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\orot.manifest.json'
   },
   [pscustomobject]@{
-    Label = 'Ari School HUD sample'
+    Label = 'Kabbalah HUD sample'
     WorkId = 'pri-etz-chaim'
     UnitId = 'pri-etz-chaim-gate-of-prayer-introduction-1'
     HtmlPath = Join-Path $PSScriptRoot '..\ari\pri-etz-chaim\index.html'
@@ -42,7 +42,7 @@ $samples = @(
     ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\pri-etz-chaim.manifest.json'
   },
   [pscustomobject]@{
-    Label = 'Gra School HUD sample'
+    Label = 'Commentary HUD sample'
     WorkId = 'beur-hagra-on-shulchan-arukh-orach-chayim'
     UnitId = 'beur-hagra-on-shulchan-arukh-orach-chayim-1-1-1'
     HtmlPath = Join-Path $PSScriptRoot '..\gra\beur-hagra-on-shulchan-arukh-orach-chayim\index.html'
@@ -50,7 +50,7 @@ $samples = @(
     ManifestPath = Join-Path $PSScriptRoot '..\data\lexical\beur-hagra-on-shulchan-arukh-orach-chayim.manifest.json'
   },
   [pscustomobject]@{
-    Label = 'Rav Kook School HUD sample'
+    Label = 'Hebrew thought HUD sample'
     WorkId = 'maamar-hador'
     UnitId = 'maamar-hador-1'
     HtmlPath = Join-Path $PSScriptRoot '..\rav-kook\maamar-hador\index.html'

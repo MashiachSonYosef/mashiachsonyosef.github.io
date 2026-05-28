@@ -164,23 +164,24 @@ function Get-RootHref {
 
 function Get-HomeGroup {
   param([object]$Source)
-  if ($Source.work_id -eq 'orot') {
-    return 'Rav Kook School'
-  }
   $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
   if ($slugParts.Count -gt 1) {
     $first = $slugParts[0]
     if ($first -eq 'tanakh') { return 'Tanakh' }
     if ($first -eq 'midrash') { return 'Midrash / Aggadah' }
-    if ($first -eq 'talmud') { return 'Talmud / Commentary' }
-    if ($first -eq 'ari') { return 'Ari / Kabbalah' }
-    if ($first -eq 'gra') { return 'Gra School' }
-    if ($first -eq 'rav-kook') { return 'Rav Kook School' }
+    if ($first -eq 'talmud') { return 'Talmud / Rabbinic' }
+    if ($first -eq 'tosefta') { return 'Talmud / Rabbinic' }
+    if ($first -eq 'ari') { return 'Kabbalah / Esoteric' }
+    if ($first -eq 'gra') { return 'Kabbalah / Esoteric' }
+    if ($first -eq 'kabbalah') { return 'Kabbalah / Esoteric' }
+    if ($first -eq 'rav-kook') { return 'Thought / Musar / Chasidut' }
+    if ($first -eq 'jewish-thought') { return 'Thought / Musar / Chasidut' }
+    if ($first -eq 'musar') { return 'Thought / Musar / Chasidut' }
+    if ($first -eq 'chasidut') { return 'Thought / Musar / Chasidut' }
+    if ($first -eq 'halakhah') { return 'Halakhah' }
     if ($first -eq 'second-temple') { return 'Second Temple / Apocrypha' }
-    if ($first -eq 'tosefta') { return 'Tosefta / Tannaitic' }
-    if ($first -eq 'jewish-thought') { return 'Jewish Thought / Philosophy' }
-    if ($first -eq 'musar') { return 'Musar' }
-    if ($first -eq 'chasidut') { return 'Chasidut' }
+    if ($first -eq 'liturgy') { return 'Liturgy / Piyyut' }
+    if ($first -eq 'targum') { return 'Targum / Aramaic' }
     return (Get-Culture).TextInfo.ToTitleCase(($first -replace '-', ' '))
   }
   return 'Other'
@@ -225,17 +226,13 @@ function Get-LibrarySubgroup {
       if ($title -match 'Otzar|Alphabet|Seder Olam|Sefer HaYashar') { return 'Collections and Late Midrash' }
       return 'Classic Midrash / Aggadah'
     }
-    'Rav Kook School' {
-      if ($Source.work_id -eq 'orot' -or $title -eq 'Orot') { return 'Orot' }
-      return 'Other Rav Kook Works'
-    }
-    'Gra School' {
-      if ($isCommentary) { return 'Gra Commentaries' }
-      if ($title -match 'Kol HaTor|Nefesh HaChayim|Maaseh Rav|Iggeret') { return 'Gra Transmission Line' }
-      return 'Gra Texts'
-    }
-    'Ari / Kabbalah' {
-      return 'Ari / Chaim Vital Corpus'
+    'Kabbalah / Esoteric' {
+      $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
+      $firstSlug = if ($slugParts.Count -gt 0) { $slugParts[0] } else { '' }
+      if ($isCommentary) { return 'Commentary' }
+      if ($title -match 'Zohar|Tikkunei|Tikunei') { return 'Zohar / Tikkunei' }
+      if ($firstSlug -eq 'ari' -or $title -match 'Etz Chaim|Pri Etz|Shaar|Likkutei Torah|Sefer HaGilgulim') { return 'Lurianic Kabbalah' }
+      return 'Other Kabbalah / Esoteric'
     }
     'Second Temple / Apocrypha' {
       if ($title -match 'Ben Sira|Wisdom') { return 'Wisdom and Instruction' }
@@ -243,25 +240,27 @@ function Get-LibrarySubgroup {
       if ($title -match 'Jubilees|Testaments') { return 'Jubilees and Testamentary' }
       return 'Other Second Temple Works'
     }
-    'Tosefta / Tannaitic' {
+    'Talmud / Rabbinic' {
+      if ($group -eq 'Talmud / Rabbinic' -and [string]$Source.work_slug -match '^talmud[\\/]') {
+        if ($isCommentary) { return 'Talmud Commentary' }
+        return 'Talmud'
+      }
       if ($title -match 'Berakhot|Peah|Demai|Kilayim|Sheviit|Terumot|Maasrot|Maaser Sheni|Challah|Orlah|Bikkurim') { return 'Zeraim' }
       if ($title -match 'Shabbat|Eruvin|Pesachim|Shekalim|Yoma|Sukkah|Beitzah|Rosh Hashanah|Ta.anit|Taanit|Megillah|Moed Katan|Chagigah') { return 'Moed' }
       if ($title -match 'Yevamot|Ketubot|Nedarim|Nazir|Sotah|Gittin|Kiddushin') { return 'Nashim' }
       if ($title -match 'Bava Kamma|Bava Metzia|Bava Batra|Sanhedrin|Makkot|Shevuot|Eduyot|Avodah Zarah|Horayot') { return 'Nezikin' }
       if ($title -match 'Zevachim|Menachot|Chullin|Bekhorot|Arakhin|Temurah|Keritot|Meilah|Tamid|Middot|Kinnim') { return 'Kodashim' }
       if ($title -match 'Kelim|Oholot|Negaim|Parah|Tahorot|Mikvaot|Niddah|Makhshirin|Zavim|Tevul Yom|Yadayim|Oktsin') { return 'Tahorot' }
-      return 'Other Tosefta'
+      return 'Other Rabbinic'
     }
-    'Chasidut' {
-      if ($isCommentary) { return 'Chasidic Commentaries' }
-      if ($title -match 'Tzidkat|Peri Tzadik|Resisei|Kometz|Dover|Zadok|Takanat|Yisrael Kedoshim|Machshavot|Divrei') { return 'R. Tzadok and Lublin' }
-      if ($title -match 'Baal Shem|Besht|Rivash|Keter Shem|Toldot Yaakov Yosef|Maggid Devarav') { return 'Besht and Early Hasidism' }
-      if ($title -match 'Noam|Elimelekh|Levi|Aharon|Bnei|Sefat|Shem MiShmuel|Yismach') { return 'Classic Hasidic Torah' }
-      return 'Other Chasidut'
-    }
-    'Talmud / Commentary' {
+    'Thought / Musar / Chasidut' {
+      $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
+      $firstSlug = if ($slugParts.Count -gt 0) { $slugParts[0] } else { '' }
+      if ($firstSlug -eq 'musar') { return 'Musar' }
+      if ($firstSlug -eq 'chasidut') { return 'Chasidut' }
+      if ($firstSlug -eq 'rav-kook') { return 'Modern Hebrew Thought' }
       if ($isCommentary) { return 'Commentary' }
-      return 'Talmud'
+      return 'Hebrew Thought'
     }
     default {
       if ($isCommentary) { return 'Commentary' }
@@ -292,22 +291,22 @@ function Get-LibrarySubgroupOrder {
       'Collections and Late Midrash' = 6
       'Other Midrash Commentaries' = 7
     }
-    'Rav Kook School' = @{
-      'Orot' = 1
-      'Other Rav Kook Works' = 2
+    'Kabbalah / Esoteric' = @{
+      'Zohar / Tikkunei' = 1
+      'Lurianic Kabbalah' = 2
+      'Commentary' = 3
+      'Other Kabbalah / Esoteric' = 9
     }
-    'Gra School' = @{
-      'Gra Transmission Line' = 1
-      'Gra Texts' = 2
-      'Gra Commentaries' = 3
-    }
-    'Ari / Kabbalah' = @{
-      'Ari / Chaim Vital Corpus' = 1
-      'Other Kabbalah' = 2
-    }
-    'Talmud / Commentary' = @{
+    'Talmud / Rabbinic' = @{
       'Talmud' = 1
-      'Commentary' = 2
+      'Talmud Commentary' = 2
+      'Zeraim' = 3
+      'Moed' = 4
+      'Nashim' = 5
+      'Nezikin' = 6
+      'Kodashim' = 7
+      'Tahorot' = 8
+      'Other Rabbinic' = 9
     }
     'Second Temple / Apocrypha' = @{
       'Wisdom and Instruction' = 1
@@ -315,21 +314,12 @@ function Get-LibrarySubgroupOrder {
       'Jubilees and Testamentary' = 3
       'Other Second Temple Works' = 9
     }
-    'Tosefta / Tannaitic' = @{
-      'Zeraim' = 1
-      'Moed' = 2
-      'Nashim' = 3
-      'Nezikin' = 4
-      'Kodashim' = 5
-      'Tahorot' = 6
-      'Other Tosefta' = 9
-    }
-    'Chasidut' = @{
-      'Besht and Early Hasidism' = 1
-      'Classic Hasidic Torah' = 2
-      'R. Tzadok and Lublin' = 3
-      'Chasidic Commentaries' = 4
-      'Other Chasidut' = 9
+    'Thought / Musar / Chasidut' = @{
+      'Hebrew Thought' = 1
+      'Modern Hebrew Thought' = 2
+      'Musar' = 3
+      'Chasidut' = 4
+      'Commentary' = 5
     }
   }
 
@@ -596,8 +586,6 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }')
   [void]$Builder.AppendLine('    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }')
   [void]$Builder.AppendLine('    .license-notice strong { color: var(--text); font-weight: 400; }')
-  [void]$Builder.AppendLine('    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }')
-  [void]$Builder.AppendLine('    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }')
   [void]$Builder.AppendLine('    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }')
   [void]$Builder.AppendLine('    .home-section { margin-top: 26px; }')
   [void]$Builder.AppendLine('    .home-section:first-child { margin-top: 0; }')
@@ -2236,20 +2224,19 @@ function Append-LibrarySections {
   $groupOrder = @{
     'Tanakh' = 1
     'Midrash / Aggadah' = 2
-    'Rav Kook School' = 3
-    'Gra School' = 4
-    'Ari / Kabbalah' = 5
-    'Second Temple / Apocrypha' = 6
-    'Jewish Thought / Philosophy' = 7
-    'Musar' = 8
-    'Tosefta / Tannaitic' = 9
-    'Talmud / Commentary' = 10
-    'Other' = 11
-    'Works' = 12
+    'Talmud / Rabbinic' = 3
+    'Halakhah' = 4
+    'Kabbalah / Esoteric' = 5
+    'Thought / Musar / Chasidut' = 6
+    'Second Temple / Apocrypha' = 7
+    'Liturgy / Piyyut' = 8
+    'Targum / Aramaic' = 9
+    'Other' = 10
+    'Works' = 11
   }
   $allHomeGroups = $Sources | Group-Object { Get-HomeGroup $_ } | Sort-Object @{ Expression = { if ($groupOrder.ContainsKey($_.Name)) { $groupOrder[$_.Name] } else { 99 } } }, Name
-  $internalArchiveGroups = @($allHomeGroups | Where-Object { $_.Name -eq 'Talmud / Commentary' })
-  $homeGroups = @($allHomeGroups | Where-Object { $_.Name -ne 'Talmud / Commentary' })
+  $internalArchiveGroups = @()
+  $homeGroups = @($allHomeGroups)
   [void]$Builder.AppendLine('        <div class="library-stack">')
   foreach ($homeGroup in $homeGroups) {
     $groupSources = @($homeGroup.Group)
@@ -2321,57 +2308,6 @@ function Append-LibrarySections {
   [void]$Builder.AppendLine('        </div>')
 }
 
-function Append-PublicExportLinks {
-  param(
-    [System.Text.StringBuilder]$Builder,
-    [string]$HrefPrefix = ''
-  )
-  [void]$Builder.AppendLine("          <p class=""export-actions""><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/manifest.json"">Manifest</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/sitewide/work-downloads.csv"" download>Per-work downloads CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/all-claims.csv"" download>All claims CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-license/cc0-only.csv"" download>CC0 CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-license/project-cc0.csv"" download>Project CC0 CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-work/orot-ai-options-min60.csv"" download>Orot AI CSV</a><a class=""export-button"" href=""$($HrefPrefix)data/public-lexical/by-work/aggadat-bereshit-ai-options-min60.csv"" download>Aggadat AI CSV</a><a class=""export-button"" href=""$($HrefPrefix)prompts/use-lexical-workbench.md"">AI workflow prompt</a></p>")
-}
-
-function Append-WorkLexicalDownloadLinks {
-  param(
-    [System.Text.StringBuilder]$Builder,
-    [object]$Source,
-    [string]$RootHref,
-    [AllowNull()][object]$WorkLexicalExternal
-  )
-
-  $workId = [string]$Source.work_id
-  if (-not $workId) { return }
-
-  $links = New-Object System.Collections.Generic.List[string]
-  if ($null -ne $WorkLexicalExternal -and $WorkLexicalExternal.manifest_url) {
-    $links.Add("<a class=""export-button"" href=""$($WorkLexicalExternal.manifest_url)"">Lexical manifest</a>")
-  }
-  $links.Add("<a class=""export-button"" href=""$($RootHref)data/public-lexical/sitewide/work-downloads.csv"" download>Per-work download index CSV</a>")
-  $links.Add("<a class=""export-button"" href=""$($RootHref)data/public-lexical/all-claims.csv"" download>All lexical claims CSV</a>")
-
-  $workClaimCsv = "data/public-lexical/by-work/$workId.csv"
-  if (Test-Path -LiteralPath $workClaimCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$workClaimCsv"" download>Work claims CSV</a>")
-  }
-  $tokenStatusCsv = "data/public-lexical/by-work/$workId-token-status.csv"
-  if (Test-Path -LiteralPath $tokenStatusCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$tokenStatusCsv"" download>Token status CSV</a>")
-  }
-  $aiOptionsCsv = "data/public-lexical/by-work/$workId-ai-options-min60.csv"
-  if (Test-Path -LiteralPath $aiOptionsCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$aiOptionsCsv"" download>AI options CSV</a>")
-  }
-  $compactTokenClaimsCsv = "data/public-lexical/by-work/$workId-token-claims-min60.csv"
-  if (Test-Path -LiteralPath $compactTokenClaimsCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$compactTokenClaimsCsv"" download>Compact token claims CSV</a>")
-  }
-
-  if ($links.Count -gt 0) {
-    [void]$Builder.AppendLine('        <div class="license-notice lexical-downloads">')
-    [void]$Builder.AppendLine('          <strong>Lexical downloads:</strong> CSV files are lexical options, not translations. Use the manifest and source/license columns to preserve attribution.')
-    [void]$Builder.AppendLine("          <p class=""export-actions"">$($links -join '')</p>")
-    [void]$Builder.AppendLine('        </div>')
-  }
-}
-
 function New-LibraryPageHtml {
   param(
     [object[]]$Sources,
@@ -2387,14 +2323,9 @@ function New-LibraryPageHtml {
   [void]$page.AppendLine('      <div class="hero">')
   [void]$page.AppendLine("        <p class=""crumbs""><a href=""$HomeHref"">Home</a> &middot; <a href=""$AboutHref"">About / License</a></p>")
   [void]$page.AppendLine('        <h1>Full Library</h1>')
-  [void]$page.AppendLine('        <p>Hebrew Source Workbench with lexical HUD support. All imported Hebrew source works remain available here. Talmud and commentary material stays in an internal archive shelf until hardened.</p>')
+  [void]$page.AppendLine('        <p>Hebrew Source Workbench with lexical HUD support. All imported Hebrew source works remain available here in broad corpus groups.</p>')
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div style="padding:22px">')
-  [void]$page.AppendLine('        <section class="home-section">')
-  [void]$page.AppendLine('          <h2>Lexical Downloads</h2>')
-  [void]$page.AppendLine('          <p>Use the per-work downloads CSV to find available manifests, token indexes, token-status CSVs, and AI option CSVs for each work.</p>')
-  Append-PublicExportLinks -Builder $page -HrefPrefix $HrefPrefix
-  [void]$page.AppendLine('        </section>')
   Append-LibrarySections -Builder $page -Sources $Sources -HrefPrefix $HrefPrefix
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('    </div>')
@@ -2426,11 +2357,6 @@ if (-not $SkipSitePages) {
   [void]$aboutPage.AppendLine('          <h2>Lexical HUD</h2>')
   [void]$aboutPage.AppendLine('          <p>Lexical rows retain per-source licensing. Wikidata rows remain CC0, OpenScriptures rows remain CC BY 4.0, Wiktionary/Kaikki rows remain CC BY-SA 4.0 / GFDL, and project-authored grammar or technical rows are labeled separately.</p>')
   [void]$aboutPage.AppendLine('          <p>Lexical HUD rows are study aids and source-indexed options. They are not polished English translations.</p>')
-  [void]$aboutPage.AppendLine('        </section>')
-  [void]$aboutPage.AppendLine('        <section class="home-section">')
-  [void]$aboutPage.AppendLine('          <h2>Public Lexical Export</h2>')
-  [void]$aboutPage.AppendLine('          <p>The public lexical export exposes claim-shaped HUD rows for tool-assisted study workflows. These files are lexical options, not prose translations, and each row keeps source/license metadata attached.</p>')
-  Append-PublicExportLinks -Builder $aboutPage -HrefPrefix '../'
   [void]$aboutPage.AppendLine('        </section>')
   [void]$aboutPage.AppendLine('        <section class="home-section">')
   [void]$aboutPage.AppendLine('          <h2>Translation Status</h2>')
@@ -2608,9 +2534,6 @@ foreach ($source in $renderSources) {
     if ($lexicalTotal -gt 0) {
       [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
     }
-  }
-  if ($workHasLexical) {
-    Append-WorkLexicalDownloadLinks -Builder $page -Source $source -RootHref $rootHref -WorkLexicalExternal $workLexicalExternal
   }
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
