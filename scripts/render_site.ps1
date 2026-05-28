@@ -6,7 +6,10 @@ param(
   [string]$OnlyWorkIdsPath = '',
   [switch]$SkipOverlayExports,
   [switch]$SkipLexicalPayloadFiles,
-  [switch]$OnlyLexicalPayloadFiles
+  [switch]$OnlyLexicalPayloadFiles,
+  [switch]$OnlyOverlayExports,
+  [switch]$SkipSitePages,
+  [int]$MaxTocUnitLinks = 2000
 )
 
 $ErrorActionPreference = 'Stop'
@@ -60,6 +63,33 @@ function Write-Utf8 {
     $resolved = (Resolve-Path -Path '.').Path + '\' + $Path
   }
   [System.IO.File]::WriteAllText($resolved, $Content, [System.Text.UTF8Encoding]::new($false))
+}
+
+function Get-JsonHeaderCounts {
+  param(
+    [string]$Path,
+    [int]$BytesToRead = 4096
+  )
+
+  if (-not (Test-Path -LiteralPath $Path)) { return $null }
+  $stream = [System.IO.File]::OpenRead((Resolve-Path -LiteralPath $Path).Path)
+  try {
+    $length = [Math]::Min($BytesToRead, [int]$stream.Length)
+    $buffer = New-Object byte[] $length
+    [void]$stream.Read($buffer, 0, $length)
+    $header = [System.Text.Encoding]::UTF8.GetString($buffer)
+    $counts = [ordered]@{}
+    foreach ($key in @('total_unique_surface_forms', 'matched_surface_forms', 'unmatched_surface_forms', 'total_occurrences')) {
+      $match = [regex]::Match($header, '"' + [regex]::Escape($key) + '"\s*:\s*(\d+)')
+      if ($match.Success) {
+        $counts[$key] = [int]$match.Groups[1].Value
+      }
+    }
+    if ($counts.Count -eq 0) { return $null }
+    return [pscustomobject]$counts
+  } finally {
+    $stream.Dispose()
+  }
 }
 
 function Get-ExportText {
@@ -1349,46 +1379,54 @@ function Append-LexicalHudScript {
 function Get-LexicalCache {
   param(
     [string]$LexicalDir = 'data/lexical',
-    [string[]]$WorkIds = @()
+    [string[]]$WorkIds = @(),
+    [switch]$OccurrencesOnly
   )
 
   $lexiconPath = Join-Path $LexicalDir 'lexicon.json'
   $tokenIndexPath = Join-Path $LexicalDir 'token-index.json'
   $occurrencesDir = Join-Path $LexicalDir 'occurrences'
 
-  $lexicon = if (Test-Path $lexiconPath) { Read-Json -Path $lexiconPath } else { [pscustomobject]@{ schema_version = 1; entries = @() } }
-  $lexiconEntries = @($lexicon.entries)
-  if ($lexiconEntries.Count -eq 0 -and $lexicon.PSObject.Properties.Name -contains 'layer_files') {
-    foreach ($layer in @($lexicon.layer_files)) {
-      if (-not $layer.path) { continue }
-      $layerPath = Join-Path $LexicalDir ([string]$layer.path)
-      if (-not (Test-Path -LiteralPath $layerPath)) { continue }
-      $layerJson = Read-Json -Path $layerPath
-      $lexiconEntries += @($layerJson.entries)
-    }
-    $lexicon = [pscustomobject]@{
-      schema_version = $lexicon.schema_version
-      title = $lexicon.title
-      scope = $lexicon.scope
-      import_date = $lexicon.import_date
-      generated_at = $lexicon.generated_at
-      license_policy = $lexicon.license_policy
-      layer_files = $lexicon.layer_files
-      entries = $lexiconEntries
-    }
-  }
-  $tokenIndex = if (Test-Path $tokenIndexPath) { Read-Json -Path $tokenIndexPath } else { [pscustomobject]@{ schema_version = 1; forms = @() } }
+  $lexicon = [pscustomobject]@{ schema_version = 1; entries = @() }
+  $lexiconEntries = @()
+  $tokenIndex = [pscustomobject]@{ schema_version = 1; forms = @() }
   $tokenIndexRows = @()
-  if ($tokenIndex.PSObject.Properties.Name -contains 'forms') {
-    $tokenIndexRows = @($tokenIndex.forms)
-  }
-  if ($tokenIndexRows.Count -eq 0 -and $tokenIndex.PSObject.Properties.Name -contains 'work_indexes') {
-    foreach ($indexFile in @($tokenIndex.work_indexes)) {
-      if (-not $indexFile.path) { continue }
-      $indexPath = Join-Path $LexicalDir ([string]$indexFile.path)
-      if (-not (Test-Path -LiteralPath $indexPath)) { continue }
-      $workTokenIndex = Read-Json -Path $indexPath
-      $tokenIndexRows += @($workTokenIndex.forms)
+
+  if (-not $OccurrencesOnly) {
+    $lexicon = if (Test-Path $lexiconPath) { Read-Json -Path $lexiconPath } else { [pscustomobject]@{ schema_version = 1; entries = @() } }
+    $lexiconEntries = @($lexicon.entries)
+    if ($lexiconEntries.Count -eq 0 -and $lexicon.PSObject.Properties.Name -contains 'layer_files') {
+      foreach ($layer in @($lexicon.layer_files)) {
+        if (-not $layer.path) { continue }
+        $layerPath = Join-Path $LexicalDir ([string]$layer.path)
+        if (-not (Test-Path -LiteralPath $layerPath)) { continue }
+        $layerJson = Read-Json -Path $layerPath
+        $lexiconEntries += @($layerJson.entries)
+      }
+      $lexicon = [pscustomobject]@{
+        schema_version = $lexicon.schema_version
+        title = $lexicon.title
+        scope = $lexicon.scope
+        import_date = $lexicon.import_date
+        generated_at = $lexicon.generated_at
+        license_policy = $lexicon.license_policy
+        layer_files = $lexicon.layer_files
+        entries = $lexiconEntries
+      }
+    }
+
+    $tokenIndex = if (Test-Path $tokenIndexPath) { Read-Json -Path $tokenIndexPath } else { [pscustomobject]@{ schema_version = 1; forms = @() } }
+    if ($tokenIndex.PSObject.Properties.Name -contains 'forms') {
+      $tokenIndexRows = @($tokenIndex.forms)
+    }
+    if ($tokenIndexRows.Count -eq 0 -and $tokenIndex.PSObject.Properties.Name -contains 'work_indexes') {
+      foreach ($indexFile in @($tokenIndex.work_indexes)) {
+        if (-not $indexFile.path) { continue }
+        $indexPath = Join-Path $LexicalDir ([string]$indexFile.path)
+        if (-not (Test-Path -LiteralPath $indexPath)) { continue }
+        $workTokenIndex = Read-Json -Path $indexPath
+        $tokenIndexRows += @($workTokenIndex.forms)
+      }
     }
   }
 
@@ -1918,6 +1956,15 @@ function Append-TocUnitLinks {
     [string]$Indent = '                    '
   )
 
+  if ($MaxTocUnitLinks -gt 0 -and @($Units).Count -gt $MaxTocUnitLinks) {
+    $firstUnit = @($Units)[0]
+    [void]$Builder.AppendLine("$Indent<p class=""toc-note"">$(Encode-Html (@($Units).Count)) units in this section. Per-unit links are capped for page size; use the first anchor or browser search within the page.</p>")
+    if ($null -ne $firstUnit) {
+      [void]$Builder.AppendLine("$Indent<p><a class=""toc-start"" href=""#$($firstUnit.anchor_id)"">First unit</a></p>")
+    }
+    return
+  }
+
   [void]$Builder.AppendLine("$Indent<ul class=""toc-units"">")
   foreach ($unit in @($Units)) {
     $label = Get-UnitTocLabel -Unit $unit
@@ -1990,12 +2037,6 @@ function Append-WorkToc {
   [void]$Builder.AppendLine('        </nav>')
 }
 
-$sources = @(Get-ChildItem -Path $SourceDir -Filter '*.json' | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
-$sourceById = @{}
-foreach ($source in $sources) {
-  $sourceById[[string]$source.work_id] = $source
-}
-
 $targetWorkIds = @($WorkIds | Where-Object { $_ -and $_.ToString().Trim() } | ForEach-Object { $_.ToString().Trim() })
 if ($OnlyWorkIdsPath) {
   if (-not (Test-Path -LiteralPath $OnlyWorkIdsPath)) {
@@ -2007,7 +2048,39 @@ if ($OnlyWorkIdsPath) {
   $targetWorkIds = @($targetWorkIds | Select-Object -Unique)
 }
 
-$lexicalCache = Get-LexicalCache -WorkIds $targetWorkIds
+$sourceFiles = if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
+  @($targetWorkIds | ForEach-Object { Join-Path $SourceDir "$_.json" } | Where-Object { Test-Path -LiteralPath $_ } | ForEach-Object { Get-Item -LiteralPath $_ })
+} else {
+  @(Get-ChildItem -Path $SourceDir -Filter '*.json')
+}
+
+$sources = @($sourceFiles | ForEach-Object { Read-Json -Path $_.FullName } | Sort-Object work_title)
+if ($targetWorkIds.Count -gt 0 -and $SkipSitePages) {
+  $knownSourceIds = @{}
+  foreach ($source in @($sources)) {
+    if ($source.work_id) { $knownSourceIds[[string]$source.work_id] = $true }
+  }
+  $baseSources = New-Object System.Collections.Generic.List[object]
+  foreach ($source in @($sources)) {
+    if (-not $source.base_work_id) { continue }
+    $baseId = [string]$source.base_work_id
+    if ($knownSourceIds.ContainsKey($baseId)) { continue }
+    $basePath = Join-Path $SourceDir "$baseId.json"
+    if (-not (Test-Path -LiteralPath $basePath)) { continue }
+    $baseSource = Read-Json -Path $basePath
+    $baseSources.Add($baseSource)
+    $knownSourceIds[$baseId] = $true
+  }
+  if ($baseSources.Count -gt 0) {
+    $sources = @($sources + @($baseSources) | Sort-Object work_title)
+  }
+}
+$sourceById = @{}
+foreach ($source in $sources) {
+  $sourceById[[string]$source.work_id] = $source
+}
+
+$lexicalCache = Get-LexicalCache -WorkIds $targetWorkIds -OccurrencesOnly:($SkipLexicalPayloadFiles -or $OnlyOverlayExports)
 
 function Find-SourceForFeature {
   param(
@@ -2256,45 +2329,47 @@ function New-LibraryPageHtml {
   return $page.ToString()
 }
 
-Write-Utf8 -Path 'index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '' -HomeHref './' -AboutHref 'about/')
+if (-not $SkipSitePages) {
+  Write-Utf8 -Path 'index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '' -HomeHref './' -AboutHref 'about/')
 
-$aboutPage = New-Object System.Text.StringBuilder
-Append-SiteHead -Builder $aboutPage -Title 'About / License'
-[void]$aboutPage.AppendLine('  <main>')
-[void]$aboutPage.AppendLine('    <div class="shell">')
-[void]$aboutPage.AppendLine('      <div class="hero">')
-[void]$aboutPage.AppendLine('        <p class="crumbs"><a href="../">Home</a> &middot; <a href="../library/">Full Library</a></p>')
-[void]$aboutPage.AppendLine('        <h1>About / License</h1>')
-[void]$aboutPage.AppendLine('        <p>This site is a Hebrew-first source-text workbench with clickable lexical HUD support and explicit source/license layers. It is not an official edition, not a translation publication, and not a replacement for checking the cited source versions.</p>')
-[void]$aboutPage.AppendLine('      </div>')
-[void]$aboutPage.AppendLine('      <div style="padding:22px">')
-[void]$aboutPage.AppendLine('        <section class="home-section">')
-[void]$aboutPage.AppendLine('          <h2>Source Texts</h2>')
-[void]$aboutPage.AppendLine('          <p>Hebrew source texts retain their original source/version licenses. Each work page preserves version title, source URL, digitization source, and license metadata where available.</p>')
-[void]$aboutPage.AppendLine('          <p>No copyrighted English translations are imported into the source layer.</p>')
-[void]$aboutPage.AppendLine('        </section>')
-[void]$aboutPage.AppendLine('        <section class="home-section">')
-[void]$aboutPage.AppendLine('          <h2>Lexical HUD</h2>')
-[void]$aboutPage.AppendLine('          <p>Lexical rows retain per-source licensing. Wikidata rows remain CC0, OpenScriptures rows remain CC BY 4.0, Wiktionary/Kaikki rows remain CC BY-SA 4.0 / GFDL, and project-authored grammar or technical rows are labeled separately.</p>')
-[void]$aboutPage.AppendLine('          <p>Lexical HUD rows are study aids and source-indexed options. They are not polished English translations.</p>')
-[void]$aboutPage.AppendLine('        </section>')
-[void]$aboutPage.AppendLine('        <section class="home-section">')
-[void]$aboutPage.AppendLine('          <h2>Public Lexical Export</h2>')
-[void]$aboutPage.AppendLine('          <p>The public lexical export exposes claim-shaped HUD rows for tool-assisted study workflows. These files are lexical options, not prose translations, and each row keeps source/license metadata attached.</p>')
-Append-PublicExportLinks -Builder $aboutPage -HrefPrefix '../'
-[void]$aboutPage.AppendLine('        </section>')
-[void]$aboutPage.AppendLine('        <section class="home-section">')
-[void]$aboutPage.AppendLine('          <h2>Translation Status</h2>')
-[void]$aboutPage.AppendLine('          <p>No public Translation or Translator&rsquo;s Notes boxes are displayed on the site. Any future translation pass should remain separate from imported Hebrew source text and third-party lexical data.</p>')
-[void]$aboutPage.AppendLine('        </section>')
-[void]$aboutPage.AppendLine('      </div>')
-[void]$aboutPage.AppendLine('    </div>')
-[void]$aboutPage.AppendLine('  </main>')
-[void]$aboutPage.AppendLine('</body>')
-[void]$aboutPage.AppendLine('</html>')
-Write-Utf8 -Path 'about\index.html' -Content $aboutPage.ToString()
+  $aboutPage = New-Object System.Text.StringBuilder
+  Append-SiteHead -Builder $aboutPage -Title 'About / License'
+  [void]$aboutPage.AppendLine('  <main>')
+  [void]$aboutPage.AppendLine('    <div class="shell">')
+  [void]$aboutPage.AppendLine('      <div class="hero">')
+  [void]$aboutPage.AppendLine('        <p class="crumbs"><a href="../">Home</a> &middot; <a href="../library/">Full Library</a></p>')
+  [void]$aboutPage.AppendLine('        <h1>About / License</h1>')
+  [void]$aboutPage.AppendLine('        <p>This site is a Hebrew-first source-text workbench with clickable lexical HUD support and explicit source/license layers. It is not an official edition, not a translation publication, and not a replacement for checking the cited source versions.</p>')
+  [void]$aboutPage.AppendLine('      </div>')
+  [void]$aboutPage.AppendLine('      <div style="padding:22px">')
+  [void]$aboutPage.AppendLine('        <section class="home-section">')
+  [void]$aboutPage.AppendLine('          <h2>Source Texts</h2>')
+  [void]$aboutPage.AppendLine('          <p>Hebrew source texts retain their original source/version licenses. Each work page preserves version title, source URL, digitization source, and license metadata where available.</p>')
+  [void]$aboutPage.AppendLine('          <p>No copyrighted English translations are imported into the source layer.</p>')
+  [void]$aboutPage.AppendLine('        </section>')
+  [void]$aboutPage.AppendLine('        <section class="home-section">')
+  [void]$aboutPage.AppendLine('          <h2>Lexical HUD</h2>')
+  [void]$aboutPage.AppendLine('          <p>Lexical rows retain per-source licensing. Wikidata rows remain CC0, OpenScriptures rows remain CC BY 4.0, Wiktionary/Kaikki rows remain CC BY-SA 4.0 / GFDL, and project-authored grammar or technical rows are labeled separately.</p>')
+  [void]$aboutPage.AppendLine('          <p>Lexical HUD rows are study aids and source-indexed options. They are not polished English translations.</p>')
+  [void]$aboutPage.AppendLine('        </section>')
+  [void]$aboutPage.AppendLine('        <section class="home-section">')
+  [void]$aboutPage.AppendLine('          <h2>Public Lexical Export</h2>')
+  [void]$aboutPage.AppendLine('          <p>The public lexical export exposes claim-shaped HUD rows for tool-assisted study workflows. These files are lexical options, not prose translations, and each row keeps source/license metadata attached.</p>')
+  Append-PublicExportLinks -Builder $aboutPage -HrefPrefix '../'
+  [void]$aboutPage.AppendLine('        </section>')
+  [void]$aboutPage.AppendLine('        <section class="home-section">')
+  [void]$aboutPage.AppendLine('          <h2>Translation Status</h2>')
+  [void]$aboutPage.AppendLine('          <p>No public Translation or Translator&rsquo;s Notes boxes are displayed on the site. Any future translation pass should remain separate from imported Hebrew source text and third-party lexical data.</p>')
+  [void]$aboutPage.AppendLine('        </section>')
+  [void]$aboutPage.AppendLine('      </div>')
+  [void]$aboutPage.AppendLine('    </div>')
+  [void]$aboutPage.AppendLine('  </main>')
+  [void]$aboutPage.AppendLine('</body>')
+  [void]$aboutPage.AppendLine('</html>')
+  Write-Utf8 -Path 'about\index.html' -Content $aboutPage.ToString()
 
-Write-Utf8 -Path 'library\index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '../' -HomeHref '../' -AboutHref '../about/')
+  Write-Utf8 -Path 'library\index.html' -Content (New-LibraryPageHtml -Sources $sources -HrefPrefix '../' -HomeHref '../' -AboutHref '../about/')
+}
 
 $renderSources = if ($targetWorkIds.Count -gt 0) {
   @($sources | Where-Object { $targetWorkIds -contains [string]$_.work_id })
@@ -2306,6 +2381,9 @@ if ($OnlyLexicalPayloadFiles) {
   if ($SkipLexicalPayloadFiles) {
     throw 'OnlyLexicalPayloadFiles cannot be combined with SkipLexicalPayloadFiles.'
   }
+  if ($OnlyOverlayExports) {
+    throw 'OnlyLexicalPayloadFiles cannot be combined with OnlyOverlayExports.'
+  }
   foreach ($source in $renderSources) {
     $workOccurrence = if ($lexicalCache.occurrences_by_work.ContainsKey([string]$source.work_id)) { $lexicalCache.occurrences_by_work[[string]$source.work_id] } else { $null }
     if ($null -eq $workOccurrence) { continue }
@@ -2314,6 +2392,10 @@ if ($OnlyLexicalPayloadFiles) {
     [void](Write-WorkLexicalPayloadFiles -WorkId $source.work_id -WorkLexicalPayload $workLexicalPayload -RootHref $rootHref)
   }
   return
+}
+
+if ($OnlyOverlayExports -and $SkipOverlayExports) {
+  throw 'OnlyOverlayExports cannot be combined with SkipOverlayExports.'
 }
 
 if (-not $SkipOverlayExports) {
@@ -2331,6 +2413,13 @@ if (-not $SkipOverlayExports) {
     $exportRows = Get-OverlayExportRows -Source $source -Overlay $overlay
     Write-OverlayExports -WorkSlug $source.work_slug -Rows $exportRows
   }
+}
+
+if ($OnlyOverlayExports) {
+  if (-not $SkipSitePages) {
+    Write-FullSiteOverlayManifest -Sources $sources
+  }
+  return
 }
 
 foreach ($source in $renderSources) {
@@ -2354,7 +2443,7 @@ foreach ($source in $renderSources) {
   $singleSourceNote = ($sourceNotes.Count -eq 1)
   $workOccurrence = if ($lexicalCache.occurrences_by_work.ContainsKey([string]$source.work_id)) { $lexicalCache.occurrences_by_work[[string]$source.work_id] } else { $null }
   $workHasLexical = ($null -ne $workOccurrence)
-  $workLexicalPayload = if ($workHasLexical) { Get-WorkLexicalPayload -WorkOccurrence $workOccurrence -LexicalCache $lexicalCache } else { $null }
+  $workLexicalPayload = $null
   $workLexicalExternal = if ($workHasLexical) {
     if ($SkipLexicalPayloadFiles) {
       [pscustomobject]@{
@@ -2363,8 +2452,12 @@ foreach ($source in $renderSources) {
         root_href = $rootHref
       }
     } else {
+      $workLexicalPayload = Get-WorkLexicalPayload -WorkOccurrence $workOccurrence -LexicalCache $lexicalCache
       Write-WorkLexicalPayloadFiles -WorkId $source.work_id -WorkLexicalPayload $workLexicalPayload -RootHref $rootHref
     }
+  } else { $null }
+  $workLexicalCounts = if ($workHasLexical -and $SkipLexicalPayloadFiles) {
+    Get-JsonHeaderCounts -Path (Join-Path 'data/lexical/token-indexes' "$($source.work_slug).json")
   } else { $null }
 
   Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical
@@ -2411,9 +2504,17 @@ foreach ($source in $renderSources) {
     [void]$page.AppendLine("        <p class=""meta source-citation"">$($sourceNotes.Count) source/license notes. See footer table for details.</p>")
   }
   if ($workHasLexical) {
-    $workLexicalForms = @($workLexicalPayload.token_index.forms)
-    $lexicalMatched = @($workLexicalForms | Where-Object { $_.status -eq 'matched' -and $_.lexicon_entry_id }).Count
-    $lexicalTotal = $workLexicalForms.Count
+    $workLexicalForms = if ($null -ne $workLexicalPayload) { @($workLexicalPayload.token_index.forms) } else { @() }
+    $lexicalMatched = if ($null -ne $workLexicalCounts -and $null -ne $workLexicalCounts.matched_surface_forms) {
+      [int]$workLexicalCounts.matched_surface_forms
+    } else {
+      @($workLexicalForms | Where-Object { $_.status -eq 'matched' -and $_.lexicon_entry_id }).Count
+    }
+    $lexicalTotal = if ($null -ne $workLexicalCounts -and $null -ne $workLexicalCounts.total_unique_surface_forms) {
+      [int]$workLexicalCounts.total_unique_surface_forms
+    } else {
+      $workLexicalForms.Count
+    }
     if ($lexicalTotal -gt 0) {
       [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
     }
