@@ -262,6 +262,7 @@ Generated: 2026-05-29
 | Kessef Mishneh on Mishneh Torah, Blessings | 408 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Circumcision | 88 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Daily Offerings and Additional Offerings | 259 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Defilement by a Corpse | 667 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Defilement by Leprosy | 425 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Defilement of Foods | 434 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Diverse Species | 320 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -289,6 +290,7 @@ Generated: 2026-05-29
 | Kessef Mishneh on Mishneh Torah, Repentance | 78 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Ritual Slaughter | 569 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Sacrifices Rendered Unfit | 561 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Sacrificial Procedure | 666 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Second Tithes and Fourth Year's Fruit | 336 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Service on the Day of Atonement | 121 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Sheqel Dues | 93 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -759,6 +761,7 @@ Generated: 2026-05-29
 | Mishneh Torah, Ritual Slaughter | 278 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishneh Torah, Ritual Slaughter | 1 | Wikisource Mishneh Torah (http://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%A0%D7%94_%D7%AA%D7%95%D7%A8%D7%94_%D7%9C%D7%A8%D7%9E%D7%91%22%D7%9D) | CC-BY-SA | yes | yes | required |
 | Mishneh Torah, Robbery and Lost Property | 275 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Mishneh Torah, Sabbath | 659 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishneh Torah, Sabbatical Year and the Jubilee | 253 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishneh Torah, Sacrifices Rendered Unfit | 345 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Mishneh Torah, Sacrificial Procedure | 322 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -807,6 +810,7 @@ Generated: 2026-05-29
 | Narboni on Guide for the Perplexed | 182 | Vienna, 1852 (https://www.nli.org.il/he/books/NNL_ALEPH002021142/NLI) | PD | yes | no | none required by license; source/version retained |
 | Nefesh HaChayim | 164 | Vilna, 1874 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Nehemiah | 405 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Nekudot HaKesef on Shulchan Arukh, Yoreh De'ah | 636 | Ashlei Ravrevei: Shulchan Aruch Yoreh Deah, Lemberg, 1888 (https://www.nli.org.il/he/books/NNL_ALEPH002097765) | Public Domain | yes | no | none required by license; source/version retained |
 | Nineteen Letters | 641 | Iggerot Tzfun, Vilna 1890 (https://www.nli.org.il/he/books/NNL_ALEPH001855369) | Public Domain | yes | no | none required by license; source/version retained |
 | Nishmat Chayyim | 451 | Warsaw, 1876 (https://www.nli.org.il/he/books/NNL_ALEPH990020073790205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Noam Elimelekh | 1538 |  Noam Elimelech, Lvov, 1788. (https://he.wikisource.org/wiki/%D7%A0%D7%95%D7%A2%D7%9D_%D7%90%D7%9C%D7%99%D7%9E%D7%9C%D7%9A) | Public Domain | yes | no | none required by license; source/version retained |
@@ -848,6 +852,7 @@ Generated: 2026-05-29
 | Pardes Rimmonim | 294 | Pardes Rimonim, Koretz, 1780. (http://dlib.rsl.ru/01006686897) | Public Domain | yes | no | none required by license; source/version retained |
 | Pat Lechem | 835 | Chovat Halevavot, Warsaw 1875 (https://www.nli.org.il/he/books/NNL_ALEPH001188038) | Public Domain | yes | no | none required by license; source/version retained |
 | Pele Yoetz | 1777 | Torat Emet (http://www.ateret4u.com/online/f_01643.html#HtmpReportNum0016_L2) | Public Domain | yes | no | none required by license; source/version retained |
+| Peleti on Shulchan Arukh, Yoreh De'ah | 637 | Kereti u'Peleti, Warsaw, 1878 (https://www.nli.org.il/he/books/NNL_ALEPH002097765) | Public Domain | yes | no | none required by license; source/version retained |
 | Peri Chadash on Mishneh Torah, Human Dispositions | 19 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Peri Etz Hadar | 92 | Pri Etz Hadar, Venice 1762 (http://opensiddur.org/?p=1503) | Public Domain | yes | no | none required by license; source/version retained |
 | Peri HaAretz | 179 | Pri Haaretz -- wikisource (https://he.wikisource.org/wiki/%D7%A4%D7%A8%D7%99_%D7%94%D7%90%D7%A8%D7%A5) | Public Domain | yes | no | none required by license; source/version retained |
@@ -1005,6 +1010,7 @@ Generated: 2026-05-29
 | Targum Jonathan on Zephaniah | 53 | Mikraot Gedolot (https://www.sefaria.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Targum of I Chronicles | 943 | Wikisource Aramaic Targum to Chronicles (https://he.wikisource.org/wiki/%D7%AA%D7%A8%D7%92%D7%95%D7%9D_%D7%93%D7%91%D7%A8%D7%99_%D7%94%D7%99%D7%9E%D7%99%D7%9D) | Public Domain | yes | no | none required by license; source/version retained |
 | Targum of II Chronicles | 822 | Wikisource Aramaic Targum to Chronicles (https://he.wikisource.org/wiki/%D7%AA%D7%A8%D7%92%D7%95%D7%9D_%D7%93%D7%91%D7%A8%D7%99_%D7%94%D7%99%D7%9E%D7%99%D7%9D) | Public Domain | yes | no | none required by license; source/version retained |
+| Tashbetz Katan | 679 | Warsaw, 1902 (https://www.nli.org.il/he/books/NNL_ALEPH002085545/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | The Beginning of Wisdom | 40 | Klalei Hatchalat HaChochmah, Jerusalem 2018 (https://he.wikisource.org/wiki/%D7%9B%D7%9C%D7%9C%D7%99_%D7%94%D7%AA%D7%97%D7%9C%D7%AA_%D7%94%D7%97%D7%9B%D7%9E%D7%94) | CC-BY-SA | yes | yes | required |
 | The Book of Maccabees I | 954 | כתובים אחרונים - יצחק זעקיל פרענקיל (http://www.daat.ac.il/daat/hasfarim/hashmonaim-a-2.htm) | Public Domain | yes | no | none required by license; source/version retained |
 | The Book of Maccabees II | 660 | כתובים אחרונים - יצחק זעקיל פרענקיל (http://www.daat.ac.il/daat/hasfarim/hashmonaim-b-2.htm) | Public Domain | yes | no | none required by license; source/version retained |
