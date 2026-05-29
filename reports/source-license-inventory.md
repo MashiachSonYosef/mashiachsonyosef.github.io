@@ -103,6 +103,7 @@ Generated: 2026-05-29
 | Chokhmat Adam | 2990 | Hokhmat Adam, Vilna, 1844 (http://dlib.rsl.ru/viewer/01006560322#?page=5) | Public Domain | yes | no | none required by license; source/version retained |
 | Chokhmat Adam | 7 | Vilna, 1815 (https://www.nli.org.il/he/books/NNL_ALEPH990018733440205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Chokhmat Shlomo on Shulchan Arukh, Even HaEzer | 419 | Apei Ravrevei: Shulchan Aruch Even HaEzer, Lemberg, 1886 (https://www.nli.org.il/he/books/NNL_ALEPH002097680) | Public Domain | yes | no | none required by license; source/version retained |
+| Chokhmat Shlomo on Shulchan Arukh, Orach Chayim | 561 | Maginei Eretz: Shulchan Aruch Orach Chaim, Lemberg, 1893 (https://www.nli.org.il/he/books/NNL_ALEPH002084080) | Public Domain | yes | no | none required by license; source/version retained |
 | Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, Admission into the Sanctuary | 129 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, The Chosen Temple | 109 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, Vessels of the Sanctuary and Those who Serve Therein | 174 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -270,6 +271,7 @@ Generated: 2026-05-29
 | Kessef Mishneh on Mishneh Torah, Foundations of the Torah | 63 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Fringes | 112 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Gifts to the Poor | 311 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Heave Offerings | 580 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Immersion Pools | 268 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Kings and Wars | 200 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Mourning | 357 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -285,6 +287,8 @@ Generated: 2026-05-29
 | Kessef Mishneh on Mishneh Torah, Rebels | 134 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Red Heifer | 405 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Repentance | 78 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Ritual Slaughter | 569 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Sacrifices Rendered Unfit | 561 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Second Tithes and Fourth Year's Fruit | 336 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Service on the Day of Atonement | 121 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Sheqel Dues | 93 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -299,6 +303,7 @@ Generated: 2026-05-29
 | Kessef Mishneh on Mishneh Torah, Those Who Defile Bed or Seat | 299 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Tithes | 370 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Torah Study | 212 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Vessels | 579 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Vessels of the Sanctuary and Those who Serve Therein | 324 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Virgin Maiden | 69 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Woman Suspected of Infidelity | 144 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
@@ -463,6 +468,7 @@ Generated: 2026-05-29
 | Maaseh Rokeach on Human Dispositions | 40 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Leavened and Unleavened Bread | 218 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Levirate Marriage and Release | 153 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
+| Maaseh Rokeach on Marriage | 563 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Mishnah | 1506 | Maaseh Rokeach, Amsterdam 1740 (https://he.wikisource.org/wiki/%D7%9E%D7%A2%D7%A9%D7%94_%D7%A8%D7%95%D7%A7%D7%97_%D7%A2%D7%9C_%D7%94%D7%9E%D7%A9%D7%A0%D7%94) | CC-BY-SA | yes | yes | required |
 | Maaseh Rokeach on Nazariteship | 145 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Maaseh Rokeach on Oaths | 118 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
@@ -494,6 +500,7 @@ Generated: 2026-05-29
 | Maggid Devarav leYaakov | 277 | Maggid Devarav leYa'akov, Koretz, 1781 (https://www.nli.org.il/he/books/NNL_ALEPH001870067) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Meisharim | 441 | Maggid Meisharim - Torat Emet (http://www.toratemetfreeware.com/online/f_01180.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Borrowing and Deposit | 161 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Maggid Mishneh on Mishneh Torah, Creditor and Debtor | 618 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Damages to Property | 300 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Eruvin | 235 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Fasts | 109 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
@@ -569,6 +576,7 @@ Generated: 2026-05-29
 | Migdal Oz on Mishneh Torah, Divorce | 230 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Eruvin | 124 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Fasts | 9 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Migdal Oz on Mishneh Torah, Forbidden Foods | 302 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Foreign Worship and Customs of the Nations | 171 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Foundations of the Torah | 41 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Fringes | 53 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
