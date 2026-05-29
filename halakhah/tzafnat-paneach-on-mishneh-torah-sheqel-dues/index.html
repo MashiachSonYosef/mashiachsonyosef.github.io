@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-sheqel-dues/">Open Mishneh Torah, Sheqel Dues</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Sheqel Dues</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">23 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Tzafnat Pa&#39;neach on Mishneh Torah, Warsaw-Piotrk&#243;w, 1903-1908 | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>485 matched</strong> / 1460 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/tzafnat-paneach-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -222,8 +223,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 1:1:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-1-1-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-1">Mishneh Torah, Sheqel Dues 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִתֵּן כָּל אִישׁ מִיִּשְׂרָאֵל מַחֲצִית הַשֶּׁקֶל בְּכָל שָׁנָה וְשָׁנָה. אֲפִלּוּ עָנִי הַמִּתְפַּרְנֵס מִן הַצְּדָקָה חַיָּב. וְשׁוֹאֵל מֵאֲחֵרִים אוֹ מוֹכֵר כְּסוּת שֶׁעַל כְּתֵפוֹ וְנוֹתֵן מַחֲצִית הַשֶּׁקֶל כֶּסֶף שֶׁנֶּאֱמַר <span class="source-small">(שמות ל טו)</span> &quot;הֶעָשִׁיר לֹא יַרְבֶּה וְהַדַּל לֹא יַמְעִיט&quot; וְגוֹ׳. וְאֵינוֹ נוֹתְנוֹ בִּפְעָמִים רַבּוֹת הַיּוֹם מְעַט וּלְמָחָר מְעַט אֶלָּא נוֹתְנוֹ כֻּלּוֹ כְּאַחַת בְּפַעַם אַחַת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואינו נותנו בפעמים רבות כו׳.</strong> הנה זה תליא בהך דחגיגה ד׳ ח׳ ע&quot;א ובירושלמי שם ובפאה פ&quot;א אם אדם חולק חובתו לשני דברים ועי׳ ב&quot;ק ד׳ ק&quot;י ע&quot;א גבי גזל הגר שהחזירו לחצאין לא יצא ע&quot;ש ועי׳ בהך דמנחות ד׳ ק&quot;ד ע&quot;א גבי יש קבע לנסכים או לא ע&quot;ש ושם ד׳ ק&quot;ה ע&quot;ב מה דאמר שם שמעינן ליה לר&quot;ש דאמר אם הביא עשרון אחד משני עשרונות יצא ואף דאינן נקבעים כאחת והך ר&quot;ש נ&quot;ל דר&quot;ל משום דהא מבואר בדברי רבינו ז&quot;ל בהל׳ זכיה ומתנה פ&quot;ג ה&quot;ה דצריך לגבי קנין דבר המסוים ועי׳ בעירובין ד׳ נ׳ ע&quot;א משום דלא סיים אתריה ובירושלמי פאה פ&quot;ג ה&quot;ט דקמבעי ליה שם גבי תנו חצי שדה אם הוה כסיום או לא ועי׳ בירושלמי פ&quot;ז דדמאי ה&quot;ה ובעירובין ד׳ ל&quot;ז ע&quot;ב דגם גבי הקדש ותרומה בעי סיום ועי׳ בתרומות פ&quot;ג ה&quot;ה גבי תרומות שני כריים כאחת דהוה מחלוקת ר&quot;י ור&quot;ל ועי׳ במעילה ד׳ י&quot;ג ע&quot;ב גבי ג׳ לוגין מים ובירושלמי דדמאי שם ועי׳ בירושלמי דמעש&quot;ש פ&quot;ה ה&quot;ו דלכן אמר ומקומו מושכר לו משום סיום ע&quot;ש וא&quot;כ אם אמר עשרון אחד משני עשרונות לא מהני דהא לא הוי דבר המסוים רק ר&quot;ש ס&quot;ל דלא בעי דבר המסוים וזהו דאמר שמעינן לר&quot;ש דאמר יצא ובאמת י&quot;ל דהך מחלוקת דמנחות ד׳ ח׳ וד׳ ז׳ ע&quot;ב ג&quot;כ תליא בהך דאדם חולק חובתו ועיין בזבחים ד׳ ק&quot;י ע&quot;א מר סבר קביעותא דמנא מילתא היא ע&quot;ש וד׳ ק&quot;י ע&quot;ב גבי נסוך המים ושם ד׳ ס&quot;ז ע&quot;ב גבי הא דקבעה נדרה ע&quot;ש ובאמת זה ר&quot;ל בהך דנזיר ד׳ נ&quot;ט ע&quot;ב אין מביא קרבנותיו לחצאין ע&quot;ש דבאמת זה הוה פלוגתא דאם קרבנות נזיר מקרי נדור במה שאמר הריני נזיר או הם חיוב ממילא עי׳ זבחים ד׳ קי&quot;ז ע&quot;ב גבי במה ועי׳ מש&quot;כ רבינו בהל׳ נדרים פ&quot;א ה&quot;י ע&quot;ש ובהשגות ועי׳ בהך דנזיר ד׳ י&quot;ב ע&quot;ב גבי הך דר&quot;מ ורבנן גבי הרי עלי לגלח חצי נזיר ע&quot;ש ברש&quot;י ובירושלמי שם דאמר להיפך דלר&quot;מ הוה קולא דכיון דהוא רוצה רק לגלח הנזיר די בקרבן אחד דאם גילח על קרבן אחד יצא ולרבנן דאמרי על הקרבנות צריך קרבן וחצי ע&quot;ש ועי׳ מש&quot;כ רבינו ז&quot;ל בפי&quot;ד מהל׳ מעשה הקרבנות ובהך דערכין ד׳ י&quot;ז ע&quot;א וא&quot;כ לפי&quot;ז דאם נימא דקרבנות נזיר הוה בגדר נדר ג&quot;כ שוב אינו יכול לחלוק הקרבנות לחצאין דכמאן דקבעינהו דמי וזהו ר&quot;ל ר&quot;י שם בנזיר ד׳ נ&quot;ט ע&quot;ב ועי׳ בערכין ד׳ כ&quot;ה ע&quot;א במה דאמר שם אם אמר הריני נותן שנה בשנה אין שומעין לו ע&quot;ש ועי׳ שם ד׳ ז׳ ע&quot;ב בתוס׳ ד&quot;ה אין נערכין מש&quot;כ שם מגלגלין עליו את הכל ובתוספתא שם פ&quot;א אך יש לדחות די&quot;ל דנ&quot;מ אם אח&quot;כ השיגה ידו אך זה תליא אם אזלינן בתר הערכה או בתר הנתינה וכבר הארכתי בזה בהל׳ ערכין בדברי רבינו ועי׳ בהך דבכורות ד׳ נ&quot;א ע&quot;ב נתנם בזא&quot;ז ועי׳ שם ברש&quot;י ותוס׳ שם ד׳ מ&quot;ח ע&quot;ב ועי׳ במנחות ד׳ ס&quot;א ע&quot;א גבי תנופה אם הניפם זה בפ&quot;ע וזה בפ&quot;ע יצא ומהך דחולין ד׳ קל&quot;ב ע&quot;ב לא דמי דשם כבר יש עליהם שם מתנות כהונה עד שלא נתנם ועי׳ בזבחים ד׳ פ׳ ע&quot;א גבי מצטרפין להזאות ושם ד׳ צ&quot;ג ובירושלמי פ&quot;ז דברכות גבי הטביל ג׳ אזבות ע&quot;ש ועי׳ שבועות ד׳ י&quot;ז ע&quot;א גבי שהיות מהו שיצטרפו וחולין ד׳ ל&quot;ב ע&quot;א ועי׳ בהך דכתובות ד׳ ק&quot;ט ע&quot;ב מי קרי אינשי לתרי פלגי דדיקלא דיקלא וכבר כתבתי בזה לעיל:</p>
               </div>
             </div>
@@ -238,8 +244,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 1:3:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-1-3-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-3">Mishneh Torah, Sheqel Dues 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַסֶּלַע אַרְבָּעָה דִּינָרִין וְהַדִּינָר שֵׁשׁ מָעִין. וּמָעָה הִיא הַנִּקְרֵאת בִּימֵי משֶׁה רַבֵּנוּ גֵּרָה. וּמָעָה הִיא שְׁנֵי פּוּנְדְיוֹנִין וּפוּנְדְיוֹן שְׁנֵי אִיסָרִין. וּפְרוּטָה אַחַת מִשְּׁמוֹנָה בְּאִיסָר. נִמְצָא מִשְׁקַל הַמָּעָה וְהִיא הַגֵּרָה שֵׁשׁ עֶשְׂרֵה שְׂעוֹרוֹת. וּמִשְׁקַל הָאִיסָר אַרְבַּע שְׂעוֹרוֹת. וּמִשְׁקַל הַפְּרוּטָה חֲצִי שְׂעוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וה&quot;ה ומעה היא הנקראת בימי משה רבינו גרה כו׳.</strong> עי׳ תוס׳ קדושין ד׳ י&quot;א ע&quot;ב דלא הוה מטבע רק משקל ועי׳ ר&quot;ה ד׳ כ&quot;ו ע&quot;א דקשיטה הוא מעה ועי׳ תוס׳ ב&quot;מ ד׳ ס׳ ע&quot;ב ד&quot;ה מאה בדנקי דדנקא לא הוה מעה והנה נ&quot;מ כך דהנה בקדושין ד׳ י&quot;ב ע&quot;א אמר שם סבר ר&quot;י למימר פרוטה כל דהו ע&quot;ש ברש&quot;י ועי׳ ביומא ד׳ פ׳ ע&quot;א האוכל חלב בזה&quot;ז צריך שיכתוב לו שיעור ע&quot;ש ועי׳ בירושלמי פ&quot;א דפאה דהויא מחלוקת בזה והנה עיין בבכורות ד׳ נ׳ ע&quot;א דצריך קרא שלא יאמרו שיהיה המטבע לפי הזמן ועי׳ מש&quot;כ התוס׳ מנחות ד׳ ע&quot;ו ע&quot;ב ד&quot;ה התודה ע&quot;ש ומש&quot;כ התוס׳ כתובות ד׳ י׳ ע&quot;א ד&quot;ה נותן לה דלא ס&quot;ל כן רק דאף בלא קרא אזלינן בתר השתא ע&quot;ש רק שצריך שתהיה ההוספה בכל העולם ועי׳ ב&quot;מ ד׳ מ&quot;ד ע&quot;ב מה דאמר שם נ&quot;מ לפדיון הבן ע&quot;ש ברש&quot;י דמשמע דלא אזלינן בתר ההוספה אך י&quot;ל כמ&quot;ש התוס׳ כתובות הנ&quot;ל דדוקא בימי יחזקאל שתיקנו אז בכל ישראל אז אזלינן בתר עכשיו משא&quot;כ כאן שלא היה רק במקום אחד, גם י&quot;ל דנ&quot;מ אם ההוספה היה על השקל או על הדינר דבימי יחזקאל היה ההוספה על השקל ובתורה כתיב ג&quot;כ שקל משא&quot;כ הך דב&quot;מ דההוספה הוא רק בדינר אך באמת כך דזה ר&quot;ל המחלוקת דירושלמי דפאה הנ&quot;ל דאם למשל השיעור של זית אם כך נאמרה למשה שיעורים הוה כזית אז יכולים אנו לשערו בכל דור לפי אותו הזית שבאותו הזמן אבל אם נאמר כמו הך דיומא ד׳ פ׳ הנ&quot;ל וכ&quot;מ דזה רק אסמכתא רק שנמסר לנו מסיני שיעור ואנחנו שערנו כזית אז צריך שיהיה כמו בזמן משה ועי׳ בזבחים ד׳ ס&quot;ב גבי מזבח ובלבד שלא יפחתנו משל משה ועי׳ בכורות ד׳ י&quot;ז ע&quot;ב ובמנחות ד׳ כ&quot;ט ע&quot;א גבי מנורת ביהמ&quot;ק דהיתה יתירה על של משה ושם ד׳ צ&quot;ח ע&quot;א גבי אמות ועי׳ עירובין ד׳ פ&quot;ג ע&quot;א וכן הוא הדין לגבי מראות דמים באשה עי׳ נדה ד׳ כ׳ ע&quot;ב וכן ר&quot;ל הך מחלוקת דירושלמי דסוכה פ&quot;ג גבי הירוק ככרתי אם ר&quot;ל כצבע כרתי או כעשב שנקרא כרתי על שם שהוא ירוק ועי׳ במס׳ נגעים פ&quot;ב מ&quot;א בהך מחלוקת דת&quot;ק ור&quot;י וכולם פי&quot;ז מוז&quot;ח והנה נ&quot;מ כך דאם נאמר שהיה בימי משה מטבע הנקראת גרה וכך נאמרה לו מסיני שצריך להיות השקל עשרים מטבעות אז בלא קרא הוה אזלינן כמו מטבע לפי הדור וכס&quot;ד דר&quot;י אבל אם נאמר שזה רק שיעור כמ&quot;ש התוס׳ הנ&quot;ל אז צריך כמו שהיה בימי משה. וזהו מה דאמרינן בירושלמי דשקלים הובא בתוס׳ מנחות ד׳ כ&quot;ט וחולין ד׳ מ&quot;ב כמין מטבע של אש הראה הקב&quot;ה למשה כו׳ ר&quot;ל שני דברים אחד דדוקא כזה ר&quot;ל כמשקלו וגם מטבע ונ&quot;מ דאם יפחת אינו יכול ליתן פחות ואם יוסיפו צריך ליתן לפי ההוספה ועי׳ ב&quot;מ ד׳ ק&quot;ג ע&quot;א גבי בית כזה אני משכיר לך ועי׳ ערכין ד׳ י&quot;ט וב&quot;ב ד׳ ע&quot;ח גבי חמורך זה ע&quot;ש ועי׳ בהך דנזיר ד׳ נ&quot;א ע&quot;ב גבי הך בעיא דנמלה שחסרה ע&quot;ש ועי׳ בנדה ד׳ מ&quot;ג ע&quot;ב גבי אבר מן השרץ דאמר שם משום דהוא שיעור, לא דאבר אין צריך שיעור ע&quot;ש וכן נ&quot;מ אם יכול לומר לדידי שוה לי עי׳ קדושין ד&quot;ח ע&quot;א דנ&quot;ל דזה רק במה שהוסיפו על סלעים של משה בזה יכול לומר לדידי שוה לי וכן לגבי כלי דהוה דבר חשוב זה רק על מה שהוסיפו על שיעור של משה ולכך נקט שם בקדושין הוספה ג׳ ועי׳ מש&quot;כ רבינו ז&quot;ל בהל׳ מעילה פ&quot;ז ה&quot;ו נוטל כו׳ או כלי כל שהוא ובהל׳ טוען ונטען דאמר שם ג&quot;כ דכלי כל שהוא בפ&quot;ג ה&quot;ה דלא כשיטת התוס׳ אבל גבי קדושין אין הדין כן כמ&quot;ש רבינו ז&quot;ל בכ&quot;מ עי׳ בהל׳ אישות פ&quot;ד ה&quot;ט והטעם משום דשם שיעורא גמירי ועי׳ בר&quot;ן פ&quot;א דקדושין ותוס׳ קדושין ד׳ ג׳ ע&quot;א ועי׳ מש&quot;כ רבינו ז&quot;ל בהל׳ בכורים פי&quot;א ה&quot;ז ע&quot;ש ועי׳ בהך דערכין ד׳ כ׳ ע&quot;א מי איכא דלא שוה ד׳ זוזי ע&quot;ש, גם נ&quot;ל דזה דיכול לומר לדידי שוה לי זה רק בשוה כסף דכיון דצריך לשומו יכול לשומו יותר משויו אבל בכסף עצמו לא מצי אמר זה וכן נ&quot;ל דנ&quot;מ גבי הך דאמרינן בסוטה דף מ&quot;ה ע&quot;א שאפילו נמצא סמוך לעיר מצוה לעסוק במדידה ר&quot;ל דנ&quot;מ כך דאף אם נמצא סמוך לעיר שאין בה ב&quot;ד כיון דמצוה במדידה מניחין זה ומודדין לעיר שיש בה ב&quot;ד אבל אם נמצא בעיר עצמה דאז אין שייך מדידה אז אם אין בה ב&quot;ד אין מביאין עגלה ערופה ובזה א&quot;ש שינוי הגירסות שם ד׳ מ&quot;ה ע&quot;ב בבבלי ובירושלמי שם דבירושלמי שם אמר לא היו עורפין עי׳ ב&quot;ב ד׳ כ&quot;ג ע&quot;ב בתוס׳ ומכות ד׳ י׳ ע&quot;ב ע&quot;ש, ועי׳ בהך דשבועות ד׳ כ&quot;א ע&quot;ב גבי נמלה בריה שאני ועי׳ תוס׳ חולין ד׳ צ&quot;ו וזהו ג&quot;כ תליא אם בריה הוא במקום שיעור או בריה לא בעי שיעור, ועי׳ במה דפליגי באהלות פ&quot;ב גבי דם נפל אם בעי רביעית דר&quot;ע ס&quot;ל דלא בעי ועי׳ תוס׳ יומא ד׳ פ&quot;א ע&quot;א דמוקי לה להך דר&quot;ע דרביעית דם הבא מב׳ מתים בדם נפל ע&quot;ש ואף דר&quot;ע ס&quot;ל דלא בעי שיעור וצ&quot;ל דרק אם כל דמו של נפל ושעורו הוא ולמה לא יצטרף בלא פסוק וצ&quot;ל כיון שחסר קצת בטל ממנו שם הטומאה ועי׳ מש&quot;כ הראב&quot;ד ז&quot;ל בהשגות בהלכות טומאת מת פ&quot;ד הי&quot;ג ע&quot;ש:</p>
               </div>
             </div>
@@ -254,8 +265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 1:9:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-1-9-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-9">Mishneh Torah, Sheqel Dues 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּאֶחָד בַּאֲדָר מַשְׁמִיעִין עַל הַשְּׁקָלִים כְּדֵי שֶׁיָּכִין כָּל אֶחָד וְאֶחָד מַחֲצִית הַשֶּׁקֶל שֶׁלּוֹ. וְיִהְיֶה עָתִיד לִתֵּן. בַּחֲמִשָּׁה עָשָׂר בּוֹ יָשְׁבוּ הַשֻּׁלְחָנִים בְּכָל מְדִינָה וּמְדִינָה וְתוֹבְעִין בְּנַחַת כָּל מִי שֶׁיִּתֵּן לָהֶם יְקַבְּלוּ מִמֶּנּוּ וּמִי שֶׁלֹּא נָתַן אֵין כּוֹפִין אוֹתוֹ לִתֵּן. בַּחֲמִשָּׁה וְעֶשְׂרִים בּוֹ יָשְׁבוּ בַּמִּקְדָּשׁ לִגְבּוֹת. וּמִכָּאן וְאֵילָךְ כּוֹפִין אֶת מִי שֶׁלֹּא נָתַן עַד שֶׁיִּתֵּן. וְכָל מִי שֶׁלֹּא יִתֵּן מְמַשְׁכְּנִין אוֹתוֹ וְלוֹקְחִין עֲבוֹטוֹ בַּעַל כָּרְחוֹ וַאֲפִלּוּ כְּסוּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל מי שלא יתן ממשכנין אותו כו׳.</strong> עי׳ בירושלמי כאן פ&quot;א ה&quot;ה וה&quot;ז ובפיהמ&quot;ש לרבינו במ&quot;ג פ&quot;א דשקלים. והנה לכאורה דברי רבינו תמוהים בפיהמ&quot;ש שם דהא בלא הביא שתי שערות אין תובעין אותו, וצ&quot;ל דמיירי בן י&quot;ג ולא הביא ב׳ שערות דס&quot;ל לרבינו בכ&quot;מ דזה הוה גדר מופלא סמוך לאיש דאורייתא ולכך לתבוע תובעין דהוה גדר נדר אבל למשכן הוה רק גדר עונש לא גדר גבוה עמש&quot;כ בהמאור ז&quot;ל ריש פ&quot;ד דב&quot;ק בשם תשובות הגאון ועמ&quot;ש הה&quot;מ ז&quot;ל בהל׳ אישות פי&quot;ב הט&quot;ו ומה דאמר בירושלמי פ&quot;א דר&quot;ה ועשית להזהיר ב&quot;ד מכאן למשכן ר&quot;ל ג&quot;כ רק גדר עונש וכפיה לא לגבות ולא הוה כערכין ועי׳ ב&quot;ק ד׳ ק&quot;ב ע&quot;ב ובירושלמי שם דאמר שם כיון שאמר ערכי עלי לא קבע לעצמו אלא ג׳ סלע ר&quot;ל דזה הוא הפחות שבערכין וס&quot;ל כמ&quot;ד בערכין דף ד׳ ע&quot;ב דערך סתם אינו נידון בהשג יד וזה חיוב גמור אבל שקלים הויא המשכון רק גדר עונש ועונש צריך שיביא שתי שערות ולא כר&quot;ה בנדה דף מ&quot;ו ועי׳ תמורה ד׳ ב׳ ע&quot;ב גבי קטן מהו שימיר ובאמת הנה בתוספתא כאן פ&quot;א דשקלים אמר דלכך ממשכנין שיהיו קרבנות ציבור קרבין משלהם ואמר שם משל לאחד כו׳ מפני שקרבנות צבור מרצין ומכפרין כו׳ ע&quot;ש ור&quot;ל כך דבאמת הא מבואר בערכין דף כ&quot;א דחייבי חטאות ואשמות אין ממשכנין אותם ועי׳ ב&quot;ק ד׳ מ׳ ותוס׳ כריתות ד׳ י&quot;ב ע&quot;א דהטעם משום דלא ניחא לו בכפרה ור&quot;ל דהוא כמו דאמר לא יתכפר לי חטאתי דלא מכפר לו כמבואר בכריתות ד׳ ז׳ ועי׳ תוס׳ יבמות ד׳ פ&quot;ז ע&quot;ב ותוס׳ ר&quot;ה ד׳ ו׳ ע&quot;א ד&quot;ה יקריב אותו אך זה רק היכא דבעיא לכפרה אבל כאן השקלים הוא חיוב בפ&quot;ע ומוסרן לצבור ושוב אינו שלו ואח&quot;כ מביאין קרבנות משל צבור עי׳ בירושלמי פ&quot;א דשקלים ה&quot;ד ופ&quot;ג ה&quot;ג גבי של בית ר&quot;ג ולא נקרא זה כפרה וגם הא קיי&quot;ל תורמין על האבד וזהו כוונת רש&quot;י בכתובות ד׳ ק&quot;ח ע&quot;א דכיון דחזינן דאף אם לא הגיע שקלו ללשכה מ&quot;מ תורמין עליו לא מקרי גדר פריעת חוב רק משום המצוה והמצוה הוא על הנותן ע&quot;ש ברש&quot;י והוה רק מבריח ארי דפטור וזה ר&quot;ל בתוספתא הנ&quot;ל דהויא כמו חתיכת המכה דיכול אף בע&quot;כ דרק הרפואה צריך להיות מדעת ובאמת לפי המבואר בירושלמי בפ&quot;ב דשקלים לפי שיטת רבינו בפיה&quot;מ לאחר שנתרמה התרומה אז ממשכנין ע&quot;ש אף דכבר נתרמה. אך י&quot;ל דזה רק אם סופו לגבות אח&quot;כ כמ&quot;ש התוס׳ אך מדברי רבינו ז&quot;ל לא משמע כן ועי׳ בתוספתא תורמין על הממושכן ע&quot;ש ובזה י&quot;ל הגירסא דגרס בפ&quot;א דשקלים ה&quot;ה דממשכנין רק בן עשרים ר&quot;ל דהויא רק כמו עונש בידי שמים דאין עונשין עד שיהא בן כ׳ עיין שבת ד׳ פ&quot;ט ע&quot;ב ומש&quot;כ רבינו ז&quot;ל בפיה&quot;מ בפ&quot;ז דסנהדרין דזה הויא הלכה ע&quot;ש ועי׳ בתו&quot;כ פ׳ אמור דמבואר שם דעל לחם הפנים ועל שתי הלחם אן כופין את הצבור להביא ובצבור אין שייך כפיה ועי׳ זבחים ד׳ מ&quot;א ע&quot;ב חטא הצבור כביכול כו׳ ע&quot;ש:</p>
               </div>
             </div>
@@ -271,8 +287,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 2:2:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-2-2-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-2">Mishneh Torah, Sheqel Dues 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּבַמִּקְדָּשׁ הָיָה לִפְנֵיהֶם תָּמִיד שְׁלֹשׁ עֶשְׂרֵה תֵּבוֹת. כָּל תֵּבָה כְּמִין שׁוֹפָר. רִאשׁוֹנָה לְשִׁקְלֵי שָׁנָה זוֹ. שְׁנִיָּה לְשִׁקְלֵי שָׁנָה שֶׁעָבְרָה. שְׁלִישִׁית לְכָל מִי שֶׁיֵּשׁ עָלָיו קָרְבַּן שְׁתֵּי תּוֹרִים אוֹ שְׁנֵי בְּנֵי יוֹנָה אֶחָד עוֹלָה וְאֶחָד חַטָּאת מַשְׁלִיךְ דְּמֵיהֶן לְתֵבָה זוֹ. רְבִיעִית לְכָל מִי שֶׁיֵּשׁ עָלָיו עוֹלַת הָעוֹף בִּלְבַד מַשְׁלִיךְ דָּמֶיהָ לְתֵבָה זוֹ. חֲמִישִׁית לְמִי שֶׁהִתְנַדֵּב מָעוֹת לִקְנוֹת עֵצִים לַמַּעֲרָכָה בָּהֶן. שִׁשִּׁית לְמִי שֶׁהִתְנַדֵּב מָעוֹת לִלְבוֹנָה. שְׁבִיעִית לְמִי שֶׁהִתְנַדֵּב זָהָב לַכַּפֹּרֶת. שְׁמִינִית לְמוֹתַר חַטָּאת כְּגוֹן שֶׁהִפְרִישׁ מָעוֹת לְחַטָּאתוֹ וְלָקַח חַטָּאת וְהוֹתִיר מִן הַמָּעוֹת יַשְׁלִיךְ הַשְּׁאָר לְתוֹכָהּ. תְּשִׁיעִית לְמוֹתַר אָשָׁם. עֲשִׂירִית לְמוֹתַר קִנֵּי זָבִים וְזָבוֹת וְיוֹלְדוֹת. אַחַת עֶשְׂרֵה לְמוֹתַר קָרְבְּנוֹת נָזִיר. שְׁתֵּים עֶשְׂרֵה לְמוֹתַר אֲשַׁם מְצֹרָע. שְׁלֹשׁ עֶשְׂרֵה לְמִי שֶׁהִתְנַדֵּב מָעוֹת לְעוֹלַת בְּהֵמָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמינית למותר חטאת כו׳.</strong> עי׳ מנחות ד׳ ק&quot;ח ע&quot;א והנה כאן לא חשב רבינו מותר מנחת חוטא ועי׳ בה׳ פסוהמ&quot;ק פ&quot;ה ה&quot;ח דמותר מנחת חוטא מביא ממנו מנחת נדבה ולא עולה קייץ למזבח ועיין מש&quot;כ כאן בהל׳ ג׳ דתנאי ב&quot;ד הוא אף דהא מבואר בזבחים דף י&quot;א ודף ק&quot;ג דזה הויא הלכה כך ועי׳ תוס׳ שבועות ד׳ י&quot;ב ע&quot;ב ע&quot;ש וצ&quot;ל בין מעות לבהמה דבבהמה זה והויא הלכה ובמעות זה הויא רק תנאי ב&quot;ד ובירושלמי אמר כאן הטעם משום דאין נקבעין אלא בשחיטה אך זה רק בקרבן צבור והנה עיין בתמורה ד׳ י&quot;ג ע&quot;ב מבואר דר&quot;ש ס&quot;ל דמותרות לנדבת יחיד אזלא וכאן מוכח דר&quot;ש ס&quot;ל דאזלא לנדבת צבור ועל זה צ&quot;ל משום תנאי ב&quot;ד ועי׳ נזיר ד׳ כ&quot;ו ע&quot;ב גבי מעות ולא עופות ושם בתוס׳ דף כ&quot;ז מה שהקשו מהך דשבועות דף י&quot;א ע&quot;ב דאין מקיצין בעולת העוף ותירצו כה&quot;ג לחלק בין מעות לגוף הקרבן ועי׳ יומא ד׳ מ&quot;א ע&quot;ב בתוס׳ ד&quot;ה והא עולה ע&quot;ש:</p>
               </div>
             </div>
@@ -287,8 +308,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 2:2:2</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-2-2-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 2:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-2">Mishneh Torah, Sheqel Dues 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּבַמִּקְדָּשׁ הָיָה לִפְנֵיהֶם תָּמִיד שְׁלֹשׁ עֶשְׂרֵה תֵּבוֹת. כָּל תֵּבָה כְּמִין שׁוֹפָר. רִאשׁוֹנָה לְשִׁקְלֵי שָׁנָה זוֹ. שְׁנִיָּה לְשִׁקְלֵי שָׁנָה שֶׁעָבְרָה. שְׁלִישִׁית לְכָל מִי שֶׁיֵּשׁ עָלָיו קָרְבַּן שְׁתֵּי תּוֹרִים אוֹ שְׁנֵי בְּנֵי יוֹנָה אֶחָד עוֹלָה וְאֶחָד חַטָּאת מַשְׁלִיךְ דְּמֵיהֶן לְתֵבָה זוֹ. רְבִיעִית לְכָל מִי שֶׁיֵּשׁ עָלָיו עוֹלַת הָעוֹף בִּלְבַד מַשְׁלִיךְ דָּמֶיהָ לְתֵבָה זוֹ. חֲמִישִׁית לְמִי שֶׁהִתְנַדֵּב מָעוֹת לִקְנוֹת עֵצִים לַמַּעֲרָכָה בָּהֶן. שִׁשִּׁית לְמִי שֶׁהִתְנַדֵּב מָעוֹת לִלְבוֹנָה. שְׁבִיעִית לְמִי שֶׁהִתְנַדֵּב זָהָב לַכַּפֹּרֶת. שְׁמִינִית לְמוֹתַר חַטָּאת כְּגוֹן שֶׁהִפְרִישׁ מָעוֹת לְחַטָּאתוֹ וְלָקַח חַטָּאת וְהוֹתִיר מִן הַמָּעוֹת יַשְׁלִיךְ הַשְּׁאָר לְתוֹכָהּ. תְּשִׁיעִית לְמוֹתַר אָשָׁם. עֲשִׂירִית לְמוֹתַר קִנֵּי זָבִים וְזָבוֹת וְיוֹלְדוֹת. אַחַת עֶשְׂרֵה לְמוֹתַר קָרְבְּנוֹת נָזִיר. שְׁתֵּים עֶשְׂרֵה לְמוֹתַר אֲשַׁם מְצֹרָע. שְׁלֹשׁ עֶשְׂרֵה לְמִי שֶׁהִתְנַדֵּב מָעוֹת לְעוֹלַת בְּהֵמָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועורותיה לכהנים כו׳.</strong> עי׳ זבחים ד׳ ק&quot;ג ובתוספתא שם פרק י&quot;א:</p>
               </div>
             </div>
@@ -303,8 +329,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 2:5:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-2-5-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-5">Mishneh Torah, Sheqel Dues 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בִּשְׁלֹשָׁה פְּרָקִים בַּשָּׁנָה תּוֹרְמִין אֶת הַלִּשְׁכָּה. בְּרֹאשׁ חֹדֶשׁ נִיסָן. וּבְרֹאשׁ חֹדֶשׁ תִּשְׁרֵי קֹדֶם יוֹם טוֹב אוֹ אַחֲרָיו. וְקֹדֶם עֲצֶרֶת בַּחֲמִשָּׁה עָשָׂר יוֹם. וְכֵיצַד תּוֹרְמִין אוֹתָהּ. אֶחָד נִכְנַס לִפְנִים מִן הַלִּשְׁכָּה וְהַשּׁוֹמְרִין עוֹמְדִים בַּחוּץ וְהוּא אוֹמֵר לָהֶם אֶתְרֹם וְהֵן אוֹמְרִים לוֹ תְּרֹם תְּרֹם תְּרֹם שְׁלֹשָׁה פְּעָמִים. וְאַחַר כָּךְ מְמַלֵּא שָׁלֹשׁ קֻפּוֹת קְטַנּוֹת כָּל קֻפָּה מֵהֶן מְכִילָה שָׁלֹשׁ סְאִין מֵאוֹתָן שָׁלֹשׁ קֻפּוֹת הַגְּדוֹלוֹת וּמוֹצִיאָן לַחוּץ כְּדֵי לְהִסְתַּפֵּק מֵהֶן עַד שֶׁיִּכְלוּ. וְחוֹזֵר וּמְמַלֵּא אוֹתָן הַשָּׁלֹשׁ קֻפּוֹת הַקְּטַנּוֹת מִן שָׁלֹשׁ גְּדוֹלוֹת פַּעַם שְׁנִיָּה קֹדֶם עֲצֶרֶת וּמִסְתַּפְּקִין מֵהֶן עַד שֶׁיִּכְלוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והאחין השותפין כו׳ ואין אומרים הרי הם עומדים כו׳.</strong> ר&quot;ל משום הך דב&quot;מ ד׳ ס&quot;ט דזוזי כמאן דפליג דמיא ועי׳ רשב&quot;ם ב&quot;ב ד׳ ק&quot;ו ע&quot;ב ע&quot;ש ועי׳ בקדושין ד׳ נ&quot;ב ע&quot;ב גבי כישא ע&quot;ש:</p>
               </div>
             </div>
@@ -319,8 +350,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 2:6:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-2-6-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-6">Mishneh Torah, Sheqel Dues 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְחוֹזֵר וּמְמַלֵּא אוֹתָן פַּעַם שְׁלִישִׁית מִן הַשָּׁלֹשׁ קֻפּוֹת הַגְּדוֹלוֹת בְּתִשְׁרֵי וּמִסְתַּפְּקִין מֵהֶן עַד שֶׁיִּכְלוּ עַד רֹאשׁ חֹדֶשׁ נִיסָן. וּבְרֹאשׁ חֹדֶשׁ נִיסָן תּוֹרְמִין מִתְּרוּמָה חֲדָשָׁה. לֹא הִסְפִּיקוּ לָהֶן הַשְּׁקָלִים שֶׁבְּשָׁלֹשׁ קֻפּוֹת הַגְּדוֹלוֹת וְכָלוּ עַד שֶׁלֹּא הִגִּיעַ נִיסָן חוֹזְרִין וְתוֹרְמִין מִשְּׁיָרֵי הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא הספיקו להם השקלים כו׳.</strong> עי׳ בכס&quot;מ והנה עיין בדברי רבינו ספ&quot;ו מהל׳ מעילה דפסק דאין מועלין בשיריים ע&quot;ש ואמאי כיון דפסק כר&quot;מ, וצ&quot;ל משום דהנה מבואר במעילה ד׳ י&quot;א דדבר שיכול להביא ממנו דבר שאין בו מעילה אין מועלין בו והנה לפי&quot;ז לכאורה קשה הא מהלשכה מביאין כמה דברים שאין בהם מעילה שנתנו לכהנים להנות בהם כמו מלח ועצים וכדומה עי׳ מנחות ד׳ כ&quot;א, אך י&quot;ל דהא ע&quot;כ צריך להביא מהם גם קרבנות ולכך מועלין משא&quot;כ בשירי הלשכה דאין הכרח שיביא מהם קרבנות שוב אין מועלין מטעם הך דמעילה ד׳ י&quot;א הנ&quot;ל מחמת שיכול להביא מהם דברים שאין בהם מעילה ועי׳ ברש&quot;י תמורה ד׳ כ&quot;ג ע&quot;ב דלכך אין מועלין בעתיקין דכיון דחזינן דלא הוצרכו להם הוה כעין שירים ע&quot;ש ברש&quot;י שכ׳ דעתיקים היינו שירים, ובזה א&quot;ש הך דקדושין דף נ&quot;ד ע&quot;א ע&quot;ש ועי׳ בהך דכתובות ד׳ ק&quot;ו ע&quot;ב ועי׳ תוס׳ כתובות ד׳ ק&quot;ו ע&quot;ב ד&quot;ה תנא:</p>
               </div>
             </div>
@@ -335,8 +371,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 2:7:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-2-7-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-7">Mishneh Torah, Sheqel Dues 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ קֻפּוֹת הַקְּטַנּוֹת שֶׁהוּא תּוֹרֵם בָּהֶם וּמוֹצִיאָן לַחוּץ כָּתוּב עֲלֵיהֶן אָלֶ&quot;ף בֵּי&quot;ת גִּימֶ&quot;ל כְּדֵי שֶׁיִּסְתַּפְּקוּ מִן הָרִאשׁוֹנָה עַד שֶׁתִּכְלֶה. וְאַחַר כָּךְ מִסְתַּפְּקִין מִן הַשְּׁנִיָּה. וְאַחַר כָּךְ מִסְתַּפְּקִין מִן הַשְּׁלִישִׁית. וְתוֹרֵם רִאשׁוֹנָה מִן הַקֻּפָּה הָאַחַת הַגְּדוֹלָה וּמְחַפֶּה אוֹתָהּ הַגְּדוֹלָה בְּמִטְפַּחַת. וְתוֹרֵם הַשְּׁנִיָּה מֵהַקֻּפָּה הַגְּדוֹלָה הַשְּׁנִיָּה וּמְחַפֶּה אוֹתָהּ הַגְּדוֹלָה בְּמִטְפַּחַת. וְתוֹרֵם הַשְּׁלִישִׁית מִן הַקֻּפָּה הַגְּדוֹלָה הַשְּׁלִישִׁית וְאֵינוֹ מְחַפֶּה אוֹתָהּ בְּמִטְפַּחַת כְּדֵי שֶׁתִּהְיֶה נִכֶּרֶת שֶׁבָּהּ סִיֵּם. וְיַתְחִיל מִמֶּנָּה בַּתְּחִלָּה בְּפַעַם שְׁנִיָּה כְּשֶׁיִּכָּנֵס קֹדֶם עֲצֶרֶת. וְתוֹרֵם הָרִאשׁוֹנָה מִן הַגְּדוֹלָה שֶׁהָיְתָה מְגֻלָּה וּמְחַפֶּה אוֹתָהּ. וְתוֹרֵם הַשְּׁנִיָּה מִן הַגְּדוֹלָה שֶׁתָּרַם מִמֶּנָּה בָּרִאשׁוֹנָה תְּחִלָּה וּמְחַפֶּה אוֹתָהּ. וְתוֹרֵם הַשְּׁלִישִׁית מִן הַגְּדוֹלָה הַסְּמוּכָה לָהּ וְאֵינוֹ מְחַפֶּה אוֹתָהּ כְּדֵי שֶׁיַּתְחִיל מִמֶּנָּה בַּתְּחִלָּה בְּפַעַם שְׁלִישִׁית כְּשֶׁיִּכָּנֵס בְּתִשְׁרֵי. עַד שֶׁנִּמְצָא תּוֹרֵם רִאשׁוֹנָה וּשְׁנִיָּה וּשְׁלִישִׁית הַקְּטַנּוֹת מִכָּל אַחַת וְאַחַת מִן הַגְּדוֹלוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ותורם מן השניה מן הגדולה שתרם כו׳.</strong> עי׳ בכס&quot;מ ועי׳ ביומא ד׳ נ&quot;ח ע&quot;ב דהוא מחלוקת דתנאי מהיכן מתחיל ע&quot;ש:</p>
               </div>
             </div>
@@ -351,8 +392,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 2:8:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-2-8-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-8">Mishneh Torah, Sheqel Dues 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁהוּא תּוֹרֵם שָׁלֹשׁ קֻפּוֹת אֵלּוּ תּוֹרֵם אֶת הָרִאשׁוֹנָה לְשֵׁם אֶרֶץ יִשְׂרָאֵל. וְהַשְּׁנִיָּה לְשֵׁם הַכְּרַכִּין הַמֻּקָּפִין לָהּ וּלְשֵׁם כָּל (אֶרֶץ) יִשְׂרָאֵל. וְהַשְּׁלִישִׁית לְשֵׁם בָּבֶל וּלְשֵׁם מָדַי וּלְשֵׁם הַמְּדִינוֹת הָרְחוֹקוֹת וּלְשֵׁם שְׁאָר כָּל יִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בני העיר כו׳ אם שומר חנם כו׳ והם חוזרים ונותנים כו׳.</strong> עי׳ בכ&quot;מ והטעם די&quot;ל דעל זה לא תרמו דבאמת נ&quot;ל בהך מחלוקת דר&quot;י ור&quot;ל אם גבי שקל חייב באחריות בירושלמי כאן פ&quot;ב ועי׳ בחולין ד׳ קל&quot;ט ע&quot;א והנה כך דכ&quot;ז שלא נתן השקל לשופרות המדינה אז עדיין השקל הוא חול ולא מהני כלל מה שיתרמו עליו דעדיין לא זכו בו והוה כמו גבי ערכין דלד&quot;ה חייב באחריות רק דכשנתנו לשופרות המדינה אז אם תרמו נתקדש וכעין שכתבו התוס׳ סנהדרין ד׳ כ&quot;ה ע&quot;א גבי קוביא ע&quot;ש ולכך אמרינן בירושלמי דשקלים פ&quot;ב דבמדינה אין שופרות לעתיקין דעיקר הטעם לשופרות המדינה כדי שיזכו בו ההקדש שיוכלו לתרום עליו ובעתיקים אין שייך זה וקודם שתרמו אף אותו שהיו בשופרות שבמדינה לא קדשו עדיין והך דב&quot;מ ד׳ נ&quot;ח דמקשה שם אמאי חייב שם ר&quot;ל משום דלא גרע מלשמור ולא לחלק לעניים עי׳ ב&quot;ק ד׳ צ&quot;ג ועי׳ מש&quot;כ רבינו ז&quot;ל לקמן בהל׳ י׳ ובפיה&quot;מ בפ&quot;ב משמע דלא קדש השקל רק לאחר שתרמו דמה דאמר שם אם נתרמה התרומה ר&quot;ל עד שלא שקלו אז נתרמו וע&quot;ש מש&quot;כ ולפי מש&quot;כ כאן י&quot;ל הטעם משום דלא קדש עדיין וגם נ&quot;ל דזה רק אם שקלו אבל אם הוציאו בדבר אחר לא מעל כלל דנמצא לא בא השקל כלל ללשכה ושוב לא נתקדש כלל וגבוי זה רק שגבה בעד בני העיר שהיו להם שופרות כמש&quot;כ וגם י&quot;ל דכיון דהשלוחים הוי שומר שכר הוי כמו פועל וזכה להקדש ולכך בשומר חנם לא זכה עדיין ועי׳ ביצה ד׳ י&quot;ד ע&quot;ב וד׳ ט&quot;ז ע&quot;ב דאין דעתו על הפושעים וה&quot;נ כן:</p>
               </div>
             </div>
@@ -367,8 +413,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 2:10:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-2-10-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-10">Mishneh Torah, Sheqel Dues 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁיִּכָּנֵס הַתּוֹרֵם לִתְרֹם לֹא יִכָּנֵס בְּבֶגֶד שֶׁאֶפְשָׁר לְהַחְבּוֹת בּוֹ כֶּסֶף וְלֹא בְּמִנְעָל וְלֹא בְּסַנְדָּל וְלֹא בִּתְפִלָּה וְלֹא בְּקָמֵעַ שֶׁמָּא יַחְשְׁדוּ אוֹתוֹ הָעָם וְיֹאמְרוּ הֶחְבִּיא מִמְּעוֹת הַלִּשְׁכָּה תַּחְתָּיו כְּשֶׁתְּרָמָהּ. וּמְדַבְּרִים הָיוּ עִמּוֹ מִשָּׁעָה שֶׁיִּכָּנֵס עַד שָׁעָה שֶׁיֵּצֵא כְּדֵי שֶׁלֹּא יִתֵּן לְתוֹךְ פִּיו. וְאַף עַל פִּי שֶׁנִּזְהָרִים כָּל כָּךְ עָנִי אוֹ מִי שֶׁהוּא נִבְהַל לַהוֹן לֹא יִתְרֹם מִפְּנֵי הַחֲשָׁד שֶׁנֶּאֱמַר <span class="source-small">(במדבר לב כב)</span> &quot;וִהְיִיתֶם נְקִיִּים מֵה׳ וּמִיִּשְׂרָאֵל&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנותן חצי שקל לחבירו כו׳ אם נתרמה כו׳.</strong> עי׳ מ&quot;ש לעיל ועי׳ בפיה&quot;מ ועוד י&quot;ל כך משום דקשיא ליה האיך ממשכנין הא אין ממשכנין על הכפרה לכן ס&quot;ל לרבינו דהא דממשכנין הוא רק לאחר שנתרמה התרומה ושוב כבר נתרם עליו כיון שסופו שיתן וכבר נתכפר וכאן לא שייך הטעם דב&quot;ק ד׳ מ׳ ע&quot;א והנה עיקר הנאה דכאן מבואר בירושלמי הטעם שעל ידי זה אין ממשכנין אותו וע&quot;כ מיירי שכבר נתרמה התרומה, ועי׳ ב&quot;מ דף נ&quot;ד ע&quot;א הואיל וגזברים כו׳:</p>
               </div>
             </div>
@@ -432,8 +483,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:2:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-2-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-2">Mishneh Torah, Sheqel Dues 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל פַּר הֶעְלֵם דָּבָר שֶׁל צִבּוּר וּשְׂעִירֵי עֲבוֹדַת כּוֹכָבִים בַּתְּחִלָּה גּוֹבִין לָהֶן וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. פָּרוֹכוֹת שֶׁל הֵיכָל תַּחַת בִּנְיָן עֲשׂוּיוֹת וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה אֶלָּא מִקָּדְשֵׁי בֶּדֶק הַבַּיִת. אֲבָל פָּרוֹכוֹת שֶׁל שְׁעָרִים בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. הַמְּנוֹרָה וּכְלֵי שָׁרֵת מִצְוָתָן שֶׁיָּבוֹאוּ מִמּוֹתַר הַנְּסָכִים. וּבְהִלְכוֹת כְּלֵי הַמִּקְדָּשׁ וְהָעוֹבְדִים בּוֹ יִתְבָּאֵר מַה הוּא מוֹתַר הַנְּסָכִים. וְאִם לֹא הָיָה לָהֶן מוֹתַר נְסָכִים יָבִיאוּ מִתְּרוּמַת הַלִּשְׁכָּה. בִּגְדֵי כְּהֻנָּה בֵּין בִּגְדֵי כֹּהֵן גָּדוֹל בֵּין שְׁאָר בִּגְדֵי הַכֹּהֲנִים שֶׁעוֹבְדִין בָּהֶן בַּמִּקְדָּשׁ הַכּל מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל פר העלם כו׳.</strong> עי׳ הוריות ד׳ ג׳ ע&quot;ב ומנחות ד׳ נ&quot;ב ע&quot;א ועי׳ מש&quot;כ בזה בהל׳ שגגות פי&quot;ב ה&quot;א אם הקרבן הוא בשביל ב&quot;ד או בשביל השבט ובהך מחלוקת דמנחות ד׳ צ&quot;ב מי סומך עליהם ובירושלמי דהוריות פ&quot;א ה&quot;ח ובבלי שם ד׳ ז׳ ע&quot;א ובודאי צריך למוסרן לציבור דהא צריך להביא משל ציבור וזהו מה דר&quot;ל בהך דמנחות ד׳ נ&quot;ב ע&quot;א דחייש לפשיעה ר&quot;ל שמא לא ימסרנה יפה יפה כהך דב&quot;מ ד׳ קי&quot;ח ועי׳ תוס׳ יומא ד׳ ל&quot;ה ע&quot;ב ע&quot;ש וזהו ג&quot;כ ר&quot;ל הגמ׳ שם במלתא דאית ליה כפרה:</p>
               </div>
             </div>
@@ -448,8 +504,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:2:2</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-2-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-2">Mishneh Torah, Sheqel Dues 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל פַּר הֶעְלֵם דָּבָר שֶׁל צִבּוּר וּשְׂעִירֵי עֲבוֹדַת כּוֹכָבִים בַּתְּחִלָּה גּוֹבִין לָהֶן וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. פָּרוֹכוֹת שֶׁל הֵיכָל תַּחַת בִּנְיָן עֲשׂוּיוֹת וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה אֶלָּא מִקָּדְשֵׁי בֶּדֶק הַבַּיִת. אֲבָל פָּרוֹכוֹת שֶׁל שְׁעָרִים בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. הַמְּנוֹרָה וּכְלֵי שָׁרֵת מִצְוָתָן שֶׁיָּבוֹאוּ מִמּוֹתַר הַנְּסָכִים. וּבְהִלְכוֹת כְּלֵי הַמִּקְדָּשׁ וְהָעוֹבְדִים בּוֹ יִתְבָּאֵר מַה הוּא מוֹתַר הַנְּסָכִים. וְאִם לֹא הָיָה לָהֶן מוֹתַר נְסָכִים יָבִיאוּ מִתְּרוּמַת הַלִּשְׁכָּה. בִּגְדֵי כְּהֻנָּה בֵּין בִּגְדֵי כֹּהֵן גָּדוֹל בֵּין שְׁאָר בִּגְדֵי הַכֹּהֲנִים שֶׁעוֹבְדִין בָּהֶן בַּמִּקְדָּשׁ הַכּל מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם לא היה להם מותר כו׳.</strong> כן מבואר בתוספתא דמנחות פ&quot;ט ע&quot;ש ועיין בתוספתא דשקלים פ&quot;ב ועיין בכתובות ד׳ פ&quot;ו ע&quot;ב ועיין בכס&quot;מ כאן והנה באמת לפי שיטת רבינו ז&quot;ל דס&quot;ל דאם נשתייר מקדשי בדק הבית יכולים לשנותו לצורך קרבן א&quot;ש וזהו מה דר&quot;ל בגמ׳ כאן שגבו והותירו וגבי מזבח זה יהיה תליא ג&quot;כ אם מזבח לצורך קרבן או שהוא פרט מן המקדש וכבר כתבתי בזה במנין המצות ועיין במה דאמר שם בכתובות גבי פרוכת מה דמחלק בין הני שכנגד הפתחים שזה מתרומת הלשכה ר&quot;ל משום דאמרינן בזבחים ד׳ נ&quot;ה ע&quot;ב גבי וילון מה דנעשה רק לצורך קרבן וזהו מה דר&quot;ל ג&quot;כ בירושלמי כאן פ&quot;ד עבד לה כקרבן ע&quot;ש:</p>
               </div>
             </div>
@@ -464,8 +525,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:4:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-4-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-4">Mishneh Torah, Sheqel Dues 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גֵּר שֶׁמֵּת וְהִנִּיחַ זְבָחִים אִם יֵשׁ לוֹ נְסָכִים קְרֵבִין מִשֶּׁלּוֹ וְאִם לָאו בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. כֹּהֵן גָּדוֹל שֶׁמֵּת וְלֹא מִנּוּ אַחֵר תַּחְתָּיו מַקְרִיבִין אֶת הַחֲבִיתִין מִתְּרוּמַת הַלִּשְׁכָּה. מְבַקְּרֵי מוּמִים שֶׁבִּירוּשָׁלַיִם וְתַלְמִידֵי חֲכָמִים הַמְלַמְּדִים הִלְכוֹת שְׁחִיטָה לַכֹּהֲנִים וְהִלְכוֹת קְמִיצָה וְנָשִׁים הַמְגַדְּלוֹת בְּנֵיהֶן לְפָרָה אֲדֻמָּה כֻּלָּן נוֹטְלִין שְׂכָרָן מִתְּרוּמַת הַלִּשְׁכָּה. וְכַמָּה הוּא שְׂכָרָן. כְּמוֹ שֶׁיִּפְסְקוּ לָהֶן בֵּית דִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כה&quot;ג שמת כו׳.</strong> עי׳ בכ&quot;מ מה שהקשה מהך דהלכות תמידין ומוספין אך באמת הך מחלוקת דמנחות דף נ&quot;א ע&quot;ב שם לא קאי רק אאותו היום עצמו שמת והטעם משום * דנשתעבדו נכסיו וכמ&quot;ש רבינו ז&quot;ל בהל׳ תמידים ומוספים דרק משום שנשתעבדו הנכסים והויא כהך דקדושין ד׳ י&quot;ג גבי האשה שהביאה חטאתה וזהו מה דר&quot;ל בקדושין ד׳ כ&quot;ט ר&quot;י לטעמיה דשיעבודא דאורייתא וגובה מן היורשים ועי׳ תוס׳ בכורות דמ&quot;ח אך באמת ר&quot;ל הך דכאן ור&quot;ש ס&quot;ל דזה הוה בגדר שני קרבנות ובירו׳ פ&quot;ג דשקלים ה&quot;ה וכעין הך מחלוקת דר&quot;י ור&quot;א שם ד&quot;ח ע&quot;ש וכן הך דדף נ&quot;ב ע&quot;א אם צריך שני קמצים או קומץ אחד וא&quot;כ א&quot;ש פסק רבינו ומה דמקשה שם בגמ׳ וסבר ר&quot;ש משל צבור מדאורייתא ר&quot;ל אם מתרומת הלשכה וזהו של צבור או ר&quot;ל שגובין מכל או&quot;א ומה שאמר שם תיקנו דליגבו מיורשים לאו דוקא רק דר&quot;ל דליגבו מכל ישראל וכמבואר בירושלמי כאן פ&quot;ז ובזה א&quot;ש מה דנקט במשנה יורשים וכן בדברי רבינו דהטעם משום ירושה וגם נ&quot;מ די&quot;ל דהבנים אינם יכולים להביא הקרבן משום דהוו אוננים ואבלים כמבואר במו&quot;ק ד׳ ט&quot;ו ע&quot;ב ובדברי רבינו בהל׳ ביאת מקדש אך זה יהיה נ&quot;מ אם זה הקרבן מקרי שלהם או של אביהם וזה תליא בהך דמנחות ד׳ ה׳ ע&quot;ב גבי הניח מנחה לשני בניו וגם נ&quot;מ בהך דזבחים אם האב היה כהן ובניו הם חללים או נקבות אם המנחה נאכלת או כולה כליל כשל כהן ובאמת יש נ&quot;מ אם האב הניח הקרבן או הבנים הפרישו הקרבן מטעם שנשתעבדו הנכסים. ובזה יש ליישב מה שהקשו התוס׳ תמורה ד׳ ב׳ ע&quot;א ד&quot;ה ר&quot;מ יורש מביא ל&quot;ל קרא ע&quot;ש אך זה יהיה נ&quot;מ אם יורש הפריש הקרבן או שהוא ירש הקרבן שהפריש אביו ועי׳ רש&quot;י זבחים ד׳ ז׳ ע&quot;ב גבי יש בעלים לאחר מיתה דפירש רש&quot;י דהיורש הוא בעלה ועי׳ תוס׳ פסחים ד׳ ס&quot;א ע&quot;א וא&quot;כ לשיטת רש&quot;י יהיה נ&quot;מ לגבי גר שמת בלא בנים והניח קרבן דאז אין לו בעלים כלל וא&quot;כ אין כאן שינוי בעלים לכו&quot;ע ועי׳ זבחים ד׳ ק&quot;ג ע&quot;א גבי עולת גרים ועי׳ עירובין ד׳ ע׳ ע&quot;ב גבי ירתי כרעיה דאבוה ותוס׳ ב&quot;ב ד׳ קמ&quot;ט גבי גר דלאו בר ירושה ועי׳ גיטין ד׳ י&quot;ג ע&quot;א ד&quot;ה והא ובתוספתא פי&quot;א דקרבנות ע&quot;ש ועי׳ תוס׳ מנחות ד׳ נ&quot;א ע&quot;ב גבי נסכים ובאמת נ&quot;מ עוד לגבי הך דאמרינן בירושלמי כאן ובדברי רבינו בהל׳ תמידין ומוספין אם נטמא או שנעשה בעל מום שאז לא שייך בו גדר יורשים וגם נ&quot;מ במה דפסקינן בכריתות ובהוריות דהמלכות הויא ירושה וא&quot;צ למושחו אם ר&quot;ל דהמשיחה שמשח את אביו פועל גם בהם והם הוו כמו אביהם או דר&quot;ל דאינם צריכים למשיחה ועי׳ במה שכ׳ רבינו ז&quot;ל בהל׳ כלי המקדש פ&quot;א הי&quot;א גבי ואם היתה שם מחלוקת ע&quot;ש ונ&quot;מ לפי מאי דקיי&quot;ל בכריתות ד׳ ו׳ ע&quot;ב דהסך למלכים ולכהנים בשמן המשחה פטור משום דלאו זרים מקרי אם סך למלך בן מלך דהוא אינו נמשח אם חייב אם הויא בגדר זר או לא. ובזה יש ליישב מה דהקשה רש&quot;י בכריתות ד׳ ה׳ ע&quot;ב דאמאי לא מקשה הגמ׳ על שלמה היכי משחו אותו ע&quot;ש ובזה א&quot;ש דשלמה כיון דאביו נמשח הוה הוא ג&quot;כ כנמשח והסך אותו בחנם פטור וא&quot;ש אך י&quot;ל דהא לפי דמבואר שם ד׳ ו׳ ע&quot;ב כל שישנו בסך ישנו בבל ייסך וכהך דנזיר ד׳ נ&quot;ז ע&quot;ב מקיף דומיא דניקף ושלמה היה עדיין קטן וא&quot;כ פטורים ועי׳ מש&quot;כ בזה בהל׳ כלאים ובהל׳ טומאה ובהל׳ אבילות ואכמ&quot;ל ועי׳ יבמות ד׳ ע&quot;ז ע&quot;א מוכח שם שהיה לשלמה כבר בן ועי׳ סנהדרין ד׳ ס&quot;ט בתוס׳. והנה לפי מש&quot;כ דטעם דר&quot;י משום חיובא דאביהם א&quot;כ ל&quot;ל קרא לזה כמבואר מנחות ד׳ נ&quot;א ע&quot;ב אך י&quot;ל דאם נימא רק משום תשלום החוב לא משום מצות הקרבה אז אם חל בשבת לא היה דוחה משא&quot;כ אם נימא דזה הוה גדר חיוב קרבן אז דחי עי׳ מש&quot;כ התוס׳ יומא דף נ׳ ע&quot;ב גבי תמורת הפסח ושם דף נ׳ ע&quot;א גבי חביתין ועמש&quot;כ רבינו ז&quot;ל בהל׳ ק&quot;פ פ&quot;ה ה&quot;א ותוס׳ יומא דף נ&quot;א ע&quot;א ע&quot;ש ועיין במש&quot;כ רבינו ז&quot;ל בהל׳ בכורים פ&quot;ד ה&quot;ח והרי הוא מסוכן דמשמע אבל אם מת היורש מביא וקורא דהוה כמו בצרן הוא ועיין פסחים דף צ&quot;ח ע&quot;א כגון שהיה אביו גוסס ועיין יבמות דף נ&quot;ח ע&quot;ב וסוטה דף ו׳ ע&quot;ב ברש&quot;י ד&quot;ה שמת ולא קאמר כמו בהך דכתובות דף פ&quot;א דבעיא והביא האיש ע&quot;ש וצ&quot;ל דנ&quot;מ ליבם ועיין תוס׳ שם דף כ&quot;ד ע&quot;ב דהיבם משקה על קנויו של בעל ע&quot;ש וגם נ&quot;מ בהך דזבחים דף ו׳ ע&quot;א דמרבה יורש לגבי פדיון מעש&quot;ש שצריך להוסיף חומש אם היה היורש אשה דשלה אינה מוספת חומש כמבואר בקדושין ד׳ כ&quot;ד ע&quot;א אם צריכה להוסיף חומש ועיין בערכין דף ל&quot;ג ע&quot;ב גבי ערי הלוים ע&quot;ש ועיין מש&quot;כ בזה בהל׳ נחלות:</p>
               </div>
             </div>
@@ -480,8 +546,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:4:2</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-4-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-4">Mishneh Torah, Sheqel Dues 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גֵּר שֶׁמֵּת וְהִנִּיחַ זְבָחִים אִם יֵשׁ לוֹ נְסָכִים קְרֵבִין מִשֶּׁלּוֹ וְאִם לָאו בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. כֹּהֵן גָּדוֹל שֶׁמֵּת וְלֹא מִנּוּ אַחֵר תַּחְתָּיו מַקְרִיבִין אֶת הַחֲבִיתִין מִתְּרוּמַת הַלִּשְׁכָּה. מְבַקְּרֵי מוּמִים שֶׁבִּירוּשָׁלַיִם וְתַלְמִידֵי חֲכָמִים הַמְלַמְּדִים הִלְכוֹת שְׁחִיטָה לַכֹּהֲנִים וְהִלְכוֹת קְמִיצָה וְנָשִׁים הַמְגַדְּלוֹת בְּנֵיהֶן לְפָרָה אֲדֻמָּה כֻּלָּן נוֹטְלִין שְׂכָרָן מִתְּרוּמַת הַלִּשְׁכָּה. וְכַמָּה הוּא שְׂכָרָן. כְּמוֹ שֶׁיִּפְסְקוּ לָהֶן בֵּית דִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מבקרי מומין כולם נוטלים שכרן כו׳.</strong> עיין בכתובות שם ועי׳ מו&quot;ק דף ה׳ ע&quot;א גבי כלאים ופסחים דף פ&quot;א ע&quot;ב גבי עצים ותוס׳ סוטה דף ח׳ ע&quot;ב בשם הירושלמי והנה רבינו כתב רק מתרומת הלשכה והטעם משום דלב ב&quot;ד מתנה עליהם לא שייך מלתא דלא שכיחא כמבואר בשבועות דף י&quot;א ע&quot;ב ושיריים לא שכיח ולכך מבואר בתוספתא שקלים פ&quot;ב דכלים שהכהנים ניאותין בהם באין מתרומת הלשכה ר&quot;ל כמו הך דמנחות דף כ&quot;א ע&quot;ב גבי מלח ועצים דבעי הכהנים לחולין וכן הכלים שהיו מבשלין בהם זה רק מתרומת הלשכה:</p>
               </div>
             </div>
@@ -496,8 +567,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:4:3</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-4-3" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-4">Mishneh Torah, Sheqel Dues 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גֵּר שֶׁמֵּת וְהִנִּיחַ זְבָחִים אִם יֵשׁ לוֹ נְסָכִים קְרֵבִין מִשֶּׁלּוֹ וְאִם לָאו בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. כֹּהֵן גָּדוֹל שֶׁמֵּת וְלֹא מִנּוּ אַחֵר תַּחְתָּיו מַקְרִיבִין אֶת הַחֲבִיתִין מִתְּרוּמַת הַלִּשְׁכָּה. מְבַקְּרֵי מוּמִים שֶׁבִּירוּשָׁלַיִם וְתַלְמִידֵי חֲכָמִים הַמְלַמְּדִים הִלְכוֹת שְׁחִיטָה לַכֹּהֲנִים וְהִלְכוֹת קְמִיצָה וְנָשִׁים הַמְגַדְּלוֹת בְּנֵיהֶן לְפָרָה אֲדֻמָּה כֻּלָּן נוֹטְלִין שְׂכָרָן מִתְּרוּמַת הַלִּשְׁכָּה. וְכַמָּה הוּא שְׂכָרָן. כְּמוֹ שֶׁיִּפְסְקוּ לָהֶן בֵּית דִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">[<span class="source-small">השמטה</span><strong> מש&quot;כ שם דר&quot;י ס&quot;ל דאותו היום נתחיבו מטעם שעבודא דאוריתא. אך </strong>י&quot;ל דר&quot;י ס&quot;ל דלעולם כן וזהו כונת הגמ׳ דמנחות דף נ&quot;א ע&quot;ב חוקה לעולם תהא ר&quot;ל כמו ביום ראשון לאחר שהביא שחרית חיבים היורשים להביא כן לעולם יהי׳ כן: <span class="source-small">ע&quot;כ השמטה</span>]</p>
               </div>
             </div>
@@ -512,8 +588,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:5:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-5-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-5">Mishneh Torah, Sheqel Dues 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בִּשְׁנַת הַשְּׁמִטָּה שֶׁהִיא הֶפְקֵר שׂוֹכְרִין בֵּית דִּין שׁוֹמְרִין שֶׁיִּשְׁמְרוּ מִקְצָת סְפִיחִים שֶׁצָּמְחוּ כְּדֵי שֶׁיָּבִיאוּ מֵהֶן הָעֹמֶר וּשְׁתֵּי הַלֶּחֶם שֶׁאֵין בָּאִים אֶלָּא מִן הֶחָדָשׁ. וְאֵלּוּ הַשּׁוֹמְרִין נוֹטְלִין שְׂכָרָן מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו השומרים כו׳.</strong> הנה לפי המבואר בפיה&quot;מ כאן ר&quot;ל כך משום דכבר כתבתי דדברים החיובים צריך שיהיה חסריה בממונו ושביעית הפקר לכך צריך שישלמו עכ&quot;פ להשומרים מתרומת הלשכה ונמצא חסריה ממונו ואין נ&quot;מ בין הרבה בין מעט וזהו כוונת התוספתא מנחות פ&quot;י בין מרובה בין מדבר מועט הן היו דמים ע&quot;ש וכן ר&quot;ל בירושלמי כאן וטבות כן וכו׳ הן הן דמיו משעה ראשונה ע&quot;ש ועיין בהך דב&quot;מ דף קי&quot;ח ע&quot;א ועיין תוס׳ מנחות דף פ&quot;ד ע&quot;א מה דתירצו לחד תירוץ דלהקדש אין אסור בשביעית מן המשומר ע&quot;ש וא&quot;כ קשה להך תירוץ דב&quot;מ הנ&quot;ל דהבטה בהפקר קנה וא&quot;כ שוב הוה שלו והוה מן המשומר ואסור ועיין בירושלמי ספ&quot;ז דפאה גבי הנוטע כרם להקדש כו׳ חייב בשביעית ע&quot;ש ועיין בתמורה דף ל&quot;א ע&quot;ב ועשו להם משלהם ע&quot;ש ובתוס&quot;י כריתות דף ו׳ ובזה א&quot;ש הך דיומא דף ל&quot;ה ע&quot;ב:</p>
               </div>
             </div>
@@ -528,8 +609,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:8:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-8-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-8">Mishneh Torah, Sheqel Dues 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֶּבֶשׁ הָיוּ בּוֹנִין מֵהַר הַבַּיִת לְהַר הַמִּשְׁחָה שֶׁעָלָיו מוֹצִיאִין פָּרָה אֲדֻמָּה. וְכֶבֶשׁ שֶׁמּוֹצִיאִין עָלָיו שָׂעִיר הַמִּשְׁתַּלֵּחַ. וּשְׁנֵיהֶם נַעֲשִׂין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְכֵן מִזְבַּח הָעוֹלָה וְהַהֵיכָל וְהָעֲזָרוֹת נַעֲשִׂין מִשְּׁיָרֵי הַלִּשְׁכָּה. אַמַּת הַמַּיִם שֶׁבִּירוּשָׁלַיִם וְחוֹמַת יְרוּשָׁלַיִם וְכָל מִגְדְּלוֹתֶיהָ וְכָל צָרְכֵי הָעִיר בָּאִין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְעוֹבֵד כּוֹכָבִים שֶׁהִתְנַדֵּב מָעוֹת לַדְּבָרִים הָאֵלּוּ אוֹ לַעֲשׂוֹת עִמָּהֶם בְּחִנָּם אֵין מְקַבְּלִין מִמֶּנּוּ וַאֲפִלּוּ גֵּר תּוֹשָׁב. שֶׁנֶּאֱמַר <span class="source-small">(עזרא ד ג)</span> &quot;לֹא לָכֶם וָלָנוּ לִבְנוֹת&quot; וְגוֹ׳ וְנֶאֱמַר <span class="source-small">(נחמיה ב כ)</span> &quot;וְלָכֶם אֵין חֵלֶק&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן מזבח כו׳.</strong> עיין בכ&quot;מ ועיין תוס׳ קדושין ד׳ נ&quot;ד ע&quot;ב ע&quot;ש ועיין במה דס&quot;ל לרבינו ז&quot;ל בסוף הלכות תמורה דאין משנין מקדשים שהוקדשו לצורך בנין ההיכל לצורך בנין המזבח הרי דס&quot;ל דהוה ב׳ קדושות ועיין בירושלמי שקלים ספ&quot;ו אך לא יעשה בית ה׳ ספות כסף וגרסינן שם מן ספות כסף ע&quot;ש ושם ספ&quot;ה ועיין מש&quot;כ הראב&quot;ד ז&quot;ל בהשגות בהל׳ ערכין ספ&quot;ב ועי׳ רש&quot;י תמורה דף כ&quot;ג ע&quot;ב ד&quot;ה זהב לכפורת ותוס&quot;י יומא דף נ&quot;ה וכאן בהל׳ י׳ ע&quot;ש:</p>
               </div>
             </div>
@@ -544,8 +630,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:8:2</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-8-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-8">Mishneh Torah, Sheqel Dues 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֶּבֶשׁ הָיוּ בּוֹנִין מֵהַר הַבַּיִת לְהַר הַמִּשְׁחָה שֶׁעָלָיו מוֹצִיאִין פָּרָה אֲדֻמָּה. וְכֶבֶשׁ שֶׁמּוֹצִיאִין עָלָיו שָׂעִיר הַמִּשְׁתַּלֵּחַ. וּשְׁנֵיהֶם נַעֲשִׂין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְכֵן מִזְבַּח הָעוֹלָה וְהַהֵיכָל וְהָעֲזָרוֹת נַעֲשִׂין מִשְּׁיָרֵי הַלִּשְׁכָּה. אַמַּת הַמַּיִם שֶׁבִּירוּשָׁלַיִם וְחוֹמַת יְרוּשָׁלַיִם וְכָל מִגְדְּלוֹתֶיהָ וְכָל צָרְכֵי הָעִיר בָּאִין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְעוֹבֵד כּוֹכָבִים שֶׁהִתְנַדֵּב מָעוֹת לַדְּבָרִים הָאֵלּוּ אוֹ לַעֲשׂוֹת עִמָּהֶם בְּחִנָּם אֵין מְקַבְּלִין מִמֶּנּוּ וַאֲפִלּוּ גֵּר תּוֹשָׁב. שֶׁנֶּאֱמַר <span class="source-small">(עזרא ד ג)</span> &quot;לֹא לָכֶם וָלָנוּ לִבְנוֹת&quot; וְגוֹ׳ וְנֶאֱמַר <span class="source-small">(נחמיה ב כ)</span> &quot;וְלָכֶם אֵין חֵלֶק&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפילו גר תושב כו׳.</strong> הנה עיין בירושלמי פ&quot;ב דע&quot;ז מה דמקשה שם אר&quot;א מהך דמיד בן נכר לא תקריבו הא לוקח תמימים ואמאי לא מוקי ליה בגר תושב דלא חשיד על הרביעה וע&quot;כ צ&quot;ל משום דמיניה ילפינן בספרי דאין מקבלין מהם שקלים עיין תוס׳ מנחות דף ע&quot;ג ע&quot;ב וס&quot;ל דמן גר תושב מקבלין וא&quot;כ ראיה קצת דלא כרבינו ועיין בערכין דף ו׳ דמקשה שם מכורש וכורש הוה בגדר גר תושב עיין ר&quot;ה דף ג׳ ע&quot;ב:</p>
               </div>
             </div>
@@ -560,8 +651,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:9:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-9-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-9">Mishneh Torah, Sheqel Dues 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מוֹתַר תְּרוּמַת הַלִּשְׁכָּה וּשְׁיָרֵי הַלִּשְׁכָּה לוֹקְחִין בּוֹ זְכָרִים וִיקָרְבוּ כֻּלָּן עוֹלוֹת שֶׁתְּנַאי בֵּית דִּין הוּא עַל כָּל הַמּוֹתָרוֹת שֶׁיִּקְרְבוּ עוֹלַת בְּהֵמָה. אֲבָל לֹא עוֹלַת הָעוֹף שֶׁאֵין בְּקָרְבְּנוֹת הַצִּבּוּר עוֹף. וְאֵלּוּ הָעוֹלוֹת הַבָּאִין מִמּוֹתַר הַשְּׁקָלִים הֵם הַנִּקְרָאִים קַיִץ לַמִּזְבֵּחַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל לא עולת העוף כו׳.</strong> עיין שבועות דף י&quot;ב ע&quot;ב מבואר כך ועיין תוס׳ נזיר דף כ&quot;ז ע&quot;א וביומא דף מ&quot;א ע&quot;ב ובתמורה דף כ&quot;ג ע&quot;ב ע&quot;ש בתוס׳:</p>
               </div>
             </div>
@@ -576,8 +672,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Sheqel Dues 4:10:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-sheqel-dues-4-10-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Sheqel Dues 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-10">Mishneh Torah, Sheqel Dues 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁקָלִים שֶׁלֹּא הִסְפִּיקוּ לָהֶן לְכָל קָרְבְּנוֹת הַצִּבּוּר מוֹצִיאִין אֶת הָרָאוּי לָהֶם מִקָּדְשֵׁי בֶּדֶק הַבַּיִת. אֲבָל אֵין בֶּדֶק הַבַּיִת מוֹצִיא אֶת הָרָאוּי לוֹ מִקָּדְשֵׁי הַמִּזְבֵּחַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שקלים שלא הספיקו כו׳.</strong> עיין בהשגות והנה עיין בירושלמי יומא פ&quot;א דבעי מהיכן הקריבו קרבנות המלואים הא בעי משל צבור ואמר שם דנתנדבו ע&quot;ש ואמאי לא אמר דנטלו ממאי דנשתייר מבנין המשכן לפי שיטת רבינו וגם באמת דהא המלואים הוה צורך חינוך המשכן ואמאי לא הוה גדר בנין ועי׳ כתובות דף ק&quot;ו ע&quot;ש:</p>
               </div>
             </div>
@@ -587,6 +688,10 @@
               <a href="#chapter-tzafnat-paneach-on-mishneh-torah-sheqel-dues-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tzafnat-paneach-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -607,8 +712,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-sheqel-dues.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tzafnat-paneach-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"../../data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-sheqel-dues.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-sheqel-dues.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tzafnat-paneach-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-sheqel-dues.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -634,7 +739,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

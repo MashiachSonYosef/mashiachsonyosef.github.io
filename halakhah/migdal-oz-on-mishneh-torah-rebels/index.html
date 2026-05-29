@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-rebels/">Open Mishneh Torah, Rebels</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Rebels</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">47 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>378 matched</strong> / 896 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/migdal-oz-on-mishneh-torah-rebels.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/migdal-oz-on-mishneh-torah-rebels-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -271,8 +271,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 1:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-1-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-1-1">Mishneh Torah, Rebels 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין הַגָּדוֹל שֶׁבִּירוּשָׁלַיִם הֵם עִקַּר תּוֹרָה שֶׁבְּעַל פֶּה. וְהֵם עַמּוּדֵי הַהוֹרָאָה וּמֵהֶם חֹק וּמִשְׁפָּט יוֹצֵא לְכָל יִשְׂרָאֵל. וַעֲלֵיהֶן הִבְטִיחָה תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יא)</span> &quot;עַל פִּי הַתּוֹרָה אֲשֶׁר יוֹרוּךָ&quot; זוֹ מִצְוַת עֲשֵׂה. וְכָל הַמַּאֲמִין בְּמשֶׁה רַבֵּנוּ וּבְתוֹרָתוֹ חַיָּב לִסְמֹךְ מַעֲשֵׂה הַדָּת עֲלֵיהֶן וְלִשָּׁעֵן עֲלֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב&quot;ד הגדול כו׳ עד להשען עליהם.</strong> בספרי דבי רב:</p>
               </div>
             </div>
@@ -287,8 +292,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 1:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-1-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-1-2">Mishneh Torah, Rebels 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁאֵינוֹ עוֹשֶׂה כְּהוֹרָאָתָן עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יא)</span> &quot;לֹא תָסוּר מִכָּל הַדָּבָר אֲשֶׁר יַגִּידוּ לְךָ יָמִין וּשְׂמֹאל&quot;. וְאֵין לוֹקִין עַל לָאו זֶה מִפְּנֵי שֶׁנִּתָּן לְאַזְהָרַת מִיתַת בֵּית דִּין. שֶׁכָּל חָכָם שֶׁמּוֹרֶה עַל דִּבְרֵיהֶם מִיתָתוֹ בְּחֶנֶק שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יב)</span> &quot;וְהָאִישׁ אֲשֶׁר יַעֲשֶׂה בְזָדוֹן&quot; וְגוֹ׳. אֶחָד דְּבָרִים שֶׁלָּמְדוּ אוֹתָן מִפִּי הַשְּׁמוּעָה וְהֵם תּוֹרָה שֶׁבְּעַל פֶּה. וְאֶחָד דְּבָרִים שֶׁלְּמַּדוּם מִפִּי דַּעְתָּם בְּאַחַת מִן הַמִּדּוֹת שֶׁהַתּוֹרָה נִדְרֶשֶׁת בָּהֶן וְנִרְאָה בְּעֵינֵיהֶם שֶׁדָּבָר זֶה כָּךְ הוּא. וְאֶחָד דְּבָרִים שֶׁעֲשָׂאוּם סְיָג לַתּוֹרָה וּלְפִי מַה שֶּׁהַשָּׁעָה צְרִיכָה וְהֵן הַגְּזֵרוֹת וְהַתַּקָּנוֹת וְהַמִּנְהָגוֹת. כָּל אֶחָד וְאֶחָד מֵאֵלּוּ הַשְּׁלֹשָׁה דְּבָרִים מִצְוַת עֲשֵׂה לִשְׁמֹעַ לָהֶן. וְהָעוֹבֵר עַל כָּל אֶחָד מֵהֶן עוֹבֵר בְּלֹא תַּעֲשֶׂה. הֲרֵי הוּא אוֹמֵר <span class="source-small">(דברים יז יא)</span> &quot;עַל פִּי הַתּוֹרָה אֲשֶׁר יוֹרוּךָ&quot; אֵלּוּ הַתַּקָּנוֹת וְהַגְּזֵרוֹת וְהַמִּנְהָגוֹת שֶׁיּוֹרוּ בָּהֶם לָרַבִּים כְּדֵי לְחַזֵּק הַדָּת וּלְתַקֵּן הָעוֹלָם. וְעַל הַמִּשְׁפָּט אֲשֶׁר יֹאמְרוּ אֵלּוּ דְּבָרִים שֶׁיִּלְמְדוּ אוֹתָן מִן הַדִּין בְּאַחַת מִן הַמִּדּוֹת שֶׁהַתּוֹרָה נִדְרֶשֶׁת בָּהֶן. מִכָּל הַדָּבָר אֲשֶׁר יַגִּידוּ לְךָ זוֹ הַקַּבָּלָה שֶׁקִּבְּלוּ אִישׁ מִפִּי אִישׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מי שאינו עושה כהוראתן עד איש מפי איש.</strong> סנהדרין פרק הנחנקין <span class="source-small"> (דף פ&quot;ו): </span></p>
               </div>
             </div>
@@ -303,8 +313,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 1:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-1-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-1-3">Mishneh Torah, Rebels 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דִּבְרֵי קַבָּלָה אֵין בָּהֶן מַחְלֹקֶת לְעוֹלָם וְכָל דָּבָר שֶׁתִּמְצָא בּוֹ מַחְלֹקֶת בְּיָדוּעַ שֶׁאֵינוֹ קַבָּלָה מִמּשֶׁה רַבֵּנוּ. וּדְבָרִים שֶׁלְּמֵדִין מִן הַדִּין אִם הִסְכִּימוּ עֲלֵיהֶן בֵּית דִּין הַגָּדוֹל כֻּלָּן הֲרֵי הִסְכִּימוּ. וְאִם נֶחְלְקוּ בָּהֶן הוֹלְכִין אַחַר הָרֹב וּמוֹצִיאִין הַדִּין אַחַר הָרַבִּים. וְכֵן הַגְּזֵרוֹת וְהַתַּקָּנוֹת וְהַמִּנְהָגוֹת אִם רָאוּ מִקְצָתָן שֶׁרָאוּי לִגְזֹר גְּזֵרָה אוֹ לְתַקֵּן תַּקָּנָה אוֹ שֶׁיָּנִיחוּ הָעָם הַמִּנְהָג הַזֶּה וְרָאוּ מִקְצָתָן שֶׁאֵין רָאוּי לִגְזֹר גְּזֵרָה זוֹ וְלֹא לְתַקֵּן תַּקָּנָה זוֹ וְלֹא לְהָנִיחַ מִנְהָג זֶה נוֹשְׂאִין וְנוֹתְנִין אֵלּוּ כְּנֶגֶד אֵלּוּ וְהוֹלְכִין אַחַר רֻבָּן וּמוֹצִיאִין הַדָּבָר אַחַר הָרַבִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דברי קבלה וכו׳ עד אחר הרוב.</strong> פ&quot;ק דמסכת ע&quot;ז <span class="source-small"> (דף ז׳): </span></p>
               </div>
             </div>
@@ -319,8 +334,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 1:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-1-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-1-4">Mishneh Torah, Rebels 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁהָיָה בֵּית דִּין הַגָּדוֹל קַיָּם לֹא הָיְתָה מַחְלֹקֶת בְּיִשְׂרָאֵל. אֶלָּא כָּל דִּין שֶׁנּוֹלַד בּוֹ סָפֵק לְאֶחָד מִיִּשְׂרָאֵל שׁוֹאֵל לְבֵית דִּין שֶׁבְּעִירוֹ. אִם יָדְעוּ אָמְרוּ לוֹ. אִם לָאו הֲרֵי הַשּׁוֹאֵל עִם אוֹתוֹ בֵּית דִּין אוֹ עִם שְׁלוּחָיו עוֹלִין לִירוּשָׁלַיִם וְשׁוֹאֲלִין לְבֵית דִּין שֶׁבְּהַר הַבַּיִת. אִם יָדְעוּ אָמְרוּ לוֹ. אִם לָאו הַכּל בָּאִין לְבֵית דִּין שֶׁעַל פֶּתַח הָעֲזָרָה. אִם יָדְעוּ אָמְרוּ לָהֶן וְאִם לָאו הַכּל בָּאִין לְלִשְׁכַּת הַגָּזִית לְבֵית דִּין הַגָּדוֹל וְשׁוֹאֲלִין. אִם הָיָה הַדָּבָר שֶׁנּוֹלַד בּוֹ הַסָּפֵק לַכּל יָדוּעַ אֵצֶל בֵּית דִּין הַגָּדוֹל בֵּין מִפִּי הַקַּבָּלָה בֵּין מִפִּי הַמִּדָּה שֶׁדָּנוּ בָּהּ אוֹמְרִים מִיָּד. אִם לֹא הָיָה הַדָּבָר בָּרוּר אֵצֶל בֵּית דִּין הַגָּדוֹל דָּנִין בּוֹ בִּשְׁעָתָן וְנוֹשְׂאִין וְנוֹתְנִין בַּדָּבָר עַד שֶׁיַּסְכִּימוּ כֻּלָּן. אוֹ יַעַמְדוּ לְמִנְיָן וְיֵלְכוּ אַחַר הָרֹב וְיֹאמְרוּ לְכָל הַשּׁוֹאֲלִים כָּךְ הֲלָכָה וְהוֹלְכִין לָהֶן. מִשֶּׁבָּטַל בֵּית דִּין הַגָּדוֹל רָבְתָה מַחְלֹקֶת בְּיִשְׂרָאֵל זֶה מְטַמֵּא וְנוֹתֵן טַעַם לִדְבָרָיו וְזֶה מְטַהֵר וְנוֹתֵן טַעַם לִדְבָרָיו זֶה אוֹסֵר וְזֶה מַתִּיר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשהיה ב&quot;ד הגדול קיים כו׳ עד וזה מחייב.</strong> סנהדרין פרק הנחנקין:</p>
               </div>
             </div>
@@ -335,8 +355,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 1:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-1-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-1-5">Mishneh Torah, Rebels 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנֵי חֲכָמִים אוֹ שְׁנֵי בָּתֵּי דִּינִין שֶׁנֶּחְלְקוּ שֶׁלֹּא בִּזְמַן הַסַּנְהֶדְרִין אוֹ עַד שֶׁלֹּא הָיָה הַדָּבָר בָּרוּר לָהֶן. בֵּין בִּזְמַן אֶחָד בֵּין בָּזֶה אַחַר זֶה. אֶחָד מְטַהֵר וְאֶחָד מְטַמֵּא אֶחָד אוֹסֵר וְאֶחָד מַתִּיר. אִם אֵינְךָ יוֹדֵעַ לְהֵיכָן הַדִּין נוֹטֶה. בְּשֶׁל תּוֹרָה הַלֵּךְ אַחַר הַמַּחְמִיר בְּשֶׁל סוֹפְרִים הַלֵּךְ אַחַר הַמֵּקֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני חכמים או שני בתי דינין כו׳ עד סוף הפרק.</strong> פ&quot;ק דמס׳ ע&quot;ז:</p>
               </div>
             </div>
@@ -352,8 +377,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-1">Mishneh Torah, Rebels 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין הַגָּדוֹל שֶׁדָּרְשׁוּ בְּאַחַת מִן הַמִּדּוֹת כְּפִי מַה שֶּׁנִּרְאָה בְּעֵינֵיהֶם שֶׁהַדִּין כָּךְ וְדָנוּ דִּין. וְעָמַד אַחֲרֵיהֶם בֵּית דִּין אַחֵר וְנִרְאֶה לוֹ טַעַם אַחֵר לִסְתֹּר אוֹתוֹ. הֲרֵי זֶה סוֹתֵר וְדָן כְּפִי מַה שֶּׁנִּרְאֶה בְּעֵינָיו. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז ט)</span> &quot;אֶל הַשֹּׁפֵט אֲשֶׁר יִהְיֶה בַּיָּמִים הָהֵם&quot;. אֵינְךָ חַיָּב לָלֶכֶת אֶלָּא אַחַר בֵּית דִּין שֶׁבְּדוֹרְךָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב&quot;ד הגדול שדרשו עד שבימיך.</strong> במסכת ע&quot;ז פ׳ אין מעמידין:</p>
               </div>
             </div>
@@ -368,8 +398,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-2">Mishneh Torah, Rebels 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁגָּזְרוּ גְּזֵרָה אוֹ תִּקְּנוּ תַּקָּנָה וְהִנְהִיגוּ מִנְהָג וּפָשַׁט הַדָּבָר בְּכָל יִשְׂרָאֵל. וְעָמַד אַחֲרֵיהֶם בֵּית דִּין אַחֵר וּבִקֵּשׁ לְבַטֵּל דְּבָרִים הָרִאשׁוֹנִים וְלַעֲקֹר אוֹתָהּ הַתַּקָּנָה וְאוֹתָהּ הַגְּזֵרָה וְאוֹתוֹ הַמִּנְהָג. אֵינוֹ יָכוֹל עַד שֶׁיִּהְיֶה גָּדוֹל מִן הָרִאשׁוֹנִים בְּחָכְמָה וּבְמִנְיָן. הָיָה גָּדוֹל בְּחָכְמָה אֲבָל לֹא בְּמִנְיָן. בְּמִנְיָן אֲבָל לֹא בְּחָכְמָה. אֵינוֹ יָכוֹל לְבַטֵּל אֶת דְּבָרָיו. אֲפִלּוּ בָּטַל הַטַּעַם שֶׁבִּגְלָלוֹ גָּזְרוּ הָרִאשׁוֹנִים אוֹ הִתְקִינוּ אֵין הָאַחֲרוֹנִים יְכוֹלִין לְבַטֵּל עַד שֶׁיְּהוּ גְּדוֹלִים מֵהֶם. וְהֵיאַךְ יִהְיוּ גְּדוֹלִים מֵהֶם בְּמִנְיָן הוֹאִיל וְכָל בֵּית דִּין וּבֵית דִּין שֶׁל שִׁבְעִים וְאֶחָד הוּא. זֶה מִנְיַן חַכְמֵי הַדּוֹר שֶׁהִסְכִּימוּ וְקִבְּלוּ הַדָּבָר שֶׁאָמְרוּ בֵּית דִּין הַגָּדוֹל וְלֹא חָלְקוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב&quot;ד שגזרו גזירה וכו׳ עד בחכמה ובמנין:</strong> כתב הראב&quot;ד ז&quot;ל ולא אפי׳ אליהו ובית דינו וכו׳: <strong> ואני </strong> אומר האמת כי עיקר הלכה זו נשנית במשנה עדויות פ&quot;ק ומייתי לה פ׳ אין מעמידין גמרא מתני׳ דאלו דברים של עכו&quot;ם כו׳ אפיסקא דשמן לשניהם יש להם פנים הנראין בהלכה דגרסינן אתמהה ור׳ יהודה נשיאה היכי אלים למישרי תקנתא דתלמידי דשמאי והלל והתנן פ&quot;ק דעדויות אין ב&quot;ד רשאי לבטל דברי ב&quot;ד חבירו אא&quot;כ גדול ממנו בחכמה ובמנין ועוד אמר רבה בר בר חנה א&quot;ר יוחנן בכל ב&quot;ד יכול לבטל דברי ב&quot;ד חבירו חוץ משמנה עשר דבר שאם יבא אליהו ויבטל אין שומעין לו ופריק האמר רב שמעיה אמר רב הואיל ופשט איסורן בכל ישראל ושמן לא פשט איסורו בכל ישראל דאמר רב שמן בר אבא א&quot;ר יוחנן ישבו רבותינו ובדקו על שמן שלא פשט איסורו ברוב ישראל וסמכו רבותינו על דברי רשב&quot;ג ועל דברי רבי אליעזר ב&quot;ר צדוק שהיו אומרין אין גוזרין גזירה על הצבור אלא א&quot;כ רוב הצבור יכולין לעמוד בה אמר רב אדא בר אהבה מאי קרא במארה אתם נארים ואותי אתם קובעים הגוי כלו אי איכא גוי כלו וקא עבר עליה האי גברא אותי אתם קובעים ואי לא לא ע&quot;כ והראב&quot;ד לפי שראה כי התלמוד תולה הכל בפשט איסורן בכל ישראל כתב כן ובכלל הכל אפילו אליהו ובית דינו ור&quot;מ ז&quot;ל רוח אחרת עמו דהיה קשה לו כיון דאקשי ליה ממתני׳ דבחירתא למאי איצטריך לאקשויי מדברי אמורא דאמר רבה בר בר חנה א&quot;ר יוחנן כו׳ וכי יהודה ועוד לקרא ועוד ר׳ יוחנן גופיה מה ראה לחלק בין י&quot;ח דבר לשאר דברים שפשט איסורן בכל ישראל וכ&quot;ת הנך י&quot;ח פשיטא לן דפשט איסורן בכל ישראל אבל אחריני שמא לא פשט איסורן בכל ישראל ויכול לבטל והרי שמן לא פשט איסורו בכל ישראל ועל כן קיבל מרבותיו או ראה בטוב לחלק ולומר כי בשאר דברים של דיני תורה ושלא נגזרו לעשות סייג לתורה אם גדול ממנו בחכמה ובמנין יכול לבטל אבל בדברים שנגזרו לעשות סייג לתורה כגון י&quot;ח דבר שכולן הן לעשות סייג לתורה כדמפרש לה פ&quot;ק דשבת גמרא מתני׳ די&quot;ח דבר גזרו בו ביום וסליק מנינא בהכי ואמרו גזרו על פיתן ושמנן משום יינן ועל יינן משום בנותיהן ועל בנותיהן משום דבר אחר ועל דבר אחר משום דבר אחר כדמסיק נמי פ׳ אין מעמידין אפי׳ היה גדול ממנו בחכמה ובמנין אינו יכול לבטל אחד מהן ומש&quot;ה אהדר לאקשויי מדרבה בר בר חנה כלומר ואפילו תימא כי ר׳ יהודה נשיאה גדול בחכמה ובמנין מתלמידי שמאי והלל אפ&quot;ה אין לו לבטל גזרת שמן משום דהוא מי&quot;ח דבר ואמר רבה בר בר חנה א&quot;ר יוחנן בכל וכו׳ והא דנקט אפי׳ אליהו ובית דינו לישנא דברירא וגזימא הוא דקאמר לפי שאין גדול מהן ולפיכך כתבה ר&quot;מ ז&quot;ל בבא בפני עצמה בסמוך וז&quot;ל היה גדול בחכמה אבל לא במנין כו׳ עד ולא חלקו בו כלישנא דגמרא פ׳ אין מעמידין ואחריה כתב מכח ההוא דרבה בר בר חנה א&quot;ר יוחנן כו׳ בד&quot;א בדברים שלא עשו אותן כדי לעשות סייג לתורה אלא כשאר דיני תורה אבל דברים שראו ב&quot;ד לגזור ולאסור אותן לעשות סייג אם פשט איסורן בכל ישראל אין ב&quot;ד הגדול שאחריו יכול לעקרן ולהתירן ואפילו היה גדול מן הראשונים עכ&quot;ל ולא רצה להזכיר אליהו ובית דינו בפירוש משום דקי&quot;ל פ׳ י׳ יוחסין שאין אליהו בא לטמא ולטהר כו׳ ועוד כי לפי מעלתו לא יצוייר בישיבתו לעשות דבר שאי אפשר לעשותו ולומר אותו ואמרו ז&quot;ל בלשון כולל:</p>
               </div>
             </div>
@@ -384,8 +419,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-2">Mishneh Torah, Rebels 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁגָּזְרוּ גְּזֵרָה אוֹ תִּקְּנוּ תַּקָּנָה וְהִנְהִיגוּ מִנְהָג וּפָשַׁט הַדָּבָר בְּכָל יִשְׂרָאֵל. וְעָמַד אַחֲרֵיהֶם בֵּית דִּין אַחֵר וּבִקֵּשׁ לְבַטֵּל דְּבָרִים הָרִאשׁוֹנִים וְלַעֲקֹר אוֹתָהּ הַתַּקָּנָה וְאוֹתָהּ הַגְּזֵרָה וְאוֹתוֹ הַמִּנְהָג. אֵינוֹ יָכוֹל עַד שֶׁיִּהְיֶה גָּדוֹל מִן הָרִאשׁוֹנִים בְּחָכְמָה וּבְמִנְיָן. הָיָה גָּדוֹל בְּחָכְמָה אֲבָל לֹא בְּמִנְיָן. בְּמִנְיָן אֲבָל לֹא בְּחָכְמָה. אֵינוֹ יָכוֹל לְבַטֵּל אֶת דְּבָרָיו. אֲפִלּוּ בָּטַל הַטַּעַם שֶׁבִּגְלָלוֹ גָּזְרוּ הָרִאשׁוֹנִים אוֹ הִתְקִינוּ אֵין הָאַחֲרוֹנִים יְכוֹלִין לְבַטֵּל עַד שֶׁיְּהוּ גְּדוֹלִים מֵהֶם. וְהֵיאַךְ יִהְיוּ גְּדוֹלִים מֵהֶם בְּמִנְיָן הוֹאִיל וְכָל בֵּית דִּין וּבֵית דִּין שֶׁל שִׁבְעִים וְאֶחָד הוּא. זֶה מִנְיַן חַכְמֵי הַדּוֹר שֶׁהִסְכִּימוּ וְקִבְּלוּ הַדָּבָר שֶׁאָמְרוּ בֵּית דִּין הַגָּדוֹל וְלֹא חָלְקוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היה גדול בחכמה אבל לא במנין כו׳ עד שיהיו גדולים מהם:</strong> כתב הראב&quot;ד ז&quot;ל עיטור שוקי ירושלים קשיא עליה כו׳: <strong> ואני </strong> אומר עיקר הלכה זו במנחות פרק רבי ישמעאל משנה <span class="source-small"> (דף ס&quot;ח) </span> ובגמרא שקיל וטרי עלה ומסיק דכרבי יהודה ס&quot;ל דאמר מן התורה וה&quot;נ איתא בראש השנה פרק יו&quot;ט ופירשו רבותינו בעלי התוס׳ ז&quot;ל דאע&quot;ג דלכאורה משמע דמן התורה היא חומרא נפקא מינה קולא דמיד שהאיר מזרח מותר וכדמסיק מאי התקין דרש והתקין וגם ר&quot;מ ז&quot;ל פסק אותה ההלכה פ&quot;י דהלכות מאכלות אסורות וגם בפירוש המשניות ובזה נמצאו דבריו קיימין בלא קושיא כלל:</p>
               </div>
             </div>
@@ -400,8 +440,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:2:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-2-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:2:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-2">Mishneh Torah, Rebels 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁגָּזְרוּ גְּזֵרָה אוֹ תִּקְּנוּ תַּקָּנָה וְהִנְהִיגוּ מִנְהָג וּפָשַׁט הַדָּבָר בְּכָל יִשְׂרָאֵל. וְעָמַד אַחֲרֵיהֶם בֵּית דִּין אַחֵר וּבִקֵּשׁ לְבַטֵּל דְּבָרִים הָרִאשׁוֹנִים וְלַעֲקֹר אוֹתָהּ הַתַּקָּנָה וְאוֹתָהּ הַגְּזֵרָה וְאוֹתוֹ הַמִּנְהָג. אֵינוֹ יָכוֹל עַד שֶׁיִּהְיֶה גָּדוֹל מִן הָרִאשׁוֹנִים בְּחָכְמָה וּבְמִנְיָן. הָיָה גָּדוֹל בְּחָכְמָה אֲבָל לֹא בְּמִנְיָן. בְּמִנְיָן אֲבָל לֹא בְּחָכְמָה. אֵינוֹ יָכוֹל לְבַטֵּל אֶת דְּבָרָיו. אֲפִלּוּ בָּטַל הַטַּעַם שֶׁבִּגְלָלוֹ גָּזְרוּ הָרִאשׁוֹנִים אוֹ הִתְקִינוּ אֵין הָאַחֲרוֹנִים יְכוֹלִין לְבַטֵּל עַד שֶׁיְּהוּ גְּדוֹלִים מֵהֶם. וְהֵיאַךְ יִהְיוּ גְּדוֹלִים מֵהֶם בְּמִנְיָן הוֹאִיל וְכָל בֵּית דִּין וּבֵית דִּין שֶׁל שִׁבְעִים וְאֶחָד הוּא. זֶה מִנְיַן חַכְמֵי הַדּוֹר שֶׁהִסְכִּימוּ וְקִבְּלוּ הַדָּבָר שֶׁאָמְרוּ בֵּית דִּין הַגָּדוֹל וְלֹא חָלְקוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> והיאך יהיו גדולים מהם עד ולא חלקו בו.</strong> בירושלמי דמכות:</p>
               </div>
             </div>
@@ -416,8 +461,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-3">Mishneh Torah, Rebels 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים בִּדְבָרִים שֶׁלֹּא אָסְרוּ אוֹתָן כְּדֵי לַעֲשׂוֹת סְיָג לַתּוֹרָה אֶלָּא כִּשְׁאָר דִּינֵי תּוֹרָה. אֲבָל דְּבָרִים שֶׁרָאוּ בֵּית דִּין לִגְזֹר וּלְאָסְרָן לַעֲשׂוֹת סְיָג אִם פָּשַׁט אִסּוּרָן בְּכָל [יִשְׂרָאֵל] אֵין בֵּית דִּין גָּדוֹל אַחֵר יָכוֹל לְעָקְרָן וּלְהַתִּירָן אֲפִלּוּ הָיָה גָּדוֹל מִן הָרִאשׁוֹנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א בדברים שלא אסרו אותן כו׳ עד גדול מן הראשונים.</strong> זהו מ&quot;ש למעלה ממימרא דרבה בר בר חנה א&quot;ר יוחנן בי&quot;ח דבר מפרק אין מעמידין דמסכת ע&quot;ז <span class="source-small"> (דף ל&quot;ו) </span> ומפ&quot;ק דשבת <span class="source-small"> (דף י&quot;ג י&quot;ז): </span></p>
               </div>
             </div>
@@ -432,8 +482,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-4">Mishneh Torah, Rebels 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵשׁ לְבֵית דִּין לַעֲקֹר אַף דְּבָרִים אֵלּוּ לְפִי שָׁעָה אַף עַל פִּי שֶׁהוּא קָטָן מִן הָרִאשׁוֹנִים שֶׁלֹּא יְהוּ גְּזֵרוֹת אֵלּוּ חֲמוּרִין מִדִּבְרֵי תּוֹרָה עַצְמָהּ שֶׁאֲפִלּוּ דִּבְרֵי תּוֹרָה יֵשׁ לְכָל בֵּית דִּין לְעָקְרוֹ הוֹרָאַת שָׁעָה. כֵּיצַד. בֵּית דִּין שֶׁרָאוּ לְחַזֵּק הַדָּת וְלַעֲשׂוֹת סְיָג כְּדֵי שֶׁלֹּא יַעַבְרוּ הָעָם עַל דִּבְרֵי תּוֹרָה. מַכִּין וְעוֹנְשִׁין שֶׁלֹּא כַּדִּין אֲבָל אֵין קוֹבְעִין הַדָּבָר לְדוֹרוֹת וְאוֹמְרִים שֶׁהֲלָכָה כָּךְ הוּא. וְכֵן אִם רָאוּ לְפִי שָׁעָה לְבַטֵּל מִצְוַת עֲשֵׂה אוֹ לַעֲבֹר עַל מִצְוַת לֹא תַּעֲשֶׂה כְּדֵי לְהַחְזִיר רַבִּים לַדָּת אוֹ לְהַצִּיל רַבִּים מִיִּשְׂרָאֵל מִלְּהִכָּשֵׁל בִּדְבָרִים אֲחֵרִים עוֹשִׂין לְפִי מַה שֶּׁצְּרִיכָה הַשָּׁעָה. כְּשֵׁם שֶׁהָרוֹפֵא חוֹתֵךְ יָדוֹ אוֹ רַגְלוֹ שֶׁל זֶה כְּדֵי שֶׁיִּחְיֶה כֻּלּוֹ כָּךְ בֵּית דִּין מוֹרִים בִּזְמַן מִן הַזְּמַנִּים לַעֲבֹר עַל קְצָת מִצְוֹת לְפִי שָׁעָה כְּדֵי שֶׁיִּתְקַיְּמוּ [כֻּלָּם] כְּדֶרֶךְ שֶׁאָמְרוּ חֲכָמִים הָרִאשׁוֹנִים חַלֵּל עָלָיו שַׁבָּת אַחַת כְּדֵי שֶׁיִּשְׁמֹר שַׁבָּתוֹת הַרְבֵּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויש לב&quot;ד לעקור וכו׳ עד שבתות הרבה.</strong> בספרי פרשת שופטים לגבי נביא ובסנהדרין פרק נגמר הדין <span class="source-small"> (דף מ&quot;ד) </span> והרבה מקומות:</p>
               </div>
             </div>
@@ -448,8 +503,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-5">Mishneh Torah, Rebels 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁנִּרְאֶה לָהֶן לִגְזֹר גְּזֵרָה אוֹ לְתַקֵּן תַּקָּנָה אוֹ לְהַנְהִיג מִנְהָג צְרִיכִין לְהִתְיַשֵּׁב בַּדָּבָר וְלֵידַע תְּחִלָּה אִם רֹב הַצִּבּוּר יְכוֹלִין לַעֲמֹד בָּהֶן אוֹ אִם אֵין יְכוֹלִין לַעֲמֹד. וּלְעוֹלָם אֵין גּוֹזְרִין גְּזֵרָה עַל הַצִּבּוּר אֶלָּא אִם כֵּן רֹב הַצִּבּוּר יְכוֹלִין לַעֲמֹד בָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב&quot;ד שנראה להם כו׳ עד בחכמה ובמנין.</strong> הכל פ׳ אין מעמידין:</p>
               </div>
             </div>
@@ -464,8 +524,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-8">Mishneh Torah, Rebels 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכָל בֵּית דִּין שֶׁהִתִּיר שְׁנֵי דְּבָרִים אַל יְמַהֵר לְהַתִּיר דָּבָר שְׁלִישִׁי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל ב&quot;ד שהתיר שני דברים כו׳ עד דבר שלישי.</strong> פרק אין מעמידין דקרו ליה בי דינא שריא:</p>
               </div>
             </div>
@@ -480,8 +545,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 2:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-2-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-9">Mishneh Torah, Rebels 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹאִיל וְיֵשׁ לְבֵית דִּין לִגְזֹר וְלֶאֱסֹר דָּבָר הַמֻּתָּר וְיַעֲמֹד אִסּוּרוֹ לְדוֹרוֹת וְכֵן יֵשׁ לָהֶן לְהַתִּיר אִסּוּרֵי תּוֹרָה לְפִי שָׁעָה. מַהוּ זֶה שֶׁהִזְהִירָה תּוֹרָה <span class="source-small">(דברים יג א)</span> &quot;לֹא תּוֹסִיף עָלָיו וְלֹא תִגְרַע מִמֶּנּוּ&quot;. שֶׁלֹּא לְהוֹסִיף עַל דִּבְרֵי תּוֹרָה וְלֹא לִגְרֹעַ מֵהֶן וְלִקְבֹּעַ הַדָּבָר לְעוֹלָם בְּדָבָר שֶׁהוּא מִן הַתּוֹרָה בֵּין בַּתּוֹרָה שֶׁבִּכְתָב בֵּין בַּתּוֹרָה שֶׁבְּעַל פֶּה. כֵּיצַד. הֲרֵי כָּתוּב בַּתּוֹרָה <span class="source-small">(שמות כג יט)</span> &quot;לֹא תְבַשֵּׁל גְּדִי בַּחֲלֵב אִמּוֹ&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזֶּה הַכָּתוּב אָסַר לְבַשֵּׁל ולֶאֱכל בָּשָׂר בְּחָלָב. בֵּין בְּשַׂר בְּהֵמָה בֵּין בְּשַׂר חַיָּה. אֲבָל בְּשַׂר הָעוֹף מֻתָּר בְּחָלָב מִן הַתּוֹרָה. אִם יָבוֹא בֵּית דִּין וְיַתִּיר בְּשַׂר חַיָּה בְּחָלָב הֲרֵי זֶה גּוֹרֵעַ. וְאִם יֶאֱסֹר בְּשַׂר הָעוֹף וְיֹאמַר שֶׁהוּא בִּכְלַל הַגְּדִי וְהוּא אָסוּר מִן הַתּוֹרָה הֲרֵי זֶה מוֹסִיף. אֲבָל אִם אָמַר בְּשַׂר הָעוֹף מֻתָּר מִן הַתּוֹרָה וְאָנוּ נֶאֱסֹר אוֹתוֹ וְנוֹדִיעַ לָעָם שֶׁהוּא גְּזֵרָה שֶׁלֹּא יָבוֹא מִן הַדָּבָר חוֹבָה וְיֹאמְרוּ הָעוֹף מֻתָּר מִפְּנֵי שֶׁלֹּא נִתְפָּרֵשׁ כָּךְ הַחַיָּה מֻתֶּרֶת שֶׁהֲרֵי לֹא נִתְפָּרְשָׁה. וְיָבוֹא אַחֵר לוֹמַר אַף בְּשַׂר בְּהֵמָה מֻתֶּרֶת חוּץ מִן הָעֵז. וְיָבוֹא אַחֵר לוֹמַר אַף בְּשַׂר הָעֵז מֻתָּר בַּחֲלֵב פָּרָה אוֹ הַכִּבְשָׂה שֶׁלֹּא נֶאֱמַר אֶלָּא אִמּוֹ שֶׁהִיא מִינוֹ. וְיָבוֹא אַחֵר לוֹמַר אַף בַּחֲלֵב הָעֵז שֶׁאֵינָהּ אִמּוֹ מֻתָּר שֶׁלֹּא נֶאֱמַר אֶלָּא אִמּוֹ. לְפִיכָךְ נֶאֱסֹר כָּל בָּשָׂר בְּחָלָב אֲפִלּוּ בְּשַׂר עוֹף. אֵין זֶה מוֹסִיף אֶלָּא עוֹשֶׂה סְיָג לַתּוֹרָה. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הואיל ויש לב&quot;ד וכו׳ וכן יש להם להתיר כו׳ עד סוף הפרק:</strong> כתב הראב&quot;ד ז&quot;ל כל אלה ישא רוח וכו׳: <strong> ואני </strong> אומר זו מחלוקת ישנה בין הראשונים ז&quot;ל ר&quot;פ בתרא דעירובין דפליגי להוסיף אי בעי כוונה או לא. ובמסכת ראש השנה פ׳ ראוהו בית דין פלוגתא דר׳ אליעזר ור׳ יהושע לגבי מתנות. ובסנהדרין פרק הנחנקין בשמעתא דזקן ממרא ורבו בזה הדעות ואלו ואלו דברי אלהים חיים הם ורוח אחד לכל והאמת יורה דרכו:</p>
               </div>
             </div>
@@ -497,8 +567,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-1">Mishneh Torah, Rebels 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאֵינוֹ מוֹדֶה בַּתּוֹרָה שֶׁבְּעַל פֶּה אֵינוֹ זָקֵן מַמְרֵא הָאָמוּר בַּתּוֹרָה. אֶלָּא הֲרֵי זֶה בִּכְלַל הָאֶפִּיקוֹרוֹסִין [וּמִיתָתוֹ בְּכָל אָדָם]:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שאינו מודה כו׳ עד והסיר המכשול.</strong> בסנהדרין פרק חלק <span class="source-small"> (דף צ&quot;ט): </span></p>
               </div>
             </div>
@@ -513,8 +588,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-3">Mishneh Torah, Rebels 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים בְּאִישׁ שֶׁכָּפַר בַּתּוֹרָה שֶׁבְּעַל פֶּה בְּמַחֲשַׁבְתּוֹ וּבִדְבָרִים שֶׁנִּרְאוּ לוֹ. וְהָלַךְ אַחַר דַּעְתּוֹ הַקַּלָּה וְאַחַר שְׁרִירוּת לִבּוֹ וְכוֹפֵר בַּתּוֹרָה שֶׁבְּעַל פֶּה תְּחִלָּה כְּצָדוֹק וּבַיְתּוֹס וְכֵן כָּל הַתּוֹעִים אַחֲרָיו. אֲבָל בְּנֵי הַתּוֹעִים הָאֵלֶּה וּבְנֵי בְּנֵיהֶם שֶׁהִדִּיחוּ אוֹתָם אֲבוֹתָם וְנוֹלְדוּ בֵּין הַקָּרָאִים וְגִדְּלוּ אוֹתָם עַל דַּעְתָּם. הֲרֵי הוּא כְּתִינוֹק שֶׁנִּשְׁבָּה בֵּינֵיהֶם וְגִדְּלוּהוּ וְאֵינוֹ זָרִיז לֶאֱחֹז בְּדַרְכֵי הַמִּצְוֹת שֶׁהֲרֵי הוּא כְּאָנוּס וְאַף עַל פִּי שֶׁשָּׁמַע אַחַר כָּךְ [שֶׁהוּא יְהוּדִי וְרָאָה הַיְהוּדִים וְדָתָם הֲרֵי הוּא כְּאָנוּס שֶׁהֲרֵי גִּדְּלוּהוּ עַל טָעוּתָם] כָּךְ אֵלּוּ שֶׁאָמַרְנוּ הָאוֹחֲזִים בְּדַרְכֵי אֲבוֹתָם הַקָּרָאִים שֶׁטָּעוּ. לְפִיכָךְ רָאוּי לְהַחְזִירָן בִּתְשׁוּבָה וּלְמָשְׁכָם בְּדִבְרֵי שָׁלוֹם עַד שֶׁיַּחְזְרוּ לְאֵיתָן הַתּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א באיש שכפר בתורה כו׳ עד שיחזרו לאיתן התורה.</strong> במסכת ע&quot;ז <span class="source-small"> (דף כ&quot;ו) </span> פרק אין מעמידין הסכים כך ר&quot;מ מדעת רבותינו ז&quot;ל וגדולי הראשונים וכ&quot;כ ר&quot;מ ז&quot;ל מקוצי:</p>
               </div>
             </div>
@@ -529,8 +609,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-4">Mishneh Torah, Rebels 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל זָקֵן מַמְרֵא הָאָמוּר בַּתּוֹרָה הוּא חָכָם אֶחָד מֵחַכְמֵי יִשְׂרָאֵל שֶׁיֵּשׁ בְּיָדוֹ קַבָּלָה וְדָן וּמוֹרֶה בְּדִבְרֵי תּוֹרָה כְּמוֹ שֶׁיָּדוּנוּ וְיוֹרוּ כָּל חַכְמֵי יִשְׂרָאֵל. שֶׁבָּאת לוֹ מַחְלֹקֶת בְּדִין מִן הַדִּינִים עִם בֵּית דִּין הַגָּדוֹל וְלֹא חָזַר לְדִבְרֵיהֶם אֶלָּא חָלַק עֲלֵיהֶם וְהוֹרָה לַעֲשׂוֹת שֶׁלֹּא כְּהוֹרָאָתָן. גָּזְרָה עָלָיו תּוֹרָה מִיתָה וּמִתְוַדֶּה וְיֵשׁ לוֹ חֵלֶק לָעוֹלָם הַבָּא. אַף עַל פִּי שֶׁהוּא דָּן וְהֵן דָּנִים הוּא קִבֵּל וְהֵם קִבְּלוּ הֲרֵי הַתּוֹרָה חָלְקָה לָהֶם כָּבוֹד. וְאִם רָצוּ בֵּית דִּין לִמְחל עַל כְּבוֹדָן וּלְהַנִּיחוֹ אֵינָן יְכוֹלִין כְּדֵי שֶׁלֹּא יַרְבּוּ מַחְלֹקֶת בְּיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל זקן ממרא האמור בתורה כו׳ עד ולפיכך גזרה עליו תורה מיתה.</strong> בסנהדרין פרק הנחנקין <span class="source-small"> (דף פ&quot;ז פ&quot;ח)</span> :</p>
               </div>
             </div>
@@ -545,8 +630,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:4:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-4-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-4">Mishneh Torah, Rebels 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל זָקֵן מַמְרֵא הָאָמוּר בַּתּוֹרָה הוּא חָכָם אֶחָד מֵחַכְמֵי יִשְׂרָאֵל שֶׁיֵּשׁ בְּיָדוֹ קַבָּלָה וְדָן וּמוֹרֶה בְּדִבְרֵי תּוֹרָה כְּמוֹ שֶׁיָּדוּנוּ וְיוֹרוּ כָּל חַכְמֵי יִשְׂרָאֵל. שֶׁבָּאת לוֹ מַחְלֹקֶת בְּדִין מִן הַדִּינִים עִם בֵּית דִּין הַגָּדוֹל וְלֹא חָזַר לְדִבְרֵיהֶם אֶלָּא חָלַק עֲלֵיהֶם וְהוֹרָה לַעֲשׂוֹת שֶׁלֹּא כְּהוֹרָאָתָן. גָּזְרָה עָלָיו תּוֹרָה מִיתָה וּמִתְוַדֶּה וְיֵשׁ לוֹ חֵלֶק לָעוֹלָם הַבָּא. אַף עַל פִּי שֶׁהוּא דָּן וְהֵן דָּנִים הוּא קִבֵּל וְהֵם קִבְּלוּ הֲרֵי הַתּוֹרָה חָלְקָה לָהֶם כָּבוֹד. וְאִם רָצוּ בֵּית דִּין לִמְחל עַל כְּבוֹדָן וּלְהַנִּיחוֹ אֵינָן יְכוֹלִין כְּדֵי שֶׁלֹּא יַרְבּוּ מַחְלֹקֶת בְּיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומתודה ויש לו חלק לעולם הבא וכו׳ עד כדי שלא ירבו מחלוקות בישראל.</strong> בסנהדרין פרק אלו הן הנחנקין ופרק חלק:</p>
               </div>
             </div>
@@ -561,8 +651,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-5">Mishneh Torah, Rebels 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין זָקֵן מַמְרֵא חַיָּב מִיתָה עַד שֶׁיְּהֵא חָכָם שֶׁהִגִּיעַ לְהוֹרָאָה סָמוּךְ בַּסַּנְהֶדְרִין וְיַחְלֹק עַל בֵּית דִּין בְּדָבָר שֶׁזְּדוֹנוֹ כָּרֵת וְשִׁגְגָתוֹ חַטָּאת אוֹ בִּתְפִלִּין וְיוֹרֶה לַעֲשׂוֹת כְּהוֹרָאָתוֹ. אוֹ יַעֲשֶׂה הוּא עַל פִּי הוֹרָאָתוֹ וְיַחְלֹק עֲלֵיהֶן וְהֵן יוֹשְׁבִין בְּלִשְׁכַּת הַגָּזִית. אֲבָל אִם הָיָה תַּלְמִיד שֶׁלֹּא הִגִּיעַ לְהוֹרָאָה וְהוֹרָה לַעֲשׂוֹת פָּטוּר. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז ח)</span> &quot;כִּי יִפָּלֵא מִמְּךָ דָבָר לַמִּשְׁפָּט&quot; מִי שֶׁלֹּא יִפָּלֵא מִמֶּנּוּ אֶלָּא דָּבָר מֻפְלָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין זקן ממרא חייב מיתה כו׳ עד אלא דבר מופלא.</strong> בסנהדרין פ׳ הנחנקין:</p>
               </div>
             </div>
@@ -577,8 +672,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-6">Mishneh Torah, Rebels 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה חָכָם מֻפְלָא שֶׁל בֵּית דִּין וְחָלַק וְשָׁנָה וְלִמֵּד לַאֲחֵרִים כִּדְבָרָיו אֲבָל לֹא הוֹרָה לַעֲשׂוֹת פָּטוּר. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יב)</span> &quot;וְהָאִישׁ אֲשֶׁר יַעֲשֶׂה בְזָדוֹן&quot; לֹא שֶׁיֹּאמַר בְּזָדוֹן אֶלָּא יוֹרֶה לַעֲשׂוֹת אוֹ יַעֲשֶׂה הוּא בְּעַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה חכם מופלא כו׳ עד גורם לו מיתה.</strong> פרק קמא דסנהדרין <span class="source-small"> (דף ט&quot;ז)</span> :</p>
               </div>
             </div>
@@ -593,8 +693,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:6:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-6-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-6">Mishneh Torah, Rebels 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה חָכָם מֻפְלָא שֶׁל בֵּית דִּין וְחָלַק וְשָׁנָה וְלִמֵּד לַאֲחֵרִים כִּדְבָרָיו אֲבָל לֹא הוֹרָה לַעֲשׂוֹת פָּטוּר. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יב)</span> &quot;וְהָאִישׁ אֲשֶׁר יַעֲשֶׂה בְזָדוֹן&quot; לֹא שֶׁיֹּאמַר בְּזָדוֹן אֶלָּא יוֹרֶה לַעֲשׂוֹת אוֹ יַעֲשֶׂה הוּא בְּעַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכל אלו וכיוצא בהם שהם פטורים כו׳ עד שהדבר צריך לכך.</strong> בסנהדרין פרק נגמר הדין <span class="source-small"> (דף מ&quot;ו): </span></p>
               </div>
             </div>
@@ -609,8 +714,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 3:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-3-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-8">Mishneh Torah, Rebels 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵיצַד דָּנִין זָקֵן מַמְרֵא. בְּעֵת שֶׁיִּפָּלֵא דָּבָר וְיוֹרֶה בּוֹ חָכָם הַמַּגִּיעַ לְהוֹרָאָה בֵּין בְּדָבָר שֶׁיֵּרָאֶה בְּעֵינָיו בֵּין בְּדָבָר שֶׁקִּבֵּל מֵרַבּוֹתָיו. הֲרֵי הוּא וְהַחוֹלְקִין עִמּוֹ עוֹלִין לִירוּשָׁלַיִם וּבָאִין לְבֵית דִּין שֶׁעַל פֶּתַח הַר הַבַּיִת. אוֹמְרִים לָהֶן בֵּית דִּין כָּךְ הוּא הַדִּין. אִם שָׁמַע וְקִבֵּל מוּטָב וְאִם לָאו בָּאִין כֻּלָּן לְבֵית דִּין שֶׁעַל פֶּתַח הָעֲזָרָה וְאוֹמְרִים לָהֶם גַּם הֵם כָּךְ הוּא הַדִּין. אִם קִבְּלוּ יֵלְכוּ לָהֶן וְאִם לָאו כֻּלָּן בָּאִין לְבֵית דִּין הַגָּדוֹל לְלִשְׁכַּת הַגָּזִית שֶׁמִּשָּׁם תּוֹרָה יוֹצֵאת לְכָל יִשְׂרָאֵל שֶׁנֶּאֱמַר <span class="source-small">(דברים יז י)</span> &quot;מִן הַמָּקוֹם הַהוּא אֲשֶׁר יִבְחַר ה׳&quot;. וּבֵית דִּין אוֹמֵר לָהֶם כָּךְ הוּא הַדִּין וְיוֹצְאִין כֻּלָּן. חָזַר זֶה הֶחָכָם לְעִירוֹ וְשָׁנָה וְלִמֵּד כְּדֶרֶךְ שֶׁהוּא לָמוּד הֲרֵי זֶה פָּטוּר. הוֹרָה לַעֲשׂוֹת אוֹ שֶׁעָשָׂה כְּהוֹרָאָתוֹ חַיָּב מִיתָה וְאֵינוֹ צָרִיךְ הַתְרָאָה. אֲפִלּוּ נָתַן טַעַם לִדְבָרָיו אֵין שׁוֹמְעִין לוֹ אֶלָּא כֵּיוָן שֶׁבָּאוּ עֵדִים שֶׁעָשָׂה כְּהוֹרָאָתוֹ אוֹ שֶׁהוֹרָה לַאֲחֵרִים לַעֲשׂוֹת גּוֹמְרִין דִּינוֹ לְמִיתָה בְּבֵית דִּין שֶׁבְּעִירוֹ. וְתוֹפְסִין אוֹתוֹ וּמַעֲלִין אוֹתוֹ מִשָּׁם לִירוּשָׁלַיִם. וְאֵין מְמִיתִין אוֹתוֹ בְּבֵית דִּין שֶׁבְּעִירוֹ וְלֹא בְּבֵית דִּין הַגָּדוֹל שֶׁיָּצָא חוּץ לִירוּשָׁלַיִם אֶלָּא מַעֲלִין אוֹתוֹ לְבֵית דִּין הַגָּדוֹל שֶׁבִּירוּשָׁלַיִם. וְעַד הָרֶגֶל מְשַׁמְּרִין אוֹתוֹ וְחוֹנְקִין אוֹתוֹ בָּרֶגֶל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יג יב)</span> &quot;וְכָל יִשְׂרָאֵל יִשְׁמְעוּ וְיִרָאוּ&quot; מִכְּלָל שֶׁצָּרִיךְ הַכְרָזָה. וְאַרְבָּעָה צְרִיכִין הַכְרָזָה. זָקֵן מַמְרֵא. וְעֵדִים זוֹמְמִין. וְהַמֵּסִית. וּבֵן סוֹרֵר וּמוֹרֶה. שֶׁהֲרֵי בְּכֻלָּן נֶאֱמַר יִשְׁמְעוּ וְיִרָאוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכיצד דנין זקן ממרא כו׳ עד סוף הפרק.</strong> הכל בסנהדרין פרק הנחנקין <span class="source-small"> (דף פ&quot;ו): </span></p>
               </div>
             </div>
@@ -626,8 +736,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 4:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-4-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-4-1">Mishneh Torah, Rebels 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זֶה שֶׁחָלַק עַל בֵּית דִּין הַגָּדוֹל בְּדָבָר שֶׁחַיָּבִין עַל זְדוֹנוֹ כָּרֵת וְעַל שִׁגְגָתוֹ חַטָּאת. בֵּין שֶׁהָיוּ הֵן אוֹסְרִים וְהוּא מַתִּיר בֵּין שֶׁהָיוּ הֵן מַתִּירִין וְהוּא אוֹסֵר הֲרֵי זֶה חַיָּב מִיתָה. אֲפִלּוּ הוּא הָיָה אוֹמֵר מִפִּי הַקַּבָּלָה וְאָמַר כָּךְ קִבַּלְתִּי מֵרַבּוֹתַי וְהֵן אוֹמְרִים כָּךְ נִרְאֶה בְּעֵינֵינוּ שֶׁהַדִּין נוֹתֵן. הוֹאִיל וְנָשָׂא וְנָתַן עֲלֵיהֶן בַּדָּבָר וְעָשָׂה אוֹ שֶׁהוֹרָה לַעֲשׂוֹת הֲרֵי זֶה חַיָּב. וְאֵין צָרִיךְ לוֹמַר אִם הֵם מוֹרִים מִפִּי הַקַּבָּלָה. וְכֵן אִם חָלַק עֲלֵיהֶם בִּגְזֵרָה מִן הַגְּזֵרוֹת שֶׁגָּזְרוּ בְּדָבָר שֶׁיֵּשׁ בְּשִׁגְגָתוֹ חַטָּאת וּזְדוֹנוֹ כָּרֵת. כְּגוֹן שֶׁהִתִּיר הֶחָמֵץ בְּיוֹם אַרְבָּעָה עָשָׂר בְּנִיסָן בְּשָׁעָה שִׁשִּׁית. אוֹ אֲסָרוֹ בַּהֲנָאָה בְּשָׁעָה חֲמִישִׁית. הֲרֵי זֶה חַיָּב מִיתָה. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה שחלק על בית דין הגדול בדבר כו׳ עד הוא מחמיר והן מקילין הרי זה חייב.</strong> הכל פרק הנחנקין:</p>
               </div>
             </div>
@@ -642,8 +757,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 4:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-4-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-4-3">Mishneh Torah, Rebels 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם לֹא תָּבִיא הַמַּחֲלֹקֶת לִידֵי כָּךְ הֲרֵי זֶה פָּטוּר. חוּץ מִמִּצְוַת תְּפִלִּין בִּלְבַד. כֵּיצַד. הוֹרָה לְהוֹסִיף טוֹטֶפֶת חֲמִישִׁית בַּתְּפִלִּין וְיַעֲשֶׂנָּה חָמֵשׁ טוֹטָפוֹת הֲרֵי זֶה חַיָּב. וְהוּא שֶׁיַּעֲשֶׂה בַּתְּחִלָּה אַרְבָּעָה בָּתִּים כְּהִלְכָתָן וְיָבִיא חֲמִישִׁית וִידַבֵּק בַּחִיצוֹן. שֶׁהַבַּיִת הַחִיצוֹן שֶׁאֵינוֹ רוֹאֶה אֶת הָאֲוִיר תָּמִיד פָּסוּל. וְחִיּוּב זָקֵן מַמְרֵא עַל דָּבָר זֶה הֲלָכָה מִפִּי הַקַּבָּלָה. אֲבָל אִם נֶחְלְקוּ בִּשְׁאָר מִצְוֹת כְּגוֹן שֶׁחָלַק בְּדָבָר מִדִּבְרֵי לוּלָב אוֹ צִיצִית אוֹ שׁוֹפָר זֶה אוֹמֵר פָּסוּל וְזֶה אוֹמֵר כָּשֵׁר. זֶה אוֹמֵר יָצָא יְדֵי חוֹבָתוֹ וְזֶה אוֹמֵר לֹא יָצָא. זֶה אוֹמֵר טָהוֹר וְזֶה אוֹמֵר שֵׁנִי לְטֻמְאָה הֲרֵי זֶה פָּטוּר מִן הַמִּיתָה. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם לא תביא המחלוקת לידי כך וכו׳ עד מפי הקבלה:</strong> כתב הראב&quot;ד ז&quot;ל זה שבוש לדעת רבי מאיר כו׳: <strong> ואני </strong> אומר איני יודע מקום בכאן לשבוש כלל דהא תלמוד ערוך הוא פ׳ הנחנקין גמ׳ מתניתין דחומר בד&quot;ס כו׳ דגרסינן א&quot;ר אלעזר א&quot;ר אושעיא אינו חייב אלא על דבר שעיקרו מדברי תורה ופירושו מד&quot;ס ויש להוסיף ואם מוסיף גורע ואין לנו אלא תפילין אליבא דר׳ יהודה ואקשינן והא איכא לולב כו׳ והאיכא ציצית כו׳ ושקיל וטרי עליה טובא ומהדר לאקשויי לפום סוגיין אי הכי תפילין נמי כו׳ עד דא&quot;ר זירא בית החיצון שאינו רואה את האויר פסול ולא מצינו בשום גירסא ובשום מקום שיחלוק רבי אלעזר על רבי אושעיא בזה וסוגיין נמי לא קאמר בה ניחא למר וקשה למר אלא הכל אומר בשם רבו וגם הסוגיא אינה מחלוקת בינו לבין רבו ולכך פסק כרבי אלעזר אמר רבי אושעיא ואליבא דר׳ יהודה חדא דליכא מאן דפליג עליה ועוד דר&quot;מ ור׳ יהודה הלכה כרבי יהודה ועוד דכולה סוגיין אזלא ומיתרצא אליביה ועוד דבפרק לולב הגזול נמי פסקינן כוותיה דר׳ יהודה ועוד דאשכחן התם לר&quot;ח ז&quot;ל דגריס מילתיה בלשון חכמים דאמרינן התם מהו דתימא הואיל ואמר ר׳ יהודה לולב צריך אגד אי מייתי ליה מינא אחרינא האי לחודיה קאי והאי לחודיה קאי קמ&quot;ל ור&quot;ח ז&quot;ל לא גריס התם הואיל וא&quot;ר יהודה וז&quot;ל מהו דתימא הואיל ואמרו חכמים בין אגוד בין שאינו אגוד כשר הילכך אין צריך אגד ועוד דהא בדרבי זירא דקא מסיק תלמודא ליכא מאן דפליג עלה ובמנחות נמי פרק התכלת כולה סוגיין הכי אזלא ובירושלמי דפרק הנחנקין מייתי לה ולפיכך סמך על דברי רבותיו ושכלו מוסף על אלו הראיות או שמא על יותר אשר נפלאו ממני ופשוטה אליו ז&quot;ל. שוב מצאתי לר&quot;מ הלוי ז&quot;ל מטוליטולה שהשיגו בזה ממש והשיבוהו חכמי לוניל ז&quot;ל מקצת דברי אלה והוסיפו כי שמא היה לו לר&quot;מ ז&quot;ל ראיות אחרות נסתרות ממנו ותו לא מידי:</p>
               </div>
             </div>
@@ -658,8 +778,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 4:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-4-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 4:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-4-3">Mishneh Torah, Rebels 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם לֹא תָּבִיא הַמַּחֲלֹקֶת לִידֵי כָּךְ הֲרֵי זֶה פָּטוּר. חוּץ מִמִּצְוַת תְּפִלִּין בִּלְבַד. כֵּיצַד. הוֹרָה לְהוֹסִיף טוֹטֶפֶת חֲמִישִׁית בַּתְּפִלִּין וְיַעֲשֶׂנָּה חָמֵשׁ טוֹטָפוֹת הֲרֵי זֶה חַיָּב. וְהוּא שֶׁיַּעֲשֶׂה בַּתְּחִלָּה אַרְבָּעָה בָּתִּים כְּהִלְכָתָן וְיָבִיא חֲמִישִׁית וִידַבֵּק בַּחִיצוֹן. שֶׁהַבַּיִת הַחִיצוֹן שֶׁאֵינוֹ רוֹאֶה אֶת הָאֲוִיר תָּמִיד פָּסוּל. וְחִיּוּב זָקֵן מַמְרֵא עַל דָּבָר זֶה הֲלָכָה מִפִּי הַקַּבָּלָה. אֲבָל אִם נֶחְלְקוּ בִּשְׁאָר מִצְוֹת כְּגוֹן שֶׁחָלַק בְּדָבָר מִדִּבְרֵי לוּלָב אוֹ צִיצִית אוֹ שׁוֹפָר זֶה אוֹמֵר פָּסוּל וְזֶה אוֹמֵר כָּשֵׁר. זֶה אוֹמֵר יָצָא יְדֵי חוֹבָתוֹ וְזֶה אוֹמֵר לֹא יָצָא. זֶה אוֹמֵר טָהוֹר וְזֶה אוֹמֵר שֵׁנִי לְטֻמְאָה הֲרֵי זֶה פָּטוּר מִן הַמִּיתָה. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל אם נחלקו בשאר מצות כו׳ עד סוף הפרק.</strong> פרק הנחנקין:</p>
               </div>
             </div>
@@ -675,8 +800,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-1">Mishneh Torah, Rebels 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַלֵל אָבִיו וְאִמּוֹ נִסְקָל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כ ט)</span> &quot;אָבִיו וְאִמּוֹ קִלֵּל דָּמָיו בּוֹ&quot;. וְאֶחָד הַמְקַלֵּל בְּחַיֵּיהֶן אוֹ לְאַחַר מִיתָתָן הֲרֵי זֶה נִסְקָל. וְצָרִיךְ עֵדִים וְהַתְרָאָה כִּשְׁאָר כָּל מְחֻיָּבֵי מִיתוֹת בֵּית דִּין. וְאֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה וְכֵן הַטֻּמְטוּם וְהָאַנְדְּרוֹגִינוּס. וְהוּא שֶׁיִּהְיוּ גְּדוֹלִים שֶׁהִגִּיעוּ לִכְלַל הָעֳנָשִׁין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקלל אביו ואמו כו׳ עד כשאר כל חייבי מיתות.</strong> בסנהדרין פרק ד׳ מיתות <span class="source-small"> (דף נ&quot;ג)</span> :</p>
               </div>
             </div>
@@ -691,8 +821,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-1">Mishneh Torah, Rebels 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַלֵל אָבִיו וְאִמּוֹ נִסְקָל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כ ט)</span> &quot;אָבִיו וְאִמּוֹ קִלֵּל דָּמָיו בּוֹ&quot;. וְאֶחָד הַמְקַלֵּל בְּחַיֵּיהֶן אוֹ לְאַחַר מִיתָתָן הֲרֵי זֶה נִסְקָל. וְצָרִיךְ עֵדִים וְהַתְרָאָה כִּשְׁאָר כָּל מְחֻיָּבֵי מִיתוֹת בֵּית דִּין. וְאֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה וְכֵן הַטֻּמְטוּם וְהָאַנְדְּרוֹגִינוּס. וְהוּא שֶׁיִּהְיוּ גְּדוֹלִים שֶׁהִגִּיעוּ לִכְלַל הָעֳנָשִׁין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואחד האיש ואחד האשה כו׳ עד לכלל העונשין.</strong> פ&quot;ק דקדושין <span class="source-small"> (דף ל&quot;ו): </span></p>
               </div>
             </div>
@@ -707,8 +842,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-2">Mishneh Torah, Rebels 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵינוֹ חַיָּב סְקִילָה עַד שֶׁיְּקַלְּלֵם בְּשֵׁם מִן הַשֵּׁמוֹת הַמְּיֻחָדִין. אֲבָל אִם קִלְּלָם בְּכִנּוּי פָּטוּר מִן הַסְּקִילָה. וְלוֹקֶה כְּדֶרֶךְ שֶׁלּוֹקֶה עַל קִלְלַת כָּל אָדָם כָּשֵׁר מִיִּשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אינו חייב סקילה כו׳ עד כמקלל אחד מן הקהל.</strong> בסנהדרין פ׳ ארבע מיתות ובשבועות פ׳ שבועת העדות <span class="source-small"> (דף ל&quot;ו): </span></p>
               </div>
             </div>
@@ -723,8 +863,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-4">Mishneh Torah, Rebels 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַזְהָרָה שֶׁל מְקַלֵּל אָבִיו וְאִמּוֹ מִנַּיִן. עֹנֶשׁ שָׁמַעְנוּ בְּפֵרוּשׁ אֲבָל הָאַזְהָרָה הֲרֵי הִיא בִּכְלַל לֹא תְקַלֵּל חֵרֵשׁ. הוֹאִיל וְהוּא מֻזְהָר שֶׁלֹּא לְקַלֵּל אָדָם מִיִּשְׂרָאֵל הֲרֵי אָבִיו בִּכְלַל יִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרה למקלל אביו כו׳ עד הרי אביו בכלל.</strong> בסנהדרין פרק ארבע מיתות ולשון מכילתא מקלל אביו ואמו מות יומת עונש שמענו אזהרה לא שמענו ת&quot;ל אלהים לא תקלל אם דיין הוא אביו הרי הוא בכלל אלהים ואם נשיא הוא בכלל ונשיא ואם בור הוא בכלל לא תקלל חרש הרי אתה דן בנין אב משלשתן כו׳ הצד השוה שבהן שהן בעמך ואתה מוזהר על קללתן אף אביך שהוא בעמך אתה מוזהר על קללתו ע&quot;כ. ובסיפרא אמר אשר יקלל את אביו ואת אמו כו׳ כלשון מכילתא ממש:</p>
               </div>
             </div>
@@ -739,8 +884,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-5">Mishneh Torah, Rebels 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּכֶּה אָבִיו וְאִמּוֹ מִיתָתוֹ בְּחֶנֶק שֶׁנֶּאֱמַר <span class="source-small">(שמות כא טו)</span> &quot;מַכֵּה אָבִיו וְאִמּוֹ מוֹת יוּמָת&quot;. וְצָרִיךְ עֵדִים וְהַתְרָאָה כִּשְׁאָר כָּל מְחֻיָּבֵי מִיתַת בֵּית דִּין. וְאֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה וְכֵן הַטֻּמְטוּם וְאַנְדְּרוֹגִינוּס וְהוּא שֶׁיַּגִּיעוּ לִכְלַל עֳנָשִׁין. אֵינוֹ חַיָּב חֶנֶק עַד שֶׁיַּעֲשֶׂה בָּהֶן חַבּוּרָה אֲבָל אִם לֹא עָשָׂה בָּהֶן חַבּוּרָה הֲרֵי זֶה כְּמַכֶּה אֶחָד מִיִּשְׂרָאֵל. וְהַמַּכֶּה אוֹתָן לְאַחַר מִיתָה פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המכה אביו ואמו כו׳ עד אחר מיתה פטור.</strong> פרק ארבע מיתות <span class="source-small"> (דף פ&quot;ד פ&quot;ה) </span> ובפרק הנחנקין ולשון מכילתא מכה אביו ואמו מות יומת עונש שמענו אזהרה מניין ת&quot;ל ארבעים יכנו לא יוסיף והרי הדברים ק&quot;ו אם מי שמצווה להכותו הרי הוא מוזהר שלא להכותו מי שמצווה שלא להכותו דין הוא שיהא מוזהר שלא להכותו:</p>
               </div>
             </div>
@@ -755,8 +905,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-6">Mishneh Torah, Rebels 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהִכָּה אֶת אָבִיו עַל אָזְנוֹ וְחֵרְשׁוֹ חַיָּב וְנֶהֱרָג. שֶׁאִי אֶפְשָׁר שֶׁיֵּעָשֶׂה חֵרֵשׁ בְּלֹא חַבּוּרָה אֶלָּא יָצָאת טִפַּת דָּם בִּפְנִים בָּאֹזֶן וְנִתְחָרֵשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומי שהכה וכו׳ עד ונתחרש.</strong> פרק החובל <span class="source-small"> (דף פ&quot;ו): </span></p>
               </div>
             </div>
@@ -771,8 +926,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-7">Mishneh Torah, Rebels 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקִּיז דָּם לְאָבִיו אוֹ שֶׁהָיָה רוֹפֵא וְחָתַךְ לוֹ בָּשָׂר אוֹ אֵבָר פָּטוּר. אַף עַל פִּי שֶׁהוּא פָּטוּר לְכַתְּחִלָּה לֹא יַעֲשֶׂה. אוֹ לְהוֹצִיא סִלּוֹן מִבְּשַׂר אָבִיו אוֹ אִמּוֹ לֹא יוֹצִיא שֶׁמָּא יַעֲשֶׂה חַבּוּרָה. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁיֵּשׁ שָׁם אַחֵר לַעֲשׂוֹת. אֲבָל אִם אֵין שָׁם מִי שֶׁיַּעֲשֶׂה אֶלָּא הוּא וַהֲרֵי הֵן מִצְטַעֲרִין הֲרֵי זֶה מַקִּיז וְחוֹתֵךְ כְּפִי מַה שֶּׁיַּרְשֵׁהוּ לַעֲשׂוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקיז דם לאביו כו׳ עד ולא נחנק על פיה.</strong> פרק הנחנקין:</p>
               </div>
             </div>
@@ -787,8 +947,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:7:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-7-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-7">Mishneh Torah, Rebels 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקִּיז דָּם לְאָבִיו אוֹ שֶׁהָיָה רוֹפֵא וְחָתַךְ לוֹ בָּשָׂר אוֹ אֵבָר פָּטוּר. אַף עַל פִּי שֶׁהוּא פָּטוּר לְכַתְּחִלָּה לֹא יַעֲשֶׂה. אוֹ לְהוֹצִיא סִלּוֹן מִבְּשַׂר אָבִיו אוֹ אִמּוֹ לֹא יוֹצִיא שֶׁמָּא יַעֲשֶׂה חַבּוּרָה. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁיֵּשׁ שָׁם אַחֵר לַעֲשׂוֹת. אֲבָל אִם אֵין שָׁם מִי שֶׁיַּעֲשֶׂה אֶלָּא הוּא וַהֲרֵי הֵן מִצְטַעֲרִין הֲרֵי זֶה מַקִּיז וְחוֹתֵךְ כְּפִי מַה שֶּׁיַּרְשֵׁהוּ לַעֲשׂוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ובנו מן השפחה כו׳ עד אלא נוהג בו מנהג כבוד.</strong> פ&quot;ב דיבמות <span class="source-small"> (דף כ&quot;ב)</span> :</p>
               </div>
             </div>
@@ -803,8 +968,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:7:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-7-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:7:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-7">Mishneh Torah, Rebels 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקִּיז דָּם לְאָבִיו אוֹ שֶׁהָיָה רוֹפֵא וְחָתַךְ לוֹ בָּשָׂר אוֹ אֵבָר פָּטוּר. אַף עַל פִּי שֶׁהוּא פָּטוּר לְכַתְּחִלָּה לֹא יַעֲשֶׂה. אוֹ לְהוֹצִיא סִלּוֹן מִבְּשַׂר אָבִיו אוֹ אִמּוֹ לֹא יוֹצִיא שֶׁמָּא יַעֲשֶׂה חַבּוּרָה. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁיֵּשׁ שָׁם אַחֵר לַעֲשׂוֹת. אֲבָל אִם אֵין שָׁם מִי שֶׁיַּעֲשֶׂה אֶלָּא הוּא וַהֲרֵי הֵן מִצְטַעֲרִין הֲרֵי זֶה מַקִּיז וְחוֹתֵךְ כְּפִי מַה שֶּׁיַּרְשֵׁהוּ לַעֲשׂוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל העבד כו׳ עד ואע&quot;פ שנשתחרר.</strong> פ׳ החובל <span class="source-small"> (דף פ&quot;ו) </span> ופרק הערל:</p>
               </div>
             </div>
@@ -819,8 +989,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-12">Mishneh Torah, Rebels 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיוּ אָבִיו וְאִמּוֹ רְשָׁעִים גְּמוּרִים וְעוֹבְרֵי עֲבֵרוֹת. אֲפִלּוּ נִגְמַר דִּינָן לַהֲרִיגָה וְהֵם יוֹצְאִים לֵהָרֵג אָסוּר לְהַכּוֹתָן וּלְקַלְּלָם. וְאִם קִלֵּל אוֹ חָבַל בָּהֶן פָּטוּר. וְאִם עָשׂוּ תְּשׁוּבָה הֲרֵי זֶה חַיָּב וְנֶהֱרָג עֲלֵיהֶן אַף עַל פִּי שֶׁהֲרֵי הֵן יוֹצְאִין לְמִיתָה. בַּמֶּה דְּבָרִים אֲמוּרִים בִּבְנוֹ. אֲבָל אַחֵר שֶׁבָּא וְהִכָּהוּ וְקִלֵּל אַחַר שֶׁנִּגְמַר דִּינוֹ אַף עַל פִּי שֶׁעָשָׂה תְּשׁוּבָה הֲרֵי זֶה פָּטוּר הוֹאִיל וְהוּא הוֹלֵךְ לְמִיתָה. וְאִם בִּיְּשׁוֹ חַיָּב בִּקְנַס הַמְבַיֵּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהיו אביו ואמו רשעים גמורים כו׳ עד ולא תחמול ולא תכסה עליו.</strong> ריש פרק הנחנקין <span class="source-small"> (דף פ&quot;ה): </span></p>
               </div>
             </div>
@@ -835,8 +1010,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 5:15:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-5-15-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 5:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-15">Mishneh Torah, Rebels 5:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנִּתְחַיֵּב שְׁבוּעָה לִבְנוֹ כָּךְ רָאִינוּ בּוֹ תָּמִיד שֶׁאֵינוֹ מַשְׁבִּיעוֹ בִּשְׁבוּעַת הָאָלָה. שֶׁהֲרֵי זֶה בָּא לְקִלְלַת אָבִיו. אֶלָּא מַשְׁבִּיעוֹ שְׁבוּעָה שֶׁאֵין בָּהּ אָלָה. וּכְבָר בֵּאַרְנוּ שֶׁהָאָב שֶׁהָרַג אֶת בְּנוֹ אֵין אֶחָד מֵאֶחָיו שֶׁל נֶהֱרָג נַעֲשֶׂה גּוֹאֵל הַדָּם. וְלֹא עַל הַכָּאָה וְלֹא עַל הַקְּלָלָה בִּלְבַד הִקְפִּידָה תּוֹרָה אֶלָּא אַף עַל הַבִּזָּיוֹן. שֶׁכָּל הַמְבַזֶּה אָבִיו אוֹ אִמּוֹ אֲפִלּוּ בִּדְבָרִים וַאֲפִלּוּ בִּרְמִיזָה הֲרֵי זֶה אָרוּר מִפִּי הַגְּבוּרָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים כז טז)</span> &quot;אָרוּר מַקְלֶה אָבִיו וְאִמּוֹ&quot;. וַהֲרֵי הוּא אוֹמֵר <span class="source-small">(משלי ל יז)</span> &quot;עַיִן תִּלְעַג לְאָב וְתָבֻז לִיקְּהַת אֵם&quot; וְגוֹ׳. וְיֵשׁ לְבֵית דִּין לְהַכּוֹת עַל זֶה מַכַּת מַרְדּוּת וְלַעֲנשׁ כְּפִי מַה שֶּׁיִּרְאוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שנתחייב לבנו שבועה עד סוף הפרק.</strong> בתשובת הגאונים והביאור פ&quot;א דהלכות רוצח ושמירת נפש:</p>
               </div>
             </div>
@@ -852,8 +1032,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 6:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-6-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-1">Mishneh Torah, Rebels 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כִּבּוּד אָב וָאֵם מִצְוַת עֲשֵׂה גְּדוֹלָה וְכֵן מוֹרָא אָב וָאֵם. שָׁקַל אוֹתָן הַכָּתוּב בִּכְבוֹדוֹ וּבְמוֹרָאוֹ. כָּתוּב <span class="source-small">(שמות כ יב)</span> &quot;כַּבֵּד אֶת אָבִיךָ וְאֶת אִמֶּךָ&quot; וְכָתוּב <span class="source-small">(משלי ג ט)</span> &quot;כַּבֵּד אֶת ה׳ מֵהוֹנֶךָ&quot;. וּבְאָבִיו וְאִמּוֹ כָּתוּב <span class="source-small">(ויקרא יט ג)</span> &quot;אִישׁ אִמּוֹ וְאָבִיו תִּירָאוּ&quot; וְכָתוּב <span class="source-small">(דברים ו יג)</span> &quot;אֶת ה׳ אֱלֹהֶיךָ תִּירָא&quot;. כְּדֶרֶךְ שֶׁצִּוָּה עַל כְּבוֹד שְׁמוֹ הַגָּדוֹל וּמוֹרָאוֹ כָּךְ צִוָּה עַל כְּבוֹדָם וּמוֹרָאָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיבוד אב ואם וכו׳ עד ומוראם.</strong> פרק קמא דקידושין <span class="source-small"> (דף ל׳) </span> ולשון סיפרא איזהו כבוד מאכיל ומשקה ומלביש ומכסה ומכניס ומוציא:</p>
               </div>
             </div>
@@ -868,8 +1053,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 6:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-6-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-2">Mishneh Torah, Rebels 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַלֵּל אָבִיו אוֹ אִמּוֹ בִּסְקִילָה וְהַמְגַדֵּף בִּסְקִילָה. הִנֵּה הִשְׁוָה אוֹתָן בָּעֹנֶשׁ. הִקְדִּים אָב לְאֵם לְכָבוֹד וְהִקְדִּים אֵם לְאָב לְמוֹרָא לְלַמֵּד שֶׁשְּׁנֵיהֶם שָׁוִים בֵּין לַמּוֹרָא בֵּין לְכָבוֹד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקלל אביו או אמו וכו׳ עד לעונש.</strong> פ׳ ארבע מיתות <span class="source-small"> (דף נ&quot;ג)</span> :</p>
               </div>
             </div>
@@ -884,8 +1074,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 6:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-6-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 6:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-2">Mishneh Torah, Rebels 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַלֵּל אָבִיו אוֹ אִמּוֹ בִּסְקִילָה וְהַמְגַדֵּף בִּסְקִילָה. הִנֵּה הִשְׁוָה אוֹתָן בָּעֹנֶשׁ. הִקְדִּים אָב לְאֵם לְכָבוֹד וְהִקְדִּים אֵם לְאָב לְמוֹרָא לְלַמֵּד שֶׁשְּׁנֵיהֶם שָׁוִים בֵּין לַמּוֹרָא בֵּין לְכָבוֹד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הקדים אב לאם כו׳ עד בין לכבוד.</strong> בכריתות פרק המביא אשם תלוי ופרק קמא דקידושין:</p>
               </div>
             </div>
@@ -900,8 +1095,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 6:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-6-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-3">Mishneh Torah, Rebels 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵי זֶהוּ מוֹרָא וְאֵי זֶהוּ כָּבוֹד. מוֹרָא לֹא עוֹמֵד בִּמְקוֹמוֹ. וְלֹא יוֹשֵׁב בִּמְקוֹמוֹ. וְלֹא סוֹתֵר אֶת דְּבָרָיו וְלֹא מַכְרִיעַ אֶת דְּבָרָיו. וְלֹא יִקְרָא לוֹ בִּשְׁמוֹ לֹא בְּחַיָּיו וְלֹא בְּמוֹתוֹ. אֶלָּא אוֹמֵר אַבָּא מָרִי. הָיָה שֵׁם אָבִיו אוֹ שֵׁם רַבּוֹ כְּשֵׁם אֲחֵרִים מְשַׁנֶּה אֶת שְׁמָם. יֵרָאֶה לִי שֶׁאֵין נִזְהָר בְּכָךְ אֶלָּא בְּשֵׁם שֶׁהוּא פֶּלֶא שֶׁאֵין הַכּל דָּשִׁין בּוֹ. אֲבָל הַשֵּׁמוֹת שֶׁקּוֹרְאִים בָּהֶן אֶת הָעָם כְּגוֹן אַבְרָהָם יִצְחָק וְיַעֲקֹב משֶׁה וְכַיּוֹצֵא בָּהֶן בְּכָל לָשׁוֹן וּבְכָל זְמַן קוֹרֵא בָּהֶן לַאֲחֵרִים שֶׁלֹּא בְּפָנָיו וְאֵין בְּכָךְ כְּלוּם. אֵי זֶהוּ כָּבוֹד מַאֲכִיל וּמַשְׁקֵה מַלְבִּישׁ וּמְכַסֶּה מִשֶּׁל הָאָב. וְאִם אֵין מָמוֹן לָאָב וְיֵשׁ מָמוֹן לַבֵּן כּוֹפִין אוֹתוֹ וְזָן אָבִיו וְאִמּוֹ כְּפִי מַה שֶּׁהוּא יָכוֹל. וּמוֹצִיא וּמַכְנִיס וּמְשַׁמְּשׁוֹ בִּשְׁאָר הַדְּבָרִים שֶׁהַשַּׁמָּשִׁים מְשַׁמְּשִׁים בָּהֶן אֶת הָרַב. וְעוֹמֵד מִפָּנָיו כְּדֶרֶךְ שֶׁהוּא עוֹמֵד מִפְּנֵי רַבּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איזהו מורא כו׳ עד כבודו מחול.</strong> הכל פ&quot;ק דקידושין ובירושלמי דמסכת פיאה ולשון סיפרא איזהו מורא לא ישב במקומו ולא סותר את דבריו:</p>
               </div>
             </div>
@@ -916,8 +1116,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 6:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-6-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 6:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-9">Mishneh Torah, Rebels 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְהַמַּכֶּה בְּנוֹ גָּדוֹל מְנַדִּין אוֹתוֹ שֶׁהֲרֵי הוּא עוֹבֵר עַל וְלִפְנֵי עִוֵּר לֹא תִתֵּן מִכְשׁל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמכה לבנו גדול מנדין אותו כו׳ עד מכשול.</strong> פרק אלו מגלחין <span class="source-small"> (דף י&quot;ז): </span></p>
               </div>
             </div>
@@ -932,8 +1137,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 6:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-6-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 6:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-10">Mishneh Torah, Rebels 6:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנִּטְרְפָה דַּעְתּוֹ שֶׁל אָבִיו אוֹ שֶׁל אִמּוֹ מִשְׁתַּדֵּל לִנְהֹג עִמָּהֶם כְּפִי דַּעְתָּם עַד שֶׁיְּרֻחַם עֲלֵיהֶן. וְאִם אִי אֶפְשָׁר לוֹ לַעֲמֹד מִפְּנֵי שֶׁנִּשְׁתַּטּוּ בְּיוֹתֵר יְנִיחֵם וְיֵלֵךְ לוֹ וִיצַוֶּה אֲחֵרִים לְהַנְהִיגָם כָּרָאוּי לָהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שנטרפה דעת אביו או אמו כו׳ עד כראוי להם:</strong> כתב הראב&quot;ד ז&quot;ל אין זו הוראה נכונה וכו׳: <strong> ואני </strong> אומר תמה אני אם יצא דבר זה מפיו שהרי מעשה רב בכ&quot;מ וגרסינן פ&quot;ק דקדושין גמרא מתני׳ דכל מצות האב על הבן כו׳ דרב אסי הוה ליה ההיא אימא זקנה אמרה ליה בעינא תכשיטין עבד לה בעינא גברא נעיין ליך בעינא גברא דשפיר כוותך שבקה ואזיל לארץ ישראל שמע קל דאזלה אבתריה אתא לקמיה דר׳ יוחנן א&quot;ל רבי מהו לצאת מארץ ישראל לחוצה לארץ כו׳ וה&quot;נ איתא בירושלמי דפאה וזה פשוט ומה שהקשה הראב&quot;ד ז&quot;ל יש לי לומר כי הבן עושה בחנם והממונה יעשה בשכר ועוד דאב ואם לגבי הבן גייס דעתייהו טפי מלגבי הממונה שהוא נכרי ומיכספי מיניה:</p>
               </div>
             </div>
@@ -949,8 +1159,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 7:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-7-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-1">Mishneh Torah, Rebels 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּן סוֹרֵר וּמוֹרֶה הָאָמוּר בַּתּוֹרָה הֲרֵי נִתְפָּרְשָׁה בּוֹ סְקִילָה וְלֹא עָנַשׁ הַכָּתוּב אֶלָּא אִם כֵּן הִזְהִיר. וְהֵיכָן הִזְהִיר לֹא תֹאכְלוּ עַל הַדָּם לֹא תֹּאכַל אֲכִילָה הַמְּבִיאָה לִידֵי שְׁפִיכוּת דָּמִים וְזוֹ אֲכִילַת בֵּן סוֹרֵר וּמוֹרֶה שֶׁאֵינוֹ נֶהֱרָג אֶלָּא עַל אֲכִילָה מְכֹעֶרֶת שֶׁאָכַל. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא כ)</span> &quot;זוֹלֵל וְסֹבֵא&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזּוֹלֵל הוּא הָאוֹכֵל בָּשָׂר בְּרַעַבְתָּנוּת וְסוֹבֵא הַשּׁוֹתֶה יַיִן בְּרַעַבְתָּנוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן סורר ומורה כו׳ עד אלא א&quot;כ הזהיר.</strong> בסנהדרין פרק ארבע מיתות <span class="source-small"> (דף ס&quot;ג)</span> :</p>
               </div>
             </div>
@@ -965,8 +1180,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 7:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-7-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 7:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-1">Mishneh Torah, Rebels 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּן סוֹרֵר וּמוֹרֶה הָאָמוּר בַּתּוֹרָה הֲרֵי נִתְפָּרְשָׁה בּוֹ סְקִילָה וְלֹא עָנַשׁ הַכָּתוּב אֶלָּא אִם כֵּן הִזְהִיר. וְהֵיכָן הִזְהִיר לֹא תֹאכְלוּ עַל הַדָּם לֹא תֹּאכַל אֲכִילָה הַמְּבִיאָה לִידֵי שְׁפִיכוּת דָּמִים וְזוֹ אֲכִילַת בֵּן סוֹרֵר וּמוֹרֶה שֶׁאֵינוֹ נֶהֱרָג אֶלָּא עַל אֲכִילָה מְכֹעֶרֶת שֶׁאָכַל. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא כ)</span> &quot;זוֹלֵל וְסֹבֵא&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזּוֹלֵל הוּא הָאוֹכֵל בָּשָׂר בְּרַעַבְתָּנוּת וְסוֹבֵא הַשּׁוֹתֶה יַיִן בְּרַעַבְתָּנוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> והיכן הזהיר כו׳ עד אכילה זו המכוערת.</strong> הכל פרק בן סורר ומורה <span class="source-small"> (דף ע׳ וע&quot;א)</span> :</p>
               </div>
             </div>
@@ -981,8 +1201,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 7:1:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-7-1-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 7:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-1">Mishneh Torah, Rebels 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּן סוֹרֵר וּמוֹרֶה הָאָמוּר בַּתּוֹרָה הֲרֵי נִתְפָּרְשָׁה בּוֹ סְקִילָה וְלֹא עָנַשׁ הַכָּתוּב אֶלָּא אִם כֵּן הִזְהִיר. וְהֵיכָן הִזְהִיר לֹא תֹאכְלוּ עַל הַדָּם לֹא תֹּאכַל אֲכִילָה הַמְּבִיאָה לִידֵי שְׁפִיכוּת דָּמִים וְזוֹ אֲכִילַת בֵּן סוֹרֵר וּמוֹרֶה שֶׁאֵינוֹ נֶהֱרָג אֶלָּא עַל אֲכִילָה מְכֹעֶרֶת שֶׁאָכַל. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא כ)</span> &quot;זוֹלֵל וְסֹבֵא&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזּוֹלֵל הוּא הָאוֹכֵל בָּשָׂר בְּרַעַבְתָּנוּת וְסוֹבֵא הַשּׁוֹתֶה יַיִן בְּרַעַבְתָּנוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הא כיצד מפי השמועה כו׳ עד ואינו נסקל.</strong> בנדה פרק בא סימן <span class="source-small"> (דף מ&quot;ד): </span></p>
               </div>
             </div>
@@ -997,8 +1222,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 7:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-7-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 7:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-6">Mishneh Torah, Rebels 7:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל יָמָיו שֶׁל בֵּן סוֹרֵר וּמוֹרֶה אֵינָן אֶלָּא שְׁלֹשָׁה חֳדָשִׁים מֵאַחַר שֶׁיָּבִיא שְׁתֵּי שְׂעָרוֹת. לְפִי שֶׁאֶפְשָׁר שֶׁתִּתְעַבֵּר אִשְׁתּוֹ וְיִהְיֶה עֻבָּרָהּ נִכָּר בִּשְׁלֹשָׁה חֳדָשִׁים וְנֶאֱמַר <span class="source-small">(דברים כא יח)</span> &quot;כִּי יִהְיֶה לְאִישׁ בֵּן סוֹרֵר וּמוֹרֶה&quot; וְלֹא אָב סוֹרֵר וּמוֹרֶה הָא לָמַדְתָּ שֶׁאִם הִקִּיף הַשֵּׂעָר אֶת כָּל הַגִּיד קֹדֶם שֶׁיַּשְׁלִים שְׁלֹשָׁה חֳדָשִׁים הֲרֵי זֶה פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל ימיו של בן סורר כו׳ עד משעת הויה.</strong> הכל פרק בן סורר ומורה והביאורין בזה הפרק:</p>
               </div>
             </div>
@@ -1013,8 +1243,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rebels 7:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rebels-7-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rebels 7:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-13">Mishneh Torah, Rebels 7:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּן סוֹרֵר וּמוֹרֶה צָרִיךְ הַכְרָזָה. כֵּיצַד מַכְרִיזִין עָלָיו. כּוֹתְבִין לְכָל יִשְׂרָאֵל בְּבֵית דִּין פְּלוֹנִי סָקַלְנוּ פְּלוֹנִי מִפְּנֵי שֶׁהָיָה בֵּן סוֹרֵר וּמוֹרֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן סורר ומורה כו׳ עד סוף הפרק.</strong> פרק הנחנקין:</p>
               </div>
             </div>
@@ -1024,6 +1259,10 @@
               <a href="#chapter-migdal-oz-on-mishneh-torah-rebels-text-7">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-rebels.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/migdal-oz-on-mishneh-torah-rebels-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1044,8 +1283,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-rebels.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/migdal-oz-on-mishneh-torah-rebels.manifest.json","occurrence_url":"../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-rebels.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-rebels.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-rebels.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-rebels.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1071,7 +1310,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

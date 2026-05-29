@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-human-dispositions/">Open Mishneh Torah, Human Dispositions</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Human Dispositions</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">19 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>471 matched</strong> / 1211 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/peri-chadash-on-mishneh-torah-human-dispositions.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/peri-chadash-on-mishneh-torah-human-dispositions-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -242,8 +243,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 1:1:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-1-1-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-1-1">Mishneh Torah, Human Dispositions 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דֵעוֹת הַרְבֵּה יֵשׁ לְכָל אֶחָד וְאֶחָד מִבְּנֵי אָדָם וְזוֹ מְשֻׁנָּה מִזּוֹ וּרְחוֹקָה מִמֶּנָּהּ בְּיוֹתֵר. יֵשׁ אָדָם שֶׁהוּא בַּעַל חֵמָה כּוֹעֵס תָּמִיד. וְיֵשׁ אָדָם שֶׁדַּעְתּוֹ מְיֻשֶּׁבֶת עָלָיו וְאֵינוֹ כּוֹעֵס כְּלָל וְאִם יִכְעַס יִכְעַס כַּעַס מְעַט בְּכַמָּה שָׁנִים. וְיֵשׁ אָדָם שֶׁהוּא גְּבַהּ לֵב בְּיוֹתֵר. וְיֵשׁ שֶׁהוּא שְׁפַל רוּחַ בְּיוֹתֵר. וְיֵשׁ שֶׁהוּא בַּעַל תַּאֲוָה לֹא תִּשְׂבַּע נַפְשׁוֹ מֵהָלֹךְ בְּתַאֲוָה. וְיֵשׁ שֶׁהוּא בַּעַל לֵב טָהוֹר מְאֹד וְלֹא יִתְאַוֶּה אֲפִלּוּ לִדְבָרִים מְעַטִּים שֶׁהַגּוּף צָרִיךְ לָהֶן. וְיֵשׁ בַּעַל נֶפֶשׁ רְחָבָה שֶׁלֹּא תִּשְׂבַּע נַפְשׁוֹ מִכָּל מָמוֹן הָעוֹלָם, כָּעִנְיָן שֶׁנֶּאֱמַר <span class="source-small">(קהלת ה ט)</span> &quot;אוֹהֵב כֶּסֶף לֹא יִשְׂבַּע כֶּסֶף&quot;. וְיֵשׁ מְקַצֵּר נַפְשׁוֹ שֶׁדַּיּוֹ אֲפִלּוּ דָּבָר מְעַט שֶׁלֹּא יַסְפִּיק לוֹ וְלֹא יִרְדֹּף לְהַשִּׂיג כָּל צָרְכּוֹ. וְיֵשׁ שֶׁהוּא מְסַגֵּף עַצְמוֹ בְּרָעָב וְקוֹבֵץ עַל יָדוֹ וְאֵינוֹ אוֹכֵל פְּרוּטָה מִשֶּׁלּוֹ אֶלָּא בְּצַעַר גָּדוֹל. וְיֵשׁ שֶׁהוּא מְאַבֵּד כָּל מָמוֹנוֹ בְּיָדוֹ לְדַעְתּוֹ. וְעַל דְּרָכִים אֵלּוּ שְׁאָר כָּל הַדֵּעוֹת כְּגוֹן מְהוֹלֵל וְאוֹנֵן וְכִילַי וְשׁוֹעַ וְאַכְזָרִי וְרַחֲמָן וְרַךְ לֵבָב וְאַמִּיץ לֵב וְכַיּוֹצֵא בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מה </strong> שיש לדקדק בפרקים הללו עיין בהקדמת הרב ז&quot;ל בפירוש על המשנה למסכת אבות פ&quot;ב ותמצא נחת רוח:</p>
               </div>
             </div>
@@ -258,8 +264,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 1:6:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-1-6-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-1-6">Mishneh Torah, Human Dispositions 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּךְ לָמְדוּ בְּפֵרוּשׁ מִצְוָה זוֹ. מַה הוּא נִקְרָא חַנּוּן אַף אַתָּה הֱיֵה חַנּוּן. מַה הוּא נִקְרָא רַחוּם אַף אַתָּה הֱיֵה רַחוּם. מַה הוּא נִקְרָא קָדוֹשׁ אַף אַתָּה הֱיֵה קָדוֹשׁ. וְעַל דֶּרֶךְ זוֹ קָרְאוּ הַנְּבִיאִים לָאֵל בְּכָל אוֹתָן הַכִּנּוּיִין אֶרֶךְ אַפַּיִם וְרַב חֶסֶד צַדִּיק וְיָשָׁר תָּמִים גִּבּוֹר וְחָזָק וְכַיּוֹצֵא בָּהֶן. לְהוֹדִיעַ שֶׁהֵן דְּרָכִים טוֹבִים וִישָׁרִים וְחַיָּב אָדָם לְהַנְהִיג עַצְמוֹ בָּהֶן וּלְהִדַּמּוֹת אֵלָיו כְּפִי כֹּחוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כך למדו פי׳ מצוה זו וכו׳.</strong> קרוב לזה דרשו בסוף פ&quot;ק דסוטה אקרא דאחרי ה׳ אלקיכם תלכו עיי&quot;ש:</p>
               </div>
             </div>
@@ -275,8 +286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 2:3:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-2-3-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-2-3">Mishneh Torah, Human Dispositions 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵשׁ דֵּעוֹת שֶׁאָסוּר לוֹ לָאָדָם לִנְהֹג בָּהֶן בְּבֵינוֹנִית אֶלָּא יִתְרַחֵק מִן הַקָּצֶה הָאֶחָד עַד הַקָּצֶה הָאַחֵר. וְהוּא גֹּבַהּ לֵב. שֶׁאֵין דֶּרֶךְ הַטּוֹבָה שֶׁיִּהְיֶה אָדָם עָנָו בִּלְבַד אֶלָּא שֶׁיִּהְיֶה שְׁפַל רוּחַ וְתִהְיֶה רוּחוֹ נְמוּכָה לִמְאֹד. וּלְפִיכָךְ נֶאֱמַר בְּמשֶׁה רַבֵּנוּ <span class="source-small">(במדבר יב ג)</span> &quot;עָנָו מְאֹד&quot; וְלֹא נֶאֱמַר עָנָו בִּלְבַד. וּלְפִיכָךְ צִוּוּ חֲכָמִים מְאֹד מְאֹד הֱוֵי שְׁפַל רוּחַ. וְעוֹד אָמְרוּ שֶׁכָּל הַמַּגְבִּיהַּ לִבּוֹ כָּפַר בָּעִקָּר שֶׁנֶּאֱמַר <span class="source-small">(דברים ח יד)</span> &quot;וְרָם לְבָבֶךָ וְשָׁכַחְתָּ אֶת ה׳ אֱלֹקֶיךָ&quot;. וְעוֹד אָמְרוּ בְּשַׁמָּתָא מַאן דְּאִית בֵּיהּ גַּסּוּת הָרוּחַ וַאֲפִלּוּ מִקְצָתָהּ. וְכֵן הַכַּעַס מִדָּה רָעָה הִיא עַד לִמְאֹד וְרָאוּי לָאָדָם שֶׁיִּתְרַחֵק מִמֶּנָּה עַד הַקָּצֶה הָאַחֵר. וִילַמֵּד עַצְמוֹ שֶׁלֹּא יִכְעֹס וַאֲפִלּוּ עַל דָּבָר שֶׁרָאוּי לִכְעֹס עָלָיו. וְאִם רָצָה לְהַטִּיל אֵימָה עַל בָּנָיו וּבְנֵי בֵּיתוֹ אוֹ עַל הַצִּבּוּר אִם הָיָה פַּרְנָס וְרָצָה לִכְעֹס עֲלֵיהֶן כְּדֵי שֶׁיַּחְזְרוּ לַמּוּטָב יַרְאֶה עַצְמוֹ בִּפְנֵיהֶם שֶׁהוּא כּוֹעֵס כְּדֵי לְיַסְּרָם וְתִהְיֶה דַּעְתּוֹ מְיֻשֶּׁבֶת בֵּינוֹ לְבֵין עַצְמוֹ כְּאָדָם שֶׁהוּא מְדַמֶּה כּוֹעֵס בִּשְׁעַת כַּעֲסוֹ וְהוּא אֵינוֹ כּוֹעֵס. אָמְרוּ חֲכָמִים הָרִאשׁוֹנִים כָּל הַכּוֹעֵס כְּאִלּוּ עוֹבֵד עֲבוֹדַת כּוֹכָבִים. וְאָמְרוּ שֶׁכָּל הַכּוֹעֵס אִם חָכָם הוּא חָכְמָתוֹ מִסְתַּלֶּקֶת מִמֶּנּוּ וְאִם נָבִיא הוּא נְבוּאָתוֹ מִסְתַּלֶּקֶת מִמֶּנּוּ. וּבַעֲלֵי כַּעַס אֵין חַיֵּיהֶם חַיִּים. לְפִיכָךְ צִוּוּ לְהִתְרַחֵק מִן הַכַּעַס עַד שֶׁיַּנְהִיג עַצְמוֹ שֶׁלֹּא יַרְגִּישׁ אֲפִלּוּ לַדְּבָרִים הַמַּכְעִיסִים וְזוֹ הִיא הַדֶּרֶךְ הַטּוֹבָה. וְדֶרֶךְ הַצַּדִּיקִים הֵן עֲלוּבִין וְאֵינָן עוֹלְבִין שׁוֹמְעִים חֶרְפָּתָם וְאֵינָם מְשִׁיבִין עוֹשִׂין מֵאַהֲבָה וּשְׂמֵחִים בְּיִסּוּרִים. וַעֲלֵיהֶם הַכָּתוּב אוֹמֵר <span class="source-small">(שופטים ה לא)</span> &quot;וְאֹהֲבָיו כְּצֵאת הַשֶּׁמֶשׁ בִּגְבֻרָתוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעלי כעס אין חייהם חיים.</strong> הכי איתא בפרק ערבי פסחים דף קי&quot;ג ע&quot;ב. הלכה ו ולא יהיה אחד בפה ואחד בלב. בפרק תפילת השחר מצינו שהיה מכריז רבן גמליאל כל תלמיד שאין תוכו כברו אל יכנס לבית המדרש ואע&quot;ג דמסיק התם שכל התלמידים ראויים ליכנס מ&quot;מ נקוט מיהא שראוי לאדם להיות תוכו כברו וכן אקרא דלא יכלו דברו לשלום אמרו רז&quot;ל במדרש דמתוך גנותן של שבטים אתה יודע שבחן די בליביהון בפומייהו:</p>
               </div>
             </div>
@@ -292,8 +308,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 3:1:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-3-1-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-3-1">Mishneh Torah, Human Dispositions 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שֶׁמָּא יֹאמַר אָדָם הוֹאִיל וְהַקִּנְאָה וְהַתַּאֲוָה וְהַכָּבוֹד וְכַיּוֹצֵא בָּהֶם דֶּרֶךְ רָעָה הֵן וּמוֹצִיאִין אֶת הָאָדָם מִן הָעוֹלָם. אֶפְרשׁ מֵהֶן בְּיוֹתֵר וְאֶתְרַחֵק לַצַּד הָאַחֲרוֹן. עַד שֶׁלֹּא יֹאכַל בָּשָׂר וְלֹא יִשְׁתֶּה יַיִן וְלֹא יִשָּׂא אִשָּׁה וְלֹא יֵשֵׁב בְּדִירָה נָאָה וְלֹא יִלְבַּשׁ מַלְבּוּשׁ נָאֶה אֶלָּא הַשַּׂק וְהַצֶּמֶר הַקָּשֶׁה וְכַיּוֹצֵא בָּהֶן כְּגוֹן כֹּהֲנֵי הָעוֹבְדֵי כּוֹכָבִים. גַּם זֶה דֶּרֶךְ רָעָה הִיא וְאָסוּר לֵילֵךְ בָּהּ. הַמְהַלֵּךְ בְּדֶרֶךְ זוֹ נִקְרָא חוֹטֵא. שֶׁהֲרֵי הוּא אוֹמֵר בְּנָזִיר <span class="source-small">(במדבר ו יא)</span> &quot;וְכִפֶּר עָלָיו מֵאֲשֶׁר חָטָא עַל הַנָּפֶשׁ&quot;. אָמְרוּ חֲכָמִים וּמָה אִם נָזִיר שֶׁלֹּא פֵּרַשׁ אֶלָּא מִן הַיַּיִן צָרִיךְ כַּפָּרָה הַמּוֹנֵעַ עַצְמוֹ מִכָּל דָּבָר וְדָבָר עַל אַחַת כַּמָּה וְכַמָּה. לְפִיכָךְ צִוּוּ חֲכָמִים שֶׁלֹּא יִמְנַע אָדָם עַצְמוֹ אֶלָּא מִדְּבָרִים שֶׁמְּנַעְתּוֹ הַתּוֹרָה בִּלְבַד. וְלֹא יְהֵא אוֹסֵר עַצְמוֹ בִּנְדָרִים וּבִשְׁבוּעוֹת עַל דְּבָרִים הַמֻּתָּרִים. כָּךְ אָמְרוּ חֲכָמִים לֹא דַּיֶּךָ מַה שֶּׁאָסְרָה תּוֹרָה אֶלָּא שֶׁאַתָּה אוֹסֵר עָלֶיךָ דְּבָרִים אֲחֵרִים. וּבַכְּלָל הַזֶּה אֵלּוּ שֶׁמִּתְעַנִּין תָּמִיד אֵינָן בְּדֶרֶךְ טוֹבָה. וְאָסְרוּ חֲכָמִים שֶׁיְּהֵא אָדָם מְסַגֵּף עַצְמוֹ בְּתַעֲנִית. וְעַל כָּל הַדְּבָרִים הָאֵלּוּ וְכַיּוֹצֵא בָּהֶן צִוָּה שְׁלֹמֹה וְאָמַר <span class="source-small">(קהלת ז טז)</span> &quot;אַל תְּהִי צַדִּיק הַרְבֵּה וְאַל תִּתְחַכַּם יוֹתֵר לָמָּה תִּשּׁוֹמֵם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המהלך בדרך זה נקרא חוטא שהרי הוא אומר בנזיר וכפר עליו וכו׳.</strong> הלח&quot;מ האריך בזה ולא העלה דבר ברור ויש גמגומין בדבריו. הנה מתחלה תמה דכיון דבפ&quot;ק דנדרים אוקימנא לרבי אלעזר הקפר ברבי בשיטה איך פסק הרב כמותו ואין זה קושיא וכבר נשאל הרשב&quot;א בתשובה על זה בסימן תל&quot;א והשיב דיפה פסק הרב כשמואל דנקרא חוטא ובכה&quot;ג לא מיקרי שיטה יעו&quot;ש ואני מסייע עוד פסק הרב ז&quot;ל דכיון דר׳ עקיבא במתני׳ הכי ס&quot;ל כר׳ אלעזר הקפר וכדתנן בפרק החובל וליכא מאן דפליג עליה במתני׳ ודאי דהכי הלכתא:<br><strong> עוד </strong> הקשה דהיכי אמרינן בפרק קמא דתענית דשמואל סבר דנקרא חוטא דהא איהו גופיה אמר בהחובל כשהקשו שם ואין אדם רשאי לחבל בעצמו והא תניא וכו׳ נשבע להרע וכו׳ אביא נשבע להרע לעצמו ולא הרע ותירץ שמואל באשב בתענית משמע דאשב בתענית מותר ותירוץ התוספות לא שייך לדעת הרב ולי לא קשה מידי דלעולם דס&quot;ל לשמואל דנקרא חוטא אלא דכדי לתרוצי ברייתא אמתני׳ אוקמא שמואל בהכי דס&quot;ל לההיא ברייתא דיושב בתענית שרי אבל איהו ס&quot;ל כרבי אלעזר הקפר ברבי:<br><strong> עוד </strong> הקשה דבכמה דוכתי מוכח דרבי אלעזר הקפר ברבי אפילו בנזיר טהור קאמר ואילו בריש נזיר אמרינן איפכא דאפילו לר&quot;א הקפר דאמר נזיר חוטא הוא ה&quot;מ טמא אבל נזיר טהור לאו חוטא הוא ותירוץ התוספות בזה לא שייך לדעת הרב תו קשיא ליה דמסוגיא דהחובל משמע דלרבי אלעזר הקפר דאמר אין אדם רשאי לחבול בעצמו לית ליה ההיא ברייתא דנשבע להרע לעצמו ולא הרע דחייב דלדידיה לא שייך למימר הרעה רשות דאין אדם רשאי לחבל בעצמו וא&quot;כ הרב שפסק כאן כרבי אלעזר הקפר איך כתב בפרק ה׳ מהל׳ שבועות נשבע להרע כגון שנשבע שיחבול בעצמו אע&quot;פ שאינו רשאי שבועה חלה עליו והאריך ליישב זה בדברים דחוקים. ומה שנראה ליישב זה על נכון הוא זה הנה הרב כתב בריש פ&quot;ה מהל׳ חובל ומזיק וז&quot;ל אסור לאדם לחבול בין בעצמו בין בחבירו ולא החובל בלבד אלא כל המכה אדם כשר מישראל וכו׳ הרי זה עובר בלא תעשה שנאמר לא יוסיף להכותו ע&quot;כ וכונת דבריו היא זו דאיסור חבלה בין בעצמו בין בחבירו הוי איסור דאורייתא אלא דבחובל בעצמו ליכא לאו או מלקות כי אם דרשה דר&quot;א הקפר ובחובל בחבירו איכא לאו ומלקות נמי בהכאה שאין בה שוה פרוטה ור&quot;א הקפר אף בנזיר טהור ס&quot;ל דאיכא איסור דאורייתא והא דאמרינן בריש נזיר דלרבי אלעזר הקפר נזיר טהור לאו חוטא הוא היינו לגבי נזיר טמא. ומ&quot;ש הרב שאם נשבע שיחבול בעצמו אע&quot;פ שאינו רשאי שבועה חלה עליו כן דעת הר&quot;ן בתשובה ובפרק שבועת שתים בתרא דכל דליתא מן התורה מפורש לא מיקרי מושבע ועומד לענין שלא תחול עליו שבועה ונ&quot;ל ראיה לזה מהא דגרסינן בפ&quot;ג דשבועות אהא דתנן שבועה שלא אוכל נבלות וטרפות חייב ופרכינן אמאי מושבע ועומד מהר סיני הוא ומוקי לה ריש לקיש במפרש חצי שיעור ופירש רש&quot;י שאינו מושבע עליו מסיני הילכך מיחייב משום שבועה ופסקו הרב בפ&quot;ה מהל׳ שבועות דין ז׳ ולכאורה קשה דהא קי&quot;ל כרבי יוחנן דחצי שיעור אסור מן התורה וא&quot;כ אף אחצי שיעור מושבע מהר סיני הוא ואמאי מיחייב משום שבועה אלא משמע ודאי דכיון דחצי שיעור לא כתיבא בהדיא בתורה אלא אתי מדרשא דכל חלב אף דאסיר מן התורה לא מיקרי מושבע מהר סיני ומיהו קשה דבריש פ׳ בתרא דיומא לא משמע הכי דאיתא התם דריש לקיש מודה דחצי שיעור אסיר מדרבנן וקשיא לן דאי הכי לא מיחייב עליה קרבן שבועה ופירש רש&quot;י שהרי מושבע עליו בלאו דלא תסור ומסיק דכיון דאית ליה היתר מן התורה קא חייל קרבן שבועה מוכח בהדיא דבמידי דלית ליה היתר מן התורה לא חייל קרבן שבועה וי&quot;ל דלרווחא דמילתא נקט הכי כיון דחצי שיעור הוי דרבנן:<br><strong> ומעתה </strong> על כרחך ליישב סוגיא דהחובל צ&quot;ל דהש&quot;ס לא פריך מכח הדין אלא מלישנא דברייתא דקרי ליה רשות וכמו שתירץ הלח&quot;מ לפי דרכו אף לפי דרך הר&quot;ן מתורץ שפיר (עיין בתשובת הרשב&quot;א סי׳ תרי&quot;ד) והרלב&quot;ח בתשובה סי׳ ק&quot;ג האריך בזה והוקשה לו ממ&quot;ש הרב בפ&quot;א מהל׳ שבועות דשבועת שוא מקרי נשבע לבטל את המצוה כיצד כגון שנשבע שלא יתעטף בציצית וכו׳ או שיתענה בשבתות וימים טובים ע&quot;כ והרי איסור התענית בשבתות וימים טובים אפי׳ תימא דהוי מן התורה מ&quot;מ אינו מפורש בתורה וכן בסוף הל׳ שבת קרי לעונג שבת מצוה מדברי סופרים והחמיר הרב בקושיא זו ובאמת שהיא קושיא גדולה. ומצאתי בירושלמי דנדרים פ&quot;ט נדר להתענות ונמצאו י&quot;ט ושבתות לוקה ואין צריך היתר חכם וכן הביא הב&quot;י יו&quot;ד סי׳ רט&quot;ו בשם המרדכי ואע&quot;ג דאיתא התם לימים הכתוב במגילת תענית ג&quot;כ הך לישנא דלוקה וא&quot;צ התרת חכם י&quot;ל דההיא לוקה מכת מרדות מדרבנן קאמר ומיהו קשה דגם בשבתות וי&quot;ט היכן מצינו לאו באיסור תענית ללקות עליו. ולכן היותר נכון בזה שגם איסור התענית בשבתות וימים טובים אינו מפורש בתורה וחייל עליה שבועה והרב לא נקטיה הכא גבי שבועת שוא אלא לדמיון בעלמא ותדע שהרי כשחזר ופרט דינין אלו לא הזכיר עוד כלל מדין זה וחדושא כי האי לא הו&quot;ל למכתביה אגב גררא אלא משמע ודאי שאינו אלא דוגמא בעלמא וגדולה מזו כתב הרב בדמיון פ&quot;ט מהל׳ ממרים על בשר חיה בחלב יעו&quot;ש ודוק.<br><strong> ומ&quot;ש</strong>
 <strong> כך אמרו חכמים לא דייך מה שאסרה תורה וכו׳.</strong> הכי איתא בירושלמי ריש פרק עשירי מנדרים. ודע שכל מה שכתב הרב ז&quot;ל שאין ראוי להתענות ומשמע בגמרא דאף במצי לצעורי נפשיה זהו בצדיק שלא חטא אבל במי שבא עבירה לידו אדרבה צריך להתענות כפי גודל העבירה והכל לפי מה שהוא אדם שהרי מצינו לר׳ שמעון שאמר על ר׳ עקיבא אם משמת חזר בו איני יודע ומפני שדבר בלשון גנאי השחירו שיניו מפני תעניות כדאיתא בסוף נזיר פרק כהן גדול וכן רבי יהושע שאמר על בית שמאי בושני מדבריכם הושחרו שיניו ג&quot;כ מפני תעניות כדאיתא בפ׳ אין דורשין בחגיגה ובירושלמי פ&quot;ט דנדרים רבי זעירא ציים תלת מאוון דצומין ואית דאמרי תשעה מאוון דצומין וכן בשלהי קידושין בעובדא דרבי חייא בר אשי שנכשל באשתו כסבור שהיא זונה מעלמא ואף על פי כן כל ימיו של אותו צדיק היה מתענה עד שמת באותה מיתה:</p>
               </div>
@@ -309,8 +330,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 3:3:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-3-3-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-3-3">Mishneh Torah, Human Dispositions 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּנְהִיג עַצְמוֹ עַל פִּי הָרְפוּאָה. אִם שָׂם עַל לִבּוֹ שֶיִּהְיֶה כָּל גּוּפוֹ וְאֵיבָרָיו שְׁלֵמִים בִּלְבַד וְשֶׁיִּהְיוּ לוֹ בָּנִים עוֹשִׂין מְלַאכְתּוֹ וַעֲמֵלִין לְצָרְכּוֹ אֵין זוֹ דֶּרֶךְ טוֹבָה. אֶלָּא יָשִׂים עַל לִבּוֹ שֶׁיְּהֵא גּוּפוֹ שָׁלֵם וְחָזָק כְּדֵי שֶׁתִּהְיֶה נַפְשׁוֹ יְשָׁרָה לָדַעַת אֶת ה׳. שֶׁאִי אֶפְשָׁר שֶׁיָּבִין וְיִשְׂתַּכֵּל בַּחָכְמוֹת וְהוּא רָעֵב וְחוֹלֶה אוֹ אֶחָד מֵאֵיבָרָיו כּוֹאֵב. וְיָשִׂים עַל לִבּוֹ שֶׁיִּהְיֶה לוֹ בֵּן אוּלַי יִהְיֶה חָכָם וְגָדוֹל בְּיִשְׂרָאֵל. נִמְצָא הַמְהַלֵּךְ בְּדֶרֶךְ זוֹ כָּל יָמָיו עוֹבֵד אֶת ה׳ תָּמִיד. אֲפִלּוּ בְּשָׁעָה שֶׁנּוֹשֵׂא וְנוֹתֵן וַאֲפִלּוּ בְּשָׁעָה שֶׁבּוֹעֵל. מִפְּנֵי שֶׁמַּחֲשַׁבְתּוֹ בַּכּל כְּדֵי שֶׁיִּמְצָא צְרָכָיו עַד שֶׁיִּהְיֶה גּוּפוֹ שָׁלֵם לַעֲבֹד אֶת ה׳. וַאֲפִלּוּ בְּשָׁעָה שֶׁהוּא יָשֵׁן אִם יָשֵׁן לְדַעַת כְּדֵי שֶׁתָּנוּחַ דַּעְתּוֹ עָלָיו וְיָנוּחַ גּוּפוֹ כְּדֵי שֶׁלֹּא יֶחֱלֶה וְלֹא יוּכַל לַעֲבֹד אֶת ה׳ וְהוּא חוֹלֶה, נִמְצֵאת שֵׁנָה שֶׁלּוֹ עֲבוֹדָה לַמָּקוֹם בָּרוּךְ הוּא. וְעַל עִנְיָן זֶה צִוּוּ חֲכָמִים וְאָמְרוּ <span class="source-small">(משנה אבות ב יב)</span> &quot;וְכָל מַעֲשֶׂיךָ יִהְיוּ לְשֵׁם שָׁמַיִם&quot;. וְהוּא שֶׁאָמַר שְׁלֹמֹה בְּחָכְמָתוֹ <span class="source-small">(משלי ג ו)</span> &quot;בְּכָל דְּרָכֶיךָ דָעֵהוּ וְהוּא יְיַשֵּׁר אֹרְחֹתֶיךָ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והוא שאמר שלמה בכל דרכיך דעהו.</strong> הכי איתא בס&quot;פ הרואה איזוהי פרשה קטנה שכל גופי תורה תלויין בה בכל דרכיך דעהו ואמר רבא ואפילו לדבר עבירה:</p>
               </div>
             </div>
@@ -326,8 +352,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:1:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-1-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-1">Mishneh Torah, Human Dispositions 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹאִיל וֶהֱיוֹת הַגּוּף בָּרִיא וְשָׁלֵם מִדַּרְכֵי הַשֵּׁם הוּא. שֶׁהֲרֵי אִי אֶפְשָׁר שֶׁיָּבִין אוֹ יֵדַע דָּבָר מִידִיעַת הַבּוֹרֵא וְהוּא חוֹלֶה. לְפִיכָךְ צָרִיךְ לְהַרְחִיק אָדָם עַצְמוֹ מִדְּבָרִים הַמְאַבְּדִין אֶת הַגּוּף. וּלְהַנְהִיג עַצְמוֹ בִּדְבָרִים הַמַּבְרִין וְהַמַּחֲלִימִים. וְאֵלּוּ הֵן: לְעוֹלָם לֹא יֹאכַל אָדָם אֶלָּא כְּשֶׁהוּא רָעֵב. וְלֹא יִשְׁתֶּה אֶלָּא כְּשֶׁהוּא צָמֵא. וְאַל יַשְׁהֵא נְקָבָיו אֲפִלּוּ רֶגַע אֶחָד. אֶלָּא כָּל זְמַן שֶׁצָּרִיךְ לְהַשְׁתִּין אוֹ לְהָסֵךְ אֶת רַגְלָיו יַעֲמֹד מִיָּד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואל ישהא נקביו אפי׳ רגע אחד.</strong> בפ׳ הבא על יבמתו אמר רב אחא בר יעקב שיתין סבי הוינן וכולהו איעקור מפרקיה דרב הונא לבד מאנא דקיימי בנפשאי החכמה תחיה את בעליה ובפרק הנודר מן המבושל גרסינן א&quot;ל ההוא מינא לרבי יהודה פניך דומים או כמלוה ריביות או כמגדלי חזירים א&quot;ל ביהודאי תרוייהו אסירן אלא כ&quot;ד בית הכסא אית לי מן ביתא עד בית מדרשא וכל שעה ושעה אני נכנס לכל אחד ואחד ועוד דבפרק בתרא דמכות גרסינן אמר רב אחאי המשהה את נקביו עובר משום בל תשקצו ואי בעי לפנות ולא מצי מאי תקנתיה כדגרסינן בסוף פ׳ המוציא יין תנו רבנן הנכנס לסעודת קבע יהלך י׳ פעמים של ד׳ אמות ואמרי לה ד׳ פעמים של עשר עשר אמות ונפנה ונכנס וישב במקום. הלכה ב ולא ירבה לשתות מים. בפ׳ כיצד מברכין איתא איפכא דהמקפה אכילתו במים אינו בא לידי חולי מעיים וכמה אמר רב חסדא קיתון לפת:<br><strong> וצריך </strong> האדם ליזהר לאכול בבוקר אחר תפלה כדאמרינן בפ׳ החובל ובפ׳ המקבל השכם ואכול בקיץ מפני החמה ובחורף מפני הצינה ותו גרסינן התם פ&quot;ג חלאים תלויים במרה כמנין מחל&quot;ה וכולן פת שחרית במלח וקיתון של מים מבטלתן ופי׳ רש&quot;י דקיתון של מים היינו למי שאין לו יין ותו איתא התם די&quot;ג דברים נאמרו בפת שחרית מצלת מן החמה ומן הצינה וכו׳:</p>
               </div>
             </div>
@@ -342,8 +373,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:3:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-3-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-3">Mishneh Torah, Human Dispositions 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לְעוֹלָם כְּשֶׁיֹּאכַל אָדָם יֵשֵׁב בִּמְקוֹמוֹ אוֹ יִטֶּה עַל שְׂמֹאל. וְלֹא יְהַלֵּךְ וְלֹא יִרְכַּב וְלֹא יִיגַע וְלֹא יְזַעֲזֵעַ גּוּפוֹ וְלֹא יְטַיֵּל עַד שֶׁיִּתְעַכֵּל הַמָּזוֹן שֶׁבְּמֵעָיו. וְכָל הַמְטַיֵּל אַחַר אֲכִילָתוֹ אוֹ שֶׁיָּגֵעַ הֲרֵי זֶה מֵבִיא עַל עַצְמוֹ חֳלָאִים רָעִים וְקָשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לעולם כשיאכל אדם ישב במקומו.</strong> בסוף פ׳ מפנין חמשה דברים קרובים למיתה יותר מן החיים ואלו הן אכל ועמד שתה ועמד ישן ועמד הקיז ועמד שימש מיטתו ועמד והיינו דוקא לטייל וליגע אחר אכילה אבל עכ&quot;פ צריך לילך ד׳ אמות אחר אכילה דגרסינן בהמקבל אמר שמואל כל מילי ידענא אסותייהו לבר מהני תלת מאן דאכיל אהינא מרירא אליבא רקניא ומאן דאסר מיתנא דכיתנא רטיבא אחרציה ומאן דאכיל נהמא ולא מסגי ארבעא גרמידי גרמידי:</p>
               </div>
             </div>
@@ -358,8 +394,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:4:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-4-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-4">Mishneh Torah, Human Dispositions 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַיּוֹם וְהַלַּיְלָה כ&quot;ד שָׁעוֹת. דַּי לוֹ לָאָדָם לִישֹׁן שְׁלִישָׁן שֶׁהוּא שְׁמוֹנֶה שָׁעוֹת. וְיִהְיוּ בְּסוֹף הַלַּיְלָה כְּדֵי שֶׁתִּהְיֶה מִתְּחִלַּת שְׁנָתוֹ עַד שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ שְׁמוֹנֶה שָׁעוֹת. וְנִמְצָא עוֹמֵד מִמִּטָּתוֹ קֹדֶם שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויהיו בסוף הלילה.</strong> פי׳ לפי שהשינה בסוף הלילה הוא מועיל לגוף כדאמרינן בסוף פרק הרואה אמר שמואל שינה בעמוד השחר כאסטמא לפרזלא יציאה בעמוד השחר כאסטמא לפרזלא:</p>
               </div>
             </div>
@@ -374,8 +415,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:5:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-5-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-5">Mishneh Torah, Human Dispositions 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לֹא יִישַׁן אָדָם לֹא עַל פָּנָיו וְלֹא עַל עָרְפּוֹ אֶלָּא עַל צִדּוֹ. בִּתְחִלַּת הַלַּיְלָה עַל צַד שְׂמֹאל. וּבְסוֹף הַלַּיְלָה עַל צַד יָמִין. וְלֹא יִישַׁן סָמוּךְ לַאֲכִילָה אֶלָּא יַמְתִּין אַחַר אֲכִילָה כְּמוֹ שָׁלֹשׁ אוֹ אַרְבַּע שָׁעוֹת. וְלֹא יִישַׁן בַּיּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לא יישן אדם לא על פניו ולא על ערפו.</strong> בפ׳ היה קורא אמר רב יוסף פרקדן לא יקרא קריאת שמע מיקרא הוא דלא ליקרי הא מיגנא שפיר דמי והא ר׳ יהושע בן לוי לייט אמאן דגני אפרקיד אמרי מיגנא כי מצלי שפיר דמי וכו׳ ופרקיד מיקרי בין על פניו בין על ערפו ואין לו היתר לישן אלא על צידו:<br><strong> ומ&quot;ש</strong>
 <strong> בתחילת הלילה על צד שמאל.</strong> הטעם כתב בס׳ שבילי אמונה כדי שיהא הכבד שהוא בצד ימין על האצטומכא ויחום אותה בחמימותו וימהר עיכול המאכל.<br><strong> ומ&quot;ש </strong>
 <strong> ולא יישן ביום.</strong>
@@ -393,8 +439,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:6:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-6-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-6">Mishneh Torah, Human Dispositions 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּבָרִים הַמְשַׁלְשְׁלִין אֶת בְּנֵי מֵעַיִם כְּגוֹן עֲנָבִים וּתְאֵנִים וְתוּתִים וַאֲגַסִּים וַאֲבַטִּיחִים וּמִינֵי הַקִּשּׁוּאִים וּמִינֵי מְלָפְפוֹנוֹת אוֹכֵל אוֹתָם הָאָדָם בַּתְּחִלָּה קֹדֶם אֲכִילָה. וְלֹא יְעָרְבֵם עִם הַמָּזוֹן. אֶלָּא שׁוֹהֶה מְעַט עַד שֶׁיֵּצְאוּ מִבֶּטֶן הָעֶלְיוֹן וְאוֹכֵל מְזוֹנוֹ. וּדְבָרִים שֶׁמְּאַמְּצִין אֶת בְּנֵי מֵעַיִם כְּגוֹן רִמּוֹנִים וּפְרִישִׁים וְתַפּוּחִים וּקְרוֹסְטוֹמוֹלִין אוֹכֵל אוֹתָן תֵּכֶף לִמְזוֹנוֹ. וְלֹא יַרְבֶּה לֶאֱכל מֵהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומיני הקשואים.</strong> איתא בפ&quot;ק דע&quot;ז שצנון מחתך אוכל וחזרת מהפך מאכל קישות מרחיב מעיים וה&quot;מ בקישות זוטרי אבל לרברבי קשין לגופו של אדם כחרבות וכתבו בתוספות דהא דאמרינן בפ׳ כיצד מערבין נראה צנון נראה סם חיים והא תניא נראה סם המות ל&quot;ק כאן בימות החמה כאן בימות הגשמים י&quot;ל דמיירי הכא בעת שהוא סם חיים אי נמי דמיירי באמהות שהם לעולם חיים:</p>
               </div>
             </div>
@@ -409,8 +460,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:7:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-7-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-7">Mishneh Torah, Human Dispositions 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁיִּרְצֶה אָדָם לֶאֱכל בְּשַׂר עוֹף וּבְשַׂר בְּהֵמָה כְּאֶחָד. אוֹכֵל בַּתְּחִלָּה בְּשַׂר הָעוֹף. וְכֵן בֵּיצִים וּבְשַׂר עוֹף אוֹכֵל בַּתְּחִלָּה בֵּיצִים. בְּשַׂר בְּהֵמָה דַּקָּה וּבְשַׂר בְּהֵמָה גַּסָּה אוֹכֵל בַּתְּחִלָּה בְּשַׂר דַּקָּה. לְעוֹלָם יַקְדִּים אָדָם דָּבָר הַקַּל וּמְאַחֵר הַכָּבֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לעולם יקדים אדם דבר הקל.</strong> הטעם שאם מאחר הקל הכבד מתעכב זמן הרבה להתעכל והקל מתעכל מיד ולפיכך יקדים דבר הקל כדי שיצא מיד מבטן העליון:</p>
               </div>
             </div>
@@ -425,8 +481,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:8:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-8-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-8">Mishneh Torah, Human Dispositions 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בִּימוֹת הַחַמָּה אוֹכֵל מַאֲכָלִים הַקָּרִים וְלֹא יַרְבֶּה בִּתְבָלִים וְאוֹכֵל אֶת הַחֹמֶץ. וּבִימוֹת הַגְּשָׁמִים אוֹכֵל מַאֲכָלִים הַחַמִּים וּמַרְבֶּה בִּתְבָלִים וְאוֹכֵל מְעַט מִן הַחַרְדָּל וּמִן הַחִלְתִּית. וְעַל דֶּרֶךְ זוֹ הוֹלֵךְ וְעוֹשֶׂה בַּמְּקוֹמוֹת הַקָּרִים וּבַמְּקוֹמוֹת הַחַמִּים בְּכָל מָקוֹם וּמָקוֹם הָרָאוּי לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואוכל את החומץ.</strong> כמ&quot;ש רז&quot;ל שהחומץ יפה לשרב:<br><strong> ומ&quot;ש </strong>
 <strong> ואוכל מעט מן החרדל.</strong>
 <strong> גרסינן בפרק כיצד מברכין הרגיל בעדשים אחד לשלשים יום מונע אסכרה מתוך ביתו אבל כל יומא לא מאי טעמא משום דקשה לריח הפה הרגיל בחרדל אחד לשלשים יום מונע חלאים מתוך ביתו אבל כל יומא לא מאי טעמא משום דקשה לחולשא דלבא:</strong><br><strong> ומ&quot;ש ומן החלתית.</strong> דוקא מעט לפי שהוא חם ביותר אבל לא יאכל הרבה ממנו דאמרינן בפ׳ אלו טריפות האי מאן דאכל תלתא תקלי חלתית אליבא רקניא משתלח משכיה:</p>
@@ -443,8 +504,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:9:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-9-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-9">Mishneh Torah, Human Dispositions 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ מַאֲכָלוֹת שֶׁהֵם רָעִים בְּיוֹתֵר עַד מְאֹד וְרָאוּי לָאָדָם שֶׁלֹּא לְאָכְלָן לְעוֹלָם. כְּגוֹן הַדָּגִים הַגְּדוֹלִים הַמְּלוּחִים הַיְשָׁנִים. וְהַגְּבִינָה הַמְּלוּחָה הַיְשָׁנָה. וְהַכְּמֵהִין וּפִטְרִיּוֹת וְהַבָּשָׂר הַמָּלִיחַ הַיָּשָׁן. וְיַיִן מִגִּתּוֹ. וְתַבְשִׁיל שֶׁשָּׁהָא עַד שֶׁנָּדַף רֵיחוֹ. וְכֵן כָּל מַאֲכָל שֶׁרֵיחוֹ רַע אוֹ מַר בְּיוֹתֵר. הֲרֵי אֵלּוּ לַגּוּף כְּמוֹ סַם הַמָּוֶת. וְיֵשׁ מַאֲכָלוֹת שֶׁהֵן רָעִים אֲבָל אֵינָן כְּמוֹ הָרִאשׁוֹנִים לְרֹעַ. לְפִיכָךְ רָאוּי לָאָדָם שֶׁלֹּא לֶאֱכל מֵהֶן אֶלָּא מְעַט וְאַחַר יָמִים הַרְבֵּה. וְלֹא יַרְגִּיל עַצְמוֹ לִהְיוֹת מְזוֹנוֹ מֵהֶם אוֹ לְאָכְלָן עִם מְזוֹנוֹ תָּמִיד. כְּגוֹן דָּגִים גְּדוֹלִים וּגְבִינָה וְחָלָב שֶׁשָּׁהָא אַחַר שֶׁנֶּחְלַב כ&quot;ד שָׁעוֹת. וּבְשַׂר שְׁוָרִים גְּדוֹלִים וּתְיָשִׁים גְּדוֹלִים וְהַפּוֹל וְהָעֲדָשִׁים וְהַסַּפִּיר וְלֶחֶם שְׂעוֹרִים וְלֶחֶם מַצּוֹת וְהַכְּרוּב וְהֶחָצִיר וְהַבְּצָלִים וְהַשּׁוּמִים וְהַחַרְדָּל וְהַצְּנוֹן. כָּל אֵלּוּ מַאֲכָלִים רָעִים הֵם אֵין רָאוּי לָאָדָם לֶאֱכל מֵאֵלּוּ אֶלָּא מְעַט עַד מְאֹד וּבִימוֹת הַגְּשָׁמִים. אֲבָל בִּימוֹת הַחַמָּה לֹא יֹאכַל מֵהֶן כְּלָל. וְהַפּוֹל וְהָעֲדָשִׁים בִּלְבַד אֵין רָאוּי לְאָכְלָן לֹא בִּימוֹת הַחַמָּה וְלֹא בִּימוֹת הַגְּשָׁמִים. וְהַדְּלוּעִין אוֹכְלִין מֵהֶן בִּימוֹת הַחַמָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כגון דגים גדולים.</strong> משמע דדגים קטנים אינן מזיקים כלל והכי איתא בפרק כיצד מברכין הרגיל בדגים קטנים אינו בא לידי חולי מעיים ולא עוד אלא שדגים קטנים מפרים ומרבין ומברין גופו של אדם:<br><strong> גרסינן </strong> בסוף פרק קמא דמועד קטן דכוורא סמוך למסרחיה מעלי וכן למשתי עליה אבוה דהיינו מיא וכתבו בתוס׳ דבזמן הזה תופסים סכנה למיכל סמוך לסרחון וגם למשתי עליה אבוה ושמא נשתנו כמו הרפואות שבתלמוד שאינן טובות בזמן הזה או שמא נהרות דבבל מעלו לו טפי:<br><strong> תו </strong> גרסינן בפרק כיצד מברכין דהרגיל בקצח אינו בא לידי כאב לב וה&quot;מ טעמו אבל ריחו לא אימיה דרבי ירמיה (אפיק) [אפיא] ליה ריפתא ומדבקא ליה ומקלפא ליה פי׳ כדי שלא ירגיל בריח:<br><strong> ומ&quot;ש והפטריות.</strong> איתא בתוספתא דתרומות פטריות אסורין משום סכנת נפשות:</p>
               </div>
             </div>
@@ -459,8 +525,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:16:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-16-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-16">Mishneh Torah, Human Dispositions 4:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דֶּרֶךְ הָרְחִיצָה. שֶׁיִּכָּנֵס אָדָם לַמֶּרְחָץ מִשִּׁבְעָה יָמִים לְשִׁבְעָה יָמִים. וְלֹא יִכָּנֵס סָמוּךְ לַאֲכִילָה. וְלֹא כְּשֶׁהוּא רָעֵב. אֶלָּא כְּשֶׁיַּתְחִיל הַמָּזוֹן לְהִתְעַכֵּל. וְרוֹחֵץ כָּל גּוּפוֹ בְּחַמִּין שֶׁאֵין הַגּוּף נִכְוֶה בָּהֶן. וְרֹאשׁוֹ בִּלְבַד בְּחַמִּין שֶׁהַגּוּף נִכְוֶה בָּהֶן. וְאַחַר כָּךְ יִרְחַץ גּוּפוֹ בְּפוֹשְׁרִין וְאַחַר כָּךְ בְּפוֹשְׁרִין מִן הַפּוֹשְׁרִין עַד שֶׁיִּרְחַץ בְּצוֹנֵן. וְלֹא יַעֲבֹר עַל רֹאשׁוֹ מַיִם לֹא פּוֹשְׁרִין וְלֹא צוֹנֵן. וְלֹא יִרְחַץ בְּצוֹנֵן בִּימוֹת הַגְּשָׁמִים. וְלֹא יִרְחַץ עַד שֶׁיַּזִּיעַ וִיפָרֵךְ כָּל גּוּפוֹ. וְלֹא יַאֲרִיךְ בַּמֶּרְחָץ אֶלָּא כְּשֶׁיַּזִּיעַ וִיפָרֵךְ גּוּפוֹ יִשְׁתַּטֵּף וְיֵצֵא. וּבוֹדֵק עַצְמוֹ קֹדֶם שֶׁיִּכָּנֵס לַמֶּרְחָץ וְאַחַר שֶׁיֵּצֵא שֶׁמָּא יְהֵא צָרִיךְ לִנְקָבָיו. וְכֵן בּוֹדֵק אָדָם עַצְמוֹ תָּמִיד קֹדֶם אֲכִילָה וְאַחַר אֲכִילָה. וְקֹדֶם בְּעִילָה וְאַחַר בְּעִילָה. וְקֹדֶם שֶׁיִּיגַע וְיִתְעַמֵּל וְאַחַר שֶׁיִּיגַע וְיִתְעַמֵּל. וְקֹדֶם שֶׁיִּישַׁן וְאַחַר שֶׁיִּישַׁן. וּבְשִׁעוּר הַכּל עֲשָׂרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקודם שיישן ואחר שיישן.</strong> כן צ&quot;ל. אי נמי וקודם שיישן וכשיעור דהיינו לכשיעור משנתו:</p>
               </div>
             </div>
@@ -475,8 +546,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 4:19:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-4-19-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 4:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-4-19">Mishneh Torah, Human Dispositions 4:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שִׁכְבַת זֶרַע הִיא כֹּחַ הַגּוּף וְחַיָּיו וּמְאוֹר הָעֵינַיִם וְכָל שֶׁתֵּצֵא בְּיוֹתֵר הַגּוּף כָּלֶה וְכֹחוֹ כָּלֶה וְחַיָּיו אוֹבְדִים. הוּא שֶׁאָמַר שְׁלֹמֹה בְּחָכְמָתוֹ <span class="source-small">(משלי לא ג)</span> &quot;אַל תִּתֵּן לַנָּשִׁים חֵילֶךָ&quot;. כָּל הַשָּׁטוּף בִּבְעִילָה זִקְנָה קוֹפֶצֶת עָלָיו. וְכֹחוֹ תָּשֵׁשׁ. וְעֵינָיו כֵּהוֹת. וְרֵיחַ רַע נוֹדֵף מִפִּיו וּמִשֶּׁחְיוֹ. וּשְׂעַר רֹאשׁוֹ וְגַבּוֹת עֵינָיו וְרִיסֵי עֵינָיו נוֹשְׁרוֹת. וּשְׂעַר זְקָנוֹ וְשֶׁחְיוֹ וּשְׂעַר רַגְלָיו רַבֶּה. שִׁנָּיו נוֹפְלוֹת. וְהַרְבֵּה כְּאֵבִים חוּץ מֵאֵלּוּ בָּאִים עָלָיו. אָמְרוּ חַכְמֵי הָרוֹפְאִים אֶחָד מֵאֶלֶף מֵת בִּשְׁאָר חֳלָאִים וְהָאֶלֶף מֵרֹב הַתַּשְׁמִישׁ. לְפִיכָךְ צָרִיךְ אָדָם לְהִזָּהֵר בְּדָבָר זֶה אִם רָצָה לִחְיוֹת בְּטוֹבָה. וְלֹא יִבְעֹל אֶלָּא כְּשֶׁיִּמָּצֵא גּוּפוֹ בָּרִיא וְחָזָק בְּיוֹתֵר וְהוּא מִתְקַשֶּׁה הַרְבֵּה שֶׁלֹּא לְדַעְתּוֹ. וּמַסִּיחַ עַצְמוֹ לְדָבָר אַחֵר וְהַקִּשּׁוּי בּוֹ כְּשֶׁהָיָה. וְיִמָּצֵא כֹּבֶד מִמָּתְנָיו וּלְמַטָּה וּכְאִלּוּ חוּטֵי הַבֵּיצִים נִמְשָׁכִים וּבְשָׂרוֹ חַם. זֶה צָרִיךְ לִבְעל וּרְפוּאָה לוֹ שֶׁיִּבְעל. לֹא יִבְעֹל אָדָם וְהוּא שָׂבֵעַ וְלֹא רָעֵב אֶלָּא אַחַר שֶׁיִּתְעַכֵּל הַמָּזוֹן שֶׁבְּמֵעָיו. וְיִבְדֹק נְקָבָיו קֹדֶם בְּעִילָה וּלְאַחַר בְּעִילָה. וְלֹא יִבְעֹל מְעֻמָּד וְלֹא מְיֻשָּׁב. וְלֹא בְּבֵית הַמֶּרְחָץ וְלֹא בְּיוֹם שֶׁיִּכָּנֵס לַמֶּרְחָץ. וְלֹא בְּיוֹם הַקָּזָה. וְלֹא בְּיוֹם יְצִיאָה לַדֶּרֶךְ אוֹ בִּיאָה מִן הַדֶּרֶךְ לֹא לִפְנֵיהֶם וְלֹא לְאַחֲרֵיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והאלף מרוב התשמיש.</strong> אפשר שרצה לרמוז שאף האחד מאלף שמת בשאר חלאים הוא בצירוף התשמיש דהא והא גרמא ליה:</p>
               </div>
             </div>
@@ -492,8 +568,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 5:11:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-5-11-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-5-11">Mishneh Torah, Human Dispositions 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דֶּרֶךְ בַּעֲלֵי דֵּעָה שֶׁיִּקְבַּע לוֹ אָדָם מְלָאכָה הַמְפַרְנֶסֶת אוֹתוֹ תְּחִלָּה. וְאַחַר כָּךְ יִקְנֶה בֵּית דִּירָה. וְאַחַר כָּךְ יִשָּׂא אִשָּׁה. שֶׁנֶּאֱמַר <span class="source-small">(דברים כ ו)</span> &quot;מִי הָאִישׁ אֲשֶׁר נָטַע כֶּרֶם וְלֹא חִלְּלוֹ&quot;. <span class="source-small">(דברים כ ה)</span> &quot;מִי הָאִישׁ אֲשֶׁר בָּנָה בַיִת חָדָשׁ וְלֹא חֲנָכוֹ&quot;. <span class="source-small">(דברים כ ז)</span> &quot;מִי הָאִישׁ אֲשֶׁר אֵרַשׂ אִשָּׁה וְלֹא לְקָחָהּ&quot;. אֲבָל הַטִּפְּשִׁין מַתְחִילִין לִשָּׂא אִשָּׁה וְאַחַר כָּךְ אִם תִּמְצָא יָדוֹ יִקְנֶה בַּיִת וְאַחַר כָּךְ בְּסוֹף יָמָיו יְחַזֵּר לְבַקֵּשׁ אֻמָּנוּת אוֹ יִתְפַּרְנֵס מִן הַצְּדָקָה. וְכֵן הוּא אוֹמֵר בַּקְּלָלוֹת <span class="source-small">(דברים כח ל)</span> &quot;אִשָּׁה תְאָרֵשׂ&quot; <span class="source-small">(דברים כח ל)</span> &quot;בַּיִת תִּבְנֶה&quot; <span class="source-small">(דברים כח ל)</span> &quot;כֶּרֶם תִּטַּע&quot;. כְּלוֹמַר יִהְיוּ מַעֲשֶׂיךָ הֲפוּכִין כְּדֵי שֶׁלֹּא תַּצְלִיחַ אֶת דְּרָכֶיךָ. וּבַבְּרָכָה הוּא אוֹמֵר <span class="source-small">(שמואל א יח יד)</span> &quot;וַיְהִי דָוִד לְכָל דְּרָכָו מַשְׂכִּיל וַה׳ עִמּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דרך בעלי דעה שיקבע לו אדם מלאכה המפרנסת אותו תחילה וכו׳.</strong> נ&quot;ל שסבור הרב דבית וכרם לא דוקא אלא חדא מינייהו סגי ומ&quot;ש הרב שיקבע לו מלאכה (במדרש רבה בסוף פרשת קדושים משמע דדרך לבנות ואחר כך לנטוע וכן משמע מקרא דמייתי התם לא יבנו והדר לא יטעו עיי&quot;ש) לאו מכרם מפיק ליה אלא מדאמרינן בפ&quot;ק דקידושין שחייב אדם ללמד את בנו אומנות דכתיב ובחרת בחיים זו אומנות ומשו&quot;ה אפכיה לסדרא דקראי לאשמועינן דסדרא ללא צורך ועיקר הלימוד מהכתוב להקדים בית לאשה ולאפוקיה מהטפשים שמתחילין לישא אשה ואחר כך בונים בית:</p>
               </div>
             </div>
@@ -509,8 +590,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 6:3:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-6-3-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-6-3">Mishneh Torah, Human Dispositions 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוָה עַל כָּל אָדָם לֶאֱהֹב אֶת כָּל אֶחָד וְאֶחָד מִיִּשְׂרָאֵל כְּגוּפוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט יח)</span> &quot;וְאָהַבְתָּ לְרֵעֲךָ כָּמוֹךָ&quot;. לְפִיכָךְ צָרִיךְ לְסַפֵּר בְּשִׁבְחוֹ וְלָחוּס עַל מָמוֹנוֹ כַּאֲשֶׁר הוּא חָס עַל מָמוֹן עַצְמוֹ וְרוֹצֶה בִּכְבוֹד עַצְמוֹ. וְהַמִּתְכַּבֵּד בִּקְלוֹן חֲבֵרוֹ אֵין לוֹ חֵלֶק לָעוֹלָם הַבָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמתכבד בקלון חבירו אין לו חלק לעוה&quot;ב.</strong> לקמן בפ&quot;ג מהל׳ תשובה כתבתי איה מקום כבודו של דין זה:</p>
               </div>
             </div>
@@ -525,8 +611,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 6:7:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-6-7-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 6:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-6-7">Mishneh Torah, Human Dispositions 6:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָרוֹאֶה חֲבֵרוֹ שֶׁחָטָא אוֹ שֶׁהָלַךְ בְּדֶרֶךְ לֹא טוֹבָה מִצְוָה לְהַחֲזִירוֹ לַמּוּטָב וּלְהוֹדִיעוֹ שֶׁהוּא חוֹטֵא עַל עַצְמוֹ בְּמַעֲשָׂיו הָרָעִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט יז)</span> &quot;הוֹכֵחַ תּוֹכִיחַ אֶת עֲמִיתֶךָ&quot;. הַמּוֹכִיחַ אֶת חֲבֵרוֹ. בֵּין בִּדְבָרִים שֶׁבֵּינוֹ לְבֵינוֹ. בֵּין בִּדְבָרִים שֶׁבֵּינוֹ לְבֵין הַמָּקוֹם. צָרִיךְ לְהוֹכִיחוֹ בֵּינוֹ לְבֵין עַצְמוֹ. וִידַבֵּר לוֹ בְּנַחַת וּבְלָשׁוֹן רַכָּה וְיוֹדִיעוֹ שֶׁאֵינוֹ אוֹמֵר לוֹ אֶלָּא לְטוֹבָתוֹ לַהֲבִיאוֹ לְחַיֵּי הָעוֹלָם הַבָּא. אִם קִבֵּל מִמֶּנּוּ מוּטָב וְאִם לָאו יוֹכִיחֶנּוּ פַּעַם שְׁנִיָּה וּשְׁלִישִׁית. וְכֵן תָּמִיד חַיָּב אָדָם לְהוֹכִיחוֹ עַד שֶׁיַּכֵּהוּ הַחוֹטֵא וְיֹאמַר לוֹ אֵינִי שׁוֹמֵעַ. וְכָל שֶׁאֶפְשָׁר בְּיָדוֹ לִמְחוֹת וְאֵינוֹ מוֹחֶה הוּא נִתְפָּשׂ בַּעֲוֹן אֵלּוּ כֵּיוָן שֶׁאֶפְשָׁר לוֹ לִמְחוֹת בָּהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרואה חבירו שחטא או שהלך בדרך לא טובה וכו׳.</strong> בר&quot;פ אין עומדין גרסינן ויאמר אליה עלי עד מתי תשתכרין אמר ר׳ אלעזר מכאן לרואה בחבירו דבר שאינו הגון צריך להוכיחו וכתבו התוס׳ פירוש אע&quot;ג דליכא איסורא דאורייתא דאי איכא איסורא דאורייתא פשיטא הוכח תוכיח כתיב וגרסינן נמי בסוף פ&quot;ג דערכין מנין לרואה בחבירו דבר מגונה שחייב להוכיח שנאמר הוכח תוכיח וז&quot;ש הרב או שהלך בדרך לא טובה ודוק:</p>
               </div>
             </div>
@@ -542,8 +633,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Peri Chadash on Mishneh Torah, Human Dispositions 7:5:1</h4></div>
               <a class="anchor" href="#peri-chadash-on-mishneh-torah-human-dispositions-7-5-1" aria-label="Copy link to Peri Chadash on Mishneh Torah, Human Dispositions 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-human-dispositions/#mishneh-torah-human-dispositions-7-5">Mishneh Torah, Human Dispositions 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַמְסַפֵּר בְּלָשׁוֹן הָרַע בִּפְנֵי חֲבֵרוֹ אוֹ שֶׁלֹּא בְּפָנָיו, וְהַמְסַפֵּר דְּבָרִים שֶׁגּוֹרְמִים אִם נִשְׁמְעוּ אִישׁ מִפִּי אִישׁ לְהַזִּיק חֲבֵרוֹ בְּגוּפוֹ אוֹ בְּמָמוֹנוֹ, וַאֲפִלּוּ לְהָצֵר לוֹ אוֹ לְהַפְחִידוֹ, הֲרֵי זֶה לָשׁוֹן הָרַע. וְאִם נֶאֶמְרוּ דְּבָרִים אֵלּוּ בִּפְנֵי שְׁלֹשָׁה כְּבָר נִשְׁמַע הַדָּבָר וְנוֹדַע. וְאִם סִפֵּר הַדָּבָר אֶחָד מִן הַשְּׁלֹשָׁה פַּעַם אַחֶרֶת אֵין בּוֹ מִשּׁוּם לָשׁוֹן הָרַע. וְהוּא שֶׁלֹּא יִתְכַּוֵּן לְהַעֲבִיר הַקּוֹל וּלְגַלּוֹתוֹ יוֹתֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד המספר בלשון הרע בפני חבירו או שלא בפניו.</strong> תמה הכ&quot;מ למה כתב דלא כרבא. ויש ליישב עם מ&quot;ש התוספות שם דפלוגתא דאביי ורבא היא כגון בכה&quot;ג דנורא בי פלוני דאיכא למישמע דלא אמרה משום לישנא בישא אבל אם אמר דבר קינטור על חבירו אף אם אומרה בפניו לכו&quot;ע אית ביה משום לישנא בישא ולשון הרע המוזכר בדברי הרב הוא דבר קנטור ומשו&quot;ה פסק דאפילו בפניו הוי קנטור. ומיהו קשה למה השמיט פלוגתא דאביי ורבא ודוק. ומצאתי בתורת כהנים ומייתי ליה הר&quot;ש פרק י&quot;ב ממס׳ נגעים מתני׳ ה׳ דקאמר ומה מרים שלא דברה בגנותו של משה בפניו של משה כך נענשה על אחת כמה וכמה המדבר בגנותו של חבירו בפניו והך ברייתא מסייע ליה לאביי ומשו&quot;ה פסק כמותו:</p>
               </div>
             </div>
@@ -553,6 +649,10 @@
               <a href="#chapter-peri-chadash-on-mishneh-torah-human-dispositions-text-7">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/peri-chadash-on-mishneh-torah-human-dispositions.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/peri-chadash-on-mishneh-torah-human-dispositions-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -573,8 +673,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/peri-chadash-on-mishneh-torah-human-dispositions.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/peri-chadash-on-mishneh-torah-human-dispositions.manifest.json","occurrence_url":"../../data/lexical/occurrences/peri-chadash-on-mishneh-torah-human-dispositions.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/peri-chadash-on-mishneh-torah-human-dispositions.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/peri-chadash-on-mishneh-torah-human-dispositions.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/peri-chadash-on-mishneh-torah-human-dispositions.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -600,7 +700,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

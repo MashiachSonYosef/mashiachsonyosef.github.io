@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-foundations-of-the-torah/">Open Mishneh Torah, Foundations of the Torah</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Foundations of the Torah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>420 matched</strong> / 755 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -232,8 +233,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-1-1">Mishneh Torah, Foundations of the Torah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יְסוֹד הַיְסוֹדוֹת וְעַמּוּד הַחָכְמוֹת לֵידַע שֶׁיֵּשׁ שָׁם מָצוּי רִאשׁוֹן. וְהוּא מַמְצִיא כָּל נִמְצָא. וְכָל הַנִּמְצָאִים מִשָּׁמַיִם וָאָרֶץ וּמַה שֶּׁבֵּינֵיהֶם לֹא נִמְצְאוּ אֶלָּא מֵאֲמִתַּת הִמָּצְאוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה א </strong> היא הציווי אשר צוונו בהאמנת האלהות והוא שנאמין שיש שם עלה וסבה הוא פועל לכל הנמצאים והשמים והארץ וכל מה שביניהם לא נמצאו אלא מאמתת הנמצאות וידיעת דבר זה מצות עשה שנאמר אנכי ה׳ אלהיך:<br><strong> אזהרה א </strong> היא שהזהירנו מהאמין לאל אחר זולתו וכל המעלה על דעתו שיש שום אלוה אחר חוץ מזה עובר בלא תעשה שנאמר לא יהיה לך אלהים אחרים על פני וכופר בעיקר שזהו העיקר הגדול שהכל תלוי בו אלוה זה א׳ הוא וכו׳:</p>
               </div>
             </div>
@@ -248,8 +254,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 1:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-1-7">Mishneh Torah, Foundations of the Torah 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֱלוֹהַּ זֶה אֶחָד הוּא וְאֵינוֹ שְׁנַיִם וְלֹא יֶתֶר עַל שְׁנַיִם. אֶלָּא אֶחָד. שֶׁאֵין כְּיִחוּדוֹ אֶחָד מִן הָאֲחָדִים הַנִּמְצָאִים בָּעוֹלָם. לֹא אֶחָד כְּמִין שֶׁהוּא כּוֹלֵל אֲחָדִים הַרְבֵּה. וְלֹא אֶחָד כְּגוּף שֶׁהוּא נֶחְלָק לְמַחְלָקוֹת וְלִקְצָווֹת. אֶלָּא יִחוּד שֶׁאֵין יִחוּד אַחֵר כְּמוֹתוֹ בָּעוֹלָם. אִלּוּ הָיוּ אֱלֹהוּת הַרְבֵּה הָיוּ גּוּפִין וּגְוִיּוֹת. מִפְּנֵי שֶׁאֵין הַנִּמְנִים הַשָּׁוִין בִּמְצִיאוּתָן נִפְרָדִין זֶה מִזֶּה אֶלָּא בִּמְאֹרָעִין שֶׁיֶּאֶרְעוּ בַּגּוּפוֹת וְהַגְּוִיּוֹת. וְאִלּוּ הָיָה הַיּוֹצֵר גּוּף וּגְוִיָּה הָיָה לוֹ קֵץ וְתַכְלִית שֶׁאִי אֶפְשָׁר לִהְיוֹת גּוּף שֶׁאֵין לוֹ קֵץ. וְכָל שֶׁיֵּשׁ לְגוּפוֹ קֵץ וְתַכְלִית יֵשׁ לְכֹחוֹ קֵץ וָסוֹף. וֵאלֹהֵינוּ בָּרוּךְ שְׁמוֹ הוֹאִיל וְכֹחוֹ אֵין לוֹ קֵץ וְאֵינוֹ פּוֹסֵק שֶׁהֲרֵי הַגַּלְגַּל סוֹבֵב תָּמִיד. אֵין כֹּחוֹ כֹּחַ גּוּף. וְהוֹאִיל וְאֵינוֹ גּוּף לֹא יֶאֶרְעוּ לוֹ מְאֹרְעוֹת הַגּוּפוֹת כְּדֵי שֶׁיְּהֵא נֶחְלָק וְנִפְרָד מֵאַחֵר. לְפִיכָךְ אִי אֶפְשָׁר שֶׁיִּהְיֶה אֶלָּא אֶחָד. וִידִיעַת דָּבָר זֶה מִצְוַת עֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ד)</span> &quot;ה׳ אֱלֹהֵינוּ ה׳ אֶחָד&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה ב </strong> היא הציווי שצונו בהאמנת היחוד והוא שנאמין שפועל המציאות וסבתו הא׳ הוא א׳ ואינו לא שנים ולא יותר על שנים אלא א׳ שאין כיחודו וכו׳ וידיעת דבר זה מצות עשה שנאמר שמע ישראל ה׳ אלהינו ה׳ אחד:</p>
               </div>
             </div>
@@ -265,8 +276,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-2-1">Mishneh Torah, Foundations of the Torah 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאֵל הַנִּכְבָּד וְהַנּוֹרָא הַזֶּה מִצְוָה לְאָהֳבוֹ וּלְיִרְאָה אוֹתוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ה)</span> &quot;וְאָהַבְתָּ אֵת ה׳ אֱלֹהֶיךָ&quot;. וְנֶאֱמַר <span class="source-small">(דברים ו יג)</span> &quot;אֶת ה׳ אֱלֹהֶיךָ תִּירָא&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה ג </strong> היא שנצטוינו באהבתו יתברך וזה כשנחשוב ונתכוון במצותיו ומאמריו ופעולותיו עד שנשיגהו ונהנה בהשגתו בתכלית ההנאה וזאת היא ההנאה המחוייבת ולשון ספרי לפי שנאמר ואהבת את ה׳ אלהיך איני יודע כיצד אוהב אדם את המקום ת&quot;ל והיו הדברים האלה אשר אנכי מצוך היום על לבבך ומתוך כך אנכי מכיר את מי שאמר והיה העולם הנה שבהתבוננת תעלה ההשגה ותגיע ההנאה ותבא האהבה בהכרח וכבר בארו שזאת המצוה כוללת שנהיה קוראים לבני אדם לעבודתו יתעלה ולהאמין בו וזה כי כשתאהב איש אחיו תספר בשבחיו ותקרא בני אדם לאהוב אותו על דרך משל כן כשנאהב אותו יתעלה כאשר הגיע לנו מהשגת אמתתו אנו קוראים בלי ספק הסכליים והפתיים לידיעת האמת אשר ידענו ולשון ספרי ואהבת אהוב אותו על הבריות כאברהם אביך דכתיב ואת הנפש אשר עשו בחרן וזה מפני שהיה אוהב כמו שאמר הכתוב אברהם אוהבי:<br><strong> מצוה ד </strong> היא שצונו להאמין יראתו ולהפחד ממנו ולא נהיה ככופרים ההולכים בשרירות לבם ובקרי אבל נירא ביראת ענשו בכל עת וזהו את ה׳ אלהיך תירא ומזה המקרא דורש במסכת תמורה פ&quot;ק אזהרה למוציא שם שמים לבטלה ובענין מצוה זו אמרו בירושלמי עשה מאהבה שאם באת לשכוח אין האוהב שוכח עשה מיראה שאם באת לבעוט אל תבעוט ובפרק חלק מונה בכלל אותם שאין להם חלק לעולם הבא ההוגה את השם באותיותיו בגבולין ובלשון עגה וזה נכלל במצות יראת ה׳ והלוחש אי זה פסוק על המכה ורוקק בתחלה אין לו חלק לעוה&quot;ב שאין מזכירין שם שמים על הרקיקה ובלשון הקודש וזה גם כן נכלל במצות יראת ה׳ ועל כל דבר המסור ללב נאמר ויראת מאלהיך:</p>
               </div>
             </div>
@@ -282,8 +298,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-1">Mishneh Torah, Foundations of the Torah 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל בֵּית יִשְׂרָאֵל מְצֻוִּין עַל קִדּוּשׁ הַשֵּׁם הַגָּדוֹל הַזֶּה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב לב)</span> &quot;וְנִקְדַּשְׁתִּי בְּתוֹךְ בְּנֵי יִשְׂרָאֵל&quot;. וּמֻזְהָרִין שֶׁלֹּא לְחַלְּלוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב לב)</span> &quot;וְלֹא תְחַלְּלוּ אֶת שֵׁם קָדְשִׁי&quot;. כֵּיצַד. כְּשֶׁיַּעֲמֹד עוֹבֵד כּוֹכָבִים וְיֶאֱנֹס אֶת יִשְׂרָאֵל לַעֲבֹר עַל אַחַת מִכָּל מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה אוֹ יַהַרְגֶּנּוּ יַעֲבֹר וְאַל יֵהָרֵג שֶׁנֶּאֱמַר בַּמִּצְוֹת <span class="source-small">(ויקרא יח ה)</span> &quot;אֲשֶׁר יַעֲשֶׂה אוֹתָם הָאָדָם וָחַי בָּהֶם&quot;. וָחַי בָּהֶם וְלֹא שֶׁיָּמוּת בָּהֶם. וְאִם מֵת וְלֹא עָבַר הֲרֵי זֶה מִתְחַיֵּב בְּנַפְשׁוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה ה </strong> היא שצונו לקדש שמו והוא אמרו ונקדשתי בתוך בני ישראל וענינה שאנחנו מצווים לפרסם האמונה האמיתית בעולם ולא נפחד מהזק שום מזיק ואף על פי שבא עלינו שום מכריח לבקש ממנו לכפור בו לא נשמע אליו אבל נמסור עצמינו למיתה ולא נתעהו לחשוב שכפרנו אף על פי שלבותינו מאמינים בו יתעלה. ופירשו כי זהו בג׳ עבירות ע&quot;ז גילוי עריות שפיכות דמים ואפילו בצנעא ובאונס ואפילו שלא בשעת השמד. ובשעת השמד אפילו על אי זו מצוה יהרג ואל יעבור בין נאנס בתוך עשרה מישראל שהוא פרהסיא בין שנאנס בינו לבין הגוים. ואפי׳ שלא בשעת השמד אם מכוין להעבירו על דת בתוך י׳ מישראל יהרג ואל יעבור אפילו על איזו מצוה וע&quot;ז נלמד מפסוק ואהבת את ה׳ אלהיך בכל לבבך ובכל נפשך ובכל מאדך כר׳ אליעזר דמשמע שלא תמירנו בע&quot;ז וגילוי עריות נלמד מרוצח בהיקשא דכי כאשר יקום איש על רעהו ורצחו וכו׳ ורוצח גופיה מסברא על אזהרת הרציחה. ואלו הג׳ עבירות על אביזריהו נמי יהרג ואל יעבור ואפילו להנאת עצמן נמי יהרג ואל יעבור מדאמר ימות ואל תעמוד לפניו ערומה דלא הוה כוונה להעביר כי אם להנאת עצמו ואפילו הכי ימות וכל זה מדאורייתא נכלל בבכל לבבך ובכל נפשך בענין ע&quot;ז ובעריות נלמד מרוצח ורוצח גופיה סברא כמפורש לעיל. כל הנאמר בו יעבור ואל יהרג ונהרג ולא עבר מתחייב בנפשו. וכמו שהוא מצווה לשמור המצות כשאין סכנה כדכתיב ושמרתם את כל מצותי וכו׳ וחי בהם כך הוא מצווה שלא לשמור כשהוא מסתכן דמכלל הן אתה שומע לאו. וכל הנאמר בו יהרג ואל יעבור ונהרג ולא עבר קדש את ה׳ ואם הי׳ בין י׳ מישראל קדש את ה׳ ברבים כדניאל חנניה מישאל ועזריה וכרבי עקיבא וחביריו ועליהם נאמר אספו לי חסידי כורתי בריתי עלי זבח:<br><strong> אזהרה ב </strong> שלא לחלל את ה׳ והוא אמרו ולא תחללו את שם קדשי והוא כל מי שבקשו ממנו לעבור על דבר ממצות ה׳ בשעת השמד והיה מכוין האונס להעבירו על דת או מי שיבוקש ממנו שיעבור על א׳ מג׳ העברות האמורות אפילו שלא בשעת השמד כמפורש במצות עשה הנה הוא חייב להתיר נפשו ויהרג ואל יעבור ואם עבר ולא נהרג חלל את ה׳ ועבר על לאו זה ואם היה בתוך י׳ מישראל חלל את ה׳ ברבים וחטאו גדול מאד ואינו לוקה מפני שהוא אנוס ואמרו בספרא באיש ההוא לא אנוס ולא מוטעה ולא שוגג אפילו במולך שהוא ע&quot;ז כ&quot;ש בעברות אחרות. גוים שאמרו תנו לנו אשת פלוני ונטמא אותה ואם לאו נטמא כולן או איש פלו׳ ונהרגהו ואם לאו נהרוג כולכם יטמאו ויהרגו כולם ואל ימסרו נפש א׳ מישראל ואם היה חייב מיתה כשבע בן בכרי יתנו אותו להם וגם זה בכלל אזהרת רוצח. מי שחלה ונטה למות מתרפא בכל איסורין שבתורה חוץ מאלו הג׳ ע&quot;ז גילוי עריות ש&quot;ד. ואפילו כשאין סכנה מתרפאין בכל האיסורין שלא כדרך הנאתן חוץ מכלאי הכרם ובשר בחלב שאין מתרפאין מהן אפילו שלא כדרך הנאתן כי אם במקום סכנה וכל זה נלמד מפסוק וחי בהם אני ה׳. וכל העובר מדעתו בלא אונס על אחת מכל מצות האמורות בתורה בשאט בנפש להכעיס הרי זה מחלל את ה׳ ולפיכך נאמר בשבועת שקר וחללת את שם אלהיך אני ה׳ ואם עבר בפני עשרה מישראל חלל את ה׳ ברבים. וכן אדם שהוא מוחזק בכשרות וביראת חטא ויוצא מתחת ידו דבר שאינו מתוקן הרי זה חלל את ה׳ ולזה נכפל זה הצווי ואמר לא תחלל את שם וכו׳:</p>
               </div>
             </div>
@@ -299,8 +320,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-1">Mishneh Torah, Foundations of the Torah 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמְאַבֵּד שֵׁם מִן הַשֵּׁמוֹת הַקְּדוֹשִׁים הַטְּהוֹרִים שֶׁנִּקְרָא בָּהֶם הַקָּדוֹשׁ בָּרוּךְ הוּא לוֹקֶה מִן הַתּוֹרָה. שֶׁהֲרֵי הוּא אוֹמֵר בַּעֲבוֹדַת כּוֹכָבִים <span class="source-small">(גמרא שבת קכ ב)</span> &quot;וְאִבַּדְתֶּם אֶת שְׁמָם מִן הַמָּקוֹם הַהוּא לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרה ג </strong> הזהירנו מנתוץ ומאבד בתי עבודת האל ית׳ ומאבד ולמחוק שמות הנכבדים ולשון אזהרה זו הוא אמרו לא תעשון כן לה׳ אלהיכם אחר אמרו וצוויו באבוד ע&quot;ז ומיחוי שמה והריסת בתיה מזבחותיה כלם באה על זה:<br><strong> אזהרת </strong> לא תעשון כן לה׳ אלהיכם והסותת אפילו אבן א׳ מן המזבח או מן ההיכל או מן העזרה דרך השחתה לוקה דכתיב כי את מזבחותיהם תתוצון וכתיב לא תעשון כן לה׳ וכו׳ וכן שורף עצי הקדש דרך השחתה דכתיב ואשריהם וכתיב לא תעשון כן. ומוחק שם משבעת השמות או אפילו אות אחת מהם לוקה והם שם המפורש בן ד׳ וא&quot;ד ואלוה אלהים ואהיה שדי צבאות ושם י&quot;ה ואל במקום שהם שם בפני עצמם לוקה עליהם אבל כתב יה מה׳ ואל מאלהים ולא גמר את ה׳ נראה דאין איסור מחיקתו מדאורייתא כיון שאינו שם בפני עצמו במקום ההוא ואם התיך כלי שהיה כתוב שם מהשמות האלו לוקה ואיסור מחיקת אלו השמות בכל כ&quot;ד ספרי הקדש כשהם קדש אבל אם הם חול כאותם שפרשו חכמים ז&quot;ל מותר למוחקן ודיני מצוה זו בשבועות פ׳ שבועת העדות ובמס׳ סופרים פרק ד׳ ובספרי ויש בזו המצוה איסורים אחרים מדרבנן:</p>
               </div>
             </div>
@@ -316,8 +342,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 7:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-7-7">Mishneh Torah, Foundations of the Torah 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנָּבִיא אֶפְשָׁר שֶׁתִּהְיֶה נְבוּאָתוֹ לְעַצְמוֹ בִּלְבַד לְהַרְחִיב לִבּוֹ וּלְהוֹסִיף דַּעְתּוֹ עַד שֶׁיֵּדַע מַה שֶּׁלֹּא הָיָה יוֹדֵעַ מֵאוֹתָן הַדְּבָרִים הַגְּדוֹלִים. וְאֶפְשָׁר שֶׁיְּשֻׁלַּח לְעַם מֵעַמֵּי הָאָרֶץ אוֹ לְאַנְשֵׁי עִיר אוֹ מַמְלָכָה לְכוֹנֵן אוֹתָם וּלְהוֹדִיעָם מַה יַּעֲשׂוּ אוֹ לְמָנְעָם מִמַּעֲשִׂים הָרָעִים שֶׁבִּידֵיהֶם. וּכְשֶׁמְּשַׁלְּחִים אוֹתוֹ נוֹתְנִין לוֹ אוֹת וּמוֹפֵת כְּדֵי שֶׁיֵּדְעוּ הָעָם שֶׁהָאֵל שְׁלָחוֹ בֶּאֱמֶת. וְלֹא כָּל הָעוֹשֶׂה אוֹת וּמוֹפֵת מַאֲמִינִים לוֹ שֶׁהוּא נָבִיא. אֶלָּא אָדָם שֶׁהָיִינוּ יוֹדְעִים בּוֹ מִתְּחִלָּתוֹ שֶׁהוּא רָאוּי לִנְבוּאָה בְּחָכְמָתוֹ וּבְמַעֲשָׂיו שֶׁנִּתְעַלָּה בָּהֶן עַל כָּל בְּנֵי גִּילוֹ וְהָיָה מְהַלֵּךְ בְּדַרְכֵי הַנְּבוּאָה בִּקְדֻשָּׁתָהּ וּבִפְרִישׁוּתָהּ וְאַחַר כָּךְ בָּא וְעָשָׂה אוֹת וּמוֹפֵת וְאָמַר שֶׁהָאֵל שְׁלָחוֹ מִצְוָה לִשְׁמֹעַ מִמֶּנּוּ שֶׁנֶּאֱמַר <span class="source-small">(דברים יח טו)</span> &quot;אֵלָיו תִּשְׁמָעוּן&quot;. וְאֶפְשָׁר שֶׁיַּעֲשֶׂה אוֹת וּמוֹפֵת וְאֵינוֹ נָבִיא. וְזֶה הָאוֹת יֵשׁ לוֹ דְּבָרִים בְּגוֹ. וְאַף עַל פִּי כֵן מִצְוָה לִשְׁמוֹעַ לוֹ הוֹאִיל וְאָדָם גָּדוֹל וְחָכָם וְרָאוּי לִנְבוּאָה [הוּא] מַעֲמִידִים אוֹתוֹ עַל חֶזְקָתוֹ. שֶׁבְּכָךְ נִצְטַוֵּינוּ כְּמוֹ שֶׁנִּצְטַוֵּינוּ לַחְתֹּךְ אֶת הַדִּין עַל פִּי שְׁנֵי עֵדִים כְּשֵׁרִים וְאַף עַל פִּי שֶׁאֶפְשָׁר שֶׁהֵעִידוּ בְּשֶׁקֶר הוֹאִיל וּכְשֵׁרִים הֵם אֶצְלֵנוּ מַעֲמִידִין אוֹתָן עַל כַּשְׁרוּתָן. וּבַדְּבָרִים הָאֵלּוּ וְכַיּוֹצֵא בָּהֶן נֶאֱמַר <span class="source-small">(דברים כט כח)</span> &quot;הַנִּסְתָּרֹת לַה׳ אֱלֹהֵינוּ וְהַנִּגְלֹת לָנוּ וּלְבָנֵינוּ&quot;. וְנֶאֱמַר <span class="source-small">(שמואל א טז ז)</span> &quot;כִּי הָאָדָם יִרְאֶה לַעֵינַיִם וַה׳ יִרְאֶה לַלֵּבָב&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה ו </strong> לשמוע מכל נביא שיהיה בכל דור לעשות כל מה שיצונו ואפילו בהפך מצוה או כלל מצוה לפי שעה כשהוא מוחזק שהיה איש תמים בדרכיו וחכם וגלה עתידות ולא נפל אפילו דבר קטן ארצה והכתוב שבא עליו הציווי הזה הוא נביא מקרבך מאחיך וכו׳ אליו תשמעון ובסוף הנחנקין שנינו הכובש נבואתו והעובר על דברי נבואתו והמוותר בדברי נביא שהוא מוחזק או אפילו אינו מוחזק ונתן לו אות מיתתן ביד שמים דכתיב והאיש אשר לא ישמע קרי ביה והאיש אשר לא ישמע היינו מוותר איש אשר לא ישמע היינו כובש לא ישמע שהוא עצמו אינו נשמע היינו עובר על דברי נבואתו וכתיב אנכי אדרוש מעמו נראה דמיתתן בידי שמים. ואפילו בנביא מוחזק ועשה אותות ומופתים אם צוה בע&quot;ז אפילו לפי שעה אין שומעין לו ועל זה צוה הכתוב ואמר ובא האות והמופת לא תשמע אל דברי הנביא ההוא כי דבר סרה ונדע כי כל מה שעשה בלאט וכשוף היה:</p>
               </div>
             </div>
@@ -333,8 +364,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 9:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-9-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 9:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-3">Mishneh Torah, Foundations of the Torah 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן נָבִיא שֶׁעָבַר עַל דִּבְרֵי עַצְמוֹ וְהַכּוֹבֵשׁ נְבוּאָתוֹ חַיָּב מִיתָה בִּידֵי שָׁמַיִם וּבִשְׁלָשְׁתָּן נֶאֱמַר <span class="source-small">(דברים יח יט)</span> &quot;אָנֹכִי אֶדְרשׁ מֵעִמּוֹ&quot;. וְכֵן אִם יֹאמַר לָנוּ הַנָּבִיא שֶׁנּוֹדַע לָנוּ שֶׁהוּא נָבִיא לַעֲבֹר עַל אַחַת מִכָּל מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה אוֹ עַל מִצְוֹת הַרְבֵּה בֵּין קַלּוֹת בֵּין חֲמוּרוֹת לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לוֹ. וְכֵן לָמַדְנוּ מֵחֲכָמִים רִאשׁוֹנִים מִפִּי הַשְּׁמוּעָה בְּכָל אִם יֹאמַר לְךָ הַנָּבִיא עֲבֹר עַל דִּבְרֵי תּוֹרָה כְּאֵלִיָּהוּ בְּהַר הַכַּרְמֶל שְׁמַע לוֹ חוּץ מֵעֲבוֹדַת כּוֹכָבִים. וְהוּא שֶׁיִּהְיֶה הַדָּבָר לְפִי שָׁעָה. כְּגוֹן אֵלִיָּהוּ בְּהַר הַכַּרְמֶל שֶׁהִקְרִיב עוֹלָה בַּחוּץ וִירוּשָׁלַיִם נִבְחֶרֶת לְכָךְ וְהַמַּקְרִיב בַּחוּץ חַיָּב כָּרֵת. וּמִפְּנֵי שֶׁהוּא נָבִיא מִצְוָה לִשְׁמֹעַ לוֹ וְגַם בָּזֶה נֶאֱמַר <span class="source-small">(דברים יח טו)</span> &quot;אֵלָיו תִּשְׁמָעוּן&quot;. וְאִלּוּ שָׁאֲלוּ אֶת אֵלִיָּהוּ וְאָמְרוּ לוֹ הֵיאַךְ נַעֲקֹר מַה שֶּׁכָּתוּב בַּתּוֹרָה <span class="source-small">(דברים יב יג)</span> &quot;פֶּן תַּעֲלֶה עלֹתֶיךָ בְּכָל מָקוֹם&quot;. הָיָה אוֹמֵר לֹא נֶאֱמַר אֶלָּא הַמַּקְרִיב בַּחוּץ לְעוֹלָם חַיָּב כָּרֵת כְּמוֹ שֶׁצִּוָּה משֶׁה. אֲבָל אֲנִי אַקְרִיב הַיּוֹם בַּחוּץ בִּדְבַר ה׳ כְּדֵי לְהַכְחִישׁ נְבִיאֵי הַבַּעַל. וְעַל הַדֶּרֶךְ הַזֹּאת אִם צִוּוּ כָּל הַנְּבִיאִים לַעֲבֹר לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לָהֶם. וְאִם אָמְרוּ שֶׁהַדָּבָר נֶעֱקַר לְעוֹלָם מִיתָתוֹ בְּחֶנֶק שֶׁהַתּוֹרָה אָמְרָה <span class="source-small">(דברים כט כח)</span> &quot;לָנוּ וּלְבָנֵינוּ עַד עוֹלָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה ו </strong> לשמוע מכל נביא שיהיה בכל דור לעשות כל מה שיצונו ואפילו בהפך מצוה או כלל מצוה לפי שעה כשהוא מוחזק שהיה איש תמים בדרכיו וחכם וגלה עתידות ולא נפל אפילו דבר קטן ארצה והכתוב שבא עליו הציווי הזה הוא נביא מקרבך מאחיך וכו׳ אליו תשמעון ובסוף הנחנקין שנינו הכובש נבואתו והעובר על דברי נבואתו והמוותר בדברי נביא שהוא מוחזק או אפילו אינו מוחזק ונתן לו אות מיתתן ביד שמים דכתיב והאיש אשר לא ישמע קרי ביה והאיש אשר לא ישמע היינו מוותר איש אשר לא ישמע היינו כובש לא ישמע שהוא עצמו אינו נשמע היינו עובר על דברי נבואתו וכתיב אנכי אדרוש מעמו נראה דמיתתן בידי שמים. ואפילו בנביא מוחזק ועשה אותות ומופתים אם צוה בע&quot;ז אפילו לפי שעה אין שומעין לו ועל זה צוה הכתוב ואמר ובא האות והמופת לא תשמע אל דברי הנביא ההוא כי דבר סרה ונדע כי כל מה שעשה בלאט וכשוף היה:</p>
               </div>
             </div>
@@ -350,8 +386,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 10:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-10-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-10-1">Mishneh Torah, Foundations of the Torah 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל נָבִיא שֶׁיַּעֲמֹד לָנוּ וְיֹאמַר שֶׁה׳ שְׁלָחוֹ אֵינוֹ צָרִיךְ לַעֲשׂוֹת אוֹת כְּאֶחָד מֵאוֹתוֹת משֶׁה רַבֵּנוּ אוֹ כְּאוֹתוֹת אֵלִיָּהוּ וֶאֱלִישָׁע שֶׁיֵּשׁ בָּהֶם שִׁנּוּי מִנְהָגוֹ שֶׁל עוֹלָם. אֶלָּא הָאוֹת שֶׁלּוֹ שֶׁיֹּאמַר דְּבָרִים הָעֲתִידִים לִהְיוֹת בָּעוֹלָם וְיֵאָמְנוּ דְּבָרָיו שֶׁנֶּאֱמַר <span class="source-small">(דברים יח כא)</span> &quot;וְכִי תֹאמַר בִּלְבָבֶךָ אֵיכָה נֵדַע אֶת הַדָּבָר&quot; וְגוֹ׳. לְפִיכָךְ כְּשֶׁיָּבוֹא אָדָם הָרָאוּי לִנְבוּאָה בְּמַלְאֲכוֹת הַשֵּׁם וְלֹא יָבוֹא לְהוֹסִיף וְלֹא לִגְרֹעַ אֶלָּא לַעֲבֹד אֶת ה׳ בְּמִצְוֹת הַתּוֹרָה אֵין אוֹמְרִין לוֹ קְרַע לָנוּ הַיָּם אוֹ הַחֲיֵה מֵת וְכַיּוֹצֵא בְּאֵלּוּ וְאַחַר כָּךְ נַאֲמִין בְּךָ. אֶלָּא אוֹמְרִים לוֹ אִם נָבִיא אַתָּה אֱמֹר דְּבָרִים הָעֲתִידִים לִהְיוֹת וְהוּא אוֹמֵר וְאָנוּ מְחַכִּים לִרְאוֹת הֲיָבוֹאוּ דְּבָרָיו אִם לֹא יָבוֹאוּ. וַאֲפִלּוּ נָפַל דָּבָר קָטָן בְּיָדוּעַ שֶׁהוּא נְבִיא שֶׁקֶר. וְאִם בָּאוּ דְּבָרָיו כֻּלָּן יִהְיֶה בְּעֵינֵינוּ נֶאֱמָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה ו </strong> לשמוע מכל נביא שיהיה בכל דור לעשות כל מה שיצונו ואפילו בהפך מצוה או כלל מצוה לפי שעה כשהוא מוחזק שהיה איש תמים בדרכיו וחכם וגלה עתידות ולא נפל אפילו דבר קטן ארצה והכתוב שבא עליו הציווי הזה הוא נביא מקרבך מאחיך וכו׳ אליו תשמעון ובסוף הנחנקין שנינו הכובש נבואתו והעובר על דברי נבואתו והמוותר בדברי נביא שהוא מוחזק או אפילו אינו מוחזק ונתן לו אות מיתתן ביד שמים דכתיב והאיש אשר לא ישמע קרי ביה והאיש אשר לא ישמע היינו מוותר איש אשר לא ישמע היינו כובש לא ישמע שהוא עצמו אינו נשמע היינו עובר על דברי נבואתו וכתיב אנכי אדרוש מעמו נראה דמיתתן בידי שמים. ואפילו בנביא מוחזק ועשה אותות ומופתים אם צוה בע&quot;ז אפילו לפי שעה אין שומעין לו ועל זה צוה הכתוב ואמר ובא האות והמופת לא תשמע אל דברי הנביא ההוא כי דבר סרה ונדע כי כל מה שעשה בלאט וכשוף היה:</p>
               </div>
             </div>
@@ -366,8 +407,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Foundations of the Torah 10:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-10-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Foundations of the Torah 10:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-10-5">Mishneh Torah, Foundations of the Torah 10:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָבִיא שֶׁהֵעִיד לוֹ נָבִיא אַחֵר שֶׁהוּא נָבִיא הֲרֵי הוּא בְּחֶזְקַת נָבִיא וְאֵין זֶה הַשֵּׁנִי צָרִיךְ חֲקִירָה. שֶׁהֲרֵי משֶׁה רַבֵּנוּ הֵעִיד לִיהוֹשֻׁעַ וְהֶאֱמִינוּ בּוֹ כָּל יִשְׂרָאֵל קֹדֶם שֶׁיַּעֲשֶׂה אוֹת. וְכֵן לְדוֹרוֹת. נָבִיא שֶׁנּוֹדְעָה נְבוּאָתוֹ וְהֶאֱמִינוּ בִּדְבָרָיו פַּעַם אַחַר פַּעַם אוֹ שֶׁהֵעִיד לוֹ נָבִיא וְהָיָה הוֹלֵךְ בְּדַרְכֵי הַנְּבוּאָה אָסוּר לַחְשֹׁב אַחֲרָיו וּלְהַרְהֵר בִּנְבוּאָתוֹ שֶׁמָּא אֵינָהּ אֱמֶת. וְאָסוּר לְנַסּוֹתוֹ יוֹתֵר מִדַּאי וְלֹא נִהְיֶה הוֹלְכִים וּמְנַסִּים לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(דברים ו טז)</span> &quot;לֹא תְנַסּוּ אֶת ה׳ אֱלֹהֵיכֶם כַּאֲשֶׁר נִסִּיתֶם בַּמַּסָּה&quot; שֶׁאָמְרוּ <span class="source-small">(שמות יז ז)</span> &quot;הֲיֵשׁ ה׳ בְּקִרְבֵּנוּ אִם אָיִן&quot;. אֶלָּא מֵאַחַר שֶׁנּוֹדַע שֶׁזֶּה נָבִיא יַאֲמִינוּ וְיֵדְעוּ כִּי ה׳ בְּקִרְבָּם וְלֹא יְהַרְהֲרוּ וְלֹא יַחְשְׁבוּ אַחֲרָיו. כָּעִנְיָן שֶׁנֶּאֱמַר <span class="source-small">(יחזקאל ב ה)</span> &quot;וְיָדְעוּ כִּי נָבִיא הָיָה בְתוֹכָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרה ד </strong> הזהירנו שלא לנסות יעודין שיעדו לנו נביאינו על צד ספק שנסתפק בהם אחר שנדע אמתת נבואת הנביא והאמננו בדבריו פעם אחר פעם או העיד לנו עליו נביא אחד כמשה ליהושע אסור להרהר אחריו והוא אמרו לא תנסו את ה׳ אלהיכם ובכלל זה שלא לנסות היעודין הכתובים בתורה לעושי המצות לבד במעשר דכתיב עשר תעשר ודרשו בו עשר בשביל שתתעשר במס׳ תענית והביאו סמך לזה הביאו את המעשר אל בית האוצר ובחנוני נא בזאת ובכלל זה שאין סומכין על הנס כמו כ&quot;ג מתקינין לו אשה אחרת אע&quot;פ שמעשה נסים היו בבית המקדש לא היו סומכין על זה וכן עגלת בקר תקח בידיך:</p>
               </div>
             </div>
@@ -377,6 +423,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-text-10">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -397,8 +447,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-foundations-of-the-torah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -424,7 +474,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

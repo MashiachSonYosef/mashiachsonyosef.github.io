@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-repentance/">Open Mishneh Torah, Repentance</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Repentance</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">6 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>262 matched</strong> / 526 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/tziunei-maharan-on-mishneh-torah-repentance.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-repentance-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -205,8 +206,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Repentance 1:1:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-repentance-1-1-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Repentance 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מצות שבתורה וכו׳ שנאמר איש או אשה כי יעשו וגו׳ והתודו את חטאתם אשר עשו (זה) וידוי דברים.</strong> וכתב הכ&quot;מ והתודו את חטאתם אשר עשו זה וידוי דברים, מצאתי כתוב דאיתא בספרא פ׳ אחרי מות, ועי׳ בלח&quot;מ מש&quot;כ בזה. אולם רבינו עצמו הביא מקור הדברים בספר המצות מ&quot;ע ע&quot;ג בסופו, וז&quot;ל כמו שאמר והתודו את חטאתם, ולשון ספרי והתודו זה וידוי דברים ע&quot;ש:</p>
               </div>
             </div>
@@ -221,8 +227,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Repentance 1:1:2</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-repentance-1-1-2" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Repentance 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כיצד מתודין אומר אנא השם חטאתי כו׳ ולעולם איני חוזר לדבר זה וזהו עיקרו של וידוי.</strong> בכ&quot;מ הראה מקור לדברי רבינו ביומא דף ל&quot;ו, אך דברי רבינו שכתב שצריך שיאמר ולעולם איני חוזר לד&quot;ז לא נמצא שם כן. ולפע&quot;ד דברי רבינו נובעים מהירושלמי סוף מסכת יומא כיצד הוא מתודה רבי ברכיה בשם רבי בא ב&quot;ב רבוני חטאתי ומרע עשיתי ובדעת רעה הייתי עומד ובדרך רחוקה הייתי מהלך וכשם שעשיתי איני עושה יהי רצון וכו׳:</p>
               </div>
             </div>
@@ -237,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Repentance 1:1:3</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-repentance-1-1-3" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Repentance 1:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן בעלי חטאות ואשמות בעת שמביאין קרבנותיהן על שגגתן כו׳.</strong> וכתב הכ&quot;מ וכן בעלי חטאות וכו׳. זה פשוט שהרי מביא ראיה מהכתוב, ובהדיא אמרו בפ&quot;ג דשבועות שחטאת ואשם אין מכפרים אלא על השבים. ועמש&quot;כ רבינו וכן החובל וכו׳ כתב הכ&quot;מ משנה בסוף פרק החובל, ומ&quot;מ מאי דמפיק לה רבינו מכל חטאות האדם צ&quot;ע היכא מייתי לה ע&quot;כ, ונכתב על הגליון שכ&quot;ה בילקוט פ׳ נשא בשם ספרי זוטא. אמנם גם בכאן הביא רבינו עצמו מקור כל הדברים הללו שם בס׳ המצות מ&quot;ע ע&quot;ג בשם המכילתא וז&quot;ל שם, ודע שאפילו החטאים שחייבין עליהן אלו המינים מהקרבנות הנזכרים שאמר שיקריבם ויתכפר לו לא יספיק עם הקרבתם בלתי הודוי והוא אמרו דבר אל בני ישראל איש או אשה כי יעשו מכל חטאות האדם והתודו את חטאתם אשר עשו, ולשון מכילתא לפי שנאמר והתודו אשר חטא עליה על החטאות וכו׳ ומנין אף כריתות ומיתות אמר חטאתם לרבות מצות ל&quot;ת יעשו לרבות מ&quot;ע, ושם נאמר מכל חטאת האדם מצות שבינו לבין חבירו על הגניבות ועל הגזילות ועל לשון הרע וכו׳ ע&quot;ש:</p>
               </div>
             </div>
@@ -254,8 +270,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Repentance 3:2:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-repentance-3-2-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Repentance 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-2">Mishneh Torah, Repentance 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָדָם שֶׁעֲוֹנוֹתָיו מְרֻבִּין עַל זְכֻיּוֹתָיו מִיָּד הוּא מֵת בְּרִשְׁעוֹ שֶׁנֶּאֱמַר עַל רֹב עֲוֹנֵךְ. וְכֵן מְדִינָה שֶׁעֲוֹנוֹתֶיהָ מְרֻבִּין מִיָּד הִיא אוֹבֶדֶת שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח כ)</span> &quot;זַעֲקַת סְדֹם וַעֲמֹרָה כִּי רָבָּה&quot; וְגוֹ׳. וְכֵן כָּל הָעוֹלָם כֻּלּוֹ אִם הָיוּ עֲוֹנוֹתֵיהֶם מְרֻבִּין מִזְּכֻיּוֹתֵיהֶן מִיָּד הֵן נִשְׁחָתִין שֶׁנֶּאֱמַר <span class="source-small">(בראשית ו ה)</span> &quot;וַיַּרְא ה׳ כִּי רַבָּה רָעַת הָאָדָם&quot;. וְשִׁקּוּל זֶה אֵינוֹ לְפִי מִנְיַן הַזְּכֻיּוֹת וְהָעֲוֹנוֹת אֶלָּא לְפִי גָּדְלָם. יֵשׁ זְכוּת שֶׁהִיא כְּנֶגֶד כַּמָּה עֲוֹנוֹת שֶׁנֶּאֱמַר <span class="source-small">(מלכים א יד יג)</span> &quot;יַעַן נִמְצָא בוֹ דָּבָר טוֹב&quot;. וְיֵשׁ עָוֹן שֶׁהוּא כְּנֶגֶד כַּמָּה זְכֻיּוֹת שֶׁנֶּאֱמַר <span class="source-small">(קהלת ט יח)</span> &quot;וְחוֹטֶא אֶחָד יְאַבֵּד טוֹבָה הַרְבֵּה&quot;. וְאֵין שׁוֹקְלִין אֶלָּא בְּדַעְתּוֹ שֶׁל אֵל דֵּעוֹת וְהוּא הַיּוֹדֵעַ הֵיאַךְ עוֹרְכִין הַזְּכֻיּוֹת כְּנֶגֶד הָעֲוֹנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן כל העולם כולו אם היה עונותיהם מרובין מזכיותיהן מיד הן נשחתין שנאמר וירא ה׳ כי רבה רעת האדם וכו׳.</strong> הכ&quot;מ לא הביא שום מקור לזה, אבל רבינו עצמו הביא מקור לדבריו ממקרא מלא, אבל לכאורה דברי רבינו תמוהין שהרי המקרא דכתיב וירא ה׳ כי רבה רעת האדם וכו׳ הא אותה אמירה היתה עוד קודם המבול אבל לאחר המבול הרי מקרא מפורש בפ׳ נח לא אוסיף עוד לקלל את האדמה וכו׳ ולא אוסיף עוד להכות את כל חי וכו׳, ואיך מביא רבינו ראיה מהמקרא שקודם המבול. והנה בש&quot;ס דסוטה דף י&quot;א ע&quot;א הבה נתחכמה לו אר&quot;ח ב&quot;ח בואו ונחכם למושיען של ישראל במה נדונם נדונם באש כו׳ אלא בואו ונדונם במים שכבר נשבע הקב&quot;ה שאינו מביא מבול לעולם שנאמר כי מי נח זאת לי כו׳, משמע מזה שהשבועה לא היתה אלא על מבול של מים, וא&quot;ש דברי רבינו. ובילקוט שמעוני פ׳ נח יש פלוגתא דתנאי&#160;בזה,&#160;וי&quot;ל דרבינו תפס כחד מ&quot;ד, וגם מש&quot;ס דע&quot;ז דף ג׳ דאלמלא לא קבלו ישראל את התורה היה מחזיר העולם לתוהו ובוהו מוכח כדעת רבינו: <span class="source-small"> [השמטה]</span> וגם מסנהדרין דק&quot;ג ובערכין דף י&quot;ז ע&quot;א ביקש הקב&quot;ה להחזיר את העולם כולו לתהו ובהו בשביל יהויקים נסתכל בדורו ונתקררה דעתו ביקש הקב&quot;ה להחזיר את העולם כולו לתהו ובהו בשביל דורו של צדקיהו נסתכל בצדקיהו ונתקררה דעתו כו׳, יש ראיה קצת לדעת רבינו. אולם מש&quot;ס דזבחים דף קט&quot;ז ע&quot;א שכשניתנה תורה לישראל היה קולו הולך מסוף העולם כו׳ נתקבצו כולם אצל בלעם הרשע ואמרו לו מה קול ההמון אשר שמענו שמא מבול בא לעולם אמר להם כו׳ כבר נשבע הקב&quot;ה שאינו מביא מבול לעולם א&quot;ל מבול של מים אינו מביא אבל מבול של אש מביא כו׳ א&quot;ל כבר נשבע שאינו משחית כל בשר כו׳ ומבואר דהשבועה היתה שלא ישחית העולם כל עיקר. שוב נדפס שו&quot;ת מגאון אחד ופלפל בזה והביא שכסוגיא דזבחים הנ&quot;ל הוא ג&quot;כ במכילתא ר&quot;פ יתרו (וכ&quot;ה בילקוט שם) ושם כתוב בלשון אחר א&quot;ל שמא מבול של מים אינו מביא מבול של אש מביא א&quot;ל אינו מביא לא מבול של מים ולא מבול של אש אלא תורה נותן הקב&quot;ה לעמו כו׳ אבל שנשבע הקב&quot;ה שלא יאבד העולם כל עיקר לא כתיב שם ואולי עפ&quot;ז יש להגיה כן גם בזבחים ע&quot;ש: <span class="source-small"> [עד כאן]:</span></p>
               </div>
             </div>
@@ -270,8 +291,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Repentance 3:6:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-repentance-3-6-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Repentance 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-6">Mishneh Torah, Repentance 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן שֶׁאֵין לָהֶן חֵלֶק לָעוֹלָם הַבָּא אֶלָּא נִכְרָתִים וְאוֹבְדִין וְנִדּוֹנִין עַל גֹּדֶל רִשְׁעָם וְחַטָּאתָם לְעוֹלָם וּלְעוֹלְמֵי עוֹלָמִים. הַמִּינִים. וְהָאֶפִּיקוֹרוֹסִין. וְהַכּוֹפְרִים בַּתּוֹרָה. וְהַכּוֹפְרִים בִּתְחִיַּת הַמֵּתִים וּבְבִיאַת הַגּוֹאֵל. הַמּוֹרְדִים. וּמַחֲטִיאֵי הָרַבִּים. וְהַפּוֹרְשִׁין מִדַּרְכֵי צִבּוּר. וְהָעוֹשֶׂה עֲבֵרוֹת בְּיָד רָמָה בְּפַרְהֶסְיָא כִּיהוֹיָקִים. וְהַמּוֹסְרִים. וּמַטִּילֵי אֵימָה עַל הַצִּבּוּר שֶׁלֹּא לְשֵׁם שָׁמַיִם. וְשׁוֹפְכֵי דָּמִים. וּבַעֲלֵי לָשׁוֹן הָרַע. וְהַמּוֹשֵׁךְ עָרְלָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו הן שאין להן חלק לעוה&quot;ב אלא נכרתים ואובדין ונידונין כו׳.</strong> עי׳ בכ&quot;מ ועי׳ בלח&quot;מ בה&quot;ג שציין ג&quot;כ להברייתא דר&quot;ה ועל השאר שלא נמצאו שם בהברייתא תמהו על רבינו דמהיכא מייתי להו אבל באמת כל דברי רבינו הללו יש להם מקור בש&quot;ס וירושלמי ותוספתא. והנה מש&quot;כ רבינו ושופכי דמים ובעלי לשון הרע הוא בתוספתא דפאה פ&quot;א והובא בירושלמי שם בהלכה א׳ באורך, ארבעה דברים נפרעין מן האדם בעוה&quot;ז והקרן קיימת לו לעוה&quot;ב ואלו הן ע&quot;ז גלוי עריות שפיכת דמים ולשון הרע כנגד כולם ע&quot;ז מנין וכו׳ ע&quot;ש, (ומכאן הוא ג&quot;כ מקור דברי רבינו לעיל בפ&quot;ז מהלכות דעות ה&quot;ג ע&quot;ש), ועוד נזכר ש&quot;ד בתוספתא דסנהדרין פרשה י&quot;ג אשר משם נובע הברייתא דר&quot;ה אנשי סדום אין להם חלק לעוה&quot;ב שנאמר ואנשי סדום רעים וחטאים לה׳ מאד וגו׳ ד&quot;א מאד זה שפיכות דמים ע&quot;ש, ומש&quot;כ רבינו והעושה עבירות וכו׳ כיהויקים והמושך ערלתו. ג&quot;כ נתבאר בירושלמי דפאה הלכה א׳ הוסיפו עליהן הפורק עול והמפר ברית והמגלה פנים בתורה אין להם חלק לעוה&quot;ב וכו׳, המפר ברית זה שהוא מושך לו ערלה, המגלה פנים בתורה זה שהוא אומר לא נתנה התורה מן השמים, ולא כבר תניתוה האומר אין תורה מן השמים, תני ר&quot;ח זה שהוא עובר על ד&quot;ת בפרהסיא כגון יהויקים מלך יהודה ע&quot;ש. ולא נשאר לנו לברר רק מש&quot;כ רבינו בכופר בביאת הגואל, שלזה לא נמצא מקור מפורש, אבל טעם דברי רבינו הוא פשוט שכיון שאינו מאמין בביאת הגואל ה&quot;ה מכחיש פרט אחד מהתורה והוא בכלל הכופר בתורה ח&quot;ו:</p>
               </div>
             </div>
@@ -287,8 +313,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Repentance 8:2:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-repentance-8-2-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Repentance 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-8-2">Mishneh Torah, Repentance 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹלָם הַבָּא אֵין בּוֹ גּוּף וּגְוִיָּה אֶלָּא נַפְשׁוֹת הַצַּדִּיקִים בִּלְבַד בְּלֹא גּוּף כְּמַלְאֲכֵי הַשָּׁרֵת. הוֹאִיל וְאֵין בּוֹ גְּוִיּוֹת אֵין בּוֹ לֹא אֲכִילָה וְלֹא שְׁתִיָּה וְלֹא דָּבָר מִכָּל הַדְּבָרִים שֶׁגּוּפוֹת בְּנֵי אָדָם צְרִיכִין לָהֶן בָּעוֹלָם הַזֶּה. וְלֹא יֶאֱרַע דָּבָר בּוֹ מִן הַדְּבָרִים שֶׁמְּאָרְעִין לַגּוּפוֹת בָּעוֹלָם הַזֶּה. כְּגוֹן יְשִׁיבָה וַעֲמִידָה וְשֵׁנָה וּמִיתָה וְעֶצֶב וּשְׂחוֹק וְכַיּוֹצֵא בָּהֶן. כָּךְ אָמְרוּ חֲכָמִים הָרִאשׁוֹנִים <span class="source-small">(גמרא ברכות יז א)</span> &quot;הָעוֹלָם הַבָּא אֵין בּוֹ לֹא אֲכִילָה וְלֹא שְׁתִיָּה וְלֹא תַּשְׁמִישׁ אֶלָּא צַדִּיקִים יוֹשְׁבִים וְעַטְרוֹתֵיהֶם בְּרָאשֵׁיהֶן וְנֶהֱנִין מִזִּיו הַשְּׁכִינָה&quot;. הֲרֵי נִתְבָּרֵר לְךָ שֶׁאֵין שָׁם גּוּף לְפִי שֶׁאֵין שָׁם אֲכִילָה וּשְׁתִיָּה. וְזֶה שֶׁאָמְרוּ צַדִּיקִים יוֹשְׁבִין דֶּרֶךְ חִידָה אָמְרוּ. כְּלוֹמַר הַצַּדִּיקִים מְצוּיִין שָׁם בְּלֹא עָמָל וּבְלֹא יְגִיעָה. וְכֵן זֶה שֶׁאָמְרוּ עַטְרוֹתֵיהֶן בְּרָאשֵׁיהֶן כְּלוֹמַר דַּעַת שֶׁיָּדְעוּ שֶׁבִּגְלָלָהּ זָכוּ לְחַיֵּי הָעוֹלָם הַבָּא מְצוּיָה עִמָּהֶן וְהִיא הָעֲטָרָה שֶׁלָּהֶן כָּעִנְיָן שֶׁאָמַר שְׁלֹמֹה <span class="source-small">(שיר השירים ג יא)</span> &quot;בָּעֲטָרָה שֶׁעִטְּרָה לּוֹ אִמּוֹ&quot;. וַהֲרֵי הוּא אוֹמֵר <span class="source-small">(ישעיה לה י)</span> &quot;וְשִׂמְחַת עוֹלָם עַל רֹאשָׁם&quot; וְאֵין הַשִּׂמְחָה גּוּף כְּדֵי שֶׁתָּנוּחַ עַל הָרֹאשׁ. כָּךְ עֲטָרָה שֶׁאָמְרוּ חֲכָמִים כָּאן הִיא הַיְדִיעָה. וּמַהוּ זֶה שֶׁאָמְרוּ נֶהֱנִין מִזִּיו הַשְּׁכִינָה. שֶׁיּוֹדְעִים וּמַשִּׂיגִין מֵאֲמִתַּת הַקָּדוֹשׁ בָּרוּךְ הוּא מַה שֶּׁאֵינָם יוֹדְעִים וְהֵם בַּגּוּף הָאָפֵל הַשָּׁפָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העולם הבא אין בו לא אכילה ולא שתיה וכו׳ וחכמים קראו לה דרך משל לטובה זו המזומנת לצדיקים סעודה.</strong> עי׳ בהשגת הראב&quot;ד, והנה שיטת רבינו ז&quot;ל מבוארת להדיא במדרש הנעלם בזוה&quot;ק פ׳ תולדות בלשונו ממש של רבינו ז&quot;ל:</p>
               </div>
             </div>
@@ -298,6 +329,10 @@
               <a href="#chapter-tziunei-maharan-on-mishneh-torah-repentance-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tziunei-maharan-on-mishneh-torah-repentance.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-repentance-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -318,8 +353,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-repentance.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tziunei-maharan-on-mishneh-torah-repentance.manifest.json","occurrence_url":"../../data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-repentance.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-repentance.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tziunei-maharan-on-mishneh-torah-repentance.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-repentance.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -345,7 +380,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

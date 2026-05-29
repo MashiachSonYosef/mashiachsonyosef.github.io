@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-slaves/">Open Mishneh Torah, Slaves</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Slaves</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">68 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>695 matched</strong> / 1998 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-slaves.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-slaves-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -303,8 +304,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-1">Mishneh Torah, Slaves 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(שמות כא ב)</span> &quot;עֶבֶד עִבְרִי&quot; הָאָמוּר בַּתּוֹרָה זֶה יִשְׂרְאֵלִי שֶׁמָּכְרוּ אוֹתוֹ בֵּית דִּין עַל כָּרְחוֹ אוֹ הַמּוֹכֵר עַצְמוֹ לִרְצוֹנוֹ. כֵּיצַד. גָּנַב וְאֵין לוֹ לְשַׁלֵּם אֶת הַקֶּרֶן בֵּית דִּין מוֹכְרִין אוֹתוֹ כְּמוֹ שֶׁאָמַרְנוּ בְּהִלְכוֹת גְּנֵבָה. וְאֵין לְךָ אִישׁ בְּיִשְׂרָאֵל שֶׁמּוֹכְרִין אוֹתוֹ בֵּית דִּין אֶלָּא הַגַּנָּב בִּלְבַד. וְעַל זֶה שֶׁמְּכָרוּהוּ בֵּית דִּין הוּא אוֹמֵר <span class="source-small">(שמות כא ב)</span> &quot;כִּי תִקְנֶה עֶבֶד עִבְרִי&quot;. וְעָלָיו הוּא אוֹמֵר בְּמִשְׁנֵה תּוֹרָה <span class="source-small">(דברים טו יב)</span> &quot;כִּי יִמָּכֵר לְךָ אָחִיךָ הָעִבְרִי&quot;. מוֹכֵר עַצְמוֹ כֵּיצַד. זֶה יִשְׂרָאֵל שֶׁהֶעֱנִי בְּיוֹתֵר נָתְנָה לוֹ תּוֹרָה רְשׁוּת לִמְכֹּר אֶת עַצְמוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה לט)</span> &quot;כִּי יָמוּךְ אָחִיךָ עִמָּךְ וְנִמְכַּר לְךָ&quot;. וְאֵינוֹ רַשַּׁאי לִמְכֹּר אֶת עַצְמוֹ וּלְהַצְנִיעַ אֶת דָּמָיו אוֹ לִקְנוֹת בָּהֶם סְחוֹרָה אוֹ כֵּלִים אוֹ לִתְּנֵם לְבַעַל חוֹב אֶלָּא אִם כֵּן צָרִיךְ לְאָכְלָן בִּלְבַד. וְאֵין אָדָם רַשַּׁאי לִמְכֹּר אֶת עַצְמוֹ עַד שֶׁלֹּא יִשָּׁאֵר לוֹ כְּלוּם וַאֲפִלּוּ כְּסוּת לֹא תִּשָּׁאֵר לוֹ וְאַחַר כָּךְ יִמְכֹּר אֶת עַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות רו </strong> לדון בדין עבד עברי והוא ישראל שמכרו אותו בית דין על כרחו או המוכר עצמו לרצונו ועל זה שמכרוהו ב&quot;ד כתוב כי תקנה עבד עברי וגו׳ עבד שהוא עברי או אינו אלא במוכר עצמו כשהוא אומר כי ימוך אחיך ונמכר לך הרי מוכר עצמו אמור ומה אני מקיים כי תקנה בנמכר בב&quot;ד וכן כתיב כי ימכר לך אחיך&#160;העברי וגו׳ דכי ימכר ע&quot;י אחרים משמע. מוכר עצמו הוא שהעני ביותר כדכתיב כי ימוך אחיך עמך ונמכר לך ואינו רשאי למכור עצמו אלא אם כן צריך המעות לאכלן ולא לדבר אחר אפילו לכסות דכתיב כי ימוך ותניא בת&quot;כ מנין שאין אדם רשאי למכור את עצמו להניח בפונדתו ליקח בהמה או כלים וכו׳ אלא אם כן העני תלמוד לומר כי ימוך ונמכר לך אין נמכר אלא לכשימוך.</p>
               </div>
             </div>
@@ -319,8 +325,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-2">Mishneh Torah, Slaves 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ שֶׁאֵין הָאִשָּׁה נִמְכֶּרֶת בִּגְנֵבָתָהּ וְכֵן אֵינָהּ מוֹכֶרֶת אֶת עַצְמָהּ וְאֵינָהּ קוֹנָה לֹא עֶבֶד עִבְרִי וְלֹא עֶבֶד כְּנַעֲנִי מִפְּנֵי הַחֲשָׁד. וְאֵין הַגֵּר נִקְנֶה בְּעֶבֶד עִבְרִי שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מא)</span> &quot;וְשָׁב אֶל מִשְׁפַּחְתּוֹ&quot; מִי שֶׁיֵּשׁ לוֹ מִשְׁפָּחָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> האשה נמכרת בגנבת׳ כדתנן פרק היה נוטל ואמרינן בגמרא אמר קרא ונמכר בגניבתו בגניבתו ולא בגניבתה וכן אינה מוכרת את עצמה כיון דגלי קרא דאפילו בגניבתה אינה נמכרת וכדדרשינן במכילתא דאינה מוכרת את עצמה גבי קרא דכי ימכור איש וגו׳. ואין הגר נקנה בעבד עברי דכתיב ושב אל משפחתו מי שיש לו משפחה בפרק איזהו נשך ודרשינן בת&quot;כ יצא גר שאין לו משפחה דאף ע&quot;ג דבפרק קמא דקידושין ובפרק אלו הן הגולין דרשינן האי קרא בגווני אחריני אפ&quot;ה ממילא משמע דבעינן דליהוי ליה משפחה.</p>
               </div>
             </div>
@@ -335,8 +346,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-3">Mishneh Torah, Slaves 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶבֶד עִבְרִי שֶׁמְּכָרוּהוּ בֵּית דִּין אֵין מוֹכְרִין אוֹתוֹ אֶלָּא לְיִשְׂרָאֵל אוֹ לְגֵר צֶדֶק. וְכֵן הַמּוֹכֵר עַצְמוֹ אֵינוֹ רַשַּׁאי לִמְכֹּר עַצְמוֹ לְעַכּוּ&quot;ם וַאֲפִלּוּ לְגֵר תּוֹשָׁב. וְאִם עָבַר וּמָכַר עַצְמוֹ אֲפִלּוּ לְעַכּוּ&quot;ם וַאֲפִלּוּ לַעֲבוֹדַת כּוֹכָבִים עַצְמָהּ הֲרֵי זֶה מָכוּר שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מז)</span> &quot;אוֹ לְעֵקֶר מִשְׁפַּחַת גֵּר&quot;. לְעֵקֶר זֶה הַנִּמְכָּר לַעֲבוֹדַת כּוֹכָבִים עַצְמָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מוכרין בית דין אלא לישראל ולא לגוי דאפילו מוכר עצמו אינו רשאי למכור עצמו לגוי ודרשינן בת&quot;כ ימכר לך אחיך מנין כשיהו ב&quot;ד מוכרין אותו לא יהו אלא לך ת&quot;ל כי ימכר לך אחיך ומנין כשיהא נמכר לא יהא נמכר אלא לך ת&quot;ל ומכר לך. ואם עבר ומכר עצמו אפילו לעובד עבודה זרה ואפילו לע&quot;ז עצמה הרי זה מכור דכתיב או לעקר משפחת גר לעקר זה הנמכר לע&quot;ז עצמה משפחת גר זה הגוי תושב זה גר אוכל נבלות לגר זה&#160;גר צדק. אמר הריני מוכר עצמי לגוי יכול תזקק לו ת&quot;ל אחרי נמכר ודרשינן בת&quot;כ אי אתה זקוק לו עד שימכר ואף על פי שעבר מצוה לפדותו כדכתיב אחרי נמכר גאולה תהיה לו מיד אל תניחהו שיטמע:</p>
               </div>
             </div>
@@ -351,8 +367,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-5">Mishneh Torah, Slaves 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַמּוֹכֵר אֶת עַצְמוֹ אוֹ שֶׁמְּכָרוּהוּ בֵּית דִּין אֵינוֹ נִמְכָּר בְּפַרְהֶסְיָא עַל אֶבֶן הַמִּקָּח וְלֹא בְּסִמְטָא כְּדֶרֶךְ שֶׁהָעֲבָדִים נִמְכָּרִין שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מב)</span> &quot;לֹא יִמָּכְרוּ מִמְכֶּרֶת עָבֶד&quot; אֵינוֹ נִמְכָּר אֶלָּא בְּצִנְעָה וְדֶרֶךְ כָּבוֹד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רצט </strong> שלא ימכור ממכרת עבד בפרהסיא על אבן המקח ולא בסימטא כדרך שהעבדי׳ נמכרים וכדתניא בת&quot;כ:</p>
               </div>
             </div>
@@ -367,8 +388,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-6">Mishneh Torah, Slaves 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל עֶבֶד עִבְרִי אָסוּר לַעֲבֹד בּוֹ בְּפָרֶךְ. וְאֵיזוֹ הִיא עֲבוֹדַת פָּרֶךְ זוֹ עֲבוֹדָה שֶׁאֵין לָהּ קִצְבָה וַעֲבוֹדָה שֶׁאֵינוֹ צָרִיךְ לָהּ אֶלָּא תִּהְיֶה מַחְשַׁבְתּוֹ לְהַעֲבִידוֹ בִּלְבַד שֶׁלֹּא יִבָּטֵל. מִכָּאן אָמְרוּ חֲכָמִים שֶׁלֹּא יֹאמַר לוֹ עֲדֹר תַּחַת הַגְּפָנִים עַד שֶׁאָבוֹא שֶׁהֲרֵי לֹא נָתַן לוֹ קִצְבָה. אֶלָּא יֹאמַר לוֹ עֲדֹר עַד שָׁעָה פְּלוֹנִית אוֹ עַד מָקוֹם פְּלוֹנִי. וְכֵן לֹא יֹאמַר לוֹ חֲפֹר מָקוֹם זֶה וְהוּא אֵינוֹ צָרִיךְ לוֹ. וַאֲפִלּוּ לְהָחֵם לוֹ כּוֹס שֶׁל חַמִּין אוֹ לְהָצֵן וְאֵינוֹ צָרִיךְ לוֹ אָסוּר וְעוֹבֵר עָלָיו בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מג)</span> &quot;לֹא תִרְדֶּה בוֹ בְּפָרֶךְ&quot;. הָא אֵינוֹ עוֹשֶׂה לוֹ אֶלָּא דָּבָר קָצוּב שֶׁהוּא צָרִיךְ לוֹ. וְכֵן הָעַכּוּ&quot;ם שֶׁנִּמְכַּר לוֹ אִם רָדָה בּוֹ בְּפָרֶךְ הֲרֵי יִשְׂרָאֵל מְצֻוִּין לְמָנְעוֹ. וְאִם הִנִּיחוּהוּ עוֹבְרִים בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה נג)</span> &quot;לֹא יִרְדֶּנּוּ בְּפֶרֶךְ לְעֵינֶיךָ&quot;. וְאֵין אָנוּ נִזְקָקִין לִכְנֹס לִרְשׁוּתוֹ שֶׁל עַכּוּ&quot;ם וְלִבְדֹּק אַחֲרָיו שֶׁלֹּא יַעֲבִידֶנּוּ בְּפָרֶךְ שֶׁנֶּאֱמַר לְעֵינֶיךָ בִּזְמַן שֶׁאַתָּה רוֹאֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אזהרת ש </strong> שלא לעבוד בעבד עברי בפרך שהיא עבודה שאין לה קצבה ואינו צריך לה וכדילפינן בתורת כהנים מפרך האמור במצרים ותניא לא תרדה בו בפרך לא יאמר לו החם לי את הכוס ואינו צריך וכו׳:<br><strong> אזהרת שא </strong> שלא יניחו הגוי שיעבידנו בפרך כדכתי׳ לא ירדנו בפרך ואין אנו זקוקים ליכנס בביתו&#160;של גוי לראות שלא יעבידנו בפרך דכתיב לעיניך בזמן שאתה רואה:</p>
               </div>
             </div>
@@ -383,8 +409,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-7">Mishneh Torah, Slaves 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל עֶבֶד עִבְרִי אָסוּר לְיִשְׂרָאֵל שֶׁקָּנָהוּ לְהַעֲבִידוֹ בִּדְבָרִים בּוֹזִים שֶׁהֵם מְיֻחָדִים לַעֲשׂוֹת הָעֲבָדִים כְּגוֹן שֶׁיּוֹלִיךְ אַחֲרָיו כֵּלָיו לְבֵית הַמֶּרְחָץ אוֹ יַחְלֹץ לוֹ מִנְעָלָיו שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה לט)</span> &quot;לֹא תַעֲבֹד בּוֹ עֲבֹדַת עָבֶד&quot;. אֵינוֹ נוֹהֵג בּוֹ אֶלָּא כְּשָׂכִיר שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מ)</span> &quot;כְּשָׂכִיר כְּתוֹשָׁב יִהְיֶה עִמָּךְ&quot;. וּמֻתָּר לְסַפֵּר לוֹ שְׂעָרוֹ וּלְכַבֵּס לוֹ כְּסוּתוֹ וְלֶאֱפוֹת לוֹ עִסָּתוֹ. אֲבָל לֹא יַעֲשֶׂה אוֹתוֹ בַּלָּן לָרַבִּים אוֹ סַפָּר לָרַבִּים אוֹ נַחְתּוֹם לָרַבִּים. וְאִם הָיְתָה אֻמָּנוּתוֹ זֹאת קֹדֶם שֶׁיִּמָּכֵר הֲרֵי זֶה יַעֲשֶׂה. אֲבָל לֹא יְלַמְּדֵנוּ בַּתְּחִלָּה מְלָאכָה כְּלָל אֶלָּא אֻמָּנוּת שֶׁהָיָה בָּהּ הוּא שֶׁעוֹשֶׂה כְּשֶׁהָיָה עוֹשֶׂה מִקֹּדֶם. בַּמֶּה דְּבָרִים אֲמוּרִים בְּעֶבֶד עִבְרִי מִפְּנֵי שֶׁנַּפְשׁוֹ שְׁפָלָה בִּמְכִירָה. אֲבָל יִשְׂרָאֵל שֶׁלֹּא נִמְכַּר מֻתָּר לְהִשְׁתַּמֵּשׁ בּוֹ כְּעֶבֶד שֶׁהֲרֵי אֵינוֹ עוֹשֶׂה מְלָאכָה זוֹ אֶלָּא בִּרְצוֹנוֹ וּמִדַּעַת עַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שב </strong> שלא יעבוד בו עבודת עבד כדכתיב וכי ימוך אחיך וגו׳ לא תעבוד בו עבודת עבד שהן עבודות של ביזוי וגנאי שהם מיוחדים לעבדים ואינו נוהג בו אלא כשכיר כדכתיב כשכיר כתושב יהיה עמך וגו׳ ודרשינן בת&quot;כ עמך שלא ימסור אומנתו לאחר שאם היה בלן לרבים וכו׳ רבי יוסי אומר אם היתה אומנותו כך יעשה אבל לא ילמדנו וכו׳ וכתיב לא תעבוד בו ודרשינן התם בו אי אתה עובד אבל אתה עובד בבן חורין עבודת עבד שהרי אינו עושה אלא מרצונו.</p>
               </div>
             </div>
@@ -399,8 +430,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-8">Mishneh Torah, Slaves 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲנָשִׁים שֶׁאֵינָן נוֹהֲגִין כַּשּׁוּרָה מֻתָּר לִרְדּוֹתָן בְּחָזְקָה וּלְהִשְׁתַּעְבֵּד בָּהֶן. מֶלֶךְ שֶׁגָּזַר שֶׁכָּל מִי שֶׁלֹּא יִתֵּן הַמַּס הַקָּצוּב עַל כָּל אִישׁ וְאִישׁ יִשְׁתַּעְבֵּד לְזֶה שֶׁנָּתַן הַמַּס עַל יָדוֹ הֲרֵי זֶה מֻתָּר לְהִשְׁתַּמֵּשׁ בּוֹ יוֹתֵר מִדַּאי אֲבָל לֹא כְּעֶבֶד. וְאִם אֵינוֹ נוֹהֵג כַּשּׁוּרָה מֻתָּר לְהִשְׁתַּמֵּשׁ בּוֹ כְּעֶבֶד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אנשים </strong> שאינם נוהגים כשורה מותר להשתעבד בהם כדכתיב לעולם בהם תעבודו ובאחיכם יכול אפילו נוהג כשורה תלמוד לומר איש באחיו לא תרדה וגו׳.</p>
               </div>
             </div>
@@ -415,8 +451,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-9">Mishneh Torah, Slaves 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל עֶבֶד עִבְרִי אוֹ אָמָה הָעִבְרִיָּה חַיָּב הָאָדוֹן לְהַשְׁווֹתָן לוֹ בְּמַאֲכָל וּבְמַשְׁקֶה בִּכְסוּת וּבְמָדוֹר שֶׁנֶּאֱמַר <span class="source-small">(דברים טו טז)</span> &quot;כִּי טוֹב לוֹ עִמָּךְ&quot; שֶׁלֹּא תְּהֵא אַתָּה אוֹכֵל פַּת נָקִי וְהוּא אוֹכֵל פַּת קִבָּר אַתָּה שׁוֹתֶה יַיִן יָשָׁן וְהוּא שׁוֹתֶה יַיִן חָדָשׁ אַתָּה יָשֵׁן עַל גַּבֵּי מוֹכִין וְהוּא יָשֵׁן עַל גַּבֵּי הַתֶּבֶן אַתָּה דָּר בִּכְרַךְ וְהוּא דָּר בִּכְפָר אוֹ אַתָּה דָּר בִּכְפָר וְהוּא יוֹשֵׁב בִּכְרַךְ. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מא)</span> &quot;וְיָצָא מֵעִמָּךְ&quot;. מִכָּאן אָמְרוּ כָּל הַקּוֹנֶה עֶבֶד עִבְרִי כְּקוֹנֶה אָדוֹן לְעַצְמוֹ. וְחַיָּב לִנְהֹג בּוֹ מִנְהַג אַחְוָה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מו)</span> &quot;וּבְאַחֵיכֶם בְּנֵי יִשְׂרָאֵל&quot;. וְאַף עַל פִּי כֵן צָרִיךְ הָעֶבֶד לִנְהֹג בְּעַצְמוֹ מִנְהַג עַבְדוּת בְּאוֹתָן הָעֲבוֹדוֹת שֶׁהוּא עוֹשֶׂה לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> עבד עברי או אמה העבריה חייב האדון להשוותן לו בכל כדכתיב כי טוב לו עמך ודרשינן בת&quot;כ עמך במאכל עמך במשתה וכו׳ עמך בדירתך וחייב לנהוג בו אחוה שנאמר ובאחיכם בני ישראל וגו׳. והעבד צריך לנהוג עצמו מנהג עבדות בעבודות שהוא עושה לו ובתורת כהנים דריש ליה מדכתיב כי ימכר לך אחיך נהוג בו אחוה יכול אף הוא ינהוג בעצמו אחוה תלמוד לומר עבד הא כיצד את הוי נוהג בו אחוה והוא ינהוג בעצמו עבדות.</p>
               </div>
             </div>
@@ -431,8 +472,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 1:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-1-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-1-10">Mishneh Torah, Slaves 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָמָה הָעִבְרִיָּה נוֹהֶגֶת וְלֹא עֶבֶד עִבְרִי נוֹהֵג אֶלָּא בִּזְמַן שֶׁהַיּוֹבֵל נוֹהֵג. בֵּין עֶבֶד עִבְרִי שֶׁמּוֹכֵר עַצְמוֹ בֵּין זֶה שֶׁמְּכָרוּהוּ בֵּית דִּין. וּכְבָר בֵּאַרְנוּ מָתַי בָּטְלוּ הַיּוֹבְלוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> האמה העבריה ולא ע&quot;ע נוהג אלא בזמן היובל כדאמר׳ בערכין סוף פרק המקדיש אין עבד עברי אלא בזמן היובל כדכתיב עד שנת היובל יעבד עמך וכולהו נפקי ביובל בין מכר עצמו או נמכר על יד בית דין ואמה העבריה [בכלל]:</p>
               </div>
             </div>
@@ -448,8 +494,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-1">Mishneh Torah, Slaves 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶבֶד עִבְרִי שֶׁמְּכָרוּהוּ בֵּית דִּין [וְהַמּוֹכֵר עַצְמוֹ] נִקְנֶה בְּכֶסֶף וּבִשְׁוֵה כֶּסֶף וּבִשְׁטָר. כֵּיצַד בִּשְׁטָר. כּוֹתֵב לוֹ עַל הַנְּיָר אוֹ עַל הַחֶרֶס הֲרֵינִי מָכוּר לְךָ הֲרֵינִי קָנוּי לְךָ וְנוֹתֵן לוֹ הַשְּׁטָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבד </strong> עברי נקנה בכסף ובשוה כסף כדתנן פרק קמא דקידושין דף י&quot;ד ובגמרא מנא לן דאמר קרא מכסף מקנתו מלמד שנקנה בכסף אשכחן נמכר לגוי דכל קנינו של גוי בכסף שלא נאמר בו משיכה נמכר לישראל מנין אמר קרא והפדה מלמד שמגרעת פדיונה ויוצאה ומשמע בכסף מדכתיב והפדה שאף הבעל מסייע בפדיונה אלמא בכסף נקנית דאי לא קנאה בדמים מאי מגרעא אשכחן אמה העבריה הואיל ומיקדשה בכסף עבד עברי מנא לן אמר קרא כי ימכר לך אחיך העברי או העבריה וגו׳ מקיש עברי לעבריה אשכחן מכרוהו בית דין הואיל ונמכר ע&quot;כ מכר עצמו מנא לן כתיב וכי תשיג במוכר עצמו לגוי וסמכיה לפרשה מוכר עצמו לישראל ללמד ממנו דכתיב ביה מכסף מקנתו כדאמ׳ ושטר ילפינן נמי התם מדכתיב אם אחרת יקח לה הקישה הכתוב לאחרת מה אחרת מקניה בשטר אף אמה העבריה מקניה בשטר ולמאן דאמר דשטר אמה העבריה אב כותבו אמר קרא לא תצא כצאת העבדים אבל נקנית היא בקנין עבדים ומאי ניהו שטר ומסתברא דשטר הוה ליה לרבויי כדאמ׳ התם ומכרוהו בית דין נראה דיליף נמי בהיקש׳ דאחיך העברי או העבריה דמה היא נקנית בשטר אף הוא נקנה בשטר ומוכר עצמו יליף ממכרוהו בית דין דכיון דילפינן לעיל דשוו תרוייהו בקנין כסף שוו נמי בקנין שטר והרב ז&quot;ל בפי׳ המשנה כתב מה אחרת בשטר אף אמה בשטר וילמוד עבד עברי מאמה העבריה שהוא נקנה בשטר כמותה ויוצא בגרעון כסף ע&quot;כ.</p>
               </div>
             </div>
@@ -464,8 +515,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-2">Mishneh Torah, Slaves 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְכָרוּהוּ בֵּית דִּין עוֹבֵד שֵׁשׁ שָׁנִים מִיּוֹם מְכִירָתוֹ וּבִתְחִלַּת הַשָּׁנָה הַשְּׁבִיעִית שֶׁלּוֹ יֵצֵא בֶּן חוֹרִין. וְאִם פָּגְעָה בּוֹ שְׁנַת הַשְּׁמִטָּה בִּכְלַל הַשֵּׁשׁ הֲרֵי זֶה עוֹבֵד בָּהּ. אֲבָל אִם פָּגְעָה בּוֹ שְׁנַת יוֹבֵל אֲפִלּוּ נִמְכַּר שָׁנָה אַחַת לִפְנֵי הַיּוֹבֵל הֲרֵי זֶה יֵצֵא לְחֵרוּת שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מ)</span> &quot;עַד שְׁנַת הַיֹּבֵל יַעֲבֹד עִמָּךְ&quot; <span class="source-small">(ויקרא כה יג)</span> &quot;בִּשְׁנַת הַיּוֹבֵל הַזֹּאת&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכרוהו </strong> בית דין שהוא עובד שש מיום מכירתו ואם פגעה בו שנת השמטה בכלל שש עובד בה וכדתניא במכילתא ובשביעית שביעית למכירה או אינו אלא לשנים תלמוד לומר שש שנים יעבוד שביעית למכירה ולא שביעית לשנים ואם פגעה בו שנת יובל אפילו אחר שנה יוצא לחירות כדכתיב עד שנת היובל יעבוד עמך דמיירי במוכר עצמו וכו׳ וכתיב ושב אל משפחתו ואי במוכר עצמו הרי כבר אמור אי בנרצע הרי כבר אמור דכתיב ושבתם איש אל אחוזתו דאיזו דבר נוהג באיש ואינו נוהג באשה הוי אומר זו רציעה הא אין הכתו׳ דושב אל משפחתו מדבר אלא במכרוהו ב&quot;ד ב׳ או ג׳ שנים לפני היובל שהיובל מוציאו וצריכי כולהו&#160;כדאיתא התם פרק קמא דקידושין דף ט&quot;ו.</p>
               </div>
             </div>
@@ -480,8 +536,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-3">Mishneh Torah, Slaves 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹכֵר עַצְמוֹ יֵשׁ לוֹ לִמְכֹּר עַצְמוֹ לְיֶתֶר עַל שֵׁשׁ. הֲרֵי שֶׁמָּכַר עַצְמוֹ לְעֶשֶׂר שָׁנִים אוֹ לְעֶשְׂרִים שָׁנָה וּפָגַע בּוֹ יוֹבֵל אֲפִלּוּ אַחַר שָׁנָה הֲרֵי זֶה יוֹצֵא בַּיּוֹבֵל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מ)</span> &quot;עַד שְׁנַת הַיֹּבֵל יַעֲבֹד עִמָּךְ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המוכר </strong> עצמו יש לו למכור עצמו ליתר על שש כדיליף התם לת&quot;ק דר׳ אליעזר דמיעט רחמנא גבי מכרוהו ב&quot;ד ועבדך שש שני׳ זה ולא מוכר עצמו.</p>
               </div>
             </div>
@@ -496,8 +557,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-4">Mishneh Torah, Slaves 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַמּוֹכֵר עַצְמוֹ אוֹ שֶׁמְּכָרוּהוּ בֵּית דִּין וּבָרַח חַיָּב לְהַשְׁלִים שֵׁשׁ. וְאִם פָּגַע בּוֹ יוֹבֵל יוֹצֵא לְחֵרוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>א׳ </strong> מוכר עצמו או מכרוהו ב&quot;ד שברח חייב להשלים שש ואם פגע בו יובל קודם יצא לחירות ואם חלה חולי כבד פחות מד׳ שנים עולין לו וכדתני׳ התם דף י&quot;ז מנין לבורח שחייב להשלים ת&quot;ל שש שנים יעבוד יכול אפי׳ חלה ישלים ת&quot;ל ובשביעית יצא אפי׳ לא עבד כל השש ואם חלה ד׳ שנים ישלים את כולם דכיון דחלה רוב השנים נעשה כמי שחלה כל שש וחייב להשלים וכתיב נמי כשכיר ותושב וגו׳ והיכא דעבד ג׳ היינו שני שכיר ואינו חייב להשלים וכשלא השלים שלש לא הוי שכיר.</p>
               </div>
             </div>
@@ -512,8 +578,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-6">Mishneh Torah, Slaves 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹכֵר עַצְמוֹ לְעַכּוּ&quot;ם אִם לֹא נִפְדָּה אֵינוֹ יוֹצֵא אֶלָּא בַּיּוֹבֵל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה נד)</span> &quot;וְאִם לֹא יִגָּאֵל בְּאֵלֶּה וְיָצָא בִּשְׁנַת הַיֹּבֵל הוּא וּבָנָיו עִמּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המוכר </strong> עצמו לגוי אם לא נפדה אינו יוצא אלא ביובל כדתניא פרק קמא דקידושין באלה הוא נגאל בגאולת קרובים דכתיב לעיל מיניה או דודו או בן דודו ואינו נגאל בשש דאי תימא נמכר לישראל שאינו נגאל באלה דלא כתיב ביה גאולת קרובים דלא נפקא לן מהפדה אלא גאולת עצמה ולא ילפינן שכיר שכיר דכתי׳ הכא יגאלנו לזה ולא לאחר ואפ&quot;ה נגאל בשש זה שנגאל באלה אינו דין שנגאל בשש להכי כתיב באלה דוקא באלה ולא בשש.</p>
               </div>
             </div>
@@ -528,8 +599,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-7">Mishneh Torah, Slaves 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנִּמְכָּר לְעַכּוּ&quot;ם אִם לֹא הִשִּׂיגָה יָדוֹ לִגְאל קְרוֹבָיו פּוֹדִין אוֹתוֹ וְקָרוֹב קָרוֹב קוֹדֵם שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מט)</span> &quot;אוֹ דֹדוֹ אוֹ בֶן דֹּדוֹ יִגְאָלֶנּוּ&quot;. וּבֵית דִּין כּוֹפִין אֶת קְרוֹבָיו לִפְדּוֹתוֹ שֶׁלֹּא יִטָּמַע בָּעַכּוּ&quot;ם. לֹא פְּדָאוּהוּ קְרוֹבָיו אוֹ שֶׁאֵין יָדָם מַשֶּׂגֶת מִצְוָה עַל כָּל אָדָם מִיִּשְׂרָאֵל לִפְדּוֹתוֹ. וּבֵין שֶׁפְּדָאוּהוּ קְרוֹבִים בֵּין שֶׁפְּדָאָהוּ שְׁאָר אָדָם יֵצֵא לְחֵרוּת. וְיֵשׁ לוֹ לִלְווֹת וְלִגְאל אֶת עַצְמוֹ מִן הָעַכּוּ&quot;ם. וְגוֹאֵל לַחֲצָאִין. אֲבָל הַנִּמְכָּר לְיִשְׂרָאֵל אֵין הַקְּרוֹבִים פּוֹדִין אוֹתוֹ וְאֵין לוֶֹה וְגוֹאֵל וְאֵינוֹ גּוֹאֵל לַחֲצָאִין. אֶלָּא כֵּיצַד דִּינוֹ. אִם הִשִּׂיגָה יָדוֹ לִתֵּן כְּפִי הַשָּׁנִים הַנּוֹתָרוֹת נוֹתֵן וְיוֹצֵא וְאִם לָאו לֹא יֵצֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנמכר </strong> לגוי אם לא השיגה ידו ליגאל עצמו קרוביו פודין אותו והקרוב יותר קודם כדכתיב או דודו או בן דודו דודו קודם לבנו וב&quot;ד כופין את קרוביו כדכתיב יגאלנו ומצוה על כל ישראל לפדותו כדכתיב ונגאל דהיינו גאולת אחרים כשלא גאלוהו קרובים ובין שפדאוהו קרובים או אחרים יוצא לחירות דכתיב או דודו וגו׳ או השיגה ידו ונגאל ומקרא נדרש לפניו ולאחריו דמה כשהשיגה ידו הוא [יוצא] לחירות כך כשנגאל ע&quot;י קרוביו דלפניו וגאולת אחרים דכתיב לאחריו יוצא לחירות. ויש לו ללוות ולגאול עצמו מן הגוי וגואל לחצאין דאע&quot;ג דאסיק רב ששת התם דאינו גואל לחצאין דכי היכי דאמרינן נמכר כולו ולא חציו ה&quot;נ נגאל כולו ולא חציו וכתיב נמי השיגה ידו דמשמע דאינו לוה וגואל אפ&quot;ה נראה דסבירא ליה לרב ז&quot;ל דכיון דאביי קאמר בתר הכי אם תמצא לומר נגאל לחצאין וכו׳ משמע דהכי הוי הלכתא וכיון דגואל לחצאין לוה נמי וגואל ואיפשר נמי לומר דהא דאסיק רב ששת דאינו נגאל לחצאין היינו על ידי אחרים דקרא דונגאל אאחרים קאי כדאמרינן לעיל אבל על יד עצמו נגאל לחצאין והיינו דכתב הרב ז&quot;ל וגואל לחצאין וכיון דגואל לחצאין משמע דהקפידה תורה לחזר שלא יטמע בין הגוים ולהכי לוה נמי וגואל ודחקינן קרא דהשיגה ידו על ידי הלואה. נמכר לישראל אין הקרובין פודין אותו דאינו נגאל באלה כדאמרי׳ לעיל ואינו לוה וגואל ואינו גואל לחצאין דלא כתיב ביה השגת יד ולא כתיב נמי ונגאל דנימא כולו ולא חציו.</p>
               </div>
             </div>
@@ -544,8 +620,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-8">Mishneh Torah, Slaves 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַמּוֹכֵר עַצְמוֹ בֵּין לְיִשְׂרָאֵל בֵּין לְעַכּוּ&quot;ם וְאֶחָד שֶׁמְּכָרוּהוּ בֵּית דִּין הֲרֵי זֶה מְגָרֵעַ מִפִּדְיוֹנוֹ וְיוֹצֵא. כֵּיצַד. הֲרֵי שֶׁמְּכָרוּהוּ בְּשִׁשִּׁים דִּינָרִים וְעָבַד אַרְבַּע שָׁנִים וּמָצְאָה יָדוֹ הֲרֵי זֶה נוֹתֵן עֶשְׂרִים דִּינָרִים וְיֵצֵא לְחֵרוּת. וְכֵן אִם מָכַר עַצְמוֹ בְּאַרְבָּעִים דִּינָרִין לְעֶשֶׂר שָׁנִים הֲרֵי זֶה מְגָרֵעַ אַרְבָּעָה דִּינָרִין לְכָל שָׁנָה שֶׁעָבַד וְנוֹתֵן הַנִּשְׁאָר כֶּסֶף אוֹ שְׁוֵה כֶּסֶף וְיוֹצֵא. וְכֵן הַנִּמְכָּר לְעַכּוּ&quot;ם מְחַשֵּׁב הַדָּמִים לְפִי הַשָּׁנִים הַנִּשְׁאָרוֹת עַד שְׁנַת הַיּוֹבֵל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה נ)</span> &quot;וְחִשַּׁב עִם קֹנֵהוּ מִשְּׁנַת הִמָּכְרוֹ לוֹ עַד שְׁנַת הַיֹּבֵל&quot;. כֵּיצַד. מָכַר עַצְמוֹ בְּמֵאָה וְנִשְׁאַר לַיּוֹבֵל מִשְּׁנַת מְכִירָה עֶשֶׂר שָׁנִים מְחַשֵּׁב עֲשָׂרָה לְכָל שָׁנָה שֶׁעָבַד וְגוֹרֵעַ הַדָּמִים וּמֵשִׁיב הַשְּׁאָר כֶּסֶף לֹא תְּבוּאָה וְלֹא כֵּלִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה נ)</span> &quot;כֶּסֶף מִמְכָּרוֹ&quot; בְּכֶסֶף הוּא נִגְאָל מִיַּד הָעַכּוּ&quot;ם וְאֵינוֹ נִגְאָל בִּשְׁוֵה כֶּסֶף:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> עבד עברי מגרע מפדיונו ויוצא כמו אם עבד שנה או שנתים נותן כפי ערך מה שנמכר על שאר השנים ויוצא והכל לפי חשבון דמי מקנתו כדכתיב והיה כסף ממכרו במספר השנים קנאו בשש מנים ועתיד לצאת בסוף שש נמצא קונה עבודת כל שנה במנה וכתיב נמי באמה העבריה והפדה מלמד שמגרעת מפדיונה ויוצאה ובנמכר לגוי כתיב וחשב עם קנהו משנת המכרו לו עד שנת היובל ומשיב השאר כסף ולא כלים ולא תבואה כדכתיב כסף ממכרו בכסף הוא נגאל מיד הגוי ולא בשוה כסף וגבי נמכר לישראל כתיב ישיב גאולתו לרבות שוה כסף ככסף. כל היוצא בגרעון כסף מחשבין להקל עליו אם הבריא והוסיף או נתחף ופחתו דמיו כדאמרינן התם דף כ׳ דדריש רב נחמן להני קראי בסיני דכתיב אם עוד רבות בשנים וכתיב ואם מעט נשאר בשנים וכי יש שנים מרובים ושנים מועטים דרבות שוים משמע שיהא ריבוי בשנים או מיעוט ואי אפשר להיותן מרובות על שש או מועטות אלא ה&quot;ק אם יש ריבוי בדמיו שנתרבה בתוך שנים הללו כגון שהשביח מכסף מקנתו חשיב כמשעת קניה להקל נתמעט כספו בתוך שנים הללו חשוב אותו כפי דמיו של עכשיו דמדכתיב בשנים ולא כתיב שנים משמע נתרבה כספו בשנים כלומר בתוך השנים מכסף מקנתו נתמעט כספו בשנים כפי שניו. הנמכר לגוי שיש לו לגאול עצמו לחצאין פעמים יהיה להקל שקנאו במאתים והוזל בק׳ ונתן דמי חציו וחזר והוקר עד מאתים ופעמים להחמיר כשנשחף והוזל וכדאמר אביי התם.</p>
               </div>
             </div>
@@ -560,8 +641,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-11">Mishneh Torah, Slaves 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָרַב שֶׁמָּחַל לָעֶבֶד עַל הַכֶּסֶף שֶׁנִּשְׁאַר לוֹ לַעֲבֹד כְּנֶגְדּוֹ אֵינוֹ מָחוּל לוֹ עַד שֶׁיִּכְתֹּב לוֹ שְׁטַר שִׁחְרוּר. כֵּיצַד. הֲרֵי שֶׁקָּנָהוּ בְּשִׁשִּׁים וְעָבַד שָׁנָה אוֹ שְׁנָתַיִם וְאָמַר לוֹ שְׁאָר הַדָּמִים מְחוּלִין לְךָ לֵךְ לְדַרְכְּךָ לֹא נִפְטַר מִשִּׁעְבּוּדוֹ עַד שֶׁיִּכְתֹּב לוֹ שְׁטָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מחילת הרב לעבד מחול על הכסף שנשאר לו לעבוד כנגדו עד שיכתוב לו שטר שיחרור כדאמר רבא דף י&quot;ו זאת אומרת ע&quot;ע גופו קנוי עד שיגיעו ימי חיפושו ולפיכך הרב שמחל על גרעונו אין גרעונו מחול.</p>
               </div>
             </div>
@@ -576,8 +662,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 2:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-2-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-2-12">Mishneh Torah, Slaves 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָדוֹן שֶׁמֵּת אִם הִנִּיחַ בֶּן זָכָר הֲרֵי הָעֶבֶד עוֹבֵד הַבֵּן עַד סוֹף הַשֵּׁשׁ אוֹ עַד סוֹף הַשָּׁנִים שֶׁמָּכַר עַצְמוֹ לָהֶן אוֹ עַד שֶׁיִּפְגַּע בּוֹ יוֹבֵל אוֹ עַד שֶׁיְּגַרֵעַ פִּדְיוֹנוֹ וְיִתֵּן הַשְּׁאָר. אֲבָל אִם לֹא הִנִּיחַ בֶּן זָכָר הֲרֵי זֶה יֵצֵא לְחֵרוּת וְאֵינוֹ עוֹבֵד לֹא אֶת הַבַּת וְלֹא אֶת הָאָח וְאֵין צָרִיךְ לוֹמַר שֶׁאֵינוֹ עוֹבֵד שְׁאָר הַיּוֹרְשִׁין. וְהַנִּמְכָּר לְגֵר צֶדֶק אוֹ לְעַכּוּ&quot;ם אֲפִלּוּ הַבֵּן אֵינוֹ עוֹבֵד אֶלָּא כֵּיוָן שֶׁמֵּת הָאָדוֹן יֵצֵא לְחֵרוּת. נִמְצֵאתָ אוֹמֵר שֶׁעֶבֶד עִבְרִי נִקְנֶה בְּכֶסֶף אוֹ בִּשְׁטָר וְקוֹנֶה אֶת עַצְמוֹ בַּחֲמִשָּׁה דְּבָרִים. בְּשָׁנִים אוֹ בְּיוֹבֵל אוֹ בְּגִרְעוֹן כֶּסֶף אוֹ בִּשְׁטַר שִׁחְרוּר אוֹ בְּמִיתַת אָדוֹן בְּלֹא בֵּן וּבְעַכּוּ&quot;ם אוֹ בְּגֵר אֲפִלּוּ הִנִּיחַ בֵּן. מִצְוָה לוֹמַר לוֹ צֵא בִּשְׁעַת יְצִיאָתוֹ. אַף עַל פִּי שֶׁלֹּא אָמַר לוֹ הֲרֵי הוּא יוֹצֵא בְּחִנָּם. וְאֵינוֹ צָרִיךְ שְׁטָר. אֲפִלּוּ חָלָה וְהוֹצִיא רַבּוֹ עָלָיו הוֹצָאוֹת הַרְבֵּה אֵינוֹ חַיָּב לוֹ כְּלוּם שֶׁנֶּאֱמַר <span class="source-small">(שמות כא ב)</span> &quot;יֵצֵא לַחָפְשִׁי חִנָּם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אדון </strong> שמת העבד עובד את הבן ואם אין לו בן אינו עובד לא את הבת ולא שאר היורשים אלא יוצא לחירות כדתניא התם דף י&quot;ז ועבדך שש שנים לך ולא ליורש או אינו אלא לך ולא לבן כשהוא אומר שש שנים יעבוד הרי לבן אמור מדלא כתיב ועבדך ומרבינן לבן ולא לאח שבן קם תחת אביו ליעוד ולשדה אחוזה כדאמרינן התם ונמכר לגר או לגוי אינו עובד אפילו את הבן דכתיב וחשב עם קונהו ולא עם יורשי קונהו כדאיתא התם&#160;ואפילו הוציא הרב הוצאות על העבד בחוליו אינו חייב כלום כדכתיב יצא לחפשי חנם:</p>
               </div>
             </div>
@@ -593,8 +684,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-1">Mishneh Torah, Slaves 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל עֶבֶד עִבְרִי הֲרֵי הָאָדוֹן חַיָּב בִּמְזוֹנוֹת אִשְׁתּוֹ הַנְּשׂוּאָה לוֹ וְלֹא אֲרוּסָה וְשׁוֹמֶרֶת יָבָם. וְהוּא שֶׁתִּהְיֶה מֻתֶּרֶת לוֹ. אֲבָל אִם הָיְתָה מֵאִסּוּרֵי לָאוִין אֲפִלּוּ שְׁנִיָּה אֵינוֹ חַיָּב בִּמְזוֹנוֹתֶיהָ שֶׁנֶּאֱמַר אִשְׁתּוֹ עִמּוֹ אִשָּׁה הָרְאוּיָה לַעֲמֹד עִמּוֹ. וְכֵן חַיָּב בִּמְזוֹנוֹת בָּנָיו וּבְנוֹתָיו. בִּמְכָרוּהוּ בֵּית דִּין נֶאֱמַר <span class="source-small">(שמות כא ג)</span> &quot;אִם בַּעַל אִשָּׁה הוּא וְיָצְאָה אִשְׁתּוֹ עִמּוֹ&quot;. וְכִי תַּעֲלֶה עַל דַּעְתְּךָ שֶׁכֵּיוָן שֶׁנִּקְנָה זֶה נִשְׁתַּעְבְּדָה אִשְׁתּוֹ. אֲבָל לֹא בָּא לְלַמֵּד אֶלָּא שֶׁהָאָדוֹן חַיָּב בִּמְזוֹנוֹתֶיהָ. וּבְמוֹכֵר עַצְמוֹ נֶאֱמַר <span class="source-small">(ויקרא כה מא)</span> &quot;וְיָצָא מֵעִמָּךְ הוּא וּבָנָיו עִמּוֹ&quot;. וּבְנִמְכָּר לְעַכּוּ&quot;ם נֶאֱמַר <span class="source-small">(ויקרא כה נד)</span> &quot;וְיָצָא בִּשְׁנַת הַיֹּבֵל הוּא וּבָנָיו עִמּוֹ&quot;. אֶחָד אִשָּׁה וּבָנִים שֶׁהָיוּ לוֹ בִּשְׁעַת מְכִירָה אוֹ אִשָּׁה וּבָנִים שֶׁהָיוּ לוֹ אַחַר מְכִירָתוֹ. וְהוּא שֶׁיִּקָּחֶנָּה מִדַּעַת הָאָדוֹן. אֲבָל אִם לְקָחָהּ שֶׁלֹּא מִדַּעַת רַבּוֹ אֵינוֹ חַיָּב בִּמְזוֹנוֹתֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האדון </strong> חייב במזונות אשתו ובניו של עבד עברי כדתניא התם דף כ&quot;א ויצא מעמך הוא ובניו עמו אם בעל אשה הוא ויצאה אשתו עמו אמר ר׳ שמעון אם הוא נמכר בניו ובנותיו ואשתו נמכרים אלא מכאן שרבו חייב במזונות בניו ואשתו וצריכי תרי קראי כדאיתא התם ודוקא אשתו נשואה ומותרת לו ולא ארוסה ולא דאסורה לו דכתיב אשתו עמו אשה הראויה לעמוד עמו ובמכילתא דריש אשתו למעוטי שומרת יבם עמו למעוטי ארוסה שאינה עמו. ובנמכר לגוי נמי כתיב ויצא בשנת היובל הוא ובניו עמו ואפילו במזונות אשה ובנים שלקח מדעת רבו חייב הרב במזונותיהם דמדכתיב אם בעל אשה הוא ויצאה אשתו וגומר משמע דבשעת יציאה יש לו אשה ובנים אפילו לא היו לו בשעת כניסה ומיהו דעתו בעינן כיון דחייב במזונות דכשהיה לו בשעת כניסה אדעתא דהכי קנאו אבל לא היה לו לאו אדעתא דהכי קנייה דלינסיב אשה ויהא חייב במזונותיהם אלא מדעתו. ואין לרב במעשה&#160;ידי&#160;האשה או הבנים כלום אלא לעבד הם.</p>
               </div>
             </div>
@@ -609,8 +705,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-3">Mishneh Torah, Slaves 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמְּכָרוּהוּ בֵּית דִּין יֵשׁ לְרַבּוֹ לִתֵּן לוֹ שִׁפְחָה כְּנַעֲנִית. בֵּין הָאָדוֹן בֵּין בְּנוֹ שֶׁל אֲדוֹן אִם מֵת אָבִיו הֲרֵי זֶה נוֹתֵן לוֹ שִׁפְחָה. וְכוֹפֵהוּ עַל זֶה כְּדֵי שֶׁיּוֹלִיד מִמֶּנָּה עֲבָדִים. וַהֲרֵי הִיא מֻתֶּרֶת לוֹ כָּל יְמֵי עַבְדוּתוֹ שֶׁנֶּאֱמַר <span class="source-small">(שמות כא ד)</span> &quot;אִם אֲדֹנָיו יִתֶּן לוֹ אִשָּׁה&quot; וְגוֹ׳. וְהַמּוֹכֵר עַצְמוֹ אָסוּר בְּשִׁפְחָה כְּנַעֲנִית כִּשְׁאָר כָּל יִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש </strong> לרב ליתן שפחה כנענית לע&quot;ע שמכרו לו בית דין כדכתיב אם אדוניו יתן לו אשה וילדו לו וגו׳ ובמכרוהו ב&quot;ד משתעי כדאמר׳ לעיל וכתיב יתן לו אשה לו ולא למוכר עצמו וכיון דאין לו רשות אסורה עליו ולנמכר ע&quot;י ב&quot;ד כופהו רבו על כך דתניא כי משנה&#160;שכר שכיר עבדך שכיר אינו עובד אלא ביום ועבד עברי בין ביום ובין בלילה והלא כבר נאמר כי טוב לו עמך עמך במאכל עמך במשתה וכו׳ אלא אמר רבי יצחק מכאן שרבו מוסר לו אשה כנענית ואי מרצונו הא כתיב אם אדוניו יתן לו אשה וכדאיתא התם דף ט&quot;ו והאי קרא בשפחה כנענית איירי כיון דכתיב האשה וילדיה תהיה לאדוניה וגו׳ כדדרשינן במכילתא ובן הרב כופהו על כך אם מת אביו כיון דכתיב שש שנים יעבוד להביא את הבן כדאמר׳ לעיל הוי עבודה לבן כעבודה לאב ביום ובלילה כדאמ׳. ואין עבד עברי מותר בשפחה כנענית עד שתהיה לו אשה ישראלית ובנים ורבי אליעזר בן יעקב דדריש אם בגפו יבא בגפו יצא יחידי נכנס יחידי יצא דבגפו דרש ליה נמי לשון בגופו שאם בא בגופו יחידי שלא היו לו אשה ובנים יצא יחידי ואם לא בא יחידי אלא שיש לו אשה ובנים לא יצא יחידי משפחה כנענית אלא רבו יכול למוסרה לו וכדאמרינן דף כ׳ ואפילו היה עבד עברי כהן מותר בשפחה כנענית כדפשיט רב התם דחידוש הוא שהתירה תורה שפחה כנענית לא שנא ישראל ולא שנא כהן אף על גב דריבה הכתוב בהן מצות יתרות. ואין האדון יכול להפריש העבד מאשתו הישראלית כשמוסר לו שפחה כנענית דכתיב אשתו עמו ואינו יכול ליתן לו ב׳&#160;שפחות ולא א׳ לב׳ עבדים דכתיב יתן לו אשה. מסר לו שפחה ולא יצא בשש ונרצע והגיע יובל ואינו רוצה לצאת וחבל בו רבו שיצא פטור שהרי נאסר עתה בשפחה&#160;כנענית.</p>
               </div>
             </div>
@@ -625,8 +726,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-6">Mishneh Torah, Slaves 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹכֵר עַצְמוֹ אֵינוֹ נִרְצָע. אֲבָל מְכָרוּהוּ בֵּית דִּין וְעָבַד שֵׁשׁ וְלֹא רָצָה לָצֵאת הֲרֵי זֶה נִרְצָע וְעוֹבֵד עַד שְׁנַת הַיּוֹבֵל אוֹ עַד שֶׁיָּמוּת הָאָדוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מוכר </strong> עצמו אינו נרצע מדכתיב גבי מכרוהו בית דין ורצע אדניו את אזנו במרצע אזנו שלו ולא של מוכר עצמו ואין הנרצע עובד את הבן אלא יוצא במיתת האדון וביובל דכתיב ועבדו לעולם ועבדו לו ולא לבן ולא לבת לעולם לעולמו של יובל כדילפינן נמי התם פרק קמא דקידושין מושבתם איש אל אחוזתו דבפרשת יובל כתיב ואוקימ׳ ליה בנרצע ושם רצועה נוהג באיש ואינו נוהג&#160;באשה והכא כתיב איש. עבד עברי כהן אינו נרצע מפני שנעשה בעל מום וכתיב ואיש אל משפחתו למוחז׳ שבמשפחתו ואינו שב לשררה שהיה בה דלא כתיב אלא אל משפחתו.</p>
               </div>
             </div>
@@ -641,8 +747,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-9">Mishneh Torah, Slaves 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד רוֹצְעִין. מְבִיאוֹ לְבֵית דִּין שֶׁל שְׁלֹשָׁה וְאוֹמֵר דְּבָרָיו לִפְנֵיהֶם וּמַגִּישׁוֹ לְסוֹף שֵׁשׁ אֶל הַדֶּלֶת אוֹ אֶל הַמְּזוּזָה כְּשֶׁהֵן עוֹמְדִין בְּבִנְיָן. בֵּין דֶּלֶת וּמְזוּזָה שֶׁל אָדוֹן בֵּין שֶׁל כָּל אָדָם. וְנוֹקֵב אֶת אָזְנוֹ הַיְמָנִית בְּגוּפָהּ שֶׁל אֹזֶן בְּמַרְצֵעַ שֶׁל מַתֶּכֶת עַד שֶׁיַּגִּיעַ לַדֶּלֶת שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יז)</span> &quot;וְנָתַתָּ בְאָזְנוֹ וּבַדֶּלֶת&quot;. וְלֹא נֶאֱמַר <span class="source-small">(שמות כא ו)</span> &quot;מְזוּזָה&quot; אֶלָּא שֶׁיִּהְיֶה עוֹמֵד בֵּין אֵצֶל דֶּלֶת בֵּין אֵצֶל מְזוּזָה. וּמָה מְזוּזָה כְּשֶׁהִיא עוֹמֶדֶת אַף דֶּלֶת כְּשֶׁהִיא עוֹמֶדֶת. אֲבָל הָרְצִיעָה בַּדֶּלֶת אַף עַל פִּי שֶׁאֵין שָׁם מְזוּזָה. הָאָדוֹן הוּא שֶׁרוֹצֵעַ בְּעַצְמוֹ שֶׁנֶּאֱמַר <span class="source-small">(שמות כא ו)</span> &quot;וְרָצַע אֲדֹנָיו&quot; לֹא בְּנוֹ וְלֹא שְׁלוּחוֹ וְלֹא שְׁלִיחַ בֵּית דִּין. וְאֵין רוֹצְעִין שְׁנֵי עֲבָדִים כְּאֶחָד שֶׁאֵין עוֹשִׂין מִצְוֹת חֲבִילוֹת חֲבִילוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> רוצעין מביאו אצל בית דין שלשה כדתניא והגישו אדוניו אל האלהים וגו׳ שימלך במוכריו כדתניא במכילתא לסוף שש ולא אחר כך דכתיב ואם אמר יאמר העבד כשהוא עבד וכתיב לא אצא חפשי דמשמע סמוך ליציאה כדאיתא התם דף כ&quot;א אל הדלת או אל המזוזה מה מזוזה מעומד דבלאו הכי לא מיקרי מזוזה אף דלת מעומד בין דלת של אדון או של כל אדם דלא כתיב דלתו. ונוקב אזנו הימנית דכתיב הכא אזנו וכתיב התם אזנו מה להלן ימנית אף כאן ימנית ובגובה של אוזן דתנן גבי מומין נפגמה אזנו מן הסחו׳ אבל לא מן העור וקי&quot;ל דאין עבד עברי כהן נרצע מפני שנעשה בעל מום משמע דאין רציעה אלא בגובה של אוזן. ובמרצע של מתכת כרבי דאמר מה מרצע מיוחד של מתכת באזנו ובדלת קודר והולך עד שמגיע לדלת כדאיתא התם ומשום דלא כתיב הכא אלא דלת אמרינן דלא כתיב התם מזוזה אלא לומר מה מזוזה מעומד וכו׳ ורצע אדוניו ולא בנו ולא שלוחו ולא שליח בית דין ואין רוצעין ב׳ עבדים כאחד שאין עושים מצות חבילות חבילות כדאמר׳.</p>
               </div>
             </div>
@@ -657,8 +768,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-10">Mishneh Torah, Slaves 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(שמות כא ה)</span> &quot;וְאִם אָמֹר יֹאמַר הָעֶבֶד&quot; עַד שֶׁיֹּאמַר וְיִשְׁנֶה. הָעֶבֶד עַד שֶׁיֹּאמַר כְּשֶׁהוּא עֶבֶד אֲבָל אִם אָמַר אַחַר שֵׁשׁ אֵינוֹ נִרְצָע עַד שֶׁיֹּאמַר וְיִשְׁנֶה בְּסוֹף שֵׁשׁ בִּתְחִלַּת פְּרוּטָה אַחֲרוֹנָה. כֵּיצַד. כְּגוֹן שֶׁנִּשְׁאַר מִן הַיּוֹם שְׁוֵה פְּרוּטָה מִדְּמֵי מְכִירָתוֹ אוֹ יֶתֶר מְעַט. אֲבָל אִם נִשְׁאַר פָּחוֹת מִשְּׁוֵה פְּרוּטָה הֲרֵי זֶה כְּאוֹמֵר אַחַר שֵׁשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong> אמר יאמר העבד עד שיאמר וישנה העבד עד שיאמר כשהוא עבד בסוף שש בתחלת פרוטה אחרונה שעדין הוא עבד כדא׳ לעיל. היתה לעבד שפחה כנענית ולו ממנה בנים ולרבו אין אשה ובנים אינו נרצע דכתיב כי אהבך ואת ביתך לרבו אשה ובנים ולו אין אשה ובנים אינו נרצע שנא׳ אהבתי את אדוני את אשתי ואת בני וגו׳. הוא אוהבו ורבו אינו אוהבו או איפכא אינו נרצע דכתיב כי טוב לו עמך וכתיב כי אהבך היה אחד מהם חולה אינו נרצע דכתיב כי טוב לו עמך שניהם שוים ואם שניהם חולים נמי אינו נרצע דכתיב כי טוב לו עמך שניהם בטובה.</p>
               </div>
             </div>
@@ -673,8 +789,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-12">Mishneh Torah, Slaves 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַה בֵּין מוֹכֵר עַצְמוֹ לִמְכָרוּהוּ בֵּית דִּין. מוֹכֵר עַצְמוֹ אֵינוֹ נִרְצָע וּמְכָרוּהוּ בֵּית דִּין נִרְצָע. מוֹכֵר עַצְמוֹ אָסוּר בְּשִׁפְחָה כְּנַעֲנִית וּמְכָרוּהוּ בֵּית דִּין רַבּוֹ מוֹסֵר לוֹ שִׁפְחָה כְּנַעֲנִית. מוֹכֵר עַצְמוֹ נִמְכָּר לְעַכּוּ&quot;ם וּמְכָרוּהוּ בֵּית דִּין אֵינוֹ נִמְכָּר אֶלָּא לְיִשְׂרָאֵל שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יב)</span> &quot;כִּי יִמָּכֵר לְךָ אָחִיךָ&quot; אֵין בֵּית דִּין מוֹכְרִין אוֹתוֹ אֶלָּא לְךָ. מוֹכֵר עַצְמוֹ נִמְכָּר לְשֵׁשׁ וְיֶתֶר עַל שֵׁשׁ מְכָרוּהוּ בֵּית דִּין אֵינוֹ נִמְכָּר אֶלָּא לְשֵׁשׁ. מוֹכֵר עַצְמוֹ אֵין מַעֲנִיקִין לוֹ מְכָרוּהוּ בֵּית דִּין מַעֲנִיקִין לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מוכר </strong> עצמו נמכר לגוי ומכרוהו ב&quot;ד אינו נמכר אלא לישראל דכתיב כי ימכר לך אחיך אין ב&quot;ד מוכרין אלא לך. מוכר עצמו נמכר לשש ויתר על שש מכרוהו ב&quot;ד אינו נמכר אלא לשש דכתיב ביה ועבדך שש שנים זה ולא מוכר עצמו ובמוכר עצמו לא כתיב שש מוכר עצמו אין מעניקין לו מכרוהו ב&quot;ד מעניקין לו דכתיב העניק תעניק לו ולא למוכר עצמו. אין אשה נרצעת כדילפינן לעיל מדכתיב ושבתם איש אל אחוזתו:<br><strong> מצות רז </strong> להעניק עבד עברי כדכתיב העניק תעניק לו וגו׳ וכן לאמה דכתיב ואף לאמתך תעשה כן ותניא להעניק יכול אף לרציעה תלמוד לומר ואם אמר יאמר העבד ולא האמה:</p>
               </div>
             </div>
@@ -689,8 +810,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-14">Mishneh Torah, Slaves 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמְשַׁלֵּחַ עַבְדּוֹ וַאֲמָתוֹ רֵיקָם עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יג)</span> &quot;לֹא תְשַׁלְּחֶנּוּ רֵיקָם&quot; וַהֲרֵי הַכָּתוּב נִתְּקוֹ לַעֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יד)</span> &quot;הַעֲנֵיק תַּעֲנִיק לוֹ&quot;. אֶחָד הַיּוֹצֵא בְּסוֹף שֵׁשׁ אוֹ שֶׁיָּצָא בְּיוֹבֵל אוֹ בְּמִיתַת הָאָדוֹן וְכֵן הָאָמָה הָעִבְרִיָּה שֶׁיָּצָאת בְּאֶחָד מִכָּל אֵלּוּ אוֹ בְּסִימָנִין הֲרֵי אֵלּוּ מַעֲנִיקִין לָהֶם. אֲבָל הַיּוֹצֵא בְּגִרְעוֹן כֶּסֶף אֵין מַעֲנִיקִין לָהֶם שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יג)</span> &quot;וְכִי תְשַׁלְּחֶנּוּ חָפְשִׁי מֵעִמָּךְ&quot; וְזֶה לֹא שִׁלְּחוֹ חָפְשִׁי אֶלָּא הָעֶבֶד נָתַן שְׁאָר הַדָּמִים שֶׁנִּשְׁאַר לוֹ לַעֲבֹד בָּהֶן וְאַחַר כָּךְ יָצָא. <span class="source-small">(דברים טו יד)</span> &quot;הַעֲנֵיק תַּעֲנִיק לוֹ מִצֹּאנְךָ מִגָּרְנְךָ וּמִיִּקְבֶךָ&quot; בְּעִנְיַן צֹאן גֹּרֶן וְיֶקֶב דְּבָרִים שֶׁיֵּשׁ בָּהֶם בְּרָכָה מֵחֲמַת עַצְמָן הוּא שֶׁחַיָּב לְהַעֲנִיק לוֹ מֵהֶם אֲבָל הַכְּסָפִים וְהַבְּגָדִים אֵינוֹ חַיָּב לִתֵּן לוֹ מֵהֶם. וְכַמָּה נוֹתֵן לוֹ אֵין פָּחוֹת מִשְּׁוֵה שְׁלֹשִׁים סֶלַע בֵּין מִמִּין אֶחָד בֵּין מִמִּינִין הַרְבֵּה כִּשְׁלֹשִׁים שֶׁל קְנַס הָעֶבֶד שֶׁנֶּאֱמַר בּוֹ <span class="source-small">(שמות כא לב)</span> &quot;יִתֵּן לַאדֹנָיו&quot;. בֵּין שֶׁנִּתְבָּרֵךְ הַבַּיִת בִּגְלָלוֹ בֵּין שֶׁלֹּא נִתְבָּרֵךְ שֶׁנֶּאֱמַר הַעֲנֵיק תַּעֲנִיק לוֹ מִכָּל מָקוֹם. אִם כֵּן לָמָּה נֶאֱמַר <span class="source-small">(דברים טו יד)</span> &quot;אֲשֶׁר בֵּרַכְךָ&quot; הַכּל לְפִי הַבְּרָכָה תֵּן לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שג </strong> שלא לשלח עבדו או אמתו ריקם כדכתיב וכי תשלחנו חפשי מעמך לא תשלחנו ריקם ונתקו הכתוב לעשה דכתיב הענק תעניק לו וגו׳ בתר לא תשלחנו ריקם. אחד היוצא בסוף שש או ביובל או במיתת האדון וכן אמה העבריה באחד מאלו או בסימנין מעניקין אבל היוצא בגרעון כסף אין מעניקין לו כדתניא התם דף ט&quot;ו יכול לא יהו מעניקין אלא ליוצא בשש מנין לרבות יוצא ביובל ומיתת האדון ואמה העבריה בסימנין תלמוד לומר תשלחנו וכי תשלחנו תרי זימני תשלחנו לרבות שאר שילוחין לענק יכול שאני מרבה בורח ויוצא בגרעון כסף ת&quot;ל וכי תשלחנו חפשי מעמך מי ששילוחו מעמך יצאו אלו שאין שילוחן מעמך אלא מאליהן בכסף שנתן או במה שברח קודם שיגיע יובל. דברים שיש בהם ברכה מחמת עצמן כגורן ויקב הוא שחייב להעניק ולא מכספים ובגדים כדילפינן התם יכול לא יהו מעניקין אלא מצאן גורן ויקב מנין לרבות כל דבר תלמוד לומר כאשר יברכך ה׳ אלהיך אם כן מה תלמוד לומר צאן גורן ויקב לומר לך מה צאן גורן ויקב מיוחדין שישנן בכלל ברכה אף&#160;כל שישנו בכלל ברכה יצאו כספים וכו׳. ואין נותן פחות מל׳ סלעים בין ממין אחד בין ממינים הרבה כשלשים של עבד דעבד מעבד הוה ליה למילף נתינה נתינה כרבי יהודה התם דף ט&quot;ז. ובין שנתברך הבית בגללו או לא נתברך מעניקין אותו כדכתיב העניק תעניק לו מ&quot;מ אם כן מה תלמוד לומר כאשר יברכך הכל לפי הברכה תן לו שאם נתברך הבית בשבילו הרבה יוסיף על הענקו ואם לאו אל יפחות מן הכתוב.</p>
               </div>
             </div>
@@ -705,8 +831,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 3:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-3-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 3:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-3-15">Mishneh Torah, Slaves 3:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִם בָּרַח וּפָגַע בּוֹ יוֹבֵל כְּשֶׁהוּא בּוֹרֵחַ וְיָצָא לְחֵרוּת אֵינוֹ חַיָּב לְהַעֲנִיקוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יג)</span> &quot;וְכִי תְשַׁלְּחֶנּוּ&quot; וְגוֹ׳. עֶנֶק עֶבֶד עִבְרִי לְעַצְמוֹ וְאֵין בַּעַל חוֹב גּוֹבֶה הֵימֶנּוּ. וְעֶנֶק אָמָה הָעִבְרִיָּה וְכֵן מְצִיאָתָהּ לְאָבִיהָ. וְאִם מֵת אָבִיהָ קֹדֶם שֶׁיָּבוֹא לְיָדוֹ הֲרֵי הֵן שֶׁל עַצְמָהּ וְאֵין לְאַחֶיהָ בָּהֶם כְּלוּם שֶׁאֵין אָדָם מוֹרִישׁ זְכוּת שֶׁיֵּשׁ לוֹ בְּבִתּוֹ לִבְנוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ענק </strong> עבד עברי לעצמו ואין בעל חוב גובה הימנו כתנא דאמר לו ולא לבעל חוב דמדסבירא לן כר׳ נתן בעלמא מנין שמוציאין מזה וכו׳ איצטריך למעוטי הענקה מהאי דינא כדאמר׳ דף ט&quot;ו וט&quot;ז ואע&quot;ג דאמרינן לעיל לו ולא למוכר עצמו כת&quot;ק דהלכתא כוותיה אפשר שהרב ז&quot;ל נקט כי האי תנא דאמרינן התם תני חדא ענק עבד עברי לעצמו וענק אמה העבריה לעצמה ואמרינן לעצמו פשיטא וכו׳ הא מני תנאי היא וכו׳ ונראה דהאי תנא אף על גב דדריש לו ולא לבעל חוב מצי למדרש נמי לו ולא למוכר עצמו כת&quot;ק דבריתא דלעיל ולא תימא תרי דרשות מחד קרא דכיון דכתיב לו משמע לו דוקא וממילא אימעיטו מוכר עצמו דאינו בהענקה ושהענקה היא לעבד ולא לב&quot;ח וכיון דהאי תנא תני הא מילתא בהדי אמה העבריה הענקה לעצמה כשאין לה אב דהלכתא הכי בהא נמי הלכתא הכי ומפיק לה נמי מדכתיב לו כדאמ׳. ענק אמה העבריה לאביה ומציאתה לאביה דכל שבח נעורים לאביה כדילפינן בעלמא ואם מת הן של עצמה שאין אדם מוריש זכות בתו לבנו כדילפינן מדכתיב והתנחלתם אותם לבניכם אחריכם&#160;אותם לבניכם ולא בנותיכם לבניכם:</p>
               </div>
             </div>
@@ -722,8 +853,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-1">Mishneh Torah, Slaves 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמָה הָעִבְרִיָּה הִיא הַקְּטַנָּה שֶׁמְּכָרָהּ אָבִיהָ. וּמִשֶּׁתָּבִיא שְׁתֵּי שְׂעָרוֹת אַחַר שְׁתֵּים עֶשְׂרֵה שָׁנָה וְתֵעָשֶׂה נַעֲרָה אֵינוֹ יָכוֹל לְמָכְרָהּ אַף עַל פִּי שֶׁעֲדַיִן יֵשׁ לוֹ רְשׁוּת בָּהּ. וְיֵשׁ לוֹ לְקַדְּשָׁהּ לְכָל מִי שֶׁיִּרְצֶה. אַף הַקְּטַנָּה שֶׁהִיא אַיְלוֹנִית בְּסִימָנֶיהָ וְאֵינָהּ רְאוּיָה לַהֲבָאַת שְׁתֵּי שְׂעָרוֹת יֵשׁ לְאָבִיהָ לְמָכְרָהּ כָּל זְמַן שֶׁהִיא קְטַנָּה. אֲבָל הַטֻּמְטוּם וְהָאַנְדְּרוֹגִינוּס אֵינוֹ נִמְכָּר לֹא כְּעֶבֶד עִבְרִי וְלֹא כְּדִין הָאָמָה הָעִבְרִיָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אף </strong> על פי שיש רשות לאב בבתו נערה אינו יכול למוכרה דאם כשמכרה כשהיא קטנה יוצאה בסימני נערות כל שכן דאינו מוכרה וכדתני׳ במכילתא ובמס׳ ערכין אף הקטנה שהיא אילונית בסימניה יש לאביה [רשות] למוכרה כל זמן שהיא קטנה ואינה יוצאה אלא בבגר כדנימא לקמן. טומטום ואנדרוגינוס אינם נמכרים אלא כדין עבד עברי ולא כאמה עבריה דכתיב גבי עבד אם אדוניו יתן לו אשה וגו׳ וגבי אמה ואם לבנו יעדנה והני לאו בני אשה ולא ייעוד נינהו.</p>
               </div>
             </div>
@@ -738,8 +874,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-2">Mishneh Torah, Slaves 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאָב רַשַּׁאי לִמְכֹּר אֶת בִּתּוֹ אֶלָּא אִם כֵּן הֶעֱנִי וְלֹא נִשְׁאַר לוֹ כְּלוּם לֹא קַרְקַע וְלֹא מִטַּלְטְלִין וַאֲפִלּוּ כְּסוּת שֶׁעָלָיו. וְאַף עַל פִּי כֵן כּוֹפִין אֶת הָאָב לִפְדּוֹתָהּ אַחַר שֶׁמְּכָרָהּ מִשּׁוּם פְּגַם מִשְׁפָּחָה. בָּרַח הָאָב אוֹ שֶׁמֵּת אוֹ שֶׁלֹּא הָיָה לוֹ לִפְדּוֹתָהּ הֲרֵי זוֹ עוֹבֶדֶת עַד שֶׁתֵּצֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> האב רשאי למכור בתו אלא א&quot;כ העני כדאמ׳ גבי מוכר עצמו ואף על פי כן כופין אותו לפדותה משום פגם משפחה כדאמ׳ פרק קמא דקידושין דף י&quot;ח אין לו לפדותה עובדת עד שתצא.</p>
               </div>
             </div>
@@ -754,8 +895,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-3">Mishneh Torah, Slaves 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמָה הָעִבְרִיָּה נִקְנֵית בְּכֶסֶף אוֹ בִּשְׁוֵה כֶּסֶף וּבִשְׁטָר וְאֵינָהּ נִקְנֵית בִּפְרוּטָה מִפְּנֵי שֶׁצָּרִיךְ לִקְנוֹתָהּ בְּדָמִים שֶׁרְאוּיִין לְגֵרָעוֹן כְּדֵי שֶׁתִּגְרַע פִּדְיוֹנָהּ וְתֵצֵא. כֵּיצַד בִּשְׁטָר. כּוֹתֵב עַל הַנְּיָר אוֹ עַל הַחֶרֶס בִּתִּי מְכוּרָה לְךָ בִּתִּי קְנוּיָה לְךָ וְנוֹתֵן בְּיַד הָאָדוֹן. וּשְׁטַר אָמָה הָעִבְרִיָּה הָאָב כּוֹתְבוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמה </strong> העבריה נקנית בכסף או בשוה כסף דהואיל ומיקדשא בכסף הדין נותן שתהא נקנית בכסף ונקנית בשטר כדכתיב אם אחרת יקח לו הקישה הכתוב לאחרת כדאמר׳ לעיל ריש פרק ב׳ ואינה נקנית בפרוטה שאינה ראויה לגרעון כסף וכתיב והפדה מלמד שמגרעת וכו׳. ושטר אמה העבריה האב כותבו כרב חסדא דף ט&quot;ז כי היכי דשטר שדות מוכר כותבו כדילפינן מן ואקח את ספר המקנה.</p>
               </div>
             </div>
@@ -770,8 +916,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-4">Mishneh Torah, Slaves 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמָה הָעִבְרִיָּה עוֹבֶדֶת שֵׁשׁ שָׁנִים כְּעֶבֶד שֶׁמְּכָרוּהוּ בֵּית דִּין שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יב)</span> &quot;כִּי יִמָּכֵר לְךָ אָחִיךָ הָעִבְרִי אוֹ הָעִבְרִיָּה&quot;. וְיוֹצֵאת בִּתְחִלַּת שֶׁבַע. וְאִם פָּגַע בָּהּ יוֹבֵל בְּתוֹךְ שֵׁשׁ יוֹצְאָה חִנָּם כְּעֶבֶד. מֵת הָאָדוֹן אַף עַל פִּי שֶׁהִנִּיחַ בֶּן יוֹצְאָה חִנָּם כְּנִרְצָע שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יז)</span> &quot;וְאַף לַאֲמָתְךָ תַּעֲשֶׂה כֵּן&quot;. וְכֵן מְגָרַעַת מִפִּדְיוֹנָהּ וְיוֹצְאָה. וְאִם כָּתַב לָהּ שְׁטַר שִׁחְרוּר וּמָחַל עַל הַשְּׁאָר יוֹצְאָה חִנָּם כְּעֶבֶד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמה </strong> העבריה עובדת שש כדכתיב כי ימכר לך אחיך העברי או העבריה ואם פגעה בה יובל קודם יוצאת כדאמרינן בעבד. מת אדון אף על פי שהניח בן יוצאה חנם כנרצע דכתיב ביה ועבדו לעולם ולא את הבן ולא את הבת וכתיב ואף לאמתך תעשה כן הקישה לנרצע דאף על גב דאמרן ואף לאמתך תעשה כן להעניק ניכתוב קרא לאמתך כן מאי תעשה שמעת מינה תרתי דמאי תעשה לאגמורי נמי אהענקה:<br><strong> מצות רח </strong> לפדות אמה העבריה דכתיב והפדה ודרשינן מלמד שמגרעת מפדיונה ויוצאה ואם כתב לה שטר שיחרור ומחל על השאר יוצאה חנם כעבד דאמרי׳ התם פרק קמא דקידושין עבד עברי גופו קנוי עד שיגיעו ימי חיפושו. והרב שמחל על גרעונו אין גרעונו מחול ולכך צריך שטר שיחרור דלא גרע מכנעני דנפק משטר דכתיב או חופשה לא ניתן לה וגמר לה לה מאשה.</p>
               </div>
             </div>
@@ -786,8 +937,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-5">Mishneh Torah, Slaves 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יְתֵרָה אָמָה הָעִבְרִיָּה שֶׁהִיא יוֹצְאָה בְּסִימָנִין. כֵּיצַד. כְּגוֹן שֶׁהֵבִיאָה סִימָנִין וְנַעֲשֵׂית נַעֲרָה יוֹצְאָה לְחֵרוּת בְּלֹא כֶּסֶף אֲפִלּוּ הֵבִיאָה סִימָנִין מֵאַחַר יוֹם שֶׁלְּקָחָהּ הֲרֵי זוֹ יוֹצֵאת לְחֵרוּת שֶׁנֶּאֱמַר <span class="source-small">(שמות כא יא)</span> &quot;וְיָצְאָה חִנָּם&quot; רִבָּה לָהּ הַכָּתוּב יְצִיאָה אַחֶרֶת בְּחִנָּם יֶתֶר עַל הָעֶבֶד. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁהִיא הֲבָאַת סִימָנֵי נַעֲרוּת. וְתַחְזֹר לִרְשׁוּת אָבִיהָ עַד שֶׁתִּבְגֹּר וְתֵצֵא מֵרְשׁוּת אָבִיהָ. הָיְתָה הַבַּת אַיְלוֹנִית שֶׁאֵין לָהּ יְמֵי נַעֲרוּת אֶלָּא יוֹצֵאת מִקַּטְנוּתָהּ לְבֶגֶר כֵּיוָן שֶׁבָּגְרָה תֵּצֵא לְחֵרוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמה </strong> העבריה יוצאה בסימנין כדכתיב ויצאה חנם ותניא ריש פרק קמא דקידושין ויצאה חנם ולא פירש מתי תצא אלו ימי בגרות שהיא משתנה מנערות להיות בוגרת אין כסף אלו ימי נערות ומכי נפקא בסימני נערות לא איצטריך קרא לימי בגרות אלא לעיקר זבינא דאילונית למדנו שהיא נמכרת בקטנותה כשאר בנות דסלקא דעתך אמינא דמתיא סימני נערות הויא זבינא דלא מתיא סימני נערות לא הוי זביניה זבינא קמ&quot;ל וזאת תצא בימי בגרותה כשיהיו לה עשרים שנה מקל וחומר ומה סימנין שאין מוציאין מרשות אב מוציאין מרשות אדון בגרות שמוציאין מרשות אב אינו דין שמוציאה מרשות אדון וכדאיתא התם דף ד׳.</p>
               </div>
             </div>
@@ -802,8 +958,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-6">Mishneh Torah, Slaves 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָמָה הָעִבְרִיָּה יוֹצְאָה בְּרָאשֵׁי אֵיבָרִים שֶׁנֶּאֱמַר <span class="source-small">(שמות כא ז)</span> &quot;לֹא תֵצֵא כְּצֵאת הָעֲבָדִים&quot;. וְכֵן עֶבֶד עִבְרִי אִם הִפִּיל לוֹ שִׁנּוֹ אוֹ סִמֵּא לוֹ עֵינוֹ מְשַׁלֵּם לוֹ כְּדִין הַחוֹבֵל בַּחֲבֵרוֹ כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת חוֹבֵל. נִמְצֵאתָ לָמֵד שֶׁאָמָה הָעִבְרִיָּה נִקְנֵית בִּשְׁנֵי דְּבָרִים בְּכֶסֶף אוֹ בִּשְׁטָר. וְקוֹנָה עַצְמָהּ בְּשִׁשָּׁה דְּבָרִים בְּשָׁנִים וּבְיוֹבֵל וּבְגִרְעוֹן כֶּסֶף וּבִשְׁטַר שִׁחְרוּר וּבְמִיתַת הָאָדוֹן וּבְסִימָנִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אמה העבריה יוצאה בראשי איברים כעבד כנעני כדכתיב לא תצא כצאת העבדים וכן עבד עברי אינו יוצא בראשי איברים אלא משלם לו דמי עינו או שינו כחובל בחברו:</p>
               </div>
             </div>
@@ -818,8 +979,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-7">Mishneh Torah, Slaves 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יִעֵד אוֹתָהּ הָאָדוֹן לְעַצְמוֹ אוֹ לִבְנוֹ הֲרֵי הִיא כִּשְׁאָר אֲרוּסוֹת וְאֵינָהּ יוֹצְאָה בְּאֶחָד מִכָּל אֵלּוּ אֶלָּא בְּמִיתַת הַבַּעַל אוֹ בְּגֵט. וּמִצְוַת יִעוּד קוֹדֶמֶת לְמִצְוַת פְּדִיָּה. כֵּיצַד מִצְוַת יִעוּד. אוֹמֵר לָהּ בִּפְנֵי שְׁנַיִם הֲרֵי אַתְּ מְקֻדֶּשֶׁת לִי הֲרֵי אַתְּ מְאֹרֶסֶת לִי הֲרֵי אַתְּ לִי לְאִשָּׁה אֲפִלּוּ בְּסוֹף שֵׁשׁ סָמוּךְ לִשְׁקִיעַת הַחַמָּה. וְאֵינוֹ צָרִיךְ לִתֵּן לָהּ כְּלוּם שֶׁמָּעוֹת הָרִאשׁוֹנוֹת לְקִדּוּשִׁין נִתְּנוּ וְנוֹהֵג בָּהּ מִנְהַג אִישׁוּת וְאֵינוֹ נוֹהֵג בָּהּ מִנְהַג שְׁפָחוֹת. וְאֵינוֹ מְיַעֵד שְׁתַּיִם כְּאַחַת שֶׁנֶּאֱמַר <span class="source-small">(שמות כא ח)</span> &quot;יְעָדָהּ&quot;. וְכֵיצַד מְיַעֲדָהּ לִבְנוֹ. אִם הָיָה בְּנוֹ גָּדוֹל וְנָתַן רְשׁוּת לְאָבִיו לְיַעֲדָהּ לוֹ הֲרֵי הָאָב אוֹמֵר לָהּ בִּפְנֵי שְׁנַיִם הֲרֵי אַתְּ מְקֻדֶּשֶׁת לִבְנִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות רט </strong> ליעד אמה העבריה לעצמו או לבנו דכתיב אשר לא יעדה מכלל שמצוה ליעדה וכתיב ואם לבנו ייעדנה וגו׳ ואם יעדה הרי היא כארוסה דיעוד אירוסין עושה כדאמרי׳ דף י&quot;ח דאי נישואין כיון דנשאת אין לאביה רשות בה וכתיב בבגדו בה כיון שפירש טליתו עליה שוב אינו יכול למוכרה הא יעודי מיעד לה ואינה יוצאה אלא בגט או מיתת הבעל כדכתיב כמשפט הבנות וגו׳. ומצות יעוד קודמת למצות פדיה כדכתיב אשר לא יעדה והפדה כדתניא במכילתא. מצות יעוד הרי את מקודשת או מאורסת לי ואפילו בסוף שש ואינו צריך ליתן כסף דמעות ראשונות לקידושין ניתנו ולכך אפילו בסוף שש שלא נשאר לו עליה אפילו פרוטה כרבנן דר׳ יוסי בר׳ יהודה. ונוהג בה מנהג אישות ולא מנהג שפחות כדכתיב כמשפט הבנות וגו׳ ואינו מיעד שתים כאחת כדתניא במכילתא לא ייעדה לא ייעד לב׳ כאחת ומשמע נמי יעדה מדעתה כדתני אבימי דאין יעוד אלא מדעת ודריש ייעדה לשון ידיעה. מת האדון אין בנו יכול ליעדה שהרי יצאה במיתת האדון כדילפינן לעיל. היעוד כאירוסין כדאמרינן לעיל דאי כנישואין הרי אין לאביה רשות בה וכתיב בבגדו בה וגו׳ הא יעודי מיעד לה. ואם שלש אלה לא יעשה לה שלא יעדה לו ולא לבנו ולא נפדה בגרעון כסף ויצאה חנם בסימנים כדאמרינן לעיל דאי שלש אלה הם שארה כסותה ועונתה אחר יעוד משמע ויצאה חנם בלא גט להכי דרשינן חנם בלא כסף בסימנין ולא חנם בלא גט וכדתניא במכילתא:</p>
               </div>
             </div>
@@ -834,8 +1000,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-10">Mishneh Torah, Slaves 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֶתֶר עַל אוֹתָן הַדְּרָכִים שֶׁקּוֹנָה בָּהֶן עַצְמָהּ כְּעֶבֶד עִבְרִי. אֵין הָאָדוֹן יָכוֹל לִמְכֹּר אָמָה הָעִבְרִיָּה וְלֹא לִתְּנָהּ לְאִישׁ אַחֵר בֵּין רָחוֹק בֵּין קָרוֹב וְאִם מָכַר אוֹ נָתַן לֹא עָשָׂה כְּלוּם שֶׁנֶּאֱמַר <span class="source-small">(שמות כא ח)</span> &quot;לְעַם נָכְרִי לֹא יִמְשׁל לְמָכְרָהּ בְּבִגְדוֹ בָהּ&quot;. וְכֵן עֶבֶד עִבְרִי לֹא יָכוֹל לְמָכְרוֹ לְאַחֵר וְלֹא לִתְּנוֹ. וְיֵרָאֶה לִי שֶׁלֹּא הֻצְרַךְ הַכָּתוּב לֶאֱסֹר דָּבָר זֶה [בְּאָמָה] אֶלָּא מִפְּנֵי שֶׁיֵּשׁ לוֹ לְיַעֲדָהּ לִבְנוֹ לְכָךְ נֶאֱמַר לְעַם נָכְרִי לֹא יִמְשׁל לְמָכְרָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שד </strong> שלא ימכור האדון אמה העבריה כדכתיב לא ימשול למכרה בבגדו בה ותניא פרק קמא דף י&quot;ח מוכר אדם את בתו לאישות ושונה שאם קבל בה קדושין ונתארמלה או נתגרשה מן האירוסין חוזר ומקדשה לאחר וכסף קידושיה שלו׳ אם לא בגרה וכן מכרה לשפחות ושונה ומכרה לאחר שתצא וכן לאישות יכול לקדשה לאחר אחר שיצאה משפחות אבל לא יכול למוכרה לשפחות אחר שקדשה וחזרה אליו שנתארמלה או נתגרשה רבי שמעון אומר כשם וכו׳ ותנא קמא כרבי עקיבא דתניא בבגדו בה כיון שפירש טליתו עליה שוב אין רשאי למוכרה דברי רבי עקיבא דסבר יש אם למקרא בבגדו בה לשון בגד דאי לשון בגידה איבעי ליה למימר בבגדו כמו בשמעו ודריש הכי כיון שפירש אדון טליתו עליה לשם יעוד אם גרשה בגט אין האב יכול למכרה אבל לא יעדה וחזרה אצל אב חוזר ומוכרה כרבנן דאמרינן לשפחות אחר אישות הוא דלא כי הכא דמכי יעדה הוה ליה אישות אבל שפחות אחר שפחות מצי מזבן אבל הרב ז&quot;ל מפרש שפחות אחר שפחות דיכול אפילו יעדה וחזרה לאביו במיתת הבעל או בגט יכול לחזור ולמכרה אבל לא לשפחות אחר אישות דדריש בבגדו בה שפירש המקדש טליתו עליה דהיינו שקדשה שוב אינו יכול למכרה ומשמע ליה לרב ז&quot;ל דלא ימשול למכרה קאי אאדון דכיון דלא יעדה לא ימשול למכרה לעם נכרי ולא עשה כלום אם מכרה או נתנה לאחר וכן עבד עברי אין האדון יכול למוכרו ולא הוצרך לאומרו באמה העבריה אלא מפני שיש לו ליעדה.</p>
               </div>
             </div>
@@ -850,8 +1021,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-11">Mishneh Torah, Slaves 4:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָמָה הָעִבְרִיָּה נִמְכֶּרֶת אֶלָּא לְמִי שֶׁיֵּשׁ לָהּ עָלָיו אוֹ לִבְנוֹ קִדּוּשִׁין כְּדֵי שֶׁתְּהֵא רְאוּיָה לְיִעוּד. כֵּיצַד. מוֹכֵר אָדָם אֶת בִּתּוֹ לְאָבִיו שֶׁאַף עַל פִּי שֶׁאֵין הָאָדוֹן יָכוֹל לְיַעֲדָהּ לוֹ רְאוּיָה הִיא לִבְנוֹ שֶׁהֲרֵי הָאָמָה בַּת אָחִיו. אֲבָל אֵינוֹ יָכוֹל לִמְכֹּר אֶת בִּתּוֹ לִבְנוֹ מִפְּנֵי שֶׁאֵינָהּ רְאוּיָה לְאָדוֹן שֶׁהֲרֵי הִיא אֲחוֹתוֹ וְלֹא לִבְנוֹ מִפְּנֵי שֶׁהִיא אֲחוֹת אָבִיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין אמה </strong> העבריה נמכרת אלא למי שיש לו עליו או לבנו קדושין כדי שתהא ראויה ליעוד לו או לבנו דאף על גב דסברי רבנן דאין מוכרה לקרובים היינו בדליכא כלל יעוד כמו אם מכרה לבנו אבל אי איכא צד יעוד כגון שמכרה לאביו שיכול ליעדה לבנו שהיא בת אחיו מצי למוכרה. יש [רשות] לאדם למכור בתו לפסולים שקידושין תופסין בהם דכתיב לאמה מלמד שמוכרה לפסולים שאינה נמכרת אלא לאמה בלבד ולא לנשואין כיון דמצי ליעדה דהיינו אירוסין דקדושין תופסין לו בה אבל קרובים דאין קדושין תופסין לו בה לא מצי מזבן לה כדאמ׳.</p>
               </div>
             </div>
@@ -866,8 +1042,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-15">Mishneh Torah, Slaves 4:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹכֵר אֶת בִּתּוֹ וְאַחַר כָּךְ הָלַךְ וְקִדְּשָׁהּ לְאַחֵר אִם רָצָה הָאָדוֹן לְיַעֵד מְיַעֵד וְאִם לֹא יִעֵד הָאָדוֹן לֹא לוֹ וְלֹא לִבְנוֹ כְּשֶׁתֵּצֵא מֵרְשׁוּת הָאָדוֹן יִגָּמְרוּ קִדּוּשֶׁיהָ וְתֵעָשֶׂה אֵשֶׁת אִישׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המוכר </strong> את בתו והלך וקדשה לאחר אם לא יעדה האדון כשתצא מרשותו יגמרו קדושיה ותעשה אשת איש כרבנן דרבי יוסי ברבי יהודה דף י&quot;ט דאמרי אם רצה ליעד מיעד כשקדשה לאחר דקסברי דמעות הראשונות לקידושין נתנו דאי בעי ליעודי מיעד ואם לא יעדה חיילי קידושין.</p>
               </div>
             </div>
@@ -882,8 +1063,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 4:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-4-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 4:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-4-16">Mishneh Torah, Slaves 4:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹכֵר אֶת בִּתּוֹ וּפָסַק עַל הָאָדוֹן עַל מְנָת שֶׁלֹּא לְיַעֵד אוֹתָהּ אִם רָצָה הָאָדוֹן לְיַעֵד מְיַעֵד שֶׁהִתְנָה עַל מַה שֶּׁכָּתוּב בַּתּוֹרָה שֶׁתְּנָאוֹ בָּטֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>התנה </strong> שלא לייעד הוי כמתנה על מה שכתוב בתורה ותנאו בטל כרבנן דהתם ויעוד לא הוי דבר שבממון דתנאו קיים:</p>
               </div>
             </div>
@@ -899,8 +1085,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-1">Mishneh Torah, Slaves 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶבֶד כְּנַעֲנִי נִקְנֶה בַּחֲמִשָּׁה דְּבָרִים וְקוֹנֶה אֶת עַצְמוֹ בִּשְׁלֹשָׁה. נִקְנֶה בְּכֶסֶף אוֹ בִּשְׁטָר אוֹ בַּחֲזָקָה אוֹ בַּחֲלִיפִין אוֹ בִּמְשִׁיכָה. וְקוֹנֶה אֶת עַצְמוֹ בְּכֶסֶף אוֹ בִּשְׁטָר אוֹ בְּרָאשֵׁי אֵיבָרִים. וְעֶבֶד קָטָן הֲרֵי הוּא כִּבְהֵמָה וְנִקְנֶה בִּמְשִׁיכָה כִּמְשִׁיכַת הַבְּהֵמָה. וּכְבָר בֵּאַרְנוּ בִּתְחִלַּת סֵפֶר זֶה כָּל הַדְּרָכִים שֶׁהָעֲבָדִים נִקְנִין בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבד </strong> כנעני נקנה בכסף בשטר ובחזקה כדתנן דף כ&quot;ב וילפינן להו בגמרא מדכתיב והתנחלתם אותם לבניכם אחריכם לרשת אחוזה הקישן הכתוב לשדה אחוזה דנקנה בכולהו כדילפינן בדוכתיה וכל אומות ככנענים משנמכר לעבד אלא שכל עבדים נקראים על שם כנען משום דכתיב ביה עבד עבדים ואמר בגמרא תנא אף בחליפין דשדה נמי נקנה בחליפין כדילפינן בדוכתיה ונקנה ג&quot;כ במשיכה דומיא דמטלטלי וקונה את עצמו בכסף שנתן אחר לרבו על מנת שיצא העבד לחירות דכיון דאמר ליה על מנת אהני ליה תנאיה לרבנן כדאמרינן&#160;התם ונראה דכמו שנקנת בכסף כדילפינן משדה אחוזה קנה עצמו נמי בכסף בשטר הוא שכותב לו הרי את בן חורין וכו׳ ומוסרו לו בפני עדים או חתום בעדים כגט אשה דגמרינן לה לה מאשה.</p>
               </div>
             </div>
@@ -915,8 +1106,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-4">Mishneh Torah, Slaves 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד בְּרָאשֵׁי אֵיבָרִים. הַמַּכֶּה אֶת עַבְדּוֹ בְּכַוָּנָה וחִסְרוֹ אֶחָד מֵעֶשְׂרִים וְאַרְבָּעָה רָאשֵׁי אֵיבָרִים שֶׁאֵינָן חוֹזְרִין יָצָא לְחֵרוּת וְצָרִיךְ גֵּט שִׁחְרוּר. אִם כֵּן לָמָּה נֶאֱמַר בַּתּוֹרָה <span class="source-small">(שמות כא כז)</span> &quot;שֵׁן&quot; וְ <span class="source-small">(שמות כא כו)</span> &quot;עַיִן&quot; לִדּוֹן מֵהֶן מָה שֵׁן וְעַיִן מוּמִין שֶׁבְּגָלוּי וְאֵינָן חוֹזְרִין אַף כָּל מוּמִין שֶׁבְּגָלוּי וְאֵינָן חוֹזְרִין יֵצֵא הָעֶבֶד בּוֹ לְחֵרוּת. אֲבָל הַמְסָרֵס עַבְדּוֹ בַּבֵּיצִים אוֹ הַחוֹתֵךְ לְשׁוֹנוֹ אֵינוֹ יוֹצֵא לְחֵרוּת שֶׁאֵינָן מוּמִין שֶׁבְּגָלוּי. וְכֵן הַמַּפִּיל שֵׁן הַקָּטָן אֵינוֹ יוֹצֵא לְחֵרוּת שֶׁהֲרֵי סוֹפוֹ לַחְזֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המכה </strong> עבדו בכוונה וחסרו אחד מכ&quot;ד איברים שאינם חוזרים יוצא לחירות כדכתיב וכי יכה איש את עין וגו׳ ואמרינן בגמרא בשלמא שן ועין כתיבי אלא ראשי איברים מנא לן גמר במה מצינו מה שן ועין מומין שבגלוי ואינם חוזרים אם נטלן אף כל מומין שבגלוי ואינם חוזרים ודרשינן כלל ופרט וכלל כי יכה כלל שן ועין פרט לחפשי ישלחנו חזר וכלל אי אתה דן אלא כעין הפרט שהוא מום שבגלוי ואינו חוזר יצא מסרס עבדו בבצים או חותך לשונו דאינם מומין שבגלוי ומשום דלא בעינן בטל ממלאכה דומיא דשן ועין דרשינן להא בריבה ומיעט וריבה ורבי כל מילי אפילו אינו בטל ממלאכה. המפיל שן קטן אינו יוצא לחירות דכתיב שן ועין ואי כתב שן לחוד הוה אמינא אפילו שן דחלב דהיינו קטן שעתיד להחליף כתב עין לומר דאינו מחליף ואי כתב עין ה&quot;א מה עין שנברא עמו אף כל שנברא עמו אבל שן לא צריכא ואף על פי שחסר אחד מאיבריו צריך גט שחרור להתירו בבת חורין דכתיב הכא ישלחנו וגמר משילוח דאשה מה היא בשטר אף שילוח דעבד בשטר. ועבד שלא מל ולא טבל אלא הוא בגיותו אינו יוצא בראשי איברים כיון שאינו במקצת מצות.</p>
               </div>
             </div>
@@ -931,8 +1127,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-6">Mishneh Torah, Slaves 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה לוֹ אֶצְבַּע יְתֵרָה וַחֲתָכָהּ אִם נִסְפֶּרֶת עַל גַּב הַיָּד עֶבֶד יוֹצֵא בָּהּ לְחֵרוּת. הָיְתָה עֵינוֹ סְמוּיָה וְחִטְטָהּ עֶבֶד יוֹצֵא בָּהּ לְחֵרוּת שֶׁהֲרֵי חִסְּרוֹ אֵיבָר. וְהוּא הַדִּין לְאֶחָד מֵרָאשֵׁי אֵיבָרִים שֶׁהוּא בָּטֵל וְאֵינוֹ עוֹשֶׂה בּוֹ מְלָאכָה שֶׁאִם חֲתָכוֹ הֲרֵי חִסְּרוֹ אֵיבָר וְיָצָא לְחֵרוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה </strong> לו אצבע יתירה וחותכה יוצא בה לחרות דכיון דנספרת על גב היד שהיא בשורת שאר אצבעות הוי כשאר אצבעות דהוו מום שבגלוי ואינו חוזר. אחד מראשי איברים שהוא בטל ממלאכה אם חתכו הרי חסר בו אבר ויוצא לחרות דאמר בעוף דאין תמות וזכרות בה ואפילו הכי נחטטה עינה פסולה אף על גב דסמויה מעיקרא דכתיב מהעוף ולא כל העוף אלמא כי חטטה משוי לה מומא וכן כשלא חסרו אלא שבטלו ממלאכתו כגון שסמא עינו או חרשו והיינו כשהכהו על עינו או על אזנו אבל הכה בכותל כנגדם והבעיתו בקול ואינו רואה או אינו שומע אינו יוצא לחרות דאדם דהוי בר&#160;דעתא&#160;איהו מבעית נפשיה שנותן לבו אל פחד הבא פתאום.</p>
               </div>
             </div>
@@ -947,8 +1148,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-7">Mishneh Torah, Slaves 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִכָּהוּ עַל עֵינוֹ וְסִמְּאָהּ עַל אָזְנוֹ וְחֵרְשָׁהּ עֶבֶד יוֹצֵא בָּהֶן לְחֵרוּת. הִכָּהוּ כְּנֶגֶד עֵינוֹ וְאֵינוֹ רוֹאֶה כְּנֶגֶד אָזְנוֹ וְאֵינוֹ שׁוֹמֵעַ אֵין עֶבֶד יוֹצֵא בָּהֶן לְחֵרוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכהו </strong> על עינו וחסרה מאורה או על שינו ונדדה אם אינו יכול להשתמש בהם יוצא לחרות דאף על גב דלא סמאה לגמרי הויא השחתה כיון שאינו יכול להשתמש בה ואם היתה כך מעיקרא והפילה אינו יוצא לחרות דהויא כנפולה כבר. הכהו על ידו אינו יוצא לחרות דחוזר ובעיא מום שאינו חוזר כדאמרינן. תלש בזקנו ודלדל בו עצם דאף על גב דליכא ביטול מלאכה כשן ועין דעצם דזקן לאו מידי עבד כיון דבגלוי הוא ואינו חוזר הוי ככ&quot;ד ראשי איברים דלחפשי ישלחנו כתיב והוי ריבויא ואינו לשון כלל להיות נידון בכלל ופרט אלא בריבה ומיעט וריבה וריבה הכל ולא תימא א&quot;כ הכהו על ידו וצבתה נמי אע&quot;ג דחוזר דאם כן שן ועין מאי אהני ומאי מיעט.</p>
               </div>
             </div>
@@ -963,8 +1169,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-11">Mishneh Torah, Slaves 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפִּיל אֶת שִׁנּוֹ אוֹ סִמֵּא אֶת עֵינוֹ בְּלֹא כַּוָּנָה כְּגוֹן שֶׁזָּרַק אֶבֶן לִבְהֵמָה וְנָפְלָה בָּעֶבֶד וְהִפִּילָה אֶת שִׁנּוֹ וְחָתְכָה אֶצְבָּעוֹ לֹא יֵצֵא לְחֵרוּת שֶׁנֶּאֱמַר <span class="source-small">(שמות כא כז)</span> &quot;אִם שֵׁן עַבְדּוֹ אוֹ שֵׁן אֲמָתוֹ יַפִּיל&quot; עַד שֶׁיִּתְכַּוֵּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חסרו </strong> בלא כוונה כלל אינו יוצא לחרות ואם נתכוון לנגוע בה והפילה יצא לחירות דכתיב ושחתה עד שיתכוין לשחתה.</p>
               </div>
             </div>
@@ -979,8 +1190,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-14">Mishneh Torah, Slaves 5:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפִּיל שֵׁן עַבְדּוֹ וְסִמֵּא אֶת עֵינוֹ הֲרֵי יֵצֵא לְחֵרוּת בְּשִׁנּוֹ וְנוֹתֵן לוֹ דְּמֵי עֵינוֹ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפיל </strong> שן עבדו וסימא עינו כיון דיצא לחרות בשן נותן לו דמי עינו דאע&quot;ג דצריך גט שיחרור היינו לישא ישראלית ודרשינן במכילתא תחת עינו תחת שינו שיצא על הראשונה ונוטל דמי שנייה.</p>
               </div>
             </div>
@@ -995,8 +1211,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-15">Mishneh Torah, Slaves 5:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין וְעֶבֶד שֶׁל שְׁנֵי שֻׁתָּפִין אֵינוֹ יוֹצֵא בְּרָאשֵׁי אֵיבָרִים לְפִי שֶׁאֵינוֹ מְיֻחָד לְרַבּוֹ שֶׁחָבַל בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שחציו עבד וחציו בן חורין או הוא של ב׳ שותפין אינו יוצא בראשי אברים שאינו מיוחד לרבו שחבל בו וכתיב עבדו ואמתו כדיליף ר׳ יצחק במכילתא ובפרק החובל אמרינן כמאן כרבי אלעזר מה כספו הוא המיוחד לו אף עבדו המיוחד לו.</p>
               </div>
             </div>
@@ -1011,8 +1232,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-16">Mishneh Torah, Slaves 5:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַבְדֵי צֹאן בַּרְזֶל יוֹצְאִין בְּרָאשֵׁי אֵיבָרִים אִם חִסְּרָן הַבַּעַל אֲבָל לֹא הָאִשָּׁה. וְעַבְדֵי מְלוֹג אֵינָן יוֹצְאִין בְּרָאשֵׁי אֵיבָרִים לֹא אִם הִפִּיל הַבַּעַל שֶׁהֲרֵי אֵין לוֹ בָּהֶם אֶלָּא פֵּרוֹת וְלֹא אִם הִפִּילָה אוֹתָן הָאִשָּׁה מִפְּנֵי שֶׁאֵינָן מְיֻחָדִין לָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבדי </strong> צאן ברזל יוצאין בראשי איברים אם חסרן הבעל ועבדי נכסי מלוג אין יוצאין לא מן הבעל ולא מן האשה שאינם של בעל וגם אינם מיוחדים לאשה.</p>
               </div>
             </div>
@@ -1027,8 +1253,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 5:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-5-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 5:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-5-17">Mishneh Torah, Slaves 5:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יְצִיאַת הָעֶבֶד בְּרָאשֵׁי אֵיבָרִים נוֹהֵג בְּכָל מָקוֹם וּבְכָל זְמַן וְאֵין דָּנִין בּוֹ אֶלָּא בְּבֵית דִּין סְמוּכִין מִפְּנֵי שֶׁהוּא קְנָס. לְפִיכָךְ הָעֶבֶד שֶׁאָמַר לְרַבּוֹ הִפַּלְתָּ אֶת שִׁנִּי וְסִמֵּיתָ אֶת עֵינִי וְהָאָדוֹן אוֹמֵר לוֹ עָשִׂיתִי זֶה פָּטוּר שֶׁאִם יוֹדֶה מֵעַצְמוֹ אֵינוֹ חַיָּב לְהוֹצִיאוֹ לְחֵרוּת בְּלֹא עֵדִים שֶׁהַמּוֹדֶה בִּקְנָס פָּטוּר כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת גְּנֵבָה שֶׁכָּל מוֹדֶה בִּקְנָס פָּטוּר מִלְּשַׁלְּמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יציאת </strong> העבד בראשי איברים נוהג בכל זמן ובכל מקום בב&quot;ד סמוכים מפני שהוא קנס שמשלם יותר מדמי עינו ביציאה לחרות:</p>
               </div>
             </div>
@@ -1044,8 +1275,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-6-1">Mishneh Torah, Slaves 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכּוֹתֵב גֵּט שִׁחְרוּר לְעַבְדּוֹ וְזִכָּה לוֹ בּוֹ עַל יְדֵי אַחֵר וְאָמַר זְכֵה בְּגֵט זֶה לִפְלוֹנִי עַבְדִּי יָצָא לְחֵרוּת אַף עַל פִּי שֶׁלֹּא הִגִּיעַ גֵּט לְיָדוֹ שֶׁזָּכִין לְאָדָם שֶׁלֹּא בְּפָנָיו. אֲבָל אִם אָמַר תְּנוּ גֵּט זֶה לְעַבְדִּי אֵינוֹ יָכוֹל לַחְזֹר בּוֹ וְלֹא יֵצֵא הָעֶבֶד לְחֵרוּת עַד שֶׁיַּגִּיעַ הַגֵּט לְיָדוֹ. לְפִיכָךְ הָאוֹמֵר תְּנוּ גֵּט זֶה לְעַבְדִּי וּמֵת לֹא יִתְּנוּ לְאַחַר מִיתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המזכה </strong> גט לעבדו יצא לחרות דזכין לו לאדם שלא בפניו ותן גט זה לעבדי אינו יכול לחזור בו ולכשיגיע הגט לידו יצא לחירות כחכמים דפליגי במתניתין דפ&quot;ק דגיטין אר׳ מאיר וסבירא להו דזכות הוא לעבד כיון שיכול רבו לומר לו עשה עמי ואיני זנך.</p>
               </div>
             </div>
@@ -1060,8 +1296,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 6:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-6-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-6-4">Mishneh Torah, Slaves 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁצִּוָּה בִּשְׁעַת מִיתָתוֹ פְּלוֹנִית שִׁפְחָתִי אַל יִשְׁתַּעְבְּדוּ בָּהּ יוֹרְשַׁי הֲרֵי זוֹ שִׁפְחָה כְּשֶׁהָיְתָה וְאָסוּר לַיּוֹרְשִׁים לְהִשְׁתַּעְבֵּד בָּהּ מִפְּנֵי שֶׁמִּצְוָה לְקַיֵּם דִּבְרֵי הַמֵּת. וְכֵן אִם אָמַר עֲשׂוּ לָהּ קוֹרַת רוּחַ כּוֹפִין אֶת הַיּוֹרְשִׁין וְאֵין מִשְׁתַּעְבְּדִין בָּהּ אֶלָּא בִּמְלָאכָה שֶׁהִיא רוֹצָה בָּהּ. צִוָּה וְאָמַר שַׁחְרְרוּהָ כּוֹפִין אֶת הַיּוֹרְשִׁין לְשַׁחְרֵר אוֹתָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר </strong> ליורשיו בשעת מיתתו שישחררו שפחתו כופין אותם לשחררה דמצוה לקיים דברי המת כדילפינן.</p>
               </div>
             </div>
@@ -1076,8 +1317,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 6:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-6-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-6-5">Mishneh Torah, Slaves 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּשִׁשָּׁה דְּבָרִים שָׁוִין שִׁחְרוּרֵי עֲבָדִים לְגִטֵּי נָשִׁים וּבִשְׁאָר דְּבָרִים הֲרֵי הֵן כִּשְׁאָר כָּל הַשְּׁטָרוֹת. וְאֵלּוּ הֵן הַשִּׁשָּׁה. פְּסוּלִים בְּעַרְכָּאוֹת שֶׁל עַכּוּ&quot;ם. וּכְשֵׁרִין בְּעֵד כּוּתִי. וּצְרִיכִין כְּתִיבָה לְשֵׁם הַמְּשֻׁחְרָר עַצְמוֹ. וְאֵין נִכְתָּבִין בִּמְחֻבָּר. וְאֵין חוֹתְמִין עֵדֵיהֶם אֶלָּא זֶה בִּפְנֵי זֶה. אֶחָד גִּטֵּי נָשִׁים וְאֶחָד שִׁחְרוּרֵי עֲבָדִים שָׁוִין לַמּוֹלִיךְ וְלַמֵּבִיא. כֵּיצַד. כָּל הַשְּׁטָרוֹת הָעוֹלִים בְּעַרְכָּאוֹת שֶׁל עַכּוּ&quot;ם כְּשֵׁרִים בְּכָל הַתְּנָאִים שֶׁאָנוּ מְבָאֲרִים בְּהִלְכוֹת הַלְוָאָה חוּץ מִגִּטֵּי נָשִׁים וְשִׁחְרוּרֵי עֲבָדִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דברים </strong> השוים שחרורי עבדים לגיטי נשים מן התורה דבעיא לשם המשחרר בגיטי נשים דכתיב לה לשמה וכתיב הכא נמי לה לשמה ומחובר פסול נמי בשיחרור עבדים כגיטין דכתיב ניתן לה לא יהיה מחוסר אלא נתינה.</p>
               </div>
             </div>
@@ -1092,8 +1338,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 6:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-6-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 6:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-6-8">Mishneh Torah, Slaves 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַכָּשֵׁר לְהָבִיא גֵּט הָאִשָּׁה כָּשֵׁר לְהָבִיא גֵּט הָעֶבֶד. וְהָעֶבֶד מְקַבֵּל גֵּט לַחֲבֵרוֹ מִיַּד רַבּוֹ שֶׁל חֲבֵרוֹ אֲבָל לֹא מִיַּד רַבּוֹ שֶׁל מְקַבֵּל. הַכּוֹתֵב שְׁטַר אֵרוּסִין לְשִׁפְחָתוֹ אַף עַל פִּי שֶׁאָמַר לָהּ צְאִי בּוֹ לְחֵרוּת וְהִתְקַדְּשִׁי בּוֹ אֵין בַּלָּשׁוֹן הַזֶּה לְשׁוֹן שִׁחְרוּר וְאֵינָהּ מְקֻדֶּשֶׁת וְלֹא מְשֻׁחְרֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכותב </strong> שטר אירוסין לשפחתו אע&quot;פ שאמר לה צאי בו לחירות והתקדשי בו אינו&#160;לשון שחרור ואינה משוחררת ולא מקודשת:</p>
               </div>
             </div>
@@ -1109,8 +1360,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-7-1">Mishneh Torah, Slaves 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גֵּט שִׁחְרוּר צָרִיךְ שֶׁיִּהְיֶה עִנְיָנוֹ דָּבָר הַכּוֹרֵת בֵּינוֹ לְבֵין אֲדוֹנָיו וְלֹא יִשָּׁאֵר לָאָדוֹן בּוֹ זְכוּת. לְפִיכָךְ הַכּוֹתֵב לְעַבְדּוֹ עַצְמְךָ וְכָל נְכָסַי קְנוּיִין לְךָ חוּץ מִמָּקוֹם פְּלוֹנִי אוֹ חוּץ מִטַּלִּית פְּלוֹנִית אֵין זֶה כּוֹרֵת וְהַגֵּט בָּטֵל וּמִתּוֹךְ שֶׁאֵינוֹ גֵּט אֵין הָעֶבֶד מְשֻׁחְרָר וְלֹא קָנָה מִן הַנְּכָסִים כְּלוּם. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> גט </strong> שחרור בעינן שיהיה כורת בינו לבין העבד כגט אשה לפיכך אם כתב לעבד עצמו ונכסיו חוץ מדבר פלוני אין זה כורת ואינו משוחרר.</p>
               </div>
             </div>
@@ -1125,8 +1381,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 7:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-7-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 7:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-7-3">Mishneh Torah, Slaves 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְשַׁחְרֵר שְׁנֵי עֲבָדִים בִּשְׁטָר אֶחָד לֹא קָנוּ עַצְמָן אֶלָּא כּוֹתְבִין שְׁטָר לְכָל אֶחָד וְאֶחָד. לְפִיכָךְ הַכּוֹתֵב כָּל נְכָסָיו לִשְׁנֵי עֲבָדָיו בִּשְׁטָר אֶחָד אַף עַצְמָן לֹא קָנוּ. וְאִם כָּתַב בִּשְׁנֵי שְׁטָרוֹת קָנוּ וּמְשַׁחְרְרִין זֶה אֶת זֶה. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁכָּתַב בְּכָל שְׁטָר מִשְּׁנֵיהֶם כָּל נְכָסַי נְתוּנִים לִפְלוֹנִי וּפְלוֹנִי עַבְדִּי. אֲבָל אִם כָּתַב חֲצִי נְכָסַי לִפְלוֹנִי עַבְדִּי וַחֲצִי נְכָסַי לִפְלוֹנִי עַבְדִּי אַף בִּשְׁנֵי שְׁטָרוֹת לֹא קָנוּ כְּלוּם שֶׁהָעֶבֶד מִכְּלַל נְכָסִים וַהֲרֵי שִׁיֵּר בּוֹ חֶצְיוֹ וְאֵין זֶה שִׁחְרוּר וְכֵיוָן שֶׁלֹּא נִשְׁתַּחְרֵר לֹא קָנָה מִן הַנְּכָסִים כְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המשחרר </strong> שני עבדים בשטר אחד לא קנו עצמן וכן אם כתב חצי נכסי לפלוני עבדי הרי שייר בעבד חציו שהוא מכלל נכסיו ואין זה שיחרור וכן שחרר חצי עבדו בשטר והניח חציו לא קנה העבד את חציו אלא אם כן שחרר חציו בכסף שקבל.</p>
               </div>
             </div>
@@ -1141,8 +1402,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 7:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-7-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-7-5">Mishneh Torah, Slaves 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכּוֹתֵב לְשִׁפְחָתוֹ מְעֻבֶּרֶת הֲרֵי אַתְּ בַּת חוֹרִין וּוְלָדֵךְ עֶבֶד דְּבָרָיו קַיָּמִין. הֲרֵי אַתְּ שִׁפְחָה וּוְלָדֵךְ בֶּן חוֹרִין לֹא אָמַר וְלֹא כְּלוּם שֶׁזֶּה כְּמִי שֶׁמְּשַׁחְרֵר חֶצְיָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכותב </strong> לשפחתו הרי את בת חורין וולדך עבד דבריו קיימין שלא שייר בה אבל אמר הרי את שפחה וולדך בן חורין הוי כמשחרר חציה ולא אמר כלום דעובר ירך אמו הוא ואף על גב דברישא דבריו קיימים אי אפשר לומר דעובר ירך אמו וטפל לאמו הוא ולכך אינו משוחרר אבל היא אינה טפלה לולדה אף על גב דירכה הוי לא חשיב כמשחרר חציה כששחרר אותה ולא את ולדה כדאמרינן.</p>
               </div>
             </div>
@@ -1157,8 +1423,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 7:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-7-7">Mishneh Torah, Slaves 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין הוֹאִיל וְאֵינוֹ מֻתָּר לֹא בְּשִׁפְחָה וְלֹא בְּבַת חוֹרִין כּוֹפִין אֶת רַבּוֹ וְעוֹשֶׂה אוֹתוֹ בֶּן חוֹרִין וְכוֹתֵב שְׁטָר עָלָיו בַּחֲצִי דָּמָיו. בַּמֶּה דְּבָרִים אֲמוּרִים בְּעֶבֶד מִפְּנֵי שֶׁהָאִישׁ מְצֻוֶּה עַל פְּרִיָּה וּרְבִיָּה. אֲבָל הַשִּׁפְחָה תִּשָּׁאֵר כְּמוֹת שֶׁהִיא וְעוֹבֶדֶת אֶת רַבָּה יוֹם אֶחָד וְאֶת עַצְמָהּ יוֹם אֶחָד. וְאִם נָהֲגוּ בָּהּ הַחוֹטְאִים מִנְהַג הֶפְקֵר כּוֹפִין אֶת רַבָּה לְשַׁחְרֵר וְכוֹתֵב עָלֶיהָ שְׁטָר בַּחֲצִי דָּמֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבד </strong> שחציו בן חורין שאינו מותר לישא שום אשה כופין את רבו שישחררנו וכותב שטר על חצי דמיו משום דהוא מצווה בפריה ורביה אבל שפחה אין כופין את רבה אלא א&quot;כ נוהגין בה מנהג הפקר דאינה מצווה אפריה ורביה.</p>
               </div>
             </div>
@@ -1173,8 +1444,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 7:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-7-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 7:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-7-9">Mishneh Torah, Slaves 7:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁכִיב מֵרַע שֶׁכָּתַב כָּל נְכָסָיו לְעַבְדּוֹ וְעָמַד חוֹזֵר בַּנְּכָסִים וְאֵינוֹ חוֹזֵר בָּעֶבֶד שֶׁהֲרֵי יָצָא עָלָיו שֵׁם בֶּן חוֹרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ש&quot;מ </strong> שכתב נכסיו לעבדו ועמד אינו חוזר בעבד כיון שיצא עליו שם בן חורין:</p>
               </div>
             </div>
@@ -1190,8 +1466,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-8-1">Mishneh Torah, Slaves 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹכֵר אֶת עַבְדּוֹ לְעַכּוּ&quot;ם יֵצֵא בֶּן חוֹרִין וְכוֹפִין אֶת רַבּוֹ לַחְזֹר וְלִקְנוֹתוֹ מִן הָעַכּוּ&quot;ם עַד עֲשָׂרָה בְּדָמָיו וְכוֹתֵב לוֹ גֵּט שִׁחְרוּר וְיוֹצֵא. וְאִם לֹא רָצָה הָעַכּוּ&quot;ם לְמָכְרוֹ אֲפִלּוּ בַּעֲשָׂרָה בְּדָמָיו אֵין מְחַיְּבִין אוֹתוֹ יֶתֶר. וּקְנָס זֶה אֵין גּוֹבִין אוֹתוֹ וְדָנִין אוֹתוֹ אֶלָּא בְּבֵית דִּין מֻמְחִין. וְאִם מֵת הַמּוֹכֵר אֵין קוֹנְסִין אֶת הַיּוֹרֵשׁ לְהַחְזִיר אֶת הָעֶבֶד לְשִׁחְרוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מוכר </strong> עבדו לגוי יצא לחירות דקנס חכמים הוא מפני שהפקיעו מן המצות וכן מוכר עבדו לח&quot;ל קנסו הלוקח שאלו לא לקחו לא יצא לח&quot;ל:</p>
               </div>
             </div>
@@ -1206,8 +1487,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 8:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-8-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 8:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-8-10">Mishneh Torah, Slaves 8:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶבֶד שֶׁבָּרַח מִחוּצָה לָאָרֶץ לָאָרֶץ אֵין מַחֲזִירִין לוֹ לְעַבְדוּת וְעָלָיו נֶאֱמַר <span class="source-small">(דברים כג טז)</span> &quot;לֹא תַסְגִּיר עֶבֶד אֶל אֲדֹנָיו&quot;. וְאוֹמֵר לְרַבּוֹ שֶׁיִּכְתֹּב לוֹ גֵּט שִׁחְרוּר וְיִכְתֹּב לוֹ שְׁטַר חוֹב בְּדָמָיו עַד שֶׁתַּשִּׂיג יָדוֹ וְיִתֵּן לוֹ. וְאִם לֹא רָצָה הָאָדוֹן לְשַׁחְרְרוֹ מַפְקִיעִין בֵּית דִּין שִׁעְבּוּדוֹ מֵעָלָיו וְיֵלֵךְ לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שה </strong> שלא להסגיר אל אדוניו עבד שברח מח&quot;ל לא&quot;י כדכתיב לא תסגיר עבד אל אדוניו ובברח מח&quot;ל לארץ ישראל מדבר הכתוב כדדרש רבי אחי ברבי יאשיה פרק השולח דף מ&quot;ח דכתיב אשר ינצל אליך לארץ ישראל ואומר לרבו שיכתוב לו גט שחרור ויכתוב העבד ש&quot;ח בדמיו כדאיתא התם אם לא יוכל למוכרו שם דלא יצא לחרות במה שברח לארץ ישראל שלא יוציאוהו משם וכיון דכותב עליו ש&quot;ח בדמיו הרי הוא משוחרר והוי גר צדק והוסיף הכתוב אזהרה למי שמונה אותו מפני שהוא שפל רוח מן הגר:<br><strong> אזהרת שו </strong> שלא להונות אותו כדכתיב עמך ישב בקרבך באחד שעריך בטוב לו לא תוננו אפילו הונית דברים נמצא המונה אותו עובר בלאו זה נוסף על שנים לאוין שבגר.</p>
               </div>
             </div>
@@ -1222,8 +1508,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 8:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-8-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 8:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-8-12">Mishneh Torah, Slaves 8:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹנֶה עֶבֶד מִן הָעַכּוּ&quot;ם סְתָם וְלֹא רָצָה לָמוּל וּלְקַבֵּל מִצְוֹת הָעֲבָדִים מְגַלְגְּלִין עִמּוֹ כָּל שְׁנֵים עָשָׂר חֹדֶשׁ וְאִם לֹא רָצָה חוֹזֵר וּמוֹכְרוֹ לְעַכּוּ&quot;ם אוֹ לְחוּצָה לָאָרֶץ. וְאִם הִתְנָה הָעֶבֶד עָלָיו תְּחִלָּה שֶׁלֹּא יָמוּל הֲרֵי זֶה מֻתָּר לְקַיְּמוֹ כָּל זְמַן שֶׁיִּרְצֶה בְּגֵיוּתוֹ וּמוֹכְרוֹ לְעַכּוּ&quot;ם אוֹ לְחוּצָה לָאָרֶץ. וְכֵן עֶבֶד שֶׁמָּל וְטָבַל לְשֵׁם עַבְדוּת וְאַחַר כָּךְ הִפִּיל עַצְמוֹ לִגְיָסוֹת וְאֵין רַבּוֹ יָכוֹל לְהוֹצִיאוֹ לֹא בְּדִינֵי יִשְׂרָאֵל וְלֹא בְּדִינֵי אֻמּוֹת הָעוֹלָם הֲרֵי זֶה מֻתָּר לוֹ לִטּל דָּמָיו מִן הָעַכּוּ&quot;ם וְכוֹתֵב וּמַעֲלֶה בְּעַרְכָּאוֹת שֶׁל עַכּוּ&quot;ם מִפְּנֵי שֶׁהוּא כְּמַצִּיל מִיָּדָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקונה </strong> עבד ולא רצה למול מוכרו אחר י&quot;ב חדש ואם התנה העבד שלא למול מותר לקיימו וכדאמרינן פרק החולץ דף מ&quot;ח וזהו עבד ערל שמותר לקיימו. עבד שהפיל עצמו לגיסות מותר ליטול דמיו מן הגוים מפני שהוא כמציל&#160;מידם.</p>
               </div>
             </div>
@@ -1238,8 +1529,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 8:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-8-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 8:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-8-13">Mishneh Torah, Slaves 8:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיר עַבְדּוֹ יָצָא לְחֵרוּת וְצָרִיךְ גֵּט שִׁחְרוּר. וְאִם מֵת הָאָדוֹן שֶׁהִפְקִירוֹ הַיּוֹרֵשׁ כּוֹתֵב לוֹ גֵּט שִׁחְרוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיר </strong> עבדו זכה בעצמו ויצא לחירות וצריך גט שיחרור כרבי יוחנן.</p>
               </div>
             </div>
@@ -1254,8 +1550,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 8:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-8-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 8:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-8-14">Mishneh Torah, Slaves 8:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶבֶד שֶׁבָּרַח מִבֵּית הָאֲסוּרִין אִם נִתְיָאֵשׁ מִמֶּנּוּ רַבּוֹ יָצָא לְחֵרוּת וְכוֹפִין אֶת רַבּוֹ וְכוֹתֵב לוֹ גֵּט שִׁחְרוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבד </strong> שברח מבית האסורים של גוי ששבאו אם נתיאש ממנו רבו יצא לחירות כדאמר התם פרק השולח דף ל&quot;ח והפודה אותו מיד השבאי אם נתיאש רבו ראשון ישתעבד בו זה שני ואם פדהו לשם בן חורין הרי זה בן חורין וכדתנן התם ואם לא נתיאש ממנו רבו ראשון חוזר לו בלא כלום כיון שפדהו לשם בן חורין.</p>
               </div>
             </div>
@@ -1270,8 +1571,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 8:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-8-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 8:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-8-16">Mishneh Torah, Slaves 8:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶבֶד שֶׁעֲשָׂאוֹ רַבּוֹ אַפּוֹתֵיקֵי לְבַעַל חוֹבוֹ וְשִׁחְרְרוֹ הֲרֵי זֶה מְשֻׁחְרָר וְכוֹפִין אֶת בַּעַל חוֹבוֹ לְשַׁחְרְרוֹ. גַּם זֶה מִפְּנֵי תִּקּוּן הָעוֹלָם שֶׁלֹּא יִפְגַּע בּוֹ לְאַחַר זְמַן וְיֹאמַר לוֹ עַבְדִּי אַתָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבד </strong> שעשאו רבו אפותיקי ושחררו משוחרר ומפקיע מידי שעבוד כדאמרינן בעלמא הקדש חמץ ושחרור מפקיעין מידי שעבוד דאין גופו קנוי לב&quot;ח אלא שעבוד בעלמא עשה לו רבו שיעשה דבר שאינו חייב בו אלא בן חורין יצא לחירות וכותב לו גט שחרור וכן כל שהוציא מפיו דברים שמשמען שמשחררו ושגמר בלבו דבר זה כופין אותו לכתוב לו גט שחרור.</p>
               </div>
             </div>
@@ -1286,8 +1592,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 8:19:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-8-19-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 8:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-8-19">Mishneh Torah, Slaves 8:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַלּוֹקֵחַ עֶבֶד מִן הָעַכּוּ&quot;ם וְקָדַם הָעֶבֶד וְטָבַל בִּפְנֵי רַבּוֹ לְשֵׁם בֶּן חוֹרִין יָצָא לְחֵרוּת. שֶׁלֹּא בִּפְנֵי רַבּוֹ צָרִיךְ לְפָרֵשׁ לְפִיכָךְ צָרִיךְ רַבּוֹ לְתָקְפּוֹ בַּמַּיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הלוקח </strong> עבד מן הגוי וקדם וטבל בפני רבו לשם בן חורין יצא לחירות. תקף בגוי קטן והטבילו לשם גר הוי גר לשם עבד הוי עבד לשם בן חורין הוי בן חורין גר שקדמו עבדיו וטבלו בפניו קנו עצמן:</p>
               </div>
             </div>
@@ -1303,8 +1614,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 9:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-9-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-9-1">Mishneh Torah, Slaves 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יִשְׂרָאֵל שֶׁבָּא עַל שִׁפְחָה כְּנַעֲנִית אַף עַל פִּי שֶׁהִיא שִׁפְחָתוֹ הֲרֵי זֶה הַוָּלָד כְּנַעֲנִי לְכָל דָּבָר וְנִמְכָּר וְנִקְנֶה וּמִשְׁתַּמְּשִׁים בּוֹ לְעוֹלָם כִּשְׁאָר הָעֲבָדִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ישראל </strong> שבא על שפחה כנענית הוולד כנעני לכל דבר כדילפינן ס&quot;פ האומר בקידושין דולדה כמותה מדכתיב בשפחה כנענית שייחד לעבד עברי האשה וילדיה תהיה לאדוניה דהוולד כמותה ולא יצא חפשי עם אביו.</p>
               </div>
             </div>
@@ -1319,8 +1635,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 9:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-9-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 9:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-9-2">Mishneh Torah, Slaves 9:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַקּוֹנֶה עֶבֶד כְּנַעֲנִי מִיִּשְׂרָאֵל אוֹ מִן גֵּר תּוֹשָׁב אוֹ מִן עַכּוּ&quot;ם שֶׁהוּא כָּבוּשׁ תַּחַת יָדֵינוּ אוֹ מֵאֶחָד מִשְּׁאָר הָאֻמּוֹת יֵשׁ לוֹ לִמְכֹּר אֶת עַצְמוֹ לְיִשְׂרָאֵל לְעֶבֶד וַהֲרֵי הוּא עֶבֶד כְּנַעֲנִי לְכָל דָּבָר. וְכֵן מוֹכֵר בָּנָיו וּבְנוֹתָיו שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מה)</span> &quot;מֵהֶם תִּקְנוּ וּמִמִּשְׁפַּחְתָּם אֲשֶׁר עִמָּכֶם אֲשֶׁר הוֹלִידוּ בְּאַרְצְכֶם&quot;. וְכָל אֶחָד מֵאֵלּוּ הֲרֵי הוּא כְּעֶבֶד כְּנַעֲנִי לְכָל דָּבָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקונה </strong> עבד כנעני מישראל או מאי זה גוי שיהיה וכן גר תושב וגוי יש לו למכור עצמו לישראל והרי הוא עבד כנעני לכל דבר וכן מוכר בניו ובנותיו וכל אחד מהם הוי עבד כנעני לכל דבר כדכתיב מהם תקנו עבד ואמה וגו׳ וכתיב בתריה וגם מבני התושבים הגרים עמכם מהם תקנו ממשפחתם וגו׳.</p>
               </div>
             </div>
@@ -1335,8 +1656,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 9:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-9-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 9:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-9-3">Mishneh Torah, Slaves 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד מִן הָאֻמּוֹת שֶׁבָּא עַל שִׁפְחָה כְּנַעֲנִית שֶׁלָּנוּ הֲרֵי הַבֵּן עֶבֶד כְּנַעֲנִי שֶׁנֶּאֱמַר אֲשֶׁר הוֹלִידוּ בְּאַרְצְכֶם. אֲבָל הָעֶבֶד שֶׁלָּנוּ שֶׁבָּא עַל אַחַת מִן הָאֻמּוֹת אֵין הַבֵּן עֶבֶד שֶׁנֶּאֱמַר אֲשֶׁר הוֹלִידוּ בְּאַרְצְכֶם וְעֶבֶד אֵין לוֹ יַחַס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> מן האומות שבא על שפחה כנענית שלנו הבן הוא עבד כנעני אבל העבד שבא על אחד מן האומות אין הבן עבד כדתניא פרק האומר דף ס&quot;ז מנין לאחד מן האומות שבא על שפחה כנענית שאמר הכתוב עליהם לא תחיה כל נשמה והוליד בן שאתה רשאי לקנותו בעבד דשדינן ליה בתר זכר ומותר להחיותו דכתיב וגם מבני התושבים הגרים עמכם מהם תקנו ולעיל מיניה כתיב ועבדך ואמתך אשר יהיו לך מאת הגוים אשר סביבותיכם שאינם משבעה אומות מהם תקנו עבד ואמה וסמיך ליה וגם מבני התושבים כלומר לא משאר אומות לבדם שאין בהם מערבוב ז׳ אומות אלא אף מבניהם שמולידים אותם תושבים הבאים לגור עמכם מן הכנענית מהם תקנו שלידתן בארצכם דהיינו אמותיהם ולא מן הגרים בארצכם שהולידו בני ארצכם במקומות אחרים מבנות שאר אומות כך פי׳ רש&quot;י ז&quot;ל ונראה שהרב ז&quot;ל היה לו נוסחא אחרת בזאת הבריתא וממנה הוציא דין זה. עבד הנלקח בדיני המלך הרי הוא כעבד כנעני לכל דבר.</p>
               </div>
             </div>
@@ -1351,8 +1677,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 9:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-9-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 9:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-9-5">Mishneh Torah, Slaves 9:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַכּוּ&quot;ם שֶׁקָּנָה עַכּוּ&quot;ם לְעַבְדוּת לֹא קָנָה גּוּפוֹ וְאֵין לוֹ בּוֹ אֶלָּא מַעֲשֵׂה יָדָיו. אַף עַל פִּי כֵן אִם מְכָרוֹ לְיִשְׂרָאֵל הֲרֵי גּוּפוֹ קָנוּי לְיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גוי שקנה </strong> גוי לעבדות לא קנהו אלא למעשה ידיו ואם מכרו לישראל גופו קנוי לישראל כדאמר ריש לקיש פרק השולח דף ל&quot;ז מנין לגוי שקונה את הגוי למעשה ידיו שנאמר וגם מבני התושבים הגרים עמכם מהם תקנו וריבויא הוא האי מהם תקנו דהא כתיב לעיל מיניה מהם תקנו עבד ואמה וכתיב בתריה וגם מבני התושבים הגרים עמכם ולשתוק אלא למאי כתב מהם תקנו לומר אתם קונים מהם ולא הם קונים מכם את אחד מכם ולא הם קונים זה מזה לגופו אלא למעשה ידיו דכיון דגוי קונה ישראל למעשה ידיו כדכתיב וכי תשיג יד גר ותושב וגו׳ או לעקר משפחת גר כ&quot;ש דגוי קונה חברו למעשה ידיו:</p>
               </div>
             </div>
@@ -1367,8 +1698,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 9:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-9-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 9:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-9-6">Mishneh Torah, Slaves 9:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה קוֹנָה שְׁפָחוֹת וְאֵינָהּ קוֹנָה עֲבָדִים אֲפִלּוּ קְטַנִּים מִפְּנֵי הַחֲשָׁד וְאִם קָנְתָה אוֹתָם הֲרֵי זוֹ קָנְתָה גּוּפָם כְּאִישׁ. וְיֵרָאֶה לִי שֶׁאֵינָהּ אֲסוּרָה לִקְנוֹת אֶלָּא עֶבֶד בֶּן תֵּשַׁע שָׁנִים וּמִתֵּשַׁע וּלְמַעְלָה. וְכֵן אָסוּר לְאָדָם לְשַׁחְרֵר עֶבֶד כְּנַעֲנִי. וְכָל הַמְשַׁחְרְרוֹ עוֹבֵר בַּעֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה מו)</span> &quot;לְעלָם בָּהֶם תַּעֲבֹדוּ&quot;. וְאִם שִׁחְרְרוֹ מְשֻׁחְרָר כְּמוֹ שֶׁבֵּאַרְנוּ. וְכוֹפִין אוֹתוֹ לִכְתֹּב גֵּט שִׁחְרוּר בְּכָל הַדְּרָכִים שֶׁבֵּאַרְנוּ. וּמֻתָּר לְשַׁחְרְרוֹ לִדְבַר מִצְוָה אֲפִלּוּ לְמִצְוָה שֶׁל דִּבְרֵיהֶם כְּגוֹן שֶׁלֹּא הָיוּ עֲשָׂרָה בְּבֵית הַכְּנֶסֶת הֲרֵי זֶה מְשַׁחְרֵר עַבְדּוֹ וּמַשְׁלִים בּוֹ הַמִּנְיָן. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְכֵן שִׁפְחָה שֶׁנּוֹהֲגִין בָּהּ הָעָם מִנְהַג הֶפְקֵר וַהֲרֵי הִיא מִכְשׁוֹל לַחוֹטְאִים כּוֹפִין אֶת רַבָּה וּמְשַׁחְרְרָהּ כְּדֵי שֶׁתִּנָּשֵׂא וְיָסוּר הַמִּכְשׁוֹל. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות רי </strong> להשתעבד בעבד כנעני לעולם והמשחררו עובר בעשה כדכתיב לעולם בהם תעבודו ומותר לשחררו לדבר מצוה וכדאמר׳ התם פרק השולח לעולם בהם תעבודו ר׳ עקיבא אומר חובה ור׳ אליעזר נמי אומר חובה ואפילו לשחרר עבדו להשלים לעשרה כדאיתא התם משום דמצוה שאני.</p>
               </div>
             </div>
@@ -1383,8 +1719,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Slaves 9:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-slaves-9-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Slaves 9:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-slaves/#mishneh-torah-slaves-9-7">Mishneh Torah, Slaves 9:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יָכוֹל הָרַב לוֹמַר לְעַבְדּוֹ כְּנַעֲנִי עָשָׂה עִמִּי וְאֵינִי זָנְךָ אֶלָּא יֵלֵךְ וְיִשְׁאַל עַל הַפְּתָחִים וְיִתְפַּרְנֵס מִן הַצְּדָקָה שֶׁיִּשְׂרָאֵל מְצֻוִּין לְהַחֲיוֹת הָעֲבָדִים שֶׁבֵּינֵיהֶם. בַּמֶּה דְּבָרִים אֲמוּרִים בַּעֲבָדָיו שֶׁאֵין בֵּית דִּין נִזְקָקִין לִגְדוֹלִים לִשְׁמֹר מָמוֹנָם וְאִם לֹא יַאֲכִיל לַעֲבָדָיו וְיַשְׁקֵם כָּרָאוּי הֵם יִבְרְחוּ אוֹ יָמוּתוּ וְאָדָם חָס עַל מָמוֹן עַצְמוֹ יֶתֶר מִכָּל אָדָם. אֲבָל עֲבָדִים שֶׁהִכְנִיסָה לוֹ אִשְׁתּוֹ בְּתוֹרַת נִכְסֵי מְלוֹג חַיָּב בִּמְזוֹנוֹתֵיהֶן שֶׁעַל מְנָת כֵּן הִכְנִיס אוֹתָם שֶׁאִם לֹא יָזוּן אוֹתָם יָמוּתוּ וְיִבְרְחוּ וַהֲרֵי אֵינוֹ חַיָּב בְּאַחֲרָיוּתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יכול </strong> הרב לומר לעבד עשה עמי ואיני זנך כדמסקי׳ פ&quot;ק דגיטין וכדמשמע קרא דלעולם בהם תעבודו ולא חייבו מזונות ומותר לרדותו בפרך דדוקא בעבד עברי אזהר רחמנא ואע&quot;פ כן מדת חסידות להיות רחמן ורודף צדק:</p>
               </div>
             </div>
@@ -1394,6 +1735,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-slaves-text-9">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-slaves.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-slaves-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1414,8 +1759,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-slaves.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-slaves.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-slaves.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-slaves.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-slaves.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-slaves.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1441,7 +1786,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

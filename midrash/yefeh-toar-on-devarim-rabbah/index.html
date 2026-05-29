@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -149,16 +153,12 @@
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Devarim Rabbah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">5 total source units | imported 2026-05-09</p>
         <p class="meta source-citation">Hebrew version: Midrash Rabbah, Vilna, 1878 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>137 matched</strong> / 263 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/yefeh-toar-on-devarim-rabbah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/yefeh-toar-on-devarim-rabbah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -288,6 +288,10 @@
               <a href="#chapter-yefeh-toar-on-devarim-rabbah-text-11">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yefeh-toar-on-devarim-rabbah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/yefeh-toar-on-devarim-rabbah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -308,10 +312,10 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"yefeh-toar-on-devarim-rabbah","work_title":"Yefeh To\u0027ar on Devarim Rabbah","work_slug":"midrash/yefeh-toar-on-devarim-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-16T00:16:33.869Z","total_occurrences":354,"units":{"yefeh-toar-on-devarim-rabbah-1-1-1":{"unit_id":"yefeh-toar-on-devarim-rabbah-1-1-1","anchor_id":"yefeh-toar-on-devarim-rabbah-1-1-1","source_ref":"Yefeh To\u0027ar on Devarim Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-bd029429ec7e","tok-b5c728195092","tok-cf0d519b7540","tok-c5fc5fcd9e69","tok-d6c6b683a679","tok-164a8350ddf8","tok-e06df45b1c10","tok-086b1b1f074f","tok-2957c9ab9140","tok-933b735a7e15","tok-0eebaed2c63f","tok-b5c728195092","tok-cf0d519b7540","tok-c98abd4e2c01","tok-c5fc5fcd9e69","tok-d6c6b683a679","tok-27c71d739478","tok-55018cacea95","tok-66903216d9da","tok-1e6a3905abff","tok-402f33535022","tok-46c77e9202fe","tok-440b7ba0dc1c","tok-75b5ef80c494","tok-f3d54af2eb00","tok-4ac1467e3102","tok-a101838034c4","tok-6c9e57a2ba1a","tok-7e8cddf9ffcc","tok-c2fdb556c507","tok-0c709682bd5c","tok-c689bf27edeb","tok-7e14c029f7db","tok-84448e906592","tok-96153e76ff97","tok-97875f123351","tok-31bb0bdb5119","tok-a101838034c4","tok-6c9e57a2ba1a","tok-7e8cddf9ffcc","tok-4fa91038b3ec","tok-9b02a2cc1b0f","tok-a101838034c4","tok-b112523bace9","tok-12cc92eba854","tok-aabb21750094","tok-b608e98d3449","tok-4fa91038b3ec","tok-9b02a2cc1b0f","tok-a101838034c4","tok-23dfd0d6504b","tok-c5fc5fcd9e69","tok-d6ee75dd1f75","tok-ac52bd1bdcf1","tok-d714116b02c8","tok-96a2980e3fa4","tok-282ad243f3ce","tok-a101838034c4","tok-cf7e2ef47eba","tok-e829af9a71bc","tok-ed5b60d134e4","tok-75b5ef80c494","tok-369d488ec4f3","tok-2e0ab7f2bba4","tok-9321ef26556c","tok-46c77e9202fe","tok-0eebaed2c63f","tok-b5c728195092","tok-c98abd4e2c01","tok-cf8562a0a099","tok-3ba125270363","tok-ea78332cbae6","tok-96ed23e24386","tok-d3ff929a01d4","tok-5b7a55e4fefe","tok-0e3f8758ef99","tok-15840d20a1fc","tok-c5fc5fcd9e69","tok-d6c6b683a679","tok-3ba125270363","tok-8e0e8bf47312","tok-6425ee96f7c3","tok-0d156a5640c0","tok-714a5c73a659","tok-f064e1bfde57","tok-b5c728195092","tok-c005ee24bbc9","tok-ea78332cbae6","tok-96ed23e24386"]}]},"yefeh-toar-on-devarim-rabbah-2-1-1":{"unit_id":"yefeh-toar-on-devarim-rabbah-2-1-1","anchor_id":"yefeh-toar-on-devarim-rabbah-2-1-1","source_ref":"Yefeh To\u0027ar on Devarim Rabbah 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3a5e2b8b52a1","tok-d0006d0cf0cc","tok-4379989f09e8","tok-09333d791736","tok-2cbdda74c038","tok-8d041407764b","tok-9e30a1b8c474","tok-1bcc5b636dd7","tok-be20e2f091fb","tok-a8a8d11163f4","tok-4379989f09e8","tok-572fee20b8a6","tok-3968f6c722cd","tok-d0006d0cf0cc","tok-4379989f09e8","tok-86bee048d27f","tok-40c47843b900","tok-9fa2f5374b11","tok-7b77756aa84d","tok-b1cb3173e0fe","tok-568d7f164d1f","tok-1bcc5b636dd7","tok-844b0e0c0522","tok-eecf2399a251","tok-14af82d060be","tok-4379989f09e8","tok-cb5a12d59ee0","tok-c7f1a044699b","tok-18c11f0eda92","tok-ed16bbf7bda5","tok-83c2ac1364f0","tok-b7eb47ae5d57","tok-a21a02462c7d","tok-ea16aa6c7712","tok-76e382df98df","tok-19692863ee82","tok-5ce4e2d8d1d0","tok-ac8f3bd1c6d1","tok-ba368127f14e","tok-9fa2f5374b11","tok-7b77756aa84d","tok-5e25bf02884c","tok-3f92ed5d25fa","tok-b5b1fee49994","tok-c334733e575e","tok-59a1c87c43e1","tok-26bad0ba2de6","tok-2cbdda74c038","tok-5d05465ad7c0","tok-ea16aa6c7712","tok-277bb5e0ddab","tok-7ba3f7c0e110","tok-38886f8f5e61","tok-bc2d4858c0d5","tok-3f92ed5d25fa","tok-adace87749d2","tok-728babb242b1","tok-a8a8d11163f4","tok-4379989f09e8","tok-d0006d0cf0cc","tok-4379989f09e8","tok-48a510de93de","tok-840f6bea51eb","tok-97f42aeec48f"]}]},"yefeh-toar-on-devarim-rabbah-9-1-1":{"unit_id":"yefeh-toar-on-devarim-rabbah-9-1-1","anchor_id":"yefeh-toar-on-devarim-rabbah-9-1-1","source_ref":"Yefeh To\u0027ar on Devarim Rabbah 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e98998d0d96c","tok-9b00a91242c8","tok-ea5142432032","tok-fce7dd7d2528","tok-9ddf349f15c4","tok-9c3b27d2dd9c","tok-d3ff929a01d4","tok-e98998d0d96c","tok-2de5bf33184d","tok-b59c053532b5","tok-9ddf349f15c4","tok-bc2d4858c0d5","tok-b62a82e8031f","tok-61698b2806ba","tok-9ddf349f15c4","tok-dc3c3c66fab5","tok-b01d8c8abaa8","tok-0eebaed2c63f","tok-db0d22336886","tok-0c6e08b99b38","tok-c98abd4e2c01","tok-71dda954110b","tok-28fa61a66f59","tok-8e5f562c0e2d","tok-46501560f41d","tok-28fa61a66f59","tok-9ed101abfe7f","tok-28cade0d26e3","tok-3c203b2ac0c8","tok-b94b2db8c770","tok-3a738c9e8e68","tok-36beb1ec354b","tok-45ca29628a3d","tok-6ea6a973339c","tok-e996ead35e3e","tok-2f0737578324","tok-556a5aad4efd","tok-0eebaed2c63f","tok-39242fc26fd2","tok-59a1c87c43e1","tok-8e5f562c0e2d","tok-fcd55e270eb9","tok-0eebaed2c63f","tok-b19bb53645e5","tok-eed9cf17fbba","tok-902bbb536675","tok-56854104f559","tok-23dfd0d6504b","tok-1fd9475f47f6","tok-d85db5d7c9a7","tok-32892407213e","tok-48458c1f6dd5","tok-171203d7642f","tok-45ca29628a3d","tok-6ea6a973339c","tok-ef8a821034ec","tok-9a5260fb3490","tok-1a3bb05ebca1","tok-a5f89eddeb36","tok-739179b3e254","tok-170ca466d7f8","tok-3f4979288552","tok-6e0759cb39d9","tok-1834b1184010","tok-cf7e2ef47eba","tok-e4421c2aa9ab","tok-b7ea3ad590c9","tok-bf9ca8a00656","tok-731eca1ece4a","tok-6ea6a973339c","tok-e996ead35e3e","tok-a308d24c9bb9","tok-fcd7b05481b1","tok-34d3a11d2e42","tok-01c9125a714f","tok-977bd1f03f18","tok-82e338430f0c","tok-79325406acdf","tok-48b161684848","tok-46c77e9202fe","tok-73a42e81ef95","tok-1f99fe030c5c","tok-37fe9984f530","tok-d122ef1b6540","tok-d3ff929a01d4","tok-c61307401923","tok-2bceab2deea3","tok-0eebaed2c63f","tok-488b24cf6f65","tok-4411a514ca16","tok-e996ead35e3e","tok-8af7ce7d16c8","tok-c89ced090d36","tok-6ea6a973339c","tok-e996ead35e3e"]}]},"yefeh-toar-on-devarim-rabbah-11-1-1":{"unit_id":"yefeh-toar-on-devarim-rabbah-11-1-1","anchor_id":"yefeh-toar-on-devarim-rabbah-11-1-1","source_ref":"Yefeh To\u0027ar on Devarim Rabbah 11:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-402f33535022","tok-3ba875aad720","tok-86c4f3617c92","tok-c691f67b8e81","tok-a09d41b5f134","tok-d903429950c3","tok-d08f782bfd48","tok-42f91e460e7b","tok-fe196d96ab21","tok-dc07b8ac8e71","tok-db0122aedf8e","tok-21fc32d8e1e3","tok-769bdc68c8b6","tok-170ca466d7f8","tok-4379989f09e8","tok-950728e9671f","tok-883e2dbfd86b","tok-b16b254f49df","tok-9cd1e69821ed","tok-813a53bf00cc","tok-21fc32d8e1e3","tok-9b00a91242c8","tok-4a63f4e809a0","tok-59a3833abfcb","tok-4379989f09e8","tok-c8c9643953fa","tok-28fad7e7bc7e","tok-e34335e35cad","tok-824a3989395d","tok-844b0e0c0522","tok-1fd9475f47f6","tok-86c4f3617c92","tok-cb9a1b832828","tok-aaa14ef5fc6b","tok-eb6cb502386c","tok-03c418b7779b","tok-3afdf801f104","tok-20e48723c4af","tok-4379989f09e8","tok-844b0e0c0522","tok-926fe346b474","tok-ad9baaa4a2c9","tok-322d114a2e5b","tok-c98abd4e2c01","tok-86c4f3617c92","tok-c08c8dd61a65","tok-a8a8d11163f4","tok-12515ff56829","tok-d2cab3cf5c6a","tok-45ca29628a3d","tok-c691f67b8e81","tok-6e8e872bf526","tok-1ebb96cd2361","tok-5b7a55e4fefe","tok-1a35e45624d5","tok-4168779bd259","tok-0e694881a14b","tok-35d008ec3255","tok-1a3b94433829","tok-7071d67d8aa0","tok-b2d59470d584","tok-64352f388783","tok-86c4f3617c92","tok-fcc2697b298b","tok-23cb2177e1d7","tok-05f98a1d1a63","tok-454cc930b0e6","tok-a21a02462c7d","tok-50d5ab13235f","tok-2dbc0388767a"]}]},"yefeh-toar-on-devarim-rabbah-11-1-2":{"unit_id":"yefeh-toar-on-devarim-rabbah-11-1-2","anchor_id":"yefeh-toar-on-devarim-rabbah-11-1-2","source_ref":"Yefeh To\u0027ar on Devarim Rabbah 11:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-87854792792f","tok-de609eda4002","tok-69ab1b01f130","tok-1caa278c0424","tok-f18cc777045b","tok-59c77768cc5c","tok-15e7038828ac","tok-8f81c75211b8","tok-a21a02462c7d","tok-50d5ab13235f","tok-2dbc0388767a","tok-31bb0bdb5119","tok-844b0e0c0522","tok-2bcf416c783b","tok-b0898da3508b","tok-2939f2753a79","tok-1363c25f116d","tok-2cfe92d2645a","tok-fe6efa41cc6e","tok-488b24cf6f65","tok-844b0e0c0522","tok-0eebaed2c63f","tok-e36c664aa8ce","tok-b69e7591ce63","tok-652693217916","tok-4ef2dcc1af7b","tok-8f026865a50a","tok-da0917fddf76","tok-aab1030c10ae","tok-e0b00a1b88aa","tok-ca7ad58c1d30","tok-edeb4ebe746f","tok-e829af9a71bc","tok-791d294f76e0","tok-c5af54606118","tok-c8c9643953fa"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yefeh-toar-on-devarim-rabbah.manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yefeh-toar-on-devarim-rabbah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yefeh-toar-on-devarim-rabbah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yefeh-toar-on-devarim-rabbah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
-    (() => {
+    (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
       const lexiconNode = document.querySelector("[data-lexical-lexicon]");
       const configNode = document.querySelector("[data-lexical-config]");
@@ -319,7 +323,7 @@
       const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
       const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
       const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
       const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
       const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
       const chunkPromises = new Map();
@@ -335,7 +339,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -352,6 +355,12 @@
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
         return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
       };
       const loadManifest = async () => {
         if (!lexicalConfig.manifest_url) return null;
@@ -434,8 +443,9 @@
         const state = { index: 0 };
         textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
       };
+      const loadedOccurrences = await loadOccurrences();
       document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
         if (!unitData) return;
         unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
           const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-borrowing-and-deposit/">Open Mishneh Torah, Borrowing and Deposit</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Borrowing and Deposit</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">49 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>281 matched</strong> / 630 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/migdal-oz-on-mishneh-torah-borrowing-and-deposit.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/migdal-oz-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -279,8 +279,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-1">Mishneh Torah, Borrowing and Deposit 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כֵּלִים אוֹ בְּהֵמָה וְכַיּוֹצֵא בָּהֶן מִשְּׁאָר מִטַּלְטְלִין מֵחֲבֵרוֹ וְאָבַד אוֹ נִגְנַב אֲפִלּוּ נֶאֱנַס אֹנֶס גָּדוֹל כְּגוֹן שֶׁנִּשְׁבְּרָה הַבְּהֵמָה אוֹ נִשְׁבֵּית אוֹ מֵתָה חַיָּב לְשַׁלֵּם הַכּל שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יג)</span> &quot;וְכִי יִשְׁאַל אִישׁ מֵעִם רֵעֵהוּ&quot; וְגוֹ׳ <span class="source-small">(שמות כב יג)</span> &quot;וְנִשְׁבַּר אוֹ מֵת בְּעָלָיו אֵין עִמּוֹ שַׁלֵּם יְשַׁלֵּם&quot;. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁנֶּאֱנַס שֶׁלֹּא בִּשְׁעַת מְלָאכָה. אֲבָל אִם שָׁאַל בְּהֵמָה מֵחֲבֵרוֹ לַחְרשׁ בָּהּ וּמֵתָה כְּשֶׁהִיא חוֹרֶשֶׁת הֲרֵי זֶה פָּטוּר. אֲבָל אִם מֵתָה קֹדֶם שֶׁיַּחֲרשׁ בָּהּ אוֹ אַחַר שֶׁחָרַשׁ בָּהּ אוֹ שֶׁרָכַב עָלֶיהָ אוֹ דָּשׁ בָּהּ וּמֵתָה כְּשֶׁהִיא דָּשָׁה אוֹ בִּשְׁעַת רְכִיבָה הֲרֵי זֶה חַיָּב לְשַׁלֵּם. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְכֵן הַשּׁוֹאֵל בְּהֵמָה מֵחֲבֵרוֹ לֵילֵךְ בָּהּ לְמָקוֹם פְּלוֹנִי וּמֵתָה תַּחְתָּיו בְּאוֹתָהּ הַדֶּרֶךְ. אוֹ שֶׁשָּׁאַל דְּלִי לְמַלְּאוֹת בּוֹ וְנִקְרַע בַּבּוֹר בִּשְׁעַת מִלּוּי. אוֹ שֶׁשָּׁאַל קַרְדֹּם לְפַצֵּל בּוֹ עֵצִים וְנִשְׁבַּר בְּעֵת שֶׁפִּצֵּל בּוֹ מֵחֲמַת הַבִּקּוּעַ. וְכָל כַּיּוֹצֵא בָּזֶה. הֲרֵי זֶה פָּטוּר שֶׁלֹּא שָׁאַל אֶלָּא לַעֲשׂוֹת בּוֹ מְלָאכָה זוֹ וַהֲרֵי לֹא שִׁנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל כלים או בהמה כו׳ עד וכן כל כיוצא בזה.</strong> הכל במציעא פרק השואל:</p>
               </div>
             </div>
@@ -295,8 +300,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-3">Mishneh Torah, Borrowing and Deposit 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ וְנִשְׁבַּר שָׁמִין לוֹ כְּדֶרֶךְ שֶׁשָּׁמִין בִּנְזָקִין. אוֹמְדִין כַּמָּה הָיָה שָׁוֶה שָׁלֵם וְכַמָּה הוּא שָׁוֶה עַתָּה וּמַחֲזִיר לוֹ הַכְּלִי אוֹ הַבְּהֵמָה הַשְּׁבוּרָה וּמְשַׁלֵּם הַפְּחָת. וְכֵן אִם מֵתָה הַבְּהֵמָה מַחְזִיר הַנְּבֵלָה וּמְשַׁלֵּם הַפְּחָת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל כלי מחבירו וכו׳ עד ומשלם הפחת.</strong> בנזיקין פרק קמא <span class="source-small"> (דף י&quot;א) </span> ומציעא פרק השואל:</p>
               </div>
             </div>
@@ -311,8 +321,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-4">Mishneh Torah, Borrowing and Deposit 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל בְּהֵמָה חַיָּב בִּמְזוֹנוֹתֶיהָ מִשָּׁעָה שֶׁמְּשָׁכָהּ עַד סוֹף יְמֵי שְׁאֵלָתָהּ. וְאִם כָּחַשׁ בְּשָׂרָהּ חַיָּב לְשַׁלֵּם מַה שֶּׁפָּחֲתָה בְּדָמֶיהָ. כָּחַשׁ בְּשָׂרָהּ מֵחֲמַת הַמְּלָאכָה פָּטוּר וְיִשָּׁבַע שְׁבוּעַת הַשּׁוֹמְרִין שֶׁמֵּחֲמַת מְלָאכָה כָּחֲשָׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל בהמה חייב במזונותיה כו׳ עד שמחמת המלאכה כחש.</strong> במציעא פרק השוכר את הפועלים:</p>
               </div>
             </div>
@@ -327,8 +342,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-5">Mishneh Torah, Borrowing and Deposit 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ אוֹ בְּהֵמָה סְתָם הֲרֵי הַמַּשְׁאִיל מַחְזִירוֹ בְּכָל עֵת שֶׁיִּרְצֶה. שְׁאָלוֹ לִזְמַן קָצוּב כֵּיוָן שֶׁמָּשַׁךְ וְזָכָה אֵין הַבְּעָלִים יְכוֹלִין לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד סוֹף יְמֵי הַשְּׁאֵלָה. וַאֲפִלּוּ מֵת הַשּׁוֹאֵל הֲרֵי הַיּוֹרְשִׁין מִשְׁתַּמְּשִׁין בַּשְּׁאֵלָה עַד סוֹף הַזְּמַן. וְדִין הוּא. הַלּוֹקֵחַ קוֹנֶה הַגּוּף קִנְיַן עוֹלָם בַּדָּמִים שֶׁנָּתַן וּמְקַבֵּל מַתָּנָה קָנָה הַגּוּף קִנְיַן עוֹלָם וְלֹא נָתַן כְּלוּם וְהַשּׂוֹכֵר קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב בַּדָּמִים שֶׁנָּתַן וְהַשּׁוֹאֵל קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב וְלֹא נָתַן כְּלוּם. כְּשֵׁם שֶׁהַנּוֹתֵן כַּמּוֹכֵר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בּוֹ לְעוֹלָם כָּךְ הַמַּשְׁאִיל כַּמַּשְׂכִּיר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בְּתוֹךְ הַזְּמַן. הִנִּיחַ לָהֶם אֲבִיהֶם פָּרָה שְׁאוּלָה וּמֵתָה אֵין חַיָּבִין בָּאֳנָסֶיהָ. חָשְׁבוּ שֶׁהִיא שֶׁל אֲבִיהֶם טְבָחוּהָ וַאֲכָלוּהָ מְשַׁלְּמִין דְּמֵי בָּשָׂר בְּזוֹל. וְאִם הִנִּיחַ לָהֶם אֲבִיהֶם נְכָסִים וּמֵתָה אוֹ שֶׁטְּבָחוּהָ מְשַׁלְּמִין אֶת דָּמֶיהָ מִנְּכָסָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל מחבירו כלי עד שמשך זכה בו.</strong> פרק הפועלים:</p>
               </div>
             </div>
@@ -343,8 +363,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-5-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-5">Mishneh Torah, Borrowing and Deposit 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ אוֹ בְּהֵמָה סְתָם הֲרֵי הַמַּשְׁאִיל מַחְזִירוֹ בְּכָל עֵת שֶׁיִּרְצֶה. שְׁאָלוֹ לִזְמַן קָצוּב כֵּיוָן שֶׁמָּשַׁךְ וְזָכָה אֵין הַבְּעָלִים יְכוֹלִין לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד סוֹף יְמֵי הַשְּׁאֵלָה. וַאֲפִלּוּ מֵת הַשּׁוֹאֵל הֲרֵי הַיּוֹרְשִׁין מִשְׁתַּמְּשִׁין בַּשְּׁאֵלָה עַד סוֹף הַזְּמַן. וְדִין הוּא. הַלּוֹקֵחַ קוֹנֶה הַגּוּף קִנְיַן עוֹלָם בַּדָּמִים שֶׁנָּתַן וּמְקַבֵּל מַתָּנָה קָנָה הַגּוּף קִנְיַן עוֹלָם וְלֹא נָתַן כְּלוּם וְהַשּׂוֹכֵר קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב בַּדָּמִים שֶׁנָּתַן וְהַשּׁוֹאֵל קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב וְלֹא נָתַן כְּלוּם. כְּשֵׁם שֶׁהַנּוֹתֵן כַּמּוֹכֵר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בּוֹ לְעוֹלָם כָּךְ הַמַּשְׁאִיל כַּמַּשְׂכִּיר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בְּתוֹךְ הַזְּמַן. הִנִּיחַ לָהֶם אֲבִיהֶם פָּרָה שְׁאוּלָה וּמֵתָה אֵין חַיָּבִין בָּאֳנָסֶיהָ. חָשְׁבוּ שֶׁהִיא שֶׁל אֲבִיהֶם טְבָחוּהָ וַאֲכָלוּהָ מְשַׁלְּמִין דְּמֵי בָּשָׂר בְּזוֹל. וְאִם הִנִּיחַ לָהֶם אֲבִיהֶם נְכָסִים וּמֵתָה אוֹ שֶׁטְּבָחוּהָ מְשַׁלְּמִין אֶת דָּמֶיהָ מִנְּכָסָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואין הבעלים יכולין להחזירו וכו׳ עד סוף הזמן.</strong> בנזיקין פרק הגוזל ומאכיל:</p>
               </div>
             </div>
@@ -359,8 +384,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-5-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-5">Mishneh Torah, Borrowing and Deposit 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ אוֹ בְּהֵמָה סְתָם הֲרֵי הַמַּשְׁאִיל מַחְזִירוֹ בְּכָל עֵת שֶׁיִּרְצֶה. שְׁאָלוֹ לִזְמַן קָצוּב כֵּיוָן שֶׁמָּשַׁךְ וְזָכָה אֵין הַבְּעָלִים יְכוֹלִין לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד סוֹף יְמֵי הַשְּׁאֵלָה. וַאֲפִלּוּ מֵת הַשּׁוֹאֵל הֲרֵי הַיּוֹרְשִׁין מִשְׁתַּמְּשִׁין בַּשְּׁאֵלָה עַד סוֹף הַזְּמַן. וְדִין הוּא. הַלּוֹקֵחַ קוֹנֶה הַגּוּף קִנְיַן עוֹלָם בַּדָּמִים שֶׁנָּתַן וּמְקַבֵּל מַתָּנָה קָנָה הַגּוּף קִנְיַן עוֹלָם וְלֹא נָתַן כְּלוּם וְהַשּׂוֹכֵר קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב בַּדָּמִים שֶׁנָּתַן וְהַשּׁוֹאֵל קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב וְלֹא נָתַן כְּלוּם. כְּשֵׁם שֶׁהַנּוֹתֵן כַּמּוֹכֵר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בּוֹ לְעוֹלָם כָּךְ הַמַּשְׁאִיל כַּמַּשְׂכִּיר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בְּתוֹךְ הַזְּמַן. הִנִּיחַ לָהֶם אֲבִיהֶם פָּרָה שְׁאוּלָה וּמֵתָה אֵין חַיָּבִין בָּאֳנָסֶיהָ. חָשְׁבוּ שֶׁהִיא שֶׁל אֲבִיהֶם טְבָחוּהָ וַאֲכָלוּהָ מְשַׁלְּמִין דְּמֵי בָּשָׂר בְּזוֹל. וְאִם הִנִּיחַ לָהֶם אֲבִיהֶם נְכָסִים וּמֵתָה אוֹ שֶׁטְּבָחוּהָ מְשַׁלְּמִין אֶת דָּמֶיהָ מִנְּכָסָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ודין הוא הלוקח קונה הגוף עד בתוך הזמן.</strong> זה נותן טעם למה שאמרו והסכימו עליו הגאונים ז&quot;ל:</p>
               </div>
             </div>
@@ -375,8 +405,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-5-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:5:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-5">Mishneh Torah, Borrowing and Deposit 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ אוֹ בְּהֵמָה סְתָם הֲרֵי הַמַּשְׁאִיל מַחְזִירוֹ בְּכָל עֵת שֶׁיִּרְצֶה. שְׁאָלוֹ לִזְמַן קָצוּב כֵּיוָן שֶׁמָּשַׁךְ וְזָכָה אֵין הַבְּעָלִים יְכוֹלִין לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד סוֹף יְמֵי הַשְּׁאֵלָה. וַאֲפִלּוּ מֵת הַשּׁוֹאֵל הֲרֵי הַיּוֹרְשִׁין מִשְׁתַּמְּשִׁין בַּשְּׁאֵלָה עַד סוֹף הַזְּמַן. וְדִין הוּא. הַלּוֹקֵחַ קוֹנֶה הַגּוּף קִנְיַן עוֹלָם בַּדָּמִים שֶׁנָּתַן וּמְקַבֵּל מַתָּנָה קָנָה הַגּוּף קִנְיַן עוֹלָם וְלֹא נָתַן כְּלוּם וְהַשּׂוֹכֵר קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב בַּדָּמִים שֶׁנָּתַן וְהַשּׁוֹאֵל קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב וְלֹא נָתַן כְּלוּם. כְּשֵׁם שֶׁהַנּוֹתֵן כַּמּוֹכֵר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בּוֹ לְעוֹלָם כָּךְ הַמַּשְׁאִיל כַּמַּשְׂכִּיר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בְּתוֹךְ הַזְּמַן. הִנִּיחַ לָהֶם אֲבִיהֶם פָּרָה שְׁאוּלָה וּמֵתָה אֵין חַיָּבִין בָּאֳנָסֶיהָ. חָשְׁבוּ שֶׁהִיא שֶׁל אֲבִיהֶם טְבָחוּהָ וַאֲכָלוּהָ מְשַׁלְּמִין דְּמֵי בָּשָׂר בְּזוֹל. וְאִם הִנִּיחַ לָהֶם אֲבִיהֶם נְכָסִים וּמֵתָה אוֹ שֶׁטְּבָחוּהָ מְשַׁלְּמִין אֶת דָּמֶיהָ מִנְּכָסָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הניח להן אביהן עד את דמיה מנכסיו.</strong> בנזיקין פרק הגוזל ומאכיל ובכתובות פרק אלו נערות:</p>
               </div>
             </div>
@@ -391,8 +426,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-1-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-6">Mishneh Torah, Borrowing and Deposit 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ לַעֲשׂוֹת בּוֹ מְלָאכָה פְּלוֹנִית אֵין הַמַּשְׁאִיל יָכוֹל לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד שֶׁיַּעֲשֶׂה בּוֹ אוֹתָהּ מְלָאכָה. וְכֵן אִם שָׁאַל מִמֶּנּוּ בְּהֵמָה לֵילֵךְ בָּהּ בְּמָקוֹם פְּלוֹנִי אֵינוֹ יָכוֹל לְהַחְזִירָהּ מִיַּד הַשּׁוֹאֵל עַד שֶׁיֵּלֵךְ בָּהּ לְשָׁם וְיַחְזֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל כלי מחבירו עד סוף הפרק.</strong> הכל פרק השואל והאחרונות בתוספתא:</p>
               </div>
             </div>
@@ -408,8 +448,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-2-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-1">Mishneh Torah, Borrowing and Deposit 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹאֵל בַּבְּעָלִים אֲפִלּוּ נִגְנַב אוֹ אָבַד בִּפְשִׁיעָה פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יד)</span> &quot;אִם בְּעָלָיו עִמּוֹ לֹא יְשַׁלֵּם&quot;. וּבִלְבַד שֶׁשָּׁאַל הַבְּעָלִים תְּחִלָּה עִם הַחֵפֶץ כְּמוֹ שֶׁבֵּאַרְנוּ. וְאֶחָד הַשּׁוֹאֵל אֶת הַבְּעָלִים אוֹ שֶׁשְּׂכָרָן וְאֶחָד שֶׁשּׁוֹאֵל אֶת הַבְּעָלִים לְאוֹתָהּ הַמְּלָאכָה אוֹ שֶׁשְּׁאָלָן וּשְׂכָרָן לִמְלָאכָה אַחֶרֶת אוֹ לְשׁוּם דָּבָר בָּעוֹלָם. אֲפִלּוּ אָמַר לַחֲבֵרוֹ הַשְׁקֵנִי מַיִם וְשָׁאַל מִמֶּנּוּ בְּהֶמְתּוֹ וְהִשְׁקָהוּ וְנָתַן לוֹ אֶת הַבְּהֵמָה הֲרֵי זוֹ שְׁאֵלָה בִּבְעָלִים וּפָטוּר. מָשַׁךְ אֶת הַבְּהֵמָה בַּתְּחִלָּה וְאַחַר כָּךְ הִשְׁקָהוּ אֵינָהּ שְׁאֵלָה בִּבְעָלִים. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל בבעלים כו׳ עד עם החפץ כמו שביארנו.</strong> במציעא פרק השואל והביאור פ&quot;א:</p>
               </div>
             </div>
@@ -424,8 +469,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-2-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-1">Mishneh Torah, Borrowing and Deposit 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹאֵל בַּבְּעָלִים אֲפִלּוּ נִגְנַב אוֹ אָבַד בִּפְשִׁיעָה פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יד)</span> &quot;אִם בְּעָלָיו עִמּוֹ לֹא יְשַׁלֵּם&quot;. וּבִלְבַד שֶׁשָּׁאַל הַבְּעָלִים תְּחִלָּה עִם הַחֵפֶץ כְּמוֹ שֶׁבֵּאַרְנוּ. וְאֶחָד הַשּׁוֹאֵל אֶת הַבְּעָלִים אוֹ שֶׁשְּׂכָרָן וְאֶחָד שֶׁשּׁוֹאֵל אֶת הַבְּעָלִים לְאוֹתָהּ הַמְּלָאכָה אוֹ שֶׁשְּׁאָלָן וּשְׂכָרָן לִמְלָאכָה אַחֶרֶת אוֹ לְשׁוּם דָּבָר בָּעוֹלָם. אֲפִלּוּ אָמַר לַחֲבֵרוֹ הַשְׁקֵנִי מַיִם וְשָׁאַל מִמֶּנּוּ בְּהֶמְתּוֹ וְהִשְׁקָהוּ וְנָתַן לוֹ אֶת הַבְּהֵמָה הֲרֵי זוֹ שְׁאֵלָה בִּבְעָלִים וּפָטוּר. מָשַׁךְ אֶת הַבְּהֵמָה בַּתְּחִלָּה וְאַחַר כָּךְ הִשְׁקָהוּ אֵינָהּ שְׁאֵלָה בִּבְעָלִים. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואחד השואל את הבעלים עד בבעלים היא.</strong> הכל במציעא פרק השואל:</p>
               </div>
             </div>
@@ -440,8 +490,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-2-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-11">Mishneh Torah, Borrowing and Deposit 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָּׁה שֶׁשָּׁאֲלָה וְאַחַר כָּךְ נִשֵּׂאת הֲרֵי הַבַּעַל כְּלוֹקֵחַ מִמֶּנָּה וְאֵינוֹ לֹא שׁוֹמֵר שָׂכָר וְלֹא שׁוֹאֵל. לְפִיכָךְ אִם הָיְתָה דְּבַר הַשְּׁאֵלָה בְּהֵמָה וּמֵתָה הַבַּעַל פָּטוּר אַף עַל פִּי שֶׁהוּא מִשְׁתַּמֵּשׁ בָּהּ כָּל יְמֵי שְׁאֵלָתָהּ אֲפִלּוּ פָּשַׁע מִפְּנֵי שֶׁהוּא כְּלוֹקֵחַ וְהָאִשָּׁה חַיֶּבֶת לְשַׁלֵּם כְּשֶׁיִּהְיֶה לָהּ מָמוֹן. וְאִם הוֹדִיעָה אֶת בַּעְלָהּ שֶׁהִיא שְׁאוּלָה הֲרֵי זֶה נִכְנָס תַּחְתֶּיהָ. כָּל שֶׁאָמַרְנוּ שֶׁהִיא שְׁאֵלָה בַּבְּעָלִים כָּךְ אִם הָיָה שׂוֹכֵר אוֹ נוֹשֵׂא שָׂכָר הֲרֵי הִיא שְׂכִירוּת בַּבְּעָלִים וּפָטוּר. וְכָל שֶׁאֵינָהּ שְׁאֵלָה בַּבְּעָלִים כָּךְ אֵינָהּ שְׂכִירוּת בַּבְּעָלִים. וְכָל שֶׁהוּא סָפֵק בִּשְׁאֵלָה כָּךְ הוּא סָפֵק בִּשְׂכִירוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אשה ששאלה וכו׳ עד נכנס תחתיה:</strong> כתב הראב&quot;ד ז&quot;ל והוא שקיבל אותה על עצמו בשאלה עכ&quot;ל: <strong> ואני </strong> אומר עיקר ההלכה שכתב ר&quot;מ ז&quot;ל הוא בפרק השואל ומ&quot;ש הראב&quot;ד ז&quot;ל היא סברא וכבר כתבתי כמה פעמים שאין לי עסק בזה החיבור בסברא רק בגמרא:</p>
               </div>
             </div>
@@ -456,8 +511,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:11:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-2-11-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 2:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-11">Mishneh Torah, Borrowing and Deposit 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָּׁה שֶׁשָּׁאֲלָה וְאַחַר כָּךְ נִשֵּׂאת הֲרֵי הַבַּעַל כְּלוֹקֵחַ מִמֶּנָּה וְאֵינוֹ לֹא שׁוֹמֵר שָׂכָר וְלֹא שׁוֹאֵל. לְפִיכָךְ אִם הָיְתָה דְּבַר הַשְּׁאֵלָה בְּהֵמָה וּמֵתָה הַבַּעַל פָּטוּר אַף עַל פִּי שֶׁהוּא מִשְׁתַּמֵּשׁ בָּהּ כָּל יְמֵי שְׁאֵלָתָהּ אֲפִלּוּ פָּשַׁע מִפְּנֵי שֶׁהוּא כְּלוֹקֵחַ וְהָאִשָּׁה חַיֶּבֶת לְשַׁלֵּם כְּשֶׁיִּהְיֶה לָהּ מָמוֹן. וְאִם הוֹדִיעָה אֶת בַּעְלָהּ שֶׁהִיא שְׁאוּלָה הֲרֵי זֶה נִכְנָס תַּחְתֶּיהָ. כָּל שֶׁאָמַרְנוּ שֶׁהִיא שְׁאֵלָה בַּבְּעָלִים כָּךְ אִם הָיָה שׂוֹכֵר אוֹ נוֹשֵׂא שָׂכָר הֲרֵי הִיא שְׂכִירוּת בַּבְּעָלִים וּפָטוּר. וְכָל שֶׁאֵינָהּ שְׁאֵלָה בַּבְּעָלִים כָּךְ אֵינָהּ שְׂכִירוּת בַּבְּעָלִים. וְכָל שֶׁהוּא סָפֵק בִּשְׁאֵלָה כָּךְ הוּא סָפֵק בִּשְׂכִירוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל שאמרנו שהיא שאלה בבעלים עד סוף הפרק.</strong> הסכמת הגאונים הוא מפרק השואל דקא משוו להו כאחד והאמירה הזאת בזה הפ׳ ובפ&quot;א:</p>
               </div>
             </div>
@@ -473,8 +533,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 3:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-3-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-3-1">Mishneh Torah, Borrowing and Deposit 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹאֵל אֶת הַפָּרָה מֵחֲבֵרוֹ וּשְׁלָחָהּ לוֹ הַמַּשְׁאִיל בְּיַד בְּנוֹ אוֹ בְּיַד שְׁלוּחוֹ אוֹ בְּיַד עַבְדּוֹ. אֲפִלּוּ שְׁלָחָהּ לוֹ בְּיַד בְּנוֹ אוֹ בְּיַד עַבְדּוֹ אוֹ בְּיַד שְׁלוּחוֹ שֶׁל שׁוֹאֵל וּמֵתָה קֹדֶם שֶׁתִּכָּנֵס לִרְשׁוּת הַשּׁוֹאֵל הֲרֵי זֶה פָּטוּר. וְאִם אָמַר לוֹ הַשּׁוֹאֵל שַׁלְּחָהּ לִי בְּיַד בְּנִי בְּיַד עַבְדִּי בְּיַד שְׁלוּחִי אוֹ בְּיַד עַבְדְּךָ הָעִבְרִי אוֹ בְּיַד שְׁלוּחֲךָ. אוֹ שֶׁאָמַר לוֹ הַמַּשְׁאִיל הֲרֵינִי מְשַׁלְּחָהּ בְּיַד בִּנְךָ בְּיַד עַבְדְּךָ בְּיַד שְׁלוּחֲךָ בְּיַד בְּנִי בְּיַד עַבְדִּי הָעִבְרִי בְּיַד שְׁלוּחִי. וְאָמַר לוֹ הַשּׁוֹאֵל שְׁלַח וּשְׁלָחָהּ וּמֵתָה בַּדֶּרֶךְ הֲרֵי זֶה חַיָּב. שְׁלָחָהּ לוֹ הַמַּשְׁאִיל בְּיַד עַבְדּוֹ הַכְּנַעֲנִי אַף עַל פִּי שֶׁאָמַר לוֹ הַשּׁוֹאֵל שְׁלַח וּמֵתָה פָּטוּר מִפְּנֵי שֶׁיָּדוֹ כְּיַד רַבּוֹ וַעֲדַיִן לֹא יָצְאָה מֵרְשׁוּת הַמַּשְׁאִיל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל את הפרה וכו׳ עד הרי זה חייב.</strong> עיקר זאת ההלכה כולה במציעא פרק השואל <span class="source-small"> (ד׳ צ&quot;ח) </span> ופרק השוכר את האומנין <span class="source-small"> (ד׳ פ׳) </span> ומייתי לה בנזיקין פרק הגוזל עצים <span class="source-small"> (ד׳ ק&quot;ד) </span> :</p>
               </div>
             </div>
@@ -489,8 +554,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 3:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-3-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 3:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-3-1">Mishneh Torah, Borrowing and Deposit 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹאֵל אֶת הַפָּרָה מֵחֲבֵרוֹ וּשְׁלָחָהּ לוֹ הַמַּשְׁאִיל בְּיַד בְּנוֹ אוֹ בְּיַד שְׁלוּחוֹ אוֹ בְּיַד עַבְדּוֹ. אֲפִלּוּ שְׁלָחָהּ לוֹ בְּיַד בְּנוֹ אוֹ בְּיַד עַבְדּוֹ אוֹ בְּיַד שְׁלוּחוֹ שֶׁל שׁוֹאֵל וּמֵתָה קֹדֶם שֶׁתִּכָּנֵס לִרְשׁוּת הַשּׁוֹאֵל הֲרֵי זֶה פָּטוּר. וְאִם אָמַר לוֹ הַשּׁוֹאֵל שַׁלְּחָהּ לִי בְּיַד בְּנִי בְּיַד עַבְדִּי בְּיַד שְׁלוּחִי אוֹ בְּיַד עַבְדְּךָ הָעִבְרִי אוֹ בְּיַד שְׁלוּחֲךָ. אוֹ שֶׁאָמַר לוֹ הַמַּשְׁאִיל הֲרֵינִי מְשַׁלְּחָהּ בְּיַד בִּנְךָ בְּיַד עַבְדְּךָ בְּיַד שְׁלוּחֲךָ בְּיַד בְּנִי בְּיַד עַבְדִּי הָעִבְרִי בְּיַד שְׁלוּחִי. וְאָמַר לוֹ הַשּׁוֹאֵל שְׁלַח וּשְׁלָחָהּ וּמֵתָה בַּדֶּרֶךְ הֲרֵי זֶה חַיָּב. שְׁלָחָהּ לוֹ הַמַּשְׁאִיל בְּיַד עַבְדּוֹ הַכְּנַעֲנִי אַף עַל פִּי שֶׁאָמַר לוֹ הַשּׁוֹאֵל שְׁלַח וּמֵתָה פָּטוּר מִפְּנֵי שֶׁיָּדוֹ כְּיַד רַבּוֹ וַעֲדַיִן לֹא יָצְאָה מֵרְשׁוּת הַמַּשְׁאִיל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> שלחה לו המשאיל כו׳ עד אחר ימי שאלתה פטור וכן כל כיוצא בזה.</strong> הכל במציעא פרק השואל ופרק השוכר את האומנין:</p>
               </div>
             </div>
@@ -505,8 +575,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 3:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-3-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-3-3">Mishneh Torah, Borrowing and Deposit 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל פָּרָה מֵחֲבֵרוֹ. שְׁאָלָהּ חֲצִי הַיּוֹם וּשְׂכָרָהּ חֲצִי הַיּוֹם. שְׁאָלָהּ הַיּוֹם וּשְׂכָרָהּ לְמָחָר. שָׁאַל אַחַת וְשָׂכַר אַחַת וּמֵתָה אַחַת מֵהֶן. הַמַּשְׁאִיל אוֹמֵר שְׁאוּלָה מֵתָה בַּיּוֹם שֶׁהָיְתָה שְׁאוּלָה מֵתָה בַּשָּׁעָה שֶׁהָיְתָה שְׁאוּלָה מֵתָה וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ. אוֹ שֶׁאָמַר הַשּׁוֹאֵל שְׂכוּרָה מֵתָה בַּיּוֹם שֶׁהָיְתָה שְׂכוּרָה מֵתָה בַּשָּׁעָה שֶׁהָיְתָה שְׂכוּרָה מֵתָה. וְהַמַּשְׁאִיל אוֹמֵר אֵינִי יוֹדֵעַ אוֹ שֶׁאָמַר זֶה אֵינִי יוֹדֵעַ וְזֶה אוֹמֵר אֵינִי יוֹדֵעַ. הַמּוֹצִיא מֵחֲבֵרוֹ עָלָיו הָרְאָיָה. לֹא הָיְתָה שָׁם רְאָיָה יִשָּׁבַע הַשּׂוֹכֵר עַל הַשְּׂכוּרָה שֶׁמֵּתָה אוֹ שֶׁאֵינוֹ יוֹדֵעַ וְיִפָּטֵר. זֶה אוֹמֵר שְׁאוּלָה וְזֶה אוֹמֵר שְׂכוּרָה יִשָּׁבַע הַשּׁוֹמֵר עַל הַשְּׂכוּרָה שֶׁמֵּתָה כְּדַרְכָּהּ כְּמוֹ שֶׁטָּעַן וִיגַלְגֵּל עָלָיו שֶׁהַשְּׂכוּרָה הִיא שֶׁמֵּתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל פרה מחבירו וכו׳ עד סוף הפרק.</strong> הכל פרק השואל:</p>
               </div>
             </div>
@@ -522,8 +597,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-4-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-1">Mishneh Torah, Borrowing and Deposit 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ בְּחִנָּם וְנִגְנַב אוֹ אָבַד הֲרֵי זֶה נִשְׁבָּע וְנִפְטָר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;וְגֻנַּב מִבֵּית הָאִישׁ&quot; וְגוֹ׳ <span class="source-small">(שמות כב ז)</span> &quot;וְנִקְרַב בַּעַל הַבַּיִת אֶל הָאֱלֹהִים אִם לֹא שָׁלַח יָדוֹ בִּמְלֶאכֶת רֵעֵהוּ&quot;. וּמְגַלְגְּלִין עָלָיו בְּתוֹךְ הַשְּׁבוּעָה שֶׁלֹּא פָּשַׁע אֶלָּא שָׁמַר כְּדֶרֶךְ הַשּׁוֹמְרִין וְלֹא שָׁלַח בּוֹ יָד וְאַחַר נִגְנַב. שֶׁאִם נִגְנַב אַחַר שֶׁשָּׁלַח יָד בַּפִּקָּדוֹן חַיָּב בְּאַחֲרָיוּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד אצל חבירו וכו׳ עד אחר ששלח יד בפקדון חייב באחריותו.</strong> בנזיקין פרק הגוזל עצים:</p>
               </div>
             </div>
@@ -538,8 +618,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-4-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-2">Mishneh Torah, Borrowing and Deposit 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹאִיל וּפָטַר הַכָּתוּב אֶת שׁוֹמֵר חִנָּם מִן הַגְּנֵבָה קַל וָחֹמֶר מִן הָאֳנָסִין הַגְּדוֹלִים כְּגוֹן שְׁבוּרָה וּשְׁבוּיָה וּמֵתָה וְהוּא שֶׁלֹּא שָׁלַח יָד בַּפִּקָּדוֹן אֲבָל שָׁלַח יָד בַּפִּקָּדוֹן חַיָּב בְּאֳנָסָיו. כֵּיצַד דֶּרֶךְ הַשּׁוֹמְרִים. הַכּל לְפִי הַפִּקָּדוֹן. יֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בְּבֵית שַׁעַר כְּגוֹן הַקּוֹרוֹת וְהָאֲבָנִים. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בֶּחָצֵר כְּגוֹן חֲבִילוֹת פִּשְׁתָּן הַגְּדוֹלוֹת וְכַיּוֹצֵא בָּהֶן. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בַּבַּיִת כְּגוֹן שִׂמְלָה וְטַלִּית. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בְּתֵבָה אוֹ בְּמִגְדָּל וְנוֹעֵל עָלָיו כְּגוֹן בִּגְדֵי מֶשִׁי וּכְלֵי כֶּסֶף וּכְלֵי זָהָב וְכַיּוֹצֵא בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הואיל ופטר הכתוב וכו׳ עד חייב באונסיו.</strong> במציעא פרק השואל ופרק הפועלים ומייתי מינה פ&quot;ק:</p>
               </div>
             </div>
@@ -554,8 +639,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-4-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-2">Mishneh Torah, Borrowing and Deposit 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹאִיל וּפָטַר הַכָּתוּב אֶת שׁוֹמֵר חִנָּם מִן הַגְּנֵבָה קַל וָחֹמֶר מִן הָאֳנָסִין הַגְּדוֹלִים כְּגוֹן שְׁבוּרָה וּשְׁבוּיָה וּמֵתָה וְהוּא שֶׁלֹּא שָׁלַח יָד בַּפִּקָּדוֹן אֲבָל שָׁלַח יָד בַּפִּקָּדוֹן חַיָּב בְּאֳנָסָיו. כֵּיצַד דֶּרֶךְ הַשּׁוֹמְרִים. הַכּל לְפִי הַפִּקָּדוֹן. יֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בְּבֵית שַׁעַר כְּגוֹן הַקּוֹרוֹת וְהָאֲבָנִים. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בֶּחָצֵר כְּגוֹן חֲבִילוֹת פִּשְׁתָּן הַגְּדוֹלוֹת וְכַיּוֹצֵא בָּהֶן. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בַּבַּיִת כְּגוֹן שִׂמְלָה וְטַלִּית. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בְּתֵבָה אוֹ בְּמִגְדָּל וְנוֹעֵל עָלָיו כְּגוֹן בִּגְדֵי מֶשִׁי וּכְלֵי כֶּסֶף וּכְלֵי זָהָב וְכַיּוֹצֵא בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כיצד דרך השומרים וכו׳ עד אחר שיבדיל כדי לקברן.</strong> פרק המפקיד:</p>
               </div>
             </div>
@@ -570,8 +660,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:2:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-4-2-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:2:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-2">Mishneh Torah, Borrowing and Deposit 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹאִיל וּפָטַר הַכָּתוּב אֶת שׁוֹמֵר חִנָּם מִן הַגְּנֵבָה קַל וָחֹמֶר מִן הָאֳנָסִין הַגְּדוֹלִים כְּגוֹן שְׁבוּרָה וּשְׁבוּיָה וּמֵתָה וְהוּא שֶׁלֹּא שָׁלַח יָד בַּפִּקָּדוֹן אֲבָל שָׁלַח יָד בַּפִּקָּדוֹן חַיָּב בְּאֳנָסָיו. כֵּיצַד דֶּרֶךְ הַשּׁוֹמְרִים. הַכּל לְפִי הַפִּקָּדוֹן. יֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בְּבֵית שַׁעַר כְּגוֹן הַקּוֹרוֹת וְהָאֲבָנִים. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בֶּחָצֵר כְּגוֹן חֲבִילוֹת פִּשְׁתָּן הַגְּדוֹלוֹת וְכַיּוֹצֵא בָּהֶן. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בַּבַּיִת כְּגוֹן שִׂמְלָה וְטַלִּית. וְיֵשׁ פִּקָּדוֹן שֶׁדֶּרֶךְ שְׁמִירָתוֹ לְהַנִּיחוֹ בְּתֵבָה אוֹ בְּמִגְדָּל וְנוֹעֵל עָלָיו כְּגוֹן בִּגְדֵי מֶשִׁי וּכְלֵי כֶּסֶף וּכְלֵי זָהָב וְכַיּוֹצֵא בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> המפקיד אצל חבירו כספים וכו׳:</strong> כתב הראב&quot;ד ז&quot;ל ואם ת&quot;ח הוא הנפקד עכ&quot;ל: <strong> ואני </strong> אומר עיקר הלכות אלו פרק המפקיד ומעולם לא ראינו ולא שמענו מי שפירשו בענין אחר וגם לשון ר&quot;מ ז&quot;ל כך הוא מובן במושכל ראשון ועל כן לא ידעתי מה בא זה הלשון ללמדנו:</p>
               </div>
             </div>
@@ -586,8 +681,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-4-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-6">Mishneh Torah, Borrowing and Deposit 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֵצֶל חֲבֵרוֹ כְּסָפִים בַּדֶּרֶךְ לְהוֹלִיכָם לְבֵיתוֹ אוֹ שֶׁשָּׁלַח עִמּוֹ מָעוֹת מִמָּקוֹם לְמָקוֹם צְרִיכִין שֶׁיִּהְיוּ צְרוּרִים וּמֻנָּחִים בְּיָדוֹ אוֹ קְשׁוּרִים כָּרָאוּי עַל בִּטְנוֹ מִכְּנֶגֶד פָּנָיו עַד שֶׁיַּגִּיעַ לְבֵיתוֹ וְיִקְבְּרֵם כָּרָאוּי. וְאִם לֹא קְשָׁרָן בַּדֶּרֶךְ הַזֹּאת אֲפִלּוּ נֶאֶנְסוּ חַיָּב לְשַׁלֵּם שֶׁהֲרֵי תְּחִלָּתוֹ בִּפְשִׁיעָה. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד מָעוֹת אֵצֶל חֲבֵרוֹ וְהִנִּיחָם בִּמְחִצָּה שֶׁל קָנִים וְהָיוּ טְמוּנִים בָּעֳבִי הַמְּחִצָּה וְנִגְנְבוּ מִשָּׁם וְאָמְרוּ חֲכָמִים אַף עַל פִּי שֶׁזּוֹ שְׁמִירָה מְעֻלָּה לְעִנְיַן גְּנֵבָה אֵינָהּ שְׁמִירָה כָּרָאוּי לְעִנְיַן הָאֵשׁ וּמֵאַחַר שֶׁלֹּא טְמָנוֹ בְּקַרְקַע אוֹ בְּכֹתֶל בִּנְיָן פּוֹשֵׁעַ הוּא וְכָל שֶׁתְּחִלָּתוֹ בִּפְשִׁיעָה וְסוֹפוֹ בְּאֹנֶס חַיָּב. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הפקיד אצל חבירו כספים כו׳ עד סוף הפרק.</strong> הכל במציעא פרק המפקיד:</p>
               </div>
             </div>
@@ -603,8 +703,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-5-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-1">Mishneh Torah, Borrowing and Deposit 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהִפְקִידוּ אֶצְלוֹ מָעוֹת שֶׁל עֲנִיִּים אוֹ שֶׁל פִּדְיוֹן שְׁבוּיִים וּפָשַׁע בָּהֶם וְנִגְנְבוּ פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;לִשְׁמֹר&quot; וְלֹא לְחַלֵּק לָעֲנִיִּים וַהֲרֵי הוּא מָמוֹן שֶׁאֵין לוֹ תּוֹבְעִים. אֲפִלּוּ בָּאוּ עָלָיו גַּנָּבִים וְקָדַם וְהִצִּיל עַצְמוֹ בְּמָמוֹן שְׁבוּיִים פָּטוּר. אֵין לְךָ פִּדְיוֹן שְׁבוּיִים גָּדוֹל מִזֶּה. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁאֵין זֶה הַמָּמוֹן מֻפְקָד לַעֲנִיֵּי מָקוֹם זֶה אוֹ לִשְׁבוּיִים [אֵלּוּ]. אֲבָל אִם הָיוּ לַעֲנִיִּים אֵלּוּ אוֹ לִשְׁבוּיִים אֵלּוּ וַהֲרֵי הוּא קָצוּץ לָהֶן הֲרֵי זֶה הַמָּמוֹן שֶׁיֵּשׁ לוֹ תּוֹבְעִין וִישַׁלֵּם אִם פָּשַׁע אוֹ יִשָּׁבַע שֶׁלֹּא פָּשַׁע כְּדֶרֶךְ כָּל הַשּׁוֹמְרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהפקידו אצלו מעות וכו׳ עד פדיון שבויים גדול מזה.</strong> סוף פרק החובל ומייתי לסופה פרק הגוזל ומאכיל:</p>
               </div>
             </div>
@@ -619,8 +724,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-5-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-1">Mishneh Torah, Borrowing and Deposit 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהִפְקִידוּ אֶצְלוֹ מָעוֹת שֶׁל עֲנִיִּים אוֹ שֶׁל פִּדְיוֹן שְׁבוּיִים וּפָשַׁע בָּהֶם וְנִגְנְבוּ פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;לִשְׁמֹר&quot; וְלֹא לְחַלֵּק לָעֲנִיִּים וַהֲרֵי הוּא מָמוֹן שֶׁאֵין לוֹ תּוֹבְעִים. אֲפִלּוּ בָּאוּ עָלָיו גַּנָּבִים וְקָדַם וְהִצִּיל עַצְמוֹ בְּמָמוֹן שְׁבוּיִים פָּטוּר. אֵין לְךָ פִּדְיוֹן שְׁבוּיִים גָּדוֹל מִזֶּה. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁאֵין זֶה הַמָּמוֹן מֻפְקָד לַעֲנִיֵּי מָקוֹם זֶה אוֹ לִשְׁבוּיִים [אֵלּוּ]. אֲבָל אִם הָיוּ לַעֲנִיִּים אֵלּוּ אוֹ לִשְׁבוּיִים אֵלּוּ וַהֲרֵי הוּא קָצוּץ לָהֶן הֲרֵי זֶה הַמָּמוֹן שֶׁיֵּשׁ לוֹ תּוֹבְעִין וִישַׁלֵּם אִם פָּשַׁע אוֹ יִשָּׁבַע שֶׁלֹּא פָּשַׁע כְּדֶרֶךְ כָּל הַשּׁוֹמְרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בד&quot;א בשאין זה הממון עד כדרך כל השומרין.</strong> סוף פרק החובל:</p>
               </div>
             </div>
@@ -635,8 +745,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-5-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-2">Mishneh Torah, Borrowing and Deposit 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ מָמוֹן אוֹ כֵּלִים חֲשׁוּבִין וּבָאוּ עָלָיו גַּנָּבִים וְקָדַם וְנָתַן לָהֶם הַפִּקָּדוֹן לְהַצִּיל עַצְמוֹ אִם הָיָה אָמוּד שֶׁהוּא בַּעַל מָמוֹן חַיָּב שֶׁחֶזְקָתוֹ שֶׁבִּגְלָלוֹ בָּאוּ הַגַּנָּבִים וְנִמְצָא זֶה מַצִּיל עַצְמוֹ בְּמָמוֹן חֲבֵרוֹ. וְאִם אֵינוֹ אָמוּד חֶזְקָתוֹ שֶׁלֹּא בָּאוּ אֶלָּא לְשֵׁם הַפִּקָּדוֹן וּפָטוּר. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד אצל חבירו ממון עד וכן כל כיוצא בזה.</strong> פרק הגוזל ומאכיל:</p>
               </div>
             </div>
@@ -651,8 +766,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-5-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-3">Mishneh Torah, Borrowing and Deposit 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ כֵּלִים אוֹ פֵּרוֹת וּבָאוּ גַּנָּבִים וּגְנָבוּם בְּפָנָיו וְאִלּוּ הָיָה צוֹוֵחַ הָיוּ בָּאִין בְּנֵי אָדָם וּמַצִּילִין אוֹתָן הוֹאִיל וְלֹא צָוַח הֲרֵי זֶה פּוֹשֵׁעַ וְחַיָּב לְשַׁלֵּם. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד אצל חבירו עד וכן כל כיוצא בזה.</strong> פרק המפקיד:</p>
               </div>
             </div>
@@ -667,8 +787,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-5-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-4">Mishneh Torah, Borrowing and Deposit 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנַיִם שֶׁהִפְקִידוּ אֵצֶל אֶחָד זֶה מֵאָה וְזֶה מָאתַיִם וְכָל אֶחָד מִשְּׁנֵיהֶם אוֹמֵר אֲנִי הוּא שֶׁהִפְקַדְתִּי הַמָּאתַיִם וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ יִשָּׁבַע כָּל אֶחָד מֵהֶן שֶׁהִפְקִיד מָאתַיִם וְנוֹטֵל כְּדִין כָּל נִשְׁבָּע וְנוֹטֵל. וְיִתֵּן מָאתַיִם לָזֶה וּמָאתַיִם לָזֶה וּמַפְסִיד מֵאָה מִבֵּיתוֹ שֶׁהֲרֵי הוּא פּוֹשֵׁעַ שֶׁהָיָה לוֹ לִכְתֹּב שֵׁם כָּל אֶחָד עַל כִּיס שֶׁלּוֹ. לְפִיכָךְ אִם הֵבִיאוּ לוֹ הַשְּׁנַיִם כְּאֶחָד שְׁלֹשׁ מֵאוֹת בְּכֶרֶךְ אֶחָד וּבָאוּ וְתָבְעוּ וְכָל אֶחָד אוֹמֵר הַמָּאתַיִם שֶׁלִּי נוֹתֵן מָנֶה לָזֶה וּמָנֶה לָזֶה וְהַשְּׁאָר יִהְיֶה מֻנָּח אֶצְלוֹ עַד לְעוֹלָם אוֹ עַד שֶׁיּוֹדֶה הָאֶחָד לַחֲבֵרוֹ. שֶׁהֲרֵי הוּא אוֹמֵר לָהֶם כֵּיוָן שֶׁרָאִיתִי שֶׁאֵין אַתֶּם מַקְפִּידִין זֶה עַל זֶה וַהֲבֵאתֶם בְּכֶרֶךְ אֶחָד לֹא הִטְרַחְתִּי עַצְמִי לֵידַע וְלִזְכֹּר תָּמִיד מִי בַּעַל הַמֵּאָה וּמִי בַּעַל הַמָּאתַיִם. וְכֵן אִם הִפְקִידוּ אֶצְלוֹ שְׁנֵי כֵּלִים אֶחָד גָּדוֹל וְאֶחָד קָטָן וְכָל אֶחָד וְאֶחָד אוֹמֵר אֲנִי הוּא בַּעַל הַגָּדוֹל וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ יִשָּׁבְעוּ שְׁנֵיהֶם וְיִתֵּן הַגָּדוֹל לְאֶחָד מֵהֶם וּדְמֵי הַגָּדוֹל לַשֵּׁנִי וְיִשָּׁאֵר לוֹ הַקָּטָן. וְאִם הֱבִיאוּם בְּכֶרֶךְ אֶחָד כְּאֶחָד נוֹתֵן הַקָּטָן לָאֶחָד וּדְמֵי הַקָּטָן לַשֵּׁנִי וְהַשְּׁאָר יִהְיֶה מֻנָּח אֶצְלוֹ עַד שֶׁיּוֹדֶה הָאֶחָד לַחֲבֵרוֹ אוֹ עַד לְעוֹלָם. וְכֵן מִי שֶׁתְּבָעוּהוּ שְׁנַיִם זֶה אוֹמֵר אֲנִי הוּא בַּעַל הַפִּקָּדוֹן וְזֶה אוֹמֵר אֲנִי הוּא וְהַשּׁוֹמֵר אוֹמֵר אֶחָד מִכֶּם הוּא וְאֵינִי יוֹדֵעַ מִי הוּא יְשַׁלֵּם לִשְׁנֵיהֶם. וְכֵן שְׁנַיִם שֶׁהִפְקִידוּ שְׁתֵּי בְּהֵמוֹת אֵצֶל רוֹעֶה וּמֵתָה אַחַת מֵהֶן וְאֵינוֹ יוֹדֵעַ שֶׁל מִי הָיְתָה יְשַׁלֵּם לִשְׁנֵיהֶם. וְאִם הִפְקִידוּ בְּעֶדְרוֹ שֶׁלֹּא מִדַּעְתּוֹ מַנִּיחַ הַבְּהֵמָה בֵּינֵיהֶם וּמִסְתַּלֵּק וְתִהְיֶה מֻנַּחַת עַד שֶׁיּוֹדֶה הָאֶחָד לַחֲבֵרוֹ אוֹ עַד שֶׁיִּרְצוּ לַחֲלֹק אוֹתָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים שהפקידו אצל אחד עד אינו מוציא לו בלע.</strong> הכל פרק המפקיד:</p>
               </div>
             </div>
@@ -683,8 +808,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-5-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-6">Mishneh Torah, Borrowing and Deposit 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֶצְלוֹ פֵּרוֹת שֶׁאֵינָן מְדוּדִין וְעֵרְבָן עִם פֵּרוֹתָיו וְלֹא מְדָדָן הֲרֵי זֶה פּוֹשֵׁעַ. בַּעַל הַפִּקָּדוֹן אוֹמֵר כָּךְ וְכָךְ הָיוּ וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ יְשַׁלֵּם בְּלֹא שְׁבוּעָה שֶׁהֲרֵי חִיֵּב עַצְמוֹ בְּתַשְׁלוּמִין וְאֵינוֹ יוֹדֵעַ כַּמָּה הוּא חַיָּב וְנִמְצָא חַיָּב שְׁבוּעָה שֶׁאֵינוֹ יָכוֹל לְהִשָּׁבַע. וְכָזֶה הוֹרוּ רַבּוֹתַי הָרַב רַבֵּנוּ יוֹסֵף הַלֵּוִי וְרַבּוֹ זַ&quot;ל. וְכֵן כָּל שׁוֹמֵר שֶׁנִּתְחַיֵּב לְשַׁלֵּם וְאָמַר אֵינִי יוֹדֵעַ כַּמָּה דָּמִים אֲנִי חַיָּב לְשַׁלֵּם וְהַבְּעָלִים אוֹמְרִים אָנוּ יוֹדְעִין וְכָךְ וְכָךְ הָיָה שָׁוֶה יִטְּלוּ בְּלֹא שְׁבוּעָה וְהוּא שֶׁיִּטְעֲנוּ דָּבָר שֶׁהֵן אֲמוּדִין בּוֹ. וְיֵשׁ לַשּׁוֹמֵר לְהַחֲרִים עַל מִי שֶׁלָּקַח מִמֶּנּוּ יֶתֶר מִן הָרָאוּי לוֹ. וּמִנַּיִן שֶׁהַדִּין כָּךְ הוּא הַגַּע עַצְמְךָ שֶׁהִפְקִיד אֶצְלוֹ כִּיס מָלֵא זְהוּבִים וּפָשַׁע בּוֹ הַבְּעָלִים אוֹמְרִים מָאתַיִם דִּינָר הָיוּ וְהַשּׁוֹמֵר אוֹמֵר וַדַּאי שֶׁהָיָה בּוֹ דִּינָרִים אֲבָל אֵינִי יוֹדֵעַ כַּמָּה הָיוּ נִמְצָא זֶה כְּטוֹעֵן מָאתַיִם וְהוֹדָה לוֹ בְּמִקְצָת וְאָמַר הַשְּׁאָר אֵינִי יוֹדֵעַ שֶׁהוּא מְחֻיָּב שְׁבוּעָה וְאֵינוֹ יָכוֹל לִשָּׁבַע וּמְשַׁלֵּם כְּמוֹ שֶׁיִּתְבָּאֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הפקיד אצלו פירות שאינן מדודין ועירבן עם פירותיו וכו׳ בעל הפקדון אומר כך וכך היו וכו׳ נמצא מחוייב שבועה כו׳ עד וכזה הורו רבותי רבינו יהוסף הלוי בן מיגש ז&quot;ל ורבו ז&quot;ל:</strong> כתב הראב&quot;ד ז&quot;ל ורבותי אין מורין כן וכו׳: <strong> ואני </strong> אומר זה שכתב ר&quot;מ ז&quot;ל מתשובת הגאונים ז&quot;ל והוראת רבותיו היתה לו ודיו והרוצה לחלוק יחלוק וכבר כתבתי כמה פעמים על עצמי שלא באתי בחיבור זה לסתור אלא לבנות בס&quot;ד ולכך אין לי להכריע:</p>
               </div>
             </div>
@@ -699,8 +829,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-5-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-7">Mishneh Torah, Borrowing and Deposit 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵת אָבִיו וְהִנִּיחַ לוֹ שַׂק צָרוּר וְהִפְקִידוֹ אֶצְלוֹ חֲבֵרוֹ וּפָשַׁע בּוֹ הַמַּפְקִיד אוֹמֵר אֵינִי יוֹדֵעַ מֶה הָיוּ בּוֹ שֶׁמָּא מַרְגָּלִיּוֹת הָיוּ בּוֹ וְכֵן הַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ כַּמָּה אֲנִי חַיָּב לְשַׁלֵּם שֶׁמָּא זְכוּכִית הָיָה מָלֵא. שׁוּרַת הַדִּין שֶׁאֲנִי אוֹמֵר בְּטַעֲנָה זוֹ שֶׁיִּשָּׁבַע הַשּׁוֹמֵר בְּתַקָּנַת חֲכָמִים שֶׁאֵינוֹ בִּרְשׁוּתוֹ וְיִכְלל בִּשְׁבוּעָתוֹ שֶׁאֵינוֹ יוֹדֵעַ בְּוַדַּאי שֶׁהָיָה בּוֹ יֶתֶר עַל שְׁוֵה כָּךְ וְכָךְ וִישַׁלֵּם מַה שֶּׁהוֹדָה בּוֹ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד שַׂק צָרוּר אֵצֶל חֲבֵרוֹ וּפָשַׁע בּוֹ. הַמַּפְקִיד אוֹמֵר חֲלִי זָהָב וּמַרְגָּלִיּוֹת וְכַיּוֹצֵא בָּהֶן הָיוּ בּוֹ וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ שֶׁמָּא סִיגִים אוֹ חוֹל הָיוּ בּוֹ. וְאָמְרוּ חֲכָמִים יִשָּׁבַע בַּעַל הַפִּקָּדוֹן וְיִטּל וְהוּא שֶׁיִּטְעֹן דָּבָר שֶׁהוּא אָמוּד בּוֹ אוֹ אָמוּד לְהַפְקִידוֹ אֶצְלוֹ. וְלָמָּה נִשְׁבָּע כָּאן בַּעַל הַפִּקָּדוֹן לְפִי שֶׁאֵין הַשּׁוֹמֵר מְחֻיָּב שְׁבוּעָה שֶׁאֲפִלּוּ הוֹדָה וְאָמַר בָּרִי לִי שֶׁהָיָה מָלֵא סִיגִים וְהַמַּפְקִיד אוֹמֵר מַרְגָּלִיּוֹת הָיוּ הַשּׁוֹמֵר נִשְׁבָּע הֶסֵּת וְנִפְטָר כְּמוֹ שֶׁטְּעָנוֹ חִטִּים וְהוֹדָה לוֹ בִּשְׂעוֹרִים. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וּבְהִלְכוֹת טוֹעֵן וְנִטְעָן יִתְבָּאֲרוּ עִקְּרֵי הַדְּבָרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעשה באחד שהפקיד שק צרור אצל חבירו וכו׳ ולמה נשבע כאן בעל הפקדון וכו׳ עד ובהלכות טוען ונטען יתבארו עיקרי הדברים:</strong> כתב הראב&quot;ד ז&quot;ל אין זה כלום וכו׳: <strong> ואני </strong> אומר זה הדין מן הירושלמי הוא והביאו גם ר&quot;י אלפס ז&quot;ל בהלכות נזיקין פרק הכונס וכולם מודין בדין זה ולא נחלק רק בטעם שאינו נראה להראב&quot;ד ז&quot;ל ומ&quot;מ הוא לא נתן בו טעם אחר שיטעום איזה מהן מתוק לחיך ולפיכך אנחנו נקבל זה וכי יבא דברו וכבדנוהו וגם כבר ייעד ר&quot;מ ז&quot;ל לבררו עוד בהלכות טוען ונטען והוא בפ&quot;ד נכון ויציב דכי מעיינת בה שפיר כולהי קושייתא מיתרצן מה שהקשה תחלה מן השק אינה קושיא שהרי אינו דבר שבמדה שבמשקל ושבמנין ומינה למטכסין לא תבעו במניין אלא שק מלא סתם או צרור שהיו בו מטכסין ולא אמר כמה וכמה ור&quot;מ ז&quot;ל כתב שם כי כיס מלא אינו מודה במקצת ומה שהקשה משוורים לא דמיא דהתם לתרוייהו איכא ספיקא אבל הכא המפקיד טעין ברי ולית ליה לאסתפוקי דהא איהו הוא דאפקיה מתותי ידיה ואפקדיה וזה פשוט ואינה צריכה לפנים ותו לא מידי:</p>
               </div>
             </div>
@@ -716,8 +851,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-1">Mishneh Torah, Borrowing and Deposit 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֵר חִנָּם שֶׁאָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע אִם הַפִּקָּדוֹן דָּבָר שֶׁכָּל מִינוֹ שָׁוֶה וּמָצוּי בַּשּׁוּק לִקְנוֹת כְּמוֹתוֹ כְּגוֹן פֵּרוֹת אוֹ יְרִיעוֹת שֶׁל צֶמֶר וְשֶׁל פִּשְׁתָּן הַשָּׁווֹת בְּכָל עִנְיָנָם אוֹ קוֹרוֹת שֶׁאֵינָן מְצֻיָּרוֹת וְכָל כַּיּוֹצֵא בָּהֶן הֲרֵי זֶה מְשַׁלֵּם וְאֵינוֹ נִשְׁבָּע. אֲבָל אִם הָיָה פִּקְדוֹן בְּהֵמָה אוֹ בֶּגֶד מְצֻיָּר אוֹ כְּלִי מְתֻקָּן אוֹ דָּבָר שֶׁאֵינוֹ מוֹצֵא לִקְנוֹת כְּמוֹתוֹ בַּשּׁוּק חוֹשְׁשִׁין שֶׁמָּא עֵינָיו נָתַן בּוֹ וּמַשְׁבִּיעִין אוֹתוֹ בְּתַקָּנַת חֲכָמִים שְׁבוּעָה בִּנְקִיטַת חֵפֶץ שֶׁאֵינוֹ בִּרְשׁוּתוֹ וְאַחַר כָּךְ מְשַׁלֵּם. וְהוּא הַדִּין לִשְׁאָר הַשּׁוֹמְרִין כְּגוֹן הַשּׁוֹאֵל שֶׁאָמַר מֵתָה אוֹ נִגְנְבָה וְשׁוֹמֵר שָׂכָר וְהַשּׂוֹכֵר שֶׁאָמַר נִגְנְבָה אוֹ שֶׁאָבְדָה אַף עַל פִּי שֶׁהֵן חַיָּבִין לְשַׁלֵּם מַשְׁבִּיעִין אוֹתָן שְׁבוּעָה שֶׁאֵינָהּ בִּרְשׁוּתָן וְאַחַר כָּךְ מְשַׁלְּמִין דְּמֵי הַבְּהֵמָה אוֹ הַחֵפֶץ שֶׁאָנוּ חוֹשְׁשִׁין לוֹ שֶׁמָּא עֵינָיו נָתַן בָּהּ. וְאִם אָמְרוּ הַבְּעָלִים יֶתֶר עַל זֶה הָיָה שָׁוֶה כּוֹלֵל בִּשְׁבוּעָתוֹ שֶׁאֵינָהּ שָׁוָה אֶלָּא כָּךְ וְכָךְ. נִמְצָא כָּל שׁוֹמֵר שֶׁנִּשְׁבַּע שְׁבוּעַת הַשּׁוֹמְרִין כּוֹלֵל בִּשְׁבוּעָתוֹ שְׁלֹשָׁה דְּבָרִים. שֶׁשָּׁמַר כְּדֶרֶךְ הַשּׁוֹמְרִין. וְשֶׁאֵרְעוֹ כָּךְ וְכָךְ וְאֵינוֹ בִּרְשׁוּתוֹ. וְשֶׁלֹּא שָׁלַח בּוֹ יָד קֹדֶם שֶׁאֵרְעוֹ הַמְאֹרָע הַפּוֹטֵר אוֹתוֹ. וְאִם רָצָה לְשַׁלֵּם נִשְׁבָּע שֶׁאֵינוֹ בִּרְשׁוּתוֹ וְכוֹלֵל בִּשְׁבוּעָתוֹ שֶׁכָּךְ וְכָךְ הָיָה שָׁוֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שומר חנם שאמר הריני משלם כו׳ עד ואח&quot;כ משלם.</strong> פרק המפקיד <span class="source-small"> (דף ל&quot;ד) </span> ופ&quot;ק דמציעא <span class="source-small"> (דף ה׳) </span> הוא ראש זה הדין וסופו ועליו הוסיפו הגאונים ז&quot;ל להורות כל הוראה זו:</p>
               </div>
             </div>
@@ -732,8 +872,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-1">Mishneh Torah, Borrowing and Deposit 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֵר חִנָּם שֶׁאָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע אִם הַפִּקָּדוֹן דָּבָר שֶׁכָּל מִינוֹ שָׁוֶה וּמָצוּי בַּשּׁוּק לִקְנוֹת כְּמוֹתוֹ כְּגוֹן פֵּרוֹת אוֹ יְרִיעוֹת שֶׁל צֶמֶר וְשֶׁל פִּשְׁתָּן הַשָּׁווֹת בְּכָל עִנְיָנָם אוֹ קוֹרוֹת שֶׁאֵינָן מְצֻיָּרוֹת וְכָל כַּיּוֹצֵא בָּהֶן הֲרֵי זֶה מְשַׁלֵּם וְאֵינוֹ נִשְׁבָּע. אֲבָל אִם הָיָה פִּקְדוֹן בְּהֵמָה אוֹ בֶּגֶד מְצֻיָּר אוֹ כְּלִי מְתֻקָּן אוֹ דָּבָר שֶׁאֵינוֹ מוֹצֵא לִקְנוֹת כְּמוֹתוֹ בַּשּׁוּק חוֹשְׁשִׁין שֶׁמָּא עֵינָיו נָתַן בּוֹ וּמַשְׁבִּיעִין אוֹתוֹ בְּתַקָּנַת חֲכָמִים שְׁבוּעָה בִּנְקִיטַת חֵפֶץ שֶׁאֵינוֹ בִּרְשׁוּתוֹ וְאַחַר כָּךְ מְשַׁלֵּם. וְהוּא הַדִּין לִשְׁאָר הַשּׁוֹמְרִין כְּגוֹן הַשּׁוֹאֵל שֶׁאָמַר מֵתָה אוֹ נִגְנְבָה וְשׁוֹמֵר שָׂכָר וְהַשּׂוֹכֵר שֶׁאָמַר נִגְנְבָה אוֹ שֶׁאָבְדָה אַף עַל פִּי שֶׁהֵן חַיָּבִין לְשַׁלֵּם מַשְׁבִּיעִין אוֹתָן שְׁבוּעָה שֶׁאֵינָהּ בִּרְשׁוּתָן וְאַחַר כָּךְ מְשַׁלְּמִין דְּמֵי הַבְּהֵמָה אוֹ הַחֵפֶץ שֶׁאָנוּ חוֹשְׁשִׁין לוֹ שֶׁמָּא עֵינָיו נָתַן בָּהּ. וְאִם אָמְרוּ הַבְּעָלִים יֶתֶר עַל זֶה הָיָה שָׁוֶה כּוֹלֵל בִּשְׁבוּעָתוֹ שֶׁאֵינָהּ שָׁוָה אֶלָּא כָּךְ וְכָךְ. נִמְצָא כָּל שׁוֹמֵר שֶׁנִּשְׁבַּע שְׁבוּעַת הַשּׁוֹמְרִין כּוֹלֵל בִּשְׁבוּעָתוֹ שְׁלֹשָׁה דְּבָרִים. שֶׁשָּׁמַר כְּדֶרֶךְ הַשּׁוֹמְרִין. וְשֶׁאֵרְעוֹ כָּךְ וְכָךְ וְאֵינוֹ בִּרְשׁוּתוֹ. וְשֶׁלֹּא שָׁלַח בּוֹ יָד קֹדֶם שֶׁאֵרְעוֹ הַמְאֹרָע הַפּוֹטֵר אוֹתוֹ. וְאִם רָצָה לְשַׁלֵּם נִשְׁבָּע שֶׁאֵינוֹ בִּרְשׁוּתוֹ וְכוֹלֵל בִּשְׁבוּעָתוֹ שֶׁכָּךְ וְכָךְ הָיָה שָׁוֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וה&quot;ה לשאר השומרים כגון השואל וכו׳ עד כך וכך היה שוה.</strong> בניזקין פ׳ הגוזל עצים <span class="source-small"> (דף ק&quot;ז ק&quot;ח) </span> :</p>
               </div>
             </div>
@@ -748,8 +893,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-2">Mishneh Torah, Borrowing and Deposit 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַשּׁוֹמֵר לְהַתְנוֹת שֶׁאֵינוֹ שׁוֹמֵר כְּדֶרֶךְ הַשּׁוֹמְרִין אֶלָּא מָעוֹת אֵלּוּ שֶׁהִפְקִיד אֶצְלִי בְּזָוִית בֵּיתִי אֲנִי מַנִּיחַ אוֹתָן וְכַיּוֹצֵא בָּזֶה. טָעַן הַשּׁוֹמֵר שֶׁתְּנַאי הָיָה בֵּינֵינוּ וּבַעַל הַפִּקָּדוֹן אוֹמֵר לֹא הָיָה שָׁם תְּנַאי אַף עַל פִּי שֶׁהִפְקִיד אֶצְלוֹ בְּעֵדִים מִתּוֹךְ שֶׁיָּכוֹל לוֹמַר שָׁמַרְתִּי כְּדֶרֶךְ הַשּׁוֹמְרִין וְנֶאֱנַסְתִּי נֶאֱמָן לוֹמַר שֶׁהָיָה בֵּינֵיהֶן תְּנַאי לְפִיכָךְ יִשָּׁבַע שֶׁלֹּא שָׁלַח יָד בּוֹ וְשֶׁאֵינוֹ בִּרְשׁוּתוֹ וְשֶׁהָיָה בֵּינֵיהֶן תְּנַאי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש לשומר להתנות עד וכיוצא בזה.</strong> פרק השוכר את הפועלים הסכימו כן לגבי מתנה ש&quot;ח וכו׳ שכתב ר&quot;מ ז&quot;ל פ&quot;ב דהלכות שכירות:</p>
               </div>
             </div>
@@ -764,8 +914,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-2">Mishneh Torah, Borrowing and Deposit 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַשּׁוֹמֵר לְהַתְנוֹת שֶׁאֵינוֹ שׁוֹמֵר כְּדֶרֶךְ הַשּׁוֹמְרִין אֶלָּא מָעוֹת אֵלּוּ שֶׁהִפְקִיד אֶצְלִי בְּזָוִית בֵּיתִי אֲנִי מַנִּיחַ אוֹתָן וְכַיּוֹצֵא בָּזֶה. טָעַן הַשּׁוֹמֵר שֶׁתְּנַאי הָיָה בֵּינֵינוּ וּבַעַל הַפִּקָּדוֹן אוֹמֵר לֹא הָיָה שָׁם תְּנַאי אַף עַל פִּי שֶׁהִפְקִיד אֶצְלוֹ בְּעֵדִים מִתּוֹךְ שֶׁיָּכוֹל לוֹמַר שָׁמַרְתִּי כְּדֶרֶךְ הַשּׁוֹמְרִין וְנֶאֱנַסְתִּי נֶאֱמָן לוֹמַר שֶׁהָיָה בֵּינֵיהֶן תְּנַאי לְפִיכָךְ יִשָּׁבַע שֶׁלֹּא שָׁלַח יָד בּוֹ וְשֶׁאֵינוֹ בִּרְשׁוּתוֹ וְשֶׁהָיָה בֵּינֵיהֶן תְּנַאי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> טען השומר שתנאי היה בינינו וכו׳ עד ושהיה ביניהם תנאי:</strong> כתב הראב&quot;ד ז&quot;ל זהו תימה וכי העדים לא שמעו התנאי וכו׳: <strong> ואני </strong> אומר כבר כתבתי למעלה שפעמים שאין העדים מעלין ומורידין בזה מההיא דאמרינן לא איברו סהדי אלא לשקרי ואפשר שיהיו העדים בעת הפקדון ולא בעת התנאי וחזר עיקר הדין להכחשה ביניהם ושבועת ה׳ תהיה בין שניהם והודאתו אינה שפשע בשמירתו אלא שאנו אומרים אלמלא התנאי היה פושע ומאחר שהיה שם תנאי לא פשע:</p>
               </div>
             </div>
@@ -780,8 +935,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-3">Mishneh Torah, Borrowing and Deposit 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֵר חִנָּם שֶׁהֵבִיא רְאָיָה שֶׁלֹּא פָּשַׁע בָּהּ פָּטוּר מִשְּׁבוּעָה וְאֵין אוֹמְרִים שֶׁמָּא שָׁלַח בּוֹ יָד קֹדֶם שֶׁיֹּאבַד. וּבַעַל הַפִּקָּדוֹן שֶׁהֵבִיא רְאָיָה שֶׁפָּשַׁע הַשּׁוֹמֵר מְשַׁלֵּם. וְאִם טָעַן וְאָמַר תְּנַאי הָיָה בֵּינֵינוּ אֵינוֹ נֶאֱמָן שֶׁהֲרֵי יֵשׁ עֵדִים שֶׁפָּשַׁע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שומר חנם שהביא ראייה וכו׳ ואם טען ואמר תנאי היה בינינו אינו נאמן שהרי יש עדים שפשע:</strong> כתב הראב&quot;ד ז&quot;ל תימה גדול יש בזה וכו׳: <strong> ואני </strong> אומר לפי שיטתו של הראב&quot;ד ז&quot;ל יפה אומר בזה אבל אני רוח אחרת עמי בלשון ר&quot;מ ז&quot;ל לפרש כי מה שאמר תחלה שומר חנם שהביא עדים שלא פשע פטור משבועה הדין עמו וכבר הוכחתי זה למעלה משמעתין דריש בבא מציעא ושוב מצאתי שכן הורה ר&quot;ת ז&quot;ל ומ&quot;ש אחר כך ואם טען ואמר תנאי היה בינינו אינו נאמן הוא מתשובת הגאונים ז&quot;ל ומיירי בשטען לאחר שבאו עדים שפשע דהוה ליה כחוזר וטוען וכההיא דראה עדים ממשמשין ובאין כו׳ ורישא מיירי בשטען מתחלה ובזה יתיישבו בבא דרישא עם בבא דסיפא:</p>
               </div>
             </div>
@@ -796,8 +956,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-4">Mishneh Torah, Borrowing and Deposit 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָאוּ עֵדִים שֶׁזֶּה הַחֵפֶץ בְּפָנֵינוּ הִפְקִידוֹ אֶצְלוֹ אֵין הַשּׁוֹמֵר יָכוֹל לִטְעֹן וְלוֹמַר חָזַרְתִּי וּלְקַחְתִּיו מִמֶּנּוּ אוֹ נְתָנוֹ לִי בְּמַתָּנָה. לְפִיכָךְ אִם מֵת הַשּׁוֹמֵר מוֹצִיאִין הַפִּקָּדוֹן עַצְמוֹ מִן הַיְתוֹמִים בְּלֹא שְׁבוּעָה. וְלֹא עוֹד אֶלָּא מִי שֶׁבָּא וְאָמַר כָּךְ וְכָךְ הִפְקַדְתִּי אֵצֶל אֲבִיכֶם וְנָתַן סִימָנִין מֻבְהָקִין וְנִמְצָא הַפִּקָּדוֹן כְּמוֹ שֶׁאָמַר וְהָיָה יוֹדֵעַ הַדַּיָּן שֶׁלֹּא הָיָה הַמֵּת אָמוּד שֶׁזֶּה הַפִּקָּדוֹן שֶׁלּוֹ. יֵשׁ לוֹ לַדַּיָּן הַזֶּה לָתֵת הַפִּקָּדוֹן לְזֶה שֶׁנָּתַן סִימָנָיו. וְהוּא שֶׁלֹּא יִהְיֶה הַמַּפְקִיד רָגִיל לְהִכָּנֵס אֵצֶל זֶה שֶׁמֵּת אֲבָל אִם הָיָה רָגִיל לִכָּנֵס אֶצְלוֹ שֶׁמָּא שֶׁל אַחֵר הוּא וְהִכִּיר הַסִּימָנִין שֶׁלּוֹ. בָּאוּ עֵדִים וְהֵעִידוּ לַדַּיָּן שֶׁאֵין זֶה אָמוּד אֵין מוֹצִיאִין מִיַּד הַיְתוֹמִים בְּעֵדוּתָן שֶׁאֵין זֶה רְאָיָה בְּרוּרָה וְאֻמְדַּן דַּעְתָּן אֵינוֹ אֹמֶד דַּעְתּוֹ וְאֵין לוֹ לַדַּיָּן אֶלָּא מַה שֶּׁדַּעְתּוֹ סוֹמֶכֶת עָלָיו כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד שֻׁמְשְׁמִין אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָא לְתָבְעוֹ וְאָמַר לוֹ הֶחְזַרְתִּים. אָמַר לוֹ הַמַּפְקִיד וַהֲלֹא כָּךְ וְכָךְ הִיא מִדָּתָם וַהֲרֵי הֵם מֻנָּחִים אֶצְלְךָ בְּחָבִיתְךָ. אָמַר לוֹ שֶׁלְּךָ הֶחְזַרְתִּי לְךָ וְאֵלּוּ אֲחֵרִים הֵן. וְאָמְרוּ חֲכָמִים אֵין מוֹצִיאִין מִיָּדוֹ שֶׁמָּא אֵלּוּ הַשֻּׁמְשְׁמִין שֶׁל שׁוֹמֵר הֵן אֶלָּא יִשָּׁבַע הַשּׁוֹמֵר בִּנְקִיטַת חֵפֶץ שֶׁהֶחְזִיר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד אצל חבירו וכו׳ עד בלא שבועה.</strong> בבבא בתרא פרק חזקת הבתים:</p>
               </div>
             </div>
@@ -812,8 +977,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:4:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-4-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-4">Mishneh Torah, Borrowing and Deposit 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָאוּ עֵדִים שֶׁזֶּה הַחֵפֶץ בְּפָנֵינוּ הִפְקִידוֹ אֶצְלוֹ אֵין הַשּׁוֹמֵר יָכוֹל לִטְעֹן וְלוֹמַר חָזַרְתִּי וּלְקַחְתִּיו מִמֶּנּוּ אוֹ נְתָנוֹ לִי בְּמַתָּנָה. לְפִיכָךְ אִם מֵת הַשּׁוֹמֵר מוֹצִיאִין הַפִּקָּדוֹן עַצְמוֹ מִן הַיְתוֹמִים בְּלֹא שְׁבוּעָה. וְלֹא עוֹד אֶלָּא מִי שֶׁבָּא וְאָמַר כָּךְ וְכָךְ הִפְקַדְתִּי אֵצֶל אֲבִיכֶם וְנָתַן סִימָנִין מֻבְהָקִין וְנִמְצָא הַפִּקָּדוֹן כְּמוֹ שֶׁאָמַר וְהָיָה יוֹדֵעַ הַדַּיָּן שֶׁלֹּא הָיָה הַמֵּת אָמוּד שֶׁזֶּה הַפִּקָּדוֹן שֶׁלּוֹ. יֵשׁ לוֹ לַדַּיָּן הַזֶּה לָתֵת הַפִּקָּדוֹן לְזֶה שֶׁנָּתַן סִימָנָיו. וְהוּא שֶׁלֹּא יִהְיֶה הַמַּפְקִיד רָגִיל לְהִכָּנֵס אֵצֶל זֶה שֶׁמֵּת אֲבָל אִם הָיָה רָגִיל לִכָּנֵס אֶצְלוֹ שֶׁמָּא שֶׁל אַחֵר הוּא וְהִכִּיר הַסִּימָנִין שֶׁלּוֹ. בָּאוּ עֵדִים וְהֵעִידוּ לַדַּיָּן שֶׁאֵין זֶה אָמוּד אֵין מוֹצִיאִין מִיַּד הַיְתוֹמִים בְּעֵדוּתָן שֶׁאֵין זֶה רְאָיָה בְּרוּרָה וְאֻמְדַּן דַּעְתָּן אֵינוֹ אֹמֶד דַּעְתּוֹ וְאֵין לוֹ לַדַּיָּן אֶלָּא מַה שֶּׁדַּעְתּוֹ סוֹמֶכֶת עָלָיו כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד שֻׁמְשְׁמִין אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָא לְתָבְעוֹ וְאָמַר לוֹ הֶחְזַרְתִּים. אָמַר לוֹ הַמַּפְקִיד וַהֲלֹא כָּךְ וְכָךְ הִיא מִדָּתָם וַהֲרֵי הֵם מֻנָּחִים אֶצְלְךָ בְּחָבִיתְךָ. אָמַר לוֹ שֶׁלְּךָ הֶחְזַרְתִּי לְךָ וְאֵלּוּ אֲחֵרִים הֵן. וְאָמְרוּ חֲכָמִים אֵין מוֹצִיאִין מִיָּדוֹ שֶׁמָּא אֵלּוּ הַשֻּׁמְשְׁמִין שֶׁל שׁוֹמֵר הֵן אֶלָּא יִשָּׁבַע הַשּׁוֹמֵר בִּנְקִיטַת חֵפֶץ שֶׁהֶחְזִיר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ולא עוד אלא מי שבא ואמר עד כמו שאבאר בהלכות סנהדרין.</strong> בכתובות פ׳ הכותב והביאור פכ&quot;ד:</p>
               </div>
             </div>
@@ -828,8 +998,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:4:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-4-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-4">Mishneh Torah, Borrowing and Deposit 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָאוּ עֵדִים שֶׁזֶּה הַחֵפֶץ בְּפָנֵינוּ הִפְקִידוֹ אֶצְלוֹ אֵין הַשּׁוֹמֵר יָכוֹל לִטְעֹן וְלוֹמַר חָזַרְתִּי וּלְקַחְתִּיו מִמֶּנּוּ אוֹ נְתָנוֹ לִי בְּמַתָּנָה. לְפִיכָךְ אִם מֵת הַשּׁוֹמֵר מוֹצִיאִין הַפִּקָּדוֹן עַצְמוֹ מִן הַיְתוֹמִים בְּלֹא שְׁבוּעָה. וְלֹא עוֹד אֶלָּא מִי שֶׁבָּא וְאָמַר כָּךְ וְכָךְ הִפְקַדְתִּי אֵצֶל אֲבִיכֶם וְנָתַן סִימָנִין מֻבְהָקִין וְנִמְצָא הַפִּקָּדוֹן כְּמוֹ שֶׁאָמַר וְהָיָה יוֹדֵעַ הַדַּיָּן שֶׁלֹּא הָיָה הַמֵּת אָמוּד שֶׁזֶּה הַפִּקָּדוֹן שֶׁלּוֹ. יֵשׁ לוֹ לַדַּיָּן הַזֶּה לָתֵת הַפִּקָּדוֹן לְזֶה שֶׁנָּתַן סִימָנָיו. וְהוּא שֶׁלֹּא יִהְיֶה הַמַּפְקִיד רָגִיל לְהִכָּנֵס אֵצֶל זֶה שֶׁמֵּת אֲבָל אִם הָיָה רָגִיל לִכָּנֵס אֶצְלוֹ שֶׁמָּא שֶׁל אַחֵר הוּא וְהִכִּיר הַסִּימָנִין שֶׁלּוֹ. בָּאוּ עֵדִים וְהֵעִידוּ לַדַּיָּן שֶׁאֵין זֶה אָמוּד אֵין מוֹצִיאִין מִיַּד הַיְתוֹמִים בְּעֵדוּתָן שֶׁאֵין זֶה רְאָיָה בְּרוּרָה וְאֻמְדַּן דַּעְתָּן אֵינוֹ אֹמֶד דַּעְתּוֹ וְאֵין לוֹ לַדַּיָּן אֶלָּא מַה שֶּׁדַּעְתּוֹ סוֹמֶכֶת עָלָיו כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד שֻׁמְשְׁמִין אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָא לְתָבְעוֹ וְאָמַר לוֹ הֶחְזַרְתִּים. אָמַר לוֹ הַמַּפְקִיד וַהֲלֹא כָּךְ וְכָךְ הִיא מִדָּתָם וַהֲרֵי הֵם מֻנָּחִים אֶצְלְךָ בְּחָבִיתְךָ. אָמַר לוֹ שֶׁלְּךָ הֶחְזַרְתִּי לְךָ וְאֵלּוּ אֲחֵרִים הֵן. וְאָמְרוּ חֲכָמִים אֵין מוֹצִיאִין מִיָּדוֹ שֶׁמָּא אֵלּוּ הַשֻּׁמְשְׁמִין שֶׁל שׁוֹמֵר הֵן אֶלָּא יִשָּׁבַע הַשּׁוֹמֵר בִּנְקִיטַת חֵפֶץ שֶׁהֶחְזִיר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מעשה באחד שהפקיד שומשמין וכו׳ אמר לו שלך החזרתים לך וכו׳ עד כמו שביארנו:</strong> כתב הראב&quot;ד ז&quot;ל למה בנקיטת חפץ וכו׳: <strong> ואני </strong> אומר עיקר המעשה הזה ביבמות פרק האשה שלום וכבר נשמר ר&quot;מ ז&quot;ל בלשונו ליתן טעם לקושיא זו שכתב כמו שביארנו והביאור הוא בהלכות שכירות פ&quot;ב שכתב זה שאומר השאלתיך כו׳ עד שמתוך שיכול לומר שומר חנם נגנב ואבד והשואל מתה בשעת מלאכה נאמן לומר החזרתי לך וכשם שאם טען שנאנס נשבע מן התורה בנקיטת חפץ כך אם טען החזרתי ישבע כעין של תורה הואיל ויש שם שטר ביד התובע עכ&quot;ל והכי איתא בבבא בתרא פ׳ המוכר את הבית ושטר ועדים דין אחד להם הואיל וחזר הדין לדין השומרים השנויים במשנתנו כולן בנקיטת חפץ וכן פי׳ ר&quot;י אלפס ז&quot;ל בהלכות פרק הכותב גמרא מתני׳ דהפוגמת כתובתה וזה פשוט:</p>
               </div>
             </div>
@@ -844,8 +1019,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-6-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-5">Mishneh Torah, Borrowing and Deposit 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּעַל הַפִּקָּדוֹן שֶׁתָּבַע פִּקְדּוֹנוֹ וְנָתַן לוֹ הַשּׁוֹמֵר וְאָמַר הַמַּפְקִיד אֵין זֶה פִּקְדוֹנִי אֶלָּא אַחֵר הוּא אוֹ שָׁלֵם הָיָה וְאַתָּה שְׁבַרְתּוֹ אוֹ חָדָשׁ הָיָה וְנִשְׁתַּמַּשְׁתָּ בּוֹ. מֵאָה סְאִין הִפְקַדְתִּי אֶצְלְךָ וְאֵין אֵלּוּ אֶלָּא חֲמִשִּׁים וּבַעַל הַבַּיִת אוֹמֵר זֶהוּ שֶׁהִפְקַדְתָּ בְּעַצְמְךָ וּמַה שֶּׁנָּתַתָּ אַתָּה נוֹטֵל. הֲרֵי הַשּׁוֹמֵר נִשְׁבָּע הֶסֵּת כִּשְׁאָר כָּל הַנִּשְׁבָּעִין שֶׁאֵין כָּל שׁוֹמֵר נִשְׁבָּע שְׁבוּעַת הַשּׁוֹמְרִין הָאֲמוּרָה בַּתּוֹרָה אֶלָּא בִּזְמַן שֶׁמּוֹדֶה בְּעַצְמוֹ שֶׁל פִּקָּדוֹן כְּמוֹ שֶׁהַמַּפְקִיד אוֹמֵר וְטוֹעֵן שֶׁנִּגְנַב אוֹ מֵת אוֹ נִשְׁבָּה. כְּלָלוֹ שֶׁל דָּבָר טוֹעֵן לִפְטֹר עַצְמוֹ מִן הַתַּשְׁלוּמִין [נִשְׁבָּע שְׁבוּעַת שׁוֹמְרִין]. אֲבָל אִם אָמַר זֶהוּ שֶׁהִשְׁאַלְתַּנִי אוֹ שֶׁהִשְׂכַּרְתָּ לִי אוֹ שֶׁנָּטַלְתִּי שָׂכָר עַל שְׁמִירָתִי וְהַבְּעָלִים אוֹמְרִים אֵינוֹ זֶה אֶלָּא אַחֵר אוֹ נִשְׁתַּנָּה מִכְּמוֹת שֶׁהָיָה הַשּׂוֹכֵר נִשְׁבָּע הֶסֵּת אוֹ שְׁבוּעַת הַתּוֹרָה אִם הוֹדָה בְּמִקְצָת. כֵּיצַד. מֵאָה סְאָה הִפְקַדְתִּי אֶצְלְךָ וְהַשּׁוֹמֵר אוֹמֵר לֹא הִפְקַדְתָּ אֶצְלִי אֶלָּא חֲמִשִּׁים נִשְׁבָּע שְׁבוּעַת הַתּוֹרָה מִפְּנֵי שֶׁהוֹדָה בְּמִקְצָת לֹא מִשּׁוּם שְׁבוּעַת הַשּׁוֹמְרִין. מֵאָה כּוֹר שֶׁל חִטִּים הִפְקַדְתִּי אֶצְלְךָ וְהוּא אוֹמֵר לֹא הִפְקַדְתָּ אֶצְלִי אֶלָּא מֵאָה שֶׁל שְׂעוֹרִים נִשְׁבָּע הֶסֵּת כִּשְׁאָר כָּל הַנִּשְׁבָּעִין בְּטַעֲנָה כָּזוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעל הפקדון שתבע פקדונו וכו׳ עד סוף הפרק.</strong> בתשובות הגאונים ז&quot;ל ממציעא פרק המפקיד ובשבועות פרק כל הנשבעין:</p>
               </div>
             </div>
@@ -861,8 +1041,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-1">Mishneh Torah, Borrowing and Deposit 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד פֵּרוֹת אֵצֶל חֲבֵרוֹ הֲרֵי זֶה לֹא יִגַּע בָּהֶן וְאַף עַל פִּי שֶׁהֵן חוֹסְרִין וּמִתְמַעֲטִין וְהוֹלְכִין. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁחָסְרוּ חִסָּרוֹן הָרָאוּי לָהֶן בְּכָל שָׁנָה. אֲבָל אִם חָסְרוּ יוֹתֵר מִכְּדֵי חֶסְרוֹנָן מוֹכְרָן בְּבֵית דִּין מִפְּנֵי שֶׁהוּא מֵשִׁיב אֲבֵדָה לַבְּעָלִים. וּכְשֶׁהוּא מוֹכְרָן יִמְכֹּר לַכֹּהֲנִים בִּדְמֵי תְּרוּמָה שֶׁמָּא עָשׂוּ אוֹתָן הַבְּעָלִים תְּרוּמָה אוֹ תְּרוּמַת מַעֲשֵׂר עַל פֵּרוֹת אֲחֵרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד פירות אצל חבירו וכו׳ עד על פירות אחרות:</strong> כתב הראב&quot;ד ז&quot;ל ועכשיו באלו המקומות וכו׳: <strong> ואני </strong> אומר עיקר הלכה במציעא פרק המפקיד כמו שכתב ר&quot;מ ז&quot;ל ומה שכתב הראב&quot;ד ז&quot;ל ביאור סברא היא וכבר כתבתי שאין פסק לר&quot;מ ז&quot;ל בחיבור משנה תורה בדברי הסברא רק לסדר אורך הגמרא בדרך קצרה ולכך אין במה שעשה עליו השגה ותפיסה:</p>
               </div>
             </div>
@@ -877,8 +1062,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-2">Mishneh Torah, Borrowing and Deposit 7:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ פֵּרוֹת וְהִרְקִיבוּ דְּבַשׁ וְנִפְסַד יַיִן וְהֶחְמִיץ עוֹשֶׂה תַּקָּנָה לְבַעַל הַפִּקָּדוֹן וּמוֹכְרָן בְּבֵית דִּין אַף עַל פִּי שֶׁעָמְדוּ בְּהֶפְסֵדָן וְאֵין הַהֶפְסֵד פּוֹשֶׂה בָּהֶן הֲרֵי הַקַּנְקַנִּים וְהַסַּלִּים מוֹסִיפִין הֶפְסֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד אצל חבירו פירות והרקיבו עד מוסיפין הפסד.</strong> פרק המפקיד:</p>
               </div>
             </div>
@@ -893,8 +1083,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-3">Mishneh Torah, Borrowing and Deposit 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד חָמֵץ אֵצֶל חֲבֵרוֹ וְהִגִּיעַ הַפֶּסַח הֲרֵי זֶה לֹא יִגַּע בּוֹ עַד שָׁעָה חֲמִישִׁית מִיּוֹם אַרְבָּעָה עָשָׂר. מִכָּאן וְאֵילָךְ יוֹצֵא וּמוֹכְרוֹ בַּשּׁוּק לִשְׁעָתוֹ מִשּׁוּם הֶשֵּׁב אֲבֵדָה לַבְּעָלִים. וְהוּא הַדִּין לִשְׁאָר הַפִּקְדוֹנוֹת שֶׁלֹּא יִגַּע בָּהֶן אַף עַל פִּי שֶׁהוּא יוֹדֵעַ בְּוַדַּאי שֶׁיִּזּוֹלוּ בִּזְמַן פְּלוֹנִי אוֹ יֶאֱנֹס אוֹתָם הַמֶּלֶךְ שֶׁמָּא יָבוֹא בַּעֲלֵיהֶן מִקֹּדֶם וְיִטְּלוּ מָמוֹנָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד חמץ אצל חבירו כו׳ עד ויטלו ממונם.</strong> פ&quot;ק דפסחים <span class="source-small"> (דף י&quot;ג) </span> :</p>
               </div>
             </div>
@@ -909,8 +1104,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-4">Mishneh Torah, Borrowing and Deposit 7:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד סֵפֶר תּוֹרָה אֵצֶל חֲבֵרוֹ גּוֹלְלוֹ פַּעַם אַחַת לִשְׁנֵים עָשָׂר חֹדֶשׁ. וְאִם כְּשֶׁהוּא גּוֹלְלוֹ פּוֹתְחוֹ וְקָרָא בּוֹ מֻתָּר. אֲבָל לֹא יִפְתַּח בִּגְלַל עַצְמוֹ וְיִקְרָא. וְהוּא הַדִּין שְׁאָר סְפָרִים. וְאִם פָּתַח וְקָרָא וְגָלַל בִּגְלַל עַצְמוֹ הֲרֵי שָׁלַח יָד בַּפִּקָּדוֹן וְנִתְחַיֵּב בָּאֳנָסִין. הִפְקִיד אֶצְלוֹ כְּסוּת שֶׁל צֶמֶר מְנַעְנְעָהּ אַחַת לִשְׁלֹשִׁים יוֹם כְּדֶרֶךְ שֶׁאָמְרוּ בַּאֲבֵדָה כָּךְ אָמְרוּ בַּפִּקָּדוֹן. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה שֶׁזּוֹ חוֹבָה עָלָיו מִשּׁוּם הֶשֵּׁב אֲבֵדָה לַבְּעָלִים. בַּמֶּה דְּבָרִים אֲמוּרִים בְּפִקָּדוֹן שֶׁהָלְכוּ בְּעָלָיו לִמְדִינַת הַיָּם אֲבָל אִם הָיוּ עִמּוֹ בְּאוֹתָהּ הָאָרֶץ הֲרֵי זֶה לֹא יִגַּע בּוֹ אַף עַל פִּי שֶׁהוּא אָבֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד ס&quot;ת עד אע&quot;פ שהוא אבד.</strong> במציעא פרק אלו מציאות:</p>
               </div>
             </div>
@@ -925,8 +1125,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-5">Mishneh Torah, Borrowing and Deposit 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמּוֹכֵר פִּקָּדוֹן עַל פִּי בֵּית דִּין הֲרֵי זֶה מוֹכֵר לַאֲחֵרִים וְאֵינוֹ מוֹכֵר לְעַצְמוֹ מִפְּנֵי הַחֲשָׁד וְהַדָּמִים יִהְיוּ מֻנָּחִים אֶצְלוֹ וְיֵשׁ לוֹ לְהִשְׁתַּמֵּשׁ בָּהֶן. לְפִיכָךְ הֲרֵי הוּא עֲלֵיהֶן שׁוֹמֵר שׂוֹכֵר אַף עַל פִּי שֶׁעֲדַיִן לֹא נִשְׁתַּמֵּשׁ בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המוכר פקדון על פי ב&quot;ד כו׳ אע&quot;פ שעדיין לא נשתמש בהן.</strong> פרק קמא דפסחים ופרק המפקיד:</p>
               </div>
             </div>
@@ -941,8 +1146,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-6">Mishneh Torah, Borrowing and Deposit 7:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד מָעוֹת אֵצֶל חֶנְוָנִי אוֹ הַשֻּׁלְחָנִי אִם הָיוּ צְרוּרִין וַחֲתוּמִין אוֹ קְשׁוּרִין קֶשֶׁר מְשֻׁנֶּה הֲרֵי זֶה לֹא יִשְׁתַּמֵּשׁ בָּהֶן לְפִיכָךְ אִם אָבְדוּ אוֹ נִגְנְבוּ אֵינוֹ חַיָּב בְּאַחֲרָיוּתָן. וְאִם אֵינָן חֲתוּמִין וְלֹא קְשׁוּרִין קֶשֶׁר מְשֻׁנֶּה אַף עַל פִּי שֶׁהֵן צְרוּרִין יֵשׁ לוֹ לְהִשְׁתַּמֵּשׁ בָּהֶן לְפִיכָךְ הוּא נַעֲשֶׂה עֲלֵיהֶם שׁוֹמֵר שָׂכָר וְאִם אָבְדוּ אוֹ נִגְנְבוּ חַיָּב בְּאַחֲרָיוּתָן וְאִם נֶאֶנְסוּ כְּגוֹן שֶׁאָבְדוּ בְּלִסְטִים מְזֻיָּן הֲרֵי זֶה פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד מעות אצל חנוני או השולחני עד במקום אחר פטור.</strong> הכל פרק המפקיד:</p>
               </div>
             </div>
@@ -957,8 +1167,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-10">Mishneh Torah, Borrowing and Deposit 7:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מְקַבְּלִין פִּקְדוֹנוֹת לֹא מִן הַנָּשִׁים וְלֹא מִן הָעֲבָדִים וְלֹא מִן הַתִּינוֹקוֹת. קִבֵּל מִן הָאִשָּׁה יַחְזִיר לָאִשָּׁה. מֵתָה יַחְזִיר לְבַעֲלָהּ. קִבֵּל מִן הָעֶבֶד יַחְזִיר לָעֶבֶד. מֵת יַחְזִיר לְרַבּוֹ. קִבֵּל מִן הַקָּטָן יִקְנֶה לוֹ בּוֹ סֵפֶר תּוֹרָה אוֹ דֶּקֶל שֶׁיֹּאכַל בָּהֶן פֵּרוֹתָיו. וְכֻלָּן שֶׁאָמְרוּ בִּשְׁעַת מִיתָתָן שֶׁל פְּלוֹנִי הֵם אִם נֶאֱמָנִין לוֹ יַעֲשֶׂה כְּפֵרוּשָׁן וְאִם לָאו יַחְזִיר לְיוֹרְשֵׁיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מקבלין פקדונות עד יחזיר ליורשיהן.</strong> בבתרא פרק חזקת הבתים:</p>
               </div>
             </div>
@@ -973,8 +1188,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-7-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 7:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-11">Mishneh Torah, Borrowing and Deposit 7:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַפִּקָּדוֹן וְהָאֲבֵדָה לֹא נִתְּנוּ לִתָּבַע אֶלָּא בִּמְקוֹמָם. כֵּיצַד. הִפְקִיד אֶצְלוֹ בִּירוּשָׁלַיִם אֵינוֹ יָכוֹל לְתָבְעוֹ בְּנֹב וְאִם הֶחְזִיר לוֹ בְּנֹב מְקַבְּלוֹ מִמֶּנּוּ. הִפְקִיד אֶצְלוֹ בַּיִּשּׁוּב וְהֵבִיא פִּקְדוֹנוֹ בַּמִּדְבָּר אֵינוֹ מְקַבְּלוֹ מִמֶּנּוּ אֶלָּא יֹאמַר לוֹ הֲרֵי הוּא בְּאַחְרָיוּתְךָ עַד שֶׁתַּחֲזִירֶנּוּ לִי בַּיִּשּׁוּב כְּדֶרֶךְ שֶׁהִפְקַדְתִּי אֶצְלְךָ בַּיִּשּׁוּב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הפקדון והאבידה עד סוף הפרק.</strong> בנזיקין פרק הגוזל ומאכיל:</p>
               </div>
             </div>
@@ -990,8 +1210,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-8-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-8-1">Mishneh Torah, Borrowing and Deposit 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ בְּהֵמָה אוֹ כֵּלִים וְנִגְנְבוּ אוֹ אָבְדוּ אָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע וְנִמְצָא הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל. טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. לְמִי מְשַׁלֵּם לְמִי שֶׁהָיָה הַפִּקָּדוֹן אֶצְלוֹ שֶׁהֲרֵי אָמַר אֲשַׁלֵּם. חָזְרָה הַבְּהֵמָה עַצְמָהּ חוֹזֶרֶת לִבְעָלֶיהָ הִיא וְגִזּוֹתֶיהָ וּוַלְדוֹתֶיהָ שֶׁאֵין זֶה הַשּׁוֹמֵר קוֹנֶה שֶׁבַח הַבָּא מִגּוּפָהּ אֶלָּא שֶׁבַח הַבָּא מֵאֵלָיו. וּכְבָר בֵּאַרְנוּ שֶׁאֵין הַגַּנָּב מַחְזִיר גִּזּוֹת וּוְלָדוֹת אֶלָּא לִפְנֵי יֵאוּשׁ. נִשְׁבַּע הַשּׁוֹמֵר וְלֹא רָצָה לְשַׁלֵּם וְאַחַר כָּךְ נִמְצָא הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל. טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. לְמִי מְשַׁלֵּם לְבַעַל הַפִּקָּדוֹן. וְכֵן הַשּׂוֹכֵר פָּרָה מֵחֲבֵרוֹ וְנִגְנְבָה וְאָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע וְאַחַר כָּךְ הֻכַּר הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְתַשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה לַשּׂוֹכֵר. שֶׁאִלּוּ רָצָה הַשּׂוֹכֵר הָיָה נִשְׁבָּע שֶׁנִּגְנְבָה בְּאֹנֶס וְנִפְטָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד אצל חבירו בהמה עד לבעל הפקדון.</strong> פרק הגוזל עצים <span class="source-small"> (דף ק&quot;ח) </span> :</p>
               </div>
             </div>
@@ -1006,8 +1231,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-8-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-8-1">Mishneh Torah, Borrowing and Deposit 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ בְּהֵמָה אוֹ כֵּלִים וְנִגְנְבוּ אוֹ אָבְדוּ אָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע וְנִמְצָא הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל. טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. לְמִי מְשַׁלֵּם לְמִי שֶׁהָיָה הַפִּקָּדוֹן אֶצְלוֹ שֶׁהֲרֵי אָמַר אֲשַׁלֵּם. חָזְרָה הַבְּהֵמָה עַצְמָהּ חוֹזֶרֶת לִבְעָלֶיהָ הִיא וְגִזּוֹתֶיהָ וּוַלְדוֹתֶיהָ שֶׁאֵין זֶה הַשּׁוֹמֵר קוֹנֶה שֶׁבַח הַבָּא מִגּוּפָהּ אֶלָּא שֶׁבַח הַבָּא מֵאֵלָיו. וּכְבָר בֵּאַרְנוּ שֶׁאֵין הַגַּנָּב מַחְזִיר גִּזּוֹת וּוְלָדוֹת אֶלָּא לִפְנֵי יֵאוּשׁ. נִשְׁבַּע הַשּׁוֹמֵר וְלֹא רָצָה לְשַׁלֵּם וְאַחַר כָּךְ נִמְצָא הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל. טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. לְמִי מְשַׁלֵּם לְבַעַל הַפִּקָּדוֹן. וְכֵן הַשּׂוֹכֵר פָּרָה מֵחֲבֵרוֹ וְנִגְנְבָה וְאָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע וְאַחַר כָּךְ הֻכַּר הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְתַשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה לַשּׂוֹכֵר. שֶׁאִלּוּ רָצָה הַשּׂוֹכֵר הָיָה נִשְׁבָּע שֶׁנִּגְנְבָה בְּאֹנֶס וְנִפְטָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן השוכר פרה כו׳ עד ארבעה וחמשה לשואל.</strong> פרק המפקיד:</p>
               </div>
             </div>
@@ -1022,8 +1252,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-8-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-8-3">Mishneh Torah, Borrowing and Deposit 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַקוֹנֶה הַכֶּפֶל קוֹנֶה הַשֶּׁבַח הַבָּא מֵאֵלָיו. כֵּיצַד. הִפְקִיד אַרְבַּע סְאִין אֵצֶל חֲבֵרוֹ וַהֲרֵי הֵן שָׁוִין סֶלַע וְנִגְנְבוּ אוֹ אָבְדוּ וְאָמַר הֲרֵינִי מְשַׁלֵּם סֶלַע וְאֵינִי נִשְׁבָּע וְאַחַר כָּךְ נִמְצְאוּ וַהֲרֵי הֵן שָׁוִין אַרְבָּעָה סְלָעִים הֲרֵי הֵן שֶׁל שׁוֹמֵר וְאֵינוֹ מְשַׁלֵּם אֶלָּא סֶלַע. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁלֹּא הִטְרִיחָן לַבְּעָלִים בַּדִּין אֲבָל אִם הוֹדָה שֶׁפָּשַׁע וְחִיְּבוּהוּ בֵּית דִּין לִתֵּן וְלֹא נָתַן בִּרְצוֹנוֹ עַד שֶׁכָּפוּהוּ בֵּית דִּין עַל כָּרְחוֹ וְנָטְלוּ מִמֶּנּוּ וְאַחַר כָּךְ הֻכַּר הַגַּנָּב אוֹ נִמְצָא הַפִּקָּדוֹן יַחְזִיר לַבְּעָלִים כְּמוֹת שֶׁהוּא וּמַחְזִירִין לַשּׁוֹמֵר הַדָּמִים שֶׁלָּקְחוּ מִמֶּנּו. וְאִם כֵּלִים אוֹ קַרְקַע גָּבוּ בֵּית דִּין מִמֶּנּוּ בְּשׁוּמָא מַחְזִיר לַשּׁוֹמֵר כֵּלָיו אוֹ שָׂדֵהוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הקונה הכפל קונה השבח כו׳ כיצד הפקיד וכו׳ עד ואינו משלם אלא סלע:</strong> כתב הראב&quot;ד ז&quot;ל דדוקא שבא השבח אחר ששלם או שאמר הריני משלם עכ&quot;ל: <strong> ואני </strong> אומר עיקר ההלכה פרק המפקיד כלשון ר&quot;מ ז&quot;ל וביאורה כמו שביאר הראב&quot;ד ז&quot;ל ואין חולק בזה הביאור:</p>
               </div>
             </div>
@@ -1038,8 +1273,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-8-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-8-3">Mishneh Torah, Borrowing and Deposit 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַקוֹנֶה הַכֶּפֶל קוֹנֶה הַשֶּׁבַח הַבָּא מֵאֵלָיו. כֵּיצַד. הִפְקִיד אַרְבַּע סְאִין אֵצֶל חֲבֵרוֹ וַהֲרֵי הֵן שָׁוִין סֶלַע וְנִגְנְבוּ אוֹ אָבְדוּ וְאָמַר הֲרֵינִי מְשַׁלֵּם סֶלַע וְאֵינִי נִשְׁבָּע וְאַחַר כָּךְ נִמְצְאוּ וַהֲרֵי הֵן שָׁוִין אַרְבָּעָה סְלָעִים הֲרֵי הֵן שֶׁל שׁוֹמֵר וְאֵינוֹ מְשַׁלֵּם אֶלָּא סֶלַע. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁלֹּא הִטְרִיחָן לַבְּעָלִים בַּדִּין אֲבָל אִם הוֹדָה שֶׁפָּשַׁע וְחִיְּבוּהוּ בֵּית דִּין לִתֵּן וְלֹא נָתַן בִּרְצוֹנוֹ עַד שֶׁכָּפוּהוּ בֵּית דִּין עַל כָּרְחוֹ וְנָטְלוּ מִמֶּנּוּ וְאַחַר כָּךְ הֻכַּר הַגַּנָּב אוֹ נִמְצָא הַפִּקָּדוֹן יַחְזִיר לַבְּעָלִים כְּמוֹת שֶׁהוּא וּמַחְזִירִין לַשּׁוֹמֵר הַדָּמִים שֶׁלָּקְחוּ מִמֶּנּו. וְאִם כֵּלִים אוֹ קַרְקַע גָּבוּ בֵּית דִּין מִמֶּנּוּ בְּשׁוּמָא מַחְזִיר לַשּׁוֹמֵר כֵּלָיו אוֹ שָׂדֵהוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> במה ד&quot;א שלא הטריחן כו׳ עד ואפילו בחוצה לארץ.</strong> בפרק המפקיד:</p>
               </div>
             </div>
@@ -1054,8 +1294,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-borrowing-and-deposit-8-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Borrowing and Deposit 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-8-6">Mishneh Torah, Borrowing and Deposit 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִגְנַב הַפִּקָּדוֹן בְּאֹנֶס וְאַחַר כָּךְ הֻכַּר הַגַּנָּב אֶחָד שׁוֹמֵר חִנָּם וְאֶחָד שׁוֹמֵר שָׂכָר עוֹשֶׂה דִּין עִם הַגַּנָּב וְאֵינוֹ נִשְׁבָּע. קָדַם וְנִשְׁבָּע וְאַחַר כָּךְ הֻכַּר הַגַּנָּב אִם שׁוֹמֵר חִנָּם הוּא רָצָה עוֹמֵד בִּשְׁבוּעָתוֹ רָצָה עוֹשֶׂה דִּין עִם הַגַּנָּב וְאִם שׁוֹמֵר שָׂכָר הוּא עוֹשֶׂה עִמּוֹ דִּין. נִגְנַב הַפִּקָּדוֹן בְּאֹנֶס וְהֶחֱזִירוֹ הַגַּנָּב לְבֵית הַשּׁוֹמֵר וַהֲרֵי הוּא בְּהֵמָה וּמֵתָה שָׁם בִּפְשִׁיעָה יֵשׁ בַּדָּבָר סָפֵק אִם כָּלְתָה שְׁמִירָתוֹ וְנִפְטַר אוֹ עֲדַיִן לֹא כָּלְתָה שְׁמִירָתוֹ לְפִיכָךְ הַשּׁוֹמֵר פָּטוּר מִלְּשַׁלֵּם. וְאִם תָּפְסוּ הַבְּעָלִים אֵין מוֹצִיאִין מִיָּדָם: סְלִיקוּ לְהוּ הִלְכוֹת שְׁאֵלָה וּפִּקָדוֹן</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נגנב הפקדון כו׳ עד סוף הפרק.</strong> בנזיקין פרק הגוזל עצים ועשאן כלים:</p>
               </div>
             </div>
@@ -1065,6 +1310,10 @@
               <a href="#chapter-migdal-oz-on-mishneh-torah-borrowing-and-deposit-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-borrowing-and-deposit.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/migdal-oz-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1085,8 +1334,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-borrowing-and-deposit.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/migdal-oz-on-mishneh-torah-borrowing-and-deposit.manifest.json","occurrence_url":"../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-borrowing-and-deposit.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-borrowing-and-deposit.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-borrowing-and-deposit.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-borrowing-and-deposit.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1112,7 +1361,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

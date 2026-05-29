@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/">Open Mishneh Torah, Woman Suspected of Infidelity</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Woman Suspected of Infidelity</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">21 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>413 matched</strong> / 1209 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -226,8 +227,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-1">Mishneh Torah, Woman Suspected of Infidelity 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנּוּי הָאָמוּר בַּתּוֹרָה <span class="source-small">(במדבר ה יד)</span> &quot;וְקִנֵּא אֶת אִשְׁתּוֹ&quot; הוּא שֶׁיֹּאמַר לָהּ בִּפְנֵי עֵדִים אַל תִּסָּתְרִי עִם אִישׁ פְּלוֹנִי. אֲפִלּוּ הָיָה אָבִיהָ אוֹ אָחִיהָ אוֹ עַכּוּ&quot;ם אוֹ עֶבֶד אוֹ שָׁחוּף הוּא הָאִישׁ שֶׁאֵינוֹ מִתְקַשֶּׁה וְאֵינוֹ מוֹלִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפי׳ הי׳ אביה וכו׳.</strong> ועי׳ ברא&quot;ש רפ&quot;ק דכתובות במה שמקיים פסק ר&quot;ת ולא מטעמי׳ ולשי׳ ר&quot;ת לפי מה שהבינו התוס׳ צ&quot;ל אע&quot;ג דהוי ביאתו ביאת בהמה מ&quot;מ אסורה לבעלה משום דעכ&quot;פ מעלה בו מעל וכמ&quot;ש בהגהת רמ&quot;א אה&quot;ע סי׳ קע&quot;ח גבי אמרת מותר ע&quot;ש וכ&quot;כ בס׳ הפלאה ועוד יש מקום לומר דלפי מה דאמר ר&quot;י משום רשב&quot;י בסוטה דף כ&quot;ו ובכ&quot;ד מנין לכותי ועבד שבא על הכהנת שפסלוה וכו׳ א&quot;כ משמע דאין ביאתו כביאת בהמה עי׳ יבמות דף ע&quot;ט סובר ר&quot;ת דלפי מה דקיימ&quot;ל יבמות דף מ&quot;ה נכרי ועבד הבא על בת ישראל הולד כשר דלגמרי כשר אפי׳ לכהונה שלא כדעת הרא&quot;ש וס&quot;ל כמ&quot;ש הריטב&quot;א בפ׳ האומר דכיון דקיימ&quot;ל הולד כשר לית לן דרשא דר&quot;י משום רשב&quot;י וסובר ר&quot;ת דהיינו משום דחשוב זרעו כזרע בהמה וא&quot;כ היא רב המנונא שם בסוטה דקאמר דפוסל מן התרומה ע&quot;כ ס&quot;ל דרשא דרשב&quot;י ולדידי׳ יודה ר&quot;ת ול&quot;ק כל הקושי׳ שהק׳ השעה&quot;מ בפט&quot;ו מה׳ א&quot;ב הל׳ ג׳ מהך דסוטה וגם קושי׳ הרא&quot;ש על ר&quot;ת ולפי׳ הראשון קש׳ מאי מקשא פשיטא.</p>
               </div>
             </div>
@@ -242,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-1-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-3">Mishneh Torah, Woman Suspected of Infidelity 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנֵּא לָהּ עַל שְׁנַיִם כְּאֶחָד וְאָמַר לָהּ אַל תִּסָּתְרִי עִם פְּלוֹנִי וּפְלוֹנִי. וְנִסְתְּרָה עִם שְׁנֵיהֶן כְּאֶחָד וְשָׁהֲתָה כְּדֵי טֻמְאָה. אֲפִלּוּ הֵם שְׁנֵי אַחֶיהָ אוֹ אָבִיהָ וְאָחִיהָ הֲרֵי זוֹ אֲסוּרָה עַד שֶׁתִּשְׁתֶּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קנא לה על שנים כאחד.</strong> מ&quot;ש בכ&quot;מ ראי׳ מפ&quot;ב דכריתות וכ&quot;ה בב&quot;י סי׳ קע&quot;ח וכבר כתוב בהגהת בד&quot;ה שיש להעביר הקולמוס ע&quot;ז ועי׳ פ&quot;מ שפי׳ בהא דר&quot;י בעי בדרך שאלה משום דדוקא בשנים י&quot;ל דהוא חשדום לפרוצים אבל במאה אכתי איכא לספוקי ע&quot;ש וכ&quot;נ דאם כפי׳ הכ&quot;מ למה לא הביא רבינו הך רבותא. ודע דקשה לי לפי מה דפסק רבינו כמ&quot;ד דמקנין ע&quot;פ שנים ולכאורה הסוגי׳ דר&quot;פ שני נזירים דף נ&quot;ז דקאמר כל ספק טומאה ברה&quot;י כגון דאיכא בי תרי דהיינו בועל ונבעלת אבל הכא שני נזירים והאי דקאי גבייהו הא תלתא משמע לפום פשטא דקאי שם למ&quot;ד דאין מקנין ע&quot;פ שנים דלמ&quot;ד מקנין ע&quot;פ שנים א&quot;כ גם בסוטה מצינו תלתא ויותר כמ&quot;ש הכ&quot;מ ואעפ&quot;כ ספיקו טמא ורבינו בעצמו בפ&quot;ט מה׳ נזירות הלכה ט&quot;ז פסק לסוגי׳ זו דג׳ לא הוי רשות היחיד ולכאורה דבריו סותרים זא&quot;ז. בשלמא לפי שי׳ הראב&quot;ד שם ולפי מה שפי׳ הלח&quot;מ שם דבריו דבעי׳ דוקא שיהי׳ הספק על שלשתן יש מקום לומר דאף אי מקנין לה משנים הספק אין כאן אלא על הבועל והנבעלת אבל לפ&quot;ד רבינו וכ&quot;מ מירושלמי פ&quot;ק דנדה כדבריו גבי הא דאמרי׳ כשחברותי׳ נושאות אותה במיטה א&quot;כ הדבר קשה. ואפשר דס&quot;ל לרבינו כמ&quot;ש הרשב&quot;א בחי׳ פ&quot;ק דנדה דדוקא בג׳ אנשים חשיב רה&quot;ר אבל בנשים אפי׳ מאה כחד דמיין עי׳ במל&quot;מ פט&quot;ז מה׳ שאר אבות הטומאה. ובזה מיושב מה דמק׳ התלמידים דלפי סברת הרשב&quot;א הא שמואל מוקי לה שם במס׳ נזיר מתני׳ באשה ולפי סברת רשב&quot;א לא מקרי רה&quot;ר ור&quot;א הא קאמר דיקא נמי ולפ&quot;ד ניחא דהרשב&quot;א הוכיח סברתו למ&quot;ד מקנין ע&quot;פ שנים ומש&quot;ה פליג על הירושלמי והירושלמי מצי קאי למ&quot;ד דאין מקנין ע&quot;פ שנים ושמואל ג&quot;כ ס&quot;ל הכי דאין מקנין ע&quot;פ שנים ודוק.</p>
               </div>
             </div>
@@ -258,8 +269,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-1-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-6">Mishneh Torah, Woman Suspected of Infidelity 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמַר לָהּ לֹא תִּסָּתְרִי עִם אִישׁ פְּלוֹנִי וְהָיָה קָטָן פָּחוֹת מִבֶּן תֵּשַׁע שָׁנִים וְיוֹם אֶחָד. אוֹ שֶׁאָמַר לָהּ אַל תִּסָּתְרִי עִם בְּהֵמָה זוֹ אֵין זֶה קִנּוּי שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְשָׁכַב אִישׁ אֹתָהּ&quot; פְּרָט לְקָטָן וְלִבְהֵמָה שֶׁאֵין אוֹסְרִין אוֹתָהּ עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטן פחות מבן ט׳.</strong> כתב הכ&quot;מ משמע לי׳ לרבינו דלא ממעט קטן אלא כשהוא פחות מבן ט׳ פי׳ דרבינו סובר דהא דאיש למעוטי קטן היינו היכא דהסברא נותנת למעט קטן ועי׳ בדברי רבינו בה׳ ק&quot;פ פ&quot;ב הלכה ד׳ במ&quot;ש טעם לקטנים שאינן בני דעת ולא נתן טעם משום דכתיב איש עי׳ בכ&quot;מ שם וכ&quot;מ בפ&quot;א דמס׳ תמיד משנה א׳ בהא דתנן הרובים לחד פי׳ קטנים ועי׳ במל&quot;מ פ&quot;ח מה׳ בית הבחירה שהק׳ שם איך יתכן שמ&quot;ע של שמירת המקדש נעשה ע&quot;י קטנים ולדברינו א&quot;ש כיון שהגיע לכלל בני שמירה והרע&quot;ב במס׳ סוטה חולק על רבינו וסובר דקטן פחות מבן י&quot;ג שנים לא מקרי איש אפי׳ לענין זה וע&quot;ש בתי&quot;ט ובתוס׳ חדשים.</p>
               </div>
             </div>
@@ -274,8 +290,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:9:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-1-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-9">Mishneh Torah, Woman Suspected of Infidelity 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּא עֵד אֶחָד וְהֵעִיד לוֹ שֶׁנִּסְתְּרָה עִמּוֹ אַחַר קִנּוּי וְשָׁהֲתָה כְּדֵי טֻמְאָה. אִם הוּא נֶאֱמָן לוֹ וְדַעְתּוֹ סוֹמֶכֶת עָלָיו יוֹצִיא וְיִתֵּן כְּתֻבָּה. וְאִם לָאו הֲרֵי אִשְׁתּוֹ מֻתֶּרֶת לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא ע&quot;א וכו׳.</strong> עי׳ מל&quot;מ פכ&quot;ד מה׳ אישות הלכה י&quot;ז ועמ&quot;ש שם בס&quot;ד. ועי׳ בשו&quot;ת רשב&quot;א סי׳ תקנ&quot;ב שכ׳ דאם הודה הבועל הנחשד ששכב עמה ג&quot;כ אינו שותה הובא בכנה&quot;ג בליקוטי הרמב&quot;ם.</p>
               </div>
             </div>
@@ -290,8 +311,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:14:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-1-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-14">Mishneh Torah, Woman Suspected of Infidelity 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁקִּנֵּא לָהּ בַּעְלָהּ וְנִסְתְּרָה אַחַר הַקִּנּוּי עִמּוֹ בְּעֵדִים וַהֲרֵי הִיא עוֹמֶדֶת לִשְׁתּוֹת וּבָא עֵד אֶחָד וְהֵעִיד עָלֶיהָ שֶׁנִּבְעֲלָה בְּפָנָיו עִם זֶה שֶׁקִּנֵּא לָהּ עִמּוֹ הֲרֵי זֶה אֲסוּרָה עַל בַּעְלָהּ לְעוֹלָם. וְאֵינָהּ שׁוֹתָה וְיוֹצֵאת בְּלֹא כְּתֻבָּה. וַאֲפִלּוּ הָיָה עֵד טֻמְאָה זֶה אֶחָד מֵעֵדֵי הַסְּתִירָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְעֵד אֵין בָּהּ&quot; וַהֲרֵי כָּאן עֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפי׳ הי׳ עד טומאה וכו׳.</strong> עי׳ כ&quot;מ ונראה דסובר רבינו דיש מקום לומר כיון דע&quot;א אינו נאמן אלא משום דאיכא רגלים לדבר דהיינו עידי סתירה וא&quot;כ היכא דהעד טומאה הוא אחד מעידי הסתירה לא שייך סברת רגלים לדבר כיון דעל פיו נעשה רגלים לדבר לזה בא רבינו דאין הטעם משום רגלים לדבר אלא דגזה&quot;כ היא דע&quot;א נאמן וא&quot;כ אף אם הוא מעידי הסתירה מהני דמקרא מלא דיבר הכתוב ולפ&quot;ד רבינו מיושב קושי׳ התוס׳ בסוטה דף ג׳ ע&quot;ב ד&quot;ה נאמר דל&quot;ל גז&quot;ש מהכ&quot;ת דיהא נאמן ע&quot;א בעדות ראשונה ק&quot;ו מעדות אחרונה דהא יש פרכא מה לעדות אחרונה שכן רגלים לדבר ולדברינו ניחא ודוק.</p>
               </div>
             </div>
@@ -306,8 +332,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:18:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-1-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 1:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-18">Mishneh Torah, Woman Suspected of Infidelity 1:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּא עֵד אֶחָד כָּשֵׁר וְנָשִׁים רַבּוֹת אוֹ פְּסוּלִין רַבִּים כְּאֶחָד. הָעֵד אוֹמֵר נִטְמֵאת וְהַנָּשִׁים אוֹ הַפְּסוּלִין אוֹמְרִים לֹא נִטְמֵאת הֲרֵי זוֹ שׁוֹתָה. שֶׁעֵד אֶחָד וּפְסוּלִין רַבִּים כְּמֶחֱצָה עַל מֶחֱצָה הֵם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא ע&quot;א כשר וכו׳.</strong> עי׳ כ&quot;מ ועי׳ בפ&quot;ט מה׳ רוצח בהשגת הראב&quot;ד שם ודברי הכ&quot;מ שם צע&quot;ג ובתי&quot;ט במתני׳ דסוטה תמה על רבינו מפני מה לא ביאר בפי&quot;ב מה׳ גירושין לענין עדות היתר א&quot;א והה&quot;מ כ׳ שם וה&quot;ה לאשה אומרת מת והתירוה לנשא ע&quot;פ ואח&quot;כ באתה אשה אחרת ואומרת לא מת לא תצא מהתירא הראשון ע&quot;ש ולי נראה ליישב דברי רבינו עי׳ סוטה דף מ&quot;ז כל הסוגי׳ ויל&quot;ד ר&quot;ח דאמר תני היו עורפין דלא הו&quot;ל למימר כ&quot;א לעולם כדקתני ובסוגי׳ דסוטה דף ל&quot;א לא קאמר האי לישנא תני אלא היו וכו׳ ואיכא מקום לפרש דלעולם כדקתני ונראה התוס׳ מקש׳ בסוטה דף ל&quot;א ר&quot;י האיך יפרש מתני׳ דכריתות ע&quot;א אומר אכל וע&quot;א אומר לא אכל מביא אשם תלוי אמאי לא מביא חטאת כיון דלא הי׳ מחלק בין ב&quot;א לבא בזא&quot;ז והנה לפי מה שהביאו התוס׳ שם בס&quot;ד בשם הירושלמי וז&quot;ל ע&quot;א אומר נטמאת וע&quot;א אומר לא נטמאת לא היתה שותה ובעגלה ערופה היו עורפין בכה&quot;ג וטעמא מפני שכאן רגלים לדבר וא&quot;כ י&quot;ל דר&quot;י דלא הי׳ מחלק בין ב&quot;א דגם בב&quot;א העד אומר נטמאת נאמן היינו משום דיש רגלים לדבר וא&quot;כ לק&quot;מ תו מע&quot;א אומר אכלת חלב וע&quot;א אמר לא אכל בזה שפיר מחלק ומודה דבב&quot;א לא אמרי׳ דהאמינו כב׳ אבל בסוגי׳ דהכא דר׳ יצחק סובר גם בעגלה ערופה דבב&quot;א ג&quot;כ עד אומר ראית הוא כתרי א&quot;כ יותר הו&quot;ל להתוס׳ להקשות קושייתם בסוגי׳ דהכא אמנם באמת לפי שיט׳ רבינו ניחא ומיושב קושי׳ התוס׳ דוודאי גם המה הי׳ מחלקים בין ב&quot;א לבאו בזא&quot;ז אלא דגבי אשה ס&quot;ל דליכא לחלק והכא קשי׳ להו על מתני׳ דהכא דכייל איש ואשה בבבא אחת וגבי אשה סברא חיצונה הוא דאפי׳ בזא&quot;ז היו עורפין וקתני איש דומי׳ דאשה ש&quot;מ דגם בזא&quot;ז מיירי וא&quot;כ קשי׳ להו שפיר ומשני דבאמת תני לא היו עורפין ופי׳ דבריו דגבי איש צ&quot;ל למתני לא היו עורפין ומיירי בזא&quot;ז ובבא דאשה אומרת גם לדידהו שבקי׳ הגי׳ היו עורפין דאפי׳ בזא&quot;ז היו עורפין וקאמר ר&quot;ח תני היו עורפין כיון דע&quot;כ צריך להגי׳ מתני׳ ולאוקמי בב׳ בבות שוב מקיימין הגי׳ היו עורפין אלא דהכי צ&quot;ל ע&quot;א אומר וכו׳ וע&quot;א אומר וכו׳ הי׳ עורפין אשה אומרת וכו׳ ואשה אומרת וכו׳ היו עורפין וכיון דב׳ בבות קתני להו שוב ניחא לפרש דברישא מיירי דוקא בזא&quot;ז וסיפא באשה בפסול עדות אפי׳ בזא&quot;ז היו עורפין דלהכי פלגינהו מהדדי וא&quot;כ מיושב קושי׳ הגמ׳ וכ&quot;ז מוכרחין לומר הכא גבי עגלה ערופה אבל גבי סוטה דאיכא רגלים לדבר לא צריכין לזה כמ&quot;ש אא&quot;כ מש&quot;ה אמרי׳ גם בפסולי עדות דבאו בזא&quot;ז היתה שותה ומיושב בזה הסוגי׳ ומש&quot;ה רבינו פה לא מחלק בין אשה המעידה ובין איש המעיד וא&quot;כ גבי ע&quot;א שמעיד שמת בעלה דג&quot;כ לפי מ&quot;ש רבינו סוף הלכות גירושין דלא הקפידה תורה שלא להאמין ע&quot;א היכא דאיכא מילתא דעבידא לגלוי׳ ול&quot;ק קושי׳ התי&quot;ט כלל.<br><strong> והנה </strong> באמת ליישב התוס׳ למה לא הק׳ קושייתם גבי עגלה ערופה דהקושי׳ יותר חמורה כמ&quot;ש י&quot;ל ע&quot;פ מ&quot;ש בס׳ שב שמעתא להגאון בעל קצה&quot;ח דף ע&quot;ב ד&quot;ה פ׳ כ&quot;א לחלק בין עגלה ערופה דעד האומר לא ראית אינו מעיד כלל רק בא להכחיש אותו שאמר ראה א&quot;כ בכה&quot;ג י&quot;ל דס&quot;ל דאין לחלק אבל גבי ע&quot;א אומר אכל וע&quot;א אומר לא אכל דהשני דאמר לא אכל היינו שהעיד ששומן הי׳ וא&quot;כ מודים כ&quot;ע.<br><strong> ועי׳ </strong> בשעה&quot;מ פ&quot;ג מה׳ שגגות שגם הוא כ׳ ליישב קושי׳ התוס׳ לפי שיט׳ התוס׳ דלק&quot;מ דהא הוא אמר אינו יודע וא&quot;כ באיכא ע&quot;א אומר אכל וא׳ אומר לא אכל מאן יימר דהודה לזה אבל התם הא האמינה תורה לע&quot;א ושפיר מוכח כשי׳ הש&quot;כ וכמ&quot;ש לדעת הרמב&quot;ם הדבר מוכרח ודלא כשט׳ הל&quot;מ דלא סבר כהש&quot;ך ביו&quot;ד בסי׳ קכ&quot;ז.</p>
               </div>
             </div>
@@ -323,8 +354,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-2-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-3">Mishneh Torah, Woman Suspected of Infidelity 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִנַּיִן שֶׁאֵינָהּ רְאוּיָה לִשְׁתּוֹת שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה כט)</span> &quot;אֲשֶׁר תִּשְׂטֶה אִשָּׁה תַּחַת אִישָׁהּ&quot;. תַּחַת פְּרָט לַאֲרוּסָה וְשׁוֹמֶרֶת יָבָם שֶׁאֵינָהּ תַּחַת אִישָׁהּ. אִשָּׁה פְּרָט לִקְטַנָּה. תַּחַת אִישָׁהּ פְּרָט לְאֵשֶׁת קָטָן וְאֵשֶׁת אַנְדְּרוֹגִינוּס שֶׁאֵינוֹ אִישׁ. <span class="source-small">(במדבר ה יג)</span> &quot;וְנֶעֱלָם מֵעֵינֵי אִישָׁהּ&quot; פְּרָט לְאֵשֶׁת סוּמָא. <span class="source-small">(במדבר ה יח)</span> &quot;וְהֶעֱמִיד הַכֹּהֵן אֶת הָאִשָּׁה&quot; פְּרָט לְחִגֶּרֶת. <span class="source-small">(במדבר ה יח)</span> &quot;וְנָתַן עַל כַּפֶּיהָ&quot; פְּרָט לְמִי שֶׁאֵין לָהּ כַּף אוֹ שֶׁהָיְתָה עֲקֻמָּה אוֹ יְבֵשָׁה שֶׁאֵינָהּ יְכוֹלָה לִקַּח בָּהּ. וַאֲפִלּוּ כַּפָּהּ אַחַת שֶׁנֶּאֱמַר כַּפֶּיהָ. וְאָמְרָה הָאִשָּׁה פְּרָט לְאִלֶּמֶת. <span class="source-small">(במדבר ה יט)</span> &quot;וְאָמַר אֶל הָאִשָּׁה&quot; פְּרָט לְמִי שֶׁאֵינָהּ שׁוֹמַעַת. וַהֲרֵי הוּא אוֹמֵר אֲשֶׁר תִּשְׂטֶה אִשָּׁה תַּחַת אִישָׁהּ עַד שֶׁתִּהְיֶה שְׁלֵמָה כָּמוֹהוּ וְהוּא שָׁלֵם כְּמוֹתָהּ. הָא לָמַדְתָּ שֶׁכָּל דָּבָר שֶׁמְּעַכֵּב אוֹתָהּ מִלִּשְׁתּוֹת מְעַכֵּב אֶת בַּעְלָהּ מִלְּהַשְׁקוֹתָהּ. וְכָל הַמְעַכֵּב אֶת הַבַּעַל מִלְּהַשְׁקוֹתָהּ מוּם כָּמוֹהוּ מְעַכֵּב אוֹתָהּ מִלִּשְׁתּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונעלם מעיני אישה וכו׳ הא למדת וכו׳.</strong> הכי אמרי׳ בגמ׳ בבריי׳ ת&quot;ר אשר תשטה אשה תחת אישה להקיש אשה לאיש בירושלמי פ&quot;ב דסוטה סוף הלכה ב׳ הוא סומא היא סומא מנין מתניתא דר&quot;י פטרו מכל מצות האמורות בתורה משמע דתלמודא דירושלמי לא ס&quot;ל הא דאמרי׳ בבלי שם למאי הלכתא וכו׳ וסובר הירושלמי דהא דקתני בבריי׳ דמקשי׳ איש לאשתו היינו לענין השנים ומשמע דס&quot;ל להירושלמי כשט׳ הרע&quot;ב שהבאתי בפ&quot;א ודוק.</p>
               </div>
             </div>
@@ -339,8 +375,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-2-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-4">Mishneh Torah, Woman Suspected of Infidelity 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְטַנָּה שֶׁהִשִּׂיאָהּ אָבִיהָ אִם זִנְּתָה בִּרְצוֹנָהּ נֶאֶסְרָה עַל בַּעְלָהּ. לְפִיכָךְ מְקַנִּין לָהּ לֹא לְהַשְׁקוֹתָהּ אֶלָּא לְפָסְלָהּ מִכְּתֻבָּתָהּ כְּמוֹ שֶׁאָמַרְנוּ. אֲבָל קְטַנָּה בַּת מֵאוּן אֵין מְקַנִּין לָהּ שֶׁאֵין לָהּ רָצוֹן לְהֵאָסֵר עַל בַּעְלָהּ. וַאֲפִלּוּ הָיָה כֹּהֵן לֹא נֶאֶסְרָה עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם זנתה ברצונה וכו׳.</strong> סובר רבינו דגם קטנה יש לה רצון והכ&quot;מ דחק עצמו למצוא טעם לדברי רבינו שדחה להך דירושלמי וגם מה דאמר פ&quot;ד אחין דף ל&quot;ג ע&quot;ב מקושי׳ התוס׳ בכתובות דף ט׳ וצע&quot;ג לדחות סוגי׳ התלמודא דיבמות וגם רבא שם דף ס&quot;א ע&quot;ב סובר להדי׳ דפתוי קטנה אונס הוא ועי׳ בפ&quot;מ סוטה דף ד׳ ע&quot;ב ד&quot;ה קטנה שהביא בשם גאון אחד דרבינו מיירי בקטנה שהגיעה לשנת י&quot;ב שנים ולא ידענו אי מביאה שערות והיכא שיש חשש איסור תורה שקדשה אביה אז יש לה רצון דחזקה שהביאה סמנים משא&quot;כ אם בת מיאון היא ולא נבעלה אחר י&quot;ב שנים ואין כאן ספק תורה לא אמרי׳ חזקה דרבא וכמ&quot;ש רבינו פי&quot;א מה׳ גירושין ע&quot;ש ולא משמע כן בדברי רבינו דא&quot;כ למה השמיט דין דפתוי קטנה המבואר בבבלי ובירושלמי ולא נראה דעיקר כמ&quot;ש הכ&quot;מ דרבינו סובר דלא כהירושלמי והוא משום דקש׳ לי׳ לרבינו מנ&quot;ל להירושלמי דפתוי קטנה אונס דהוא נגד הסברא עי׳ במס׳ נדה דף מ&quot;ה בהא דאמרה האי ריבה אוי לשלש שנים שאבדתי בבית אבא וכו׳ והי׳ נ&quot;ל לרבינו דהירושלמי הוכיח מיתורא דקרא דוהיא לא נתפשה כמ&quot;ש רש&quot;י במס׳ סוטה דף כ&quot;ו ע&quot;א ד&quot;ה והיא והיא מעוטה משמע וכו׳ והירושלמי לטעמי׳ דגרסי׳ בפ&quot;ד דסוטה הלכה ד׳ מנין שאונסין פוסלין בכהונה בא&quot;א מה אם שרצים הקלים עשה בהן את האונס כרצון סוטה חמורה לא כ&quot;ש וכו׳ א&quot;כ הך מיעוטא דוהיא מיותרת סובר הירושלמי דאתי למעט קטנה דאפי׳ לא נתפשה מותרת וא&quot;כ תלמודא דבבלי דנקיט הך דרשא דוהיא לאסור אנוסה לכהן ולא ס&quot;ל הך קושי׳ א&quot;כ אין לנו ראי׳ להתיר פתוי קטנה ואמרי׳ דרצון הוא כנ&quot;ל.</p>
               </div>
             </div>
@@ -355,8 +396,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:8:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-2-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-8">Mishneh Torah, Woman Suspected of Infidelity 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אִישׁ שֶׁבָּא בִּיאָה אֲסוּרָה מִיָּמָיו אַחַר שֶׁהִגְדִּיל אֵין הַמַּיִם הַמְאָרְרִים בּוֹדְקִין אֶת אִשְׁתּוֹ. וַאֲפִלּוּ בָּא עַל אֲרוּסָתוֹ בְּבֵית חָמִיו שֶׁאָסוּר מִדִּבְרֵי סוֹפְרִים אֵין הַמַּיִם בּוֹדְקִין אֶת אִשְׁתּוֹ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה לא)</span> &quot;וְנִקָּה הָאִישׁ מֵעָוֹן וְהָאִשָּׁה הַהִיא תִּשָּׂא אֶת עֲוֹנָהּ&quot;. בִּזְמַן שֶׁהָאִישׁ מְנֻקֶּה מֵעָוֹן אִשָּׁה נוֹשְׂאָה אֶת עֲוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפי׳ בא על ארוסתו.</strong> מ&quot;ש הכ&quot;מ בכונת הראב&quot;ד צ&quot;ל דה&quot;פ כיון דחזי׳ דהתורה לא חשש לזה א&quot;כ אין לרבנן להחמיר עי׳ בטו&quot;ז יו&quot;ד סי׳ קי&quot;ז ובאמת י&quot;ל דמשכחת לה בקדשה בביאה דאין כאן איסורא כ&quot;א משום פריצותא והא דלא משני הגמ׳ כן משום דא&quot;כ תקשה גבי שומרת יבם קושי׳ הגמ׳ ולא שייך תי׳ הגמ׳ כשמואל דאמר לא קנה כיון דקדשה בהתר אבל לפי האמת י&quot;ל דסובר רבינו דלא מפורש בתורה דלא חש לזה ושפיר י&quot;ל דהחמירו רבנן ומיושב קושי׳ הראב&quot;ד ועי׳ בס׳ כתנות אור פ׳ נשא.</p>
               </div>
             </div>
@@ -371,8 +417,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:9:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-2-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-9">Mishneh Torah, Woman Suspected of Infidelity 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לְפִיכָךְ אִם הָיְתָה אִשְׁתּוֹ אֲסוּרָה עָלָיו מֵחַיָּבֵי לָאוִין אוֹ מֵחַיָּבֵי עֲשֵׂה אֲפִלּוּ שְׁנִיָּה וְקִנֵּא לָהּ וְנִסְתְּרָה אֵינָהּ שׁוֹתָה אֶלָּא תֵּצֵא בְּלֹא כְּתֻבָּה וְתִהְיֶה אֲסוּרָה עָלָיו אַף מִשּׁוּם זֶה. עָבַר וְנָשָׂא מְעֻבֶּרֶת חֲבֵרוֹ וּמֵינֶקֶת חֲבֵרוֹ הֲרֵי זוֹ שׁוֹתָה שֶׁאֵין כָּאן עֲבֵרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבר ונשא מעוברת חבירו וכו׳.</strong> וז&quot;ל רבינו בפי׳ המשנה ר&quot;מ סבר מי שנשא מעוברת חברו ומנקת חבירו יוציא ולא יחזיר עולמית לפיכך הוא אצלה עובר עבירה כמו ישראל שתישא נתינה והדומה לה ולפיכך לא ישקה אותה וחכ&quot;א שיגרשנה עד תשלום זמן וכו׳ ופי׳ דבריו נראה דלר&quot;מ דתקנו חכמים אפי׳ בדיעבד שיגרשנה ולא יחזיר עולמית א&quot;כ חזינן דגזירה זו היתה אצלם כמו איסור חמור ושפיר חשיב להעובר על דבריהם לאינו מנוקה מעון ומש&quot;ה לא שותות אבל רבנן דסגי בהפרשה הרי דלא החמירו בגזירה זו כל כך א&quot;כ העובר על דבריהם לא מחשב אינו מנוקה מעון ולא הוי כמו נושא נתינה וכמ&quot;ש בדיבור הקודם דיש לחלק בין איסור דרבנן החמור אצלם לשאינו חמור וזה ג&quot;כ כוונת רבינו פה במ&quot;ש שאין כאן עבירה ובזה סרה קוש׳ המל&quot;מ דוק ותשכח ועמ&quot;ש בס&quot;ד בפי&quot;א מה׳ גירושין.</p>
               </div>
             </div>
@@ -387,8 +438,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:12:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-2-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-12">Mishneh Torah, Woman Suspected of Infidelity 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אִשָּׁה שֶׁהָיָה לָהּ קִנּוּי וּסְתִירָה וְלֹא שָׁתְתָה מֵי הַמָּרִים בֵּין שֶׁלֹּא רָצָה בַּעְלָהּ לְהַשְׁקוֹתָהּ בֵּין שֶׁלֹּא רָצְתָה הִיא וּבֵין שֶׁבָּא לָהּ עֵד טֻמְאָה אוֹ הוֹדֵית אוֹ הָיְתָה מֵאֵלּוּ הַנָּשִׁים שֶׁאֵינָן רְאוּיוֹת לִשְׁתּוֹת אוֹ שֶׁקִּנְּאוּ לָהּ בֵּית דִּין. הוֹאִיל וְנֶאֶסְרָה עַל בַּעְלָהּ מִכָּל מָקוֹם הֲרֵי הִיא אֲסוּרָה עַל זֶה שֶׁנִּתְיַחֲדָה עִמּוֹ לְעוֹלָם כְּדֶרֶךְ שֶׁהִיא אֲסוּרָה עַל בַּעְלָהּ. וְאִם עָבַר וּנְשָׂאָהּ מוֹצִיאִין אוֹתָהּ מִתַּחְתָּיו בְּגֵט אֲפִלּוּ הָיוּ לָהּ כַּמָּה בָּנִים מִמֶּנּוּ. מִפִּי הַשְּׁמוּעָה לָמְדוּ כְּשֵׁם שֶׁאֲסוּרָה לַבַּעַל כָּךְ אֲסוּרָה לַבּוֹעֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם שאסורה לבעל וכו׳.</strong> עי׳ באה&quot;ע וברכי יוסף שהאריך בדברי המהר&quot;א ששון מ&quot;ש דלבועל שני שלא נאסרה ע&quot;י מותרת מסוגי׳ דסנהדרין דף מ&quot;א.</p>
               </div>
             </div>
@@ -404,8 +460,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 3:9:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-3-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-9">Mishneh Torah, Woman Suspected of Infidelity 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא כְּלִי חֶרֶשׂ שֶׁלֹּא נַעֲשָׂה בּוֹ מְלָאכָה מֵעוֹלָם וְלֹא יֵרָאֶה כִּכְלִי בָּלֶה מֵאֹרֶךְ הַזְּמַן. וְאִם הֶחְזִירוֹ לַכִּבְשָׁן עַד שֶׁנִּתְחַדֵּשׁ כָּשֵׁר. וְנוֹתֵן לְתוֹכוֹ חֲצִי לוֹג מַיִם מִן הַכִּיּוֹר. וּבַחֲצִי לוֹג שֶׁהָיָה בַּמִּקְדָּשׁ הָיָה מוֹדְדוֹ. וְנִכְנַס בּוֹ לַהֵיכָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ מביא כ&quot;ח וכו׳.</strong> מה שהניח הכ&quot;מ בצ&quot;ע עי׳ בתי&quot;ט פ&quot;א דסוטה משנה ב׳ ד&quot;ה חדשה ועי׳ מל&quot;מ ומ&quot;ש בפ&quot;ו מה׳ ברכות הלכה ז׳.</p>
               </div>
             </div>
@@ -420,8 +481,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 3:11:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-3-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-11">Mishneh Torah, Woman Suspected of Infidelity 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ כֹּהֵן אֶחָד בָּא אֵלֶיהָ מִכֹּהֲנֵי הָעֲזָרָה וְאוֹחֵז בִּבְגָדֶיהָ מִכְּנֶגֶד פָּנֶיהָ וְקוֹרֵעַ עַד שֶׁהוּא מְגַלֶּה אֶת לִבָּהּ. וּמְגַלֶּה שְׂעָרָהּ וְסוֹתֵר מַחְלְפוֹת רֹאשָׁהּ כְּדֵי לְנַוְּלָהּ. וּמֵבִיא חֶבֶל מִצְרִי כְּדֵי לְהַזְכִּירָהּ מַעֲשֵׂה מִצְרַיִם שֶׁעָשְׂתָה. וְאִם לֹא מָצְאוּ מִצְרִי מֵבִיא חֶבֶל מִכָּל מָקוֹם. וְקוֹשְׁרוֹ לְמַעְלָה מִדָּדֶיהָ כְּדֵי שֶׁלֹּא יִפְּלוּ הַבְּגָדִים וְנִמְצֵאת עֲרֻמָּה שֶׁהֲרֵי נִקְרְעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד שהוא מגלה את לבה.</strong> התוס׳ בסוטה דף ח׳ ע&quot;א ד&quot;ה ויתגרו כ׳ בשם הספרי ופרע את ראש האשה סדין של בוץ פורס בינו לבין העם כהן פונה לאחוריו ופרעה וצ&quot;ע שלא הביאו רבינו.</p>
               </div>
             </div>
@@ -436,8 +502,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 3:24:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-3-24-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 3:24:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-24">Mishneh Torah, Woman Suspected of Infidelity 3:24</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָּׁה שֶׁזִּנְּתָה בְּאֹנֶס אוֹ בִּשְׁגָגָה אוֹ שֶׁבָּא עָלֶיהָ זֶה שֶׁקִּנֵּא לָהּ עִמּוֹ דֶּרֶךְ אֵיבָרִים אֵין הַמַּיִם בּוֹדְקִין אוֹתָהּ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְהִיא לֹא נִתְפָּשָׂה&quot; פְּרָט לַאֲנוּסָה שֶׁהֲרֵי נִתְפְּשָׂה בְּחָזְקָה. <span class="source-small">(במדבר ה כז)</span> &quot;וַתִּמְעל מַעַל בְּאִישָׁהּ&quot; פְּרָט לְשׁוֹגֶגֶת. <span class="source-small">(במדבר ה יג)</span> &quot;וְשָׁכַב אִישׁ אֹתָהּ שִׁכְבַת זֶרַע&quot; פְּרָט לְבָא עָלֶיהָ דֶּרֶךְ אֵיבָרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ותמעול מעל באשה וכו׳.</strong> גרסי׳ בירושלמי פ׳ כשם הוא מזיד והיא שוגגת פשיטא שהיא מותרת לביתה גירש מהו שיהי׳ מותר בה אפשר לומר מזיד בה ואת אמרת הכין מוכח מהירושלמי אף שהיא שוגגת אסורה היא לבועל ועי׳ במל&quot;מ דפ&quot;ב ועי׳ בס׳ כנסת יחזקאל סי׳ ס&quot;ז דבמת בעלה מותרת דוקא בגרשה אסורה ועי׳ בברכי יוסף אה&quot;ע סי׳ י&quot;א שהאריך בירושלמי הנ&quot;ל ואם היא סבורה שמותר לזנות תחת בעלה אפי׳ למ&quot;ד אומר מותר שוגג הוא אסורה לבעלה כמבואר בהגהת רמ&quot;א סי׳ קע&quot;ח בשם מהרי&quot;ק.</p>
               </div>
             </div>
@@ -453,8 +524,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-4-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-2">Mishneh Torah, Woman Suspected of Infidelity 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מַשְׁקִין אֶת הַסּוֹטָה אֶלָּא בַּיּוֹם. וְכָל הַיּוֹם כָּשֵׁר לְהַשְׁקוֹת סוֹטָה. וְאֵין מַשְׁקִין שְׁתֵּי סוֹטוֹת כְּאַחַת שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה טז)</span> &quot;וְהֶעֱמִיד אֹתָהּ הַכֹּהֵן&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנאמר והעמיד אותה הכהן.</strong> צ&quot;ל והקריב אותה כ&quot;כ בהגהת הש&quot;ס חדשים בנדרים דף ע&quot;ג ועי׳ במג&quot;א סי׳ קמ&quot;ז ובס׳ משנת דר&quot;ע ורבינו פסק כיון דמגזה&quot;כ הוא ולא דריש טעמי׳ דקרא ובהלכות פרה פ&quot;ד ה&quot;ב כ׳ רבינו לא רצתה פרה לצאת אין מוציאין עמה אדומה שלא יאמרו שתים שחטו והיינו כת&quot;ק דדריש טעמי׳ דקרא ודברי רבינו סותרים וכבר הרגיש בתי&quot;ט פ&quot;ג דפרה ועמ&quot;ש בס&quot;ד בפ&quot;ד מה׳ פרה ועמ&quot;ש בס&quot;ד בפי&quot;א מה׳ טומאת צרעת.</p>
               </div>
             </div>
@@ -469,8 +545,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:8:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-4-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-8">Mishneh Torah, Woman Suspected of Infidelity 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּתָבָהּ אִגֶּרֶת פְּסוּלָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה כג)</span> &quot;בַּסֵּפֶר&quot;. כְּתָבָהּ עַל שְׁנֵי דַּפִּין פְּסוּלָה שֶׁנֶּאֱמַר בַּסֵּפֶר סֵפֶר אֶחָד וְלֹא שְׁנַיִם וּשְׁלֹשָׁה. וְאֵינוֹ כּוֹתֵב לֹא עַל הַנְּיָר וְלֹא עַל הַדִּפְתְּרָא אֶלָּא בִּמְגִלַּת סֵפֶר שֶׁנֶּאֱמַר בַּסֵּפֶר. וְאִם כְּתָבָהּ עַל נְיָר אוֹ דִּפְתְּרָא פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כתבה על שני דפין פסולה.</strong> רש&quot;י פי׳ כדפין של ס&quot;ת והתוס׳ סוטה דף י&quot;ז ע&quot;ב מקש׳ ע&quot;ז מהא דאמרי׳ בגיטין שייר מקצת הגט וכתבה על דף השני משמע דלא אכפת לן בזה אלא דמיירי בשני דפין חלוקין ורש&quot;י סובר דשאני גבי גיטין דאין כאן דרשא דספר אצטריך לספירת דברים ומש&quot;ה לא מוקמי׳ ג&quot;כ להך דרשא דספר אחד כ&quot;א לשני דפין חלוקין משא&quot;כ בסוטה דכתיב בספר אפי׳ כעין ס&quot;ת אין כותבין ועי׳ בתוס׳ גיטין דף כ׳ ע&quot;ב ד&quot;ה ספר.</p>
               </div>
             </div>
@@ -485,8 +566,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:9:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-4-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-9">Mishneh Torah, Woman Suspected of Infidelity 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם כְּתָבָהּ יִשְׂרָאֵל אוֹ כֹּהֵן קָטָן פְּסוּלָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה כג)</span> &quot;וְכָתַב הַכֹּהֵן&quot;. אֵינוֹ כּוֹתְבָהּ לֹא בְּקוֹמוֹס וְלֹא בְּקַנְקַנְתּוֹם וְלֹא בְּכָל דָּבָר שֶׁרִשּׁוּמוֹ נִכָּר וְעוֹמֵד אֶלָּא בִּדְיוֹ שֶׁאֵין בּוֹ קַנְקַנְתּוֹם שֶׁנֶּאֱמַר וְכָתַב <span class="source-small">(במדבר ה כג)</span> &quot;וּמָחָה&quot; כְּתָב שֶׁהוּא יָכוֹל לְהִמָּחוֹת. וְאִם כָּתַב בְּדָבָר הַמִּתְקַיֵּם פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או כהן קטן.</strong> הכ&quot;מ לא נתן טעם לפסול קטן ונראה דהטעם משום דבעי׳ לשמה כמ&quot;ש רבינו.</p>
               </div>
             </div>
@@ -501,8 +587,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:11:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-4-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-11">Mishneh Torah, Woman Suspected of Infidelity 4:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּתָבָהּ שֶׁלֹּא לִשְׁמָהּ אוֹ מְחָקָהּ שֶׁלֹּא לִשְׁמָהּ פְּסוּלָה. כָּתַב שְׁתֵּי מְגִלּוֹת לִשְׁתֵּי סוֹטוֹת וּמְחָקָן לְתוֹךְ כּוֹס אֶחָד אוֹ לְתוֹךְ שְׁתֵּי כּוֹסוֹת וְעֵרְבָן בְּכוֹס אֶחָד וְהִשְׁקָה לִשְׁתֵּיהֶן פְּסוּלָה. לְפִי שֶׁכָּל אַחַת מֵהֶן לֹא שָׁתְתָה מְגִלָּתָהּ. מְחָקָן בִּשְׁנֵי כּוֹסוֹת וְעֵרְבָן וְחָזַר וְחִלְּקָן לִשְׁנֵי הַכּוֹסוֹת לֹא יַשְׁקֶה אוֹתָן וְאִם הִשְׁקָה כָּשֵׁר. וְאִם נִשְׁפְּכוּ הַמַּיִם הֲרֵי זֶה כּוֹתֵב מְגִלָּה אַחֶרֶת וּמֵבִיא מַיִם אֲחֵרִים. נִשְׁפְּכוּ וְנִשְׁתַּיֵּר מֵהֶן לֹא יַשְׁקֶה אֶת הַשְּׁאָר. וְאִם הִשְׁקָה כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכמו </strong> בגט. ועי׳ בב&quot;י אה&quot;ע סי׳ קכ&quot;ג ומשם יש ללמוד לכאן.</p>
               </div>
             </div>
@@ -517,8 +608,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:12:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-4-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-12">Mishneh Torah, Woman Suspected of Infidelity 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵי סוֹטָה שֶׁלָּנוּ נִפְסָלִין בְּלִינָה. הִקְדִּים עָפָר לַמַּיִם פְּסוּלָה. לֹא הָיָה שָׁם עָפָר בַּהֵיכָל מֵבִיא עָפָר מִבַּחוּץ וּמַנִּיחוֹ בַּהֵיכָל וְלוֹקֵחַ מִמֶּנּוּ וְנוֹתֵן עַל פְּנֵי הַמַּיִם. וְאֵינוֹ מֵבִיא אֵפֶר אֲבָל מֵבִיא רַקְבּוּבִית שֶׁהִיא כְּעָפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי סוטה.</strong> כ׳ הכ&quot;מ גרסי׳ וכו׳. וא&quot;י למה השמיטו רבינו וכו׳. בספרי הדפוסים שלפנינו כתבו רבינו בה׳ ז׳.</p>
               </div>
             </div>
@@ -533,8 +629,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:14:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-4-14-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-14">Mishneh Torah, Woman Suspected of Infidelity 4:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִקְרִיב אֶת מִנְחָתָהּ וְאַחַר כָּךְ הִשְׁקָהּ כְּשֵׁרָה. נִטְמֵאת מִנְחָתָהּ קֹדֶם שֶׁיַּנִּיחֶנָה בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּפָּדֶה כְּכָל הַמְּנָחוֹת שֶׁנִּטְמְאוּ קֹדֶם שֶׁיִּתְקַדְּשׁוּ בִּכְלִי שָׁרֵת וְיָבִיאוּ מִנְחָה אַחֶרֶת. נִטְמֵאת הַמִּנְחָה אַחַר שֶׁקִּדְּשָׁהּ בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּשָּׂרֵף. וְכֵן אִם אָמְרָה טְמֵאָה אֲנִי קֹדֶם שֶׁתִּקָּמֵץ הַמִּנְחָה. אוֹ שֶׁאָמְרָה אֵינִי שׁוֹתָה. אוֹ שֶׁלֹּא רָצָה בַּעְלָהּ לְהַשְׁקוֹתָהּ. אוֹ שֶׁבָּאוּ עֵדֵי טֻמְאָה. אוֹ שֶׁמֵּת הוּא. אוֹ שֶׁמֵּתָה הִיא. הֲרֵי הַמִּנְחָה כֻּלָּהּ נִשְׂרֶפֶת. וְאִם אֵרַע אֶחָד מֵאֵלּוּ אַחַר שֶׁקָּרַב הַקֹּמֶץ אֵין הַשְּׁיָרִים נֶאֱכָלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ה&quot;ז תשרף.</strong> בתוספ׳ פ&quot;ב דסוטה מוסיף עלי׳ תעובר צורתה ותצא לבית השריפה וכל הקדוש קדושת הגוף טעון עיבור צורה ונשרף בבית הדשן בעזרה. ומ&quot;ש הכ&quot;מ דרבינו פסק כת&quot;ק תמה הפ&quot;מ בפ&quot;ג דסוטה הלכה ו׳ ד&quot;ה בעי וסיים אי לאו דמסתפינא אמינא דטעות נפל בכל ספרי הרמב&quot;ם וכן צ&quot;ל אם אירע אחד מאלו אחר שקרב הקומץ השיריים נאכלין ופסק כשי׳ הבבלי וכפי פירש&quot;י ז&quot;ל דמשווה אותן לגמרי בין עד שלא קרב ובין לאחר שקרב וכר׳ אילא.</p>
               </div>
             </div>
@@ -549,8 +650,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:17:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-4-17-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Woman Suspected of Infidelity 4:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-17">Mishneh Torah, Woman Suspected of Infidelity 4:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַבַּעַל לְגַלְגֵּל בִּשְׁבוּעָה עָלֶיהָ שֶׁלֹּא זִנְּתָה עִם אִישׁ זֶה שֶׁקִּנֵּא לָהּ בּוֹ וְלֹא עִם אִישׁ אַחֵר. וְשֶׁלֹּא זִנְּתָה תַּחְתָּיו מִשֶּׁנִּתְאָרְסָה קֹדֶם שֶׁתִּנָּשֵׂא וְלֹא אַחַר שֶׁנִּשֵּׂאת. אֲבָל אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה קֹדֶם הָאֵרוּסִין וְלֹא אַחַר שֶׁגֵּרְשָׁהּ אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ. שֶׁאִם זִנְּתָה בְּעֵת זֶה לֹא תֵּאָסֵר עָלָיו. וְכָל שֶׁתִּבָּעֵל וְלֹא תִּהְיֶה אֲסוּרָה לוֹ אֵינוֹ מַתְנֶה עִמָּהּ. לְפִיכָךְ אִם כָּנַס יְבִמְתּוֹ אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה כְּשֶׁהָיְתָה שׁוֹמֶרֶת יָבָם. אֲבָל מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחַת אָחִיו שֶׁאִם זִנְּתָה תַּחַת אָחִיו הֲרֵי זוֹ אֲסוּרָה עָלָיו. וְכֵן אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחְתָּיו בַּנִּשּׂוּאִין הָרִאשׁוֹנִים. וְיֵשׁ לוֹ לְגַלְגֵּל עָלֶיהָ בִּלְהַבָּא שֶׁלֹּא תִּזְנֶה תַּחְתָּיו וְשֶׁלֹּא תִּזְנֶה אַחַר שֶׁיַּחְזִירֶנָּה אִם יְגָרֵשׁ וְיַחֲזִיר. לְפִיכָךְ כְּשֶׁתִּזְנֶה לְהַבָּא מַיִם בּוֹדְקִין אוֹתָהּ וְיֶאֶרְעוּ לָהּ אוֹתָן הַמְאֹרָעוֹת. לְכָךְ נֶאֱמַר <span class="source-small">(במדבר ה כב)</span> &quot;אָמֵן אָמֵן&quot;. אָמֵן מֵאִישׁ זֶה אָמֵן מֵאִישׁ אַחֵר. אָמֵן נְשׂוּאָה אָמֵן אֲרוּסָה. אָמֵן לְשֶׁעָבַר אָמֵן לְהַבָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש לבעל לגלגל בשבועה וכו׳.</strong> ומכאן אנו למידין גלגול שבועה בדיני ממונות וכיון דאנו למידין מסוטה משמע לפי מה שפסק רבינו לעיל פ&quot;ב הל׳ ד׳ מעוברת ומניקה מקנא לה ומשקה אותה כמות שהיא וכפירש&quot;י בגמ׳ סוטה דף כ&quot;ו ומשביעין אותה כשהיא מעוברת ולא חיישי׳ על הולד א&quot;כ ע&quot;כ הא דפסק רמ&quot;א בחו&quot;מ סי׳ צ&quot;ו סעי׳ ו׳ בשם הבנימין זאב דאין משביעין האשה כשהיא מעוברת אין זה מדין תורה כ&quot;א מנהגא בעלמא וכ&quot;כ התומים וטעם המנהג עי׳ בלבוש ולי נראה משום דבדורות אחרונים לא הי׳ חמירו להו שבועה והי׳ מזלזלין בשבועה כדמשמע בירושלמי בפ׳ השולח על מתני׳ דאין אלמנה נפרעת אלא בשבועה ומש&quot;ה לא הניחו למעוברת לשבע וה&quot;ט דאין משביעין בעי&quot;ת כדפסקי׳ בש&quot;ע א&quot;ח סי׳ תר&quot;ב ועוד יש ליתן טעם משום דמרתת בשעת השבועה ובנקל יכולה להפיל הולד וכיון דעכ&quot;פ אין זה מדין הגמור וגם בזמנינו אכשר דרא והחמירו להם שבועה אם הדבר נחוץ ויש הפסד הרבה אם אין משביעין אותה יש מקום להקל להשביעה גם שהיא מעוברת כנ&quot;ל.</p>
               </div>
             </div>
@@ -560,6 +666,10 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -580,8 +690,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json","occurrence_url":"../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-woman-suspected-of-infidelity.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -607,7 +717,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

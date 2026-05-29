@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-foundations-of-the-torah/">Open Mishneh Torah, Foundations of the Torah</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Foundations of the Torah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">63 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Torat Emet 363 | Version source: <a href="http://www.toratemetfreeware.com/index.html?downloads">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>855 matched</strong> / 2125 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -293,8 +293,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 1:1:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-1-1-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-1-1">Mishneh Torah, Foundations of the Torah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יְסוֹד הַיְסוֹדוֹת וְעַמּוּד הַחָכְמוֹת לֵידַע שֶׁיֵּשׁ שָׁם מָצוּי רִאשׁוֹן. וְהוּא מַמְצִיא כָּל נִמְצָא. וְכָל הַנִּמְצָאִים מִשָּׁמַיִם וָאָרֶץ וּמַה שֶּׁבֵּינֵיהֶם לֹא נִמְצְאוּ אֶלָּא מֵאֲמִתַּת הִמָּצְאוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יסוד היסודות ועמוד החכמות לידע שיש שם מצוי ראשון.</strong> מלת שם שכתב כאן רבינו אינו מורה על מקום שהוא יתעלה אין לו מקום אבל מלת שם פה היא כפ&quot;א רפה בלשון ישמעאל. ודומה לזה מ&quot;ש בפרק ג׳ מהלכות תשובה. שלשה הם הנקראים אפיקורוסים האומר שאין שם נבואה כלל ואין שם מדע. ובפרק ה׳ מהלכות תעניות יש שם ימים וכו׳. ועוד יש לפרש פה מלת שם לומר שהוא יתעלה נמצא בכל מקום כדכתיב מלא כל הארץ כבודו:</p>
               </div>
             </div>
@@ -309,8 +314,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 1:10:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-1-10-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-1-10">Mishneh Torah, Foundations of the Torah 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַהוּ זֶה שֶׁבִּקֵּשׁ משֶׁה רַבֵּנוּ לְהַשִּׂיג כְּשֶׁאָמַר <span class="source-small">(שמות לג יח)</span> &quot;הַרְאֵנִי נָא אֶת כְּבֹדֶךָ&quot;. בִּקֵּשׁ לֵידַע אֲמִתַּת הִמָּצְאוֹ שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא עַד שֶׁיִּהְיֶה יָדוּעַ בְּלִבּוֹ כְּמוֹ יְדִיעַת אֶחָד מִן הָאֲנָשִׁים שֶׁרָאָה פָּנָיו וְנֶחְקְקָה צוּרָתוֹ בְּלִבּוֹ שֶׁנִּמְצָא אוֹתוֹ הָאִישׁ נִפְרָד בְּדַעְתּוֹ מִשְּׁאָר הָאֲנָשִׁים. כָּךְ בִּקֵּשׁ משֶׁה רַבֵּנוּ לִהְיוֹת מְצִיאוּת הַקָּדוֹשׁ בָּרוּךְ הוּא נִפְרֶדֶת בְּלִבּוֹ מִשְּׁאָר הַנִּמְצָאִים עַד שֶׁיֵּדַע אֲמִתַּת הִמָּצְאוֹ כַּאֲשֶׁר הִיא. וֶהֱשִׁיבוֹ בָּרוּךְ הוּא שֶׁאֵין כֹּחַ בְּדַעַת הָאָדָם הַחַי שֶׁהוּא מְחֻבָּר מִגּוּף וְנֶפֶשׁ לְהַשִּׂיג אֲמִתַּת דָּבָר זֶה עַל בֻּרְיוֹ. וְהוֹדִיעוֹ בָּרוּךְ הוּא מַה שֶּׁלֹּא יָדַע אָדָם לְפָנָיו וְלֹא יֵדַע לְאַחֲרָיו. עַד שֶׁהִשִּׂיג מֵאֲמִתַּת הִמָּצְאוֹ דָּבָר שֶׁנִּפְרָד הַקָּדוֹשׁ בָּרוּךְ הוּא בְּדַעְתּוֹ מִשְּׁאָר הַנִּמְצָאִים. כְּמוֹ שֶׁיִּפָּרֵד אֶחָד מִן הָאֲנָשִׁים שֶׁרָאָה אֲחוֹרָיו וְהִשִּׂיג כָּל גּוּפוֹ וּמַלְבּוּשׁוֹ בְּדַעְתּוֹ מִשְּׁאָר גּוּפֵי הָאֲנָשִׁים. וְעַל דָּבָר זֶה רָמַז הַכָּתוּב וְאָמַר <span class="source-small">(שמות לג כג)</span> &quot;וְרָאִיתָ אֶת אֲחֹרָי וּפָנַי לֹא יֵרָאוּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בקש לדעת אמתת המצאו וכו׳.</strong> כתב הראב&quot;ד א&quot;א אין דעתי מיושבת על זה שהרי ראה בסיני בארבעים יום של לוחות מה שלא ראה נביא מעולם עד שקנאו המלאכים בו ובקשו לדוחפו עד שאחז בכסא ומה הוצרך עוד. ועוד אם זאת היתה בקשתו מה צריך היה בתשובה לומר וחנותי את אשר אחון. ולכן נ&quot;ל לפי שהקב&quot;ה אמר לו לא אעלה בקרבך וכו׳ ובקש משה שישוב וא&quot;ל הודיעני נא את דרכיך וא&quot;ל פני ילכו וגו׳ ומשה אמר אם אין פניך הולכים וגו׳ אל תאמר כשנכנס לארץ אז תלך עמנו כי לא נזוז מכאן עד שתלך עמנו וא&quot;ל הקב&quot;ה גם את הדבר הזה אעשה ויאמר הראני את כבודך כלומר אני רוצה לראות ויאמר אני אעביר כל טובי על פניך וכו׳ ואודיעך בעברי, והעם אשר הכעיס אותי יהיה מי שאחון עליו ולא על כלם. ופנים ואחור סוד גדול הוא ואין ראוי לגלותו לכל אדם ואולי בעל הדברים הזה לא ידעהו עכ&quot;ל. וי&quot;ל שמה שקנאו בו הוא מפני שהיה רוצה להוריד את התורה לארץ ולכן הוצרך לאחוז בכסא להשיב להם תשובה ואין משם הכרח שהשיג אז ההשגה הגדולה הזאת. ומ&quot;ש ועוד אם זאת היתה בקשתו מה צורך היה בתשובה לומר וחנותי את אשר אחון י&quot;ל שלדעת רבינו יתפרש דהכי נאמר ליה. השגה זו שאתה שואל אין כח בבן אדם להשיגה אלא בתורת מתנת חנם אתן לך ושתשיג מה שלא ידע איש לפניך ולא ידע לאחריך:</p>
               </div>
             </div>
@@ -326,8 +336,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 2:12:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-2-12-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-2-12">Mishneh Torah, Foundations of the Torah 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צִוּוּ חֲכָמִים הָרִאשׁוֹנִים שֶׁלֹּא לִדְרשׁ בִּדְבָרִים אֵלּוּ אֶלָּא לְאִישׁ אֶחָד בִּלְבַד וְהוּא שֶׁיִּהְיֶה חָכָם וּמֵבִין מִדַּעְתּוֹ וְאַחַר כָּךְ מוֹסְרִין לוֹ רָאשֵׁי הַפְּרָקִים וּמוֹדִיעִין אוֹתוֹ שֶׁמֶץ מִן הַדָּבָר וְהוּא מֵבִין מִדַּעְתּוֹ וְיֵדַע סוֹף הַדָּבָר וְעָמְקוֹ. וּדְבָרִים אֵלּוּ דְּבָרִים עֲמֻקִּים הֵם עַד לִמְאֹד וְאֵין כָּל דַּעַת וְדַעַת רְאוּיָה לְסָבְלָן. וַעֲלֵיהֶם אָמַר שְׁלֹמֹה בְּחָכְמָתוֹ דֶּרֶךְ מָשָׁל <span class="source-small">(משלי כז כו)</span> &quot;כְּבָשִׂים לִלְבוּשֶׁךָ&quot; כָּךְ אָמְרוּ חֲכָמִים בְּפֵרוּשׁ מָשָׁל זֶה דְּבָרִים שֶׁהֵן כִּבְשׁוֹנוֹ שֶׁל עוֹלָם יִהְיוּ לִלְבוּשְׁךָ כְּלוֹמַר לְךָ לְבַדְּךָ וְאַל תִּדְרשׁ אוֹתָם בָּרַבִּים. וַעֲלֵיהֶם אָמַר <span class="source-small">(משלי ה יז)</span> &quot;יִהְיוּ לְךָ לְבַדֶּךָ וְאֵין לְזָרִים אִתָּךְ&quot;. וַעֲלֵיהֶם אָמַר <span class="source-small">(שיר השירים ד יא)</span> &quot;דְּבַשׁ וְחָלָב תַּחַת לְשוֹנֵךְ&quot;, כָּךְ פֵּרְשׁוּ חֲכָמִים הָרִאשׁוֹנִים דְּבָרִים שֶׁהֵן כִּדְבַשׁ וְחָלָב יִהְיוּ תַּחַת לְשׁוֹנְךָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צוו חכמים הראשונים שלא לדרוש ברבים בדברים אלו אלא לאיש אחד בלבד וכו׳.</strong> ריש פרק אין דורשין:</p>
               </div>
             </div>
@@ -343,8 +358,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-4-13-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-4-13">Mishneh Torah, Foundations of the Torah 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְעִנְיְנֵי אַרְבָּעָה פְּרָקִים אֵלּוּ שֶׁבְּחָמֵשׁ מִצְוֹת הָאֵלּוּ הֵם שֶׁחֲכָמִים הָרִאשׁוֹנִים קוֹרְאִין אוֹתוֹ פַּרְדֵּס כְּמוֹ שֶׁאָמְרוּ אַרְבָּעָה נִכְנְסוּ לַפַּרְדֵּס. וְאַף עַל פִּי שֶׁגְּדוֹלֵי יִשְׂרָאֵל הָיוּ וַחֲכָמִים גְּדוֹלִים הָיוּ לֹא כֻּלָּם הָיָה בָּהֶן כֹּחַ לֵידַע וּלְהַשִּׂיג כָּל הַדְּבָרִים עַל בֻּרְיָן. וַאֲנִי אוֹמֵר שֶׁאֵין רָאוּי לְטַיֵּל בַּפַּרְדֵּס אֶלָּא מִי שֶׁנִּתְמַלֵּא כְּרֵסוֹ לֶחֶם וּבָשָׂר. וְלֶחֶם וּבָשָׂר הוּא לֵידַע הָאָסוּר וְהַמֻּתָּר וְכַיּוֹצֵא בָּהֶם מִשְּׁאָר הַמִּצְוֹת. וְאַף עַל פִּי שֶׁדְּבָרִים אֵלּוּ דָּבָר קָטָן קָרְאוּ אוֹתָן חֲכָמִים שֶׁהֲרֵי אָמְרוּ חֲכָמִים דָּבָר גָּדוֹל מַעֲשֵׂה מֶרְכָּבָה וְדָבָר קָטָן הֲוָיוֹת דְּאַבַּיֵּי וְרָבָא. אַף עַל פִּי כֵן רְאוּיִין הֵן לְהַקְדִּימָן. שֶׁהֵן מְיַשְּׁבִין דַּעְתּוֹ שֶׁל אָדָם תְּחִלָּה. וְעוֹד שֶׁהֵם הַטּוֹבָה הַגְּדוֹלָה שֶׁהִשְׁפִּיעַ הַקָּדוֹשׁ בָּרוּךְ הוּא לְיִשּׁוּב הָעוֹלָם הַזֶּה כְּדֵי לִנְחל חַיֵּי הָעוֹלָם הַבָּא. וְאֶפְשָׁר שֶׁיְּדָעֵם הַכּל קָטָן וְגָדוֹל אִישׁ וְאִשָּׁה בַּעַל לֵב רָחָב וּבַעַל לֵב קָצָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואף על פי שדברים אלו דבר קטן קראו אותן חכמים שהרי אמרו דבר גדול מעשה מרכבה דבר קטן הוויות דאביי ורבא אעפ&quot;כ ראוי להקדימם וכו׳.</strong> בסוכה סוף פ׳ הישן אמרו על ריב&quot;ז שלא הניח מקרא ומשנה וכו׳ דבר גדול ודבר קטן דבר גדול מעשה מרכבה דבר קטן הוויות דאביי ורבא:</p>
               </div>
             </div>
@@ -359,8 +379,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-4-13-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-4-13">Mishneh Torah, Foundations of the Torah 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְעִנְיְנֵי אַרְבָּעָה פְּרָקִים אֵלּוּ שֶׁבְּחָמֵשׁ מִצְוֹת הָאֵלּוּ הֵם שֶׁחֲכָמִים הָרִאשׁוֹנִים קוֹרְאִין אוֹתוֹ פַּרְדֵּס כְּמוֹ שֶׁאָמְרוּ אַרְבָּעָה נִכְנְסוּ לַפַּרְדֵּס. וְאַף עַל פִּי שֶׁגְּדוֹלֵי יִשְׂרָאֵל הָיוּ וַחֲכָמִים גְּדוֹלִים הָיוּ לֹא כֻּלָּם הָיָה בָּהֶן כֹּחַ לֵידַע וּלְהַשִּׂיג כָּל הַדְּבָרִים עַל בֻּרְיָן. וַאֲנִי אוֹמֵר שֶׁאֵין רָאוּי לְטַיֵּל בַּפַּרְדֵּס אֶלָּא מִי שֶׁנִּתְמַלֵּא כְּרֵסוֹ לֶחֶם וּבָשָׂר. וְלֶחֶם וּבָשָׂר הוּא לֵידַע הָאָסוּר וְהַמֻּתָּר וְכַיּוֹצֵא בָּהֶם מִשְּׁאָר הַמִּצְוֹת. וְאַף עַל פִּי שֶׁדְּבָרִים אֵלּוּ דָּבָר קָטָן קָרְאוּ אוֹתָן חֲכָמִים שֶׁהֲרֵי אָמְרוּ חֲכָמִים דָּבָר גָּדוֹל מַעֲשֵׂה מֶרְכָּבָה וְדָבָר קָטָן הֲוָיוֹת דְּאַבַּיֵּי וְרָבָא. אַף עַל פִּי כֵן רְאוּיִין הֵן לְהַקְדִּימָן. שֶׁהֵן מְיַשְּׁבִין דַּעְתּוֹ שֶׁל אָדָם תְּחִלָּה. וְעוֹד שֶׁהֵם הַטּוֹבָה הַגְּדוֹלָה שֶׁהִשְׁפִּיעַ הַקָּדוֹשׁ בָּרוּךְ הוּא לְיִשּׁוּב הָעוֹלָם הַזֶּה כְּדֵי לִנְחל חַיֵּי הָעוֹלָם הַבָּא. וְאֶפְשָׁר שֶׁיְּדָעֵם הַכּל קָטָן וְגָדוֹל אִישׁ וְאִשָּׁה בַּעַל לֵב רָחָב וּבַעַל לֵב קָצָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכתב</strong> הר&quot;ן דבר קטן הוויות דאביי ורבא פי׳ משום דמעיקרא אמר שלא הניח מקרא ומשנה וכו׳ קרי להוויות דאביי ורבא דבר קטן. לפי שאין ספק שהתנאים הראשונים היו יודעים המשנה על בוריה הוויות דהוו בתר הכי אביי ורבא לדבר קטן חשבינן להו, והרמב&quot;ם כתב מה שרצה והלואי שלא נכתב. וכן פירש הריטב&quot;א וסיים אבל דבר גדול הוא מכל חכמות העולם. וזה הפירוש אמת הוא ולא כמו שפירשו אחרים והאלהים יכפר בעד עכ&quot;ל:</p>
               </div>
             </div>
@@ -375,8 +400,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-4-13-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-4-13">Mishneh Torah, Foundations of the Torah 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְעִנְיְנֵי אַרְבָּעָה פְּרָקִים אֵלּוּ שֶׁבְּחָמֵשׁ מִצְוֹת הָאֵלּוּ הֵם שֶׁחֲכָמִים הָרִאשׁוֹנִים קוֹרְאִין אוֹתוֹ פַּרְדֵּס כְּמוֹ שֶׁאָמְרוּ אַרְבָּעָה נִכְנְסוּ לַפַּרְדֵּס. וְאַף עַל פִּי שֶׁגְּדוֹלֵי יִשְׂרָאֵל הָיוּ וַחֲכָמִים גְּדוֹלִים הָיוּ לֹא כֻּלָּם הָיָה בָּהֶן כֹּחַ לֵידַע וּלְהַשִּׂיג כָּל הַדְּבָרִים עַל בֻּרְיָן. וַאֲנִי אוֹמֵר שֶׁאֵין רָאוּי לְטַיֵּל בַּפַּרְדֵּס אֶלָּא מִי שֶׁנִּתְמַלֵּא כְּרֵסוֹ לֶחֶם וּבָשָׂר. וְלֶחֶם וּבָשָׂר הוּא לֵידַע הָאָסוּר וְהַמֻּתָּר וְכַיּוֹצֵא בָּהֶם מִשְּׁאָר הַמִּצְוֹת. וְאַף עַל פִּי שֶׁדְּבָרִים אֵלּוּ דָּבָר קָטָן קָרְאוּ אוֹתָן חֲכָמִים שֶׁהֲרֵי אָמְרוּ חֲכָמִים דָּבָר גָּדוֹל מַעֲשֵׂה מֶרְכָּבָה וְדָבָר קָטָן הֲוָיוֹת דְּאַבַּיֵּי וְרָבָא. אַף עַל פִּי כֵן רְאוּיִין הֵן לְהַקְדִּימָן. שֶׁהֵן מְיַשְּׁבִין דַּעְתּוֹ שֶׁל אָדָם תְּחִלָּה. וְעוֹד שֶׁהֵם הַטּוֹבָה הַגְּדוֹלָה שֶׁהִשְׁפִּיעַ הַקָּדוֹשׁ בָּרוּךְ הוּא לְיִשּׁוּב הָעוֹלָם הַזֶּה כְּדֵי לִנְחל חַיֵּי הָעוֹלָם הַבָּא. וְאֶפְשָׁר שֶׁיְּדָעֵם הַכּל קָטָן וְגָדוֹל אִישׁ וְאִשָּׁה בַּעַל לֵב רָחָב וּבַעַל לֵב קָצָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובשם</strong> הרב אליהו מזרחי ז&quot;ל מצאתי כתוב וז&quot;ל מן המבואר ששם גדול נאמר על שני פנים. אם בכמות. אם באיכות. ושהגדול באיכות יחלק עוד לשנים. האחד מהם על גודל הדרוש ומעלתו. וזה עוד יחלק לשני פנים אם מצד גודל נושא הדרוש ואם מצד עומק מושגו. והשני על גודל שכרו. ומעתה אין טענה משם גדול הנאמר על מעשה מרכבה. כי מעשה מרכבה אם נקרא גדול מהחכמה התלמודית הנה הוא גדול מצד גודל הדרוש ומעלתו בשני האופנים יחד שהם גודל נושא הדרוש ועומק מושגו. ואולם החכמה התלמודית אע&quot;פ שאינה חוקרת על נושא גדול כגודל חכמת מעשה מרכבה שהרי הדרוש של מעשה מרכבה הוא הבורא יתעלה בין לדעת חכמי הקבלה בין לדעת חכמי המחקר ונושא החכמה התלמודית הם מעשה מצותיו יתברך. מ&quot;מ כאשר לא יודע הענין בה מצד גודל נושא הדרוש וקשיו רק מצד גודל השכר ומיעוטו הנה בלי ספק שהחכמה התלמודית היא השורש והעיקר אשר בה נזכה לחיי העוה&quot;ב משאר מיני החכמות והיא החכמה היותר גדולה מזה הצד מכל מה שזולתה והביא ראיות על זה:</p>
               </div>
             </div>
@@ -391,8 +421,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:4</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-4-13-4" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 4:13:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-4-13">Mishneh Torah, Foundations of the Torah 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְעִנְיְנֵי אַרְבָּעָה פְּרָקִים אֵלּוּ שֶׁבְּחָמֵשׁ מִצְוֹת הָאֵלּוּ הֵם שֶׁחֲכָמִים הָרִאשׁוֹנִים קוֹרְאִין אוֹתוֹ פַּרְדֵּס כְּמוֹ שֶׁאָמְרוּ אַרְבָּעָה נִכְנְסוּ לַפַּרְדֵּס. וְאַף עַל פִּי שֶׁגְּדוֹלֵי יִשְׂרָאֵל הָיוּ וַחֲכָמִים גְּדוֹלִים הָיוּ לֹא כֻּלָּם הָיָה בָּהֶן כֹּחַ לֵידַע וּלְהַשִּׂיג כָּל הַדְּבָרִים עַל בֻּרְיָן. וַאֲנִי אוֹמֵר שֶׁאֵין רָאוּי לְטַיֵּל בַּפַּרְדֵּס אֶלָּא מִי שֶׁנִּתְמַלֵּא כְּרֵסוֹ לֶחֶם וּבָשָׂר. וְלֶחֶם וּבָשָׂר הוּא לֵידַע הָאָסוּר וְהַמֻּתָּר וְכַיּוֹצֵא בָּהֶם מִשְּׁאָר הַמִּצְוֹת. וְאַף עַל פִּי שֶׁדְּבָרִים אֵלּוּ דָּבָר קָטָן קָרְאוּ אוֹתָן חֲכָמִים שֶׁהֲרֵי אָמְרוּ חֲכָמִים דָּבָר גָּדוֹל מַעֲשֵׂה מֶרְכָּבָה וְדָבָר קָטָן הֲוָיוֹת דְּאַבַּיֵּי וְרָבָא. אַף עַל פִּי כֵן רְאוּיִין הֵן לְהַקְדִּימָן. שֶׁהֵן מְיַשְּׁבִין דַּעְתּוֹ שֶׁל אָדָם תְּחִלָּה. וְעוֹד שֶׁהֵם הַטּוֹבָה הַגְּדוֹלָה שֶׁהִשְׁפִּיעַ הַקָּדוֹשׁ בָּרוּךְ הוּא לְיִשּׁוּב הָעוֹלָם הַזֶּה כְּדֵי לִנְחל חַיֵּי הָעוֹלָם הַבָּא. וְאֶפְשָׁר שֶׁיְּדָעֵם הַכּל קָטָן וְגָדוֹל אִישׁ וְאִשָּׁה בַּעַל לֵב רָחָב וּבַעַל לֵב קָצָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואני</strong> אומר שע&quot;פ דרך זה יתבאר הא דתנן ר&quot;א (בן) חסמא אומר קינין ופתחי נדה הן גופי הלכות וכו׳ לומר שאע&quot;פ שתקופות וגימטריאות עסקם בדברים מעולים שהם הגרמים השמימיים וקינים הם דבר קל הערך. ופתחי נדה נושאם דבר מכוער. אעפ&quot;כ אלו הן גופי הלכות כלומר עיקרי תורה מצד השכר הגדול הצפון לעוסקים בהם. ותקופות וגימטריאות אע&quot;פ שנושאם דברים מעולים מאד אינם עיקרים אלא כמו פרפראות לחכמה התלמודית שהיא ראויה להקרא חכמה סתם להיות עסקה בפירוש מצותיו יתברך ולגודל השכר הניתן לעוסקים בה ומקיימין מצותיה:</p>
               </div>
             </div>
@@ -408,8 +443,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:1:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-1-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-1">Mishneh Torah, Foundations of the Torah 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל בֵּית יִשְׂרָאֵל מְצֻוִּין עַל קִדּוּשׁ הַשֵּׁם הַגָּדוֹל הַזֶּה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב לב)</span> &quot;וְנִקְדַּשְׁתִּי בְּתוֹךְ בְּנֵי יִשְׂרָאֵל&quot;. וּמֻזְהָרִין שֶׁלֹּא לְחַלְּלוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב לב)</span> &quot;וְלֹא תְחַלְּלוּ אֶת שֵׁם קָדְשִׁי&quot;. כֵּיצַד. כְּשֶׁיַּעֲמֹד עוֹבֵד כּוֹכָבִים וְיֶאֱנֹס אֶת יִשְׂרָאֵל לַעֲבֹר עַל אַחַת מִכָּל מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה אוֹ יַהַרְגֶּנּוּ יַעֲבֹר וְאַל יֵהָרֵג שֶׁנֶּאֱמַר בַּמִּצְוֹת <span class="source-small">(ויקרא יח ה)</span> &quot;אֲשֶׁר יַעֲשֶׂה אוֹתָם הָאָדָם וָחַי בָּהֶם&quot;. וָחַי בָּהֶם וְלֹא שֶׁיָּמוּת בָּהֶם. וְאִם מֵת וְלֹא עָבַר הֲרֵי זֶה מִתְחַיֵּב בְּנַפְשׁוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל בית ישראל מצווין על קידוש השם וכו׳ עד בין נאנס בתוך עשרה בין נאנס בינו לבין העובדי כוכבים.</strong> הכל בסנהדרין (דף ע&quot;ד) א&quot;ר יוחנן משום ר׳ שמעון בר יהוצדק נמנו וגמרו בעליית בית נתזא בלוד כל עבירות שבתורה אם אומרים לאדם עבור ואל תהרג יעבור ואל יהרג חוץ מעבודת כוכבים גילוי עריות ושפיכות דמים. כי אתא רב דימי אמר ר׳ יוחנן לא שנו אלא שלא בשעת ההמרה אבל בשעת ההמרה אפילו מצוה קלה יהרג ואל יעבור. כי אתא רבין אמר ר׳ יוחנן אפי׳ שלא בשעת ההמרה לא אמרו אלא בצנעה אבל בפרהסיא אפי׳ מצוה קלה יהרג ואל יעבור. אמר רב יעקב אמר ר׳ יוחנן אין בפרהסיא פחות מעשרה בני אדם ואמרו שם דבעינן שיהיו ישראל שנאמר ונקדשתי בתוך בני ישראל. והקשו שם והא אסתר בפרהסיא הואי כלומר ונבעלה לאחשורוש ולא מסרה נפשה. אמר אביי אסתר קרקע עולם היתה כלומר היא אינה עושה מעשה הוא עושה בה מעשה. רבא אמר הנאת עצמן שאני ואזדא לטעמיה דאמר רבא עובד כוכבים דאמר לישראל קטול אספסתא פי׳ קצור עשב בשבתא ושדי לחיותא ואי לא קטילנא לך, לקטול ולא לקטליה. שדי לנהרא לקטליה ולא לקטול מ&quot;ט לעבורי מילתא הוא דבעי. ופסק רבינו כרבא ונראה דסבירא ליה כהרמב&quot;ן דעובד כוכבים הבא על בת ישראל לאו בכלל ג&quot;ע הוא דא&quot;כ לרבא דאמר הנאת עצמן שאני כלומר אפילו עבדה מעשה הא אמרינן דבשלש עבירות יהרג ואל יעבור אפילו מתכוין להנאת עצמו. והיינו טעמא דלא הוי בכלל ג&quot;ע דאי בזנות גזירת בית דין של שם הוא ואי דרך חתנות מלא תתחתן בם נפקא דמשאר עבירות הוא ולית ליה דרשה דאל תקרי לבת לומר דהיתה אשת איש. ואפשר שלזה כיון רש&quot;י שכתב על מה שהקשו והא אסתר פרהסיא הואי ונבעלה לעובד כוכבים ולא מסרה נפשה. נשמר דלא נימא דפריך דאשת איש הואי ולא מסרה נפשה דא&quot;כ לא הוה מתרץ רבא מידי דכיון דג&quot;ע היא אפי׳ מתכוין להנאת עצמו יהרג ואל יעבור. ועל מה שכתב הגמרא אפי׳ מצוה קלה יהרג ואל יעבור שאלו מאי מצוה קלה אמר רבא ב&quot;ר יצחק אמר רב אפילו לשנויי ערקתא דמסאנא ופירש&quot;י שרוך הנעל שאם דרך העובדי כוכבים לקשור כך ודרך ישראל בענין אחר כגון שיש צד יהדות בדבר ודרך ישראל להיות צנועים אפי׳ שינוי שאין בו מצוה אלא מנהג בעלמא. והתימא על רבינו שכתב אפי׳ על מצוה משאר מצות דמשמע דדוקא מצוה אבל לא מנהג. ואפשר שרבינו היה מפרש ערקתא דמסאנא כמו שפי׳ הרי&quot;ף שהיו רצועות ישראל משונות כדי שלא ילבשו מלבוש כותי שזו מל&quot;ת היא כמ&quot;ש בפי&quot;א מהלכות עובדי כוכבים שאין מתדמין לעובדי כוכבים לא במלבוש ולא בשיער שנאמר ולא תלכו בחוקות וגו׳ וכתוב בנימוקי יוסף דהא דאמרינן עובד כוכבים הבא על בת ישראל לא הוי בכלל ג&quot;ע דוקא הוא אבל ישראל הבא [על] העובדת כוכבים בכלל עריות חמורות היא דהא זמנין דמיחייב מיתה עלה דקנאים פוגעים בו ואם לא פגעו בו קנאים חייב כרת. וכתב עוד שכל דבר שבידם להעבירו בעל כרחו אין לנו למסור נפשנו למיתה בשב ואל תעשה וכדאשכחן באסתר דקרקע עולם היתה ואפי׳ בשעת ההמרה כדאשכחן באלישע בעל כנפים שנטל תפילין מראשו כשראה קסדור. וכתב הר&quot;ן בפ׳ במה טומנין דלא אמרו יהרג ואל יעבור אלא לעבור על מצות ל&quot;ת אבל לא דגזרו לבטל מצות עשה כיון שאינו עובר בידים ועוד שהם יכולים לבטלה ממנו על כרחו שיניחוהו בבית האסורין ותבטל מאליה עכ&quot;ל. וקשיא לי שהרי רב חנינא בן תרדיון מסר נפשו כדי לעסוק בתורה וכן ר׳ יהודה בן בבא כדי לסמוך זקנים ובמדרש מה לך יוצא ליסקל על שנטלתי לולב מה לך יוצא ליצלב על שמלתי את בני ואין לומר מדת חסידות שנו כאן אלא משמע שעל פי הדין היו עושים כן וההיא דאלישע בעל כנפים לא מכרעא דכבר קיים באותו היום מצות תפילין וגם לא אמר לקסדור שמקיים גזירתם שלא להניח תפילין אבל השיב למה ששאלו מה זה בידך ואמר כנפי יונה:</p>
               </div>
             </div>
@@ -424,8 +464,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-4-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-4">Mishneh Torah, Foundations of the Torah 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁנֶּאֱמַר בּוֹ יַעֲבֹר וְאַל יֵהָרֵג וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה מִתְחַיֵּב בְּנַפְשׁוֹ. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם בָּרַבִּים כְּדָנִיֵּאל חֲנַנְיָה מִישָׁאֵל וַעֲזַרְיָה וְרַבִּי עֲקִיבָא וַחֲבֵרָיו. וְאֵלּוּ הֵן הֲרוּגֵי מַלְכוּת שֶׁאֵין מַעֲלָה עַל מַעֲלָתָן. וַעֲלֵיהֶן נֶאֱמַר <span class="source-small">(תהילים מד כג)</span> &quot;כִּי עָלֶיךָ הֹרַגְנוּ כָל הַיּוֹם נֶחְשַׁבְנוּ כְּצֹאן טִבְחָה&quot;. וַעֲלֵיהֶם נֶאֱמַר <span class="source-small">(תהילים נ ה)</span> &quot;אִסְפוּ לִי חֲסִידָי כֹּרְתֵי בְרִיתִי עֲלֵי זָבַח&quot;. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְעָבַר וְלֹא נֶהֱרַג הֲרֵי זֶה מְחַלֵּל אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם בָּרַבִּים וּבִטֵּל מִצְוַת עֲשֵׂה שֶׁהִיא קִדּוּשׁ הַשֵּׁם וְעָבַר עַל מִצְוַת לֹא תַעֲשֶׂה שֶׁהִיא חִלּוּל הַשֵּׁם. וְאַף עַל פִּי כֵן מִפְּנֵי שֶׁעָבַר בְּאֹנֶס אֵין מַלְקִין אוֹתוֹ וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין מְמִיתִין אוֹתוֹ בֵּית דִּין אֲפִלּוּ הָרַג בְּאֹנֶס. שֶׁאֵין מַלְקִין וּמְמִיתִין אֶלָּא לְעוֹבֵר בִּרְצוֹנוֹ וּבְעֵדִים וְהַתְרָאָה שֶׁנֶּאֱמַר בְּנוֹתֵן מִזַּרְעוֹ לַמּלֶךְ <span class="source-small">(ויקרא כ ה)</span> &quot;(וְנָתַתִּי) [וְשַׂמְתִּי] אֲנִי אֶת פָּנַי בָּאִישׁ הַהוּא&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ הַהוּא לֹא אָנוּס וְלֹא שׁוֹגֵג וְלֹא מֻטְעֶה. וּמָה אִם עֲבוֹדַת כּוֹכָבִים שֶׁהִיא חֲמוּרָה מִן הַכּל הָעוֹבֵד אוֹתָהּ בְּאֹנֶס אֵינוֹ חַיָּב כָּרֵת וְאֵין צָרִיךְ לוֹמַר מִיתַת בֵּית דִּין. קַל וָחֹמֶר לִשְׁאָר מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה. וּבַעֲרָיוֹת הוּא אוֹמֵר <span class="source-small">(דברים כב כו)</span> &quot;וְלַנַּעֲרָה לֹא תַעֲשֶׂה דָבָר&quot;. אֲבָל אִם יָכוֹל לְמַלֵּט נַפְשׁוֹ וְלִבְרֹחַ מִתַּחַת יַד הַמֶּלֶךְ הָרָשָׁע וְאֵינוֹ עוֹשֶׂה הִנֵּה הוּא כְּכֶלֶב שָׁב עַל קֵאוֹ. וְהוּא נִקְרָא עוֹבֵד עֲבוֹדַת כּוֹכָבִים בְּמֵזִיד וְהוּא נִטְרָד מִן הָעוֹלָם הַבָּא וְיוֹרֵד לַמַּדְרֵגָה הַתַּחְתּוֹנָה שֶׁל גֵּיהִנֹּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מי שנאמר בו יעבור ואל יהרג ונהרג ולא עבר הרי זה מתחייב בנפשו.</strong> סובר רבינו שכשאמרו בגמרא יעבור ואל יהרג פירוש צריך לעבור כדי שלא יהרג. אבל שלמים וכן רבים סוברים דאם נהרג ולא עבר צדקה תחשב לו. ונראה שמפרשים יעבור ואל יהרג הרשות בידו לעבור כדי שלא יהרג. וכתב בנימוקי יוסף דאפילו לפי סברת רבינו אם הוא אדם גדול וחסיד ירא שמים ורואה שהדור פרוץ בכך רשאי לקדש את השם ולמסור עצמו אפילו על מצוה קלה כדי שיראו העם ולמדו ליראה את השם ולאהבו בכל לבם:</p>
               </div>
             </div>
@@ -440,8 +485,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-4-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-4">Mishneh Torah, Foundations of the Torah 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁנֶּאֱמַר בּוֹ יַעֲבֹר וְאַל יֵהָרֵג וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה מִתְחַיֵּב בְּנַפְשׁוֹ. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם בָּרַבִּים כְּדָנִיֵּאל חֲנַנְיָה מִישָׁאֵל וַעֲזַרְיָה וְרַבִּי עֲקִיבָא וַחֲבֵרָיו. וְאֵלּוּ הֵן הֲרוּגֵי מַלְכוּת שֶׁאֵין מַעֲלָה עַל מַעֲלָתָן. וַעֲלֵיהֶן נֶאֱמַר <span class="source-small">(תהילים מד כג)</span> &quot;כִּי עָלֶיךָ הֹרַגְנוּ כָל הַיּוֹם נֶחְשַׁבְנוּ כְּצֹאן טִבְחָה&quot;. וַעֲלֵיהֶם נֶאֱמַר <span class="source-small">(תהילים נ ה)</span> &quot;אִסְפוּ לִי חֲסִידָי כֹּרְתֵי בְרִיתִי עֲלֵי זָבַח&quot;. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְעָבַר וְלֹא נֶהֱרַג הֲרֵי זֶה מְחַלֵּל אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם בָּרַבִּים וּבִטֵּל מִצְוַת עֲשֵׂה שֶׁהִיא קִדּוּשׁ הַשֵּׁם וְעָבַר עַל מִצְוַת לֹא תַעֲשֶׂה שֶׁהִיא חִלּוּל הַשֵּׁם. וְאַף עַל פִּי כֵן מִפְּנֵי שֶׁעָבַר בְּאֹנֶס אֵין מַלְקִין אוֹתוֹ וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין מְמִיתִין אוֹתוֹ בֵּית דִּין אֲפִלּוּ הָרַג בְּאֹנֶס. שֶׁאֵין מַלְקִין וּמְמִיתִין אֶלָּא לְעוֹבֵר בִּרְצוֹנוֹ וּבְעֵדִים וְהַתְרָאָה שֶׁנֶּאֱמַר בְּנוֹתֵן מִזַּרְעוֹ לַמּלֶךְ <span class="source-small">(ויקרא כ ה)</span> &quot;(וְנָתַתִּי) [וְשַׂמְתִּי] אֲנִי אֶת פָּנַי בָּאִישׁ הַהוּא&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ הַהוּא לֹא אָנוּס וְלֹא שׁוֹגֵג וְלֹא מֻטְעֶה. וּמָה אִם עֲבוֹדַת כּוֹכָבִים שֶׁהִיא חֲמוּרָה מִן הַכּל הָעוֹבֵד אוֹתָהּ בְּאֹנֶס אֵינוֹ חַיָּב כָּרֵת וְאֵין צָרִיךְ לוֹמַר מִיתַת בֵּית דִּין. קַל וָחֹמֶר לִשְׁאָר מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה. וּבַעֲרָיוֹת הוּא אוֹמֵר <span class="source-small">(דברים כב כו)</span> &quot;וְלַנַּעֲרָה לֹא תַעֲשֶׂה דָבָר&quot;. אֲבָל אִם יָכוֹל לְמַלֵּט נַפְשׁוֹ וְלִבְרֹחַ מִתַּחַת יַד הַמֶּלֶךְ הָרָשָׁע וְאֵינוֹ עוֹשֶׂה הִנֵּה הוּא כְּכֶלֶב שָׁב עַל קֵאוֹ. וְהוּא נִקְרָא עוֹבֵד עֲבוֹדַת כּוֹכָבִים בְּמֵזִיד וְהוּא נִטְרָד מִן הָעוֹלָם הַבָּא וְיוֹרֵד לַמַּדְרֵגָה הַתַּחְתּוֹנָה שֶׁל גֵּיהִנֹּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואעפ&quot;כ מפני שעבר באונס אין מלקין אותו וכו׳.</strong> כ&quot;כ ג&quot;כ התוס׳ בר&quot;פ הבא על יבמתו (יבמות נ&quot;ד) והביאו ראיה דקאמר בפ׳ רבי ישמעאל (ע&quot;ז נ&quot;ד) דנעבד באונס אסור וכו׳. ודע דהא דאמרן שמפני שעבר באונס אין מלקין אותו ואין ממיתין אותו היינו בשאר עבירות חוץ ממי שאנסוהו לבא על הערוה מפני שאין קישוי אלא לדעת כמבואר בדברי רבינו פ&quot;א מהלכות איסורי ביאה:</p>
               </div>
             </div>
@@ -456,8 +506,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-4-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-4">Mishneh Torah, Foundations of the Torah 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁנֶּאֱמַר בּוֹ יַעֲבֹר וְאַל יֵהָרֵג וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה מִתְחַיֵּב בְּנַפְשׁוֹ. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם בָּרַבִּים כְּדָנִיֵּאל חֲנַנְיָה מִישָׁאֵל וַעֲזַרְיָה וְרַבִּי עֲקִיבָא וַחֲבֵרָיו. וְאֵלּוּ הֵן הֲרוּגֵי מַלְכוּת שֶׁאֵין מַעֲלָה עַל מַעֲלָתָן. וַעֲלֵיהֶן נֶאֱמַר <span class="source-small">(תהילים מד כג)</span> &quot;כִּי עָלֶיךָ הֹרַגְנוּ כָל הַיּוֹם נֶחְשַׁבְנוּ כְּצֹאן טִבְחָה&quot;. וַעֲלֵיהֶם נֶאֱמַר <span class="source-small">(תהילים נ ה)</span> &quot;אִסְפוּ לִי חֲסִידָי כֹּרְתֵי בְרִיתִי עֲלֵי זָבַח&quot;. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְעָבַר וְלֹא נֶהֱרַג הֲרֵי זֶה מְחַלֵּל אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם בָּרַבִּים וּבִטֵּל מִצְוַת עֲשֵׂה שֶׁהִיא קִדּוּשׁ הַשֵּׁם וְעָבַר עַל מִצְוַת לֹא תַעֲשֶׂה שֶׁהִיא חִלּוּל הַשֵּׁם. וְאַף עַל פִּי כֵן מִפְּנֵי שֶׁעָבַר בְּאֹנֶס אֵין מַלְקִין אוֹתוֹ וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין מְמִיתִין אוֹתוֹ בֵּית דִּין אֲפִלּוּ הָרַג בְּאֹנֶס. שֶׁאֵין מַלְקִין וּמְמִיתִין אֶלָּא לְעוֹבֵר בִּרְצוֹנוֹ וּבְעֵדִים וְהַתְרָאָה שֶׁנֶּאֱמַר בְּנוֹתֵן מִזַּרְעוֹ לַמּלֶךְ <span class="source-small">(ויקרא כ ה)</span> &quot;(וְנָתַתִּי) [וְשַׂמְתִּי] אֲנִי אֶת פָּנַי בָּאִישׁ הַהוּא&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ הַהוּא לֹא אָנוּס וְלֹא שׁוֹגֵג וְלֹא מֻטְעֶה. וּמָה אִם עֲבוֹדַת כּוֹכָבִים שֶׁהִיא חֲמוּרָה מִן הַכּל הָעוֹבֵד אוֹתָהּ בְּאֹנֶס אֵינוֹ חַיָּב כָּרֵת וְאֵין צָרִיךְ לוֹמַר מִיתַת בֵּית דִּין. קַל וָחֹמֶר לִשְׁאָר מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה. וּבַעֲרָיוֹת הוּא אוֹמֵר <span class="source-small">(דברים כב כו)</span> &quot;וְלַנַּעֲרָה לֹא תַעֲשֶׂה דָבָר&quot;. אֲבָל אִם יָכוֹל לְמַלֵּט נַפְשׁוֹ וְלִבְרֹחַ מִתַּחַת יַד הַמֶּלֶךְ הָרָשָׁע וְאֵינוֹ עוֹשֶׂה הִנֵּה הוּא כְּכֶלֶב שָׁב עַל קֵאוֹ. וְהוּא נִקְרָא עוֹבֵד עֲבוֹדַת כּוֹכָבִים בְּמֵזִיד וְהוּא נִטְרָד מִן הָעוֹלָם הַבָּא וְיוֹרֵד לַמַּדְרֵגָה הַתַּחְתּוֹנָה שֶׁל גֵּיהִנֹּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כתב</strong> הרמ&quot;ך מכיון שעבר באונס אין מלקין אותו ואין ממיתין וכו׳. תמיהא לי דתנן ריש פרק ארבע מיתות דפוער עצמו לבעל פעור זו היא עבודתו ומפרש בגמ׳ אע&quot;ג דמכוין לבזוייה וההוא ודאי מוטעה הוא אע&quot;פ שקיבל עליו התראה דסבור דהתראתם בטל ואפ&quot;ה חייב וה&quot;נ אם עבד כוכבים באונס והתרו בו חייב מיתה, עכ&quot;ל. ואין תלונתו על רבינו אלא על חז&quot;ל שדרשו ההוא ולא אנוס. ומ&quot;ש שאם עבד כוכבים באונס והתרו בו חייב מיתה דברים תמוהים הם שהם שני הפכים בנושא אחד שאם קיבל עליו התראה הרי זה מרוצה ולא אנוס ואם אומר שאעפ&quot;כ הוא רוצה לעבדה מפני שאונסים אותו ה&quot;ז אנוס לא מרוצה. ולענין מה שהקשה מפוער עצמו לבעל פעור לאו קושיא היא שרבינו מפרש דלאו לענין חיוב סקילה אמרינן דזו היא עבודתה אלא לענין חיוב חטאת וכך מבואר בדברי רבינו פרק ג׳ מהלכות עבודת כוכבים שכתב וז&quot;ל העובד כוכבים כדרכה ואפילו עשה דרך בזיון חייב כיצד הפוער עצמו לפעור כדי לבזותו או זרק אבן למרקוליס כדי לבזותו הואיל ועבודתו בכך חייב ומביא קרבן על שגגתו, עכ&quot;ל:</p>
               </div>
             </div>
@@ -472,8 +527,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:4</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-4-4" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:4:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-4">Mishneh Torah, Foundations of the Torah 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁנֶּאֱמַר בּוֹ יַעֲבֹר וְאַל יֵהָרֵג וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה מִתְחַיֵּב בְּנַפְשׁוֹ. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְנֶהֱרַג וְלֹא עָבַר הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה קִדֵּשׁ אֶת הַשֵּׁם בָּרַבִּים כְּדָנִיֵּאל חֲנַנְיָה מִישָׁאֵל וַעֲזַרְיָה וְרַבִּי עֲקִיבָא וַחֲבֵרָיו. וְאֵלּוּ הֵן הֲרוּגֵי מַלְכוּת שֶׁאֵין מַעֲלָה עַל מַעֲלָתָן. וַעֲלֵיהֶן נֶאֱמַר <span class="source-small">(תהילים מד כג)</span> &quot;כִּי עָלֶיךָ הֹרַגְנוּ כָל הַיּוֹם נֶחְשַׁבְנוּ כְּצֹאן טִבְחָה&quot;. וַעֲלֵיהֶם נֶאֱמַר <span class="source-small">(תהילים נ ה)</span> &quot;אִסְפוּ לִי חֲסִידָי כֹּרְתֵי בְרִיתִי עֲלֵי זָבַח&quot;. וְכָל מִי שֶׁנֶּאֱמַר בּוֹ יֵהָרֵג וְאַל יַעֲבֹר וְעָבַר וְלֹא נֶהֱרַג הֲרֵי זֶה מְחַלֵּל אֶת הַשֵּׁם. וְאִם הָיָה בַּעֲשָׂרָה מִיִּשְׂרָאֵל הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם בָּרַבִּים וּבִטֵּל מִצְוַת עֲשֵׂה שֶׁהִיא קִדּוּשׁ הַשֵּׁם וְעָבַר עַל מִצְוַת לֹא תַעֲשֶׂה שֶׁהִיא חִלּוּל הַשֵּׁם. וְאַף עַל פִּי כֵן מִפְּנֵי שֶׁעָבַר בְּאֹנֶס אֵין מַלְקִין אוֹתוֹ וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין מְמִיתִין אוֹתוֹ בֵּית דִּין אֲפִלּוּ הָרַג בְּאֹנֶס. שֶׁאֵין מַלְקִין וּמְמִיתִין אֶלָּא לְעוֹבֵר בִּרְצוֹנוֹ וּבְעֵדִים וְהַתְרָאָה שֶׁנֶּאֱמַר בְּנוֹתֵן מִזַּרְעוֹ לַמּלֶךְ <span class="source-small">(ויקרא כ ה)</span> &quot;(וְנָתַתִּי) [וְשַׂמְתִּי] אֲנִי אֶת פָּנַי בָּאִישׁ הַהוּא&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ הַהוּא לֹא אָנוּס וְלֹא שׁוֹגֵג וְלֹא מֻטְעֶה. וּמָה אִם עֲבוֹדַת כּוֹכָבִים שֶׁהִיא חֲמוּרָה מִן הַכּל הָעוֹבֵד אוֹתָהּ בְּאֹנֶס אֵינוֹ חַיָּב כָּרֵת וְאֵין צָרִיךְ לוֹמַר מִיתַת בֵּית דִּין. קַל וָחֹמֶר לִשְׁאָר מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה. וּבַעֲרָיוֹת הוּא אוֹמֵר <span class="source-small">(דברים כב כו)</span> &quot;וְלַנַּעֲרָה לֹא תַעֲשֶׂה דָבָר&quot;. אֲבָל אִם יָכוֹל לְמַלֵּט נַפְשׁוֹ וְלִבְרֹחַ מִתַּחַת יַד הַמֶּלֶךְ הָרָשָׁע וְאֵינוֹ עוֹשֶׂה הִנֵּה הוּא כְּכֶלֶב שָׁב עַל קֵאוֹ. וְהוּא נִקְרָא עוֹבֵד עֲבוֹדַת כּוֹכָבִים בְּמֵזִיד וְהוּא נִטְרָד מִן הָעוֹלָם הַבָּא וְיוֹרֵד לַמַּדְרֵגָה הַתַּחְתּוֹנָה שֶׁל גֵּיהִנֹּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומה אם עבודת כוכבים שחמורה מן הכל וכו׳ אין חייב כרת ואין צריך לומר מיתת בית דין.</strong> כתב הרמ&quot;ך נראה כי זה ק&quot;ו פריכא הוא דכרת לא מיחייב דרחמנא לבא בעי ואי לא מקבלה עליה באלוה לאו כלום הוא אבל מיתת ב&quot;ד שהיא בעדים והתראה כיון שעבר אחר שהתרו בו חייב כדאמרינן הפוער עצמו לפעור זהו עבודתו ואע&quot;ג דמכוין לבזוייה, עכ&quot;ל. ואיני רואה טעם בדברים אלו דכיון שאינו עובד אלא באונס מה התראה שייך בזה וכמו שכתבתי בסמוך:</p>
               </div>
             </div>
@@ -488,8 +548,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:5:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-5-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-5">Mishneh Torah, Foundations of the Torah 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים שֶׁאָמְרוּ לָהֶם עוֹבְדֵי כּוֹכָבִים תְּנוּ לָנוּ אַחַת מִכֶּן וּנְטַמֵּא אוֹתָהּ וְאִם לָאו נְטַמֵּא אֶת כֻּלְּכֶן יִטָּמְאוּ כֻּלָּן וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל. וְכֵן אִם אָמְרוּ לָהֶם עוֹבְדֵי כּוֹכָבִים תְּנוּ לָנוּ אֶחָד מִכֶּם וְנַהַרְגֶּנּוּ וְאִם לָאו נַהֲרֹג כֻּלְּכֶם. יֵהָרְגוּ כֻּלָּם וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל. וְאִם יִחֲדוּהוּ לָהֶם וְאָמְרוּ תְּנוּ לָנוּ פְּלוֹנִי אוֹ נַהֲרֹג אֶת כֻּלְּכֶם. אִם הָיָה מְחֻיָּב מִיתָה כְּשֶׁבַע בֶּן בִּכְרִי יִתְּנוּ אוֹתוֹ לָהֶם. וְאֵין מוֹרִין לָהֶם כֵּן לְכַתְּחִלָּה. וְאִם אֵינוֹ חַיָּב מִיתָה יֵהָרְגוּ כֻּלָּן וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים שאמרו להם וכו׳.</strong> משנה פ&quot;ח דתרומות כלשון רבינו. כתב הרשב&quot;א בתשובה בסיעה של נשים עוברת ואמרו להם עובדי כוכבים תנו לנו אחת מכם ונטמאה ואם לאו הרי אנו מטמאים את כלכן אפילו היתה אחת מהן מחוללת יטמאו את כולן ואל ימסרו אותה להם. ולא דמי למה שאמרו שם שאם היתה ככר של תרומה טמאה ימסרו אותה ולא יטמאו את כל הככרות של תרומה דככר תרומה טמאה שאני דטמא הוא לגמרי ומה יוסיף עוד זה אבל אשה אם חללה עצמה פעם אחת ונטמאת בעבירה כל שתעבור ותטמא את עצמה תוסיף על חטאתה פשע ובפעם הזאת אין בינה לבין הטהורה והכשרה שבהן ולא כלום ולמה יאנסוה למסרה להם שלא מדעתה ועוד שמא כבר הרהרה תשובה ושבה מדרכה הרעה:</p>
               </div>
             </div>
@@ -504,8 +569,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:5:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-5-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-5">Mishneh Torah, Foundations of the Torah 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים שֶׁאָמְרוּ לָהֶם עוֹבְדֵי כּוֹכָבִים תְּנוּ לָנוּ אַחַת מִכֶּן וּנְטַמֵּא אוֹתָהּ וְאִם לָאו נְטַמֵּא אֶת כֻּלְּכֶן יִטָּמְאוּ כֻּלָּן וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל. וְכֵן אִם אָמְרוּ לָהֶם עוֹבְדֵי כּוֹכָבִים תְּנוּ לָנוּ אֶחָד מִכֶּם וְנַהַרְגֶּנּוּ וְאִם לָאו נַהֲרֹג כֻּלְּכֶם. יֵהָרְגוּ כֻּלָּם וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל. וְאִם יִחֲדוּהוּ לָהֶם וְאָמְרוּ תְּנוּ לָנוּ פְּלוֹנִי אוֹ נַהֲרֹג אֶת כֻּלְּכֶם. אִם הָיָה מְחֻיָּב מִיתָה כְּשֶׁבַע בֶּן בִּכְרִי יִתְּנוּ אוֹתוֹ לָהֶם. וְאֵין מוֹרִין לָהֶם כֵּן לְכַתְּחִלָּה. וְאִם אֵינוֹ חַיָּב מִיתָה יֵהָרְגוּ כֻּלָּן וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם אמרו להם וכו׳.</strong> בירושלמי על אותה משנה דבסמוך תניא סיעת בני אדם המהלכים בדרך ופגעו בהם עובדי כוכבים ואמרו להם תנו לנו אחד מהם ונהרוג אותו ואם לאו נהרוג כולכם אפילו כלם נהרגים לא ימסרו נפש אחת מישראל יחדו להם אחד כגון שבע בן בכרי ימסרו אותו להם ולא יהרגו אמר ר&quot;ל והוא שיהיה חייב מיתה כשבע בן בכרי ור׳ יוחנן אמר אפילו שאינו חייב מיתה ומייתי התם עובדא בהאי בר נש תבעתיה מלכותא וערק ללוד לגבי ריב&quot;ל ואקיף מלכא מדינתא ויהב להו והוה אליהו רגיל דמתגלי ליה ותו לא איתגלי ליה וצם כמה צומין עד דאיתגלי ליה א&quot;ל לדילטור אנא מתגלי א&quot;ל ולא משנה עשיתי א&quot;ל וזו משנת חסידים היא. ופסק רבינו כר&quot;ל אף על גב דמן הסתם לא קיי&quot;ל כוותיה לגבי דר׳ יוחנן משום דהוי ספק נפשות ולהחמיר דלא ימסרוהו בידים ביד העובדי כוכבים ועוד דמתניתא מסייעא ליה דקתני כשבע בן בכרי משמע כשחייב מיתה כמותו דוקא ומקרא איכא למידק הכי שאל&quot;כ למה ליה ליואב למימר נשא יד במלך בדוד כלומר והרי הוא חייב מיתה משמע דאי לאו הכי לא היו רשאים למוסרו לו וסובר רבינו דההוא בר נש דריב&quot;ל היה חייב מיתה כשבע בן בכרי ואפ&quot;ה לא איתגלי ליה אליהו מפני שמסרו וא&quot;ל וזו משנת חסידים היא אלמא דלכתחילה אין מורים כן:</p>
               </div>
             </div>
@@ -520,8 +590,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:5:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-5-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:5:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-5">Mishneh Torah, Foundations of the Torah 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים שֶׁאָמְרוּ לָהֶם עוֹבְדֵי כּוֹכָבִים תְּנוּ לָנוּ אַחַת מִכֶּן וּנְטַמֵּא אוֹתָהּ וְאִם לָאו נְטַמֵּא אֶת כֻּלְּכֶן יִטָּמְאוּ כֻּלָּן וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל. וְכֵן אִם אָמְרוּ לָהֶם עוֹבְדֵי כּוֹכָבִים תְּנוּ לָנוּ אֶחָד מִכֶּם וְנַהַרְגֶּנּוּ וְאִם לָאו נַהֲרֹג כֻּלְּכֶם. יֵהָרְגוּ כֻּלָּם וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל. וְאִם יִחֲדוּהוּ לָהֶם וְאָמְרוּ תְּנוּ לָנוּ פְּלוֹנִי אוֹ נַהֲרֹג אֶת כֻּלְּכֶם. אִם הָיָה מְחֻיָּב מִיתָה כְּשֶׁבַע בֶּן בִּכְרִי יִתְּנוּ אוֹתוֹ לָהֶם. וְאֵין מוֹרִין לָהֶם כֵּן לְכַתְּחִלָּה. וְאִם אֵינוֹ חַיָּב מִיתָה יֵהָרְגוּ כֻּלָּן וְאַל יִמְסְרוּ לָהֶם נֶפֶשׁ אַחַת מִיִּשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כתב</strong> הרמ&quot;ך אף על פי שנמצא בתוספתא כדבריו לא ידענא טעמא מאי דהא מסיק בגמרא (פסחים כ&quot;ה) דמש&quot;ה אמרינן בשפיכות דמים יהרג ואל יעבור דסברא הוא מאי חזית דדמא דידך סומק טפי והכא ליכא האי סברא דהא יהרגו כלם והוא עצמו ומוטב שיהרג הוא עצמו ואל יהרגו כולם. ואני אומר שאין טענתו טענה על התוספתא דאיכא למימר דהתם שאני שיחדו לו וא&quot;ל קטול לפלניא ומש&quot;ה אי לאו טעמא דמאי חזית דדמא דידך סומק טפי לא הוה אמרינן דיהרג ואל יעבור והיינו דקתני סיפא יחדוהו להם אבל ברישא שלא יחדוהו שלא אמרו אלא תנו אחד מכם ונהרוג אותו בכל אחד מהם שירצו למסור אותו איכא למימר להו מאי חזיתו שתמסרו את זה תמסרו אחד מכם ותצילו את זה דמאי חזיתו דדמא דהאיך סומק טפי דלמא דמא דהאי סומק טפי וע&quot;פ טענה זו א&quot;א להם למסור שום אחד מהם אבל אי קשיא על ר&quot;ל קשיא דאמר שאע&quot;פ שיחדוהו להם אם אינו חייב מיתה לא ימסרוהו דהא ליכא הכא סברא דמאי חזית דדמא דידך סומק טפי שהרי הוא והם נהרגים אם לא ימסרוהו. ואפשר לומר דס&quot;ל לר&quot;ל שמ&quot;ש דבש&quot;ד סברא הוא אינו עיקר הטעם דקבלה היתה בידם דש&quot;ד יהרג ואל יעבור אלא שנתנו טעם מסברא להיכא דשייך אבל אין ה&quot;נ דאפילו היכא דלא שייך האי טעמא הוי דינא הכי דיהרג ואל יעבור:</p>
               </div>
             </div>
@@ -536,8 +611,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:6:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-6-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-6">Mishneh Torah, Foundations of the Torah 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּעִנְיָן שֶׁאָמְרוּ בָּאֳנָסִין כָּךְ אָמְרוּ בָּחֳלָאִים. כֵּיצַד. מִי שֶׁחָלָה וְנָטָה לָמוּת וְאָמְרוּ הָרוֹפְאִים שֶׁרְפוּאָתוֹ בְּדָבָר פְּלוֹנִי מֵאִסּוּרִין שֶׁבַּתּוֹרָה עוֹשִׂין. וּמִתְרַפְּאִין בְּכָל אִסּוּרִין שֶׁבַּתּוֹרָה בִּמְקוֹם סַכָּנָה חוּץ מֵעֲבוֹדַת כּוֹכָבִים וְגִלּוּי עֲרָיוֹת וּשְׁפִיכַת דָּמִים שֶׁאֲפִלּוּ בִּמְקוֹם סַכָּנָה אֵין מִתְרַפְּאִין בָּהֶן. וְאִם עָבַר וְנִתְרַפֵּא עוֹנְשִׁין אוֹתוֹ בֵּית דִּין עֹנֶשׁ הָרָאוּי לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כענין שאמרו באונסין וכו׳ ומתרפאין בכל איסורין שבתורה וכו׳.</strong> פסחים פרק כל שעה (פסחים דף כ״ה ע״א) כי אתא רבין א״ר יוחנן בכל מתרפאין פירוש במקום סכנה חוץ מעבודת כוכבים וגלוי עריות ושפיכות דמים:</p>
               </div>
             </div>
@@ -552,8 +632,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:7:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-7-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-7">Mishneh Torah, Foundations of the Torah 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִנַּיִן שֶׁאֲפִלּוּ בִּמְקוֹם סַכָּנַת נְפָשׁוֹת אֵין עוֹבְרִין עַל אַחַת מִשָּׁלֹשׁ עֲבֵרוֹת אֵלּוּ שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ה)</span> &quot;וְאָהַבְתָּ אֵת ה׳ אֱלֹהֶיךָ בְּכָל לְבָבְךָ וּבְכָל נַפְשְׁךָ וּבְכָל מְאֹדֶךָ&quot; אֲפִלּוּ הוּא נוֹטֵל אֶת נַפְשְׁךָ. וַהֲרִיגַת נֶפֶשׁ מִיִּשְׂרָאֵל לְרַפְּאוֹת נֶפֶשׁ אַחֶרֶת אוֹ לְהַצִּיל אָדָם מִיַּד אַנָּס דָּבָר שֶׁהַדַּעַת נוֹטָה לוֹ הוּא שֶׁאֵין מְאַבְּדִין נֶפֶשׁ מִפְּנֵי נֶפֶשׁ. וַעֲרָיוֹת הֻקְּשׁוּ לִנְפָשׁוֹת שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כו)</span> &quot;כִּי כַּאֲשֶׁר יָקוּם אִישׁ עַל רֵעֵהוּ וּרְצָחוֹ נֶפֶשׁ כֵּן הַדָּבָר הַזֶּה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומנין שאפילו במקום סכנת נפשות אין עוברין על אחת משלש עבירות אלו וכו׳.</strong> מבואר שם קרוב ללשון רבינו:</p>
               </div>
             </div>
@@ -568,8 +653,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:8:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-8-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-8">Mishneh Torah, Foundations of the Torah 5:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁאֵין מִתְרַפְּאִין בִּשְׁאָר אִסּוּרִים אֶלָּא בִּמְקוֹם סַכָּנָה. בִּזְמַן שֶׁהֵן דֶּרֶךְ הֲנָאָתָן כְּגוֹן שֶׁמַּאֲכִילִין אֶת הַחוֹלֶה שְׁקָצִים וּרְמָשִׂים אוֹ חָמֵץ בְּפֶסַח אוֹ שֶׁמַּאֲכִילִין אוֹתוֹ בְּיוֹם הַכִּפּוּרִים. אֲבָל שֶׁלֹּא דֶּרֶךְ הֲנָאָתָן כְּגוֹן שֶׁעוֹשִׂין לוֹ רְטִיָּה אוֹ מְלוּגְמָא מֵחָמֵץ אוֹ מֵעָרְלָה. אוֹ שֶׁמַּשְׁקִין אוֹתוֹ דְּבָרִים שֶׁיֵּשׁ בָּהֶן מַר מְעֹרָב עִם אִסּוּרֵי מַאֲכָל שֶׁהֲרֵי אֵין בָּהֶן הֲנָאָה לַחֵךְ הֲרֵי זֶה מֻתָּר וַאֲפִלּוּ שֶׁלֹּא בִּמְקוֹם סַכָּנָה. חוּץ מִכִּלְאֵי הַכֶּרֶם וּבָשָׂר בְּחָלָב שֵׁהֵן אֲסוּרִים אֲפִלּוּ שֵׁלֹּא דֵּרֵךְ הֲנָאָתָן. לְפִיכָךְ אֵין מִתְרַפְּאִין מֵהֶן אֲפִלּוּ שֶׁלֹּא דֶּרֵךְ הֲנָאָתָן אֵלָּא בִּמִקוֹם סַכָּנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במה דברים אמורים שאין מתרפאין בשאר איסורין וכו׳.</strong> פסחים שם (דף כ&quot;ה ע&quot;ב) מר בר רב אשי אשכחיה לרבינא דקא שייף לברתיה בגוהרקי דערלה פירוש בוסר זיתים קטנים א&quot;ל אימור דאמור רבנן בשעת הסכנה שלא בשעת הסכנה מי אמור א&quot;ל האי אישתא צמירתא כשעת הסכנה דמיא ואיכא דאמרי הכי קאמר ליה מידי דרך הנאתן קא עבידנא כלומר שכיון שאינו דרך הנאתן לא מיתסר מדאורייתא. ופוסק רבינו כשתי הלשונות דלענין דינא תרווייהו איתנהו ובאיסורין דרבנן י&quot;א דכיון דלא מתסרי אלא דרבנן שרו אפילו דרך הנאתן וי&quot;א דאפשר דקיל טפי איסורי תורה שלא כדרך הנאתן מאיסורין של דבריהם כדרך הנאתן:</p>
               </div>
             </div>
@@ -584,8 +674,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:8:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-8-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-8">Mishneh Torah, Foundations of the Torah 5:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁאֵין מִתְרַפְּאִין בִּשְׁאָר אִסּוּרִים אֶלָּא בִּמְקוֹם סַכָּנָה. בִּזְמַן שֶׁהֵן דֶּרֶךְ הֲנָאָתָן כְּגוֹן שֶׁמַּאֲכִילִין אֶת הַחוֹלֶה שְׁקָצִים וּרְמָשִׂים אוֹ חָמֵץ בְּפֶסַח אוֹ שֶׁמַּאֲכִילִין אוֹתוֹ בְּיוֹם הַכִּפּוּרִים. אֲבָל שֶׁלֹּא דֶּרֶךְ הֲנָאָתָן כְּגוֹן שֶׁעוֹשִׂין לוֹ רְטִיָּה אוֹ מְלוּגְמָא מֵחָמֵץ אוֹ מֵעָרְלָה. אוֹ שֶׁמַּשְׁקִין אוֹתוֹ דְּבָרִים שֶׁיֵּשׁ בָּהֶן מַר מְעֹרָב עִם אִסּוּרֵי מַאֲכָל שֶׁהֲרֵי אֵין בָּהֶן הֲנָאָה לַחֵךְ הֲרֵי זֶה מֻתָּר וַאֲפִלּוּ שֶׁלֹּא בִּמְקוֹם סַכָּנָה. חוּץ מִכִּלְאֵי הַכֶּרֶם וּבָשָׂר בְּחָלָב שֵׁהֵן אֲסוּרִים אֲפִלּוּ שֵׁלֹּא דֵּרֵךְ הֲנָאָתָן. לְפִיכָךְ אֵין מִתְרַפְּאִין מֵהֶן אֲפִלּוּ שֶׁלֹּא דֶּרֵךְ הֲנָאָתָן אֵלָּא בִּמִקוֹם סַכָּנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כתוב</strong> באורחות חיים על מ&quot;ש רבינו מותר לעשות רטיה מחמץ בפסח כיון שיש לו מכה י&quot;א דלא התיר אלא בחמץ דנכרי וכ&quot;כ הרשב&quot;א דחמץ דנכרי הוא והשאילה לישראל או הניחה ע&quot;ג מכתו ואין אחריותה על ישראל ואם אין מלוגמא לנכרי מקנה לו ישראל קמח ועושה הנכרי ממנה מלוגמא ונותנה ע&quot;ג מכת ישראל, עכ&quot;ל:</p>
               </div>
             </div>
@@ -600,8 +695,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:8:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-8-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:8:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-8">Mishneh Torah, Foundations of the Torah 5:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁאֵין מִתְרַפְּאִין בִּשְׁאָר אִסּוּרִים אֶלָּא בִּמְקוֹם סַכָּנָה. בִּזְמַן שֶׁהֵן דֶּרֶךְ הֲנָאָתָן כְּגוֹן שֶׁמַּאֲכִילִין אֶת הַחוֹלֶה שְׁקָצִים וּרְמָשִׂים אוֹ חָמֵץ בְּפֶסַח אוֹ שֶׁמַּאֲכִילִין אוֹתוֹ בְּיוֹם הַכִּפּוּרִים. אֲבָל שֶׁלֹּא דֶּרֶךְ הֲנָאָתָן כְּגוֹן שֶׁעוֹשִׂין לוֹ רְטִיָּה אוֹ מְלוּגְמָא מֵחָמֵץ אוֹ מֵעָרְלָה. אוֹ שֶׁמַּשְׁקִין אוֹתוֹ דְּבָרִים שֶׁיֵּשׁ בָּהֶן מַר מְעֹרָב עִם אִסּוּרֵי מַאֲכָל שֶׁהֲרֵי אֵין בָּהֶן הֲנָאָה לַחֵךְ הֲרֵי זֶה מֻתָּר וַאֲפִלּוּ שֶׁלֹּא בִּמְקוֹם סַכָּנָה. חוּץ מִכִּלְאֵי הַכֶּרֶם וּבָשָׂר בְּחָלָב שֵׁהֵן אֲסוּרִים אֲפִלּוּ שֵׁלֹּא דֵּרֵךְ הֲנָאָתָן. לְפִיכָךְ אֵין מִתְרַפְּאִין מֵהֶן אֲפִלּוּ שֶׁלֹּא דֶּרֵךְ הֲנָאָתָן אֵלָּא בִּמִקוֹם סַכָּנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חוץ מכלאי הכרם ובשר בחלב וכו׳.</strong> כך מתבאר שם (כ&quot;ד:) בגמ׳ דלוקין עליהן אפילו שלא כדרך הנאתן משום דלא כתיב בהו אכילה וממילא שמעינן דאין מתרפאין בהם שלא במקום סכנה אפילו שלא כדרך הנאתן דדוקא בשאר איסורין דשלא כדרך הנאתן שרי מדאורייתא הוא דשריא שלא במקום הסכנה:</p>
               </div>
             </div>
@@ -616,8 +716,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:9:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-9-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-9">Mishneh Torah, Foundations of the Torah 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנָּתַן עֵינָיו בְּאִשָּׁה וְחָלָה וְנָטָה לָמוּת וְאָמְרוּ הָרוֹפְאִים אֵין לוֹ רְפוּאָה עַד שֶׁתִּבָּעֵל לוֹ. יָמוּת וְאַל תִּבָּעֵל לוֹ אֲפִלּוּ הָיְתָה פְּנוּיָה. וַאֲפִלּוּ לְדַבֵּר עִמָּהּ מֵאֲחוֹרֵי הַגָּדֵר אֵין מוֹרִין לוֹ בְּכָךְ וְיָמוּת וְלֹא יוֹרוּ לְדַבֵּר עִמָּהּ מֵאֲחוֹרֵי הַגָּדֵר שֶׁלֹּא יְהוּ בְּנוֹת יִשְׂרָאֵל הֶפְקֵר וְיָבוֹאוּ בִּדְבָרִים אֵלּוּ לִפְרֹץ בַּעֲרָיוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שנתן עיניו באשה וכו׳.</strong> מעשה בסנהדרין סוף פרק בן סורר (סנהדרין דף ע״ה) ואיכא מ״ד התם דאשת איש היתה ואיכא מ״ד דפנויה היתה ושקלו וטרו אליביה מ״ט אסרו לו לספר עמה ואמר רב אחא כדי שלא יהיו בנות ישראל פרוצות בעריות ושם הקשו ולינסבה ותירצו דלא מייתבא דעתיה דכתיב מים גנובים ימתקו:</p>
               </div>
             </div>
@@ -632,8 +737,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-11-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-11">Mishneh Torah, Foundations of the Torah 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵשׁ דְּבָרִים אֲחֵרִים שֶׁהֵן בִּכְלַל חִלּוּל הַשֵּׁם. וְהוּא שֶׁיַּעֲשֶׂה אוֹתָם אָדָם גָּדוֹל בַּתּוֹרָה וּמְפֻרְסָם בַּחֲסִידוּת דְּבָרִים שֶׁהַבְּרִיּוֹת מְרַנְּנִים אַחֲרָיו בִּשְׁבִילָם. וְאַף עַל פִּי שֶׁאֵינָן עֲבֵרוֹת הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם כְּגוֹן שֶׁלָּקַח וְאֵינוֹ נוֹתֵן דְּמֵי הַמִּקָּח לְאַלְתַּר. וְהוּא שֶׁיֵּשׁ לוֹ וְנִמְצְאוּ הַמּוֹכְרִים תּוֹבְעִין וְהוּא מַקִּיפָן. אוֹ שֶׁיַּרְבֶּה בִּשְׂחוֹק אוֹ בַּאֲכִילָה וּשְׁתִיָּה אֵצֶל עַמֵּי הָאָרֶץ וּבֵינֵיהֶן. אוֹ שֶׁדִּבּוּרוֹ עִם הַבְּרִיּוֹת אֵינוֹ בְּנַחַת וְאֵינוֹ מְקַבְּלָן בְּסֵבֶר פָּנִים יָפוֹת אֶלָּא בַּעַל קְטָטָה וְכַעַס. וְכַיּוֹצֵא בַּדְּבָרִים הָאֵלּוּ הַכּל לְפִי גָּדְלוֹ שֶׁל חָכָם צָרִיךְ שֶׁיְּדַקְדֵּק עַל עַצְמוֹ וְיַעֲשֶׂה לִפְנִים מִשּׁוּרַת הַדִּין. וְכֵן אִם דִּקְדֵּק הֶחָכָם עַל עַצְמוֹ וְהָיָה דִּבּוּרוֹ בְּנַחַת עִם הַבְּרִיּוֹת וְדַעְתּוֹ מְעֹרֶבֶת עִמָּהֶם וּמְקַבְּלָם בְּסֵבֶר פָּנִים יָפוֹת וְנֶעֱלָב מֵהֶם וְאֵינוֹ עוֹלְבָם. מְכַבֵּד לָהֶן וַאֲפִלּוּ לַמְקִלִּין לוֹ. וְנוֹשֵׂא וְנוֹתֵן בֶּאֱמוּנָה. וְלֹא יַרְבֶּה בַּאֲרִיחוּת עַמֵּי הָאָרֶץ וִישִׁיבָתָן. וְלֹא יֵרָאֶה תָּמִיד אֶלָּא עוֹסֵק בַּתּוֹרָה עָטוּף בְּצִיצִית מֻכְתָּר בִּתְפִלִּין וְעוֹשֶׂה בְּכָל מַעֲשָׂיו לִפְנִים מִשּׁוּרַת הַדִּין. וְהוּא שֶׁלֹּא יִתְרַחֵק הַרְבֵּה וְלֹא יִשְׁתּוֹמֵם. עַד שֶׁיִּמָּצְאוּ הַכּל מְקַלְּסִין אוֹתוֹ וְאוֹהֲבִים אוֹתוֹ וּמִתְאַוִּים לְמַעֲשָׂיו. הֲרֵי זֶה קִדֵּשׁ אֶת ה׳ וְעָלָיו הַכָּתוּב אוֹמֵר <span class="source-small">(ישעיה מט ג)</span> &quot;וַיֹּאמֶר לִי עַבְדִּי אָתָּה יִשְׂרָאֵל אֲשֶׁר בְּךָ אֶתְפָּאָר&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויש דברים אחרים שהם בכלל חילול השם וכו׳.</strong> בסוף יומא (דף פ&quot;ו) היכי דמי חילול השם אמר רב כגון אנא אי שקילנא בשרא מטבחא ולא יהיבנא דמי לאלתר אמר אביי לא שנו אלא באתרא דלא תבעי אבל באתרא דתבעי לית לן בה. זו היא גירסת רש&quot;י. אבל גירסת רבינו נראה שהיא בהפך לא שנו אלא באתרא דתבעי אבל באתרא דלא תבעי לית לן בה כלומר שאם תובעו והוא מקיף אז איכא חילול השם אבל אם אינו תובעו ליכא חילול השם. ורבי יוחנן אמר כגון אנא דמסגינא ארבע אמות בלא תורה ובלא תפילין. וזהו שכתב רבינו הכל לפי גודלו של חכם וכו׳.</p>
               </div>
             </div>
@@ -648,8 +758,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-11-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-11">Mishneh Torah, Foundations of the Torah 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵשׁ דְּבָרִים אֲחֵרִים שֶׁהֵן בִּכְלַל חִלּוּל הַשֵּׁם. וְהוּא שֶׁיַּעֲשֶׂה אוֹתָם אָדָם גָּדוֹל בַּתּוֹרָה וּמְפֻרְסָם בַּחֲסִידוּת דְּבָרִים שֶׁהַבְּרִיּוֹת מְרַנְּנִים אַחֲרָיו בִּשְׁבִילָם. וְאַף עַל פִּי שֶׁאֵינָן עֲבֵרוֹת הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם כְּגוֹן שֶׁלָּקַח וְאֵינוֹ נוֹתֵן דְּמֵי הַמִּקָּח לְאַלְתַּר. וְהוּא שֶׁיֵּשׁ לוֹ וְנִמְצְאוּ הַמּוֹכְרִים תּוֹבְעִין וְהוּא מַקִּיפָן. אוֹ שֶׁיַּרְבֶּה בִּשְׂחוֹק אוֹ בַּאֲכִילָה וּשְׁתִיָּה אֵצֶל עַמֵּי הָאָרֶץ וּבֵינֵיהֶן. אוֹ שֶׁדִּבּוּרוֹ עִם הַבְּרִיּוֹת אֵינוֹ בְּנַחַת וְאֵינוֹ מְקַבְּלָן בְּסֵבֶר פָּנִים יָפוֹת אֶלָּא בַּעַל קְטָטָה וְכַעַס. וְכַיּוֹצֵא בַּדְּבָרִים הָאֵלּוּ הַכּל לְפִי גָּדְלוֹ שֶׁל חָכָם צָרִיךְ שֶׁיְּדַקְדֵּק עַל עַצְמוֹ וְיַעֲשֶׂה לִפְנִים מִשּׁוּרַת הַדִּין. וְכֵן אִם דִּקְדֵּק הֶחָכָם עַל עַצְמוֹ וְהָיָה דִּבּוּרוֹ בְּנַחַת עִם הַבְּרִיּוֹת וְדַעְתּוֹ מְעֹרֶבֶת עִמָּהֶם וּמְקַבְּלָם בְּסֵבֶר פָּנִים יָפוֹת וְנֶעֱלָב מֵהֶם וְאֵינוֹ עוֹלְבָם. מְכַבֵּד לָהֶן וַאֲפִלּוּ לַמְקִלִּין לוֹ. וְנוֹשֵׂא וְנוֹתֵן בֶּאֱמוּנָה. וְלֹא יַרְבֶּה בַּאֲרִיחוּת עַמֵּי הָאָרֶץ וִישִׁיבָתָן. וְלֹא יֵרָאֶה תָּמִיד אֶלָּא עוֹסֵק בַּתּוֹרָה עָטוּף בְּצִיצִית מֻכְתָּר בִּתְפִלִּין וְעוֹשֶׂה בְּכָל מַעֲשָׂיו לִפְנִים מִשּׁוּרַת הַדִּין. וְהוּא שֶׁלֹּא יִתְרַחֵק הַרְבֵּה וְלֹא יִשְׁתּוֹמֵם. עַד שֶׁיִּמָּצְאוּ הַכּל מְקַלְּסִין אוֹתוֹ וְאוֹהֲבִים אוֹתוֹ וּמִתְאַוִּים לְמַעֲשָׂיו. הֲרֵי זֶה קִדֵּשׁ אֶת ה׳ וְעָלָיו הַכָּתוּב אוֹמֵר <span class="source-small">(ישעיה מט ג)</span> &quot;וַיֹּאמֶר לִי עַבְדִּי אָתָּה יִשְׂרָאֵל אֲשֶׁר בְּךָ אֶתְפָּאָר&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומ&quot;ש או שירבה בשחוק,</strong> למדו מדתנן פ&quot;ב דדמאי המקבל עליו להיות חבר כלומר להיות נאמן על המעשרות מה דברים יקבל עליו וא&quot;ר יהודה שצריך לקבל עליו שלא ירבה בשחוק ואע&quot;ג דרבנן פליגי עליה ואמרו דאינו צריך ע&quot;כ לא פליגי אלא במקבל להיות נאמן על המעשרות אבל ת&quot;ח אין ה&quot;נ שצריך שלא ירבה בשחוק.</p>
               </div>
             </div>
@@ -664,8 +779,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-11-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-11">Mishneh Torah, Foundations of the Torah 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵשׁ דְּבָרִים אֲחֵרִים שֶׁהֵן בִּכְלַל חִלּוּל הַשֵּׁם. וְהוּא שֶׁיַּעֲשֶׂה אוֹתָם אָדָם גָּדוֹל בַּתּוֹרָה וּמְפֻרְסָם בַּחֲסִידוּת דְּבָרִים שֶׁהַבְּרִיּוֹת מְרַנְּנִים אַחֲרָיו בִּשְׁבִילָם. וְאַף עַל פִּי שֶׁאֵינָן עֲבֵרוֹת הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם כְּגוֹן שֶׁלָּקַח וְאֵינוֹ נוֹתֵן דְּמֵי הַמִּקָּח לְאַלְתַּר. וְהוּא שֶׁיֵּשׁ לוֹ וְנִמְצְאוּ הַמּוֹכְרִים תּוֹבְעִין וְהוּא מַקִּיפָן. אוֹ שֶׁיַּרְבֶּה בִּשְׂחוֹק אוֹ בַּאֲכִילָה וּשְׁתִיָּה אֵצֶל עַמֵּי הָאָרֶץ וּבֵינֵיהֶן. אוֹ שֶׁדִּבּוּרוֹ עִם הַבְּרִיּוֹת אֵינוֹ בְּנַחַת וְאֵינוֹ מְקַבְּלָן בְּסֵבֶר פָּנִים יָפוֹת אֶלָּא בַּעַל קְטָטָה וְכַעַס. וְכַיּוֹצֵא בַּדְּבָרִים הָאֵלּוּ הַכּל לְפִי גָּדְלוֹ שֶׁל חָכָם צָרִיךְ שֶׁיְּדַקְדֵּק עַל עַצְמוֹ וְיַעֲשֶׂה לִפְנִים מִשּׁוּרַת הַדִּין. וְכֵן אִם דִּקְדֵּק הֶחָכָם עַל עַצְמוֹ וְהָיָה דִּבּוּרוֹ בְּנַחַת עִם הַבְּרִיּוֹת וְדַעְתּוֹ מְעֹרֶבֶת עִמָּהֶם וּמְקַבְּלָם בְּסֵבֶר פָּנִים יָפוֹת וְנֶעֱלָב מֵהֶם וְאֵינוֹ עוֹלְבָם. מְכַבֵּד לָהֶן וַאֲפִלּוּ לַמְקִלִּין לוֹ. וְנוֹשֵׂא וְנוֹתֵן בֶּאֱמוּנָה. וְלֹא יַרְבֶּה בַּאֲרִיחוּת עַמֵּי הָאָרֶץ וִישִׁיבָתָן. וְלֹא יֵרָאֶה תָּמִיד אֶלָּא עוֹסֵק בַּתּוֹרָה עָטוּף בְּצִיצִית מֻכְתָּר בִּתְפִלִּין וְעוֹשֶׂה בְּכָל מַעֲשָׂיו לִפְנִים מִשּׁוּרַת הַדִּין. וְהוּא שֶׁלֹּא יִתְרַחֵק הַרְבֵּה וְלֹא יִשְׁתּוֹמֵם. עַד שֶׁיִּמָּצְאוּ הַכּל מְקַלְּסִין אוֹתוֹ וְאוֹהֲבִים אוֹתוֹ וּמִתְאַוִּים לְמַעֲשָׂיו. הֲרֵי זֶה קִדֵּשׁ אֶת ה׳ וְעָלָיו הַכָּתוּב אוֹמֵר <span class="source-small">(ישעיה מט ג)</span> &quot;וַיֹּאמֶר לִי עַבְדִּי אָתָּה יִשְׂרָאֵל אֲשֶׁר בְּךָ אֶתְפָּאָר&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומ&quot;ש או באכילה ושתיה וכו׳.</strong> ברייתא בפסחים (דף מ&quot;ט) סוף פרק אלו עוברין תלמיד חכם המרבה סעודתו בכל מקום מחלל שם שמים. וממה שכתב אצל ע&quot;ה וביניהם נראה לדקדק דדוקא כשאוכל עמהם ובביתם אבל אם הם אוכלים עמו בביתו או הוא אוכל בביתם ולא עמהם כדרך האכסנאין שרי:</p>
               </div>
             </div>
@@ -680,8 +800,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:4</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-5-11-4" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 5:11:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-5-11">Mishneh Torah, Foundations of the Torah 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵשׁ דְּבָרִים אֲחֵרִים שֶׁהֵן בִּכְלַל חִלּוּל הַשֵּׁם. וְהוּא שֶׁיַּעֲשֶׂה אוֹתָם אָדָם גָּדוֹל בַּתּוֹרָה וּמְפֻרְסָם בַּחֲסִידוּת דְּבָרִים שֶׁהַבְּרִיּוֹת מְרַנְּנִים אַחֲרָיו בִּשְׁבִילָם. וְאַף עַל פִּי שֶׁאֵינָן עֲבֵרוֹת הֲרֵי זֶה חִלֵּל אֶת הַשֵּׁם כְּגוֹן שֶׁלָּקַח וְאֵינוֹ נוֹתֵן דְּמֵי הַמִּקָּח לְאַלְתַּר. וְהוּא שֶׁיֵּשׁ לוֹ וְנִמְצְאוּ הַמּוֹכְרִים תּוֹבְעִין וְהוּא מַקִּיפָן. אוֹ שֶׁיַּרְבֶּה בִּשְׂחוֹק אוֹ בַּאֲכִילָה וּשְׁתִיָּה אֵצֶל עַמֵּי הָאָרֶץ וּבֵינֵיהֶן. אוֹ שֶׁדִּבּוּרוֹ עִם הַבְּרִיּוֹת אֵינוֹ בְּנַחַת וְאֵינוֹ מְקַבְּלָן בְּסֵבֶר פָּנִים יָפוֹת אֶלָּא בַּעַל קְטָטָה וְכַעַס. וְכַיּוֹצֵא בַּדְּבָרִים הָאֵלּוּ הַכּל לְפִי גָּדְלוֹ שֶׁל חָכָם צָרִיךְ שֶׁיְּדַקְדֵּק עַל עַצְמוֹ וְיַעֲשֶׂה לִפְנִים מִשּׁוּרַת הַדִּין. וְכֵן אִם דִּקְדֵּק הֶחָכָם עַל עַצְמוֹ וְהָיָה דִּבּוּרוֹ בְּנַחַת עִם הַבְּרִיּוֹת וְדַעְתּוֹ מְעֹרֶבֶת עִמָּהֶם וּמְקַבְּלָם בְּסֵבֶר פָּנִים יָפוֹת וְנֶעֱלָב מֵהֶם וְאֵינוֹ עוֹלְבָם. מְכַבֵּד לָהֶן וַאֲפִלּוּ לַמְקִלִּין לוֹ. וְנוֹשֵׂא וְנוֹתֵן בֶּאֱמוּנָה. וְלֹא יַרְבֶּה בַּאֲרִיחוּת עַמֵּי הָאָרֶץ וִישִׁיבָתָן. וְלֹא יֵרָאֶה תָּמִיד אֶלָּא עוֹסֵק בַּתּוֹרָה עָטוּף בְּצִיצִית מֻכְתָּר בִּתְפִלִּין וְעוֹשֶׂה בְּכָל מַעֲשָׂיו לִפְנִים מִשּׁוּרַת הַדִּין. וְהוּא שֶׁלֹּא יִתְרַחֵק הַרְבֵּה וְלֹא יִשְׁתּוֹמֵם. עַד שֶׁיִּמָּצְאוּ הַכּל מְקַלְּסִין אוֹתוֹ וְאוֹהֲבִים אוֹתוֹ וּמִתְאַוִּים לְמַעֲשָׂיו. הֲרֵי זֶה קִדֵּשׁ אֶת ה׳ וְעָלָיו הַכָּתוּב אוֹמֵר <span class="source-small">(ישעיה מט ג)</span> &quot;וַיֹּאמֶר לִי עַבְדִּי אָתָּה יִשְׂרָאֵל אֲשֶׁר בְּךָ אֶתְפָּאָר&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או שדיבורו עם הבריות אינו בנחת עד סוף הפרק.</strong> ברייתא בסוף יומא (דף פ&quot;ו) קרובה ללשון רבינו. ושיעור הלשון כך הוא ועושה בכל מעשיו לפנים משורת הדין בתנאי שלא יתרחק הרבה משורת הדין לצד הטוב עד שיראה שאינו מן היישוב או עד שישתומם אלא יעשה לפנים משורת הדין באופן ממוצע עד שבעשייתו כל המעשים טובים שזכרנו ימצאו הכל מקלסין אותו ואוהבים אותו:</p>
               </div>
             </div>
@@ -697,8 +822,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:1:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-1-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-1">Mishneh Torah, Foundations of the Torah 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמְאַבֵּד שֵׁם מִן הַשֵּׁמוֹת הַקְּדוֹשִׁים הַטְּהוֹרִים שֶׁנִּקְרָא בָּהֶם הַקָּדוֹשׁ בָּרוּךְ הוּא לוֹקֶה מִן הַתּוֹרָה. שֶׁהֲרֵי הוּא אוֹמֵר בַּעֲבוֹדַת כּוֹכָבִים <span class="source-small">(גמרא שבת קכ ב)</span> &quot;וְאִבַּדְתֶּם אֶת שְׁמָם מִן הַמָּקוֹם הַהוּא לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המאבד וכו׳.</strong> כך פשוט פרק הקומץ רבה (מנחות דף ל׳) ובסוף מכות (דף כ&quot;ב) ובספרי פרשת ראה:</p>
               </div>
             </div>
@@ -713,8 +843,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:2:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-2-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-2">Mishneh Torah, Foundations of the Torah 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְשִׁבְעָה שֵׁמוֹת הֵם. הַשֵּׁם הַנִּכְתָּב יוּ&quot;ד הֵ&quot;א וָא&quot;ו הֵ&quot;א וְהוּא הַשֵּׁם הַמְפֹרָשׁ. אוֹ הַנִּכְתָּב אֲדֹנָי. וְאֵל. אֱלוֹהַּ. וֵאלֹהִים. וֵאלֹהֵי. וְשַׁדַּי. וּצְבָאוֹת. כָּל הַמּוֹחֵק אֲפִלּוּ אוֹת אַחַת מִשִּׁבְעָה אֵלּוּ לוֹקֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושבעה שמות הם וכו׳.</strong> ברייתא סוף פ׳ שבועת העדות (שבועות דף ל״ה) אלו הן שמות שאין נמחקין כגון א״ל אלהי״ך אלהי״ם אלהיכ״ם אהי״ה אשר אהי״ה אדנ״י וי״ה שד״י צבאו״ת הרי אלו אין נמחקין, ונראה שגירסת רבינו א״ל אלו״ה אלה״י אלהי״ם וגירסא נכונה היא דאשמעינן דו״ה דאלו״ה וה״י דאלה״י והי״ם דאלהי״ם הוו מעצם השם ולא דמו לכ״ם דאלהיכ״ם דאינו מעצם השם אלא דהשם קדשו. ואע״ג דאשמעינן דהי״ם מאלהי״ם הוי מעצם השם מכל מקום איצטריך לאשמועינן בה״י דאלה״י דאיכא למימר כיון דאלה״י הוא סמוך לעולם הוה ה״י דידיה ככ״ם דאלהיכ״ם. וטעמא דלא דמי לכ״ם דאלהיכ״ם היינו משום דכיון דאשכחן ה״י שהוא מעצם השם באלהי״ם כל היכא דאשכחן אלה״י הוי קדוש מעצמו משא״כ בכ״ם דאלהיכ״ם. ונראה שלא היה בגירסת רבינו אהי״ה אשר אהי״ה.</p>
               </div>
             </div>
@@ -729,8 +864,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:2:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-2-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-2">Mishneh Torah, Foundations of the Torah 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְשִׁבְעָה שֵׁמוֹת הֵם. הַשֵּׁם הַנִּכְתָּב יוּ&quot;ד הֵ&quot;א וָא&quot;ו הֵ&quot;א וְהוּא הַשֵּׁם הַמְפֹרָשׁ. אוֹ הַנִּכְתָּב אֲדֹנָי. וְאֵל. אֱלוֹהַּ. וֵאלֹהִים. וֵאלֹהֵי. וְשַׁדַּי. וּצְבָאוֹת. כָּל הַמּוֹחֵק אֲפִלּוּ אוֹת אַחַת מִשִּׁבְעָה אֵלּוּ לוֹקֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומ&quot;ש רבינו שהם שבעה שמות ובפרטן אתה מוצא שמונה</strong> היינו משום דאדנ&quot;י וי&quot;ה שם אחד ולא דמו לא&quot;ל אלו&quot;ה דהכא אדנ&quot;י הוא נקרא אף כשהוא נכתב יהו&quot;ה. ובנוסחא אחרת מספרי רבינו מצאתי שלא היה כתוב אלהי ולפי אותה גירסא הוו שפיר שבעה שמות אף אם נמנה שם הוי&quot;ה ושם אדנות בשנים. ובנוסחא שנדפסה בווניציאה כתוב ושבעה שמות הם, שהם הנכתב יו&quot;ד ה&quot;א וא&quot;ו ה&quot;א והוא השם המפורש או הנכתב אדנ&quot;י ואלו&quot;ה ואלהי&quot;ם ואהי&quot;ה ושד&quot;י וצבאו&quot;ת. ונוסחא נכונה היא דמני שם אהי&quot;ה בכלל השבעה שמות ואין אנו צריכים לידחק למנות שם ההויה ושם אדנות באחד. ושפיר עבד דלא מני אל ולא אלהי משום דבכלל אלו&quot;ה ואלהי&quot;ם הוו אלא דאכתי קשה אמאי איצטריך למנות אלוה הא בכלל אלהי&quot;ם הוא:</p>
               </div>
             </div>
@@ -745,8 +885,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:3:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-3-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-3">Mishneh Torah, Foundations of the Torah 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַנִּטְפָּל לַשֵּׁם מִלְּפָנָיו מֻתָּר לְמָחֳקוֹ כְּגוֹן לָמֶ&quot;ד מִלַּיהוָֹה וּבֵי&quot;ת מִבֵּאלֹהִים וְכַיּוֹצֵא בָּהֶן אֵינָן כִּקְדֻשַּׁת הַשֵּׁם. וְכָל הַנִּטְפָּל לַשֵּׁם מֵאַחֲרָיו כְּגוֹן ךְ׳ שֶׁל אֱלֹהֶיךָ וְכֶ&quot;ם שֶׁל אֱלֹהֵיכֶם וְכַיּוֹצֵא בָּהֶן אֵינָם נִמְחָקִים וַהֲרֵי הֵם כִּשְׁאָר אוֹתִיּוֹת שֶׁל שֵׁם מִפְּנֵי שֶׁהַשֵּׁם מְקַדְּשָׁם. וְאַף עַל פִּי שֶׁנִּתְקַדְּשׁוּ וְאָסוּר לְמָחֳקָם הַמּוֹחֵק אֵלּוּ הָאוֹתִיּוֹת הַנִּטְפָּלוֹת אֵינוֹ לוֹקֶה. אֲבָל מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הנטפל לשם מלפניו וכו׳.</strong> שם בברייתא (שבועות ל&quot;ה) פלוגתא דתנאי דאיכא מ&quot;ד בין מלפניו בין מלאחריו נמחק ואחרים אומרים לאחריו אינו נמחק שכבר קדשו השם אמר רב הונא הלכה כאחרים:</p>
               </div>
             </div>
@@ -761,8 +906,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:3:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-3-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-3">Mishneh Torah, Foundations of the Torah 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַנִּטְפָּל לַשֵּׁם מִלְּפָנָיו מֻתָּר לְמָחֳקוֹ כְּגוֹן לָמֶ&quot;ד מִלַּיהוָֹה וּבֵי&quot;ת מִבֵּאלֹהִים וְכַיּוֹצֵא בָּהֶן אֵינָן כִּקְדֻשַּׁת הַשֵּׁם. וְכָל הַנִּטְפָּל לַשֵּׁם מֵאַחֲרָיו כְּגוֹן ךְ׳ שֶׁל אֱלֹהֶיךָ וְכֶ&quot;ם שֶׁל אֱלֹהֵיכֶם וְכַיּוֹצֵא בָּהֶן אֵינָם נִמְחָקִים וַהֲרֵי הֵם כִּשְׁאָר אוֹתִיּוֹת שֶׁל שֵׁם מִפְּנֵי שֶׁהַשֵּׁם מְקַדְּשָׁם. וְאַף עַל פִּי שֶׁנִּתְקַדְּשׁוּ וְאָסוּר לְמָחֳקָם הַמּוֹחֵק אֵלּוּ הָאוֹתִיּוֹת הַנִּטְפָּלוֹת אֵינוֹ לוֹקֶה. אֲבָל מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואע&quot;פ שנתקדשו ואסור למוחקם וכו׳.</strong> הוא אשר דברתי דשאני לן בין האותיות שהם קדושות לפי שהם מעצם השם לאותיות שאינם מעצם השם רק שהשם קדשם:</p>
               </div>
             </div>
@@ -777,8 +927,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:4:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-4-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-4">Mishneh Torah, Foundations of the Torah 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּתַב אָלֶ&quot;ף לָמֶ&quot;ד מֵאלֹהִים, יוּ&quot;ד הֵ&quot;א מֵיְהוָֹה, אֵינוֹ נִמְחָק. וְאֵין צָרִיךְ לוֹמַר יָהּ שֶׁהוּא שֵׁם בִּפְנֵי עַצְמוֹ. מִפְּנֵי שֶׁזֶּה הַשֵּׁם מִקְצָת שֵׁם הַמְפֹרָשׁ הוּא. אֲבָל הַכּוֹתֵב שִׁי&quot;ן דָּלֶ&quot;ת מִשַּׁדַּי, צַדִּ&quot;י בֵּי&quot;ת מִצְּבָאוֹת, הֲרֵי זֶה נִמְחָק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כתב אל&quot;ף למ&quot;ד מאלהי&quot;ם וכו׳.</strong> ברייתא שם כתב א&quot;ל מאלהי&quot;ם י&quot;ה מיהו&quot;ה אינו נמחק ש&quot;ד משד&quot;י צ&quot;ב מצבאות הרי זה נמחק ופסק שם שמואל הלכה כן:</p>
               </div>
             </div>
@@ -793,8 +948,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:4:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-4-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-4">Mishneh Torah, Foundations of the Torah 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּתַב אָלֶ&quot;ף לָמֶ&quot;ד מֵאלֹהִים, יוּ&quot;ד הֵ&quot;א מֵיְהוָֹה, אֵינוֹ נִמְחָק. וְאֵין צָרִיךְ לוֹמַר יָהּ שֶׁהוּא שֵׁם בִּפְנֵי עַצְמוֹ. מִפְּנֵי שֶׁזֶּה הַשֵּׁם מִקְצָת שֵׁם הַמְפֹרָשׁ הוּא. אֲבָל הַכּוֹתֵב שִׁי&quot;ן דָּלֶ&quot;ת מִשַּׁדַּי, צַדִּ&quot;י בֵּי&quot;ת מִצְּבָאוֹת, הֲרֵי זֶה נִמְחָק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכתב</strong> הראב&quot;ד א&quot;א זה אינו כלום וכו׳ הרי אלו נמחקין עכ&quot;ל. ויש לתמוה שדברי הראב&quot;ד הם דברי רבינו אות באות והיאך כתב עליו זה אינו כלום. וי&quot;ל שכוונת הראב&quot;ד לומר שלא הוזכר בגמרא אלא י&quot;ה מיהו&quot;ה, כלומר דוקא כשנתכוין לכתוב השם שלם וכתב י&quot;ה למעלת שם המיוחד אבל כשלא נתכוין רק לכתוב י&quot;ה לכוונת שם בפני עצמו לא אמרו שאינו נמחק. וא&quot;ל מאלהי&quot;ם דאינו נמחק היינו משום שאף אם נתכוין לכתבו שם בפני עצמו אינו נמחק ולא גרע מפני שנתכוין לכתוב אלהי&quot;ם משא&quot;כ בשם י&quot;ה והביא כל לשון הברייתא כלומר אין עוד מלבדו וא&quot;כ מהיכא תיתי לן. והמדקדק בלשון רבינו יראה שאין מקום להשגתו שדעתו ז&quot;ל לומר די&quot;ה הוא מקצת שם המפורש ומצד זה חלה עליו הקדושה ולכן לא מנו אותו בשמות שאינן נמחקים משא&quot;כ באל ואלהים דאל הוי שם בפני עצמו ולא מפני שהוא מקצת שם אלהים וכיון שהכותב מקצת שם המפורש אינו נמחק כל שכן הכותב י&quot;ה לכוונת שם בפני עצמו שיש לו שתי קדושות קדושת שם המפורש וקדושתו שהוא שם בפני עצמו. וכן מפורש במסכת סופרים ובירושלמי פ&quot;ק דמגילה הכותב א&quot;ל מד׳ אותיות י&quot;ה מד׳ אותיות אינם נמחקין מפני שיש שמות כיוצא בהם, עכ&quot;ל. וזה מבואר בדברי רבינו שהכותב י&quot;ה לכוונת שם בפני עצמו אינו נמחק ודלא כדמשמע מהראב&quot;ד שהוא נמחק. ואפשר שנזדמנה להראב&quot;ד בדברי רבינו נוסחא זו ענינה. כתב אל&quot;ף למ&quot;ד מאלהי&quot;ם ו&quot;ה מיהו&quot;ה אינו נמחק. וכך נראה שהיתה נוסחת ההגהות שכתבו י&quot;ה מיהו&quot;ה לא דמי וכו׳. ועל זה אומר דלא אמרו אלא י&quot;ה אבל צ&quot;ב וש&quot;ד נמחקין והוא הדין לו&quot;ה כיון שאינו שם בפני עצמו:</p>
               </div>
             </div>
@@ -809,8 +969,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:4:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-4-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-4">Mishneh Torah, Foundations of the Torah 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּתַב אָלֶ&quot;ף לָמֶ&quot;ד מֵאלֹהִים, יוּ&quot;ד הֵ&quot;א מֵיְהוָֹה, אֵינוֹ נִמְחָק. וְאֵין צָרִיךְ לוֹמַר יָהּ שֶׁהוּא שֵׁם בִּפְנֵי עַצְמוֹ. מִפְּנֵי שֶׁזֶּה הַשֵּׁם מִקְצָת שֵׁם הַמְפֹרָשׁ הוּא. אֲבָל הַכּוֹתֵב שִׁי&quot;ן דָּלֶ&quot;ת מִשַּׁדַּי, צַדִּ&quot;י בֵּי&quot;ת מִצְּבָאוֹת, הֲרֵי זֶה נִמְחָק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והרב</strong> הר&quot;ם אלשקאר ז&quot;ל כתב בתשובה שכוונת הראב&quot;ד להשיג על רבינו במ&quot;ש שאם כתב ש&quot;ד משד&quot;י וצ&quot;ב מצבאות ולא השלים השם הרי זה נמחק דמשמע שאם היה כתוב השם כולו אינו יכול למחוק ממנו לא ש&quot;ד ולא צ&quot;ב שהרי לא אמרו בברייתא כתב אלא בא&quot;ל מאלהי&quot;ם י&quot;ה מיהו&quot;ה בהני הוא שאמרו כתב ואפילו שלא היה כל השם כתוב אבל גבי ש&quot;ד משד&quot;י וצ&quot;ב מצבאות לא אמרו כתב אלא אפילו שיהא כל השם כתוב יכול למחוק ממנו ש&quot;ד וצ&quot;ב עכ&quot;ל. ודבר תימה הוא להעלות על הדעת שאחר שיהא כל השם כתוב יהיה מותר למחוק ממנו אפילו אות אחת כ&quot;ש רוב אותיותיו. ומה שרצה להכריע מדלא קתני בברייתא גבי ש&quot;ד וצ&quot;ב כתב אינו הכרע דהא פשיטא דאכתב דקתני ברישא קאי. ועוד שא&quot;א לומר שיהא זו כוונת הראב&quot;ד שא&quot;כ כך ה&quot;ל לכתוב לא אמרו אלא כתב א&quot;ל מאלהי&quot;ם ולא ה&quot;ל להשמיט תיבת כתב מהשגתו מאחר שהיא עיקר השגתו:</p>
               </div>
             </div>
@@ -825,8 +990,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:5:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-5-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-5">Mishneh Torah, Foundations of the Torah 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁאָר הַכִּנּוּיִין שֶׁמְּשַׁבְּחִין בָּהֶן אֶת הַקָּדוֹשׁ בָּרוּךְ הוּא כְּגוֹן חַנּוּן וְרַחוּם הַגָּדוֹל הַגִּבּוֹר וְהַנּוֹרָא הַנֶּאֱמָן קַנֹּא וְחָזָק וְכַיּוֹצֵא בָּהֶן הֲרֵי הֵן כִּשְׁאָר כִּתְבֵי הַקֹּדֶשׁ וּמֻתָּר לְמָחֳקָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאר הכנויים שמשבחים בהם את הקב&quot;ה וכו׳.</strong> שם בברייתא:</p>
               </div>
             </div>
@@ -841,8 +1011,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:6:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-6-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-6">Mishneh Torah, Foundations of the Torah 6:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּלִי שֶׁהָיָה שֵׁם כָּתוּב עָלָיו קוֹצֵץ אֶת מְקוֹם הַשֵּׁם וְגוֹנְזוֹ. וַאֲפִלּוּ הָיָה הַשֵּׁם חָקוּק בִּכְלֵי מַתָּכוֹת אוֹ בִּכְלֵי זְכוּכִית וְהִתִּיךְ הַכְּלִי הֲרֵי זֶה לוֹקֶה אֶלָּא חוֹתֵךְ אֶת מְקוֹמוֹ וְגוֹנְזוֹ. וְכֵן אִם הָיָה שֵׁם כָּתוּב עַל בְּשָׂרוֹ הֲרֵי זֶה לֹא יִרְחַץ וְלֹא יָסוּךְ וְלֹא יַעֲמֹד בִּמְקוֹם הַטִּנֹּפֶת. נִזְדַּמְּנָה לוֹ טְבִילָה שֶׁל מִצְוָה כּוֹרֵךְ עָלָיו גֶּמִי וְטוֹבֵל. וְאִם לֹא מָצָא גֶּמִי מְסַבֵּב בִּבְגָדָיו וְלֹא יְהַדֵּק כְּדֵי שֶׁלֹּא יָחֹץ. שֶׁלֹּא אָמְרוּ לִכְרֹךְ עָלָיו אֶלָּא מִפְּנֵי שֶׁאָסוּר לַעֲמֹד בִּפְנֵי הַשֵּׁם כְּשֶׁהוּא עָרֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כלי שהיה שם כתוב עליו וכו׳.</strong> פ&quot;ק דערכין (דף ו׳):</p>
               </div>
             </div>
@@ -857,8 +1032,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:6:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-6-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-6">Mishneh Torah, Foundations of the Torah 6:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּלִי שֶׁהָיָה שֵׁם כָּתוּב עָלָיו קוֹצֵץ אֶת מְקוֹם הַשֵּׁם וְגוֹנְזוֹ. וַאֲפִלּוּ הָיָה הַשֵּׁם חָקוּק בִּכְלֵי מַתָּכוֹת אוֹ בִּכְלֵי זְכוּכִית וְהִתִּיךְ הַכְּלִי הֲרֵי זֶה לוֹקֶה אֶלָּא חוֹתֵךְ אֶת מְקוֹמוֹ וְגוֹנְזוֹ. וְכֵן אִם הָיָה שֵׁם כָּתוּב עַל בְּשָׂרוֹ הֲרֵי זֶה לֹא יִרְחַץ וְלֹא יָסוּךְ וְלֹא יַעֲמֹד בִּמְקוֹם הַטִּנֹּפֶת. נִזְדַּמְּנָה לוֹ טְבִילָה שֶׁל מִצְוָה כּוֹרֵךְ עָלָיו גֶּמִי וְטוֹבֵל. וְאִם לֹא מָצָא גֶּמִי מְסַבֵּב בִּבְגָדָיו וְלֹא יְהַדֵּק כְּדֵי שֶׁלֹּא יָחֹץ. שֶׁלֹּא אָמְרוּ לִכְרֹךְ עָלָיו אֶלָּא מִפְּנֵי שֶׁאָסוּר לַעֲמֹד בִּפְנֵי הַשֵּׁם כְּשֶׁהוּא עָרֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם היה שם כתוב וכו׳.</strong> ברייתא פרק כל כתבי (שבת ק&quot;כ) הרי שהיה שם כתוב לו על בשרו הרי זה לא ירחוץ ולא יסוך ולא יעמוד במקום הטנופת נזדמנה לו טבילה של מצוה כורך עליה גמי ויורד וטובל רבי יוסי אומר לעולם יורד וטובל כדרכו ובלבד שלא ישפשף ופסק כתנא קמא ושם אמרו האי גמי היכי דמי אי מיהדק הוי חציצה ואי לא מיהדק עיילי ביה מיא. חציצה תיפוק ליה משום דיו בלחה מ&quot;מ קשיא אלא אמר רבה בר שילא היינו טעמייהו דרבנן דקא סברי אסור לעמוד לפני השם ערום כלומר דמטעם מחיקת השם אינו אסור דכתיב לא תעשון כן לה׳ אלהיכם עשייה הוא דאסור גרמא שרי ולא חש רבינו לכתוב דדוקא בדיו לחה לפי שזה אינו מענין הלכות אלו אלא מענין הלכות מקואות. ומה שאמר ואם לא מצא גמי וכו׳. פשוט הוא:</p>
               </div>
             </div>
@@ -873,8 +1053,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:7:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-7-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-7">Mishneh Torah, Foundations of the Torah 6:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַסּוֹתֵר אֲפִלּוּ אֶבֶן אַחַת דֶּרֶךְ הַשְׁחָתָה מִן הַמִּזְבֵּחַ אוֹ מִן הַהֵיכָל אוֹ מִשְּׁאָר הָעֲזָרָה לוֹקֶה שֶׁנֶּאֱמַר בַּעֲבוֹדַת כּוֹכָבִים <span class="source-small">(שמות לד יג)</span> &quot;כִּי אֶת מִזְבְּחֹתָם תִּתֹּצוּן&quot; וְכָתוּב <span class="source-small">(דברים יב ד)</span> &quot;לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם&quot;. וְכֵן הַשּׂוֹרֵף עֲצֵי הַקֹּדֶשׁ דֶּרֶךְ הַשְׁחָתָה לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ג)</span> &quot;וַאֲשֵׁרֵיהֶם תִּשְׂרְפוּן בָּאֵשׁ&quot; וּכְתִיב לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הסותר אפילו אבן אחת וכו׳.</strong> בספרי פרשת ראה אנכי:</p>
               </div>
             </div>
@@ -889,8 +1074,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:7:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-7-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-7">Mishneh Torah, Foundations of the Torah 6:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַסּוֹתֵר אֲפִלּוּ אֶבֶן אַחַת דֶּרֶךְ הַשְׁחָתָה מִן הַמִּזְבֵּחַ אוֹ מִן הַהֵיכָל אוֹ מִשְּׁאָר הָעֲזָרָה לוֹקֶה שֶׁנֶּאֱמַר בַּעֲבוֹדַת כּוֹכָבִים <span class="source-small">(שמות לד יג)</span> &quot;כִּי אֶת מִזְבְּחֹתָם תִּתֹּצוּן&quot; וְכָתוּב <span class="source-small">(דברים יב ד)</span> &quot;לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם&quot;. וְכֵן הַשּׂוֹרֵף עֲצֵי הַקֹּדֶשׁ דֶּרֶךְ הַשְׁחָתָה לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ג)</span> &quot;וַאֲשֵׁרֵיהֶם תִּשְׂרְפוּן בָּאֵשׁ&quot; וּכְתִיב לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן השורף עצי הקדש וכו׳.</strong> הכי מפורש בסוף מכות (דף כ&quot;ב):</p>
               </div>
             </div>
@@ -905,8 +1095,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-8-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-8">Mishneh Torah, Foundations of the Torah 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כִּתְבֵי הַקֹּדֶשׁ כֻּלָּן וּפֵרוּשֵׁיהֶן וּבֵאוּרֵיהֶן אָסוּר לְשָׂרְפָם אוֹ לְאַבְּדָם בַּיָּד וְהַמְאַבְּדָן בַּיָּד מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת. בַּמֶּה דְּבָרִים אֲמוּרִים בְּכִתְבֵי הַקֹּדֶשׁ שֶׁכְּתָבָם יִשְׂרָאֵל בִּקְדֻשָּׁה אֲבָל אֶפִּיקוֹרוֹס יִשְׂרָאֵל שֶׁכָּתַב סֵפֶר תּוֹרָה שׂוֹרְפִין אוֹתוֹ עִם הָאַזְכָּרוֹת שֶׁבּוֹ. מִפְּנֵי שֶׁאֵינוֹ מַאֲמִין בִּקְדֻשַּׁת הַשֵּׁם וְלֹא כְּתָבוֹ לִשְׁמוֹ אֶלָּא שֶׁהוּא מַעֲלֶה בְּדַעְתּוֹ שֶׁזֶּה כִּשְׁאָר הַדְּבָרִים וְהוֹאִיל וְדַעְתּוֹ כֵּן לֹא נִתְקַדֵּשׁ הַשֵּׁם. וּמִצְוָה לְשָׂרְפוֹ כְּדֵי שֶׁלֹּא לְהַנִּיחַ שֵׁם לָאֶפִּיקוֹרוֹסִים וְלֹא לְמַעֲשֵׂיהֶם. אֲבָל עוֹבֵד כּוֹכָבִים שֶׁכָּתַב אֶת הַשֵּׁם גּוֹנְזִין אוֹתוֹ. וְכֵן כִּתְבֵי הַקֹּדֶשׁ שֶׁבָּלוּ אוֹ שֶׁכְּתָבָן עוֹבֵד כּוֹכָבִים יִגָּנְזוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כתבי הקדש כולן ופירושיהן וביאוריהן וכו׳.</strong> כך פשוט בריש פרק כל כתבי (שבת דף קט&quot;ז):</p>
               </div>
             </div>
@@ -921,8 +1116,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-8-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-8">Mishneh Torah, Foundations of the Torah 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כִּתְבֵי הַקֹּדֶשׁ כֻּלָּן וּפֵרוּשֵׁיהֶן וּבֵאוּרֵיהֶן אָסוּר לְשָׂרְפָם אוֹ לְאַבְּדָם בַּיָּד וְהַמְאַבְּדָן בַּיָּד מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת. בַּמֶּה דְּבָרִים אֲמוּרִים בְּכִתְבֵי הַקֹּדֶשׁ שֶׁכְּתָבָם יִשְׂרָאֵל בִּקְדֻשָּׁה אֲבָל אֶפִּיקוֹרוֹס יִשְׂרָאֵל שֶׁכָּתַב סֵפֶר תּוֹרָה שׂוֹרְפִין אוֹתוֹ עִם הָאַזְכָּרוֹת שֶׁבּוֹ. מִפְּנֵי שֶׁאֵינוֹ מַאֲמִין בִּקְדֻשַּׁת הַשֵּׁם וְלֹא כְּתָבוֹ לִשְׁמוֹ אֶלָּא שֶׁהוּא מַעֲלֶה בְּדַעְתּוֹ שֶׁזֶּה כִּשְׁאָר הַדְּבָרִים וְהוֹאִיל וְדַעְתּוֹ כֵּן לֹא נִתְקַדֵּשׁ הַשֵּׁם. וּמִצְוָה לְשָׂרְפוֹ כְּדֵי שֶׁלֹּא לְהַנִּיחַ שֵׁם לָאֶפִּיקוֹרוֹסִים וְלֹא לְמַעֲשֵׂיהֶם. אֲבָל עוֹבֵד כּוֹכָבִים שֶׁכָּתַב אֶת הַשֵּׁם גּוֹנְזִין אוֹתוֹ. וְכֵן כִּתְבֵי הַקֹּדֶשׁ שֶׁבָּלוּ אוֹ שֶׁכְּתָבָן עוֹבֵד כּוֹכָבִים יִגָּנְזוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמאבדן ביד מכין אותו מכת מרדות.</strong> ככל עובר על דברי חכמים:</p>
               </div>
             </div>
@@ -937,8 +1137,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-8-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-8">Mishneh Torah, Foundations of the Torah 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כִּתְבֵי הַקֹּדֶשׁ כֻּלָּן וּפֵרוּשֵׁיהֶן וּבֵאוּרֵיהֶן אָסוּר לְשָׂרְפָם אוֹ לְאַבְּדָם בַּיָּד וְהַמְאַבְּדָן בַּיָּד מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת. בַּמֶּה דְּבָרִים אֲמוּרִים בְּכִתְבֵי הַקֹּדֶשׁ שֶׁכְּתָבָם יִשְׂרָאֵל בִּקְדֻשָּׁה אֲבָל אֶפִּיקוֹרוֹס יִשְׂרָאֵל שֶׁכָּתַב סֵפֶר תּוֹרָה שׂוֹרְפִין אוֹתוֹ עִם הָאַזְכָּרוֹת שֶׁבּוֹ. מִפְּנֵי שֶׁאֵינוֹ מַאֲמִין בִּקְדֻשַּׁת הַשֵּׁם וְלֹא כְּתָבוֹ לִשְׁמוֹ אֶלָּא שֶׁהוּא מַעֲלֶה בְּדַעְתּוֹ שֶׁזֶּה כִּשְׁאָר הַדְּבָרִים וְהוֹאִיל וְדַעְתּוֹ כֵּן לֹא נִתְקַדֵּשׁ הַשֵּׁם. וּמִצְוָה לְשָׂרְפוֹ כְּדֵי שֶׁלֹּא לְהַנִּיחַ שֵׁם לָאֶפִּיקוֹרוֹסִים וְלֹא לְמַעֲשֵׂיהֶם. אֲבָל עוֹבֵד כּוֹכָבִים שֶׁכָּתַב אֶת הַשֵּׁם גּוֹנְזִין אוֹתוֹ. וְכֵן כִּתְבֵי הַקֹּדֶשׁ שֶׁבָּלוּ אוֹ שֶׁכְּתָבָן עוֹבֵד כּוֹכָבִים יִגָּנְזוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל אפיקורוס שכתב ספר תורה וכו׳.</strong> גיטין פרק השולח (גיטין דף מ״ה ע״ב) אמר רב נחמן נקטינן ס״ת שכתב אפיקורוס ישרף ובפ׳ כל כתבי (שבת שם) אמרינן אספרים שכתבם אפיקורוס א״ר טרפון אקפח את בני שאם יבאו לידי שאני אשרוף אותם ואת האזכרות שבהם ור׳ ישמעאל אמר ק״ו ומה לעשות שלום בין איש לאשתו אמרה תורה שמי שנכתב בקדושה ימחה על המים הללו שמטילים איבה בין ישראל לאביהם שבשמים עאכ״ו:</p>
               </div>
             </div>
@@ -953,8 +1158,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:4</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-8-4" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:8:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-8">Mishneh Torah, Foundations of the Torah 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כִּתְבֵי הַקֹּדֶשׁ כֻּלָּן וּפֵרוּשֵׁיהֶן וּבֵאוּרֵיהֶן אָסוּר לְשָׂרְפָם אוֹ לְאַבְּדָם בַּיָּד וְהַמְאַבְּדָן בַּיָּד מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת. בַּמֶּה דְּבָרִים אֲמוּרִים בְּכִתְבֵי הַקֹּדֶשׁ שֶׁכְּתָבָם יִשְׂרָאֵל בִּקְדֻשָּׁה אֲבָל אֶפִּיקוֹרוֹס יִשְׂרָאֵל שֶׁכָּתַב סֵפֶר תּוֹרָה שׂוֹרְפִין אוֹתוֹ עִם הָאַזְכָּרוֹת שֶׁבּוֹ. מִפְּנֵי שֶׁאֵינוֹ מַאֲמִין בִּקְדֻשַּׁת הַשֵּׁם וְלֹא כְּתָבוֹ לִשְׁמוֹ אֶלָּא שֶׁהוּא מַעֲלֶה בְּדַעְתּוֹ שֶׁזֶּה כִּשְׁאָר הַדְּבָרִים וְהוֹאִיל וְדַעְתּוֹ כֵּן לֹא נִתְקַדֵּשׁ הַשֵּׁם. וּמִצְוָה לְשָׂרְפוֹ כְּדֵי שֶׁלֹּא לְהַנִּיחַ שֵׁם לָאֶפִּיקוֹרוֹסִים וְלֹא לְמַעֲשֵׂיהֶם. אֲבָל עוֹבֵד כּוֹכָבִים שֶׁכָּתַב אֶת הַשֵּׁם גּוֹנְזִין אוֹתוֹ. וְכֵן כִּתְבֵי הַקֹּדֶשׁ שֶׁבָּלוּ אוֹ שֶׁכְּתָבָן עוֹבֵד כּוֹכָבִים יִגָּנְזוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל עובד כוכבים שכתב את השם וכו׳.</strong> פרק השולח (גיטין מ&quot;ה) ס&quot;ת שכתבו עובד כוכבים יגנז:</p>
               </div>
             </div>
@@ -969,8 +1179,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל השמות האמורים באברהם וכו׳.</strong> עד סוף הפרק. הכל סוף פרק שבועת העדות (שבועות דף ל״ה)</p>
               </div>
             </div>
@@ -985,8 +1200,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומ&quot;ש אף זה שנאמר אדני אם נא מצאתי חן בעיניך</strong> לפי יש אומרים שהוא חול שהיה מדבר עם המלאכים ואיפסקא הלכתא דאף זה קודש דכתיב לעיל מיניה וירא אליו ה׳ ואמר להקב&quot;ה אל נא תעבור מעל עבדך המתן לי כאן עד שאכניס האורחים:</p>
               </div>
             </div>
@@ -1001,8 +1221,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל השמות האמורים בלוט וכו׳ חוץ מזה וכו׳.</strong> ונתנו טעם בגמרא משום להחיות את נפשי מי שיש בידו להמית ולהחיות זה הקב&quot;ה. וכתב הריטב&quot;א הא ודאי ליכא אלא אחד שהוא חול הנה נא אדני סורו נא והא דנקט כל שמות אגב ריהטיה נקט הכי. וכתב עוד מי שיש בידו להמית ולהחיות והא דכתיב ויאמר אליהם פירוש בפניהם:</p>
               </div>
             </div>
@@ -1017,8 +1242,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:4</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-4" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל השמות האמורים בגבעת בנימין וכו׳.</strong> פלוגתא דר&quot;א ורבי יהושע ופסק כר׳ יהושע.</p>
               </div>
             </div>
@@ -1033,8 +1263,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:5</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-5" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:5">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומ&quot;ש האמורים במיכה חול וכו׳</strong> אע&quot;ג דפליג התם ר&quot;א את&quot;ק דיהו&quot;ה קדש פסק כת&quot;ק. ומה שכתב בנבות קדש מוסכם:</p>
               </div>
             </div>
@@ -1049,8 +1284,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:6</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-6" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:6">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל שלמה האמור בשיר השירים וכו׳.</strong> בגמרא הכי איתא כל שלמה האמור בשה&quot;ש קדש. שיר למי שהשלום שלו חוץ מזה כרמי שלי לפני האלף לך שלמה כלומר לדידיה ומאתים לנוטרים את פריו רבנן. כלומר הניחם ויעסקו בתורה אחד מששה שבהם. וי&quot;א אף זה הנה מטתו שלשלמה שהיה נבעת מאשמדאי כדאמרינן בגיטין. וי&quot;א אף זה ולא מיבעיא האיך אלא הא דאמר שמואל כל מלכותא דקטלא חד משיתא בעלמא כלומר באנגריא לא מיענשה שנאמר האלף לך מלכותא דרקיעא ומאתים לנוטרים את פריו מלכותא דארעא כמאן לא כת&quot;ק ולא כי&quot;א אלא ה&quot;ק אף זה קודש וזהו חול דמטתו ושמואל דאמר כיש אומרים וכיון דשמואל כי&quot;א משמע דהכי אית לן למפסק. והר&quot;ן תמה על רבינו שפסק כת&quot;ק. ולי נראה דהיינו טעמא דכיון דלשמואל אנו צריכין להגיה לשון וי&quot;א לא נקטינן כותיה אלא נקטינן במאי דמשמע פשט לשון י&quot;א אף זה חול דמשמע ולא מיבעיא האיך וכיון שאנו תופשים הברייתא כפשטה פסקינן כת&quot;ק:</p>
               </div>
             </div>
@@ -1065,8 +1305,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:7</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-7" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:7">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והרי הוא כשאר הכנויים.</strong> דעת רבינו לומר דכשאמרו דשלמה האמור בשה&quot;ש ומלך מלכיא שבדניאל הם קודש לא אמרו לענין שאין נמחקים אלא הרי הם כשאר הכנויין לכל דבריהם ונאמר דהוו קדש שאם השביע את העדים בהם וכפרו חייבים וכ&quot;כ הריטב&quot;א והר&quot;ן ז&quot;ל. וכ&quot;כ הרא&quot;ש ז&quot;ל בתשובות סוף כלל ג׳ וז&quot;ל ומ&quot;ש רבי מצליח דשלמה האמור בשה&quot;ש אינו נמחק לפי שהוא קדש לא כיון יפה וכו׳ עד וכ&quot;ש שלמה שאינו קדוש אלא בשביל שהשלום שלו והוא נמחק:</p>
               </div>
             </div>
@@ -1081,8 +1326,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:8</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-6-9-8" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 6:9:8">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-6-9">Mishneh Torah, Foundations of the Torah 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּאַבְרָהָם קֹדֶשׁ אַף זֶה שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח ג)</span> &quot;אֲדֹנָי אִם נָא מָצָאתִי חֵן&quot; הֲרֵי הוּא קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּלוֹט חֹל חוּץ מִזֶּה <span class="source-small">(גמרא שבועות לה ב)</span> &quot;אַל נָא אֲדֹנָי הִנֵּה נָא מָצָא עַבְדְּךָ חֵן&quot;. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּגִבְעַת בִּנְיָמִין קֹדֶשׁ. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּמִיכָה חֹל. כָּל הַשֵּׁמוֹת הָאֲמוּרִים בְּנָבוֹת קֹדֶשׁ. כָּל שְׁלֹמֹה הָאָמוּר בְּשִׁיר הַשִּׁירִים קֹדֶשׁ וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין חוּץ מִזֶּה <span class="source-small">(שיר השירים ח יב)</span> &quot;הָאֶלֶף לְךָ שְׁלֹמֹה&quot;. כָּל מַלְכַיָּא הָאָמוּר בְּדָנִיֵּאל חֹל חוּץ מִזֶּה <span class="source-small">(דניאל ב לז)</span> &quot;אַנְתְּ מַלְכָּא מֶלֶךְ מַלְכַיָּא&quot; וַהֲרֵי הוּא כִּשְׁאָר הַכִּנּוּיִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מלכיא האמור בדניאל וכו׳.</strong> ברייתא שם כלשון רבינו (שם בשבועות) ואי אפשר לומר שהכוונה כל מקום שכתוב מלכיא שבדקו בספר דניאל ולא מצאו (כי) אלא תרי מלכיא אנת מלכא מלך מלכיא ועוד אחר וביומיהון די מלכיא אינון ולא יצדק לומר כל על שנים בלבד. ועוד שמלכיא שבאנת מלכא אינו קדוש אלא ודאי על מלך האמור במלך מלכים אמרו שהוא קדוש וכן פירש&quot;י כל מקום שנאמר שם מלך. ואפ&quot;ה קשה דהא אשכחן מלך שהוא קדש לבד מזה והוא שכתוב כען אנא נבוכדנצר משבח וכו׳ למלך שמיא. ולכן אני אומר דמאי דקאמר כל מלכיא האמור בדניאל אין הכוונה על ספר דניאל אלא הכונה על דברי דניאל שכל מלך שהזכיר דניאל הוא חול חוץ מזה שהוא קודש:</p>
               </div>
             </div>
@@ -1098,8 +1348,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 7:1:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-7-1-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-7-1">Mishneh Torah, Foundations of the Torah 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִיסוֹדֵי הַדָּת לֵידַע שֶׁהָאֵל מְנַבֵּא אֶת בְּנֵי הָאָדָם. וְאֵין הַנְּבוּאָה חָלָה אֶלָּא עַל חָכָם גָּדוֹל בַּחָכְמָה, גִּבּוֹר בְּמִדּוֹתָיו, וְלֹא יְהֵא יִצְרוֹ מִתְגַּבֵּר עָלָיו בְּדָבָר בָּעוֹלָם אֶלָּא הוּא מִתְגַּבֵּר בְּדַעְתּוֹ עַל יִצְרוֹ תָּמִיד. וְהוּא בַּעַל דֵּעָה רְחָבָה נְכוֹנָה עַד מְאֹד. אָדָם שֶׁהוּא מְמֻלָּא בְּכָל הַמִּדּוֹת הָאֵלּוּ שָׁלֵם בְּגוּפוֹ, כְּשֶׁיִּכָּנֵס לַפַּרְדֵּס וְיִמָּשֵׁךְ בְּאוֹתָן הָעִנְיָנִים הַגְּדוֹלִים הָרְחוֹקִים, וְתִהְיֶה לוֹ דֵּעָה נְכוֹנָה לְהָבִין וּלְהַשִּׂיג וְהוּא מִתְקַדֵּשׁ וְהוֹלֵךְ וּפוֹרֵשׁ מִדַּרְכֵי כְּלַל הָעָם הַהוֹלְכִים בְּמַחֲשַׁכֵּי הַזְּמַן, וְהוֹלֵךְ וּמְזָרֵז עַצְמוֹ וּמְלַמֵּד נַפְשׁוֹ שֶׁלֹּא תִּהְיֶה לוֹ מַחֲשָׁבָה כְּלָל בְּאֶחָד מִדְּבָרִים בְּטֵלִים וְלֹא מֵהַבְלֵי הַזְּמַן וְתַחְבּוּלוֹתָיו, אֶלָּא דַּעְתּוֹ פְּנוּיָה תָּמִיד לְמַעְלָה קְשׁוּרָה תַּחַת הַכִּסֵּא לְהָבִין בְּאוֹתָן הַצּוּרוֹת הַקְּדוֹשׁוֹת הַטְּהוֹרוֹת, וּמִסְתַּכֵּל בְּחָכְמָתוֹ שֶׁל הַקָּדוֹשׁ בָּרוּךְ הוּא כֻּלָּהּ מִצּוּרָה רִאשׁוֹנָה עַד טַבּוּר הָאָרֶץ וְיוֹדֵעַ מֵהֶן גָּדְלוֹ, מִיָּד רוּחַ הַקֹּדֶשׁ שׁוֹרָה עָלָיו. וּבְעֵת שֶׁתָּנוּחַ עָלָיו הָרוּחַ תִּתְעָרֵב נַפְשׁוֹ בְּמַעֲלַת הַמַּלְאָכִים הַנִּקְרָאִים אִישִׁים וְיֵהָפֵךְ לְאִישׁ אַחֵר וְיָבִין בְּדַעְתּוֹ שֶׁאֵינוֹ כְּמוֹת שֶׁהָיָה אֶלָּא שֶׁנִּתְעַלָּה עַל מַעֲלַת שְׁאָר בְּנֵי אָדָם הַחֲכָמִים, כְּמוֹ שֶׁנֶּאֱמַר בְּשָׁאוּל <span class="source-small">(שמואל א י ו)</span> &quot;וְהִתְנַבִּיתָ עִמָּם וְנֶהְפַּכְתָּ לְאִישׁ אַחֵר&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין הנבואה חלה אלא על חכם וכו׳.</strong> בפ&quot;ד דנדרים (דף ל&quot;ח) אמר ר׳ יונתן אין הקב&quot;ה משרה שכינתו אלא על חכם גבור ועשיר. ומפרש רבינו גבור במדותיו כההיא דתנן איזהו גבור הכובש את יצרו. וכן אפשר לפרש עשיר השמח בחלקו אלא ששם משמע בגמרא דגבור כפשוטו שיהא בעל כח וכן עשיר כפשוטו שיהיה לו ממון הרבה. לכך נראה דרבינו סברא דנפשיה קאמר ולא מהא דר׳ יונתן. ומ&quot;מ צ&quot;ע למה לא כתב שיהא גבור בכח ועשיר ועניו וכהא דר׳ יונתן. וי&quot;ל שהרא&quot;ש פירש אהא דר׳ יונתן אין הקב&quot;ה משרה שכינתו בקביעות ומשמע מדבריו דשלא בקביעות אפשר שיתנבא אע&quot;פ שלא יהיה בו כל המדות הללו. ורבינו לא נחת הכא לפרש אלא תנאי הנביא להתנבאות ואפילו שלא יהא בקביעות:</p>
               </div>
             </div>
@@ -1114,8 +1369,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 7:4:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-7-4-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 7:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-7-4">Mishneh Torah, Foundations of the Torah 7:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַנְּבִיאִים אֵין מִתְנַבְּאִין בְּכָל עֵת שֶׁיִּרְצוּ אֶלָּא מְכַוְּנִים דַּעְתָּם וְיוֹשְׁבִים שְׂמֵחִים וְטוֹבֵי לֵב וּמִתְבּוֹדְדִים. שֶׁאֵין הַנְּבוּאָה שׁוֹרָה לֹא מִתּוֹךְ עַצְבוּת וְלֹא מִתּוֹךְ עַצְלוּת אֶלָּא מִתּוֹךְ שִׂמְחָה. לְפִיכָךְ בְּנֵי הַנְּבִיאִים לִפְנֵיהֶם נֵבֶל וְתֹף וְחָלִיל וְכִנּוֹר וְהֵם מְבַקְּשִׁים הַנְּבוּאָה. וְזֶהוּ שֶׁנֶּאֱמַר <span class="source-small">(שמואל א י ה)</span> &quot;וְהֵמָּה מִתְנַבְּאִים&quot; כְּלוֹמַר מְהַלְּכִין בְּדֶרֶךְ הַנְּבוּאָה עַד שֶׁיִּנָּבְאוּ כְּמוֹ שֶׁאַתָּה אוֹמֵר פְּלוֹנִי מִתְגַּדֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאין הנבואה שורה לא מתוך עצבות וכו׳.</strong> בפרק במה מדליקין (שבת דף ל׳):</p>
               </div>
             </div>
@@ -1131,8 +1391,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 8:1:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-8-1-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-8-1">Mishneh Torah, Foundations of the Torah 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">משֶׁה רַבֵּנוּ לֹא הֶאֱמִינוּ בּוֹ יִשְׂרָאֵל מִפְּנֵי הָאוֹתוֹת שֶׁעָשָׂה. שֶׁהַמַּאֲמִין עַל פִּי הָאוֹתוֹת יֵשׁ בְּלִבּוֹ דֹּפִי שֶׁאֶפְשָׁר שֶׁיַּעֲשֶׂה הָאוֹת בְּלָט וְכִשּׁוּף. אֶלָּא כָּל הָאוֹתוֹת שֶׁעָשָׂה משֶׁה בַּמִּדְבָּר לְפִי הַצֹּרֶךְ עֲשָׂאָם. לֹא לְהָבִיא רְאָיָה עַל הַנְּבוּאָה. הָיָה צָרִיךְ לְהַשְׁקִיעַ אֶת הַמִּצְרִיִּים קָרַע אֶת הַיָּם וְהִצְלִילָן בְּתוֹכוֹ. צָרַכְנוּ לְמָזוֹן הוֹרִיד לָנוּ אֶת הַמָּן. צָמְאוּ בָּקַע לָהֶן אֶת הָאֶבֶן. כָּפְרוּ בּוֹ עֲדַת קֹרַח בָּלְעָה אוֹתָן הָאָרֶץ. וְכֵן שְׁאָר כָּל הָאוֹתוֹת. וּבַמֶּה הֶאֱמִינוּ בּוֹ. בְּמַעֲמַד הַר סִינַי שֶׁעֵינֵינוּ רָאוּ וְלֹא זָר וְאָזְנֵינוּ שָׁמְעוּ וְלֹא אַחֵר הָאֵשׁ וְהַקּוֹלוֹת וְהַלַּפִּידִים וְהוּא נִגַּשׁ אֶל הָעֲרָפֶל וְהַקּוֹל מִדַּבֵּר אֵלָיו וְאָנוּ שׁוֹמְעִים משֶׁה משֶׁה לֵךְ אֱמֹר לָהֶן כָּךְ וְכָךְ. וְכֵן הוּא אוֹמֵר <span class="source-small">(דברים ה ד)</span> &quot;פָּנִים בְּפָנִים דִּבֶּר ה׳ עִמָּכֶם&quot;. וְנֶאֱמַר <span class="source-small">(דברים ה ג)</span> &quot;לֹא אֶת אֲבֹתֵינוּ כָּרַת ה׳ אֶת הַבְּרִית הַזֹּאת&quot;. וּמִנַּיִן שֶׁמַּעֲמַד הַר סִינַי לְבַדּוֹ הִיא הָרְאָיָה לִנְבוּאָתוֹ שֶׁהִיא אֱמֶת שֶׁאֵין בּוֹ דֹּפִי שֶׁנֶּאֱמַר <span class="source-small">(שמות יט ט)</span> &quot;הִנֵּה אָנֹכִי בָּא אֵלֶיךָ בְּעַב הֶעָנָן בַּעֲבוּר יִשְׁמַע הָעָם בְּדַבְּרִי עִמָּךְ וְגַם בְּךָ יַאֲמִינוּ לְעוֹלָם&quot;. מִכְלַל שֶׁקֹּדֶם דָּבָר זֶה לֹא הֶאֱמִינוּ בּוֹ נֶאֱמָנוּת שֶׁהִיא עוֹמֶדֶת לְעוֹלָם אֶלָּא נֶאֱמָנוּת שֶׁיֵּשׁ אַחֲרֶיהָ הִרְהוּר וּמַחֲשָׁבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משה רבינו לא האמינו בו ישראל מפני האותות שעשה וכו׳.</strong> בספר העיקרים מאמר ראשון פי&quot;ח ביאר יפה דברי רבינו:</p>
               </div>
             </div>
@@ -1148,8 +1413,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:1:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-1-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-1">Mishneh Torah, Foundations of the Torah 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּבָר בָּרוּר וּמְפֹרָשׁ בַּתּוֹרָה שֶׁהִיא מִצְוָה עוֹמֶדֶת לְעוֹלָם וּלְעוֹלְמֵי עוֹלָמִים אֵין לָהּ לֹא שִׁנּוּי וְלֹא גֵּרָעוֹן וְלֹא תּוֹסֶפֶת שֶׁנֶּאֱמַר (דברים יג א) &quot;אֵת כָּל הַדָּבָר אֲשֶׁר אָנֹכִי מְצַוֶּה אֶתְכֶם אֹתוֹ תִשְׁמְרוּן לַעֲשׂוֹת לֹא תֹסֵף עָלָיו וְלֹא תִגְרַע מִמֶּנּוּ&quot;. וְנֶאֱמַר <span class="source-small">(דברים כט כח)</span> &quot;וְהַנִּגְלֹת לָנוּ וּלְבָנֵינוּ עַד עוֹלָם לַעֲשׂוֹת אֶת כָּל דִּבְרֵי הַתּוֹרָה הַזֹּאת&quot;. הָא לָמַדְתָּ שֶׁכָּל דִּבְרֵי תּוֹרָה מְצֻוִּין אָנוּ לַעֲשׂוֹתָן עַד עוֹלָם. וְכֵן הוּא אוֹמֵר חֻקַּת עוֹלָם לְדֹרֹתֵיכֶם. וְנֶאֱמַר <span class="source-small">(דברים ל יב)</span> &quot;לֹא בַשָּׁמַיִם הִיא&quot;. הָא לָמַדְתָּ שֶׁאֵין נָבִיא רַשַּׁאי לְחַדֵּשׁ דָּבָר מֵעַתָּה. לְפִיכָךְ אִם יַעֲמֹד אִישׁ בֵּין מִן הָאֻמּוֹת בֵּין מִיִּשְׂרָאֵל וְיַעֲשֶׂה אוֹת וּמוֹפֵת וְיֹאמַר שֶׁה׳ שְׁלָחוֹ לְהוֹסִיף מִצְוָה אוֹ לִגְרֹעַ מִצְוָה אוֹ לְפָרֵשׁ בְּמִצְוָה מִן הַמִּצְוֹת פֵּרוּשׁ שֶׁלֹּא שָׁמַעְנוּ מִמּשֶׁה. אוֹ שֶׁאָמַר שֶׁאוֹתָן הַמִּצְוֹת שֶׁנִּצְטַוּוּ בָּהֶן יִשְׂרָאֵל אֵינָן לְעוֹלָם וּלְדוֹרֵי דּוֹרוֹת אֶלָּא מִצְוֹת לְפִי זְמַן הָיוּ. הֲרֵי זֶה נְבִיא שֶׁקֶר שֶׁהֲרֵי בָּא לְהַכְחִישׁ נְבוּאָתוֹ שֶׁל משֶׁה. וּמִיתָתוֹ בְּחֶנֶק עַל שֶׁהֵזִיד לְדַבֵּר בְּשֵׁם ה׳ אֲשֶׁר לֹא צִוָּהוּ. שֶׁהוּא בָּרוּךְ שְׁמוֹ צִוָּה לְמשֶׁה שֶׁהַמִּצְוָה הַזֹּאת לָנוּ וּלְבָנֵינוּ עַד עוֹלָם <span class="source-small">(במדבר כג יט)</span> וְ&quot;לֹא אִישׁ אֵל וִיכַזֵּב&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונאמר לא בשמים היא.</strong> בפ׳ הזהב (ב&quot;מ נ&quot;ט) גבי פלוגתא דר׳ אליעזר ורבנן אמרינן עמד ר׳ יהושע על רגליו ואמר לבת קול שיצאת ופסקה הלכה כר&quot;א לא בשמים היא ואמרינן התם מאי לא בשמים היא אמר ר׳ ירמיה אין משגיחין בבת קול וכל שכן דאין משגיחין בנביא המתנבא:</p>
               </div>
             </div>
@@ -1164,8 +1434,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:1:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-1-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-1">Mishneh Torah, Foundations of the Torah 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּבָר בָּרוּר וּמְפֹרָשׁ בַּתּוֹרָה שֶׁהִיא מִצְוָה עוֹמֶדֶת לְעוֹלָם וּלְעוֹלְמֵי עוֹלָמִים אֵין לָהּ לֹא שִׁנּוּי וְלֹא גֵּרָעוֹן וְלֹא תּוֹסֶפֶת שֶׁנֶּאֱמַר (דברים יג א) &quot;אֵת כָּל הַדָּבָר אֲשֶׁר אָנֹכִי מְצַוֶּה אֶתְכֶם אֹתוֹ תִשְׁמְרוּן לַעֲשׂוֹת לֹא תֹסֵף עָלָיו וְלֹא תִגְרַע מִמֶּנּוּ&quot;. וְנֶאֱמַר <span class="source-small">(דברים כט כח)</span> &quot;וְהַנִּגְלֹת לָנוּ וּלְבָנֵינוּ עַד עוֹלָם לַעֲשׂוֹת אֶת כָּל דִּבְרֵי הַתּוֹרָה הַזֹּאת&quot;. הָא לָמַדְתָּ שֶׁכָּל דִּבְרֵי תּוֹרָה מְצֻוִּין אָנוּ לַעֲשׂוֹתָן עַד עוֹלָם. וְכֵן הוּא אוֹמֵר חֻקַּת עוֹלָם לְדֹרֹתֵיכֶם. וְנֶאֱמַר <span class="source-small">(דברים ל יב)</span> &quot;לֹא בַשָּׁמַיִם הִיא&quot;. הָא לָמַדְתָּ שֶׁאֵין נָבִיא רַשַּׁאי לְחַדֵּשׁ דָּבָר מֵעַתָּה. לְפִיכָךְ אִם יַעֲמֹד אִישׁ בֵּין מִן הָאֻמּוֹת בֵּין מִיִּשְׂרָאֵל וְיַעֲשֶׂה אוֹת וּמוֹפֵת וְיֹאמַר שֶׁה׳ שְׁלָחוֹ לְהוֹסִיף מִצְוָה אוֹ לִגְרֹעַ מִצְוָה אוֹ לְפָרֵשׁ בְּמִצְוָה מִן הַמִּצְוֹת פֵּרוּשׁ שֶׁלֹּא שָׁמַעְנוּ מִמּשֶׁה. אוֹ שֶׁאָמַר שֶׁאוֹתָן הַמִּצְוֹת שֶׁנִּצְטַוּוּ בָּהֶן יִשְׂרָאֵל אֵינָן לְעוֹלָם וּלְדוֹרֵי דּוֹרוֹת אֶלָּא מִצְוֹת לְפִי זְמַן הָיוּ. הֲרֵי זֶה נְבִיא שֶׁקֶר שֶׁהֲרֵי בָּא לְהַכְחִישׁ נְבוּאָתוֹ שֶׁל משֶׁה. וּמִיתָתוֹ בְּחֶנֶק עַל שֶׁהֵזִיד לְדַבֵּר בְּשֵׁם ה׳ אֲשֶׁר לֹא צִוָּהוּ. שֶׁהוּא בָּרוּךְ שְׁמוֹ צִוָּה לְמשֶׁה שֶׁהַמִּצְוָה הַזֹּאת לָנוּ וּלְבָנֵינוּ עַד עוֹלָם <span class="source-small">(במדבר כג יט)</span> וְ&quot;לֹא אִישׁ אֵל וִיכַזֵּב&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הא למדת שאין נביא רשאי לחדש דבר מעתה.</strong> זה לשון ת&quot;כ על פסוק אלה המצות אשר צוה ה׳ את משה ואיתיה בריש מגילה:</p>
               </div>
             </div>
@@ -1180,8 +1455,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:1:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-1-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-1">Mishneh Torah, Foundations of the Torah 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּבָר בָּרוּר וּמְפֹרָשׁ בַּתּוֹרָה שֶׁהִיא מִצְוָה עוֹמֶדֶת לְעוֹלָם וּלְעוֹלְמֵי עוֹלָמִים אֵין לָהּ לֹא שִׁנּוּי וְלֹא גֵּרָעוֹן וְלֹא תּוֹסֶפֶת שֶׁנֶּאֱמַר (דברים יג א) &quot;אֵת כָּל הַדָּבָר אֲשֶׁר אָנֹכִי מְצַוֶּה אֶתְכֶם אֹתוֹ תִשְׁמְרוּן לַעֲשׂוֹת לֹא תֹסֵף עָלָיו וְלֹא תִגְרַע מִמֶּנּוּ&quot;. וְנֶאֱמַר <span class="source-small">(דברים כט כח)</span> &quot;וְהַנִּגְלֹת לָנוּ וּלְבָנֵינוּ עַד עוֹלָם לַעֲשׂוֹת אֶת כָּל דִּבְרֵי הַתּוֹרָה הַזֹּאת&quot;. הָא לָמַדְתָּ שֶׁכָּל דִּבְרֵי תּוֹרָה מְצֻוִּין אָנוּ לַעֲשׂוֹתָן עַד עוֹלָם. וְכֵן הוּא אוֹמֵר חֻקַּת עוֹלָם לְדֹרֹתֵיכֶם. וְנֶאֱמַר <span class="source-small">(דברים ל יב)</span> &quot;לֹא בַשָּׁמַיִם הִיא&quot;. הָא לָמַדְתָּ שֶׁאֵין נָבִיא רַשַּׁאי לְחַדֵּשׁ דָּבָר מֵעַתָּה. לְפִיכָךְ אִם יַעֲמֹד אִישׁ בֵּין מִן הָאֻמּוֹת בֵּין מִיִּשְׂרָאֵל וְיַעֲשֶׂה אוֹת וּמוֹפֵת וְיֹאמַר שֶׁה׳ שְׁלָחוֹ לְהוֹסִיף מִצְוָה אוֹ לִגְרֹעַ מִצְוָה אוֹ לְפָרֵשׁ בְּמִצְוָה מִן הַמִּצְוֹת פֵּרוּשׁ שֶׁלֹּא שָׁמַעְנוּ מִמּשֶׁה. אוֹ שֶׁאָמַר שֶׁאוֹתָן הַמִּצְוֹת שֶׁנִּצְטַוּוּ בָּהֶן יִשְׂרָאֵל אֵינָן לְעוֹלָם וּלְדוֹרֵי דּוֹרוֹת אֶלָּא מִצְוֹת לְפִי זְמַן הָיוּ. הֲרֵי זֶה נְבִיא שֶׁקֶר שֶׁהֲרֵי בָּא לְהַכְחִישׁ נְבוּאָתוֹ שֶׁל משֶׁה. וּמִיתָתוֹ בְּחֶנֶק עַל שֶׁהֵזִיד לְדַבֵּר בְּשֵׁם ה׳ אֲשֶׁר לֹא צִוָּהוּ. שֶׁהוּא בָּרוּךְ שְׁמוֹ צִוָּה לְמשֶׁה שֶׁהַמִּצְוָה הַזֹּאת לָנוּ וּלְבָנֵינוּ עַד עוֹלָם <span class="source-small">(במדבר כג יט)</span> וְ&quot;לֹא אִישׁ אֵל וִיכַזֵּב&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אם יעמוד איש וכו׳.</strong> זה פשוט דמאחר שקבלנו שאין נביא רשאי לחדש דבר מעתה הא ודאי משקר הוא ועליו נאמר ומת הנביא ההוא כי דבר סרה על ה׳:</p>
               </div>
             </div>
@@ -1196,8 +1476,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:2:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-2-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-2">Mishneh Torah, Foundations of the Torah 9:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִם כֵּן לָמָּה נֶאֱמַר בַּתּוֹרָה <span class="source-small">(דברים יח יח)</span> &quot;נָבִיא אָקִים לָהֶם מִקֶּרֶב אֲחֵיהֶם כָּמוֹךָ&quot;. לֹא לַעֲשׂוֹת דָּת הוּא בָּא אֶלָּא לְצַוּוֹת עַל דִּבְרֵי הַתּוֹרָה וּלְהַזְהִיר הָעָם שֶׁלֹּא יַעַבְרוּ עָלֶיהָ. כְּמוֹ שֶׁאָמַר הָאַחֲרוֹן שֶׁבָּהֶן <span class="source-small">(מלאכי ג כב)</span> &quot;זִכְרוּ תּוֹרַת משֶׁה עַבְדִּי&quot;. וְכֵן אִם צִוָּנוּ בְּדִבְרֵי הָרְשׁוּת כְּגוֹן לְכוּ לְמָקוֹם פְּלוֹנִי אוֹ אַל תֵּלְכוּ. עֲשׂוּ מִלְחָמָה הַיּוֹם אוֹ אַל תַּעֲשׂוּ. בְּנוּ חוֹמָה זוֹ אוֹ אַל תִּבְנוּהָ. מִצְוָה לִשְׁמֹעַ לוֹ. וְהָעוֹבֵר עַל דְּבָרָיו חַיָּב מִיתָה בִּידֵי שָׁמַיִם שֶׁנֶּאֱמַר <span class="source-small">(דברים יח יט)</span> &quot;וְהָיָה הָאִישׁ אֲשֶׁר לֹא יִשְׁמַע אֶל דְּבָרַי אֲשֶׁר יְדַבֵּר בִּשְׁמִי אָנֹכִי אֶדְרשׁ מֵעִמּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם צונו בדברי הרשות וכו׳.</strong> משנה סוף פרק הנחנקין (סנהדרין פ&quot;ט) הכובש נבואתו והמוותר על דברי הנביא כלומר המפקירם שלא חשש לדבריו ונביא שעבר על דברי עצמו מיתתן בידי שמים שנאמר אנכי אדרוש מעמו ואמרו בגמרא דכלהו נפקי מהאיש אשר לא ישמע דפשטיה קאי למוותר על דברי הנביא שאינו שומע לדבריו וכן משמע מיניה נביא שהוא עצמו אינו שומע והיינו עובר על דברי עצמו וקרי ביה לא ישמיע והיינו כובש נבואתו ואכולהו קאמר אנכי אדרוש מעמו:</p>
               </div>
             </div>
@@ -1212,8 +1497,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-3-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-3">Mishneh Torah, Foundations of the Torah 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן נָבִיא שֶׁעָבַר עַל דִּבְרֵי עַצְמוֹ וְהַכּוֹבֵשׁ נְבוּאָתוֹ חַיָּב מִיתָה בִּידֵי שָׁמַיִם וּבִשְׁלָשְׁתָּן נֶאֱמַר <span class="source-small">(דברים יח יט)</span> &quot;אָנֹכִי אֶדְרשׁ מֵעִמּוֹ&quot;. וְכֵן אִם יֹאמַר לָנוּ הַנָּבִיא שֶׁנּוֹדַע לָנוּ שֶׁהוּא נָבִיא לַעֲבֹר עַל אַחַת מִכָּל מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה אוֹ עַל מִצְוֹת הַרְבֵּה בֵּין קַלּוֹת בֵּין חֲמוּרוֹת לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לוֹ. וְכֵן לָמַדְנוּ מֵחֲכָמִים רִאשׁוֹנִים מִפִּי הַשְּׁמוּעָה בְּכָל אִם יֹאמַר לְךָ הַנָּבִיא עֲבֹר עַל דִּבְרֵי תּוֹרָה כְּאֵלִיָּהוּ בְּהַר הַכַּרְמֶל שְׁמַע לוֹ חוּץ מֵעֲבוֹדַת כּוֹכָבִים. וְהוּא שֶׁיִּהְיֶה הַדָּבָר לְפִי שָׁעָה. כְּגוֹן אֵלִיָּהוּ בְּהַר הַכַּרְמֶל שֶׁהִקְרִיב עוֹלָה בַּחוּץ וִירוּשָׁלַיִם נִבְחֶרֶת לְכָךְ וְהַמַּקְרִיב בַּחוּץ חַיָּב כָּרֵת. וּמִפְּנֵי שֶׁהוּא נָבִיא מִצְוָה לִשְׁמֹעַ לוֹ וְגַם בָּזֶה נֶאֱמַר <span class="source-small">(דברים יח טו)</span> &quot;אֵלָיו תִּשְׁמָעוּן&quot;. וְאִלּוּ שָׁאֲלוּ אֶת אֵלִיָּהוּ וְאָמְרוּ לוֹ הֵיאַךְ נַעֲקֹר מַה שֶּׁכָּתוּב בַּתּוֹרָה <span class="source-small">(דברים יב יג)</span> &quot;פֶּן תַּעֲלֶה עלֹתֶיךָ בְּכָל מָקוֹם&quot;. הָיָה אוֹמֵר לֹא נֶאֱמַר אֶלָּא הַמַּקְרִיב בַּחוּץ לְעוֹלָם חַיָּב כָּרֵת כְּמוֹ שֶׁצִּוָּה משֶׁה. אֲבָל אֲנִי אַקְרִיב הַיּוֹם בַּחוּץ בִּדְבַר ה׳ כְּדֵי לְהַכְחִישׁ נְבִיאֵי הַבַּעַל. וְעַל הַדֶּרֶךְ הַזֹּאת אִם צִוּוּ כָּל הַנְּבִיאִים לַעֲבֹר לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לָהֶם. וְאִם אָמְרוּ שֶׁהַדָּבָר נֶעֱקַר לְעוֹלָם מִיתָתוֹ בְּחֶנֶק שֶׁהַתּוֹרָה אָמְרָה <span class="source-small">(דברים כט כח)</span> &quot;לָנוּ וּלְבָנֵינוּ עַד עוֹלָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם יאמר לנו הנביא וכו׳.</strong> יבמות פרק האשה רבה (יבמות דף צ׳:) ובספרי אליו תשמעון אפילו אומר לך עבור על אחת מכל מצות שבתורה כגון אליהו בהר הכרמל הכל לפי שעה שמע לו.</p>
               </div>
             </div>
@@ -1228,8 +1518,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:2</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-3-2" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-3">Mishneh Torah, Foundations of the Torah 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן נָבִיא שֶׁעָבַר עַל דִּבְרֵי עַצְמוֹ וְהַכּוֹבֵשׁ נְבוּאָתוֹ חַיָּב מִיתָה בִּידֵי שָׁמַיִם וּבִשְׁלָשְׁתָּן נֶאֱמַר <span class="source-small">(דברים יח יט)</span> &quot;אָנֹכִי אֶדְרשׁ מֵעִמּוֹ&quot;. וְכֵן אִם יֹאמַר לָנוּ הַנָּבִיא שֶׁנּוֹדַע לָנוּ שֶׁהוּא נָבִיא לַעֲבֹר עַל אַחַת מִכָּל מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה אוֹ עַל מִצְוֹת הַרְבֵּה בֵּין קַלּוֹת בֵּין חֲמוּרוֹת לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לוֹ. וְכֵן לָמַדְנוּ מֵחֲכָמִים רִאשׁוֹנִים מִפִּי הַשְּׁמוּעָה בְּכָל אִם יֹאמַר לְךָ הַנָּבִיא עֲבֹר עַל דִּבְרֵי תּוֹרָה כְּאֵלִיָּהוּ בְּהַר הַכַּרְמֶל שְׁמַע לוֹ חוּץ מֵעֲבוֹדַת כּוֹכָבִים. וְהוּא שֶׁיִּהְיֶה הַדָּבָר לְפִי שָׁעָה. כְּגוֹן אֵלִיָּהוּ בְּהַר הַכַּרְמֶל שֶׁהִקְרִיב עוֹלָה בַּחוּץ וִירוּשָׁלַיִם נִבְחֶרֶת לְכָךְ וְהַמַּקְרִיב בַּחוּץ חַיָּב כָּרֵת. וּמִפְּנֵי שֶׁהוּא נָבִיא מִצְוָה לִשְׁמֹעַ לוֹ וְגַם בָּזֶה נֶאֱמַר <span class="source-small">(דברים יח טו)</span> &quot;אֵלָיו תִּשְׁמָעוּן&quot;. וְאִלּוּ שָׁאֲלוּ אֶת אֵלִיָּהוּ וְאָמְרוּ לוֹ הֵיאַךְ נַעֲקֹר מַה שֶּׁכָּתוּב בַּתּוֹרָה <span class="source-small">(דברים יב יג)</span> &quot;פֶּן תַּעֲלֶה עלֹתֶיךָ בְּכָל מָקוֹם&quot;. הָיָה אוֹמֵר לֹא נֶאֱמַר אֶלָּא הַמַּקְרִיב בַּחוּץ לְעוֹלָם חַיָּב כָּרֵת כְּמוֹ שֶׁצִּוָּה משֶׁה. אֲבָל אֲנִי אַקְרִיב הַיּוֹם בַּחוּץ בִּדְבַר ה׳ כְּדֵי לְהַכְחִישׁ נְבִיאֵי הַבַּעַל. וְעַל הַדֶּרֶךְ הַזֹּאת אִם צִוּוּ כָּל הַנְּבִיאִים לַעֲבֹר לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לָהֶם. וְאִם אָמְרוּ שֶׁהַדָּבָר נֶעֱקַר לְעוֹלָם מִיתָתוֹ בְּחֶנֶק שֶׁהַתּוֹרָה אָמְרָה <span class="source-small">(דברים כט כח)</span> &quot;לָנוּ וּלְבָנֵינוּ עַד עוֹלָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומ&quot;ש שנודע לנו שהוא נביא</strong> לומר שאם עד שלא נודע לנו מדברים אחרים שהוא נביא וזה החלו לעשות אין שומעין לו ואפילו העובר על דבריו בדברי הרשות אינו נענש עד שיוחזק וכך אמרו בפ׳ הנחנקין שהטעם ששמעו ישראל לאליהו בהר הכרמל לפי שהיה מוחזק בנבואה שאילו לא היה מוחזק לא היו שומעין לו:</p>
               </div>
             </div>
@@ -1244,8 +1539,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:3</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-3-3" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-3">Mishneh Torah, Foundations of the Torah 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן נָבִיא שֶׁעָבַר עַל דִּבְרֵי עַצְמוֹ וְהַכּוֹבֵשׁ נְבוּאָתוֹ חַיָּב מִיתָה בִּידֵי שָׁמַיִם וּבִשְׁלָשְׁתָּן נֶאֱמַר <span class="source-small">(דברים יח יט)</span> &quot;אָנֹכִי אֶדְרשׁ מֵעִמּוֹ&quot;. וְכֵן אִם יֹאמַר לָנוּ הַנָּבִיא שֶׁנּוֹדַע לָנוּ שֶׁהוּא נָבִיא לַעֲבֹר עַל אַחַת מִכָּל מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה אוֹ עַל מִצְוֹת הַרְבֵּה בֵּין קַלּוֹת בֵּין חֲמוּרוֹת לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לוֹ. וְכֵן לָמַדְנוּ מֵחֲכָמִים רִאשׁוֹנִים מִפִּי הַשְּׁמוּעָה בְּכָל אִם יֹאמַר לְךָ הַנָּבִיא עֲבֹר עַל דִּבְרֵי תּוֹרָה כְּאֵלִיָּהוּ בְּהַר הַכַּרְמֶל שְׁמַע לוֹ חוּץ מֵעֲבוֹדַת כּוֹכָבִים. וְהוּא שֶׁיִּהְיֶה הַדָּבָר לְפִי שָׁעָה. כְּגוֹן אֵלִיָּהוּ בְּהַר הַכַּרְמֶל שֶׁהִקְרִיב עוֹלָה בַּחוּץ וִירוּשָׁלַיִם נִבְחֶרֶת לְכָךְ וְהַמַּקְרִיב בַּחוּץ חַיָּב כָּרֵת. וּמִפְּנֵי שֶׁהוּא נָבִיא מִצְוָה לִשְׁמֹעַ לוֹ וְגַם בָּזֶה נֶאֱמַר <span class="source-small">(דברים יח טו)</span> &quot;אֵלָיו תִּשְׁמָעוּן&quot;. וְאִלּוּ שָׁאֲלוּ אֶת אֵלִיָּהוּ וְאָמְרוּ לוֹ הֵיאַךְ נַעֲקֹר מַה שֶּׁכָּתוּב בַּתּוֹרָה <span class="source-small">(דברים יב יג)</span> &quot;פֶּן תַּעֲלֶה עלֹתֶיךָ בְּכָל מָקוֹם&quot;. הָיָה אוֹמֵר לֹא נֶאֱמַר אֶלָּא הַמַּקְרִיב בַּחוּץ לְעוֹלָם חַיָּב כָּרֵת כְּמוֹ שֶׁצִּוָּה משֶׁה. אֲבָל אֲנִי אַקְרִיב הַיּוֹם בַּחוּץ בִּדְבַר ה׳ כְּדֵי לְהַכְחִישׁ נְבִיאֵי הַבַּעַל. וְעַל הַדֶּרֶךְ הַזֹּאת אִם צִוּוּ כָּל הַנְּבִיאִים לַעֲבֹר לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לָהֶם. וְאִם אָמְרוּ שֶׁהַדָּבָר נֶעֱקַר לְעוֹלָם מִיתָתוֹ בְּחֶנֶק שֶׁהַתּוֹרָה אָמְרָה <span class="source-small">(דברים כט כח)</span> &quot;לָנוּ וּלְבָנֵינוּ עַד עוֹלָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן למדנו מהחכמים הראשונים וכו׳.</strong> בסוף הנחנקין (סנהדרין צ׳) א&quot;ר אבהו א&quot;ר יוחנן אם יאמר לך נביא עבור על דברי תורה שמע לו כלומר לפי שעה חוץ מעבודת כוכבים:</p>
               </div>
             </div>
@@ -1260,8 +1560,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:4</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-3-4" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:3:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-3">Mishneh Torah, Foundations of the Torah 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן נָבִיא שֶׁעָבַר עַל דִּבְרֵי עַצְמוֹ וְהַכּוֹבֵשׁ נְבוּאָתוֹ חַיָּב מִיתָה בִּידֵי שָׁמַיִם וּבִשְׁלָשְׁתָּן נֶאֱמַר <span class="source-small">(דברים יח יט)</span> &quot;אָנֹכִי אֶדְרשׁ מֵעִמּוֹ&quot;. וְכֵן אִם יֹאמַר לָנוּ הַנָּבִיא שֶׁנּוֹדַע לָנוּ שֶׁהוּא נָבִיא לַעֲבֹר עַל אַחַת מִכָּל מִצְוֹת הָאֲמוּרוֹת בַּתּוֹרָה אוֹ עַל מִצְוֹת הַרְבֵּה בֵּין קַלּוֹת בֵּין חֲמוּרוֹת לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לוֹ. וְכֵן לָמַדְנוּ מֵחֲכָמִים רִאשׁוֹנִים מִפִּי הַשְּׁמוּעָה בְּכָל אִם יֹאמַר לְךָ הַנָּבִיא עֲבֹר עַל דִּבְרֵי תּוֹרָה כְּאֵלִיָּהוּ בְּהַר הַכַּרְמֶל שְׁמַע לוֹ חוּץ מֵעֲבוֹדַת כּוֹכָבִים. וְהוּא שֶׁיִּהְיֶה הַדָּבָר לְפִי שָׁעָה. כְּגוֹן אֵלִיָּהוּ בְּהַר הַכַּרְמֶל שֶׁהִקְרִיב עוֹלָה בַּחוּץ וִירוּשָׁלַיִם נִבְחֶרֶת לְכָךְ וְהַמַּקְרִיב בַּחוּץ חַיָּב כָּרֵת. וּמִפְּנֵי שֶׁהוּא נָבִיא מִצְוָה לִשְׁמֹעַ לוֹ וְגַם בָּזֶה נֶאֱמַר <span class="source-small">(דברים יח טו)</span> &quot;אֵלָיו תִּשְׁמָעוּן&quot;. וְאִלּוּ שָׁאֲלוּ אֶת אֵלִיָּהוּ וְאָמְרוּ לוֹ הֵיאַךְ נַעֲקֹר מַה שֶּׁכָּתוּב בַּתּוֹרָה <span class="source-small">(דברים יב יג)</span> &quot;פֶּן תַּעֲלֶה עלֹתֶיךָ בְּכָל מָקוֹם&quot;. הָיָה אוֹמֵר לֹא נֶאֱמַר אֶלָּא הַמַּקְרִיב בַּחוּץ לְעוֹלָם חַיָּב כָּרֵת כְּמוֹ שֶׁצִּוָּה משֶׁה. אֲבָל אֲנִי אַקְרִיב הַיּוֹם בַּחוּץ בִּדְבַר ה׳ כְּדֵי לְהַכְחִישׁ נְבִיאֵי הַבַּעַל. וְעַל הַדֶּרֶךְ הַזֹּאת אִם צִוּוּ כָּל הַנְּבִיאִים לַעֲבֹר לְפִי שָׁעָה מִצְוָה לִשְׁמֹעַ לָהֶם. וְאִם אָמְרוּ שֶׁהַדָּבָר נֶעֱקַר לְעוֹלָם מִיתָתוֹ בְּחֶנֶק שֶׁהַתּוֹרָה אָמְרָה <span class="source-small">(דברים כט כח)</span> &quot;לָנוּ וּלְבָנֵינוּ עַד עוֹלָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם אמרו שהדבר נעקר לעולם וכו׳.</strong> וכן אם עקר דבר מדברים שלמדנו מפי השמועה כיון שתורתנו נצחית ולמדנו שלא יבא עוד נביא לחדש דבר ואמרו חז&quot;ל בכמה מקומות (חולין קכ&quot;ד.) אילו אמר לי יהושע בן נון מפומיה לא צייתנא ליה. גם אמרו (תמורה ט&quot;ז. וע&quot;ש) על אותם הלכות שנשתכחו בימי אבלו של משה לא רצה הקב&quot;ה ללמדם ליהושע וא&quot;ל אין נביא רשאי לחדש דבר א&quot;כ כשזה מתנבא בדבר תורה נתברר לנו שדבר סרה. אבל קשה לי דאמרו פ&quot;ק דיבמות דיצתה בת קול לומר דהלכה כב&quot;ה וקיי&quot;ל הכי בכל דוכתא והתוס׳ שם ובפרק הזהב נתנו טעם לדבר ואינו עולה כפי דעת רבינו וצ&quot;ע:</p>
               </div>
             </div>
@@ -1276,8 +1581,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:4:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-4-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-4">Mishneh Torah, Foundations of the Torah 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן אִם עָקַר דָּבָר מִדְּבָרִים שֶׁלָּמַדְנוּ מִפִּי הַשְּׁמוּעָה אוֹ שֶׁאָמַר בְּדִין מִדִּינֵי תּוֹרָה שֶׁה׳ צִוָּה לוֹ שֶׁהַדִּין כָּךְ הוּא וַהֲלָכָה כְּדִבְרֵי פְּלוֹנִי הֲרֵי זֶה נְבִיא הַשֶּׁקֶר וְיֵחָנֵק. אַף עַל פִּי שֶׁעָשָׂה אוֹת. שֶׁהֲרֵי בָּא לְהַכְחִישׁ הַתּוֹרָה שֶׁאָמְרָה <span class="source-small">(דברים ל יב)</span> &quot;לֹא בַשָּׁמַיִם הִיא&quot;. אֲבָל לְפִי שָׁעָה שׁוֹמְעִין לוֹ בַּכּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או שאמר בדין מדיני התורה שה׳ צוה לו שהדין כך וכו׳.</strong> וא&quot;ת שנראה מדבריו כאן שאפילו כיון את ההלכה לטמא את הטמא ולטהר את הטהור יחנק ומדבריו בראש הפרק נראה דדוקא כשבא להוסיף או לגרוע או לשנות הרי זה נביא שקר ויחנק הא כשבא לומר הלכה כדברי פלוני כיון שאינו מוסיף ולא גורע ולא משנה אינו נביא שקר. ונ&quot;ל דבראש הפרק לא נתכוין אלא להוציא מלבן של בעלי הכתות אשר קצתם אומרים שבא להוסיף וקצתם אומרים שבא לגרוע ולשנות לפי שאין התורה נצחית ובסוף הפרק אמר הדין הנופל במתנבא שהלכה כדברי פלוני:</p>
               </div>
             </div>
@@ -1292,8 +1602,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:5:1</h4></div>
               <a class="anchor" href="#kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-9-5-1" aria-label="Copy link to Kessef Mishneh on Mishneh Torah, Foundations of the Torah 9:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-foundations-of-the-torah/#mishneh-torah-foundations-of-the-torah-9-5">Mishneh Torah, Foundations of the Torah 9:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים בִּשְׁאָר מִצְוֹת. אֲבָל בַּעֲבוֹדַת כּוֹכָבִים אֵין שׁוֹמְעִין לוֹ וַאֲפִלּוּ לְפִי שָׁעָה. וַאֲפִלּוּ עָשָׂה אוֹתוֹת וּמוֹפְתִים גְּדוֹלִים וְאָמַר שֶׁה׳ צִוָּהוּ שֶׁתֵּעָבֵד עֲבוֹדַת כּוֹכָבִים הַיּוֹם בִּלְבַד אוֹ בְּשָׁעָה זוֹ בִּלְבַד הֲרֵי זֶה דִּבֵּר סָרָה עַל ה׳. וְעַל זֶה צִוָּה הַכָּתוּב וְאָמַר <span class="source-small">(דברים יג ג)</span> &quot;וּבָא הָאוֹת וְהַמּוֹפֵת&quot; <span class="source-small">(דברים יג ד)</span> &quot;לֹא תִּשְׁמַע אֶל דִּבְרֵי הַנָּבִיא הַהוּא&quot; <span class="source-small">(דברים יג ו)</span> &quot;כִּי דִּבֵּר סָרָה עַל ה׳ אֱלֹהֵיכֶם&quot;. שֶׁהֲרֵי בָּא לְהַכְחִישׁ נְבוּאָתוֹ שֶׁל משֶׁה. וּלְפִיכָךְ נֵדַע בְּוַדַּאי שֶׁהוּא נְבִיא שֶׁקֶר וְכָל מַה שֶּׁעָשָׂה בְּלָט וְכִשּׁוּף עָשָׂה וְיֵחָנֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במה דברים אמורים בשאר מצות אבל וכו׳.</strong> למעלה כשאמר אם יאמר לך הנביא עבור על דברי תורה שמע לו חוץ מעבודת כוכבים הזכיר שם עבודת כוכבים אגב דשאר מצות שכוונתו שם היתה לומר דבשאר מצות שומעים לנביא וכאן נתכוין לדבר בעבודת כוכבים בייחוד דאין שומעין לו אפילו לפי שעה ולמד כן ממה שאמרו אם יאמר לך הנביא עבור על ד&quot;ת שמע והיינו דוקא לפי שעה וכמו שכתבתי למעלה וקאמר חוץ מעבודת כוכבים אלמא דבעבודת כוכבים אפילו לפי שעה אין שומעין לו:</p>
               </div>
             </div>
@@ -1303,6 +1618,10 @@
               <a href="#chapter-kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-text-9">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1323,8 +1642,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.manifest.json","occurrence_url":"../../data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kessef-mishneh-on-mishneh-torah-foundations-of-the-torah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1350,7 +1669,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

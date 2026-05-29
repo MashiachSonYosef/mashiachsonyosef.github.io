@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-reading-the-shema/">Open Mishneh Torah, Reading the Shema</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Reading the Shema</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">66 total source units | imported 2026-05-23</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>520 matched</strong> / 1189 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/migdal-oz-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/migdal-oz-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -272,8 +272,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 1:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-1-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-1">Mishneh Torah, Reading the Shema 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פַּעֲמַיִם בְּכָל יוֹם קוֹרְאִין קְרִיאַת שְׁמַע, בָּעֶרֶב וּבַבֹּקֶר. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> ״וּבְשָׁכְבְּךָ וּבְקוּמֶךָ״ בְּשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם שׁוֹכְבִין וְזֶה הוּא לַיְלָה. וּבְשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם עוֹמְדִין וְזֶה הוּא יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פעמים בכל יום קורין ק&quot;ש כו׳ עד ויאמר.</strong> פ&quot;א דברכות <span class="source-small"> (דף י&quot;א) </span> ובתוספתא:</p>
               </div>
             </div>
@@ -288,8 +293,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 1:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-1-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-1">Mishneh Torah, Reading the Shema 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פַּעֲמַיִם בְּכָל יוֹם קוֹרְאִין קְרִיאַת שְׁמַע, בָּעֶרֶב וּבַבֹּקֶר. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> ״וּבְשָׁכְבְּךָ וּבְקוּמֶךָ״ בְּשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם שׁוֹכְבִין וְזֶה הוּא לַיְלָה. וּבְשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם עוֹמְדִין וְזֶה הוּא יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומקדימין לקרות פ׳ שמע כו׳ עד כל המצות.</strong> פרק היה קורא <span class="source-small"> (דף י&quot;ג)</span> :</p>
               </div>
             </div>
@@ -304,8 +314,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 1:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-1-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-3">Mishneh Torah, Reading the Shema 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁאֵין מִצְוַת צִיצִית נוֹהֶגֶת בַּלַּיְלָה קוֹרְאִין אוֹתָהּ בַּלַּיְלָה מִפְּנֵי שֶׁיֵּשׁ בָּהּ זִכְרוֹן יְצִיאַת מִצְרַיִם וּמִצְוָה לְהַזְכִּיר יְצִיאַת מִצְרַיִם בַּיּוֹם וּבַלַּיְלָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז ג)</span> ״לְמַעַן תִּזְכֹּר אֶת יוֹם צֵאתְךָ מֵאֶרֶץ מִצְרַיִם כּל יְמֵי חַיֶּיךָ״. וּקְרִיאַת שָׁלֹשׁ פָּרָשִׁיּוֹת אֵלּוּ עַל סֵדֶר זֶה הִיא הַנִּקְרֵאת קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ שאין מצות ציצית בלילה כו׳ עד הנקראת ק&quot;ש.</strong> סוף פ&quot;ק דברכות <span class="source-small"> (דף י&quot;ב)</span> :</p>
               </div>
             </div>
@@ -320,8 +335,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 1:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-1-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 1:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-3">Mishneh Torah, Reading the Shema 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁאֵין מִצְוַת צִיצִית נוֹהֶגֶת בַּלַּיְלָה קוֹרְאִין אוֹתָהּ בַּלַּיְלָה מִפְּנֵי שֶׁיֵּשׁ בָּהּ זִכְרוֹן יְצִיאַת מִצְרַיִם וּמִצְוָה לְהַזְכִּיר יְצִיאַת מִצְרַיִם בַּיּוֹם וּבַלַּיְלָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז ג)</span> ״לְמַעַן תִּזְכֹּר אֶת יוֹם צֵאתְךָ מֵאֶרֶץ מִצְרַיִם כּל יְמֵי חַיֶּיךָ״. וּקְרִיאַת שָׁלֹשׁ פָּרָשִׁיּוֹת אֵלּוּ עַל סֵדֶר זֶה הִיא הַנִּקְרֵאת קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הקורא ק&quot;ש כשהוא כו׳ עד אחר פסוק זה.</strong> פ׳ מקום שנהגו <span class="source-small"> (דף נ&quot;ו)</span> :</p>
               </div>
             </div>
@@ -336,8 +356,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 1:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-1-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-5">Mishneh Torah, Reading the Shema 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא קְרִיאַת שְׁמַע מְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. בַּיּוֹם מְבָרֵךְ שְׁתַּיִם לְפָנֶיהָ וְאַחַת לְאַחֲרֶיהָ. וּבַלַּיְלָה מְבָרֵךְ שְׁתַּיִם לְפָנֶיהָ וּשְׁתַּיִם לְאַחֲרֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא קריאת שמע כו׳ עד שאין סדר בברכות.</strong> הכל פ&quot;ק דברכות <span class="source-small"> (דף י&quot;א)</span> :</p>
               </div>
             </div>
@@ -352,8 +377,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 1:5:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-1-5-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 1:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-5">Mishneh Torah, Reading the Shema 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא קְרִיאַת שְׁמַע מְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. בַּיּוֹם מְבָרֵךְ שְׁתַּיִם לְפָנֶיהָ וְאַחַת לְאַחֲרֶיהָ. וּבַלַּיְלָה מְבָרֵךְ שְׁתַּיִם לְפָנֶיהָ וּשְׁתַּיִם לְאַחֲרֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בשחרית פתח כו׳ עד אחר חתימתן.</strong> סוף פ&quot;ק דברכות <span class="source-small"> (דף י&quot;ב)</span> :</p>
               </div>
             </div>
@@ -368,8 +398,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 1:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-1-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-9">Mishneh Torah, Reading the Shema 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵיזֶה הוּא זְמַן קְרִיאַת שְׁמַע בַּלַּיְלָה. מִצְוָתָהּ מִשְּׁעַת יְצִיאַת הַכּוֹכָבִים עַד חֲצִי הַלַּיְלָה. וְאִם עָבַר וְאִחֵר וְקָרָא עַד שֶׁלֹּא עָלָה עַמּוּד הַשַּׁחַר יָצָא יְדֵי חוֹבָתוֹ שֶׁלֹּא אָמְרוּ עַד חֲצוֹת אֶלָּא כְּדֵי לְהַרְחִיק אָדָם מִן הַפְּשִׁיעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איזהו זמן כו׳ עד סוף הפרק.</strong> הכל פרק קמא דברכות <span class="source-small"> (דף ב׳)</span> :</p>
               </div>
             </div>
@@ -385,8 +420,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-1">Mishneh Torah, Reading the Shema 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת שְׁמַע וְלֹא כִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן שֶׁהוּא <span class="source-small">(דברים ו ד)</span> ״שְׁמַע יִשְׂרָאֵל״ לֹא יָצָא יְדֵי חוֹבָתוֹ וְהַשְּׁאָר אִם לֹא כִּוֵּן לִבּוֹ יָצָא. אֲפִלּוּ הָיָה קוֹרֵא בַּתּוֹרָה כְּדַרְכּוֹ אוֹ מַגִּיהַּ אֶת הַפָּרָשִׁיּוֹת הָאֵלּוּ בְּעוֹנַת קְרִיאָה יָצָא וְהוּא שֶׁכִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא את שמע ולא כיון כו׳ עד בפסוק ראשון.</strong> פרק היה קורא <span class="source-small"> (דף יד)</span> :</p>
               </div>
             </div>
@@ -401,8 +441,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-1">Mishneh Torah, Reading the Shema 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת שְׁמַע וְלֹא כִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן שֶׁהוּא <span class="source-small">(דברים ו ד)</span> ״שְׁמַע יִשְׂרָאֵל״ לֹא יָצָא יְדֵי חוֹבָתוֹ וְהַשְּׁאָר אִם לֹא כִּוֵּן לִבּוֹ יָצָא. אֲפִלּוּ הָיָה קוֹרֵא בַּתּוֹרָה כְּדַרְכּוֹ אוֹ מַגִּיהַּ אֶת הַפָּרָשִׁיּוֹת הָאֵלּוּ בְּעוֹנַת קְרִיאָה יָצָא וְהוּא שֶׁכִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל אדם קוראין כו׳ עד על גבי בהמה.</strong> פרק קמא דברכות <span class="source-small"> (דף יא)</span> :</p>
               </div>
             </div>
@@ -417,8 +462,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:1:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-1-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-1">Mishneh Torah, Reading the Shema 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת שְׁמַע וְלֹא כִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן שֶׁהוּא <span class="source-small">(דברים ו ד)</span> ״שְׁמַע יִשְׂרָאֵל״ לֹא יָצָא יְדֵי חוֹבָתוֹ וְהַשְּׁאָר אִם לֹא כִּוֵּן לִבּוֹ יָצָא. אֲפִלּוּ הָיָה קוֹרֵא בַּתּוֹרָה כְּדַרְכּוֹ אוֹ מַגִּיהַּ אֶת הַפָּרָשִׁיּוֹת הָאֵלּוּ בְּעוֹנַת קְרִיאָה יָצָא וְהוּא שֶׁכִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואסור לקרות ק&quot;ש עד וקורא.</strong> כתב הראב&quot;ד ז&quot;ל ויותר טוב אם ישכב וצריך לעשות כן אם יוכל עכ&quot;ל. <strong> ואני </strong> אומר איני מבין לשונו שהרי ר&quot;מ ז&quot;ל זה לשונו בבריא אבל קורא הוא והוא שוכב על צידו ולא כתב נוטה מעט על צדו אלא בחולה שאינו יכול לשכב או בבעל בשר וכדאסיקנא בגמרא שאני רבי יוחנן דבעל בשר הוה וכן התבוננתי בירושלמי וכד&quot;ן:</p>
               </div>
             </div>
@@ -433,8 +483,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-3">Mishneh Torah, Reading the Shema 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיָה מְהַלֵּךְ עַל רַגְלָיו עוֹמֵד בְּפָסוּק רִאשׁוֹן וְהַשְּׁאָר קוֹרֵא וְהוּא מְהַלֵּךְ. הָיָה יָשֵׁן מְצַעֲרִין אוֹתוֹ וּמְעִירִין אוֹתוֹ עַד שֶׁיִּקְרָא פָּסוּק רִאשׁוֹן וּמִכָּאן וְאֵילָךְ אִם אֲנָסַתּוּ שֵׁנָה אֵין מְצַעֲרִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהיה וכו׳ עד מהלך.</strong> כן פי׳ בירושלמי בשמועה ראשונה דפ&quot;ב דברכות ובאגדת אלה הדברים פרשת ואתחנן אמר כן רב יהודה אמר רב להדיא וכן הסכימו רבותינו בעלי התוס׳:</p>
               </div>
             </div>
@@ -449,8 +504,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-3">Mishneh Torah, Reading the Shema 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיָה מְהַלֵּךְ עַל רַגְלָיו עוֹמֵד בְּפָסוּק רִאשׁוֹן וְהַשְּׁאָר קוֹרֵא וְהוּא מְהַלֵּךְ. הָיָה יָשֵׁן מְצַעֲרִין אוֹתוֹ וּמְעִירִין אוֹתוֹ עַד שֶׁיִּקְרָא פָּסוּק רִאשׁוֹן וּמִכָּאן וְאֵילָךְ אִם אֲנָסַתּוּ שֵׁנָה אֵין מְצַעֲרִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היה ישן מצערין אותו כו׳ עד ומברך לפניה ולאחריה.</strong> פ&quot;ב דברכות <span class="source-small"> (דף יד)</span> :</p>
               </div>
             </div>
@@ -465,8 +525,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-5">Mishneh Torah, Reading the Shema 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה עוֹסֵק בְּתַלְמוּד תּוֹרָה וְהִגִּיעַ זְמַן קְרִיאַת שְׁמַע פּוֹסֵק וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. הָיָה עוֹסֵק בְּצָרְכֵי רַבִּים לֹא יִפְסֹק אֶלָּא יִגְמֹר עִסְקֵיהֶן וְיִקְרָא אִם נִשְׁאָר עֵת לִקְרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה עוסק בתלמוד תורה כו׳ עד ולאחריה.</strong> פ&quot;א דשבת <span class="source-small"> (דף ט)</span> :</p>
               </div>
             </div>
@@ -481,8 +546,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:5:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-5-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-5">Mishneh Torah, Reading the Shema 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה עוֹסֵק בְּתַלְמוּד תּוֹרָה וְהִגִּיעַ זְמַן קְרִיאַת שְׁמַע פּוֹסֵק וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. הָיָה עוֹסֵק בְּצָרְכֵי רַבִּים לֹא יִפְסֹק אֶלָּא יִגְמֹר עִסְקֵיהֶן וְיִקְרָא אִם נִשְׁאָר עֵת לִקְרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היה עוסק בצרכי רבים כו׳ עד לקרות.</strong> פרק קמא דשבת <span class="source-small"> (דף י)</span> :</p>
               </div>
             </div>
@@ -497,8 +567,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:5:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-5-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:5:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-5">Mishneh Torah, Reading the Shema 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה עוֹסֵק בְּתַלְמוּד תּוֹרָה וְהִגִּיעַ זְמַן קְרִיאַת שְׁמַע פּוֹסֵק וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. הָיָה עוֹסֵק בְּצָרְכֵי רַבִּים לֹא יִפְסֹק אֶלָּא יִגְמֹר עִסְקֵיהֶן וְיִקְרָא אִם נִשְׁאָר עֵת לִקְרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היה עוסק באכילה או שהיה במרחץ כו׳ עד ואם היה מתירא שמא יעבור זמן הקריאה ופסק וקרא הרי זה משובח.</strong> פ&quot;ק דשבת שם ופ׳ לולב הגזול <span class="source-small"> (דף לח)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל לא כי אלא מפסיק וקורא וכו׳ ואיתא להא מילתא וכו׳ במסכת ברכות עכ&quot;ל: <strong> ואני </strong> אומר יודע אני שהראב&quot;ד ז&quot;ל בקי בחדרי תורה וממולא ביראה כנגד רמז&quot;ל ודברים אלו איני יודע מה הן והלא הלכות אלו פ&quot;ק דשבת גמרא ומתניתין דלא ישב אדם לפני הספר ושם שנינו ואם התחילו אין מפסיקין ומייתינן לה פרק לולב הגזול גבי גמ׳ ומתניתין דמי שבא בדרך ואין בידו לולב וכו׳ לאקשויי על מאי דקתני מתניתין נוטלו על שלחנו דמשמע דאפי׳ התחילו מפסיקין ובהני דפרק קמא דשבת קתני אם התחילו אין מפסיקין ופרקינן הא דאיכא שהות ביום הא דליכא שהות ביום ושקיל וטרי עד דאסיק דילמא מצוה להפסיק ואי לא פסיק כו׳ עד דמסיק אלא א&quot;ר זירא לעולם כדאמרינן מעיקרא והא דאורייתא והא דרבנן והכי סלקא שמעתא דמוקי לה ביום טוב שני מדרבנן והבין מזה רמז&quot;ל בשכלו הזך לענין ק&quot;ש דהוי דומיא דלולב דאורייתא שמפסיקין למצוה דהיינו מצוה מן המובחר דשמעתין ובלשון ר&quot;מ ז&quot;ל הרי זה משובח ואע&quot;ג דהדר מסיק אלא דמשמע שסתר כל הראשונות היינו דוקא לחיוב הפסקה כשאין שם שהות ביום בודאי שהשעה עוברת בלי ספק אבל כשהוא מתירא לא קא הדר ביה והדקדוק יפה הוא ולשון צח וכמדומה לי שראיתי כך בלשון הירושלמי. ומה שרמוז פ&quot;ק דברכות ופרק כיצד מברכין אין בו נפקותא לענין זה ואם הראב&quot;ד ז&quot;ל רצה לפרש חובה יכול וכדאי הוא. אך כדברי רמז&quot;ל ד&quot;ן:</p>
               </div>
             </div>
@@ -513,8 +588,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-7">Mishneh Torah, Reading the Shema 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁיָּרַד לִטְבּל אִם יָכוֹל לַעֲלוֹת וּלְהִתְכַּסּוֹת קֹדֶם שֶׁתָּנֵץ הַחַמָּה יַעֲלֶה וְיִתְכַּסֶּה וְיִקְרָא. וְאִם הָיָה מִתְיָרֵא שֶׁמָּא תָּנֵץ הַחַמָּה קֹדֶם שֶׁיִּקְרָא יִתְכַּסֶּה בַּמַּיִם שֶׁהוּא עוֹמֵד בָּהֶן וְיִקְרָא. וְלֹא יִתְכַּסֶּה לֹא בַּמַּיִם הָרָעִים שֶׁרֵיחָן רַע וְלֹא בְּמֵי הַמִּשְׁרֶה וְלֹא בְּמַיִם צְלוּלִין מִפְּנֵי שֶׁעֶרְוָתוֹ נִרְאֵית בָּהֶן. אֲבָל מִתְכַּסֶּה הוּא בְּמַיִם עֲכוּרִין שֶׁאֵין רֵיחָן רַע וְקוֹרֵא בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שירד לטבול וכו׳ עד וקורא במקומו.</strong> פ׳ מי שמתו <span class="source-small"> (דף כב)</span> :</p>
               </div>
             </div>
@@ -529,8 +609,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:7:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-7-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-7">Mishneh Torah, Reading the Shema 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁיָּרַד לִטְבּל אִם יָכוֹל לַעֲלוֹת וּלְהִתְכַּסּוֹת קֹדֶם שֶׁתָּנֵץ הַחַמָּה יַעֲלֶה וְיִתְכַּסֶּה וְיִקְרָא. וְאִם הָיָה מִתְיָרֵא שֶׁמָּא תָּנֵץ הַחַמָּה קֹדֶם שֶׁיִּקְרָא יִתְכַּסֶּה בַּמַּיִם שֶׁהוּא עוֹמֵד בָּהֶן וְיִקְרָא. וְלֹא יִתְכַּסֶּה לֹא בַּמַּיִם הָרָעִים שֶׁרֵיחָן רַע וְלֹא בְּמֵי הַמִּשְׁרֶה וְלֹא בְּמַיִם צְלוּלִין מִפְּנֵי שֶׁעֶרְוָתוֹ נִרְאֵית בָּהֶן. אֲבָל מִתְכַּסֶּה הוּא בְּמַיִם עֲכוּרִין שֶׁאֵין רֵיחָן רַע וְקוֹרֵא בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הקורא ק&quot;ש לא ירמוז בעיניו כו׳ עד הרי זה מגונה.</strong> פרק קמא דיומא <span class="source-small"> (דף יט) </span> ובהלכות ר&quot;י אלפס ז&quot;ל הביאו פ׳ היה קורא:</p>
               </div>
             </div>
@@ -545,8 +630,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:7:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-7-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:7:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-7">Mishneh Torah, Reading the Shema 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁיָּרַד לִטְבּל אִם יָכוֹל לַעֲלוֹת וּלְהִתְכַּסּוֹת קֹדֶם שֶׁתָּנֵץ הַחַמָּה יַעֲלֶה וְיִתְכַּסֶּה וְיִקְרָא. וְאִם הָיָה מִתְיָרֵא שֶׁמָּא תָּנֵץ הַחַמָּה קֹדֶם שֶׁיִּקְרָא יִתְכַּסֶּה בַּמַּיִם שֶׁהוּא עוֹמֵד בָּהֶן וְיִקְרָא. וְלֹא יִתְכַּסֶּה לֹא בַּמַּיִם הָרָעִים שֶׁרֵיחָן רַע וְלֹא בְּמֵי הַמִּשְׁרֶה וְלֹא בְּמַיִם צְלוּלִין מִפְּנֵי שֶׁעֶרְוָתוֹ נִרְאֵית בָּהֶן. אֲבָל מִתְכַּסֶּה הוּא בְּמַיִם עֲכוּרִין שֶׁאֵין רֵיחָן רַע וְקוֹרֵא בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וצריך להשמיע לאזניו כו׳ עד ואם לא דקדק יצא.</strong> פרק היה קורא <span class="source-small"> (דף יו)</span> :</p>
               </div>
             </div>
@@ -561,8 +651,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-9">Mishneh Torah, Reading the Shema 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד יְדַקְדֵּק. יִשְׁמֹר שֶׁלֹּא יַרְפֶּה הֶחָזָק וְלֹא יַחֲזִיק הֲרָפֶה וְלֹא יָנִיחַ הַנָּד וְלֹא יָנִיד הַנָּח. לְפִיכָךְ צָרִיךְ לִתֵּן רֶוַח בֵּין הַדְּבָקִים בֵּין כָּל שְׁתֵּי אוֹתִיּוֹת הַדּוֹמוֹת שֶׁאַחַת מֵהֶן סוֹף תֵּבָה וְהָאַחֶרֶת תְּחִלַּת תֵּבָה הַסְּמוּכָה לָהּ. כְּגוֹן בְּכָל לְבָבְךָ קוֹרֵא בְּכָל וְשׁוֹהֶה וְחוֹזֵר וְקוֹרֵא לְבָבְךָ. וְכֵן וַאֲבַדְתֶּם מְהֵרָה. הַכָּנָף פְּתִיל. וְצָרִיךְ לְבָאֵר זַיִ״ן שֶׁל תִּזְכְּרוּ. וְצָרִיךְ לְהַאֲרִיךְ בְּדָלֶ״ת שֶׁל אֶחָד כְּדֵי שֶׁיַּמְלִיכֵהוּ בַּשָּׁמַיִם וּבָאָרֶץ וּבְאַרְבַּע רוּחוֹת. וְצָרִיךְ שֶׁלֹּא יַחְטֹף בַּחֵי״ת כְּדֵי שֶׁלֹּא יְהֵא כְּאוֹמֵר אֵי חָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד ידקדק יזהר כו׳ עד ולא יניח הנד לפיכך צריך ליתן ריוח כו׳ עד הכנף פתיל.</strong> פרק היה קורא <span class="source-small"> (שם)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל ולא ידעתי כו׳ כדי שלא תבלע האל&quot;ף בעי&quot;ן עכ&quot;ל: <strong> ואני </strong> אומר אין זו חוסר ידיעה חלילה וכי מי שגולות עליות וגולות תחתיות מגולות לו יאמר לא ידעתי דקדוק הנקדנים והחכם הר&quot;ר דוד קמחי ז&quot;ל חיבר בזה שער אחד קרא שמו שער השב&quot;א בתחלת עט סופר וכך קבלנו דרכו שכל שב&quot;א הנחטפת נקראת נחה וכן כל אות נחטפת בין בסוף תיבה בין באמצע תיבה וכשהיא מתנענעת כגון הבאה בראש תיבה או הבאה באמצע תיבה אחר תנועה גדולה נקראת נדה ופקח עיניך וראה לשון הגמרא כמו שפירשו רמז&quot;ל יפה שכתב לפיכך צריך ליתן ריוח בין כל שתי אותיות הדומות שאחת מהן סוף התיבה והאחרת תחלת תיבה הסמוכה כגון על לבבך עכ&quot;ל. וכן בפ׳ היה קורא בפי׳ המשנה דקרא ולא דקדק כו׳ ושם כתב שא&quot;א להתברר בכתב אלא ילך אצל חכם ויברר לו והנני מבאר כפי כחי והבן כי למ&quot;ד בכל נחה ולמ&quot;ד לבבך נעה ונדה ואם יניע ויניד למ&quot;ד בכל יחתכנה תחת לשונו ויחלטנה מן מלת בכל ויתננה במלת לבבך ויראה כמו שקורא בכה לבבך וכן אם יניח למ&quot;ד לבבך בעודה בכפו יבלענה עם למ&quot;ד בכל שהיא נחה וא&quot;א להוציא שתי נחים כאחד ונראה כמו שקורא בכל בבך וכן בכולן ומזה תבין לנשבע ה׳ ולכל היוצאים ממוצא אחת עם כל הנוספים בירושלמי על הבבלי אלא הראב&quot;ד ז&quot;ל לא רצה להעמיק בזכות רמז&quot;ל וחישד עליו מושכל ראשון ואני כבר כתבתי כמה פעמים שרמז&quot;ל לא חיבר אלא מה שנתפרסם ואין לי לדבר עליו ולחבר רק שאני אומר כד&quot;ן:</p>
               </div>
             </div>
@@ -577,8 +672,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:9:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-9-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:9:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-9">Mishneh Torah, Reading the Shema 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד יְדַקְדֵּק. יִשְׁמֹר שֶׁלֹּא יַרְפֶּה הֶחָזָק וְלֹא יַחֲזִיק הֲרָפֶה וְלֹא יָנִיחַ הַנָּד וְלֹא יָנִיד הַנָּח. לְפִיכָךְ צָרִיךְ לִתֵּן רֶוַח בֵּין הַדְּבָקִים בֵּין כָּל שְׁתֵּי אוֹתִיּוֹת הַדּוֹמוֹת שֶׁאַחַת מֵהֶן סוֹף תֵּבָה וְהָאַחֶרֶת תְּחִלַּת תֵּבָה הַסְּמוּכָה לָהּ. כְּגוֹן בְּכָל לְבָבְךָ קוֹרֵא בְּכָל וְשׁוֹהֶה וְחוֹזֵר וְקוֹרֵא לְבָבְךָ. וְכֵן וַאֲבַדְתֶּם מְהֵרָה. הַכָּנָף פְּתִיל. וְצָרִיךְ לְבָאֵר זַיִ״ן שֶׁל תִּזְכְּרוּ. וְצָרִיךְ לְהַאֲרִיךְ בְּדָלֶ״ת שֶׁל אֶחָד כְּדֵי שֶׁיַּמְלִיכֵהוּ בַּשָּׁמַיִם וּבָאָרֶץ וּבְאַרְבַּע רוּחוֹת. וְצָרִיךְ שֶׁלֹּא יַחְטֹף בַּחֵי״ת כְּדֵי שֶׁלֹּא יְהֵא כְּאוֹמֵר אֵי חָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וצריך להתיז זיי&quot;ן של תזכרו.</strong> כלומר שלא תראה סמ&quot;ך. בירושלמי:</p>
               </div>
             </div>
@@ -593,8 +693,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:9:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-9-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:9:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-9">Mishneh Torah, Reading the Shema 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד יְדַקְדֵּק. יִשְׁמֹר שֶׁלֹּא יַרְפֶּה הֶחָזָק וְלֹא יַחֲזִיק הֲרָפֶה וְלֹא יָנִיחַ הַנָּד וְלֹא יָנִיד הַנָּח. לְפִיכָךְ צָרִיךְ לִתֵּן רֶוַח בֵּין הַדְּבָקִים בֵּין כָּל שְׁתֵּי אוֹתִיּוֹת הַדּוֹמוֹת שֶׁאַחַת מֵהֶן סוֹף תֵּבָה וְהָאַחֶרֶת תְּחִלַּת תֵּבָה הַסְּמוּכָה לָהּ. כְּגוֹן בְּכָל לְבָבְךָ קוֹרֵא בְּכָל וְשׁוֹהֶה וְחוֹזֵר וְקוֹרֵא לְבָבְךָ. וְכֵן וַאֲבַדְתֶּם מְהֵרָה. הַכָּנָף פְּתִיל. וְצָרִיךְ לְבָאֵר זַיִ״ן שֶׁל תִּזְכְּרוּ. וְצָרִיךְ לְהַאֲרִיךְ בְּדָלֶ״ת שֶׁל אֶחָד כְּדֵי שֶׁיַּמְלִיכֵהוּ בַּשָּׁמַיִם וּבָאָרֶץ וּבְאַרְבַּע רוּחוֹת. וְצָרִיךְ שֶׁלֹּא יַחְטֹף בַּחֵי״ת כְּדֵי שֶׁלֹּא יְהֵא כְּאוֹמֵר אֵי חָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וצריך להאריך בדל&quot;ת כו׳ עד וצריך שלא יחטוף בחי&quot;ת כו׳.</strong> פ׳ היה קורא <span class="source-small"> (דף יג)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל ויש מוסיפין שלא יאריך באל&quot;ף שלא יראה כאומר אי חד עכ&quot;ל: <strong> ואני </strong> קבלתי מרבותי שקבלו איש מפי איש מפי הגאונים ז&quot;ל בברכות פ׳ היה קורא כי האל&quot;ף כמעט חוטפים אותה למיעוט ההתבוננות בה ומאריכים בחי&quot;ת שליש ובדל&quot;ת שני שלישים והנסתר בו סוד מופלא חברתיו בכתר שם טוב שלי בס&quot;ד עכ&quot;ל הרמב&quot;ן ז&quot;ל:</p>
               </div>
             </div>
@@ -609,8 +714,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-10">Mishneh Torah, Reading the Shema 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קוֹרֵא אָדָם אֶת שְׁמַע בְּכָל לָשׁוֹן שֶׁיִּהְיֶה מְבִינָהּ. וְהַקּוֹרֵא בְּכָל לָשׁוֹן צָרִיךְ לְהִזָּהֵר מִדִּבְרֵי שִׁבּוּשׁ שֶׁבְּאוֹתוֹ הַלָּשׁוֹן וּמְדַקְדֵּק בְּאוֹתוֹ הַלָּשׁוֹן כְּמוֹ שֶׁמְּדַקְדֵּק בִּלְשׁוֹן הַקֹּדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קורא אדם את שמע בכל לשון כו׳ עד ומדקדק באותו הלשון כמו שהוא מדקדק אם קראה בלשון הקודש.</strong> פ׳ היה קורא דף י&quot;ג ופ׳ אלו נאמרים <span class="source-small"> (דף לב)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל אין זה מקובל על הדעת לפי שכל הלשונות פירוש הן ומי ידקדק אחר פירושו עכ&quot;ל. <strong> ואני </strong> אומר כך קבלנו זה פ׳ היה קורא ופ׳ אלו נאמרין כי בין לגבי גט אשה או שאר שטרות שהכשיר בכל לשון חוץ מלשון הקדש שצריך לדקדק באותו הלשון שלא יצא משמעות הדבר מענין לענין וכן כתב הר&quot;ם ז&quot;ל כל דבר ודבר במקומו. ושאמר הראב&quot;ד ז&quot;ל מי ידקדק אחר פירושו ידוע הוא כי הבקי ידקדק אלא שא&quot;א להכתב אבל על פה יכולתי לציירו. ונמצא זה הענין תמיד בכל הלשונות ששמענו בלועזות ואינה צריכה לפנים ובכך נמצא דברי רמז&quot;ל נכון וקיים כד&quot;ן. וכן הסכימו רבותינו בעלי התוס׳ וכן כתב הרשז&quot;ל מקוצי בחבור המצות:</p>
               </div>
             </div>
@@ -625,8 +735,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-11">Mishneh Torah, Reading the Shema 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא לְמַפְרֵעַ לֹא יָצָא. בַּמֶּה דְּבָרִים אֲמוּרִים בְּסֵדֶר הַפְּסוּקִים אֲבָל אִם הִקְדִּים פָּרָשָׁה לְפָרָשָׁה אַף עַל פִּי שֶׁאֵינוֹ רַשַּׁאי אֲנִי אוֹמֵר שֶׁיָּצָא לְפִי שֶׁאֵינָהּ סְמוּכָה לָהּ בַּתּוֹרָה. קָרָא פָּסוּק וְחָזַר וּקְרָאוֹ פַּעַם שְׁנִיָּה הֲרֵי זֶה מְגֻנֶּה. קָרָא מִלָּה אַחַת וּכְפָלָהּ כְּגוֹן שֶׁקָּרָא שְׁמַע שְׁמַע מְשַׁתְּקִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא למפרע כו׳ עד בתורה.</strong> פ׳ היה קורא דף ט&quot;ו:</p>
               </div>
             </div>
@@ -641,8 +756,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:11:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-11-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-11">Mishneh Torah, Reading the Shema 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא לְמַפְרֵעַ לֹא יָצָא. בַּמֶּה דְּבָרִים אֲמוּרִים בְּסֵדֶר הַפְּסוּקִים אֲבָל אִם הִקְדִּים פָּרָשָׁה לְפָרָשָׁה אַף עַל פִּי שֶׁאֵינוֹ רַשַּׁאי אֲנִי אוֹמֵר שֶׁיָּצָא לְפִי שֶׁאֵינָהּ סְמוּכָה לָהּ בַּתּוֹרָה. קָרָא פָּסוּק וְחָזַר וּקְרָאוֹ פַּעַם שְׁנִיָּה הֲרֵי זֶה מְגֻנֶּה. קָרָא מִלָּה אַחַת וּכְפָלָהּ כְּגוֹן שֶׁקָּרָא שְׁמַע שְׁמַע מְשַׁתְּקִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> קרא פסוק וחזר וקראו כו׳ עד משתקין אותו.</strong> פ׳ אין עומדין <span class="source-small"> (דף לג)</span> :</p>
               </div>
             </div>
@@ -657,8 +777,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:11:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-11-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:11:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-11">Mishneh Torah, Reading the Shema 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא לְמַפְרֵעַ לֹא יָצָא. בַּמֶּה דְּבָרִים אֲמוּרִים בְּסֵדֶר הַפְּסוּקִים אֲבָל אִם הִקְדִּים פָּרָשָׁה לְפָרָשָׁה אַף עַל פִּי שֶׁאֵינוֹ רַשַּׁאי אֲנִי אוֹמֵר שֶׁיָּצָא לְפִי שֶׁאֵינָהּ סְמוּכָה לָהּ בַּתּוֹרָה. קָרָא פָּסוּק וְחָזַר וּקְרָאוֹ פַּעַם שְׁנִיָּה הֲרֵי זֶה מְגֻנֶּה. קָרָא מִלָּה אַחַת וּכְפָלָהּ כְּגוֹן שֶׁקָּרָא שְׁמַע שְׁמַע מְשַׁתְּקִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> קראה סירוגין יצא כו׳ עד בפסוק ראשון.</strong> פרק הקורא את המגלה למפרע דף י&quot;ז:</p>
               </div>
             </div>
@@ -673,8 +798,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:11:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-11-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:11:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-11">Mishneh Torah, Reading the Shema 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא לְמַפְרֵעַ לֹא יָצָא. בַּמֶּה דְּבָרִים אֲמוּרִים בְּסֵדֶר הַפְּסוּקִים אֲבָל אִם הִקְדִּים פָּרָשָׁה לְפָרָשָׁה אַף עַל פִּי שֶׁאֵינוֹ רַשַּׁאי אֲנִי אוֹמֵר שֶׁיָּצָא לְפִי שֶׁאֵינָהּ סְמוּכָה לָהּ בַּתּוֹרָה. קָרָא פָּסוּק וְחָזַר וּקְרָאוֹ פַּעַם שְׁנִיָּה הֲרֵי זֶה מְגֻנֶּה. קָרָא מִלָּה אַחַת וּכְפָלָהּ כְּגוֹן שֶׁקָּרָא שְׁמַע שְׁמַע מְשַׁתְּקִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ספק קרא ק&quot;ש כו׳ עד למקום שטעה.</strong> פ׳ מי שמתו:</p>
               </div>
             </div>
@@ -689,8 +819,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-13">Mishneh Torah, Reading the Shema 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סָפֵק קָרָא קְרִיאַת שְׁמַע סָפֵק לֹא קָרָא חוֹזֵר וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. אֲבָל אִם יָדַע שֶׁקָּרָא וְנִסְתַּפֵּק לוֹ אִם בֵּרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ אוֹ לֹא בֵּרֵךְ אֵינוֹ חוֹזֵר וּמְבָרֵךְ. קָרָא וְטָעָה יַחֲזֹר לַמָּקוֹם שֶׁטָּעָה. נֶעֱלַם מִמֶּנּוּ בֵּין פָּרָשָׁה לְפָרָשָׁה וְאֵינוֹ יוֹדֵעַ אֵי זוֹ פָּרָשָׁה הִשְׁלִים וְאֵי זוֹ צָרִיךְ לְהַתְחִיל חוֹזֵר לְפָרָשָׁה רִאשׁוֹנָה שֶׁהוּא <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא למפרע כו׳ עד בתורה.</strong> פ׳ היה קורא דף ט&quot;ו:</p>
               </div>
             </div>
@@ -705,8 +840,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:13:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-13-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:13:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-13">Mishneh Torah, Reading the Shema 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סָפֵק קָרָא קְרִיאַת שְׁמַע סָפֵק לֹא קָרָא חוֹזֵר וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. אֲבָל אִם יָדַע שֶׁקָּרָא וְנִסְתַּפֵּק לוֹ אִם בֵּרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ אוֹ לֹא בֵּרֵךְ אֵינוֹ חוֹזֵר וּמְבָרֵךְ. קָרָא וְטָעָה יַחֲזֹר לַמָּקוֹם שֶׁטָּעָה. נֶעֱלַם מִמֶּנּוּ בֵּין פָּרָשָׁה לְפָרָשָׁה וְאֵינוֹ יוֹדֵעַ אֵי זוֹ פָּרָשָׁה הִשְׁלִים וְאֵי זוֹ צָרִיךְ לְהַתְחִיל חוֹזֵר לְפָרָשָׁה רִאשׁוֹנָה שֶׁהוּא <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> קרא פסוק וחזר וקראו כו׳ עד משתקין אותו.</strong> פ׳ אין עומדין <span class="source-small"> (דף לג)</span> :</p>
               </div>
             </div>
@@ -721,8 +861,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:13:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-13-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:13:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-13">Mishneh Torah, Reading the Shema 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סָפֵק קָרָא קְרִיאַת שְׁמַע סָפֵק לֹא קָרָא חוֹזֵר וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. אֲבָל אִם יָדַע שֶׁקָּרָא וְנִסְתַּפֵּק לוֹ אִם בֵּרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ אוֹ לֹא בֵּרֵךְ אֵינוֹ חוֹזֵר וּמְבָרֵךְ. קָרָא וְטָעָה יַחֲזֹר לַמָּקוֹם שֶׁטָּעָה. נֶעֱלַם מִמֶּנּוּ בֵּין פָּרָשָׁה לְפָרָשָׁה וְאֵינוֹ יוֹדֵעַ אֵי זוֹ פָּרָשָׁה הִשְׁלִים וְאֵי זוֹ צָרִיךְ לְהַתְחִיל חוֹזֵר לְפָרָשָׁה רִאשׁוֹנָה שֶׁהוּא <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> קראה סירוגין יצא כו׳ עד בפסוק ראשון.</strong> פרק הקורא את המגלה למפרע דף י&quot;ז:</p>
               </div>
             </div>
@@ -737,8 +882,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:13:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-13-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:13:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-13">Mishneh Torah, Reading the Shema 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סָפֵק קָרָא קְרִיאַת שְׁמַע סָפֵק לֹא קָרָא חוֹזֵר וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. אֲבָל אִם יָדַע שֶׁקָּרָא וְנִסְתַּפֵּק לוֹ אִם בֵּרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ אוֹ לֹא בֵּרֵךְ אֵינוֹ חוֹזֵר וּמְבָרֵךְ. קָרָא וְטָעָה יַחֲזֹר לַמָּקוֹם שֶׁטָּעָה. נֶעֱלַם מִמֶּנּוּ בֵּין פָּרָשָׁה לְפָרָשָׁה וְאֵינוֹ יוֹדֵעַ אֵי זוֹ פָּרָשָׁה הִשְׁלִים וְאֵי זוֹ צָרִיךְ לְהַתְחִיל חוֹזֵר לְפָרָשָׁה רִאשׁוֹנָה שֶׁהוּא <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ספק קרא ק&quot;ש כו׳ עד למקום שטעה.</strong> פ׳ מי שמתו:</p>
               </div>
             </div>
@@ -753,8 +903,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:13:5</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-13-5" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:13:5">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-13">Mishneh Torah, Reading the Shema 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סָפֵק קָרָא קְרִיאַת שְׁמַע סָפֵק לֹא קָרָא חוֹזֵר וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. אֲבָל אִם יָדַע שֶׁקָּרָא וְנִסְתַּפֵּק לוֹ אִם בֵּרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ אוֹ לֹא בֵּרֵךְ אֵינוֹ חוֹזֵר וּמְבָרֵךְ. קָרָא וְטָעָה יַחֲזֹר לַמָּקוֹם שֶׁטָּעָה. נֶעֱלַם מִמֶּנּוּ בֵּין פָּרָשָׁה לְפָרָשָׁה וְאֵינוֹ יוֹדֵעַ אֵי זוֹ פָּרָשָׁה הִשְׁלִים וְאֵי זוֹ צָרִיךְ לְהַתְחִיל חוֹזֵר לְפָרָשָׁה רִאשׁוֹנָה שֶׁהוּא <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נעלם ממנו עד סוף הפ׳.</strong> הכל פרק היה קורא <span class="source-small"> (דף טז)</span> :</p>
               </div>
             </div>
@@ -769,8 +924,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 2:14:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-2-14-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 2:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-14">Mishneh Torah, Reading the Shema 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טָעָה בְּאֶמְצַע הַפֶּרֶק וְאֵינוֹ יוֹדֵעַ לְהֵיכָן פָּסַק חוֹזֵר לְרֹאשׁ הַפֶּרֶק. הָיָה קוֹרֵא וּכְתַבְתָּם וְאֵינוֹ יוֹדֵעַ אִם הוּא בְּוּכְתַבְתָּם שֶׁל שְׁמַע אוֹ בְּוּכְתַבְתָּם שֶׁבִּוְהָיָה אִם שָׁמוֹעַ חוֹזֵר לְוּכְתַבְתָּם שֶׁל שְׁמַע. וְאִם נִסְתַּפֵּק לוֹ אַחַר שֶׁקָּרָא לְמַעַן יִרְבּוּ יְמֵיכֶם אֵינוֹ חוֹזֵר שֶׁעַל הֶרְגֵּל לְשׁוֹנוֹ הוּא הוֹלֵךְ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נעלם ממנו עד סוף הפ׳.</strong> הכל פרק היה קורא <span class="source-small"> (דף טז)</span> :</p>
               </div>
             </div>
@@ -786,8 +946,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-1">Mishneh Torah, Reading the Shema 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת שְׁמַע רוֹחֵץ יָדָיו בַּמַּיִם קֹדֶם שֶׁיִּקְרָא. הִגִּיעַ זְמַן קְרִיאָתָהּ וְלֹא מָצָא מַיִם קֹדֶם שֶׁיִּקְרָא לֹא יְאַחֵר קְרִיאָתָהּ וְיֵלֵךְ לְבַקֵּשׁ מַיִם אֶלָּא מְקַנֵּחַ יָדָיו בֶּעָפָר אוֹ בִּצְרוֹר אוֹ בְּקוֹרָה וְכַיּוֹצֵא בָּהֶן וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא את שמע כו׳ עד קודם שיקרא.</strong> פרק מי שמתו <span class="source-small"> (דף כ&quot;ב)</span> :</p>
               </div>
             </div>
@@ -802,8 +967,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-1">Mishneh Torah, Reading the Shema 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת שְׁמַע רוֹחֵץ יָדָיו בַּמַּיִם קֹדֶם שֶׁיִּקְרָא. הִגִּיעַ זְמַן קְרִיאָתָהּ וְלֹא מָצָא מַיִם קֹדֶם שֶׁיִּקְרָא לֹא יְאַחֵר קְרִיאָתָהּ וְיֵלֵךְ לְבַקֵּשׁ מַיִם אֶלָּא מְקַנֵּחַ יָדָיו בֶּעָפָר אוֹ בִּצְרוֹר אוֹ בְּקוֹרָה וְכַיּוֹצֵא בָּהֶן וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הגיע זמן קריאתה כו׳ עד וקורא.</strong> פ׳ היה קורא <span class="source-small"> (דף טו)</span> :</p>
               </div>
             </div>
@@ -818,8 +988,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:1:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-1-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-1">Mishneh Torah, Reading the Shema 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת שְׁמַע רוֹחֵץ יָדָיו בַּמַּיִם קֹדֶם שֶׁיִּקְרָא. הִגִּיעַ זְמַן קְרִיאָתָהּ וְלֹא מָצָא מַיִם קֹדֶם שֶׁיִּקְרָא לֹא יְאַחֵר קְרִיאָתָהּ וְיֵלֵךְ לְבַקֵּשׁ מַיִם אֶלָּא מְקַנֵּחַ יָדָיו בֶּעָפָר אוֹ בִּצְרוֹר אוֹ בְּקוֹרָה וְכַיּוֹצֵא בָּהֶן וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אין קורין לא בבית המרחץ כו׳ עד צואה.</strong> פרק קמא דשבת <span class="source-small"> (דף י)</span> :</p>
               </div>
             </div>
@@ -834,8 +1009,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:1:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-1-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:1:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-1">Mishneh Torah, Reading the Shema 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת שְׁמַע רוֹחֵץ יָדָיו בַּמַּיִם קֹדֶם שֶׁיִּקְרָא. הִגִּיעַ זְמַן קְרִיאָתָהּ וְלֹא מָצָא מַיִם קֹדֶם שֶׁיִּקְרָא לֹא יְאַחֵר קְרִיאָתָהּ וְיֵלֵךְ לְבַקֵּשׁ מַיִם אֶלָּא מְקַנֵּחַ יָדָיו בֶּעָפָר אוֹ בִּצְרוֹר אוֹ בְּקוֹרָה וְכַיּוֹצֵא בָּהֶן וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ולא בבית הקברות כו׳ עד לקרות.</strong> פרק מי שמתו <span class="source-small"> (דף כו) </span> ופרק משוח מלחמה <span class="source-small"> (דף מג)</span> :</p>
               </div>
             </div>
@@ -850,8 +1030,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:1:5</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-1-5" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:1:5">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-1">Mishneh Torah, Reading the Shema 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת שְׁמַע רוֹחֵץ יָדָיו בַּמַּיִם קֹדֶם שֶׁיִּקְרָא. הִגִּיעַ זְמַן קְרִיאָתָהּ וְלֹא מָצָא מַיִם קֹדֶם שֶׁיִּקְרָא לֹא יְאַחֵר קְרִיאָתָהּ וְיֵלֵךְ לְבַקֵּשׁ מַיִם אֶלָּא מְקַנֵּחַ יָדָיו בֶּעָפָר אוֹ בִּצְרוֹר אוֹ בְּקוֹרָה וְכַיּוֹצֵא בָּהֶן וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכל מי שקרא במקום שאין קורין בו חוזר וקורא:</strong></p>
               </div>
             </div>
@@ -866,8 +1051,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:1:6</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-1-6" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:1:6">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-1">Mishneh Torah, Reading the Shema 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת שְׁמַע רוֹחֵץ יָדָיו בַּמַּיִם קֹדֶם שֶׁיִּקְרָא. הִגִּיעַ זְמַן קְרִיאָתָהּ וְלֹא מָצָא מַיִם קֹדֶם שֶׁיִּקְרָא לֹא יְאַחֵר קְרִיאָתָהּ וְיֵלֵךְ לְבַקֵּשׁ מַיִם אֶלָּא מְקַנֵּחַ יָדָיו בֶּעָפָר אוֹ בִּצְרוֹר אוֹ בְּקוֹרָה וְכַיּוֹצֵא בָּהֶן וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כתב הראב&quot;ד ז&quot;ל אם אמר על מי שקרא בצד המת שיחזור ויקרא לא אמר כלום עכ&quot;ל: </strong>
 <strong> ואני </strong>
 <strong> אומר מאחר שאין אחד מהם מברר דעתו וראייתו במה אכריע אבל אני רואה מימרא דרב דימי אמר רבי יוחנן בשם רבי יהושע ב&quot;ל מת תופס ד׳ אמות פרק משוח מלחמה ותאני לה גבי הלכתא פסיקתא וסתם קאמר תופס דומיא דבית הכסא ולשון תופס לגמרי משמע דאם קרא חוזר וקורא ואי משום דמשמע ריש פרק מי שמתו </strong>
@@ -886,8 +1076,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-3">Mishneh Torah, Reading the Shema 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית הַכִּסֵּא הֶחָדָשׁ שֶׁהוּכַן וַעֲדַיִן לֹא נִשְׁתַּמֵּשׁ בּוֹ מֻתָּר לִקְרוֹת קְרִיאַת שְׁמַע לְנֶגְדּוֹ אֲבָל לֹא בְּתוֹכוֹ. מֶרְחָץ הֶחָדָשׁ מֻתָּר לִקְרוֹת בְּתוֹכוֹ. הָיוּ שְׁנֵי בָּתִּים זִמֵּן אֶחָד מֵהֶם לְבֵית הַכִּסֵּא וְאָמַר עַל הַשֵּׁנִי וְזֶה. הֲרֵי הַשֵּׁנִי סָפֵק אִם הִזְמִינוֹ לְכָךְ אִם לֹא. לְפִיכָךְ אֵין קוֹרִין בּוֹ לְכַתְּחִלָּה וְאִם קָרָא יָצָא. אָמַר גַּם זֶה הֲרֵי שְׁנֵיהֶם מְזֻמָּנִין וְאֵין קוֹרְאִין בָּהֶן. חֲצַר הַמֶּרְחָץ וְהוּא הַמָּקוֹם שֶׁבְּנֵי אָדָם עוֹמְדִין בּוֹ לְבוּשִׁין מֻתָּר לִקְרוֹת בּוֹ קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית הכסא חדש שהיכן ועדיין לא נשתמש בו מותר לקרות ק&quot;ש כנגדו אבל לא בתוכו.</strong> פרק מי שמתו ופ&quot;א דשבת <span class="source-small"> (דף י)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל הרב כתב וכו׳ הילכך ספיקא לקולא עכ&quot;ל: <strong> ואני </strong> אומר דהאי בעיא דרבינא היא בסוף פרק מי שמתו ויש שגורס רב פפא לרבינא ואקשינן מינה למרחץ ופרקינן התם להתפלל בו הכא כנגדו ומייתינן לה נמי פרק קמא דשבת בשמעתא דמרחץ לאקשויי מינה לרב אדא בר אהבה דשרי במרחץ חדש ואמרינן מאי לאו ה&quot;ה למרחץ וקשיא ליה ומתרץ שאני בית הכסא דנפיש זוהמיה ומעתה הגע עצמך אם הרב ז&quot;ל כיון להקל בהאי תיקו דרבינא א&quot;כ נמצאת אומר ק&quot;ו הדברים אם להתפלל בתוכו מותר כנגדו לכ&quot;ש ואם כן מאי נפיש זוהמיה ממרחץ דקא משני פ&quot;ק דשבת ומה איכא לפלוגי בינייהו בשינוייא דפרק מי שמתו אלא ודאי לחומרא רצה לפשוט ר&quot;י אלפס ז&quot;ל כשאר תיקו דאיסורא לחומרא ולא הוצרך לפרש דאטו כי רוכלא ליכתוב וליזיל ודי לכל משכיל מה שכתב בצואה דבוקה ובשיטתו הלך תלמידו ר&quot;מ ז&quot;ל וכד&quot;ן. ושוב מצאתי לר&quot;מ ז&quot;ל ולר׳ יונה ז&quot;ל שפסקו כן סוף פרק מי שמתו ושם הביאו גם כן הרב ז&quot;ל:</p>
               </div>
             </div>
@@ -902,8 +1097,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-3">Mishneh Torah, Reading the Shema 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית הַכִּסֵּא הֶחָדָשׁ שֶׁהוּכַן וַעֲדַיִן לֹא נִשְׁתַּמֵּשׁ בּוֹ מֻתָּר לִקְרוֹת קְרִיאַת שְׁמַע לְנֶגְדּוֹ אֲבָל לֹא בְּתוֹכוֹ. מֶרְחָץ הֶחָדָשׁ מֻתָּר לִקְרוֹת בְּתוֹכוֹ. הָיוּ שְׁנֵי בָּתִּים זִמֵּן אֶחָד מֵהֶם לְבֵית הַכִּסֵּא וְאָמַר עַל הַשֵּׁנִי וְזֶה. הֲרֵי הַשֵּׁנִי סָפֵק אִם הִזְמִינוֹ לְכָךְ אִם לֹא. לְפִיכָךְ אֵין קוֹרִין בּוֹ לְכַתְּחִלָּה וְאִם קָרָא יָצָא. אָמַר גַּם זֶה הֲרֵי שְׁנֵיהֶם מְזֻמָּנִין וְאֵין קוֹרְאִין בָּהֶן. חֲצַר הַמֶּרְחָץ וְהוּא הַמָּקוֹם שֶׁבְּנֵי אָדָם עוֹמְדִין בּוֹ לְבוּשִׁין מֻתָּר לִקְרוֹת בּוֹ קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מרחץ חדש מותר לקרות בתוכו.</strong> סוף פ׳ מי שמתו ופ&quot;ק דשבת:</p>
               </div>
             </div>
@@ -918,8 +1118,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:3:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-3-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:3:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-3">Mishneh Torah, Reading the Shema 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית הַכִּסֵּא הֶחָדָשׁ שֶׁהוּכַן וַעֲדַיִן לֹא נִשְׁתַּמֵּשׁ בּוֹ מֻתָּר לִקְרוֹת קְרִיאַת שְׁמַע לְנֶגְדּוֹ אֲבָל לֹא בְּתוֹכוֹ. מֶרְחָץ הֶחָדָשׁ מֻתָּר לִקְרוֹת בְּתוֹכוֹ. הָיוּ שְׁנֵי בָּתִּים זִמֵּן אֶחָד מֵהֶם לְבֵית הַכִּסֵּא וְאָמַר עַל הַשֵּׁנִי וְזֶה. הֲרֵי הַשֵּׁנִי סָפֵק אִם הִזְמִינוֹ לְכָךְ אִם לֹא. לְפִיכָךְ אֵין קוֹרִין בּוֹ לְכַתְּחִלָּה וְאִם קָרָא יָצָא. אָמַר גַּם זֶה הֲרֵי שְׁנֵיהֶם מְזֻמָּנִין וְאֵין קוֹרְאִין בָּהֶן. חֲצַר הַמֶּרְחָץ וְהוּא הַמָּקוֹם שֶׁבְּנֵי אָדָם עוֹמְדִין בּוֹ לְבוּשִׁין מֻתָּר לִקְרוֹת בּוֹ קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היו שני בתים כו׳ עד ואין קורין בהן.</strong> פ&quot;ק דנדרים <span class="source-small"> (דף ז)</span> :</p>
               </div>
             </div>
@@ -934,8 +1139,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:3:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-3-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:3:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-3">Mishneh Torah, Reading the Shema 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית הַכִּסֵּא הֶחָדָשׁ שֶׁהוּכַן וַעֲדַיִן לֹא נִשְׁתַּמֵּשׁ בּוֹ מֻתָּר לִקְרוֹת קְרִיאַת שְׁמַע לְנֶגְדּוֹ אֲבָל לֹא בְּתוֹכוֹ. מֶרְחָץ הֶחָדָשׁ מֻתָּר לִקְרוֹת בְּתוֹכוֹ. הָיוּ שְׁנֵי בָּתִּים זִמֵּן אֶחָד מֵהֶם לְבֵית הַכִּסֵּא וְאָמַר עַל הַשֵּׁנִי וְזֶה. הֲרֵי הַשֵּׁנִי סָפֵק אִם הִזְמִינוֹ לְכָךְ אִם לֹא. לְפִיכָךְ אֵין קוֹרִין בּוֹ לְכַתְּחִלָּה וְאִם קָרָא יָצָא. אָמַר גַּם זֶה הֲרֵי שְׁנֵיהֶם מְזֻמָּנִין וְאֵין קוֹרְאִין בָּהֶן. חֲצַר הַמֶּרְחָץ וְהוּא הַמָּקוֹם שֶׁבְּנֵי אָדָם עוֹמְדִין בּוֹ לְבוּשִׁין מֻתָּר לִקְרוֹת בּוֹ קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> חצר המרחץ כו׳ עד ומי רגלים אסור.</strong> פ&quot;ק דשבת <span class="source-small"> (דף י)</span> :</p>
               </div>
             </div>
@@ -950,8 +1160,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-5">Mishneh Torah, Reading the Shema 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּבָרִים שֶׁל חֹל מֻתָּר לְאָמְרָן בִּלְשׁוֹן קֹדֶשׁ בְּבֵית הַכִּסֵּא. וְכֵן הַכִּנּוּיִים כְּגוֹן רַחוּם וְחַנּוּן וְנֶאֱמָן וְכַיּוֹצֵא בָּהֶן מֻתָּר לְאָמְרָן בְּבֵית הַכִּסֵּא. אֲבָל הַשֵּׁמוֹת הַמְיֻחָדִים וְהֵן הַשֵּׁמוֹת שֶׁאֵינָן נִמְחָקִין אָסוּר לְהַזְכִּירָן בְּבֵית הַכִּסֵּא וּבְבֵית הַמֶּרְחָץ יָשָׁן. וְאִם נִזְדַּמֵּן לוֹ לְהַפְרִישׁ מִן דָּבָר הָאָסוּר בְּבֵית הַמֶּרְחָץ אוֹ בְּבֵית הַכִּסֵּא מַפְרִישׁ וַאֲפִלּוּ בִּלְשׁוֹן קֹדֶשׁ וּבְעִנְיְנֵי קֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דברים של חול כו׳ עד וכן הכנויין כגון רחום וחנון נאמן וכיוצא בהן מותר לאמרן בבית הכסא.</strong> פ&quot;ק דשבת <span class="source-small"> (דף ז)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל לא מצאנו שם רחום כי אם על הבורא ואסור לאמרו בבית הכסא עכ&quot;ל. <strong> ואני </strong> אומר נראה מתוך לשונו שהוא עושה רחום כמו שלום ואם כן מאי האי דקא משנינן פ&quot;ק דשבת בשמעתין דמרחץ כי אקשיה לרב המנונא מהאל הנאמן התם שם גופיה לא איקרי נאמן האל הנאמן כתיב ומתרגמינן אלהא מהימנא דמשמע להדיא דבעינן דליקרי השם בההוא לישנא והכא נמי נימא אל רחום כתיב ומתרגמינן אלהא רחמנא וכן פר&quot;ח ז&quot;ל מותר לומר נאמן לפי שאינו שם עכ&quot;ל. אלמא בעינן שם. ומאי דשרי רב חמא לומר הימנותא לאו דוקא אלא ה&quot;ה לכל הכנויין וחד מינייהו נקט וכן דעת רבותינו בעלי התוס׳ ז&quot;ל כד&quot;ן:</p>
               </div>
             </div>
@@ -966,8 +1181,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:5:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-5-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-5">Mishneh Torah, Reading the Shema 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּבָרִים שֶׁל חֹל מֻתָּר לְאָמְרָן בִּלְשׁוֹן קֹדֶשׁ בְּבֵית הַכִּסֵּא. וְכֵן הַכִּנּוּיִים כְּגוֹן רַחוּם וְחַנּוּן וְנֶאֱמָן וְכַיּוֹצֵא בָּהֶן מֻתָּר לְאָמְרָן בְּבֵית הַכִּסֵּא. אֲבָל הַשֵּׁמוֹת הַמְיֻחָדִים וְהֵן הַשֵּׁמוֹת שֶׁאֵינָן נִמְחָקִין אָסוּר לְהַזְכִּירָן בְּבֵית הַכִּסֵּא וּבְבֵית הַמֶּרְחָץ יָשָׁן. וְאִם נִזְדַּמֵּן לוֹ לְהַפְרִישׁ מִן דָּבָר הָאָסוּר בְּבֵית הַמֶּרְחָץ אוֹ בְּבֵית הַכִּסֵּא מַפְרִישׁ וַאֲפִלּוּ בִּלְשׁוֹן קֹדֶשׁ וּבְעִנְיְנֵי קֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל השמות המיוחדין אומר עד ובבית המרחץ ישן.</strong> פרק קמא דשבת:</p>
               </div>
             </div>
@@ -982,8 +1202,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:5:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-5-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:5:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-5">Mishneh Torah, Reading the Shema 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּבָרִים שֶׁל חֹל מֻתָּר לְאָמְרָן בִּלְשׁוֹן קֹדֶשׁ בְּבֵית הַכִּסֵּא. וְכֵן הַכִּנּוּיִים כְּגוֹן רַחוּם וְחַנּוּן וְנֶאֱמָן וְכַיּוֹצֵא בָּהֶן מֻתָּר לְאָמְרָן בְּבֵית הַכִּסֵּא. אֲבָל הַשֵּׁמוֹת הַמְיֻחָדִים וְהֵן הַשֵּׁמוֹת שֶׁאֵינָן נִמְחָקִין אָסוּר לְהַזְכִּירָן בְּבֵית הַכִּסֵּא וּבְבֵית הַמֶּרְחָץ יָשָׁן. וְאִם נִזְדַּמֵּן לוֹ לְהַפְרִישׁ מִן דָּבָר הָאָסוּר בְּבֵית הַמֶּרְחָץ אוֹ בְּבֵית הַכִּסֵּא מַפְרִישׁ וַאֲפִלּוּ בִּלְשׁוֹן קֹדֶשׁ וּבְעִנְיְנֵי קֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואם נזדמן להפריש מן דבר האסור כו׳ עד ובעניני קדש.</strong> שבת <span class="source-small"> (דף מ)</span> :</p>
               </div>
             </div>
@@ -998,8 +1223,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-6">Mishneh Torah, Reading the Shema 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צוֹאַת הָאָדָם וְצוֹאַת כְּלָבִים וַחֲזִירִין בִּזְמַן שֶׁיֵּשׁ בְּתוֹכָן עוֹרוֹת וְכָל צוֹאָה שֶׁרֵיחָהּ רַע כְּגוֹן אֵלּוּ אָסוּר לִקְרוֹת קְרִיאַת שְׁמַע כְּנֶגְדָּן. וְכֵן כְּנֶגֶד מֵי רַגְלַיִם שֶׁל אָדָם. אֲבָל מֵי רַגְלַיִם שֶׁל בְּהֵמָה קוֹרִין כְּנֶגְדָּן. קָטָן שֶׁאֵינוֹ יָכוֹל לֶאֱכל כְּזַיִת דָּגָן בִּכְדֵי שֶׁיֹּאכַל הַגָּדוֹל כִּשְׁלֹשָׁה בֵּיצֵי דָּגָן אֵין מַרְחִיקִין לֹא מִצּוֹאָתוֹ וְלֹא מִמֵּי רַגְלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צואת אדם וצואת כלבים כו׳ עד קורין כנגדן.</strong> פרק מי שמתו <span class="source-small"> (דף כה)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל זה הרב וכו׳ וכן צואת התרנגולין האדומה עכ&quot;ל. <strong> ואני </strong> אומר כי ענין הצואה האדומה של תרנגולין כבר כללה בלשון שכתב וכל צואה שריחה רע כגון אלו אסור כו׳ ולשון הירושלמי בזה אינו אלא כמפרש הבבלי ושמא הוא מודה שאסור וכן דעת מקצת רבותינו בעלי התוספות אמנם במי רגלים של חמור כשבא מן הדרך יפה עשה שלא סמך על הירושלמי כי הבבלי לא חלק במי רגלים של בהמה בין חמור לשאר בהמות בין בא מן הדרך ליושב בבית ונמצא הירושלמי חולק על הבבלי וסמך על הבבלי שהוא אחרון ועוד דכל בבלאה בתר בני בבל גריר כד&quot;ן:</p>
               </div>
             </div>
@@ -1014,8 +1244,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:6:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-6-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-6">Mishneh Torah, Reading the Shema 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צוֹאַת הָאָדָם וְצוֹאַת כְּלָבִים וַחֲזִירִין בִּזְמַן שֶׁיֵּשׁ בְּתוֹכָן עוֹרוֹת וְכָל צוֹאָה שֶׁרֵיחָהּ רַע כְּגוֹן אֵלּוּ אָסוּר לִקְרוֹת קְרִיאַת שְׁמַע כְּנֶגְדָּן. וְכֵן כְּנֶגֶד מֵי רַגְלַיִם שֶׁל אָדָם. אֲבָל מֵי רַגְלַיִם שֶׁל בְּהֵמָה קוֹרִין כְּנֶגְדָּן. קָטָן שֶׁאֵינוֹ יָכוֹל לֶאֱכל כְּזַיִת דָּגָן בִּכְדֵי שֶׁיֹּאכַל הַגָּדוֹל כִּשְׁלֹשָׁה בֵּיצֵי דָּגָן אֵין מַרְחִיקִין לֹא מִצּוֹאָתוֹ וְלֹא מִמֵּי רַגְלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> קטן שאינו יכול לאכול כזית כו׳ עד ממי רגליו.</strong> סוף פרק לולב הגזול <span class="source-small"> (דף מב)</span> :</p>
               </div>
             </div>
@@ -1030,8 +1265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-7">Mishneh Torah, Reading the Shema 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה צוֹאָה יְבֵשָׁה כְּחֶרֶשׂ אָסוּר לִקְרוֹת כְּנֶגְדָּהּ. וְאִם הָיְתָה יְבֵשָׁה יוֹתֵר מֵחֶרֶשׂ עַד שֶׁאִם זְרָקָהּ תִּתְפָּרֵךְ הֲרֵי הִיא כְּעָפָר וּמֻתָּר לִקְרוֹת כְּנֶגְדָּהּ. מֵי רַגְלַיִם שֶׁנִּבְלְעוּ בַּקַּרְקַע אִם הָיוּ מַרְטִיבִין הַיָּד אָסוּר לִקְרוֹת כְּנֶגְדָּן וְאִם לָאו מֻתָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה צואה יבשה כו׳ עד בתוך ארבע אמות.</strong> הכל פרק מי שמתו <span class="source-small"> (דף כה)</span> :</p>
               </div>
             </div>
@@ -1046,8 +1286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-11">Mishneh Torah, Reading the Shema 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה צוֹאָה בְּגוּמָא עוֹמֵד בְּסַנְדָּלוֹ עַל הַגּוּמָא וְקוֹרֵא. וְהוּא שֶׁלֹּא יִהְיֶה סַנְדָּלוֹ נוֹגֵעַ בָּהּ. הָיְתָה כְּנֶגְדּוֹ צוֹאָה מְעוּטָה בְּיוֹתֵר כְּמוֹ טִפָּה רוֹקֵק עָלֶיהָ רֹק עָבֶה עַד שֶׁתִּתְכַּסֶּה וְקוֹרֵא. הָיְתָה נְטִישַׁת צוֹאָה עַל בְּשָׂרוֹ אוֹ יָדָיו מְטֻנָּפוֹת מִבֵּית הַכִּסֵּא וְלֹא הָיָה לָהֶן רֵיחַ רַע כְּלָל מִפְּנֵי קָטְנָן אוֹ יַבְשׁוּתָן מֻתָּר לִקְרוֹת לְפִי שֶׁאֵין לָהֶן רֵיחַ רַע. אֲבָל אִם הָיְתָה בִּמְקוֹמָהּ אַף עַל פִּי שֶׁאֵינָהּ נִרְאֵית כְּשֶׁהוּא עוֹמֵד הוֹאִיל וְנִרְאֵית כְּשֶׁהוּא יוֹשֵׁב אָסוּר לִקְרוֹת עַד שֶׁיְּקַנֵּחַ יָפֶה יָפֶה מִפְּנֵי שֶׁהַצּוֹאָה לָחָה הִיא וְיֵשׁ לָהּ רֵיחַ רַע. וְכַמָּה גְּאוֹנִים הוֹרוּ שֶׁאָסוּר לוֹ לִקְרוֹת אִם הָיוּ יָדָיו מְטֻנָּפוֹת וְכָךְ רָאוּי לַעֲשׂוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה צואה בגומא כו׳ עד נוגע בה.</strong> פרק מי שמתו:<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל דומה שהוא מפרש וכו׳ ועלתה בתיקו ולחומרא ע&quot;כ. <strong> ואני </strong> אומר אם כן לשון הבעיא דבוקה בסנדלו מהו היה לו לומר יכולה להדבק בסנדלו מהו או דבקה או עולה אלא דבוקה משמע שנוגעת בסנדלו ודבוקה בו בשעת קריאה מפני כובדו על הגומא כמו ורות דבקה בה לא ידבק בידך ולדבקה בו ובו תדבקון וכה תדבקין עם נערותי והרבה כיוצא בזה שאין המשמעות לידבק ממש שבעלות זה יעלה זה עמו לכן נמצא פירוש רמז&quot;ל נכון ויציב וכד&quot;ן:</p>
               </div>
             </div>
@@ -1062,8 +1307,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:11:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-11-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-11">Mishneh Torah, Reading the Shema 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה צוֹאָה בְּגוּמָא עוֹמֵד בְּסַנְדָּלוֹ עַל הַגּוּמָא וְקוֹרֵא. וְהוּא שֶׁלֹּא יִהְיֶה סַנְדָּלוֹ נוֹגֵעַ בָּהּ. הָיְתָה כְּנֶגְדּוֹ צוֹאָה מְעוּטָה בְּיוֹתֵר כְּמוֹ טִפָּה רוֹקֵק עָלֶיהָ רֹק עָבֶה עַד שֶׁתִּתְכַּסֶּה וְקוֹרֵא. הָיְתָה נְטִישַׁת צוֹאָה עַל בְּשָׂרוֹ אוֹ יָדָיו מְטֻנָּפוֹת מִבֵּית הַכִּסֵּא וְלֹא הָיָה לָהֶן רֵיחַ רַע כְּלָל מִפְּנֵי קָטְנָן אוֹ יַבְשׁוּתָן מֻתָּר לִקְרוֹת לְפִי שֶׁאֵין לָהֶן רֵיחַ רַע. אֲבָל אִם הָיְתָה בִּמְקוֹמָהּ אַף עַל פִּי שֶׁאֵינָהּ נִרְאֵית כְּשֶׁהוּא עוֹמֵד הוֹאִיל וְנִרְאֵית כְּשֶׁהוּא יוֹשֵׁב אָסוּר לִקְרוֹת עַד שֶׁיְּקַנֵּחַ יָפֶה יָפֶה מִפְּנֵי שֶׁהַצּוֹאָה לָחָה הִיא וְיֵשׁ לָהּ רֵיחַ רַע. וְכַמָּה גְּאוֹנִים הוֹרוּ שֶׁאָסוּר לוֹ לִקְרוֹת אִם הָיוּ יָדָיו מְטֻנָּפוֹת וְכָךְ רָאוּי לַעֲשׂוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היתה כנגדו עד רוק עבה עד שתתכסה וקורא.</strong> פרק מי שמתו <span class="source-small"> (דף כ&quot;ה):</span><br><strong> כתב</strong> הראב&quot;ד ז&quot;ל בירושלמי דוקא לאלתר שהרוק עומד בעביו אבל לאחר שעה שהרוק נימוק הצואה מתגלה עכ&quot;ל. <strong> ואני </strong> אומר גם זה הירושלמי פירוש הוא אצלי ועליו סמך ר&quot;מ ז&quot;ל שדקדק בלשונו עד שתתכסה דאלמא בכסויא תליא מילתא:</p>
               </div>
             </div>
@@ -1078,8 +1328,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:11:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-11-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:11:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-11">Mishneh Torah, Reading the Shema 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה צוֹאָה בְּגוּמָא עוֹמֵד בְּסַנְדָּלוֹ עַל הַגּוּמָא וְקוֹרֵא. וְהוּא שֶׁלֹּא יִהְיֶה סַנְדָּלוֹ נוֹגֵעַ בָּהּ. הָיְתָה כְּנֶגְדּוֹ צוֹאָה מְעוּטָה בְּיוֹתֵר כְּמוֹ טִפָּה רוֹקֵק עָלֶיהָ רֹק עָבֶה עַד שֶׁתִּתְכַּסֶּה וְקוֹרֵא. הָיְתָה נְטִישַׁת צוֹאָה עַל בְּשָׂרוֹ אוֹ יָדָיו מְטֻנָּפוֹת מִבֵּית הַכִּסֵּא וְלֹא הָיָה לָהֶן רֵיחַ רַע כְּלָל מִפְּנֵי קָטְנָן אוֹ יַבְשׁוּתָן מֻתָּר לִקְרוֹת לְפִי שֶׁאֵין לָהֶן רֵיחַ רַע. אֲבָל אִם הָיְתָה בִּמְקוֹמָהּ אַף עַל פִּי שֶׁאֵינָהּ נִרְאֵית כְּשֶׁהוּא עוֹמֵד הוֹאִיל וְנִרְאֵית כְּשֶׁהוּא יוֹשֵׁב אָסוּר לִקְרוֹת עַד שֶׁיְּקַנֵּחַ יָפֶה יָפֶה מִפְּנֵי שֶׁהַצּוֹאָה לָחָה הִיא וְיֵשׁ לָהּ רֵיחַ רַע. וְכַמָּה גְּאוֹנִים הוֹרוּ שֶׁאָסוּר לוֹ לִקְרוֹת אִם הָיוּ יָדָיו מְטֻנָּפוֹת וְכָךְ רָאוּי לַעֲשׂוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היתה טיפת צואה על בשרו כו׳ עד ריח רע.</strong> פרק מי שמתו ופרק אמר להם הממונה <span class="source-small"> (דף ל׳) </span> גמרא מתניתין דזה הכלל:</p>
               </div>
             </div>
@@ -1094,8 +1349,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:11:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-11-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:11:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-11">Mishneh Torah, Reading the Shema 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה צוֹאָה בְּגוּמָא עוֹמֵד בְּסַנְדָּלוֹ עַל הַגּוּמָא וְקוֹרֵא. וְהוּא שֶׁלֹּא יִהְיֶה סַנְדָּלוֹ נוֹגֵעַ בָּהּ. הָיְתָה כְּנֶגְדּוֹ צוֹאָה מְעוּטָה בְּיוֹתֵר כְּמוֹ טִפָּה רוֹקֵק עָלֶיהָ רֹק עָבֶה עַד שֶׁתִּתְכַּסֶּה וְקוֹרֵא. הָיְתָה נְטִישַׁת צוֹאָה עַל בְּשָׂרוֹ אוֹ יָדָיו מְטֻנָּפוֹת מִבֵּית הַכִּסֵּא וְלֹא הָיָה לָהֶן רֵיחַ רַע כְּלָל מִפְּנֵי קָטְנָן אוֹ יַבְשׁוּתָן מֻתָּר לִקְרוֹת לְפִי שֶׁאֵין לָהֶן רֵיחַ רַע. אֲבָל אִם הָיְתָה בִּמְקוֹמָהּ אַף עַל פִּי שֶׁאֵינָהּ נִרְאֵית כְּשֶׁהוּא עוֹמֵד הוֹאִיל וְנִרְאֵית כְּשֶׁהוּא יוֹשֵׁב אָסוּר לִקְרוֹת עַד שֶׁיְּקַנֵּחַ יָפֶה יָפֶה מִפְּנֵי שֶׁהַצּוֹאָה לָחָה הִיא וְיֵשׁ לָהּ רֵיחַ רַע. וְכַמָּה גְּאוֹנִים הוֹרוּ שֶׁאָסוּר לוֹ לִקְרוֹת אִם הָיוּ יָדָיו מְטֻנָּפוֹת וְכָךְ רָאוּי לַעֲשׂוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל אם היתה במקומה עד מטונפות.</strong> פ׳ אמר להם הממונה <span class="source-small"> (דף ל׳) </span> גמרא מתניתין דזה הכלל:</p>
               </div>
             </div>
@@ -1110,8 +1370,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-12">Mishneh Torah, Reading the Shema 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רֵיחַ רַע שֶׁיֵּשׁ לוֹ עִקָּר מַרְחִיק ד׳‎ אַמּוֹת וְקוֹרֵא אִם פָּסַק הָרֵיחַ. וְאִם לֹא פָּסַק הָרֵיחַ מַרְחִיק עַד מָקוֹם שֶׁפָּסַק הָרֵיחַ. וְשֶׁאֵין לוֹ עִקָּר כְּגוֹן מִי שֶׁיָּצָא מִמֶּנּוּ רוּחַ מִלְּמַטָּה מַרְחִיק עַד מָקוֹם שֶׁתִּכְלֶה הָרֵיחַ וְקוֹרֵא. גְּרָף שֶׁל רְעִי וַעֲבִיט שֶׁל מֵימֵי רַגְלַיִם אָסוּר לִקְרוֹת קְרִיאַת שְׁמַע כְּנֶגְדָּן וְאַף עַל פִּי שֶׁאֵין בָּהֶן כְּלוּם וְאֵין לָהֶם רֵיחַ רַע מִפְּנֵי שֶׁהֵם כְּבֵית הַכִּסֵּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ריח רע שיש לו עיקר וכו׳ עד מרחיק עד מקום שפסק הריח וקורא.</strong> פרק מי שמתו <span class="source-small"> (דף כ&quot;ה)</span> :<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל אינו כן וכו׳ והכי כתב רבינו האי גאון ז&quot;ל בעיקר עכ&quot;ל. <strong> ואני </strong> אומר כי גם הר&quot;מ ז&quot;ל כן הוא מפרשה ולא רחוקה ממנו תשובת הגאון ז&quot;ל וגם רש&quot;י ורבותינו בעלי התוס׳ כן פירשוה אבל ר&quot;מ ז&quot;ל רוח אחרת עמו וגורס עד מקום שיכלה הריח כדרב חסדא דתניא כוותיה וכן מצאתי גרסא ספרדית בדרב הונא דאיחלף ליה בדרב חסדא לפי דעתי וטעה הסופר ור&quot;מ ז&quot;ל ידע הספר הישר והסכים על הנכון:</p>
               </div>
             </div>
@@ -1126,8 +1391,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:12:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-12-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:12:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-12">Mishneh Torah, Reading the Shema 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רֵיחַ רַע שֶׁיֵּשׁ לוֹ עִקָּר מַרְחִיק ד׳‎ אַמּוֹת וְקוֹרֵא אִם פָּסַק הָרֵיחַ. וְאִם לֹא פָּסַק הָרֵיחַ מַרְחִיק עַד מָקוֹם שֶׁפָּסַק הָרֵיחַ. וְשֶׁאֵין לוֹ עִקָּר כְּגוֹן מִי שֶׁיָּצָא מִמֶּנּוּ רוּחַ מִלְּמַטָּה מַרְחִיק עַד מָקוֹם שֶׁתִּכְלֶה הָרֵיחַ וְקוֹרֵא. גְּרָף שֶׁל רְעִי וַעֲבִיט שֶׁל מֵימֵי רַגְלַיִם אָסוּר לִקְרוֹת קְרִיאַת שְׁמַע כְּנֶגְדָּן וְאַף עַל פִּי שֶׁאֵין בָּהֶן כְּלוּם וְאֵין לָהֶם רֵיחַ רַע מִפְּנֵי שֶׁהֵם כְּבֵית הַכִּסֵּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ושאין לה עיקר עד מותר לקרות.</strong> פרק מי שמתו:</p>
               </div>
             </div>
@@ -1142,8 +1412,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:16:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-16-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-16">Mishneh Torah, Reading the Shema 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁאָסוּר לִקְרוֹת כְּנֶגֶד צוֹאָה וּמֵי רַגְלַיִם עַד שֶׁיַּרְחִיק כָּךְ אָסוּר לִקְרוֹת כְּנֶגֶד הָעֶרְוָה עַד שֶׁיַּחֲזִיר פָּנָיו. אֲפִלּוּ כּוּתִי אוֹ קָטָן לֹא יִקְרָא כְּנֶגֶד עֶרְוָתָן אֲפִלּוּ מְחִצָּה שֶׁל זְכוּכִית מַפְסֶקֶת הוֹאִיל וְהוּא רוֹאֶה אוֹתָהּ אָסוּר לִקְרוֹת עַד שֶׁיַּחֲזִיר פָּנָיו. וְכָל גּוּף הָאִשָּׁה עֶרְוָה לְפִיכָךְ לֹא יִסְתַּכֵּל בְּגוּף הָאִשָּׁה כְּשֶׁהוּא קוֹרֵא וַאֲפִלּוּ אִשְׁתּוֹ. וְאִם הָיָה מְגֻלֶּה טֶפַח מִגּוּפָהּ לֹא יִקְרָא כְּנֶגְדָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם שאסור וכו׳ עד אפי׳ כותי וכו׳.</strong> פ׳ מי שמתו ופ׳ השואל <span class="source-small"> (דף ק&quot;ו)</span> :</p>
               </div>
             </div>
@@ -1158,8 +1433,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 3:16:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-3-16-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 3:16:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-16">Mishneh Torah, Reading the Shema 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁאָסוּר לִקְרוֹת כְּנֶגֶד צוֹאָה וּמֵי רַגְלַיִם עַד שֶׁיַּרְחִיק כָּךְ אָסוּר לִקְרוֹת כְּנֶגֶד הָעֶרְוָה עַד שֶׁיַּחֲזִיר פָּנָיו. אֲפִלּוּ כּוּתִי אוֹ קָטָן לֹא יִקְרָא כְּנֶגֶד עֶרְוָתָן אֲפִלּוּ מְחִצָּה שֶׁל זְכוּכִית מַפְסֶקֶת הוֹאִיל וְהוּא רוֹאֶה אוֹתָהּ אָסוּר לִקְרוֹת עַד שֶׁיַּחֲזִיר פָּנָיו. וְכָל גּוּף הָאִשָּׁה עֶרְוָה לְפִיכָךְ לֹא יִסְתַּכֵּל בְּגוּף הָאִשָּׁה כְּשֶׁהוּא קוֹרֵא וַאֲפִלּוּ אִשְׁתּוֹ. וְאִם הָיָה מְגֻלֶּה טֶפַח מִגּוּפָהּ לֹא יִקְרָא כְּנֶגְדָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואפי׳ אשתו וכו׳ עד סוף הפרק.</strong> פ׳ מי שמתו <span class="source-small"> (דף כ&quot;ה)</span> :</p>
               </div>
             </div>
@@ -1175,8 +1455,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-1">Mishneh Torah, Reading the Shema 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִקְּרִיאַת שְׁמַע. וּמְלַמְּדִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ בְּעוֹנָתָהּ וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ כְּדֵי לְחַנְּכָן בְּמִצְוֹת. מִי שֶׁהָיָה לִבּוֹ טָרוּד וְנֶחְפַּז לִדְבַר מִצְוָה פָּטוּר מִכָּל הַמִּצְוֹת וּמִקְּרִיאַת שְׁמַע. לְפִיכָךְ חָתָן שֶׁנָּשָׂא בְּתוּלָה פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיָּבוֹא עָלֶיהָ. לְפִי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה שֶׁמָּא לֹא יִמְצָא לָהּ בְּתוּלִים. וְאִם שָׁהָה עַד מוֹצָאֵי שַׁבָּת וְלֹא בָּעַל חַיָּב לִקְרוֹת מִמּוֹצָאֵי שַׁבָּת וְאֵילָךְ שֶׁהֲרֵי נִתְקָרְרָה דַּעְתּוֹ וְלִבּוֹ גַּס בָּהּ אַף עַל פִּי שֶׁלֹּא בָּעַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים ועבדים וקטנים וכו׳ עד כדי לחנכן במצות.</strong> מתניתין היא פרק מי שמתו <span class="source-small"> (דף כ&quot;א) </span> והנה הוא מפרשה בקטן שהגיע לחינוך כפירש&quot;י ז&quot;ל: ואומר אני דפטורים מן התורה קאמר אבל מחנכין מדרבנן מיהא דאמרינן במסכת סוכה ס&quot;פ לולב הגזול <span class="source-small"> (דף מ&quot;ב) </span> לגבי קטן היודע לנענע דמחנכין מדרבנן ואין צריך לדחוק כפי׳ ר&quot;ת ז&quot;ל כד&quot;ן:</p>
               </div>
             </div>
@@ -1191,8 +1476,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-1">Mishneh Torah, Reading the Shema 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִקְּרִיאַת שְׁמַע. וּמְלַמְּדִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ בְּעוֹנָתָהּ וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ כְּדֵי לְחַנְּכָן בְּמִצְוֹת. מִי שֶׁהָיָה לִבּוֹ טָרוּד וְנֶחְפַּז לִדְבַר מִצְוָה פָּטוּר מִכָּל הַמִּצְוֹת וּמִקְּרִיאַת שְׁמַע. לְפִיכָךְ חָתָן שֶׁנָּשָׂא בְּתוּלָה פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיָּבוֹא עָלֶיהָ. לְפִי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה שֶׁמָּא לֹא יִמְצָא לָהּ בְּתוּלִים. וְאִם שָׁהָה עַד מוֹצָאֵי שַׁבָּת וְלֹא בָּעַל חַיָּב לִקְרוֹת מִמּוֹצָאֵי שַׁבָּת וְאֵילָךְ שֶׁהֲרֵי נִתְקָרְרָה דַּעְתּוֹ וְלִבּוֹ גַּס בָּהּ אַף עַל פִּי שֶׁלֹּא בָּעַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מי שהיה לבו טרוד וכו׳ עד וכן כל כיוצא בזה.</strong> פרק היה קורא <span class="source-small"> (דף ט&quot;ז)</span> :</p>
               </div>
             </div>
@@ -1207,8 +1497,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-3">Mishneh Torah, Reading the Shema 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמֵּת לוֹ מֵת שֶׁהוּא חַיָּב לְהִתְאַבֵּל עָלָיו פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיִּקְבְּרֶנּוּ מִפְּנֵי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה לִקְרוֹת. וְאִם הָיָה מְשַׁמֵּר אֶת הַמֵּת אַף עַל פִּי שֶׁאֵינוֹ מֵתוֹ פָּטוּר מִקְּרִיאַת שְׁמַע. וְאִם הָיוּ הַשּׁוֹמְרִים שְׁנַיִם הָאֶחָד מְשַׁמֵּר וְהַשֵּׁנִי נִשְׁמָט לְמָקוֹם אַחֵר וְקוֹרֵא וְחוֹזֵר וּמְשַׁמֵּר וְנִשְׁמָט הָאַחֵר וְקוֹרֵא. וְכֵן הַחוֹפֵר קֶבֶר לְמֵת פָּטוּר מִקְּרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שמת לו וכו׳ עד ומשמר ונשמט האחר.</strong> פרק מי שמתו <span class="source-small"> (דף י&quot;ז)</span> :</p>
               </div>
             </div>
@@ -1223,8 +1518,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-3">Mishneh Torah, Reading the Shema 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמֵּת לוֹ מֵת שֶׁהוּא חַיָּב לְהִתְאַבֵּל עָלָיו פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיִּקְבְּרֶנּוּ מִפְּנֵי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה לִקְרוֹת. וְאִם הָיָה מְשַׁמֵּר אֶת הַמֵּת אַף עַל פִּי שֶׁאֵינוֹ מֵתוֹ פָּטוּר מִקְּרִיאַת שְׁמַע. וְאִם הָיוּ הַשּׁוֹמְרִים שְׁנַיִם הָאֶחָד מְשַׁמֵּר וְהַשֵּׁנִי נִשְׁמָט לְמָקוֹם אַחֵר וְקוֹרֵא וְחוֹזֵר וּמְשַׁמֵּר וְנִשְׁמָט הָאַחֵר וְקוֹרֵא. וְכֵן הַחוֹפֵר קֶבֶר לְמֵת פָּטוּר מִקְּרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן החופר וכו׳ עד מק&quot;ש.</strong> פרק היה קורא <span class="source-small"> (דף י&quot;ד)</span> :</p>
               </div>
             </div>
@@ -1239,8 +1539,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:3:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-3-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:3:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-3">Mishneh Torah, Reading the Shema 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמֵּת לוֹ מֵת שֶׁהוּא חַיָּב לְהִתְאַבֵּל עָלָיו פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיִּקְבְּרֶנּוּ מִפְּנֵי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה לִקְרוֹת. וְאִם הָיָה מְשַׁמֵּר אֶת הַמֵּת אַף עַל פִּי שֶׁאֵינוֹ מֵתוֹ פָּטוּר מִקְּרִיאַת שְׁמַע. וְאִם הָיוּ הַשּׁוֹמְרִים שְׁנַיִם הָאֶחָד מְשַׁמֵּר וְהַשֵּׁנִי נִשְׁמָט לְמָקוֹם אַחֵר וְקוֹרֵא וְחוֹזֵר וּמְשַׁמֵּר וְנִשְׁמָט הָאַחֵר וְקוֹרֵא. וְכֵן הַחוֹפֵר קֶבֶר לְמֵת פָּטוּר מִקְּרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אין מוציאין את המת וכו׳ עד שיקבר מתו.</strong> פרק מי שמתו <span class="source-small"> (דף י&quot;ט)</span> :</p>
               </div>
             </div>
@@ -1255,8 +1560,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-6">Mishneh Torah, Reading the Shema 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָבְרוּ אֶת הַמֵּת וְחָזְרוּ הָאֲבֵלִים לְקַבֵּל תַּנְחוּמִין וְכָל הָעָם הוֹלְכִים אַחֲרֵיהֶם מִמְּקוֹם הַקֶּבֶר לַמָּקוֹם שֶׁעוֹמְדִים בּוֹ הָאֲבֵלִים לַעֲשׂוֹת שׁוּרָה לְקַבֵּל תַּנְחוּמִין. אִם יְכוֹלִין הָעָם לְהַתְחִיל וְלִגְמֹר אֲפִלּוּ פָּסוּק אֶחָד קֹדֶם שֶׁיַּגִּיעוּ לַשּׁוּרָה יַתְחִילוּ וְאִם לָאו לֹא יַתְחִילוּ אֶלָּא יְנַחֲמוּ אֶת הָאֲבֵלִים וְאַחַר שֶׁיִּפָּטְרוּ מֵהֶן יַתְחִילוּ לִקְרוֹת. בְּנֵי אָדָם הָעוֹמְדִין בַּשּׁוּרָה, הַפְּנִימִיִּים שֶׁהֵן רוֹאִין פְּנֵי הָאֲבֵלִים פְּטוּרִין מִקְּרִיאַת שְׁמַע וְהַחִיצוֹנִים הוֹאִיל וְאֵינָן רוֹאִין אֶת הָאֲבֵלִים חַיָּבִין בִּקְרִיאַת שְׁמַע בִּמְקוֹמָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קברו את המת וחזרו וכו׳ עד אלא ינחמו האבלים ואחר שיפטרו מהם יתחילו לקרות.</strong> פרק מי שמתו <span class="source-small"> (דף י&quot;ז):</span><br><strong> כתב</strong> הראב&quot;ד ז&quot;ל דוקא באותן הצריכים לראות פני האבל שהם קרואים פנימיים והם הקרובים אליו עכ&quot;ל. <strong> ואני </strong> אומר תמה אני אם יצא דבר זה מפי הקדוש הראב&quot;ד ז&quot;ל וכי חס ושלום נשמטה ממנו סיפא דמתניתין פרק מי שמתו <span class="source-small"> (דף כ׳) </span> דפליג בה ר׳ יהודה בברייתא שהיא המפרסמת דעת רבינו משה ז&quot;ל כי רישא דקתני קברו את המת וכו׳ מיירי בכל העם והנהו לאו פטורים לגמרי נינהו וסיפא דקתני העומדים בשורה הפנימיים פטורים והחיצונים חייבים פליג עלה ר׳ יהודה בברייתא בגמרא ואמר הבאים מחמת האבל פטורין מחמת כבוד חייבין והיינו פטורים לגמרי ופסק כת&quot;ק דברייתא דסתם מתניתין כוותיה אבל ברישא דמתניתין לא חילקו בין פנימיים לחיצונים כלום ור&quot;מ ז&quot;ל כתבה בבא בפני עצמה סמוכה לזו וכד&quot;ן:</p>
               </div>
             </div>
@@ -1271,8 +1581,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:6:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-6-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-6">Mishneh Torah, Reading the Shema 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָבְרוּ אֶת הַמֵּת וְחָזְרוּ הָאֲבֵלִים לְקַבֵּל תַּנְחוּמִין וְכָל הָעָם הוֹלְכִים אַחֲרֵיהֶם מִמְּקוֹם הַקֶּבֶר לַמָּקוֹם שֶׁעוֹמְדִים בּוֹ הָאֲבֵלִים לַעֲשׂוֹת שׁוּרָה לְקַבֵּל תַּנְחוּמִין. אִם יְכוֹלִין הָעָם לְהַתְחִיל וְלִגְמֹר אֲפִלּוּ פָּסוּק אֶחָד קֹדֶם שֶׁיַּגִּיעוּ לַשּׁוּרָה יַתְחִילוּ וְאִם לָאו לֹא יַתְחִילוּ אֶלָּא יְנַחֲמוּ אֶת הָאֲבֵלִים וְאַחַר שֶׁיִּפָּטְרוּ מֵהֶן יַתְחִילוּ לִקְרוֹת. בְּנֵי אָדָם הָעוֹמְדִין בַּשּׁוּרָה, הַפְּנִימִיִּים שֶׁהֵן רוֹאִין פְּנֵי הָאֲבֵלִים פְּטוּרִין מִקְּרִיאַת שְׁמַע וְהַחִיצוֹנִים הוֹאִיל וְאֵינָן רוֹאִין אֶת הָאֲבֵלִים חַיָּבִין בִּקְרִיאַת שְׁמַע בִּמְקוֹמָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בני אדם העומדים בשורה וכו׳ עד במקומן.</strong> פרק מי שמתו <span class="source-small"> (דף יז:):</span></p>
               </div>
             </div>
@@ -1287,8 +1602,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-7">Mishneh Torah, Reading the Shema 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁהוּא פָּטוּר מִלִּקְרוֹת קְרִיאַת שְׁמַע אִם רָצָה לְהַחֲמִיר עַל עַצְמוֹ לִקְרוֹת קוֹרֵא. וְהוּא שֶׁתְּהֵא דַּעְתּוֹ פְּנוּיָה עָלָיו. אֲבָל אִם הָיָה זֶה הַפָּטוּר מִלִּקְרוֹת מְבֹהָל אֵינוֹ רַשַּׁאי לִקְרוֹת עַד שֶׁתִּתְיַשֵּׁב דַּעְתּוֹ עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מי שהוא פטור מלקרות כו׳ עד שתתיישב דעתו עליו.</strong> סוף פרק היה קורא שם דף י&quot;ו ופ׳ אין עומדין:<br><strong> כתב</strong> הראב&quot;ד ז&quot;ל ומה בכך וכו׳ ואידך אמר דחשיב מאן ממטי אסא לבי מלכא עכ&quot;ל. <strong> ואני </strong> אומר דברי רבינו הראב&quot;ד ז&quot;ל גם בזה תימה בעיני והלא הוא עצמו אמר תחלה ואין זה דומה לתפלה ואח&quot;כ מביא ראיה מן התפלה ועוד דהא סוף פרק הקורא את המגלה עומד ויושב ובפרק אין עומדים גמרא מתניתין דהאומר מודים מודים משתקים אותו אמר ר׳ זירא האומר שמע שמע כאומר מודים מודים דמי ומשתקין אותו ושקלינן וטרינן עד דא&quot;ל רב פפא לאביי ודילמא איהו הוא דלא כיון דעתיה מעיקרא ואהדר ליה וכי חברותא כלפי שמיא מי איכא אי לא כיון דעתיה מעיקרא מחינן ליה במרזפתא דנפחא עד דמכוין דעתיה אלמא בעינן דעת מיושבת לקורא ק&quot;ש בכוונה במה שיודע ונמצא שכיון יפה ר&quot;מ ז&quot;ל בדין התלמוד. ומה שכתב הראב&quot;ד ז&quot;ל מן הזמן הזה שאין מכוונין לגבי חתן בלבד הוא שהסכימו כן רבותינו בעלי התוס׳ אבל לא בשאר הטרודים ואית לן טעמא רבה דשאני חתן דטריד טירדא דמצוה אבל בשאר דברים איבעי ליה לפכוחי פחדיה וחכמי התלמוד שהביא הראב&quot;ד ז&quot;ל מחשבה היתה באה להם לאחר שהתחילו להתפלל ועוד למה נניח משנה פשוטה דאין עומדין וכיוצא בה ומפני זה להשיב על ר&quot;מ ז&quot;ל ור&quot;מ ז&quot;ל לא אמר אלא לקרות בברכות ודרך חובה אבל אם רצה לקרות בלא ברכות וכמו שקורא בתורה כדברי הראב&quot;ד ז&quot;ל מי אסרו ור&quot;מ ז&quot;ל שלא חילק בין זה הזמן לזמן הראשונים כבר הודעתי דעתו כמה פעמים כי הוא לא בא אלא לחבר דברי התלמוד בחצרה ולשון מבואר ולכך קראו משנה תורה וצדקו דבריו כד&quot;ן:</p>
               </div>
             </div>
@@ -1303,8 +1623,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:7:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-7-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-7">Mishneh Torah, Reading the Shema 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁהוּא פָּטוּר מִלִּקְרוֹת קְרִיאַת שְׁמַע אִם רָצָה לְהַחֲמִיר עַל עַצְמוֹ לִקְרוֹת קוֹרֵא. וְהוּא שֶׁתְּהֵא דַּעְתּוֹ פְּנוּיָה עָלָיו. אֲבָל אִם הָיָה זֶה הַפָּטוּר מִלִּקְרוֹת מְבֹהָל אֵינוֹ רַשַּׁאי לִקְרוֹת עַד שֶׁתִּתְיַשֵּׁב דַּעְתּוֹ עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל הטמאים כו׳ עד לעמוד בה ולפיכך בטלוה.</strong> פרק מי שמתו <span class="source-small"> (דף כ&quot;ב)</span> :</p>
               </div>
             </div>
@@ -1319,8 +1644,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Reading the Shema 4:7:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-reading-the-shema-4-7-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Reading the Shema 4:7:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-7">Mishneh Torah, Reading the Shema 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁהוּא פָּטוּר מִלִּקְרוֹת קְרִיאַת שְׁמַע אִם רָצָה לְהַחֲמִיר עַל עַצְמוֹ לִקְרוֹת קוֹרֵא. וְהוּא שֶׁתְּהֵא דַּעְתּוֹ פְּנוּיָה עָלָיו. אֲבָל אִם הָיָה זֶה הַפָּטוּר מִלִּקְרוֹת מְבֹהָל אֵינוֹ רַשַּׁאי לִקְרוֹת עַד שֶׁתִּתְיַשֵּׁב דַּעְתּוֹ עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכבר נהגו כו׳ עד סוף הפרק.</strong> פרק ראשית הגז <span class="source-small"> (דף קל&quot;ז)</span> :</p>
               </div>
             </div>
@@ -1330,6 +1660,10 @@
               <a href="#chapter-migdal-oz-on-mishneh-torah-reading-the-shema-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/migdal-oz-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1350,8 +1684,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-reading-the-shema.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/migdal-oz-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-reading-the-shema.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-reading-the-shema.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-reading-the-shema.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1377,7 +1711,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

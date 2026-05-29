@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-fasts/">Open Mishneh Torah, Fasts</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Fasts</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">14 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>750 matched</strong> / 1869 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/divrei-yirmiyahu-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -225,8 +226,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 1:1:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-1-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-1">Mishneh Torah, Fasts 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִזְעֹק וּלְהָרִיעַ בַּחֲצוֹצְרוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר. שֶׁנֶּאֱמַר <span class="source-small">(במדבר י ט)</span> &quot;עַל הַצַּר הַצֹּרֵר אֶתְכֶם וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת&quot;. כְּלוֹמַר כָּל דָּבָר שֶׁיָּצֵר לָכֶם כְּגוֹן בַּצֹּרֶת וְדֶבֶר וְאַרְבֶּה וְכַיּוֹצֵא בָּהֶן זַעֲקוּ עֲלֵיהֶן וְהָרִיעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע מן התורה לזעוק ולהריע בחצוצרות על כל צרה שתבא על הציבור שנאמר &quot;על הצר הצורר אתכם והרעותם בחצוצרות&quot; כלומר כל דבר שייצר לכם כגון בצורות ודבר וארבה וכיו&quot;ב זעקו עליהן והריעו. ודבר זה מדרכי התשובה הוא שבזמן שתבוא צרה ויזעקו עליה ויריעו ידעו הכל שבגלל מעשיהם הרעים הורע להן ככתוב עונתיכם הטו וכו׳ וזה שיגרום להסיר הצרה מעליהם.</strong> במ&quot;ע אחת וכו׳ כתב לצעוק ולא להריע בחצוצרות וכו׳ כי ענין הצעקה וזעקה אינה כשאר תפילה שהיא בינו לבין קונו בלבד אבל בזה יהיה בקול להעיר רבים. וכתב רבינו בכל עת צרה גדולה. וזה בצרה גדולה אשר תקצר יד כל אדם להושיע אז ישוב כל אדם לבבו לה׳ ואז הזמן להעיר על זה ולא די בהשתפך נפשו לפני ה׳ גם יעיר אחרים לזה לעת מצוא הלבבות נכונים כי אין להם להשען כי על אביהם שבשמים ולשון זעקה מצינו על קיבוץ רבים לדבר אחד &quot;ויזעק ברק את זבולן ואת נפתלי&quot; שופטים ד׳ וכיו&quot;ב. לכן במ&quot;ע כתב רבינו דרך כלל לצעוק אשר ענינו להשמיע גם לאחרים אתו ובצרה גדולה אשר תעורר כל לב ובהל׳ מפרש שהזעקה תהיה ע&quot;י חצוצרות ובצרה גדולה כמו מכת מצרים דבר ארבה ובצורות ובסמ&quot;ג כמ&quot;ש בהגהות מיימוני לא הביא מ&quot;ע לזעוק וכו׳ על כל צרה וכו׳ עיי&quot;ש ובמעשה רוקח משום דהוי בספרי פרשת בהעלתך מחלוקת ר&quot;ע וחביריו פסק הסמ&quot;ג כחכמים ורבינו משום סוגיא הגמ׳ כר&quot;ע עיי&quot;ש. ובמג&quot;א בסי׳ ק&quot;ו ס&quot;ק ב׳ בשם הסמ&quot;ק שמצוה להתפלל בעת צרה עיי&quot;ש:<br><strong> ועי׳</strong> בסמ&quot;ק יום ראשון הל׳ תפילה סי׳ י&quot;א בהג&quot;ה מרבינו פרץ שם פשר דבר בין דעת רבינו דתפילה מדאורייתא ורמב&quot;ן דמדרבנן ודעתו שם דבעת צרה הוי מדאורייתא וגם במקדש קיים והיו שקטים היו מתפללין על קרבנות ציבור שיתקבלו ברצון עיי&quot;ש. אבל אחרי רואי בסה&quot;מ עשה ה׳ גם דעת הרמב&quot;ן דבעת צרה מדאורייתא התפילה עיי&quot;ש:<br><strong> ועי׳</strong> בהמ&quot;מ ובפרשת דרכים המצויין כאן שעמדו על מה שמנה רבינו בסה&quot;מ עשה נ&quot;ט התקיעה בעת צרה ובמקדש במצוה אחת ומנה שביתת כל יו&quot;ט כל אחת למצוה בפ&quot;ע עיי&quot;ש ובמעשה רוקח כתב דשם כל שביתה עבור דבר אחר משא&quot;כ התקיעה בעת צרה ועל קרבנות להתרצות לפני ה׳ ושניהם לתכלית ולסיבה אחת עיי&quot;ש. וכמ&quot;ש לעיל בשם רבינו פרץ דתפילה מדאורייתא לא נמצא אלא בעת צרה ובקרבנות אף כי דעת רבינו תפילה מדאורייתא זולת זה מ&quot;מ לכו&quot;ע נמשכים זה לזה ושניהם דבר שבציבור זה על צרה גדולה לרבים אשר יתעורר כולם ויחד כל ישראל ירימו לבבם לה׳ וכן הקרבן ציבור קרבן אחד לכל ישראל אשר יורה על אחות הנפש כל האומה כמ&quot;ש במ&quot;א יהיה כמו כן בתקיעה בשניהם להכין לבבם יחד לפני ה׳ יתעלה:</p>
               </div>
             </div>
@@ -241,8 +247,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 1:1:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-1-1-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-1">Mishneh Torah, Fasts 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִזְעֹק וּלְהָרִיעַ בַּחֲצוֹצְרוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר. שֶׁנֶּאֱמַר <span class="source-small">(במדבר י ט)</span> &quot;עַל הַצַּר הַצֹּרֵר אֶתְכֶם וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת&quot;. כְּלוֹמַר כָּל דָּבָר שֶׁיָּצֵר לָכֶם כְּגוֹן בַּצֹּרֶת וְדֶבֶר וְאַרְבֶּה וְכַיּוֹצֵא בָּהֶן זַעֲקוּ עֲלֵיהֶן וְהָרִיעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ודבר זה מדרכי התשובה וכו׳.</strong> לרבינו איתא כתפילה מדאורייתא לדעתו לשפוך נפשו לפני ה׳ בשיר ושבח ותודה גם בקשה אלא מדרכי התשובה הזעקה בעת צרה. כי נדע כי אין עונש מבלי חטא ונקראין בפי רז&quot;ל פורעניות מלשון פרעון. וכאשר מצינו במרדכי ויזעק וכו׳ וגזרו בתענית אז וכיו&quot;ב ורעיון זה יהיה תמיד נגדינו כי אין רע מלמעלה ובן חכים יאהב את אביו על כי הוכיחו בשבט מוסר כמו במה אשר היטב לעשות עמו בלעדי זאת. ומבאר רבינו בהל׳ אח&quot;ז:</p>
               </div>
             </div>
@@ -257,8 +268,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 1:3:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-1-3-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-3">Mishneh Torah, Fasts 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל אִם לֹא יִזְעֲקוּ וְלֹא יָרִיעוּ אֶלָּא יֹאמְרוּ דָּבָר זֶה מִמִּנְהַג הָעוֹלָם אֵרַע לָנוּ וְצָרָה זוֹ נִקְרָה נִקְרֵית. הֲרֵי זוֹ דֶּרֶךְ אַכְזָרִיּוּת וְגוֹרֶמֶת לָהֶם לְהִדַּבֵּק בְּמַעֲשֵׂיהֶם הָרָעִים. וְתוֹסִיף הַצָּרָה צָרוֹת אֲחֵרוֹת. הוּא שֶׁכָּתוּב בַּתּוֹרָה <span class="source-small">(ויקרא כו כז)</span> &quot;וַהֲלַכְתֶּם עִמִּי בְּקֶרִי&quot; <span class="source-small">(ויקרא כו כח)</span> &quot;וְהָלַכְתִּי גַּם אֲנִי עִמָּכֶם בַּחֲמַת קֶרִי&quot;. כְּלוֹמַר כְּשֶׁאָבִיא עֲלֵיכֶם צָרָה כְּדֵי שֶׁתָּשׁוּבוּ אִם תֹּאמְרוּ שֶׁהִיא קֶרִי אוֹסִיף לָכֶם חֲמַת אוֹתוֹ קֶרִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל אם לא יזעקו ולא יריעו אלא יאמרו דבר זה ממנהג העולם אירע לנו וצרה זו נקרה נקרית הרי זו דרך אכזריות וגורמת להם להדבק במעשיהם הרעים והוסיף הצרה צרות אחרות הוא שכתוב בתורה והלכתם עמי בקרי והלכתי גם אני עמכם בחמת קרי כלומר כשאביא עליכם צרה כדי שתשובו אם תאמרו שהיא קרי אוסיף לכם חמת אותו קרי.</strong> ויש להבין מ&quot;ש רבינו הרי זו דרך אכזריות וכו׳ דמה ענין אכזריות לזה:<br><strong> הנה</strong> זה כי נראה טוב ורע במציאות הביא לדיעות זרות כנודע מהם שהאמינו בב׳ פועלים פועל טוב ופועל רע וכנגדם יוצר אור וכו׳ כמ&quot;ש ברבינו יונה במס׳ ברכות בפ&quot;ק עיי&quot;ש. ויש שכפרו מציאות הטוב בהשגחה בהעולם והכל במקרה כנודע ומאמונתינו ה׳ רחום וחנון אף כי פוקד עונות כי הכל לטוב לנו והוא יתעלה מלא רחמים וחסד. והנה אלה הכתות כפי הציור אשר להם מאלוהיהם נמצא בנפשותם וכן להיפוך נפש טובה ימצא הטוב הנרשם בנפשו להרימו להגבוה מעל הגבוהים בעל בלי תכלית. העמים הפראים יחסו לאליליהם רק פחד ולא אהבה על כי רחוק האהבה מלבבם אלא המלחמה לשלול בז מטרת חייהם ולנו לנחלה &quot;ואהבת את ה׳ אלוקיך&quot; &quot;ה׳ האמירך וכו׳&quot; וזה אמרו לומר כי הכל במקרה ויוצר העולם בלתי ישגיח על מעשיו דרך אכזריות הנטבע בנפשם ואשר מיחסים לה׳ חלילה. וזה המביא כמ&quot;ש להדבק ברע כנודע מאלו כופרי השגחה העליונה ומדרכם והרי זו דרך אכזריות נוכל לפרש על דרך המקרה. וכביכול אשר מיחסים למעלה גם דרך אכזריות אשר בהם דכמ&quot;ש הכל ממקור אחד:</p>
               </div>
             </div>
@@ -273,8 +289,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 1:9:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-1-9-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-9">Mishneh Torah, Fasts 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁהַצִּבּוּר מִתְעַנִּים עַל צָרָתָן כָּךְ הַיָּחִיד מִתְעַנֶּה עַל צָרָתוֹ. כֵּיצַד. הֲרֵי שֶׁהָיָה לוֹ חוֹלֶה אוֹ תּוֹעֶה בַּמִּדְבָּר אוֹ אָסוּר בְּבֵית הָאֲסוּרִין. יֵשׁ לוֹ לְהִתְעַנּוֹת עָלָיו וּלְבַקֵּשׁ רַחֲמִים בִּתְפִלָּתוֹ. וְאוֹמֵר עֲנֵנוּ וְכוּ׳ בְּכָל תְּפִלָּה שֶׁמִּתְפַּלֵּל. וְלֹא יִתְעַנֶּה בְּשַׁבָּתוֹת וְלֹא בְּמוֹעֲדוֹת וְלֹא בְּרָאשֵׁי חֳדָשִׁים וְלֹא בַּחֲנֻכָּה וּפוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם שהציבור מתענים על צרתן כך היחיד מתענה על צרתו כיצד הרי שהיה לו חולה או תועה במדבר או אסור בבית האסורין יש לו להתענות עליו ולבקש רחמים בתפילתו. ואומר ענינו וכו׳ בכל תפילה שמתפלל ולא יתענה בשבתות ולא במועדות ולא בראשי חדשים ולא בחנוכה ופורים.</strong> עי׳ בהמ&quot;מ לחלק בין תענית מגזירה לציבור דבקדמו אין מפסיקין לתענית יחיד לפי שאין קבלת תענית נדר גמור וחמור עיי&quot;ש ובלח&quot;מ:<br><strong> ויש</strong> לעיין בענין נדר של תענית למ&quot;ש בהמ&quot;מ ובר&quot;ן שאינו מענין נדר גמור ממה כוחו:<br><strong> והנה</strong> בחפשנו בדברי הראשונים ז&quot;ל נמצא הן דברי הר&quot;ן המובאים בלח&quot;מ. גם דף י&quot;ב ע&quot;ב שם בסוגיא דלוה אדם תעניתו ופורע כתב שאין קבלת תענית נדר גמור דא&quot;כ לא שייך לומר לוה ופורע דהאומר קונם עלי בשר ביום פלוני פשיטא שאינו רשאי לשנותו וכתב עוד וז&quot;ל ובתענית ה&quot;ט דאמרינן לוה לפי שאין הוא נדר גמור אלא כקבלה לדבר מצוה וכו׳ ולאו נדר של קונם אמרינן שהרי ודאי אינו רשאי להלואתו אלא כנדר שנדר לענים קאמרינן כצדקה דאמרינן עלה בפ&quot;ק דערכין דעד שלא באתה לידי גבאי מותר לשנותה כלומר ללותה ולפרעה עכ&quot;ל ועי׳ ברא&quot;ש שם ובמס׳ נדרים ח׳ ע&quot;א האומר אשכים אשנה פרק זה וכו׳ נדר גדול נדר לאלוקי ישראל ברא&quot;ש בפי׳ שם וז&quot;ל לאו היינו נדר ממש דלא איקרי נדר אלא שמתפיס בדבר הנדור אלא מחשבינן ליה כאלו נדר בצדקה דאמרינן בפ&quot;ק דר&quot;ה בפיך זו צדקה עכ&quot;ל. ומ&quot;ש דלא הוי נדר אלא במתפיס נראה שאין כונתו משום דכל נדר בעי התפסה אשר הוא מחלוקת הראשונים ז&quot;ל. אלא נראה כונתו פה דבענין נדר הוי איסור חפצא וקבלת מצות הוי על גברא:<br><strong> ונראה</strong> כי להרא&quot;ש בפיך כולל כל הדברים הטובים שמקבל על עצמו ולאו דוקא צדקה. וא&quot;כ יהיה בכלל בפיך בגדר עשה עכ&quot;פ. ועי׳ בדרכי משה יו&quot;ד בסי׳ ר&quot;ג בשם ר&quot;י אם בעינן בהאי דאשנה פרק וכו׳ לשון שבועה עיי&quot;ש. ועי׳ ברא&quot;ש במס׳ תענית בסוגיא דלוה תעניתו שהשיג על הראב&quot;ד שכתב וקבלת תענית אינו אלא לצדקה כאלו מתנדב מחלבו ודמו לגבוה ותמורתם יתן לענים ואומדן דעת הוא דאדעתא דהכי קיבל הילכך לוה ופורע ופי׳ דבריו במ&quot;ש ותמורתם יתן לעניים שבו תלוי אם ירצה יתן תמורתם לענים ולא יתענה ואם ירצה יפרע תעניתו עיי&quot;ש וא&quot;כ לראב&quot;ד דוקא תענית בכלל צדקה אבל ברא&quot;ש השיג עליו דצדקה אינה תמורת תענית כדאי׳ בברכות ל&quot;ב גדולה תענית מצדקה שזו בגופו וזו בממונו. נמצא כמ&quot;ש להרא&quot;ש בכלל בפיך כל קבלת המצות. ועי׳ ברא&quot;ש בפסקים במס׳ נדרים דף ס&quot;ו שכתב כדברי הרמב&quot;ן דתענית לא הוי כנדר גמור עיי&quot;ש:<br><strong> אמנם</strong> בריטב&quot;א במס׳ תענית שם בסוגיא דלוה ופורע הנ&quot;ל האריך להוכיח דלא הוי מענין נדר וז&quot;ל וה&quot;פ וכי נדרי איסור הוא זה שאע&quot;פ שמצטער צער גדול כל שאין בו סכנה אין מתירין לו אין נדר של הקדש גמור הוא זה שיהיה חייב לקיים היוצא מפיו יעשה עכ&quot;פ אין זה אלא כעין נדר שקיבל עליו (בתו׳) להצטער על חטאיו לפני ה׳ וכו׳ וזה שאמרו אם גזירותינו קודמת לנדרו ידחה וכו׳ מטעם שכתב שאינו חשיב נדר של מצוה לחול על תקנת חכמים הקודמין ולפיכך אינו חל עיי&quot;ש ושם י&quot;א בענין מתענין לשעות כתב ג&quot;כ דלא הוי מטעם נדר דאל&quot;כ גם בשעות יחול מצד נדרו גם הוי על גברא וכתב עוד שם וז&quot;ל ובלישנא בתרא אמרינן לא יהיה אלא נדר וכדבעי לפרושי קמא ובודאי שהנודר להתענות כדי לסגף עצמו ולהכניעו לעבודת הש&quot;י וכו׳ וכיו&quot;ב דבר מצוה הוא וכנדר לעשות מצוה הוא אבל דינו כשבועה שאין חלה לבטל מצוה וכו׳ עכ&quot;ל. (ועמ&quot;ש שאינה כנדר דא&quot;כ תחול לשעות עי׳ ברא&quot;ש מ&quot;ש בפי׳ בירושלמי שם דהוי כנדר עכ&quot;פ בדף י&quot;ב וי&quot;ל דמ&quot;ש שחייב לקיים נדרו אינו מטעם נדר אלא מטעם בפיך):<br><strong> וברמב&quot;ן</strong> בפי׳ להתורה בפרשת מטות שאין שום נדר אפי׳ של הקדש שהוא איסור גברא כי בנדר של הקדש הנכסים נשתעבדו עיי&quot;ש וריטב&quot;א דעתו כהרמב&quot;ן. ועי׳ בשו&quot;ת מהרי&quot;ט ח&quot;ב סי׳ כ&quot;ח שכתב בנודר ללכת לא&quot;י דלא הוי נדר בכה&quot;ג דהוי על גברא והאריך בענין נדר בקבלת מצות עיי&quot;ש:<br><strong> הנה</strong> לדעת הר&quot;ן ורא&quot;ש נוכל לכלול קבלת המצות בכלל עשה דלמדין מבפיך. ובפיך כמ&quot;ש כולל כל קבלת המצות ולא צדקה בלבד. והרי צדקה בכה&quot;ג דחל על הנכסים הוי חפצא לדעת הרמב&quot;ן בהתורה הנ&quot;ל. אבל מלשון הריטב&quot;א כנראה אינו בכלל מ&quot;ע כלל אלא דמחויב לקיימו. ולדעתו הוי יותר בערך שבועה מבערך נדר משום דהוי על גברא. ועי׳ ברא&quot;ש במס׳ תענית דף י&quot;ב סי׳ י&quot;ג דא&quot;צ בתענית קבלה בשפתיו כמו בנדר דהוי בכלל כל נדיב לב כדאיתא במס׳ שבועות בהקדש דבלב מהני עיי&quot;ש. ועי׳ בשו&quot;ע יו&quot;ד סי׳ רט&quot;ו ואו&quot;ח בסי׳ תק&quot;ע בהבדל בקיבלו בלשון עלי עיי&quot;ש:<br><strong> והנה</strong> הקושיא שהקשה הריטב&quot;א אם נאמר שיהיה בגדר נדר הוי ג&quot;כ אם נאמר דהוי בגדר שבועה אלא בזה דהוי לגברא. וא&quot;כ לריטב&quot;א יש להבין מנ&quot;ל קבלת תענית ומצות שחייב לקיימם כיון שאין לכללם לא בגדר נדר ולא בגדר שבועה ואם מבפיך א&quot;כ למה לא יהיה בגדר עשה ונראה לדעתו כיון שאינו בכלל נדר ושבועה אינם בכלל עשה דנדר ושבועה ומיתורא בפיך לא הוי בכלל עשה ממש וצ&quot;ע דלענין איסור מצינו איסור ל&quot;ת ואיסור עשה אבל לחלק בעשה כה&quot;ג לא מצינו כן:<br><strong> אבל</strong> רבינו בס׳ המצות עשה צ&quot;ד היא שציונו לקיים כל מה שקבלנו על נפשינו במלת שבועה ונדר וצדקה והקרבן וזולת זה והוא אמרו יתעלה מוצא שפתיך תשמור ואע&quot;פ שחלקו מלות זה הפסוק ושמו כל מלה ממנו לענין. אמנם הכונה המגעת מכל מה שזכרתי לך שמ&quot;ע הוא לקיים כל מה שהאדם מחייב על נפשו באיזה דבר שיהיה מהדברים והעובר עליהם עובר על מצות ל&quot;ת וכו׳ עיי&quot;ש וברמב&quot;ן שם השיג עליו במה שכולל כל נדרי אף של בטוי ולדעתו רק של גבוה ומצות בכלל זה עיי&quot;ש ולפ&quot;ז קבלת תענית לרבינו ולרמב&quot;ן בכלל מוצא שפתיך. (והנה בהל׳ שבועות לא מנה רבינו מ&quot;ע בשבועה):<br><strong> ובמרדכי</strong> במס׳ שבועות בפ׳ שבועות שתים וז&quot;ל מצאתי בס׳ המקצועות שיסד ר&quot;ח בנודר בעת צרתו להתענות כל ב׳ וה׳ ולא נזכר בעת נדרו חוץ מיו&quot;ט שיבואו בהן הוי ליה יו&quot;ט מ&quot;ע ומצות נדר ל&quot;ת וכיון שאינו יכול לקיים שניהם יבוא העשה וידחה הלאו ותניא בפ&quot;ק דתענית בסופו יחיד שקיבל עליו תענית ב׳ וה׳ ואם נדרו קודם לגזירותינו וכו׳ ותנן אין נשבעין לעבור על המצוה הלכך ילך אצל בי&quot;ד של מקומו וילקה בפניהם על שנשבע לעבור על המצוה והם יתירו לו על ב׳ וה׳ שיבוא בהם יו&quot;ט ויעשה שמחת יו&quot;ט ואם אינו עושה כן עומד באיסורו עכ&quot;ל וכתב ר׳ אבי העזרי אין נראה לי מה שמדמה שבועות לנדרים דמשנה רוחה היא שהנדרים חלים על דבר מצוה כדבר רשות משא&quot;כ בשבועות הילכך אם נשבע לעבור על המצות אין צריך התרת חכם וכו׳ עכ&quot;ל עיי&quot;ש. והנה דברי ר&quot;ח גאון ז&quot;ל מופלאים וכמ&quot;ש במרדכי וגם מה ענין עשה דוחה לל&quot;ת ומה ענין שבועות לנדרים:<br><strong> ועכ&quot;פ</strong> נראה מדעת רבינו חננאל גאון ז&quot;ל דנדרי תענית לדעתו בכלל ל&quot;ת וכתב דעשה דיו&quot;ט דוחה אותו. ונראה דלא ס&quot;ל כדעת הרשב&quot;א במס׳ נדרים ט&quot;ז ע&quot;א ובס׳ החינוך שהקשו דלמה נדרים חלין על דבר מצוה ליתי עשה ולידחי הל&quot;ת ותירצו דנדר הוי עשה ול&quot;ת. ועי׳ בשעה&quot;מ פ&quot;ג מהל׳ נדרים:<br><strong> והנה</strong> לדעת רבינו ורמב&quot;ן הנ&quot;ל דקבלת המצות ממוצא שפתיך וא&quot;כ הוי לפ&quot;ז נדר תענית עשה ול&quot;ת ונראה בזה דבמס׳ ר&quot;ה ו׳ ע&quot;א מוצא שפתיך זו מ&quot;ע תשמור זו ל&quot;ת ובתוס׳ שם הקשו דהרי השמר דעשה עשה כדאיתא במס׳ מנחות עיי&quot;ש. ואם נאמר דבכלל מוצא שפתיך נדרי תענית הוי ג&quot;כ השמר דל&quot;ת בזה וצ&quot;ע בכה&quot;ג דהשמר דקאי על עשה ול&quot;ת אם נאמר דהוי בעשה עשה ובלאו לאו ויש לעיין בזה:<br><strong> והנה</strong> בגמ׳ שם מקשינן מוצא שפתיך זו מ&quot;ע מובאת שם והבאת שם תיפו&quot;ל השמר מל&quot;ת תיפו&quot;ל מלא תאחר לשלמו. ויש להבין אם בכלל מוצא שפתיך קבלת מצות ונדרי תענית דהוי בשב ואל תעשה והאיך נלמד כן מובאת והבאת דהוי בקרבנות מידי דעשה דוקא וחיילי על גוף הנקדש ולרמב&quot;ן הנ&quot;ל למ&quot;ש בתורה גם בנדר חל על הנכסים. וראיתי בשו&quot;ת מהרשד&quot;ם חלק יו&quot;ד סי׳ קס&quot;ז שהקשה דמנ&quot;ל צדקה מהבאת שם. אבל י&quot;ל דצדקה הוי יותר בערך אחד עם קרבנות כמו דאמרינן אמירה לגבוה לדעת קצת בצדקה. אבל בתענית יקשה ביותר. וברש&quot;י שם מוצא שפתיך הוי מ&quot;ע דמסתמא הכי קאמר קרא מוצא שפתיך קיים ובתוס׳ שם כתבו משום דכתיב והיוצא מפיכם תעשו וכו׳ עיי&quot;ש. וי&quot;ל דלא נדר אלא מידי דבמעשה אשר לשון תעשו מורה ע&quot;ז (וי&quot;ל דקושית הגמ׳ ל&quot;ל לה׳ אלו חטאות וכו׳ הרי נדע מובאת והבאת ועל אלו א&quot;צ קרא של מוצא שפתיך ויהיה מתורץ קושית מהרשד&quot;ם גם י&quot;ל כי נלמד בשוא&quot;ת מקום ועשה כיון דלא שייך מלקות בתענית ולא שייך אין עונשין מהדין):<br><strong> ונראה</strong> בדעת ר&quot;ח באמת כן דלא נכלל במוצא שפתיך עשה לענין תענית ותשמור מיוחד לל&quot;ת דרק בדבר דאית ביה עשה ול&quot;ת מצ&quot;ע כמו בכל נדרי הקדש וצדקה מחלקינן לעשה דהוי בראשונה בקום ועשה ואח&quot;ז גם לל&quot;ת ולכן אמרינן מוצא שפתיך וכו׳ אבל בתענית דבשב ואל תעשה ואין מגדרו מעשה כלל לא הוי אלא בכלל ל&quot;ת דהשמר ולכן מקשינן שפיר מבאת והבאת נדע מ&quot;ע דתענית דבשוא&quot;ת לא נכלל בלא&quot;ה בכלל מ&quot;ע זאת. אבל השמר דהוי ל&quot;ת נדע מלא תאחר שפיר ג&quot;כ על שוא&quot;ת. דבשוא&quot;ת שייך יותר הל&quot;ת מדבר דאית ביה מעשה והשמר מורה ביותר ע&quot;ז וזה נוכל ללמוד ג&quot;כ מבל תאחר דנדר מק&quot;ו וא&quot;כ יש לומר דהוי בנדרי תענית ל&quot;ת מצד השמר ולא עשה לפי דעת ר&quot;ח:<br><strong> ונאמר</strong> ליישב קושית האבי עזרי על ר&quot;ח במ&quot;ש דעשה דשמחת יו&quot;ט ידחה עשה לל&quot;ת דנדר וגם דאין נשבעין לעבור על המצוה לכן ילך אצל החכם וכו׳ דמה מדמה שבועות לנדרים נגד משנה שנדרים חלים על מצוה משא&quot;כ בשבועות וא&quot;כ מטעם נדר חל על מצוה ומטעם שבועה א&quot;צ התרה:<br><strong> והנה</strong> מטעם נדר דחל על מצוה וכמ&quot;ש ז&quot;ל דלא אמרינן עשה דוחה לל&quot;ת דנדר הוי עשה ול&quot;ת למ&quot;ש לר&quot;ח לא הוי בנדר של תענית עשה אלא ל&quot;ת בלבד ושאני משאר נדר וגם בגדר שבועה ג&quot;כ י&quot;ל דשאני. ונאמר מקודם דהנה יש להקשות למ&quot;ש ברשב&quot;א וס׳ חינוך הנ&quot;ל דבנדר לא שייך עשה ידחה לל&quot;ת משום דהוי עשה ול&quot;ת וא&quot;כ למה לנו קרא בשבועות דאין חלין לבטל המצות הרי בלא&quot;ה בשבועה ליכא אלא ל&quot;ת בלבד. ועי׳ במנין המצות וריש הל׳ שבועות לרבינו וא&quot;כ בלא&quot;ה העשה ידחה הל&quot;ת. ואם נאמר דנפק&quot;מ בין אם לא חל כלל הל&quot;ת בין אם נאמר לדחות. ויקשה לפ&quot;ז להסוברים באוסר בשבועה על חפצא חל כמו בנדר ועי׳ בר&quot;ן במס׳ שבועות בסוגיא דנשבע לבטל וכו׳ עיי&quot;ש. ובתוס׳ שם בד&quot;ה משא&quot;כ דף כ&quot;ה ע&quot;א. וגם בכולל דעתם ז&quot;ל שחל אף בשבועה ויקשה דעשה ידחה לל&quot;ת. (גם למ&quot;ש במ&quot;א משום דאפשר לקיים שניהם בשאלה יקשה לר׳ שמעון דס&quot;ל דאין שאלה לשבועה):<br><strong> ונראה</strong> לענ&quot;ד לומר דהנה במס׳ נזיר ד׳ ע&quot;ב מיין ושכר וכו׳ ההוא מיבעיא ליה לאסור יין מצוה כרשות מאי היא קדושתא ואבדלתא הרי מושבע ועומד עליה מהר סיני אלא כי הא דאמר רבא שבועה שאשתה וחזר ואמר הריני נזיר אתיא נזירות חיילה על שבועה. ובתוס׳ שם הקשו על רש&quot;י שפי׳ קושית הגמ׳ הא מושבע דיין הבדלה וקידוש רק מדרבנן גם מאי משני לפ&quot;ז שבועה שאשתה וכתבו וז&quot;ל ועוד קשה מאי משני בתר הכי כגון שנשבע לשתות וחזר ונדר בנזיר דאתא נזירות וחיילה אשבועה מ&quot;מ תיקשי לי הרי מושבע ועומד מהר סיני. כלומר דאין מושבע ועומד גדול מזה שנשבע לשתות עכ&quot;ל. האריכו לבאר כי בנשבע הוי מושבע ועומד מהר סיני ול&quot;ל כולי האי תיפו&quot;ל דהוי בנשבע שבועה נגד שבועה אשר זה הקושיא מושבע ועומד ג&quot;כ הוא:<br><strong> אמנם</strong> י&quot;ל ע&quot;ז. דלכאורה בנשבע לשתות ואח&quot;ז שלא לשתות אם נאמר דב׳ שבועות חלים אז מסתבר לומר שלא לשתות כמו דאמרינן בעלמא במתן ארבע במתן שתים מוטב שיעבור בל תגרע בשב ואל תעשה משיעבור בל תוסיף בקום ועשה בידים כדאי׳ במס׳ זבחים ר&quot;ה ועירובין ובכמה דוכתי בזה. אבל במושבע ועומד מהר סיני נאמר דאין השבועה השניה חל כלל דאין שבועה חל נגד אשר משועבד מקודם מהר סיני כי אין חל נגד השעבוד ועי׳ בבעה&quot;מ במס׳ שבועות שם. וזה קושית הגמ׳ והא מושבע ועומד. ולכן האריכו בתוס׳ לומר בנשבע הוי ממילא ג&quot;כ מושבע ועומד דמצד כי מושבע מהר סיני בלבד דוחה את קום ועשה משא&quot;כ בנשבע בלבד ואתי שפיר:<br><strong> ונאמר</strong> לפ&quot;ז דהנה האי דעשה דוחה לל&quot;ת אע&quot;ג דשניהם מושבעין ועומדין מ&quot;מ בעשה מושבע ועומד לקיימה ולדחות הל&quot;ת דבאופן דאי׳ עשה אי׳ מושבע ועומד על הל&quot;ת ונהפך מושבע לקיים העשה ולדחות הל&quot;ת. אבל בשבועה נגד מצוה כמ&quot;ש מצד כי המצוה מושבע הרי גם נגד זה ג&quot;כ שבועה אלא דמעלת המצוה כי משועבד לה ואין השבועה חל עליו כלל הרי אם נאמר בכולל וכיו&quot;ב דחל א&quot;כ נהפך שבועה במעלה נגד המצוה דהוי בשוא&quot;ת וכמ&quot;ש לעיל. וא&quot;כ אתי שפיר בשבועה לא שייך דידחה עשה לל&quot;ת דמאי אולמי לשבועה דהר סיני מזו ונהפך דשבועה זאת בשוא&quot;ת ולא שייך דחיה כלל. וכ&quot;ז בשבועה נגד שבועה משא&quot;כ בנדר של תענית שאי׳ במעלת השבועה לומר מאי אולמי ושוא&quot;ת עדיף וא&quot;כ שייך כמ&quot;ש ידחה עשה לל&quot;ת ושאני מנדר ומשבועה וכמ&quot;ש. ולכן הביא הברייתא דאם קדמה גזירותנו לנדרו וכו׳ אשר מזה הוכיח הריטב&quot;א ג&quot;כ דאין קבלת תענית בכלל נדר כמ&quot;ש לעיל בשמו וא&quot;כ לא הוי כמו נדר בעשה ול&quot;ת. גם הקשה שפיר מנשבע לבטל את המצוה דאינו חל אע&quot;ג דהוי נדר כמ&quot;ש דהוי איסור גברא ויותר בערך שבועה דתענית חל על מאכלים שאינן ברשותו ושלא בא לעולם וגברא בלבד ובערך שבועה דאין חלין על דבר מצוה מה&quot;ט דהוי גברא כדאי׳ במס׳ נדרים ומובן ולכן כתב שילך אצל חכם לשאול דהרי אפשר לקיים שניהם וכמ&quot;ש במ&quot;א בזה ואתי שפיר:<br><strong> והנה</strong> למ&quot;ש עכ&quot;פ לדעת רבינו דס&quot;ל דבכלל מוצא שפתיך קבלת מצות א&quot;כ יקשה לומר כמ&quot;ש בהמ&quot;מ ולח&quot;מ דס&quot;ל דמשו&quot;ה אין דוחה יו&quot;ט משום דלא הוי נדר גמור ומסכים ביותר למ&quot;ש בב&quot;י לחלק בין התחיל ללא התחיל שכתב בלח&quot;מ דדוחק לחלק בין נדר תענית לשאר נדר קבלת מצות. ולא גם לדעת רבינו חננאל אלא דס&quot;ל דנדחה מעשה דיו&quot;ט ועל קושית הלח&quot;מ דאם נדר דאורייתא למה לרבינו לקולא בישן וסלק עיי&quot;ש י&quot;ל דבציבור מדרבנן ויחיד מסתמא כתענית של ציבור קיבל ע&quot;ע ועי׳ במחנה אפרים הל׳ שבועות סי׳ י&quot;ד והל׳ נדרים סי׳ ט&quot;ו עיי&quot;ש:</p>
               </div>
             </div>
@@ -289,8 +310,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 1:13:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-1-13-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-13">Mishneh Torah, Fasts 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִתְעַנֶּה אָדָם שָׁעוֹת וְהוּא שֶׁלֹּא יֹאכַל כְּלוּם שְׁאָר הַיּוֹם. כֵּיצַד. הֲרֵי שֶׁהָיָה טָרוּד בַּחֲפָצָיו ומִתְעַסֵּק בִּצְרָכָיו וְלֹא אָכַל עַד חֲצוֹת אוֹ עַד תֵּשַׁע שָׁעוֹת וְנִמְלַךְ לְהִתְעַנּוֹת בַּשָּׁעוֹת שֶׁנִּשְׁאֲרוּ מִן הַיּוֹם. הֲרֵי זֶה מִתְעַנֶּה אוֹתָן שָׁעוֹת וּמִתְפַּלֵּל בָּהֶן עֲנֵנוּ. שֶׁהֲרֵי קִבֵּל עָלָיו הַתַּעֲנִית קֹדֶם שְׁעוֹת הַתַּעֲנִית. וְכֵן אִם אָכַל וְשָׁתָה וְאַחַר כָּךְ הִתְחִיל לְהִתְעַנּוֹת שְׁאָר הַיּוֹם הֲרֵי זֶה תַּעֲנִית שָׁעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתענה אדם שעות וכו׳ וכן אם אכל ושתה ואח&quot;כ התחיל להתענות שאר היום ה&quot;ז תענית שעות.</strong> עי׳ בראב&quot;ד והמ&quot;מ ולח&quot;מ. ועי׳ בפני משה במראה פנים בירושלמי נדרים פ&quot;ח מ&quot;א בד&quot;ה קונם עיי&quot;ש מ&quot;ש בדעת רבינו. ועי׳ בפ&quot;ב ה&quot;ג בדברי רבינו ובמ&quot;ש שם עיי&quot;ש:</p>
               </div>
             </div>
@@ -306,8 +332,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 2:5:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-2-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-2-5">Mishneh Torah, Fasts 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְעַל הַדֶּבֶר. אֵי זוֹ הִיא דֶּבֶר עִיר שֶׁיֵּשׁ בָּהּ חֲמֵשׁ מֵאוֹת רַגְלִי וְיָצְאוּ מִמֶּנָּה שְׁלֹשָׁה מֵתִים בִּשְׁלֹשָׁה יָמִים זֶה אַחַר זֶה הֲרֵי זֶה דֶּבֶר. יָצְאוּ בְּיוֹם אֶחָד אוֹ בְּאַרְבָּעָה יָמִים אֵין זֶה דֶּבֶר. הָיוּ בָּהּ אֶלֶף וְיָצְאוּ מִמֶּנָּה שִׁשָּׁה מֵתִים בִּשְׁלֹשָׁה יָמִים זֶה אַחַר זֶה דֶּבֶר. יָצְאוּ בְּיוֹם אֶחָד אוֹ בְּאַרְבָּעָה אֵין זֶה דֶּבֶר. וְכֵן לְפִי חֶשְׁבּוֹן זֶה. וְאֵין הַנָּשִׁים וְהַקְּטַנִּים וְהַזְּקֵנִים שֶׁשָּׁבְתוּ מִמְּלָאכָה בִּכְלַל מִנְיַן אַנְשֵׁי הַמְּדִינָה לְעִנְיָן זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועל הדבר אי זו דבר עיר שיש בה ת&quot;ק רגלי ויצאו ממנה ג׳ מתים בג׳ ימים זה אחר זה הרי זה דבר יצאו ביום אחד או בד׳ ימים אין זה דבר וכו׳.</strong> ועיי׳ בלח&quot;מ שעמד על דעת הטור דבסי׳ קי&quot;ד באו&quot;ח כתב באתה גיבור ג׳ פעמים ביום ומשמע שם דס&quot;ל כר&quot;מ דאמר ריחק נגיחותיו קירב לא כ&quot;ש ובסי׳ תקע&quot;ו בדבר כתב בג׳ ימים דוקא עיי&quot;ש. וי&quot;ל בשור המועד אותו השור נתחזק לנגוח. אבל בדבר אף כי אותו היום נתחזק מ&quot;מ לא הוי חזקה לשאר ימים דשמא יומא קגרים ובג׳ ימים זה אח&quot;ז הוחזקו לימים וצריך שיהיה זה אח&quot;ז משום דבלא&quot;ה אמרינן דהוי כדרך העולם ולא מגזירה חדשה משמים. והנה צריך לחזקה ונראה דמספק אין מתריעין וצועקין שאין לנו לחשוב שתבוא רעה מלמעלה מקור הטובות וישועות עד כי נראה בעינינו ככה ואז נדע כי לטוב לנו לעורר בתשובה. ובכלל זה לקבל הכל בשמחה ג&quot;כ שלא יעלה פחד בנו טרם נהיה ונבטוח בה׳ ובחסדיו הרבים לכן כמ&quot;ש בהוחזקה בלבד אז מתריעין וצועקין. דעל תענית י&quot;ל שלא רצו לטרוח ולענות הציבור בספק:</p>
               </div>
             </div>
@@ -322,8 +353,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 2:5:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-2-5-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 2:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-2-5">Mishneh Torah, Fasts 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְעַל הַדֶּבֶר. אֵי זוֹ הִיא דֶּבֶר עִיר שֶׁיֵּשׁ בָּהּ חֲמֵשׁ מֵאוֹת רַגְלִי וְיָצְאוּ מִמֶּנָּה שְׁלֹשָׁה מֵתִים בִּשְׁלֹשָׁה יָמִים זֶה אַחַר זֶה הֲרֵי זֶה דֶּבֶר. יָצְאוּ בְּיוֹם אֶחָד אוֹ בְּאַרְבָּעָה יָמִים אֵין זֶה דֶּבֶר. הָיוּ בָּהּ אֶלֶף וְיָצְאוּ מִמֶּנָּה שִׁשָּׁה מֵתִים בִּשְׁלֹשָׁה יָמִים זֶה אַחַר זֶה דֶּבֶר. יָצְאוּ בְּיוֹם אֶחָד אוֹ בְּאַרְבָּעָה אֵין זֶה דֶּבֶר. וְכֵן לְפִי חֶשְׁבּוֹן זֶה. וְאֵין הַנָּשִׁים וְהַקְּטַנִּים וְהַזְּקֵנִים שֶׁשָּׁבְתוּ מִמְּלָאכָה בִּכְלַל מִנְיַן אַנְשֵׁי הַמְּדִינָה לְעִנְיָן זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואין הנשים והקטנים והזקנים ששבתו ממלאכה בכלל מנין אנשי המדינה לענין זה.</strong> ועי׳ בכ&quot;מ ולח&quot;מ ובתוס׳ במס׳ כתובות דף פ&quot;ג ע&quot;ב בד&quot;ה מיתה שכיחא שמא משום דרוב פעמים מסתכנת בלידה עכ&quot;ל וזה לא שייכי בדבר. גם מ&quot;ש רבינו ששבתו ממלאכה לכאורה אינו ענין לחולשת הזקנים ושיהיו קרובים למיתה ולא נראה שיהיה זה סימן לזקנה וחולשה. ויותר מסכים דרגלי לא נאמר אלא הגברים העומדים במלאכתן ונאמר על מנין העיר וגודלה:</p>
               </div>
             </div>
@@ -339,8 +375,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 3:3:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-3-3-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-3-3">Mishneh Torah, Fasts 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עָבְרוּ אֵלּוּ וְלֹא נַעֲנוּ בֵּית דִּין גּוֹזְרִין שָׁלֹשׁ תַּעֲנִיּוֹת אֲחֵרוֹת עַל הַצִּבּוּר שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וּבְשָׁלֹשׁ אֵלּוּ אוֹכְלִין וְשׁוֹתִין מִבְּעוֹד יוֹם כְּמוֹ שֶׁעוֹשִׂין בְּצוֹם כִּפּוּר. וְאַנְשֵׁי מִשְׁמָר מִתְעַנִּין מִקְצָת הַיּוֹם וְלֹא מַשְׁלִימִין. וְאַנְשֵׁי בֵּית אָב וְהֵם הָעוֹסְקִין בַּעֲבוֹדָה בְּאוֹתוֹ הַיּוֹם לֹא יִהְיוּ מִתְעַנִּים כָּל עִקָּר. וְכָל תַּעֲנִית שֶׁאוֹכְלִין בָּהּ מִבְּעוֹד יוֹם אִם אָכַל וּפָסַק וְגָמַר שֶׁלֹּא לֶאֱכל אֵינוֹ חוֹזֵר וְאוֹכֵל אַף עַל פִּי שֶׁיֵּשׁ שְׁהוּת בַּיּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עברו אלו וכו׳ וכל תענית שאוכלים בה מבעוד יום אם אכל ופסק וגמר שלא לאכול אינו חוזר ואוכל אע&quot;פ שיש שהות ביום.</strong> ועי׳ בהמ&quot;מ דעת רמב&quot;ן דלא מצינו תוספת אלא ביו&quot;כ עיי&quot;ש. ועי׳ בפ&quot;א הי&quot;ג במ&quot;ש רבינו אם אכל ושתה ואח&quot;כ התחיל להתענות שאר היום הרי זה תענית שעות עיי&quot;ש. וי&quot;ל דאף דלא הוי תוספת להחשב כתענית היום הבא מ&quot;מ בגמר שלא לאכול וקיבל תענית ע&quot;ע מבעוד יום הוי תענית שעות עכ&quot;פ:</p>
               </div>
             </div>
@@ -355,8 +396,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 3:11:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-3-11-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-3-11">Mishneh Torah, Fasts 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל תַּעֲנִיּוֹת שֶׁגּוֹזְרִין הַצִּבּוּר בְּחוּצָה לָאָרֶץ אוֹכְלִים בָּהֶם בַּלַּיְלָה וְדִינֵיהֶם כְּדִין שְׁאָר הַתַּעֲנִיּוֹת. שֶׁאֵין גּוֹזְרִין עַל הַצִּבּוּר תַּעֲנִית כְּגוֹן צוֹם כִּפּוּר אֶלָּא בְּאֶרֶץ יִשְׂרָאֵל בִּלְבַד וּבִגְלַל הַמָּטָר. וּבְאוֹתָן עֶשֶׂר תַּעֲנִיּוֹת שֶׁהֵן שָׁלֹשׁ אֶמְצָעִיּוֹת וְשֶׁבַע אַחֲרוֹנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל תעניות שגוזרין הציבור בחוצה לארץ אוכלין בהן בלילה ודיניהם כדין שאר התעניות שאין גוזרין על הציבור תענית כגון צום כיפור אלא בא&quot;י בלבד ובגלל המטר ובאותן עשר תענית שהן ג׳ אמצעות ושבע אחרונות.</strong> מאמר שמואל אין תענית ציבור בבבל אלא תשעה באב בלבד תענית י&quot;ג ע&quot;ב וברש&quot;י שם וביאור יותר במס׳ פסחים נ&quot;ד ע&quot;ב אין תענית ציבור בבבל הואיל וא&quot;צ לגשמים אם גוזרין על דבר אין חומר ת&quot;צ נוהג בו לאכול מבעוד יום וכו׳ חומרי האמורים שם עכ&quot;ל. אבל ברמב&quot;ן המובא בר&quot;ן בפ&quot;ק דמס׳ תענית ובהמ&quot;מ שם הטעם דאין בי&quot;ד סמוכין בבבל והוי תענית יחיד בלבד מגזירות הדיוטות ועי׳ בר&quot;ן שם שמדמה לדיני קנסות ואנן נגררין אחרי בני ארץ ישראל עיי&quot;ש:<br><strong> ולפ&quot;ז</strong> גזרות בי&quot;ד של חו&quot;ל של רבינו גרשום מאור הגולה וכיו&quot;ב עלינו משום קבלה שקבלנו עלינו וקבלת האבות מהני על הבנים כדאיתא בבני בישן ובשו&quot;ע יו&quot;ד רי&quot;ד וכיו&quot;ב. ועי׳ בפ&quot;ב מהל׳ ממרים ה&quot;ו הרי שגזרו בי&quot;ד גזירה ודימו שרוב הקהל יכולין לעמוד בה ואחר שגזרוהו פקפקו העם בה ולא פשטה ברוב הקהל הרי זו בטילה ואינן רשאין לכוף את העם ללכת בה הרי נראה אפי׳ בי&quot;ד הגדול שבא&quot;י צריך שתתפשט הגזירה ותהיה מקובלת מהעם והנה יש לומר דבא&quot;י ביד הבי&quot;ד לגזור ועליהם לעשות סייגים בדבר שרוב הציבור יכולין לעמוד בה ואז הוי גזירה על הציבור כולה וקבלה מכולם יחד ע&quot;י הבי&quot;ד משא&quot;כ בחו&quot;ל אין לבי&quot;ד כלל אפי׳ במה שנוכל לעמוד בו וצ&quot;ע דלכאורה דזה שצריך לעמוד בו ותתפשט בציבור בלתי נלמד מקרא אלא מסברה שלא לעשות כן אבל שתהיה בטילה נראה דבעי קבלה מהעם ג&quot;כ א&quot;כ גם בא&quot;י צריך דעת העם גם בלתי מוזכר בהל׳ ממרים שם בענין גזירות אם דוקא בבי&quot;ד שבא&quot;י וצ&quot;ע אם כו&quot;ע מסכימים עם דעת הרמב&quot;ן הנ&quot;ל. ונפק&quot;מ לענין כח בי&quot;ד יפה בחו&quot;ל בגזירותיהן אם הוי מגזירות בי&quot;ד או מקבלת ומנהג העם לפי הנ&quot;ל ועי׳ בב&quot;י או&quot;ח סי׳ תקע&quot;ה שכתב דדעת רבינו כרמב&quot;ן עי׳ מ&quot;ש שם עוד ובלח&quot;מ כאן ולמ&quot;ש לעיל יקשה מ&quot;ש בב&quot;י לחלק בין קבלה שא&quot;צ אפי׳ בחו&quot;ל דבתר ראשיהו גרירי הרי כמ&quot;ש גם בא&quot;י צריך דעת העם ונראה דבתר ראשיהו גרירי בא&quot;י וא&quot;צ קבלה לת&quot;צ משא&quot;כ בחו&quot;ל דאל&quot;כ מאי נפק&quot;מ וצ&quot;ע. ועי׳ בברכי יוסף בסי׳ הנ&quot;ל ס&quot;ק ה׳ וח׳ אם בעינן נשיא בא&quot;י או בי&quot;ד סמוכין ועיי&quot;ש מ&quot;ש עוד בזה:</p>
               </div>
             </div>
@@ -372,8 +418,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 4:1:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-4-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-4-1">Mishneh Torah, Fasts 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְכָל יוֹם וָיוֹם מִשֶּׁבַע תַּעֲנִיּוֹת הָאַחֲרוֹנוֹת שֶׁל מָטָר מִתְפַּלְּלִין עַל סֵדֶר זֶה. מוֹצִיאִין אֶת הַתֵּבָה לִרְחוֹבָהּ שֶׁל עִיר וְכָל הָעָם מִתְקַבְּצִים וּמִתְכַּסִּים בְּשַׂקִּים. וְנוֹתְנִין אֵפֶר מַקְלֶה עַל גַּבֵּי הַתֵּבָה וְעַל גַּבֵּי סֵפֶר תּוֹרָה כְּדֵי לְהַגְדִּיל אֶת הַבְּכִיָּה וּלְהַכְנִיעַ לִבָּם. וְאֶחָד מִן הָעָם נוֹטֵל מִן הָאֵפֶר וְנוֹתֵן בְּרֹאשׁ הַנָּשִׂיא וּבְרֹאשׁ אַב בֵּית דִּין בְּמָקוֹם הֲנָחַת תְּפִלִּין כְּדֵי שֶׁיִּכָּלְמוּ וְיָשׁוּבוּ. וְכָל אֶחָד וְאֶחָד נוֹטֵל וְנוֹתֵן בְּרֹאשׁוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכל יום ויום משבע תענית וכו׳ ונותנים אפר מקלה על גבי התיבה וע&quot;ג ספר תורה וכו׳.</strong> ועי׳ בכ&quot;מ שכתב על מ&quot;ש רבינו וע&quot;ג ס&quot;ת אינו יודע מנין לו לרבינו שנותנים אפר מקלה ע&quot;ג ס&quot;ת עכ&quot;ל:<br><strong> וברי&quot;ף</strong> ברש&quot;י פ&quot;ב דמס׳ תענית למה נותנים אפר מקלה על גבי ס&quot;ת א&quot;ר יהודה בן פזי כלומר עמו אנכי בצרה וכו׳ וכן היה גירסת רבינו ובס׳ מעשה רוקח העיר ע&quot;ז עיי&quot;ש:</p>
               </div>
             </div>
@@ -388,8 +439,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 4:4:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-4-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-4-4">Mishneh Torah, Fasts 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זֶה הוּא הָרָאוּי לְהִתְפַּלֵּל בְּתַעֲנִיּוֹת אֵלּוּ. אִישׁ שֶׁהוּא רָגִיל בִּתְפִלָּה. וְרָגִיל לִקְרוֹת בַּתּוֹרָה נְבִיאִים וּכְתוּבִים. וּמְטוּפָּל וְאֵין לוֹ. וְיֵשׁ לוֹ יְגִיעָה בַּשָּׂדֶה. וְלֹא יִהְיֶה בְּבָנָיו וּבִבְנֵי בֵּיתוֹ וְכָל קְרוֹבָיו הַנִּלְוִים עָלָיו בַּעַל עֲבֵרָה. אֶלָּא יִהְיֶה בֵּיתוֹ רֵיקָן מִן הָעֲבֵרוֹת. וְלֹא יָצָא עָלָיו שֵׁם רַע בְּיַלְדוּתוֹ. שְׁפַל בֶּרֶךְ. וּמְרֻצֶּה לָעָם. וְיֵשׁ לוֹ נְעִימָה וְקוֹלוֹ עָרֵב. וְאִם הָיָה זָקֵן עִם כָּל הַמִּדּוֹת הָאֵלּוּ הֲרֵי זֶה מְפֹאָר. וְאִם אֵינוֹ זָקֵן הוֹאִיל וְיֵשׁ בּוֹ כָּל הַמִּדּוֹת הָאֵלּוּ יִתְפַּלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואיזה הוא ראוי להתפלל בתענית אלו וכו׳ ולא יהיה בבניו ובבני ביתו וכל קרוביו והנלוים עליו בעל עבירה אלא יהיה ביתו ריקן מן העבירות.</strong> ועי׳ בתוס׳ יו&quot;ט שיצא מלשון ביתו ריקן עי׳ שם בפ&quot;ב מ&quot;ב ובב&quot;י או&quot;ח בסי׳ תקע&quot;ט עיי&quot;ש:</p>
               </div>
             </div>
@@ -405,8 +461,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 5:2:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-5-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-2">Mishneh Torah, Fasts 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן יוֹם שְׁלִישִׁי בְּתִשְׁרֵי שֶׁבּוֹ נֶהֱרַג גְּדַלְיָה בֵּן אֲחִיקָם וְנִכְבַּת גַּחֶלֶת יִשְׂרָאֵל הַנִּשְׁאָרָה וְסִבֵּב לְהָתָם גָּלוּתָן. וַעֲשִׂירִי בְּטֵבֵת שֶׁבּוֹ סָמַךְ מֶלֶךְ בָּבֶל נְבוּכַדְנֶאצַּר הָרָשָׁע עַל יְרוּשָׁלַיִם וֶהֱבִיאָהּ בְּמָצוֹר וּבְמָצוֹק. וְי&quot;ז בְּתַמּוּז חֲמִשָּׁה דְּבָרִים אֵרְעוּ בּוֹ. נִשְׁתַּבְּרוּ הַלּוּחוֹת. וּבָטֵל הַתָּמִיד מִבַּיִת רִאשׁוֹן. וְהֻבְקְעָה יְרוּשָׁלַיִם בְּחֻרְבָּן שֵׁנִי. וְשָׂרַף אַפּוֹסְטוֹמוֹס הָרָשָׁע אֶת הַתּוֹרָה. וְהֶעֱמִיד צֶלֶם בַּהֵיכָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו הן יום ג׳ בתשרי וכו׳ וי&quot;ז בתמוז ה׳ דברים אירעו בו וכו׳ ושרף אפוסטמוס הרשע את התורה והעמיד צלם בהיכל.</strong> ובגמ׳ תענית שרף אפוסטמוס את התורה גמרא וברש&quot;י כך קבלנו מאבותינו עכ&quot;ל. ובירושלמי בפ&quot;ד מ&quot;ה ממס׳ תענית איכן שרפה ר׳ אחא אמר במעברתא דלוד ורבנן אמרי במעברתא דטרלוסה:<br><strong> ונעלם</strong> מדעתינו בענין שרף את התורה והלא כמה פעמים כי באו אויבים עליה היו שורפים בתינו וספרי התורה הקודש והנקדש. ולמה נאמר שרף את התורה בה&quot;א הידיעה. ואם כי משונה שריפתו שהיה למען להשכיח התורה וא&quot;כ בלי ספק היה שורף כל ספרי תורה ולמה נאמר ספר התורה ולא מצינו בגמ׳ מפורש שהיה גזירה בימים אז על שריפת התורה והו&quot;ל גזר על שריפת התורה. ואולי כאשר מצינו במלכים ב׳ ובד&quot;ה ל&quot;ד &quot;ספר התורה מצאתי&quot; ובאברבנאל ע&quot;ז למה נאמר התורה בה&quot;א הידיעה וכתב כי קאי על הנאמר שם קודם לזה &quot;מצא חלקיהו הכהן את ספר תורת ה׳ ביד משה&quot; שהיה הספר שכתב משה רבינו ע&quot;ה וע&quot;ז נאמר התורה הידועה וס&quot;ת הזאת היה סגולה כפולה ומכופלת לנו וממנה היו מגיהין עי׳ שקלים פ&quot;ד ה&quot;ד מגיהי ספר העזרה ונוסחא אחרת ספר עזרא ובלי ספק ספר שכתבה האיש האלוקים היה למשמרת להשמר מכל שנוי חלילה והיה לעדות לכל הדורות הרבות אשר ראו אותו. ונאמר אולי הספר ששרף פוסטמוס הרשע היה ספר זה שהיה נשמר עד אז ולכן נאמר שרף את התורה הידועה וראוי ביותר לקבוע תענית על סגולה יקרה כזאת. ואם כי ארכו הימים לאמר שהיה קיים עד אז אולי היה ס&quot;ת של עזרא ועכ&quot;פ נראה שהיה ספר תורה מיוחדת שהיה איבודה קשה לכל ישראל עד מאוד. ואם היה של ביד משה רבינו ע&quot;ה היתה מסוגלת להכחיש האפיקורסות הנודעים ואם של עזרא להגיה ולהשמר מטעות ויוכל שהיה בימי היונים בזמן לא הרבה כ&quot;כ מימי יאשיהו:</p>
               </div>
             </div>
@@ -421,8 +482,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 5:4:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-5-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-4">Mishneh Torah, Fasts 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַרְבָּעָה יְמֵי הַצּוֹמוֹת הָאֵלּוּ הֲרֵי הֵן מְפֹרָשִׁין בַּקַּבָּלָה <span class="source-small">(זכריה ח יט)</span> &quot;צוֹם הָרְבִיעִי וְצוֹם הַחֲמִישִׁי&quot; וְגוֹ׳. צוֹם הָרְבִיעִי זֶה שִׁבְעָה עָשָׂר בְּתַמּוּז שֶׁהוּא בַּחֹדֶשׁ הָרְבִיעִי. וְצוֹם הַחֲמִישִׁי זֶה תִּשְׁעָה בְּאָב שֶׁהוּא בַּחֹדֶשׁ הַחֲמִישִׁי. וְצוֹם הַשְּׁבִיעִי זֶה שְׁלֹשָׁה בְּתִשְׁרֵי שֶׁהוּא בַּחֹדֶשׁ הַשְּׁבִיעִי. וְצוֹם הָעֲשִׂירִי זֶה עֲשָׂרָה בְּטֵבֵת שֶׁהוּא בַּחֹדֶשׁ הָעֲשִׂירִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וד׳ ימי צומות האלו הרי הן מפורשין בקבלה צום הרביעי וצום החמישי וכו׳.</strong></p>
               </div>
             </div>
@@ -437,8 +503,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Fasts 5:5:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-fasts-5-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Fasts 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-5">Mishneh Torah, Fasts 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְנָהֲגוּ כָּל יִשְׂרָאֵל בִּזְמַנִּים אֵלּוּ לְהִתְעַנּוֹת. וּבְי&quot;ג בַּאֲדָר זֵכֶר לַתַּעֲנִית שֶׁהִתְעַנּוּ בִּימֵי הָמָן שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט לא)</span> &quot;דִּבְרֵי הַצֹּמוֹת וְזַעֲקָתָם&quot;. וְאִם חָל י&quot;ג בַּאֲדָר לִהְיוֹת בְּשַׁבָּת מַקְדִּימִין וּמִתְעַנִּין בַּחֲמִישִׁי שֶׁהוּא י&quot;א. אֲבָל אֶחָד מֵאַרְבָּעָה יְמֵי הַצּוֹמוֹת שֶׁחָל לִהְיוֹת בְּשַׁבָּת דּוֹחִין אוֹתוֹ לְאַחַר הַשַּׁבָּת. חָל לִהְיוֹת בְּעֶרֶב שַׁבָּת מִתְעַנִּין בְּעֶרֶב שַׁבָּת. וּבְכָל הַצּוֹמוֹת הָאֵלּוּ אֵין מַתְרִיעִין וְלֹא מִתְפַּלְּלִין בָּהֶן תְּפִלַּת נְעִילָה. אֲבָל קוֹרִין בַּתּוֹרָה שַׁחֲרִית וּמִנְחָה בְּ<span class="source-small">(שמות לב יא)</span> &quot;וַיְחַל משֶׁה&quot;. וּבְכֻלָּן אוֹכְלִים וְשׁוֹתִין בַּלַּיְלָה חוּץ מִתִּשְׁעָה בְּאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונהגו כל ישראל בזמנים האלו להתענות ובי&quot;ג באדר זכר לתענית שהתענו בימי המן שנא׳ דברי הצומות וזעקתם וכו׳.</strong> ובהמ&quot;מ תלה רבינו ענינן במנהג לפי שנתבאר בגמ׳ וכו׳ רצו מתענין וכו׳ עיי&quot;ש:<br><strong> ובס׳</strong> ידי אליהו השיג עליו וכתב ממ&quot;ש רבינו הרי הן מפורשין בקבלה וא&quot;כ הן מתקנת נביאים ולא ממנהג ומ&quot;ש רבינו ונהגו כפי גירסתו ונהגו כל ישראל בזמנים האלו להתענות בי&quot;ג באדר וכו׳ ולא כמ&quot;ש לפנינו וי&quot;ג באדר בוי&quot;ו וכן בס׳ מעשה רוקח כי בהנוסחא ווינציא כתב בי&quot;ג וכתב דט&quot;ס בדפוס א&quot;ד עיי&quot;ש וכן נראה מרהיטא דלישנא. ובידי אליהו כתב דלרבינו רצו מתענין קאי על בית שני שהיה בכלל אין שלום ואין גזירה שלא היה מלכות בית דוד על מכונם. אבל בזה&quot;ז בכלל יש גזירה והביא לשון רבינו בפי׳ משניות במס׳ ר&quot;ה י&quot;ח שכתב ובבית שני לא היו מתענין לא עשרה בטבת ולא י&quot;ז בתמוז אלא מי שהיה רוצה מתענה ומי שלא היה רוצה לא היה מתענה ומפני זה לא היו יוצאין על טבת ועל תמוז וכו׳ עיי&quot;ש הרי כתב כ&quot;ז על בית שני בלבד ואין הכרע כ&quot;כ דכתב כן עם מ&quot;ש מפני זה לא היו יוצאין וכו׳ דהיה בזמן בית שני משו&quot;ה כתב בית שני ועיי&quot;ש שכתב גם בט&quot;ב רצו מתענין אלא שהיו מתענין ופי׳ בכונת המקרא שמורה שתלוי ברצון המתענים עיי&quot;ש. ועכ&quot;פ מתחילה נתלה ברצון המתענים ושפיר כמ&quot;ש בהמ&quot;מ דהוי מחמת מנהג וקבלה עלינו עתה. ונראה כדעת רבינו שהיה מעיקרא על דעת זה שאם רצו מתענים דאל&quot;כ אין בי&quot;ד מבטל וכו׳ אא&quot;כ גדול בחכמה ומנין ועל כרחך הי׳ מעיקרא על רצון המתענים ועי׳ בפ&quot;ב ה&quot;ב מהל׳ ממרים שכתב רבינו אפי׳ בבטל הטעם צריך גדול בחכמה ומנין עיי&quot;ש אבל בתנאי מעיקרא על דעת זה א&quot;צ לכך. ועי׳ בב&quot;י או&quot;ח בסי׳ תק&quot;נ שנראה מדבריו לפי פי׳ שם כמ&quot;ש בידי אליהו הנ&quot;ל על בית שני נאמר עיי&quot;ש:<br><strong> ומ&quot;ש</strong> &quot;זכר לתענית שהתענו בימי המן שנא׳ דברי הצומות וזעקתם וכו׳&quot; עי׳ בהגהות מיימוני בשם שאלתות וכיו&quot;ב דעת ר&quot;ת עי׳ בר&quot;ן בפ&quot;ק דמגילה בזמן קהילה לכל עיי&quot;ש. ועי׳ בהגהות מיימוני בפ&quot;א מהל׳ תענית אות ב׳ שכתב שמא תענית אסתר חשיב לן כתענית חובה כט׳ באב כיון דהוי מדברי הגאונים ומנהג כל ישראל וכו׳ עיי&quot;ש. ועי׳ באבן העזרא במגלת אסתר על מקרא כאשר קיימו וקיבלו וכו׳ דברי הצומות וכו׳ שכתב שלא היו ימי התענית נגזרים מנביא ומהבי&quot;ד אלא העם קיבלו עליהם מעצמם עיי&quot;ש. ונראה מ&quot;ש בהגהות מיימוני דאסתר תענית כט&quot;ב דלא שייך רצו מתענין שהרי זמן קהילה לכל נאמר אף בבית שני דשייך רצו אלא די&quot;ל שרצו וזה שכתב ומנהג כל ישראל וכט&quot;ב שכתב כ&quot;כ דקיבלו עליהם כל ישראל אף בשלא בזמן הגזירה לא שייך רצו וכו׳ עכשיו. ועי׳ בפי׳ משניות לרבינו הנ&quot;ל מ&quot;ש בת&quot;ב עיי&quot;ש:</p>
               </div>
             </div>
@@ -448,6 +519,10 @@
               <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/divrei-yirmiyahu-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/divrei-yirmiyahu-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -468,8 +543,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-fasts.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-fasts.manifest.json","occurrence_url":"../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-fasts.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-fasts.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/divrei-yirmiyahu-on-mishneh-torah-fasts.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-fasts.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -495,7 +570,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

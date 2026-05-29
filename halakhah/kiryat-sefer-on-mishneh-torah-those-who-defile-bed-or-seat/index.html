@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/">Open Mishneh Torah, Those Who Defile Bed or Seat</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Those Who Defile Bed or Seat</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">52 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>690 matched</strong> / 2138 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -311,8 +312,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-1">Mishneh Torah, Those Who Defile Bed or Seat 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב וְהַזָּבָה וְהַנִּדָּה וְהַיּוֹלֶדֶת כָּל אֶחָד מֵאַרְבַּעְתָּן אָב מֵאֲבוֹת הַטֻּמְאוֹת. מְטַמְּאִין כֵּלִים בְּמַגָּע. וּמְטַמֵּא אָדָם בְּמַגָּע וּבְמַשָּׂא. וּמְטַמֵּא מִשְׁכָּב וּמוֹשָׁב וּמֶרְכָּב מִתַּחְתָּיו וְעוֹשֶׂה אוֹתָן אַב טֻמְאָה. וּמְטַמֵּא מַדָּף עַל גַּבּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קפ </strong> להיות הנדה טמאה ומטמאה כדין הכתוב בה ואשה כי תהי׳ זבה דם יהיה זובה בבשרה שבעת ימים תהיה בנדתה וכל הנוגע בה יטמא עד הערב וכל אשר תשכב עליו בנדתה יטמא וגו׳:<br><strong> מצות קפא </strong> להיות היולדת טמאה ומטמאה כדין הכתוב בה אשה כי תזריע וילדה זכר וטמאה שבעת ימים וגו׳ כימי נדת דותה וגו׳:<br><strong> מצות קפב </strong> להיות הזבה טמאה ומטמאה כדין הכתוב בה ואשה כי יזוב זוב דמה ימים רבים בלא עת נדתה או כי תזוב על נדתה כל ימי זוב טומאתה כימי נדתה תהיה טמאה היא וכל המשכב אשר תשכב עליו וגו׳:<br><strong> מצות קפג </strong> להיות הזב טמא ומטמא כדין הכתוב בו איש איש כי יהיה זב מבשרו זובו טמא הוא וזאת תהיה טומאתו וגו׳ וכל אחד מארבעתן אב מאבות הטומאות מטמאין כולן במגע ואדם במגע ומשא ומשכב ומושב ומרכב מתחתיו ועושה אותן אב הטומאה ומטמא מדף על גבו בזב כתיב וכל אשר יגע בו הזב וידיו לא שטף במים וכבס בגדיו וגו׳ וכלי חרס אשר יגע בו הזב ישבר וכלי עץ ישטף במים וכתיב והנוגע בבשר הזב יכבס בגדיו וגו׳ והנושא אותם יכבס וגו׳ קאי אמשכב ומושב וק&quot;ו זב עצמו דמטמא במשא וכתי׳ וכל המשכב אשר ישכב עליו הזב יטמא וכל כלי אשר ישב עליו יטמא וכל המרכב אשר ירכב עליו הזב יטמא ומשכב ומושב ומרכב הן אב טומאה לטמא כדכתיב ואיש אשר יגע במשכבו יכבס בגדיו וגו׳ והיושב על הכלי אשר ישב עליו הזב יכבס וגו׳ וכל הנוגע בכל אשר יהיה תחתיו יטמא וגו׳ מטמא מדף על גבו כדדרשינן בת&quot;כ וכל כלי עץ ישטף במים מלמד שהיה עושה מדף על גבו דהיינו כלים שינשאו למעלה מן הזב שהם ראשון לטומאה והיא טומאה קלה ולהכי קרי לה מדף לשון קול עלה נדף דלית ביה מששא הכי נמי הך טומאה דלא מטמא אדם לטמא בגדים ובזבה כתיב וכל הנוגע בם יטמא וכבס בגדיו וגו׳ וקאי אמשכב ומושב דכתיב ביה כל המשכב אשר תשכב עליו וגו׳ וכל הכלי אשר תשב עליו וגו׳ וק&quot;ו זבה עצמה ומשא דכתיב בזב והנושא אותה יכבס וגו׳ דקאי אמשכב ומושב דכתיבי נמי הכא גבי זבה ומרכב נמי מטמא בזבה דכתיב גבי נדה ואם על המשכב הוא או על הכלי אשר היא יושב׳ עליו בנגעו בו יטמא ותניא בת&quot;כ משכב זה המשכב אשר היא יושבת עליו זה המושב כלי זה המרכב שנאמ׳ בנגעו בו אי זהו דבר שחלוק מגעו ממשאו הוי אומר זה המרכב שאין טעון כבוס בגדים הנוגע במרכב בנושאו ומשום הכי לא כתיב הכא יכבס בגדיו אלא יטמא עד הערב וזבה מטמאה מדף ג&quot;כ. ונדה מטמאה במגע דכתיב בה וכל הנוגע בה יטמא וגו׳ וכתיב בה ג&quot;כ משכב ומושב בהדיא ומרכב מרבינן מכלי כדאמרינן לעיל ותניא בת&quot;כ כל הנוגע בה יטמא יכול לא יהיה הנוגע בה מטמא בגדים דלא כתיב יכבס בגדיו הא אם מטמא משכב ומושב לטמא אדם לטמא בגדים כדכתיב וכל הנוגע במשכבה יכבס בגדיו היא עצמה לא תטמא אדם לטמא בגדים ומהאי ק&quot;ו נמי יש ללמוד הנושאה ויולדת הויא כנדה כדכתיב בה כימי נדת דותה תטמא וגו׳.</p>
               </div>
             </div>
@@ -327,8 +333,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-2">Mishneh Torah, Those Who Defile Bed or Seat 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד זָבָה קְטַנָּה וְאֶחָד זָבָה גְּדוֹלָה. וְאֶחָד זָבָה מֵחֲמַת עַצְמָהּ אוֹ מֵחֲמַת אֹנֶס. וְאֶחָד זָב בַּעַל שְׁתֵּי רְאִיוֹת אוֹ בַּעַל שָׁלֹשׁ. טֻמְאַת כֻּלָּן שָׁוָה לְטַמֵּא אֲחֵרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחת </strong> זבה קטנה ואחת זבה גדולה שוין לטומאה כדתניא בת&quot;כ אין לי אלא רואה ג׳ שהיא מטמאה משכב ומושב מנין לרואה שנים שתטמאה משכב ומושב ת&quot;ל כל ימי זובה כמשכב נדתה ובין בזבה מחמת עצמה או מחמת אונס כדתניא נמי התם או דמה מחמת עצמה ולא דמה מחמת האונס כשהוא אומר זוב לרבות את האונסין ובפ׳ בנות כותים נמי תניא כשהוא אומר אשה כי יזוב זוב דמה הרי אונס אמור דמשמע זוב מכל מקום ואפילו באונס מטמאה ואחד זב בעל שתי ראיות או שלש טומאתן שוה כדתנן פ&quot;ק דמגלה אין בין זב הרואה שתי ראיות לרואה שלש אלא קרבן ובגמרא הא לענין משכב ומושב וספירת ז׳ שניהם שוים מנא הני מילי דתנו רבנן רב סימאי אומר מנה הכתוב ב׳ וקרא טמא דכתיב ואיש כי יהיה זב מבשרו זובו טמא הוא הרי שתי זובות מנויות כאן וקראו טמא ומנה שלש וקרא טמא כדכתיב וזאת תהיה טומאתו בזובו רר בשרו את זובו או החתים בשרו מזובו טומאתו היא הרי לך שלש זיבות וכתיב טומאתו היא אם משתים טמא למה מנה שלש הא כיצד ב׳ לטומאה כדכתיב טמאה בתר ב׳ וג׳ לקרבן ולא מציא למימר ב׳ לקרבן ולא לטומאה חמירה אלא כבעל קרי בעלמא ושלש אף לטומאה חמירה דכתיב וכפר עליו הכהן לפני ה׳ מזובו מקצת זבין מביאין קרבן ומקצת זבין אין מביאין קרבן הא כיצד ראה ג׳ מביא ב׳ אינו מביא כדמסיק התם.</p>
               </div>
             </div>
@@ -343,8 +354,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-3">Mishneh Torah, Those Who Defile Bed or Seat 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְטַנָּה בַּת יוֹם אֶחָד מִטַּמְּאָה בְּנִדָּה. בַּת עֲשָׂרָה יָמִים בְּזִיבָה. בַּת שָׁלֹשׁ שָׁנִים וְיוֹם אֶחָד מְטַמְּאָה אֶת בּוֹעֲלָהּ כְּמוֹ שֶׁיִּתְבָּאֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטנה </strong> בת יום א׳ מטמאה בנדה בת עשרה ימים בזיבה בת שלש שנים ויום אחד מטמאה את בועלה כדתניא ריש פרק בנות כותים אשה אין לי אלא אשה תנוקת בת יום אחד לנדה מנין תלמוד לומר ואשה כי תהיה זבה ובנדה קמשתעי קרא כדכתיב שבעת ימים תהיה בנדתה ותניא נמי אשה אין לי אלא אשה בת עשרה ימים לזיבה מנין דבציר מהכי ליכא זיבה שבעת ימים נדה ושלש ימי זיבה שאין זיבה אלא לאחר נידות כדדרשינן סוף מסכת נדה מקרא דבלא עת נדתה תלמוד לומר ואשה כי יזוב זוב דמה וגו׳ ותניא אשה אין לי שמטמאה אדם בביאתה אלא אשה כדכתיב ואשה אשר ישכב איש אותה שכבת זרע תנוקת בת ג׳ שנים ויום אחד מנין תלמוד לומר ואשה ואמרינן התם דבת יום אחד ילפינן מקרא כדאמר׳ מריבויי דוי&quot;ו דכתיב ואשה כל שהיא אשה משמע אפילו בת יום א׳ לנדה משתמעא מקרא אבל בת ג׳ שנים ויום אחד לא משמע מקרא טפי מבת שנים או בת ארבע אלא הויא הלכה למשה מסיני ואסמכוה אקרא דוי&quot;ו דהאי קרא איצטריך לאיש שאינו מטמא באודם כדאיתא התם ובת עשרה ימים לזיבה נמי מקרא דמשמע כל שהיא אשה ובבציר מעשרה ימים אינן ימי זיבה כדאמ׳ וכיון דאין זבה בלא נדה לא הוה צריך יתירא דוי&quot;ו דנדה אלא למעוטי איש מאודם חד מיעוט למעוטי ש&quot;ז אדום וחד למעוטי דם כדאיתא התם. קטן בן יום אחד מטמא בזיבה כדילפינן נמי התם לרבי יהודה דכתיב איש איש כי יהיה זב מבשרו וגו׳ לרבות תינוק בן יום אחד שמטמא בזיבה וכו׳. אחד גרים ועבדים וישראל מטמאין בנידה וזיבה כדתניא בת&quot;כ דברו אל בני ישראל ואמרתם אליהם איש איש כי יהיה זב וגו׳ בני ישראל מטמאים בזיבה ולא גוים אין לי אלא בני ישראל גרים ועבדים מנין תלמוד לומר ואמרתם אליהם דכיון דכתיב דברו אל בני ישראל מאי ואמרת אליהם הוסיף אמירה אחרת לגרים ועבדים דמטמאים בזיבה וכו׳. סריס אדם וסריס חמה מטמאין בזיבה כבריאין כדתנן פ&quot;ק דזבין.</p>
               </div>
             </div>
@@ -359,8 +375,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-6">Mishneh Torah, Those Who Defile Bed or Seat 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאִשָּׁה מִטַּמְּאָה בְּלֹבֶן וְלֹא הָאִישׁ בְּאֹדֶם אֶלָּא הָאִשָּׁה בְּאֹדֶם וְהָאִישׁ בְּלֹבֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> האשה מטמאה בלובן ולא האיש באודם כדילפינן לעיל מוי&quot;ו דכתיב גבי ואשה אשר ישכב איש אותה שכבת זרע למעוטי איש מאודם דאף על גב דקרא לאו באודם מיירי ע&quot;כ כיון דקרא יתירא הוא לדרשא אתי ומה שיש לדרוש דבר הקרוב לענין דרוש בו וה&quot;ק אשה טמאה בדבר האמור בה דהיינו אודם ואין איש טמא בדבר האמור באשה ואין אשה מטמאה בלובן ילפינן נמי התם פ׳ בנות כותים מדכתיב ואיש אשר תצא ממנו שכבת זרע וי&quot;ו יתירא למעוטי אשה שאינה מטמאה בלובן כאיש וכו׳. טומטום ואנדרוגינוס נותנין עליהן חומרי האיש וחומרי האשה בלובן ובאודם וטומאתן בספק כדתנן פ&quot;ב דזבין ובפרק המפלת אמר רב דאין שורפין עליהם את התרומה ואם ראה לובן ואודם כאחד דממה נפשך טמא אי הוי איש או אשה ואפ&quot;ה אין חייבין על ביאת מקדש קרבן משום דכתיב מזכר עד נקבה תשלחו דהיינו שלוח טמאים ממקדש ודרשינן זכר ודאי נקבה ודאית ולא טומטום ואנדרוגינוס ואפילו הכי שורפין עליו תרומה דממה נפשך טמא באודם או בלובן ואף על גב דבזב נמי כתיב זכר ונקבה כדכתיב והזב את זובו לזכר ולנקבה האי זכר ונקבה צריכי לדרשיה אחריתי כדאיתא התם פרק המפלת וכן הנוגע בלובן ואודם שלו כאחת אינו חייב על טומאת מקדש וקדשיו כדתניא בתוספתא דזבין ריש פרק ב׳ דכיון דאינהו אינן חייבין נוגע בזוב היוצא מהם גם כן לא חמיר מאינהו גופייהו וכו׳ נגע הוא בעצמו בלובן ואודם שראה הרי זה חייב על ביאת המקדש בתוספתא תניא הוא עצמו שנגע בלובן ואודם ונכנס למקדש פטור וכן הביא התוספתא רבינו שמשון ז&quot;ל פרק ב׳ דזבין ולא מצאתי גם כן לשון התוספתא שכתב הראב&quot;ד ז&quot;ל שטומטום חייב על נגיעת אודם או לובן של אשה או איש ודאין אבל הדין אמת הוא שהרי טמא הוא בטומאת זוב זכר או נקבה ודאין כדאמרינן ומה שכתב הראב&quot;ד ז&quot;ל דנגע הוא עצמו בלובן ואודם שראה שיהיה חייב הוא דבר תימה.</p>
               </div>
             </div>
@@ -375,8 +396,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-8">Mishneh Torah, Those Who Defile Bed or Seat 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דַּם הַנִּדָּה אוֹ דַּם הַזָּבָה אוֹ דַּם הַיּוֹלֶדֶת מְטַמֵּא בְּכָל שֶׁהוּא בְּמַגָּע וּבְמַשָּׂא שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טו לג)</span> &quot;וְהַדָּוָה בְּנִדָּתָהּ וְהַזָּב&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁמַּדְוֶה כָּמוֹהָ. וּכְבָר בֵּאַרְנוּ בְּעִנְיַן אִסּוּר נִדָּה שֶׁחֲמִשָּׁה דָּמִים טְמֵאִים בָּאִשָּׁה אֲבָל אִם רָאֲתָה דָּם יָרֹק הֲרֵי הוּא טָהוֹר וְאֵינוֹ כְּמוֹ רֻקָּהּ וּשְׁאָר מַשְׁקִין הַיּוֹצְאִין מִמֶּנָּה שֶׁהָרֹק מִתְעַגֵּל וְיוֹצֵא וְזֶה שׁוֹתֵת וְיוֹרֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דם </strong> הנדה או דם הזבה או היולדת מטמאין בכל שהוא במגע ובמשא בריש פרק דם הנדה תנן דם הנדה ובשר המת מטמאין לחין ויבשין ובגמרא אמר חזקיה דאמר קרא והדוה בנדתה מדוה כמותה מה היא מטמא במגע ובמשא אף מדוה מטמאה יבש מנלן דכתיב דם יהיה זובה וגו׳ יהיה בהויתו יהא ואפילו יבש מעיקרו דיהיה ריבויא הוא וכיון דדם נדה מטמא כדאמר׳ זיבת זבה נמי דהא מטמא באונס הנדה וכדאמרינן לעיל ואיכא נמי ק&quot;ו בגמרא לאחרים גורם טומאה דהיינו לזב׳ שתטמא לעצמו הנוגע בו לא כ&quot;ש ולא אמרינן שעיר המשתלח יוכיח לרבא פרק בנות כותים וכו׳ דמים טמאים כדילפינן פ׳ כל היד מדכתיב דמיה דמיה הרי כאן ד׳ ושחור אדום הוא אלא שלקה והוי בכלל ד׳ וירוק טהור כחכמים דמטהרין דלא הוי נמי כמשקה הזב והזב׳ דמטמאי כדאמר רבי מאיר משום דרבנן סברי דומיא דרוק דזב שמתעגל ויוצא שמתאסף תחלה ואחר כך יוצא לאפוקי דם כשהוא בא נוטף ויוצא ראשון ראשון וכו׳.</p>
               </div>
             </div>
@@ -391,8 +417,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-9">Mishneh Torah, Those Who Defile Bed or Seat 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָּׁה שֶׁיָּצָא הַוָּלָד מִדָּפְנָהּ וְיוֹצֵא עִמּוֹ דָּם מִן הַדֹּפֶן הֲרֵי אוֹתוֹ דָּם אָב מֵאֲבוֹת הַטֻּמְאוֹת כְּדַם הַנִּדָּה וְהַלֵּדָה וְהַזִּיבָה שֶׁהַמָּקוֹר מְקוֹמוֹ טָמֵא. וְהָאִשָּׁה טְהוֹרָה עַד שֶׁיֵּצֵא מִמֶּנָּה דָּם דֶּרֶךְ הָרֶחֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אשה </strong> שיצא הוולד מדפנה דם היוצא עמו הוי אב הטומאה כדם הנידה והזיבה והלידה כדא׳ פרק יוצא דופן לרבנן דרבי שמעון בבריתא דאמר רב יוסף כגון שיצא ולד ודם דרך דופן ובמקור מקומו טמא קמיפלגי דרבנן סברי מקור מקומו טמא הילכך טפת דם מטמאה ואף על גב דדרך דופן לאו ראיה היא לטמא את האשה טומאת שבעה מיהו טפה עצמה מטמאה במגע משום דנגע במקור ומקור מקומו טמא כדילפינן התם למקור שנעקר ונפל לארץ דטמאה כדכתיב יען השפך נחושתיך ותגלי ערותך אלמא נעקר ונשפך לארץ קרי ליה ערוה כאלו הוא מקומו הילכך טמא והיינו לטומאת ערב לטומאת שבעה דם אמר רחמנא ולא חתיכת בשר וכיון דאיהו טמא דם שנגע בו אף על גב דיצא דרך דופן הנוגע בה טמא. מקור שהזיע כשתי טיפי מרגליות טמאה כדאמר רבי יוחנן התם וטיפי מרגליות הוא דם לבן וצלול והיינו לטומאת ערב משום דנגע במקור ונוגעים בה ביציאתן אבל טומאת שבעה לא דחמשה דמים טמאים ותו לא ודוקא תרתי טיפין כדאמרינן דודאי מן המקור באו ונגעו בו אבל אחת אימא מעלמא אתיא מן הצדדין ולא מטמא.</p>
               </div>
             </div>
@@ -407,8 +438,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-12">Mishneh Torah, Those Who Defile Bed or Seat 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זוֹבוֹ שֶׁל זָב אָב מֵאֲבוֹת הַטֻּמְאוֹת כְּזָב שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טו ב)</span> &quot;זוֹבוֹ טָמֵא הוּא&quot; וּמְטַמֵּא בְּמַגָּע וּבְמַשָּׂא בְּכָל שֶׁהוּא. רְאִיָּה רִאשׁוֹנָה שֶׁל זָב אֵינָהּ מְטַמְּאָה בְּמַשָּׂא וַהֲרֵי הִיא כְּשִׁכְבַת זֶרַע בֵּין מֵאִישׁ גָּדוֹל בֵּין מֵאִישׁ קָטָן וְכֵן הַמִּשְׁכָּבוֹת וְהַמּוֹשָׁבוֹת שֶׁיָּשַׁב עֲלֵיהֶם מִשֶּׁרָאָה רְאִיָּה רִאשׁוֹנָה עַד שֶׁרָאָה הַשְּׁנִיָּה טְהוֹרִים שֶׁאֵינוֹ קָרוּי זָב אֶלָּא אַחַר רְאִיָּה שְׁנִיָּה כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת מְחֻסְּרֵי כַּפָּרָה. רָאָה אַחַת מְרֻבָּה כִּשְׁתַּיִם אֵין טָמֵא אֶלָּא הַמֵּסִיט טִפָּה אַחֲרוֹנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זובו </strong> של זב הוא מאבות הטומאה בזב כדתנן ריש פרק דם הנדה ובגמרא זוב מנ&quot;ל דטמא דתניא זובו טמא לימד על הזוב שהוא טמא שהטפה עצמה טמאה וכתיב הזב את זובו מקיש זובו לו מה הוא לא חלקת בו בין מגעו למשאו לטמא אדם ולטמא בגדים אף זובו כן ואיצטריכו תרי קראי כדאיתא התם וכו׳. ראיה ראשונה של זב אינה מטמאה במשא אלא הויא כשכבת זרע כדילפינן בת&quot;כ מדכתיב זאת תורת הזב ואשר תצא ממנו שכבת זרע דזב שראה ראיה אחד הרי הוא כבעל קרי טובל ואוכל פסחו לערב כיון דהקיש זב לבעל קרי היינו כשראה ראיה א׳ דומיא דבעל קרי ואינו קרוי זב לטמא אלא אחר ראיה שניה כדילפינן לעיל וכדאמ׳ פרק ב׳ דהלכות מחוסרי כפרה וכו׳ ראה ראיה אחת כשתים אין טמא אלא המסיט טפה אחרונה כדתנן פרק קמא דזבין ראה אחת מרובה כשתים מטמא משכב ומושב דכיון דזב מטמא בכל שהו כדילפינן מדכתיב או החתים בשרו כל שניכר בבשרו טמא אם כן ראה מרובה בשתים כמגדיון לשילוח הויא כשתי ראיות כיון שיש שהות לטבול ועדיין הוא רואה ובת&quot;כ אמרינן אין לי אלא ג׳ ראיות דכתיב ג׳ זמני זוב אלא גדולות קטנות מנין ת&quot;ל תהיה כל שהוא החתים אפילו כל שהו בשרו אפילו כל שהו ואם נאמרו בגדולות למה נאמרו בקטנות אלא ליתן שיעור לגדולות כקטנות שאם אחת מרובה כשתים או בשלש הוי זב וכתב הרב דאין טמא אלא מסיט טפה אחרונה דהויא כראיה שניה דראשונה לא הויא אלא כבעל קרי כדילפינן לעיל וכו׳.</p>
               </div>
             </div>
@@ -423,8 +459,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-13">Mishneh Torah, Those Who Defile Bed or Seat 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רְאִיָּה רִאשׁוֹנָה שֶׁל מְצֹרָע מְטַמֵּא בְּמַשָּׂא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ב)</span> &quot;כָּל צָרוּעַ וְכָל זָב וְכל טָמֵא לָנָפֶשׁ&quot; הֲרֵי הַצָּרוּעַ כְּזָב גָּמוּר מַה זָּב גָּמוּר זוֹבוֹ מְטַמֵּא בְּמַשָּׂא אַף מְצֹרָע רְאִיָּתוֹ הָרִאשׁוֹנָה מְטַמֵּא בְּמַשָּׂא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראיה </strong> ראשונה של מצורע מטמא במשא פרק בנות כותים בעיא דרב יוסף מקום זיבה מעין הוא ומטמא משום דאיתרבי מצורע למעינותיו מדכתיב לזכר יתירא והזב את זובו לזכר וכו׳ או דילמא לאו מעין הוא והוי כשאר ראיה ראשונה של זב דלא מטמאה אלא בקרי ואמר אביי מאי תיבעי ליה לרב יוסף והא הוא דאמר זאת תורת הזב בין גדול בין קטן ואייתר ליה לזכר לרבות מצורע למעינותיו ואקשיה רחמנא הכא לזב גמור בעל שתי ראיות דכתיב והזב את זובו הרי ב׳ ראיות וכתיב לזכר לרבות מצורע למעינותיו כדאמר׳ מה זב בעל שתי ראיות זובו מטמא במשא אף מצורע זובו מטמא במשא אפילו ראיה ראשונה וכו׳.</p>
               </div>
             </div>
@@ -439,8 +480,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-14">Mishneh Torah, Those Who Defile Bed or Seat 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רֹק הַזָּב וְשִׁכְבַת זַרְעוֹ וּמֵימֵי רַגְלָיו כָּל אֶחָד מִשְּׁלָשְׁתָּן אַב טֻמְאָה דִּין תּוֹרָה. וּמְטַמֵּא בְּכָל שֶׁהוּא בְּמַגָּע וּבְמַשָּׂא הֲרֵי הוּא אוֹמֵר בְּרֹק <span class="source-small">(ויקרא טו ח)</span> &quot;וְכִי יָרֹק הַזָּב בַּטָּהוֹר&quot;. וּמֵימֵי רַגְלָיו וְשִׁכְבַת זַרְעוֹ אִי אֶפְשָׁר שֶׁלֹּא יִהְיֶה בָּהֶם צִחְצוּחֵי זִיבָה כָּל שֶׁהוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רוק </strong> הזב ושכבת זרעו ומימי רגליו כל אחת משלשתן אב טומאה דין תורה דתנן ריש דם הנדה דזוב והשכב׳ זרע והניע והרוק מטמאין לחין וכו׳ ובגמרא רוק מנלן דתניא וכי ירוק הזב בטהור וכו׳ כיחו וניעו שהן מין רוק ומי האף שלו מנין תלמוד לומר וכי ירוק וי&quot;ו דוכי ירוק דריש ובברייתא תניא מימי רגליו ובגמרא מנלן דתניא זובו טמא וזאת לרבות מימי רגליו לטומאה דכתיב וזאת תהיה טומאתו ודרשינן האי וזאת אקרא דלעיל זובו טמא וזאת כלומר דבר אחר נמי כזוב ולא תימא דאתי מדינא רוק הבא ממקום טהרה טמא מי רגלים הבאים ממקום טומאה אינו דין שיהו טמאין דדם היוצא מפי האמה יוכיח דטהור דכתיב זובו טמא הוא טמא ואין דם היוצא מפי האמה טמא אלא טהור ולא תימא איפוך דדם היוצא מפי האמה להוי טמא מריבויא דוזאת ומי רגלים יהיו טהורים ממיעוטה דזובו טמא וכו׳ דדומיא דרוק מרבינן מה רוק מתעגל ומתאסף הרבה כאחד ואחר כך יוצא כגון רוק ומי רגלים ושכבת זרע יצא דם שאינו מתעגל ויוצא דכי אתא קמא קמא נפיק ופרכינן והרי חלב אשה שמתעגל ויוצא ואמר מר דחלב אינו מטמא אלא טומאת משקין אלא אמר רבי יוחנן וכו׳ מה ברוק שמתעגל ויוצא וחוזר ונבלע כשאינו מוציאו יצא דם וחלב דאינן חוזרים ונבלעים דמיד יוצאים ושכבת זרע הוי כמי רגליו דאי איפשר שלא יהיה בה צחצוחי זיבה דזיבה מטמא בכל שהוא כדאמרינן לעיל וכו׳ ובפ&quot;ה דזבין תנן נמי שכבת זרע בהדי זובו של זוב ורוקו ומימי רגליו ומרוק איתרבו כולהו ובסוף פרק כיצד הרגל מייתי ליה בק&quot;ו מרוקו הכי ומה רוק שהוא טהור בטהור הוא טמא בטמא דכתי׳ וכי ירוק הזב בטהור דמשמע במה שביד הטהור דהיינו משא וכתיב וכבס בגדיו וגו׳ הרי שהוא טמא באדם טהור דמטמאה במגע כדכתיב וכל אשר יהיה עליו שכבת זרע וגו׳ ואדם נמי מטמא במגע כדכתיב או איש אשר תצא ממנו שכבת זרע ודרשינן פרק יוצא דופן או איש לרבות את הנוגע אינו דין שיהא טמא שכבת זרע כזב כרוק. ואחד זב נדה וזבה ויולדת כל אחת מהן רוקו ושכבת זרע וכו׳ ומימי רגליו הוי כרוק הזב כדאמרינן והזוב דומה לביצה המוזרת ושכבת זרע דומה ללובן ביצה שאינה מוזרת.</p>
               </div>
             </div>
@@ -455,8 +501,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-1-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 1:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-1-16">Mishneh Torah, Those Who Defile Bed or Seat 1:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תִּשְׁעָה מַשְׁקִין בְּזָב שְׁלֹשָׁה מֵהֶן אָב טֻמְאָה וְהֵן רֻקּוֹ וְשִׁכְבַת זַרְעוֹ וּמֵימֵי רַגְלָיו. כָּל אֶחָד מֵאֵלּוּ מְטַמֵּא אָדָם וְכֵלִים בְּכָל שֶׁהוּא כְּמוֹ שֶׁבֵּאַרְנוּ. שְׁלֹשָׁה מֵהֶן כִּוְלַד הַטֻּמְאָה וְאֵלּוּ הֵן דִּמְעַת עֵינוֹ וְדַם מַגַּפְתּוֹ וַחֲלֵב הָאִשָּׁה. כָּל אֶחָד מֵאֵלּוּ כְּמַשְׁקִין טְמֵאִין שֶׁאֵין מְטַמְּאִין אָדָם אֲבָל מְטַמְּאִין כֵּלִים מִדִּבְרֵי סוֹפְרִים כְּמוֹ שֶׁבֵּאַרְנוּ. וּשְׁלֹשָׁה מֵהֶן טְהוֹרִין וְאֵלּוּ הֵן זֵעָתוֹ וְלֵחָה סְרוּחָה הַיּוֹצְאִים מִמֶּנּוּ וְהָרֵעִי. הֲרֵי אֵלּוּ שְׁלֹשָׁה מִן הַזָּב וַחֲבֵרָיו כְּמוֹתָן מִשְּׁאָר הָאָדָם. כִּיחוֹ וְנִיעוֹ וְרִירוֹ וּמֵי הָאַף שֶׁלּוֹ הֲרֵי הֵן כְּרֻקּוֹ לְכָל דָּבָר וּבִכְלַל הָרֹק הֵן חֲשׁוּבִין. דָּם הַיּוֹצֵא מִפִּי אַמָּה וְדָם הַשּׁוֹתֵת מִפִּיו הֲרֵי הֵן בִּכְלַל דָּם מַגַּפְתּוֹ. הָיָה מוֹצֵץ וְרוֹקֵק דָּם הֲרֵי זֶה מְטַמֵּא כְּרֹק. שֶׁהַדָּם שֶׁמּוֹצֵץ אִי אֶפְשָׁר לוֹ בְּלֹא צִחְצוּחֵי רֹק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תשעה </strong> משקין בזב ג׳ מהן אב הטומאה רוקו ושכבת זרעו ומימי רגליו דכיון דמרבינן להו מרוק הוא דומיא דידיה ושלשה הן ולד הטומאה דמטמאין טומאת משקין לבד כדתניא התם פרק בנות כותים בבריתא דתשעה משקין בזב זיעה וליחה סרוחה ורעי טהורים מכלום דמעת עינו ודם מגפתו וחלב האשה מטמאין טומאת משקין ברביעית אבל זובו רוקו ומימי רגליו מטמאין טומאת חמורה ובת&quot;כ יליף להני טהורים הכי יכול הזיעה והלחה והרעי יהו טמאים ת&quot;ל טמא הוא הוא טמא ולא אלו אוציא את אלו ולא אוציא דמעות עינו ודם מגפתו וחלב האשה שהן מטמאין טומאת משקין תלמוד לומר זאת מיעט ונראה דמדאוריתא לא מיטמו כלל דהא מיעט להו דומיא דזיעה ולחה ורעי ומשום דאיקרי משקה כדילפינן פרק דם הנדה תניא דמטמאי טומאת משקין וכן מצאתי בתוספות פרק אמרו לו דאינן אלא מדרבנן כיון דבעי רביעית לטומאה ולא מטמא בכל שהוא כשאר משקין דזב וכו׳. היה מוצץ ורוקק דם הרי זה מטמא כרוק דאי איפשר בלא צחצוחי רוק כדמוקי פרק מצות חליצה הא מתניתין דתניא יכול יהא דם היוצא מפיו ומפי האמה טמא תלמוד לומר הוא וכו׳ דמיירי בשותת אבל מוצץ אי איפשר בלא צחצוחי רוק ולהכי יבמה שמצצה ורקקה דם אמרינן דלא תתיבם שאי איפשר לדם היוצא במציצה בלא צחצוחי רוק וכתי׳ בה וירקה וכו׳:</p>
               </div>
             </div>
@@ -472,8 +523,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-2-1">Mishneh Torah, Those Who Defile Bed or Seat 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דַם נִדָּה וְזָבָה וְיוֹלֶדֶת מְטַמֵּא לַח וְיָבֵשׁ אֲבָל זוֹבוֹ שֶׁל זָב וְרֻקּוֹ וְשִׁכְבַת זַרְעוֹ אֵינוֹ מְטַמֵּא אֶלָּא כָּל זְמַן שֶׁהוּא לַח אֲבָל יָבֵשׁ יוֹתֵר מִדַּאי אֵינוֹ מְטַמֵּא. וְעַד כַּמָּה. אִם שׁוֹרִין אוֹתוֹ בְּפוֹשְׁרִין מֵעֵת לְעֵת וְחוֹזֵר לִכְמוֹת שֶׁהָיָה הֲרֵי זֶה מְטַמֵּא כְּלַח אִם הָיוּ הַמַּיִם פּוֹשְׁרִין בִּתְחִלָּתָן אַף עַל פִּי שֶׁאֵינָן פּוֹשְׁרִין בְּסוֹפָן. וְכָל הַדְּבָרִים הָאֵלּוּ דִּבְרֵי קַבָּלָה הֵן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דם </strong> נדה וזבה ויולדת מטמא לח ויבש כדתנן פרק דם הנדה ובשר המת וכו׳ מטמאין לחין ויבשין ובגמרא דכתיב והדוה בנדתה מדוה כמותה כדאמר׳ לעיל אשכחן לח דדוה לח משמע כמו שהו זב יבש מנלן דכתיב יהיה דם יהיה זובה וכו׳ יהיה בהוייתו יהא ואפילו יבש מעיקרו כדאמרינן התם דיהיה ריבויא הוא אבל זובו של זב ורוקו ושכבת זרע אינו מטמא אלא כל זמן שהוא לח כדתניא נמי במתני׳ ובגמרא מנלן זוב דכתיב רר בשרו דמשמע כעין ריר שהוא לחה כמו ויורד רירו ופי׳ ניחו וניעו ורוקו דכתיב וכי ירוק הזב כעין רוק שכבת זרע הראויה להזריע ויבשה אינה ראויה להזריע ואם חוזר ללחותו כמו שהיה שלא נתיבש כל כך מטמא לח ויבש כדתנן נמי התם וכמה שרייתן בפושרין מעת לעת ותחלתן בפושרין אע&quot;פ שאין סופן כדאמר׳ התם בגמרא כר׳ יהודה בן נקוסה דפליג ארשב&quot;ג בברייתא ותמיהא לי היכי פסיק כרבי יהודה בן נקוסה לגבי רשב&quot;ג כ&quot;ש דהוי קולא דאי לא הדר בהכי שאין סופן פושרין טהור ואי הוו פושרין כל מעת לעת הוה הדר וצ&quot;ע.</p>
               </div>
             </div>
@@ -488,8 +544,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-2-2">Mishneh Torah, Those Who Defile Bed or Seat 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פִּשְׁתָּן שֶׁטְּוָאַתּוּ נִדָּה הַמְּסִיטוֹ טָהוֹר. וְאִם הָיָה לַח מְטַמֵּא מִפְּנֵי רֹק פִּיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פשתן </strong> שטוותהו נדה המסיטו טהור ואם היה לח מחמת הרוק מסיטו טמא כדתניא פ׳ התערובות לתנא קמא ורבי יהודה אף הרוטבו במים שמלחלחו טמא וכתבו בתוספות דאלח קאי לאשמועינן דאינו יוצא מטומאה על ידי שריה אפילו במים טובא אבל רבנן סברי דמשנתנו לתוך מים ורבו עליו טהור כדתניא בתוספת׳ וכו׳.</p>
               </div>
             </div>
@@ -504,8 +565,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-2-3">Mishneh Torah, Those Who Defile Bed or Seat 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָב שֶׁהִנִּיחַ פִּיו עַל פִּי הַכּוֹס וְנִמְלַךְ שֶׁלֹּא לִשְׁתּוֹתוֹ הַמֵּסִיט אֶת הַכּוֹס טָהוֹר. שָׁתָה מִמֶּנּוּ הַזָּב כָּל שֶׁהוּא הַמְּסִיטוֹ טָמֵא מִפְּנֵי מַשְׁקֵה פִּי הַזָּב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זב </strong> שהניח פיו על פי הכוס ונמלך שלא לשתותו המסיט הכוס טהור ואם שתה טמא מפני משקה הזוב כדתניא בתוספת׳ פרק ה׳ דטהרות. וכן נשך הקשות ומלפפונות המסיטן טמא מפני משקה פי הזב כדתניא נמי התם אבל נשך בבצל ובפת המסיטו טהור משום דאינו מתערב בפת ובבצל כדתנן נמי התם בתוספת׳. קליפי פולין ותרמוסין שקצצן הגוי המסיטן טמא מדרבנן ושבשווקים הלך אחר הרוב מתנינן נמי התם וכו׳.</p>
               </div>
             </div>
@@ -520,8 +586,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-2-6">Mishneh Torah, Those Who Defile Bed or Seat 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּם טָמֵא שֶׁנִּתְעָרֵב בְּמַיִם אִם בָּטְלוּ מַרְאָיו הַכּל טָהוֹר. נִתְעָרֵב בְּדָם טָהוֹר וּבְיַיִן רוֹאִין אוֹתוֹ כְּאִלּוּ הוּא מַיִם. וְכֵן רֹק טָמֵא שֶׁנִּתְעָרֵב בְּמַיִם אִם הָיָה קָרוּשׁ כִּבְרִיָּתוֹ הֲרֵי זֶה טָמֵא וְאִם נִמְחָה בְּמַיִם אִם בָּטְלוּ מַרְאָיו הַכּל טָהוֹר. נִתְעָרֵב בְּרֹק אַחֵר רוֹאִין אוֹתוֹ כְּאִלּוּ הוּא מַיִם. וְכֵן מֵי רַגְלָיו שֶׁל טָמֵא שֶׁנִּתְעָרְבוּ בְּמַיִם אִם בָּטְלוּ מַרְאֵיהֶן הַכּל טָהוֹר וְאִם לָאו טָמֵא. נִתְעָרֵב בְּיַיִן אוֹ בְּמֵי רַגְלַיִם טְהוֹרִין רוֹאִין אוֹתוֹ כְּאִלּוּ הוּא מַיִם. נִתְעָרְבוּ בְּמֵי רַגְלַיִם שֶׁל עַכּוּ&quot;ם הוֹלְכִין אַחַר הָרֹב. כֵּיצַד. כְּלִי שֶׁהָיוּ יִשְׂרָאֵל וְעַכּוּ&quot;ם מְטִילִין שָׁם מֵי רַגְלֵיהֶן אִם רֹב עַכּוּ&quot;ם הַכּל טָמֵא וְאִם רֹב יִשְׂרָאֵל הַכּל טָהוֹר מֶחֱצָה לְמֶחֱצָה הַכּל טָמֵא. וְכֵן אִם נִתְעָרֵב מֵי רַגְלֵי עַכּוּ&quot;ם זֶה בְּמֵי רַגְלֵי יִשְׂרָאֵל זֶה הוֹלְכִין אַחַר הָרֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דם </strong> טמא שנתערב במים אם בטלו מראיו טהור נתערב בדם טהור או ביין רואין אותן כאלו הוא מים נתערבו בשל גוים דהם כזבין מדרבנן הולכין אחר הרוב כדתניא נמי התם ריש פרק ד׳ דתוספתא דטהרות.</p>
               </div>
             </div>
@@ -536,8 +607,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-2-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-2-7">Mishneh Torah, Those Who Defile Bed or Seat 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹאֲלִין [כְּלֵי] מֵי רַגְלַיִם מִכָּל מָקוֹם וְאֵין חוֹשְׁשִׁין שֶׁמָּא שֶׁל נִדּוֹת הֵן שֶׁלֹּא נֶחְשְׁדוּ בְּנוֹת יִשְׂרָאֵל לְכַנֵּס אֶת מֵי רַגְלֵיהֶן כְּשֶׁהֵן נִדּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שואלין </strong> כלי [של] מי רגלים ואין חוששין שמא של נדות הן כדתניא נמי התם והויא כחזקה דמהניא מדאורייתא כדילפינן בדוכתא וכו׳. חרש של זב או זבה מכניסין לו (מימו בכיסו) [מ&quot;ר וכבסו] פ&quot;א וב׳ המשקין טמאין ומשקה פעם שלישית טהור כדתניא נמי התם בפלוגתא דת&quot;ק ור׳ אליעזר בן יעקב ומייתי לה פרק התערובות ונקטינן כר׳ אליעזר בן יעקב דהויא משנתו קב ונקי ורש&quot;י ז&quot;ל פי׳ דלענין טהרת הכלי מתנינן דבפעם ראשונה ושניה שהדיחו אכתי הוי טמא ובפעם שלישית הוי טהור ונראה דהא בהא תליא דכשהכלי טמא מים שהדיחו אותו בהן טמאים וכו׳. זבה שנעקרו מימי רגליה וטבלה ואחר כך הטילה מים הוי ספק פרק יוצא דופן בעיא דרבא מי אזלינן בתר עקירה כשכבת זרע ומטמאו או דילמא כיון דמצי׳ נקיט להו מלצאת לא חשיב עקירה צורך יציאה ולא אזלי׳ אלא בתר יציאה וכן גויה שנתגיירה וטבלה והטילה אחר כך מי רגלים שנעקרו קודם שנתגיירה הוי ספקה מדרבנן וכו׳.</p>
               </div>
             </div>
@@ -552,8 +628,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-2-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-2-10">Mishneh Torah, Those Who Defile Bed or Seat 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעֲבָדִים מְטַמְּאִין בְּזִיבָה וּבְנִדָּה וּבְלֵדָה כְּיִשְׂרָאֵל אֲבָל הָעַכּוּ&quot;ם אֵין מְטַמְּאִין לֹא בְּזִיבָה וְלֹא בְּנִדּוּת וְלֹא בְּלֵדוֹת דִּין תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טו ב)</span> &quot;דַּבְּרוּ אֶל בְּנֵי יִשְׂרָאֵל וַאֲמַרְתֶּם אֲלֵהֶם אִישׁ אִישׁ כִּי יִהְיֶה זָב&quot; בְּנֵי יִשְׂרָאֵל מְטַמְּאִין בְּזִיבָה וְלֹא הָעַכּוּ&quot;ם. וַחֲכָמִים גָּזְרוּ עַל כָּל הָעַכּוּ&quot;ם שֶׁיְּטַמְּאוּ כְּזָבִים לְכָל דִּבְרֵיהֶן זְכָרִים וּנְקֵבוֹת וְהוּא שֶׁיִּהְיֶה הַזָּכָר בֶּן תֵּשַׁע שָׁנִים וְיוֹם אֶחָד וּלְמַעְלָה וְהַנְּקֵבָה בַּת שָׁלֹשׁ שָׁנִים וְיוֹם אֶחָד וָמַעְלָה. אֲבָל הַקְּטַנִּים לְמַטָּה מִזְּמַן זֶה לֹא גָּזְרוּ עֲלֵיהֶן טֻמְאָה שֶׁעִקַּר הַגְּזֵרָה הִיא כְּדֵי שֶׁלֹּא יְהֵא תִּינוֹק יִשְׂרָאֵל רָגִיל אֵצֶל הָעַכּוּ&quot;ם בְּמִשְׁכַּב זָכוּר וּפָחוֹת מִזְּמַן זֶה אֵין בִּיאָתָן בִּיאָה. בְּעֵת שֶׁגָּזְרוּ עֲלֵיהֶן לֹא גָּזְרוּ עַל שִׁכְבַת זֶרַע שֶׁלָּהֶן אֶלָּא שִׁכְבַת זַרְעוֹ שֶׁל עַכּוּ&quot;ם טְהוֹרָה כְּדִין תּוֹרָה. וּמִפְּנֵי מָה לֹא גָּזְרוּ עָלֶיהָ טֻמְאָה כְּדֵי לְהוֹדִיעַ שֶׁטֻּמְאָתָן מִדִּבְרֵי סוֹפְרִים שֶׁהֲרֵי הַכּל יוֹדְעִין שֶׁאִלּוּ הָיוּ זָבִין דִּין תּוֹרָה הָיְתָה שִׁכְבַת זַרְעָם אַב הַטֻּמְאָה כְּשִׁכְבַת זֶרַע הַזָּב וּמֵאַחַר שֶׁיּוֹדְעִין בְּטֻמְאָתָן שֶׁהָיְתָה מִדִּבְרֵי סוֹפְרִים לֹא יָבוֹאוּ לִשְׂרֹף עָלֶיהָ תְּרוּמָה וְקָדָשִׁים. נִמְצֵאתָ לָמֵד שֶׁזּוֹבוֹ שֶׁל עַכּוּ&quot;ם. וְדַם נִדָּה אוֹ דַּם זִיבָה וְלֵדָהּ שֶׁל בַּת עַכּוּ&quot;ם. וּבַת עַכּוּ&quot;ם וְעַכּוּ&quot;ם עַצְמָן אַף עַל פִּי שֶׁהֵם נְקִיִּים מִן הַתּוֹרָה מִדַּם הַזָּב. וְרֹק הָעַכּוּ&quot;ם וּמֵימֵי רַגְלֵיהֶן וּמִשְׁכָּבָן וּמֶרְכָּבָן. וּבוֹעֵל עַכּוּ&quot;ם. כָּל אֶחָד מֵאֵלּוּ אַב טֻמְאָה מִדִּבְרֵי סוֹפְרִים. לְפִיכָךְ אֵין חַיָּבִין עֲלֵיהֶן עַל בִּיאַת מִקְדָּשׁ וְקָדָשָׁיו וְאֵין שׂוֹרְפִין עֲלֵיהֶן אֶת הַתְּרוּמָה. וְכֻלָּן מְטַמְּאִין אָדָם וְכֵלִים בְּמַגָּע וּמְטַמְּאִין אָדָם בְּמַשָּׂא כְּזָב לְכָל דָּבָר. אֶלָּא שֶׁהַטֻּמְאָה מִדִּבְרֵיהֶן כְּמוֹ שֶׁבֵּאַרְנוּ. וְדַם הַנָּכְרִית כְּרֻקָּהּ וּכְמֵימֵי רַגְלֶיהָ מְטַמֵּא לַח וְאֵינוֹ מְטַמֵּא יָבֵשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העבדים </strong> מטמאים בזיבה ובנדה ובלידה כישראל כדילפינן בת&quot;כ מדכתיב ואמרת אליהם כדא׳ לעיל פרק קמא אבל גוים לא מיטמאי מדאורית׳ דכתיב בני ישראל אלא מדרבנן קטן מבן תשעה ויום אחד וקטנה מבת שלשה ויום אחד וכדאמרינן פרק יוצא דופן ופרק בנות כותים ועדיות פרק ה׳ וכו׳:</p>
               </div>
             </div>
@@ -569,8 +650,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-3-1">Mishneh Torah, Those Who Defile Bed or Seat 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בּוֹעֵל נִדָּה כְּנִדָּה שֶׁהוּא אָב מֵאֲבוֹת הַטֻּמְאָה שֶׁל תּוֹרָה מְטַמֵּא כֵּלִים בְּמַגָּע וּמְטַמֵּא אָדָם בְּמַשָּׂא וּבְמַגָּע וּמְטַמֵּא בְּהֶסֵּט וּמְטַמֵּא מִשְׁכָּב וּמֶרְכָּב כְּנִדָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בועל </strong> נדה כנדה שהוא אב הטומאה של תורה מטמא כלים במגע ומטמא אדם במשא ובמגע ומטמא בהיסט ומשכב ומרכב כדתנן פרק קמא דכלים למעלה מהם בועל נדה שהוא מטמא משכב תחתון כעליון וקאי אמתניתין דלעיל דקתני נבלה ומי חטאת שמטמאין במשא לטמא בגדים במגע וכו׳ ודרשינן בת&quot;כ ותהי נדתה עליו מה היא מטמאה אדם וכלי חרס אף בועלה דנדתה עליו משמע כל מידי דמטמאה בנדתה תהא עליו שיהא מטמא בועל נדה כנדה ואף על גב דלא כתיב בהדיא בנדה דמטמאה כלי חרס יליף לה במה מצינו מזב דמזב דמטמא משכב ומושב לטמא אדם ובגדים ומטמא כלי חרס אף משכב ומושב לטמא אדם ובגדים מטמא כלי חרס כזב דכתיב ביה וכלי חרס אשר יגע בו הזב ישבר וגו׳ ואין משכב ומרכב של בועל נדה כנדה שהוא אב הטומאה כדילפינן לעיל אלא הוא וולד הטומאה שאינו מטמא אלא אוכלין ומשקין כדאמרן בת&quot;כ ומייתי לה ריש פרק בנות כותים אימא היא משכב ומושב לטמא אדם ובגדים אף הוא כן תלמוד לומר וכל המשכב אשר ישכב עליו יטמא שאין תלמוד לומר הרי כבר נאמר ברישיה דהאי קרא ותהי נדתה עליו ובדידה כתיב וכל אשר יגע במשכבה וגו׳ אם כן למה נאמר וכל המשכב אשר ישכב עליו וגו׳ לנתקו מטומאה חמורה שלא יהיה משכבו חמור כמשכבה לטמא אדם ובגדים שעליו אלא אוכלין ומשקין דיטמא טומא׳ קלה משמע וכדאיתא התם וכו׳.</p>
               </div>
             </div>
@@ -585,8 +671,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 3:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-3-3">Mishneh Torah, Those Who Defile Bed or Seat 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַבָּא עַל הַנִּדָּה אוֹ עַל שׁוֹמֶרֶת יוֹם כְּנֶגֶד יוֹם אוֹ עַל הַיּוֹלֶדֶת [בֵּין כְּדַרְכָּן בֵּין שֶׁלֹּא כְּדַרְכָּן] אֶחָד הַמְעָרֶה וְאֶחָד הַגּוֹמֵר בֵּין גָּדוֹל שֶׁבָּא עַל הַקְּטַנָּה בֵּין קָטָן שֶׁבָּא עַל הַגְּדוֹלָה מִתְטַמֵּא מִשּׁוּם בּוֹעֵל נִדָּה. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁהָיָה הַבּוֹעֵל בֶּן תֵּשַׁע שָׁנִים וְיוֹם אֶחָד וְהַנִּבְעֶלֶת הָיְתָה בַּת שָׁלֹשׁ שָׁנִים וְיוֹם אֶחָד. אֲבָל פָּחוֹת מִכָּאן אֵינוֹ מִתְטַמֵּא מִשּׁוּם בּוֹעֵל נִדָּה אֶלָּא מִשּׁוּם נוֹגֵעַ בְּנִדָּה בִּלְבַד שֶׁהוּא וָלָד וְאֵינוֹ אָב. וְכֵן בּוֹעֵל הַזָּב הֲרֵי הוּא כְּנוֹגֵעַ בּוֹ וְאֶחָד הַנּוֹגֵעַ בְּזָב אוֹ הַנִּבְעֶלֶת מִן הַזָּב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> [הבא על] נדה או זבה ויולדת בין כדרכן או שלא כדרכן ואפילו הערה וכדתניא סוף נדה כימי נדתה תהיה טמאה היא מלמד שזבה מטמא את בועלה כנדה שמפורש בה אשר ישכב איש אותה היא מטמא בועלה ואין הזב מטמא מה שהוא בועל ומנין שהוא עושה משכב ומושב כבועל נדה ת&quot;ל כמשכב נדתה ואתקשה נמי התם רואה ב׳ ימים או יום אחד לרואה ג׳ שהיא זבה גדולה וכדאיתא התם ויולדת נמי כתיב בה כימי נדת דותה וגו׳ דמשמע דהויא כדין נדה וקטן בן תשעה ויום אחד וקטנה בת שלשה ויום א׳ כיון שביאתן ביאה ה&quot;נ לענין טומאה בועל נדה וכו׳.</p>
               </div>
             </div>
@@ -601,8 +692,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 3:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-3-4">Mishneh Torah, Those Who Defile Bed or Seat 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנִּדָּה וְהַזָּבָה וְשׁוֹמֶרֶת יוֹם כְּנֶגֶד יוֹם וְהַיּוֹלֶדֶת אַף עַל פִּי שֶׁלֹּא רָאֲתָה דָּם כֻּלָּם מְטַמְּאוֹת לְמַפְרֵעַ מֵעֵת לְעֵת אוֹ מִפְּקִידָה לִפְקִידָה וְזֶהוּ הַנִּקְרָא מֵעֵת לְעֵת שֶׁבְּנִדָּה. כֵּיצַד. אִשָּׁה שֶׁהָיְתָה טְהוֹרָה וְאֵין לָהּ וֶסֶת וּבָדְקָה עַצְמָהּ בְּשַׁחֲרִית וּמָצְאָה טְהוֹרָה וּבַחֲצִי הַיּוֹם בָּדְקָה עָצְמָה וּמָצְאָה דָּם הֲרֵי כָּל הַטָּהֳרוֹת שֶׁעָשְׂתָה מִשְּׁעַת פְּקִידָה רִאשׁוֹנָה עַד שְׁעַת פְּקִידָה שְׁנִיָּה טְמֵאוֹת לְמַפְרֵעַ. וְכֵן אִם בָּדְקָה הַיּוֹם וּמָצְאָה טְהוֹרָה וּלְאַחַר שְׁנַיִם אוֹ שְׁלֹשָׁה יָמִים בָּדְקָה וּמָצְאָה דָּם כָּל הַטָּהֳרוֹת שֶׁעָשְׂתָה מֵעֵת שֶׁבָּדְקָה וּמָצְאָה דָּם עַד כ&quot;ד שָׁעוֹת טְמֵאוֹת לְמַפְרֵעַ. וְעֵד שֶׁלְּאַחַר הַתַּשְׁמִישׁ הֲרֵי הוּא כִּפְקִידָה וְשֶׁלִּפְנֵי הַתַּשְׁמִישׁ אֵינוֹ כִּפְקִידָה מִפְּנֵי שֶׁאֵינָהּ בּוֹדֶקֶת בּוֹ יָפֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נדה </strong> וזבה ויולדת מיטמאי למפרע מעת לעת או מפקידה לפקידה מדרבנן כדאמ׳ בפרק קמא דנדה דמדאורייתא אין אשה טמאה עד שתרגיש דם שיצא למטה מבין השינים כדילפינן פרק חמישי דהלכות איסורי ביאה. וכן טומאות ווסתות שאם הגיע וסתה ולא בדקה ואחר ימים בדקה ומצאה דם אינה טמאה למפרע אלא מדרבנן דהכי אסיקנא פרק כל היד דאפילו לרשב&quot;ג ווסתות דרבנן ואפי׳ תרגיש פיהוק ועטוש אינה טמאה מדאוריתא עד שתרגיש בבשרה וכדאמר׳ פרק האשה בנדה וכן טומאת כתמים מדרבנן וכל דינים אלו סוף פרק קמא דנדה ופרק כל היד:</p>
               </div>
             </div>
@@ -618,8 +714,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-4-1">Mishneh Torah, Those Who Defile Bed or Seat 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבַּע נָשִׁים דַּיָּן שְׁעָתָן וְאֵינָן מִטַּמְּאוֹת לְמַפְרֵעַ. וְאֵלּוּ הֵן מְעֻבֶּרֶת וּמֵינִיקָה וּבְתוּלָה וּזְקֵנָה. אֵי זוֹ הִיא מְעֻבֶּרֶת מִשֶּׁיֻּכַּר עֻבָּרָהּ. הָיְתָה בְּחֶזְקַת מְעֻבֶּרֶת וְרָאֲתָה דָּם וְאַחַר כָּךְ הִפִּילָה רוּחַ אוֹ דָּבָר שֶׁאֵינוֹ וָלָד הֲרֵי זוֹ בְּחֶזְקָתָהּ וְדַיָּהּ שְׁעָתָהּ. רָאֲתָה דָּם וְאַחַר כָּךְ הֻכַּר עֻבָּרָהּ הֲרֵי זוֹ מִטַּמְּאָה לְמַפְרֵעַ כְּכָל הַנָּשִׁים. אֵי זוֹ הִיא מֵינִיקָה כָּל אַרְבָּעָה וְעֶשְׂרִים חֹדֶשׁ מִיּוֹם הַלֵּדָה אֲפִלּוּ מֵת בְּנָהּ בְּתוֹךְ זְמַן זֶה אוֹ שֶׁגְּמָלַתְהוּ אוֹ נְתָנַתְהוּ לְמֵינִיקָה דַּיָּהּ שְׁעָתָהּ. אֲבָל אַחַר אַרְבָּעָה וְעֶשְׂרִים חֹדֶשׁ אַף עַל פִּי שֶׁהִיא מֵינִיקָה וְהוֹלֶכֶת הֲרֵי זוֹ טְמֵאָה לְמַפְרֵעַ כְּכָל הַנָּשִׁים. אֵי זוֹ הִיא בְּתוּלָה כָּל שֶׁלֹּא רָאֲתָה דָּם מִיָּמֶיהָ. בְּתוּלַת דָּמִים אָמְרוּ לֹא בְּתוּלַת בְּתוּלִים. כֵּיצַד. אֲפִלּוּ נִשֵּׂאת וְרָאֲתָה דָּם מֵחֲמַת נִשּׂוּאִין אוֹ יָלְדָה וְרָאֲתָה דָּם מֵחֲמַת לֵדָה עֲדַיִן הִיא בְּתוּלָה לְעִנְיַן טֻמְאָה וְדַיָּה שְׁעָתָהּ. אֵי זוֹ הִיא זְקֵנָה כָּל שֶׁעָבְרוּ עָלֶיהָ שְׁלֹשָׁה חֳדָשִׁים סָמוּךְ לְזִקְנוּתָהּ וְלֹא רָאֲתָה דָּם. וְאֵי זוֹ הִיא סָמוּךְ לְזִקְנוּתָהּ כָּל שֶׁחַבְרוֹתֶיהָ קוֹרְאוֹת לָהּ זְקֵנָה בְּפָנֶיהָ וְאֵינָהּ מַקְפֶּדֶת. עָבְרוּ עָלֶיהָ שָׁלֹשׁ עוֹנוֹת וְרָאֲתָה וְחָזְרוּ וְעָבְרוּ עָלֶיהָ שָׁלֹשׁ עוֹנוֹת אֲחֵרוֹת אוֹ פָּחוֹת אוֹ יֶתֶר וְרָאֲתָה הֲרֵי הִיא כְּכָל הַנָּשִׁים וּמִטַּמְּאָה לְמַפְרֵעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרק</strong> ד&#160;כל דיניו מדרבנן פרק קמא דנדה ופרק כל היד ופרק האשה ותנוקת ודם הנדה ופרק תנוקת ורביעית דם שיצא מן האשה שמתה מטמא במגע ובמשא ובאהל כדכתיב בנפש אדם וגו׳ וכתיב כי הדם הוא הנפש וגו׳:</p>
               </div>
             </div>
@@ -635,8 +736,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-1">Mishneh Torah, Those Who Defile Bed or Seat 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב וְהַזָּבָה וְהַנִּדָּה וְהַיּוֹלֶדֶת לְעוֹלָם הֵם בְּטֻמְאָתָן וּמְטַמְּאִין אָדָם וְכֵלִים וּמִשְׁכָּב וּמֶרְכָּב עַד שֶׁיִּטְבּוֹלוּ. אֲפִלּוּ נִתְאַחֲרוּ כַּמָּה שָׁנִים בְּלֹא רְאִיַּת טֻמְאָה וְלֹא טָבְלוּ הֲרֵי הֵן בְּטֻמְאָתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזב </strong> והזבה והנדה והיולדת לעולם הם בטומאתם עד שיטבולו וכדא׳ פרק בנות כותים לב&quot;ה דביומי וטבילה תלא רחמנא דכל זמן שלא טבלה טמאה ובת&quot;כ נמי אמרינן דלימד ר׳ עקיבא מה אני מקיים והדוה בנדתה תהא עד שתבא במים וכו׳.</p>
               </div>
             </div>
@@ -651,8 +757,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-2">Mishneh Torah, Those Who Defile Bed or Seat 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹלֶדֶת שֶׁלֹּא טָבְלָה אַחַר שִׁבְעָה לְזָכָר וְאַרְבָּעָה עָשָׂר לִנְקֵבָה כָּל דָּם שֶׁתִּרְאֶה אַף עַל פִּי שֶׁהוּא בְּתוֹךְ יְמֵי טֹהַר הֲרֵי הוּא כְּדַם הַנִּדּוֹת וּמְטַמֵּא לַח וְיָבֵשׁ. לֹא תָּלָה הַכָּתוּב בְּיָמִים בִּלְבַד אֶלָּא בְּיָמִים וּטְבִילָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יולדת </strong> שלא טבלה דמה אפילו בתוך ימי טוהר הוי כדם נידות ומטמא כדתנן פרק בנות כותים לב&quot;ה דביומי וטבילה תלא רחמנא אליבא דרב דאמר דם הבא בימי לידה ודם הבא בימי טוהר מעין אחד הוא דממעין אחד הן באים והתורה טומאתו כל שבעה לזכר וכל י&quot;ד לנקבה והתורה טהרתו אחר מכאן כדאמר׳ התם וכו׳.</p>
               </div>
             </div>
@@ -667,8 +778,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-3">Mishneh Torah, Those Who Defile Bed or Seat 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹלֶדֶת שֶׁיָּרְדָה לִטְבּל מִטֻּמְאָה לְטָהֳרָה וְנֶעֱקַר מִמֶּנָּה דָּם בִּירִידָתָהּ וְיָצָא חוּץ לְבֵין הַשִּׁנַּיִם הֲרֵי זוֹ טְמֵאָה וְאֵין הַטְּבִילָה מוֹעֶלֶת לְדָם זֶה וְאַף עַל פִּי שֶׁעֲדַיִן הִיא בִּבְשָׂרָהּ. וְאִם נֶעֱקַר מִמֶּנָּה בַּעֲלִיָּתָהּ מִן הַמִּקְוֶה הֲרֵי זוֹ טְהוֹרָה מִפְּנֵי שֶׁהוּא דַּם טֹהַר. וְהַטְּבִילָה מוֹעֶלֶת לְכָל הַדָּם הַמֻּבְלָע בָּאֵיבָרִים וּמְשִׂימָה אוֹתוֹ דַּם טֹהַר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יולדת </strong> שירדה לטבול מטומאה לטהרה לאחר שבועיים ונעקר דם לבית החיצון ועמד שם טמאה כל זמן שהוא בה וכשתצא בעיא טבילה אחריתי ואם בעליתה נעקר הדם טהורה כדאמר רב חייא בר אשי משמיה דרב פרט יוצא דופן ואקשי׳ טומאה בלועה היא ולא מטמאה לא במגע ולא במשא והכא משום משא ונגיעה היא וטומאת ערב דאי משום ראיה מאתמול איעקר ורחמנא אמר בבשרה מכי אתי בבית החיצון הויא ראיה אלא משום משא ונגיעה היא כדאמר׳ ואם כן טומאה בלועה היא ואיפרק שמעתין דלכשיצא לחוץ הוא דקאמר דאז תטמא משום מגע ואם בעליתה נעקר הוי דם טהור ולא מיטמיא וכו׳.</p>
               </div>
             </div>
@@ -683,8 +799,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-4">Mishneh Torah, Those Who Defile Bed or Seat 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹלֶדֶת שֶׁטָּבְלָה אַחַר שִׁבְעָה שֶׁל זָכָר וְאַרְבָּעָה עָשָׂר שֶׁל נְקֵבָה אוֹ אַחַר סְפִירַת שִׁבְעָה יָמִים נְקִיִּים אִם הָיְתָה יוֹלֶדֶת בְּזוֹב הֲרֵי הִיא בְּכָל יְמֵי טֹהַר שֶׁלָּהּ כְּטָמֵא שֶׁטָּבַל וַעֲדַיִן לֹא הֶעֱרִיב שִׁמְשׁוֹ וַהֲרֵי הִיא טְבוּלַת יוֹם בְּכָל אוֹתָן הַיָּמִים. וְאֵינָהּ צְרִיכָה טְבִילָה אַחֶרֶת בְּסוֹף יְמֵי טֹהַר אֶלָּא בְּמִשְׁלָם הַיָּמִים הֲרֵי הִיא כִּטְבוּל יוֹם שֶׁהֶעֱרִיב שִׁמְשׁוֹ. בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁהִיא כִּטְבוּל יוֹם לְעִנְיַן תְּרוּמָה וּמַעֲשֵׂר. אֲבָל לְקָדָשִׁים הֲרֵי הִיא כְּרִאשׁוֹן לְטֻמְאָה שֶׁעֲדַיִן לֹא טָבַל אֶלָּא כְּמִי שֶׁנָּגַע בְּנִדָּה אוֹ בִּטְמֵא מֵת שֶׁעֲדַיִן לֹא טָבַל וְכַיּוֹצֵא בָּהֶן. נִמְצֵאתָ אַתָּה לָמֵד שֶׁהַיּוֹלֶדֶת בְּתוֹךְ יְמֵי טֹהַר אוֹכֶלֶת בְּמַעֲשֵׂר וּפוֹסֶלֶת אֶת הַתְּרוּמָה כִּטְבוּל יוֹם כְּמוֹ שֶׁיִּתְבָּאֵר. וְאִם נָפַל מֵרֻקָּהּ וּמִדַּם טָהֳרָתָהּ עַל כִּכָּר שֶׁל תְּרוּמָה הֲרֵי הוּא בְּטָהֳרָתוֹ שֶׁמַּשְׁקֵה טְבוּל יוֹם טָהוֹר כְּמוֹ שֶׁיִּתְבָּאֵר. וּמְטַמְּאָה אֶת הַקָּדָשִׁים כִּוְלַד הַטֻּמְאוֹת עַד שֶׁתַּשְׁלִים יְמֵי טֹהַר וְתִהְיֶה טְהוֹרָה לַכּל. וְיֵרָאֶה לִי שֶׁמֵּאַחַר שֶׁהִיא מְטַמְּאָה אֶת הַקֹּדֶשׁ שֶׁהִיא צְרִיכָה טְבִילָה אַחֶרֶת בַּסּוֹף וְאַחַר כָּךְ תִגַּע בַּקֹּדֶשׁ אַף עַל פִּי שֶׁאֵינָהּ צְרִיכָה טְבִילָה אַחֶרֶת לַאֲכִילַת הַתְּרוּמָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יולדת </strong> שטבלה כדינה הרי היא טבולת יום ואינה צריכה טבילה אחרת בסוף ימי טוהר למעשר ולתרומה אלא לקדשים כב&quot;ה דפרק תנוקת דתנן ובית הלל אומרים אינה צריכה טבילה באחרונה ובגמרא טבולת יום ארוך איכא בינייהו דהכתוב עשאה טבולת יום דכתיב בכל קדש לא תגע לרבות את התרומה ולקדשים מודו בית הלל לב&quot;ש דק&quot;ל אונן ומחוסר כפורים צריכין טבילה לקדש והיינו מדרבנן כדאמר׳ פרק חומר בקדש כיון דעד האידנא אסיר אצריכינהו רבנן טבילה ורוקה ודם טהרתה טהורים לתרומה כדתנן התם פרק תינוקת ואם נפל מרוקה וכו׳ על ככר של תרומה טהור וכדתנן נמי ריש פרק שני דטבול יום דדוקא בטבול יום עצמו הוא דמרבי׳ אפילו לתרומה וכדאמ׳ וכו׳.</p>
               </div>
             </div>
@@ -699,8 +820,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-5">Mishneh Torah, Those Who Defile Bed or Seat 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹלֶדֶת שֶׁהִיא מְצֹרַעַת וְטָבְלָה אַחַר שִׁבְעָה שֶׁל זָכָר אוֹ אַרְבָּעָה עָשָׂר שֶׁל נְקֵבָה הֲרֵי דַּם טֹהַר שֶׁלָּהּ טָמֵא כְּרֻקָּהּ וּכְמֵימֵי רַגְלֶיהָ. וְכֻלָּן כְּמַשְׁקִין טְמֵאִין שֶׁכָּל הַמַּשְׁקִין הַטְּמֵאִין הַיּוֹצְאִין מֵהֶן כְּמַשְׁקִין שֶׁהֵן נוֹגְעִין בָּהֶן. חוּץ מִזָּב וְכַיּוֹצֵא בּוֹ. שֶׁהֲרֵי שְׁלֹשָׁה מַשְׁקִין הַיּוֹצְאִין מִמֶּנּוּ אֲבוֹת טֻמְאוֹת כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יולדת </strong> שהיא מצורעת וטבלה אחר שבעה או י&quot;ד דם טוהר שלה טמא כרוקה ומימי רגליה כדתנן פרק בנות כותים ב&quot;ה אומר כרוקה וכו׳ ובגמרא מ&quot;ט דב&quot;ה אמר ר׳ יצחק לזכר לרבות מצורע למעיינותיו ולנקבה לרבות מצורעת למעיינותיה ואילימא שאר מעיינותיה כרוקה וכמימי רגליה דאתו מזב דכתיב וכי ירוק הזב ומיניה נפקי שאר מעיינות האי מזכר נפקא כיון דאיתרבי מצורע למעיינותיו כדאמר׳ איתרבי נמי מצורעת לכל מעיינותיה דאיכא דכוותיהו בזכר אלא האי דאיצטריך ולנקבה לרבות מצורעת לטמא דם טהרה שלה דליתיה בזכר ומשקין אלו היוצאין מהן כמשקין הנוגעים בהם חוץ מזב ששלשה המשקים היוצאים מהם הם אב הטומאה כדילפינן לעיל.</p>
               </div>
             </div>
@@ -715,8 +841,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-6">Mishneh Torah, Those Who Defile Bed or Seat 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָבָה קְטַנָּה שֶׁטָּבְלָה בַּיּוֹם הַשִּׁמּוּר שֶׁלָּהּ אַחַר הָנֵץ כְּמוֹ שֶׁבֵּאַרְנוּ בְּעִנְיַן אִסּוּר נִדָּה הֲרֵי מַגָּעָהּ וּבְעִילָתָהּ תְּלוּיִים. אִם נִגְמַר הַיּוֹם וְלֹא רָאֲתָה כָּל שֶׁנָּגְעָה בּוֹ טָהוֹר וּבוֹעֲלָהּ טָהוֹר וּפָטוּר. וְאִם רָאֲתָה דָּם אַחַר שֶׁטָּבְלָה כָּל טָהֳרוֹת שֶׁעָשְׂתָה טְמֵאוֹת וְעוֹשָׂת מִשְׁכָּב וּמֶרְכָּב וּבוֹעֲלָהּ חַיָּב חַטָּאת. טָבְלָה בְּלֵיל הַשִּׁמּוּר קֹדֶם שֶׁיַּעֲלֶה עַמּוּד הַשַּׁחַר הֲרֵי זוֹ כְּמִי שֶׁלֹּא טָבְלָה וַעֲדַיִן עוֹשָׂת מֶרְכָּב וּמוֹשָׁב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זבה </strong> קטנה שטבלה ביום השמור מגעה ובעילתה תלויה שאם ראתה אחר כך כל טהרות שעשתה טמאות ועושה מרכב ומושב ומטמאה בועלה כדתנן פרק תנוקת דף ע&quot;ב הרי זה תרבות רעה ומגען ובעילתן תלוייה וכו׳ טבלה בליל השמור הרי זה כמו שלא טבלה כדתנן התם לעיל ומודים ברואה וכו׳ וטבלה לערב ושמשה שמטמאין משכב ומושב וחייבים בקרבן משום דבעינן שימור והרי בעל זבה קטנה וכו׳.</p>
               </div>
             </div>
@@ -731,8 +862,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-7">Mishneh Torah, Those Who Defile Bed or Seat 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָרוֹאָה דָּם בְּיוֹם אַחַד עָשָׂר וְטָבְלָה לְעֶרֶב לֵיל שְׁנֵים עָשָׂר הֲרֵי זוֹ מְטַמְּאָה מִשְׁכָּב וּמוֹשָׁב. אַף עַל פִּי שֶׁאֵינָהּ רְאוּיָה לִהְיוֹת זָבָה גְּדוֹלָה כְּמוֹ שֶׁבֵּאַרְנוּ בְּעִנְיַן אִסּוּר נִדָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראתה </strong> ביום אחד עשר וטבלה לערב יום שנים עשר שהוא תחלת נדה פטורין מן הקרבן כדתנן התם במתניתין לב&quot;ה משום דלא בעיא שימורים כיון שאינה בימי זיבה ולענין טומאה מודו לב&quot;ש מדרבנן ואם טבלה ביום י&quot;ב אחר הנץ בועלה טהור אפי׳ מדרבנן כדא׳ ב&quot;ה הרי זה גרגרן הרואה דם בעשירי טובלת ביום אחד עשר ומשמרת אותו אף על פי שאינה ראויה להיות זבה גדולה ביום שלישי הוא יום י&quot;ב דהוי תחלת נדה ואפ&quot;ה בעיא שימו׳ דעשירי כתשיעי כרבי יוחנן דאמר התם מה תשיעי בעי שימור דהא ראוי להביאה לידי זבה גדולה תשיעי ועשירי ואחד עשר אף עשירי אם התחילה לראות בו בעי שימור י&quot;א כנגדו אף ע&quot;פ דאינה ראויה להיות זבה גדולה וכדאמרי׳ אחד עשר יום שבין נדה לנדה הלכה למשה מסיני ויום אחד עשר קאמר רבי אלעזר בן עזריה דהוי הלכה למשה מסיני ומאי הלכותיו משאר הימים שלפניו רבי יוחנן אמר הלכה אחד עשר דבדבר אחד הוא חלוק משלפניו דאחד עשר הוא דלא בעי שימור הא לאחריני עביד שימור דהיינו לעשירי ולרבי עקיבא קראי נינהו הני אחד עשר יום כדאיתא התם שלהי מכלתין וכדילפינן פרק ו׳ מהלכות איסורי ביאה וכו׳.</p>
               </div>
             </div>
@@ -747,8 +883,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-5-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-5-9">Mishneh Torah, Those Who Defile Bed or Seat 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָב וְזָבָה גְּדוֹלָה שֶׁטָּבְלוּ בְּיוֹם שְׁבִיעִי שֶׁלָּהֶן כְּמוֹ שֶׁבֵּאַרְנוּ לֹא יִתְעַסְּקוּ בְּטָהֳרוֹת עַד לָעֶרֶב שֶׁמָּא יִרְאוּ טֻמְאָה וְיִסְּתְּרוּ שִׁבְעַת יְמֵי הַסְּפִירָה וְנִמְצָא אוֹתָן הַטָּהֳרוֹת טְמֵאוֹת לְמַפְרֵעַ. אַף עַל פִּי שֶׁהֵן עוֹשִׂין מִשְׁכָּב וּמוֹשָׁב לְמַפְרֵעַ אֵין מְטַמְּאִין כְּלֵי חֶרֶס בְּהֶסֵּט מֵאַחַר שֶׁטָּבְלוּ אַף עַל פִּי שֶׁחָזְרוּ וְרָאוּ טֻמְאָה וְסָתְרוּ הַכּל. וְכָל כְּלִי חֶרֶס שֶׁהֱסִיטוּ עַד שֶׁלֹּא רָאוּ טָהוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זבה </strong> וזבה גדולה שטבלו ביום שביעי אם חזרו וראו ביום עצמו סותרים וכדילפינן נמי התם בהלכות איסורי ביאה פרק ו׳:</p>
               </div>
             </div>
@@ -764,8 +905,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-6-1">Mishneh Torah, Those Who Defile Bed or Seat 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ שֶׁהַזָּב וַחֲבֵרָיו מְטַמְּאִין מִשְׁכָּב וּמוֹשָׁב וּמֶרְכָּב. וְהַמִּשְׁכָּב וְהַמּוֹשָׁב אֶחָד הוּא וְלָמָּה נֶאֱמַר בַּתּוֹרָה <span class="source-small">(ויקרא טו ד)</span> &quot;מִשְׁכָּב וּמוֹשָׁב&quot; שֶׁהַמִּשְׁכָּב הָרָאוּי לִשְׁכִיבָה וְהַמּוֹשָׁב הָרָאוּי לִישִׁיבָה. וּבֵין שֶׁיָּשַׁב עַל הַמִּשְׁכָּב אוֹ שֶׁשָּׁכַב עַל הַמּוֹשָׁב טִמְּאָהוּ לְפִיכָךְ אֲנִי אוֹמֵר בְּכָל מָקוֹם מִשְׁכָּב לְבַד וְהוּא הַדִּין לְמוֹשָׁב. וְאֵי זֶהוּ מֶרְכָּב זֶה הָרָאוּי לִרְכִיבָה כְּגוֹן מִרְדַּעַת הַחֲמוֹר וְטַפִּיטָן הַסּוּס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משכב </strong> ומושב אחד הוא ובתרוייהו כתיב יכבס בגדיו ורחץ במים וכתיב בפ׳ נדה ואם על המשכב הוא או על הכלי אשר היא יושבת עליו ודרשינן בת&quot;כ דעל הכלי לרבות את המרכב דכתיב בנגעו בו בסיפיה דקרא דמהדר אמרכב דרבינן מעל הכלי ואם כן משמע דמשכב ומושב חד הוא דכתי׳ ואם על המשכב הוא אשר היא יושבת עליו דעל הכלי אמרכב מהדר כדאמר׳ וכו׳ ולמה נאמרו משכב ומושב שהמשכב ראוי לשכיבה והמושב לישיבה כדדרשי׳ בת&quot;כ מדכתיב אשר ישכב עליו יכול אפילו שכב על עריבה ועל הדלת תלמוד לומר משכב וגו׳ וכל כלי אשר ישב עליו וגו׳ יכול אפילו ישב על האבן ועל הקורה תלמוד לומר כלי וגו׳ שישב על המשכב או שכב על המושב טמאהו כדמרבי׳ בת&quot;כ מדכתיב כל המשכב אשר ישכב עליו הזב יטמא וכל כלי אשר ישב עליו יטמא יטמא ריבה וכו׳ המרכב הוא הראוי לרכיבה כמרדעת וטפיסן כדאמרינן בת&quot;כ. וכולן אבות הטומאה ומטמאין אדם וכלים במגע ואת האדם במשא אלא שהנוגע במרכב אינו מטמא בגדים ולא כלים אפילו בשעת מגעו דמגעו חלוק ממשאו במרכב מה שאין כן במשכב ומושב כדכתיב בהו יכבס בגדיו ובמרכב כתיב וכל המרכב וגו׳ וכל הנוגע בכל אשר יהיה תחתיו יטמא ולא כתיב יכבס בגדיו וכתיב והנושא אותם יכבס בגדיו נמצאו הזב והזבה והיולדת והנדה משכבן ורוקן ומימי רגליהן ודם נדה וזיבה ויולדת וזובו של זב כל אחד מאלו הוא אב כדילפי׳ לעיל פ׳ ראשון ואדם שנגע באחד מאלו או נשאן מטמא בגדים וכלים בשעת נגיעתו או נשיאתו ואינו מטמא אדם ולא כלי חרש כדתנן פרק בתרא דזבין ותניא מנין לעשות שאר כלים כבגדים דלא כתיב אלא יכבס בגדיו תלמוד לומר וטמא יכול יטמא אדם וכלי חרש ת&quot;ל בגד בגד הוא מטמא ואינו מטמא אדם וכלי חרש ותניא נמי ואיש אשר יגע במשכבו יכבס בגדיו בשעת מגעו מטמא בגדים פירש אינו מטמא בגדים וכל שלא נאמר בו יכבס בגדיו אינו מטמא בגדים בשעת מגעו.</p>
               </div>
             </div>
@@ -780,8 +926,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-6-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-6-3">Mishneh Torah, Those Who Defile Bed or Seat 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַכֵּלִים שֶׁיִּנָּשְׂאוּ לְמַעְלָה מִן הַזָּב הֵם הַנִּקְרָאִין מַדָּף וְהֵם כֻּלָּם כְּכֵלִים שֶׁהוּא נוֹגֵעַ בָּהֶם שֶׁהֵם רִאשׁוֹן לְטֻמְאָה וְאֵינָן מְטַמְּאִין לֹא אָדָם וְלֹא כֵּלִים אֲבָל מְטַמְּאִין אֳכָלִין וּמַשְׁקִין כִּשְׁאָר וַלְדוֹת הַטֻּמְאָה. וְטֻמְאַת מַדָּף מִדִּבְרֵיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הכלים שינשאו למעלה מן הזב הם נקראים מדף ואינם מטמאים אוכלים ומשקים כדתנן פרק ד׳ דזבין וכדא׳ פרק בנות כותים מה עליונו של זב אינו מטמא אלא אוכלים ומשקים וכו׳ וכתב הרב ז&quot;ל שטומאת מדף מדבריהם והראב&quot;ד ז&quot;ל כתב דטומאת מדף זו מדאוריתא ובת&quot;כ יליף לה רבי שמעון מדכתיב כל כלי עץ ישטף במים דלכלי שטף לא איצטריך דהא כבר נאמר הנוגע בבשר הזב יכבס בגדיו וכל שמטמא בגדים כלים נמי מטמא דבגדים נמי כלים נינהו ואם הנוגע בזב מטמא כלי שטף כדאמר׳ כל שכן הוא עצמו אם כן למה נאמר וכל כלי עץ ישטף במים אלו אוכלים ומשקים וכלים שעל גבי הזב דהיינו מדף ומשום דהויא טומאה קלה דלא מטמא אדם לטמא בגדים קרי לה מדף כדכתיב קול עלה נדף מידי דלית ביה מששא כדא׳ פרק קמא דנדה וכו׳.</p>
               </div>
             </div>
@@ -796,8 +947,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-6-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-6-4">Mishneh Torah, Those Who Defile Bed or Seat 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב וְהַזָּבָה וְהַנִּדָּה וְהַיּוֹלֶדֶת וְהַמְצֹרָע שֶׁמֵּתוּ הֲרֵי הֵן מְטַמְּאִין מִשְׁכָּב וּמֶרְכָּב אַחַר מִיתָתָן כְּשֶׁהָיוּ כְּשֶׁהֵן חַיִּין עַד שֶׁיִּמֹּק הַבָּשָׂר. וְטֻמְאָה זוֹ מִדִּבְרֵיהֶם גְּזֵרָה שֶׁמָּא יִתְעַלֵּף אֶחָד מֵאֵלּוּ וִידַמּוּ שֶׁמֵּת וְהוּא עֲדַיִן לֹא מֵת. נִמְצָא מִשְׁכָּבוֹ וּמֶרְכָּבוֹ שֶׁל אַחַר מִיתָה אַב טֻמְאָה שֶׁל דִּבְרֵי סוֹפְרִים. אֲבָל נָכְרִי שֶׁמֵּת אֵינוֹ עוֹשֶׂה מִשְׁכָּב שֶׁהֲרֵי כְּשֶׁהוּא חַי אֵינוֹ מְטַמֵּא אֶלָּא מִדִּבְרֵיהֶם כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזב </strong> והזבה והנדה והיולדת ומצורע שמתו הרי הן מטמאין משכב ומרכב אחר מיתתן מדרבנן כדתנן פרק תנוקת ובת&quot;כ יליף שאין זב מת מטמא משכב דכתיב וזב ולא המת ורבי שמעון יליף מדכתיב אשר ישכב ואשר ישב משמע את שיש לו שכיבה וישיבה אבל מת שאין לו שכיבה וישיבה אינו מטמא משכב ומושב.</p>
               </div>
             </div>
@@ -812,8 +968,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-6-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-6-5">Mishneh Torah, Those Who Defile Bed or Seat 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מָקוֹם שָׁאַתָּה שׁוֹמֵעַ טֻמְאַת מִשְׁכָּב וּמֶרְכָּב אֵינוֹ שֶׁיִּגַּע הַטָּמֵא בַּמִּשְׁכָּב אוֹ בַּמֶּרְכָּב כְּשֶׁיִּנָּשֵׂא עֲלֵיהֶן אֶלָּא אֲפִלּוּ הָיוּ אֲבָנִים גְּדוֹלוֹת לְמַעְלָה מִן הַכְּלִי הֶעָשׂוּי לְמִשְׁכָּב אוֹ לְמֶרְכָּב וְנִשָּׂא הַזָּב עַל הָאֲבָנִים מִלְּמַעְלָה נִטְמָא הַמִּשְׁכָּב אוֹ הַמֶּרְכָּב וְנַעֲשָׂה אַב טֻמְאָה אֲפִלּוּ אֶלֶף מִשְׁכָּב אוֹ מֶרְכָּב זֶה לְמַעְלָה מִזֶּה וְאֶבֶן עַל הָעֶלְיוֹן וְיָשַׁב אֶחָד מִמְּטַמְּאֵי מִשְׁכָּב וּמוֹשָׁב לְמַעְלָה מִן הָאֶבֶן נִטְמְאוּ הַכּל. וְאֶחָד הַמִּשְׁכָּב הַנּוֹגֵעַ בָּאָרֶץ אוֹ הַמִּשְׁכָּב שֶׁל מַעְלָה אִם נָגַע בּוֹ בִּשְׁעַת שְׁכִיבָתוֹ כָּל אֶחָד מֵהֶן אַב הַטֻּמְאָה. וְכֵן אִם הָיָה אֶחָד מִמְּטַמְּאֵי מִשְׁכָּב וּמוֹשָׁב לְמַטָּה וְאֶבֶן עַל גַּבָּיו וָאֳכָלִין וּמַשְׁקִין וְכֵלִים וְאָדָם עַל גַּבֵּי הָאֶבֶן זֶה לְמַעְלָה מִזֶּה כֻּלָּן טְמֵאִין וְרִאשׁוֹן לְטֻמְאָה. וְאֶחָד כְּלִי אוֹ אֹכֶל וּמַשְׁקֶה אוֹ אָדָם הַנּוֹגֵעַ בְּזָב. אוֹ כְּלִי אוֹ אֹכֶל וּמַשְׁקֶה אוֹ אָדָם שֶׁהוּא לְמַעְלָה עַל הָאֶבֶן שֶׁעַל גַּבָּיו. הַכּל וְלַד טֻמְאָה. וְאֵינוֹ מְטַמֵּא לֹא אָדָם וְלֹא כֵּלִים חוּץ מִן הָאָדָם שֶׁעַל גַּבֵּי הַזָּב שֶׁעַד שֶׁלֹּא פֵּרַשׁ מִמְּטַמְּאָיו מְטַמֵּא שְׁאָר כֵּלִים כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> ממטמאי משכב ומושב שישב על אבן ותחתיהן אפילו אלף מרכב ומושב ניטמאו הכל כדתנן פרק קמא דכלים למעלה מהן מרכב שהוא מטמא תחת אבן מטמא וכדתניא בת&quot;כ והיושב על הכלי אשר ישב עליו הזב אין לי אלא בזמן שישב עליו הזב ונגע בו מנין לעשרה מושבות זו על גב זו אפילו על גבי אבן מטמא תלמוד לומר אשר ישב עליו הזב יטמא מקום שהזב יושב ומטמא ישב הטהור ויטמא דאשר ישב עליו הזב משמע ראוי לישב עליו אף על גב דלא ישב גביה בחיבורין כגון הכא דישב על גבי אבן מטמא וכדכתיב והתות אבן חדא ושומת על פום גובא ואין לי אלא שהזב יושב והזב שם מנין לעשות ריקם כמלא דהיינו בזמן שאין יושב עליו כיושב עליו תלמוד לומר בכלי בין מלא בין ריקם. וכן אם היו אוכלין ומשקין וכלים ואדם על גבי האבן ואחד ממטמאי משכב למטה מן האבן האוכלים וכו׳ הם וולד הטומאה והוי מדרבנן כדא׳ לעיל לדעת הרב ז&quot;ל וכל שיהיה למטה מן הזב ולא יגע בו טהור חוץ מן האדם שהוא ראשון לטומאה וחוץ מכלי העשוי למשכב או מרכב דהוי אב הטומאה כדילפינן בת&quot;כ מדכתיב כל המשכב אשר ישכב עליו הזב יטמא ואיש אשר יגע במשכבו יכבס בגדיו משכב הוא טמא תחת הזב לטמא אדם ולטמא בגדים ואין אדם מטמא תחת הזב לטמא אדם ובגדים ומה שאינו ראוי למשכב ומושב ולא נגע בו אלא שהיה תחתיו טהור דכתיב ישב עליו המיוחד לישיבה לא שאומר עמוד ונעשה מלאכתנו:</p>
               </div>
             </div>
@@ -829,8 +990,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-7-1">Mishneh Torah, Those Who Defile Bed or Seat 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב מְטַמֵּא אֶת הַמִּשְׁכָּב וְהַמּוֹשָׁב וְהַמֶּרְכָּב בַּחֲמִשָּׁה דְּרָכִים. עוֹמֵד. יוֹשֵׁב. שׁוֹכֵב. נִתְלֶה. וְנִשְׁעָן. כֵּיצַד. כְּלִי הֶעָשׂוּי לְמִשְׁכָּב אוֹ לְמוֹשָׁב אוֹ לְמֶרְכָּב אֲפִלּוּ הָיָה תַּחַת הָאֶבֶן אִם עָמַד אֶחָד מִמְּטַמְּאֵי מִשְׁכָּב עַל הָאֶבֶן אוֹ יָשַׁב עָלֶיהָ אוֹ שָׁכַב אוֹ נִשְׁעַן עָלֶיהָ אוֹ נִתְלָה בָּהּ הוֹאִיל וְנִתְנַשֵּׂא עַל הַכְּלִי הַזֶּה מִכָּל מָקוֹם נִטְמָא וְנַעֲשָׂה אַב טֻמְאָה. וְכָל אֶחָד מֵחֲמִשָּׁה דְּרָכִים אֵלּוּ הוּא הַנִּקְרָא מִדְרָס בְּכָל מָקוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בחמשה </strong> דרכים מטמא הזב משכב או מרכב עומד יושב שוכב נתלה נשען כדתנן פרק ב׳ דזבין ותניא בת&quot;כ כתיב אשר ישכב עליו והיושב על הכלי וגו׳ אין לי אלא שכב וישב על משכב ומושב שכב על מושב או ישב על משכב או עמד נשען נתלה מנין ת&quot;ל יטמא יטמא ריבה והמשכב והמרכב מטמאין האדם במגע ובמשא גם כן מה שאין כן בזב שאינו מטמא משכב ומרכב אלא בחמשה דרכים כדאמר וכולם נקראים מדרס ולא במגע ובמשא דלא כתיב נגיעה ונשיאה אלא באדם הנוגע או הנושא הזב או המשכב או המרכב כדא׳ לעיל פרק ו׳.</p>
               </div>
             </div>
@@ -845,8 +1011,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-7-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-7-3">Mishneh Torah, Those Who Defile Bed or Seat 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַזָּב מְטַמֵּא אֶת הַמִּשְׁכָּב עַד שֶׁיִּנָּשֵׂא רֻבּוֹ עַל הַמִּשְׁכָּב אוֹ עַל הַמּוֹשָׁב אוֹ עַל הַמֶּרְכָּב. וְכֵן הַטָּהוֹר שֶׁדָּרַס עַל מִדְרַס הַזָּב אֵינוֹ מִתְטַמֵּא מֵחֲמַת הַמִּדְרָס עַד שֶׁיִּנָּשֵׂא רֻבּוֹ עָלָיו. אֲבָל אִם נִשָּׂא מִעוּטוֹ הוֹאִיל וְלֹא נָגַע הֲרֵי זֶה טָהוֹר. כֵּיצַד. מִקְצָת טָמֵא עַל הַמִּשְׁכָּב וּמִקְצָת הַטָּהוֹר עַל אוֹתוֹ מִשְׁכָּב הַמִּשְׁכָּב טָהוֹר וְהַטָּהוֹר שֶׁנָּשָׂא מִקְצָתוֹ עָלָיו טְהוֹרִין. הַטָּמֵא שֶׁנִּשָּׂא רֻבּוֹ עַל מִקְצָת הַמִּשְׁכָּב אוֹ הַמֶּרְכָּב נִטְמָא הַמִּשְׁכָּב כֻּלּוֹ אוֹ הַמֶּרְכָּב כֻּלּוֹ. וְכֵן הַטָּהוֹר שֶׁנִּשָּׂא רֻבּוֹ עַל מִקְצָת הַמִּדְרָס נִטְמָא וְאַף עַל פִּי שֶׁלֹּא נָשָׂא אֶלָּא עַל מִקְצָת הַמּוֹשָׁב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> הזב מטמא משכב עד שינשא רובו עליו כדתנן פ&quot;ה דזבין הטמא על מקצת המשכב וכו׳ ותניא בת&quot;כ אשר ישב עליו ואשר ישכב עליו עד שינשא רובו עליו ותניא נמי ואם על המשכב הוא עד שינשא רובו עליו דלהכי כתיב הוא דהיינו כולו ורובו ככולו הוי או על הכלי אשר היא יושבת עליו וכו׳ אפילו על מקצתו מכאן אמרו רוב טמא על הטהור או על מקצתו ורוב טהור על הטמא או על מקצתו בין בזב בין במשכב טמא מקצת טמא על הטהור או על מקצתו בזב טמא במשכב טהור דמשכב הוא דבעינן שינשא רובו דכתיב הוא כדאמר׳ אבל בזב כל שנישא מקצתו על אדם הטהור או מקצת הטהור עליו מטמא וכדתניא בתוספתא דזבין פרק בתרא והא דסגי בנשיאת רובו של זב על מקצת המשכ׳ לטמאו ובנשיאת רוב הטהור על מקצת המשכב פי׳ הרב ר׳ הלל ז&quot;ל בפי׳ ת&quot;כ מדכתיב והיושב על הכלי אשר היא יושבת עליו מדלא כתיב אשר ישבה אלא אשר היא יושבת משמע דנדה קא יתבא במקצת מושב והטהור במקצתו ואפילו הכי כיון שנישא רובו טמא כדאמר׳.</p>
               </div>
             </div>
@@ -861,8 +1032,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-7-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-7-4">Mishneh Torah, Those Who Defile Bed or Seat 7:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָב שֶׁהָיָה מֻטָּל עַל חֲמִשָּׁה סַפְסָלִין שֶׁהֵן מֻנָּחִין לְאָרְכָּן טְמֵאִים שֶׁהֲרֵי נִשָּׂא רֻבּוֹ עַל כָּל אֶחָד מֵהֶן. הָיוּ מֻנָּחִין לְרָחְבָּן טְהוֹרִין שֶׁהֲרֵי לֹא נִשָּׂא רֻבּוֹ עַל כָּל אֶחָד מֵהֶן. וְאִם יָשַׁן עֲלֵיהֶם בֵּין כָּךְ וּבֵין כָּךְ טְמֵאִים שֶׁמָּא נִתְהַפֵּךְ עֲלֵיהֶם וְנִמְצָא רֻבּוֹ עַל כָּל אֶחָד. הָיָה מֻטָּל עַל שִׁשָּׁה כֵּלִים הָעֲשׂוּיִים לְמִשְׁכָּב. שְׁתֵּי יָדָיו עַל שְׁנַיִם. וּשְׁנֵי רַגְלָיו עַל שְׁנַיִם. וְרֹאשׁוֹ עַל אֶחָד. וְגוּפוֹ עַל אֶחָד. אֵין טָמֵא מִשּׁוּם מִשְׁכָּב אֶלָּא זֶה שֶׁתַּחַת גּוּפוֹ שֶׁהֲרֵי נִשָּׂא רֻבּוֹ עָלָיו. עָמַד עַל שְׁנֵי מִשְׁכָּבוֹת רַגְלוֹ אַחַת עַל אֶחָד וְרַגְלוֹ שְׁנִיָּה עַל הַשֵּׁנִי שְׁנֵיהֶן טְמֵאִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זב </strong> שהיה מוטל על חמשה ספסלים לארכן טמאים שהרי נשא הזב על כל א׳ מהם כיון ששכב עליהם לארכו על רחבן והר&quot;ש ז&quot;ל פי׳ ששכב ארכו לארכן ולרחבן ששכב ארכו לרחבן ולכך טהורים דאין רובו נשען על אחת מהם ובעיא עד שינשא רובו כדילפינן מדכתיב אם על המשכב הוא וכו׳ ואם ישן טמאים מספק כדתנן נמי התם פרק ד׳ דזבין. היה מוטל על ששה אין טמא אלא זה שתחת גופו שנישא רובו עליו כדתנן נמי התם וכו׳ עמד על שתי כסאות רגל אחד על כל אחד שניהם טמאים כדתנן התם רבי שמעון אומר אם רחוקים זה מזה טהורים משמע דאם קרובים טמאים דלפעמים נסמך רובו על רגל זה או על זה ולהכי שניהם טמאים אי נמי בין קרובים בין רחוקים שניהם טמאים כדמשמע לשון הרב ז&quot;ל שלא חילק ומשמע דסבירא ליה דת&quot;ק דה׳ ספסלים או ששה כסאות סבר דבשני כסאות רגלו על כל אחד שניהם טמאים ופליג רבי שמעון כשהם רחוקים ולכך כתב הרב ז&quot;ל בפי׳ המשנה ואין הלכה כרבי שמעון דמשמע דפליג עליה ת&quot;ק.</p>
               </div>
             </div>
@@ -877,8 +1053,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-7-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-7-5">Mishneh Torah, Those Who Defile Bed or Seat 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה יוֹשֵׁב עַל גַּבֵּי הַמִּטָּה וְאַרְבָּעָה מִשְׁכָּבוֹת תַּחַת אַרְבַּע רַגְלֵי הַמִּטָּה כֻּלָּן טְמֵאוֹת מִפְּנֵי שֶׁאֵינָהּ יְכוֹלָה לַעֲמֹד עַל שָׁלֹשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה </strong> יושב על גבי המטה וד׳ משכבות תחת ד׳ רגלים טמאות שאינה יכולה לעמוד על ג׳ כדתנן נמי התם והוי נישא רובו על כל משכב אבל ד׳ משכבות שתחת רגלי הבהמה שהיה רוכב עליה טהורים שיכולה לעמוד על ג׳ אבל שתחת ב׳ רגלים טמא.</p>
               </div>
             </div>
@@ -893,8 +1074,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-7-7">Mishneh Torah, Those Who Defile Bed or Seat 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יָשַׁב הַטָּמֵא עַל קוֹרַת בֵּית הַבַּד כָּל הַכֵּלִים שֶׁבָּעֵקֶל טְמֵאִים. שֶׁהֲרֵי הֵם רְצוּצִים תַּחַת הַקּוֹרָה. אֲבָל אִם יָשַׁב עַל מַכְבֵּשׁ שֶׁל כּוֹבֵס הֲרֵי הַכֵּלִים שֶׁתַּחַת לוּחַ הַמַּכְבֵּשׁ טְהוֹרִים. מִפְּנֵי שֶׁהוּא רָפוּי וְנִמְצֵאת מִשְׁעֶנֶת הַמַּכְבֵּשׁ עַל רַגְלָיו לֹא עַל הַכֵּלִים שֶׁתַּחְתָּיו. שֶׁאִם יִרְצֶה אָדָם לְהַכְנִיס סַכִּין וְכַיּוֹצֵא בָּהּ בֵּין הַכֵּלִים שֶׁתַּחַת הַמַּכְבֵּשׁ וּבֵין הַמַּכְבֵּשׁ מַכְנִיס אַף עַל פִּי שֶׁהוּא קָשׁוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ישב </strong> על קורת בית הבד כל הכלים שבעקל טמאים אבל על לוח הכלים שתחתיה (טמאים) [טהורים] כדתנן התם וטעמא מפני שהוא רפוי ואין נישא רובו הכלים והראב&quot;ד ז&quot;ל כתב מפני שטעון כאבנים כדתניא בתוספתא ומקפיד שלא ישבו עליו שלא יפלו האבנים והוי כתרקב דאף ע&quot;ג שהאבנים ראוים לישיבה הרי הם כרוכים בדבר שמקפיד עליו ולפי׳ הרב ז&quot;ל ניחא הא דתניא מכבש בהדי הני דטעמן משום נישא רובו ולאו משום דאינו לישיבה כהראב&quot;ד ז&quot;ל.</p>
               </div>
             </div>
@@ -909,8 +1095,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-7-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-7-8">Mishneh Torah, Those Who Defile Bed or Seat 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָב שֶׁדָּרַס עַל כְּלִי שֶׁלֹּא נַעֲשָׂה לְמִשְׁכָּב אוֹ לְמוֹשָׁב אוֹ לְמֶרְכָּב אַף עַל פִּי שֶׁהוּא רָאוּי לְמִשְׁכָּב הוֹאִיל וְלֹא נָגַע בּוֹ הֲרֵי זֶה טָהוֹר. שֶׁהֲרֵי אוֹמְרִים לוֹ עֲמֹד וְנַעֲשֶׂה מְלַאכְתֵּנוּ בִּכְלִי זֶה. כֵּיצַד. כָּפָה סְאָה וְיָשַׁב עָלֶיהָ כָּפָה עֲרֵבָה וְיָשַׁב עָלֶיהָ אוֹ שֶׁיָּשַׁב עַל פָּרֹכֶת אוֹ עַל קֶלַע שֶׁל סְפִינָה וְכַיּוֹצֵא בָּהֶן. הֲרֵי אֵלּוּ טְהוֹרִים. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טו ד)</span> &quot;אֲשֶׁר יֵשֵׁב עָלָיו&quot; הַמְיֻחָד לִישִׁיבָה לֹא שֶׁאוֹמְרִים לוֹ עֲמֹד וְנַעֲשֶׂה מְלַאכְתֵּנוּ. מִפְּנֵי שֶׁכְּלִי זֶה לֹא נַעֲשָׂה לִישִׁיבָה. הָיָה הַכְּלִי מְשַׁמֵּשׁ לִישִׁיבָה עִם מְלַאכְתּוֹ שֶׁעוֹשֶׂה לָהּ הֲרֵי זֶה מִתְטַמֵּא בְּמִדְרָס. כְּגוֹן הָרְדִיד. וְהֶחָלוּק. וְהַטַּלִּית. וְהַתּוּרְמָל. וְהַחֵמֶת. אַף עַל פִּי שֶׁכָּל אֶחָד מֵהֶן לֹא נַעֲשָׂה מִתְּחִלָּה לְמִשְׁכָּב הֲרֵי הוּא מְשַׁמֵּשׁ אֶת הַמִּשְׁכָּב עִם מְלַאכְתּוֹ. וְכֵן כָּל כַּיּוֹצֵא בְּאֵלּוּ. וּבְהִלְכוֹת כֵּלִים אֲבָאֵר כָּל הַכֵּלִים הַמִּטַּמְּאִין בְּמִדְרָס וְכֵלִים שֶׁאֵין מִטַּמְּאִין בְּמִדְרָס. וְאֵי זֶה כְּלִי רָאוּי לִישִׁיבָה. וְאֵי זֶה רָאוּי לִשְׁכִיבָה. וְאֵי זֶה רָאוּי לִרְכִיבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זב </strong> שדרס על כלי שלא נעשה למשכב ומושב או מרכב טהור דכתיב אשר ישב עליו המיוחד לישיבה לא שאומרים לו עמוד ונעשה מלאכתינו היה הכלי משמש ישיבה עם מלאכתו שעושה הרי זה מתטמא במדרס כדתנן פרק ב׳ דכלים דהוי כמיוחד לישיבה:</p>
               </div>
             </div>
@@ -926,8 +1117,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-8-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-8-2">Mishneh Torah, Those Who Defile Bed or Seat 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין בְּכָל אֲבוֹת הַטֻּמְאוֹת כֻּלָּן טֻמְאָה שֶׁאִם תָּסִיט אֶת הָאָדָם הַטָּהוֹר אוֹ אֶת הַכְּלִי הַטָּהוֹר תְּטַמֵּא אוֹתָן אֶלָּא הַזָּב אוֹ חֲבֵרָיו בִּלְבַד. וְזוֹ הִיא הַטֻּמְאָה הַיְתֵרָה בְּזָב שֶׁלֹּא מָצִינוּ כְּמוֹתָהּ בְּכָל הַתּוֹרָה שֶׁאִם הֵסִיט אֶת הַטְּהוֹרִין טְמֵאִין. כֵּיצַד. הָיְתָה קוֹרָה מֻטֶּלֶת עַל רֹאשׁ הַגָּדֵר וְאָדָם טָהוֹר אוֹ כֵּלִים אֲפִלּוּ כְּלִי חֶרֶס עַל קְצָתָהּ וְהֵנִיד הַזָּב אֶת הַקָּצֶה הַשֵּׁנִי הוֹאִיל וְנִתְנַדְנְדוּ מֵחֲמַת הַזָּב הֲרֵי זֶה כְּמִי שֶׁנָּגַע בָּהֶן וּטְמֵאִין וְנַעֲשׂוּ רִאשׁוֹן לְטֻמְאָה דִּין תּוֹרָה. וְאֵין צָרִיךְ לוֹמַר שֶׁאִם נָשָׂא הַזָּב אֶת הָאָדָם אוֹ אֶת הַכֵּלִים שֶׁטִּמְּאָן. וְאֶחָד זָב וְזָבָה נִדָּה וְיוֹלֶדֶת בְּכָל הַדְּבָרִים הָאֵלּוּ. הִנֵּה לָמַדְתָּ שֶׁהָאָדָם הַטָּהוֹר שֶׁהֵסִיט אֶת הַזָּב נִטְמָא מִשּׁוּם נוֹשֵׂא זָב. וְהַזָּב שֶׁהֵסִיט אֶת הַטָּהוֹר בֵּין אָדָם בֵּין כֵּלִים אֲפִלּוּ כְּלֵי חֶרֶס טְמֵאִין. מִפְּנֵי שֶׁהַנָדַת הַזָּב לַאֲחֵרִים כְּאִלּוּ נָגַע בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> טומאה שתסיט את הטהור ותטמא אלא הזב וחבריו בלבד ולא מצינו כמותה בכל התורה כולה כדתניא פ׳ ר׳ עקיבא ותנן בזבין הזב בכף מאזנים ואוכלין ומשקין בכף שניה כרע הזב טמאין שהרי הסיטן זה והיסט של זב כי האי גוונא בין בכלים בין באדם בין באוכלים ומשקין טמא דבכלים כתיב וכלי חרש אשר יגע בו הזב ותניא בת&quot;כ יכול יטמאנו מאחוריו נאמר כאן בו ונאמר להלן אשר תבושל בו מה להלן מאוירו אף כאן מאוירו א&quot;כ למה נאמר אשר יגע בו פשיטא מי גרע משאר טומאות שמטמאות כלי חרס מאוירן כיון דכתיב גבי שרצים למה לי למכתביה הכא אלא להביא מגעו שהוא ככולו שהוא הסיטו שמסיט אותו וגבי אדם נמי כתיב וכל אשר יגע בו הזב ואי משום מגע הא כתיב נוגע בבשר הזב אלא להביא מגעו שהוא ככולו שהוא היסטו וגבי אוכלים ומשקין תניא וכל כלי עץ ישטף במים מה בא זה ללמדנו וכו׳ אלא להביא אוכלין ומשקין וכלים הנישאים על גבי הזב דבסיפיה דקרא דאשר יגע בו הזב כתיב דאוקמניה (דאוקמיניה) דמשתעי בהיסט והיינו דתנן כל הנישא ע&quot;ג הזב טמא ואם כרעו הם שנשאו הן את הזב טהורים כדתנן כל שהזב נישא עליו טהור חוץ מן הראוי למשכב ומושב שמיוחד לישיבה כדאמרינן לעיל וכי כתיב משא הזב באדם כתיב והנושא אותם וגו׳.</p>
               </div>
             </div>
@@ -942,8 +1138,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-8-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-8-3">Mishneh Torah, Those Who Defile Bed or Seat 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֹמֶר בְּהֶסֵּט הַזָּב מִמַּגָּעוֹ שֶׁאִם נָגַע בִּכְלִי חֶרֶס הַמֻּקָּף צָמִיד פָּתִיל טָהוֹר וְאִם הֱסִיטוֹ טִמְּאָהוּ. וְכֵן כְּלִי חֶרֶס שֶׁהוּא נָבוּב כְּכַדּוּר וַעֲדַיִן לֹא נַעֲשָׂה לוֹ פֶּה כְּמוֹ אִלְפָּסִין אִירְנִיוֹת אִם הֱסִיטָן הַזָּב טְמֵאִים וְאַף עַל פִּי שֶׁהֵן טְהוֹרִין בְּאֹהֶל הַמֵּת שֶׁהֲרֵי הֵן כִּכְלִי חֶרֶס הַמֻּקָּף צָמִיד פָּתִיל שֶׁפִּתְחוֹ סָתוּם. וְכֵן מַחַט שֶׁהָיְתָה בְּלוּעָה בְּתוֹךְ הָעֵץ וְטַבַּעַת הַבְּלוּעָה בְּתוֹךְ הַלְּבֵנָה וְהֵסִיט הַזָּב אֶת הָעֵץ אוֹ הַלְּבֵנָה נִטְמְאוּ הַכֵּלִים הַבְּלוּעִים שֶׁבְּתוֹכָן. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומה </strong> שאינו מטמא באהל המת בצמיד פתיל מיטמא בהיסט הזב דהא מסיט ליה לכוליה ככלי חרס שהוא נבוב כדתנן פ&quot;ב בעדיות וכמחט בלועה בתוך העץ וטבעת בתוך הלבינה וכדתנן פרק ט׳ דכלים. זב שהכניס ידו או רגלו לאויר כלי חרש הואיל ולא נגע בו ולא הנידו טהור שאין מטמאים לאיברים.</p>
               </div>
             </div>
@@ -958,8 +1159,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-8-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-8-5">Mishneh Torah, Those Who Defile Bed or Seat 8:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָב שֶׁהָיָה קָנֶה אָחוּז בְּתוֹךְ קֻמְטוֹ וְהֵסִיט וְהוֹצִיא בִּקְצֵה הַקָּנֶה אָדָם אוֹ כְּלִי הֲרֵי הֵן טְהוֹרִין שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טו יא)</span> &quot;וְכָל אֲשֶׁר יִגַּע בּוֹ הַזָּב וְיָדָיו לֹא שָׁטַף בַּמָּיִם&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁהַכָּתוּב הַזֶּה מְדַבֵּר בְּהֶסֵּט הַזָּב וְהוֹצִיאוֹ בִּלְשׁוֹן נְגִיעָה לוֹמַר מָה נְגִיעָה בְּיָדָיו וְהַדּוֹמֶה לְיָדָיו מִשְּׁאָר גּוּפוֹ הַגָּלוּי אֵצֶל הַנְּגִיעָה אַף הֶסֵּטוֹ עַד שֶׁיָּסִיט בְּגָלוּי שֶׁבְּגוּפוֹ לֹא שֶׁיָּסִיט בְּבֵית הַסְּתָרִים. הָיָה הַקָּנֶה בְּקֻמְטוֹ שֶׁל טָהוֹר וְהֵסִיט בּוֹ אֶת הַזָּב טָמֵא שֶׁהַמֵּסִיט אֶת הַטֻּמְאָה כְּנוֹשֵׂא אוֹתָהּ וּכְשֵׁם שֶׁהַנּוֹשֵׂא בְּבֵית הַסְּתָרִים טָמֵא כְּמוֹ שֶׁבֵּאַרְנוּ בִּתְחִלַּת סֵפֶר זֶה כָּךְ הַמֵּסִיט בְּבֵית הַסְּתָרִים טָמֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זב </strong> המסיט בבית הסתרים טהור כדאמרינן פ׳ יוצא דופן בזב שהיה קנה אחוז תוך קומטו והיסיט בקצה הקנה ויליף לה מדכתיב כל אשר יגע בו הזב וידיו לא שטף וכו׳ זהו הסיטו של זב כדאמר׳ לעיל וכתיב וידיו דדרשינן ביה הכי היכא דהיסיט בו הזב בידיו כלומר בגלוי ומדאפקיה בלשון נגיעה ילפינן נמי לכל נגיעות דאין מגע בית הסתרים מטמא אבל טהור שהסיט את הזב ניטמא שהרי הסיטה דהוי כנושאה וגבי טהור שהסיט את הזב דנפקא לן מקרא אחרינא לא כתיב ביה ידיו ולהכי לא בעיא גלוי.</p>
               </div>
             </div>
@@ -974,8 +1180,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-8-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-8-6">Mishneh Torah, Those Who Defile Bed or Seat 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב בְּכַף מֹאזְנַיִם וּכְלִי הֶעָשׂוּי לְמִשְׁכָּב אוֹ לְמֶרְכָּב בְּכַף שְׁנִיָּה כְּנֶגְדּוֹ. כָּרַע הַזָּב הֲרֵי הֵן כְּכֵלִים שֶׁנָּגַע בָּהֶן שֶׁהֲרֵי הֱסִיטָן. כָּרְעוּ הֵן טְמֵאִין מִשּׁוּם מִשְׁכָּב וְנַעֲשׂוּ אָב שֶׁהֲרֵי נָשְׂאוּ הַזָּב וּכְאִלּוּ עָמַד עֲלֵיהֶן. הָיָה בְּכַף שְׁנִיָּה שְׁאָר הַכֵּלִים אוֹ אֳכָלִין וּמַשְׁקִין אוֹ אָדָם בֵּין שֶׁכָּרְעוּ הֵן בֵּין שֶׁכָּרַע הַזָּב כֻּלָּן רִאשׁוֹן לְטֻמְאָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזב </strong> בכף מאזנים וכלי העשוי למשכב ומושב בכף שניה כרע הזב הרי הן ככלים שנגע בהן שהרי הסיטן כרעו הן טמאים משום משכב ובפ&quot;ד דזבין תנן כרע הזב טהורים כרעו הן טמאים ופי׳ הרב ז&quot;ל שם שאין המשכב או המושב טמאים מדרס והוא אומר טהורים אבל טמא משום הסט וכן פי׳ התוספות שבת פ׳ רבי עקיבא ואם היו שאר כלים או אוכלים בכף שניה כולן ראשון לטומאה כדתנן התם טמאים ולא פליג בין כרע הוא בין כרעו הם ורש&quot;י ז&quot;ל גריס כרע הזב טמאים כרעו הם טהורים כדאמרינן לעיל.</p>
               </div>
             </div>
@@ -990,8 +1201,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-8-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 8:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-8-7">Mishneh Torah, Those Who Defile Bed or Seat 8:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב וְהַטָּהוֹר שֶׁיָּשְׁבוּ עַל הַסַּפְסָל אוֹ עַל הַנֶּסֶר בִּזְמַן שֶׁהֵן מַחְגִּירִין. אוֹ שֶׁעָלוּ בְּאִילָן שֶׁכֹּחוֹ רַע וְהוּא הָאִילָן שֶׁאֵין בָּעֳבִי עִקָּרוֹ כְּדֵי לָחֹק רֹבַע הַקַּב. אוֹ שֶׁעָלוּ בְּסֻכָּה שֶׁכֹּחָהּ רַע וְהוּא שֶׁנֶּחְבָּא בָּהּ וְדוֹחֵק אוֹתָהּ תָּזוּז בּוֹ. אוֹ שֶׁעָלוּ בְּסֻלָּם מִצְרִי שֶׁאֵינוֹ קָבוּעַ בְּמַסְמֵר. אוֹ שֶׁעָלוּ עַל הַכֶּבֶשׁ וְעַל הַקּוֹרָה וְעַל הַדֶּלֶת בִּזְמַן שֶׁאֵינָן מְחֻבָּרִין בְּטִיט. הֲרֵי זֶה טָמֵא מִפְּנֵי שֶׁהֵן מִתְנַדְנְדִין בָּהֶן וּכְאִלּוּ הֵסִיט הַזָּב אֶת הַטָּהוֹר שֶׁעִמּוֹ. אֲבָל אִם יָשְׁבוּ בִּסְפִינָה גְּדוֹלָה שֶׁאֵינָהּ יְכוֹלָה לְהָסִיט בָּאָדָם. אוֹ עַל הַנֶּסֶר אוֹ עַל הַסַּפְסָל בִּזְמַן שֶׁאֵינָם מַחְגִּירִין. אוֹ שֶׁעָלוּ בְּאִילָן וּבְסֻכָּה שֶׁכֹּחָן יָפֶה. אוֹ בְּסֻלָּם מִצְרִי הַקָּבוּעַ בְּמַסְמֵר. אוֹ בְּכֶבֶשׁ וּבְקוֹרָה וּבְדֶלֶת שֶׁמְּחֻבָּרִים בְּטִיט. אֲפִלּוּ עָלוּ מִצַּד אֶחָד הֲרֵי זֶה טָהוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזב </strong> והטהור שישבו על הספסל או על הנסר בזמן שהן מחגירין דנשען הטהור על הזב והזב על הטהור כשנוטים הספסל או הנסר לכאן ולכאן וכן אם עלו באילן שכוחו רע או סוכה או סולם מצרי או כבש או קורה או דלת שאינם מחוברים בטיט הרי זה טמא משום היסט זב כדתנן פ&quot;ג דזבין אבל כשאין יכול להסיט כמו אם כחן יפה טהור כדתנן נמי התם. זב וטהור שהגיפו או פתחו פתח כאחד טהור אחד מגיף ואחד פותח ניטמא כיון שזה מושך לסגור וזה לפתוח וכו׳ העלו זה את זה מן הבור ניטמא כדתנן נמי התם לת&quot;ק דר׳ יהודה ומפשילים בחבלים אם היה זה מושך אילך וזה מושך אילך טמא כדתנן התם וחכמים אומרים עד וכו׳. היו אורגים בין עומדים בין יושבין או טוענין או טוחנין או פורקין אם משאן כבד טמא כדתנן נמי התם דבכולהו איכא היסט. טהור שהיה מכה את הזב הרי זה טהור וזב שהכה את הטהור טמאהו שאם ימשך הטהור הרי הטמא נופל כדתנן התם ולכך נחשב המכה דהיינו הזב כנשען על הטהור וכתב הר&quot;ש ז&quot;ל דתימה הוא דמהאי טעמא נמי יהא טמא טהור המכה את הטמא דהוי כנשען על הזב ואי הוה מפרשינן דהכא לענין טומאת מדרס איירי ניחא דטהור מטומאת מדרס אבל טמא המכה את הטהור בגדי הטהור טמאים טומאת מדרס וכן משמע בתוספתא דלענין בגדים תנן ע&quot;כ וכן נראה גם כן מלשון הרב ז&quot;ל שכתב ולפיכך אף בגדי הטהור טמאים. זב שנישא מקצתו על הטהור שהניח אצבעו עליו או טהור על הזב ניטמא אף על פי שלא נגע וכן חיבורי׳ שהם שינים או צפרנים שנישאו על אחד מהם טמא כדתנן פרק בתרא דזבין וכתב הרב ז&quot;ל שם שלא נצטרך שינשא או ישא הרוב אלא במשכב לבד כדא׳ לעיל לא כאדם ואפ&quot;ה כתב כאן שנראה לו שטומאה זו מדבריהם דמן התורה נראה דבעיא עד שינשא רובו:</p>
               </div>
             </div>
@@ -1007,8 +1223,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-9-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-9-1">Mishneh Torah, Those Who Defile Bed or Seat 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָבָר שֶׁהָיָה מְחֻבָּר בָּאָרֶץ אוֹ מְסֻמָּר בְּמַסְמְרִים. אִם הָיָה כֹּחוֹ יָפֶה וְחָזָק וְהִקִּישׁ עָלָיו הַזָּב וּבְעֵת שֶׁהִקִּישׁ הֵנִיד כְּלִי אוֹ אֳכָלִין וּמַשְׁקִין מִכֹּחַ הַכָּאָתוֹ אוֹ שֶׁהִפִּילָן הֲרֵי אֵלּוּ טְהוֹרִים. וְאִם לֹא הָיָה כֹּחוֹ יָפֶה וְחָזָק אֶלָּא מִתְנַדְנֵד וְהִקִּישׁ עָלָיו הַזָּב וְהִפִּיל אוֹ הֵנִיד בְּכֹחַ הַכָּאָתוֹ כֵּלִים אוֹ אֳכָלִים וּמַשְׁקִין הֲרֵי אֵלּוּ טְמֵאִין. וּכְאִלּוּ הֱסִיטָן שֶׁהֲרֵי מִכֹּחוֹ נָפְלוּ. זֶה הַכְּלָל כָּל שֶׁנָּפַל מִכֹּחַ הֶסֵּטוֹ טָמֵא. מִכֹּחַ הָרְעָדָה טָהוֹר. כֵּיצַד. הִקִּישׁ עַל אִילָן אוֹ סֻכָּה שֶׁכֹּחָן רַע. אוֹ עַל סֻלָּם מִצְרִי שֶׁאֵינוֹ קָבוּעַ בְּמַסְמֵר. אוֹ עַל קוֹרָה וְדֶלֶת וְכֶבֶשׁ שֶׁאֵינָם מְחֻבָּרִים בְּטִיט. אוֹ שֶׁהִקִּישׁ עַל הַנֶּגֶר עַל הַמַּנְעוּל וְהַמָּשׁוֹט. וּבְשָׁעָה שֶׁהִקִּישׁ הִפִּיל אֳכָלִין וּמַשְׁקִין אוֹ כֵּלִים אֲפִלּוּ הֱנִידָן וְלֹא נָפְלוּ הֲרֵי אֵלּוּ טְמֵאִים. אֲבָל אִם הִקִּישׁ עַל אִילָן אוֹ עַל סֻכָּה שֶׁכֹּחָן יָפֶה. אוֹ עַל סֻלָּם מְסֻמָּר. אוֹ עַל כֶּבֶשׁ אוֹ עַל דֶּלֶת אוֹ קוֹרָה הַמְחֻבָּרִין בְּטִיט. אוֹ עַל הַמָּרִישׁ. אוֹ עַל הַתַּנּוּר. וּבְשָׁעָה שֶׁהִקִּישׁ הֵנִיד כֵּלִים אוֹ אֳכָלִין וּמַשְׁקִין אֲפִלּוּ הִפִּילָן הֲרֵי אֵלּוּ טְהוֹרִין. וְכֵן כָּל כַּיּוֹצֵא בָּאֵלּוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דבר </strong> חזק שהקים עליו הזב והניד כלי או אוכלים מחמת ההכאה הרי אלו טהורים ואם לא היה דבר חזק הוי כאלו הסיטן שהרי מכחו עלו או נתנדנדו כדתנן פ&quot;ד ותניא בתוספתא זה הכלל כל שהוא מכח הסטה טמא דהיינו כשאינו דבר חזק וכשהוא מכח הרעדה טהור דהיינו בדבר חזק. וככר שנפל מן התנור בהקשו טהור אפילו של תרומה כדתנן התם ואם היה חרס מן התנור מדובק בו אפילו היה חולין טמא כדתניא בתוספתא דכיון שנדבק בו החרס נראה שניסט.</p>
               </div>
             </div>
@@ -1023,8 +1244,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-9-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-9-3">Mishneh Torah, Those Who Defile Bed or Seat 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַמִּשְׁכָּב אוֹ הַמֶּרְכָּב מְטַמֵּא כֵּלִים אוֹ אֳכָלִין וּמַשְׁקִין אֶלָּא בְּמַגָּע בִּלְבַד. אֲבָל אִם הָיוּ כֵּלִים אוֹ אֳכָלִים וּמַשְׁקִין לְמַעְלָה מִן הַמִּדְרָס אוֹ שֶׁהָיָה הַמִּדְרָס לְמַעְלָה מֵהֶן אֲפִלּוּ לֹא הִפְסִיק בֵּינֵיהֶם אֶלָּא נְיָר הוֹאִיל וְלֹא נָגַע בָּהֶן הֲרֵי אֵלּוּ טְהוֹרִין. וְכֵן אִם הֵסִיט הַמִּשְׁכָּב אֶת הַכֵּלִים אוֹ אֶת הָאֳכָלִים וְהַמַּשְׁקִין הֲרֵי אֵלּוּ טְהוֹרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> משכב ומרכב מטמא כלים או אוכלין ומשקין אלא במגע בלבד כדתנן פרק בתרא דזבין וכל הנושא ונישא על גבי המשכב טהור חוץ מן האדם דאדם כיון שנישא ע&quot;ג משכב אפילו היה חוצץ אבן מטמא בינו ובין המשכב ניטמא משום דנישא על גבי משכב אבל כלים או אוכלים ומשקין לא וכדתנן נמי התם ככר של תרומה שהוא נתון ע&quot;ג משכב והנייר בנתים בין מלמעלן בין מלמטן טהור וילפינן בת&quot;כ דאין משכב עושה משכב כדתנן פ&quot;ק דכלים מדכתיב וכל המשכב אשר ישכב עליו הזב וגו׳ הזב עושה משכב ואין משכב עושה משכב וכן אם הסיט המשכב את הכלים או אוכלים ומשקים הרי אלו טהורים דלא מרבי׳ לעיל היסט אלא בזב עצמו אבל במשכב ליכא אלא טומאת נגיעה וכדתניא בתוספתא אין לך היסט אלא בדבר שיש בו רוח חיים.</p>
               </div>
             </div>
@@ -1039,8 +1265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-9-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-9-4">Mishneh Torah, Those Who Defile Bed or Seat 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב וְהַטָּהוֹר שֶׁיָּשְׁבוּ בִּסְפִינָה קְטַנָּה הַיְכוֹלָה לְהָמִיט בָּאָדָם אֶחָד אוֹ בְּאַסְדָּא אוֹ שֶׁרָכְבוּ עַל גַּבֵּי בְּהֵמָה אַף עַל פִּי שֶׁאֵין בִּגְדֵיהֶן נוֹגְעִין זֶה בָּזֶה הֲרֵי בִּגְדֵי הַטָּהוֹר טְמֵאִים מִדְרָס וְטֻמְאָתָן בְּסָפֵק שֶׁמָּא דָּרַס הַזָּב עֲלֵיהֶן. וְכֵן נִדָּה שֶׁיָּשְׁבָה עִם הַטְּהוֹרָה בַּמִּטָּה בְּגָדֶיהָ טְמֵאִין מִדְרָס חוּץ מִכִּפָּה שֶׁבְּרֹאשָׁהּ. וְכֵן הַבְּגָדִים שֶׁבְּרֹאשׁ הַנֵּס שֶׁבַּסְּפִינָה טְהוֹרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזב </strong> והטהור שישבו בספינה או נדה שישבה עם הטהורה במטה בגדים טמאים מדרס אף על פי שלא נגעו כדתנן פ&quot;ג משום דפעמים מכריע הטהור שהספינה קטנה חוץ מכפה שבראש האשה הטהורה וכלי שבראש הנס שבספינה כדתנן ריש פ&quot;ד דר׳ יהושע מטמא ולית הלכה כוותיה אלא בסתם דפרק ג׳ והראב&quot;ד ז&quot;ל גריס בהאי מתניתין גופא וחכמים מטהרים.</p>
               </div>
             </div>
@@ -1055,8 +1286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-9-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 9:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-9-5">Mishneh Torah, Those Who Defile Bed or Seat 9:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנִּדְחָק בְּרֵחַיִם שֶׁהָעַכּוּ&quot;ם בְּתוֹכָם אוֹ זָב וְכַיּוֹצֵא בּוֹ הֲרֵי בְּגָדָיו טְמֵאִין מִדְרָס. בְּאֵי זֶה רֵחַיִם אָמְרוּ בְּרֵחַיִם שֶׁמְּנַדְנְדִין אֶת הַקַּרְקַע עַד שֶׁעוֹקְרִין אֶת הָעוֹמֵד כָּאן וְדוֹחֲפִין אוֹתוֹ מִמְּקוֹמוֹ. וְדָבָר בָּרוּר הוּא שֶׁטֻּמְאָה זוֹ בְּסָפֵק שֶׁמָּא נֶעֱקַר הַטָּמֵא וְדָרַס עַל בִּגְדֵי הַטָּהוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנדחק </strong> ברחים שהגוי או הזב בתוכם בגדים טמאים כשהם מנדנדים הקרקע וכדתניא ריש פ&quot;ט דתוספתא דאהלות וטומאה זו מספק:</p>
               </div>
             </div>
@@ -1072,8 +1308,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 10:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-10-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-10-1">Mishneh Torah, Those Who Defile Bed or Seat 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַם הָאָרֶץ אַף עַל פִּי שֶׁהוּא יִשְׂרָאֵל וְיֶשְׁנוֹ בְּתוֹרָה וּבְמִצְוֹת הֲרֵי הוּא בְּחֶזְקַת טָמֵא וּבְגָדָיו מִדְרָס לְטָהֳרוֹת. וְאִם נָגְעוּ בְּגָדָיו בָּאֳכָלִין וּמַשְׁקִין הֲרֵי הֵן טְמֵאִין. וְאִם נָגַע בִּכְלִי חֶרֶס מֵאֲוִירוֹ טִמְּאָהוּ. וְשׂוֹרְפִין אֶת הַתְּרוּמָה עַל מַגָּעָן אַף עַל פִּי שֶׁטֻּמְאָתָן בְּסָפֵק. וְאֵינָן נֶאֱמָנִין עַל הַטָּהֳרוֹת לְפִי שֶׁאֵינָן בְּקִיאִין בְּדִקְדוּקֵי טָהֳרוֹת וְטֻמְאוֹת. וּלְעוֹלָם הוּא בְּחֶזְקָה זוֹ וְאֵינוֹ נֶאֱמָן עַל הַטָּהֳרוֹת עַד שֶׁיְּקַבֵּל עָלָיו דִּבְרֵי חֲבֵרוּת. וּמַה הֵן דִּבְרֵי חֲבֵרוּת שֶׁיְּקַבֵּל עָלָיו שֶׁיְּהֵא נִזְהָר בְּטֻמְאוֹת שֶׁלֹּא יִטָּמֵּא בָּהֶן. וּבְטָהֳרוֹת שֶׁלֹּא יְטַמֵּא אוֹתָם. וְיִזָּהֵר בִּנְטִילַת יָדַיִם וּבְטָהֳרָתָן שֶׁלֹּא יִקַּח מֵעַם הָאָרֶץ דָּבָר לַח וְלֹא יִתְאָרֵחַ אֶצְלוֹ וְלֹא יְאָרְחוֹ אֶצְלוֹ בִּכְסוּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טומאת </strong> עם הארץ מדבריהם דגזרו משום ספק שמא תסיט כליו אשתו נדה כדאמרינן בהניזקין. ושורפין תרומה על מגעו ואף ע&quot;ג דאין מאבדין תרומה בידים כדילפינן פי&quot;א מהלכות תרומות והני טומאות מדרבנן נינהו אפילו הכי שורפין על ו׳ ספקות כדתנן פ&quot;ד דטהרות ומייתי לה בכמה דוכתי. וקבלת דברי חברות פ׳ עד כמה ותוספתא דטהרות פ&quot;ט והחשוד על דבר נאמן להעיד בו לאחרים ולדון בו לאחרים דחזקה היא דאין אדם חוטא כדי שיהנו בו אחרים וכרשב&quot;ג דפליג אר׳ מאיר פ׳ כל פסולי המוקדשין ואע&quot;ג דבפרק עד כמה תנן מתני׳ סתמא זה הכלל כל החשוד על דבר לא דנו ולא מעידו אפ&quot;ה סמכינן אכללא דכל מקום ששנה רשב&quot;ג במשנתנו וכו׳ ונראה דאפילו חשוד על דבר תורה נאמן להעיד או לדון לאחרים משום האי חזקה דאין אדם חוטא ולא לו דחזקה מהניא מדאורייתא כדילפינן בדוכתא וכתב הרמב&quot;ן ז&quot;ל דמה שכתוב בבריתא החשוד ליטול שכר לדון דיניו בטלים שאם נתברר לנו שלא נטל שכר בדין שדן אין הדין בטל וכתב עליו הרא&quot;ש ז&quot;ל בפסקיו ומסתברא טעמא אבל לא ידענא היאך יתברר הדבר בעדים שלא נטל כיון שהוא חשוד ע&quot;כ משמע דאפילו חשוד על דבר תורה אינו פסול לדון ולהעיד כשידוע שלא נטל מה שנחשד עליו וכיון דהכא אינו חשוד על השביעית או על התרומה אלא למכרן לשם חולין לעצמו דן ומעיד לאחרים דחזקה אין אדם חוטא ולא לו כדאמרינן:</p>
               </div>
             </div>
@@ -1089,8 +1330,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 11:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-11-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 11:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-11-1">Mishneh Torah, Those Who Defile Bed or Seat 11:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ שֶׁעַמֵּי הָאָרֶץ נֶאֱמָנִים הֵן עַל טָהֳרַת פָּרַת הַחַטָּאת מִפְּנֵי חֻמְרָתָהּ אֵין מְזַלְזְלִין בָּהּ. וְכֵן נֶאֱמָנִים הֵן עַל טָהֳרַת יַיִן וְשֶׁמֶן שֶׁל נְסָכִים אִם אָמַר טָהוֹר הוּא הֲרֵי זֶה בְּחֶזְקַת טָהֳרָה מִפְּנֵי חֻמְרָתוֹ נִזְהָרִין בּוֹ. וְכֵן נֶאֱמָנִים הֵן עַל הַתְּרוּמָה בִּשְׁעַת הַגִּתּוֹת וְהַבַּדִּים מִפְּנֵי שֶׁכָּל הָעָם מְטַהֲרִין עַצְמָן וּכְלֵיהֶן כְּדֵי לַעֲשׂוֹת יֵינָם וְשַׁמְנָם בְּטָהֳרָה. עָבְרוּ הַגִּתּוֹת וְהַבַּדִּים אֵינָן נֶאֱמָנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עמי </strong> ארץ נאמנים על טהרת חטאת וכו׳ פ׳ חומר בקודש ותוספתא פ׳ בתרא וכו׳. ע&quot;ה שנעל בית בדו או גתו וכו׳ תוספתא טהרות פרק ו׳ הביא לו ע&quot;ה חבית וכו׳ פ׳ חומר. הלוקח כלי חרס ג&quot;כ שם וריש פ׳ ה׳ דפרה. טומאת עמי הארץ ברגל פרק בנות כותים הפותח חביתו פרק חומר. ע&quot;ה שאמר טהור אני ג&quot;כ שם וס&quot;פ אין דורשין ופרק בתרא דשקלים ופרק טבול יום. הכל מדרבנן:</p>
               </div>
             </div>
@@ -1106,8 +1352,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 12:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-12-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 12:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-12-1">Mishneh Torah, Those Who Defile Bed or Seat 12:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד כֵּלִים אֵצֶל עַם הָאָרֶץ אוֹ שֶׁנָּתַן כְּלִי לְאֻמָּן עַם הָאָרֶץ הֲרֵי אֵלּוּ טְמֵאִים טְמֵא מֵת וּטְמֵאִין מִדְרָס. וְאִם מַכִּירוֹ שֶׁהוּא אוֹכֵל בִּתְרוּמָה טְהוֹרִים מִטְּמֵא מֵת אֲבָל טְמֵאִים מִדְרָס מִפְּנֵי שֶׁאִשְׁתּוֹ נִדָּה יוֹשֶׁבֶת עֲלֵיהֶם שֶׁלֹּא מִדַּעְתּוֹ שֶׁהֲרֵי אֵין נִזְהָרִין מִן הַטֻּמְאוֹת בְּבָתֵּי עַמֵּי הָאָרֶץ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד </strong> כלים וכו׳ טהרות פרק ח׳ המניח כליו טהרות משנה ותוספתא פרק ז׳ וח׳ חבר שהיה בנו תוספתא טהרות פרק ח׳ ופ׳ בתרא דע&quot;ז. ב׳ חצרות זו לפנים מזו פרק בתרא דע&quot;ז חבר שנפל כליו פרק ח׳ דטהרות קדר חבר שהניח טהרות פרק ז׳ ופ&quot;ב דכתובות חבר שהניח אוכלי׳ תוספתא דטהרות פרק ט׳:</p>
               </div>
             </div>
@@ -1123,8 +1374,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 13:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-13-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 13:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-13-1">Mishneh Torah, Those Who Defile Bed or Seat 13:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֹּהֵן שֶׁטִּהֵר כֵּלָיו לְגַת זוֹ וְהִנִּיחָן לַגַּת הַבָּאָה הֲרֵי אֵלּוּ בְּחֶזְקָתָן. שֶׁאֵין עַמֵּי הָאָרֶץ נוֹגְעִין בְּכֵלִים שֶׁל כֹּהֵן זֶה שֶׁהֵן בְּתוֹךְ גִּתּוֹ מִפְּנֵי שֶׁהוּא אוֹכֵל טָהֳרוֹת. אֲבָל שֶׁל יִשְׂרָאֵל טְמֵאוֹת עַד שֶׁיֹּאמַר בְּלִבִּי הָיָה לִשְׁמֹר עַם הָאָרֶץ שֶׁיִּכָּנֵס לַגַּת שֶׁלֹּא יִגַּע בְּכֵלִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כהן </strong> שטיהר כליו ס&quot;פ אין דורשין. וצריך לעמוד על האומנים וכו׳ פרק בתרא דטהרות ופרק חומר בקדש. היו חמריו ופועליו וכו׳ תוספתא דטהרות פרק ה׳ ופרק בתרא דע&quot;ז. חבר שהיה לבוש בחלוקו תוספתא דטהרות פרק ה׳. היה סל על כתפו פרק אין דורשין. חבר שמת והניח טהרות תוספתא דטהרות פ&quot;ט.</p>
               </div>
             </div>
@@ -1139,8 +1395,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 13:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-13-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat 13:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-those-who-defile-bed-or-seat/#mishneh-torah-those-who-defile-bed-or-seat-13-8">Mishneh Torah, Those Who Defile Bed or Seat 13:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאָמַר לוֹ עֵד אֶחָד נִטְמְאוּ טָהֳרוֹתֶיךָ וְהַלָּה שׁוֹתֵק הֲרֵי זֶה נֶאֱמָן וַהֲרֵי הֵן טְמֵאוֹת. וְאִם הִכְחִישׁוֹ וְאָמַר לֹא נִטְמְאוּ הֲרֵי הֵן בְּחֶזְקָתָן עַד שֶׁיָּעִידוּ שְׁנַיִם. הָיָה עוֹשֶׂה עִמּוֹ בְּטָהֳרוֹת אוֹ בִּזְבָחִים וּלְאַחַר זְמַן מְצָאוֹ וְאָמַר לוֹ בְּשָׁעָה שֶׁפָּגַע בּוֹ טָהֳרוֹת שֶׁעָשִׂיתִי עִמְּךָ נִטְמְאוּ וּזְבָחִים שֶׁעָשִׂיתִי עִמְּךָ נִתְפַּגְּלוּ הֲרֵי זֶה נֶאֱמָן. אֲבָל אִם פָּגַע בּוֹ וְלֹא אָמַר לוֹ כְּלוּם וְאַחַר כָּךְ פָּגַע בּוֹ פַּעַם שְׁנִיָּה וְאָמַר לוֹ אֵינוֹ נֶאֱמָן אֶלָּא הֲרֵי זְבָחָיו בְּחֶזְקַת כַּשְׁרוּת וְטָהֳרוֹתָיו בְּחֶזְקַת טָהֳרָה: בְּרִיךְ רַחֲמָנָא דְּסַיְּעָן</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שאמר לו עד אחד ניטמאו טהרותיך והלה שותק נאמן ואם הכחישו אינו נאמן כדתניא פרק האומר בקידושין דהא דילפינן בעלמא דעד אחד נאמן באיסורים דוקא להתיר כגון בשר זו מנוקרת או חתיכה זו של שומן אבל לא לאסור אלא אם היה הדבר ברשותו אי הלה שותק כדאמרינן וכשבידו נאמן כי ההיא דפרק הניזקין טהרות שעשיתי עמך ויטמאו או זבחים שעשיתי עמך נתגלו ואי אשכחי׳ ולא אמר ליה ולא מידי ולבתר הכי אשכחיה ואמר ליה אינו נאמן כאוקמתא דרבא וכו׳. סליק להו הלכות מטמאי משכב ומושב בס&quot;ד:</p>
               </div>
             </div>
@@ -1150,6 +1411,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-text-13">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1170,8 +1435,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-those-who-defile-bed-or-seat.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1197,7 +1462,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

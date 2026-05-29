@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-festival-offering/">Open Mishneh Torah, Festival Offering</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Festival Offering</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">10 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>507 matched</strong> / 1355 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/ohr-sameach-on-mishneh-torah-festival-offering.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-festival-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -209,8 +210,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-1">Mishneh Torah, Festival Offering 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ מִצְוֹת עֲשֵׂה נִצְטַוּוּ יִשְׂרָאֵל בְּכָל רֶגֶל מִשָּׁלֹשׁ רְגָלִים וְאֵלּוּ הֵן. הָרְאִיָּה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג יז)</span> <span class="source-small">(שמות לד כג)</span> <span class="source-small">(דברים טז טז)</span> &quot;יֵרָאֶה כָּל זְכוּרְךָ&quot;. וְהַחֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז טו)</span> &quot;תָּחֹג לַה׳ אֱלֹהֶיךָ&quot;. וְהַשִּׂמְחָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז יד)</span> &quot;וְשָׂמַחְתָּ בְּחַגֶּךָ&quot;. הָרְאִיָּה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁנִּרְאָה פָּנָיו בָּעֲזָרָה בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג וְיָבִיא עִמּוֹ קָרְבַּן עוֹלָה בֵּין מִן הָעוֹף בֵּין מִן הַבְּהֵמָה. וּמִי שֶׁבָּא לָעֲזָרָה בְּיוֹם רִאשׁוֹן וְלֹא הֵבִיא עוֹלָה לֹא דַּיּוֹ שֶׁלֹּא עָשָׂה מִצְוַת עֲשֵׂה אֶלָּא עוֹבֵר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג טו)</span> <span class="source-small">(שמות לד כ)</span> &quot;לֹא יֵרָאוּ פָנַי רֵיקָם&quot;. וְאֵינוֹ לוֹקֶה עַל לָאו זֶה שֶׁהֲרֵי לֹא עָשָׂה מַעֲשֶׂה. הַחֲגִיגָה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁיַּקְרִיב שְׁלָמִים בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג בְּבוֹאוֹ לְהֵרָאוֹת. וְהַדָּבָר יָדוּעַ שֶׁאֵין הַשְּׁלָמִים בָּאִים אֶלָּא מִן הַבְּהֵמָה. וּשְׁתֵּי מִצְוֹת אֵלּוּ שֶׁהֵן הָרְאִיָּה וְהַחֲגִיגָה אֵין הַנָּשִׁים חַיָּבוֹת בָּהֶן. וְהַשִּׂמְחָה הָאֲמוּרָה בָּרְגָלִים הִיא שֶׁיַּקְרִיב שְׁלָמִים יֶתֶר עַל שַׁלְמֵי חֲגִיגָה. וְאֵלּוּ הֵם הַנִּקְרָאִים שַׁלְמֵי שִׂמְחַת חֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כז ז)</span> &quot;וְזָבַחְתָּ שְׁלָמִים וְאָכַלְתָּ שָּׁם וְשָׂמַחְתָּ לִפְנֵי ה׳ אֱלֹהֶיךָ&quot;. וְנָשִׁים חַיָּבוֹת בְּמִצְוָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הראיה האמורה בתורה היא שנראה פניו בעזרה כו׳ ומי שבא לעזרה ביום ראשון ולא הביא עולה כו׳ אלא עובר על ל&quot;ת כו׳.</strong><br><strong> מלשון </strong> זה הבין הטורי אבן בדעת רבינו שאין תשלומין אלא לראיית קרבן אבל ראיית פנים אין תשלומין לראשון ודוקא בראשון בעי להראות פנים בעזרה ומזה רצה להשיג עליו הרבה. ובמחכ&quot;ת נעלם ממנו לשון רבינו לקמן פ&quot;ב ה&quot;ו מי שבא לעזרה בתוך ימי החג אינו חייב להביא עולה כו׳ שזה שנאמר לא יראו פני ריקם אינו אלא בעיקר הרגל בלבד שהוא יום ראשון או תשלומי ראשון, הרי שאומר שאינו חייב להקריב על ביאתו בעזרה שנית רק כשבא או ביום ראשון או תשלומי ראשון היינו מי שבא ראשונה בשני של רגל או בשאר הימים עליו כתיב לא יראו פני ריקם בתשלומי ראשון, וברור דעת רבינו דתשלומין יש לראיית פנים, ומה שכתב ומי שבא לעזרה ביום ראשון, כוונתו לאפוקי אם בא עוד הפעם להראות ברגל אינו עובר בלאו כמו שכתב לקמן וז&quot;ב:<br><strong> ומה </strong> שכתב רבינו לא די שלא עשה מצות עשה כו׳ הנה כן משמע מתו&quot;כ ריש פ׳ אחרי דמדמה לביאת כה&quot;ג ביוהכ&quot;פ דשם שלא עם הקרבן אין שום מצוה בביאתו כלל כן בישראל ברגל בלא קרבן לא קיים מ&quot;ע כלל. והא דמחלק הירושלמי בין ראיית פנים לראיית קרבן לא חילק רק על קטנים לא על נשים והיינו דעל קטנים לא שייך שום מצוה להם דלאו בני דיעה נינהו רק דיליף מהקהל שמצוה על האב להביאן א&quot;כ שפיר שייך שאביו מצווה להראות פנים בעזרה עם בניו הקטנים ושלא להראות ריקם להביא קרבן וכולא חדא מצוה לאביהם, אבל נשים כיון שפטורין מקרבן תו אינם מצוות להראות פנים דלאו מצוה היא כלל ודוק ומה שחקר עוד בטו&quot;א בחגיגה וראיה אם באין בשותפות כמו פסח, לא ראה בתוספתא פ&quot;א דחגיגה דיוצאין בשל שותפות וז&quot;ל אם יש לו להביא מתוך ביתו הרי הוא מביא ואם לאו משתתף עם אחרים ובלבד שלא יפחות מכשיעור יעו&quot;ש:</p>
               </div>
             </div>
@@ -225,8 +231,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:1:2</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-1">Mishneh Torah, Festival Offering 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ מִצְוֹת עֲשֵׂה נִצְטַוּוּ יִשְׂרָאֵל בְּכָל רֶגֶל מִשָּׁלֹשׁ רְגָלִים וְאֵלּוּ הֵן. הָרְאִיָּה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג יז)</span> <span class="source-small">(שמות לד כג)</span> <span class="source-small">(דברים טז טז)</span> &quot;יֵרָאֶה כָּל זְכוּרְךָ&quot;. וְהַחֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז טו)</span> &quot;תָּחֹג לַה׳ אֱלֹהֶיךָ&quot;. וְהַשִּׂמְחָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז יד)</span> &quot;וְשָׂמַחְתָּ בְּחַגֶּךָ&quot;. הָרְאִיָּה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁנִּרְאָה פָּנָיו בָּעֲזָרָה בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג וְיָבִיא עִמּוֹ קָרְבַּן עוֹלָה בֵּין מִן הָעוֹף בֵּין מִן הַבְּהֵמָה. וּמִי שֶׁבָּא לָעֲזָרָה בְּיוֹם רִאשׁוֹן וְלֹא הֵבִיא עוֹלָה לֹא דַּיּוֹ שֶׁלֹּא עָשָׂה מִצְוַת עֲשֵׂה אֶלָּא עוֹבֵר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג טו)</span> <span class="source-small">(שמות לד כ)</span> &quot;לֹא יֵרָאוּ פָנַי רֵיקָם&quot;. וְאֵינוֹ לוֹקֶה עַל לָאו זֶה שֶׁהֲרֵי לֹא עָשָׂה מַעֲשֶׂה. הַחֲגִיגָה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁיַּקְרִיב שְׁלָמִים בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג בְּבוֹאוֹ לְהֵרָאוֹת. וְהַדָּבָר יָדוּעַ שֶׁאֵין הַשְּׁלָמִים בָּאִים אֶלָּא מִן הַבְּהֵמָה. וּשְׁתֵּי מִצְוֹת אֵלּוּ שֶׁהֵן הָרְאִיָּה וְהַחֲגִיגָה אֵין הַנָּשִׁים חַיָּבוֹת בָּהֶן. וְהַשִּׂמְחָה הָאֲמוּרָה בָּרְגָלִים הִיא שֶׁיַּקְרִיב שְׁלָמִים יֶתֶר עַל שַׁלְמֵי חֲגִיגָה. וְאֵלּוּ הֵם הַנִּקְרָאִים שַׁלְמֵי שִׂמְחַת חֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כז ז)</span> &quot;וְזָבַחְתָּ שְׁלָמִים וְאָכַלְתָּ שָּׁם וְשָׂמַחְתָּ לִפְנֵי ה׳ אֱלֹהֶיךָ&quot;. וְנָשִׁים חַיָּבוֹת בְּמִצְוָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין מן העוף.</strong><br><strong> ראיה </strong> לגירסת רבינו מהא דאמר בזבחים (דף ה׳) ומה עולה כו׳ אשם שמכפר כו׳ מה לשלמים שכן טעונין נסכים כו׳ עולה תוכיח כו׳ מה להצד השוה שבהן שכן ישנו בציבור, ועל כרחין הכוונה על עולת העוף שאינו טעון נסכים ואיך אמר שכן ישנן בצבור הלא עולת העוף אינו בציבור וכמו דאיתא בשבועות (דף י&quot;ב) אין עולת עוף בצבור, ובתו&quot;כ ויקרא פרשה ו׳ היחיד מביא עוף ואין הצבור מביא עוף, ויעוין בשטמ&quot;ק בש&quot;ס ווילנא החדש שהרגישו בזה, וע&quot;כ דעולת ראיה באה מן העוף ואתי בכנופיא כמוש&quot;כ ביומא (דף נ&quot;א) לכן קרי לזה שישנו בצבור וכדאמר שם (דף י&quot;ג) שכן ישנן בצבור על פסח ועיין רש&quot;י שם, וכן הא דתנן בריש כל התדיר תודה ואיל נזיר קודמין לשלמים שהן נאכלין וטעונים לחם, ובגמרא אדרבא שלמים קדמו שכן ישנן בצבור כביחיד ג&quot;כ ליכא לפרש על כבשי עצרת דהן קדשי קדשים ונאכלין ליום ולילה וטעונים לחם, רק הפירוש שלמי חגיגה דהן קדשים קלים ובאין בלא לחם והא דאמר בציבור היינו בכנופיא ודוק:<br><strong> וכן </strong> מוכח מהא דשלח ר&quot;ג [והוא ר&quot;ג הזקן כדמוכח שם] לעבר השנה על גוזלות שלא פרחו, ובמאי צריך עוף אם ליולדות אטו הני תנאי דפטרי נשים גם בפסח ראשון פליגי על ר&quot;ג הזקן ואי משום זבים הא הוי מיעוטא דלא שכיח ועל כרחין דלעולת ראיה צריך עוף, וכן כתב רבינו בפ&quot;ד מהלכות קדוש החודש ה&quot;ז. ולפ&quot;ז הא דאמר בפרק מעשר בהמה (דף נ&quot;ו) על קרא דכן תעשה לשורך ולצאנך ואימא תנהו ענין לעולת ראיה, ודא לק&quot;מ דעולת ראיה הא אינו מן הבקר וצאן לבד דגם מן העוף בא רק דהו&quot;מ לאקשויי ואימא על חגיגה ולכן מתרץ כו׳ שאין קבוע לו זמן ומיושב הכל. ונראה ברור בדעת רבינו דמביא רק פרידה אחת לראייתו והא דאמרו פ&quot;ב דכריתות להביא פרידה אחת א&quot;א שלא מצאנו בכה&quot;ת כולה כו׳ חובה מיהא לא אשכחן, פירושו דהכא מביא חגיגה בהדיה, דראיה בלא חגיגה ליכא כמוש&quot;כ רבינו כל החייב בראיה חייב בחגיגה, והוי כיולדת עשירה דמביאה חטאת עוף ועולת בהמה ולא מקרי שבא לבדו ופשוט, ועיין קרית ספר להמבי&quot;ט:</p>
               </div>
             </div>
@@ -241,8 +252,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:1:3</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-1-3" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-1">Mishneh Torah, Festival Offering 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ מִצְוֹת עֲשֵׂה נִצְטַוּוּ יִשְׂרָאֵל בְּכָל רֶגֶל מִשָּׁלֹשׁ רְגָלִים וְאֵלּוּ הֵן. הָרְאִיָּה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג יז)</span> <span class="source-small">(שמות לד כג)</span> <span class="source-small">(דברים טז טז)</span> &quot;יֵרָאֶה כָּל זְכוּרְךָ&quot;. וְהַחֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז טו)</span> &quot;תָּחֹג לַה׳ אֱלֹהֶיךָ&quot;. וְהַשִּׂמְחָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז יד)</span> &quot;וְשָׂמַחְתָּ בְּחַגֶּךָ&quot;. הָרְאִיָּה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁנִּרְאָה פָּנָיו בָּעֲזָרָה בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג וְיָבִיא עִמּוֹ קָרְבַּן עוֹלָה בֵּין מִן הָעוֹף בֵּין מִן הַבְּהֵמָה. וּמִי שֶׁבָּא לָעֲזָרָה בְּיוֹם רִאשׁוֹן וְלֹא הֵבִיא עוֹלָה לֹא דַּיּוֹ שֶׁלֹּא עָשָׂה מִצְוַת עֲשֵׂה אֶלָּא עוֹבֵר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג טו)</span> <span class="source-small">(שמות לד כ)</span> &quot;לֹא יֵרָאוּ פָנַי רֵיקָם&quot;. וְאֵינוֹ לוֹקֶה עַל לָאו זֶה שֶׁהֲרֵי לֹא עָשָׂה מַעֲשֶׂה. הַחֲגִיגָה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁיַּקְרִיב שְׁלָמִים בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג בְּבוֹאוֹ לְהֵרָאוֹת. וְהַדָּבָר יָדוּעַ שֶׁאֵין הַשְּׁלָמִים בָּאִים אֶלָּא מִן הַבְּהֵמָה. וּשְׁתֵּי מִצְוֹת אֵלּוּ שֶׁהֵן הָרְאִיָּה וְהַחֲגִיגָה אֵין הַנָּשִׁים חַיָּבוֹת בָּהֶן. וְהַשִּׂמְחָה הָאֲמוּרָה בָּרְגָלִים הִיא שֶׁיַּקְרִיב שְׁלָמִים יֶתֶר עַל שַׁלְמֵי חֲגִיגָה. וְאֵלּוּ הֵם הַנִּקְרָאִים שַׁלְמֵי שִׂמְחַת חֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כז ז)</span> &quot;וְזָבַחְתָּ שְׁלָמִים וְאָכַלְתָּ שָּׁם וְשָׂמַחְתָּ לִפְנֵי ה׳ אֱלֹהֶיךָ&quot;. וְנָשִׁים חַיָּבוֹת בְּמִצְוָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונשים חייבות במצוה זו.</strong><br><strong> חגיגה </strong> (דף ו׳) אמר אביי ולטעמיך חנה גופא מי לא מחייבי בשמחה כו׳. הא דאמר ולטעמיך לרבי צריך ביאור, ונראה משום דבשילהי זבחים פליגי ר&quot;י ור&quot;ש דחד אמר מנוחה זו שילה נחלה זו ירושלים כו׳ ור&quot;ש סבר דשניהן ירושלים ולמ&quot;ד דשניהן ירושלים בשילה לא נאסרו הבמות ומש&quot;ה מנוח הקריב על הצור וא&quot;כ שלמי שמחה באין מן המעשר והם כנידר ונידב ומביאין בבמה ובבמה אשה ג&quot;כ כשירה להקריב יעוין בתו&quot;כ פרשת אחרי ובתוספתא סוף זבחים, ולכן מפרש באגדת בראשית פרק כ&quot;ט על פסוק דעלה האיש ההוא כו׳ מימים ימימה כו׳ מפסח לפסח שנאמר ושמרתם את החוקה כו׳ מימים ימימה, היינו משום שכל המועדים לא עלו נשיו שהיו מקריבין שלמי שמחה בבמה, רק בפסח דנשים חובה עלו גם הנשים משום דהפסח אינו קרב בבמה קטנה, וא&quot;כ הלא היתה חנה יכולה להקריב שלמי שמחה בבמה קטנה ואינה צריכה לעלות לשילה, רק עולת ראיה דהוי חובה אינו קרב בבמה קטנה. ולזה אמר ולטעמיך פירוש לדברי רבי דסתם במשנה דסוף זבחים משבאו לשילה נאסרו הבמות א&quot;כ קשה חנה גופא מי לא מחייבא כו׳, ובזה יש לכוון התוספתא הכריעו חכמים לסייע דברי ר׳ יהודה וחנה לא עלתה כו׳ וצ&quot;ל לדברי ר&quot;י האומר דבשילה נאסרו הבמות ולא עלתה משום מפנקותא ראיה מדברי ב&quot;ש, היינו דלר&quot;י קשיא אמאי לא עלתה חנה הא היא מחייבא בשמחה וסייעו לדבריו מדבית שמאי דאמרי דקטן שיכול לרכוב חייב ואמאי לא העלו את שמואל אלא חנה מנפקותא יתירא חזיה בשמואל לכן גם היא היתה אנוסה להיות בבית דקטן הצריך לאמו היה שמואל, ועיין בפירוש ר&quot;ח דאמר מר חולה ומשמשיו פטורין מן הראיה יעו&quot;ש היטב ודוק:</p>
               </div>
             </div>
@@ -257,8 +273,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:8:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-8-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-8">Mishneh Torah, Festival Offering 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עוֹלַת רְאִיָּה וְשַׁלְמֵי חֲגִיגָה אֵינָן דּוֹחִין לֹא אֶת הַשַּׁבָּת וְלֹא אֶת הַטֻּמְאָה לְפִי שֶׁאֵין לָהֶן זְמַן קָבוּעַ כְּקָרְבְּנוֹת הַצִּבּוּר. שֶׁאִם אֵינוֹ חוֹגֵג הַיּוֹם חוֹגֵג לְמָחָר כְּמוֹ שֶׁבֵּאַרְנוּ. אֲבָל דּוֹחִין אֶת יוֹם טוֹב וְאַף עַל פִּי שֶׁאֵין מַקְרִיבִין בְּיוֹם טוֹב נְדָרִים וּנְדָבוֹת מַקְרִיבִין עוֹלַת רְאִיָּה וְשַׁלְמֵי חֲגִיגָה וְשַׁלְמֵי שִׂמְחָה שֶׁאֵין אֵלּוּ נְדָרִים וּנְדָבוֹת אֶלָּא חוֹבוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולות ראיה ושלמי חגיגה אינן דוחות [לא] את השבת כו׳.</strong><br><strong> ירושלמי </strong> חגיגה פ&quot;א ה&quot;ו יודא ספרא כו׳ וחגותם אותו חג לד׳ שבעת ימים וכי שבעה הם והלא שמונה הם אלא צא שבת מהם הרי שבעה אר&quot;י וכי מכאן למדנו שאין חגיגה דוחה את השבת לא ממקום אחר, [פירוש שכל שאין זמנו קבוע אינו דוחה את השבת וחגיגה אין זמנו קבוע שיכול להביאו כל שבעה] התיב ר&quot;י אחוה דרב ספרא והא תני אף בפסח כן מעתה צא שבת מהן הרי ששה, עיין ש&quot;ק, ופירוש הפ&quot;מ אינו, דמוספין דוחה שבת. ודכוותיה אמר בסוכה פ&quot;ג הי&quot;א והקרבתם כו׳ שבעת ימים אין שבעת ימים בלא שבת. אבל הפירוש האמיתי עפ&quot;י מה דגרסינן במכילתא פרשת בא פ׳ ז׳ ריה&quot;ג אומר שבעת ימים תחוג לד׳ אלקיך [שהוא מיותר לדרשה] להביא שבעת ימי פסח שיטענו חגיגה או אינו מדבר אלא בחג כשהו&quot;א וחגותם כו׳ הרי חג אמור ומה אני מקיים שבעת ימים תחוג לד׳ להביא שבעת ימי פסח שיטענו חגיגה. ומי לא יראה כי הירושלמי כוון אל מכילתא זאת, וזה שאמר והא תני [במכילתא] אף בפסח כן מעתה צא שבת מהן הרי ששה וא&quot;כ תלמוד שחגיגה דוחה שבת, וז&quot;ב. ובאמת מה שהקשה רבי יוסי דבלא זה ידענא דחגיגה שאין זמנו קבוע אינו דוחה את השבת יש לתרץ דהוי אמינא כמו דדריש בבבלי פסחים (דף ע׳) דחגיגת חמשה עשר דוחה שבת [עיין תוס׳ שם] דכתיב צאן ובקר צאן לפסח ובקר לחגיגה וחגיגה דוחה שבת קמ&quot;ל קרא דחגיגה אינה דוחה שבת, וע&quot;ז שפיר מקשה הא לפי דרשא זו צ&quot;ל בפסח דחגיגה דוחה שבת, ובבלי בפסחים מסיק כהך דיודא ספרא עיי&quot;ש. ובשיטת ב&quot;ש אם חגיגה דוחה יום טוב עיין תוס׳ חגיגה (דף י&quot;ז) ד&quot;ה יום טבוח ומיהו בירושלמי כ&quot;ו משמע דאף בחגיגה פליגי כו׳, ולפלא כי הגירסא הישרה הובא בבלי ביצה פ&quot;ב (דף כ׳) דעל עולת ראיה קאי וכן מוכח בירושלמי פסחים פרק אלו דברים ה&quot;ב הרי חגיגת יו&quot;ט בשיטתך תוכיח ועיין פירוש הפשוט בגליון הש&quot;ס דמפורש דחגיגה קרב לב&quot;ש, אמנם בתו&quot;כ פרשת אמור יכול אדם חוגג ביו&quot;ט יעו&quot;ש מפורש דגם בחגיגה פליגי ב&quot;ש ויעוין תוספות שנ&quot;ץ דפירש כהבבלי יעו&quot;ש ודוק:</p>
               </div>
             </div>
@@ -273,8 +294,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:8:2</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-8-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-8">Mishneh Torah, Festival Offering 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עוֹלַת רְאִיָּה וְשַׁלְמֵי חֲגִיגָה אֵינָן דּוֹחִין לֹא אֶת הַשַּׁבָּת וְלֹא אֶת הַטֻּמְאָה לְפִי שֶׁאֵין לָהֶן זְמַן קָבוּעַ כְּקָרְבְּנוֹת הַצִּבּוּר. שֶׁאִם אֵינוֹ חוֹגֵג הַיּוֹם חוֹגֵג לְמָחָר כְּמוֹ שֶׁבֵּאַרְנוּ. אֲבָל דּוֹחִין אֶת יוֹם טוֹב וְאַף עַל פִּי שֶׁאֵין מַקְרִיבִין בְּיוֹם טוֹב נְדָרִים וּנְדָבוֹת מַקְרִיבִין עוֹלַת רְאִיָּה וְשַׁלְמֵי חֲגִיגָה וְשַׁלְמֵי שִׂמְחָה שֶׁאֵין אֵלּוּ נְדָרִים וּנְדָבוֹת אֶלָּא חוֹבוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואע&quot;פ שאין מקריבין ביו&quot;ט נדרים ונדבות מקריבין עולת ראיה כו׳.</strong><br><strong> במשל&quot;מ </strong> כתב ז&quot;ל דע דנסכים שלא הביאו הצבור עם הקרבן דקיי&quot;ל דמביא אותם אף לאחר כמה ימים כו׳ קרבים ביו&quot;ט כ&quot;כ רש&quot;י פ&quot;ד דתמורה (דף י&quot;ד) עכ&quot;ל. הנה על נסכים לא ידענא חקירתו, דאטו יש איזה מלאכה במה שמזלפו לשיתין דכן דין נסכים הבאים עם קרבנות הצבור ופשיטא דקרבין ביו&quot;ט, ואפשר דאף בשבת דאין רק איסור טלטול איסור מוקצה דרבנן כדאמר יבמות (דף ל&quot;ג) ואי בקבלה כו׳ טלטול בעלמא הוא יעו&quot;ש, ואולי דאמנחת נסכים קאי דנקטרין על המזבח. אולם מה שמביא מרש&quot;י תמורה אין זכר ראיה כלל, דתמן דריש הגמרא הך דכתיב מלבד שבתות ד׳ ופרש&quot;י דה&quot;ק זבח ונסכים דבר יום ביומו מלבד שבתות ד׳, ומשום דדרשינן סמוכים דבר יום ביומו הקרב נסכים מלבד אותן של שבתות דאם יו&quot;ט אחר שבת הוא הקרב נסכיו עם קרבנותיו כו׳ ששכח אתמול ולא קרבתה, וזה הוי כחלבי שבת שקרבין ביו&quot;ט ומילי דפשיטא נינהו ואיך סתם רבינו שכל נסכים של קרבנות צבור שלא הביאום קרבין ביו&quot;ט, ויפלא הלא אך שבתות ד׳ כתיב ודוק:</p>
               </div>
             </div>
@@ -289,8 +315,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 1:10:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-1-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-10">Mishneh Torah, Festival Offering 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְרִישׁ עוֹלַת רְאִיָּתוֹ וּמֵת. הַיּוֹרְשִׁין חַיָּבִין לַהֲבִיאָהּ. מֻתָּר לְהַקְרִיב בְּחֻלּוֹ שֶׁל מוֹעֵד נְדָרִים וּנְדָבוֹת שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט לט)</span> &quot;אֵלֶּה תַּעֲשׂוּ לַה׳ בְּמוֹעֲדֵיכֶם לְבַד מִנִּדְרֵיכֶם וְנִדְבֹתֵיכֶם&quot; מִכְּלַל שֶׁקְּרֵבִין בָּרֶגֶל. <span class="source-small">(במדבר כט לט)</span> &quot;לְעלֹתֵיכֶם&quot; כְּמוֹ עוֹלַת מְצֹרָע וְעוֹלַת יוֹלֶדֶת. <span class="source-small">(במדבר כט לט)</span> &quot;וּלְמִנְחֹתֵיכֶם&quot; לְהָבִיא מִנְחַת חוֹטֵא וּמִנְחַת קְנָאוֹת. <span class="source-small">(במדבר כט לט)</span> &quot;וּלְשַׁלְמֵיכֶם&quot; לְרַבּוֹת שַׁלְמֵי נָזִיר הַכּל קְרֵבִין בַּמּוֹעֵד וְאֵין קְרֵבִין בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפריש עולת ראיה ומת היורשין חייבין להביאה כו׳.</strong><br><strong> הנה </strong> בירושלמי איתא דאם ירשו קרקע אפילו לא הפרישה ומת חייבין היורשים להביא, ויש להעיר לפסק רבינו דמה&quot;ת אין לה שיעור רק מד&quot;ס מעה כסף ושתי כסף א&quot;כ לא הוי מלוה הכתובה בתורה ולאו ככתובה בשטר דמי ואינו גובה כשיעור מן היורשין, אמנם הירושלמי לטעמיה דסובר דהך שיעור הוי מה&quot;ת, ואולי משום זה נקט רבינו המפריש כו׳ ודוק:</p>
               </div>
             </div>
@@ -306,8 +337,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 2:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-2-1">Mishneh Torah, Festival Offering 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים פְּטוּרִין מִן הָרְאִיָּה. וְכָל הָאֲנָשִׁים חַיָּבִים בִּרְאִיָּה חוּץ מֵחֵרֵשׁ וְאִלֵּם וְשׁוֹטֶה וְקָטָן וְסוּמָא וְחִגֵּר וְטָמֵא וְעָרֵל. וְכֵן הַזָּקֵן וְהַחוֹלֶה וְהָרַךְ וְהֶעָנֹג מְאֹד שֶׁאֵינָם יְכוֹלִים לַעֲלוֹת עַל רַגְלֵיהֶן כָּל אֵלּוּ הָאַחַד עָשָׂר פְּטוּרִין. וּשְׁאָר כָּל הָאֲנָשִׁים חַיָּבִין בִּרְאִיָּה. הַחֵרֵשׁ אַף עַל פִּי שֶׁהוּא מְדַבֵּר אֲפִלּוּ חֵרֵשׁ בְּאָזְנוֹ אַחַת פָּטוּר מִן הָרְאִיָּה. וְכֵן הַסּוּמָא בְּעֵינוֹ אַחַת. אוֹ חִגֵּר בְּרַגְלוֹ אַחַת פָּטוּר. הָאִלֵּם אַף עַל פִּי שֶׁהוּא שׁוֹמֵעַ פָּטוּר. טֻמְטוּם וְאַנְדְּרוֹגִינוּס פְּטוּרִין מִפְּנֵי שֶׁהֵן סְפֵק אִשָּׁה. מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין פָּטוּר מִפְּנֵי צַד עַבְדוּת שֶׁבּוֹ. וּמִנַּיִן שֶׁכָּל אֵלּוּ פְּטוּרִין מִן הָרְאִיָּה. הֲרֵי הוּא אוֹמֵר <span class="source-small">(שמות כג יז)</span> <span class="source-small">(שמות לד כג)</span> <span class="source-small">(דברים טז טז)</span> &quot;יֵרָאֶה כָּל זְכוּרְךָ&quot; לְהוֹצִיא אֶת הַנָּשִׁים. וּמִצְוַת עֲשֵׂה שֶׁאֵין הַנָּשִׁים חַיָּבוֹת בָּהּ אֵין הָעֲבָדִים חַיָּבִים בָּהּ. וְעוֹד הֲרֵי נֶאֱמַר בְּבוֹא כָל יִשְׂרָאֵל לְהוֹצִיא הָעֲבָדִים. וְנֶאֱמַר <span class="source-small">(דברים לא יא)</span> &quot;בְּבוֹא כָל יִשְׂרָאֵל לֵרָאוֹת&quot;. כְּשֵׁם שֶׁהֵן בָּאִין לְהֵרָאוֹת לִפְנֵי ה׳ כָּךְ הֵם בָּאִים לִרְאוֹת הֲדַר קָדְשׁוֹ וּבֵית שְׁכִינָתוֹ. לְהוֹצִיא סוּמָא שֶׁאֵינוֹ רוֹאֶה. אֲפִלּוּ נִסְמֵית עֵינוֹ אַחַת שֶׁהֲרֵי אֵין רְאִיָּתוֹ שְׁלֵמָה. וְשָׁם נֶאֱמַר <span class="source-small">(דברים לא יב)</span> &quot;לְמַעַן יִשְׁמְעוּ&quot;. לְהוֹצִיא מִי שֶׁאֵין לוֹ שְׁמִיעָה גְּמוּרָה. <span class="source-small">(דברים לא יב)</span> &quot;וּלְמַעַן יִלְמְדוּ&quot;. לְהוֹצִיא מִי שֶׁאֵינוֹ מְדַבֵּר. שֶׁכָּל הַמְצֻוֶּה לִלְמֹד מְצֻוֶּה לְלַמֵּד. וְנֶאֱמַר <span class="source-small">(שמות לד כד)</span> &quot;בַּעֲלֹתְךָ לֵרָאוֹת אֶת פְּנֵי ה׳&quot; מִי שֶׁיָּכוֹל לַעֲלוֹת בְּרַגְלָיו לְהוֹצִיא חִגֵּר וְחוֹלֶה וְזָקֵן וְעָנֹג. וּכְבָר בֵּאַרְנוּ בְּהִלְכוֹת בִּיאַת הַמִּקְדָּשׁ שֶׁאֵין הַטָּמֵא רָאוּי לְבִיאָה וְכֵן הֶעָרֵל מָאוּס כְּטָמֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טומטום ואנדרוגינוס פטורין מפני שהן ספק אשה כו׳.</strong><br><strong> בגמרא </strong> (דף ד) אלא טומטום ספיקא הוא איצטריך קרא למעוטי ספיקא. יתכן לפרש דכמו דדריש יראה יראה מה אני בחנם אף אתה בחנם וכן מה הוא בשתי עינים כו׳ כן יש להקיש מה הוא אינה רואה אותך בספק דמי איכא ספיקא קמי שמיא כן כשאתה רואה אותו לא יהיה מספק, וכיוצא בזה מצאנו ביבמות (דף ק&quot;א) מה למעלה שאין בה שותפות אף למטה שאין בה שותפות, פירוש דלברכת השם אין צריך לשתף להחיוב עוד אחר, כן לאביו פרט לספק שצריך להיות חייב ע&quot;י שיתוף עוד אחד, כן הכא מקשינן מה יראה שאינו בספק כן יראה שאינו בספק ודוק:</p>
               </div>
             </div>
@@ -322,8 +358,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 2:2:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-2-2">Mishneh Torah, Festival Offering 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַמֵּץ וְהוּא שֶׁמְּלַאכְתוֹ לְקַבֵּץ צוֹאַת כְּלָבִים וְכַיּוֹצֵא בָּהֶן לְעַבֵּד הָעוֹרוֹת אוֹ לִרְפוּאָה. וְכֵן הַמְצָרֵף נְחשֶׁת בְּמַחְצָב שֶׁלּוֹ וְהָעַבְּדָנִין. אַף עַל פִּי שֶׁהֵן מְאוּסִין מִפְּנֵי מְלַאכְתָּן הֲרֵי אֵלּוּ מְטַהֲרִין גּוּפָן וּמַלְבּוּשָׁן וְעוֹלִין בִּכְלַל יִשְׂרָאֵל לֵרָאוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראה </strong> במשל&quot;מ שהעיר מהא שכתבו התוס׳ דמי שאין לו קרקע דפטור מן הראיה דהוה&quot;ד דפטור מפסח שזה חידוש גדול. ולכאורה נראה מוכרח כוותייהו מהא דבריש תמיד נשחט אמר בשלמא לת&quot;ק יבוא עשה דפסח שיש בו כרת וידחה עשה שאין בה כרת אלא לריב&quot;ב מאי אולמא דהאי עשה מהאי עשה כו׳ הכא בחטאת העוף עסקינן שאין למזבח אלא דמה כו׳, ולפ&quot;ז קשה לת&quot;ק איך דחי עשה דפסח לעשה דהשלמה הלא מצי לקיים את שניהם ולהפקיר נכסיו ויביא חטאת העוף וליכא עשה דהשלמה, ואין לאמר דעשה דהשלמה מוכרח לדחות בהקטרה דאשם, דאטו מי לא מיירי בגוונא דכבר הקריב אשמו וכמו דמיירי ר&quot;י בנו של ריב&quot;ב, וכמו דאמר הגמרא בריש פרק ר&quot;א דמילה דמשו&quot;ה לר&quot;א לא דחו מכשירי מצוה דמזוזה וציצית לשבת שכן בידו להפקירן יעו&quot;ש. וע&quot;כ משום דאם יפקיר נכסיו ויהיה עני יפטר גם מעשיית פסח דלא יהיה לו קרקע וזה אינו תקנה דיפטר גם מעשיית פסח וכמו דאמרה תורה שפסח דוחה שבת אף דבידו להפקיר קרקעותיו ויפטר מפסח דלזה לא חשבה התורה תקנה וצותה לדחות השבת כן הכא דוחה לעשה דהשלמה:<br><strong> אמנם </strong> נראה דאין ראיה מכאן, דהא התוספות בפ&quot;ק דב&quot;ק כתבו גבי הא דעד שליש במצוה דאף מצוה עוברת אין צריך ליתן כל ממונו לקיימה, אבל במצות ל&quot;ת כתב הר&quot;ן בפ&quot;ב דסוכה והריב&quot;ש דצריך ליתן כל ממונו דרק יעבור ואל יהרג אמרו הא בכל מאודך חייב, ולפ&quot;ז אם יאנסוהו לחלל שבת יהא מוכרח ליתן כל ממונו ושלא לחלל שבת א&quot;כ שפיר אמר דלא דחי מזוזה לשבת שכן בידו להפקיר ביתו ולא יהא עדיף האונס דמצוה מאונס דאונסין והלא מצווה ועומד לאבד נכסיו ושלא לעבור שבת ע&quot;י אונס ולכן לא דחי שבת, ותו לא צריך להפקיר ביתו בכדי שלא יעבור על מצות מזוזה דאין זה רק שב וא&quot;ת שאינו עושה מזוזה והוא אנוס שלא לעשות מזוזה בשביל שבת ובשביל קיום מ&quot;ע אינו צריך ליתן ממונו ברבוי ואף יותר משליש, אבל כאן שפיר דחי עשה דפסח לעשה דהשלמה מאי תאמר דיפקיר נכסיו הלא בשביל לקיים מ&quot;ע דפסח שהיא קום ועשה אינו מחוייב לבזבז ממונו דאם יעבור ולא יעשה פסח הלא לא יהא רק בשב וא&quot;ת ואף אם חבשוהו בבית האסורים שאין שוחטין עליו לא יהא מחוייב לבזבז ממונו לקיים עשה דפסח דאף ע&quot;ג שיש כרת במ&quot;ע דפסח מכל מקום הא יש לו תשלומין בפ&quot;ש ולכן לא שייך לומר דיהא מקרי אפשר לקיים שניהם מה שבידו להפקיר נכסיו ויוכל להביא חטאת העוף כיון שאינו מחוייב לזה ופשוט:<br><strong> אולם </strong> לשיטת הריב&quot;א דפירש דאע&quot;ג דעשה דאכילת פסח לא הוי בעידנא ופי׳ דישחטו עליו טרם שיקרב כפרתו ורק כיון דראוי להביא כפרתו שוחטין וזורקין עליו את פסחו, דאם תאמר דאסור להביא כפרתו הלא גברא דאינו ראוי לאכילה הוי ואין שוחטין וזורקין עליו, קשה טובא דאמאי אין שוחטין וזורקין עליו מדם פסחו הלא ראוי להפקיר נכסיו ויהיה עני ויביא קרבנו חטאת העוף דאין למזבח אלא דמו וראוי הוא שכן בידו להפקיר נכסיו אף דאינו מחוייב לזה וצריך לומר דאם יפקיר את נכסיו הלא לא יהיה לו קרקע ויהא פטור מפסח ואנן בעינן שיהא מחוייב במצות פסח ויהא ראוי לאכול את הפסח באופן שהוא מחוייב במצותו אבל באופן שאינו ראוי לאכול את הפסח רק באופן שהוא פטור מקיום מצותה שלא יהא לו קרקע לא מקרי גברא דחזי לאכילה ודוק. אך באמת ז&quot;א דהרי אמרו בירושלמי פ&quot;ג דפאה גבי קרקע כ&quot;ש חייב בפאה תני והראיון אלמא דמצות ראיה בקרקע כ&quot;ש חייב בראיה דקרינא ביה ולא יחמוד איש ארצך, וא&quot;כ מצי להפקיר נכסיו ולשייר לעצמו קרקע כ&quot;ש ויהא עני ויוכל להביא קרבן עני חטאת העוף ועוד יהא חייב בעשיית פסח דהא יש לו קרקע כ&quot;ש ואמאי אין שוחטין וזורקין עליו. וצ&quot;ל דת&quot;ק סבר או כראב&quot;י דצפרים קבעו או כר׳ יהודה דאשמו קובעו וכיון שכבר קרב אשמו הרי אף אם יפקיר את נכסיו ויהא עני יהא מחויב להביא קרבן עשיר ולכך אתי עשה ודחי עשה דהשלמה דאם לא ידחה לא יהא תקנתא אף אם יפקיר את נכסיו ויהיה עני יהא מחוייב להביא קרבן עשיר, יעוין כריתות (דף ט׳) ודוק היטב:</p>
               </div>
             </div>
@@ -338,8 +379,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 2:10:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-2-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-2-10">Mishneh Torah, Festival Offering 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹצְאִין יִשְׂרָאֵל יְדֵי חוֹבַת שַׁלְמֵי שִׂמְחָה בִּנְדָרִים וּנְדָבוֹת וּבְמַעֲשַׂר בְּהֵמָה. וְהַכֹּהֲנִים בְּחַטָּאת וּבְאָשָׁם וּבִבְכוֹר וּבְחָזֶה וְשׁוֹק. שֶׁמִּצְוָה זוֹ הִיא לִשְׂמֹחַ בַּאֲכִילַת בָּשָׂר לִפְנֵי ה׳ וַהֲרֵי אָכְלוּ. אֲבָל אֵין יוֹצְאִין יְדֵי חוֹבָתָן לֹא בְּעוֹפוֹת וְלֹא בִּמְנָחוֹת שֶׁאֵינָן בָּשָׂר הַמְשַׂמֵּחַ. כְּבָר בֵּאַרְנוּ בִּפְסָחִים שֶׁחֲגִיגַת אַרְבָּעָה עָשָׂר רְשׁוּת. לְפִיכָךְ אֵין אָדָם יוֹצֵא בָּהּ יְדֵי חוֹבַת חֲגִיגָה אֶלָּא יוֹצֵא בָּהּ חוֹבַת שִׂמְחָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אין אדם יוצא בה ידי חובת חגיגה כו׳.</strong><br><strong> ובהשגות </strong> אבל לרבנן כיון דרשות היא יוצא בה אף משום חגיגה אם התנה עליה לצאת בה ושחטה בי&quot;ד, ורבוותא בתוס׳ פליגי ע&quot;ז וסברי כרבינו דאף אם הקדישה לשם חגיגה ושחטה בי&quot;ד אינו יוצא בה משום דבעי שחיטה בשעת חגיגה. ונראה להתבונן כיון דבחגיגה יוצא אם ישחט אותה מערב יום טוב א&quot;כ קשה דרב הונא אמר פ&quot;ב דביצה לדברי האומר נדרים ונדבות אין קרבין ביו&quot;ט לא תימא כו׳ אלא אפילו מדאורייתא נמי לא חזו דהא שתי הלחם דחובת היום נינהו וליכא למיגזר כו׳ ואינו דוחה יו&quot;ט א&quot;כ כמו דאפיית שתי הלחם אינן דוחין יום טוב משום שיכול לאפותן מערב יו&quot;ט כן חגיגה להראב&quot;ד הלא שחיטתה מצי להיות מערב יום טוב ואיך דחי יום טוב דהוי דומיא דנדרים ונדבות ועמד ע&quot;ז המהר&quot;ם ברבי. לכן נראה דחזינן דאוכל נפש דחי יום טוב ומכשיריו דוחין יו&quot;ט ואפ&quot;ה ביארו רבנן בתוס׳ שבת (דף צ&quot;ה) וביצה (דף ג׳) דבאוכל נפש כו&quot;ע מודו דאפילו אפשר לעשותן מערב יום טוב דחי רק במכשירין אסרה רחמנא היכי דיכול לעשותן מערב יו&quot;ט, כן כי דחייא רחמנא יום טוב לצורך גבוה לחובת היום מילי דבתר הקדישו שחל עליו קדושת הגוף לשם חובתו וכמו שחיטת חגיגה דמקדשתו סכין דלא לפרוק ע&quot;י מום כדאמרו ריש פ&quot;ב דסוטה דקדשתו סכין בצואר בהמה הוי מידי דשייך לגוף חובת היום והותרה ביום טוב שחובתו להביא משום היו&quot;ט אף שאפשר לעשותו מערב יו&quot;ט כמו מלאכה באוכל נפש דשריא אפילו שאפשר לעשותו מערב יו&quot;ט, אבל מידי דהוה קודם הקדישו קדושת הגוף לשם חובת היום הוי בגדר מכשירין באוכל נפש ואם אפשר לעשותו מבעוד יום לא שייך לחובת היום והוי בגדר נדרים ונדבות ואינן דוחין יו&quot;ט וכיון שכן א&quot;ש דהקשה אדם קשה כברזל אפייתן בפנים אלמא תנור מקדש וא&quot;כ אמאי אינן דוחין את השבת הא איפסול בלינה, ופירשו רבנן בתוס׳ דתנאי הוי ותברא מי ששנה זו לא שנה זו, א&quot;כ כיון דאפייתן בחוץ ותנור אינו מקדש הוי האפייה מילי דקודם ההקדש ולא שייך לעצם החובה דצותה התורה להביא משום יו&quot;ט ולכן הוי בגדר נדרים ונדבות ואינן דוחין יום טוב דאינו מגוף הקדש לשם חובת היום וכמו דהבדילה תורה במכשירין דאוכל נפש בין אפשר לעשותן מערב יום טוב דאז לא דחו כיון שאינן בגוף האוכל נפש, ואי משום דהאפייה צורך הדיוט שיהיו נאכלים בטלה חיובו לגבוה את הצורך הדיוט כמו בשלמי נדרים ונדבות שביטלה הצורך גבוה את הצורך הדיוט הראויה להיאכל לאדם כמו שפירשו בתוס׳ ודוק. אמנם לרבינו שפוסק דאפייתן בפנים ואפ&quot;ה אינן דוחין השבת ויו&quot;ט דגלי רחמנא עריכתן דוחה שבת ואין אפייתן דוחה, א&quot;כ חזינא אע&quot;ג דהאפייה הוי מידי דהקדישו לשם חובת היום בכך ואפ&quot;ה אינו דוחה יו&quot;ט א&quot;כ אם הוי שחיטת חגיגה מצי להיות מערב איך דחייא יו&quot;ט, אבל להראב&quot;ד דוקא אפייה דאינה מקדשא ללחם ליפסול בלינה וכמו שנתבאר, אבל שחיטת חגיגה וזריקתו דעיקר קרבן הוי דאם נאבדה החגיגה לבתר הזריקה הלא כבר יצא ידי חובתו והוי כאוכל נפש גופיה דאפילו אפשר לעשותו מערב יו&quot;ט דוחה יו&quot;ט כן הכא משום חובת היום גופיה ועיין פסחים (דף מ&quot;ז) ברש&quot;י ודוק:<br><strong> והנה </strong> הטורי אבן במגילה (דף ה׳) יצא לחלק דתלוי בהקטרת אימורים אם מקטירן בליל יו&quot;ט אז אף אם שחטן מערב יו&quot;ט יוצא משום חגיגה ולא הוי כחלבי חול שאינן קרבין ביו&quot;ט יעו&quot;ש. וזה נסתר מדברי ירושלמי דפ&quot;ב דביצה דמוקי דפליגי ב&quot;ש וב&quot;ה אם הותרה סמיכה שלא בשעת שחיטה דבאשם מצורע שסמך עליו ביום ז׳ כיון דלשחוט עדיין מחוסר זמן ואינו ראוי לשחוט, אם סמך עליו לא יצא וצריך למחר לחזור ולסמוך, ובשלמי נדבה דמצי שחיט לכן כי סמך מאתמול אין צריך לחזור ולסמוך [וכן פי׳ דברי רבינו לעיל פ&quot;ג ממעה&quot;ק יעו&quot;ש] רק בשלמי חגיגה פליגי דב&quot;ה עבדי לה כאשם מצורע דפירוש דכיון דאם הביא מאתמול הקרבן כשר אלא שאינו יוצא בו ידי חובתו בזה פליגי אם צריך לחזור ולסמוך, ולפ&quot;ז אם נאמר דהיכי דמקטיר בליל יו&quot;ט יוצא ידי חובת חגיגה אף ששחטן מערב יו&quot;ט א&quot;כ אמאי פליגי ב&quot;ה הא הוי כשלמי נדבה ומוכח דלצאת י&quot;ח אינו יוצא ובזה פליגי וכשיטת התוס׳:<br><strong> ומה </strong> שכתב רבינו כבר בארנו שחגיגת י&quot;ד רשות לפיכך אין אדם יוצא בה ידי חובת חגיגה כו׳. פירושו דאם היה חובה לא היו יוצאים משום שמחה כיון דגם היא מצוה לפסח וכמו דאינו יוצא בחגיגה חובת שלמי שמחה דהא שלשה מצות נצטוו לחג, כן אם היתה חגיגת י&quot;ד חובה אף דאינה רק בפסח, ושמחה כתיב בחג וא&quot;כ כמו שיוצא כהן בשעיר המוספין חובת שלמי שמחה כן יכול לצאת בחגיגת י&quot;ד, ז&quot;א דר&quot;י הגלילי במכילתא דריש קרא דשבעת ימים תחוג על פסח ושם כתיב והיית אך שמח, א&quot;כ כתיב שמחה בחג פסח ואם היה חגיגת י&quot;ד חובה הרי שמחה מצוה לבד חגיגת י&quot;ד וכמו שהיא לבד חגיגת ט&quot;ו ואינו יוצא בה ידי שמחה ודוק:</p>
               </div>
             </div>
@@ -355,8 +401,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Festival Offering 3:2:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-festival-offering-3-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Festival Offering 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-3-2">Mishneh Torah, Festival Offering 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַפָּטוּר מִן הָרְאִיָּה פָּטוּר מִמִּצְוַת הַקְהֵל חוּץ מִן הַנָּשִׁים וְהַטַּף וְהֵעָרֵל. אֲבָל הַטָּמֵא פָּטוּר מִמִּצְוַת הַקְהֵל שֶׁנֶּאֱמַר <span class="source-small">(דברים לא יא)</span> &quot;בְּבוֹא כָל יִשְׂרָאֵל&quot; וְזֶה אֵינוֹ רָאוּי לְבִיאָה. וְהַדָּבָר בָּרוּר שֶׁהַטֻּמְטוּם וְהָאַנְדְּרוֹגִינוּס חַיָּבִין שֶׁהֲרֵי הַנָּשִׁים חַיָּבוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הפטור מן הראיה פטור ממצות הקהל חוץ מן הנשים כו׳.</strong><br><strong> לא </strong> חשיב רבינו עבדים דכתיב כל ישראל וכתיב הקהל את העם ועבדים לא מקרי עם כמו דאמר בפרק הזרוע כו׳ יכפר לרבות העבדים אלמא דלא נכללו בכלל עם ובעי קרא לרבות יעו&quot;ש ופשוט. ובמתנות כהונה חייבי׳ בודאי רק משום דאין דרך לעבד להיות לו נכסים בפ&quot;ע כתבה רחמנא מאת העם ופשוט:</p>
               </div>
             </div>
@@ -366,6 +417,10 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-festival-offering-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-festival-offering.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-festival-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -386,8 +441,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-festival-offering.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ohr-sameach-on-mishneh-torah-festival-offering.manifest.json","occurrence_url":"../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-festival-offering.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-festival-offering.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-festival-offering.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-festival-offering.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -413,7 +468,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

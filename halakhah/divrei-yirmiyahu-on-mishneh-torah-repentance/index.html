@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-repentance/">Open Mishneh Torah, Repentance</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Repentance</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">41 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>1016 matched</strong> / 2527 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-repentance.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/divrei-yirmiyahu-on-mishneh-torah-repentance-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -264,8 +265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המצות שבתורה בין עשה בין ל&quot;ת אם עבר אדם על אחת מהן בין בזדון בין בשגגה כשיעשה תשובה וישוב מחטאו חייב להתודות לפני האל ברוך הוא שנאמר איש או אשה כי יעשו ואמר והתודו את חטאתם אשר עשו זה ודוי דברים .</strong> עי׳ בכ&quot;מ מספרא פרשת אחרי מות, אף דאמרינן במס׳ קדושין מ&quot;ט ע&quot;ב, ע&quot;מ שאני צדיק אפי׳ רשע גמור מקודשת שמא הרהר תשובה בדעתו, מ&quot;מ המצוה בודוי פה ושמא אח&quot;ז יודה בפה ג&quot;כ, ובספר המצות לרמב&quot;ם עשה ע&quot;ג בשם המכילתא יכול הנהרגין ע&quot;פ זוממין לא אמרתי אלא ואשמה הנפש ההיא ר&quot;ל שלא יתחייב לו הודוי כשידע שאין לו חטא אבל הועד עליו שקר עכ&quot;ל, והנה בודוי הסדורה מאנשי כנסת הגדולה לכולנו ובהם אשר נדע כי לא חטאנו ולרוב אינו אחד שחטא בכולמו, הנה נאמר בלשון רבים על כל ישראל ובלשון יחיד נראה כמשקר, וגם נראה דמה דשייך על הספק שמא בשוגג חטא או בהרהור ונשכח ממנו אף דאינו בכלל מ&quot;ע באם רוצה להתודות ולבקש כפרה דרך נכון ולר׳ אלעזר אדם מביא אשם תלוי בכל יום, ושם בסה&quot;מ בשם מכילתא מקור נאמן למ&quot;ש רבינו כאן וכמו שהעיר כמו כן בסדר משנה, ועי׳ יומא ל&quot;ו ע&quot;ב עויתי וכו׳ ופשעתי וכו׳ אלו המורדין וצ&quot;ע.</p>
               </div>
             </div>
@@ -280,8 +286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-1-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ודוי זה מ&quot;ע.</strong> למ&quot;ש לעיל דבהרהור די לתשובה להפוך רשע לצדיק מובן שאמר דודוי זה ממ&quot;ע.</p>
               </div>
             </div>
@@ -296,8 +307,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:3</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-1-3" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כיצד מתודין אומר אנא ה׳ חטאתי עויתי פשעתי לפניך ועשיתי כך וכך והרי נחמתי ובושתי במעשי ולעולם איני חוזר לדבר זה, וזה עיקרו של ודוי וכל המרבה להתודות ומאריך בענין זה הרי זה משובח.</strong> ועי׳ בס׳ מעשה רוקח דפירוט החטא למדים מקרא דויעשו להם אלוהי זהב כמ&quot;ש רבינו בפ&quot;ב ה&quot;ג כדאי׳ במס׳ יומא דף פ&quot;ו דמהתודו וכו׳ אשר עשו בלתי מפורש כ&quot;כ על הפירוט, ובושתי ונכלמתי וכו׳ מקרא דעזרא ט׳ ולעולם אינו חוזר וכו׳ מקרא דלא נאמר עוד אלוהינו למעשי ידינו, הושע י&quot;ד, ועי׳ בשער התשובה לרבינו יונה שער א׳ סי׳ כ&quot;א בד&quot;ה הבושה כענין שנאמר בושתי וגם נכלמתי כי נשאתי חרפת נעורי ירמי׳ ל&quot;א וכו׳ עיי&quot;ש וכן מצינו באדם וחוה לאחר החטא בושו וזה לעד על כי ידעו כי חטאו, ואת&quot;ל כל החוטא ומתבייש עליהן מוחלין חטאיו ברכות י&quot;ב ע&quot;ב, וארז&quot;ל כל המתבייש במהרה אינו חוטא.</p>
               </div>
             </div>
@@ -312,8 +328,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:4</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-1-4" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וזה עיקרו של ודוי.</strong> להלן פ&quot;ב ה&quot;ח כתב כן זה עיקרו של ודוי על אבל אנחנו חטאנו לך כדאיתא במס׳ יומא פ&quot;ו שם הכונה אבל וכו׳ הוא השורש ועיקר הודוי כי מי אשר לבבו נאטם ולא ירגיש עונו לא ישוב באמת ופה נאמר מהשב באמת ותכלית ידיעת חטאו להרים הרגשת לבבו ובושת יכסהו על רוע מעשיו שם הכונה עיקר מה שהכל תלוי בו, ופה על תכלית הנאמר היוצא מהעיקר והתכלית וההתחלה שניהם עיקרים, וע&quot;ז כתב וכל המרבה וכו׳. ואשר לעיין כי בוידויים הסדורים בתפילה מכנה&quot;ג אין מענין הנאמר ואולי לחלק בין ודוי לרבים לודוי ליחיד בזה וצ&quot;ע.</p>
               </div>
             </div>
@@ -328,8 +349,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:5</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-1-5" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:5">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן בעלי חטאות ואשמות וכו׳ וכן כל מחויבי מיתות בי&quot;ד ומחויבי מלקות וכו׳ וכן החובל בחבירו ובמזיק ממונו אע&quot;פ ששילם לו מה שהוא חייב לו אינו מתכפר עד שיתודה וישוב מלעשות כזה לעולם שנאמר מכל חטאות האדם.</strong> ובכ&quot;מ עמד על הלמוד מכל חטאת וכו׳ ועי׳ במעשה רוקח וסדר משנה כי בסה&quot;מ עשה ע&quot;ג הביא הנ&quot;ל כן בשם המכילתא ומשם יצא לרבינו כן, גם העיר ע&quot;ז כי בגמ׳ ב&quot;ק המובא בכ&quot;מ הוא שירצה חבירו ורבינו כתב כאן שישוב ויתודה לה׳ כי בזה כי חטא נגד רעהו חטא גם לה׳ עיי&quot;ש.<br><strong> ובפ&quot;ה</strong> מהל׳ חובל ומזיק ה&quot;ט כתב רבינו אינו דומה מזיק חבירו בגופו למזיק בממונו, שהמזיק ממון חבירו כיון ששילם מה שהוא חייב לשלם נתכפר לו, אבל חבל בחבירו אע&quot;פ שנתן לו חמשה דברים אין מתכפר לו, ואפי׳ הקריב כל אילי נביות אינו מתכפר לו ולא נמחל עונו עד שיבקש מן הנחבל וימחול לו עכ&quot;ל, ובלח&quot;מ הקשה ע&quot;ז ממ&quot;ש בהל׳ תשובה פ&quot;ב ה&quot;ט דהגוזל את חבירו אינו מתכפר לו אלא אם ירצה לנגזל אף שהשיב לו ותירץ דשאני גזלן שנהנה וגם ציער לנגזל שלקחו ממונו בחזקה, אבל למזיק לא באה הנאה למזיק ולא נצטער כ&quot;כ הניזק כששילם לו עיי&quot;ש.<br><strong> והנראה</strong> דכל מזיק ג&quot;כ גוזל הוא אף שלא נהנה ונראה יותר כמכוין לצער חבירו בלבד כיון שאין לו הנאה וחוטא רק לו ולא לו מזה כלל, אבל יש מזיק בשוגג דקיי&quot;ל אדם מועד אחד ער ואחד ישן או בשור המזיק שפשעו הבעלים בשמירתם בכה&quot;ג אין לו לבקש מחילה מהבעלים אחרי התשלומין אבל המזיק להכעיסו מסתברא דגרע מגזלן, ועי׳ בס׳ מעשה רוקח והביא דברי הסמ&quot;ג סוף עשין ע׳ אינו דומה וכו׳ שהמזיק בממון וכו׳ כיון ששילם וכו׳ נתכפר לו ומ&quot;מ מצוה לישאל ממנו מחילה כאשר ביארנו במצות ודוי ועי׳ בסמ&quot;ג סוף סי׳ ט&quot;ז עיי&quot;ש, ומזה הוכיח דדעת הסמ&quot;ג דמהתורה נמחל במזיק ממונו בתשלומין ומדרבנן מצות רצוי כדאי׳ יומא דף פ&quot;ה עיי&quot;ש והנראה דהכל מדאורייתא רק בממונו הוי ב׳ דברים ובחבלה הכל דבר אחד, כי הממון והרצוי משום החבלה, משא&quot;כ בממונו הממון בשביל הדבר והרצוי משום דציערו והוי הרצוי מצוה בפ&quot;ע כן נראה לענ&quot;ד עמ&quot;ש לחלק בין מזיק למזיק בממון ג&quot;כ, ועי׳ ברשב&quot;א ב&quot;ק קי&quot;ח בדעת בעלים בגניבה עיי&quot;ש ויובן עמ&quot;ש.</p>
               </div>
             </div>
@@ -344,8 +370,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:6</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-1-6" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:6">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן בעלי חטאות וכו׳ עד שיעשו תשובה ויתודו וכו׳.</strong> ובגמ׳ שבועות י&quot;ג חטאות וכו׳ אין מכפרין אלא לשבים כמובא בכ&quot;מ ובתורה נאמר והתודה וכו׳ כמ&quot;ש ברש&quot;י שם ואמר עד שיעשו תשובה דמהתודו על חטאתם הוא רק על חטאתם שלעבר ובזה אין די עד שיקבל שלא לעשות עוד, וזה הכונה שיעשו תשובה דלשון תשובה מורה שישוב למה שפי׳ מקדם בראשונה כנאמר בתפילה הנשמה וכו׳ טהורה היא, וגם יתודה על העבר כמו התשובה על לעתיד וזה עד שיעשו תשובה ויתודו וכו׳.</p>
               </div>
             </div>
@@ -360,8 +391,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:7</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-1-7" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:1:7">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן כל מחויבי מיתות בי&quot;ד וכו׳.</strong> ובהגהות מיימוני ואפי׳ מי שחלה ונטה למות אומרים לו התודה כדאיתא במס׳ שבת דף ל&quot;ב ע&quot;א עכ&quot;ל, ובספרי פרשת נשא בד&quot;ה וידבר ה׳ וכו׳ בסופו והתודו, ר׳ נתן אומר זה בנה אב לכל המתים שטעונין ודוי עכ&quot;ל, ועי׳ בזית רענן למג&quot;א בפי׳ עש&quot;כ שדרש סמוכין ואשמה הנפש ההיא והתודו שאפי׳ בשעת נטילת נפש טעון ודוי, גם משנאמר והתודה אשר חטא נראה אף בלי קרבן יתודה על חטאיו עיי&quot;ש, וברמב&quot;ם לא הביאו אף די&quot;ל דהוי בכלל כל החוטאין שיתודו ואין אדם בארץ ועי׳ מ&quot;ש בשם הסה&quot;מ בלא חטא אם יתודה עיי&quot;ש, מ&quot;מ זה שאומרים לו וכו׳ היה להביא וצ&quot;ע, ונ&quot;ל דאיתא אומרים לו התודה שכן כל המומתין מתודין וברש&quot;י כדתנן במס׳ סנהדרין וכו׳ שכן מצינו בעכן וכו׳ עיי&quot;ש, וא&quot;כ הפי׳ שכן כל המומתין וכו׳ ושמא בחטאו מת ועליו להתודות כמו במיתה בידי אדם כן בידי השמי׳ וא&quot;כ הוי בכלל מה שכתב וכן כל מחויבי מיתות בי&quot;ד וכו׳ ועי׳ בש&quot;ך יו&quot;ד סי׳ של&quot;ח ס&quot;ק א׳ אם אומרים לו שכל המומתין וכו׳ ולמ&quot;ש יש כונה לזה לאמרו לו, ועם כל זה יקשה למה לא הביא שאומרים לו ומעירים אותו ע&quot;ז ואם לא הביאו בהל׳ תשובה היה להביא במקום אחר וצ&quot;ע.<br><strong> ובפי׳</strong> דברי הספרי י&quot;ל ג&quot;כ כמ&quot;ש ז&quot;ל כי הקרבן כאלו הקריב נפשו ולכן יתודה שיהיה בלי מום כי אין לך מום גדול מהחטא, ולכן זה בנה אב וכו׳ בשעת מיתה כי יפקד נפשו לה׳ כי יטהר אותה מכל מום רע חטא ופשע וירפא אותה בתשובה וודוי על פשעיו וה׳ יסלח לו.</p>
               </div>
             </div>
@@ -376,8 +412,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:2:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-2">Mishneh Torah, Repentance 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׂעִיר הַמִּשְׁתַּלֵּחַ לְפִי שֶׁהוּא כַּפָּרָה עַל כָּל יִשְׂרָאֵל כֹּהֵן גָּדוֹל מִתְוַדֶּה עָלָיו עַל לְשׁוֹן כָּל יִשְׂרָאֵל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז כא)</span> &quot;וְהִתְוַדָּה עָלָיו אֶת כָּל עֲוֹנֹת בְּנֵי יִשְׂרָאֵל&quot;. שָׂעִיר הַמִּשְׁתַּלֵּחַ מְכַפֵּר עַל כָּל עֲבֵרוֹת שֶׁבַּתּוֹרָה, הַקַּלּוֹת וְהַחֲמוּרוֹת, בֵּין שֶׁעָבַר בְּזָדוֹן בֵּין שֶׁעָבַר בִּשְׁגָגָה, בֵּין שֶׁהוֹדַע לוֹ בֵּין שֶׁלֹּא הוֹדַע לוֹ, הַכּל מִתְכַּפֵּר בְּשָׂעִיר הַמִּשְׁתַּלֵּחַ. וְהוּא שֶׁעָשָׂה תְּשׁוּבָה. אֲבָל אִם לֹא עָשָׂה תְּשׁוּבָה אֵין הַשָּׂעִיר מְכַפֵּר לוֹ אֶלָּא עַל הַקַּלּוֹת. וּמַה הֵן הַקַּלּוֹת וּמַה הֵן הַחֲמוּרוֹת. הַחֲמוּרוֹת הֵן שֶׁחַיָּבִין עֲלֵיהֶם מִיתַת בֵּית דִּין אוֹ כָּרֵת. וּשְׁבוּעַת שָׁוְא וָשֶׁקֶר אַף עַל פִּי שֶׁאֵין בָּהֶן כָּרֵת הֲרֵי הֵן מִן הַחֲמוּרוֹת. וּשְׁאָר מִצְוֹת לֹא תַּעֲשֶׂה וּמִצְוֹת עֲשֵׂה שֶׁאֵין בָּהֶן כָּרֵת הֵם הַקַּלּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שעיר המשתלח לפי שהוא כפרה על כל ישראל כה&quot;ג מתודה וכו׳ שעיר המשתלח מכפר על כל עבירות שבתורה הקלות והחמורות וכו׳ והוא שעשה תשובה, אבל אם לא עשה תשובה אין השעיר מכפר לו אלא על הקלות וכו׳ ושאר מצות ל&quot;ת ומ&quot;ע שאין בהן כרת הם הקלות.</strong> ועיין בכ&quot;מ ולח&quot;מ שהקשו שזה נגד סוגית הגמ׳ במס׳ שבועות דף י&quot;ב ע&quot;ב דמקשינן ה&quot;ד אי דעשה תשובה כל יומא נמי דתניא עבר על מצות עשה ועשה תשובה אינו זז משם עד שמוחלין לו ואי דלא עשה תשובה זבח רשעים תועבה, א&quot;ר זירא בעומד במורדו ורבי היא דתניא רבי אומר על כל עבירות וכו׳ בין עשה תשובה וכו׳ חוץ וכו׳ עיי&quot;ש, וא&quot;כ ממ&quot;נ לרבי אפי׳ חמורות ולרבנן אפי׳ קלות לא בלא עשה תשובה וגם להלן כתב רבינו עצומו של יו&quot;כ מכפר לשבים וזה כרבי בסוגיא הנ&quot;ל, ועי׳ בלח&quot;מ שכתב דגם לרבנן רק בכרת אין יו&quot;כ מכפר בלא תשובה וקושית הגמ׳ האי עשה וכו׳ נקטו משום הקושיא אי דעביד תשובה וכו׳ אבל הקושיא אי דלא עביד תשובה וכו׳ קאי אכריתות דרבנן דלמדו מהכרת תכרת וכו׳ ג&quot;כ רק על כריתות אמרו ובעשה ול&quot;ת מודו לרבי עיי&quot;ש ובס׳ מרכבת המשנה, ובס׳ מעשה רוקח כתב שסמך רבינו אסוגיא דמס׳ יומא פ&quot;ה עיי&quot;ש ובס׳ כפות תמרים שם עיי&quot;ש.<br><strong> והנראה</strong> לענ&quot;ד, דהנה יש להבין בסוגיא דמס׳ שבועות שם דף י&quot;ב ע&quot;ב הנ&quot;ל דמקשינן אי לא עביד תשובה זבח רשעים תועבה, ולא אמרו כדאיתא במס׳ חולין דף ה׳ ע&quot;ב השב מידיעתו מביא קרבן על שגגתו וכו׳ עיי&quot;ש ומכ&quot;ש במזיד דנאמר השב מזדונו מביא קרבן, דהנה כמ&quot;ש במקו&quot;א דמצד שב מידיעתו אינו חייב להביא קרבן ובלתי מועיל לו, אבל האיסור להביאו תליא אם חולין בעזרה אסור מדאורייתא ומשום זבח רשעים הוי בכלל איסור להביאו בכל גוונא, וכל זה לא שייך רק בקרבן יחיד אבל בקרבן כשעיר המשתלח המובא בשביל כל ישראל השבים מידיעתם וא&quot;כ לא שייך איסורא להביא בשביל זה שאינו שב והוי רשע ותליא רק אם מכפר לאינו שב וא&quot;כ הו&quot;ל להביא האי דשב מידיעתו וכו׳.<br><strong> ונ&quot;ל</strong> דהנה כנראה דבעי יו&quot;כ עם שעיר דגם להשב מידיעתו צריך קרבן השעיר לכפרה וא&quot;כ יש לומר דיו&quot;כ משוי כאלו שב מידיעתו אף בלא שב מ&quot;מ מקשינן דעכ&quot;פ גם בשב צריך לקרבן וקרבן לא שייך בלא שב אף דהוי כשב מידיעתו משום יו&quot;כ לענין זה דיו&quot;כ מכפר מעונש מ&quot;מ רשע מקרי כל זמן שלא שב ולא מסתברא שיהיה כשר לכל דבר שרשע נפסל מדינא כ&quot;ז שלא שב אף שעבר עליו יו&quot;כ וא&quot;כ שייך זבח רשעים ולא שייך בקרבן ולא יהיה לא שב עדיף משב דצריך לקרבן ובלא שב לא שייך קרבן מהאי טעמא דזבח רשעים וכו׳.<br><strong> והנה</strong> יש מקום לומר דהנה כנראה מלשון רבי יו&quot;כ מכפר וכו׳ דיו&quot;כ לבדו מכפר בלא קרבן ומ&quot;מ מדאיתא השעיר מכפר על קלות וכו׳ עי׳ בתוס׳ דף י&quot;ג ע&quot;א בד&quot;ה דעבד דשעיר מכפר מיד ויו&quot;כ משתחשך והביא האי דירושלמי חומר בשעיר מיו&quot;כ ששעיר מכפר מיד ויו&quot;כ משתחשך חומר ביו&quot;כ מבשעיר שיו&quot;כ מכפר בלא קרבן משא&quot;כ בשעיר עיי&quot;ש ובריטב&quot;א בסוגיא, ונ&quot;ל גם לרבנן כמ&quot;ש בלח&quot;מ רק בכרת אמרו ובעשה ול&quot;ת מודו לרבי וביו&quot;כ דלא שייך זבח רשעים ודאי מודו הרבנן גם נ&quot;ל רק בכרת דשייך קרבן כדמצינו בשוגג רק בכרת אבל בעשה ול&quot;ת יו&quot;כ בלבד מתכפר ולא שייך זבח, אבל יו&quot;כ משתחשך לכו&quot;ע בעשה ול&quot;ת מכפר ולא פליגי רק בקרבן אם מכפר כיון דשייך זבח וכו׳ ולרבי אף לקרבן מהני.<br><strong> ולכאורה</strong> יש להקשות דמשני רבי היא דהרי רבי לא אמרו רק לענין יו&quot;כ אבל לא לענין קרבן דשייך זבח רשעים וכו׳ כמ&quot;ש דלא שייך ביו&quot;כ משתחשך גם כמ&quot;ש דעל ידי יו&quot;כ כשב מידיעתו וזה משתחשך וא&quot;כ גם השעיר רק אז מכפר רק בסוף היום ובסופו יו&quot;כ מכפר ומאי נפק&quot;מ בהשעיר, ונראה דבס&quot;ד ס&quot;ל להגמ׳ דיו&quot;כ עם השעיר ביחד מכפרין ולא זה בלא זה, וא&quot;כ קושית הגמ׳ אף דתורה גילתה שיו&quot;כ יכפר על שאינו שב בקלות מ&quot;מ מה לענין קרבן בזבח רשעים דלא מסתבר שגם זה יהיה בכלל לשון התורה וא&quot;כ נאמר שאינו בכלל כפרה כלל אף מטעם שאינו שב מידיעתו.<br><strong> אמנם</strong> כ&quot;ז אם נאמר דבעינן יו&quot;כ וקרבן ביחד ואז שייך לומר אף דתורה מגלה בלשונה בכלל אף שאינו שב אבל מה לקרבן תועבה, אבל כמסקינן רבי היא דס&quot;ל דיו&quot;כ בלבד ג&quot;כ מכפר והקרבן נ&quot;מ דיו&quot;כ רק משתחשך וגם כמ&quot;ש בתוס׳ בד&quot;ה דעבד דיו&quot;כ בלעדי קרבן לא הוי כפרה שלימה עיי&quot;ש ובמס׳ יומא הנ&quot;ל, וא&quot;כ י&quot;ל כיון דע&quot;י היו&quot;כ העון נמחה לא מקרי זבח רשעים וכו׳ לענין קרבן ג&quot;כ דרק בס&quot;ד דשניהם ביחד משוי שיהיה בכלל שב ואז שייך זבח רשעים אבל אם נאמר דיו&quot;כ לחודא משוי כפרה רק לא כפרה שלימה מ&quot;מ משוי שלא יהיה בכלל זבח רשעים למען הקרבן ישלים כפרתו, ואף דלענין נאמנות רשע מקרי כמ&quot;ש לעיל מ&quot;מ מצינו במומר לדבר אחד שמביא על דבר אחר עי׳ ברמב&quot;ם בפ&quot;ג מהל׳ שגגות ה&quot;ז ובמל&quot;מ שם ולא מקרי זבח רשעים ממה דהוי מומר לדבר אחד, רק לאותו דבר לא, ובכה&quot;ג מהני יו&quot;כ שמביא אפי׳ לאותו דבר וא&quot;כ משני שפיר דכרבי אתיא דלרבי יו&quot;כ מכפר ממילא מהני קרבן ג&quot;כ לרבי, והנה כמ&quot;ש בלח&quot;מ דגם הרבנן לא פליגי בעשה ול&quot;ת רק בכרת ואמרינן רבי אף דגם כרבנן י&quot;ל משום דרבי מפרש דבריו וגם די&quot;ל כמ&quot;ש בלח&quot;מ דגם על כרת יקשה דא&quot;כ מיירי באינו שב ולמ&quot;ש מיושב קושית הגמ׳ אף דנאמר דרבנן מודו ולא פליגי רק בכרת וכמ&quot;ש ואתי שפיר.<br><strong> ובפי׳</strong> שאינן שבין, ברש&quot;י במס׳ שבועות י&quot;ב ע&quot;ב בד&quot;ה ה&quot;ד אי דלא עשה תשובה שאינו תוהה על חטאו עכ&quot;ל, נראה דמי שפורש מחטאיו ואינו עושה אותו לא נטהר מהם עד שתוהה ומתחרט על העבר כמ&quot;ש רבינו יעשה תשובה ויתודה וזה אינו תוהה, אבל באינו פורש ג&quot;כ אין יו&quot;כ מכפר, ואף דאיתא להלן י&quot;ג ע&quot;א יכול וכו׳ אא&quot;כ התענה וכו׳ אף דלא התענה ועשה חטא בזה ביו&quot;כ מ&quot;מ שייך שפורש משאר חטאים שעבר, ועי׳ במס׳ כריתות דף ז׳ במחלוקת דאביי ורבא עיי&quot;ש.</p>
               </div>
             </div>
@@ -392,8 +433,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:3:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-3-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-3">Mishneh Torah, Repentance 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּזְּמַן הַזֶּה שֶׁאֵין בֵּית הַמִּקְדָּשׁ קַיָּם וְאֵין לָנוּ מִזְבַּח כַּפָּרָה אֵין שָׁם אֶלָּא תְּשׁוּבָה. הַתְּשׁוּבָה מְכַפֶּרֶת עַל כָּל הָעֲבֵרוֹת. אֲפִלּוּ רָשָׁע כָּל יָמָיו וְעָשָׂה תְּשׁוּבָה בָּאַחֲרוֹנָה אֵין מַזְכִּירִין לוֹ שׁוּם דָּבָר מֵרִשְׁעוֹ שֶׁנֶּאֱמַר <span class="source-small">(יחזקאל לג יב)</span> &quot;רִשְׁעַת הָרָשָׁע לֹא יִכָּשֶׁל בָּהּ בְּיוֹם שׁוּבוֹ מֵרִשְׁעוֹ&quot;. וְעַצְמוֹ שֶׁל יוֹם הַכִּפּוּרִים מְכַפֵּר לַשָּׁבִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז ל)</span> &quot;כִּי בַיּוֹם הַזֶּה יְכַפֵּר עֲלֵיכֶם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בזמן הזה שאין בהמ&quot;ק קיים ואין לנו מזבח כפרה אין שם אלא תשובה וכו׳ ועצומו של יוה&quot;כ מכפר לשבים שנאמר כי ביום הזה יכפר עליכם.</strong> בתו&quot;כ פרשת אחרי מות פ&quot;ח כי ביום הזה יכפר עליכם בקרבנות, ומנין שאע&quot;פ שאין קרבנות ואין שעיר היום מכפר ת&quot;ל כי ביום הזה יכפר, ובקרבן אהרן שם אלו נאמר ביום הזה נאמר ביום הזה יכופר ע&quot;י הקרבנות, ובאומרו כי ביום הזה וכו׳ שמלת כי נתינת טעם על הקדום מקדושת היום ואמר למה יקדשוהו וזה כי היום הזה יכפר וכו׳ ופי׳ ביום הזה עם היום הזה עיי&quot;ש, ובירושלמי שבועות פ&quot;א ה&quot;ו חומר ביו&quot;כ מדשעיר דיו&quot;כ מכפר בלא שעיר ומובא בתוס׳ שבועות דף י&quot;ג ולקצת גורסין כן בבבלי ועי׳ בריטב&quot;א שם, ואע&quot;ג דלא קיי&quot;ל כרבי מ&quot;מ עצומו של יו&quot;כ מכפר כמ&quot;ש בהל׳ אח&quot;ז ובזה אמר רק לשבים בלשון סרוס ונראה אף לקלות עשה ול&quot;ת צריך שבים ושאני משעיר וא&quot;כ היה לומר בירושלמי הנ&quot;ל חומר בשעיר דמכפר לקלות וכו׳ וצ&quot;ע.</p>
               </div>
             </div>
@@ -408,8 +454,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 1:4:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-1-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-4">Mishneh Torah, Repentance 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁהַתְּשׁוּבָה מְכַפֶּרֶת עַל הַכּל וְעַצְמוֹ שֶׁל יוֹם הַכִּפּוּרִים מְכַפֵּר. יֵשׁ עֲבֵרוֹת שֶׁהֵן מִתְכַּפְּרִים לִשְׁעָתָן וְיֵשׁ עֲבֵרוֹת שֶׁאֵין מִתְכַּפְּרִים אֶלָּא לְאַחַר זְמַן. כֵּיצַד. עָבַר אָדָם עַל מִצְוַת עֲשֵׂה שֶׁאֵין בָּהּ כָּרֵת וְעָשָׂה תְּשׁוּבָה אֵינוֹ זָז מִשָּׁם עַד שֶׁמּוֹחֲלִין לוֹ, וּבְאֵלּוּ נֶאֱמַר <span class="source-small">(ירמיה ג כב)</span> &quot;שׁוּבוּ בָּנִים שׁוֹבָבִים אֶרְפָּה מְשׁוּבֹתֵיכֶם&quot; וְגוֹ׳. עָבַר עַל מִצְוַת לֹא תַּעֲשֶׂה שֶׁאֵין בָּהּ כָּרֵת וְלֹא מִיתַת בֵּית דִּין וְעָשָׂה תְּשׁוּבָה, תְּשׁוּבָה תּוֹלָה וְיוֹם הַכִּפּוּרִים מְכַפֵּר, וּבְאֵלּוּ נֶאֱמַר <span class="source-small">(ויקרא טז ל)</span> &quot;כִּי בַיּוֹם הַזֶּה יְכַפֵּר עֲלֵיכֶם&quot;. עָבַר עַל כְּרֵתוֹת וּמִיתוֹת בֵּית דִּין וְעָשָׂה תְּשׁוּבָה, תְּשׁוּבָה וְיוֹם הַכִּפּוּרִים תּוֹלִין וְיִסּוּרִין הַבָּאִין עָלָיו גּוֹמְרִין לוֹ הַכַּפָּרָה. וּלְעוֹלָם אֵין מִתְכַּפֵּר לוֹ כַּפָּרָה גְּמוּרָה עַד שֶׁיָּבוֹאוּ עָלָיו יִסּוּרִין, וּבְאֵלּוּ נֶאֱמַר <span class="source-small">(תהילים פט לג)</span> &quot;וּפָקַדְתִּי בְשֵׁבֶט פִּשְׁעָם וּבִנְגָעִים עֲוֹנָם&quot;. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁלֹּא חִלֵּל אֶת הַשֵּׁם בְּשָׁעָה שֶׁעָבַר אֲבָל הַמְחַלֵּל אֶת הַשֵּׁם אַף עַל פִּי שֶׁעָשָׂה תְּשׁוּבָה וְהִגִּיעַ יוֹם הַכִּפּוּרִים וְהוּא עוֹמֵד בִּתְשׁוּבָתוֹ וּבָאוּ עָלָיו יִסּוּרִין אֵינוֹ מִתְכַּפֵּר לוֹ כַּפָּרָה גְּמוּרָה עַד שֶׁיָּמוּת. אֶלָּא תְּשׁוּבָה יוֹם הַכִּפּוּרִים וְיִסּוּרִין שְׁלָשְׁתָּן תּוֹלִין וּמִיתָה מְכַפֶּרֶת שֶׁנֶּאֱמַר <span class="source-small">(ישעיה כב יד)</span> &quot;וְנִגְלָה בְאָזְנָי ה׳ צְבָאוֹת וְגוֹ׳ אִם יְכֻפַּר הֶעָוֹן הַזֶּה לָכֶם עַד תְּמֻתוּן&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ שהתשובה מכפרת על הכל ועצומו של יום הכפורים מכפר יש עבירות וכו׳ כיצד וכו׳ על ל&quot;ת שאין בה כרת וכו׳ תשובה תולה וכו׳ עבר על כריתות וכו׳ תשובה ויו&quot;כ תולין יסורין הבאי׳ גומרין הכפרה וכו׳.</strong> ומקורו כמ&quot;ש בכ&quot;מ במסכת יומא פ&quot;ו ובאדר&quot;נ פרק כ&quot;ט ובתוספתא שם פ&quot;ד ועיין ברמב&quot;ם בפ&quot;ז מהל׳ אלו ה&quot;ו גדולה תשובה וכו׳ אמש היה זה שנאוי לפני המקום משוקץ ומרוחק ותועבה והיום הוא אהוב ונחמד וקרוב וידיד וכו׳ אמש היה מובדל מאלוקי ישראל וכו׳ והיום הוא מדובק בשכינה וכו׳ עיי&quot;ש.<br><strong> והנה</strong> הלשון משוקץ ומתועב נראה שמדבר מרשעים גמורים ועם כל זה אמר אמש וכו׳ והיום וכו׳ ובלתי נראה לומר שכונתו אחרי שסבל מאמש עד היום יסורין ומה נאמר במי שמיתה לו לכפרה וכנראה מכולמו דיבר רבינו שם, גם לא יאות לומר לבעל תשובה טרם שיסורין באין עליו שהוא מרוחק ותועבה.<br><strong> וכאשר</strong> נסתכל בלשון הגמרא במסכת יומא הנ&quot;ל דאיתא אינו זז משם עד שמוחלין לו וכו׳ תשובה תולה ויו&quot;כ מכפר וכו׳ תשובה ויו&quot;כ תולין ויסורין ממרקין וכו׳ אין לו כח בתשובה לתלות ולא ביו&quot;כ לכפר ולא ביסורין למרק אלא כולן תולין ומיתה ממרקת וכו׳ עיי&quot;ש.<br><strong> והנה</strong> נאמר מוחלין לו וכו׳ ההבדל בין מתנה למחילה דמתנה על נתינת דבר שלא היה ביד המקבל ומחילה על דבר שביד המקבל ועליו ליתנו להנותן והוא מחלו לו כמו במלוה שמחויב ליתן ממון אחר תמור אשר הלוה לו וכן בהנאמר מוחלין לו ואין מבקשין ממנו דבר ובשאר הדברים אשר נאמר בהם יו&quot;כ ומיתה ויסורין ממרקין הנה התשובה נתקבל מיד &quot;אם תשוב מיד יקבלנו&quot; אבל להנשרש בטומאתו ומורגל בהם ימים רבים בעונות חמורות המשחיתים הנפש גם לשב למען לא יחזור לסורו לחזק נפש במעוזו להכינה ולטהרה בכל מאמצי כוחו, ועליו נאמר תולין כמו בספק תרומה טמאה נאמר לשון זה כי הוא בספק שמא יחזור לסורו עד כי בקלות עבר יו&quot;כ אשר היום יעשה רושם בו ובהחמורות יסורין הממרקין העונות ומחלישין כח התאווה כנודע, ובהחמור מאוד המיתה ועד אז אף כי התשובה נתקבלה מיד ונקרא אהוב לפני ד׳ הרואה בחדרי לבבו ודן אותו לפי השעה אבל הוא יחרד וידאג שאל יפול לחזרה כבראשונה ולמען יהיה נשאר במעמד התשובה היסורין נחוצים ורק למי אשר ה׳ ית&quot;ש יודע לבבו ויפטור אותו גם מזה כמ&quot;ש לדוד המלך ע&quot;ה &quot;גם ה׳ העביר חטאתך לא תמות&quot; על כי ראה הש&quot;י כי לא יסור לחטאו עוד, ולכן סידרו בעלי התשובה כמה תעניתים וסיגופים לעוברי עבירה תחת יסורים בידי השמים ממעל לו והכל למען לא יסור מהתשובה אשר עומד בה וכמה נכבד הסידור במדריגות העונות ולשון מחילה וכפרה ומירוק עונות הנאמרים בהנ&quot;ל, וכפרה כמו &quot;אכפרה פניו במנחה&quot; ע&quot;י מנחה שיתן לו וזה סליחה עבור דבר שיתן לו וכן נאמר כפרה ביו&quot;כ שעצמו של יום כעושה ונותן תמור הדבר שנתחייב בו ורושם העושה היום בלבבו ומחילה בלי תמור דבר אחר עבורו וכל הנאמר מיוסד על טבעי בני אדם ודרכם ועיין בשל&quot;ה בהל׳ תשובה דף ר&quot;ח ע&quot;ב בשם הרמ&quot;א בפי׳ סליחה ומחילה וכפרה עיי&quot;ש, ולשון רבינו בפי׳ תולין ויסורין הבאין עליו גומרין לו הכפרה ולעולם אין מתכפר לו כפרה גמורה עד שיבואו עליו יסורין וכו׳, וכמ&quot;ש בפר&quot;ח דמקורו מירושלמי יומא וריש [פרק] חלק התשובה ויו&quot;כ מכפרין מחצה ויסורין וכו׳ מכפרין מחצה וכו׳, נראה אף שנתקבלה תשובתו מיד טהור ונקי שאין לדאוג עליו שיסור לדרכיו הראשונים אשר בגדר כפרה מאיש אשר העביר חטאיו ממנו ובוטחים בצדקתו רק בזה מחצה ובזה מחצה כנזכר זולת למי אשר במעלת התשובה אשר הבוחן לבבות יעיד עליו כי לא ישוב עוד לכסלו ותשובתו שלימה ולבבו טהור ונקי, ולעולם אין מתכפר וכו׳ יש לפרש כי בכפרה לא ימצא רק על דרך זה אבל מחילה באלה אשר במעלת דוד המע&quot;ה א&quot;צ לזה כמ&quot;ש ועי׳ מ&quot;ש בפ&quot;ב ה&quot;ב עיי&quot;ש.<br><strong> ועיין</strong> בספר יד המלך הביא כמה ראיות דבחייבי כריתות שהתרו דלוקין אף אחר יו&quot;כ כמו בחייבי מלקות כדאיתא במסכת כריתות כ&quot;ו ולא אמרינן כיון שעיקרו בידי שמים ויו&quot;כ מכפרו עיי&quot;ש. ויש להוסיף עוד על דבריו שם דאנן קיי&quot;ל כרבנן דאין יו&quot;כ מכפר רק על שבים וא&quot;כ מאן יימר דשב בלבבו ואם דנאמר מסתמא שב ביו&quot;כ עכ&quot;פ ספק הוא ומספיקא לא נלקה אותו דא&quot;כ בכל חייבי כריתות דהתרו בו נאמר דילמא שב ופטור בידי השמים ולא נלקי ועל כרחך בהחיוב בידי השמים אין דנין בתר מחשבה וכנראה לדעת רבינו דעל קלין עשה ול&quot;ת יו&quot;כ מכפר אפילו לאינם שבים ואפ&quot;ה בחייבי מלקות שעברו אין יו&quot;כ מכפר דלדעתו לא שייך דילמא לא שב דהרי בכל גוונא מכפר, והנה מלקות מטעם וכל העם ישמעו ויראו ופי׳ כנאמר בתורה דשייך בכל גוונא וכן בכרת שהתרו אחר יו&quot;כ דעכ&quot;פ למען ישמעו וכו׳ שייך בכה&quot;ג.<br><strong> ובהגהות</strong> מל&quot;מ שם מל&quot;מ בהל׳ שגגות דאין יו&quot;כ מכפר על חצי שיעור וביד המלך כתב שטעה בזה דרק לענין קרבן נאמר ולא לכפרת החטא עיי&quot;ש והנראה כי הגהות מל&quot;מ לא כיון רק לקרבן בלבד ולא טעה בדבר פשוט כזה חלילה.</p>
               </div>
             </div>
@@ -425,8 +476,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:2:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-2">Mishneh Torah, Repentance 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמַה הִיא הַתְּשׁוּבָה. הוּא שֶׁיַּעֲזֹב הַחוֹטֵא חֶטְאוֹ וִיסִירוֹ מִמַּחֲשַׁבְתּוֹ וְיִגְמֹר בְּלִבּוֹ שֶׁלֹּא יַעֲשֵׂהוּ עוֹד שֶׁנֶּאֱמַר <span class="source-small">(ישעיה נה ז)</span> &quot;יַעֲזֹב רָשָׁע דַּרְכּוֹ&quot; וְגוֹ׳. וְכֵן יִתְנַחֵם עַל שֶׁעָבַר שֶׁנֶּאֱמַר <span class="source-small">(ירמיה לא יט)</span> &quot;כִּי אַחֲרֵי שׁוּבִי נִחַמְתִּי&quot;. וְיָעִיד עָלָיו יוֹדֵעַ תַּעֲלוּמוֹת שֶׁלֹּא יָשׁוּב לְזֶה הַחֵטְא לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(הושע יד ד)</span> &quot;וְלֹא נֹאמַר עוֹד אֱלֹהֵינוּ לְמַעֲשֵׂה יָדֵינוּ&quot; וְגוֹ׳. וְצָרִיךְ לְהִתְוַדּוֹת בִּשְׂפָתָיו וְלוֹמַר עִנְיָנוֹת אֵלּוּ שֶׁגָּמַר בְּלִבּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומה היא התשובה וכו׳ וכן יתנחם על שעבר וכו׳ ויעיד עליו יודע תעלומות שלא ישוב לזה החטא לעולם שנאמר ולא נאמר עוד אלוהינו למעשה ידינו וכו׳.</strong> עיין בכ&quot;מ ובלח&quot;מ ובשאר מפורשים דכולמו פי׳ ויעיד עליו וכו׳ שיעשה ה׳ ית&quot;ש לעדות עיי&quot;ש, ולשון ויעיד עליו קשה בפי׳ הזה וגם לא נמצא מפורש במקרא ולא נאמר וכו׳ והנראה לענ&quot;ד הוא כמ&quot;ש למעלה כי מה שארז&quot;ל יסורין ומיתה ממרקין הוא אף לשב למען לא יחזור לסורו אלה המה רפאות לנפשו ולמען יעמוד במעוזו בתשובתו גם למען למחוק הרושם אשר עשו החטאים בנפשו צריכין אלה הדברים הממרקין כמ&quot;ש במקום אחר בפי׳ גומרין עיי&quot;ש אבל לצדיקים כדוד המלך ע&quot;ה נאמר ה׳ העביר חטאתך לא תמות על כי ראה ה׳ כי תשובתו כל כך שלימה דלא יסור לה לעולם וחפשי מאלה אשר המה מרפא לנפש יסורין ומיתה, ולכן רבינו המדבר מהתשובה השלימה ביותר כי תהיה בערך שעשה אותה המלך החסיד אשר יעיד עליו היודע תעלומות שלא ישוב לזה החטא לעולם ומקרא שהביא ולא נאמר וכו׳ קאי אלעיל מה שכתב שגמר בלבו דלא יעשהו עוד וזה ויעיד עליו וכו׳ נלמד כמ&quot;ש מקרא ה׳ העביר חטאתך וכו׳ הנאמר למלך החסיד ע&quot;ה ומ&quot;ש בלח&quot;מ מבטול הבחירה עיי&quot;ש הן זה הנאמר מרבינו מענין ידיעה ובחירה בה׳ זו ומיושב גם זה בזה.<br><strong> גם</strong> נוכל לפרש כי ממקראות הנאמרים שם ארפא וכו׳ אהיה כטל וכו׳, הנראה כי אחרי אומרם ולא נאמר וכו׳ לא יבצר מהם כל טוב ואל יבוא עליהם לא יסורין ולא מיתה אף כי חטאו בע&quot;ז שאמרו אלוהינו למעשה ידינו וזה כי תשובתם היתה כמו דוד המלך ע&quot;ה אשר העיד ד׳ היודע תעלומות שלא יסורו לחטאם ובזה יפרש רבינו שלא יקשה ממה שארז&quot;ל מיסורין ומיתה ממקראות הנראה כי ע&quot;י תשובה יהיה לנו כל הטוב בלי שום חולי ויסורין ובזה שאמר ויעיד עליו מצא פשר דבר ומקרא קודש ולא נאמר וכו׳ ויפרח כזית הודו וכו׳ וזולת זה הנאמר עוד ראיה נאמנה לדבריו, ועמוקים דבריו, ועיין בס׳ קובץ על יד דמקורו מילקוט הושע י&quot;ד סי׳ תקל&quot;ב מי מעיד בנו וכו׳ איני לכם לעד ומ&quot;ש במקו&quot;א בזה.</p>
               </div>
             </div>
@@ -441,8 +497,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:3:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-3-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-3">Mishneh Torah, Repentance 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמִּתְוַדֶּה בִּדְבָרִים וְלֹא גָּמַר בְּלִבּוֹ לַעֲזֹב הֲרֵי זֶה דּוֹמֶה לְטוֹבֵל וְשֶׁרֶץ בְּיָדוֹ שֶׁאֵין הַטְּבִילָה מוֹעֶלֶת לוֹ עַד שֶׁיַּשְׁלִיךְ הַשֶּׁרֶץ. וְכֵן הוּא אוֹמֵר וּמוֹדֶה וְעֹזֵב יְרֻחָם <span class="source-small">(משלי כח יג)</span>. וְצָרִיךְ לִפְרֹט אֶת הַחֵטְא שֶׁנֶּאֱמַר <span class="source-small">(שמות לב לא)</span> &quot;אָנָּא חָטָא הָעָם הַזֶּה חֲטָאָה גְדלָה וַיַּעֲשׂוּ לָהֶם אֱלֹהֵי זָהָב&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המתודה וכו׳ וצריך לפרוט את החטא וכו׳.</strong> ועיין בספר סדר משנה שהביא קושיא מירושלמי המובא [בתוס׳] במסכת גיטין דף ל&quot;ה ע&quot;ב בד&quot;ה ליחש דמאן דס&quot;ל שאין שואלין אלא בפניו משום חשד ס&quot;ל דא&quot;צ לפרוט החטא עיי&quot;ש וא&quot;כ רבינו שפוסק צריך בפניו משום חשד ולמה פסק כאן צריך לפרוט חטאיו עיי&quot;ש. אמנם למ&quot;ש בכ&quot;מ בהל׳ ה׳ והוכיח גם מלשון רבינו לחלק בין החטא מפורסם דאז צריך לפרוט לפני הכל ובשאין מפורסם רק לפני ד׳ וא&quot;כ לפ&quot;ז אין סוגיא זאת הבבלי כירושלמי הנ&quot;ל דא&quot;כ לא שייך חשד דבמה שנודע נודע בלעדי זאת ומה שאמר רק לפני ה׳ ית&quot;ש לא שייך חשדא ובלתי מבין יסוד קושיא הנ&quot;ל לפ&quot;ז לענ&quot;ד.</p>
               </div>
             </div>
@@ -457,8 +518,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:5:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-5">Mishneh Torah, Repentance 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְשֶׁבַח גָּדוֹל לַשָּׁב שֶׁיִּתְוַדֶּה בָּרַבִּים וְיוֹדִיעַ פְּשָׁעָיו לָהֶם וּמְגַלֶּה עֲבֵרוֹת שֶׁבֵּינוֹ לְבֵין חֲבֵרוֹ לַאֲחֵרִים וְאוֹמֵר לָהֶם אָמְנָם חָטָאתִי לִפְלוֹנִי וְעָשִׂיתִי לוֹ כָּךְ וְכָךְ וַהֲרֵינִי הַיּוֹם שָׁב וּמִתְנַחֵם. וְכָל הַמִּתְגָּאֶה וְאֵינוֹ מוֹדִיעַ אֶלָּא מְכַסֶּה פְּשָׁעָיו אֵין תְּשׁוּבָתוֹ גְּמוּרָה שֶׁנֶּאֱמַר <span class="source-small">(משלי כח יג)</span> &quot;מְכַסֶּה פְשָׁעָיו לֹא יַצְלִיחַ&quot;. בַּמֶּה דְּבָרִים אֲמוּרִים בַּעֲבֵרוֹת שֶׁבֵּין אָדָם לַחֲבֵרוֹ אֲבָל בַּעֲבֵרוֹת שֶׁבֵּין אָדָם לַמָּקוֹם אֵינוֹ צָרִיךְ לְפַרְסֵם עַצְמוֹ וְעַזּוּת פָּנִים הִיא לוֹ אִם גִּלָּם. אֶלָּא שָׁב לִפְנֵי הָאֵל בָּרוּךְ הוּא וּפוֹרֵט חֲטָאָיו לְפָנָיו וּמִתְוַדֶּה עֲלֵיהֶם לִפְנֵי רַבִּים סְתָם. וְטוֹבָה הִיא לוֹ שֶׁלֹּא נִתְגַּלָּה עֲוֹנוֹ שֶׁנֶּאֱמַר <span class="source-small">(תהילים לב א)</span> &quot;אַשְׁרֵי נְשׂוּי פֶּשַׁע כְּסוּי חֲטָאָה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיין </strong> במגדל עוז שכתב להביא ראיה לפרסום העון מעכן ומשמעון בן שטח שהיה משתטח על קברו של עד זומם שנשמע קולו ומרוצח שצריך לומר רוצח אני עיי&quot;ש.<br><strong> והנה</strong> ככתב בכ&quot;מ דגם רבינו ס&quot;ל בשאין מפורסם אל יפרט חטאיו נראה בעכן שהיה להציל ישראל וכמ&quot;ש בפר&quot;ח [במים חיים] מיהודה וראובן שהודו דמה שהוא לצורך יפרסם לכו&quot;ע עיי&quot;ש ובשמעון בן שטח י&quot;ל שנשמע קולו בלתי כי התכוין לזה גם הנראה דחטא בשוגג כמו שהי׳ אצל שמעון בן שטח לא שייך עזות בהגלותו דדוקא במזיד שייך לומר דהוי עזות ולכן הרוצח בעיר המקלט דהוי ג&quot;כ בשוגג יאמר רוצח אני כן נראה לענ&quot;ד.</p>
               </div>
             </div>
@@ -473,8 +539,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:6:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-6-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-6">Mishneh Torah, Repentance 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁהַתְּשׁוּבָה וְהַצְּעָקָה יָפָה לָעוֹלָם. בַּעֲשָׂרָה הַיָּמִים שֶׁבֵּין רֹאשׁ הַשָּׁנָה וְיוֹם הַכִּפּוּרִים הִיא יָפָה בְּיוֹתֵר וּמִתְקַבֶּלֶת הִיא מִיָּד שֶׁנֶּאֱמַר <span class="source-small">(ישעיה נה ו)</span> &quot;דִּרְשׁוּ ה׳ בְּהִמָּצְאוֹ&quot;. בַּמֶּה דְּבָרִים אֲמוּרִים בְּיָחִיד אֲבָל צִבּוּר כָּל זְמַן שֶׁעוֹשִׂים תְּשׁוּבָה וְצוֹעֲקִין בְּלֵב שָׁלֵם הֵם נַעֲנִין שֶׁנֶּאֱמַר <span class="source-small">(דברים ד ז)</span> &quot;כַּה׳ אֱלֹהֵינוּ בְּכָל קָרְאֵנוּ אֵלָיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ שהתשובה והצעקה יפה לעולם בעשרה ימים וכו׳ במד&quot;א ביחיד אבל בציבור כל זמן שעושין תשובה וצועקים בלב שלם הם נענין וכו׳.</strong> הנה אל כביר לא ימאס גם תפילה בציבור אשר זה יתעורר לזה נעשה בלב שלם ובהמעלה שכתב לעיל ה&quot;ב שיעיד עליו היודע וכו׳ לכן נענין וברש&quot;י מתורץ ג&quot;כ כמ&quot;ש לכן הביא לראיה לעיל ממקרא דהושע הנאמר לרבים, ולזה כתב רבינו בלב שלם וכו׳.</p>
               </div>
             </div>
@@ -489,8 +560,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:7:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-7-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-7">Mishneh Torah, Repentance 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם הַכִּפּוּרִים הוּא זְמַן תְּשׁוּבָה לַכּל לַיָּחִיד וְלָרַבִּים וְהוּא קֵץ מְחִילָה וּסְלִיחָה לְיִשְׂרָאֵל. לְפִיכָךְ חַיָּבִים הַכּל לַעֲשׂוֹת תְּשׁוּבָה וּלְהִתְוַדּוֹת בְּיוֹם הַכִּפּוּרִים. וּמִצְוַת וִדּוּי יוֹם הַכִּפּוּרִים שֶׁיַּתְחִיל מֵעֶרֶב הַיּוֹם קֹדֶם שֶׁיֹּאכַל שֶׁמָּא יֵחָנֵק בַּסְּעֻדָּה קֹדֶם שֶׁיִּתְוַדֶּה. וְאַף עַל פִּי שֶׁהִתְוַדָּה קֹדֶם שֶׁיֹּאכַל חוֹזֵר וּמִתְוַדֶּה בְּלֵילֵי יוֹם הַכִּפּוּרִים עַרְבִית וְחוֹזֵר וּמִתְוַדֶּה בְּשַׁחֲרִית וּבְמוּסָף וּבְמִנְחָה וּבִנְעִילָה. וְהֵיכָן מִתְוַדֶּה. יָחִיד אַחַר תְּפִלָּתוֹ וּשְׁלִיחַ צִבּוּר בְּאֶמְצַע תְּפִלָּתוֹ בִּבְרָכָה רְבִיעִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יו&quot;כ הוא זמן תשובה לכל ליחיד ולרבים והוא קץ מחילה וסליחה לישראל לפיכך חייבים הכל לעשות תשובה ולהתודות ביום הכיפורים וכו׳.</strong> כלל ליחיד ולרבים וכו׳ לפיכך חייבים הכל וכו׳. הנה אף שאמר לכל יחיד לעשות תשובה אמר בפרט לרבים ג&quot;כ כי כמו כל התפילות ברבים בלעדי זאת כי יעשו התעוררת מזה לזה גם הוא מאחוה ואהבה אשר לישראל זה לזה ולעם בכללו וכבנים נבוא כולנו לאבינו שבשמים ונבקש מחילה על חטאתינו וחטאת כל ישראל כתפילת כה&quot;ג ביו&quot;כ.</p>
               </div>
             </div>
@@ -505,8 +581,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:7:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-7-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-7">Mishneh Torah, Repentance 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם הַכִּפּוּרִים הוּא זְמַן תְּשׁוּבָה לַכּל לַיָּחִיד וְלָרַבִּים וְהוּא קֵץ מְחִילָה וּסְלִיחָה לְיִשְׂרָאֵל. לְפִיכָךְ חַיָּבִים הַכּל לַעֲשׂוֹת תְּשׁוּבָה וּלְהִתְוַדּוֹת בְּיוֹם הַכִּפּוּרִים. וּמִצְוַת וִדּוּי יוֹם הַכִּפּוּרִים שֶׁיַּתְחִיל מֵעֶרֶב הַיּוֹם קֹדֶם שֶׁיֹּאכַל שֶׁמָּא יֵחָנֵק בַּסְּעֻדָּה קֹדֶם שֶׁיִּתְוַדֶּה. וְאַף עַל פִּי שֶׁהִתְוַדָּה קֹדֶם שֶׁיֹּאכַל חוֹזֵר וּמִתְוַדֶּה בְּלֵילֵי יוֹם הַכִּפּוּרִים עַרְבִית וְחוֹזֵר וּמִתְוַדֶּה בְּשַׁחֲרִית וּבְמוּסָף וּבְמִנְחָה וּבִנְעִילָה. וְהֵיכָן מִתְוַדֶּה. יָחִיד אַחַר תְּפִלָּתוֹ וּשְׁלִיחַ צִבּוּר בְּאֶמְצַע תְּפִלָּתוֹ בִּבְרָכָה רְבִיעִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> והוא קץ מחילה וסליחה לישראל וכו׳.</strong> לשון קץ על סוף הזמן כמו מקץ שבע וכו׳ או סוף וכלות הדבר כמו קץ כל בשר וכו׳, והנה כמו בסוף הזמן ידוע אשר יחלק להזמן הבא שהעבר נקרא קץ והבא התחלה כן יעשה היו&quot;כ במחילתו וסליחתו לקץ דהזמן הבא אחריו כבפ&quot;ע יחשב והיום יקרא קץ מחילה וסליחה בו עברו מאתנו העונות והחטא והזמן הבא אחריו כמ&quot;ש רז&quot;ל ראשון לחשבון עונות על דרך זה, ועיין ברש&quot;י מקץ שכתב סוף ולא קצת עי׳ במזרחי וגם לשון קץ כאן י&quot;ל כמ&quot;ש סוף.</p>
               </div>
             </div>
@@ -521,8 +602,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:8:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-8-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-8">Mishneh Torah, Repentance 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַוִּדּוּי שֶׁנָּהֲגוּ בּוֹ כָּל יִשְׂרָאֵל אֲבָל אֲנַחְנוּ חָטָאנוּ (כֻּלָּנוּ) וְהוּא עִקַּר הַוִּדּוּי. עֲבֵרוֹת שֶׁהִתְוַדָּה עֲלֵיהֶם בְּיוֹם הַכִּפּוּרִים זֶה חוֹזֵר וּמִתְוַדֶּה עֲלֵיהֶן בְּיוֹם הַכִּפּוּרִים אַחֵר אַף עַל פִּי שֶׁהוּא עוֹמֵד בִּתְשׁוּבָתוֹ שֶׁנֶּאֱמַר <span class="source-small">(תהילים נא ה)</span> &quot;כִּי פְשָׁעַי אֲנִי אֵדָע וְחַטָּאתִי נֶגְדִּי תָמִיד&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הודוי שנהגו בו כל ישראל אבל אנחנו חטאנו והוא עיקר הודוי וכו׳.</strong> והוא מלשון הגמרא במסכת יומא פ&quot;ו וכמו שאמר הנביא הצדק &quot;ותאמרי כי נקיתי אך שב אפו ממני הנני נשפט אותך על אמרך לא חטאתי&quot; ירמיה ב׳ ל&quot;ח כי החולה אשר לא ירגיש חוליו לא יבקש רופא והוא סימן גם על רוב חוליו כי בלתי מרגיש מכאבו, לכן נאמר כי הנה עיקר הודוי השורש והעיקר אשר התשובה והודוי מתולדותיה כמו השורש והעיקר להפרי היוצא ממנו והוא בגדר עדות כמו שנאמר בתפילה שאין אנו עזי פנים לומר וכו׳ לא חטאנו אבל אנחנו חטאנו וכו׳ ועיין בלח&quot;מ שכתב דחטאנו לאו דוקא וכמ&quot;ש בפי׳ עיקר מובן היטב.</p>
               </div>
             </div>
@@ -537,8 +623,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:8:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-8-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-8">Mishneh Torah, Repentance 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַוִּדּוּי שֶׁנָּהֲגוּ בּוֹ כָּל יִשְׂרָאֵל אֲבָל אֲנַחְנוּ חָטָאנוּ (כֻּלָּנוּ) וְהוּא עִקַּר הַוִּדּוּי. עֲבֵרוֹת שֶׁהִתְוַדָּה עֲלֵיהֶם בְּיוֹם הַכִּפּוּרִים זֶה חוֹזֵר וּמִתְוַדֶּה עֲלֵיהֶן בְּיוֹם הַכִּפּוּרִים אַחֵר אַף עַל פִּי שֶׁהוּא עוֹמֵד בִּתְשׁוּבָתוֹ שֶׁנֶּאֱמַר <span class="source-small">(תהילים נא ה)</span> &quot;כִּי פְשָׁעַי אֲנִי אֵדָע וְחַטָּאתִי נֶגְדִּי תָמִיד&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> עבירות שהתודה עליהם ביו&quot;כ זה חוזר ומתודה עליהן ביו&quot;כ אחר אע&quot;פ שהוא עומד בתשובתו שנאמר כי פשעי אני אדע וחטאתי נגדי תמיד.</strong> כמ&quot;ש שהתשובה להתנחם על העבר והצער על העבר יצילהו מלעבור להבא לכן אל יסיר הצער הזה מנגדו כי הוא השומרו מליפול עוד בשחת אשר עלה ממנה.</p>
               </div>
             </div>
@@ -553,8 +644,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 2:11:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-2-11-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-11">Mishneh Torah, Repentance 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַחוֹטֵא לַחֲבֵרוֹ וּמֵת חֲבֵרוֹ קֹדֶם שֶׁיְּבַקֵּשׁ מְחִילָה מֵבִיא עֲשָׂרָה בְּנֵי אָדָם וּמַעֲמִידָן עַל קִבְרוֹ וְיֹאמַר בִּפְנֵיהֶם חָטָאתִי לַה׳ אֱלֹהֵי יִשְׂרָאֵל וְלִפְלוֹנִי זֶה שֶׁכָּךְ וְכָךְ עָשִׂיתִי לוֹ. וְאִם הָיָה חַיָּב לוֹ מָמוֹן יַחֲזִירוֹ לַיּוֹרְשִׁים. לֹא הָיָה יוֹדֵעַ לוֹ יוֹרְשִׁין יַנִּיחֶנּוּ בְּבֵית דִּין וְיִתְוַדֶּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>החוטא לחבירו ומת חבירו וכו׳ ואם היה חייב לו ממון יחזירו ליורשיו לא היה יודע לו יורשין יניחנו בבי&quot;ד ויתודה.</strong> במס׳ ב&quot;ק דף ק&quot;ט בגוזל אביו ונשבע ומת או בגוזל גר ונשבע ומת רב יוסף אמר יתנו לצדקה עיי&quot;ש וברמב&quot;ם פ&quot;ח מהלכות גזילה ה&quot;ג ומקרא נלמד בגוזל ונשבע כן עיי&quot;ש בגמרא ובשו&quot;ע חו&quot;מ סי׳ שס&quot;ד סעיף ה׳, ובלא נשבע שם סעיף ד׳ נאמר יחזיר ליורשיו אבל בלא היה יודע היורשים לא נאמר שם והנה שם אפי׳ בידוע שאין לו יורשים יוציאו מתחת ידו ובלא נשבע בלא נודע לו אם יש להנגזל יורש יניחנו בבי&quot;ד ולא שיחזיקו לעצמו שאם ימצא יורש יתנו לו דבזה לא יצא ידי השבה עוד אבל במה שמחזירו לבי&quot;ד יצא ידי השבה עיין ב&quot;ק ק&quot;ג ע&quot;א ובב&quot;י חו&quot;מ סוף סימן שס&quot;ד וז&quot;ל ומדנקט ונשבע משמע הא לא נשבע זכה מן ההפקר וא&quot;צ להוציאו מידו ואפשר דה&quot;ה דלא נשבע ונשבע דקתני להודיעך כוחו דר׳ יוסי הגלילי עכ&quot;ל ובד&quot;מ שם כתב דנשבע דוקא עיי&quot;ש, והנה מלשון הרמב&quot;ם כאן דנראה דוקא באינו יודע אם יש יורשים יתנו ביד בי&quot;ד נראה דאם יודע שאין לו יורשים א&quot;צ להוציאו מתחת ידו ושאני מנשבע שכ&quot;כ בהל׳ גזילה הנ&quot;ל.</p>
               </div>
             </div>
@@ -570,8 +666,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:1:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-1">Mishneh Torah, Repentance 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אֶחָד וְאֶחָד מִבְּנֵי הָאָדָם יֵשׁ לוֹ זְכֻיּוֹת וַעֲוֹנוֹת. מִי שֶׁזְּכֻיּוֹתָיו יְתֵרוֹת עַל עֲוֹנוֹתָיו צַדִּיק. וּמִי שֶׁעֲוֹנוֹתָיו יְתֵרוֹת עַל זְכֻיּוֹתָיו רָשָׁע. מֶחֱצָה לְמֶחֱצָה בֵּינוֹנִי. וְכֵן הַמְּדִינָה אִם הָיוּ זְכֻיּוֹת כָּל יוֹשְׁבֶיהָ מְרֻבּוֹת עַל עֲוֹנוֹתֵיהֶן הֲרֵי זוֹ צַדֶּקֶת. וְאִם הָיוּ עֲוֹנוֹתֵיהֶם מְרֻבִּין הֲרֵי זוֹ רְשָׁעָה. וְכֵן כָּל הָעוֹלָם כֻּלּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל אחד ואחד מבני אדם יש לו זכיות ועונות וכו׳.</strong> החכם מכל אדם אמר &quot;אין אדם בארץ אשר יעשה טוב ולא יחטא&quot; ורז&quot;ל אמרו אפי׳ פושעי ישראל מלאים מצות כרמון ומהם יצא לרבינו לומר כל וכו׳ יש לו זכיות ועונות, והן זה מטבעי בני אדם ובמציאות שלא נמצא אדם כולו רע אף לרוצחי נפש יש בהם איזה הרגשה טובה וכן לא כולו טוב כמ&quot;ש ולכן אמר רבינו כל אחד ואחד מבני אדם וכו׳ ועי׳ בתוס׳ יו&quot;ט על חביב אדם וכו׳ מ&quot;ש שם.</p>
               </div>
             </div>
@@ -586,8 +687,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:2:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-2-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-2">Mishneh Torah, Repentance 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָדָם שֶׁעֲוֹנוֹתָיו מְרֻבִּין עַל זְכֻיּוֹתָיו מִיָּד הוּא מֵת בְּרִשְׁעוֹ שֶׁנֶּאֱמַר עַל רֹב עֲוֹנֵךְ. וְכֵן מְדִינָה שֶׁעֲוֹנוֹתֶיהָ מְרֻבִּין מִיָּד הִיא אוֹבֶדֶת שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח כ)</span> &quot;זַעֲקַת סְדֹם וַעֲמֹרָה כִּי רָבָּה&quot; וְגוֹ׳. וְכֵן כָּל הָעוֹלָם כֻּלּוֹ אִם הָיוּ עֲוֹנוֹתֵיהֶם מְרֻבִּין מִזְּכֻיּוֹתֵיהֶן מִיָּד הֵן נִשְׁחָתִין שֶׁנֶּאֱמַר <span class="source-small">(בראשית ו ה)</span> &quot;וַיַּרְא ה׳ כִּי רַבָּה רָעַת הָאָדָם&quot;. וְשִׁקּוּל זֶה אֵינוֹ לְפִי מִנְיַן הַזְּכֻיּוֹת וְהָעֲוֹנוֹת אֶלָּא לְפִי גָּדְלָם. יֵשׁ זְכוּת שֶׁהִיא כְּנֶגֶד כַּמָּה עֲוֹנוֹת שֶׁנֶּאֱמַר <span class="source-small">(מלכים א יד יג)</span> &quot;יַעַן נִמְצָא בוֹ דָּבָר טוֹב&quot;. וְיֵשׁ עָוֹן שֶׁהוּא כְּנֶגֶד כַּמָּה זְכֻיּוֹת שֶׁנֶּאֱמַר <span class="source-small">(קהלת ט יח)</span> &quot;וְחוֹטֶא אֶחָד יְאַבֵּד טוֹבָה הַרְבֵּה&quot;. וְאֵין שׁוֹקְלִין אֶלָּא בְּדַעְתּוֹ שֶׁל אֵל דֵּעוֹת וְהוּא הַיּוֹדֵעַ הֵיאַךְ עוֹרְכִין הַזְּכֻיּוֹת כְּנֶגֶד הָעֲוֹנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אדם שעונותיו מרובין על זכיותיו מיד הוא מת שנאמר &quot;על רוב עונך&quot; וכן מדינה שעונותיה מרובין מיד היא אובדת שנא׳ זעקת סדום וכו׳ כי רבה וכו׳ וכן כל העולם כולו וכו׳ וירא ד׳ כי רבה רעת האדם וכו׳ ושקול זה וכו׳.</strong> ועי׳ בראב&quot;ד שפי׳ על חיי העוה&quot;ב דהנה ראיה דרשעים חיים הרבה שנים וכ&quot;כ בתוס׳ במס׳ ר&quot;ה דף ט&quot;ז ובלח&quot;מ בדעתו לפרש גם בדעת רבינו על סמוך למיתה ומסכים למ&quot;ש אח&quot;ז כשם ששוקלין וכו׳ בשעת מיתתו וכו׳.<br><strong> אמנם</strong> הראי׳ שמביא מקרא על רוב עונך ירמיהו ל׳ מסדום ומבול נראה שעל חיי העוה&quot;ז ידבר, והנראה דרבינו מדין ומשפט התורה אשר הכל נדון על פי הרוב ולמי אשר עבר רוב עבירות ועונותיו מרובין עומד למות כמו שהיה באנשי מבול וסדום כמו ליחיד לרבים אבל לא בכל פעם ידין ה׳ ית&quot;ש לפי הדין רק בשיתוף מדת הרחמים גם כדאי׳ במס׳ קדושין להפרע לו בעוה&quot;ז על מיעוט זכות בו אבל לפי הדין מיד הוא מת.</p>
               </div>
             </div>
@@ -602,8 +708,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:2:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-2-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-2">Mishneh Torah, Repentance 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָדָם שֶׁעֲוֹנוֹתָיו מְרֻבִּין עַל זְכֻיּוֹתָיו מִיָּד הוּא מֵת בְּרִשְׁעוֹ שֶׁנֶּאֱמַר עַל רֹב עֲוֹנֵךְ. וְכֵן מְדִינָה שֶׁעֲוֹנוֹתֶיהָ מְרֻבִּין מִיָּד הִיא אוֹבֶדֶת שֶׁנֶּאֱמַר <span class="source-small">(בראשית יח כ)</span> &quot;זַעֲקַת סְדֹם וַעֲמֹרָה כִּי רָבָּה&quot; וְגוֹ׳. וְכֵן כָּל הָעוֹלָם כֻּלּוֹ אִם הָיוּ עֲוֹנוֹתֵיהֶם מְרֻבִּין מִזְּכֻיּוֹתֵיהֶן מִיָּד הֵן נִשְׁחָתִין שֶׁנֶּאֱמַר <span class="source-small">(בראשית ו ה)</span> &quot;וַיַּרְא ה׳ כִּי רַבָּה רָעַת הָאָדָם&quot;. וְשִׁקּוּל זֶה אֵינוֹ לְפִי מִנְיַן הַזְּכֻיּוֹת וְהָעֲוֹנוֹת אֶלָּא לְפִי גָּדְלָם. יֵשׁ זְכוּת שֶׁהִיא כְּנֶגֶד כַּמָּה עֲוֹנוֹת שֶׁנֶּאֱמַר <span class="source-small">(מלכים א יד יג)</span> &quot;יַעַן נִמְצָא בוֹ דָּבָר טוֹב&quot;. וְיֵשׁ עָוֹן שֶׁהוּא כְּנֶגֶד כַּמָּה זְכֻיּוֹת שֶׁנֶּאֱמַר <span class="source-small">(קהלת ט יח)</span> &quot;וְחוֹטֶא אֶחָד יְאַבֵּד טוֹבָה הַרְבֵּה&quot;. וְאֵין שׁוֹקְלִין אֶלָּא בְּדַעְתּוֹ שֶׁל אֵל דֵּעוֹת וְהוּא הַיּוֹדֵעַ הֵיאַךְ עוֹרְכִין הַזְּכֻיּוֹת כְּנֶגֶד הָעֲוֹנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואין שוקלין אלא בדעתו של אל דעות והוא היודע האיך עורכין הזכיות כנגד העונות.</strong> בזה הנאמר ג&quot;כ למה נראה רשעים שנראה עונותיהם רבים מזכיותיו וחיים כי אין בידינו לשקול זכות נגד עונות, גם בלשון אין שוקלין וכו׳ שאל נשקול בדעתינו לומר על אדם שהוא ברוב עונות כי האדם למראה עיניו ישפוט בל יודע להבחין ולהעריך עונות נגד הזכיות כמ&quot;ש ואל נדין אף לרשע ופועל עון לעומד למות ע&quot;פ שיקול דעתינו, ובצדיקים לא אמר באלה אשר זכיותיו מרובין שחיים כי אין זה שכרם וכל אדם מעותד למות אף בזכות גדול ושכר הצדיקים צפון בעוה&quot;ב, ובאיזה מצות שפי׳ התורה והארכת ימים ארז&quot;ל בעולם שכולו טוב לעוה&quot;ב בסוף מס׳ חולין עיי&quot;ש, גם יש לקיים כמ&quot;ש הלח&quot;מ כי בשעת מיתתו נדון זה המת בחטאיו בלעדי שיהיה זכות תולה לו למיתה ועל שעת מיתה שם רבינו דברתו, ועי׳ שו&quot;ת מזרחי סי׳ י&quot;א.</p>
               </div>
             </div>
@@ -618,8 +729,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:3:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-3-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-3">Mishneh Torah, Repentance 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁנִּחַם עַל הַמִּצְוֹת שֶׁעָשָׂה וְתָהָה עַל הַזְּכֻיּוֹת וְאָמַר בְּלִבּוֹ וּמַה הוֹעַלְתִּי בַּעֲשִׂיָּתָן הַלְוַאי לֹא עָשִׂיתִי אוֹתָן הֲרֵי זֶה אִבֵּד אֶת כֻּלָּן וְאֵין מַזְכִּירִים לוֹ שׁוּם זְכוּת בָּעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(יחזקאל לג יב)</span> &quot;וְצִדְקַת הַצַּדִּיק לֹא תַצִּילֶנּוּ בְּיוֹם רִשְׁעוֹ&quot;, אֵין זֶה אֶלָּא בְּתוֹהֶה עַל הָרִאשׁוֹנוֹת. וּכְשֵׁם שֶׁשּׁוֹקְלִין זְכֻיּוֹת אָדָם וַעֲוֹנוֹתָיו בִּשְׁעַת מִיתָתוֹ כָּךְ בְּכָל שָׁנָה וְשָׁנָה שׁוֹקְלִין עֲוֹנוֹת כָּל אֶחָד וְאֶחָד מִבָּאֵי הָעוֹלָם עִם זְכֻיּוֹתָיו, בְּיוֹם טוֹב שֶׁל רֹאשׁ הַשָּׁנָה. מִי שֶׁנִּמְצָא צַדִּיק נֶחְתָּם לְחַיִּים. וּמִי שֶׁנִּמְצָא רָשָׁע נֶחְתָּם לְמִיתָה. וְהַבֵּינוֹנִי תּוֹלִין אוֹתוֹ עַד יוֹם הַכִּפּוּרִים אִם עָשָׂה תְּשׁוּבָה נֶחְתָּם לְחַיִּים וְאִם לָאו נֶחְתָּם לְמִיתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל מי שניחם וכו׳ וכשם ששוקלין זכיות אדם ועונותיו בשעת מיתתו כך בכל שנה ושנה שוקלין עונות כל אחד ואחד מבאי העולם עם זכיותיו ביו&quot;ט של ר&quot;ה וכו׳.</strong> במס׳ ר&quot;ה דף ט&quot;ז ע&quot;א הכל נידונין בר&quot;ה וכו׳ ר׳ יוסי אומר אדם נידון בכל יום שנא׳ ותפקדנו לבקרים ר׳ נתן אומר אדם נידון בכל שעה וכו׳ א&quot;ר יוסף כמאן מצלינין האידנא אקצירי ומריעי כמאן כר׳ יוסי. ועי׳ בפי׳ משניות לרמב&quot;ם ובר&quot;ן ומהרש&quot;א בע&quot;י ובתוס׳ שם ויפלא דמצלינן אקצירי ומריעי כר&quot;י וכדאיתא בגמ׳ וכל תפילות שלנו מלא כי בר&quot;ה יום הדין והכל עוברים לפניו כבני מרון כדאיתא במשנה וכיו&quot;ב.<br><strong> והנראה</strong> דודאי גם לר׳ יוסי דס&quot;ל דאדם נידון בכל יום גם ר&quot;ה בכלל בכל יום, וגם נוסף בו למעלות היום מצ&quot;ע יום הראשון בשנה והוקבע ליום הזכרון אף כי לפני ה׳ יתעלה כל העתים שוים אבל לנו בני האדם הוקבע מחסדי ה׳ זמן מיוחד לחשבון מעשינו, ומי אשר איננו שם על לבבו על כן נידון ביותר על מעשיו וככלב שב אל קיאו ואם שב ורפא לו ויום הזה יום גדול ונורא בו ידין האדם לפי מעשיו ולחוטא הרבה יקרא כאשר אינו שב ביום הזה וחסדי ה׳ ביום הזה לשבים בכל לבבם, וקושית הגמ׳ על המשנה דנראה דרק בר&quot;ה נידון על כל השנה והיודע קורות מראש ולו נודע עלילות בני אדם ומעשיהם אשר יעשו ובר&quot;ה נידונין כפי אשר יעשו, אבל לר׳ יוסי אין ה׳ יתעלה גוזר מקדם על העתיד ובר&quot;ה נידון על העבר וההוה על כי איננו שב בעת המשפט לכן אנן קיי&quot;ל כר&quot;י ולכן מתפללין בכל עת אקצירי ומריעי בכל השנה כולה, ור׳ נתן אמר בכל שעה לרגעים יבחנו, לר&quot;י אינו נדון לפי שעה שמא ישוב אחרי עשות המזמתה כמ&quot;ש רז&quot;ל רשעים מליאי חרטות, וזה מחסדי ה׳.<br><strong> ורז&quot;ל</strong> שאמרו כשם ששוקלין במיתתו וכו׳ ומי יודע מתי ימות כמ&quot;ש החסיד שוב יום אחד וכו׳ ע&quot;כ בכל יום על האדם לחשוב שמא ישקלו עונותיו היום.</p>
               </div>
             </div>
@@ -634,8 +750,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:3:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-3-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-3">Mishneh Torah, Repentance 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁנִּחַם עַל הַמִּצְוֹת שֶׁעָשָׂה וְתָהָה עַל הַזְּכֻיּוֹת וְאָמַר בְּלִבּוֹ וּמַה הוֹעַלְתִּי בַּעֲשִׂיָּתָן הַלְוַאי לֹא עָשִׂיתִי אוֹתָן הֲרֵי זֶה אִבֵּד אֶת כֻּלָּן וְאֵין מַזְכִּירִים לוֹ שׁוּם זְכוּת בָּעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(יחזקאל לג יב)</span> &quot;וְצִדְקַת הַצַּדִּיק לֹא תַצִּילֶנּוּ בְּיוֹם רִשְׁעוֹ&quot;, אֵין זֶה אֶלָּא בְּתוֹהֶה עַל הָרִאשׁוֹנוֹת. וּכְשֵׁם שֶׁשּׁוֹקְלִין זְכֻיּוֹת אָדָם וַעֲוֹנוֹתָיו בִּשְׁעַת מִיתָתוֹ כָּךְ בְּכָל שָׁנָה וְשָׁנָה שׁוֹקְלִין עֲוֹנוֹת כָּל אֶחָד וְאֶחָד מִבָּאֵי הָעוֹלָם עִם זְכֻיּוֹתָיו, בְּיוֹם טוֹב שֶׁל רֹאשׁ הַשָּׁנָה. מִי שֶׁנִּמְצָא צַדִּיק נֶחְתָּם לְחַיִּים. וּמִי שֶׁנִּמְצָא רָשָׁע נֶחְתָּם לְמִיתָה. וְהַבֵּינוֹנִי תּוֹלִין אוֹתוֹ עַד יוֹם הַכִּפּוּרִים אִם עָשָׂה תְּשׁוּבָה נֶחְתָּם לְחַיִּים וְאִם לָאו נֶחְתָּם לְמִיתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומי שנמצא צדיק וכו׳ ומי שנמצא רשע נחתם למיתה וכו׳.</strong> ועי׳ בהגהות מיימוני ומ&quot;ש בשם הרמב&quot;ן ולמ&quot;ש לעיל י&quot;ל כדאי׳ במס׳ סוטה אף דמשפט הסוטה מפורש בתורה יש זכות תולה כן הנאמר נחתם וכו׳ על פי קו הדין ומשפט אבל יש רשעים שזכות תולה להם וכמ&quot;ש.</p>
               </div>
             </div>
@@ -650,8 +771,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:4:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-4">Mishneh Torah, Repentance 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁתְּקִיעַת שׁוֹפָר בְּרֹאשׁ הַשָּׁנָה גְּזֵרַת הַכָּתוּב רֶמֶז יֵשׁ בּוֹ כְּלוֹמַר עוּרוּ יְשֵׁנִים מִשְּׁנַתְכֶם וְנִרְדָּמִים הָקִיצוּ מִתַּרְדֵּמַתְכֶם וְחַפְּשׂוּ בְּמַעֲשֵׂיכֶם וְחִזְרוּ בִּתְשׁוּבָה וְזִכְרוּ בּוֹרַאֲכֶם. אֵלּוּ הַשּׁוֹכְחִים אֶת הָאֱמֶת בְּהַבְלֵי הַזְּמַן וְשׁוֹגִים כָּל שְׁנָתָם בְּהֶבֶל וָרִיק אֲשֶׁר לֹא יוֹעִיל וְלֹא יַצִּיל, הַבִּיטוּ לְנַפְשׁוֹתֵיכֶם וְהֵיטִיבוּ דַּרְכֵיכֶם וּמַעַלְלֵיכֶם וְיַעֲזֹב כָּל אֶחָד מִכֶּם דַּרְכּוֹ הָרָעָה וּמַחֲשַׁבְתּוֹ אֲשֶׁר לֹא טוֹבָה. לְפִיכָךְ צָרִיךְ כָּל אָדָם שֶׁיִּרְאֶה עַצְמוֹ כָּל הַשָּׁנָה כֻּלָּהּ כְּאִלּוּ חֶצְיוֹ זַכַּאי וְחֶצְיוֹ חַיָּב. וְכֵן כָּל הָעוֹלָם חֶצְיוֹ זַכַּאי וְחֶצְיוֹ חַיָּב. חָטָא חֵטְא אֶחָד הֲרֵי הִכְרִיעַ אֶת עַצְמוֹ וְאֶת כָּל הָעוֹלָם כֻּלּוֹ לְכַף חוֹבָה וְגָרַם לוֹ הַשְׁחָתָה. עָשָׂה מִצְוָה אַחַת הֲרֵי הִכְרִיעַ אֶת עַצְמוֹ וְאֶת כָּל הָעוֹלָם כֻּלּוֹ לְכַף זְכוּת וְגָרַם לוֹ וְלָהֶם תְּשׁוּעָה וְהַצָּלָה שֶׁנֶּאֱמַר <span class="source-small">(משלי י כה)</span> &quot;וְצַדִּיק יְסוֹד עוֹלָם&quot; זֶה שֶׁצָּדַק הִכְרִיעַ אֶת כָּל הָעוֹלָם לִזְכוּת וְהִצִּילוֹ. וּמִפְּנֵי עִנְיָן זֶה נָהֲגוּ כָּל בֵּית יִשְׂרָאֵל לְהַרְבּוֹת בִּצְדָקָה וּבְמַעֲשִׂים טוֹבִים וְלַעֲסֹק בְּמִצְוֹת מֵרֹאשׁ הַשָּׁנָה וְעַד יוֹם הַכִּפּוּרִים יֶתֶר מִכָּל הַשָּׁנָה. וְנָהֲגוּ כֻּלָּם לָקוּם בַּלַּיְלָה בַּעֲשָׂרָה יָמִים אֵלּוּ וּלְהִתְפַּלֵּל בְּבָתֵּי כְּנֵסִיּוֹת בְּדִבְרֵי תַּחֲנוּנִים וּבְכִבּוּשִׁין עַד שֶׁיֵּאוֹר הַיּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ שתקיעת שופר בר&quot;ה גזה&quot;כ רמז יש בו וכו׳.</strong> כתבתי במקו&quot;א כי מזה ג&quot;כ נדע כי הטעמים שכתב רבינו במצות אין דעתו כי זה הטעם בלבדו הוא כי הרבה טעמים על מצוה אחת הנודעים ובלתי נודעים וכמ&quot;ש בב&quot;י בפאה שכתב הרמב&quot;ם טעם בזה עיי&quot;ש, וכן נראה מלשונו אע&quot;פ שגזה&quot;כ ואין לומר כי זה הטעם בלבד.</p>
               </div>
             </div>
@@ -666,8 +792,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:4:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-4-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-4">Mishneh Torah, Repentance 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁתְּקִיעַת שׁוֹפָר בְּרֹאשׁ הַשָּׁנָה גְּזֵרַת הַכָּתוּב רֶמֶז יֵשׁ בּוֹ כְּלוֹמַר עוּרוּ יְשֵׁנִים מִשְּׁנַתְכֶם וְנִרְדָּמִים הָקִיצוּ מִתַּרְדֵּמַתְכֶם וְחַפְּשׂוּ בְּמַעֲשֵׂיכֶם וְחִזְרוּ בִּתְשׁוּבָה וְזִכְרוּ בּוֹרַאֲכֶם. אֵלּוּ הַשּׁוֹכְחִים אֶת הָאֱמֶת בְּהַבְלֵי הַזְּמַן וְשׁוֹגִים כָּל שְׁנָתָם בְּהֶבֶל וָרִיק אֲשֶׁר לֹא יוֹעִיל וְלֹא יַצִּיל, הַבִּיטוּ לְנַפְשׁוֹתֵיכֶם וְהֵיטִיבוּ דַּרְכֵיכֶם וּמַעַלְלֵיכֶם וְיַעֲזֹב כָּל אֶחָד מִכֶּם דַּרְכּוֹ הָרָעָה וּמַחֲשַׁבְתּוֹ אֲשֶׁר לֹא טוֹבָה. לְפִיכָךְ צָרִיךְ כָּל אָדָם שֶׁיִּרְאֶה עַצְמוֹ כָּל הַשָּׁנָה כֻּלָּהּ כְּאִלּוּ חֶצְיוֹ זַכַּאי וְחֶצְיוֹ חַיָּב. וְכֵן כָּל הָעוֹלָם חֶצְיוֹ זַכַּאי וְחֶצְיוֹ חַיָּב. חָטָא חֵטְא אֶחָד הֲרֵי הִכְרִיעַ אֶת עַצְמוֹ וְאֶת כָּל הָעוֹלָם כֻּלּוֹ לְכַף חוֹבָה וְגָרַם לוֹ הַשְׁחָתָה. עָשָׂה מִצְוָה אַחַת הֲרֵי הִכְרִיעַ אֶת עַצְמוֹ וְאֶת כָּל הָעוֹלָם כֻּלּוֹ לְכַף זְכוּת וְגָרַם לוֹ וְלָהֶם תְּשׁוּעָה וְהַצָּלָה שֶׁנֶּאֱמַר <span class="source-small">(משלי י כה)</span> &quot;וְצַדִּיק יְסוֹד עוֹלָם&quot; זֶה שֶׁצָּדַק הִכְרִיעַ אֶת כָּל הָעוֹלָם לִזְכוּת וְהִצִּילוֹ. וּמִפְּנֵי עִנְיָן זֶה נָהֲגוּ כָּל בֵּית יִשְׂרָאֵל לְהַרְבּוֹת בִּצְדָקָה וּבְמַעֲשִׂים טוֹבִים וְלַעֲסֹק בְּמִצְוֹת מֵרֹאשׁ הַשָּׁנָה וְעַד יוֹם הַכִּפּוּרִים יֶתֶר מִכָּל הַשָּׁנָה. וְנָהֲגוּ כֻּלָּם לָקוּם בַּלַּיְלָה בַּעֲשָׂרָה יָמִים אֵלּוּ וּלְהִתְפַּלֵּל בְּבָתֵּי כְּנֵסִיּוֹת בְּדִבְרֵי תַּחֲנוּנִים וּבְכִבּוּשִׁין עַד שֶׁיֵּאוֹר הַיּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כלומר עורו וכו׳.</strong> עי׳ מ&quot;ש במקו&quot;א בפי׳ דכל דבריו אמרי נועם יורדין לחדרי לב.</p>
               </div>
             </div>
@@ -682,8 +813,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:5:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-5">Mishneh Torah, Repentance 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּשָׁעָה שֶׁשּׁוֹקְלִין עֲוֹנוֹת אָדָם עִם זְכֻיּוֹתָיו אֵין מְחַשְּׁבִין עָלָיו עָוֹן שֶׁחָטָא בּוֹ תְּחִלָּה וְלֹא שֵׁנִי אֶלָּא מִשְּׁלִישִׁי וְאֵילָךְ. אִם נִמְצְאוּ עֲוֹנוֹתָיו מִשְּׁלִישִׁי וְאֵילָךְ מְרֻבִּין עַל זְכֻיּוֹתָיו אוֹתָם שְׁתֵּי עֲוֹנוֹת מִצְטָרְפִים וְדָנִין אוֹתוֹ עַל הַכּל. וְאִם נִמְצְאוּ זְכֻיּוֹתָיו כְּנֶגֶד עֲוֹנוֹתָיו אֲשֶׁר מֵעָוֹן שְׁלִישִׁי וְאֵילָךְ מַעֲבִירִים כָּל עֲוֹנוֹתָיו רִאשׁוֹן רִאשׁוֹן. לְפִי שֶׁהַשְּׁלִישִׁי נֶחְשָׁב רִאשׁוֹן שֶׁכְּבָר נִמְחֲלוּ הַשְּׁנַיִם. וְכֵן הָרְבִיעִי הֲרֵי הוּא רִאשׁוֹן שֶׁכְּבָר נִמְחַל הַשְּׁלִישִׁי וְכֵן עַד סוֹפָן. בַּמֶּה דְּבָרִים אֲמוּרִים בְּיָחִיד שֶׁנֶּאֱמַר <span class="source-small">(איוב לג כט)</span> &quot;הֶן כָּל אֵלֶּה יִפְעַל אֵל פַּעֲמַיִם שָׁלוֹשׁ עִם גָּבֶר&quot;. אֲבָל הַצִּבּוּר תּוֹלִין לָהֶן עָוֹן רִאשׁוֹן שֵׁנִי וּשְׁלִישִׁי שֶׁנֶּאֱמַר <span class="source-small">(עמוס ב ו)</span> &quot;עַל שְׁלֹשָׁה פִּשְׁעֵי יִשְׂרָאֵל וְעַל אַרְבָּעָה לֹא אֲשִׁיבֶנּוּ&quot;. וּכְשֶׁמְּחַשְּׁבִין לָהֶן עַל דֶּרֶךְ זֶה מְחַשְּׁבִין לָהֶן מֵרְבִיעִי וְאֵילָךְ. הַבֵּינוֹנִים אִם הָיָה בִּכְלַל מֶחֱצָה עֲוֹנוֹת שֶׁלָּהֶן שֶׁלֹּא הֵנִיחַ תְּפִלִּין מֵעוֹלָם דָּנִין אוֹתוֹ כְּפִי חֶטְאוֹ וְיֵשׁ לוֹ חֵלֶק לָעוֹלָם הַבָּא. וְכֵן כָּל הָרְשָׁעִים שֶׁעֲוֹנוֹתֵיהֶן מְרֻבִּים דָּנִין אוֹתָן כְּפִי חֲטָאֵיהֶם וְיֵשׁ לָהֶן חֵלֶק לָעוֹלָם הַבָּא שֶׁכָּל יִשְׂרָאֵל יֵשׁ לָהֶם חֵלֶק לָעוֹלָם הַבָּא אַף עַל פִּי שֶׁחָטְאוּ שֶׁנֶּאֱמַר <span class="source-small">(ישעיה ס כא)</span> &quot;וְעַמֵּךְ כֻּלָּם צַדִּיקִים לְעוֹלָם יִירְשׁוּ אָרֶץ&quot;. אֶרֶץ זוֹ מָשָׁל כְּלוֹמַר אֶרֶץ הַחַיִּים וְהוּא הָעוֹלָם הַבָּא. וְכֵן חֲסִידֵי אֻמּוֹת הָעוֹלָם יֵשׁ לָהֶם חֵלֶק לָעוֹלָם הַבָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חסידי אומות העולם יש להן חלק לעוה&quot;ב.</strong> וז&quot;ל בפי׳ מהר&quot;ד עראמה ז&quot;ל עי׳ בהל׳ מלכים פ&quot;ח ויהי׳ לך לגלוי גדול כשאתה לומד המורה שלא תטעה בדעתך שאריסטו בחקירותיו השיג הדביקות אליבא דרמב&quot;ם, אלא שהוא מתווכח עמו לדעת סתרי תורה לדעתו על אמונותיו הטובות ומילוי קיום המצות שהיו לו וידיעת כל התלמודים וכו׳ ומי שאין לו אמונת תורת משרע&quot;ה יגע להבל כל ימיו, ולפי שראיתי מי שהטהו המורה לדעת אחרת כתבתי כל זה כדי שיראה מלשון הרב בפירוש כל זה וכבר הזהיר הרב שלא יתעסק באותן הדברים אלא מי שהוא ממולא בתורה כולה ובדקדוקי מצותיה ואז לא יזיק לו ולא ינידהו רוח העולה וכו׳, ורבים ממפרשי המורה טעו ורצו לתלות טעותם בו, והוא מפני שלא נתמלאו לחם ויין כל צרכם והינידם הרוח ולא הבינו כי הרב חיבר המורה אחרי שחיבר הי&quot;ד וקבע האמונות והתורה כולה ומצותיה בלבו וקיים דקדוקי המצות שנים רבות עכ&quot;ל.<br><strong> כונתו</strong> ממ&quot;ש רבינו בהל׳ מלכים פ&quot;ח הל׳ י&quot;א כל המקבל ז׳ מצות ונזהר לעשותן הרי זה מחסידי או&quot;ה ויש לו חלק לעוה&quot;ב, והוא שיקבל אותן ויעשה אותן מפני שציוה בהן הקב&quot;ה בתורה, והודיענו ע&quot;י משה רבינו שבני נח מקודם נצטוו בהן, אבל אם עשאן מפני הכרע הדעת אין זה גר תושב ואינו מחסידי או&quot;ה ולא מחכמיהם&quot; ובמקו&quot;א כתבתי בפי׳ בדבריו.<br><strong> מ&quot;ש</strong> בכ&quot;מ והשאר צ&quot;ע היכא מייתי להו עי׳ בירושלמי פ&quot;א מ&quot;א בגמ׳ שם וכבר העיר ע&quot;ז בס׳ סדר משנה.</p>
               </div>
             </div>
@@ -698,8 +834,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:6:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-6-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-6">Mishneh Torah, Repentance 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן שֶׁאֵין לָהֶן חֵלֶק לָעוֹלָם הַבָּא אֶלָּא נִכְרָתִים וְאוֹבְדִין וְנִדּוֹנִין עַל גֹּדֶל רִשְׁעָם וְחַטָּאתָם לְעוֹלָם וּלְעוֹלְמֵי עוֹלָמִים. הַמִּינִים. וְהָאֶפִּיקוֹרוֹסִין. וְהַכּוֹפְרִים בַּתּוֹרָה. וְהַכּוֹפְרִים בִּתְחִיַּת הַמֵּתִים וּבְבִיאַת הַגּוֹאֵל. הַמּוֹרְדִים. וּמַחֲטִיאֵי הָרַבִּים. וְהַפּוֹרְשִׁין מִדַּרְכֵי צִבּוּר. וְהָעוֹשֶׂה עֲבֵרוֹת בְּיָד רָמָה בְּפַרְהֶסְיָא כִּיהוֹיָקִים. וְהַמּוֹסְרִים. וּמַטִּילֵי אֵימָה עַל הַצִּבּוּר שֶׁלֹּא לְשֵׁם שָׁמַיִם. וְשׁוֹפְכֵי דָּמִים. וּבַעֲלֵי לָשׁוֹן הָרַע. וְהַמּוֹשֵׁךְ עָרְלָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו שאין להן חלק לעוה&quot;ב אלא נכרתים ואובדין ונדונין על גודל רשעם וחטאתם לעולם ולעולמי עולמים המינים והאפקורסים והכופרי׳ בתורה וכו׳.</strong> ובמס׳ סנהדרין דף קי&quot;א ע&quot;ב במשנה אנשי עיר הנידחת אין להם חלק לעוה&quot;ב שנא׳ יצאו אנשים בני בליעל וכו׳ וברש&quot;י בני בליעל שאין להם חלק לעוה&quot;ב עכ&quot;ל, וכן בפי׳ משניות לרמב&quot;ם שבפנינו ובמשניות ועי׳ בתוס׳ יו&quot;ט שם, אבל במשנה שבירושלמי איתא אנשי עיר הנדחת יצאו אנשים בני בליעל וכו׳ ולא נמצא שם שאין להן חלק לעוה&quot;ב, ועי׳ בחי׳ הר&quot;ן שהביא ג&quot;כ כנוסחת הירושלמי וכתב שהיא גירסת הספרים הישנים והיא הגירסא הנכונה ול&quot;ג אין להם חלק לעוה&quot;ב שודאי כיון דאקטלו והתודו וקיבלו דינייהו הוי להו כפרה כמו בשאר חייבי מיתות בי&quot;ד וכדאי׳ בפ׳ נגמר הדין והספרים שגורסין אין להם וכו׳ היא הגהה על פי רש&quot;י שסובר דענין משנה זו היא מענין הפרק מאותן שאין להם חלק לעוה&quot;ב, וליתא דמשנה זו חוזרת לאלו הן הנהרגין שאמרו ואלו הן נהרגין רוצח ואנשי עיר הנדחת עיי&quot;ש ומ&quot;ש בריש פ׳ הנחנקין עיי&quot;ש, ועי׳ בתוס׳ סנהדרין דף מ&quot;ז ע&quot;א בד&quot;ה ואמאי כיון דאקטל הוו להו כפרה והא דתנן אנשי עיר הנדחת אין להם חלק לעוה&quot;ב הני מילי דלא איקטול אבל אם דנו אותם והרגום יש להם חלק לעוה&quot;ב עכ&quot;ל, וא&quot;כ י&quot;ל אף לרש&quot;י בנהרגו יש להם חלק לעוה&quot;ב כמ&quot;ש בתוס׳, והנה בר&quot;ן כתב בהתודו וכן רבינו כתב להלן דתשובה מועלת על הכל אבל בס&quot;ד דגמ׳ נראה אפי׳ בלא תשובה וכמ&quot;ש בתוס׳ יו&quot;ט בנתאכל הבשר למסקנא ג&quot;כ עיי&quot;ש.<br><strong> והנה</strong> מלשון ונדונין וכו׳ לעולם ולעולמי עולמים וכו׳ נראה כי יש עונש לנצחי, ומקרא נאמר &quot;לא לעולם אריב וכו׳&quot; והנה לשון הגמ׳ במס׳ ר&quot;ה י&quot;ז ע&quot;א אי׳ ונדונין בה לדורי דורות וכו׳ נראה ג&quot;כ כי יש עונש נצחי.<br><strong> ועי׳</strong> בס׳ עשרה מאמרות לרמ&quot;ע מפאנו ז&quot;ל מאמר חקור דין חלק ה׳ פ&quot;א שהחליט כי אין עונש נצחי ומ&quot;ש רז&quot;ל הגיהנם כלה והם אינם כלים מפרש להיפוך כפי מה שפי׳ רז&quot;ל בתנחומא פרשת נצבים במקרא חצי אכלה בם חיצי כלים תכלית היסורין אף כאן הגהינם כלה והוא תכלית העונש והם אינם כלים וסיים שם &quot;אין לך דבר נצחי אלא במדת הטוב&quot; ולדורי דורות דאיתא בגמ׳ וז&quot;ל נותני חיתתם וכו׳ ופורשים מדרכי וכו׳ ונדונין בה לדורי דורות וכו׳ שמעוטם על רבעים וכו׳ עיי&quot;ש בפי׳ יד יהודה שמיעוט דורי שנים, ורבינו שכתב לעולמי עולמים וגם כתב נכרתים ואובדין ונדונין וכו׳ על כרחן אין לפרש נאבדין לגמרי דא&quot;כ האיך נדונין לעולם, ונראה דאין לכלול בלשון לעולמי עולמים לנצח כמו שמצינו לעולם עד היובל וגם אובדין וכן לעולמי עולמים איננו כמשמעות הלשון כן בכל מקום וכנראה אלה מחטיאי רבים נדונין בכ&quot;מ שקלקלו ואולי עד כי יבוא עולם התיקון והשלימות ותמלא כל הארץ דעה ויתוקן המעוות אשר יצא מהם ועד אותו הזמן נקרא עולמי עולמים כמו שנקרא עדן עדנים בדניאל, והן על אלה נאמר המחטיאי רבים בעלי דת חדשות וכיו&quot;ב אשר מכשילים העם בפיהם ובמעשיהם והמכשלה עומדת גם אחרי מותם ונדונין עליהם תמיד עד כמ&quot;ש תסור המכשול והמה נתלבנו מעונם וכמ&quot;ש בס׳ עשרה מאמרות הנ&quot;ל באמרי נועם.<br><strong> ועי׳</strong> בכנה&quot;ג בפי׳ להרמב&quot;ם בחלק או&quot;ח למה לא הביא ההוגה ה׳ באותיותיו לאבא שאול אין לו חלק לעוה&quot;ב עיי&quot;ש.</p>
               </div>
             </div>
@@ -714,8 +855,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:6:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-6-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-6">Mishneh Torah, Repentance 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן שֶׁאֵין לָהֶן חֵלֶק לָעוֹלָם הַבָּא אֶלָּא נִכְרָתִים וְאוֹבְדִין וְנִדּוֹנִין עַל גֹּדֶל רִשְׁעָם וְחַטָּאתָם לְעוֹלָם וּלְעוֹלְמֵי עוֹלָמִים. הַמִּינִים. וְהָאֶפִּיקוֹרוֹסִין. וְהַכּוֹפְרִים בַּתּוֹרָה. וְהַכּוֹפְרִים בִּתְחִיַּת הַמֵּתִים וּבְבִיאַת הַגּוֹאֵל. הַמּוֹרְדִים. וּמַחֲטִיאֵי הָרַבִּים. וְהַפּוֹרְשִׁין מִדַּרְכֵי צִבּוּר. וְהָעוֹשֶׂה עֲבֵרוֹת בְּיָד רָמָה בְּפַרְהֶסְיָא כִּיהוֹיָקִים. וְהַמּוֹסְרִים. וּמַטִּילֵי אֵימָה עַל הַצִּבּוּר שֶׁלֹּא לְשֵׁם שָׁמַיִם. וְשׁוֹפְכֵי דָּמִים. וּבַעֲלֵי לָשׁוֹן הָרַע. וְהַמּוֹשֵׁךְ עָרְלָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> והמושך ערלתו.</strong> במס׳ אבות פ&quot;ג מ&quot;א והמפיר בריתו של אברהם אבינו ע&quot;ה וכו׳ אע&quot;פ וכו׳ אין לו חלק לעוה&quot;ב עכ&quot;ל ובברטנורא והמפיר בריתו שלא מל, או שמל וכו׳ ומושך ערלתו לכסות המילה כדי שלא יראה שהוא מהול עכ&quot;ל, באופן הזה גרוע מלא מל כלל, ועי׳ במעשה רוקח דבירושלמי פאה [ופרק] חלק איתא ג&quot;כ המושך ערלתו אבל ברמב&quot;ם בפי׳ משניות כתב והניח או משך עיי&quot;ש וממ&quot;ש בפ&quot;ג דמילה עיי&quot;ש, ונראה דבלא מל בכלל מ&quot;ש בהל׳ י&quot;ד דאפי׳ בעבירות קלות יש שארז&quot;ל בהרגיל בהם שאין לו חלק לעוה&quot;ב ומכ&quot;ש בחמור כמילה ורגיל תמיד בעבירה שלא מל עצמו הוי בכלל שאין לו חלק לעוה&quot;ב ועי׳ חולין ד׳ ע&quot;ב דמומר לערלות לא הוי רק מומר לאותו דבר עיי&quot;ש.</p>
               </div>
             </div>
@@ -730,8 +876,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:7:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-7-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-7">Mishneh Torah, Repentance 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲמִשָּׁה הֵן הַנִּקְרָאִים מִינִים. הָאוֹמֵר שֶׁאֵין שָׁם אֱלוֹהַּ וְאֵין לָעוֹלָם מַנְהִיג. וְהָאוֹמֵר שֶׁיֵּשׁ שָׁם מַנְהִיג אֲבָל הֵן שְׁנַיִם אוֹ יוֹתֵר. וְהָאוֹמֵר שֶׁיֵּשׁ שָׁם רִבּוֹן אֶחָד אֲבָל שֶׁהוּא גּוּף וּבַעַל תְּמוּנָה. וְכֵן הָאוֹמֵר שֶׁאֵינוֹ לְבַדּוֹ הָרִאשׁוֹן וְצוּר לַכֹּל. וְכֵן הָעוֹבֵד כּוֹכָב אוֹ מַזָּל וְזוּלָתוֹ כְּדֵי לִהְיוֹת מֵלִיץ בֵּינוֹ וּבֵין רִבּוֹן הָעוֹלָמִים. כָּל אֶחָד מֵחֲמִשָּׁה אֵלּוּ הוּא מִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חמשה הן הנקראים מינים וכו׳.</strong> ובראב&quot;ד גדולים וטובים ממנו הלכו בזו המחשבה וכו׳.<br><strong> ועי׳</strong> בכ&quot;מ ויש לתמוה על פה קדוש איך יקרא לאומרים שהוא גוף גדולים וטובים ממנו עיי&quot;ש מ&quot;ש ע&quot;ז, ועי׳ בכנה&quot;ג שפי׳ גדולים וטובים ממנו לא שטובים מרבינו אבל טובים וגדולים ממנו מבני עמנו הלכו בזו המחשבה כמו כי חזק ממנו שפי׳ מאתנו לפי פשוטו עיי&quot;ש.<br><strong> גם</strong> לדעת רבינו במורה נבוכים התוארים ליחסו באמת בכלל התגשמות ובזה כנודע הרבה אשר חלקו עליו בזה, ומ&quot;ש משבשות וכו׳ על האגדות נאמר וכי מפני השוטים יאבד וכו׳ שאמרו רז&quot;ל .<br><strong> בראב&quot;ד שמשבשות את הדיעות.</strong> לא דיבר חלילה נגד האגדות כמו שאמרו רז&quot;ל על הטבע שמכשלת העע&quot;ז וכי מפני השוטים יאבד את עולמו וע&quot;ז נאמר צדיקים ילכו בה וכו׳.</p>
               </div>
             </div>
@@ -746,8 +897,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:8:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-8-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-8">Mishneh Torah, Repentance 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה הֵן הַנִּקְרָאִים אֶפִּיקוֹרְסִין. הָאוֹמֵר שֶׁאֵין שָׁם נְבוּאָה כְּלָל וְאֵין שָׁם מַדָּע שֶׁמַּגִּיעַ מֵהַבּוֹרֵא לְלֵב בְּנֵי הָאָדָם. וְהַמַּכְחִישׁ נְבוּאָתוֹ שֶׁל משֶׁה רַבֵּנוּ. וְהָאוֹמֵר שֶׁאֵין הַבּוֹרֵא יוֹדֵעַ מַעֲשֵׂה בְּנֵי הָאָדָם. כָּל אֶחָד מִשְּׁלֹשָׁה אֵלּוּ הֵן אֶפִּיקוֹרוֹסִים. שְׁלֹשָׁה הֵן הַכּוֹפְרִים בַּתּוֹרָה. הָאוֹמֵר שֶׁאֵין הַתּוֹרָה מֵעִם ה׳ אֲפִלּוּ פָּסוּק אֶחָד אֲפִלּוּ תֵּבָה אַחַת אִם אָמַר משֶׁה אֲמָרוֹ מִפִּי עַצְמוֹ הֲרֵי זֶה כּוֹפֵר בַּתּוֹרָה. וְכֵן הַכּוֹפֵר בְּפֵרוּשָׁהּ וְהוּא תּוֹרָה שֶׁבְּעַל פֶּה וְהַמַּכְחִישׁ מַגִּידֶיהָ כְּגוֹן צָדוֹק וּבַיְתּוֹס. וְהָאוֹמֵר שֶׁהַבּוֹרֵא הֶחֱלִיף מִצְוָה זוֹ בְּמִצְוָה אַחֶרֶת וּכְבָר בָּטְלָה תּוֹרָה זוֹ אַף עַל פִּי שֶׁהִיא הָיְתָה מֵעִם ה׳ כְּגוֹן הָהַגְרִים. כָּל אֶחָד מִשְּׁלֹשָׁה אֵלּוּ כּוֹפֵר בַּתּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה הן הנקראים אפיקורסין וכו׳ וכן הכופר בפירושה והוא תורה שבע&quot;פ והמכחיש מגידיה כגון צדוק ובייתוס וכו׳.</strong> ונראה שמחלק בין הכופר בפירושה למכחיש מגידיה וצדוק ובייתוס היו כופרים בשניהם, אבל להם ג&quot;כ תורה שבע&quot;פ להם מסורה מפי אחרים ומכחישים בעלי קבלה ומוסרי התורה שבע&quot;פ אשר לנו כנודע.</p>
               </div>
             </div>
@@ -762,8 +918,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:9:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-9-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-9">Mishneh Torah, Repentance 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנַיִם הֵם הַמּוּמָרִים מִיִּשְׂרָאֵל. הַמּוּמָר לַעֲבֵרָה אַחַת וְהַמּוּמָר לְכָל הַתּוֹרָה כֻּלָּהּ. מוּמָר לַעֲבֵרָה אַחַת זֶה שֶׁהֶחֱזִיק עַצְמוֹ לַעֲשׂוֹת אוֹתָהּ עֲבֵרָה בְּזָדוֹן וְהֻרְגָּל וְנִתְפַּרְסֵם בָּהּ אֲפִלּוּ הָיְתָה מִן הַקַּלּוֹת כְּגוֹן שֶׁהֻחְזַק תָּמִיד לִלְבֹּשׁ שַׁעַטְנֵז אוֹ לְהַקִּיף פֵּאָה וְנִמְצָא כְּאִלּוּ בָּטְלָה מִצְוָה זוֹ מִן הָעוֹלָם אֶצְלוֹ הֲרֵי זֶה מוּמָר לְאוֹתוֹ דָּבָר וְהוּא שֶׁיַּעֲשֶׂה לְהַכְעִיס. מוּמָר לְכָל הַתּוֹרָה כֻּלָּהּ כְּגוֹן הַחוֹזְרִים לְדָתֵי הָעוֹבְדֵי כּוֹכָבִים בְּשָׁעָה שֶׁגּוֹזְרִין גְּזֵרָה וְיִדְבַּק בָּהֶם וְיֹאמַר מַה בֶּצַע לִי לְהִדַּבֵּק בְּיִשְׂרָאֵל שֶׁהֵם שְׁפָלִים וְנִרְדָּפִים טוֹב לִי שֶׁאֶדַּבֵּק בְּאֵלּוּ שֶׁיָּדָם תַּקִּיפָה. הֲרֵי זֶה מוּמָר לְכָל הַתּוֹרָה כֻּלָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים הם המומרים וכו׳ מומר לעבירה אחת זה שהחזיק עצמו לעשות אותה עבירה בזדון והורגל ונתפרסם בה אפי׳ היתה מן הקלות כגון שהוחזק תמיד ללבוש שעטנז וכו׳ ונמצא כאלו בטילה מצוה זו מן העולם אצלו הרי זה מומר לאותו דבר והוא שעשה להכעיס וכו׳.</strong> נראה דעתו אף להכעיס בלאותו דבר צריך שיעשה כן הרבה פעמים ועי׳ במס׳ חולין בסוגיא דשוחט בשבת שאין נעשה מומר באותו מעשה וכאן נראה בהרבה פעמים נראה לענין אין לו חלק לעוה&quot;ב צריך להתפרסם ומורגל ביותר וכמ&quot;ש ברשב&quot;א מובא בב&quot;י בסי׳ קי&quot;ט ביו&quot;ד דצריך שיעשה ג׳ פעמים י&quot;ל דהוי בכה&quot;ג בכלל והורגל וכו׳ שכתב רבינו.</p>
               </div>
             </div>
@@ -778,8 +939,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:11:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-11-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-11">Mishneh Torah, Repentance 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַפּוֹרֵשׁ מִדַּרְכֵי צִבּוּר אַף עַל פִּי שֶׁלֹּא עָבַר עֲבֵרוֹת אֶלָּא נִבְדָּל מֵעֲדַת יִשְׂרָאֵל וְאֵינוֹ עוֹשֶׂה מִצְוֹת בִּכְלָלָן וְלֹא נִכְנָס בְּצָרָתָן וְלֹא מִתְעַנֶּה בְּתַעֲנִיתָן אֶלָּא הוֹלֵךְ בְּדַרְכּוֹ כְּאֶחָד מִגּוֹיֵי הָאָרֶץ וּכְאִלּוּ אֵינוֹ מֵהֶן אֵין לוֹ חֵלֶק לָעוֹלָם הַבָּא. הָעוֹשֶׂה עֲבֵרוֹת בְּיָד רָמָה כִּיהוֹיָקִים בֵּין שֶׁעָשָׂה קַלּוֹת בֵּין שֶׁעָשָׂה חֲמוּרוֹת אֵין לוֹ חֵלֶק לָעוֹלָם הַבָּא. וְזֶהוּ הַנִּקְרָא מְגַלֶּה פָּנִים בַּתּוֹרָה מִפְּנֵי שֶׁהֵעֵז מִצְחוֹ וְגִלָּה פָּנָיו וְלֹא בּוֹשׁ מִדִּבְרֵי תּוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הפורש מדרכי צבור וכו׳ העושה עבירות ביד רמה כיהויקים בין שעשה קלות ובין שעשה חמורות אין לו חלק לעוה&quot;ב, וזה הנקרא מגלה פנים בתורה מפני שהעיז מצחו וגילה פנים ולא בוש מדברי התורה.</strong><br><strong> במס׳</strong> אבות פ&quot;ג אי׳ והמגלה פנים בתורה שלא כהלכה והקשה בכ&quot;מ למה לא הביאו רבינו עיי&quot;ש נראה דשאני המגלה פנים בתורה שפי׳ כמ&quot;ש רבינו מפני שהעיז וכו׳ משלא כהלכה דהוי כונה אחרת, והנה בירושלמי פאה פ&quot;א מ&quot;א הנ&quot;ל שם אי׳ הפורק עול זה שהוא אומר יש תורה ואינו סופנה [וגי׳ אחרת ואינו סובלה] והמפיר ברית זה המושך לו ערלה המגלה פנים בתורה זה שהוא אומר לא נתנה התורה מן השמים, ולא כבר תניתא האומר אין תורה מן השמים תני׳ ר&quot;ח וכו׳ זה שהוא עובר על ד&quot;ת בפרהסיא כגון יהויקים מלך יהודה וחביריו עכ&quot;ל ובמס׳ סנהדרין צ&quot;ט ע&quot;ב לחד מבזה ת&quot;ח מגלה פנים בתורה שלא כהלכה ולחד כגון מנשה שהיה דורש אגדה של דופי ובע&quot;א שם מדבר ה׳ בזה דג&quot;כ נראה כדעת הרמב&quot;ם וירושלמי כמו שכתב רבינו וגם מסכים לבבלי למי שמפרש המבזה ת&quot;ח דהוי בכלל ועל קושית הכ&quot;מ שלא הביא מגלה וכו׳ כמו מנשה דאיתא בבבלי ולשון שלא כהלכה מסכים לזה שלא נמצא לשון זה בירושלמי נראה זה הוי בכלל כופר בתורה שאין לך כופר בתורה ממי שדורש אגדות של דופי וכבר כתבו בכלל אפיקורס.<br><strong> ועל</strong> הקושיא שלא מנה באפיקורסים המבזה ת&quot;ח ועי׳ בלח&quot;מ, עי׳ בס׳ לר׳ אברהם עראמה ז&quot;ל שכתב דהמבזה וכו׳ משו&quot;ה בכלל אפיקורס דאם לא היה מינות בו לא היה מבזה ת&quot;ח דרק למין יקרא אפיקורס ונמצא כבר נמנה בכלל אפיקורס שחשב רבינו עיי&quot;ש והוא נכון לענ&quot;ד.</p>
               </div>
             </div>
@@ -794,8 +960,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:14:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-14-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-14">Mishneh Torah, Repentance 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אֶחָד וְאֶחָד מֵעֶשְׂרִים וְאַרְבָּעָה אֲנָשִׁים אֵלּוּ שֶׁמָּנִינוּ אַף עַל פִּי שֶׁהֵן מִיִּשְׂרָאֵל אֵין לָהֶם חֵלֶק לָעוֹלָם הַבָּא. וְיֵשׁ עֲבֵרוֹת קַלּוֹת מֵאֵלּוּ וְאַף עַל פִּי כֵן אָמְרוּ חֲכָמִים שֶׁהָרָגִיל בָּהֶן אֵין לָהֶם חֵלֶק לָעוֹלָם הַבָּא (וּכְדֵי) [וּכְדַאי] הֵן לְהִתְרַחֵק מֵהֶן וּלְהִזָּהֵר בָּהֶן. וְאֵלּוּ הֵן. הַמְכַנֶּה שֵׁם לַחֲבֵרוֹ. וְהַקּוֹרֵא לַחֲבֵרוֹ בְּכִנּוּיוֹ. וְהַמַּלְבִּין פְּנֵי חֲבֵרוֹ בָּרַבִּים. וְהַמִּתְכַּבֵּד בִּקְלוֹן חֲבֵרוֹ. וְהַמְבַזֶּה תַּלְמִידֵי חֲכָמִים. וְהַמְבַזֶּה רַבּוֹתָיו. וְהַמְבַזֶּה אֶת הַמּוֹעֲדוֹת. וְהַמְחַלֵּל אֶת הַקָּדָשִׁים. בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁכָּל אֶחָד מֵאֵלּוּ אֵין לוֹ חֵלֶק לָעוֹלָם הַבָּא כְּשֶׁמֵּת בְּלֹא תְּשׁוּבָה אֲבָל אִם שָׁב מֵרִשְׁעוֹ וּמֵת וְהוּא בַּעַל תְּשׁוּבָה הֲרֵי זֶה מִבְּנֵי הָעוֹלָם הַבָּא שֶׁאֵין לְךָ דָּבָר שֶׁעוֹמֵד בִּפְנֵי הַתְּשׁוּבָה. אֲפִלּוּ כָּפַר בָּעִקָּר כָּל יָמָיו וּבָאַחֲרוֹנָה שָׁב יֵשׁ לוֹ חֵלֶק לָעוֹלָם הַבָּא שֶׁנֶּאֱמַר <span class="source-small">(ישעיה נז יט)</span> &quot;שָׁלוֹם שָׁלוֹם לָרָחוֹק וְלַקָּרוֹב אָמַר ה׳ וּרְפָאתִיו&quot;. כָּל הָרְשָׁעִים וְהַמּוּמָרִים וְכַיּוֹצֵא בָּהֶן שֶׁחָזְרוּ בִּתְשׁוּבָה בֵּין בְּגָלוּי בֵּין בְּמַטְמוֹנִיּוֹת מְקַבְּלִין אוֹתָן שֶׁנֶּאֱמַר <span class="source-small">(ירמיה ג יד)</span> &quot;שׁוּבוּ בָּנִים שׁוֹבָבִים&quot;. אַף עַל פִּי שֶׁעֲדַיִן שׁוֹבָב הוּא שֶׁהֲרֵי בַּסֵּתֶר שָׁב וְלֹא בְּגָלוּי מְקַבְּלִין אוֹתוֹ בִּתְשׁוּבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל אחד וכו׳ והמכנה והקורא לחבירו בכנוי וכו׳ והמתכבד בקלון חבירו וכו׳.</strong> ובכ&quot;מ כתב ומה שמנה רבינו קורא וכו׳ ומתכבד וכו׳ לא ידעתי מקום וכו׳ עיי&quot;ש, וכבר הראו מקומו בירושלמי חגיגה פ׳ אין דורשין ובבראשית רבה פ&quot;א עיי&quot;ש.</p>
               </div>
             </div>
@@ -810,8 +981,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 3:14:2</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-3-14-2" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 3:14:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-14">Mishneh Torah, Repentance 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אֶחָד וְאֶחָד מֵעֶשְׂרִים וְאַרְבָּעָה אֲנָשִׁים אֵלּוּ שֶׁמָּנִינוּ אַף עַל פִּי שֶׁהֵן מִיִּשְׂרָאֵל אֵין לָהֶם חֵלֶק לָעוֹלָם הַבָּא. וְיֵשׁ עֲבֵרוֹת קַלּוֹת מֵאֵלּוּ וְאַף עַל פִּי כֵן אָמְרוּ חֲכָמִים שֶׁהָרָגִיל בָּהֶן אֵין לָהֶם חֵלֶק לָעוֹלָם הַבָּא (וּכְדֵי) [וּכְדַאי] הֵן לְהִתְרַחֵק מֵהֶן וּלְהִזָּהֵר בָּהֶן. וְאֵלּוּ הֵן. הַמְכַנֶּה שֵׁם לַחֲבֵרוֹ. וְהַקּוֹרֵא לַחֲבֵרוֹ בְּכִנּוּיוֹ. וְהַמַּלְבִּין פְּנֵי חֲבֵרוֹ בָּרַבִּים. וְהַמִּתְכַּבֵּד בִּקְלוֹן חֲבֵרוֹ. וְהַמְבַזֶּה תַּלְמִידֵי חֲכָמִים. וְהַמְבַזֶּה רַבּוֹתָיו. וְהַמְבַזֶּה אֶת הַמּוֹעֲדוֹת. וְהַמְחַלֵּל אֶת הַקָּדָשִׁים. בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁכָּל אֶחָד מֵאֵלּוּ אֵין לוֹ חֵלֶק לָעוֹלָם הַבָּא כְּשֶׁמֵּת בְּלֹא תְּשׁוּבָה אֲבָל אִם שָׁב מֵרִשְׁעוֹ וּמֵת וְהוּא בַּעַל תְּשׁוּבָה הֲרֵי זֶה מִבְּנֵי הָעוֹלָם הַבָּא שֶׁאֵין לְךָ דָּבָר שֶׁעוֹמֵד בִּפְנֵי הַתְּשׁוּבָה. אֲפִלּוּ כָּפַר בָּעִקָּר כָּל יָמָיו וּבָאַחֲרוֹנָה שָׁב יֵשׁ לוֹ חֵלֶק לָעוֹלָם הַבָּא שֶׁנֶּאֱמַר <span class="source-small">(ישעיה נז יט)</span> &quot;שָׁלוֹם שָׁלוֹם לָרָחוֹק וְלַקָּרוֹב אָמַר ה׳ וּרְפָאתִיו&quot;. כָּל הָרְשָׁעִים וְהַמּוּמָרִים וְכַיּוֹצֵא בָּהֶן שֶׁחָזְרוּ בִּתְשׁוּבָה בֵּין בְּגָלוּי בֵּין בְּמַטְמוֹנִיּוֹת מְקַבְּלִין אוֹתָן שֶׁנֶּאֱמַר <span class="source-small">(ירמיה ג יד)</span> &quot;שׁוּבוּ בָּנִים שׁוֹבָבִים&quot;. אַף עַל פִּי שֶׁעֲדַיִן שׁוֹבָב הוּא שֶׁהֲרֵי בַּסֵּתֶר שָׁב וְלֹא בְּגָלוּי מְקַבְּלִין אוֹתוֹ בִּתְשׁוּבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל הרשעים ומומרים וכיו&quot;ב שחזרו בתשובה וכו׳ מקבלין אותו וכו׳.</strong> עי׳ מ&quot;ש לעיל בפ&quot;ב ד&quot;ה ע&quot;ז בשם הרדב&quot;ז ליישב הסתירות משם עיי&quot;ש.</p>
               </div>
             </div>
@@ -827,8 +1003,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 4:1:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-4-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-4-1">Mishneh Torah, Repentance 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבָעָה וְעֶשְׂרִים דְּבָרִים מְעַכְּבִין אֶת הַתְּשׁוּבָה. אַרְבָּעָה מֵהֶן עָוֹן גָּדוֹל וְהָעוֹשֶׂה אֶחָד מֵהֶן אֵין הַקָּדוֹשׁ בָּרוּךְ הוּא מַסְפִּיק בְּיָדוֹ לַעֲשׂוֹת תְּשׁוּבָה לְפִי גֹּדֶל חֶטְאוֹ. וְאֵלּוּ הֵן. א) הַמַּחְטִיא אֶת הָרַבִּים וּבִכְלַל עָוֹן זֶה הַמְעַכֵּב אֶת הָרַבִּים מִלַּעֲשׂוֹת מִצְוָה. ב) וְהַמַּטֶּה אֶת חֲבֵרוֹ מִדֶּרֶךְ טוֹבָה לְרָעָה כְּגוֹן מֵסִית וּמַדִּיחַ. ג) הָרוֹאֶה בְּנוֹ יוֹצֵא לְתַרְבּוּת רָעָה וְאֵינוֹ מְמַחֶה בְּיָדוֹ. הוֹאִיל וּבְנוֹ בִּרְשׁוּתוֹ אִלּוּ מִחָה בּוֹ הָיָה פּוֹרֵשׁ וְנִמְצָא כְּמַחְטִיאוֹ. וּבִכְלַל עָוֹן זֶה כָּל שֶׁאֶפְשָׁר בְּיָדוֹ לִמְחוֹת בַּאֲחֵרִים בֵּין יָחִיד בֵּין רַבִּים וְלֹא מִחָה אֶלָּא יַנִּיחֵם בְּכִשְׁלוֹנָם. ד) וְהָאוֹמֵר אֶחְטָא וְאָשׁוּב וּבִכְלַל זֶה הָאוֹמֵר אֶחְטָא וְיוֹם הַכִּפּוּרִים מְכַפֵּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כ&quot;ד דברים מעכבים וכו׳.</strong> עי׳ בס׳ מעשה רוקח בשינויים בנוסחת הברייתא כפי מה שמובא ברי&quot;ף ורא&quot;ש וברמב&quot;ם עיי&quot;ש.</p>
               </div>
             </div>
@@ -844,8 +1025,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 5:4:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-5-4-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-5-4">Mishneh Torah, Repentance 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִלּוּ הָאֵל הָיָה גּוֹזֵר עַל הָאָדָם לִהְיוֹת צַדִּיק אוֹ רָשָׁע אוֹ אִלּוּ הָיָה שָׁם דָּבָר שֶׁמּוֹשֵׁךְ אֶת הָאָדָם בְּעִקַּר תּוֹלַדְתּוֹ לְדֶרֶךְ מִן הַדְּרָכִים אוֹ לְמַדָּע מִן הַמַּדָּעוֹת אוֹ לְדֵעָה מִן הַדֵּעוֹת אוֹ לְמַעֲשֶׂה מִן הַמַּעֲשִׂים כְּמוֹ שֶׁבּוֹדִים מִלִּבָּם הַטִּפְּשִׁים הֹבְרֵי שָׁמַיִם הֵיאַךְ הָיָה מְצַוֶּה לָנוּ עַל יְדֵי הַנְּבִיאִים עֲשֵׂה כָּךְ וְאַל תַּעֲשֶׂה כָּךְ הֵיטִיבוּ דַּרְכֵיכֶם וְאַל תֵּלְכוּ אַחֲרֵי רִשְׁעֲכֶם וְהוּא מִתְּחִלַּת בְּרִיָּתוֹ כְּבָר נִגְזַר עָלָיו אוֹ תּוֹלַדְתּוֹ תִּמְשֹׁךְ אוֹתוֹ לְדָבָר שֶׁאִי אֶפְשָׁר לָזוּז מִמֶּנּוּ. וּמַה מָּקוֹם הָיָה לְכָל הַתּוֹרָה כֻּלָּהּ וּבְאֵי זֶה דִּין וְאֵיזֶה מִשְׁפָּט נִפְרָע מִן הָרָשָׁע אוֹ מְשַׁלֵּם שָׂכָר לַצַּדִּיק. הֲשֹׁפֵט כָּל הָאָרֶץ לֹא יַעֲשֶׂה מִשְׁפָּט. וְאַל תִּתְמַהּ וְתֹאמַר הֵיאַךְ יִהְיֶה הָאָדָם עוֹשֶׂה כָּל מַה שֶּׁיַּחְפֹּץ וְיִהְיוּ מַעֲשָׂיו מְסוּרִים לוֹ וְכִי יֵעָשֶׂה בָּעוֹלָם דָּבָר שֶׁלֹּא בִּרְשׁוּת קוֹנוֹ וְלֹא חֶפְצוֹ וְהַכָּתוּב אוֹמֵר <span class="source-small">(תהילים קלה ו)</span> &quot;כּל אֲשֶׁר חָפֵץ ה׳ עָשָׂה בַּשָּׁמַיִם וּבָאָרֶץ&quot;. דַּע שֶׁהַכּל כְּחֶפְצוֹ יֵעָשֶׂה וְאַף עַל פִּי שֶׁמַּעֲשֵׂינוּ מְסוּרִין לָנוּ. כֵּיצַד. כְּשֵׁם שֶׁהַיּוֹצֵר חָפֵץ לִהְיוֹת הָאֵשׁ וְהָרוּחַ עוֹלִים לְמַעְלָה וְהַמַּיִם וְהָאָרֶץ יוֹרְדִים לְמַטָּה וְהַגַּלְגַּל סוֹבֵב בְּעִגּוּל וְכֵן שְׁאָר בְּרִיּוֹת הָעוֹלָם לִהְיוֹת כְּמִנְהָגָן שֶׁחָפֵץ בּוֹ. כָּכָה חָפֵץ לִהְיוֹת הָאָדָם רְשׁוּתוֹ בְּיָדוֹ וְכָל מַעֲשָׂיו מְסוּרִין לוֹ וְלֹא יִהְיֶה לוֹ לֹא כּוֹפֶה וְלֹא מוֹשֵׁךְ אֶלָּא הוּא מֵעַצְמוֹ וּבְדַעְתּוֹ שֶׁנָּתַן לוֹ הָאֵל עוֹשֶׂה כָּל שֶׁהָאָדָם יָכוֹל לַעֲשׂוֹת. לְפִיכָךְ דָּנִין אוֹתוֹ לְפִי מַעֲשָׂיו. אִם עָשָׂה טוֹבָה מֵיטִיבִין לוֹ וְאִם עָשָׂה רָעָה מְרֵעִין לוֹ. הוּא שֶׁהַנָּבִיא אוֹמֵר <span class="source-small">(מלאכי א ט)</span> מִיֶּדְכֶם הָיְתָה זֹּאת לָכֶם. <span class="source-small">(ישעיה סו ג)</span> גַּם הֵמָּה בָּחֲרוּ בְּדַרְכֵיהֶם. וּבְעִנְיָן זֶה אָמַר שְׁלֹמֹה <span class="source-small">(קהלת יא ט)</span> &quot;שְׂמַח בָּחוּר בְּיַלְדוּתֶיךָ&quot; <span class="source-small">(קהלת יא ט)</span> &quot;וְדָע כִּי עַל כָּל אֵלֶּה יְבִיאֲךָ הָאֱלֹהִים בַּמִּשְׁפָּט&quot;. כְּלוֹמַר דַּע שֶׁיֵּשׁ בְּיָדְךָ כֹּחַ לַעֲשׂוֹת וְעָתִיד אַתָּה לִתֵּן אֶת הַדִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אילו האל היה גוזר וכו׳ ואל תתמה ותאמר היאך יהיה האדם עושה כל מה שיחפוץ ויהיה מעשיו מסורים לו וכי יעשה בעולם דבר שלא ברשות קונו ולא חפצו והכתוב אומר כל אשר חפץ השם עשה בשמים ובארץ דע שהכל וכו׳.</strong> ועי׳ בזה בס׳ עקידת יצחק שער כ&quot;ח וסיפור של יוסף עם אחיו יפרש לנו איככה יתאחדו הבחירה עם רצון ה׳ ית&quot;ש השליט בכל עיי&quot;ש, ורבינו יפרש בזה אשר החוטא עושה למרות עיני כבודו וע&quot;ז כתב זה שהכל וכו׳ עיי&quot;ש, כי בזה לא יתורץ בדברי העקידה הנ&quot;ל רק כמ&quot;ש רבינו.</p>
               </div>
             </div>
@@ -860,8 +1046,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 5:5:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-5-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-5-5">Mishneh Torah, Repentance 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שֶׁמָּא תֹּאמַר וַהֲלֹא הַקָּדוֹשׁ בָּרוּךְ הוּא יוֹדֵעַ כָּל מַה שֶּׁיִּהְיֶה וְקֹדֶם שֶׁיִּהְיֶה יֵדַע שֶׁזֶּה יִהְיֶה צַדִּיק אוֹ רָשָׁע אוֹ לֹא יֵדַע. אִם יֵדַע שֶׁהוּא יִהְיֶה צַדִּיק אִי אֶפְשָׁר שֶׁלֹּא יִהְיֶה צַדִּיק וְאִם תֹּאמַר שֶׁיֵּדַע שֶׁיִּהְיֶה צַדִּיק וְאֶפְשָׁר שֶׁיִּהְיֶה רָשָׁע הֲרֵי לֹא יֵדַע הַדָּבָר עַל בֻּרְיוֹ. דַּע שֶׁתְּשׁוּבַת שְׁאֵלָה זוֹ אֲרֻכָּה מֵאֶרֶץ מִדָּה וּרְחָבָה מִנִּי יָם וְכַמָּה עִקָּרִים גְּדוֹלִים וַהֲרָרִים רָמִים תְּלוּיִים בָּהּ אֲבָל צָרִיךְ אַתָּה לֵידַע וּלְהָבִין בְּדָבָר זֶה שֶׁאֲנִי אוֹמֵר. כְּבָר בֵּאַרְנוּ בְּפֶרֶק שֵׁנִי מֵהִלְכוֹת יְסוֹדֵי הַתּוֹרָה שֶׁהַקָּדוֹשׁ בָּרוּךְ הוּא אֵינוֹ יוֹדֵעַ מִדֵּעָה שֶׁהִיא חוּץ מִמֶּנּוּ כִּבְנֵי אָדָם שֶׁהֵם וְדַעְתָּם שְׁנַיִם. אֶלָּא הוּא יִתְעַלֶּה שְׁמוֹ וְדַעְתּוֹ אֶחָד וְאֵין דַּעְתּוֹ שֶׁל אָדָם יְכוֹלָה לְהַשִּׂיג דָּבָר זֶה עַל בֻּרְיוֹ. וּכְשֵׁם שֶׁאֵין כֹּחַ בָּאָדָם לְהַשִּׂיג וְלִמְצֹא אֲמִתַּת הַבּוֹרֵא שֶׁנֶּאֱמַר <span class="source-small">(שמות לג כ)</span> &quot;כִּי לֹא יִרְאַנִי הָאָדָם וָחָי&quot; כָּךְ אֵין כֹּחַ בָּאָדָם לְהַשִּׂיג וְלִמְצֹא דַּעְתּוֹ שֶׁל הַבּוֹרֵא. הוּא שֶׁהַנָּבִיא אָמַר <span class="source-small">(ישעיה נה ח)</span> &quot;כִּי לֹא מַחְשְׁבוֹתַי מַחְשְׁבוֹתֵיכֶם וְלֹא דַרְכֵיכֶם דְרָכָי&quot;. וְכֵיוָן שֶׁכֵּן הוּא אֵין בָּנוּ כֹּחַ לֵידַע הֵיאַךְ יֵדַע הַקָּדוֹשׁ בָּרוּךְ הוּא כָּל הַבְּרוּאִים וְהַמַּעֲשִׂים אֲבָל נֵדַע בְּלֹא סָפֵק שֶׁמַּעֲשֵׂה הָאָדָם בְּיַד הָאָדָם וְאֵין הַקָּדוֹשׁ בָּרוּךְ הוּא מוֹשְׁכוֹ וְלֹא גּוֹזֵר עָלָיו לַעֲשׂוֹת כָּךְ. וְלֹא מִפְּנֵי קַבָּלַת הַדָּת בִּלְבַד נוֹדַע דָּבָר זֶה אֶלָּא בִּרְאָיוֹת בְּרוּרוֹת מִדִּבְרֵי הַחָכְמָה. וּמִפְּנֵי זֶה נֶאֱמַר בַּנְּבוּאָה שֶׁדָּנִין אֶת הָאָדָם עַל מַעֲשָׂיו כְּפִי מַעֲשָׂיו אִם טוֹב וְאִם רַע וְזֶה הוּא הָעִקָּר שֶׁכָּל דִּבְרֵי הַנְּבוּאָה תְּלוּיִין בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמא תאמר וכו׳.</strong> ובראב&quot;ד שם ועי׳ בתוס׳ יו&quot;ט אבות פ&quot;ג מ׳ ט&quot;ו מ&quot;ש בזה עיי&quot;ש כי במדרש כדברי רבינו.</p>
               </div>
             </div>
@@ -877,8 +1068,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 6:3:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-6-3-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-6-3">Mishneh Torah, Repentance 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֶפְשָׁר שֶׁיֶּחְטָא אָדָם חֵטְא גָּדוֹל אוֹ חֲטָאִים רַבִּים עַד שֶׁיִּתֵּן הַדִּין לִפְנֵי דַּיַן הָאֱמֶת שֶׁיְּהֵא הַפֵּרָעוֹן מִזֶּה הַחוֹטֵא עַל חֲטָאִים אֵלּוּ שֶׁעָשָׂה בִּרְצוֹנוֹ וּמִדַּעְתּוֹ שֶׁמּוֹנְעִין מִמֶּנּוּ הַתְּשׁוּבָה וְאֵין מַנִּיחִין לוֹ רְשׁוּת לָשׁוּב מֵרִשְׁעוֹ כְּדֵי שֶׁיָּמוּת וְיֹאבַד בְּחֶטְאוֹ שֶׁעָשָׂה. הוּא שֶׁהַקָּדוֹשׁ בָּרוּךְ הוּא אָמַר עַל יְדֵי יְשַׁעְיָהוּ <span class="source-small">(ישעיה ו י)</span> &quot;הַשְׁמֵן לֵב הָעָם הַזֶּה&quot; וְגוֹ׳. וְכֵן הוּא אוֹמֵר <span class="source-small">(דה&quot;ב לו טז)</span> &quot;וַיִּהְיוּ מַלְעִבִים בְּמַלְאֲכֵי הָאֱלֹהִים וּבוֹזִים דְּבָרָיו וּמִתַּעְתְּעִים בִּנְבִאָיו עַד עֲלוֹת חֲמַת ה׳ בְּעַמּוֹ עַד לְאֵין מַרְפֵּא&quot;. כְּלוֹמַר חָטְאוּ בִּרְצוֹנָם וְהִרְבּוּ לִפְשֹׁעַ עַד שֶׁנִּתְחַיְּבוּ לִמְנֹעַ מֵהֶן הַתְּשׁוּבָה שֶׁהִיא הַמַּרְפֵּא. לְפִיכָךְ כָּתוּב בַּתּוֹרָה <span class="source-small">(שמות ד כא)</span> &quot;וַאֲנִי (אֲחַזֵּק) [אַקְשֶׁה] אֶת לֵב פַּרְעֹה&quot;. לְפִי שֶׁחָטָא מֵעַצְמוֹ תְּחִלָּה וְהֵרֵעַ לְיִשְׂרָאֵל הַגָּרִים בְּאַרְצוֹ שֶׁנֶּאֱמַר <span class="source-small">(שמות א י)</span> &quot;הָבָה נִתְחַכְּמָה לוֹ&quot;. נָתַן הַדִּין לִמְנֹעַ הַתְּשׁוּבָה מִמֶּנּוּ עַד שֶׁנִּפְרַע מִמֶּנּוּ. לְפִיכָךְ חִזֵּק הַקָּדוֹשׁ בָּרוּךְ הוּא אֶת לִבּוֹ. וְלָמָּה הָיָה שׁוֹלֵחַ לוֹ בְּיַד משֶׁה וְאוֹמֵר שְׁלַח וַעֲשֵׂה תְּשׁוּבָה וּכְבָר אָמַר לוֹ הַקָּדוֹשׁ בָּרוּךְ הוּא אֵין אַתָּה מְשַׁלֵּחַ שֶׁנֶּאֱמַר <span class="source-small">(שמות ט ל)</span> &quot;וְאַתָּה וַעֲבָדֶיךָ יָדַעְתִּי&quot; וְגוֹ׳ <span class="source-small">(שמות ט טז)</span> &quot;וְאוּלָם בַּעֲבוּר זֹאת הֶעֱמַדְתִּיךָ&quot;. כְּדֵי לְהוֹדִיעַ לְבָאֵי הָעוֹלָם שֶׁבִּזְמַן שֶׁמּוֹנֵעַ הַקָּדוֹשׁ בָּרוּךְ הוּא הַתְּשׁוּבָה לַחוֹטֵא אֵינוֹ יָכוֹל לָשׁוּב אֶלָּא יָמוּת בְּרִשְׁעוֹ שֶׁעָשָׂה בִּתְחִלָּה בִּרְצוֹנוֹ. וְכֵן סִיחוֹן לְפִי עֲוֹנוֹת שֶׁהָיוּ לוֹ נִתְחַיֵּב לְמָנְעוֹ מִן הַתְּשׁוּבָה שֶׁנֶּאֱמַר <span class="source-small">(דברים ב ל)</span> &quot;כִּי הִקְשָׁה ה׳ אֱלֹהֶיךָ אֶת רוּחוֹ וְאִמֵּץ אֶת לְבָבוֹ&quot;. וְכֵן הַכְּנַעֲנִים לְפִי תּוֹעֲבוֹתֵיהֶן מָנַע מֵהֶן הַתְּשׁוּבָה עַד שֶׁעָשׂוּ מִלְחָמָה עִם יִשְׂרָאֵל. שֶׁנֶּאֱמַר <span class="source-small">(יהושע יא כ)</span> &quot;כִּי מֵאֵת ה׳ הָיְתָה לְחַזֵּק אֶת לִבָּם לִקְרַאת הַמִּלְחָמָה עִם יִשְׂרָאֵל לְמַעַן הַחֲרִימָם&quot;. וְכֵן יִשְׂרָאֵל בִּימֵי אֵלִיָּהוּ לְפִי שֶׁהִרְבּוּ לִפְשֹׁעַ מָנַע מֵאוֹתָן הַמַּרְבִּים לִפְשֹׁעַ תְּשׁוּבָה שֶׁנֶּאֱמַר <span class="source-small">(מלכים א יח לז)</span> &quot;וְאַתָּה הֲסִבֹּתָ אֶת לִבָּם אֲחֹרַנִּית&quot; כְּלוֹמַר מָנַעְתָּ מֵהֶן הַתְּשׁוּבָה. נִמְצֵאתָ אוֹמֵר שֶׁלֹּא גָּזַר הָאֵל עַל פַּרְעֹה לְהָרַע לְיִשְׂרָאֵל. וְלֹא עַל סִיחוֹן לַחֲטֹא בְּאַרְצוֹ. וְלֹא עַל הַכְּנַעֲנִים לְהַתְעִיב. וְלֹא עַל יִשְׂרָאֵל לַעֲבֹד עֲבוֹדָה זָרָה. אֶלָּא כֻּלָּן חָטְאוּ מֵעַצְמָן וְכֻלָּן נִתְחַיְּבוּ לִמְנֹעַ מֵהֶן הַתְּשׁוּבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפשר שיחטא אדם חטא גדול או חטאים רבים עד שיתן הדין לפני הדיין האמת שיהא הפרעון מזה החוטא על חטאים אלו שעשה ברצונו ומדעתו שמונעים ממנו התשובה ואין מניחין לו רשות לשוב מרשעו כדי שימות ויאבד בחטאו שעשה וכו׳ לפיכך כתיב בתורה ואני אחזק את לב פרעה וכו׳.</strong><br><strong> במדרש</strong> שמות רבה פי&quot;ג כי אני הכבדתי את לבו א&quot;ר יוחנן מכאן פתחון פה למינין לומר לא היה ממנו שיעשה תשובה שנא׳ כי אני וכו׳ א&quot;ל ר׳ שמעון יסתם פיהם של מינים אלא אם ללצים הוא יליץ משלי ג׳ שהקב&quot;ה מתרה בו באדם בפעם ראשונה שניה ושלישית ואין חוזר בו והוא נועל לבו מן התשובה כדי לפרוע ממנו מה שחטא אף כך פרעה הרשע כיון ששיגר הקב&quot;ה ה׳ פעמים ולא השגיח על דבריו אמר לו הקב&quot;ה אתה הקשת ערפך והכבדת את לבך הריני מוסיף לך טומאה על טומאתך הוי כי אני הכבדתי את לבו עכ&quot;ל, ועי׳ מ&quot;ש בענין זה בס׳ עקרים מאמר ד׳ פ׳ כ&quot;ה ואלה ואלה דברי אלוקים חיים ועי׳ ברד&quot;ק שמואל א׳ ב׳ כ&quot;ה.</p>
               </div>
             </div>
@@ -893,8 +1089,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 6:5:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-6-5-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-6-5">Mishneh Torah, Repentance 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמַהוּ זֶה שֶׁאָמַר דָּוִד <span class="source-small">(תהילים כה ח)</span> &quot;טוֹב וְיָשָׁר ה׳ עַל כֵּן יוֹרֶה חַטָּאִים בַּדָּרֶךְ&quot; <span class="source-small">(תהילים כה ט)</span> &quot;יַדְרֵךְ עֲנָוִים&quot; וְגוֹ׳. זֶה שֶׁשָּׁלַח נְבִיאִים לָהֶם מוֹדִיעִים דַּרְכֵי ה׳ וּמַחְזִירִין אוֹתָן בִּתְשׁוּבָה. וְעוֹד שֶׁנָּתַן בָּהֶם כֹּחַ לִלְמֹד וּלְהָבִין. שֶׁמִּדָּה זוֹ בְּכָל אָדָם שֶׁכָּל זְמַן שֶׁהוּא נִמְשָׁךְ בְּדַרְכֵי הַחָכְמָה וְהַצֶּדֶק מִתְאַוֶּה לָהֶן וְרוֹדֵף אוֹתָם. וְהוּא מַה שֶּׁאָמְרוּ רַבּוֹתֵינוּ זִכְרוֹנָם לִבְרָכָה בָּא לִטַּהֵר מְסַיְּעִין אוֹתוֹ כְּלוֹמַר יִמְצָא עַצְמוֹ נֶעֱזָר עַל הַדָּבָר. וַהֲלֹא כָּתוּב בַּתּוֹרָה <span class="source-small">(בראשית טו יג)</span> &quot;וַעֲבָדוּם וְעִנּוּ אֹתָם&quot;, הֲרֵי גָּזַר עַל הַמִּצְרִיִּים לַעֲשׂוֹת רַע. וּכְתִיב <span class="source-small">(דברים לא טז)</span> &quot;וְקָם הָעָם הַזֶּה וְזָנָה אַחֲרֵי אֱלֹהֵי נֵכַר הָאָרֶץ&quot;, הֲרֵי גָּזַר עַל יִשְׂרָאֵל לַעֲבֹד עֲבוֹדָה זָרָה. וְלָמָּה נִפְרַע מֵהֶן. לְפִי שֶׁלֹּא גָּזַר עַל אִישׁ פְּלוֹנִי הַיָּדוּעַ שֶׁיִּהְיֶה הוּא הַזּוֹנֶה אֶלָּא כָּל אֶחָד וְאֶחָד מֵאוֹתָן הַזּוֹנִים לַעֲבֹד עֲבוֹדָה זָרָה אִלּוּ לֹא רָצָה לַעֲבֹד לֹא הָיָה עוֹבֵד. וְלֹא הוֹדִיעוֹ הַבּוֹרֵא אֶלָּא מִנְהָגוֹ שֶׁל עוֹלָם. הָא לְמָה זֶה דּוֹמֶה לְאוֹמֵר הָעָם הַזֶּה יִהְיֶה בָּהֶן צַדִּיקִים וּרְשָׁעִים. לֹא מִפְּנֵי זֶה יֹאמַר הָרָשָׁע כְּבָר נִגְזַר עָלָיו שֶׁיִּהְיֶה רָשָׁע מִפְּנֵי שֶׁהוֹדִיעַ לְמשֶׁה שֶׁיִּהְיוּ רְשָׁעִים בְּיִשְׂרָאֵל. כָּעִנְיָן שֶׁנֶּאֱמַר <span class="source-small">(דברים טו יא)</span> &quot;כִּי לֹא יֶחְדַּל אֶבְיוֹן מִקֶּרֶב הָאָרֶץ&quot;. וְכֵן הַמִּצְרִיִּים כָּל אֶחָד וְאֶחָד מֵאוֹתָן הַמְּצֵרִים וְהַמֵּרֵעִים לְיִשְׂרָאֵל אִלּוּ לֹא רָצָה לְהָרַע לָהֶם הָרְשׁוּת בְּיָדוֹ. שֶׁלֹּא גָּזַר עַל אִישׁ יָדוּעַ אֶלָּא הוֹדִיעוֹ שֶׁסּוֹף זַרְעוֹ עָתִיד לְהִשְׁתַּעְבֵּד בְּאֶרֶץ לֹא לָהֶם. וּכְבָר אָמַרְנוּ שֶׁאֵין כֹּחַ בָּאָדָם לֵידַע הֵיאַךְ יֵדַע הַקָּדוֹשׁ בָּרוּךְ הוּא דְּבָרִים הָעֲתִידִין לִהְיוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומהו וכו׳ והלא כתיב בתורה וכו׳ לפי שלא גזר על איש פלוני וכו׳ וכן המצרים כל אחד ואחד וכו׳ אלו לא רצה להרע להם הרשות בידו שלא גזר על איש ידוע וכו׳.</strong> ועיין ברמב&quot;ן בפ׳ לך לך בפסוק והנה אימה וכו׳ שהשיג על רבינו עיי&quot;ש, ועי׳ בתוס׳ יו&quot;ט במס׳ אבות פ&quot;ב מ&quot;ו לישב השגת הרמב&quot;ן הנ&quot;ל והשגות הראב&quot;ד מרבינו עיי&quot;ש.</p>
               </div>
             </div>
@@ -910,8 +1111,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Divrei Yirmiyahu on Mishneh Torah, Repentance 8:1:1</h4></div>
               <a class="anchor" href="#divrei-yirmiyahu-on-mishneh-torah-repentance-8-1-1" aria-label="Copy link to Divrei Yirmiyahu on Mishneh Torah, Repentance 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-8-1">Mishneh Torah, Repentance 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטוֹבָה הַצְּפוּנָה לַצַּדִּיקִים הִיא חַיֵּי הָעוֹלָם הַבָּא וְהִיא הַחַיִּים שֶׁאֵין מָוֶת עִמָּהֶן וְהַטּוֹבָה שֶׁאֵין עִמָּהּ רָעָה. הוּא שֶׁכָּתוּב בַּתּוֹרָה <span class="source-small">(דברים כב ז)</span> &quot;לְמַעַן יִיטַב לָךְ וְהַאֲרַכְתָּ יָמִים&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ לְמַעַן יִיטַב לָךְ לְעוֹלָם שֶׁכֻּלּוֹ טוֹב וְהַאֲרַכְתָּ יָמִים לְעוֹלָם שֶׁכֻּלּוֹ אָרֹךְ. וְזֶה הוּא הָעוֹלָם הַבָּא. שְׂכַר הַצַּדִּיקִים הוּא שֶׁיִּזְכּוּ לְנֹעַם זֶה וְיִהְיוּ בְּטוֹבָה זוֹ. וּפִרְעוֹן הָרְשָׁעִים הוּא שֶׁלֹּא יִזְכּוּ לְחַיִּים אֵלּוּ אֶלָּא יִכָּרְתוּ וְיָמוּתוּ. וְכָל מִי שֶׁאֵינוֹ זוֹכֶה לְחַיִּים אֵלּוּ הוּא הַמֵּת שֶׁאֵינוֹ חַי לָעוֹלָם אֶלָּא נִכְרַת בְּרִשְׁעוֹ וְאָבֵד כִּבְהֵמָה. וְזֶהוּ כָּרֵת הַכְּתוּבָה בַּתּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר טו לא)</span> &quot;הִכָּרֵת תִּכָּרֵת הַנֶּפֶשׁ הַהִיא&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ הִכָּרֵת בָּעוֹלָם הַזֶּה תִּכָּרֵת לָעוֹלָם הַבָּא. כְּלוֹמַר שֶׁאוֹתָהּ הַנֶּפֶשׁ שֶׁפֵּרְשָׁה מִן הַגּוּף בָּעוֹלָם הַזֶּה אֵינָהּ זוֹכָה לְחַיֵּי הָעוֹלָם הַבָּא אֶלָּא גַּם מִן הָעוֹלָם הַבָּא נִכְרֶתֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הטובה הצפונה וכו׳ עד סוף הפרק. </strong> עי׳ במדרש תנחומא ויקרא בהמכונה כבר היה לעולמים שם נמצא הרבה כלשון רבינו עיי&quot;ש וצ&quot;ע.</p>
               </div>
             </div>
@@ -921,6 +1127,10 @@
               <a href="#chapter-divrei-yirmiyahu-on-mishneh-torah-repentance-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/divrei-yirmiyahu-on-mishneh-torah-repentance.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/divrei-yirmiyahu-on-mishneh-torah-repentance-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -941,8 +1151,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-repentance.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/divrei-yirmiyahu-on-mishneh-torah-repentance.manifest.json","occurrence_url":"../../data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-repentance.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-repentance.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/divrei-yirmiyahu-on-mishneh-torah-repentance.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/divrei-yirmiyahu-on-mishneh-torah-repentance.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -968,7 +1178,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

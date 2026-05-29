@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-firstlings/">Open Mishneh Torah, Firstlings</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Firstlings</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">31 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>726 matched</strong> / 2429 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/ohr-sameach-on-mishneh-torah-firstlings.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-firstlings-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -260,8 +261,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-1">Mishneh Torah, Firstlings 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְהַפְרִישׁ כָּל פֶּטֶר רֶחֶם הַזְּכָרִים בֵּין בָּאָדָם בֵּין בִּבְהֵמָה טְהוֹרָה בֵּין מִמִּין הַחֲמוֹר. בֵּין שֶׁהָיוּ שְׁלֵמִים בֵּין שֶׁהָיוּ טְרֵפוֹת. שֶׁנֶּאֱמַר <span class="source-small">(שמות יג ב)</span> &quot;קַדֵּשׁ לִי כָל בְּכוֹר פֶּטֶר כָּל רֶחֶם בִּבְנֵי יִשְׂרָאֵל בָּאָדָם וּבַבְּהֵמָה&quot;. וְכֻלָּן לַכֹּהֲנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע להפריש כל פטר רחם כו׳ (והעברת כל פטר רחם).</strong><br><strong> נ&quot;ב </strong> במכילתא אין העברה אלא הפרשה וכן הוא אומר והעברתם נחלתו לבתו, פירוש דכן כאן בבכור יוצא מרשות בעלים לרשות כהן ולכך אצל כהן עצמו כתיב תקדיש לד׳ כי אינו יוצא לרשות אחר רק הכהן הבעלים מקריבו ואוכלו בעצמו וכמו שסיים לפני ד׳ כו׳ תאכלנו ועיין לקמן הלכה ו׳, ולכן כתוב קדש לי כל בכור משום שבמצרים לא נתקדשו הכהנים לכן כתיב קדש ולמשנתינו היה כן עד שהוקם המשכן רק בוהיה כי יביאך כתוב והעברת לשון הפרשה ודוק:</p>
               </div>
             </div>
@@ -276,8 +282,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:1:2</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-1-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-1">Mishneh Torah, Firstlings 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְהַפְרִישׁ כָּל פֶּטֶר רֶחֶם הַזְּכָרִים בֵּין בָּאָדָם בֵּין בִּבְהֵמָה טְהוֹרָה בֵּין מִמִּין הַחֲמוֹר. בֵּין שֶׁהָיוּ שְׁלֵמִים בֵּין שֶׁהָיוּ טְרֵפוֹת. שֶׁנֶּאֱמַר <span class="source-small">(שמות יג ב)</span> &quot;קַדֵּשׁ לִי כָל בְּכוֹר פֶּטֶר כָּל רֶחֶם בִּבְנֵי יִשְׂרָאֵל בָּאָדָם וּבַבְּהֵמָה&quot;. וְכֻלָּן לַכֹּהֲנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין שהיו שלימים בין שהיו טריפות.</strong><br><strong> נ&quot;ב </strong> חולין (דף קל&quot;ו) ולילוף צאן צאן מבכור מה בכור אפילו טריפה כו׳ ומנחות (דף ו׳) מה ליוצא דופן שכן אינו קדוש בבכורה ועיין רש&quot;י שם, ומזבחים פרק טבו&quot;י אין ראיה דאימור אחר כך נטרף. ואם האם טריפה מפורש בירושלמי פרק אין צדין ה&quot;ד עגל בכור שנולד מן הטריפה, ובכור אדם אם נטרף קודם ל׳ יום פטור מפדיון ורבינו כייליה משום דשני ראשין חייב עיין סוף הקומץ רבה אע&quot;ג דטריפה הוי ודוק:</p>
               </div>
             </div>
@@ -292,8 +303,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:6:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-6-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-6">Mishneh Torah, Firstlings 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוָה זוֹ נוֹהֶגֶת בֵּין בִּפְנֵי הַבַּיִת בֵּין שֶׁלֹּא בִּפְנֵי הַבַּיִת כְּמוֹ מַעֲשַׂר דָּגָן. וְאֵינָהּ נוֹהֶגֶת בְּמֻקְדָּשִׁין כְּשֶׁהֵן בִּקְדֻשָּׁתָן קֹדֶם שֶׁיִּפָּדוּ בֵּין קָדְשֵׁי מִזְבֵּחַ בֵּין קָדְשֵׁי בֶּדֶק הַבַּיִת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואע&quot;פ שבכור לכהן כו׳ ואוכל שאר הבשר כו׳ שנאמר כל הבכור אשר יולד.</strong><br><strong> נ&quot;ב </strong> וסיפא דקרא לפני ה&quot;א תאכלנו כו׳ ומי אוכלו הכהן עיין רש&quot;י וראב&quot;ע, וא&quot;כ הא מיירי קרא בכהן שהנולד בעדרו מצוה להקדישו ולהקריבו ודוק:</p>
               </div>
             </div>
@@ -308,8 +324,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:13:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-13-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-13">Mishneh Torah, Firstlings 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עָבַר וְאִחֵר הַבְּכוֹר לְאַחַר שְׁנָתוֹ אַף עַל פִּי שֶׁהוּא עוֹבֵר בְּלֹא תַּעֲשֶׂה אִם הָיָה תָּם הֲרֵי זֶה לֹא נִפְסַל אֶלָּא מַקְרִיבוֹ וְאִם הָיָה בַּעַל מוּם שׁוֹחֲטוֹ בְּכָל מָקוֹם שֶׁנֶּאֱמַר <span class="source-small">(דברים יד כג)</span> &quot;מַעְשַׂר דְּגָנְךָ תִּירשְׁךָ וְיִצְהָרֶךָ וּבְכֹרֹת בְּקָרְךָ וְצֹאנֶךָ&quot; מַקִּישׁ בְּכוֹר לְמַעֲשֵׂר מַה מַּעֲשֵׂר אֵינוֹ נִפְסַל מִשָּׁנָה לַחֲבֶרְתָּהּ אַף בְּכוֹר אֵינוֹ נִפְסַל מִשָּׁנָה לַחֲבֶרְתָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבר ואיחר הבכור לאחר שנתו אע&quot;פ שהוא עובר בל&quot;ת כו׳.</strong><br><strong> גמרא </strong> ערוכה אחד בכור ואחד כל הקדשים כיון שעברו עליהם שנה בלא רגלים כו׳ עובר בבל תאחר. וברור דלא מחייב על שנה בלא תאחר רק בקדשי מזבח דבקרא כתיב כל הבכור ומרבה בספרי כל הקדשים מקרא דבקרך וצאנך הזכר תקדיש כו׳ שכל שמקדיש לד׳ הוא בזמן דשנה בשנה תאכלנו יעו&quot;ש, ושם כתוב לא תעבוד בבכור שורך ולא תגוז בכור צאנך כו׳ ומרבה מקרא זה דבקרך וצאנך תקדיש כל הקדשים לאיסור גיזה ועבודה ושם מפיק קדשי בדה&quot;ב דאינן אסורין בגיזה ועבודה דמה בכור \שהוא קדשי מזבח יעוין בספרי, וכן אמרו בר&quot;פ ראשית הגז ובכ&quot;מ דקדשי בדה&quot;ב אינן אסורין בגיזה ועבודה רק מדרבנן, כן לענין זמן דבשנה יעברו בבל תאחר אינו רק בקדשי מזבח לא בקדשי בדק הבית. ובזה א&quot;ש השמועה בשלמא רגלים בלא שנה כו׳ אלא שנה בלא רגלים כו׳ הניחא למ&quot;ד כו׳ כסדרן משכחת לה כו׳ ואם כן הך דאמר ר&quot;ש פעמים חמשה כיצד נדר לפני עצרת חמשה פירושו בקדשי בדק הבית דשם אינו עובר בשנה בלא רגלים ודוק, ורש&quot;י והרז&quot;ה נדחקו בזה. שוב אחרי כותבי מצאתי קצת מזה בטורי אבן יעו&quot;ש:</p>
               </div>
             </div>
@@ -324,8 +345,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:15:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-15-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-15">Mishneh Torah, Firstlings 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה הַבְּכוֹר בַּעַל מוּם וְאָמַר לוֹ בְּתוֹךְ זְמַן זֶה תְּנֵהוּ לִי שֶׁאֹכֲלֶנּוּ עַתָּה. אוֹ שֶׁהָיָה תָמִים וְאָמַר לוֹ תְּנֵהוּ לִי בְּתוֹךְ זְמַן זֶה שֶׁאַקְרִיבֶנּוּ עַתָּה הֲרֵי זֶה נוֹתְנוֹ לוֹ. וְיֵרָאֶה לִי שֶׁהַבְּכוֹר נוֹתֵן לְכָל כֹּהֵן שֶׁיִּרְצֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהבכור נותנו לכל כהן שירצה.</strong><br><strong> פירוש </strong> ולא לכהני משמר שאינו מתחלק למשמר רק לכל כהן שירצה להקריבו וכן פרש&quot;י זבחים (דף ק&quot;ב) ד&quot;ה את דמם תזרוק. ועיין פ&quot;ו מהלכות ערכין הי&quot;ד כמה אדם רוצה ליתן בבכור זה כו׳ כדי כו׳ ליתנו לכל כהן שירצה, ועיין פ&quot;א מבכורים ה&quot;י החמש שבירושלים כו׳ והבכור מקריבין חלבו ודמו. וקראי דנחמיה ק׳ יו&quot;ד. ולהביא בכורות בקר וצאן כו׳ לכהנים ובסוף הספר ואעמידה משמרות כו׳ לעצים ולבכורים ולא חשיב בכור בקר וצאן, רואין אנו שאינו נתון למשמר רק לכל כהן שירצה כרש&quot;י ורבינו ודלא כהגירסא ירושלמי חלה פ&quot;ד ודוק:</p>
               </div>
             </div>
@@ -340,8 +366,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 1:19:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-1-19-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 1:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-19">Mishneh Torah, Firstlings 1:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְשִׁיט בְּכוֹר בַּעַל מוּם הֲרֵי זֶה מֻתָּר לְהַפְשִׁיטוֹ בְּאֵי זֶה דֶּרֶךְ שֶׁיִּרְצֶה. אִם רָצָה לְהַרְגִּיל מַרְגִּיל. וְכֵן שְׁאָר פְּסוּלֵי הַמֻּקְדָּשִׁין אִם רָצָה לְהַפְשִׁיט מִן הָרֶגֶל מַפְשִׁיט:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפשיט בכור בע&quot;מ הר&quot;ז מותר להפשיטו כו׳ אם רצה להרגיל מרגיל כו׳.</strong><br><strong> בגמרא </strong> בכורות אין מרגילין בבכור ולא בפסולי המוקדשין מאן תנא אין מרגילין בבכור כו׳ אמר רב חסדא ב&quot;ש היא דאמרי אין מאכילין אותו לנדות כו׳, ובתמורה איתא אמר ר&quot;ח מני ב&quot;ש היא דאמרי בכור בקדושתיה קאי דתנן ב&quot;ש אומרים לא ימנה ישראל עם הכהן על הבכור כו׳. ובאמת תמוה מאוד דבבכורות דשם עיקר מתניתין דפליגי ב&quot;ש שביק ב&quot;ש דמתניתין ונקיט ב&quot;ש דברייתא דאמרי אין מאכילין אותו לנדות הלא דבר הוא. ונראה דבברייתא איכא תלתא תנאי ב&quot;ש וב&quot;ה אומרים אפילו זרים רע&quot;ק מתיר אפילו עו&quot;ג ובמשנה תני במילתיה דב&quot;ה וב&quot;ה מתירין אפילו עו&quot;ג. וע&quot;כ צ&quot;ל דר&quot;ע דברייתא בשם ב&quot;ה אמר למילתיה, וצריך להבין מדוע נשמט במשנה דעת הת&quot;ק בשם בית הלל. ונראה לנו משום דב&quot;ש ילפי מקרא דובשרם יהיה לך כחזה התנופה דלכהנים אין לישראל לא וב&quot;ה סברי דהני מילי תם אבל בעל מום לא וזה נגד פשטות הכתוב דאמרו בפ&quot;ד דבכורות דובשרם יהיה לך מיירי בבעל מום דמזה ילפינן דהוא מתנה לכהן יעו&quot;ש אך ילפי מקו&quot;ח דמה טמא שאינו אוכל בקדשים קלים אוכל בבכור זר שאוכל בקדשים קלים אינו דין שיאכל בבכור, וזה קו&quot;ח אלים, אולם אם ניזיל בתר טעמא תו ליכא לקו&quot;ח דנאמר הואיל והוא ממתנות כהונה עשתה התורה סייג שלא יאכלנו רק הכהן וכיון שאינו מותר לאכילה רק לכהן תו יתננו לכהן אבל קדושה לית ביה לאחר שהומם ונשחט ומותר כהן טמא לאוכלו שלחמו הוא ואין בו כלל קדושה, רק דמשום דהוא מתנה לכהן אית ביה קדושה שלא יאכלנו זר ולא משום קדושה רק סייג שלא יעכבנו הישראל לעצמו, וכיו&quot;ב אמרו בפרק מי שמתו (דף כ&quot;ג) הא מילתא תיתי בתורת טעמא ולא בתורת קו&quot;ח דאי אתיא לה בתורת קו&quot;ח זהו קו&quot;ח שאין עליו תשובה. אך היכן מצאנו כהאי גוונא, הנה מצאנו לר&quot;מ דסובר מעשר ראשון אסור לזרים בפ&quot;ט דיבמות ואפילו כן אמרו תמן ואכלתם אותו בכל מקום אפילו בקבר ושריא רחמנא בטומאת הגוף לאכול, וכבר פירשו שם בתוס׳ דאע&quot;ג דאסור לזרים גזירת הכתוב שלאכלו בטומאת הגוף מותר, וצ&quot;ל דקדושה ליתא ביה רק כיון דהיא מתנה של לוי אסרתו התורה לאכלו לזר כי היכי דליתביה ללוי ולא יעכב אותו הישראל לעצמו, וזה עד נאמן לטעמא דילן, וא&quot;כ על כרחין אמרי בית הלל מילתייהו מקרא דכצבי וכאיל תאכלנו וצבי ואיל הלא מותרין המה לעו&quot;ג כיון דאתא להורות היתר אכילה איך תוכל לחלק בין זרים לעו&quot;ג כיון דבצבי ואיל שניהם שווין ולכן סתם משנתינו דכר׳ מאיר, ובפרק יש מותרות סתים לן תנא כוותיה דמעשר ראשון אסור לזרים ואף בנשאת לזר אינה אוכלת יעו&quot;ש, א&quot;כ תו ליכא לומר אליבא דב&quot;ה דבשר בכור בע&quot;מ מותר לזרים ואסור לעו&quot;ג כדפרישית, ולכן נשמט במשנתינו מילתא דב&quot;ה אליבא דת&quot;ק ונשנית רק דעתם אליבא דרבי עקיבא דאף לעו&quot;ג מותר מקרא דכצבי וכאיל דקאי לענין היתר אכילה למי ודוק:<br><strong> וכיון </strong> שעלה זה בידינו מעתה א&quot;ש מה דרב חסדא אמר הא מני ב&quot;ש היא דאמרי אין מאכילין אותו לנדות, דאי ב&quot;ש דמשנה דלא יאכלו ממנו רק כהנים אין ראיה דקדושה עליו רק כי היכי דליתביה לכהן אבל אין ה&quot;נ דממון כהן הוא ולהכי שריא רחמנא אף לטמאי כהונה, וא&quot;כ כש&quot;כ דנחוס על ממונו של כהן ולהפשיט מן הרגל כי היכי דלירווח כהן דכל עיקר האיסור דרמי רחמנא שלא יאכלנו זר הוא כדי שלא למנוע זה מליתנו לכהן ורחמנא חס על ממונו אבל לא משום קדושה כלל, ולכן אמר מני ב&quot;ש דברייתא דאסרו אותו לכהן אם הוא טמא היוצא מגופו וזה רק משום טכסיסי קדושה דאית ביה לכן לא שרי להפשיט מן הרגל אע&quot;ג דהוי רווחא לכהן כיון דהוא פוגם בבשר דאיכא עליה קדושה דגם לכהן טמא בטומאה היוצאה מגופו לא שריא רחמנא, רק בתמורה דשם הובאה אגב גררא נקיט עיקר דברי ב&quot;ש דמשנתינו הידועים ולא דברי הברייתא, וזה נכון בס&quot;ד:<br><strong> ומה </strong> מאוד מיושב לפ&quot;ז הא דאמר רמי ב&quot;ח פ׳ כל הזבחים (דף ע&quot;ה) בכור לב&quot;ש אין מאכילין אותו לנדות תמורתו מהו, דגם שם קשה לימא לב&quot;ש דלא ימנה ישראל עם הכהן על הבכור תמורתו מהו, ולפ&quot;ז מחוור, דרבנן בתוס׳ שם פירשו דתמורת בכור אינו מתנה לכהן רק נאכל במומו לבעלים יעו&quot;ש ובפסקי תוספות, א&quot;כ לפי מה דבארנו דממשנתינו הוי אמינא טעמא דאסור לאכול לישראל משום דרחמנא עשתה סייג שיתננו לכהן וחס על ממונו של כהן אבל לא משום קדושה דאית ביה ולכן מותר להיאכל לטמאים וכמוש&quot;ב, א&quot;כ פשיטא דתמורתו דאינו לכהן ודאי דנאכל לישראל כיון דקדושה ליכא ביה וממונו של בעלים ישראל הוי מהיכי תיתי לאסרו לישראל, ולכן מייתי ב&quot;ש דברייתא דבכור אין אוכלין אותו טמאים היוצאים מגופם, וזה על כרחין משום קדושה דאיכא ביה, וא&quot;כ תמורתו דמעולם לא היה ראוי להיקרב על גבי מזבח מי גרע קדושתו הואיל ותמורת בכור אינו קרב או לא. ונכון:<br><strong> אמנם </strong> לרבינו גם תמורת בכור מתנה לכהן כמוש&quot;פ בהלכות תמורה פ&quot;ג ה&quot;ב ושם פירשתי טעמו, וצ&quot;ל אדרבה איפכא, דאי ממשנתינו הו&quot;א טעמא דלאו משום קדושה הוי רק דרחמנא עשאה זה לסייג שלא יעכבנו הישראל לעצמו ויתנו לכהן הוה&quot;ד תמורה ג&quot;כ דמ&quot;ש כיון דגם התמורה מתנה לכהן, אבל לברייתא דמוכח דמשום קדושה הויא דרמי רחמנא עליה אימור דוקא בבכור דקדוש מרחם וקרב בתמימותו לגבי מזבח אבל תמורה דקדושתו אינו מרחם ולא היה ראוי מתחלת קדושתו לגבי מזבח אף בתמימותו אימור דמותר להאכילו לנדות. ורבינו פירש דאינך אמוראי דמסקי משום שנראה כעובד בקדשים ומשום שמא יגדל מהן עדרים קאי אליבא דב&quot;ש וראב&quot;ש וכיו&quot;ב פירש&quot;י בתמורה, וכן מוכרח דאל&quot;כ ניתני בברייתא אין מרגילין בבכור ומעשר ובפסוהמ&quot;ק, אבל לפ&quot;ז א&quot;ש דראב&quot;ש לא אמר רק בהנך דתפסי פדיונן לא במעשר דאינו נפדה ודוק בכ&quot;ז:</p>
               </div>
             </div>
@@ -357,8 +388,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 2:4:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-2-4-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-2-4">Mishneh Torah, Firstlings 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹצֵא דֹּפֶן וְהַבָּא אַחֲרָיו שְׁנֵיהֶן אֵינָן בְּכוֹר. הָרִאשׁוֹן מִפְּנֵי שֶׁאֵינוֹ פֶּטֶר רֶחֶם וְהָאַחֲרוֹן מִפְּנֵי שֶׁקְּדָמוֹ אַחֵר. אֲפִלּוּ יָצְאָה נְקֵבָה דֶּרֶךְ דֹּפֶן וְזָכָר דֶּרֶךְ רֶחֶם אֵינוֹ בְּכוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יוצא דופן והבא אחריו שניהן אינן בכור כו׳.</strong><br><strong> הנה </strong> בדעת ר׳ טרפון דסבר בכור לדבר אחד הוי בכור ומספקא ליה בהא סוף פרק ב׳ נראה דאע&quot;ג דפטר רחם כתיב סבר דביוצא דופן אימור קדוש משום דסבר א&quot;א לצמצם וא&quot;כ לא מסתברא ליה למידרש קרא דהזכרים ביצאו שני ראשים כאחד וע&quot;כ דריש קראי כל פטר רחם לד׳ זה הנולד מן הרחם הראשון כדרכו וכל פטר שגר בהמה פירוש ולד הנולד ונשלח מן האם ראשון ואף שאינו נפל קרוי שגר כמו שגר אלפיך [לשון רש&quot;י] וזה פטר הבהמה רק בכח ההולדה אבל לא מן הרחם וזה יוצא דופן, הזכרים תקדיש לד׳ פירוש שראשון יצא מן הדופן והשני מן הרחם שני הזכרים תקדיש לד׳, אבל יצאתה נקיבה לפניו דלית ביה לא פטר רחם ולא פטר שגר ודאי לא קדוש בבכורה ומסולק קושיית תוס׳ שם ד&quot;ה רישא, ולכן ר&quot;ש אף דסבר (בדף מ&quot;ז) גבי בכור אדם דלדבר אחד הוי בכור אבל פטר רחם מיהא בעי דבאדם לא כתיב פטר שגר, ותוס׳ שם נדחקו, ומש&quot;כ נכון:</p>
               </div>
             </div>
@@ -373,8 +409,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 2:7:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-2-7-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-2-7">Mishneh Torah, Firstlings 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּטִּיל מוּם בִּבְכוֹר הוֹאִיל וְעָשָׂה עֲבֵרָה קוֹנְסִין אוֹתוֹ וְאֵינוֹ נִשְׁחָט עַל מוּם זֶה עַד שֶׁיִּפּל בּוֹ מוּם אַחֵר מֵאֵלָיו. וְאִם מֵת זֶה הַחוֹטֵא מֻתָּר לִבְנוֹ לְשָׁחֳטוֹ עַל מוּם שֶׁעָשָׂה אָבִיו שֶׁלֹּא קָנְסוּ בְּנוֹ אַחֲרָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המטיל מום בבכור הואיל ועשה עבירה קונסין אותו ואינו נשחט על מום זה עד שיפול בו מום אחר.</strong><br><strong> רש&quot;י </strong> פירש במשנתינו דהצורם אוזן לא ישחוט דבכהן קא מיירי, ונראה מדבריו דאם עשה הישראל בו מום ישחוט עליו הכהן, דלכהן לא קנסוהו עבור הישראל, וצ&quot;ל דשאני מקטנים ועו&quot;ג דנתכוונו להתיר דאסרו חכמים משום דלאו בני חיובא נינהו וא&quot;כ יטילו מומים בכל הבכורות לכן כדי למיגדר מילתא שיזהרו הכהנים בבכוריהן אסרו חכמים לשחוט על מום זה, אבל ישראל גדול דבר חיובא ומוזהר בעצמו על הטלת מום דרחמנא גדרה בעדו רק שנקנוס אותו שלא ישחוט עליו זה דוקא בכהן עצמו שעבר והטיל בו מום אבל משום ישראל לא קנסוהו לכהן דלישראל אין פסידא בזה דלא ישחוט עליו. וכיו&quot;ב שיטת רבינו בהלכות שבת פ&quot;ו דבעו&quot;ג בעי כדי שיעשו ולא בישראל דבני חיובא. ובאמת אפשר לפרש דרש&quot;י סבר דאם הישראל עשה מום גם ר&quot;א סבר דלא קנסוהו שלא ישחוט עולמית דמה לן לקנוס לכהן עבור ישראל, אבל לשחוט על אותו מום אף אם עשאו ישראל הלא אין צריך הכהן להרוויח בדבר עבירה ויהא דומה כאילו לא נעשה העבירה ולכן צריך להמתין על מום אחר, אבל לר׳ אליעזר דאסר לשחוט לעולם זה קנס גמור ואין לקנוס לכהן עבור הישראל, אבל א&quot;כ הא דמסיק דאם מת לא קנסוהו לבנו אחריו אלמא דלא קנסו רק להחוטא לבדו א&quot;כ אם הישראל עשה המום אין לקנוס בזה לכהן וגדולה מזו כתב רש&quot;י בביצה (דף כ&quot;ז) בשחטו ישראל אחר שלא ע&quot;פ מומחה לא קנסוהו לכהן משום אחר יעו&quot;ש באורך. וזה שפירש דמתניתין דוקא דאינה חשובה יותר מראית טריפה רק דלכהן קניס ובבכורות פירש באופן אחר כדמוכח שם ועיין ברא&quot;ש בשם רמב&quot;ן שם:<br><strong> לכן </strong> נראה לפרש דרש&quot;י פירש כן לפום מה דמסיק לעיל ריש פרק עד כמה דבבכור ליכא טובת הנאה לבעלים דאסור לישראל ליקח סלע מאחד כדי ליתנו לבן בתו כהן, א&quot;כ אין לישראל שום קנסא בהא דלא ישחטו הבכור על מום זה לכן משום זה לא קנסוהו לכהן, אבל רבינו דפסק בפי&quot;ב מהלכות תרומות דישראל רשאי ליקח סלע מישראל אחר כדי ליתנו לבן בתו כהן א&quot;כ אית ליה ממונא בגויה דבכור ומיגו דהוי קנסא לדידיה במה דלא ישחטו עליו ויפסידו אותו הסלע שיקח מאבי אמו של כהן לכן גם הכהן אסור לשחוט על מום זה, דאל&quot;ה ירוויח הישראל ונמצא דאם הישראל הבעלים עשו בו מום תלוי בזה שבארנו דפליגי בזה הטור ורבינו ז&quot;ל ודוק. ולפ&quot;ז אם ישראל אחר יצרום אוזן בכור ודאי שרי להכהן והוי כמו בשבת דלא בעי כדי שיעשו בישראל שבישל לאכול לאחרים יעו&quot;ש. אמנם בפסקי מוהרא&quot;י סימן קס&quot;ט כתב דאין חילוק בין שישראל אחר מצוה לעו&quot;ג או הבעלים ודאי דאסור. ואולי אפשר לחלק דמוהרא&quot;י מיירי היכי דהמום נעשה ע&quot;י אמירה לגוי דכתב החות יאיר סימן ל&quot;א דכו&quot;ע חשידי בזה דלא חשיב להו איסורא קנסינן כמו בקסדור ותינוקת, אבל היכי דישראל אחר עשה מום בידים דלא שכיח זה דאין אדם חוטא ולא לו אפשר דמותר לשוחטו ודוק:</p>
               </div>
             </div>
@@ -389,8 +430,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 2:13:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-2-13-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-2-13">Mishneh Torah, Firstlings 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכוֹר שֶׁאֲחָזוֹ דָּם יַקִּיז. וּבִלְבַד שֶׁלֹּא יִתְכַּוֵּן לַעֲשׂוֹת בּוֹ מוּם. וְאִם נַעֲשָׂה בּוֹ מוּם בְּהַקָּזָה זוֹ הֲרֵי זֶה נִשְׁחַט עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכור שאחזו דם יקיז ובלבד שלא יתכוון לעשות בו מום כו׳.</strong><br><strong> ירושלמי </strong> פסחים סוף פ&quot;ק תמן תנינן הבכור שאחזו דם אפילו מת אין מקיזין לו את הדם דר&quot;י וחכ&quot;א יקיז ובלבד שלא יעשה בו מום כו׳ ר&quot;ש אומר יקיז אע&quot;פ שהוא עושה בו מום ר&quot;א בשם ר&quot;א אתיא דר&quot;י כר&quot;ג [בחבית שנולד לה ספק טומאה דאמר אל יחדש בה דבר כן אמר ר&quot;י אל יקיז דם ויניחנה כמו שהיא] דרבנן כר׳ אליעזר [שכמו דר&quot;א אמר אם היה מגולה יכסנה אלמא חיישי לתקנה כן אמרי רבנן יקיז ובלבד שלא יעשה בו מום כמו התם שלא יטמאנה] דר&quot;ש כמו ר׳ יושע, [כמו שר&quot;י אמר שמניחה במקום התורפה כו׳ ומייתי לה לידי טומאה כן ר&quot;ש אמר שיקיז אעפ&quot;י שהוא עושה בו מום] תני בשם ר&quot;ש יקיז אעפ&quot;י שהוא מתכוון לעשות בו מום ואתיא כר׳ יושע אחרינא [פירוש בחבית שנשברה בגת העליונה והתחתונה טמאה כו׳ ר׳ יושע אמר יטמאנה ביד וזהו כר׳ שמעון בברייתא דיקיז אעפ&quot;י שמתכוון לעשות מום] א&quot;ר בון בר חייא קומי ר׳ זעירא תיפתר בקדשים שהוא חייב באחריותן כר׳ שמעון, והוא תמוה מאוד באין פותר. והנ&quot;ל פירושו פשוט ע&quot;פ מה דאמר לעיל מאי כדון אמר ריב&quot;ב תמן כדי לחוס על נכסיהן של ישראל, פירושו כמו דאמר בבלי משום הפסד חולין דכיון דאין בתחתונה כדי להעלות אישתכח דיפסדו החולין והתרומה תלך לאיבוד לכן מותר לטמאותה ולהצילה שלא תתערב בחולין. והנה במנחות פרק התכלת (דף מ&quot;ח) תני ר&quot;ח כו׳ שחט ארבעה כבשים על ב׳ חלות מושך שנים מהם וזורק דמן שלא לשמן שאם אי אתה אומר כן הפסדת את האחרונים א&quot;ל ר׳ יוחנן וכי אומר לו לאדם עמוד וחטא בשביל שתזכה ושקיל וטרי ומסיק עמוד וחטא בשבת כדי שתזכה בשבת אמרינן עמוד וחטא בשבת כדי שתזכה בחול לא אמרינן, ובתרתי מילי לא אמר והתנן חבית שנשברה בגת כו׳ ר׳ יהושע אומר יטמאנה ביד אלמא אמרינן חטא בתרומה כדי שתזכה בחולין [רש&quot;י] שאני התם דלטומאה קא אזיל, א&quot;כ הכא דהבכור אם לא יקיזו לו דם קא מיית ואזיל לאיבוד דמיין להדדי בכור לחבית של תרומה, אך בכ&quot;ז לא דמי כי גם בכור הוא עמוד וחטא בבכור כדי שתזכה בבכור כי אם לא יקיז דם ימות הבכור ויפסיד כולו וכי מקיז דם עושה בו מום, ובתרומה הוא אם לא יטמא התרומה יופסד החולין שהתרומה תפסד כיון שהיא משקה ואינה צריכה הכשר ותטמא ותשרוף ובין כך וב&quot;כ תשרף התרומה ואין ההצלה לתרומה מעלה ומוריד רק לחולין שבגת התחתונה א&quot;כ הוא עמוד וחטא בתרומה עבור שתזכה בחולין ובכה&quot;ג לא שמענו לר׳ שמעון, ואפשר דר&quot;ש סבר כר&quot;א בתרומה דתרד ותטמא ואל יטמאנה ביד, ע&quot;ז אמר תיפתר בקדשים שהוא חייב באחריותן [ולר&quot;ש] כצ&quot;ל, כי בכה&quot;ג אם יקיז דם יעשה מום בקדשים ואם לא יעשה בו מום ולא יקיז דם וימות לא יהיה פסידא להקדש כלל רק שהבעלים יביא אחר, א&quot;כ בעשייתו בו מום ירוויח ממון של הבעלים ואז דומה להך דחבית דמטמא התרומה בשביל הפסידא דחולין והוא עמוד וחטא בדבר זה כדי שתזכה במילי אוחרי, כי בהאי גוונא דמי לר&quot;י דיטמאנה ביד וזה פירוש נכון והיה צ&quot;ל לר&quot;ש, אך שיטפא דלישנא דלקמן פרק כ&quot;ש ה&quot;ב אמר ר׳ בון ב&quot;ח קומי ר&quot;ז תיפתר בקדשים שהוא חייב באחריותן וכר&quot;ש, דשם שייך האי לישנא נקיט לי׳ גם הכא ודוק:<br><strong> ודע </strong> דכפי שיטת הירושלמי כל חידושו דר׳ שמעון בברייתא דאפילו מתכוון לעשות בו מום שרי וזה קרוב קצת למה שפירשו תוס׳ שם בבכורות, ודלא כפסק רבינו שדוקא אם אינו מתכוין, רק שברייתא מחדש דאם נעשה בו מום מותר לשחוט עליו ולזה פסק שמואל כוותיה משום דסבר כוותיה בדבר שאינו מתכוין, וטעמא דרבנן דפליגי עליה דר&quot;ש משום דסברי דבר שאינו מתכוין אסור, ובפירוש המשנה פירש דבעינן שלא יהא מוכרח להיעשות מום ע&quot;י הקזה זו דא&quot;כ הוי פסיק רישא ולא שרי ר&quot;ש, ולפי הירושלמי ר&quot;ש שרי אפילו במתכוין, רק דבירושלמי לשון אחר בדברי ר&quot;ש דברייתא, ר&quot;ש אומר יקיז אע&quot;פ שהוא מתכוין לעשות בו מום, וא&quot;ש מה דמפרש ר&quot;י טעמיה דר&quot;ש מקרא דתמים יהיה לרצון דשרי להטיל מום מה&quot;ת בבע&quot;מ, אבל לשיטת רבינו בבבלי דרק באינו מתכוין שרי ובאופן דלא הוי פסיק רישא למאי מועיל קרא הלא בכל האיסורים של תורה שרי ר&quot;ש דבר שאינו מתכוין, ועיין ביאורי הגר&quot;א סימן שי&quot;ג אות ט׳ בזה, ודוק בכ&quot;ז:</p>
               </div>
             </div>
@@ -406,8 +452,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 3:5:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-3-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-3-5">Mishneh Torah, Firstlings 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכוֹר שֶׁהָיְתָה לוֹ בֵּיצָה אַחַת וּשְׁנֵי כִּיסִים. וּבְדָקוֹ הַמֻּמְחֶה וְהוֹשִׁיבוּהוּ עַל הַרְגּוֹזוֹ וּמִעֲכוּ וְלֹא יָצָאת בֵּיצָה שְׁנִיָּה וְהִתִּירוֹ הַמֻּמְחֶה וְנִשְׁחַט וְנִמְצָא הַשְּׁנִיָּה דְּבוּקָה בַּכְּסָלִים הֲרֵי זֶה מֻתָּר הוֹאִיל וּמִעֲכוּ. אֲבָל אִם לֹא נִמְעַךְ אַף עַל פִּי שֶׁנִּשְׁחַט עַל פִּי מֻמְחֶה הֲרֵי זֶה יִקָּבֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכור שהיתה לו ביצה אחת ושני כיסים כו׳.</strong><br><strong> מהמשך </strong> לשון רבינו ומסידורו הבנתי פשטו דמפרש כך, דאם לא נמצא רק ביצה אחת ושני כיסים אסור לו לשחוט פן ע&quot;י מיעוך ע&quot;ג עכוזו יצא הביצה הטמונה אצל הכסלים ורק כי מיעך אותו ולא יצא מותר לו לשחוט, אבל כי לא מיעך אותו ע&quot;ג עכוזו ושחטו ונמצא הביצה השניה דבוקה בכסלים דכיון שהיא דבוקה בכסלים ואז יודעים אנחנו שאף אם מיעך אותו ע&quot;ג עכוזו ג&quot;כ לא היה יוצא הביצה כיון דהדבוק שלהכסלים אינו מניח לו לצאת בכ&quot;ז יקבר כיון שלא עשה כדין שהיה צריך לחוש שמא אינו מדובק להכסלים רק מונח אצל הכסלים ובמיעוך ע&quot;ג עכוזו תצא הביצה, לכן לא עשה המומחה כדין ואינו מומחה לזה והוי כאלו נשחט שלא ע&quot;פ מומחה ולכן יקבר דקיי&quot;ל כר&quot;מ בגזרותיו דאם נשחט שלא ע&quot;פ מומחה אפילו במומין שאינן משתנין ואיגלאי מילתא דאותו המום הוה מקודם בכ&quot;ז יקבר, ולכן כאן אע&quot;ג שכיון שהוא דבוק לכסלים ודאי דלא היתה יוצאת ע&quot;י מיעוך בכ&quot;ז כיון שהמומחה שהתיר לשחוט בלא מיעוך עשה שלא כדין דהיה לו לחוש שמא היא טמונה ואינה דבוקה וסופה לצאת ע&quot;י מיעוך ולכן לא הוי מומחה והוי כאלו נשחט שלא ע&quot;פ מומחה ודוק:</p>
               </div>
             </div>
@@ -423,8 +474,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:13:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-13-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-4-13">Mishneh Torah, Firstlings 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּהֵמָה שֶׁיָּצְאָה מְלֵאָה וּבָאָה רֵיקָנִית הַבָּא אַחַר כֵּן בְּכוֹר מִסָּפֵק שֶׁמָּא דָּבָר שֶׁאֵינוֹ פּוֹטֵר בִּבְכוֹרָה הִפִּילָה. וְאֵין לְנִפְלֵי בְּהֵמָה פְּטִירַת רֶחֶם עַד שֶׁיַּעֲגִילוּ רֹאשׁ כְּפִיקָה שֶׁל עֵרֶב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמא דבר שאינו פוטר בבכורה כו׳.</strong><br><strong> בגמרא </strong> נדה הגירסא לפנינו רוב היולדות מטנפות וזו הואיל ולא טינפה איתרע רובא, וטינוף אמרו במשנה ובגמרא סימן ולד בבהמה דקה טינוף ולעיל הלכה י׳ וי&quot;ג, וצריך לומר דאם כי הלשון אחד הכוונה אחרת ותוס׳ הביאו מזה לדוגמא בכ&quot;מ ומהם ריש פרק בהמה המקשה וזה מוזר. עוד תימה דא&quot;כ הי&quot;ל לבאר דאם שהתה זמן מה בחוץ ניחוש שמא טנפה קודם לידה וילדה ולא איתרע רובא כמוש&quot;כ בתוס׳. לכן רואה אנכי מתוך סידור דברי רבינו אשר גירסתו הי׳ בגמ׳ כל היולדות חולבות וזו הואיל ולא חלבה איתרע רובא ולכן קצר רבינו, דע&quot;כ באינה חולבת מיירי הכא דאילו בחולבת כבר כתב בהלכה ח׳ שהיא פטורה מן הבכורה בלא&quot;ה, וזו גירסא נכונה ודוק:</p>
               </div>
             </div>
@@ -439,8 +495,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:13:2</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-13-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:13:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-4-13">Mishneh Torah, Firstlings 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּהֵמָה שֶׁיָּצְאָה מְלֵאָה וּבָאָה רֵיקָנִית הַבָּא אַחַר כֵּן בְּכוֹר מִסָּפֵק שֶׁמָּא דָּבָר שֶׁאֵינוֹ פּוֹטֵר בִּבְכוֹרָה הִפִּילָה. וְאֵין לְנִפְלֵי בְּהֵמָה פְּטִירַת רֶחֶם עַד שֶׁיַּעֲגִילוּ רֹאשׁ כְּפִיקָה שֶׁל עֵרֶב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין לנפלי בהמה פטירת רחם כו׳.</strong><br><strong> נ&quot;ב </strong> עיין ברמב&quot;ן הלכות בכורות שהשיג ע&quot;ז הרבה יעו&quot;ש:</p>
               </div>
             </div>
@@ -455,8 +516,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:14:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-14-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-4-14">Mishneh Torah, Firstlings 4:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַבְכֶּרֶת הַמַּקְשָׁה לֵילֵד מְחַתֵּךְ אֵיבָר וּמַשְׁלִיךְ לַכְּלָבִים וְהַבָּא אַחֲרָיו בְּכוֹר. יָצָא רֻבּוֹ הֲרֵי זֶה יִקָּבֵר וְנִפְטְרָה מִן הַבְּכוֹרָה. וְאִם חָתַךְ אֵיבָר וְהִנִּיחוֹ אֵיבָר וְהִנִּיחוֹ עַד שֶׁהִשְׁלִים רֻבּוֹ הֲרֵי כָּל הָאֵיבָרִים צְרִיכִין קְבוּרָה. וְנִפְטְרָה מִן הַבְּכוֹרָה כֵּיוָן שֶׁיָּצָא רֻבּוֹ בֵּין שָׁלֵם בֵּין מְחֻתָּךְ וַהֲרֵי הוּא לְפָנֵינוּ נִתְקַדֵּשׁ לְמַפְרֵעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם חתך אבר כו׳ ונפטרה מן הבכורה כו׳ נתקדש למפרע.</strong><br><strong> סברת </strong> רבינו דבמחתך תליא אם מונחים עד שיצא רובו ונתקדש למפרע אז נפטר מן הבכורה ואם האכילו לכלבים אז הבא אחריו בכור וכפשטא דמשנתינו, ולפ&quot;ז דוקא אם חל קדושת בכורה על האברים הנחתכים חשיב פטר רחם, אבל אם יצא השליש ומכרו לעו&quot;ג היינו שמכר השליש שיצא [דהא דלמפרע קדוש אינו קדוש רק האבר שיצא בלבד לא מה שבפנים ומסולק קושיית תוס׳ ובחידושי הארכתי] לעו&quot;ג תו לא חייל למ&quot;ד מכאן ולהבא הוא קדוש על מה שכבר נמכר קדושת בכורה, וכיון דהוא יצא מחותך אינו פוטר מן הבכורה לכן כתב רבינו דהמכר לא מועיל דהוא נתקדש למפרע ומה שחתך השליש וחזרו וחתכו הוי לידה מעליא לכן נפטרה מן הבכורה, וזה שדייק בהלכה ט&quot;ו נתקדש למפרע ונפטרה מן הבכורה ובמחותך מיירי רבינו שיצא שליש וחתכו ועל דרך שכתב קודם שרק משום שנתקדש למפרע פטר המחותך הבא אחריו מן הבכורה ודוק:</p>
               </div>
             </div>
@@ -471,8 +537,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 4:17:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-4-17-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 4:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-4-17">Mishneh Torah, Firstlings 4:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכוֹר שֶׁכְּרָכוֹ בְּסִיב וְהוֹצִיאוֹ וְלֹא נָגַע בָּרֶחֶם אוֹ שֶׁכְּרָכוֹ בְּשִׁלְיַת בְּהֵמָה אַחֶרֶת אוֹ שֶׁנִּכְרְכָה עָלָיו אֲחוֹתוֹ וְיָצָא הוֹאִיל וְלֹא נָגַע בָּרֶחֶם מִכָּל מָקוֹם הֲרֵי זֶה סְפֵק בְּכוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכור שכרכו בסיב כו׳.</strong><br><strong> וכן </strong> מש&quot;כ בהלכה י&quot;ט נפתחו כו׳ ובה&quot;כ נעקרו כו׳ ובהכ&quot;א נגממו, בכל הנך מספקא אם הוי פטר רחם ואם לא הוי פטר רחם אינו קדוש אבל הבא אחריו אינו בכור דלא גרע מאלו יצא ראשון דרך דופן דהבא אחריו אינו בכור ופשוט. ובהלכה ט&quot;ו יצא שליש דרך דופן ושני שלישי דרך רחם אינו קדוש ונפטרה מן הבכורה כצ&quot;ל דלא גרע מאלו יצא כולו דרך דופן, ומה שכתוב גבי מכרו לעו&quot;ג כו׳ ונפטרה מן הבכורה ט&quot;ס הוא דפשיטא וצריך לגרוס כמוש&quot;כ. ועיין מש&quot;כ בדיבור הקודם לקיים הגירסא שלפנינו ודוק:</p>
               </div>
             </div>
@@ -488,8 +559,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 5:3:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-5-3-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 5:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-5-3">Mishneh Torah, Firstlings 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל בְּכוֹר שֶׁהוּא סָפֵק דִּינוֹ שֶׁיִּרְעֶה עַד שֶׁיִּפּל בּוֹ מוּם וְיֵאָכֵל לִבְעָלָיו. וְאִם תְּפָשׂוֹ הַכֹּהֵן אֵין מוֹצִיאִין אוֹתוֹ מִיָּדוֹ וְאוֹכֵל אוֹתוֹ בְּמוּמוֹ. אֲבָל אֵינוֹ מַקְרִיבוֹ שֶׁאֵין מַקְרִיב לְעוֹלָם אֶלָּא בְּכוֹר וַדַּאי שֶׁמָּא יִשְׁחֹט חֻלִּין בָּעֲזָרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל בכור שהוא ספק דינו שירעה עד שיפול בו מום ויאכל לבעליו ואם תפסו הכהן אין מוציאין מידו.</strong><br><strong> הכס&quot;מ </strong> בפ&quot;ב פירש דהוי איפכא ממסקנא דאסיק בפ&quot;ק דב&quot;מ דמוציאין מידו. והנה מלעיל אין ראיה דתמן הוי ספיקא דדינא ושם אפשר דאם תקפו אין מוציאין מידו אבל מכאן קשה, ותירץ דדחייה בעלמא היא וסייעתא דר&quot;ח לאו סייעתא דכיון דברשות ישראל והמע&quot;ה אע&quot;ג דאם תקפו כהן אין מוציאין מידו לא נפיק מידי ממונו של ישראל ושפיר יכול לפטור עצמו בו. ובאמת נראה דלא פריך הגמ׳ מהא דתנן בבכורות גבי ספק פדיון פטר חמור דמפרישו והוא לעצמו דתנן תמן ופודה בו וחוזר ופודה כמו שפירש ר&quot;ת שם (דף ד׳) ד&quot;ה ופודה בו, דיקשה איך מפקיע איסור דפטר חמור בממון דכהן דאם תקפו כהן אין מוציאין מידו הלא ספק ממון דכהן הוא, וע&quot;כ דפסיקא ליה כסברת מרן דכל זמן שלא תפס עדיין הוי ממונו ויכול למוכרו ולעשות בו כל חפצו לכן הוי כממונו לגמרי, רק הכי מקשה אם תאמר תקפו כהן אין מוציאין מידו הרי אינו שלו רק כל זמן שהוא ברשותו אבל אם יתפוס הכהן הלא יהיה של כהן, א&quot;כ גם עכשיו אינו של הבעלים בעתיד רק כל זמן שהוא תפוס בו והוא ברשותו, וא&quot;כ בכל הקדש וגבי פדייה אמרינן דשלו הוא, אבל לענין מעשר הלא אמרינן עשירי מאליו הוא קדוש א&quot;כ חזינא דכיון שמנה אחד שני שלישי עד עשרה העשירי הוא קדוש אע&quot;פ שלא יצא שעומד להיות העשירי בדיר תחת השבט עשירי והוא קדוש הואיל ויהיה עשירי, וכן מנין הראוי פוטר היינו כיון שהיו ראוים שיצאו עד העשירי לכן פטורים שראוי לעבור העשירי, א&quot;כ הקדושה והפטור בא מסיבת שעתיד לצאת בעשירי, א&quot;כ כיון שתפסו כהן אין מוציאין מידו אינו ממונו של הישראל רק מסיבת תפיסתו ובהוה לא בעתיד א&quot;כ כשהתחיל לצאת הראשון הלא לא היה בהחלט כשיצא העשירי שיהיה שלו דשמא יתפסנו כהן בנתיים ויהיה של כהן, א&quot;כ איך שייך צירוף עשרה להיפטר ולהתקדש כיון שאין זכייתו בא רק משעת תפיסתו וכאן הצירוף אינו רק כשיוצאים זה אח&quot;ז ובזא&quot;ז הלא על העתיד כשיוצא אחריו הלא אינו מבורר עדיין זכייתו בהטלה הספק שבעתיד עדיין לא תפס, וזה עיון דק:<br><strong> אולם </strong> ליישב דברי רבינו אמינא, דבחולין פרק הזרוע פליגי אם מתנות כהונה נגזלות או אין נגזלות, ורבינו פסק דהקונה אותם אעפ&quot;י שאינו רשאי ה&quot;ז מותר לאוכלן מפני שהמת&quot;כ נגזלות. וכבר פרשתי טעמו שם דמוכח מסוגיין שם דאם אינם בעין דאמרינן דלמאן דלית ליה דרב חסדא דרצה מזה גובה רצה מזה גובה רק גובה מן הראשון לבדו, כן הוה&quot;ד אם נתן הלוקח מן הטבח דמים אעפ&quot;י דאיתא בעין אינו מחזיר, א&quot;כ לדידן דקיי&quot;ל דהמזיק מת&quot;כ פטור מלשלם מפני שהוא ממון שאין לו תובעין אע&quot;ג דהיכי דאיתנהו בעין אמר התם דמשו&quot;ה נותנן הלוקח מן הטבח לכהן זה דוקא היכי דלא נתכוין לגזלן או בלא נתינת מעות, אבל כי נתכוין הטבח לגזלן וא&quot;כ גבי הלוקח הוי כמו דליתנהו בעינא דכיון שנתן מעות עבורם לטבח לכן אינו נותן לכהן אעפ&quot;י דאיתנהו בעינא, א&quot;כ א&quot;ש טובא דאעפ&quot;י דתקפו כהן אין מוציאין מידו בכ&quot;ז לאו ממונו דכהן הוא כיון שיכול למוכרו שלא יבוא עליו הכהן ואם יתפסנו הכהן אחרי כך ודאי דלא הוי שלו וכיון שיכול לעשות באופן שיהיה בעין ולא יוציאנו הכהן לכן אין זה פוטר עצמו בממון כהן, וסוגיית הגמרא אזלא למ&quot;ד דמת&quot;כ אינן נגזלות ותו כל זמן דאיתא בעינא בודאי הוי של כהן וכן בספק אם תפסו כהן אין מוציאין מידו לכן הוי ממון של כהן, ופריך איך פוטר עצמו בממון כהן ודוק. אולם מדלא הזכיר רבינו גבי פדיון פ&quot;ח דאם תקפו כהן אין מוציאין מידו נראה דמחלק משום דשם איכא חזקת מ&quot;ק וכתירוץ שו&quot;ת רשב&quot;א שהביא הכס&quot;מ:<br><strong> והנני </strong> להציג פה מה שנראה לי להעיר בקונטרס הספיקות להקצות מידי הביטי שם. וכי הוא זה:<br><strong> בכלל (א) </strong> בסופו הביא ראיה דבממון של ספק נדר אזלינן להחמיר ודלא כהר&quot;ן מהא דבעי ר&quot;ז הרי עלי לחמי תודה מהחמץ או מן המצה והו&quot;ל למיבעי באומר הרי עלי מהחמץ לחוד מהו שיביא שאור דאי ספק הוא נפטר הוא מידי נדרו ואם בריה הוא לא יצא. ובמחכ&quot;ת ז&quot;א דאף בספיקא דממונא קיי&quot;ל דאיני יודע אם פרעתיך חייב ואף באינו טוען אידך ברי כיון דלא הו&quot;ל למידק חייב דאין ספק פרעון מפקיע חיוב הודאי וכמוש&quot;כ הרשב&quot;א פרק הזורק גבי הא דתני לענין החוב מחצה ע&quot;מ יחלוקו ועיין משל&quot;מ פ&quot;ד מהלכות שאלה. ובל&quot;ז לפטור עצמו מחיוב ודאי בספק האם יכול, הגע בעצמך מי שנתחייב לשלם מטבעות של זהב לחבירו האם יכול לפטור עצמו במטבע מסופקת שמא היא של זהב או לא, וזה פשוט:<br><strong> בכלל (ג) </strong> כתב הש&quot;ך דבתיקו דש&quot;ס הוי תמיד תפיסה אחרי שנולד הספק דבשעת חתימת הש&quot;ס נולד הספק, והקשה מדברי הסמ&quot;ג במת ביום שלשים דסבר רע&quot;ק אם נתן לא יטול משום דהוי תפיסה קודם שנולד הספק. וזה לק&quot;מ דדוקא בכל תיקו כמו בשנוי לצרורות דמספקא לן אם אין לו רק רביעי ומספיקא נפשט דהמוציא מחבירו עליו הראיה א&quot;כ כי תפס אח&quot;כ לא מבטל תפיסתו את מה שכבר נפטר ונפסק לפטורא מעת חתימת הש&quot;ס, אבל גבי בכור הרי כי נפטר מספיקא לא נשאל הדין על זה האיש דהוי ממון שאין לו תובעין ואטו יכול לתבוע אותו, א&quot;כ כי נפסק הדין בעת דמספקא לרע&quot;ק הלא לא נפסק שלזה אין תביעה אצלו שלא היה שייך כלל אל הדין רק כי תפס והיינו שנתן לו מעות אז נולד הספק על זה האיש אם יש לו ממון אצלו, ואם תאמר שכבר נפסק הדין מעת הספק דהמוציא מחבירו עליו הראיה ואין תביעה לזה האיש הוא הכהן אל הבעלים ז&quot;א אם כבר אסיקו אדעתייהו דאם יתן לכהן מעות יפטר דהמוציא מחבירו ע&quot;ה, ז&quot;א דאם שקלי וטרי ע&quot;ז האיש הלא כבר הוי כתפס קודם שנולד הספק ומהני תפיסה ופסקו אז דמהני תפיסה, משא&quot;כ בכל תיקו הלא היה הספק בש&quot;ס על דין שבין אדם לחבירו וכבר פסקו דעל זה האיש עליו הראיה והמוחזק פטור, א&quot;כ כי תפס קודם הוי כתפס לאחר שנולד הספק דכבר נפסק הדין דאין לו שום תביעה על הנתפס, אבל גבי בכור דמעיקרא לא נפסק הדין על הכהן שאטו היה לכהן שום תביעה על הבעלים, ואם תאמר שלהכהן לא היה כח לתפוס דהמוציא מחבירו ע&quot;ה ז&quot;א דאם כבר אסיקו דעתייהו על כהן פרטי תובע מאתו הלא אטו פסקו דלא מהני תפיסה, הלא הוי תפיסה קודם שנולד הספק דכ&quot;ז דלא הוי פשיטא ולחכמי הש&quot;ס בספיקא הוי אז מהני תפיסה ודוק:<br><strong> כלל (ו) </strong> אות ה׳ השיג על הרב צמח צדק באשה שנמלטה מחרב ואינה יודעת אם אביה היה כהן כו׳ והמליטה זכר שפסק שפטור מלפדותו דאיכא חזקת ממון ואין הולכין אחרי הרוב ואמרינן שמא אביה כהן ופטורה מבכורה, והקשה דבחזקה אמרינן במת&quot;כ דצדק משלך ותן לו כש&quot;כ ברובא דעדיפא מחזקה וכדמוכח סוף פרק הזרוע. ובמחכ&quot;ת הלא בבכורות פ&quot;ג כתבו התוס׳ ד&quot;ה ור׳ יהושע סבר חוששין לטינוף דמשו&quot;ה דאין הולכין בממון אחרי הרוב לכן סבר רבי יהושע דאינו ניתן לכהן ואף לרב דסבר דאזלינן גם בממון בתר רובא בממון שאין לו תובעין גרע טובא יעו&quot;ש וזה היפך מסברתו. ושם פרק הזרוע תנן בכור שנתערב במאה בזמן שמאה שוחטין כולן פטורים אע&quot;ג דרוב חייבין מצי אמר כל חד אנא המיעוט שאני שוחט בכור, והיינו דבממון הזה שאין לו תובעין אין הולכין אחר הרוב, אולם תמן הוא מטעם אוחרי דאם נחייבם נוציא ממון מאחד שאינו חייב לכן אין מוציאין כלל שלא נוכל לחייב את מי שבודאי אינו חייב:<br><strong> והנה </strong> הטורי אבן ברה&quot;ש באבני מלואים האריך הרבה להקשות על הא דמדמה הגמרא מתנות כהונה לספק ממון עניים, דבכ&quot;מ קיי&quot;ל גבי מתנות עניים דהמוציא מחבירו ע&quot;ה וכן הביא מירושלמי דרע&quot;ק הפריש מע&quot;ש ופדאו ונתן דמיו לעניים דמספקא ליה אם ר&quot;ה אחד בשבט או ט&quot;ו בשבט אלמא דספיקא דממון עניים הוי לחומרא משום צדק משלך ותן לו, ודוקא גבי דמאי הקילו דרוב ע&quot;ה מעשרין הן. ומזה נסתר מה שהמהרי&quot;ט בסוף חלק חו&quot;מ העלה לחלק בין היכי דאיכא חזקת ממון לחוד בין היכי דאיכא חזקת מ&quot;ק עם חזקת ממון דגבי הך דרע&quot;ק איכא חזקת מ&quot;ק ואפ&quot;ה ספק מתנות עניים להחמיר, וכן נשאר בקושיא מהך דפ&quot;ב דבכורות ברועה כהן וחצר בעה&quot;ב ומת אחד מהן וא&quot;י מי מת אם הבכור או החולין דשם ליכא חזקת מ&quot;ק. והנראה לי דלאו כל מת&quot;כ מדמה הגמרא למתנות עניים, וטעמא אמינא דנחזי בכל מתנות עניים דעיקרן מתורת צדקה דאפילו עני המחזיר על הפתחים מחוייב ליתן צדקה וכמו שאמרו פ&quot;ק דגיטין על קרא דעניתיך לא אענך עוד, וכן במתנות עניים קיי&quot;ל דעני מוזהר על שלו להניח פאה ולהפריש מעשר עני ואפילו עני שבישראל מוציאין מידו. והנה במת&quot;כ קיי&quot;ל דאין מוציאין מכהן לכהן, אולם בזרוע ולחיים וקיבה איכא מילתא חדתא דדוקא בשוחט לעצמו הא בשוחט למכור כתיב מאת זובחי הזבח דאפילו טבח כהן במשמע ושוחט בהמות שלו כיון דשוחטן למכור לאחרים מוציאין מידו לכהן מה&quot;ת כדפרש&quot;י ז&quot;ל (דף קל&quot;ב) עיי&quot;ש, וקושיית תוס׳ דא&quot;כ אפילו ב׳ וג׳ שבתות לתחייב תירצו הקדמונים דעל ב׳ וג׳ שבתות בדעתו שאם לא ימכור יהיה לעצמו והוי כשוחט לעצמו ולכן פטור ולכן בקבע מסחתא תיכף חייב להפריש מתנות עיי&quot;ש בחידושי הריטב&quot;א ועיין בפרק כל שעה (דף ל&quot;ח) שאמרו סברא כזו על הא שאדם יוצא בחלות תודה ורקיקי נזיר עיי&quot;ש, וכיון שאפילו כהן חייב אם הוא שוחט למכור לאחרים לכן דמי ממש למתנות עניים, ולכן פריך הגמ׳ מהזרוע והלחיים על ספק לקט, אבל כל מת&quot;כ כמו בכורים וכיו&quot;ב שאפילו אם משהה אצלו לדו אצלו כשהוא משהה למוכרן הלא ממונו הוא וד׳ הוא נחלתו כנחלת כל שבטי ישראל והוי ממון ככל דיני ממונות שבספיקות המוציא מחבירו ע&quot;ה:<br><strong> וקצת </strong> יש לדון לפי מה שרצה הרב לומר דמשום צדק משלך אמרינן דהולכין בתר רוב לאפוקי מת&quot;כ, א&quot;כ מאי רמי בפ&quot;ב דבכורות מר׳ טרפון דאמר דנותן היפה שבהן לכהן על הא דאמר מת אחד מהן יחלוקו לימא דאחד מהן הוא היפה שבהן [וכיו&quot;ב איכא אוקימתות בש&quot;ס] ורוב פעמים הך דברי נפיק ברישא ולכן משום צדק משלך ותן לו במת&quot;כ אזלינן בתר רובא ויהיב ליה היפה שבהן, אבל כי מת הלא כי מקנה מקום בחצירו לכהן יחלוקו דלא מצי לאפוקי מרשות כהן ברובא דאין הולכין בממון בתר רובא ודוק בכ&quot;ז:</p>
               </div>
             </div>
@@ -504,8 +580,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 5:3:2</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-5-3-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 5:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-5-3">Mishneh Torah, Firstlings 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל בְּכוֹר שֶׁהוּא סָפֵק דִּינוֹ שֶׁיִּרְעֶה עַד שֶׁיִּפּל בּוֹ מוּם וְיֵאָכֵל לִבְעָלָיו. וְאִם תְּפָשׂוֹ הַכֹּהֵן אֵין מוֹצִיאִין אוֹתוֹ מִיָּדוֹ וְאוֹכֵל אוֹתוֹ בְּמוּמוֹ. אֲבָל אֵינוֹ מַקְרִיבוֹ שֶׁאֵין מַקְרִיב לְעוֹלָם אֶלָּא בְּכוֹר וַדַּאי שֶׁמָּא יִשְׁחֹט חֻלִּין בָּעֲזָרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם תפשו הכהן אין מוציאין אותו מידו.</strong><br><strong> יעוי׳ </strong> ביאורי הגר&quot;א ראיות הרבה. ועוד אחת מהא דבריש מכילת׳ דף ג׳ לית דחש לה להא דר׳ יהודא דאמר שותפות עכו&quot;ם חייבת בבכורה. והא אי נמי הוי חייש הוי כרבים דפליגי עם רבים והוי ספיקא דדינא והמוציא מחבירו עליו הראיה ואין צריך ליתן לכהן ואי משום דנחוש לאכילה בלא מום כיון דסבר ר׳ יהודא דלא תעבוד בבכור שורך הא בשלו ושל אחרים אתה עובד וכיון דשרי בגיזה ועבודה כ&quot;ש דלא חלה עליו קדושה כלל ונאכל בלא מום וצריך לומר דנפ&quot;מ לענין תפיסה דאם תקפו כהן מוציאין מידו משום דלית דחש אבל אי הוי ספק אז אין מוציאין מידו ודו&quot;ק.</p>
               </div>
             </div>
@@ -521,8 +602,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:2:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-2">Mishneh Torah, Firstlings 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַעֲשַׂר בְּהֵמָה נוֹהֵג בְּחֻלִּין אֲבָל לֹא בְּמֻקְדָּשִׁין. וְנוֹהֵג בָּאָרֶץ וּבְחוּצָה לָאָרֶץ בִּפְנֵי הַבַּיִת וְשֶׁלֹּא בִּפְנֵי הַבַּיִת. אֲבָל חֲכָמִים אָסְרוּ לְעַשֵּׂר בְּהֵמָה בַּזְּמַן הַזֶּה וְתִקְּנוּ שֶׁאֵין מְעַשְּׂרִין אֶלָּא בִּפְנֵי הַבַּיִת גְּזֵרָה שֶׁמָּא יֹאכְלֵהוּ תָּמִים וְנִמְצָא בָּא לִידֵי אִסּוּר כָּרֵת שֶׁהוּא שְׁחִיטַת קָדָשִׁים בַּחוּץ. וְאִם עָבַר וְעָשָׂה בַּזְּמַן הַזֶּה הֲרֵי זֶה מַעֲשֵׂר וְיֵאָכֵל בְּמוּמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם עבר ועשה בזה&quot;ז ה&quot;ז מעשר ויאכל במומו.</strong><br><strong> נ&quot;ב </strong> תוספתא ערוכה בהמה שנתערב בה ספק מעשר בזה&quot;ז ירעו כולן עד שיסתאבו כו׳ ובחידושי הארכתי בזה:</p>
               </div>
             </div>
@@ -537,8 +623,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:3:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-3-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-3">Mishneh Torah, Firstlings 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכֹּל חַיָּבִין בְּמַעֲשַׂר בְּהֵמָה. כֹּהֲנִים לְוִיִּים וְיִשְׂרְאֵלִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל חייבים במעשר בהמה כהנים כו׳.</strong><br><strong> נ&quot;ב </strong> עיין משל&quot;מ שני ראיות ושניהן הביאן רבינו בעצמו בתשובותיו, ובפירוש המשנה דייק הכל נאמנין על מומי מעשר ופירש אפילו כהנים דחשודים על הבכור, הרי מוכח דחייבין במעשר דאינו נמכר מע&quot;ב, וע&quot;כ דמפרישין ודוק:</p>
               </div>
             </div>
@@ -553,8 +644,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:5:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-5">Mishneh Torah, Firstlings 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַעֲשַׂר בְּהֵמָה אָסוּר לְמָכְרוֹ כְּשֶׁהוּא תָּמִים שֶׁנֶּאֱמַר בּוֹ <span class="source-small">(ויקרא כז לג)</span> &quot;לֹא יִגָּאֵל&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזֶּה שֶׁנֶּאֱמַר לֹא יִגָּאֵל אַף אִסּוּר מְכִירָה בְּמַשְׁמָע שֶׁאֵין נִגְאָל וְאֵינוֹ נִמְכָּר כְּלָל. וְיֵרָאֶה לִי שֶׁהַמּוֹכֵר מַעֲשֵׂר לֹא עָשָׂה כְּלוּם וְלֹא קָנָה לוֹקֵחַ. וּלְפִיכָךְ אֵינוֹ לוֹקֶה כְּמוֹכֵר חֶרְמֵי כֹּהֲנִים שֶׁלֹּא קָנָה לוֹקֵחַ וּכְמוֹכֵר יְפַת תֹּאַר כְּמוֹ שֶׁיִּתְבָּאֵר בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעשר בהמה אסור למוכרו כשהוא תמים.</strong><br><strong> הנה </strong> בגמרא מפורש דגם בעל מום אסור למוכרו מן התורה ורק לאחר שחיטה מותר למוכרו מה&quot;ת, אמנם לאחר שחיטה בתמים נראה מסוגיא דפ&quot;ק דזבחים דאמר אימר שחטי׳ לשם מעשר ליהוי מעשר כו׳ ולמילקא עליה בלא ימכר ולא יגאל כו׳. וכתבו רבנן בתוס׳ היכי לקי אחר שחיטה אלא יגאל הא אמרינן פרק כל פסוהמ&quot;ק דלאחר שחיטה מדרבנן הרי דלמדו מסוגיא דתמן דאף בתמים לאחר שחיטה מדרבנן, ודעתם צ&quot;ע, דבאמת לרבא דיליף מוהיה הוא ותמורתו כו׳ לא יגאל אימתי עושה תמורה מחיים [ומשום זה אף בעל מום אסור למוכרו מה&quot;ת דבע&quot;מ עושה תמורה ולשון הכס&quot;מ אינו מדוקדק] א&quot;כ לאחר שחיטה בתם ג&quot;כ נמכר אבל לרב שמואל בר יצחק דיליף מרק בכל אות נפשך כו׳ דבר שאין בו ברכה מחיים אלא לאחר שחיטה כו׳ א&quot;כ דלאחר שחיטה איכא ביה ברכה וזה מכירה דוקא בבעלי מומין דביה כתיב קרא דתזבח בשר כו׳ אבל בתמין לא כתיב ברכה ולא הותר מכירה אף לאחר שחיטתו, ורומיא דגמרא נקיט מה דאיכא נפ&quot;מ וחומרא לרב שמואל בר יצחק, ואף דהגמרא אמר ואף רשב&quot;י סבר להא דרבא מכל מקום אינו ממש כמו רבא רק בהא דסבר בע&quot;מ לאחר שחיטה מותר מה&quot;ת סבר כוותיה ובפרט דיליף דהתורה התירה בפירוש וכתבה ברכה על מכירה א&quot;כ לא יאסרו חכמים לגמרי לכן התירו על ידי הבלעה וכמש&quot;כ התוס׳ פרק איזהו נשך (דף ע׳) לענין ריבית דעו&quot;ג:<br><strong> אולם </strong> העיקר נראה כדברי התוס׳ דהגמרא שקיל וטרי מנא לן דלא נמכר ויליף מגז&quot;ש דחרמים דכתיב לא יגאל ולא ימכר אף כאן לא ימכר עמו ואף לרב אשי דמוכיח מקרא גופיה יעו&quot;ש פריך ולכתוב לא ימכר ומשני להכי כתב רחמנא לא יגאל דלא אפרוקי מיפרק, וא&quot;כ לכל הני לא יצא ממשמעותו דלא יגאל שאינו נפדה, א&quot;כ מיירי בבעלי מומין דנפדין קמ&quot;ל במעשר דאינו רשאי לפדותו אבל בתם מנא לן דאינו נמכר כיון דקרא מיירי בבע&quot;מ, וצ&quot;ל דהוא קל וחומר ויותר עדיף עד דהוי גילוי מילתא דע&quot;ז לא שייך אין מזהירין מן הדין וכיון דכתבה רחמנא היתר לאחר שחיטה בבעלי מומין תו מאיזה מקום תלמוד איסור לתם כיון דכל עיקר מכירה של תם למדתה מבעל מום, א&quot;כ גם תם מותר למכור לאחר שחיטה אף לרב שמואל ב&quot;י ודוק:</p>
               </div>
             </div>
@@ -569,8 +665,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:5:2</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-5-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-5">Mishneh Torah, Firstlings 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַעֲשַׂר בְּהֵמָה אָסוּר לְמָכְרוֹ כְּשֶׁהוּא תָּמִים שֶׁנֶּאֱמַר בּוֹ <span class="source-small">(ויקרא כז לג)</span> &quot;לֹא יִגָּאֵל&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזֶּה שֶׁנֶּאֱמַר לֹא יִגָּאֵל אַף אִסּוּר מְכִירָה בְּמַשְׁמָע שֶׁאֵין נִגְאָל וְאֵינוֹ נִמְכָּר כְּלָל. וְיֵרָאֶה לִי שֶׁהַמּוֹכֵר מַעֲשֵׂר לֹא עָשָׂה כְּלוּם וְלֹא קָנָה לוֹקֵחַ. וּלְפִיכָךְ אֵינוֹ לוֹקֶה כְּמוֹכֵר חֶרְמֵי כֹּהֲנִים שֶׁלֹּא קָנָה לוֹקֵחַ וּכְמוֹכֵר יְפַת תֹּאַר כְּמוֹ שֶׁיִּתְבָּאֵר בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויראה לי שהמוכר מעשר לא עשה כלום ולא קנה לוקח.</strong><br><strong> כן </strong> מוכח מתוספתא בקדושין דהמקדש בבשר מעשר אינה מקודשת ורבנן הפקיעו הקידושין לאחר שחיטה כמו דהוי מה&quot;ת מחיים ומוכרח דלא קנה לוקח, וכן משמע כולא סוגיא דבכורות (דף ל&quot;ב) ולכתוב רחמנא לא ימכר כו׳ הו&quot;א איזדבני הוא דלא מיזדבן אבל כו׳ קמ&quot;ל לא יגאל דלא איזדביני מזבן ולא אפרוקי מיפרק, הרי דבדיעבד לא מהני כמו פדיון. ובירושלמי פ&quot;ק דמע&quot;ש ה&quot;א מייתי תני היה אומר אדם לחבירו כו׳ והוא תוספתא בכורות פ&quot;ג. היה אומר לו מן והוא יודע שהוא מעשר בהמה מה מן ניתן במתנה אף מעשר בהמה ניתן במתנה הרי מעשר בהמה ד&quot;ה כו׳ הרי מעשר בהמה ד&quot;ה אינו כנכסיו כו׳, וט&quot;ס בירושלמי שם וצ&quot;ל הגירסא כן כמו בתוספתא, ומוכח דאינו כנכסיו ובדיעבד אין מכירתו כלום. ומה שאינו לוקה בארתי בחידושי בדברים עמוקים דלכו&quot;ע לא לקי ואכמ&quot;ל ודוק:</p>
               </div>
             </div>
@@ -585,8 +686,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:8:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-8-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-8">Mishneh Torah, Firstlings 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַעֲשַׂר בְּהֵמָה שֶׁנִּשְׁחַט בְּמוּמוֹ מֻתָּר לִמְכּוֹר חֶלְבּוֹ וְגִידָיו וְעוֹרוֹ וְעַצְמוֹתָיו. וְלֹא אָסְרוּ לִמְכֹּר אֶלָּא בְּשָׂרוֹ בִּלְבַד. וְאִם הִבְלִיעַ דְּמֵי הַבָּשָׂר בִּדְמֵי הָעוֹר וְהַחֵלֶב וְהַגִּידִין וּמָכַר הַכֹּל בְּהַבְלָעָה מֻתָּר. וְאִם הָיוּ דְּמֵי הָעֲצָמוֹת יְקָרִים וְהִבְלִיעַ דְּמֵי הַבָּשָׂר בִּדְמֵי הָעֲצָמוֹת מֻתָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם היו דמי העצמות יקרין כו׳.</strong><br><strong> נ&quot;ב </strong> כן מפורש בגמרא ולא פליגי עיי&quot;ש, ודברי כס&quot;מ תמוהין:</p>
               </div>
             </div>
@@ -601,8 +707,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:9:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-9-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-9">Mishneh Torah, Firstlings 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכֹּל נֶאֱמָנִים עַל מוּמֵי מַעֲשֵׂר לוֹמַר מוּם זֶה מֵאֵלָיו בָּא וְלֹא נַעֲשָׂה לְדַעַת. וַאֲפִלּוּ אֵלּוּ שֶׁאֵינָן נֶאֱמָנִים עַל הַבְּכוֹר נֶאֱמָנִים עַל הַמַּעֲשֵׂר. וְרוֹאֶה אָדָם מוּמֵי מַעֲשֵׂר שֶׁלּוֹ וּמַתִּירוֹ אִם הָיָה מֻמְחֶה. שֶׁאִם יִרְצֶה יַטִּיל מוּם בְּכָל עֶדְרוֹ וְאַחַר כָּךְ יְעַשֵּׂר וְנִמְצָא הַמַּעֲשֵׂר בַּעַל מוּם מִתְּחִלָּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ורואה אדם מומי מעשר שלו.</strong><br><strong> נ&quot;ב </strong> מפורש שם (דף ל&quot;א) עיי&quot;ש:</p>
               </div>
             </div>
@@ -617,8 +728,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:10:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-10">Mishneh Torah, Firstlings 6:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַלּוֹקֵחַ טְלָאִים שֶׁנּוֹלְדוּ בְּשָׁנָה זוֹ אוֹ שֶׁנִּתְּנוּ לוֹ בְּמַתָּנָה הֲרֵי הֵם פְּטוּרִים מִן הַמַּעֲשֵׂר עַד שֶׁיִּוָּלְדוּ בִּרְשׁוּתוֹ. לְפִיכָךְ הַשֻּׁתָּפִין שֶׁנִּשְׁתַּתְּפוּ בִּבְהֵמוֹת וְהֵבִיא זֶה מֵאָה טְלָאִים וְזֶה מֵאָה טְלָאִים וְעֵרְבוּם וְנִשְׁתַּתְּפוּ בָּהֶן הֲרֵי הַמָּאתַיִם פְּטוּרִים מִן הַמַּעֲשֵׂר שֶׁכָּל טָלֶה מֵהֶן כְּמָכוּר. וְכֵן הָאַחִים שֶׁיָּרְשׁוּ טְלָאִים מֵאֲבִיהֶם הֲרֵי הֵן פְּטוּרִין מִן הַמַּעֲשֵׂר. אֲבָל הַנּוֹלָדִים לָהֶם בְּשֻׁתָּפוּת לְאַחַר מִכָּאן מֵאֵלּוּ הַבְּהֵמוֹת בֵּין לַשֻּׁתָּפִין בֵּין לָאַחִים חַיָּבִין בְּמַעֲשֵׂר. וְכֵן אִם הָיוּ שֻׁתָּפִין בְּמָעוֹת וְקָנוּ בְּהֵמוֹת מִמְּעוֹת הַשֻּׁתָּפוּת וְהָאַחִים שֶׁקָּנוּ בְּהֵמוֹת מִמְּעוֹת הַיְרֻשָּׁה הֲרֵי הַנּוֹלָדִים מֵהֶם לְאַחַר מִכָּאן חַיָּבִין בְּמַעֲשֵׂר שֶׁהֲרֵי בִּרְשׁוּתָן נוֹלְדוּ וַהֲרֵי הֵן כְּאִישׁ אֶחָד. חָלְקוּ הָאַחִים וְהַשֻּׁתָּפִין אַחַר שֶׁנּוֹלְדוּ לָהֶן הַבְּהֵמוֹת בִּרְשׁוּתָן וְחָזְרוּ וְנִשְׁתַּתְּפוּ הֲרֵי אֵלּוּ פְּטוּרִין מִן הַמַּעֲשֵׂר. שֶׁבְּשָׁעָה שֶׁחָלְקוּ נַעֲשׂוּ הַכֹּל לְקוּחִין וְהַלָּקוּחַ פָּטוּר וּכְשֶׁחָזְרוּ וְנִשְׁתַּתְּפוּ הֲרֵי נִשְׁתַּתְּפוּ בַּבְּהֵמוֹת וַעֲדַיִן לֹא יָלְדוּ לָהֶן בִּרְשׁוּתָן אַחַר שִׁתּוּף זֶה הַשֵּׁנִי. וְאַף עַל פִּי שֶׁחָלְקוּ גְּדָיִים כְּנֶגֶד גְּדָיִים וּטְלָאִים כְּנֶגֶד טְלָאִים וַעֲשָׂרָה כְּנֶגֶד עֲשָׂרָה הַכֹּל פְּטוּרִין מִן הַמַּעֲשֵׂר וַהֲרֵי הֵן כִּלְקוּחִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בלח&quot;מ. </strong> וטעם מחלוקתן:<br><strong> נ&quot;ב </strong> עיין רש&quot;י ביצה (דף ל&quot;ט) הביא בשם י&quot;מ שיטת רבינו בקוצר עיי&quot;ש ובחידושי הארכתי:</p>
               </div>
             </div>
@@ -633,8 +749,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:10:2</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-10-2" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:10:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-10">Mishneh Torah, Firstlings 6:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַלּוֹקֵחַ טְלָאִים שֶׁנּוֹלְדוּ בְּשָׁנָה זוֹ אוֹ שֶׁנִּתְּנוּ לוֹ בְּמַתָּנָה הֲרֵי הֵם פְּטוּרִים מִן הַמַּעֲשֵׂר עַד שֶׁיִּוָּלְדוּ בִּרְשׁוּתוֹ. לְפִיכָךְ הַשֻּׁתָּפִין שֶׁנִּשְׁתַּתְּפוּ בִּבְהֵמוֹת וְהֵבִיא זֶה מֵאָה טְלָאִים וְזֶה מֵאָה טְלָאִים וְעֵרְבוּם וְנִשְׁתַּתְּפוּ בָּהֶן הֲרֵי הַמָּאתַיִם פְּטוּרִים מִן הַמַּעֲשֵׂר שֶׁכָּל טָלֶה מֵהֶן כְּמָכוּר. וְכֵן הָאַחִים שֶׁיָּרְשׁוּ טְלָאִים מֵאֲבִיהֶם הֲרֵי הֵן פְּטוּרִין מִן הַמַּעֲשֵׂר. אֲבָל הַנּוֹלָדִים לָהֶם בְּשֻׁתָּפוּת לְאַחַר מִכָּאן מֵאֵלּוּ הַבְּהֵמוֹת בֵּין לַשֻּׁתָּפִין בֵּין לָאַחִים חַיָּבִין בְּמַעֲשֵׂר. וְכֵן אִם הָיוּ שֻׁתָּפִין בְּמָעוֹת וְקָנוּ בְּהֵמוֹת מִמְּעוֹת הַשֻּׁתָּפוּת וְהָאַחִים שֶׁקָּנוּ בְּהֵמוֹת מִמְּעוֹת הַיְרֻשָּׁה הֲרֵי הַנּוֹלָדִים מֵהֶם לְאַחַר מִכָּאן חַיָּבִין בְּמַעֲשֵׂר שֶׁהֲרֵי בִּרְשׁוּתָן נוֹלְדוּ וַהֲרֵי הֵן כְּאִישׁ אֶחָד. חָלְקוּ הָאַחִים וְהַשֻּׁתָּפִין אַחַר שֶׁנּוֹלְדוּ לָהֶן הַבְּהֵמוֹת בִּרְשׁוּתָן וְחָזְרוּ וְנִשְׁתַּתְּפוּ הֲרֵי אֵלּוּ פְּטוּרִין מִן הַמַּעֲשֵׂר. שֶׁבְּשָׁעָה שֶׁחָלְקוּ נַעֲשׂוּ הַכֹּל לְקוּחִין וְהַלָּקוּחַ פָּטוּר וּכְשֶׁחָזְרוּ וְנִשְׁתַּתְּפוּ הֲרֵי נִשְׁתַּתְּפוּ בַּבְּהֵמוֹת וַעֲדַיִן לֹא יָלְדוּ לָהֶן בִּרְשׁוּתָן אַחַר שִׁתּוּף זֶה הַשֵּׁנִי. וְאַף עַל פִּי שֶׁחָלְקוּ גְּדָיִים כְּנֶגֶד גְּדָיִים וּטְלָאִים כְּנֶגֶד טְלָאִים וַעֲשָׂרָה כְּנֶגֶד עֲשָׂרָה הַכֹּל פְּטוּרִין מִן הַמַּעֲשֵׂר וַהֲרֵי הֵן כִּלְקוּחִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מסתפקנא </strong> בנפלו לה לאשה הנשואה נכסי מלוג מבית אביה והם בהמות אי מחייבא במעשר בהמה מי אמרינן דהוו כמו שותפין היא והבעל ופטורין ממעשר או לא ויעוי׳ פרק היה נוטל דף כ&quot;ג תו׳ ד&quot;ה כל הנשואות משום דקנין הבעל הוי כמו שותף יעוי&quot;ש. ובירושלמי שקלים פרק א׳ הלכה ד׳ היא שני אחין שירשו את אביהן היא שני גיסין שירשו את חמיהן. ונתבונן איך ירשו גיסיהן הלא אין הבעל יורש את אשתו בראוי ואם מתה אינו יורש את חמיו וצריך לומר דכשהיו נשיהן חיות נפלו להן נכסי אביהן והבעל יורש את אשתו כשהיא מתה ואם כן בעודה בחיים הוי של שותפות הבעל ואשתו וכבר נפטרו ממעשר בהמה. ונפשט ספיקן דלא הוו כשותפות למיפטר ממעשר. אמנם יש לדחות דמיירי כגון שכתבו להן דו&quot;ד אין לי בנכסייך ופירותיהן ומירת ירית לה בעל ועיי׳ תוס׳ כתובות דף נ׳ ע&quot;א בזה ודו&quot;ק.</p>
               </div>
             </div>
@@ -649,8 +770,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 6:11:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-6-11-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 6:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-11">Mishneh Torah, Firstlings 6:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאַחִין וְהַשֻּׁתָּפִין שֶׁחָלְקוּ בִּכְסָפִים וְלֹא חָלְקוּ בִּבְהֵמָה חַיָּבִין בְּמַעֲשֵׂר שֶׁעֲדַיִן לֹא נַעֲשׂוּ הַבְּהֵמוֹת לְקוּחִין. אֲבָל אִם חָלְקוּ הַבְּהֵמוֹת אַף עַל פִּי שֶׁעֲדַיִן לֹא חָלְקוּ הַכְּסָפִים הֲרֵי אֵלּוּ פְּטוּרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מסתפקנא </strong> בנפלו לה לאשה הנשואה נכסי מלוג מבית אביה והם בהמות אי מחייבא במעשר בהמה מי אמרינן דהוו כמו שותפין היא והבעל ופטורין ממעשר או לא ויעוי׳ פרק היה נוטל דף כ&quot;ג תו׳ ד&quot;ה כל הנשואות משום דקנין הבעל הוי כמו שותף יעוי&quot;ש. ובירושלמי שקלים פרק א׳ הלכה ד׳ היא שני אחין שירשו את אביהן היא שני גיסין שירשו את חמיהן. ונתבונן איך ירשו גיסיהן הלא אין הבעל יורש את אשתו בראוי ואם מתה אינו יורש את חמיו וצריך לומר דכשהיו נשיהן חיות נפלו להן נכסי אביהן והבעל יורש את אשתו כשהיא מתה ואם כן בעודה בחיים הוי של שותפות הבעל ואשתו וכבר נפטרו ממעשר בהמה. ונפשט ספיקן דלא הוו כשותפות למיפטר ממעשר. אמנם יש לדחות דמיירי כגון שכתבו להן דו&quot;ד אין לי בנכסייך ופירותיהן ומירת ירית לה בעל ועיי׳ תוס׳ כתובות דף נ׳ ע&quot;א בזה ודו&quot;ק.</p>
               </div>
             </div>
@@ -666,8 +792,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 7:5:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-7-5-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-7-5">Mishneh Torah, Firstlings 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מְעַשְּׂרִים מִן הַנּוֹלָדִים בְּשָׁנָה זוֹ עַל הַנּוֹלָדִים בְּשָׁנָה אַחֶרֶת כְּשֵׁם שֶׁאֵין מְעַשְּׂרִין בְּזֶרַע הָאָרֶץ מִן הֶחָדָשׁ עַל הַיָּשָׁן וְלֹא מִן הַיָּשָׁן עַל הֶחָדָשׁ שֶׁנֶּאֱמַר <span class="source-small">(דברים יד כב)</span> &quot;הַיֹּצֵא הַשָּׂדֶה שָׁנָה שָׁנָה&quot;. וְיֵרָאֶה לִי שֶׁאִם עִשֵּׂר בְּהֵמָה מִשָּׁנָה עַל שָׁנָה הֲרֵי זֶה מַעֲשֵׂר מִפְּנֵי חֻמְרַת הַקֳדָשִׁים שֶׁהֲרֵי לֹא הִקְפִּידָה תּוֹרָה עַל מַעֲשַׂר בְּהֵמָה בְּפֵרוּשׁ שֶׁיִּהְיֶה שָׁנָה שָׁנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויראה לי שאם עישר כו׳ משנה כו׳.</strong><br><strong> פירוש </strong> אבל להצטרף חמשה משנה זו וחמשה משנה זו אינן מצטרפין ואם עישר אינו מעשר ולענין זה תני תנא רה&quot;ש למעשר בהמה אע&quot;ג דלתרומת שקלים דלכתחילה לא תני דהוי רה&quot;ש לענין צירוף כמש&quot;כ בהלכה ו׳ הסמוכה ואין צורך למה שכתב בטורי אבן בשהם יעוי&quot;ש.</p>
               </div>
             </div>
@@ -682,8 +813,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 7:6:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-7-6-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 7:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-7-6">Mishneh Torah, Firstlings 7:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַנּוֹלָדִים בְּאֶחָד בְּתִשְׁרֵי עַד עֶשְׂרִים וְתִשְׁעָה בֶּאֱלוּל מִצְטָרְפִין וּמְעַשְּׂרִין מֵאֵלּוּ עַל אֵלּוּ. נוֹלְדוּ חֲמִשָּׁה טְלָאִים בְּעֶשְׂרִים וְתִשְׁעָה בֶּאֱלוּל וַחֲמִשָּׁה בְּאֶחָד בְּתִשְׁרֵי אֵין מִצְטָרְפִין. יָלְדוּ תּוֹלָדוֹת בְּתוֹךְ שְׁנָתָן הֲרֵי הִיא וּבִתָּהּ נִכְנָסִים לַדִּיר לְהִתְעַשֵּׂר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הנולדים באחד בתשרי כו׳.</strong><br><strong> ירושלמי </strong> ר&quot;ה פ&quot;א ה&quot;א ר&quot;מ אומר באחד באלול ר&quot;ה למעשר בהמה כו׳ אמר ר&quot;ח טעמיה דר&quot;מ עד כאן הן מתמצות לילד מן הישינות מיכן והילך הן מתחילות לילד מן החדשות. ונראה טעמא דסבר דניסן הוי שנה שלהן רק דחמש חדשים הוי עיבור דקה וא&quot;כ הן יולדות עד אחד באלול. וקצ&quot;ע דהא קאמר בירושלמי נדה פ&quot;ק דבהמה טהורה יולדת למקוטעין, א&quot;כ קשה טובא דהא אפשר דהנך דמתעברות אחר ניסן נולדו קודם אלול ומעשר משנה זו על של שנה אחרת דזה נראה דר&quot;מ אזיל בתר חנטה ועיין בכורות (דף כ&quot;א) דר&quot;ש סבר יולדת למקוטעין עיי&quot;ש בתוס׳ [ולכך אזיל בתר שליש היינו משעת לידה דדמי לגידול שליש דאילו עיבור לא נדע זמן העיבור כמבואר שם בירושלמי]. ולפי שיטת רבינו דאם עישר משנה זו על שנה זו הוי מעשר מדלא הקפידה תורה בפירוש, א&quot;כ ל&quot;ק דאע&quot;ג דיעשר משל שנה זו על של שנה אחרת ג&quot;כ הוי מעשר לכן קבע ר&quot;מ ר&quot;ח אלול ללידה דרובן הוי הנך דנתעברו קודם ניסן:<br><strong> ובזה </strong> א&quot;ש מה דאמר רבא לדברי בן עזאי נולדו לו חמשה באב כו׳ נוטל אחד מן האלולים כו׳ מה&quot;ד ליגזור דילמא אתי למישקל מהנך כו׳. פירוש דלא גזר כיון דבדיעבד מעושר לא גזר, וכמה תנאי ת&quot;ק וריה&quot;ג ורבי דרשי קראי דמצוה לעשר מקראי אחרינא (עיין בתו&quot;כ סוף פ׳ בחוקתי) לבד רע&quot;ק דיליף מעשר תעשר ואימור דיברה תורה כלב&quot;א יעוין תוס׳ ב&quot;מ (דף ל&quot;ב) ועוד דרשות לכן אינו בפירוש ודוק:</p>
               </div>
             </div>
@@ -699,8 +835,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-8-1">Mishneh Torah, Firstlings 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּכְנִּיס צֹאן לַדִּיר וְהִתְחִילוּ לָצֵאת אַחַת אַחַת וְהוּא מוֹנֶה כְּמוֹ שֶׁבֵּאַרְנוּ וְטָעָה בַּמִּנְיָן וְקָרָא לַשְּׁמִינִי אוֹ לְשֶׁלְּמַטָּה מִמֶּנּוּ עֲשִׂירִי אוֹ שֶׁקָּרָא לַשְּׁנֵים עָשָׂר אוֹ שֶׁלְּמַעְלָה מִמֶּנּוּ עֲשִׂירִי לֹא נִתְקַדְּשׁוּ. אֲבָל אִם קָרָא לַתְּשִׁיעִי אוֹ לָאַחַד עָשָׂר עֲשִׂירִי נִתְקַדְּשׁוּ. וְדָבָר זֶה הֲלָכָה מִפִּי הַקַּבָּלָה נִשְׁמַע שֶׁהַטָּעוּת מִתְקַדְּשׁוֹת לְמַעֲשֵׂר שֶׁלְּמַעְלָה מִמֶּנּוּ וְשֶׁלְּמַטָּה מִמֶּנּוּ אֲבָל לֹא שֶׁלִּפְנֵיהֶם וְשֶׁלְּאַחֲרֵיהֶם. אֲפִלּוּ קָרָא לַתְּשִׁיעִי עֲשִׂירִי וְלַעֲשִׂירִי תְּשִׁיעִי וְלָאַחַד עָשָׂר עֲשִׂירִי בֵּין בְּטָעוּת בֵּין בְּכַוָּנָה שְׁלָשְׁתָּן מֻקְדָּשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין בטעות בין בכוונה.</strong><br><strong> נ&quot;ב </strong> דרב נחמן נשאר בקושיא, ועוד יחיד הוא גבי רב חסדא ורבה בר הונא:</p>
               </div>
             </div>
@@ -715,8 +856,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:2:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-8-2">Mishneh Torah, Firstlings 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְהֵיאַךְ דִּינָם. הַתְּשִׁיעִי אֵינוֹ קָרֵב אֶלָּא נֶאֱכָל בְּמוּמוֹ. וְהָעֲשִׂירִי מַעֲשֵׂר. וְהָאַחַד עָשָׂר יִקָּרֵב שְׁלָמִים וְטָעוּן נְסָכִים כִּשְׁלָמִים וְאֵינוֹ עוֹשֶׂה תְּמוּרָה מִפְּנֵי שֶׁהוּא עַצְמוֹ כִּתְמוּרָה. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁהָיָה הַמּוֹנֶה הוּא בַּעַל הַבְּהֵמוֹת אֲבָל הָעוֹשֶׂה שָׁלִיחַ לְעַשֵּׂר לוֹ וְטָעָה בֵּין בַּתְּשִׁיעִי בֵּין בָּאַחַד עָשָׂר אֵין מְקַדֵּשׁ אֶלָּא הָעֲשִׂירִי הַוַּדַּאי בִּלְבַד. שֶׁלֹּא עֲשָׂאָהוּ שָׁלִיחַ לִטְעוֹת וּלְהַפְסִיד אֶלָּא לְקַדֵּשׁ כָּרָאוּי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואינו עושה תמורה מפני שהוא עצמו כתמורה.</strong><br><strong> לא </strong> נתפרש בדברי רבינו אם היא בעל מום מי חלה עלה קדושה כיון דהיא כתמורה ותמורה חל על בע&quot;מ ליקדש. ובסוף פ&quot;ק דתמורה תמורת גופו חלה על דבר הראוי ועל דבר שאינו ראוי תמורת שמו אינה חלה אלא על דבר הראוי ופרש&quot;י שהוא כשאר קדשים שאינן קדושים כשקדם להקדשן עיי&quot;ש. אמנם לא מכרעא דלדעתי פירושו כמו מנין הראוי וזה שתמורת גופו חלה על שאינו נטבל למעשר הוא אפילו מטלאים שכבר נתעשרו או מיפטרי בלקוח ויתום, ותמורת שמו בעי להיות האחד עשר ראוי להיות מעשר כ&quot;א מאותן טלאים שלא נתעשרו וחייבים במעשר וברור. ומש&quot;כ רבינו וטעון נסכים נ&quot;ב מנחות (דף צ&quot;א) יעו&quot;ש:</p>
               </div>
             </div>
@@ -731,8 +877,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:8:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-8-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-8-8">Mishneh Torah, Firstlings 8:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָרָא לַתְּשִׁיעִי עֲשִׂירִי וְנִשְׁאַר הָעֲשִׂירִי בַּדִּיר. הַתְּשִׁיעִי יֵאָכֵל בְּמוּמוֹ וְזֶה שֶׁנִּשְׁאַר בַּדִּיר מַעֲשֵׂר אַף עַל פִּי שֶׁלֹּא יָצָא וְלֹא בֵּרְרוֹ שֶׁהָעֲשִׂירִי מֵאֵלָיו נִתְקַדֵּשׁ. מֵת הָעֲשִׂירִי בַּדִּיר הַתְּשִׁיעִי יֵאָכֵל בְּמוּמוֹ וְכָל הַשְּׁמוֹנָה שֶׁיָּצְאוּ וְנִמְנוּ פְּטוּרִין וְאַף עַל פִּי שֶׁלֹּא נִתְקַדֵּשׁ עֲשִׂירִי שֶׁלָּהֶן לִקָּרֵב אֶלָּא מֵת קֹדֶם שֶׁיָּצָא. שֶׁהַמִּנְיָן הָרָאוּי פּוֹטֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מת העשירי בדיר כו׳ שהמנין הראוי פוטר.</strong><br><strong> נראה </strong> פשוט בהך דעשירי מאליו הוא קדוש דוקא דליכא רק חד כגון דלא הכניס רק י׳ טלאים בדיר דמבורר על העשירי מי הוא אבל אם נשתיירו הרבה בדיר ואינו מבורר מי הוא העשירי ואינו מתייחס מאליו להנך תשעה אם לא דיעבור בפתחם אחריהם ומבורר מי הוא העשירי. ובזה מיושב מה דמרבה הגמרא מקרא דקדוש יהיה אף אם לא קרא שמו עשירי, דהיינו בכה&quot;ג דיש הרבה בדיר צריך שיעבור דיתברר מי הוא. ומסולק קושיית הלח&quot;מ על רבינו יעו&quot;ש דצריך להך טעמא אם נשתיירו הרבה בדיר ודוק:</p>
               </div>
             </div>
@@ -747,8 +898,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Firstlings 8:12:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-firstlings-8-12-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Firstlings 8:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-8-12">Mishneh Torah, Firstlings 8:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה מוֹנֶה וְהוֹצִיא הַטָּלֶה רֹאשׁוֹ וְרֻבּוֹ מִן הַדִּיר וְחָזַר הֲרֵי הוּא כְּמָנוּי לְכָל דָּבָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה מונה והוציא הטלה ראשו.</strong><br><strong> נ&quot;ב </strong> כן מפורש בתוספתא במקומו:</p>
               </div>
             </div>
@@ -758,6 +914,10 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-firstlings-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-firstlings.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-firstlings-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -778,8 +938,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-firstlings.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ohr-sameach-on-mishneh-torah-firstlings.manifest.json","occurrence_url":"../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-firstlings.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-firstlings.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-firstlings.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-firstlings.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -805,7 +965,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

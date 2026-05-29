@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-reading-the-shema/">Open Mishneh Torah, Reading the Shema</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Reading the Shema</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>496 matched</strong> / 1359 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/nachal-eitan-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -208,8 +209,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 1:1:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-1-1-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-1">Mishneh Torah, Reading the Shema 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פַּעֲמַיִם בְּכָל יוֹם קוֹרְאִין קְרִיאַת שְׁמַע, בָּעֶרֶב וּבַבֹּקֶר. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> ״וּבְשָׁכְבְּךָ וּבְקוּמֶךָ״ בְּשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם שׁוֹכְבִין וְזֶה הוּא לַיְלָה. וּבְשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם עוֹמְדִין וְזֶה הוּא יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה אחת והיא לקרות ק&quot;ש פעמים ביום וכו׳ עד ומצוה להזכיר יציאת מצרים ביום ובלילה שנאמר למען תזכור את יום צאתך מארץ מצרים כל ימי חייך.</strong> והקשה בס׳ צל&quot;ח דלא מנה רבינו למצות זכירת יציאת מצרים למצוה בפני עצמה. וכן הקשה בספר מעיין החכמה. ועיין מ&quot;ש בזה בעל פמ&quot;ג בפתיחתו. ולי אפשר דהיינו טעמא שאין לחשוב אותו במניין המצות משום שפסוק זה לא נאמר בפירוש בלשון צווי אלא בלשון נתינת טעם וכמו שפי׳ הספורנו. ויהיה הטעם איך שיהיה. ומצאתי און לרבינו מדברי ספר הזוהר פרשה ויקהל (דף ר&quot;ב ע&quot;ב) דחשיב ששה מצות שמקיים האדם בתפלתו יראת ה׳ ואהבתו וברכתו וליחדו וברכת כהנים ומסירת נפשו לה׳. וכולל התם מצות זכירת יציאת מצרים במצות יחוד השם הרי דלא חשיב לה למצוה בפני עצמה. והטעם בזה י&quot;ל ע&quot;פ דברי הזוהר שם (דף רט&quot;ז ע&quot;ב) דגאולת מצרים גרמה יחוד בקדושה ועל כן הוא בכלל מצות יחוד. ועיין מ&quot;ש בזה בהל׳ מצה בעה&quot;י.<br><strong> [וראיתי </strong> להשאגת אריה סי׳ י&quot;ב שכתב דאפ&quot;ה אין נשים חייבות בזכירת יציאת מצרים ולא הוי כמצות עשה שאין הזמן גרמא משום שחייבין להזכיר ביום ובלילה דכל אחת הזכרה ומצוה בפני עצמה היא דשל יום ליתא בלילה וכן של לילה ליתא ביום הו&quot;ל זמן גרמא. ואין דבריו מוכרחין די&quot;ל דנשים חייבות בזכירת יציאת מצרים לכו&quot;ע וכדעת המ&quot;א ריש סי׳ ע׳ משום דאמרינן בפסחים (דף קי&quot;ז ע&quot;ב) דילפינן גז&quot;ש קידוש היום מזכירת יציאת מצרים דצ&quot;ל בו יציאת מצרים. וכן ילפינן זכירת יציאת מצרים מקידוש היום כמ&quot;ש בהל׳ חמץ ומצה וכן הוא במדרש רבה סוף פרשת בא. וא&quot;כ ה&quot;נ ילפינן יציאת מצרים מקידוש היום דנשים חייבות דקיי&quot;ל אין גז&quot;ש למחצה. ועוד דאיתקש לאכילת מצה. וזה דלא כמ&quot;ש הש&quot;א בסוף סי׳ י&quot;ג דלא ילפינן יציאת מצרים מקידוש היום. ומיהו יש לדחות דקרא דזכור את היום הזה איירי בליל ט&quot;ו ושם דוקא נשים חייבות.<br><strong> ועפ&quot;ז </strong> יש ליישב מה שהקשה הצל&quot;ח דמנ&quot;ל דעוסק במצוה פטור אף במצוה הנוהג בנשים דמקרא דגבי ק&quot;ש אין ראיה רק דפטור ממצוה שאינה נוהגת בנשים. ולפי מ&quot;ש י&quot;ל דשמעינן מהא דאיתא בירושלמי הובא בתוס׳ ריש פ׳ מי שמתו דכתיב בפרשה למען תזכור את יום צאתך וגו׳ כל ימי חייך ימים שאתה עוסק בחיים ולא ימים שאתה עוסק במתים וא&quot;כ ש&quot;מ דפטור מזכירת יציאת מצרים והוא נוהג בכל כמ&quot;ש וכ&quot;ש דנשים חייבות בסיפור יציאת מצרים בליל פסח. וזה דלא כמ&quot;ש הפמ&quot;ג באו&quot;ח סי׳ ס&quot;ז ותע&quot;ט. וכן בס׳ נ&quot;ש כתב דנשים פטורים וזה אינו]. ודע דבספר יראים סי׳ י&quot;א משמע דלמ&quot;ד ק&quot;ש דאורייתא איכא נמי לאו במבטל ולא קרא מדכתיב השמר לך פן תשכח את ה׳ אלהיך.</p>
               </div>
             </div>
@@ -224,8 +230,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 1:7:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-1-7-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-7">Mishneh Torah, Reading the Shema 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּרָכָה רִאשׁוֹנָה שֶׁלְּפָנֶיהָ בֵּין בַּיּוֹם בֵּין בַּלַּיְלָה פּוֹתֵחַ בָּהּ בְּבָרוּךְ וְחוֹתֵם בָּהּ בְּבָרוּךְ. וּשְׁאָר בִּרְכוֹתֶיהָ חוֹתֵם בְּכָל אַחַת מֵהֶן בְּבָרוּךְ וְאֵין לָהֶם פְּתִיחָה בְּבָרוּךְ. בְּרָכוֹת אֵלּוּ עִם שְׁאָר כָּל הַבְּרָכוֹת הָעֲרוּכוֹת בְּפִי כָּל יִשְׂרָאֵל עֶזְרָא הַסּוֹפֵר וּבֵית דִּינוֹ תִּקְּנוּם וְאֵין אָדָם רַשַּׁאי לִפְחֹת מֵהֶם וְלֹא לְהוֹסִיף עֲלֵיהֶם. מָקוֹם שֶׁהִתְקִינוּ לַחְתֹּם בְּבָרוּךְ אֵינוֹ רַשַּׁאי שֶׁלֹּא לַחְתֹּם. וּמָקוֹם שֶׁהִתְקִינוּ שֶׁלֹּא לַחְתֹּם אֵינוֹ רַשַּׁאי לַחְתֹּם. מָקוֹם שֶׁהִתְקִינוּ שֶׁלֹּא לִפְתֹּחַ בְּבָרוּךְ אֵינוֹ רַשַּׁאי לִפְתֹּחַ. מָקוֹם שֶׁהִתְקִינוּ לִפְתֹּחַ אֵינוֹ רַשַּׁאי שֶׁלֹּא לִפְתֹּחַ. כְּלָלוֹ שֶׁל דָּבָר כָּל הַמְשַׁנֶּה מִמַּטְבֵּעַ שֶׁטָּבְעוּ חֲכָמִים בַּבְּרָכוֹת הֲרֵי זֶה טוֹעֶה וְחוֹזֵר וּמְבָרֵךְ כַּמַּטְבֵּעַ. וְכָל שֶׁאֵינוֹ אוֹמֵר אֱמֶת וְיַצִּיב בְּשַׁחֲרִית וֶאֱמֶת וֶאֱמוּנָה בְּעַרְבִית לֹא יָצָא יְדֵי חוֹבָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מקום שהתקינו לחתום בברוך וכו׳ כל המשנה ממטבע שטבעו חכמים בברכה הרי זה טועה וחוזר ומברך כמטבע.</strong> הכ&quot;מ מביא מה שהקשה הרמ&quot;ך מההיא עובדא דמנימין רעיא דאמר בריך רחמנא מאריה דהאי פיתא ששינה המטבע ואעפ&quot;כ יצא והניח בצ&quot;ע. ויש ליישב ע&quot;פ מ&quot;ש בעצמו לקמן בריש הלכות ברכות דלא אמר רבינו שחוזר ומברך אלא כששינה המטבע בפתיחה או בחתימה אבל כששינה רק באמצע הברכה יצא. ולפ&quot;ז י&quot;ל דההיא דמנימין רעיא איירי שחתם ג&quot;כ בברוך ולא שינה רק באמצע ומשו&quot;ה יצא. וכן הוא דעת הרשב&quot;א הובא בב&quot;י או&quot;ח סי׳ קפ&quot;ז. ועי׳ תוס׳ בסוטה (דף ל&quot;ג ע&quot;א) והפר&quot;ח בסי׳ נ&quot;ט כתב דהא דתנן מקום שאמרו להאריך אינו רשאי לקצר אע&quot;פ שאינו רשאי אם קיצר יצא והביא ראיה ממנימין רעיא דאיירי שלא חתם ודלא כהרשב&quot;א. ולא הזכיר דעת רבינו שהוא ג&quot;כ כהרשב&quot;א וס&quot;ל דאם קיצר לא יצא. ומה שהקשה מדתניא הכל הולך אחר החיתום י&quot;ל דשאני התם דמ&quot;מ פתח ג&quot;כ בברוך אלא ששינה בינתיים וכמו שהעתיק רבינו בדין שאח&quot;ז.</p>
               </div>
             </div>
@@ -240,8 +251,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 1:9:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-1-9-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-9">Mishneh Torah, Reading the Shema 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵיזֶה הוּא זְמַן קְרִיאַת שְׁמַע בַּלַּיְלָה. מִצְוָתָהּ מִשְּׁעַת יְצִיאַת הַכּוֹכָבִים עַד חֲצִי הַלַּיְלָה. וְאִם עָבַר וְאִחֵר וְקָרָא עַד שֶׁלֹּא עָלָה עַמּוּד הַשַּׁחַר יָצָא יְדֵי חוֹבָתוֹ שֶׁלֹּא אָמְרוּ עַד חֲצוֹת אֶלָּא כְּדֵי לְהַרְחִיק אָדָם מִן הַפְּשִׁיעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איזהו זמן ק&quot;ש בלילה מצותה משעת צאת הכוכבים עד חצי הלילה וכו׳.</strong> וכתב הכ&quot;מ שפסק כחכמים דאמרו עד חצות ואמרינן בגמ׳ דחכמים ס&quot;ל דזמנה עד שיעלה עמוד השחר אלא שאמרו עד חצות כדי להרחיק את האדם מן העבירה. ובשאגת אריה סי׳ ד׳ הקשה דהא בגמ׳ אמר רב יהודה אמר שמואל הלכה כרבן גמליאל דאמר דזמנה עד שיעלה עמוד השחר ומפרש בגמ׳ דלית ליה שום סייג בזה אלא דמותר להמתין לכתחילה. והנה כבר הרגיש בזה בחידושי הרשב&quot;א. ויש לי ליישב דעת רבינו דס&quot;ל דאין לנו לפסוק להקל וכיחיד נגד רבים בדאורייתא. ואין ראיה מדפסק שמואל כוותיה דרבן גמליאל לקולא די&quot;ל דאזיל לטעמיה דאמר רב יהודה אמר שמואל בפרק מי שמתו (ברכות דף כ&quot;א) ספק קרא ק&quot;ש ספק לא קרא אינו חוזר וקורא ויהיב טעמא דק&quot;ש דרבנן. וא&quot;כ מהאי טעמא פסק רב יהודה אמר שמואל נמי להקל בפלוגתא דר&quot;ג וחכמים וסבר דלא עשו סייג בזמן ק&quot;ש דערב כיון דאינו מדאורייתא. אבל לדידן דקיי&quot;ל דספק קרא ק&quot;ש חוזר וקורא משום דק&quot;ש דאורייתא וכדאיתא לקמן בפ&quot;ב פסקינן נמי לחומרא כחכמים. ומצאתי און לדבר זה מהירושלמי דאיתא שם דר׳ ייסא בשם ר׳ יוחנן אמר הלכה כחכמים והיינו ודאי לעניין סייג דפליגי ביה והיינו דלא כשמואל דפסק כר&quot;ג. והוא משום דר׳ יוחנן סבר ק&quot;ש דאורייתא וכן משמע בבבלי דלא פליג ר&quot;י על ר׳ אלעזר תלמידו דחוזר וקורא וכמ&quot;ש לקמן אי&quot;ה.</p>
               </div>
             </div>
@@ -256,8 +272,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 1:13:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-1-13-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-13">Mishneh Torah, Reading the Shema 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אַחַר שָׁלֹשׁ שָׁעוֹת בַּיּוֹם אֲפִלּוּ הָיָה אָנוּס לֹא יָצָא יְדֵי חוֹבַת קְרִיאַת שְׁמַע בְּעוֹנָתוֹ. אֶלָּא הֲרֵי הוּא כְּקוֹרֵא בַּתּוֹרָה. וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ כָּל הַיּוֹם אֲפִלּוּ אִחֵר וְקָרָא אַחַר שָׁלֹשׁ שָׁעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא אחר שלש שעות ביום אפילו היה אנוס לא יצא ידי חובת ק&quot;ש בעונתה אלא הרי הוא כקורא בתורה.</strong> בס׳ זהב שיבה הקשה דאמאי השמיטו רבינו ושארי פוסקים הא דאיתא בפ&quot;ק דברכות (דף י׳ ע&quot;ב) אמר ר׳ מני גדול הקורא ק&quot;ש בעונתה יותר מהעוסק בתורה ותירוצו דחוק מאוד. והנה בספרי באר אברהם בחידושי לברכות כתבתי ליישב דעת הפוסקים ע&quot;פ דברי הרשב&quot;א שכתב בחידושיו דהא דנקט ר׳ מני תורה היא לאו דוקא. דא&quot;כ פשיטא דאף היא תורה ועדיפא משום דבעונתה אלא ר׳ מני אפילו מן השונה קאמר. והתוס׳ כתבו דר׳ מני איירי דגדול יותר מעוסק בתורה בזמן אחר שלא בשעת ק&quot;ש. ולפי זה לא שייך מילתא דר׳ מני לומר דגדול קורא ק&quot;ש בעונתה יותר מעוסק במשנה בפעם אחר רק למ&quot;ד דגדולה קדושת בהכ&quot;נ מקדושת בהמ&quot;ד. דאילו למ&quot;ד דגדול קדושת בהמ&quot;ד מבהכ&quot;נ ודאי דלא סבר לדר׳ מני דלדידיה בית הכנסת גדול דקורין בו ק&quot;ש בעונתה דגדול ממשנה ששונין כל היום בבהמ&quot;ד ואנן קיימא לן דקדושת בית המדרש גדול וש&quot;מ דמשנה עדיפא מק&quot;ש בעונתה. ולפ&quot;ז לעניין מקרא מודו הפוסקים דק&quot;ש בעונתה עדיפא מיניה. והא דלא כתבו כן הוא משום דמילתא דפשיטא הוא משום דאף היא תורה ועדיפא משום דבעונתה וכמ&quot;ש הרשב&quot;א.<br><strong> אבל </strong> באמת נראה שאין דברי הרשב&quot;א מוכרחים דשפיר איכא למימר דר׳ מני גופיה לא קאמר דגדול רק מקורא מקרא. וכי תימא דא&quot;כ פשיטא שאף היא תורה וכו׳ י&quot;ל כמ&quot;ש בס׳ פני יהושע דנפק&quot;מ דאשמועינן דגדולה ק&quot;ש בעונתה אע&quot;פ שלא כוון רק בפסוק ראשון דקיי&quot;ל דיוצא ידי חובת ק&quot;ש. וכה&quot;ג הקורא בתורה שלא בכוונה אינו יוצא ידי חובת תלמוד תורה אא&quot;כ שמכוון לידע ולהבין מה הוא לומד כדי שהלימוד יביאנו לידי מעשה כי הוא העיקר. וא&quot;כ תקשי על רבינו והפוסקים דלא הוה להו להשמיט למימרא דר׳ מני דזה לא הוי תו מילתא דפשיטא. ומדהשמיטוהו ודאי דלא ס&quot;ל כוותיה והרי לא נמצא חולק עליו. אלא נראה ליישב דעת רבינו ושאר פוסקים דס&quot;ל דמדרבי מני אין ראיה לדידן די&quot;ל דרבי מני אזיל לשיטתו דאמר בירושלמי כל המקיים שבע ביום הללתיך כאילו קיים והגית בו יומם ולילה. ומשמע דס&quot;ל כמ&quot;ד במנחות (דף צ&quot;ט ע&quot;ב) אפילו לא קרא אדם אלא ק&quot;ש שחרית וערבית קיים לא ימוש ומשו&quot;ה אמר דגדול הקורא ק&quot;ש בעונתה מקורא בתורה בפעם אחרת כיון דגם בק&quot;ש מיפטר מתלמוד תורה. אבל למאי דלא קיי&quot;ל כההוא מ&quot;ד אלא דלא קיים ולא ימוש ספר התורה הזה מפיך והגית בו יומם ולילה אין סברא לומר דגדול ק&quot;ש בעונתה יותר מקורא בתורה פעם אחרת כיון דאינו יוצא בק&quot;ש חובת תלמוד תורה איך תהיה גדולה ממנה הא קיי&quot;ל דתלמוד גדול ושפיר עבדו שהשמיטו להא דר׳ מני. ואתי שפיר ג&quot;כ דלא חשו לדיוקא דר׳ מני דדייק מילתיה מלישנא דמתני׳ דברכות דקתני הקורא מכאן ואילך לא הפסיד כאדם הקורא בתורה מכלל דקורא בעונתה עדיף מקורא בתורה. דמתני׳ אפשר דאתיא כר׳ שמעון דאית ליה במנחות דקיים בק&quot;ש לא ימוש ואנן קיי&quot;ל כרבנן. אי נמי דאתיא מתני׳ כמ&quot;ד דמעשה גדול מתלמוד תורה וכדאיתא בסוף פ&quot;ק דקדושין (דף מ׳ ע&quot;ב) ואנן לא קיי&quot;ל כוותיה אלא כי הנך דנמנו וגמרו שם תלמוד גדול וכו׳ והכי תנן בפ&quot;א דפיאה.</p>
               </div>
             </div>
@@ -273,8 +294,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 2:8:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-2-8-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-8">Mishneh Torah, Reading the Shema 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא קְרִיאַת שְׁמַע לֹא יִרְמֹז בְּעֵינָיו וְלֹא יִקְרֹץ בִּשְׂפָתָיו וְלֹא יַרְאֶה בְּאֶצְבְּעוֹתָיו כְּדֵי שֶׁלֹּא תִּהְיֶה קְרִיאָתוֹ עַרְאַי. וְאִם עָשָׂה כֵּן אַף עַל פִּי שֶׁיָּצָא יְדֵי חוֹבָתוֹ הֲרֵי זֶה מְגֻנֶּה. וְצָרִיךְ לְהַשְׁמִיעַ לְאָזְנוֹ כְּשֶׁהוּא קוֹרֵא וְאִם לֹא הִשְׁמִיעַ לְאָזְנוֹ יָצָא. וְצָרִיךְ לְדַקְדֵּק בְּאוֹתִיּוֹתָיו וְאִם לֹא דִּקְדֵּק יָצָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וצריך להשמיע לאזנו כשהוא קורא ואם לא השמיע לאזנו יצא.</strong> וכתב הכ&quot;מ שכתב הרב מנוח להשמיע לאזנו שיחתוך קריאתו בשפתיו לא שיקרא בלבו עכ&quot;ל. משמע דקאי אמ&quot;ש רבינו דצריך להשמיע לאזנו פי׳ לכתחילה ואהא קאמר דהיינו שיחתוך קריאתו בשפתיו לא שיקרא בלבו. מיהו אם עבר ולא השמיע לאזנו היינו נמי שלא חתך קריאתו בשפתיו אלא שהרהר בלבו יצא בדיעבד. וכן יש ללמוד מדברי הב&quot;י שכתב בטור או&quot;ח סי׳ קפ&quot;ה דרבינו פסק כרבינא דאמר בפרק מי שמתו (ברכות דף כ׳) הרהור כדיבור דמי. וא&quot;כ מוכח דגבי ק&quot;ש נמי סבר רבינו כן שהרי רבינא קאי התם אמתניתין דבעל קרי מהרהר דאיירי בק&quot;ש. אך קשה דא&quot;כ אמאי לא כתב רבינו כאן בפירוש הך רבותא ומדכתב אם לא השמיע לאזנו יצא משמע דמ&quot;מ הוציא בשפתיו דאי איתא דסגי בלב הו&quot;ל לומר בכאן כלשונו שכתב בפ&quot;א דברכות דין ז׳ גבי ברכות אם לא השמיע לאזנו יצא בין שהוציא בשפתיו ובין שברך בלבו. ודוחק לומר שסמך כאן אמ&quot;ש שם דהא יש לחלק בין ק&quot;ש לשאר ברכות דבהו לא כתיב דיבור אלא בק&quot;ש דכתיב בה דיבור אפשר דמשו&quot;ה אין הרהור בכלל.<br><strong> וכ&quot;כ </strong> באמת השאגת אריה בסי׳ ו׳ ובסי׳ כ&quot;ד שכך הוא דעת רבינו וביאר דפסק כרב חסדא דאמר בפ׳ מי שמתו הרהור לאו כדיבור דמי וס&quot;ל דרב חסדא לא פליג אדרבינא אלא בק&quot;ש מהאי טעמא דאמרן דכתיב בה דיבור אבל בשאר ברכות מודה דבהו הרהור כדיבור דמי. ועיי&quot;ש שהביא ראיה לזה ממ&quot;ש רבינו בפכ&quot;ד מהלכות שבת דאסור לאדם שידבר בחפיציו בשבת שנאמר אם תשיב משבת רגליך וגו׳ ודבר דבר דיבור אסור הרהור מותר אלמא דהרהור לאו בכלל דבור דקרא. ולדידי ראיה זו אינה מכרחת לכאן דאיכא למימר דשאני ההיא דשבת דהתם כתיב ב׳ פעמים דבור וכן פירש הרי&quot;ף בעין יעקב בפרק ואלו קשרים דמדכתיב ב׳ פעמים דבור הוא דממעט הרהור. וא&quot;כ גבי ק&quot;ש דלא כתיב רק פעם אחת דבור אפשר דלא ממעטין הרהור. ונראה דזו היתה דעת ריא&quot;ז דגבי ק&quot;ש פסק כרבינא דהרהור כדבור ובשבת פסק דהרהור מותר. ותמה עליו בשאגת אריה דדבריו סותרים זה את זה. אמנם לפי מ&quot;ש נסתלקה התמיה ואין בדבריו סתירה כלל וזה ברור בדעת ריא&quot;ז. ומ&quot;מ דעת רבינו נראה כדברי הש&quot;א דכל היכא דכתיב דיבור ממעט הרהור. וכן יש להוכיח מסוגיא דשבת פרק שואל (שבת דף ק&quot;נ) דאף היכא דכתיב פעם אחת דיבור הרהור מותר עיי&quot;ש וכ&quot;כ האחרונים באו&quot;ח. וכן יש ללמוד מדקדוק לשון רבינו לקמן בפ&quot;ג דין ט&quot;ז דגבי ערוה לא כתב רק דאסור לקרות כנגדה אבל לא כתב דאסור להרהר בד&quot;ת כנגדה כמ&quot;ש גבי בית הכסא ומרחץ בדין ד׳ ש&quot;מ כדאמרן. וא&quot;כ מזה נמי יש ללמוד בק&quot;ו דאם ממעט הרהור מדבור להקל כ&quot;ש דממעט הרהור מדבור להחמיר שאינו יוצא ידי חובת ק&quot;ש.<br><strong> והנה </strong> ראיתי לבעל פר&quot;ח בספרו מים חיים שעלה ג&quot;כ על דעתו לחלק בין שאר ברכות לק&quot;ש דכתיב בה דיבור ודחה חילוק זה מסוגיא דפרק מי שמתו (ברכות דף כ&quot;א) דפריך התם אדרב חסדא מברכת המזון ומשמע דדמי לק&quot;ש וכי היכי דסבר ר&quot;ח גבי ק&quot;ש הרהור לאו כדיבור דמי הוא הדין בשאר ברכות. ולדידי דיחוי זה חוזר ונראה די&quot;ל דשאני התם גבי בעל קרי דאיירי התם שאי אפשר בדיבור ובכה&quot;ג קושטא דלא מחלק ר&quot;ח בין ק&quot;ש לשאר ברכות דדיבור מעכב בהו דהו&quot;ל אינו ראוי לבילה דקיי&quot;ל דבילה מעכבת בו. ורב חסדא לטעמיה שפסק (דף ט&quot;ו ע&quot;ב) כר׳ יהודה משום ר׳ אלעזר בן עזריה דלכתחילה צריך להשמיע לאזנו וכיון שאינו ראוי לכך מעכב ואפשר דס&quot;ל דצריך להשמיע לאוזנו מהתורה. אבל רבינו איירי במי שהיה אפשר לו לדבר וקרא או ברך בלבו ובכה&quot;ג דמקרי ראוי לבילה דקיי&quot;ל שאינה מעכבת שפיר איכא לחלק בין שאר ברכות לק&quot;ש אליבא דר&quot;ח דבק&quot;ש לא הוי כדבור משום דמיעט בה קרא דכתיב דיבור ובשאר ברכות דליכא מיעוטא אין דיבור מעכב בהן ואף בהרהור יצא כל שראוי מיהא לדיבור. ועוד יתבאר בזה בהלכות ברכות בס&quot;ד.</p>
               </div>
             </div>
@@ -289,8 +315,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 2:13:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-2-13-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-13">Mishneh Torah, Reading the Shema 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סָפֵק קָרָא קְרִיאַת שְׁמַע סָפֵק לֹא קָרָא חוֹזֵר וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. אֲבָל אִם יָדַע שֶׁקָּרָא וְנִסְתַּפֵּק לוֹ אִם בֵּרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ אוֹ לֹא בֵּרֵךְ אֵינוֹ חוֹזֵר וּמְבָרֵךְ. קָרָא וְטָעָה יַחֲזֹר לַמָּקוֹם שֶׁטָּעָה. נֶעֱלַם מִמֶּנּוּ בֵּין פָּרָשָׁה לְפָרָשָׁה וְאֵינוֹ יוֹדֵעַ אֵי זוֹ פָּרָשָׁה הִשְׁלִים וְאֵי זוֹ צָרִיךְ לְהַתְחִיל חוֹזֵר לְפָרָשָׁה רִאשׁוֹנָה שֶׁהוּא <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ספק קרא ק&quot;ש ספק לא קרא חוזר וקורא ומברך לפניה ולאחריה.</strong> וכתב הכ&quot;מ שפסק כר׳ אלעזר דסבר ק&quot;ש דאורייתא ולא כשמואל דסבר ק&quot;ש דרבנן ונתן טעם לזה מדאשכחן כמה ברייתות דדייני דיני דק&quot;ש מקראי ומשמע דראיה גמורה נינהו ולשמואל נצטרך לומר דאסמכתות הם. וכבר כתבו התוס׳ בכיוצא בזה בסוטה (דף ל&quot;ב ע&quot;ב) ועיי&quot;ש שכתבו דדוחק לומר דכל הני דמשמע מינייהו דמדאורייתא הוי אסמכתא בעלמא. דאין שיטת הגמרא לדייק כל כך על אסמכתא עכ&quot;ד. וזה אינו הכרח כל כך דהא כתב הרא&quot;ש בחולין פרק גיד הנשה דעל אסמכתא גמורה דרך הגמ׳ לדקדק כמו על דרשא גמורה וא&quot;כ אין מזה ראיה דק&quot;ש דאורייתא. ותוס׳ גופייהו כתבו במנחות (דף מ&quot;ג ע&quot;ב) דדרשא דהתם מקרא דוראיתם אותו וזכרתם לעניין התחלת זמן ק&quot;ש משיכיר בין תכלת ללבן אסמכתא בעלמא הוא דק&quot;ש דרבנן. ובמעדני יו&quot;ט כתב דמוכח דקיי&quot;ל כמ&quot;ד ק&quot;ש דאורייתא מסוגיא דסוכה (דף ל&quot;ח) וכוונתו מדמפרש התם טעמא דמתניתין דפ&quot;ק דשבת גבי לא ישב אדם לפני הספר סמוך למנחה עד שיתפלל ולא לאכול וכו׳ ואם התחילו אין מפסיקין דהוא משום דתפלה דרבנן אבל בדאורייתא כגון לולב ביו&quot;ט ראשון מפסיקין. וא&quot;כ לפ&quot;ז על כרחך ק&quot;ש ג&quot;כ דאורייתא דהא תנן התם דמפסיקין לק&quot;ש ואי הוי דרבנן אמאי מפסיקין. אך באמת זה אינו ראיה כלל דלפי דבריו תקשי מתני׳ דפ&quot;ק דשבת למ&quot;ד ק&quot;ש דרבנן דא&quot;כ אמאי מפסיקין לק&quot;ש טפי מלתפלה.<br><strong> אמנם </strong> בירושלמי איתא אמוראי דמפרשי טעמא דמתניתין דשבת דק&quot;ש זמנה קבוע ותפלה אין זמנה קבוע (ופירושו הוא דתפלה יש לה תשלומין בזמן תפלה שאחריה אבל לקריאת שמע אין תשלומין וכהאי גוונא פירש המעדני יו&quot;ט לפירוש רש&quot;י בברכות (ריש דף ט&quot;ו) עיין לקמן בפרק ג׳ שהארכתי בזה אבל מ&quot;ש בקרבן העדה הוא דחוק ועיין שם). ועוד איתא שם טעם אחר דק&quot;ש א&quot;צ כוונה ותפלה צריכה כוונה. והני טעמי שייכי אף למ&quot;ד ק&quot;ש דרבנן. וא&quot;כ הא דנקט בסוגיא דסוכה דלולב חמיר מתפלה מפני שהוא דאורייתא טעמא דפסיקא נקט דמפני שהוא דאורייתא ודאי צריך להפסיק אבל אינו מכריח שיהא טעם זה דוקא נמי גבי ק&quot;ש דהתם איכא טעם אחר דמפסיקין לה אפילו אי הוי דרבנן כנזכר ועוד איכא למימר דגבי ק&quot;ש מפסיקין אפילו הוי דרבנן משום שיש בה קבלת עול מלכות שמים וכ&quot;כ בשאגת אריה בסי׳ א׳. ולפ&quot;ז אין מסוגיא דסוכה ראיה דק&quot;ש דאורייתא. אלא י&quot;ל דהיינו טעמא דפסק רבינו והפוסקים כר׳ אלעזר דספק קרא חוזר וקורא ולא כשמואל ע&quot;פ מ&quot;ש לעיל בפ&quot;א דמשמע התם דר׳ יוחנן נמי ס&quot;ל כר&quot;א ולא פליג עליה במאי דאמר דספק קרא חוזר וקורא אלא במאי דקאמר דבתפלה אין חוזר מספק אבל בק&quot;ש לא פליג עליה. ויש ראיה לזה ג&quot;כ מהירושלמי וכמ&quot;ש. ועוד ראיה מהירושלמי דריש ברכות דמסיק התם דספק קרא חוזר וקורא ודייק כן מברייתא עיי&quot;ש. ושוב ראיתי בס׳ יראים סי׳ י&quot;ג שהעתיק הגירסא רבנן דבי ר׳ חנינא סברי ק&quot;ש דאורייתא וכתב דקיי&quot;ל כר&quot;ח דקם ליה רב יוסף התם בשיטתיה. ועוד כתב דסוגיא דשמעתא פ׳ מי שמתו כר&quot;ח אזלא.</p>
               </div>
             </div>
@@ -306,8 +337,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 3:1:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-3-1-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-1">Mishneh Torah, Reading the Shema 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת שְׁמַע רוֹחֵץ יָדָיו בַּמַּיִם קֹדֶם שֶׁיִּקְרָא. הִגִּיעַ זְמַן קְרִיאָתָהּ וְלֹא מָצָא מַיִם קֹדֶם שֶׁיִּקְרָא לֹא יְאַחֵר קְרִיאָתָהּ וְיֵלֵךְ לְבַקֵּשׁ מַיִם אֶלָּא מְקַנֵּחַ יָדָיו בֶּעָפָר אוֹ בִּצְרוֹר אוֹ בְּקוֹרָה וְכַיּוֹצֵא בָּהֶן וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגיע זמן ק&quot;ש ולא מצא מים קודם שיקרא לא יאחר קריאתה וילך לבקש מים אלא מקנח ידיו בעפר וכו׳.</strong> וכתב הכ&quot;מ בפרק היה קורא בתורה (דף ט&quot;ו) לייט רב חסדא אמאן דמהדר אמיא בעידן צלותא וה&quot;מ לעניין ק&quot;ש אבל לתפלה בעי להדורי ויתבאר בפ&quot;ד מהלכות תפלה וטעמא דמילתא דכיון דק&quot;ש דאורייתא החמירו בה שמא יעבור הזמן. והרב מנוח כתב דטעמא משום דק&quot;ש זמנה קצר ואולי יעבור אבל תפלה זמנה ארוך יותר לא חיישינן כולי האי שמא תעבור ע&quot;כ. ועדיפא מיניה ה&quot;ל לרב מנוח למימר לפי מה שנתבאר לעיל בסמוך דתפלה יש לה תשלומין לאחר זמנה אבל לק&quot;ש אין תשלומין. וכ&quot;כ המעדני יו&quot;ט והבאתי ראיה לזה מהירושלמי. מיהו באו&quot;ח סי׳ נ&quot;ח מביא בב&quot;י מחלוקת הפוסקים בדין ק&quot;ש אם יש לה תשלומין ואפשר דרב מנוח סבר כמ&quot;ד דגם לק&quot;ש יש תשלומין ומשו&quot;ה לא חמירא מתפלה אי לאו משום דעיקר זמן הקבוע לק&quot;ש קצר מזמן הקבוע לתפלה. והאחרונים הביאו ראיה דיש תשלומין למבטל ק&quot;ש בשוגג או באונס כמו לתפלה מסוגיא דריש פ׳ תפלת השחר (ברכות דף כ&quot;ו) דמייתי ברייתא מעוות לא יוכל לתקן זה שבטל ק&quot;ש של שחרית או של ערבית או תפלה וכו׳ ומוקי לה שבטל במזיד דוקא משמע דבשוגג ואונס יש השלמה גם לק&quot;ש. ובס׳ פמ&quot;ג כתב דדוקא למ&quot;ד ק&quot;ש דרבנן תקנו השלמה כמו בתפלה אבל למ&quot;ד ק&quot;ש מן התורה למה יעשו חכמים תיקון השלמה. ולא נזכרו כלל מדברי הירושלמי שזכרתי לעיל דמוכחא דגם למ&quot;ד ק&quot;ש דרבנן לא תקנו בה השלמה דמשו&quot;ה קרי לק&quot;ש זמנה קבוע ולתפלה אין זמנה קבוע כיון דמהני בה תיקון אחר זמנה ולא מהני בק&quot;ש.<br><strong> אמנם </strong> נ&quot;ל די&quot;ל שאין מחלוקת בין הירושלמי והבבלי דאפילו נימא דיש תשלומין לק&quot;ש שנתבטלה בזמנה בשוגג או באונס היינו לקריאת הפרשיות אבל לברכות שלפניה ודאי לא שייך תשלומין כלל דאין לומר יוצר אור בערבית ולא מעריב ערבים בשחרית לאחר שהגיע זמן ק&quot;ש אחרת. דהא צריך להקדים חובת שעתא ברישא ואיך יאמר ערבים לאחר שאמר יוצר אור וכן בהיפך. וא&quot;כ לא דמי תשלומין דק&quot;ש לתשלומין דתפלה דהויא השלמה מעליא בכולה כאילו היתה בזמנה משא&quot;כ בק&quot;ש שאין התשלומין בשלימות כמו בזמנה. והיינו דקאמר בירושלמי אהא דתנן מפסיקין לק&quot;ש ואין מפסיקין לתפלה דטעמא דק&quot;ש זמנה קבוע ותפלה אין זמנה קבוע. דתפלה יכולה להשתלם בכ&quot;מ לאחר זמנה כבזמנה אבל ק&quot;ש כתיקונה בברכותיה זמנה קבוע ואין יכולה להשתלם אחר זמנה כבזמנה ולכך צריך להפסיק בשביל לקרותה בזמנה. וא&quot;כ ה&quot;נ מהאי טעמא אין מהדר בה אמיא בהגיע זמנה. ועפ&quot;ז יש לפרש מתניתין דריש ברכות בעובדא דבני רבן גמליאל וכמ&quot;ש בחידושי.</p>
               </div>
             </div>
@@ -322,8 +358,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 3:2:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-3-2-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-2">Mishneh Torah, Reading the Shema 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין קוֹרִין לֹא בְּבֵית הַמֶּרְחָץ וְלֹא בְּבֵית הַכִּסֵּא אַף עַל פִּי שֶׁאֵין בּוֹ צוֹאָה וְלֹא בְּבֵית הַקְּבָרוֹת וְלֹא בְּצַד הַמֵּת עַצְמוֹ וְאִם הִרְחִיק אַרְבַּע אַמּוֹת מִן הַקֶּבֶר אוֹ מִן הַמֵּת מֻתָּר לִקְרוֹת. וְכָל מִי שֶׁקָּרָא בְּמָקוֹם שֶׁאֵין קוֹרִין בּוֹ חוֹזֵר וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין קורין לא בבית המרחץ וכו׳ ולא בצד המת וכו׳ וכל מי שקרא במקום שאין קורין בו חוזר וקורא.</strong> ופי׳ הכ&quot;מ דקאי ג&quot;כ על מי שקרא בצד המת דחוזר וקורא אע&quot;ג דאינו אלא משום לועג לרש דכיון דעבר על דברי חכמים קנסוהו לחזור ואפילו אם היה שוגג כדי שיזהר פעם אחרת ע&quot;כ. ויש לי להביא ראיה לסברא זו של הכ&quot;מ דהיכא דקרא במקום שאמרו חכמים שלא יקרא צריך לחזור מדברי התוס׳ שכתבו בפ&quot;ק דברכות (דף י&quot;א) גבי הא דא&quot;ל לר׳ טרפון כדאי היית לחוב מפני שקרא בהטייה שאינו כלום לבית הלל ומשמע דאף דיעבד אינו יוצא י&quot;ח ק&quot;ש אע&quot;ג שלא עבר אדאורייתא קנסוהו רבנן לחזור כיון שעבר על דבריהן. וכ&quot;כ התוס׳ בריש סוכה (דף ג׳) והר&quot;ן שם.</p>
               </div>
             </div>
@@ -338,8 +379,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Reading the Shema 3:5:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-reading-the-shema-3-5-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Reading the Shema 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-5">Mishneh Torah, Reading the Shema 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּבָרִים שֶׁל חֹל מֻתָּר לְאָמְרָן בִּלְשׁוֹן קֹדֶשׁ בְּבֵית הַכִּסֵּא. וְכֵן הַכִּנּוּיִים כְּגוֹן רַחוּם וְחַנּוּן וְנֶאֱמָן וְכַיּוֹצֵא בָּהֶן מֻתָּר לְאָמְרָן בְּבֵית הַכִּסֵּא. אֲבָל הַשֵּׁמוֹת הַמְיֻחָדִים וְהֵן הַשֵּׁמוֹת שֶׁאֵינָן נִמְחָקִין אָסוּר לְהַזְכִּירָן בְּבֵית הַכִּסֵּא וּבְבֵית הַמֶּרְחָץ יָשָׁן. וְאִם נִזְדַּמֵּן לוֹ לְהַפְרִישׁ מִן דָּבָר הָאָסוּר בְּבֵית הַמֶּרְחָץ אוֹ בְּבֵית הַכִּסֵּא מַפְרִישׁ וַאֲפִלּוּ בִּלְשׁוֹן קֹדֶשׁ וּבְעִנְיְנֵי קֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכנוין כגון רחום וחנון וכיוצא בהן מותר לאמרן בבית הכסא.</strong> ובהשגות כתב הראב&quot;ד לא מצינו שם רחום כי אם על הבורא ואסור לאומרו בביהכ&quot;ס. ועיין מ&quot;ש הכ&quot;מ בשם רבינו יונה דאשכחן נמי על האדם דכתיב חנון ורחום וצדיק. והנה הפר&quot;ח באו&quot;ח סי׳ פ&quot;ה כתב דמסוגיא דשבועות (דף ל&quot;ה ע&quot;ב) מוכח בהדיא כהראב&quot;ד גבי הא דתנן התם משביע אני עליכם בחנון ורחום הרי אלו חייבין דאמר אביי מתניתין במי שהוא חנון במי שהוא רחום קאמר. הרי משמע דסתם רחום וחנון אינו אלא על הבורא. וכן הקשה בס׳ מרכבת המשנה ובס׳ מעשה רוקח. ונראה דלא ראו הגדולים הללו דברי הריטב&quot;א שכתב בחידושיו לשבועות שם לחלק בזה בין לשון בני אדם ללשון מקרא דהתם בסוגיא איירי בלשון בני אדם דאין קורין רחום וחנון למידי אחרינא רק לה׳ ולכך הוי שבועה דבתר לשון בני אדם אזלינן בנדרים ושבועות אבל בלשון מקרא שפיר קרא רחום וחנון לצדיק ולפיכך מותר לאמרו בבהכ&quot;ס וכדברי הר&quot;י שכתב כאן הכ&quot;מ. ועוד י&quot;ל דעת רבינו לפי שיטתו גופיה דנראה מדבריו בהלכות שבועות פ&quot;ב שמפרש הסוגיא דשבועות הנזכר דאיירי שהמשביע אמר בפירוש במי ששמו חנון במי ששמו רחום. ופי׳ הלח&quot;מ שם דמשו&quot;ה הוי שבועה דודאי אין מי ששמו רחום וחנון רק ה׳ לבדו שאנו קוראין לו כך מצד פעולותיו שהוא רחום וחנון. אבל אם לא אמר במי ששמו רחום אפשר שנשבע באדם אחד שהוא רחמן וחונן דלים ע&quot;כ. ולפ&quot;ז אתי שפיר ומעיקרא לק&quot;מ מההיא דשבועות אמאי דמתיר רבינו לומר רחום בביהכ&quot;ס. [וא&quot;ת דתקשי לדעת רבינו הא דאיתא בברכות (דף מ׳ ע&quot;ב) דאם אמר בריך רחמנא יצא משמע דהוא כהזכרת השם ולפ&quot;ד רבינו הרי אין זה כנוי לה׳ לבד. ואפשר דרבינו ס&quot;ל דקושטא דלאו למימרא דסגי ברחמנא לחוד אלא כגון שאמר רחמנא אלהנא וכדמשמע נמי מדברי ר&quot;י בפ&quot;ח. אי נמי דשאני התם גבי ברכות דאומר ג&quot;כ מלכא דעלמא ועיין מ&quot;ש בפ&quot;י דברכות].</p>
               </div>
             </div>
@@ -349,6 +395,10 @@
               <a href="#chapter-nachal-eitan-on-mishneh-torah-reading-the-shema-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -369,8 +419,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-reading-the-shema.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/nachal-eitan-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-reading-the-shema.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-reading-the-shema.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-reading-the-shema.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -396,7 +446,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

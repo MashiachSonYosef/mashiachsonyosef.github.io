@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-torah-study/">Open Mishneh Torah, Torah Study</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Torah Study</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">3 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>307 matched</strong> / 621 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-torah-study.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-torah-study-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -202,8 +203,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Torah Study 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-torah-study-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Torah Study 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-1-1">Mishneh Torah, Torah Study 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִתַּלְמוּד תּוֹרָה. אֲבָל קָטָן אָבִיו חַיָּב לְלַמְּדוֹ תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יא יט)</span> &quot;וְלִמַּדְתֶּם אֹתָם אֶת בְּנֵיכֶם לְדַבֵּר בָּם&quot;. וְאֵין הָאִשָּׁה חַיֶּבֶת לְלַמֵּד אֶת בְּנָהּ. שֶׁכָּל הַחַיָּב לִלְמֹד חַיָּב לְלַמֵּד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה יב </strong> ללמוד תורה וללמדה וזה הנקרא תלמוד תורה והוא אמרו ושננתם לבניך וכשם שחייב ללמד לבנו כך חייב ללמד לבן בנו כמו שנאמר והודעתם לבניך ולבני בניך ולא בן בנו בלבד אלא מצוה על כל אדם ללמד לכל התלמידים אע&quot;פ שאינן בניו מפי השמועה למדו ושננתם לבניך אלו תלמידים שקרויים בנים שנאמר ויצאו בני הנביאים ומה שנאמר בנו ובן בנו הוא להקדים בנו לבן בנו ובן בנו לאחרים וחייב לשכור מלמד לבנו ונראה דהוא הדין לבן בנו דבני בנים הרי הן כבנים אבל אינו חייב לשכור ללמד לבן אחרים כי חיוב לשכור מלמד לבנו הוא מולמדתם אותם את בניכם ומוהודעתם לבניך ולבני בניך והוא עשה וכפינן עליה כמה דכפינן לעשות סוכה ומצוה אחרת אבל חיוב לימוד בן חברו הוא מפסוק ושננתם לבניך ומשמע שיהיו מחודדין בתוך פיך כשאדם שואל דבר אל תגמגם בו אלא אמור לו מיד וזהו ללמד הוא עצמו לאחרים לא לשכור לו מלמד. ומי שלא למדו אביו חייב הוא ללמד לעצמו שנאמר ולמדתם אותם ושמרתם לעשותם היה הוא רוצה ללמוד ובנו גם כן הוא קודם לבנו דכיון שחייבו הכתוב ללמד הוא לבנו מסתמא הרי הוא מלומד ואם כן הרי שקודם לבנו ואם לא היה הוא מוכן ללמוד כבנו בנו קודם ואעפ&quot;כ לא יבטל הוא שכשם שמצוה ללמד לבנו כך מצוה ללמד לעצמו. ותורה שבכתב מותר ללמדה בשכר אבל לא תורה שבעל פה שנאמר ראה למדתי אתכם חוקים ומשפטים כאשר צוה ה׳ מה אני בחנם למדתי אף אתם בחנם למדתם ממני וכן לדורות תלמדו בחנם ובירושלמי פ׳ אין בין המודר גרסי׳ חוקים ומשפטים אתם מלמדים בחנם ואי אתם מלמדים בחנם מקרא ותרגום ואם לא מצא מי שילמדנו חנם ילמוד בשכר ואעפ&quot;כ לא ילמד הוא אלא בחנם. כל איש מישראל חייב בתלמוד תורה בין עני בין עשיר בין בחור בין זקן בין פיסח בין חולה אפילו עני המתפרנס מן הצדקה חייב לקבוע לו זמן לתלמוד תורה ביום ובלילה שנאמר והגית בו יומם ולילה ועד אימתי חייב אדם ללמוד תורה עד יום מותו שנאמר ופן יסורו מלבבך כל ימי חייך וכל זמן שלא יעסוק בלימוד הוא שוכח. ונשים ועבדים פטורים מתלמוד תורה והאשה אינה חייבת ללמד את בנה תורה דכתיב ולמדתם אתם את בניכם קרי ולמדתם לאקושינהו כל שמצווה ללמוד מצווה ללמד וכל שאינו מצווה ללמוד אינו מצווה ללמד אחרים ואיהי מנלן דלא מפקדי ללמוד דכתיב ולמדתם (ולמדתם) כל שאחרים מצווים ללמדו מצווה ללמוד וכל שאין אחרים מצווים ללמדו איני מצווה ללמוד ומנין שאין אחרים מצווין ללמדה דכתיב ולמדתם אותם את בניכם בניכם ולא בנותיכם. וכל מה שכתוב בשאר פרקי הרב ז&quot;ל הם דברי רבותינו ז&quot;ל בכמה מקומות ובמקצתן יש רמז מן התורה:</p>
               </div>
             </div>
@@ -219,8 +225,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Torah Study 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-torah-study-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Torah Study 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-5-1">Mishneh Torah, Torah Study 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁאָדָם מְצֻוֶּה בִּכְבוֹד אָבִיו וְיִרְאָתוֹ כָּךְ הוּא חַיָּב בִּכְבוֹד רַבּוֹ וְיִרְאָתוֹ יֶתֶר מֵאָבִיו. שֶׁאָבִיו מְבִיאוֹ לְחַיֵּי הָעוֹלָם הַזֶּה וְרַבּוֹ שֶׁלִּמְּדוֹ חָכְמָה מְבִיאוֹ לְחַיֵּי הָעוֹלָם הַבָּא. רָאָה אֲבֵדַת אָבִיו וַאֲבֵדַת רַבּוֹ שֶׁל רַבּוֹ קוֹדֶמֶת לְשֶׁל אָבִיו. אָבִיו וְרַבּוֹ נוֹשְׂאִים בְּמַשָּׂא מֵנִיחַ אֶת שֶׁל רַבּוֹ וְאַחַר כָּךְ שֶׁל אָבִיו. אָבִיו וְרַבּוֹ שְׁבוּיִים בַּשִּׁבְיָה פּוֹדֶה אֶת רַבּוֹ וְאַחַר כָּךְ פּוֹדֶה אֶת אָבִיו. וְאִם הָיָה אָבִיו תַּלְמִיד חָכָם פּוֹדֶה אֶת אָבִיו תְּחִלָּה. וְכֵן אִם הָיָה אָבִיו תַּלְמִיד חָכָם אַף עַל פִּי שֶׁאֵינוֹ שָׁקוּל כְּנֶגֶד רַבּוֹ מֵשִׁיב אֲבֵדָתוֹ וְאַחַר כָּךְ מֵשִׁיב אֲבֵדַת רַבּוֹ. וְאֵין לְךָ כָּבוֹד גָּדוֹל מִכְּבוֹד הָרַב וְלֹא מוֹרָא מִמּוֹרָא הָרַב. אָמְרוּ חֲכָמִים <span class="source-small">(משנה אבות ד יב)</span> &quot;מוֹרָא רַבָּךְ כְּמוֹרָא שָׁמַיִם&quot;. לְפִיכָךְ אָמְרוּ כָּל הַחוֹלֵק עַל רַבּוֹ כְּחוֹלֵק עַל הַשְּׁכִינָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כו ט)</span> &quot;בְּהַצֹּתָם עַל ה׳&quot;. וְכָל הָעוֹשֶׂה מְרִיבָה עִם רַבּוֹ כְּעוֹשֶׂה מְרִיבָה עִם הַשְּׁכִינָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כ יג)</span> &quot;אֲשֶׁר רָבוּ בְנֵי יִשְׂרָאֵל אֶת ה׳ וַיִּקָּדֵשׁ בָּם&quot;. וְכָל הַמִּתְרַעֵם עַל רַבּוֹ כְּמִתְרַעֵם עַל ה׳ שֶׁנֶּאֱמַר <span class="source-small">(שמות טז ח)</span> &quot;לֹא עָלֵינוּ תְלֻנֹתֵיכֶם כִּי עַל ה׳&quot;. וְכָל הַמְהַרְהֵר אַחַר רַבּוֹ כְּאִלּוּ מְהַרְהֵר אַחַר שְׁכִינָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כא ה)</span> &quot;וַיְדַבֵּר הָעָם בֵּאלֹהִים וּבְמשֶׁה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה יג </strong> הוא שצוינו לכבד החכמים ולקום מפניהם ולגדל אותם והוא אמרו יתעלה מפני שיבה תקום והדרת פני זקן ואמרו תקום והדרת קימה שיש בה הידור ועם היות מצוה זו מחויבת לאנשים כלם בכלל שיכבדו החכמים ואפילו השוים להם בחכמה יש בכיבוד הזה דברים נוספים על התלמיד לרב יתחייב עם הכבוד המורא כי הם בארו שחק תלמיד לרב כחק בן לאב שחייבו הכתוב לכבדו ולירא ממנו ובביאור אמרו אביו ורבו רבו קודם לכל הדברים. ונראה שאם היה מדרבנן תוספות כבוד הרב ומוראו על שאר החכמים לא היה דוחה כבוד אביו שהוא עשה דאוריתא אלא ודאי תוספות כבוד והמורא ברב הוא מדאוריתא והוא נלמד מן האב שכתוב בו כבוד ויראה כי כמו שהתלמיד כנה אותו הכתוב לבן למלמדו באמרו ושננתם לבניך שהם התלמידים כן כנה הכתוב הרב בשם אב לתלמיד ואם כן נכלל הרב בציווי כיבוד ומורא האב ומה שקודם לאב לכל הדברים הוא מפני שהרב ג&quot;כ נכלל בכיבוד החכמים ואם כן יש מצוה לכבדו בכלל מצות האב והחכמים ולכן קודם לאב ואם היה אביו ת&quot;ח וקצת רבו קודם לרבו מובהק וגדול מאביו שגם לאביו הוא מצווה עליו מב׳ צדדין מצד אביו ומצד ת&quot;ח ואמרו חכמים מורא רבך כמורא שמים. והחולק על רבו כחולק על השכינה שנאמר בהצותם על ה׳ והעושה עמו מריבה כאילו עושה עם השכינה שנ׳ אשר רבו בני ישראל את ה׳ והמתרעם עליו כמתרעם על השכינה שנ׳ לא עלינו תלנותיכ׳ כי על ה׳ והמהרהר אחריו כמהרהר אחר השכינה שנאמר וידבר העם באלהים ובמשה. והמורה הלכה בפני רבו חייב מיתה ולאו דוקא בפניו אלא כל תוך ג׳ פרסאות הוי כפניו דמסתמא לאו בפני משה ממש הוו נדב ואביהוא ואמר ר׳ אליעזר ומייתא לה בפ׳ הדר לא מתו בני אהרן עד שהורו הלכה בפני משה רבן ולהפריש איסור אפילו בפני רבו מורה ואינו נקרא הוראה מה שאין בו דבר חידוש מלבו. וחייב לעמוד מפני רבו משיראנו מרחוק מלא עיניו דפני משמע משעה שאתה רואה פניו וזהו מלא עיניו. וזהו ברבו מובהק אבל שאינו מובהק אינו חייב בכל אלו הדברים אבל עומד מלפניו משיקרב לד׳ אמותיו דהוה קימה שיש בה הידור והרב המובהק שמחל על כבודו כבודו מחול דמדגלה הכתוב במלך שאין כבודו מחול משום תשים עליך מלך שתהא אמתו עליך מכלל דבאחרים שמוחלין על כבודם כבודם מחול:</p>
               </div>
             </div>
@@ -236,8 +247,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Torah Study 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-torah-study-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Torah Study 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-6-1">Mishneh Torah, Torah Study 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל תַּלְמִיד חָכָם מִצְוָה לְהַדְּרוֹ וְאַף עַל פִּי שֶׁאֵינוֹ רַבּוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט לב)</span> &quot;מִפְּנֵי שֵׂיבָה תָּקוּם וְהָדַרְתָּ פְּנֵי זָקֵן&quot;. זָקֵן זֶה שֶׁקָּנָה חָכְמָה. וּמֵאֵימָתַי חַיָּבִין לַעֲמֹד מִפָּנָיו. מִשֶּׁיִּקְרַב מִמֶּנּוּ בְּאַרְבַּע אַמּוֹת עַד שֶׁיַּעֲבֹר מִכְּנֶגֶד פָּנָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> תלמיד חכם אע&quot;פ שאינו רבו מצוה מן התורה להדרו שנאמר מפני שיבה תקום והדרת פני זקן זה שקנה חכמה וחייבין לעמוד מפניו משיקרב לו בד׳ אמות עד שיעבור מכנגד פניו משום דזקן שקנה חכמה אע&quot;פ שאינו רבו הוא דמשמע ורא&quot;ם כתב דאין חייב לעמוד מן התורה אלא מפני רבו מובהק אבל לדעת הרב ז&quot;ל אפילו כל חכם הוא מדאוריתא כדכתיבנא. ואין עומדין מפניהם לא בבית הכסא ולא בבית המרחץ שנא׳ תקום והדרת קימה שיש בה הידור. ואין בעלי אומנות חייבים לעמוד מפני ת&quot;ח בשעה שעוסקין במלאכתן שנא׳ תקום והדרת מה הידור שאין בו חסרון כיס אף קימה שאין בה חסרון כיס ואף על גב דבגמ׳ פ&quot;ק דקידושין איפכא אמרינן מה קימה שאין בה חסרון כיס אף הידור שאין בו חסרון כיס התם לאפוקי שלא יהדרנו בממון הוא דאמר הכי ויליף הידור מקימה שאין בהם חסרון כיס אבל הכא לא אתא למילף אלא לבעלי אומניות דאין חייבין לקום בשעת מלאכתן והכא בקימה איכא חסרון כיס ובהידור ליכא חסרון כיס כדאמר בגמ׳ ולהכי יליף קימה מהידור שאין בהידור חסרון כיס בשעת מלאכה. ומנין שלא יעצים עיניו מן החכם כדי שלא יראהו שלא יעמוד מפניו ת&quot;ל ויראת מאלהיך כל דבר שהוא מסור ללב נאמר בה ויראת מאלהיך. ומנין שלא יטריח את העם כדי שיעמדו מפניו ת&quot;ל זקן ויראת. רכוב הרי הוא כמהלך דהוי בכלל והדרת פני זקן כיון שעבר לפניו. ראה את הנשיא עומד מלפניו מלא עיניו ואינו יושב עד שישב במקומו או עד שיתכסה מעיניו ויליף לה מדכתיב והביטו אחרי משה עד בואו האהלה. מי שהוא זקן מופלג בזקנה אע&quot;פ שאינו חכם עומדין מלפניו ואפילו חכם שהוא ילד עומד בפני המופלג בזקנה ואינו חייב לעמוד מלא קומתו אלא כדי להדרו דהלכה כאיסי דכל שיבה במשמע. עון גדול הוא לבזות תלמידי חכמים או לשנאתן וזהו שאמרה תורה אם בחוקותי תמאסו והמבזה את החכמים אין לו חלק לעולם הבא והוא בכלל כי דבר ה׳ בזה. כל דיני נידוי מדרבנן למיגדר מילתא ובפירוש אמרו מנודה מניח תפילין או לא וסלקה בתיקו וכתב הרי&quot;ף דכל הני תיקו דאתמר בהאי ענינא הוי תיקו דרבנן ולקולא. ובמשפטי החרם כתב הרמב&quot;ן ז&quot;ל שחרם שהחרים מלך ישראל או סנהדרין במעמד רוב ישראל העובר עליו חייב מיתה ונראה דחרם כזה הוי דאוריתא והוי בכלל כל חרם אשר יחרם מן האדם לא יפדה כמו שכתב הרמב&quot;ן בפי׳ התורה והכי משמע נמי מדשתפו אחי יוסף דהוו רובא דישראל השכינה עמהם וכתיב ותחי רוח יעקב אביהם. ויש בהלכות אלו מצות דרבנן.</p>
               </div>
             </div>
@@ -247,6 +263,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-torah-study-text-6">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-torah-study.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-torah-study-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -267,8 +287,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-torah-study.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-torah-study.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-torah-study.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-torah-study.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-torah-study.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-torah-study.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -294,7 +314,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

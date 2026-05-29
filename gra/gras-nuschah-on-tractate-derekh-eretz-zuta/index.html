@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../midrash/tractate-derekh-eretz-zuta/">Open Tractate Derekh Eretz Zuta</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Tractate Derekh Eretz Zuta</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">4 total source units | imported 2026-04-27</p>
         <p class="meta source-citation">Hebrew version: Talmud Bavli, Vilna 1883 ed. | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001300957">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>18 matched</strong> / 24 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/gras-nuschah-on-tractate-derekh-eretz-zuta.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/gras-nuschah-on-tractate-derekh-eretz-zuta-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -208,8 +208,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta 1:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Zuta 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-zuta/#tractate-derekh-eretz-zuta-default-default-1-1">Tractate Derekh Eretz Zuta 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דרכן של תלמידי חכמים עניו ושפל רוח זריז ממולא עלוב ואהוב לכל אדם. שפל לאנשי ביתו ירא חטא ודורש את האדם לפי מעשיו. ואומר כל מה שיש בעוה״ז אין לי חפץ בהם [לפי שאין העוה״ז שלי] יושב ומשנה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ומטנף כסותו לפני רגלי תלמידי חכמים. ואין איש רואה בו דבר רע. שואל כענין ומשיב כהלכה.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומטיל:</p>
               </div>
             </div>
@@ -227,8 +232,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-zuta/#tractate-derekh-eretz-zuta-default-default-1-1">Tractate Derekh Eretz Zuta 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דרכן של תלמידי חכמים עניו ושפל רוח זריז ממולא עלוב ואהוב לכל אדם. שפל לאנשי ביתו ירא חטא ודורש את האדם לפי מעשיו. ואומר כל מה שיש בעוה״ז אין לי חפץ בהם [לפי שאין העוה״ז שלי] יושב ומשנה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ומטנף כסותו לפני רגלי תלמידי חכמים. ואין איש רואה בו דבר רע. שואל כענין ומשיב כהלכה.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מנין שנאמר ונתתי שלום בארץ וגו׳ והשבתי חיה רעה מן הארץ וחרב לא תעבור בארצכם ואין:</p>
               </div>
             </div>
@@ -243,8 +253,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-zuta/#tractate-derekh-eretz-zuta-default-default-1-2">Tractate Derekh Eretz Zuta 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הי׳ כנוד בקוע &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;שנתפתח להכניס הרוח וכערוגה עמוקה שמחזקת את מימיה. וכקנקנה זפותה שמשמרת את יינה. כספוג שהוא סופג את הכל. אל תהיה כפתח גדול שמכניס את הרוח ולא כפתח קטן שמנבל את היקרים. היה כאסקופה התחתונה שהכל דשין בה וכיתד הנמוכה שהכל תולין בה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אמר שלמה אע&quot;פ:</p>
               </div>
             </div>
@@ -259,8 +274,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-zuta/#tractate-derekh-eretz-zuta-default-default-1-3">Tractate Derekh Eretz Zuta 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אם לקית בממונך זכור איוב שלקה בממונו ובגופו. אם לקית בגופך. זכור דתן ואבירם שירדו חיים שאולה.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מעזבן לא כלין ולא מכלן:</p>
               </div>
             </div>
@@ -270,6 +290,10 @@
               <a href="#chapter-section-on-peace-section-on-peace-1">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/gras-nuschah-on-tractate-derekh-eretz-zuta.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/gras-nuschah-on-tractate-derekh-eretz-zuta-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -290,10 +314,10 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-derekh-eretz-zuta","work_title":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta","work_slug":"gra/gras-nuschah-on-tractate-derekh-eretz-zuta","scope_label":"All imported Hebrew works","generated_at":"2026-05-16T00:15:01.058Z","total_occurrences":25,"units":{"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-default-default-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c36f5e5e4b03"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-0b8fd98e582d","tok-0e86f8acee18","tok-9775381d738a","tok-35d6dcd3f1e9","tok-7f730c78e928","tok-72e2e752909a","tok-32b4c9aad314","tok-2ead351803fa","tok-dc6da222e816","tok-9d4b9ab7f0d1","tok-944bd8d12db5","tok-0e50ac55be19","tok-0d4ce34eab17","tok-aa2ed513fb64","tok-8a0f18de0066","tok-65452ca513a0"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a4a26cfd7a05","tok-39ef219d9fc2","tok-36a88e5197db"]}]},"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-zuta-section-on-peace-section-on-peace-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Zuta, Section on Peace 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-338ffef267ac","tok-0d4ce34eab17","tok-9a5a8cb53da1","tok-2d18c5cc210d","tok-2b3f994aeeb6"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-tractate-derekh-eretz-zuta.manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/gras-nuschah-on-tractate-derekh-eretz-zuta.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/gras-nuschah-on-tractate-derekh-eretz-zuta.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/gras-nuschah-on-tractate-derekh-eretz-zuta.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
-    (() => {
+    (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
       const lexiconNode = document.querySelector("[data-lexical-lexicon]");
       const configNode = document.querySelector("[data-lexical-config]");
@@ -301,7 +325,7 @@
       const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
       const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
       const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
       const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
       const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
       const chunkPromises = new Map();
@@ -317,7 +341,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -334,6 +357,12 @@
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
         return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
       };
       const loadManifest = async () => {
         if (!lexicalConfig.manifest_url) return null;
@@ -416,8 +445,9 @@
         const state = { index: 0 };
         textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
       };
+      const loadedOccurrences = await loadOccurrences();
       document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
         if (!unitData) return;
         unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
           const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);

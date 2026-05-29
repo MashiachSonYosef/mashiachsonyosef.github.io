@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/">Open Mishneh Torah, Rest on the Tenth of Tishrei</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Rest on the Tenth of Tishrei</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">10 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>353 matched</strong> / 899 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -209,8 +210,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-1">Mishneh Torah, Rest on the Tenth of Tishrei 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִשְׁבֹּת מִמְּלָאכָה בֶּעָשׂוֹר לַחֹדֶשׁ הַשְּׁבִיעִי שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג לב)</span> &quot;שַׁבַּת שַׁבָּתוֹן הוּא לָכֶם&quot;. וְכָל הָעוֹשֶׂה בּוֹ מְלָאכָה בִּטֵּל מִצְוַת עֲשֵׂה וְעָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט ז)</span> &quot;וּבֶעָשׂוֹר&quot; וְגוֹ׳ <span class="source-small">(במדבר כט ז)</span> &quot;כָּל מְלָאכָה לֹא תַעֲשׂוּ&quot;. וּמַה הוּא חַיָּב עַל עֲשִׂיַּת מְלָאכָה בְּיוֹם זֶה. אִם עָשָׂה בִּרְצוֹנוֹ בְּזָדוֹן חַיָּב כָּרֵת. וְאִם עָשָׂה בִּשְׁגָגָה חַיָּב קָרְבַּן חַטָּאת קְבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה ל </strong> לשבות ממלאכה בעשור לחדש השביעי שנאמר שבת שבתון הוא לכם וכל העושה בו מלאכה ביטל מצות עשה זו ועבר על לא תעשה:<br><strong> אזהרת סג </strong> שהזהירנו מעשות מלאכה ביום הכפורים והוא אומרו ובעשור לחדש הזה וגו׳ כל מלאכה לא תעשו ומה חייב על עשיית מלאכה ביום זה אם עשה כרצונו בזדון חייב כרת דכתיב וכל מלאכה לא תעשו בעצם היום הזה וכתיב והאבדתי את הנפש ההיא וזהו כרת ואם עשה בשגגה חייב קרבן חטאת קבועה דמפיק מעבודה זרה דכתיב בה וכי תשגו ולא תעשו ואמר מר שקולה עבודה זרה כנגד כל המצות דהא כתיב בה מצוה וכתיב בה קרבן דכתיב והקריבה עז בת שנתה וגמרינן מה עבודה זרה שחייבים על זדונה כרת חייבים על שגגתה חטאת אף כל שחייבים על זדונו כרת חייבים על שגגתו חטאת וכיון דביום כיפור חייבים כרת דכתיב והאבדתי וגו׳ חייבים נמי בשוגג חטאת. כל מלאכה שחייבים על זדונה בשבת סקילה חייבים על זדונה בעשור כרת וכל שחייבים עליו קרבן חטאת קבועה בשבת חייבים בעשור וסתם מלאכה שנאמר בעשור כמלאכה דשבת דהוי מלאכות דמעשה המשכן. אין בין שבת ליום כיפור בדברים אלו אלא זדון מלאכה דבשבת בסקילה כדכתיב התם וביום כיפור בכרת כדכתיב הכא ואבדתי. ומותר בקניבת ירק מדאוריתא ואפילו ביום הכיפורים שחל להיות בשבת דלאו מלאכה היא אלא משום שבות. ויש במצוה איסורים דרבנן גדר וסייג לכל המלאכות כמו בשבת וכל מה שאסור בשבת בין תולדות המלאכות מדרבנן בין בשבותן בין מה שיש בו סמך מן המקרא או מה שאין לו הכל אסור ביום כיפור והרי הוא כשבת לכל דבריו:</p>
               </div>
             </div>
@@ -225,8 +231,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-4">Mishneh Torah, Rest on the Tenth of Tishrei 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה אַחֶרֶת יֵשׁ בְּיוֹם הַכִּפּוּרִים וְהִיא לִשְׁבֹּת בּוֹ מֵאֲכִילָה וּשְׁתִיָּה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז כט)</span> &quot;תְּעַנּוּ אֶת נַפְשֹׁתֵיכֶם&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ אֵי זֶה הוּא עִנּוּי שֶׁהוּא לַנֶּפֶשׁ זֶה הַצּוֹם. וְכָל הַצָּם בּוֹ קִיֵּם מִצְוַת עֲשֵׂה. וְכָל הָאוֹכֵל וְשׁוֹתֶה בּוֹ בִּטֵּל מִצְוַת עֲשֵׂה וְעָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג כט)</span> &quot;כִּי כָל הַנֶּפֶשׁ אֲשֶׁר לֹא תְעֻנֶּה בְּעֶצֶם הַיּוֹם הַזֶּה וְנִכְרְתָה&quot;. מֵאַחַר שֶׁעָנַשׁ הַכָּתוּב כָּרֵת לְמִי שֶׁלֹּא נִתְעַנָּה לָמַדְנוּ שֶׁמֻּזְהָרִין אָנוּ בּוֹ עַל אֲכִילָה וּשְׁתִיָּה. וְכָל הָאוֹכֵל אוֹ הַשּׁוֹתֶה בּוֹ בְּשׁוֹגֵג חַיָּב קָרְבַּן חַטָּאת קְבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה לא </strong> להתענות ביום הכיפורים מאכילה ושתיה שנא׳ תענו את נפשותיכם ואמרו תענו את נפשותיכם עינוי שיש בו אבידת נפש בתוך חלל הגוף ואי זהו זה אכילה ושתיה ודבי רבי ישמעאל תנא נאמר כאן עינוי ונאמר להלן עינוי ויענך וירעיבך מה להלן עינוי שיש בו רעבון אף כאן עינוי רעבון והתם ביומא יהיב טעמא אמאי יליף מהאי עינוי ולא מעינויי אחריני בקרא דדנין עינוי בידי שמים מעינוי בידי שמים דעינוי דכיפור מצות מלך היא וכן עינוי המן. וכל האוכל ושותה בו ביטל מצות עשה זו ועבר על לא תעשה המפורשות במצות לא תעשה. וכן למדנו מפי השמועה שאסור לרחוץ בו או לסוך בו או לנעול את הסנדל או לבעול ובכלהו כתיב בקרא לשון עינוי רחיצה וסיכה דכתיב בדניאל וסוך לא סכתי הרי סיכה ומדמצי למכתב ולא סכתי וכתיב וסוך לא סכתי מהאי ריבוי׳ נפקא לן רחיצה ומנ&quot;ל דחשיבו עינוי דכתיב מן היום אשר נתת אל לבך להביא ולהתענות א&quot;נ דכתיב העם רעב ועיף עיף ממאי מרחיצה כדכתיב על נפש עיפה ולא כתיב בנפש דתימא דהיא שתיה וכתיב וכי התענית בכל אשר וגו׳ נעילת הסנדל דכתיב בדוד והוא הולך יחף וכתיב וכי התענית. תשמיש המיטה דכתיב אם תענה את בנותי מתשמיש וקרי ליה עינוי. ומצוה דאוריתא לשבות מכל אלו בדרך ששובת מאכילה ושתיה שנאמר שבת שבתון שבת לענין מלאכה ושבתון לענינים אלו ורב חסדא אמר כנגד ה׳ עינויין הכתובים בתורה בפרק יום הכיפורים ובעשור דחומש הפקודים ואך בעשור דשור או כשב שבת שבתון ושבת שבתון והיתה זאת לכם בכולהו כתיב תענו ועניתם ואע&quot;ג דהני חמשה הוו ואנן שיתא עינויי תנן האמר ריש לקיש דשתיה בכלל אכילה היה דכתיב ואכלת וגו׳ אלא אמר רב אחא בר יעקב מהכא דכתיב ונתת הכסף בכל אשר תאוה נפשך בבקר ובצאן וביין ובשכר שכר שתיה הוא וקריא רחמנא ואכלת ולא מצית אמרת ע&quot;י אניגרון ביין ושמן ולא דבילה קעלית דמשכר דילפינן שכר שכר מנזיר מה להלן יין דהכי כתיב בקרא אשר יעשה מגפן היין וגו׳ אף כאן יין וביין אין שכרות אלא בשתיתו. ואין חייבין כרת או קרבן אלא על אכילה ושתיה דאעינוי דאכילה לחוד קאי כרת דכתיב כי כל הנפש אשר לא תעונה ונכרתה וגו׳ דענוי דהאי קרא לא קחשיב בכלל ה׳ עינויי דאכילה ושתיה ורחיצה וסיכה ונעילת הסנדל ותשמיש המטה דלא חשיב אלא ציוויין תענו ועיניתם והאי לאו ציווי הוא. כשם ששבות מלאכה בו בין ביום בין בלילה כדילפינן בשבת כך שבות לעינוי בין ביום בין בלילה כמלאכה דבחד קרא כתיב השבתת מלאכה ואכילה דכתיב שבת שבתון הוא לכם ועניתם. וצריך להוסיף מחול על הקודש בכניסתו וביציאתו שנאמר ועניתם את נפשותיכם בט׳ לחדש בערב כלומר התחיל לצום ולהתענות מערב תשעה הסמוך לעשירי וכן ביציאתו שוהא בעינוייו מעט מלילי י&quot;א סמוך לעשירי מערב עד ערב תשבתו שבתכם ואין על תוספת לא כרת ולא אזהרה אלא עשה דכתיב בעצם היום הזה על עצומו של היום חייב כרת ולא על תוספתו ותוספת זה אע&quot;ג דמעטיה קרא מעונש ואזהרה אפילו הכי נשים חייבות בו דמרבים להו דכתיב האזרח והגר לרבות נשים אזרחיות שחייבות בעינוי ותוספת מלאכה אינו אסור מן התורה דכתיב וכל מלאכה לא תעשו בעצם היום הזה על עיצומו של יום הוא מוזהר ואינו מוזהר על תוספת מלאכה. נשים שאוכלות ושותות עד שחשכה והן אינן יודעות שמצוה להוסיף מחול על הקדש אין ממחין בידן שלא יבאו לעשות בזדון שהרי אי אפשר להיות שוטר בכל בית והנח להם לישראל מוטב שיהיו שוגגין ואל יהיו מזידין דכיון דלא החמירה תורה על השוגג כמו על המזיד וקים לן דיזידו אם מזהירים מוטב שיהו שוגגים:<br><strong> אזהרת סד </strong> שהזהירנו מאכול ביום כיפור ולא ביאר בתורה אזהרת לפועל הזה אלא עונש וחייב כרת למי שאכל וידענו שהאכילה מוזהרת ממנו והוא אמרו כי כל הנפש אשר לא תעונה ונכרתה וגו׳ ואמרו כי כל מה שחייב כרת הוא בלא תעשה חוץ מפסח ומילה שהן מצות עשה וחייבין עליהן כרת ולשון ספרי כי כל הנפש אשר לא תעונה הרי זה עונש עינוי אבל אזהרה לעינוי עצמו לא שמענו כשהוא אומר עונש במלאכה בכיפור שאין ת&quot;ל שקל וחומר הוא ומה עינוי שאינו נוהג ביום טוב ובשבתות עונש עליו ביום כיפורים מלאכה שנוהגת בשבתות ויום טוב אינו דין שיהא ענוש עליה ביום כיפור אם כן למה נאמר עונש מלאכה בכיפור ללמוד ממנה אזהרה לעינוי לומר מה עונש מלאכה לאחר אזהרה אף עונש עינוי לאחר אזהרה מג&quot;ש דעצם עצם מה עצם האמור במלאכה הזהיר עליו אף עצם האמור בעינוי הזהר עליו ודבי ר׳ ישמעאל תנא נאמר כאן עינוי ונאמר להלן על דבר אשר ענה את אשת רעהו מה להלן לא ענש אלא אם כן הזהיר אף כאן לא ענש אלא אם כן הזהיר ואיכא גווני אחריני התם דילפי לה להא מילתא:</p>
               </div>
             </div>
@@ -242,8 +253,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-1">Mishneh Torah, Rest on the Tenth of Tishrei 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹכֵל בְּיוֹם הַכִּפּוּרִים מַאֲכָלִין הָרְאוּיִין לֶאֱכל לָאָדָם כְּכוֹתֶבֶת הַגַּסָּה שֶׁהִיא פָּחוֹת מִכְּבֵיצָה כִּמְעַט הֲרֵי זֶה חַיָּב. וְכָל הָאֳכָלִים מִצְטָרְפִין לְשִׁעוּר זֶה. וְכֵן הַשּׁוֹתֶה מַשְׁקִין הָרְאוּיִין לִשְׁתִיַּת אָדָם כִּמְלוֹא לֻגְמָיו שֶׁל שׁוֹתֶה כָּל אֶחָד וְאֶחָד לְפִי לֻגְמָיו חַיָּב. וְכַמָּה מְלוֹא לֻגְמָיו כְּדֵי שֶׁיְּסַלְּקֵם לְצַד אֶחָד וְיֵרָאֶה מָלֵא לֻגְמָיו. וְשִׁעוּר זֶה בְּאָדָם בֵּינוֹנִי פָּחוֹת מֵרְבִיעִית. וְכָל הַמַּשְׁקִין מִצְטָרְפִין לְשִׁעוּר זֶה. וְהָאֲכִילָה וּשְׁתִיָּה אֵין מִצְטָרְפִין לְשִׁעוּר אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האוכל </strong> בי&quot;ה מאכלים הראוי לאדם ככותבת הגסה שהוא פחות מכביצה כמעט הרי זה חייב. ושיעור כותבת הגסה הל&quot;מ בכלל שיעורין דהוו הל&quot;מ ואסמכתא מקרא דארץ חטה וגו׳ ודבש דהוא דבש תמרים ואע&quot;ג דכל שיעור אכילת איסור בכזית הוא הני מילי היכא דכתיב אכילה אבל הכא אשר לא תעונה כתיב וכל כמה דלא מיתבה דעתי׳ עינוי הוא וקים להו לרבנן דבפחות מכותבת הגסה לא מיתבה דעתיה. וכל האוכלין מצטרפין לכותבת הגסה דקים להו לרבנן דבהכי מיתבה דעתיה דאיניש מיהו כותבת מבשר שמן מיתבה דעתיה טובה וכותבת מלולבי גפנים מיתבה דעתיה פורתא וכיון דכולהו מיתבי דעתיה בחד שיעורה מצטרפי׳. וכן השותה משקים הראוים לשתית אדם כמלא לוגמיו של שותה והוא שיסלקנו לצד אחד ויראה מלא ושיעור זה באדם בינוני פחות מרביעית ואע&quot;ג דאיסורי שתיה דאוריתא בדם הוי בכזית שאני התם דכתיב אכילה אבל הכא דכתיב אשר לא תעונה ביתבי דעתיה תליא מילתא וקים להו לרבנן דלא מיתבה דעתיה אלא כמלא לוגמיו דידיה ובציר ממלא לוגמיו דידיה אע&quot;ג דהוי מלא לוגמיו דאחריני לא מיתבה דעתיה אפילו עוג מלך הבשן מיהו כולי עלמא טובא ועוג מלך הבשן פורתא וכל המשקין מצטרפין למלא לוגמיו דכולהו מיתבי דעתיה והאכילה ושתיה אין מצטרפין לשיעור אחד דכל חד לא מיתב דעתיה אלא בשיעוריה.</p>
               </div>
             </div>
@@ -258,8 +274,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-2">Mishneh Torah, Rest on the Tenth of Tishrei 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הָאוֹכֵל אֳכָלִים הַמֻּתָּרִים אוֹ שֶׁאָכַל דְּבָרִים הָאֲסוּרִין כְּגוֹן פִּגּוּל וְנוֹתַר וְטֶבֶל וּנְבֵלוֹת וּטְרֵפוֹת וְחֵלֶב אוֹ דָּם הוֹאִיל וְאָכַל אֳכָלִים הָרְאוּיִין לָאָדָם הֲרֵי זֶה חַיָּב כָּרֵת מִשּׁוּם אוֹכֵל בְּיוֹם הַכִּפּוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> האוכל אוכלים המותרים או שאר דברים האסורים הואיל והן אוכלים הראוים לאדם הרי זה חייב כרת משום אוכל ביום הכיפורים דתניא תענו את נפשותיכם יכול ישב בחמה ובצינה ויצטער ת&quot;ל וכל מלאכה לא תעשו מה מלאכה דבר שחייבין עליו במקום אחר כרת כי הכא כגון בשבת אף עינוי בדבר אכילה קאמר שמצינו שחייב עליו במקום אחר כרת כגון פיגול ונותר אביא אלו שהן בכרת ולא אביא טבל שהוא במיתה ת&quot;ל תענו ועניתם ריבה אביא הטבל שהוא במיתה ולא אביא את הנבלה שהיא בלאו ת&quot;ל תענו ועניתם ריבה אביא את הנבלה שהיא בלאו ולא אביא את החולין שאינו בלאו ת&quot;ל תענו את נפשותיכם ריבה אביא את החולין שאין בקום אכול ולא אביא את התרומה שהיא בקום אכול ת&quot;ל תענו ועניתם את נפשותיכם ריבה אביא את התרומה שאינה בבל תותירו ולא אביא את הקדשים שהם בבל תותירו ת&quot;ל תענו את נפשותיכם והא דמרבינן כולהו מחד קרא היינו משום דכיון דכל חד חמיר מחבריה וליכא אלא חד ריבוי וליכא שום מיעוט מרבינן כולהו מיניה דהי מינייהו תמעיט וע&quot;כ כולה איתרבו מהאי קרא.</p>
               </div>
             </div>
@@ -274,8 +295,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-3">Mishneh Torah, Rest on the Tenth of Tishrei 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָכַל אוֹ שָׁתָה פָּחוֹת מִשִּׁעוּר זֶה אֵינוֹ חַיָּב כָּרֵת. אַף עַל פִּי שֶׁהוּא אָסוּר מִן הַתּוֹרָה בַּחֲצִי שִׁעוּר אֵין חַיָּבִין כָּרֵת אֶלָּא עַל כַּשִּׁעוּר. וְהָאוֹכֵל אוֹ הַשּׁוֹתֶה חֲצִי שִׁעוּר מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אכל </strong> או שתה פחות משיעור זה אינו חייב כרת אף על פי שהוא אסור מן התורה בחצי שיעור אין חייבין כרת אלא כשיעור ואיסור חצי שיעור מן התורה ילפינן כי כל אוכל חלב ומינה ילפינן לכולהו איסורי אלא בשבת דמעטיה קרא לחצי מלאכה כדאמר התם. כל אכילות שהן בכדי אכילת שלשה בצים מצטרפין לכותבת ואם לאו אין מצטרפות דאף על גב דכזית בכדי אכילת פרס אמרינן דמצטרף הא כותבת אפילו ביותר מאכילת פרס מצטרף לא היא דהכא ביתוביה דעתה תליא מלתא דכתיב כי כל הנפש אשר לא תעונה וקים להו לרבנן דבהאי שיעורה מיתבה דעתיה בשיעורה טפי מאכילת פרס לא מיתבה דעתיה וכל שתיות מצטרפות למלא לוגמיו בכדי שתית רביעית ואם ביותר אין מצטרפין דלא מיתבה דעתיה כדאמר.</p>
               </div>
             </div>
@@ -290,8 +316,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-5">Mishneh Torah, Rest on the Tenth of Tishrei 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָכַל אֳכָלִים שֶׁאֵינָן רְאוּיִין לְמַאֲכַל אָדָם כְּגוֹן עֲשָׂבִים הַמָּרִים אוֹ שְׂרָפִים הַבְּאוּשִׁין אוֹ שֶׁשָּׁתָה מַשְׁקִין שֶׁאֵינָן רְאוּיִין לִשְׁתִיָּה כְּגוֹן צִיר אוֹ מוּרְיָס וְחֹמֶץ חַי אֲפִלּוּ אָכַל וְשָׁתָה מֵהֶן הַרְבֵּה הֲרֵי זֶה פָּטוּר מִן הַכָּרֵת. אֲבָל מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אכל </strong> אוכלים שאינה ראוים לאכילת אדם דלאו אכילה הוי ולא מיתבה דעתיה וכן אם שתה משקים שאינם ראוים לשתות פטור שתה חומץ מזוג חייב דמשיב את הנפש הכוסס זנגיבי&quot;ל ופלפלין יבש פטור דלאו אכילה הוי וזנגיבי&quot;ל רטוב הוי אכילה וחייב עלי גפנים פטור דלא הוי אכילה ולולבי גפנים לחים הוי אכילה מלח שבצלי וציר שבירק מצטרפין שמכשירי האוכל כאוכל הן חשובין ומיתבי דעתא. היה שבע מאכילה גסה עד שקץ במזונו פטור כמי שאכל אוכלים שאינם ראוים דאשר לא תעונה כתיב פרט למזיק לזה שאינו מבטל ממנו שום עינוי ע&quot;י אכילה זו אלא מזיק הוא את האוכלים ואת עצמו.</p>
               </div>
             </div>
@@ -306,8 +337,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-8">Mishneh Torah, Rest on the Tenth of Tishrei 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חוֹלֶה שֶׁיֵּשׁ בּוֹ סַכָּנָה שֶׁשָּׁאַל לֶאֱכל בְּיוֹם הַכִּפּוּרִים אַף עַל פִּי שֶׁהָרוֹפְאִים הַבְּקִיאִין אוֹמְרִין אֵינוֹ צָרִיךְ מַאֲכִילִין אוֹתוֹ עַל פִּי עַצְמוֹ עַד שֶׁיֹּאמַר דַּיִּי. אָמַר הַחוֹלֶה אֵינִי צָרִיךְ וְהָרוֹפֵא אוֹמֵר צָרִיךְ מַאֲכִילִין אוֹתוֹ עַל פִּיו. וְהוּא שֶׁיִּהְיֶה רוֹפֵא בָּקִי. רוֹפֵא אֶחָד אוֹמֵר צָרִיךְ וְאֶחָד אוֹמֵר אֵינוֹ צָרִיךְ מַאֲכִילִין אוֹתוֹ. מִקְצָת הָרוֹפְאִין אוֹמְרִין צָרִיךְ וּמִקְצָתָן אוֹמְרִין אֵינוֹ צָרִיךְ הוֹלְכִין אַחַר הָרֹב אוֹ אַחַר הַבְּקִיאִין. וּבִלְבַד שֶׁלֹּא יֹאמַר הַחוֹלֶה צָרִיךְ אֲנִי. אֲבָל אִם אָמַר צָרִיךְ אֲנִי מַאֲכִילִין אוֹתוֹ. לֹא אָמַר הַחוֹלֶה שֶׁהוּא צָרִיךְ וְנֶחְלְקוּ הָרוֹפְאִים וְהָיוּ כֻּלָּם בְּקִיאִין וְאֵלּוּ שֶׁאָמְרוּ אֵינוֹ צָרִיךְ כְּמִנְיָן שֶׁאָמְרוּ צָרִיךְ מַאֲכִילִין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חולה </strong> שיש בו סכנה מאכילים אותו על פי עצמו אף על פי שהרופאים אומרים אינו צריך דלב יודע מרת נפשו. החולה אומר איני צריך והרופא אומר צריך מאכילין אותו ואם החולה אינו אומר דבר והרופאים נחלקו הולכים אחר הרוב או אחר הבקיאין ואם היו שנים מאכילים אותו דלאו דוקא על ודאי פיקוח נפש דוחין את המצוה אלא אפילו על ספק דכתיב אשר יעשה אותם האדם וחי בהם ודאי ולא שיבא בעשייתן לידי ספק מיתה אלמא מחללין על הספק. עוברה שהריחה מאכילין אותה עד שתתישב דעתה וכן מי שאחזו בולמוס מאכילין עד שיאורו עיניו ואפילו מדברים האסורים דהוי סכנה ואין לך דבר שעומד בפני פיקוח נפש דכתיב וחי בהם וגו׳.</p>
               </div>
             </div>
@@ -322,8 +358,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-11">Mishneh Torah, Rest on the Tenth of Tishrei 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּת שְׁתֵּים עֶשְׂרֵה שָׁנָה וְיוֹם אֶחָד וּבֶן שְׁלֹשׁ עֶשְׂרֵה שָׁנָה וְיוֹם אֶחָד שֶׁהֵבִיאוּ שְׁתֵּי שְׂעָרוֹת הֲרֵי הֵן כִּגְדוֹלִים לְכָל הַמִּצְוֹת וּמַשְׁלִימִין מִן הַתּוֹרָה. אֲבָל אִם לֹא הֵבִיאוּ שְׁתֵּי שְׂעָרוֹת עֲדַיִן קְטַנִּים הֵן וְאֵינָם מַשְׁלִימִין אֶלָּא מִדִּבְרֵי סוֹפְרִים. קָטָן שֶׁהוּא פָּחוֹת מִבֶּן תֵּשַׁע אֵין מְעַנִּין אוֹתוֹ בְּיוֹם הַכִּפּוּרִים כְּדֵי שֶׁלֹּא יָבֹא לִידֵי סַכָּנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בת </strong> י&quot;ב שנה ויום אחד ובן י&quot;ג ויום אחד שהביאו שתי שערות הרי הן גדולים לכל המצות ומשלימים מן התורה ושיעורין אלו הלכה למשה מסיני בכלל שיעורין הל&quot;מ וכן כתב הרא&quot;ש ז&quot;ל בתשובה:</p>
               </div>
             </div>
@@ -339,8 +380,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-1">Mishneh Torah, Rest on the Tenth of Tishrei 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לִרְחֹץ בְּיוֹם הַכִּפּוּרִים בֵּין בְּחַמִּין בֵּין בְּצוֹנֵן. בֵּין כָּל גּוּפוֹ בֵּין אֵיבָר אֶחָד אֲפִלּוּ אֶצְבַּע קְטַנָּה אָסוּר לְהוֹשִׁיטָהּ בַּמַּיִם. וְהַמֶּלֶךְ וְהַכַּלָּה רוֹחֲצִין אֶת פְּנֵיהֶן. כַּלָּה כְּדֵי שֶׁלֹּא תִּתְגַּנֶּה עַל בַּעְלָהּ. וְהַמֶּלֶךְ כְּדֵי שֶׁיֵּרָאֶה בְּיָפְיוֹ שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְעַד כַּמָּה נִקְרֵאת כַּלָּה עַד שְׁלֹשִׁים יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור </strong> לרחוץ ביום הכיפור בין בחמין בין בצונן בין כל גופו בין אבר א׳ אפילו אצבע קטנה אסור להושיט במים ונראה דרחיצה כל גופו הוא דאסור מדאוריתא וסיכה כל גוף נמי אבל אבר לא מדילפינן להו דאיקרו עינוי מפסוק וסוך לא סכתי וכתיב מיום אשר נתת אל לבך להתענות וגו׳ והתם כתיב נמי לחם חמודות לא אכלתי ובשר ושמן לא בא אל פי ומה לחם הנאת כל הגוף וקרי ליה עינוי אף רחיצה וסיכה דילפינן דאיקרו עינוי הוו הנאת כל גופו דומיא דאכילה ולהכי הקלו במלך וכלה שירחצו פניהם ובליכלוך נמי וחייבי טבילות נמי אף על גב דטובלים כל גופם לאו רחיצה הוי אלא שרייה בעלמא וכן ההולך להקביל פני רבו ולשמור פירותיו לאו רחיצה הוי.</p>
               </div>
             </div>
@@ -355,8 +401,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 3:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rest on the Tenth of Tishrei 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-7">Mishneh Torah, Rest on the Tenth of Tishrei 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לִנְעל מִנְעָל וְסַנְדָּל אֲפִלּוּ בְּרַגְלוֹ אַחַת. וּמֻתָּר לָצֵאת בְּסַנְדָּל שֶׁל שַׁעַם וְשֶׁל גֶּמִי וְכַיּוֹצֵא בָּהֶן. וְכוֹרֵךְ אָדָם בֶּגֶד עַל רַגְלָיו וְיוֹצֵא בּוֹ שֶׁהֲרֵי קְשִׁי הָאָרֶץ מַגִּיעַ לְרַגְלָיו וּמַרְגִּישׁ שֶׁהוּא יָחֵף. הַתִּינוֹקוֹת אַף עַל פִּי שֶׁהֵן מֻתָּרִין בַּאֲכִילָה וּבִשְׁתִיָּה וּרְחִיצָה וְסִיכָה מוֹנְעִין אוֹתָן מִמִּנְעָל וְסַנְדָּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור </strong> לנעול סנדל ומנעל אפילו ברגלו אחד ואיפשר דרגלו אחד מדרבנן דלא ילפינן דאיקרי עינוי אלא יחף משתי רגלים כדמשמע סתמא דקרא והוא הולך יחף וקרי ליה עינוי דכתיב בכל אשר התענה אבי. ומותר ללכת בסנדל של שעם וכיוצא בו דכיון דמרגיש בקושי הארץ יחף קרינן ביה והכי הוא עינוי ויש במצוה זו איסורים דרבנן סמוכים אלא תסור:</p>
               </div>
             </div>
@@ -366,6 +417,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -386,8 +441,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -413,7 +468,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

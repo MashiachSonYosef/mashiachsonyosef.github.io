@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-virgin-maiden/">Open Mishneh Torah, Virgin Maiden</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Virgin Maiden</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">20 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Tzafnat Pa&#39;neach on Mishneh Torah, Warsaw-Piotrk&#243;w, 1903-1908 | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>387 matched</strong> / 1156 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/tzafnat-paneach-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-virgin-maiden-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -219,8 +220,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:1:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-1-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-1">Mishneh Torah, Virgin Maiden 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁפִּתָּה בְּתוּלָה קוֹנְסִין אוֹתוֹ מִשְׁקַל חֲמִשִּׁים סְלָעִים שֶׁל כֶּסֶף מְזֻקָּק וְהוּא הַנִּקְרָא קְנָס. וְכֵן אִם אָנַס אוֹתָהּ. וּקְנָס זֶה מִצְוַת עֲשֵׂה שֶׁל תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְנָתַן הָאִישׁ הַשּׁוֹכֵב עִמָּהּ לַאֲבִי הַנַּעֲרָה חֲמִשִּׁים כֶּסֶף&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שפיתה בתולה כו׳.</strong> והנה אם אמר שמצא פ&quot;פ אם נאמן דכאן בודאי אינו נאמן דלא שייך הך דכתובות ד&quot;י ועיין בהך דשבועות ד׳ ל&quot;ד ע&quot;א דאמר שם גבי עדי קנס דראיה בלא ידיעה לא משכחת מי לא בעי מידע בתולה בעל או בעולה בעל, אך באמת שם הכי פירושו דהנה עיין בדברי רבינו בהל׳ חובל ומזיק פרק ב׳ הל׳ ח׳ דגבי נחבל אם אמר נתחרשתי אין מאמינים לו עד שיבדוק זמן מרובה ע&quot;ש. והנה גבי מכה אביו ואמו בפ׳ ה׳ מהלכות ממרים הל׳ ו׳ גבי חרשו לאביו לא כתב כן רבינו והטעם דגבי מיתה הוה זה דין דאם העידו העדים בדבר שעל ידי האומד ראוי שיהרגו או שיחבול בו גבי אב נתחייב מיתה משא&quot;כ גבי ממון דהחיוב הוא רק עפ&quot;י עדות צריך שיתברר הדבר על ידי העדים ולא מהני מה שמחזיקין זה על פי דין, וזהו ג&quot;כ מה דר&quot;ל בהך דשבועות שם דלא שייך שבועת העדות רק בדבר דהחיוב הוא רק עפ&quot;י עדים משא&quot;כ גבי דיני נפשות וגבי דיני קנסות דאף דבאמת לא חיישינן לטריפה ולעכו&quot;ם כמבואר בירושלמי דסנהדרין ריש פ׳ ד׳ דאף דשואלין אותו אם ישראל הרג או עכו&quot;ם הרג מ&quot;מ אם הרג בין טבריה לציפורי דשם רוב ישראל לא חיישינן לעכו&quot;ם וזהו מטעם דין וכן גבי קנס ג&quot;כ כן וא&quot;כ לא מיקרי זה נגמר על ידי עדים ולכך לא שייך כאן קרבן שבועת העדות, וכן ר&quot;ל בהך דכריתות ד׳ י&quot;ב ע&quot;א גבי אדם נאמן על עצמו דכל היכא דאין הגמר על ידי העדים לא מיקרי גדר עדות וע׳ מה דס&quot;ל לרבינו ז&quot;ל בהל׳ חובל ומזיק דמה&quot;ת אין מתחייב חבלה בלא עדים ע&quot;ש בפרק ה׳ הל׳ ו׳ והטעם משום דס&quot;ל דמן ההודאה אין ראיה שהיה המעשה רק דגבי ממון מ&quot;מ נתחייב בהודאה כמו הך דב&quot;ב ד׳ קמ&quot;ט וזהו המחלוקת דשם ד׳ ל&quot;ג בהך דרב אידי בר אבין דר&quot;ח ס&quot;ל דא&quot;צ לשלם הפירות של קודם ההודאה משום דס&quot;ל דזה הוה רק חיוב חדש ורק מכאן ולהבא ואביי ורבא לא ס&quot;ל כן, ועיין בהך דכתובות ד׳ מ&quot;ד ע&quot;א בהך דרפרם דאמר אודויי אודי ואמר שם דצריך לשלם הפירות וע&quot;כ ס&quot;ל כאביי ורבא ועיין בהך דגיטין דף מ׳ ע&quot;ב, ובזה ג&quot;כ כוונת הגמ׳ דב&quot;מ דף ג׳ ע&quot;ב דאמר שם דהודאה לא מחייב ומקשה שם והא הודאת בעל דין כו׳, ומתרץ שם קנס וזה ר&quot;ל הס&quot;ד דהודאה לא מברר שהדבר היה כך רק שמחייב עצמו והקשה דהא קימ&quot;ל כמו העדים ר&quot;ל גדר בירור ותירץ קנס דר&quot;ל דהנה זה פלוגתא בב&quot;ק בכ&quot;מ אם מודה בקנס דפטור אם משום דהוה פטור או משום דאינו יכול להתחייב על ידי זה וזה תליא בהך דרב ושמואל שם ד׳ ע&quot;ה ע&quot;א וע&quot;ש ד׳ מ&quot;ג ע&quot;ב מה דמחלק שם בין כופר לקנס וא&quot;כ למ&quot;ד דרק דאין ב&quot;ד יכולין לחייבו הטעם הוא דהודאה לא הוה בירור רק חיוב והתורה לא חייבה קנס וחבלות רק אם נעשה הפעולה ועל ידי הודאתו לא נתברר הפעולה, וע׳ בירוש׳ שבועות פרק ד׳ ע&quot;ש בהל׳ ו׳ תן לי קנס בתי כו׳, והוא אומר לא נתחייבתי, אך שם ר&quot;ל כהך דכתובות ד׳ מ&quot;ב ע&quot;א דהיינו שאמר שכבר נגמר דינו ועיין מכות דף ג׳ ואף בזה ס&quot;ל דפטור, ועי׳ תוס׳ שבועות ד׳ ל&quot;ג ע&quot;א ד&quot;ה או וד׳ ל&quot;ח ע&quot;א ד&quot;ה אלא אך רש&quot;י ז&quot;ל בד׳ ל&quot;ד ע&quot;א ד&quot;ה א&quot;ב לא ס&quot;ל כן משום דס&quot;ל דר&quot;ל אף לאחר שנגמר דינו ומשום דאיקרי קנס כמן הך דכתובות דף מ&quot;ב ע&quot;ב, ובזה פליגי ג&quot;כ רבינו ז&quot;ל והר&quot;א כאן בהל׳ ב׳ אם שייך חזקה גבי קנס דאנוסה, ועיין בהך דכתובות ד׳ נ&quot;א ע&quot;ב ותוס׳ שם דס&quot;ג ע&quot;ב גבי זנות אך כאן גבי קנס ס&quot;ל להר&quot;א ז&quot;ל דלא מהני חזקה, ועיין בספרי פ׳ תצא דאמר שם בפסקא רמ&quot;ד ונמצאו בעדים ור&quot;ל כעין דאמרינן בירושלמי פרק א׳ דסוטה ופרק ט׳ גבי עגלה ערופה דכ&quot;מ שנאמר מציאה אינו אלא בעדים וזה בודאי לא ר&quot;ל מחמת קנס דצריך עדים דזה בודאי דמודה בקנס פטור אך לשיטת רבינו י&quot;ל דגם מפגם ומנזק פטור בלא עדים וכמו שכתב בהל׳ חובל ומזיק הנ&quot;ל ומה שהקשה שם הרב המגיד מהך דשבועות ד׳ ל&quot;ו ע&quot;ב שם ר&quot;ל שהוא טוען שהיו שם עדים בשעת מעשה וגם הוא מודה לזה ולכך בבושת ופגם חייב אבל בקנס כל זמן שלא העידו בב&quot;ד הוה ההודאה פטור ועיין בהך דב&quot;מ ד׳ מ&quot;ג ע&quot;ב בהך מחלוקת דשמואל ור&quot;י אליבא דר&quot;ע דאמר שם דעדים הוא דמחייבי לאשמה ועיין תוס׳ שם ד׳ ל&quot;ה ע&quot;ב ד&quot;ה תחזור פרה דכתבו שם דאפילו יש עדים ועי׳ בהך דשבועות ד׳ ל&quot;ז ע&quot;א גבי הכופר בממון שיש עליו עדים דס&quot;ל לרבה שם דפטור והוא מהך טעמא ועיין בהך דסוטה ד׳ ו׳ ע&quot;א גבי סוטה שיש לה עדים במדינת הים ע&quot;ש ובזה יתבאר דברי התוספתא דשבועות ס׳ פ׳ ב׳ זה הכלל כל שהוא קנס ומשלם עפ&quot;י עצמו כו׳, וכל שאינו קנס ואינו משלם עפ&quot;י עצמו ולכאורה ט&quot;ס הוא אך לפי מה שכתבתי א&quot;ש דגבי קנס ר&quot;ל אף אם תבע שכבר נגמר דינו, וגבי אינו קנס ר&quot;ל כגון חבלה וכמש&quot;כ אך לשיטת הראב&quot;ד ז&quot;ל שם מפרש הספרי דצריך דוקא עדים שהיא אנוסה ולא די בחזקה כמש&quot;כ רבינו וא&quot;ש:</p>
               </div>
             </div>
@@ -235,8 +241,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:3:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-3-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-3">Mishneh Torah, Virgin Maiden 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְפֻתָּה שֶׁלֹּא רָצְתָה לְהִנָּשֵׂא לַמְפַתֶּה. אוֹ שֶׁלֹּא רָצָה אָבִיהָ לִתְּנָהּ לוֹ. אוֹ שֶׁלֹּא רָצָה הוּא לִכְנֹס. הֲרֵי זֶה נוֹתֵן קְנָס וְהוֹלֵךְ וְאֵין כּוֹפִין אוֹתוֹ לִכְנֹס. וְאִם רָצוּ וּכְנָסָהּ אֵינוֹ מְשַׁלֵּם קְנָס אֶלָּא כּוֹתֵב לָהּ כְּתֻבָּה כִּשְׁאָר הַבְּתוּלוֹת. אֲבָל הָאֲנוּסָה שֶׁלֹּא רָצְתָה הִיא אוֹ אָבִיהָ לְהִנָּשֵׂא לְאוֹנֵס הָרְשׁוּת בְּיָדָם וְנוֹתֵן קְנָס וְהוֹלֵךְ. רָצְתָה הִיא וְאָבִיהָ וְלֹא רָצָה הוּא כּוֹפִין אוֹתוֹ וְכוֹנֵס וְנוֹתֵן קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; הֲרֵי זוֹ מִצְוַת עֲשֵׂה. אֲפִלּוּ הִיא חִגֶּרֶת אוֹ סוּמָא אוֹ מְצֹרַעַת כּוֹפִין אוֹתוֹ לִכְנֹס וְאֵינוֹ מוֹצִיא לִרְצוֹנוֹ לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ כָּל יָמָיו&quot; הֲרֵי זוֹ מִצְוַת לֹא תַּעֲשֶׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפילו היא כו׳ כופין אותו כו׳.</strong> והנה זה אף דהוה ג&quot;כ גדר קנס עיין ד׳ ל&quot;ט ע&quot;ב מ&quot;מ נ&quot;ל דבזה לא שייך גדר הודאה רק צריך שיהיה על זה עדים ועיין בתוס׳ יבמות ד׳ כ&quot;ד ע&quot;ב ונ&quot;ל דאף רבינו מודה דאף שלא כדרכה מ&quot;מ המ&quot;ע של ולו תהיה לאשה ישנו ובזה א&quot;ש מ&quot;ש התוס׳ יבמות ד׳ נ&quot;ט וכ&quot;מ, וי&quot;ל דזה ר&quot;ל הירושלמי דכתובות פ׳ ג׳ באו עליה עשרה שלא כדרכה כולם בקנס דקשה מזה על שיטת רבינו וי&quot;ל דר&quot;ל לענין קנס דצריכים לישא אותה איזה מהם שתרצה. ובזה א&quot;ש מה דמבואר שם דאם ביררה אחד אינה יכולה לחזור והא הירושלמי ס&quot;ל שם דקנס אינה יכולה למחול ע&quot;ש בהל׳ ז׳ וכמש&quot;כ ד׳ כ&quot;ט אך הטעם משום דהוא יכול לפטור עצמו מקנס והוה אינה ברשותה עיין תוס׳ ב&quot;ק דף ל&quot;ג וכאן ד׳ ל&quot;ג ע&quot;ב וכ&quot;מ בזה וכאן לא שייך זה כמש&quot;כ:</p>
               </div>
             </div>
@@ -251,8 +262,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:7:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-7-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-7">Mishneh Torah, Virgin Maiden 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁנֶּאֱמַר בְּאוֹנֵס <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ&quot; כֵּיוָן שֶׁקְּדָמוֹ עֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; הֲרֵי זֶה נִתְּקוֹ לַעֲשֵׂה וְנִמְצֵאת זוֹ מִצְוַת לֹא תַּעֲשֶׂה שֶׁנִּתְּקָהּ לַעֲשֵׂה שֶׁאֵין לוֹקִין עָלֶיהָ אֶלָּא אִם לֹא קִיֵּם עֲשֵׂה שֶׁבָּהּ כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. לְפִיכָךְ הָאוֹנֵס שֶׁעָבַר וְגֵרֵשׁ כּוֹפִין אוֹתוֹ לְהַחֲזִיר וְאֵינוֹ לוֹקֶה. מֵתָה גְּרוּשָׁתוֹ קֹדֶם שֶׁיַּחְזִירֶנָּה אוֹ נִתְקַדְּשָׁה לְאַחֵר אוֹ שֶׁהָיָה כֹּהֵן שֶׁאָסוּר בִּגְרוּשָׁה הֲרֵי זֶה לוֹקֶה שֶׁהֲרֵי עָבַר עַל לֹא תַּעֲשֶׂה וְאֵינוֹ יָכוֹל לְקַיֵּם עֲשֵׂה שֶׁבָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אעפ&quot;י כו׳ או שהיה כהן כו׳.</strong> הנה אם עבר הכהן והחזיר גרושתו אם לוקה על לאו דלא יוכל לשלחה הנה עיין בתמורה דף ד׳ ע&quot;ב במה דהקשה שם והרי אונס, ועיין שם ברש&quot;י דגרס דמשני אמימר משום דהוה לאו ששוה בכל ר&quot;ל כשיטת רבינו בהל׳ תמורה פ׳ א׳ דלכך מימר לוקה משום דהלאו כייל יותר מה עשה גבי ציבור ושותפים והקשה מאונס שגירש ר&quot;ל דס&quot;ל דלא משום דהעשה דכל ימיו קאי גם אכהן ור&quot;ל גם קודם שגירשה ע&quot;ש בתמורה דף ה׳ ע&quot;א ועיין מש&quot;כ התוס׳ מכות ד׳ ט&quot;ו ע&quot;א בתוס׳ ד&quot;ה כל אם ר&quot;ל תהיה ואם זה הלשון של תהיה שייך גם אקודם גירושין עיין מש&quot;כ תוס׳ יבמות ד׳ מ&quot;ט ע&quot;ב ד&quot;ה סוטה אם הויה ר&quot;ל ג&quot;כ מחמת קדושין הראשונים או רק לענין קדושין חדשים, ועי׳ בתוס׳ קדושין ד׳ ס&quot;ח ע&quot;א ד&quot;ה הכל ע&quot;ש, ומש&quot;כ הר&quot;ן ז&quot;ל בנדרים ד׳ ל&quot;א גבי לאחר שאגרשך דמה שאינו מגרשה לא מיקרי קדושין נמשכים רק אם גירשה ע&quot;ש, אך אם נימא דגם זה מיקרי לשון הויה כדס&quot;ד במכות שם א&quot;כ נמצא קאי זה גם הכהן וא&quot;כ שוב י&quot;ל אף אם גירשה הכהן ונשאה שפיר הוה קיום, וכעין הך דיבמות דף ס׳ גבי בעולת עצמו בכה&quot;ג הובא לעיל בהל׳ ו׳, ועיין בירושלמי גיטין פ׳ ז׳ גבי הך דע&quot;מ שתניקי את בני אם חתכה דדה מיקרי ביטול התנאי, ועיין במכות ד׳ ט&quot;ז ע&quot;א ובמש&quot;כ רבינו לקמן בהל׳ שחיטה פ׳ י&quot;ג הל׳ ג׳ ומש&quot;כ שם בהל׳ י&quot;ט דלמ&quot;ד קיימו ולא קיימו היכא שהוא צריך לשלחה מחמת דבר אחר לא מיקרי קיום ע&quot;ש ועיין תוס׳ שבת דף ד׳ ע&quot;א גבי הדביק פת בתנור ובירושלמי ר&quot;ה פ׳ א׳ גבי ב&quot;ת מבואר שם דאף אם נשלמה השנה בעצרת דהוה יו&quot;ט ואין נדרים ונדבות קריבין ביו&quot;ט מ&quot;מ כיון שאם עבר והביא כשר מוטל עליו החיוב ועבר על ב&quot;ת ע&quot;ש, ועיין מש&quot;כ התוס׳ פסחים ד׳ צ&quot;ג ע&quot;ב ד&quot;ה ר&quot;י אם משום איסור תחומין משוה לו כדרך רחוקה וע&quot;ש דס&quot;ט ע&quot;ב גבי ערל, אך באמת י&quot;ל כך דהנה עיין ברש&quot;י תמורה דף י&quot;ח ע&quot;ב ד&quot;ה בכל יום דגרס שם עובר בעשה ע&quot;ש, והנה בירוש׳ פ׳ א׳ דר&quot;ה מבואר להדיא דהעשה לא עבר בכל יום רק בכל רגל וע&quot;ש בבהמ&quot;א דמבואר להיפך, אך באמת י&quot;ל כך דזה תליא אם החיוב הוא חיוב נמשך רק דכ&quot;ז שלא עבר הזמן יש לתקן החיוב אז אף אם בסוף אירע לו אונס מ&quot;מ חייב אף אם הוא אנוס מחמת דין וכדומה וכעין מש&quot;כ רבינו ז&quot;ל בהל׳ ק&quot;פ גבי פסח שני פ׳ ה׳ הל׳ ב׳ ע&quot;ש, ועיין בהך דשבועות ד׳ כ&quot;ח ע&quot;ש ברש&quot;י ותוס׳ אם הידיעה צריך להיות בעת התנאי או בעת האיסור ותוס׳ מכות ד׳ ט&quot;ו ע&quot;ב וברש&quot;י שם ד&quot;ה ור&quot;ל, ועיין בהך דר&quot;ה דף ז׳ ע&quot;ב ברש&quot;י ותוס׳ שם ד&quot;ה והרי רגלים ע&quot;ש ועיין בריש פ׳ א׳ דכתובות גבי הך דאנוס בתקנתא דרבנן ובירושלמי שם ריש פ׳ ה׳ ע&quot;ש הל׳ ג׳ נעשה כמו שחבשוהו, והנה זה רק אם הוה גדר תשלומין אבל אם לא הוה תשלומין רק דהחיוב הוא לעשות זה ויש לו זמן אז לא עבר אם אירע לו אונס בסוף הזמן וס&quot;ל להירושלמי דשנה גבי קרבן הוה גדר תשלומין ולכך ס&quot;ל שם דלאחר שנה עובר בכל יום ויום משא&quot;כ ברגל ס&quot;ל דכל זמן הרגל הוה כמו זמן אחד ולכך עובר בין רגל לרגל ושם אם היה רגל ראשון עצרת אינו עובר ובזה א&quot;ש מה דבתמורה כאן מקשה רק מרבא וכן בר&quot;ה דף ז׳ והלא בר&quot;ה דף ד׳ ע&quot;ב מבואר דלרבנן עובר בעשה ברגל אחד רק דהא כאן עצרת וא&quot;כ לשיטת הירושלמי דגבי רגל לא שייך לעבור בעצרת כמש&quot;כ לכך לא מקשה רק מרבא דס&quot;ל דעובר בכל יום גם העשה של רגל כגירסת רש&quot;י וא&quot;כ ה&quot;ה בעצרת כמש&quot;כ, אך בתמורה דף ד׳ הנ&quot;ל ס&quot;ל דהעשה לא קאי כלל רק אחר גירושין וא&quot;כ לא קאי כלל אכהנים וא&quot;כ נמצא הלאו כולל יותר מן העשה וא&quot;כ אף לגבי ישראל יתחייב מלקות ותירץ דכהנים הוו כמו עם בפני עצמם משום קדושה יתירה, ועיין בהך דפסחים ד׳ ק&quot;ד ע&quot;א גבי הבדלות ע&quot;ש ברש&quot;י ותוס׳ ובהך דזבחים ד׳ י&quot;ט ע&quot;א גבי תפילין, ועיין קדושין ד׳ ע&quot;ג גבי קהל והוריות דף ו׳ וכ&quot;מ, א&quot;כ לפי&quot;ז אם עבר הכהן ונשאה אף למ&quot;ד ביטלו לא מיפטר בהא, ובזה א&quot;ש מה דנקט בגמ׳ דידן במכות ד׳ ט&quot;ז גבי אונס היכא משכחת לה ביטלו, ואמאי לא מוקי בכהן וע&quot;כ כמש&quot;כ:</p>
               </div>
             </div>
@@ -267,8 +283,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:9:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-9-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-9">Mishneh Torah, Virgin Maiden 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַת שֶׁיֵּשׁ לָהּ אָב וְאַחַת שֶׁאֵין לָהּ אָב יֵשׁ לָהּ קְנָס. וְאֵלּוּ שֶׁאֵין לָהֶן קְנָס. הַבּוֹגֶרֶת וְהַמְמָאֶנֶת וְהָאַיְלוֹנִית וְהַשּׁוֹטָה וְהַחֵרֶשֶׁת. וּמִי שֶׁיָּצָא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ וּבָאוּ שְׁנַיִם וְהֵעִידוּ שֶׁתָּבְעָה אוֹתָן לִזְנוֹת עִמָּהּ. וְהַמְגֹרֶשֶׁת מִן הַנִּשּׂוּאִין וַעֲדַיִן הִיא נַעֲרָה בְּתוּלָה. אֲבָל הַמְגֹרֶשֶׁת מִן הָאֵרוּסִין אִם נֶאֶנְסָה יֵשׁ לָהּ קְנָס וּקְנָסָהּ לְעַצְמָהּ. וְאִם נִתְפַּתְּתָה אֵין לָהּ קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחת שיש כו׳.</strong> כן מבואר בכתובות דף מ&quot;ד ע&quot;ב ע&quot;ש:</p>
               </div>
             </div>
@@ -283,8 +304,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:9:2</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-9-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:9:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-9">Mishneh Torah, Virgin Maiden 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַת שֶׁיֵּשׁ לָהּ אָב וְאַחַת שֶׁאֵין לָהּ אָב יֵשׁ לָהּ קְנָס. וְאֵלּוּ שֶׁאֵין לָהֶן קְנָס. הַבּוֹגֶרֶת וְהַמְמָאֶנֶת וְהָאַיְלוֹנִית וְהַשּׁוֹטָה וְהַחֵרֶשֶׁת. וּמִי שֶׁיָּצָא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ וּבָאוּ שְׁנַיִם וְהֵעִידוּ שֶׁתָּבְעָה אוֹתָן לִזְנוֹת עִמָּהּ. וְהַמְגֹרֶשֶׁת מִן הַנִּשּׂוּאִין וַעֲדַיִן הִיא נַעֲרָה בְּתוּלָה. אֲבָל הַמְגֹרֶשֶׁת מִן הָאֵרוּסִין אִם נֶאֶנְסָה יֵשׁ לָהּ קְנָס וּקְנָסָהּ לְעַצְמָהּ. וְאִם נִתְפַּתְּתָה אֵין לָהּ קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והאילונית כו׳.</strong> עיין בהשגות, אך י&quot;ל דרבינו ז&quot;ל לטעמיה דס&quot;ל דגבי שלא כדרכה ליכא קנס וס&quot;ל דה&quot;ה ביאת איילונית דהוה ביאה שאין בה פירצה כמבואר ביבמות דף ס&quot;א ע&quot;ב ע&quot;ש:</p>
               </div>
             </div>
@@ -299,8 +325,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:9:3</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-9-3" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:9:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-9">Mishneh Torah, Virgin Maiden 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַת שֶׁיֵּשׁ לָהּ אָב וְאַחַת שֶׁאֵין לָהּ אָב יֵשׁ לָהּ קְנָס. וְאֵלּוּ שֶׁאֵין לָהֶן קְנָס. הַבּוֹגֶרֶת וְהַמְמָאֶנֶת וְהָאַיְלוֹנִית וְהַשּׁוֹטָה וְהַחֵרֶשֶׁת. וּמִי שֶׁיָּצָא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ וּבָאוּ שְׁנַיִם וְהֵעִידוּ שֶׁתָּבְעָה אוֹתָן לִזְנוֹת עִמָּהּ. וְהַמְגֹרֶשֶׁת מִן הַנִּשּׂוּאִין וַעֲדַיִן הִיא נַעֲרָה בְּתוּלָה. אֲבָל הַמְגֹרֶשֶׁת מִן הָאֵרוּסִין אִם נֶאֶנְסָה יֵשׁ לָהּ קְנָס וּקְנָסָהּ לְעַצְמָהּ. וְאִם נִתְפַּתְּתָה אֵין לָהּ קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והשוטה והחרשת כו׳.</strong> עיין בהשגות, ועיין כאן דל&quot;ב ע&quot;א, ועיין בתוספתא דמבואר כך אך עיין ברמב&quot;ן במלחמות ספ&quot;ג דכתב דמשבשתא היא ע&quot;ש, אך באמת זה תליא בהך פלוגתא דר&quot;מ ורבנן דף מ׳ ע&quot;ב דלר&quot;מ כיון דס&quot;ל דבעי מהוי עצמה גם חרשת ושוטה אין להם קנס משא&quot;כ לרבנן וזהו כוונת הראב&quot;ד ז&quot;ל כאן ור&quot;ל רבנן דס&quot;ל דקטנה יש לה קנס, ועיין ברש&quot;י ד׳ ל&quot;ב ע&quot;א בגירסא בנערה ושוטה ויתומה ועיין ברמב&quot;ן במלחמות בפ׳ ד׳ דכתובות על הך דדף מ&quot;ד ע&quot;ב ע&quot;ש:</p>
               </div>
             </div>
@@ -315,8 +346,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:9:4</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-9-4" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:9:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-9">Mishneh Torah, Virgin Maiden 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַת שֶׁיֵּשׁ לָהּ אָב וְאַחַת שֶׁאֵין לָהּ אָב יֵשׁ לָהּ קְנָס. וְאֵלּוּ שֶׁאֵין לָהֶן קְנָס. הַבּוֹגֶרֶת וְהַמְמָאֶנֶת וְהָאַיְלוֹנִית וְהַשּׁוֹטָה וְהַחֵרֶשֶׁת. וּמִי שֶׁיָּצָא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ וּבָאוּ שְׁנַיִם וְהֵעִידוּ שֶׁתָּבְעָה אוֹתָן לִזְנוֹת עִמָּהּ. וְהַמְגֹרֶשֶׁת מִן הַנִּשּׂוּאִין וַעֲדַיִן הִיא נַעֲרָה בְּתוּלָה. אֲבָל הַמְגֹרֶשֶׁת מִן הָאֵרוּסִין אִם נֶאֶנְסָה יֵשׁ לָהּ קְנָס וּקְנָסָהּ לְעַצְמָהּ. וְאִם נִתְפַּתְּתָה אֵין לָהּ קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמגורשת מן הנשואין כו׳.</strong> ע&quot;ש ד׳ ל&quot;ה ע&quot;ב ד&quot;ה הממאנת אך אפשר לומר לחלק בין מגורשת ובין אלמנה דהגט מחזיקה כבעולה וכעין זה כתבתי בהך דיבמות ד׳ ל&quot;ד ע&quot;ב ע&quot;ש גבי קטנה ועיין בתוס׳ שם ד׳ מ&quot;ט ע&quot;א וד׳ כ&quot;ט ע&quot;א ד&quot;ה ועל וכ&quot;כ בזה. והנה עיין בירושלמי דיבמות פי&quot;ג דבעי שם על דעתיה דרבי יהושע מהו שתמאן ותיטול קנס מאחר ע&quot;ש וא&quot;כ מוכח דס&quot;ל כשיטת רבינו בכמה מקומות דנשואין עושין אותה כבעולה ודאי עפ&quot;י דין ולכך בעי גבי ממאנת אך באמת בירושלמי כתובות פ׳ א׳ הל׳ ב׳ מבואר להדיא להיפך דגרושה מן הנשואין יש לה קנס וכן שם בהל׳ ד׳. אך נ&quot;ל דבירושלמי דיבמות הנ&quot;ל ר&quot;ל אם בעלה הבעל שלא כדרכה דקי&quot;ל דבעל עושה אותה בעולה שלא כדרכה כמבואר בקדושין דף ט׳ ע&quot;ב וכ&quot;מ ואח&quot;כ מיאנה בו אם נימא דעוקרת למפרע הנשואין וא&quot;כ לא הוה בעלה כלל וא&quot;כ אינה בעולה ויש לה קנס ובאמת נ&quot;ל דזהו ג&quot;כ כונת הגמ׳ יבמות ד׳ נ&quot;ט ע&quot;ב אלא אמר ר&quot;ז בממאנת ור&quot;ל דרב לא ס&quot;ל כר&quot;א גבי בעולה שלא כדרכה רק משום דס&quot;ל דמ&quot;מ יש עליו שם בעל ובעל עושה אותה בעולה אף שלא כדרכה, ועיין מש&quot;כ התוס׳ ב&quot;מ דף כ׳ ע&quot;א גבי עדיו בחתומין כו׳ אם בא על בת ישראל אם פסלה ע&quot;ש אך שם משום דהוה רק דרבנן, ועיין בירושלמי סנהדרין פ׳ א׳ גבי בת ג׳ שנה ואח&quot;כ נתעברה השנה דנעשה בתולה למפרע ע&quot;ש, ועיין בירושלמי שביעית פ׳ ב׳ ס׳ ה׳ ד׳ וקסמו בידו, ועיין בירושלמי תרומות פ׳ ד׳ הל׳ א׳ וקשיא נטל להוציא ממנו עליו כו׳, ועיין בתוספתא ר&quot;ה פ׳ א׳ גבי עומר של מן ועיין בירוש׳ חלה פ׳ א׳ הל׳ ב׳ גבי אם נימא דקצירת העומר מתרת לקצור אם קצר ונטמא חזר היחיד לאיסורו ע&quot;ש, ועיין בתוספתא פ׳ ח׳ דיבמות דכה&quot;ג נושא את הממאנת ובירושלמי שם וי&quot;ל דמיירי מן הארוסין:</p>
               </div>
             </div>
@@ -331,8 +367,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 1:10:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-1-10-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-10">Mishneh Torah, Virgin Maiden 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגִּיֹּרֶת וְהַשְּׁבוּיָה וְהַמְשֻׁחְרֶרֶת אִם נִתְגַּיְּרָה וְנִפְדֵית וְנִשְׁתַּחְרְרָה וְהִיא בַּת שָׁלֹשׁ שָׁנִים אוֹ פָּחוֹת יֵשׁ לָהּ קְנָס. וְאִם הָיְתָה בַּת שָׁלֹשׁ שָׁנִים וְיוֹם אֶחָד כְּשֶׁנִּתְגַּיְּרָה אוֹ כְּשֶׁנִּפְדֵּית אוֹ כְּשֶׁנִּשְׁתַּחְרְרָה אֵין לָהּ קְנָס הוֹאִיל וּבִיאָתָן בִּיאָה הֲרֵי הֵן כִּבְעוּלוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם היתה בת שלש כו׳.</strong> הנה מלשון רבינו משמע דאף שידוע שודאי לא נבעלה מ&quot;מ אין לה קנס וכמו לענין כהן אף לר&quot;ש ומש&quot;כ רש&quot;י ביבמות ד׳ מ&quot;ב ועיין דף ס׳ ודף ס&quot;א ושם ד׳ צ&quot;ז ע&quot;ב זהו רק טעם להתורה משום דזנתה אך לדינא אין נ&quot;מ, ועיין תוס׳ ע&quot;ז ד׳ ל&quot;ו ע&quot;ב ותוס׳ יבמות ד׳ ע&quot;ט ע&quot;א, אך הירושלמי לא ס&quot;ל כן גבי קנס כמבואר שם בפ׳ א׳ דאם בא על שפחה שנשתחררה והיתה משומרת יש לה קנס ועיין בתוס׳ כתובות ד׳ ל&quot;ז ע&quot;א גבי שבויה דס&quot;ל ג&quot;כ כן ע&quot;ש. אך רבינו לא ס&quot;ל כן וס&quot;ל דגם גבי קנס הדין עושה אותה כבעולה כמו גבי כתובה מאתים וזהו כוונת הכ&quot;מ ז&quot;ל שהביא מהך דכתובה לכאן וא&quot;ש ולא ס&quot;ל כהירושלמי והירושלמי אזיל לשיטתיה דס&quot;ל ביבמות פ׳ ו׳ ס׳ ה&quot;ג דגם לפסול לא תליא בנשואין רק בביאה אך אנן לא ס&quot;ל כן וזהו הך מחלוקת דיבמות ד׳ נ&quot;ז ביש חופה לפסולות וכ&quot;כ בזה:</p>
               </div>
             </div>
@@ -348,8 +389,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:1:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-1-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-1">Mishneh Torah, Virgin Maiden 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲמִשִׁים כֶּסֶף שֶׁל קְנָס הֵם דְּמֵי הֲנָאַת שְׁכִיבָה בִּלְבַד. וְחַיָּב הַמְפַתֶּה לִתֵּן בּשֶׁת וּפְגָם יוֹתֵר עַל הַקְּנָס הַקָּצוּב בַּתּוֹרָה. יֶתֶר עָלָיו הָאוֹנֵס שֶׁהוּא נוֹתֵן אֶת הַצַּעַר. שֶׁהַנִּבְעֶלֶת בִּרְצוֹנָהּ אֵין לָהּ צַעַר וַאֲנוּסָה יֵשׁ לָהּ צַעַר. וְכֵן הוּא אוֹמֵר בַּאֲנוּסָה <span class="source-small">(דברים כב כט)</span> &quot;תַּחַת אֲשֶׁר עִנָּהּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חמשים כסף כו׳.</strong> ועיין ב&quot;ק דף ה׳ דנוטל מן העדיות וכן פסק רבינו בהל׳ חובל ומזיק פ׳ ז׳ הל׳ י&quot;ז, ועיין תוס׳ יבמות דף ס׳ ע&quot;א, ועיין בירושלמי פ׳ ד׳ דכאן הל׳ ב׳ גבי עמדו בדין:</p>
               </div>
             </div>
@@ -364,8 +410,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:7:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-7-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-7">Mishneh Torah, Virgin Maiden 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְפַתֶּה נוֹתֵן בּשֶׁת וּפְגָם מִיָּד וְאֵינוֹ נוֹתֵן הַקְּנָס אֶלָּא אִם כֵּן לֹא נְשָׂאָהּ שֶׁנֶּאֱמַר <span class="source-small">(שמות כב טז)</span> &quot;וְאִם מָאֵן יְמָאֵן אָבִיהָ לְתִתָּהּ לוֹ כֶּסֶף יִשְׁקל&quot;. אֲבָל הָאוֹנֵס נוֹתֵן אַרְבָּעָה דְּבָרִים מִיָּד וְכוֹנֵס. לְפִיכָךְ כְּשֶׁתִּרְצֶה לְהִתְגָּרֵשׁ אוֹ תִּתְאַלְמֵן אֵין לָהּ כְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפתה כו׳.</strong> עיין בתוספתא כאן פ׳ ג׳ מבואר דאף אם מגרשה צריך ליתן לה ג&quot;כ בגדר קנס אך מהך דיבמות דף ס׳ ע&quot;א מוכח דאם כנסה וגירשה א&quot;צ ליתן לה קנס ע&quot;ש:</p>
               </div>
             </div>
@@ -380,8 +431,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:11:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-11-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-11">Mishneh Torah, Virgin Maiden 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. הָאוֹנֵס אֶת הַבּוֹגֶרֶת וְאֶת הַמְמָאֶנֶת אַף עַל פִּי שֶׁאֵין לָהֶן קְנָס יֵשׁ לָהֶן בּשֶׁת וּפְגָם וְצַעַר. וְהָאוֹנֵס שׁוֹטָה אוֹ חֵרֶשֶׁת מְשַׁלֵּם צַעַר בִּלְבַד. אֲבָל הַמְפַתֶּה אֶת כֻּלָּן פָּטוּר מִכְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד כו׳ והאונס כו׳.</strong> כן מבואר כתובות דף ל&quot;ב ע&quot;א ע&quot;ש:</p>
               </div>
             </div>
@@ -396,8 +452,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:13:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-13-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-13">Mishneh Torah, Virgin Maiden 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרָה לוֹ אָנַסְתָּ אוֹתִי וְהוּא אוֹמֵר לֹא כִּי אֶלָּא פִּתִּיתִי הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הַתּוֹרָה עַל דְּמֵי הַצַּעַר וּמְשַׁלֵּם בּשֶׁת וּפְגָם שֶׁהֲרֵי הוֹדָה בְּמִקְצָת הַטַּעֲנָה כְּמוֹ שֶׁיִּתְבָּאֵר בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרה לו כו׳.</strong> עיין בהשגות, ועיין בהך דב&quot;ק ד׳ ק&quot;ח ע&quot;ב גבי תבעוהו בעלים והודה והוה זה בעיא אם הוה תביעה וע&quot;ש ד׳ ע&quot;א ע&quot;ב גבי שור של שני שותפים ע&quot;ש, ועיין בשבועות ד׳ ל&quot;ז ע&quot;א פרט למכחש לאחד מן השותפים ובירוש׳ שם, ועיין בכ&quot;מ מה שהביא נוסחא אחרינא בשם הראב&quot;ד ז&quot;ל גבי צער דשייך לעצמה ועיין ב&quot;מ ד׳ צ&quot;ב ע&quot;ב גבי קוצץ אדם דהוה מחלוקת שם אם צערא זכי ליה רחמנא או לא והך דכתובות ד׳ ל&quot;ט ע&quot;ב זה רק לס&quot;ד דס&quot;ל דגם במפותה יש לה צער וזכי ליה רחמנא למוסרה לנשואין לביאה א&quot;כ יש לו זכות בצערה משא&quot;כ למסקנא דמפותה אין לה צער וא&quot;כ שוב אין לו זכות בצער והוה הצער לעצמה, עי׳ ב&quot;ק דף פ&quot;ז ובירושלמי ריש פרק ד׳ דכתובות דמוכח כשיטת הראב&quot;ד ז&quot;ל ע&quot;ש:</p>
               </div>
             </div>
@@ -412,8 +473,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:15:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-15-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-15">Mishneh Torah, Virgin Maiden 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְפֻתָּה אוֹ אֲנוּסָה שֶׁלֹּא תָּבְעָה עַד שֶׁבָּגְרָה אוֹ עַד שֶׁנִּשֵּׂאת אוֹ עַד שֶׁמֵּת הָאָב הָאַרְבָּעָה דְּבָרִים אוֹ הַשְּׁלֹשָׁה שֶׁלָּהּ. עָמְדָה בַּדִּין וְתָבְעָה אוֹתוֹ וְאַחַר כָּךְ בָּגְרָה אוֹ שֶׁנִּשֵּׂאת הֲרֵי הֵן שֶׁל אָב. וְאִם מֵת הָאָב אַחַר עֲמִידָתָהּ בַּדִּין הֲרֵי הֵן שֶׁל אַחִין שֶׁהֵן יוֹרְשֵׁי הָאָב. שֶׁמֵּעֵת שֶׁעָמְדָה בְּדִין זָכָה בָּהֶן הָאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפותה כו׳.</strong> עיין בהשגות דס&quot;ל דרק הקנס שייך לה וזהו כונת הירושלמי שם פ׳ ד׳ הל׳ א׳ ובושתה ופגמה של אביה ולא קאי אלעיל רק קאי אמשנה על לא הספיקה ועי׳ בר&quot;ן כאן, ועיין בירושלמי פ׳ ג׳ דכאן ה&quot;ז:</p>
               </div>
             </div>
@@ -428,8 +494,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:16:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-16-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-16">Mishneh Torah, Virgin Maiden 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבַּת שֶׁנִּתְאָרְסָה וְנִתְגָּרְשָׁה קְנָסָהּ לְבַדּוֹ לְעַצְמָהּ. נֶאֶנְסָה אוֹ נִתְפַּתְּתָה וְאַחַר כָּךְ נִתְקַדְּשָׁה לְאַחֵר קְנָסָהּ וּשְׁאָר הַדְּבָרִים לְאָבִיהָ. שֶׁאֵין הָאֵרוּסִין מוֹצִיאִין מֵרְשׁוּת אָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבת כו׳ נאנסה כו׳ שאין כו׳.</strong> ואף דהא בדף מ&quot;ו ע&quot;ב מסקינן דזה מיקרי יציאה מרשות אך באמת זה תליא אם מה שצריך גבי הפרת נדרים גם ארוס לא משום דגרע כח האב, רק משום דנולד לה עוד כח לכך צריך גם הארוס, ועיין בנדרים דף ע׳ גבי מת הבעל נתרוקן רשות לאב ושם ד׳ ע&quot;א ע&quot;ב בהך מחלוקת דב&quot;ש וב&quot;ה ונ&quot;מ לשיטת רבינו גבי נדרים שאין בהם עינוי נפש אם נתארסה אם האב לחודא מצי מיפר דהבעל אין לו רשות בנדרים רק של עינוי נפש וכ&quot;כ בזה, ועיין בר&quot;ן שם דף ע&quot;ה ע&quot;א ובדברי רבינו בהלכות נדרים, וגם נ&quot;מ גבי מסרוה לשלוחי הבעל דשוב נסתלק רשות האב לגמרי גבי הפרת נדרים כמבואר בכתובות ד׳ מ&quot;ח ע&quot;ב אם הבעל יכול להפר, ועיין בירושלמי פ׳ ד׳ דכתובות דמבואר שם דאינו יכול להפר וכן משמע לשון רש&quot;י בנדרים ד׳ פ&quot;ט ע&quot;א ד&quot;ה זה הכלל, ועיין בירושלמי פ׳ י׳ דנדרים דס&quot;ל דזה תליא במחלוקת דר&quot;א ורבנן גבי בוגרת ארוסה, וע&quot;ש בה&quot;א דמספקא ליה אם מת אביה ונתארסה לר&quot;א אם הארוס לחודא מיפר, ועיין ד׳ פ&quot;ט ע&quot;ב בהך משנה דט׳ נערות בשיטת ר&quot;י גבי קטנה נשואה וע&quot;ש בפה&quot;מ לרבינו ור&quot;י שם לשיטתיה אזיל כאן בכתובות דף מ&quot;ג ע&quot;ב וע׳ דנ&quot;ג ע&quot;ב גבי כתובה של קטנה שנשאת ע&quot;ש, וע׳ בירוש׳ פ&quot;ג סה&quot;ד דאף אם נשאת לאחר שבא עליה מ&quot;מ יש לו קנס דלא כגמ׳ דידן ויליף לה שם ממוציא שם רע וס&quot;ל דאדרבא גבי נתארסה נשאר בירושלמי פ׳ ד׳ סה&quot;א בספק למי ועיין בירושלמי בהוריות פ׳ ג׳ הל׳ ג׳ דכל היכא דאם אזלינן בתר ידיעה פטור לגמרי לא אזלינן בתר ידיעה דרק אם יש שינוי בקרבן אז יש לומר דאזלינן בתר ידיעה וכן ס&quot;ל לרבינו ז&quot;ל בהך דהוריות ד׳ י&quot;א גבי הך דאכל ספק חלב כשהוא הדיוט ונתמנה כו׳ דס&quot;ל דקאי גם אכהן משיח ולא מיקרי נשתנה משום דפטור לגמרי כמבואר ס׳ פ׳ ט&quot;ו מהל׳ שגגות ועיין בהך דנזיר ד׳ ס&quot;ג ע&quot;ב גבי ידיעה דאחר מלאת ע&quot;ש מש&quot;כ בזה בתוס׳ ד&quot;ה הני מילי דרק לר&quot;א קודם תגלחת דס&quot;ל דסותר ז׳ עכ&quot;פ אז י&quot;ל דאזלינן בתר ידיעה. ועיין ברשב&quot;ם ב&quot;ב ד׳ ק&quot;ד ע&quot;ב גבי הך דבעי רב אשי שדה ונעשית גינה דרק היכא דאין נ&quot;מ רק בין קרקע למעות אבל לענין מחילה לגמרי לא ע&quot;ש, ועיין ב&quot;מ ד׳ מ&quot;ט ע&quot;ב גבי אונאה כה&quot;ג ע&quot;ש:</p>
               </div>
             </div>
@@ -444,8 +515,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:17:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-17-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-17">Mishneh Torah, Virgin Maiden 2:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲנִי אוֹמֵר שֶׁזֶּה שֶׁנֶּאֱמַר בַּתּוֹרָה <span class="source-small">(ויקרא יט כט)</span> &quot;אַל תְּחַלֵּל אֶת בִּתְּךָ לְהַזְנוֹתָהּ&quot;. שֶׁלֹּא יֹאמַר הָאָב הוֹאִיל וְלֹא חִיְּבָה תּוֹרָה מְפַתֶּה וְאוֹנֵס אֶלָּא שֶׁיִּתֵּן מָמוֹן לָאָב הֲרֵינִי שׂוֹכֵר בִּתִּי הַבְּתוּלָה לָזֶה לָבוֹא עָלֶיהָ בְּכָל מָמוֹן שֶׁאֶרְצֶה אוֹ אָנִיחַ זֶה לָבוֹא עָלֶיהָ בְּחִנָּם שֶׁיֵּשׁ לוֹ לָאָדָם לִמְחל מָמוֹנוֹ לְכָל מִי שֶׁיִּרְצֶה לְכָךְ נֶאֱמַר אַל תְּחַלֵּל אֶת בִּתְּךָ. שֶׁזֶּה שֶׁחִיְּבָה תּוֹרָה לָאוֹנֵס וְלַמְפַתֶּה מָמוֹן וְלֹא מַלְקוֹת בְּשֶׁאֵרַע הַדָּבָר מִקְרֶה שֶׁלֹּא מִדַּעַת אָבִיהָ וְלֹא הֵכִינָה עַצְמָהּ לְכָךְ שֶׁדָּבָר זֶה אֵינוֹ הוֹוֶה תָּמִיד וְאֵינוֹ מָצוּי. אֲבָל אִם הֵנִיחַ בִּתּוֹ הַבְּתוּלָה מוּכֶנֶת לְכָל מִי שֶׁיָּבוֹא עָלֶיהָ גּוֹרֵם שֶׁתִּמָּלֵא הָאָרֶץ זִמָּה וְנִמְצָא הָאָב נוֹשֵׂא בִּתּוֹ וְהָאָח נוֹשֵׂא אֲחוֹתוֹ שֶׁאִם תִּתְעַבֵּר וְתֵלֵד לֹא יִוָּדַע בֶּן מִי הוּא. וְהַמֵּכִין בִּתּוֹ לְכָךְ הֲרֵי הִיא קְדֵשָׁה וְלוֹקֶה הַבּוֹעֵל וְהַנִּבְעֶלֶת מִשּׁוּם <span class="source-small">(דברים כג יח)</span> &quot;לֹא תִהְיֶה קְדֵשָׁה&quot;. וְאֵין קוֹנְסִין אוֹתוֹ שֶׁלֹּא חִיְּבָה תּוֹרָה קְנָס אֶלָּא לְאוֹנֵס וּמְפַתֶּה אֲבָל זוֹ שֶׁהֵכִינָה עַצְמָהּ לְכָךְ בֵּין מִדַּעְתָּהּ בֵּין מִדַּעַת אָבִיהָ הֲרֵי זוֹ קְדֵשָׁה. וְאִסּוּר קְדֵשָׁה אֶחָד הוּא בֵּין בִּבְתוּלָה בֵּין בִּבְעוּלָה לְפִיכָךְ אָמְרוּ חֲכָמִים שֶׁהַיּוֹצֵא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ אֵין לָהּ קְנָס כְּמוֹ שֶׁבֵּאַרְנוּ שֶׁהֲרֵי זוֹ בְּחֶזְקַת שֶׁהִפְקִירָה עַצְמָהּ לְדָבָר זֶה בִּרְצוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אני אומר כו׳ ולוקה כו׳.</strong> עיין מש&quot;כ רבינו לקמן בפ׳ ה׳ מהל׳ א&quot;ב הי&quot;ח ע&quot;ש דנקט היא במלקות ומשמע שם דהבועל אין נ&quot;מ בין אם מופקרת לכל או לא ועי׳ בהך דסנהדרין ד׳ ע&quot;ו ע&quot;א דמוכח שם דהלאו הוא על האב ועיין בהך דתמורה ד׳ כ&quot;ט ע&quot;ב גבי אתנן בפנויה ע&quot;ש:</p>
               </div>
             </div>
@@ -460,8 +536,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 2:17:2</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-2-17-2" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 2:17:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-17">Mishneh Torah, Virgin Maiden 2:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲנִי אוֹמֵר שֶׁזֶּה שֶׁנֶּאֱמַר בַּתּוֹרָה <span class="source-small">(ויקרא יט כט)</span> &quot;אַל תְּחַלֵּל אֶת בִּתְּךָ לְהַזְנוֹתָהּ&quot;. שֶׁלֹּא יֹאמַר הָאָב הוֹאִיל וְלֹא חִיְּבָה תּוֹרָה מְפַתֶּה וְאוֹנֵס אֶלָּא שֶׁיִּתֵּן מָמוֹן לָאָב הֲרֵינִי שׂוֹכֵר בִּתִּי הַבְּתוּלָה לָזֶה לָבוֹא עָלֶיהָ בְּכָל מָמוֹן שֶׁאֶרְצֶה אוֹ אָנִיחַ זֶה לָבוֹא עָלֶיהָ בְּחִנָּם שֶׁיֵּשׁ לוֹ לָאָדָם לִמְחל מָמוֹנוֹ לְכָל מִי שֶׁיִּרְצֶה לְכָךְ נֶאֱמַר אַל תְּחַלֵּל אֶת בִּתְּךָ. שֶׁזֶּה שֶׁחִיְּבָה תּוֹרָה לָאוֹנֵס וְלַמְפַתֶּה מָמוֹן וְלֹא מַלְקוֹת בְּשֶׁאֵרַע הַדָּבָר מִקְרֶה שֶׁלֹּא מִדַּעַת אָבִיהָ וְלֹא הֵכִינָה עַצְמָהּ לְכָךְ שֶׁדָּבָר זֶה אֵינוֹ הוֹוֶה תָּמִיד וְאֵינוֹ מָצוּי. אֲבָל אִם הֵנִיחַ בִּתּוֹ הַבְּתוּלָה מוּכֶנֶת לְכָל מִי שֶׁיָּבוֹא עָלֶיהָ גּוֹרֵם שֶׁתִּמָּלֵא הָאָרֶץ זִמָּה וְנִמְצָא הָאָב נוֹשֵׂא בִּתּוֹ וְהָאָח נוֹשֵׂא אֲחוֹתוֹ שֶׁאִם תִּתְעַבֵּר וְתֵלֵד לֹא יִוָּדַע בֶּן מִי הוּא. וְהַמֵּכִין בִּתּוֹ לְכָךְ הֲרֵי הִיא קְדֵשָׁה וְלוֹקֶה הַבּוֹעֵל וְהַנִּבְעֶלֶת מִשּׁוּם <span class="source-small">(דברים כג יח)</span> &quot;לֹא תִהְיֶה קְדֵשָׁה&quot;. וְאֵין קוֹנְסִין אוֹתוֹ שֶׁלֹּא חִיְּבָה תּוֹרָה קְנָס אֶלָּא לְאוֹנֵס וּמְפַתֶּה אֲבָל זוֹ שֶׁהֵכִינָה עַצְמָהּ לְכָךְ בֵּין מִדַּעְתָּהּ בֵּין מִדַּעַת אָבִיהָ הֲרֵי זוֹ קְדֵשָׁה. וְאִסּוּר קְדֵשָׁה אֶחָד הוּא בֵּין בִּבְתוּלָה בֵּין בִּבְעוּלָה לְפִיכָךְ אָמְרוּ חֲכָמִים שֶׁהַיּוֹצֵא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ אֵין לָהּ קְנָס כְּמוֹ שֶׁבֵּאַרְנוּ שֶׁהֲרֵי זוֹ בְּחֶזְקַת שֶׁהִפְקִירָה עַצְמָהּ לְדָבָר זֶה בִּרְצוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אמר כו׳.</strong> הנה בגמ׳ דילן לא משמע כן רק הטעם דכיון שהפקירה עצמה אינה בחזקת בתולה ואף אם מודה הוה כמו מודה בקנס ועיין שבועות ד׳ ל&quot;ד ע&quot;א מי לא בעי מידע כו׳ וב&quot;ק ד׳ מ&quot;ג ע&quot;ב ונ&quot;מ לענין בושת ופגם אם צריך לשלם וכ&quot;כ בזה:</p>
               </div>
             </div>
@@ -477,8 +558,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 3:1:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-3-1-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-1">Mishneh Torah, Virgin Maiden 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹצִיא שֵׁם רַע עַל בַּת יִשְׂרָאֵל וְנִמְצָא הַדָּבָר שֶׁקֶר לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יח)</span> &quot;וְיִסְּרוּ אֹתוֹ&quot;. וְאַזְהָרָה שֶׁלּוֹ מִ<span class="source-small">(ויקרא יט טז)</span> &quot;לֹּא תֵלֵךְ רָכִיל בְּעַמֶּיךָ&quot;. וְנוֹתֵן לְאָבִיהָ מִשְׁקַל מֵאָה סְלָעִים כֶּסֶף מְזֻקָּק. וְאִם הָיְתָה יְתוֹמָה הֲרֵי הֵם שֶׁל עַצְמָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונותן לאביה כו׳ ואם היתה כו׳.</strong> עיין בתוספתא פ&quot;א דכתובות דגם הכתובה צריך ליתן לה דזה כבר נתחייב מקודם ועיין בהך דסנהדרין ד׳ ח׳ ע&quot;א ע&quot;ש ברש&quot;י ותוס׳:</p>
               </div>
             </div>
@@ -493,8 +579,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 3:8:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-3-8-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-8">Mishneh Torah, Virgin Maiden 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל נַעֲרָה שֶׁאֵין לָהּ קְנָס אִם נֶאֶנְסָה אוֹ נִתְפַּתְּתָה כָּךְ הַמּוֹצִיא עָלֶיהָ שֵׁם רַע פָּטוּר מִן הַמַּלְקוֹת וּמִן הַתַּשְׁלוּמִין. וְכֵן הַכּוּתִית שֶׁנִּתְגַּיְּרָה וְהַשִּׁפְחָה שֶׁנִּשְׁתַּחְרְרָה פְּחוּתָה מִבַּת שָׁלֹשׁ שָׁנִים אֲפִלּוּ הָיְתָה הוֹרָתָהּ שֶׁלֹּא בִּקְדֻשָּׁה וְלֵדָתָהּ בִּקְדֻשָּׁה הַמּוֹצִיא עָלֶיהָ שֵׁם רַע פָּטוּר מִן הַקְּנָס וּמִן הַמַּלְקוֹת שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;כִּי הוֹצִיא שֵׁם רָע עַל בְּתוּלַת יִשְׂרָאֵל&quot; עַד שֶׁתִּהְיֶה הוֹרָתָהּ וְלֵדָתָהּ בִּקְדֻשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל נערה שאין כו׳.</strong> הנה מלשון רבינו מוכח וכן מלעיל הל׳ ה׳ דאם היא חייבי לאוין מ&quot;מ יש לה קנס כמו גבי אונס, אך עיין בירושלמי כאן פ׳ ג׳ הל׳ ו׳ מוכח דאין לה קנס רק אם אשה הראויה לו ועיין בתוס׳ סנהדרין ד׳ ח׳ ע&quot;ב ד&quot;ה והביא בסוף הדיבור ואם רק אסורה מדרבנן אם זה מיקרי ראויה לו עיין כתובות ד׳ ל&quot;ו ע&quot;א כיון דמדאורייתא חזיא, ועיין בהך דעירובין ד׳ ל&quot;ח ע&quot;ב גבי ניער דמצי אמר אף ע&quot;ג דלא אמר כו׳, והא מדרבנן אסור לומר משום הכנה וע&quot;ש בירושלמי פ׳ ג׳ ראוי הוא לעבור על השבות כו׳, ושם ד׳ ע&quot;ח ע&quot;ב ותוס׳ שבת ד׳ מ&quot;ג ע&quot;א דמחלקי בין איסור דאורייתא לאיסור דרבנן דאיסור דרבנן מיקרי ראוי, אך לא דמי דשם אח&quot;כ נסתלק האיסור וכמש&quot;כ התוס׳ ביצה ד׳ ל&quot;א ע&quot;ב ע&quot;ש ועיין בהך דפסחים ד׳ מ&quot;ח ע&quot;א גבי מוקצה וכ&quot;כ בזה:</p>
               </div>
             </div>
@@ -509,8 +600,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 3:9:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-3-9-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-9">Mishneh Torah, Virgin Maiden 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִדֵּשׁ נַעֲרָה וְגֵרְשָׁהּ וְחָזַר וְקִדְּשָׁהּ וְהוֹצִיא עָלֶיהָ שֵׁם רַע וְהֵבִיא עֵדִים שֶׁזִּנְּתָה תַּחְתָּיו בַּקִּדּוּשִׁין הָרִאשׁוֹנִים וְנִמְצְאוּ זוֹמְמִים הֲרֵי זֶה פָּטוּר. וְכֵן אִם הָיְתָה יְבִמְתּוֹ שֶׁכָּנְסָהּ וְהוֹצִיא עָלֶיהָ שֵׁם רַע וְהֵבִיא עֵדִים שֶׁזִּנְּתָה תַּחַת קִדּוּשֵׁי אָחִיו וְנִמְצְאוּ זוֹמְמִים הֲרֵי זֶה פָּטוּר מִן הַמַּלְקוֹת וּמִן הַתַּשְׁלוּמִין. וְכָל הַפָּטוּר אִם רָצָה לְגָרֵשׁ יְגָרֵשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל הפטור כו׳.</strong> הנה קשה נהי דפטור מחמת ספק לקולא אך מ&quot;מ הלאו היאך יעבור מספק וצ&quot;ל דזה ג&quot;כ בגדר קנס שקנסה אותו התורה וכ&quot;ז שלא נגמר הדין אינו מתחייב קנס וכיון דנשאר בתיקו שוב אין ב&quot;ד יכולים לגמור הדין וכמש&quot;כ הראב&quot;ד ז&quot;ל בהל׳ גניבה פרק ב׳ הל׳ י&quot;ב ע&quot;ש וא&quot;כ שוב שפיר יכול לגרשה לכתחלה, ועיין מש&quot;כ התוס׳ כתובות ד׳ ל&quot;ג ע&quot;ב ד&quot;ה לאו ותוס׳ ב&quot;ק ד׳ ל&quot;ג ע&quot;ב ע&quot;ש, ועיין מש&quot;כ לעיל פרק א׳ הל׳ ג׳, ועיין מש&quot;כ הר&quot;ן ז&quot;ל במס׳ קדושין פ׳ ד׳ גבי הך דמשפחה שנטמעה נטמעה, ובאמת שם ג&quot;כ הטעם משום דמבואר בירושלמי תרומות פ׳ ח׳ הל׳ א׳ דפסול משפחה צריך ב&quot;ד וכן הוא בירושלמי סנהדרין פרק ד׳ הל׳ ח׳ דהוה כדיני נפשות לגבי דמתחילין מן הצד ע&quot;ש ובפרק ג׳ הל׳ ג׳ גבי פסולי עדות, וכ&quot;ז שלא נפסק אין על המשפחה שם פסול ומותרת להתערב, אבל במשפחה שכבר נפסלה בב&quot;ד לא מהני מה שנטמאה, ועיין מש&quot;כ רבינו בהל׳ עדות פ׳ כ׳ הל׳ א׳ דמשמע שם דב&quot;ד מקבלין העדים להזים אף דא&quot;א לקיים בהם דין זוממים ע&quot;ש ונפסלים בודאי, ועיין תוס׳ ב&quot;ק ד׳ ע&quot;ב ע&quot;ב ותוס׳ סנהדרין ד׳ ס&quot;ה ע&quot;ב ד&quot;ה יצאו דמשמע ג&quot;כ שם דס&quot;ל כן וע&quot;ש דף ח׳ ע&quot;ב:</p>
               </div>
             </div>
@@ -525,8 +621,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tzafnat Pa&#39;neach on Mishneh Torah, Virgin Maiden 3:10:1</h4></div>
               <a class="anchor" href="#tzafnat-paneach-on-mishneh-torah-virgin-maiden-3-10-1" aria-label="Copy link to Tzafnat Pa'neach on Mishneh Torah, Virgin Maiden 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-10">Mishneh Torah, Virgin Maiden 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵינוֹ חַיָּב עַד שֶׁיִּבְעל אוֹתָהּ כְּדַרְכָּהּ וְיוֹצִיא שֵׁם רַע (עַל הַבְּעִילָה) כְּדַרְכָּהּ. בְּעָלָהּ שֶׁלֹּא כְּדַרְכָּהּ וְאָמַר לֹא מְצָאתִיהָ בְּתוּלָה פָּטוּר וּמַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אינו חייב כו׳.</strong> הנה לפי הגירסא שלנו בדברי רבינו י&quot;ל שר&quot;ל כמו הך דכתובות דף י׳ ע&quot;א גבי כאן בבחור כאן בנשוי ולכך אמר דמכין אותו מכת מרדות כדאמר שם דמתבינן ליה כופרא ע&quot;ש ועיין בירושלמי כאן פ׳ ד׳ אפילו בא עליה ביאה אחרת ועיין מש&quot;כ לקמן בהל׳ אס&quot;ב בזה ע&quot;ש בפ&quot;ג:</p>
               </div>
             </div>
@@ -536,6 +637,10 @@
               <a href="#chapter-tzafnat-paneach-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tzafnat-paneach-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/tzafnat-paneach-on-mishneh-torah-virgin-maiden-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -556,8 +661,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-virgin-maiden.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tzafnat-paneach-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"../../data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-virgin-maiden.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-virgin-maiden.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tzafnat-paneach-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tzafnat-paneach-on-mishneh-torah-virgin-maiden.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -583,7 +688,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

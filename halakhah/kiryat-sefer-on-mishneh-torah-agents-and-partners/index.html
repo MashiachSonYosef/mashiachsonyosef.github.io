@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-agents-and-partners/">Open Mishneh Torah, Agents and Partners</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Agents and Partners</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>175 matched</strong> / 371 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-agents-and-partners.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-agents-and-partners-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -238,8 +239,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-1-1">Mishneh Torah, Agents and Partners 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹמֵר לִשְׁלוּחוֹ צֵא וּמְכֹר לִי קַרְקַע אוֹ מִטַּלְטְלִין אוֹ קְנֵה לִי הֲרֵי זֶה מוֹכֵר וְלוֹקֵחַ וְעוֹשֶׂה שְׁלִיחוּתוֹ וְכָל מַעֲשָׂיו קַיָּמִין. וְאֵין הָעוֹשֶׂה שָׁלִיחַ צָרִיךְ קִנְיָן וְלֹא עֵדִים אֶלָּא בַּאֲמִירָה בִּלְבַד בֵּינוֹ לְבֵין חֲבֵרוֹ. וְאֵין צְרִיכִין עֵדִים אֶלָּא לְגַלּוֹת הַדָּבָר אִם כָּפַר אֶחָד מֵהֶם כִּשְׁאָר כָּל הַטְּעָנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> שליחות </strong> ילפינן בכל התורה כולה פרק האיש מקדש מדכתיב ושחטו אותו כל קהל וגו׳ וכי כל הקהל שוחטין וכו׳ אלא מכאן ששלוחו של אדם כמותו ומשום דקדשים רוב מעשיהם ע&quot;י שליח שהכהנים שלוחי׳ הם וילפינן נמי מדכת׳ בגירושין ושלח ושלחה וגו׳ כדאי׳ התם ואתיא מביניא דמה לגירושין שכן הן חול אצל תרומה קדשים יוכיחו לא ראי זה כראי זה וכו׳ הצד השוה שביניהם שישנן על ידי עצמו ושלוחו כמותו אף אני אביא תרומה וכל שכן שאר מילי שהן חול גמור. ואם עבר על דבר משלחו לא עשה כלום דלאו שלוחו הוי כיון שעבר על דבריו וכן אם עוות בשליחותו הוי כעובר דלתקוני שדריה ולא לעוות דומיא דשחיטת פסח דזכות הוא להם:</p>
               </div>
             </div>
@@ -255,8 +261,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-2-1">Mishneh Torah, Agents and Partners 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָעַכּוּ&quot;ם נַעֲשֶׂה שָׁלִיחַ לְדָבָר מִן הַדְּבָרִים שֶׁבָּעוֹלָם. וְכֵן אֵין יִשְׂרָאֵל נַעֲשֶׂה שָׁלִיחַ לְעַכּוּ&quot;ם לְדָבָר מִן הַדְּבָרִים. שֶׁנֶּאֱמַר <span class="source-small">(במדבר יח כח)</span> &quot;כֵּן תָּרִימוּ גַם אַתֶּם&quot; מָה אַתֶּם בְּנֵי בְּרִית אַף שְׁלוּחֲכֶם בְּנֵי בְּרִית. וְהוּא הַדִּין לְכָל הַתּוֹרָה כֻּלָּהּ. וּמַה מְשַׁלַּחֲכֶם בֶּן בְּרִית אַף בְּכָל הַתּוֹרָה כֻּלָּהּ הַמְשַׁלֵּחַ בֶּן בְּרִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אין </strong> הגוי נעשה שליח לישראל ולא ישראל לגוי כדילפינן פרק איזהו נשך מדכתיב כן תרימו גם אתם מה אתם בני ברית אף שלוחכם וכו׳ ומה משלחכם בני ברית וכו׳ והוא הדין לכל התורה כולה ועבד ושפחה הואיל והן בני דעת וישנן במקצת מצות נעשין שלוחין למשא ומתן דבני ברית מקרו. וחרש שוטה וקטן אינם נעשים שלוחין דבני דעת בעינן דומיא דאתם וקטן אפילו בר דעת לא הוי שליח דאיש כתיב בפרשת גירושין דילפינן מינה שליחו׳ כדאמר׳ לעיל פרק ד׳ מהלכות זכיה.</p>
               </div>
             </div>
@@ -271,8 +282,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-2-4">Mishneh Torah, Agents and Partners 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשָּׁלִיחַ שֶׁקָּנָה אוֹ שֶׁמָּכַר וְהוֹדִיעַ שֶׁהוּא שָׁלִיחַ בְּדָבָר זֶה לִפְלוֹנִי אַף עַל פִּי שֶׁמָּשַׁךְ אוֹ שֶׁהִמְשִׁיךְ וְנִמְצָא שֶׁעָבַר עַל דַּעַת הַמְשַׁלֵּחַ בָּטֵל הַמִּקָּח וּמַחֲזִיר. וְאִם לֹא הוֹדִיעַ שֶׁהוּא שָׁלִיחַ נִקְנָה הַמִּקָּח וְיִהְיֶה הַדִּין בֵּינוֹ וּבֵין זֶה שֶׁשְּׁלָחוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שהודיע שהוא שליח במה שקונה ועבר על דבר המשלח בטל מה שקנה ומחזיר למוכר וסרסור שליח הוא אלא שנוטל שכר ולפיכך אם נגנב או נשבר חייב מפני שהוא נושא שכר דהוי כשוכר כדילפינן בדוכתיה ואם טען שארעו אונס נשבע שבועת שומרין. ואם היתה טעות האונס במקום שאיפשר להביא עדים אם לא הביאם אינו נאמן ומשלם כדתניא סוף פרק האומנין אין רואה שבועת ה׳ תהיה בין שניהם הא יש רואה יביא ראיה ויפטר:</p>
               </div>
             </div>
@@ -288,8 +304,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-3-1">Mishneh Torah, Agents and Partners 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיְתָה לוֹ קַרְקַע תַּחַת יַד אֶחָד אוֹ שֶׁהָיוּ לוֹ מִטַּלְטְלִין פִּקָּדוֹן וְרָצָה לַעֲשׂוֹת שָׁלִיחַ לָדוּן עִם זֶה וּלְהוֹצִיא הַקַּרְקַע אוֹ הַפִּקָּדוֹן מִתַּחַת יָדוֹ הֲרֵי זֶה כּוֹתֵב לוֹ הַרְשָׁאָה וְצָרִיךְ לִקְנוֹת מִיָּדוֹ שֶׁהִרְשָׁהוּ וְאוֹמֵר לוֹ דּוּן וּזְכֵה וְהוֹצֵא לְעַצְמְךָ וְכַיּוֹצֵא בְּעִנְיָנִים אֵלּוּ. וְאִם לֹא כָּתַב לוֹ אֵינוֹ יָכוֹל לָדוּן עִמּוֹ מִפְּנֵי שֶׁהוּא אוֹמֵר לוֹ אֵין אַתָּה בַּעַל דִּינִי. וְאַף עַל פִּי שֶׁכָּתַב לוֹ כֵן אֵינוֹ אֶלָּא שָׁלִיחַ וְכָל מַה שֶּׁיִּזְכֶּה בּוֹ הֲרֵי הוּא שֶׁל מְשַׁלְּחוֹ. וְכָל הַהוֹצָאוֹת שֶׁיּוֹצִיא הַשָּׁלִיחַ עַל דִּין זֶה שֶׁהֻרְשָׁה הֲרֵי הַמְשַׁלֵּחַ חַיָּב בָּהֶן. שֶׁכָּךְ כּוֹתְבִין בָּהַרְשָׁאָה כָּל שֶׁתּוֹצִיא בְּדִין זֶה עָלַי לְשַׁלְּמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אע&quot;ג </strong> דילפינן דשלוחו של אדם כמותו בכל התורה כולה אפילו הכי נראה דהיינו כשהרשהו על דבר שהוא ברשותו ואין לאחרים רשות בו דומיא דפסח והפרשת תרומה אבל להוציא מיד אחרים אם אין האחרים רוצים לתת לו אינו יכול לכופם מכח השליחות או ההרשאה ויכול לומר לו לאו בעל דברים דידי את אם לאו דכתב ליה זיל דון וזכי ואפיק לנפשיך וכו׳ כדאמרינן פרק מרובה ואם כן כתיבת הרשאה אפילו על פקדון דלא כפריה היא תיקון חכמים כדי שלא יקח אדם ממון חברו וילך למ&quot;ה ולא יהיה מי שיתבענו:</p>
               </div>
             </div>
@@ -305,8 +326,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-4-1">Mishneh Torah, Agents and Partners 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁיִּרְצוּ הַשֻּׁתָּפִין לְהִשְׁתַּתֵּף בְּמָה יִקְנֶה כָּל אֶחָד מֵהֶן מָמוֹן חֲבֵרוֹ לְהִשְׁתַּתֵּף בּוֹ. אִם בְּמָעוֹת נִשְׁתַּתְּפוּ יָבִיא זֶה מְעוֹתָיו וְיָבִיא זֶה מְעוֹתָיו וְיַטִּילוּ אוֹתָן לְכִיס אֶחָד וְיַגְבִּיהוּ אֶת הַכִּיס שְׁנֵיהֶם. אֲבָל אִם כָּתְבוּ שְׁטָר וְהֵעִידוּ עֵדִים אַף עַל פִּי שֶׁקָּנוּ מִיַּד שְׁנֵיהֶם שֶׁיָּבִיא זֶה מֵאָה וְזֶה מֵאָה וְיִשְׁתַּתְּפוּ בָּהֶן לֹא קָנוּ וַעֲדַיִן לֹא נַעֲשׂוּ שֻׁתָּפִין. שֶׁאֵין הַמַּטְבֵּעַ נִקְנֶה בַּחֲלִיפִין. לְפִיכָךְ אִם נִשְׁתַּתְּפוּ בִּשְׁאָר הַמִּטַּלְטְלִין כֵּיוָן שֶׁקָּנוּ מִיָּדָם שֶׁיָּבִיא זֶה חָבִיתוֹ שֶׁל יַיִן וְזֶה כַּדּוֹ שֶׁל דְּבַשׁ וַהֲרֵי נִשְׁתַּתְּפוּ בָּהֶן נַעֲשׂוּ שֻׁתָּפִין בָּהֶן. וְכֵן אִם עֵרְבוּ פֵּרוֹתֵיהֶן אוֹ שֶׁשָּׂכְרוּ מָקוֹם בְּשֻׁתָּפוּת וְהִנִּיחַ זֶה כַּדּוֹ וְזֶה חָבִיתוֹ שֶׁנִּשְׁתַּתְּפוּ בָּהֶן הֲרֵי אֵלּוּ שֻׁתָּפִין. כְּלָלוֹ שֶׁל דָּבָר בְּכָל הַדְּרָכִים שֶׁקּוֹנֶה הַלּוֹקֵחַ בְּאוֹתָן הַדְּרָכִים עַצְמָן קוֹנִין הַשֻּׁתָּפִין זֶה מִזֶּה הַמָּמוֹן הַמֻּטָּל בֵּינֵיהֶם לְהִשְׁתַּתֵּף בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השותפין </strong> קונין זה מזה הממון המוטל ביניהם להיותם שותפין בו כדרך שקונה הלוקח והשכר או הפחת לפי מנין השותפין ולא לפי המעות כשנשתתפו בסתם משום דכל אחד שליט בכל הממון לעשות בו כפי מה שיראה לו שיהיה בו ריוח ואם קצבו זמן לשותפות אין אחד מהם יכול לחלוק בלי רשות חברו עד תשלום הזמן דעל מנת כן קנו זה מזה בתחלת השותפות וכן בכל תנאי שביניהם:</p>
               </div>
             </div>
@@ -322,8 +348,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-5-1">Mishneh Torah, Agents and Partners 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּשְׁתַּתֵּף עִם חֲבֵרוֹ בִּסְתָם לֹא יְשַׁנֶּה מִמִּנְהַג הַמְּדִינָה בְּאוֹתָהּ הַסְּחוֹרָה. וְלֹא יֵלֵךְ לְמָקוֹם אַחֵר וְלֹא יִשְׁתַּתֵּף בָּהּ עִם אֲחֵרִים וְלֹא יִתְעַסֵּק בִּסְחוֹרָה אַחֶרֶת וְלֹא יִמְכֹּר בְּהַקָּפָה אֶלָּא דָּבָר שֶׁדַּרְכּוֹ לְהִמָּכֵר תָּמִיד בְּהַקָּפָה וְלֹא יַפְקִיד בְּיַד אֲחֵרִים אֶלָּא אִם כֵּן הִתְנוּ בַּתְּחִלָּה אוֹ שֶׁעָשָׂה מִדַּעַת חֲבֵרוֹ. עָבַר וְעָשָׂה שֶׁלֹּא מִדַּעַת חֲבֵרוֹ וְאַחַר כָּךְ הוֹדִיעוֹ וְאָמַר לוֹ עָשִׂיתִי כָּךְ וְכָךְ וְהִסְכִּים לְמַעֲשָׂיו הֲרֵי זֶה פָּטוּר. וְאֵין כָּל הַדְּבָרִים הָאֵלּוּ צְרִיכִין קִנְיָן אֶלָּא בִּדְבָרִים בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> השותפין </strong> לא ישנו ממנהג המדינה דכיון דנשתתפו בסתם על מנהג המדינה נשתתפו וכן לא יוציאו הסחורה לרשות אחר אם לא מדעת שניהם ואם עבר אחד משניהם ופחת הפחת לעצמו והשכר לאמצע דמצד המעות בא השכר. ושותפין יש להם הוניה זה על זה בשומת פירותיהן שהרי הם כקנויין זה מזה ואין להם חזקה זה על זה דמה שהוא ברשות אחד מהם מדבר השותפות דכל אחד הוי מוחזק בכל. והמתעסק קונה ממון העסק כמו שקונין השותפין זה מזה וכל דיני מתעסק שבשאר הפרקים הם תקנת חכמים כדי שלא יבואו לידי אבק רבית דכיון שאחד מהם הוא הטורח והמתעסק בממון וחברו לוקח שכר בלי טורח ועסק היה נראה כרבית שעל ידי שמלוה לו קצת המעות טורח ומתעסק בשאר וממציא לו ריוח:</p>
               </div>
             </div>
@@ -339,8 +370,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-6-1">Mishneh Torah, Agents and Partners 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנַּיִם שֶׁהֵן נוֹשְׂאִין וְנוֹתְנִין בְּמָמוֹן הַשֻּׁתָּפוּת אַף עַל פִּי שֶׁהַמָּמוֹן שֶׁל אֶחָד מֵהֶן הֲרֵי זוֹ נִקְרֵאת שֻׁתָּפוּת וְאִם פָּחֲתוּ אוֹ הוֹתִירוּ הֲרֵי הוּא לָאֶמְצַע. וְיֵשׁ לָהֶם לְהַתְנוֹת בַּשָּׂכָר וּבַהֶפְסֵד כָּל מַה שֶּׁיִּרְצוּ כְּמוֹ שֶׁבֵּאַרְנוּ. אֲבָל אִם הָיָה הָאֶחָד בִּלְבַד הוּא שֶׁנּוֹשֵׂא וְנוֹתֵן בְּמָמוֹן הַשִּׁתּוּף אַף עַל פִּי שֶׁהַמָּמוֹן מִשֶּׁל שְׁנֵיהֶם הֲרֵי זוֹ הַשֻּׁתָּפוּת נִקְרֵאת עֵסֶק וְזֶה הַנּוֹשֵׂא וְנוֹתֵן נִקְרָא מִתְעַסֵּק שֶׁהֲרֵי הוּא לְבַדּוֹ מִתְעַסֵּק בְּמַשָּׂא וּמַתָּן וְשֻׁתָּפוֹ שֶׁאֵינוֹ נוֹשֵׂא וְנוֹתֵן נִקְרָא בַּעַל הַמָּעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">-העתקה מסוף פרק ה-</span><br>[
 <strong> והמתעסק </strong> קונה ממון העסק כמו שקונין השותפין זה מזה וכל דיני מתעסק שבשאר הפרקים הם תקנת חכמים כדי שלא יבואו לידי אבק רבית דכיון שאחד מהם הוא הטורח והמתעסק בממון וחברו לוקח שכר בלי טורח ועסק היה נראה כרבית שעל ידי שמלוה לו קצת המעות טורח ומתעסק בשאר וממציא לו ריוח:]</p>
               </div>
@@ -357,8 +393,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-7-1">Mishneh Torah, Agents and Partners 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנּוֹתֵן מָעוֹת לַחֲבֵרוֹ סְתָם לְהִתְעַסֵּק בָּהֶן אוֹ שֶׁהִתְנוּ בְּפֵרוּשׁ שֶׁיִּהְיֶה הַשָּׂכָר וְהַהֶפְסֵד בֵּינֵיהֶם בְּשָׁוֶה וְנֶאֱבַד הַמָּמוֹן יֵשׁ מִי שֶׁהוֹרָה שֶׁיְּשַׁלֵּם הַמִּתְעַסֵּק שְׁלִישׁ כְּמוֹ שֶׁבֵּאַרְנוּ אִם אָבַד מִקְצָת הַמָּמוֹן. וְיֵרָאֶה לִי שֶׁהוּא מְשַׁלֵּם מֶחֱצָה שֶׁהוּא בְּתוֹרַת מִלְוֶה וְזֶה שֶׁאָמְרוּ חֲכָמִים מְשַׁלֵּם שְׁלִישׁ בַּהֶפְסֵד בְּשֶׁלֹּא הִגִּיעַ הַהֶפְסֵד לִטֹּל בַּעַל הַמָּעוֹת פָּחוֹת מֵחֲצִי מָמוֹנוֹ. כֵּיצַד. רְאוּבֵן שֶׁנָּתַן לְשִׁמְעוֹן מֵאָה וְעֶשְׂרִים דִּינָר וְנָשָׂא וְנָתַן וּפָחַת תִּשְׁעִים הֲרֵי שִׁמְעוֹן מְשַׁלֵּם שְׁלֹשִׁים וְנִמְצָא רְאוּבֵן נוֹטֵל שִׁשִּׁים. אֲבָל פָּחַת שִׁמְעוֹן מֵאָה וַחֲמִשָּׁה אֵין אוֹמְרִים יַפְסִיד שִׁמְעוֹן חֲמִשָּׁה וּשְׁלֹשִׁים שֶׁאִם אַתָּה אוֹמֵר כֵּן נִמְצָא רְאוּבֵן נוֹטֵל חֲמִשִּׁים וּלְעוֹלָם לֹא יִטּל רְאוּבֵן פָּחוֹת מִשִּׁשִּׁים. לְפִיכָךְ שְׁטַר עֵסֶק הַיּוֹצֵא עַל הַיְתוֹמִים שֶׁהָיָה אֲבִיהֶן מִתְעַסֵּק בּוֹ נִשְׁבָּע בַּעַל הַשְּׁטָר וְגוֹבֶה מֶחֱצָה שֶׁהוּא בְּתוֹרַת מִלְוֶה אַף עַל פִּי שֶׁלְּעוֹלָם טוֹעֲנִין לַיּוֹרֵשׁ. הִנֵּה לָמַדְתָּ שֶׁאֵינוֹ נוֹטֵל לְעוֹלָם פָּחוֹת מִמֶּחֱצָה. וְלָמָּה אֲנִי אוֹמֵר שֶׁאֵין פּוֹחֲתִין לוֹ כָּאן כְּנֶגֶד שְׂכָרוֹ שֶׁנִּתְעַסֵּק בְּפִקָּדוֹן. שֶׁהֲרֵי אָבַד כָּל הַחֵצִי שֶׁל פִּקָּדוֹן וְלֹא נִשְׁאַר כָּאן פִּקָּדוֹן כְּלָל שֶׁנֹּאמַר אִם לֹא יִטּל שְׂכָרוֹ יֵרָאֶה כְּרִבִּית שֶׁהֲרֵי חֲצִי הַמִּלְוֶה בִּלְבַד נוֹטֵל. וְכֵן אִם הִתְנוּ שֶׁיִּטּל הַמִּתְעַסֵּק רְבִיעַ הַשָּׂכָר וְאָבַד הַמָּמוֹן כֻּלּוֹ מְשַׁלֵּם הָרְבִיעַ כֻּלּוֹ שֶׁהוּא בְּתוֹרַת מִלְוֶה אֲבָל אִם נִשְׁאַר מִן הַמָּמוֹן מְעַט כְּדֵי שֶׁאִם תוֹסִיף עַל אוֹתוֹ הַמְעַט שְׁתוּת הַהֶפְסֵד שֶׁפְּחָתוֹ יָבוֹא הַכּל רְבִיעַ הַמָּמוֹן אוֹ יֶתֶר הֲרֵי זֶה מְשַׁלֵּם שְׁתוּת בִּלְבַד מִן הַטַּעַם שֶׁכְּבָר בֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">-העתקה מסוף פרק ה-</span><br>[
 <strong> והמתעסק </strong> קונה ממון העסק כמו שקונין השותפין זה מזה וכל דיני מתעסק שבשאר הפרקים הם תקנת חכמים כדי שלא יבואו לידי אבק רבית דכיון שאחד מהם הוא הטורח והמתעסק בממון וחברו לוקח שכר בלי טורח ועסק היה נראה כרבית שעל ידי שמלוה לו קצת המעות טורח ומתעסק בשאר וממציא לו ריוח:]</p>
               </div>
@@ -375,8 +416,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Agents and Partners 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-agents-and-partners-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Agents and Partners 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-agents-and-partners/#mishneh-torah-agents-and-partners-8-1">Mishneh Torah, Agents and Partners 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנּוֹתֵן בֵּיצִים לְבַעַל הַתַּרְנְגוֹלִים לְהוֹשִׁיב הַתַּרְנְגוֹלִים עֲלֵיהֶן עַד שֶׁיֵּצְאוּ הָאֶפְרוֹחִים וִיגַדֵּל אוֹתָן בַּעַל הַתַּרְנְגוֹלִים וְיִהְיֶה הָרֶוַח בֵּינֵיהֶם צָרִיךְ לְהַעֲלוֹת לוֹ שְׂכַר עֲמָלוֹ וּמְזוֹנוֹ. וְכֵן הַשָּׁם עֲגָלִים וּסְיָחִים עַל הָרוֹעֶה לִהְיוֹת מִתְעַסֵּק בָּהֶן שֶׁיַּגְדִּילוּ וְהַשָּׂכָר לָאֶמְצַע חַיָּב לְהַעֲלוֹת לוֹ שְׂכַר עֲמָלוֹ וּמְזוֹנוֹ בְּכָל יוֹם כְּפוֹעֵל בָּטֵל. וּמְגַדֵּל אוֹתָן עַד שֶׁיִּהְיוּ הָעֲגָלִים בְּנֵי שָׁלֹשׁ שָׁנִים וְהַחֲמוֹר עַד שֶׁתְּהֵא טוֹעֶנֶת. וְאֵינוֹ יָכוֹל לִמְכֹּר שֶׁלֹּא מִדַּעַת חֲבֵרוֹ בְּתוֹךְ זְמַן זֶה. וְכֵן הַשָּׁם בְּהֵמָה עַל הַמְפַטֵּם לִהְיוֹת מְפַטֵּם אוֹתָהּ וְהַשָּׂכָר לָאֶמְצַע צָרִיךְ לִתֵּן עֲמָלוֹ כְּפוֹעֵל בָּטֵל. וְאִם אָמַר לוֹ הֲרֵי הָרֹאשׁ וְהָאַלְיָה שֶׁלְּךָ בַּעֲמָלְךָ יֶתֶר עַל מַחֲצִית הַשָּׂכָר מֻתָּר. הָיוּ לַמְפַטֵּם בְּהֵמוֹת אֲחֵרוֹת שֶׁמְּפַטֵּם אוֹתָם עִם זוֹ הַשּׁוּמָא אֶצְלוֹ. וְכֵן אִם הָיוּ לוֹ עֲגָלִים וּסְיָחִין אֲחֵרִים אוֹ בֵּיצִים אֲחֵרוֹת שֶׁלּוֹ. הוֹאִיל וְהוּא מִתְעַסֵּק בְּשֶׁלּוֹ וּבְשֶׁל חֲבֵרוֹ אֲפִלּוּ לֹא הֶעֱלָה לוֹ אֶלָּא דָּבָר מוּעָט בְּכָל יְמֵי הַשֻּׁתָּפוּת הַזֹּאת דַּיּוֹ וְחוֹלֵק בְּשָׂכָר בְּשָׁוֶה. וְאִם הָיָה אֲרִיסוֹ הוֹאִיל וְהוּא מְטַפֵּל בְּשֶׁלּוֹ וּבְשֶׁל בַּעַל הַשָּׂדוֹת אֵין צָרִיךְ לְהַעֲלוֹת לוֹ כְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">-העתקה מסוף פרק ה-</span><br>[
 <strong> והמתעסק </strong> קונה ממון העסק כמו שקונין השותפין זה מזה וכל דיני מתעסק שבשאר הפרקים הם תקנת חכמים כדי שלא יבואו לידי אבק רבית דכיון שאחד מהם הוא הטורח והמתעסק בממון וחברו לוקח שכר בלי טורח ועסק היה נראה כרבית שעל ידי שמלוה לו קצת המעות טורח ומתעסק בשאר וממציא לו ריוח:]</p>
               </div>
@@ -387,6 +433,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-agents-and-partners-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-agents-and-partners.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-agents-and-partners-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -407,8 +457,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-agents-and-partners.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-agents-and-partners.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-agents-and-partners.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-agents-and-partners.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-agents-and-partners.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-agents-and-partners.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -434,7 +484,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

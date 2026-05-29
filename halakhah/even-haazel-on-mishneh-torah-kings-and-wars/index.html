@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-kings-and-wars/">Open Mishneh Torah, Kings and Wars</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Kings and Wars</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">18 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>773 matched</strong> / 2024 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/even-haazel-on-mishneh-torah-kings-and-wars.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/even-haazel-on-mishneh-torah-kings-and-wars-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -247,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 1:1:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-1-1-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-1">Mishneh Torah, Kings and Wars 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ מִצְוֹת נִצְטַוּוּ יִשְׂרָאֵל בִּשְׁעַת כְּנִיסָתָן לָאָרֶץ. לְמַנּוֹת לָהֶם מֶלֶךְ שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;שׂוֹם תָּשִׂים עָלֶיךָ מֶלֶךְ&quot;. וּלְהַכְרִית זַרְעוֹ שֶׁל עֲמָלֵק שֶׁנֶּאֱמַר <span class="source-small">(דברים כה יט)</span> &quot;תִּמְחֶה אֶת זֵכֶר עֲמָלֵק&quot;. וְלִבְנוֹת בֵּית הַבְּחִירָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ה)</span> &quot;לְשִׁכְנוֹ תִדְרְשׁוּ וּבָאתָ שָּׁמָּה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלש מצות נצטוו ישראל בשעת כניסתן לארץ למנות להם מלך שנאמר שום תשים עליך מלך ולהכרית זרעו של עמלק שנאמר תמחה את זכר עמלק ולבנות בית הבחירה שנאמר לשכנו תדרשו ובאת שמה.</strong><br><strong> ולבנות </strong> בית הבחירה, הלח&quot;מ הקשה דבפ&quot;א מהל׳ בית הבחירה כתב הרמב&quot;ם מצות עשה לעשות בית לד׳ שנאמר ועשו לי מקדש, וכאן הביא קרא אחרינא דלשכנו תדרשו, ותי׳ הלח&quot;מ דהני תרי קראי חד אתי למקדש שבמדבר וחד אתא למשכן שילה, וכמש&quot;כ רש&quot;י בפ׳ ראה לשכנו תדרשו זה משכן שילה והרמב&quot;ם הביא פסוק אחד כאן ופסוק אחר בהל׳ ביהב&quot;ח שמזה אנו למדים דבנין בית הבחירה מצוה ע&quot;כ, ודבריו תמוהין דודאי דעת הרמב&quot;ם אינו כן שהרי מבואר להדיא בדבריו ולבנות בית הבחירה שנאמר לשכנו תדרשו וכן מבואר להדיא בספרי דהך קרא קאי אבית הבחירה ומה שהביא מדברי רש&quot;י דקאי על משכן שילה בספרי שלפנינו לא נמצא.<br><strong> והנה </strong> עוד הביא הלח&quot;מ דברי הסמ&quot;ג דמצות בנין בהב&quot;ח נלמד מקרא דוהיה המקום אשר יבחר וגו׳ שמה תביאו וכן הביא דברי הסמ&quot;ג הכ&quot;מ בפ&quot;א מהל׳ ביהב&quot;ח, וכתב דהרמב&quot;ם סובר דהך קרא אינו מצוה על בנין בית הבחירה אלא על הקרבנות שיביאו למקום אשר יבחר ד׳, והנה מש&quot;כ הרמב&quot;ם בהל׳ זו דהמצוה לבנות בהב&quot;ח נלמד מקרא דלשכנו תדרשו ובאת שמה וזה הוא בקרא דכתיב בהך פרשה כי אם אל המקום אשר יבחר ד׳ וגו׳ לשכנו תדרשו ומוכח מזה דלא כהכ&quot;מ דלפ&quot;ד הכ&quot;מ דקרא דוהיה המקום אינו מצוה על בנין בהב&quot;ח א&quot;כ גם הך קרא אינו מצוה על בנין בהב&quot;ח וע&quot;כ דהרמב&quot;ם אינו חולק על הסמ&quot;ג אלא דהביא מקרא קמא, ובטעמו של הסמ&quot;ג דלא מייתי מקרא קמא דובאת שמה י&quot;ל דסובר דלשון והיה המקום וגו׳ משמע טפי למצוה מלשון כי אם אל המקום דקאי אקרא קמא דכתיב לא תעשון לד׳ וגו׳ דפשטיה דקרא קאי על איסור הבמות כמו שפירש&quot;י שם אף דהוא אזהרה למוחק את השם, ועוד דהכי תניא בברייתא בסנהדרין דף כ׳ והרמב&quot;ם סובר דהתם אינו אלא להקדים וכמש&quot;כ הכ&quot;מ.<br><strong> אלא </strong> דאכתי צריך ביאור למה לא הזכיר הרמב&quot;ם בהל׳ בה&quot;ב הך קרא דלשכנו תדרשו ולמד מקרא דועשו לי מקדש דקאי על המשכן כדאיתא בריש עירובין דיליף מינה דמשכן איקרי מקדש, עוד קשה דבסה&quot;מ במצוה כ׳ הביאו הכ&quot;מ, כתב שציונו לבנות בית הבחירה ומביא מהך קרא דועשו לי מקדש, ומביא ע&quot;ז דברי הספרי שהביא בהלכות מלכים דשלש מצות נצטוו ישראל וסיים בדבריו הנה נתבאר שבנין בהב&quot;ח מצוה בפני עצמה, וכיון דבהל׳ מלכים למד זה מקרא דלשכנו תדרשו ובאת שמה למה לא הזכירו כאן בהל׳ בהב&quot;ח, ועוד דכאן כתב מצות עשיית בית לד׳ וכלל בו משכן ומקדש ולא כתב שיש מצוה מיוחדת בבנין בהב&quot;ח, ומדבריו בסה&quot;מ משמע שהיא מצוה מיוחדת.<br><strong> ונראה </strong> דבעיקר המצוה סובר הרמב&quot;ם דבנין בהב&quot;ח נלמד ג&quot;כ מקרא דועשו לי מקדש והא דאמרינן בעירובין מהך קרא דמשכן איקרי מקדש היינו דעכ&quot;פ גם עשיית המשכן נאמר בהך קרא והיא מצוה אחת לבנות בית לד׳, ובתחלה היה משכן והיה לפי שעה ואח&quot;כ בית הבחירה, וכדי שלא נאמר דקרא קאי רק על המשכן על זה מביא בהל׳ מלכים קרא דלשכנו תדרשו, דמזה מוכח דקרא דועשו לי מקדש כולל גם בנין בית הבחירה, ומש&quot;כ בסה&quot;מ עשיית המשכן הוא פשוט דאינו מונה בסה&quot;מ רק מצות הנוהגות לדורות עכ&quot;פ מה דלמד בהל׳ מלכים מקרא דלשכנו תדרשו אינו אלא לומר דקרא דועשו לי מקדש היא מצוה קבועה לדורות בין על המשכן בין על המקדש, ויש להוסיף עוד דמה שכתב כאן בהל׳ ביהב&quot;ח וכבר נתפרש בתורה משכן שעשה משה רבינו והיה לפי שעה שנאמר כי לא באתם עד עתה וגו׳ והבאתם שמה וגו׳ ואכלתם שמה וגו׳ לא תעשון וגו׳ כי לא באתם עד עתה וגו׳ וא&quot;כ מרומז כאן גם הך קרא שהביא בהל׳ מלכים, וכתב כאן דעיקר המצוה היא קרא דועשו לי מקדש שהיא מצוה קבועה לדורות, והמשכן היה לפי שעה.<br><strong> אכן </strong> דברי הרמב&quot;ם צריכים עוד ביאור שמבואר בדבריו שמפרש קרא דכי לא באתם עד עתה דהוא טעם שבשביל זה אין להם עכשיו בית קבוע לד׳ אלא משכן, והוא דלא כפי המבואר בגמ׳, דבזבחים דף קי&quot;ב תנן באו לגלגל הותרו הבמות וכו׳ באו לשילה נאסרו הבמות וכו׳ והיא היתה מנוחה, ומבואר שם בד׳ רש&quot;י ובד׳ הגמ׳ בדף קי&quot;ז דקרא דכי לא באתם עד עתה אינו טעם על זמן שאח&quot;כ של היתר הבמות בגלגל, ומה שאמר הכתוב ככל אשר אנחנו עושים פה היום הכונה מהיום שיעברו את הירדן עד שיבואו אל המנוחה ואל הנחלה, ועיין מה שביאר בזה הגאון מלבי&quot;ם ואולי כונת הרמב&quot;ם דעכ&quot;פ מבואר בהך קרא שלא באו עד עתה אל המנוחה ואל הנחלה דזהו שילה ובית הבחירה.<br><strong> והנה </strong> הרמב&quot;ן על התורה כתב דפשוטו של מקרא קאי על זמן שבמדבר עי&quot;ש ובדעת הרמב&quot;ם קשה לומר כן כמש&quot;כ דהרמב&quot;ם כתב ולבנות בית הבחירה שנאמר לשכנו תדרשו ומשמע שלומד קרא דלשכנו תדרשו הוא על בית הבחירה, והנה דברי הרמב&quot;ן שם צריך ביאור שכתב דבזמן המשכן אינו חייב להביא בכורות ולא מעשר בהמה ולא מעשר שני והנה מע&quot;ש לא שייך כלל במדבר, ובכורות ומעשר בהמה אם בזמן המשכן היה כמו מחו&quot;ל וכר&quot;ע דממקום שאינו מביא מעשר דגן אינו מביא בכור ומעשר בהמה א&quot;כ לא יוכל להביא דהא אם הביא מחו&quot;ל אין מקבלין ממנו ויאכל במומו, וא&quot;כ לא יתבאר בזה הא דאיש כל הישר בעיניו ואולי דכונתו דעכ&quot;פ לא היו שלמים של חובה במדבר אלא שאם רוצה מביא וזהו איש כל הישר בעיניו וכמו שביאר שם, אבל בארץ איכא כמו שלמי חובה שהן בכור ומעשר, ומה שכתב אינו חייב להביא הוא לאו דוקא אלא שאינו מביאם.</p>
               </div>
             </div>
@@ -263,8 +269,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 1:3:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-1-3-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-3">Mishneh Torah, Kings and Wars 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מַעֲמִידִין מֶלֶךְ בַּתְּחִלָּה אֶלָּא עַל פִּי בֵּית דִּין שֶׁל שִׁבְעִים זְקֵנִים וְעַל פִּי נָבִיא. כִּיהוֹשֻׁעַ שֶׁמִּנָּהוּ משֶׁה רַבֵּנוּ וּבֵית דִּינוֹ. וּכְשָׁאוּל וְדָוִד שֶׁמִּנָּם שְׁמוּאֵל הָרָמָתִי וּבֵית דִּינוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מעמידין מלך בתחילה אלא ע&quot;פ בית דין של שבעים זקנים ועפ&quot;י נביא כיהושע שמינהו משה רבינו ובית דינו וכשאול ודוד שמינם שמואל הרמתי ובית דינו.</strong><br><strong> אין </strong> מעמידין מלך, הלח&quot;מ הקשה מהא דכתבו התוס׳ ביבמות דף מ&quot;ה דאיתא בתוספתא דאין מעמידין מלך אלא מן המשיאין לכהונה ולמה השמיטו הרמב&quot;ם, ונראה ע&quot;פ מה דאמרו בקדושין דף ע&quot;ו אמתני׳ דכל מי שהוחזקו אבותיו משוטרי הרבים למימרא דלא מוקמינן מפסולים, ורמינהו הכל כשרים לדון דיני ממונות והוינן בה הכל לאתויי מאי ואמר רב יהודה הכל לאתויי ממזר ומשני אמר אביי בירושלים, ומוכח דבעיקר ההלכה מותר למנות שאינם מיוחסים ושוטרים לא עדיפי מדיין וכיון דילפינן דכל משימות הוי דינם כמו מלך מקרא דשום תשים מוכח מזה דלא צריך מהמשיאין לכהונה.</p>
               </div>
             </div>
@@ -279,8 +290,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 1:9:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-1-9-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-9">Mishneh Torah, Kings and Wars 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַלְכֵי בֵּית דָּוִד הֵם הָעוֹמְדִים לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(שמואל ב ז טז)</span> &quot;כִּסְאֲךָ יִהְיֶה נָכוֹן עַד עוֹלָם&quot;. אֲבָל אִם יַעֲמֹד מֶלֶךְ מִשְּׁאָר יִשְׂרָאֵל תִּפָּסֵק הַמַּלְכוּת מִבֵּיתוֹ. שֶׁהֲרֵי נֶאֱמַר לְיָרָבְעָם <span class="source-small">(מלכים א יא לט)</span> &quot;אַךְ לֹא כָל הַיָּמִים&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מלכי בית דוד הם העומדים לעולם שנאמר כסאך יהיה נכון עד עולם אבל אם יעמוד מלך משאר ישראל תפסק המלכות מביתו, שהרי נאמר לירבעם אך לא כל הימים.</strong><br><strong> השגת </strong> הראב&quot;ד. אבל אם יעמוד מלך משאר ישראל תפסק המלכות וכו׳. א&quot;א זה סותר מה שאמר למעלה ולא המלכות בלבד וכו׳ א&quot;ו כן הוא אילו היה ירבעם מלך כשר ובניו כשרים לא היתה מלכות פוסקת מזרעו אבל היתה שניה למלכות בית דוד כגון קיסר ופלג קיסר.<br><strong> והכ&quot;מ </strong> כתב ואני אומר שאין כאן סתירה שלמעלה אמר שאיזה מינוי שיהיה ירושה לבני בניו ואין ב&quot;ד ממנין אחר תחתיו וכאן אמר שהקב&quot;ה מעמיד מלכי בית דוד לעולם אבל מלך משאר ישראל לא כרת לו ברית שיעמידנו לעולם, והנה מש&quot;כ שלמלך משאר ישראל לא כרת לו ברית אינו מספיק דקושית הראב&quot;ד הא אינה משום ברית אלא משום ההלכה שהרי כתב שהמלכות ירושה היא והוא משום זכות ולא צריך לכרות ברית, והמגדל עוז כתב דההבדל בין מלכות בית דוד לשאר שבטים הוא, דבמלכות בית דוד אם לא ישמרו את דרך ה׳ תתמעט מלכותם אבל לא תפסק לגמרי לעולם אבל בשאר שבטים אם לא ישמרו את דרך ד׳ תפסק המלכות אצלם לגמרי, וגם זה אינו מיושב שהרי הרמב&quot;ם לא כתב זה התנאי אם לא ישמרו דרך ד׳ אלא כתב בהחלט שתפסק, אבל באמת לא קשה שהרמב&quot;ם כתב מקודם שכבר זכה דוד משנמשח בכתר מלכות והרי המלכות לו ולבניו הזכרים עד עולם ולכן אם יהיה הפסק בבית דוד ולא יהיו מביתו מלכים אבל כשימצאו ויהיו ראויים למלכים תשוב להם מלכותם, ומש&quot;כ הראב&quot;ד שתהיה שניה למלכות בית דוד כגון קיסר ופלג קיסר קשה קצת דמנ&quot;ל זה דכיון שאין יכולים לירש המלוכה מנלן שיירש מחצה וזה כבר תלוי בהמלך ואפשר לא יחפוץ בזה המלך שיגרום אח&quot;כ למחלוקת.</p>
               </div>
             </div>
@@ -296,8 +312,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 2:1:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-2-1-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-1">Mishneh Torah, Kings and Wars 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּבוֹד גָּדוֹל נוֹהֲגִין בַּמֶּלֶךְ. וּמְשִׂימִין לוֹ אֵימָה וְיִרְאָה בְּלֵב כָּל אָדָם. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;שׂוֹם תָּשִׂים&quot; שֶׁתְּהֵא אֵימָתוֹ עָלֶיךָ. אֵין רוֹכְבִין עַל סוּסוֹ. וְאֵין יוֹשְׁבִין עַל כִּסְאוֹ. וְאֵין מִשְׁתַּמְּשִׁין בְּשַׁרְבִיטוֹ. וְלֹא בְּכִתְרוֹ. וְלֹא בְּאֶחָד מִכָּל כְּלֵי תַּשְׁמִישָׁיו. וּכְשֶׁהוּא מֵת כֻּלָּן נִשְׂרָפִין לְפָנָיו. וְכֵן לֹא יִשְׁתַּמֵּשׁ בַּעֲבָדָיו וְשִׁפְחוֹתָיו וְשַׁמָּשָׁיו אֶלָּא מֶלֶךְ אַחֵר. לְפִיכָךְ אֲבִישַׁג הָיְתָה מֻתֶּרֶת לִשְׁלֹמֹה וַאֲסוּרָה לַאֲדוֹנִיָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבוד גדול נוהגין במלך ומשימין לו אימה ויראה בלב כל אדם שנאמר שום תשים שתהא אימתו עליך ואין יושבין על כסאו ואין משתמשין בשרביטו ולא בכתרו ולא באחד מכלי תשמישו וכשמת כולן נשרפין לפניו.</strong><br><strong> וכשמת </strong> כולן נשרפין לפניו, הנה בסוף הל׳ אבל בהל׳ כ&quot;ה כתב הרמב&quot;ם מלך שמת עוקרין סוס שהיה רוכב עליו ובהל׳ כ&quot;ו כתב מלך או נשיא יש להן לשרוף מטתו וכל כלי תשמישו שנאמר בשלום תמות ובמשרפות אבותיך הראשונים ישרפו לך ומבואר להדיא דסוסו אין שורפין אלא עוקרין וכתב הכ&quot;מ כאן והוי יודע שמה שכתב רבינו כולן נשרפין על מטתו לא קאי אסוסו דסוסו אין שורפין אלא עוקרין אותו כלומר הגידין שעל פרסותיו עוקר וחותך ושוב אין ראוי לרכיבה עכ&quot;ד ואין דברי הרמב&quot;ם משמע כן שהרי וכשמת כולן נשרפין קאי אלמעלה דהיינו סוסו נמי.<br><strong> ונראה </strong> דהרי כאן כתב הרמב&quot;ם נשרפין לפניו וזהו מהכתוב במשרפות אבותיך ישרפו לך, ובזה נוכל לומר דגם סוסו נשרף משום כבודו אבל בהל׳ אבל לא מיירי רק כששורפין לפניו ורק דגם אח&quot;כ אם מת במקום אחר הא ג&quot;כ אסור להשתמש בכל כלי תשמישו לכן כולן נשרפין אבל סוסו עוקרין, והנה זה הא מוכח מעובדא דרבי ור׳ פנחס בן יאיר בחולין דף ז׳ דאמר עקרנא להו איכא צער בע&quot;ח קטילנא להו איכא בל תשחית ומוכח דאין בהריגה יותר צעב&quot;ח מבעקירה ורק משום בל תשחית ומשום כבוד מלך ודאי דליכא בל תשחית עי׳ בתוס׳ ע&quot;ז דף י&quot;א ע&quot;ב ד&quot;ה עוקרין ולכן כששורפין לפניו שורפין גם את סוסו אבל כשאין שורפין לפניו וזה אינו דין שישרפו גם מה שהשתמש בו אם אינם שם ורק מדין שאין משתמשין כמו שכתב כאן בזה סגי בעקירה.</p>
               </div>
             </div>
@@ -313,8 +334,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 3:1:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-3-1-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-1">Mishneh Torah, Kings and Wars 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּעֵת שֶׁיֵּשֵׁב הַמֶּלֶךְ עַל כִּסֵּא מַלְכוּתוֹ כּוֹתֵב לוֹ סֵפֶר תּוֹרָה לְעַצְמוֹ יֶתֶר עַל הַסֵּפֶר שֶׁהִנִּיחוּ לוֹ אֲבוֹתָיו. וּמַגִּיהוֹ מִסֵּפֶר הָעֲזָרָה עַל פִּי בֵּית דִּין שֶׁל שִׁבְעִים וְאֶחָד. אִם לֹא הִנִּיחוּ לוֹ אֲבוֹתָיו אוֹ שֶׁנֶּאֱבַד כּוֹתֵב שְׁנֵי סִפְרֵי תּוֹרָה. אֶחָד מַנִּיחוֹ בְּבֵית גְּנָזָיו שֶׁהוּא מְצֻוֶּה בּוֹ כְּכָל אֶחָד מִיִּשְׂרָאֵל. וְהַשֵּׁנִי לֹא יָזוּז מִלְּפָנָיו אֶלָּא בְּעֵת שֶׁיִּכָּנֵס לְבֵית הַכִּסֵּא. אוֹ לְבֵית הַמֶּרְחָץ. אוֹ לְמָקוֹם שֶׁאֵין רָאוּי לִקְרִיאָה. יוֹצֵא לַמִּלְחָמָה וְהוּא עִמּוֹ. נִכְנָס וְהוּא עִמּוֹ. יוֹשֵׁב בַּדִּין וְהוּא עִמּוֹ. מֵסֵב וְהוּא כְּנֶגְדּוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;וְהָיְתָה עִמּוֹ וְקָרָא בוֹ כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעת שישב המלך על כסא מלכותו כותב לו ספר תורה לעצמו יתר על הספר שהניחו לו אבותיו ומגיהו מספר העזרה על פי בית דין של שבעים ואחד, אם לא הניחו לו אבותיו או שנאבד כותב שני ספרי תורה, אחד מניחו בבית גנזיו שהוא מצווה בו ככל אחד מישראל, והשני לא יזוז מלפניו, אלא בעת שיכנס לבית הכסא או לבית המרחץ, או למקום שאין ראוי לקריאה, יוצא למלחמה והוא עמו נכנס והוא עמו, יושב בדין והוא עמו, מיסב והוא כנגדו שנאמר והיתה עמו וקרא בו כל ימי חייו.</strong><br><strong> כותב </strong> לו ס&quot;ת לעצמו, הכ&quot;מ הקשה דכיון שגם הדיוט אינו סומך על ס&quot;ת שהניח לו אביו, וא&quot;כ המלך אף אם הניחו לו אבותיו ס&quot;ת יתחייב לכתוב שני ס&quot;ת ותי׳ דהדיוט כיון שאם יסמוך על של אביו לא יכתוב ס&quot;ת כלל לכן אינו יוצא בס&quot;ת שהניחו לו אבותיו אבל המלך אע&quot;פ שיסמוך על של אביו בס&quot;ת שחייב בו מדין הדיוט כיון שבס&quot;ת שחייב בו מדין מלך אינו סומך הרי הוא כותב ס&quot;ת וסגי בהכי עכ&quot;ד והעיקר נראה בזה שהרמב&quot;ם אינו מפרש כפירש&quot;י דוכתב לו ספר משנה היינו שנים, אלא דמשנה היינו השנית, והיינו השנית מזה שיש לו מקודם, ולכן אם הניחו לו אבותיו ולא הספיק לכתוב מקודם ונעשה מלך יוצא במצות ועתה כתבו בזה שכותב הס&quot;ת של מלך.</p>
               </div>
             </div>
@@ -329,8 +355,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 3:3:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-3-3-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-3">Mishneh Torah, Kings and Wars 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלֹא יַרְבֶּה לוֹ סוּסִים אֶלָּא כְּדֵי מֶרְכַּבְתּוֹ. אֲפִלּוּ סוּס אֶחָד פָּנוּי לִהְיוֹת רָץ לְפָנָיו כְּדֶרֶךְ שֶׁעוֹשִׂין שְׁאָר הַמְּלָכִים אָסוּר. וְאִם הוֹסִיף לוֹקֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא ירבה לו סוסים אלא כדי מרכבתו אפילו סוס אחד פנוי להיות רץ לפניו כדרך שעושין שאר המלכים אסור ואם הוסיף לוקה.</strong><br><strong> ואם </strong> הוסיף לוקה, והקשה הרדב&quot;ז דהרי מבואר בגמ׳ וכי מאחר דסוס אחד והוא בטל קאי בלא ירבה סוסים למה לי ומשני לעבור בל&quot;ת על כל סוס וסוס, והרמב&quot;ם השמיט זה, ותי׳ דאין נפקא מינה כלל דאם לקח אותם זה אחר זה והתרו בו פשיטא דלוקה על כל סוס וסוס ואם לקח הרבה ביחד ודאי שאינו לוקה אלא אחת ונהי דעבר בל&quot;ת על כל סוס אבל אינו לוקה עכ&quot;ד, ואינו מיושב דא&quot;כ תיקשי לן הברייתא דמבואר שעובר על כל סוס ואם רק ללאו בעלמא היה להרמב&quot;ם להביא את זה, ונראה דהרמב&quot;ם סובר דברייתא ע&quot;כ סברה דלאו שאין בו מעשה לוקין ולכן אפי׳ קנה סוסים הרבה בבת אחת לוקה על כל סוס וסוס, אבל להלכה דקיי&quot;ל לאו שאב&quot;מ אין לוקין עליו לא שייך זה כמש&quot;כ הרדב&quot;ז וכמו בקנה חמץ בפסח דשיטת הרמב&quot;ם דאינו לוקה אלא בקנה דאז הוי לאו שיש בו מעשה ואם קנה בפעם אחת כמה זיתים ודאי שאינו לוקה אלא אחת ואם קנה בשתי פעמים לוקה שתים.</p>
               </div>
             </div>
@@ -345,8 +376,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 3:5:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-3-5-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-5">Mishneh Torah, Kings and Wars 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלֶךְ אָסוּר לִשְׁתּוֹת דֶּרֶךְ שִׁכְרוּת. שֶׁנֶּאֱמַר <span class="source-small">(משלי לא ד)</span> &quot;אַל לַמְלָכִים שְׁתוֹ יָיִן&quot;. אֶלָּא יִהְיֶה עוֹסֵק בַּתּוֹרָה וּבְצָרְכֵי יִשְׂרָאֵל בַּיּוֹם וּבַלַּיְלָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;וְהָיְתָה עִמּוֹ וְקָרָא בוֹ כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלך אסור לשתות דרך שכרות שנאמר אל למלכים שתו יין, אלא יהיה עוסק בתורה ובצרכי ישראל ביום ובלילה שנאמר והיתה עמו וקרא בו כל ימי חייו. וכן לא יהא שטוף בנשים אפילו לא היתה לו אלא אחת לא יהיה מצוי אצלה תמיד כשאר הטפשים, שנאמר אל תתן לנשים חילך על הסרת לבו הקפידה תורה שנאמר ולא יסור לבבו שלבו הוא לב כל קהל ישראל לפיכך דבקו הכתוב בתורה יותר משאר העם שנאמר כל ימי חייו.</strong><br><strong> אלא </strong> יהיה עסוק, יש לדקדק במה שכתב הרמב&quot;ם דין מיוחד במלך שדבקו הכתוב בתורה יותר משאר העם שנאמר כל ימי חייו ולכן חייב לעסוק בתורה יותר משאר העם וקשה דבהל׳ ת&quot;ת פ&quot;א הל׳ כ׳ כתב עד אימת חייב ללמוד תורה עד יום מותו שנאמר ופן יסורו מלבבך כל ימי חייך ומבואר דזה דין בכל אדם מישראל, ונראה דכאן אנו דנין באיסור המלך לשתות אף שרוצה להתענג בשתיה, וכן בהל׳ ו׳ שרוצה להיות מצוי אצל אשתו וזה אינו אלא במלך אבל הדיוט מותר לו להתענג אף שזה יגרום לבטול תורה בהכרח ע&quot;י השיכרות או בעילות נשים, ולהדיוט אינו אסור אלא לבטל תורה בלי כל סיבה שאז אם הוא מסיר לבו מהתורה עובר על ופן יסורו מלבבך כל ימי חייך ועוד הרבה פסוקים מחיובי ת&quot;ת ועי׳ בספר מעלות התורה בתחילתו שמנה יותר משלשים מ&quot;ע ומל&quot;ת על ביטול תורה.</p>
               </div>
             </div>
@@ -361,8 +397,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 3:6:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-3-6-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-6">Mishneh Torah, Kings and Wars 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן לֹא יִהְיֶה שָׁטוּף בְּנָשִׁים. אֲפִלּוּ לֹא הָיְתָה לוֹ אֶלָּא אַחַת לֹא יִהְיֶה מָצוּי אֶצְלָהּ תָּמִיד כִּשְׁאָר הַטִּפְּשִׁים. שֶׁנֶּאֱמַר <span class="source-small">(משלי לא ג)</span> &quot;אַל תִּתֵּן לַנָּשִׁים חֵילֶךָ&quot;. עַל הֲסָרַת לִבּוֹ הִקְפִּידָה תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יז)</span> &quot;וְלֹא יָסוּר לְבָבוֹ&quot;. שֶׁלִּבּוֹ הוּא לֵב כָּל קְהַל יִשְׂרָאֵל לְפִיכָךְ דִּבְּקוֹ הַכָּתוּב בַּתּוֹרָה יֶתֶר מִשְּׁאָר הָעָם שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלך אסור לשתות דרך שכרות שנאמר אל למלכים שתו יין, אלא יהיה עוסק בתורה ובצרכי ישראל ביום ובלילה שנאמר והיתה עמו וקרא בו כל ימי חייו. וכן לא יהא שטוף בנשים אפילו לא היתה לו אלא אחת לא יהיה מצוי אצלה תמיד כשאר הטפשים, שנאמר אל תתן לנשים חילך על הסרת לבו הקפידה תורה שנאמר ולא יסור לבבו שלבו הוא לב כל קהל ישראל לפיכך דבקו הכתוב בתורה יותר משאר העם שנאמר כל ימי חייו.</strong><br><strong> אלא </strong> יהיה עסוק, יש לדקדק במה שכתב הרמב&quot;ם דין מיוחד במלך שדבקו הכתוב בתורה יותר משאר העם שנאמר כל ימי חייו ולכן חייב לעסוק בתורה יותר משאר העם וקשה דבהל׳ ת&quot;ת פ&quot;א הל׳ כ׳ כתב עד אימת חייב ללמוד תורה עד יום מותו שנאמר ופן יסורו מלבבך כל ימי חייך ומבואר דזה דין בכל אדם מישראל, ונראה דכאן אנו דנין באיסור המלך לשתות אף שרוצה להתענג בשתיה, וכן בהל׳ ו׳ שרוצה להיות מצוי אצל אשתו וזה אינו אלא במלך אבל הדיוט מותר לו להתענג אף שזה יגרום לבטול תורה בהכרח ע&quot;י השיכרות או בעילות נשים, ולהדיוט אינו אסור אלא לבטל תורה בלי כל סיבה שאז אם הוא מסיר לבו מהתורה עובר על ופן יסורו מלבבך כל ימי חייך ועוד הרבה פסוקים מחיובי ת&quot;ת ועי׳ בספר מעלות התורה בתחילתו שמנה יותר משלשים מ&quot;ע ומל&quot;ת על ביטול תורה.</p>
               </div>
             </div>
@@ -377,8 +418,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 3:8:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-3-8-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-8">Mishneh Torah, Kings and Wars 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמּוֹרֵד בְּמֶלֶךְ יִשְׂרָאֵל יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. אֲפִלּוּ גָּזַר עַל אֶחָד מִשְּׁאָר הָעָם שֶׁיֵּלֵךְ לְמָקוֹם פְּלוֹנִי וְלֹא הָלַךְ אוֹ שֶׁלֹּא יָצָא מִבֵּיתוֹ וְיָצָא חַיָּב מִיתָה. וְאִם רָצָה לְהָרְגוֹ יֵהָרֵג. שֶׁנֶּאֱמַר <span class="source-small">(יהושע א יח)</span> &quot;כָּל אִישׁ אֲשֶׁר יַמְרֶה אֶת פִּיךָ&quot;. וְכֵן כָּל הַמְבַזֶּה אֶת הַמֶּלֶךְ אוֹ הַמְחָרְפוֹ יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. כְּשִׁמְעִי בֶּן גֵּרָא. וְאֵין לַמֶּלֶךְ רְשׁוּת לַהֲרֹג אֶלָּא בְּסַיִף בִּלְבַד. וְיֵשׁ לוֹ לֶאֱסֹר וּלְהַכּוֹת בְּשׁוֹטִין לִכְבוֹדוֹ. אֲבָל לֹא יַפְקִיר מָמוֹן וְאִם הִפְקִיר הֲרֵי זֶה גֵּזֶל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המורד במלך ישראל יש למלך רשות להרגו, אפילו גזר על אחד משאר העם שילך למקום פלוני ולא הלך או שלא יצא מביתו ויצא חייב מיתה.</strong><br><strong> כל </strong> המורד, עי׳ תוס׳ מגילה דף י&quot;ד ע&quot;ב שהקשו מכמה דוכתי דמפורש דמורד במלכות צריך לדונו ותי׳ דמורד במלכות לא בעי הלנת דין אבל לדונו צריך עכ&quot;פ, ועי׳ בטורי אבן שם ואינו מיושב שיטת הרמב&quot;ם בזה שלא הביא מזה כלום.</p>
               </div>
             </div>
@@ -393,8 +439,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 3:10:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-3-10-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-10">Mishneh Torah, Kings and Wars 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַהוֹרֵג נְפָשׁוֹת שֶׁלֹּא בִּרְאָיָה בְּרוּרָה. אוֹ בְּלֹא הַתְרָאָה. אֲפִלּוּ בְּעֵד אֶחָד. אוֹ שׂוֹנֵא שֶׁהָרַג בִּשְׁגָגָה. יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ וּלְתַקֵּן הָעוֹלָם כְּפִי מַה שֶּׁהַשָּׁעָה צְרִיכָה. וְהוֹרֵג רַבִּים בְּיוֹם אֶחָד וְתוֹלֶה וּמַנִּיחָן תְּלוּיִים יָמִים רַבִּים לְהָטִיל אֵימָה וּלְשַׁבֵּר יַד רִשְׁעֵי הָעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש למלך רשות להרגו ולתקן העולם כפי מה שהשעה צריכה, והורג רבים ביום אחד ותולה ומניחן תלויים ימים רבים להטיל אימה ולשבר יד רשעי העולם.</strong><br><strong> ותולה </strong> ומניחן ימים רבים להטיל אימה ולשבר, עי׳ יבמות דף ע&quot;ט ועי׳ ילקוט שמעוני שמואל ב׳ כ&quot;א ושם נזכר ב׳ הדינים ויש לומר דאף דבגמ׳ יש טעם בשביל קה&quot;ש, אבל הרמב&quot;ם למד מפשטיה דקרא, וגם למלך יש טעם להטיל אימה כמו שכתב.</p>
               </div>
             </div>
@@ -410,8 +461,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 4:3:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-4-3-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-4-3">Mishneh Torah, Kings and Wars 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן לוֹקֵחַ מִן בַּעֲלֵי הָאֻמָּנֻיּוֹת כָּל מַה שֶּׁהוּא צָרִיךְ וְעוֹשִׂין לוֹ מְלַאכְתּוֹ וְנוֹתֵן שְׂכָרָן. וְלוֹקֵחַ כָּל הַבְּהֵמוֹת וְהָעֲבָדִים וְהַשְּׁפָחוֹת לִמְלַאכְתּוֹ וְנוֹתֵן שְׂכָרָן אוֹ דְּמֵיהֶן. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א ח יב)</span> &quot;וְלַחֲרשׁ חֲרִישׁוֹ וְלִקְצֹר קְצִירוֹ וְלַעֲשׂוֹת כְּלֵי מִלְחַמְתּוֹ וּכְלֵי רִכְבּוֹ&quot;. <span class="source-small">(שמואל א ח טז)</span> &quot;וְאֶת עַבְדֵיכֶם וְאֶת שִׁפְחוֹתֵיכֶם וְאֶת בַּחוּרֵיכֶם הַטּוֹבִים וְאֶת חֲמוֹרֵיכֶם יִקָּח וְעָשָׂה לִמְלַאכְתּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן לוקח מן בעלי האומניות כל מה שהוא צריך ועושין לו מלאכתו ונותן שכרן, ולוקח כל הבהמות והעבדים והשפחות למלאכתו ונותן שכרן או דמיהן שנאמר ולחרוש חרישו ולקצור קצירו ולעשות כלי מלחמתו וכלי רכבו ואת עבדיכם ואת שפחותיכם ואת בחוריכם הטובים ואת חמוריכם יקח ועשה למלאכתו.</strong><br><strong> ונותן </strong> שכרן כתב הלח&quot;מ אי קאי אבעלי אומניות דוקא קשה למה בבחוריכם ושמשים העומדים לפניו לא יתן שכרם ע&quot;כ, ונראה דהנה אמרינן בב&quot;מ דף ע&quot;ז שאני לי׳ לרבי דוסא בין שכירות לקבלנות דגבי שכירות אמרינן עבדי הם ולא עבדים לעבדים אבל בקבלנות אין זה עבד אלא לעצמו ועי׳ בדף י׳ בתוד&quot;ה יכול ולכן פועל כיון שהוא נעשה עבד למלך כל צרכיו הם על המלך אבל אומן הוא קבלן ועושה רק האומנות ובאותה שעה יתכן שאינו צריך לאכול ולכן נותן שכרו דהא אינו רשאי לגזול, ומש&quot;כ אח&quot;כ ולוקח כל הבהמות והעבדים והשפחות ונותן שכרן זהו לבעלים של העבדים דהא אינו רשאי לגזול בלא דמים.</p>
               </div>
             </div>
@@ -426,8 +482,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 4:4:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-4-4-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-4-4">Mishneh Torah, Kings and Wars 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן לוֹקֵחַ מִכָּל גְּבוּל יִשְׂרָאֵל נָשִׁים וּפִילַגְשִׁים. נָשִׁים בִּכְתֻבָּה וְקִדּוּשִׁין. וּפִילַגְשִׁים בְּלֹא כְּתֻבָּה וּבְלֹא קִדּוּשִׁין. אֶלָּא בְּיִחוּד בִּלְבַד קוֹנֶה אוֹתָהּ וּמֻתֶּרֶת לוֹ. אֲבָל הַהֶדְיוֹט אָסוּר בְּפִילֶגֶשׁ אֶלָּא בְּאָמָה הָעִבְרִיָּה בִּלְבַד אַחַר יִעוּד. וְיֵשׁ לוֹ [רְשׁוּת] לַעֲשׂוֹת הַפִּילַגְשִׁים שֶׁלּוֹקֵחַ לְאַרְמוֹנוֹ טַבָּחוֹת וְאוֹפוֹת וְרַקָּחוֹת. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א ח יג)</span> &quot;וְאֶת בְּנוֹתֵיכֶם יִקָּח לְרַקָּחוֹת וּלְטַבָּחוֹת וּלְאֹפוֹת&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן לוקח מכל גבול ישראל נשים ופלגשים נשים בכתובה וקדושין ופלגשים בלא כתובה ובלא קדושין אלא ביחוד בלבד קונה אותה ומותרת לו. אבל ההדיוט אסור בפלגש אלא באמה העבריה בלבד אחר ייעוד.</strong><br><strong> אבל </strong> ההדיוט אסור בפלגש אלא באמה העבריה בלבד אחר ייעוד, הנה דברי הרמב&quot;ם תמוהים דהרי לשיטת הרמב&quot;ם פלגש היא בלא כתובה וקדושין א&quot;כ מה זה שכ׳ אלא באמה העבריה אחר ייעוד דבזה שמייעד הו&quot;ל קדושין, עוד הקשה הלח&quot;מ כאן דלפמ&quot;ש הרמב&quot;ם בפ&quot;י מהל׳ אישות דכתובה אינה אלא מדרבנן ומדאורייתא אינו חייב רק בג׳ דברים שאר כסות ועונה וכמש&quot;כ בפי&quot;ב מהל׳ אישות ואמה העבריה לאחר קדושין ג&quot;כ חייב בג׳ דברים הללו.<br><strong> ונראה </strong> דבכל אשה מכיון שכונסה לשם נשואין התחייב באלו הג׳ דברים משום דזהו כתובה מדאורייתא לאשה שהיא אשתו גמורה ליורשה וליטמא לה אבל יעוד אינו עושה אלא אירוסין אלא דמ&quot;מ התורה חייבתו לנהוג בה מנהג אישות וחייבתו בשכ&quot;ו אלא דמ&quot;מ כיון דאינה אשתו גמורה אין לה כתובה מדרבנן ומ&quot;מ מותר בה גם מדרבנן דדין כתובה אינה אלא לאחר נשואין וזו היא ארוסה אלא דהתורה התירתה לו ואף שהוא לא התחייב עצמו בשכ&quot;ו נתחייב ממילא ואיברא דא&quot;כ ליכא כבר דררא דאיסורא כיון דמחויב בחיובי כתובה מן התורה ואיסור ארוסה הא אינו אלא מדבריהם, לכן אפשר דבאמת כוונת הרמב&quot;ם דעכ&quot;פ מדבריהם כיון שאין לה כתובה הרי היא כמו פילגש דאף שפילגש היא גם כן בלא קדושין מ&quot;מ גם בקדושין בלא כתובה אינה אשה דאיכא עשה ול&quot;ת שלא ליקח אשה בלא כתובה ובלא קדושין כמש&quot;כ הרמב&quot;ם ריש הלכות אישות גבי מנין המצות אלמא דבלא כתובה נמי איכא איסורא לכן הוי פילגש מדבריהם.</p>
               </div>
             </div>
@@ -443,8 +504,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 5:1:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-5-1-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-1">Mishneh Torah, Kings and Wars 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַמֶּלֶךְ נִלְחָם תְּחִלָּה אֶלָּא מִלְחֶמֶת מִצְוָה. וְאֵי זוֹ הִיא מִלְחֶמֶת מִצְוָה זוֹ מִלְחֶמֶת שִׁבְעָה עֲמָמִים. וּמִלְחֶמֶת עֲמָלֵק. וְעֶזְרַת יִשְׂרָאֵל מִיַּד צָר שֶׁבָּא עֲלֵיהֶם. וְאַחַר כָּךְ נִלְחָם בְּמִלְחֶמֶת הָרְשׁוּת וְהִיא הַמִּלְחָמָה שֶׁנִּלְחָם עִם שְׁאָר הָעַמִּים כְּדֵי לְהַרְחִיב גְּבוּל יִשְׂרָאֵל וּלְהַרְבּוֹת בִּגְדֻלָּתוֹ וְשִׁמְעוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין המלך נלחם תחלה אלא מלחמת מצוה, ואיזו היא מלחמת מצוה זו מלחמת שבעה עממים. ומלחמת עמלק ועזרת ישראל מיד צר שבא עליהם, ואחר כך נלחם במלחמת הרשות והוא המלחמה שנלחם עם שאר העמים כדי להרחיב גבול ישראל ולהרבות בגדולתו ושמעו.</strong><br><strong> והיא </strong> המלחמה שנלחם, הלח&quot;מ תמה דלמה לא הביא דהא דלמעוטי עכו&quot;ם דלא ליתו עלייהו הוי רשות כרבנן דאמרי למעוטי עכו&quot;ם דלא ליתו עלייהו דהוי רשות, ולא כתב אלא שנלחם עם שאר העמים כדי להרחיב גבול ישראל דהיינו מלחמת בית דוד לרווחא דאמר בגמ׳ דהכל מודים בה וחלוקא דפלוגתא לא הוזכרה בדבריו כלל ותי׳ דהוזכרה במה שכתב ולהרבות בגדולתו דהיינו שלא יבואו עליו עכ&quot;ל אכן עיין בפיהמ&quot;ש בפ&quot;ב דסנהדרין משמע מדבריו דת&quot;ק לא סבר להך דינא דלמעוטי עכו&quot;ם דלא ליתי עלייהו ורק ר׳ יהודא הוא דסבר דטעם זה גורם דהוי מצוה אבל לת&quot;ק לא צריך טעם וכתב סתם שהריגת שאר אנשי האומות רשות, אלא דצ&quot;ל שסמך על הכתוב דכתיב כי תצא למלחמה על אויביך (ואפשר דהוא כמו דאמר הגמ׳ בידוע שעשו שונא ליעקב וי&quot;ל דזהו אפילו עשו אף שהוא אח ליעקב) ועוד י&quot;ל דכיון דמלחמת הרשות צריך ב&quot;ד ודאי יהיה טעם בדבר ולא הוצרך לפרש.</p>
               </div>
             </div>
@@ -459,8 +525,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 5:12:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-5-12-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-12">Mishneh Torah, Kings and Wars 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לְעוֹלָם יָדוּר אָדָם בְּאֶרֶץ יִשְׂרָאֵל אֲפִלּוּ בְּעִיר שֶׁרֻבָּהּ עַכּוּ&quot;ם וְאַל יָדוּר בְּחוּצָה לָאָרֶץ וַאֲפִלּוּ בְּעִיר שֶׁרֻבָּהּ יִשְׂרָאֵל. שֶׁכָּל הַיּוֹצֵא לְחוּצָה לָאָרֶץ כְּאִלּוּ עוֹבֵד עֲבוֹדָה זָרָה. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א כו יט)</span> &quot;כִּי גֵרְשׁוּנִי הַיּוֹם מֵהִסְתַּפֵּחַ בְּנַחֲלַת ה׳ לֵאמֹר לֵךְ עֲבֹד אֱלֹהִים אֲחֵרִים&quot;. וּבַפֻּרְעָנֻיּוֹת הוּא אוֹמֵר <span class="source-small">(יחזקאל יג ט)</span> &quot;וְאֶל אַדְמַת יִשְׂרָאֵל לֹא יָבֹאוּ&quot;. כְּשֵׁם שֶׁאָסוּר לָצֵאת מֵהָאָרֶץ לְחוּצָה לָאָרֶץ כָּךְ אָסוּר לָצֵאת מִבָּבֶל לִשְׁאָר הָאֲרָצוֹת. שֶׁנֶּאֱמַר <span class="source-small">(ירמיה כז כב)</span> &quot;בָּבֶלָה יוּבָאוּ וְשָׁמָּה יִהְיוּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לעולם ידור אדם בארץ ישראל אפילו בעיר שרובה עכו&quot;ם ואל ידור בחוצה לארץ ואפילו בעיר שרובה ישראל שכל היוצא לחוצה לארץ כאילו עובד ע&quot;ז שנאמר כי גרשוני היום מהסתפח בנחלת ה׳ לאמר לך עבוד אלהים אחרים ובפורעניות הוא אומר ואל אדמת ישראל לא יבאו כשם שאסור לצאת מהארץ לחוצה לארץ כך אסור לצאת מבבל לשאר הארצות שנאמר בבלה יובאו ושמה יהיו.</strong><br><strong> כך </strong> אסור לצאת מבבל לשאר הארצות הכס&quot;מ כתב דמלשון הרמב&quot;ם משמע דאסור לצאת מבבל לשאר ארצות ואף א&quot;י בכלל עכ&quot;ד אכן מפשטות לשון הרמב&quot;ם נראה שאין כוונתו לומר שארץ ישראל בכלל דא&quot;כ היה כותב בפירוש דאסור לצאת מבבל לא&quot;י דזהו ממימרא דרב יהודה בכתובות כל העולה מבבל לארץ ישראל עובר בעשה והך מימרא שהביאו הרמב&quot;ם דאסור לצאת מבבל לשאר ארצות הוא מימרא דשמואל התם ועוד דבכמה דוכתי מזכיר הגמ׳ מימרא דר&quot;י ולא אמר דשמואל נמי ס&quot;ל כן ולכן נראה דהרמב&quot;ם לא פסק כרב יהודה כיון דרבי זירא הוי קמשתמיט מיני׳ וכן מצינו כמה אמוראים שעלו מבבל לא&quot;י ומש&quot;כ הרמב&quot;ם טעמא דקרא שנאמר בבבל יובאו דזהו טעמא דר&quot;י נראה דסובר הרמב&quot;ם דבאמת גם טעמא דשמואל הוא מהך קרא אלא דשמואל מפרש דהך קרא הוא לגבי שאר ארצות ועי׳ בשמ&quot;ק בסוף כתובות ד׳ תלמידי הרשב&quot;א במש&quot;כ לפרש הא דאמר קרנא ור׳ חנינא דסברי כאחוהי דרבה דשלחו לו לבוא לארץ ישראל.<br><span class="source-small"> -השמטות מגליונות-</span><br><strong> מש&quot;כ </strong> לעיל דמדברי הרמב&quot;ם לא משמע דאסור לצאת מבבל לא&quot;י וכדעת הכס&quot;מ והא דהביא קרא דבבלה יובאו היינו משום דסובר דגם טעמא דשמואל הוא מהך קרא אלא דמוקי לה בשאר ארצות, ויש להוסיף ע&quot;פ דברי התוס׳ שם בד&quot;ה בבלה יובאו שכתבו אע&quot;ג דהאי קרא בגלות ראשון כתיב יש לומר דבגלות שני נמי קפיד קרא, ולדברי התוס׳ יש לומר כיון דעיקר העשה דבבלה יובאו הוא בגלות ראשון אלא דמסתבר לשמואל דקפידא דקרא הוא גם בגלות שני ובזה מסתבר דכיון דישיבת א&quot;י היא מצוה גדולה כמש&quot;כ הרמב&quot;ם בעצמו כאן והרמב&quot;ן מנה זה למצוה מיוחדה לכן לא אלים הך סברא אלא על שאר ארצות ולא על ארץ ישראל ולכן שמואל אינו סובר כן אלא על שאר ארצות והרמב&quot;ם פוסק כשמואל, ובעיקר מה שהביא הרמב&quot;ם קרא דבבלה יובאו אף דבגמ׳ פריך מזה על ר׳ זירא ואמר על רב יהודא דכתיב קרא אחרינא דהשבעתי, ושקיל וטרי בגמ׳ ומביא פסוקים אחרים ועכ&quot;פ קרא דבבלה יובאו אינו אלא בכלי שרת וא&quot;כ צריך לבאר טעמא של הרמב&quot;ם שכתב קרא דבבלה יובאו.<br><strong> ונראה </strong> דהרמב&quot;ם סובר דכיון דרב יהודא אמר בפי׳ דעובר בעשה מקרא דבבלה ע&quot;כ דכן סובר באמת ומה דפריך הגמ׳ דבכלי שרת כתיב סובר הרמב&quot;ם דכיון דכל הסימן בירמי׳ שם מדובר גם מזה שלא יצאו מתחת שעבוד מלך בבל ע&quot;כ גם הא דכלי שרת הם צירוף לעיקר הגלות אבל גם על הגולים נאמר בבלה יובאו וע&quot;ז נאמר עד יום פקדי אותם דזה קאי בודאי בעיקר על הגולים שיפקוד ה׳ אותם בימי כורש ורק בעיקר הפסוק הוא על גלות ראשון רק דשמואל סובר דבגלות שני נמי קפיד קרא כמש&quot;כ התוס׳ אלא דמ&quot;מ אינו סובר כן שמואל אלא על שאר ארצות ולא על ארץ ישראל דאיכא מצות ישיבת הארץ כמש&quot;כ.</p>
               </div>
             </div>
@@ -476,8 +547,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 8:6:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-8-6-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-8-6">Mishneh Torah, Kings and Wars 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּצְרִיכָה לְהַמְתִּין שְׁלֹשָׁה חֳדָשִׁים. חֹדֶשׁ שֶׁל בְּכִיָּה וּשְׁנֵי חֳדָשִׁים אַחֲרָיו. וְנוֹשְׂאָהּ בִּכְתֻבָּה וְקִדּוּשִׁין. אִם לֹא חָפֵץ בָּהּ מְשַׁלְּחָהּ לְנַפְשָׁהּ. וְאִם מְכָרָהּ עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כא, יד)</span> &quot;וּמָכֹר לֹא תִמְכְּרֶנָּה בַּכָּסֶף&quot;. [וְאִם מְכָרָהּ] אֵינָהּ מְכוּרָה וּמַחֲזִיר הַדָּמִים. וְכֵן אִם כְּבָשָׁהּ אַחַר שֶׁנִּבְעֲלָה לְשֵׁם שִׁפְחָה מִשֶּׁיִּשְׁתַּמֵּשׁ בָּהּ עוֹבֵר בְּלֹא תַּעֲשֶׂה. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא, יד)</span> &quot;לֹא תִתְעַמֵּר בָּהּ&quot; שֶׁלֹּא יִשְׁתַּמֵּשׁ בָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וצריכה להמתין שלשה חדשים, חדש של בכיה ושני חדשים אחריו ונושאה בכתובה וקדושין אם לא חפץ בה משלחה לנפשה ואם מכרה עובר בל&quot;ת שנאמר ומכר לא תמכרנה בכסף ואם מכרה אינה מכורה ומחזיר הדמים, וכן אם כבשה אחר שנבעלה לשם שפחה משישתמש בה עובר בלא תעשה שנאמר לא תתעמר בה שלא ישתמש בה.</strong><br><strong> עובר </strong> בל&quot;ת, עי׳ מש&quot;כ הרמב&quot;ם בפ&quot;ו מהל׳ בכורות הלכה ה׳ שכ׳ ויראה לי שהמוכר מעשר לא עשה כלום ולא קנה לוקח ולפיכך אינו לוקה כמוכר חרמי כהנים שלא קנה לוקח וכמוכר יפת תואר, אכן מה שכתב גם גבי משישמש בה עובר בל&quot;ת ולא כתב שילקה צריך טעם, וכן לא מנה אותם בין הלאוין שלוקה עליהם בהל׳ סנהדרין פי&quot;ט ונראה דסובר הרמב&quot;ם שעיקר הלאו הוא לא השימוש בה רק במה שרוצה להחזיקה כשפחה וכיון דע&quot;פ הדין אינה כשפחה הרי זה ג&quot;כ כדין אי עביד לא מהני דסובר דאינו לוקה ועי׳ במש&quot;כ בזה הלח&quot;מ בפ&quot;ו מהל׳ בכורות.</p>
               </div>
             </div>
@@ -493,8 +569,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 9:4:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-9-4-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 9:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-4">Mishneh Torah, Kings and Wars 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁהָרַג נֶפֶשׁ אֲפִלּוּ עֵבָּר בִּמְעֵי אִמּוֹ נֶהֱרָג עָלָיו. וְכֵן אִם הָרַג טְרֵפָה אוֹ שֶׁכְּפָתוֹ וּנְתָנוֹ לִפְנֵי אֲרִי אוֹ שֶׁהִנִּיחוֹ בָּרָעָב עַד שֶׁמֵּת. הוֹאִיל וְהֵמִית מִכָּל מָקוֹם נֶהֱרָג. וְכֵן אִם הָרַג רוֹדֵף שֶׁיָּכוֹל לְהַצִּילוֹ בְּאֶחָד מֵאֵיבָרָיו נֶהֱרָג עָלָיו. מַה שֶּׁאֵין כֵּן בְּיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן נח שהרג נפש אפילו עובר במעי אמו נהרג עליו וכן אם הרג טריפה או שכפתו ונתנו לפי ארי או שהניחו ברעב עד שמת הואיל והמית מכל מקום נהרג וכן אם הרג רודף שיכול להצילו באחד מאבריו נהרג עליו מה שאין כן בישראל.</strong><br><strong> השגת </strong> הראב&quot;ד. וכן אם הרג רודף. א&quot;א קשיא לי׳ אבנר.<br><strong> הכס&quot;מ </strong> כתב בביאור דברי הראב&quot;ד משום דאמר בסנהדרין דף מ&quot;ט דיואב דן לאבנר דין סנהדרין דאמר לי׳ מ&quot;ט קטלתי׳ לעשאל, עשאל רודף הוי, היה לך להצילו באחד מאבריו, לא יכילי לי׳ ומוכח מזה דטענת היה לך להצילו באחד מאבריו מהני להרגו, וכתב הכ&quot;מ דדעת הרמב&quot;ם הוא דלאו דין גמור הוא ומאי דקאמר שדנו דין סנהדרין לא דין גמור קאמר אלא מלשון שער קדייק כמו אל שער מקומו ואסמכתא בעלמא הוא עיין בדבריו והוא דוחק, והמל&quot;מ כתב כאן דדוקא ב&quot;ד אין הורגין אבל גואל הדם כמו שרשאי להרוג למי שהרג בשוגג ה&quot;נ יכול להרוג למי שהיה יכול להצילו באחד מאבריו, ולכן לא קשיא מהא דאבנר דיואב גואה&quot;ד הוי.<br><strong> והנה </strong> דברי המל&quot;מ צריכין ביאור דהנה הרמב&quot;ם בפ&quot;א מהל׳ רוצח הל׳ י&quot;ג כתב כל היכול להציל באחד מאבריו ולא טרח בכך אלא הציל בנפשו של רודף והרגו ה&quot;ז שופך דמים וחייב מיתא אבל אין ב&quot;ד ממיתין אותו וכתב הכ&quot;מ דהרמב&quot;ם למד זה מברייתא דר׳ יונתן בן שאול דאמר רודף שהיה רודף אחר חברו להרגו ויכול להצילו באחד מאבריו ולא הציל נהרג עליו, ומפרש דהא דאמר נהרג עליו אינו שב&quot;ד ממיתין אותו דלא שייך ביה התראה, אלא דחייב מיתה לשמים, ולשון נהרג עליו ודאי לא משמע הכי, וגם מה שכתב דלא שייך ביה התראה נמי אינו מובן וכבר כתב על זה המל&quot;מ שדבריו צריכין תלמוד, והנה דברי המל&quot;מ כאן לא יתכנו אלא לפי דברי הכ&quot;מ דטעמא דפטור הוא משום דלא שייך ביה התראה ולכן שפיר גוה&quot;ד יכול להורגו אבל המל&quot;מ בעצמו כתב שדברי הכ&quot;מ צריכין תלמוד ולפ&quot;מ שנבאר דכיון דאינו רוצה לדקדק אם הרג להציל אינו רוצח א&quot;כ גם גוה&quot;ד לא מהני.<br><strong> ונראה </strong> לבאר דברי הרמב&quot;ם שבדיוק כתב בהל׳ רוצח ולא טרח בכך והיינו שלא רצה לטרוח ולדייק, והטעם בזה דכיון דהוא יכול להצילו בא׳ מאבריו, ואחר יש כאן שאינו יכול להציל באחד מאבריו הוא שופך דמים, אבל עכ&quot;פ אינו רוצח בזה שהורגו כיון דבלא אפשרות הצלה באחד מאבריו ניתן להצילו בנפשו, ונ&quot;מ שאם אפשר לזרוק אותו באבן אחד שיציל בזה את הנרדף וזרק בשני אבנים בב&quot;א והרגו יהיה חייב מיתה אם התרו בו דלא שייך בזה סברת לא טרח והוא פשוט, ובהא דר׳ יונתן בן שאול נראה דהרמב&quot;ם סובר דכיון דתניא ר׳ יונתן בן שאול אומר מכלל דרבנן פליגי עלי׳ וטעמא דרבנן כמש&quot;כ וח&quot;ג הגר&quot;מ חברוני שי׳ העירני מסנהדרין דף ע&quot;ז ע&quot;ב ברש&quot;י ד&quot;ה נהרג דלרבנן היתר גמור הוא ומשמע לכאורה דהכונה הוא על ישראל בישראל וכן ראיתי בערוך לנר שמפרש כן בכונת רש&quot;י אבל באמת יש לפרש על ישראל בכותי וכן מצאתי בפי׳ הרמ&quot;ה.<br><strong> והנה </strong> שם בגמ׳ איתא דיואב השיב על טענת אבנר השתא בדופן חמישי כוונת ליה באחד מאבריו לא יכלת ליה, ולפ&quot;מ שכתבתי דכל מה דפטור הוא משום דלא טרח להציל באחד מאבריו, וא&quot;כ אם יכוין להדיא דוקא להרגו ודאי חייב מיתה אלא דאי אפשר לברר דבר זה ולהרגו בב&quot;ד וכ&quot;ש דלא שייך בזה התראה דהמציל יוכל לטעון שנזדמן לו כן בשביל שלא רצה לטרוח ולדקדק אבל יואב טען שהיה זה בכונה שכיון לדקרו במקום שימות, ולכן גוה&quot;ד שהרגו ודאי פטור ממיתה אבל בי&quot;ד אין ממיתין אותו.<br><strong> ואפשר </strong> לבאר בדברינו מה שתמה עוד הכ&quot;מ בזה שהראב&quot;ד שתק בהל׳ רוצח שכתב הרמב&quot;ם אבל אין ב&quot;ד ממיתין אותו ולא כתב דקשיא הא דאבנר ולפמ&quot;ש א&quot;ש דשם ביאר הרמב&quot;ם דבריו וכתב ולא טרח, ואפשר דזהו היכי דצריך טירחא ולא קשיא מאבנר אבל כאן כתב בסתם דאם יכול להציל בא׳ מאבריו והרגו פטור בישראל, ולכן שפיר השיג עליו מאבנר, אבל כונת הרמב&quot;ם כאן הוא ג&quot;כ באופן זה שכתב כאן משום דתמיד יכול ההורג להתנצל ולומר שרק משום שלא רצה לטרוח נזדמן לו הכאה הממיתה ולכן לא קשיא מאבנר וכנ&quot;ל.</p>
               </div>
             </div>
@@ -510,8 +591,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 10:1:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-10-1-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-10-1">Mishneh Torah, Kings and Wars 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁשָּׁגַג בְּאַחַת מִמִּצְוֹתָיו פָּטוּר מִכְּלוּם. חוּץ מֵרוֹצֵחַ בִּשְׁגָגָה שֶׁאִם הֲרָגוֹ גּוֹאֵל הַדָּם אֵינוֹ נֶהֱרָג עָלָיו. וְאֵין לוֹ עִיר מִקְלָט. אֲבָל בָּתֵּי דִּינֵיהֶן אֵין מְמִיתִין אוֹתוֹ. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשָׁגַג בְּאַחַת מִמִּצְוֹת וְעָבַר בְּלֹא כַּוָּנָה. כְּגוֹן שֶׁבָּעַל אֵשֶׁת חֲבֵרוֹ וְדִמָּה שֶׁהִיא אִשְׁתּוֹ אוֹ פְּנוּיָה. אֲבָל אִם יָדַע שֶׁהִיא אֵשֶׁת חֲבֵרוֹ וְלֹא יָדַע שֶׁהִיא אֲסוּרָה עָלָיו. אֶלָּא עָלָה עַל לִבּוֹ שֶׁדָּבָר זֶה מֻתָּר לוֹ. וְכֵן אִם הָרַג וְהוּא לֹא יָדַע שֶׁאָסוּר לַהֲרֹג. הֲרֵי זֶה קָרוֹב לְמֵזִיד וְנֶהֱרָג. וְלֹא תֵּחָשֵׁב זוֹ לָהֶם שְׁגָגָה מִפְּנֵי שֶׁהָיָה לוֹ לִלְמֹד וְלֹא לָמַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן נח ששגג באחת ממצותיו פטור מכלום, חוץ מרוצח בשגגה שאם הרגו גואל הדם אינו נהרג עליו, ואין לו עיר מקלט, אבל בתי דיניהן אין ממיתין אותו, במה דברים אמורים בשגג באחת ממצות ועבר בלא כונה, כגון שבעל אשת חברו ודמה שהיא אשתו או פנויה, אבל אם ידע שהיא אשת חבירו ולא ידע שהיא אסורה עליו אלא עלה על לבו שדבר זה מותר לו, וכן אם הרג והוא לא ידע שאסור להרוג, הרי זה קרוב למזיד ונהרג, ולא תחשב זו להם שגגה מפני שהיה לו ללמוד ולא למד.</strong><br><strong> בן </strong> נח ששגג, הכ&quot;מ תמה על דברי הרמב&quot;ם במש&quot;כ רוצח בשגגה אם הרגו גואל הדם אינו נהרג עליו ואין לו עיר מקלט אבל ב&quot;ד אין ממיתין אותו, דאי כשהרג ישראל מיירי הרי נהרג הוא עליו כמבואר בדברי הרמב&quot;ם פ&quot;ה מהל׳ רוצח ואי כשהרג את בן נח גולה הוא לערי מקלט כמבואר שם, והלח&quot;מ כתב על דברי הכ&quot;מ לא ידעתי מה הוקשה להכ&quot;מ דרבינו כתב בפ&quot;ה מהל׳ רוצח דגר תושב שהרג ישראל בשגגה נהרג עליו וגר תושב שהרג גר תושב בשגגה גולה ועכו&quot;ם שהרג את העכו&quot;ם בשגגה אין ערי מקלט קולטות אותו שנאמר לבני ישראל והכא רבינו בעכו&quot;ם שהרג עכו&quot;ם איירי דבן נח שהזכיר הרמב&quot;ם כאן לא הוי שקבל עליו שבע מצות ודינו כמ&quot;ש בהל׳ רוצח דעכו&quot;ם שהרג עכו&quot;ם בשגגה אין ערי מקלט קולטות אותו.<br><strong> והנה </strong> בפ&quot;ה מהל׳ רוצח ה&quot;ג כתב הרמב&quot;ם ישראל שהרג בשגגה את העבד או את גר תושב גולה וכן העבד שהרג בשגגה את ישראל או את גר תושב וכן גר תושב שהרג את גר תושב או את העבד בשגגה גולה שנאמר לבני ישראל ולגר ולתושב בתוכם, ובהשגות הראב&quot;ד ישראל שהרג את העבד או את גר תושב א&quot;א אין נ&quot;ל כך מן ההלכה לפי שהוצרכו להביא עבד וכותי מן הרבוי אלמא גר תושב אין לוקין עליו ועוד כי יכה את רעהו כתיב וכתב הכ&quot;מ שם שט&quot;ס יש כאן וצריך למחוק מדברי הרמב&quot;ם גר תושב רק גבי עבד שהרג גר תושב כתב שאפשר לקיים מפני שהעבד אינו כישראל גמור אבל צ&quot;ע מנין לרבינו לחלק בכך עכ&quot;ד, אבל בפיהמ&quot;ש להרמב&quot;ם כתב להדיא אבל כשהרג ישראל לגר תושב יגלה ישראל, וכן מבואר בפירש&quot;י במכות דף ט׳ בד&quot;ה חוץ מגר תושב ומשמע דמתרוייהו ממעט ליה וכו׳, ואח&quot;כ בד&quot;ה ל&quot;ק כו׳ כתב וצ&quot;ל גולה כדקתני בהדיא, ורישא כשהרג את ישראל אינו גולה דלא סגי ליה בגלות, ומוכח דר&quot;ל דלמסקנא הא דתנן חוץ מגר תושב רק על גר תושב שהרג את ישראל קאי וכן כתב הריטב&quot;א בכונת רש&quot;י ע&quot;ש.<br><strong> ומה </strong> שהקשה הראב&quot;ד מזה שהוצרכו להביא עבד וכותי מן הרבוי וזהו מהא דאי׳ בגמ׳ הכל לאתויי מאי לאתויי עבד וכותי יש לומר דקאי ע&quot;ז דעבד וכותי גולין כשהרגו ישראל ולא על בבא שניה דישראל גולה על ידיהן, ומה דקתני זה בברייתא אף דגולה אפי׳ ע&quot;י גר תושב זהו משום רישא, ומה שהקשה דהא כתיב אשר יכה את רעהו י&quot;ל דרעהו למעוטי עכו&quot;ם, ואף דבכ&quot;מ שנתמעט עכו&quot;ם גם גר תושב בכלל, אבל הכא כיון דכתיב גר תושב בדיני גלות אמרינן דישראל נמי גולה על ידו ורק כשהרג גר תושב את ישראל נתמעט מלכם ולא לגרים, ונראה דסבר הגמ׳ דכיון דכתיב בחד קרא לבני ישראל ולגר ולתושב אמרינן דגולין זה על זה, ונמצא דמש&quot;כ הרמב&quot;ם שנאמר לבני ישראל וגו׳ קאי על כל ההלכה.<br><strong> אכן </strong> צריך לבאר זה שכתב הרמב&quot;ם דגר תושב שהרג עבד גולה דמנ&quot;ל דילמא לא נתרבה גר תושב בדיני גלות, אלא כשהרג גר תושב כדתנן, ואולי כיון דרק מקרא דלכם ולא לגרים נתמעט אמרינן דלא נתמעט אלא כשהרג ישראל ויותר נראה דכיון דע&quot;כ אנו צריכים לומר דמה דישראל חייב גלות על גר תושב היינו מקרא דלבני ישראל ולגר דמחויבים זה על זה, וקשה דהא גר תושב אינו גולה ע&quot;י ישראל דנתמעט מלכם ולא לגרים, ולכן צ&quot;ל דולגר היינו עבד דגר צדק ישראל מעליא הוא דלא שייך כאן ליחוס קהל, ותושב וגר דהיינו עבד גולין זע&quot;ז וישראל נמי גולה ע&quot;י גר תושב דהא כתיב בקרא ג&quot;כ לבני ישראל, רק דגר תושב ע&quot;י ישראל נתמעט מלכם ולא לגרים.<br><strong> אח&quot;כ </strong> ראיתי בס׳ מרכה&quot;מ שכתב לבאר ד׳ הרמב&quot;ם במש&quot;כ דגר תושב גולה ע&quot;י עבד דסובר דמה שגר תושב נהרג כשהרג ישראל הוא רק ע&quot;י גואל הדם, והביא מדברי הרמב&quot;ן בחידושיו שכתב כן מדברי הרמב&quot;ם, ולכן כיון שעבד אין לו גואל הדם לכן גולה הגר תושב, ולדעתי לא כיון בזה בעיקר ההלכה, והנה בדעת הרמב&quot;ם ודאי א&quot;א לפרש כן דהא כתב בהלכה ד׳ גר תושב שהרג את ישראל בשגגה וכו׳ ה&quot;ז נהרג אדם מועד לעולם וכן גר תושב שהרג את גר תושב מפני שעלה על דעתו שמותר להרגו ה&quot;ז קרוב למזיד ונהרג עליו וכו׳ ועכו&quot;ם שהרג את העכו&quot;ם בשגגה אין ערי מקלט קולטות אותו שנאמר לבני ישראל עכ&quot;ל ומבואר בדברי הרמב&quot;ם החילוק דבגר תושב שהרג ישראל בשגגה, ובהרג גר תושב באומר מותר כתב נהרג עליו ובעכו&quot;ם שהרג עכו&quot;ם כתב אין ערי מקלט קולטות אותו, וזה כמש&quot;כ כאן בהלכה שלפנינו.<br><strong> ומה </strong> שהביא מדברי הרמב&quot;ן, לא כיון הרמב&quot;ן לזה כלל, דהרמב&quot;ן חלק שם על רש&quot;י שפירש הא דתניא לפיכך גר וגוי שהרגו נהרגין דאז׳ מצות קאי שנצטוו אשפיכות דמים ואזהרתן זו מיתתן וא&quot;צ התראה וכ׳ ע&quot;ז הרמב&quot;ן שאין הדין נותן להרוג אדם בשוגג במצוה, ומה דאמרינן דב&quot;נ נהרג שלא בהתראה היינו במזיד וטעמו דהרגו נהרגין הוא משום דבשפיכת דמים אם הרג ישראל לישראל לא ניתנה דמו למחילה וגואל הדם הורגו, לפיכך עכו&quot;ם נהרג עליו לעולם, ומבואר בדברי הרמב&quot;ן דרק טעמא דמילתא נקט לחלק בין שפיכת דמים לשאר ז׳ מצות דכיון דבישראל לא ניתנה דמו למחילה לגבי גואה&quot;ד ולא נפטר לגמרי בשביל שגגתו לכן בעכו&quot;ם נהרג אבל בודאי נהרג הוא בב&quot;ד.<br><strong> אלא </strong> דבעיקר טעמו של הרמב&quot;ן לחלק מרציחה לשאר ז׳ מצות משום דברציחה בישראל עומד בספק מגואל הדם, ולא ניתן דמו למחילה קשה דא&quot;כ גם בעכו&quot;ם שהרג עכו&quot;ם בשוגג יהיה נהרג כיון דבל&quot;ז עומד מספק מגואל הדם, ובדעת הרמב&quot;ן י&quot;ל דאינו סובר דבעכו&quot;ם שהרג עכו&quot;ם איכא דינא דגואל הדם, וכן משמע מדבריו שכ׳ בעכו&quot;ם שהרג עכו&quot;ם בשוגג ובאנוס פטור ומשמע דפטור לגמרי, ועוד שהשוה שוגג לאנוס מוכח דאין חילוק אבל לדעת הרמב&quot;ם דסובר דאיכא דינא דגואל הדם בעכו&quot;ם שהרג עכו&quot;ם א&quot;כ מאי נ&quot;מ מעכו&quot;ם שהרג עכו&quot;ם לעכו&quot;ם שהרג ישראל.<br><strong> ונראה </strong> דדעת הרמב&quot;ם במה דגר תושב ועכו&quot;ם שהרגו ישראל חייבין מיתה אינו משום טעמו של הרמב&quot;ן דהא הרמב&quot;ם מפרש בפ&quot;ד מהל׳ רוצח בהל׳ ד׳ גר תושב שהרג ישראל ה&quot;ז נהרג אדם מועד לעולם ולהדיא דסובר דמהאי טעמא נהרג ולא דמי לשגג בז׳ מצות דזה לא שייך אלא במזיק אלא דצריך לבאר אם טעמא דאדם מועד לעולם ילפינן בב&quot;ק דכ&quot;ו מקרא דפצע תחת פצע, א&quot;כ באמת אינו דין בעכו&quot;ם אלא דמ&quot;מ עכו&quot;ם שהרג ישראל בדינא דידן דיינינן ליה, וכיון דבעכו&quot;ם כל דין שלו במיתה הוא, חייב מיתה משום דכיון דבישראל מזיק אפי׳ בשוגג חייב מוכח דגם בשוגג עבר דהו&quot;ל לעיוני וכ&quot;ש ברוצח, אבל עכו&quot;ם שהרג עכו&quot;ם או גר תושב שהרג גר תושב ליכא דינא דאדם מועד לעולם, ולכן בגר תושב חייב גלות ובעכו&quot;ם דליכא גלות רשאי גואל הדם להרגו.<br><strong> איברא </strong> דיש להסתפק דכיון דנימא דבעכו&quot;ם ליכא דינא דאדם מועד לעולם רק משום דבדינא דידן דיינינן ליה ובדינא דידן בשביל עבירת שוגג אינו חייב מיתה, ויש לתלות זה בהמחלוקת שבין רש&quot;י לרבינו יונה שהבאתי בפ&quot;ח מהל׳ נז&quot;מ הל׳ י&quot;ג אות ב׳ בנערה המאורסה בעכו&quot;ם דרש&quot;י סובר דלא בעי עדה ועדים ורבינו יונה כתב שיש לומר דכיון דלדידהו לית להו ודיינינן להו בדינא דידן צריך עדה עדים והוכחתי שם דשיטת הרמב&quot;ם כשיטת רש&quot;י ולכן גם בעניננו אף דעכו&quot;ם בדידיה ליכא אדם מועד לעולם, אבל כשהרג ישראל אמרינן אדם מועד לעולם וממילא חייב מיתה כדינא דעכו&quot;ם והרמב&quot;ם לשיטתו בזה.<br><strong> אלא </strong> דאכתי צריך לבאר דבגמ׳ פריך אתירוצא דר&quot;כ מדתניא לפיכך גר ונכרי שהרגו נהרגין קתני גר דומיא דנכרי מה נכרי ל&quot;ש דקטל בר מיניה ל&quot;ש קטל דלאו בר מיניה נהרג, ומשני רב חסדא בדרך עליה ורבא משני באומר מותר ולפ&quot;מ דפשוט להרמב&quot;ן וכן סובר הרמב&quot;ם דעכו&quot;ם שהרג עכו&quot;ם בשוגג פטור רק דהרמב&quot;ם כתב דאם הרגו גואל הדם אינו נהרג, וא&quot;כ היכי פשיטא ליה למפרך דמה נכרי וכו׳ דהא שפיר דגר ונכרי לא קאי אבר מיניה, וצ&quot;ל דלפי ההו&quot;א ע&quot;כ נפרש נהרגין מה דיש רשות לגואל הדם להרגו רק דבמסקנא דמשני באומר מותר הכונה נהרגין בב&quot;ד וכמו שנתבאר, אכן לפ&quot;מ שהוכחתי מלשון הרמב&quot;ן דאינו סובר דבעכו&quot;ם שהרג עכו&quot;ם יש דין גואל הדם, וא&quot;כ קשה טובא דמנ&quot;ל למיפרך דמה נכרי וכו׳ דהא באמת נכרי שהרג נכרי בשוגג פטור וא&quot;כ תרווייהו כשהרגו ישראל וצ&quot;ע.<br><strong> ובעיקר </strong> מילתא מה דגר תושב שהרג ישראל נהרג ולא מפרשינן דלא סגי ליה בגלות ואם הרגו גואל הדם אינו נהרג כמו דע&quot;כ מפרשינן הכי הברייתא לפי ההו&quot;א, נראה דזה תליא אם מצוה ביד גואל הדם או רשות ביד גואל הדם, דאם נימא מצוה א&quot;כ אפשר לומר דאף דגר תושב ג&quot;כ ערי מקלט קולטות אותו, מ&quot;מ כשהרג ישראל לא ניתנה שגגתו לכפרה ונהרג בידי גואל הדם, אבל אם נימא רשות ביד גואל הדם א&quot;כ אין סברא דליהני עדיפותא דקדושת ישראל לומר דלא מהני ליה ערי מקלט כיון דאינו דין חיוב מיתה בעצם, אלא רשות ביד גואה&quot;ד משום כי יחם לבבו, וכיון דערי מקלט קולטות גם גר תושב צריך דליהני גם כשהרג ישראל ומוכח ע&quot;כ דבאמת גר תושב כשהרג ישראל מחוייב מיתה משום עדיפותא דקדושת ישראל ולכן לא מהני ליה ערי מקלט.</p>
               </div>
             </div>
@@ -526,8 +612,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Kings and Wars 10:3:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-kings-and-wars-10-3-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Kings and Wars 10:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-10-3">Mishneh Torah, Kings and Wars 10:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁנִּתְגַּיֵּר וּמָל וְטָבַל וְאַחַר כָּךְ רָצָה לַחְזֹר מֵאַחֲרֵי ה׳ וְלִהְיוֹת גֵּר תּוֹשָׁב בִּלְבַד כְּשֶׁהָיָה מִקֹּדֶם. אֵין שׁוֹמְעִין לוֹ. אֶלָּא יִהְיֶה כְּיִשְׂרָאֵל לְכָל דָּבָר אוֹ יֵהָרֵג. וְאִם הָיָה קָטָן כְּשֶׁהִטְבִּילוּהוּ בֵּית דִּין. יָכוֹל לִמְחוֹת בְּשָׁעָה שֶׁיַּגְדִּיל וְיִהְיֶה גֵּר תּוֹשָׁב בִּלְבַד. וְכֵיוָן שֶׁלֹּא מִחָה בִּשְׁעָתוֹ שׁוּב אֵינוֹ מוֹחֶה אֶלָּא הֲרֵי הוּא גֵּר צֶדֶק. לְפִיכָךְ אִם בָּא יִשְׂרָאֵל עַל קְטַנָּה שֶׁהִטְבִּילוּהָ בֵּית דִּין. כֶּסֶף כְּתֻבָּתָהּ אוֹ קְנָס אוֹנֵס אוֹ מְפַתֶּה יִהְיֶה הַכּל תַּחַת יַד בֵּית דִּין עַד שֶׁתַּגְדִּיל וְלֹא תִּמְחֶה בַּגֵּרוּת. שֶׁמָּא תִּטּל וְתַגְדִּיל וְתִמְחֶה וְנִמְצֵאת זוֹ אוֹכֶלֶת בְּגֵיוּתָהּ מָעוֹת שֶׁאֵין לָהּ זְכוּת בָּהֶן אֶלָּא בְּדִינֵי יִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן נח שנתגייר ומל וטבל ואחר כך רצה לחזור מאחרי ה׳ ולהיות גר תושב בלבד כשהיה מקודם אין שומעין לו אלא יהיה כישראל לכל דבר או יהרג.</strong><br><strong> ודברי </strong> הרמב&quot;ם תמוהים בזה שכ׳ או יהרג דמהיכי תיתי נהרגהו, ונראה דבפרק ד׳ מהל׳ רוצח הל׳ י׳ כתב הרמב&quot;ם האפיקורסין והם עובדי עבודה זרה או העושה עבירות להכעיס הרי זה אפיקורס ושכופרין בתורה ובנבואה היה מצוה להרגן, אם יש בידו כח להרגן בסייף בפרהסיה הורג, ולכן גם כאן כיון שהוא בידינו הורגין אותו, ולזה כיון הכס&quot;מ שכ׳ וז&quot;ל וכיון דכישראל מומר הוא ודאי אם ישנו תחת ידינו או יהיה ישראל לכל דבריו או יהרג וכונתו דמדין מורידין ואין מעלין הוא.</p>
               </div>
             </div>
@@ -537,6 +628,10 @@
               <a href="#chapter-even-haazel-on-mishneh-torah-kings-and-wars-text-10">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/even-haazel-on-mishneh-torah-kings-and-wars.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/even-haazel-on-mishneh-torah-kings-and-wars-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -557,8 +652,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/even-haazel-on-mishneh-torah-kings-and-wars.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/even-haazel-on-mishneh-torah-kings-and-wars.manifest.json","occurrence_url":"../../data/lexical/occurrences/even-haazel-on-mishneh-torah-kings-and-wars.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/even-haazel-on-mishneh-torah-kings-and-wars.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/even-haazel-on-mishneh-torah-kings-and-wars.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/even-haazel-on-mishneh-torah-kings-and-wars.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -584,7 +679,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

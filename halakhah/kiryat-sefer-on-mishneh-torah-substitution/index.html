@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-substitution/">Open Mishneh Torah, Substitution</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Substitution</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">34 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>619 matched</strong> / 1957 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-substitution.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-substitution-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -240,8 +240,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-1">Mishneh Torah, Substitution 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמֵּמִיר לוֹקֶה עַל כָּל בְּהֵמָה וּבְהֵמָה שֶׁיָּמִיר שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז י)</span> &quot;לֹא יַחֲלִיפֶנּוּ וְלֹא יָמִיר אֹתוֹ&quot; וְאַף עַל פִּי שֶׁלֹּא עָשָׂה מַעֲשֶׂה. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁכָּל מִצְוַת לֹא תַּעֲשֶׂה שֶׁאֵין בָּהּ מַעֲשֶׂה אֵין לוֹקִין עָלֶיהָ חוּץ מִנִּשְׁבָּע וּמֵמִיר וּמְקַלֵּל אֶת חֲבֵרוֹ בְּשֵׁם. שְׁלֹשָׁה לָאוִין אֵלּוּ אִי אֶפְשָׁר שֶׁיִּהְיֶה בָּהֶן מַעֲשֶׂה כְּלָל וְלוֹקִין עֲלֵיהֶן. וְלָמָּה לוֹקִין עַל הַתְּמוּרָה וַהֲרֵי לָאו שֶׁבָּהּ נִתָּק לַעֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז לג)</span> &quot;וְאִם הָמֵר יְמִירֶנּוּ וְהָיָה הוּא וּתְמוּרָתוֹ יִהְיֶה קֹדֶשׁ&quot;. מִפְּנֵי שֶׁיֵּשׁ בָּהּ עֲשֵׂה וּשְׁנֵי לָאוִין. וְעוֹד שֶׁאֵין לָאו שֶׁבָּהּ שָׁוֶה לַעֲשֵׂה. שֶׁהַצִּבּוּר וְהַשֻּׁתָּפִין אֵין עוֹשִׂין תְּמוּרָה אִם הֵמִירוּ אַף עַל פִּי שֶׁהֵן מֻזְהָרִין שֶׁלֹּא יָמִירוּ. נִמְצֵאתָ אוֹמֵר שֶׁהַיָּחִיד שֶׁהֵמִיר הֲרֵי הַתְּמוּרָה קֹדֶשׁ. וַאֲפִלּוּ הֵמִיר בְּשַׁבָּת לוֹקֶה אַרְבָּעִים. וְאֶחָד מִן הַשֻּׁתָּפִין שֶׁהֵמִיר. אוֹ מִי שֶׁהֵמִיר בְּקָרְבָּן מִקָּרְבְּנוֹת הַצִּבּוּר. הוֹאִיל וְיֵשׁ לוֹ בָּהֶן שֻׁתָּפוּת הֲרֵי זֶה לוֹקֶה וְאֵין הַתְּמוּרָה קֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעא </strong> שלא ימיר בהמת קדש בבהמה אחרת דכתיב לא יחליפנו ולא ימיר וכו׳ ואם המיר לוקה ואף על פי שלא עשה מעשה מפי השמועה למדו שכל מצות לא תעשה שאין בה מעשה אין לוקין עליה כדילפינן מדכתיב אם לא תשמור לעשות חוץ מנשבע ומימר ומקלל חברו בשם נשבע מנלן אמר רבי יוחנן משום רבי מאיר בפרק קמא דתמורה כתיב כי לא ינקה את אשר ישא את שמו לשוא ב&quot;ד של מעלה אין מנקין אותו אבל ב&quot;ד של מטה מלקין אותו ומנקין אותו דמדכתיב לא ינקה ה׳ את אשר ישא את שמו לשוא ב&quot;ד של מעלה דוקא הוא דאין מנקה אותו אבל ב&quot;ד של מטה מנקין אותו כדא׳ אשכחן שבועת שוא דלוקה אם נשבע לשקר אכלתי ולא אכל או לא אכלתי ואכל דמה שוא לשעבר אף שקר לשעבר ולית בה מעשה דאי אוכל ולא אכל לא לקי משום לאו שאין בו מעשה דלא מרבינן משבועת שוא אלא לשעבר כדא׳ ואי נשבע שלא יאכל ואכל הרי יש בו מעשה ולקי אלא באכלתי ולא אכל כדאמ׳ דומיא דלשוא דמרבי׳ לה מינה דהוי לשעבר דכי נשבע על עמוד של אבן שהיא של כסף היינו לשעבר דקודם שנשבע הויא אבן כמו השתא ואמר ליה רבי יוחנן לתנא לא תיתני מימר בכלל לאוין שאין בהם מעשה משום דבדיבורו עושה מעשה שעושה מחולין קדש ולהכי לקי ומקלל חברו בשם מנלן אמר ר׳ אלעזר אמר רבי אושעיא אמר קרא אם לא תשמור לעשות וגו׳ ליראה את ה׳ הגדול שיתיירא שלא להוציא את השם לבטלה ומקלל חברו בשם הוא מוציא שם שמים לבטלה וכתיב בהאי קרא והפלה ה׳ את מכותך דהפלאה זו היינו מלקות כדכתיב והפילו השופט וגו׳ וכיון דהוא מוזהר מלקלל חברו בשם כדכתיב לא תקלל חרש משמע בין קללה סתם בין קללה בשם קאתי קרא דליראה את ה׳ לאשמועינן דלוקה כדכתיב והפלא ה׳ את מכותך כדאמ׳ ולמה לוקין על התמורה והרי לאו שניתק לעשה היא דכתיב ואם המר ימיר בהמה בבהמה והיה הוא ותמורתו וגו׳ משום דהוו תרי לאוי וחד עשה ולא אתי חד עשה ועקר תרי לאוי ממלקות ועוד דלאו דמימר הוא לאו ששוה בכל שאחד מן השותפין שהמיר או המיר בקרבן צבור לוקה ואין תמורתם קדש נמצא שאין העשה שוה בכל להיות התמורה קדש ואין כח בעשה שאין שוה בכל להוציא מלאו ששוה בכל כדאמ׳ ושותפין דלא עבדי תמורה תנן פרק קמא דתמורה הצבור והשותפין אין עושין תמורה שנאמר לא יחליפנו ולא ימיר אותו יחיד עושה תמורה ואין צבור ושותפין עושין תמורה ולוקה בתמורה על כל בהמה ובהמה כדתניא בריש תוספת׳ משום דכתיב בהמה בבהמה נמצאת אומר שהיחיד שהמיר הרי תמורה קדש ואפילו בשבת כדתניא בריש תוספתא.</p>
               </div>
             </div>
@@ -256,8 +261,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-2">Mishneh Torah, Substitution 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַמֵּמִיר בְּזָדוֹן אוֹ שֶׁהֵמִיר בִּשְׁגָגָה הֲרֵי זֶה עוֹשֶׂה תְּמוּרָה וְלוֹקֶה. כֵּיצַד. הַמִּתְכַּוִּן לוֹמַר הֲרֵי זוֹ תְּמוּרַת עוֹלָה שֶׁיֵּשׁ לִי וְאָמַר הֲרֵי זוֹ תְּמוּרַת שְׁלָמִים שֶׁיֵּשׁ לִי. הֲרֵי זוֹ תְּמוּרָה וְלוֹקֶה. אֲבָל אִם דִּמָּה שֶׁמֻּתָּר לְהָמִיר וְהֵמִיר אוֹ שֶׁאָמַר אֶכָּנֵס לְבַיִת זֶה וְאָמִיר מִדַּעְתִּי וְנִכְנַס וְשָׁכַח וְהֵמִיר שֶׁלֹּא מִדַּעְתּוֹ הֲרֵי זוֹ תְּמוּרָה וְאֵינוֹ לוֹקֶה עָלֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> הממיר בזדון או בשגגה עושה תמורה ולוקה במשנה פרק שני דתמורה רבי יוסי ברבי יהודה אומר עשה שוגג כמזיד בתרומה ולא עשה שוגג כמזיד במוקדשין ובגמרא מאי טעמא דר׳ יוסי ברבי יהודה אמר קרא יהיה קדש לרבות שוגג כמזיד היכי דמי שוגג כמזיד ר&quot;ל ור׳ יוחנן אמרי כסבור לומר תמורת עולה ואמר תמורת שלמים תמורת שלמים ואמר תמורת עולה גבי תמורה לקי דרבי ביה קרא יהיה לרבות שוגג כמזיד גבי קדשים אם בעל מום הוא למזבח לא לקי דהא לא קדיש בטעות דכסבור לומר שחור ואמר לבן אבל אם דמה שמותר להמיר והמיר או שאמר אכנס לבית זה ואמיר מדעתי ונכנס ושכח והמיר שלא מדעתו הרי זו תמורה ואינו לוקה עליה הני תרי גווני הוו כחזקיה ורב ששת דאמרי הכי בגמרא דכהני גווני הוי שוגג כמזיד ולקי והרב ז&quot;ל נקט כר&quot;ל ור׳ יוחנן דלא לקי אלא כסבור לומר תמור עולה ואמר שלמים או איפכא אבל בהני גווני לא לקי אבל לענין תמורה מיהא הוו תמורה דלא פליגי אלא לענין מלקות דגרסינן גבי תמורה לקי גבי קדשים לא לקי ולא נראה גבי תמורה קדיש גבי קדשים לא קדיש וכמו שכתבו התוספת שם.</p>
               </div>
             </div>
@@ -272,8 +282,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-3">Mishneh Torah, Substitution 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם מֵמִיר בְּהֶמְתּוֹ בְּקָרְבָּן שֶׁאֵינוֹ שֶׁלּוֹ. וְאִם אָמַר בַּעַל הַקָּרְבָּן כָּל הָרוֹצֶה לְהָמִיר בִּבְהֶמְתִּי יָבוֹא וְיָמִיר הֲרֵי זֶה מֵמִיר בָּהּ. הֵמִיר קָרְבָּנוֹ בִּבְהֵמָה שֶׁאֵינָהּ שֶׁלּוֹ אֵינָהּ תְּמוּרָה שֶׁאֵין אָדָם מַקְדִּישׁ דָּבָר שֶׁאֵינוֹ שֶׁלּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אדם ממיר בהמתו בקרבן שאינו שלו פ&quot;ק דתמורה ת&quot;ר לא יחליפנו בשל אחרים ולא ימיר אותו בשל עצמו היכי דמי אילימא בהמה דהקדש דעלמא וחולין דידיה מי מתפיס בדבר שאינו שלו לעולם בהמה דהקדש דעלמא כדאמ׳ וכגון דאמר מריה דבהמה דהקדש כל הרוצה להמיר בבהמתו ימיר. המיר קרבנו בבהמה שאינה שלו אינה תמורה שם גבי לא יחליפנו בשל אחרים אילימא בהמה דהקדש דידיה וחולין דעלמא מי מצי מקדיש איש כי יקדיש את ביתו קדש לה׳ כתיב מה ביתו ברשותו אף כל ברשותו.</p>
               </div>
             </div>
@@ -288,8 +303,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-4">Mishneh Torah, Substitution 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּתְכַּפֵּר הוּא שֶׁעוֹשֶׂה תְּמוּרָה אֲבָל לֹא הַמַּקְדִּישׁ. כֵּיצַד. הִקְדִּישׁ בְּהֵמָה שֶׁיִּתְכַּפֵּר בָּהּ חֲבֵרוֹ כְּגוֹן שֶׁהִקְדִּישׁ קָרְבְּנוֹת נָזִיר שֶׁיִּתְכַּפֵּר בָּהֶם פְּלוֹנִי הַנָּזִיר. אוֹתוֹ הַנָּזִיר הוּא שֶׁעוֹשֶׂה בָּהֶן תְּמוּרָה אֲבָל לֹא זֶה שֶׁהִקְדִּישׁ לְפִי שֶׁאֵינָן שֶׁלּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המתכפר </strong> הוא שעושה תמורה לא מקדיש שם בריש פרקין דתמורה א&quot;ר אבהו א&quot;ר יוחנן המקדיש מוסיף חומש אם רוצה לפדות הקדשו ולא מתכפר ומתכפר עושה תמורה שאם הפריש ישראל קרבן כדי שיתכפר בו ישראל חברו ואמר המתכפר זו תחת זו תמורתו תמורה ולוקה דכיון דהופרש לצרכו קרינא ביה קרבנו דבתר מתכפר אזלינן.</p>
               </div>
             </div>
@@ -304,8 +324,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-5">Mishneh Torah, Substitution 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַיּוֹרֵשׁ מֵמִיר. הִנִּיחַ בְּהֵמָה לִשְׁנֵי בָּנָיו וּמֵת הֲרֵי זוֹ קְרֵבָה וְאֵין מְמִירִין בָּהּ שֶׁהֲרֵי הֵם בָּהּ שֻׁתָּפִין וְהַשֻּׁתָּפִין אֵין עוֹשִׂין תְּמוּרָה כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היורש </strong> ממיר בריש מכלתין תנן הכל ממירין ובגמרא הכל לאיתויי מאי לאיתויי יורש שהמיר בקרבן שהפריש אביו בחייו שתמורתו תמורה ור׳ מאיר היא מ&quot;ט דכתיב אם המר ימיר לרבות את היורש דהכי מצי למכתב ואם ימיר בהמה בבהמה המר ימיר למאי הלכתא לרבות את היורש דתמורתו תמורה ואם הניח בהמה לב׳ בניו הוו שותפין בה ואין אחד מהם ממר כדילפינן לעיל דיחיד עושה תמורה ולא צבור ושותפין.</p>
               </div>
             </div>
@@ -320,8 +345,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-6">Mishneh Torah, Substitution 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין קָדְשֵׁי נָכְרִים עוֹשִׂין תְּמוּרָה מִן הַתּוֹרָה אֲבָל מִדִּבְרֵי סוֹפְרִים שֶׁהַנָּכְרִי שֶׁהֵמִיר הֲרֵי זוֹ תְּמוּרָה. הִקְדִּישׁ הַנָּכְרִי בְּהֵמָה שֶׁיִּתְכַּפֵּר בָּהּ יִשְׂרָאֵל וְהֵמִיר בָּהּ הַנָּכְרִי הֲרֵי זוֹ סְפֵק תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> קדשי גוי עושים תמורה מן התורה הקדיש הגוי בהמה שיתכפר בה ישראל והמיר בה הגוי הרי זו ספק תמורה שם בעיא דרמי בר חמא גוי מהו שימיר מי אמרינן מדאקדושי מקדיש דתניא איש איש מבית ישראל לרבות את הגוים שנודרים נדרים ונדבות כישראל אמורי נמי ממיר או דילמא כיון דלא אתי לכלל עונשים כי עביד תמורה לא קדשה ובעיא למפשט מדתניא גבי קדשי גוים דאין עושין תמורה ומדרבנן דבמקדיש גוי להתכפר גוי לא קמיבעי ליה לרמי בר חמא כי קא מיבעי ליה במקדיש גוי להתכפר ישראל בתר מקדיש אזלינן או בתר מתכפר אזלינן דאף על גב דאמר ר׳ יוחנן המתכפר הוא העושה תמורה ולא מקדיש כדאמר׳ לעיל התם הוא דקאתי מכח ישראל ומשום הכי אזלינן בתר דמתכפר והוה ליה תחלתו וסופו ביד ישראל אבל הכא הכי קמיבעי ליה מיבעיא מתחלה ועד סוף דתיקום ברשות מאן דעביד תמורה כלומר בהקדיש גוי להתכפר ישראל מיבעיא מתחלת הקדש ועד סופו שתעמוד ברשות האדם הראוי לעשות תמורה כגון ישראל והך בהמה כיון דתחלת קדושתה הויא מכח גוי אף על גב דהוי המתכפר ישראל אינו עושה תמורה או דילמא כיון דלבסוף אתיא ביד מתכפר וחזי למעבד תמורה תפסה בה קדושת תמורה תיקו זהו לשון רש&quot;י ז&quot;ל ומשמע דבעיין לא הוי אלא לענין המתכפר עצמו שהוא ישראל אם מצי ממר האי בהמה דאתיא מכח גוי כיון דלא היתה מתחלה ועד סוף ביד ישראל וסלקא בתיקו אבל גוי שהקדישה שימיר אותה משמע דלא איבעיא לן דפשיטא דאפילו ישראל המקדיש לשיתכפר ישראל חברו אין המקדיש ממיר אבל הרב ז&quot;ל כתב שאם המיר הגוי המקדיש הוי ספק תמורה משמע דסבירא ליה דבעיא דרמי בר חמא הגוי המקדיש הוא דמספקא ליה אם המיר אי הויא תמורה או לא והכי משמע לישנא דגמרא ולכן נראה שהרב ז&quot;ל מפרש לישנא דגמרא דקאמר התם הוא דאתי מכח ישראל דמשום הכי אזלינן בתר מתכפר והוה ליה תחלתו וסופו ביד ישראל דישראל כי מקדיש לה׳ אדעתא שיתכפר בה חברו ישראל נמי בדעתו שיתכפר בה ישראל ואלימא קדושתיה לזכותה לישראל חבריה ולהכי ישראל חבריה עביד תמורה דקרינא ביה קרבנו כיון דהוא מתכפר בו אבל הקדש הגוי אף על גב דילפינן מקרא דמקדיש כדכתיב איש איש אילימא קדושתיה לזכותה לישראל שיתכפר בה ושזה המתכפר ימיר בה כיון שבא מכח גוי ולא אזלינן בתר מתכפר אבל אם המיר הוא מספקא לן אי הויא תמורה כיון דמתכפר דאתי מכחו לא עביד תמורה או לא וסלקי בתיקו.</p>
               </div>
             </div>
@@ -336,8 +366,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-7">Mishneh Torah, Substitution 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד אֲנָשִׁים וְאֶחָד נָשִׁים אִם הֵמִירוּ עוֹשִׂין תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> אנשים ואחד נשים עושים תמורה שם במתני׳ בריש מכלתין הכל ממירין אחד אנשים ואחד נשים ותניא בגמרא לפי שהענין כולו מדבר בלשון זכר דכתיב לא יחליפנו ולא ימיר אשה מנין ת&quot;ל ואם המר ימיר לרבות את האשה ולרבי מאיר דדריש להאי אם המר ימיר לרבות את היורש כדאמר׳ לעיל אשה מנא ליה נפקא ליה מואם מוא&quot;ו דואם דמצי למכתב אם המר ימיר וכתב ואם ואף על גב דהשוה הכתוב אשה לאיש לכל עונשין שבתורה כדכתיב איש או אשה כי יעשו מכל חטאת האדם וגו׳ איצטריך לרבויי אשה דמהו דתימא עונש דשוה בין ביחיד בין בצבור אבל הכא כיון דעונש דאינו שוה בכל הוא דתנן אין הצבור והשותפין עושין תמורה כדילפינן לעיל הוה אמינא אשה נמי כי עבדנא תמורה לא לקייא קמ&quot;ל.</p>
               </div>
             </div>
@@ -352,8 +387,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-8">Mishneh Torah, Substitution 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָטָן שֶׁהִגִּיעַ לְעוֹנַת נְדָרִים שֶׁהֵמִיר. אַף עַל פִּי שֶׁאֵינוֹ לוֹקֶה יֵשׁ בּוֹ סָפֵק אִם עוֹשֶׂה תְּמוּרָה אוֹ אֵינוֹ עוֹשֶׂה תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטן </strong> שהגיע לעונת נדרים שהמיר אף על פי שאינו לוקה שלא הגיע לכלל עונשין יש בו ספק אם עושה תמורה או לא שם בעיא דרמי בר חמא מי אמרינן כיון דאמר מר איש כי יפליא נדר לרבות מופלא הסמוך לאיש דהקדשו קדושי מדאקדושי מקדיש אמורי ממיר או דילמא כיון דלאו בר עונשין הוא בתמורה נמי לא מיתפיס ואם תמצא לומר קטן עביד תמורה דהא אתי לכלל עונשין גוי מהו וכו׳ והאי אם תמצא לומר רבותא אתא לאשמועינן ולאו משום דאיתיה הכי כן כתב רש&quot;י ז&quot;ל.</p>
               </div>
             </div>
@@ -368,8 +408,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-9">Mishneh Torah, Substitution 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַכֹּהֲנִים מְמִירִין בְּחַטָּאת וּבְאָשָׁם שֶׁאַף עַל פִּי שֶׁהֵם שֶׁלָּהֶם אֵינָן זוֹכִין בָּהֶן מֵחַיִּים שֶׁאֵין לָהֶם בַּבָּשָׂר עַד שֶׁיִּזָּרֵק הַדָּם. וְאֵין הַכֹּהֲנִים מְמִירִין בִּבְכוֹר שֶׁאַף עַל פִּי שֶׁהוּא זוֹכֶה בּוֹ מֵחַיִּים אֵינוֹ זוֹכֶה בּוֹ מִתְּחִלָּה שֶׁהֲרֵי תְּחִלָּתוֹ בְּבֵית יִשְׂרָאֵל הוּא. אֲבָל הַבְּעָלִים שֶׁהֵמִירוּ בִּבְכוֹר כָּל זְמַן שֶׁהוּא בְּבֵיתָם עוֹשִׂים תְּמוּרָה. וְכֵן כֹּהֵן שֶׁהֵמִיר בִּבְכוֹר שֶׁנּוֹלַד לוֹ לֹא בִּבְכוֹר שֶׁלָּקַח מִיִּשְׂרָאֵל הֲרֵי זוֹ תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> הכהנים ממירין בחטאת ובאשם שם במשנה פ&quot;ק אין הכהנים ממירין לא בחטאת ולא באשם ולא בבכור טעמא דאין לכהן חלק בחטאת ואשם אפילו המקריב אותו אלא לאחר הקטרת אימורין הוא זוכה בבשר ותניא אין אדם מתפיס בתמורה בדבר שאינו שלו ומחיים אינו של כהן עד שעת הקטרת כדאמר׳ ואמר רבי יוחנן בן נורי מפני מה אין ממירין בבכור והלא כלו של כהנים הוא ומחיים הוא לכהן ואין ישראל מתכפר בו אמר לו רבי עקיבא חטאת ואשם מתנה לכהן ובכור מתנה לכהן מה חטאת ואשם אין ממירין בו אף בכור אין ממירין בו דאע&quot;ג דמחיים זכי ביה כהן הלז כבר נאמר והיה הוא ותמורתו יהיה קדש היכן קדושה חלה בבית בעלים אף תמורה בבית בעלים דהקיש התמורה להקדש עצמו היכן קדושה חלה על ההקדש בבית בעלים אף תמורה לא תחול אלא בבית בעלים אבל בבית כהן לא חיילא לגמרי הילכך אין כהן ממיר בו אבל ישראל אם המיר בו נתפס בקדושה שהרי ברשותו חלה קדושה בבכור ודוקא בזמן שהוא בביתו עושה בו תמורה כדתניא התם בכור בבית הבעלים עושין תמורה בבית כהן אין עושה תמורה וכהן שהמיר בבכור שנולד לו עושה תמורה דלא גרע מישראל והרי הוא בבית בעלים. אילו של כהן גדול עושה תמורה דהרי שלו הוא אבל בפר אינו עושה תמורה שאחיו הכהנים מתכפרים בו והרי הם כשותפין דלא עבדי תמורה כדילפינן לעיל. המנחות והעופות אין עושין תמורה שלא נאמר אלא בהמה כדתנן שם במשנה שלא נאמר אלא בהמה ואם המר ימיר בהמה בבהמה. קרבנות בדק הבית אינן עושים תמורה כדתנן התם משום דגבי תמורה כתיב קרבן וקדשים בדק הבית לא איקרו קרבן אמר רבי שמעון והרי מעשר בכלל הקדשים היה ולמה יצא דכתיב ביה לא יבקר בין טוב לרע ולא ימירנו לומר לך מה מעשר קרבן יחיד הוא העושה תמורה דבמעשר כתיב יהיה לך ולא של שותפות אף כל קרבן יחיד עושה תמורה יצאו קרבנות צבור ומה מעשר קרבן מזבח יצאו קרבנות בדק הבית ולרבי שמעון הוא דאיצטריך למילף ממעשר משום דסבירא ליה דקדשי בדק הבית איקרו קרבן אבל לת&quot;ק דלא איקרו קרבן גבי תמורה כתיב קרבן ולא הוו קדשי בדק הבית בכלל.</p>
               </div>
             </div>
@@ -384,8 +429,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-13">Mishneh Torah, Substitution 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ בַּעֲלַת מוּם קָבוּעַ אֵינָהּ עוֹשָׂה תְּמוּרָה מִפְּנֵי שֶׁלֹּא נִתְקַדֵּשׁ גּוּפָהּ קִדּוּשׁ גָּמוּר וְאֵינָהּ אֶלָּא קְדֻשַּׁת דָּמִים. אֲבָל הַמַּקְדִּישׁ בַּעֲלַת מוּם עוֹבֵר אוֹ שֶׁהִקְדִּישׁ תְּמִימָה וְאַחַר כָּךְ נוֹלַד לָהּ מוּם קָבוּעַ הֲרֵי זוֹ עוֹשָׂה תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong> בעל מום קבוע אינו עושה תמורה מפני שלא נתקדש גופו קדוש גמור ואינו אלא קדושת דמים אבל בעלי מום עובר או הקדיש תמים ונעשה אח&quot;כ בעל מום קבוע עושה תמורה בשלהי מכילתין דתמורה מייתי האי מתני׳ דפ&quot;ב דבכורות דתנן כל הקדשים שקדם מום קבוע להקדשן ונפדו חייבים בבכורה ובמתנות וכו׳ ואין עושין תמורה ובגמרא מאי טעמא דאמר קרא לא יחליפנו ולא ימיר אותו טוב ברע או רע בטוב השתא רע בטוב אמרת לא שלא יביא בהמת חולין תמימים אצל בהמת קדש בעלת מום ויאמר זאת תמורה זאת טוב ברע מיבעיא אלא להכי כתיב טוב ברע לומר טוב מעיקרו עושה תמורה שנתפס בקדושה כשהוא תמים עושה תמורה אף כשהומם כדכתיב או רע בטוב דמשמע רע של קדש בטוב של חולין דרע של קדש עושה תמורה כשלא היה רע מעיקרו אבל רע מעיקרו אינו עושה תמורה ואפילו קודם פדיון דמתניתין דקתני ונפדו לא קאי אלא אבכורה ומתנות וכו׳ אבל בעל מום מעיקרו אפילו לא נפדה אינו עושה תמורה וכדאמרינן בבריתא קדשים שקדם מום קבוע להקדישה וכו׳ בין לפני פדיונן בין לאחר פדיונן אין עושין תמורה דטוב מעיקרו בעינן אבל קדם הקדשן את מומן או מום עובר להקדשן ואח&quot;כ נולד לו מום קבוע דכמאן דליתיה דמי וחל קדושה עליו בין לפני פדיונן בין לאחר פדיונן עושין תמורה דהא הוי מעיקרו ואע&quot;ג דהשתא הוי רע כדא׳ או רע בטוב כדא׳.</p>
               </div>
             </div>
@@ -400,8 +450,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-14">Mishneh Torah, Substitution 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַמֵּמִיר תָּמִים בְּבַעַל מוּם אוֹ בַּעַל מוּם בְּתָמִים אוֹ שֶׁהֵמִיר בָּקָר בְּצֹאן אוֹ צֹאן בְּבָקָר. אוֹ כְּבָשִׂים בְּעִזִּים אוֹ עִזִּים בִּכְבָשִׂים אוֹ נְקֵבוֹת בִּזְכָרִים אוֹ זְכָרִים בִּנְקֵבוֹת. אוֹ שֶׁהֵמִיר אֶחָד בְּמֵאָה אוֹ מֵאָה בְּאֶחָד בֵּין בְּבַת אַחַת בֵּין בָּזוֹ אַחַר זוֹ. הֲרֵי זוֹ תְּמוּרָה וְלוֹקֶה כְּמִנְיַן הַבְּהֵמוֹת שֶׁהֵמִיר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>א׳ </strong> הממיר תמים בבעל מום או בעל מום בתמים או בקר בצאן או צאן בבקר או כבשים בעזים או עזים בכבשים או נקבות בזכרים או זכרים בנקבות או אחד במאה או מאה בא׳ בין בבת אחד בין בזה אחר זה עושין תמורה ולוקה על כל אחד פ&quot;ק דתמורה במתני׳ מיתנו כולהו ובגמרא מנא הני מילי דת&quot;ר בהמה בבהמה מכאן שממירים מן הצאן על הבקר ומן הבקר על הצאן מן הכבשים על העזים ומן העזים על הכבשים מן הזכרים על הנקבות ומן הנקבות על הזכרים מבעלי מומין על התמימים ומן התמימים על בעלי מומין יכול אפילו קדם מום קבוע להקדשן ת&quot;ל לא יחליפנו ולא ימיר אותו טוב ברע ולא רע בטוב ואי זהו טוב ברע שקדם הקדישן את מומן כדילפינן לעיל מיתורא דקרא וטוב מעיקרו עושה תמורה ואין רע מעיקרו עושה תמורה ואחד במאה או מאה באחד הוי פלוגתא דרבנן ור׳ שמעון במתני׳ וטעמא דרבנן כדמפרש בבריתא ת&quot;ר בהמה בבהמה מכאן שממירין אחד בשנים ושנים בא׳ אחד במאה ומאה בא׳ ומצינו בהמות שקרויה בהמה כדכתיב ובהמה רבה ומשמע בהמה בבהמה אפילו בבת אחת שאמר הרי אלו תחת זו דחולין או אלו דחולין תחת זו דהקדש דאי שלא בבת אחת מודה ר׳ שמעון דממירין וחוזרים וממירים כדא׳ ריש לקיש התם בגמרא דכתיב ביה הוא ותמורתו אפילו במאה ולכך לוקה במנין הבהמות שהמיר אבל בבת אחת נראה דאינו לוקה אלא אחת.</p>
               </div>
             </div>
@@ -416,8 +471,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-15">Mishneh Torah, Substitution 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַתְּמוּרָה עוֹשָׂה תְּמוּרָה וְלֹא וְלַד בְּהֵמוֹת הַהֶקְדֵּשׁ עוֹשֶׂה תְּמוּרָה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז י)</span> <span class="source-small">(ויקרא כז לג)</span> &quot;וְהָיָה הוּא וּתְמוּרָתוֹ&quot; הוּא וְלֹא וְלָדוֹ וּתְמוּרָתוֹ וְלֹא תְּמוּרַת תְּמוּרָתוֹ. אֲבָל הַמֵּמִיר בִּבְהֵמָה וְחָזַר וְהֵמִיר בָּהּ וְחָזַר וְהֵמִיר אֲפִלּוּ אֶלֶף כֻּלָּן תְּמוּרָה וְלוֹקֶה עַל כָּל אֶחָד וְאֶחָד כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> התמורה עושה תמורה שם במשנה ובגמרא מ&quot;ט אמר קרא ותמורתו יהיה קדש ולא תמורת תמורתו ואין הוולד עושה תמורה דכתיב הוא הוא ולא ולד שנולד מבהמת קדש וממיר בבהמה וחזר והמיר בה אפילו כולן תמורה כדאמר׳ לעיל.</p>
               </div>
             </div>
@@ -432,8 +492,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-16">Mishneh Torah, Substitution 1:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מְמִירִין אֵיבָרִים אוֹ עֻבָּרִים בִּשְׁלֵמִים וְלֹא שְׁלֵמִים בָּהֶן. כֵּיצַד. הָאוֹמֵר רַגְלָהּ שֶׁל בְּהֵמָה זוֹ אוֹ יָדָהּ תַּחַת עוֹלָה זוֹ אוֹ שֶׁאָמַר עֻבַּר בְּהֵמָה זוֹ תַּחַת עוֹלָה זוֹ אֵינָהּ תְּמוּרָה. וְכֵן הָאוֹמֵר בְּהֵמָה זוֹ תַּחַת יָדָהּ אוֹ רַגְלָהּ שֶׁל עוֹלָה זוֹ אוֹ שֶׁאָמַר בְּהֵמָה זוֹ תַּחַת עֻבָּרָהּ שֶׁל חַטָּאת זוֹ אֵינָהּ תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> ממירין איברים או עוברין בשלימין ולא שלימים בהם שם במשנה אין ממירין לא איברין בעוברין ולא עוברין באיברים איברים דחולין בעוברין דהקדש שאם אמר תהא רגל בהמה זו תמורת עובר הקדש שבמעי בהמה זו אין הקדשה חלה על האבר או אם אמר הרי עובר שבמעי בהמת חולין זו תמורת רגל בהמת קדש זו אין העובר קדש ונראה דטעמא דכולהו משום דכתיב בהמה בבהמה לאפוקי איברים ועוברים דבעינן שלם בשלם.</p>
               </div>
             </div>
@@ -448,8 +513,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-17">Mishneh Torah, Substitution 1:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֵּמִיר בְּכִלְאַיִם אוֹ בִּטְרֵפָה וְיוֹצֵא דֹּפֶן אוֹ בְּטֻמְטוּם וְאַנְדְּרוֹגִינוּס אֵין הַקְּדֻשָּׁה חָלָה עֲלֵיהֶן וַהֲרֵי זֶה כְּמִי שֶׁהֵמִיר בְּגָמָל אוֹ בַּחֲמוֹר לְפִי שֶׁאֵין בְּמִינָן קָרְבָּן וּלְפִיכָךְ אֵינוֹ לוֹקֶה. מָה בֵּין אֵלּוּ לְבַעַל מוּם. בַּעַל מוּם יֵשׁ בְּמִינָן קָרְבָּן. אֵלּוּ אֵין בְּמִינָם קָרְבָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הממר </strong> בכלאים או בטריפה או ביוצא דופן או בטומטום ואנדרוגינוס אין הקדושה חלה עליהם פ׳ יש בקרבנות במשנה ר׳ אליעזר אומר הכלאים והטריפה וכו׳ לא קדושים ולא מקדישים ובגמרא אמר שמואל לא קדישי בתמורה ולא מקדישין לעשות תמורה ואמר רב פפא מ&quot;ט דרבי אליעזר כבהמה טמאה מה בהמה טמאה לא קרבה ולא נחתה להו קדושת הגוף אף הנך לא קרבי ולא נחתא להו קדושת הגוף ואקשו עליה ואסיק רבא מה בהמה טמאה דליכא קרב במינה אף כל דליכא במינה והני חמשה לא קרבו במינן מאי אמרת טרפה איכא דקרב במינה לא דמיא לבעל מום דקרב במינו דבהמה טמאה אסורה באכילה וטריפה אסורה באכילה לאפוקי בעל מום דמותר באכילה ויוצא דופן לא חשיב ליה קרב במינה שאינה יוצא דופן דיוצא דופן תמיה אנשי ולא חשיב ליה מין שאר בהמה.</p>
               </div>
             </div>
@@ -464,8 +534,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:18:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-18">Mishneh Torah, Substitution 1:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָרוֹבֵעַ וְהַנִּרְבָּע הֲרֵי הֵם כְּבַעַל מוּם וְעוֹשִׂין תְּמוּרָה. וְכֵן כָּל כַּיּוֹצֵא בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרובע </strong> והנרבע הרי הם כבעל מום דמותרים באכילה ועושים תמורה פ&quot;ק דתוספתא דתמורה בהמה שחצייה קדש וחצייה חול לא עושה תמורה ולא נעשת תמורה בתוספתא וכן משמע נמי בפ׳ כיצד מערימין גבי בהמה של ב׳ שותפין הקדיש חציה שלו וכו׳ ונראה טעמא משום דכתיב בהמה בבהמה ובעיא בהמה דחולין שלימה כבהמה דקדש שלימה ולא חצי בהמה דחולין או דקדש וכדא׳ לעיל גבי איברין ועוברין כל החטאות שדינן שימותו אינן עושין תמורה וכל שדינה שתרעה עושה תמורה פ׳ חטאת דתמורה ומעילה תנן להני חמשה חטאות מתות דלא עבדי תמורה משום דלא אלימי למתפס אחרים בתמורה משום דלא קרבי ואע&quot;ג דבעל מום עושה תמורה כדכתיב או רע בטוב הכא לא תפיס דהא למיתה אזלי אבל אותם שדינן לרעות הוו כבעל מום ועבדי תמורה כיון דדמיה עתידין ליקרב.</p>
               </div>
             </div>
@@ -480,8 +555,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 1:21:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-1-21-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 1:21:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-21">Mishneh Torah, Substitution 1:21</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְרִישׁ נְקֵבָה לְפִסְחוֹ אוֹ לְעוֹלָתוֹ אוֹ לַאֲשָׁמוֹ עוֹשָׂה תְּמוּרָה אַף עַל פִּי שֶׁאֵינָן רְאוּיִין לִקָּרֵב הוֹאִיל וְיָרְדוּ לִקְדֻשַּׁת דָּמִים וַהֲרֵי הֵם תְּמִימִים יָרְדוּ לִקְדֻשַּׁת הַגּוּף. אֲבָל הַמַּפְרִישׁ שָׂעִיר לְחַטָּאתוֹ וְנָשִׂיא שֶׁהִפְרִישׁ שְׂעִירָה לְחַטָּאתוֹ וְכֹהֵן גָּדוֹל שֶׁהִפְרִישׁ פָּרָה לְחַטָּאתוֹ. אֵינָן עוֹשִׂין תְּמוּרָה שֶׁכָּל הַמְשַׁנֶּה בְּחַטָּאוֹת לֹא נִתְקַדְּשָׁה כְּלָל וַאֲפִלּוּ קְדֻשַּׁת דָּמִים כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת פְּסוּלֵי הַמֻּקְדָּשִׁין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפריש </strong> נקבה לפסחו או לעולתו או לאשמו פרק אלו קדשים בתמורה ת&quot;ר המפריש נקבה לעולתו ולפסחו ולאשמו עושה תמורה וטעמא דאע&quot;ג דאינן ראויין ליקרב דזכר בעינן כיון דירדו לקדושת דמים והוו תמימים ירדו לקדושת הגוף לעשות תמורה. אבל המפריש שעיר לשעירתו ונשיא שהפריש שעירה לשעירו וכהן גדול שהפריש פרה לחטאתו אינן עושין תמורה שם פרק אלו קדשים פריך מהני לר׳ שמעון דאמר דדוקא במפריש נקבה לעולתו הוא דעושה תמורה וס&quot;ד דטעמיה משום דהאיכא שם עולה עלה בעולת העוף דתמות וזכרות בבהמה ואין תמות וזכרות בעוף ופרכי׳ עליה אלא מעתה כ&quot;ג שהפריש פרה לפרו תקדוש דהא איכא פרה חטאת ויחיד שהפריש שעיר לשעירתו תקדש דהא איכא שעיר נשיא אי נמי נשיא שהפריש שעירה האיכא יחיד דמפריש שעירה ומשני להו משום דלא קדשי כלל ולהכי לא עבדי תמורה:</p>
               </div>
             </div>
@@ -497,8 +577,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-2-1">Mishneh Torah, Substitution 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַתְמוּרָה הוּא שֶׁיֹּאמַר בַּעַל הַקָּרְבָּן עַל בֶּהֱמַת חֻלִּין שֶׁיֵּשׁ לוֹ הֲרֵי זוֹ תַּחַת זוֹ. אוֹ הֲרֵי זוֹ חֲלִיפַת זוֹ. וְאֵין צָרִיךְ לוֹמַר אִם אָמַר הֲרֵי זוֹ תַּחַת חַטָּאת זוֹ אוֹ תַּחַת עוֹלָה זוֹ שֶׁהִיא תְּמוּרָה. וְכֵן אִם אָמַר הֲרֵי זוֹ תַּחַת חַטָּאת שֶׁיֵּשׁ לִי בְּתוֹךְ הַבַּיִת אוֹ תַּחַת עוֹלָה שֶׁיֵּשׁ לִי בְּמָקוֹם פְּלוֹנִי הֲרֵי זוֹ תְּמוּרָה וְהוּא שֶׁיֵּשׁ לוֹ. אֲבָל אִם אָמַר עַל בֶּהֱמַת חֻלִּין הֲרֵי זוֹ תַּחַת עוֹלָה אוֹ הֲרֵי זוֹ תַּחַת חַטָּאת לֹא אָמַר כְּלוּם. וְכֵן אִם אָמַר הֲרֵי זוֹ מְחֻלֶּלֶת עַל זוֹ אֵינָהּ תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קע </strong> שיהיה התמורה קדש אם המיר כדכתיב והיה הוא ותמורתו יהיה קדש. התמורה היא שיאמר בעל הקרבן על בהמה חולין שיש לו הרי זו תחת זו או תמורת זו או חליפת זו כדתנן במתני׳ דפרק כיצד מערימין דלשון תמורה נינהו כדכתיב לא יחליפנו ולא ימיר ותחת נמי אשכחן דהוא לישנא דאתפוסי כדכתיב ואם תחתיה תעמוד הבהרת דעמדה במקומה והיינו דומיא דאתפוסי שהקדש עומד במקומו אבל זו מחוללת על זו אין זו תמורה דלשון חילול הוא ולא אמר כלום שאין בהמת קדש תמימה יוצאה לחולין ותחת עולה זו ותחת עולה או חטאת שיש לו בבית שם במשנה דכיון שמזכיר שמם או מקומם פשיטא דהוי תמורה אבל אמר הרי זו תמורת חטאת תמורת עולה לא אמר כלום כיון שלא אמר זו או שיש לו בתוך הבית דהכי משמע פשטיה דקרא לא יחליפנו ולא ימיר אותו דקאי אבהמה דקדש שלא יחליף אותם וכיון שלא אמר זו או שיש לו בתוך הבית אף על גב דאמר תמורת עולה לא אמר כלום.</p>
               </div>
             </div>
@@ -513,8 +598,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 2:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-2-2">Mishneh Torah, Substitution 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ לְפָנָיו שְׁתֵּי בְּהֵמוֹת אַחַת חֻלִּין וְאַחַת הֶקְדֵּשׁ שֶׁנָּפַל בָּהּ מוּם. הִנִּיחַ יָדוֹ עַל בֶּהֱמַת חֻלִּין וְאָמַר הֲרֵי זוֹ תַּחַת זוֹ הֲרֵי זוֹ תְּמוּרָה וְלוֹקֶה. הִנִּיחַ יָדוֹ עַל בֶּהֱמַת הֶקְדֵּשׁ וְאָמַר הֲרֵי זוֹ תַּחַת זוֹ הֲרֵי זֶה חִלְּלָהּ עַל בֶּהֱמַת הַחֻלִּין וְאֵין זוֹ תְּמוּרָה אֶלָּא כְּפוֹדֶה בַּעֲלַת מוּם בְּזוֹ הַבְּהֵמָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו </strong> לפניו ב׳ בהמות א׳ חולין וא׳ הקדש שנפל בה מום שם בעי׳ דאביי היו לפניו ב׳ בהמות של קדש בעלת מום וב׳ בהמות של חולין תמימות ואמר הרי אלו תחת אלו מהו מי אמרינן לאתפוסי מתכוין ולקי או לאחולי בעלות מום לפדותם מתכוין וה&quot;ה נמי דמצי למבעי בחדא אלא איידי דבעי מיבעיא הך בעיא אחריתי בתרתי נקט סרכא דתרתי משמע מהכא דאי אמר בפי׳ התפסה כגון שהניח ידו על בהמת חולין ואמר זו תמורה זו שהיא תמורה ולקי ואי אנח ידיה אבהמה הקדש ואמר הרי זו תמורה זו הרי חללה על בהמת חולין והוא כפודה בעלת מום שעומדת לפדיון על בהמה זו ולא איבעי׳ לן אלא היכא דאמר סתם מי אמרינן לאתפוסי איכוון ולקי או לאחולי ולא לקי ואם תמצא לומר כל היכא דאיכא היתרא לא שביק אינש היתרא דאחולי ועביד איסורא דאתפוסי אכתי איבעיא לן ב׳ בהמות של קדש א׳ תמימה ואחת בעלת מום וב׳ בהמות של חולין כמותן ואמר הרי אלו תחת אלו מהו מי אמרינן תמימה תחת תמימה לאתפוסי בעל מום תחת בעלת מום לאחולי או דילמא תמימה דחולין תחת בעלת מום דהקדש בעלת מום דחולין תחת תמימ׳ דהקדש תרוייהו לאתפוסי ולקי ואם תמצא לומר כל היכא דאיכא היתרא דאחולי בעלת מום תחת בעל מום ולא עביד איסורא ולאחולי הוא ולא לקי אלא חדא ואף על גב דפשיט לעיל דלא שבק היתרא ועביד איסורא איכא למיבעי הכא הואיל ואי איפשר דלא עביד איסורא בחדא איכא למימר כי היכי דבהא עביד איסורא דהא נמי לא איכפת לן קמ&quot;ל דכל היכא דאיכא היתרא לא עביד איסורא ואכתי אבעיא לן שלש בהמות של קדש וא׳ מהן בעלת מום וג׳ בהמות של חולין תמימות ואמר הרי אלו תחת אלו מהו מי אמרינן מדתמימות תחת תמימות לאתפוסי תמימות נמי תחת בעלת מום לאתפוסי דאע&quot;ג דפשטינא כל היכא דאיכא היתרא לא עביד איסורא איכא הכא למיבעי דאיכא למימר זיל בתר רובא וכיון דעל כרחין רובא לאתפוסי דהשתים דהקדש תמימו׳ וליכא אחולי בהו שלישית נמי אתפוסי או דילמא הכא נמי כל היכא דאיכא היתרא לא עביד איסורא וההוא בתריתא לאחולי בעל מום דהקדש תחת תמימה דחולין הוי ואם תמצא לומר הכא נמי כיון דאכתי גברא לא איתחזק באיסורי דבבציר מתלתא זימני לא הויא חזקה לא שביק היתרא ועביד איסורא אכתי איבעי ליה לרב אשי היו ד׳ בהמות הקדש ואחת מהן בעלת מום וד׳ בהמות של חולין ואמר הרי אלו תחת אלו מהו הכא ודאי כיון דאתחזק גברא באיסורא לקי ד׳ מלקיות בכולן או דילמא אע&quot;ג דאיתחזיק באיסורא לא שביק איניש היתרא ועביד איסורא והוי בתריתא לאחולי ולא לקי עלה תיקו וכיון דסלקא בתיקו לא לקי דהתראה ספק היא ואמרי להתראה נתכוון והרב ז&quot;ל נקט עשר תחת ד׳ דבעי׳ דרב אשי דארבע לאו דוקא וה&quot;ה עשר או יותר ובעי׳ דאביי דב׳ בהמות של קדש אחת תמימה ואחת בעלת מום וא׳ ושתים של חולין אחת תמימה וא׳ בעלת מום נקט׳ בתרתי משום דלא הוי בהנהו גווני דלעיל דכל בהמות חולין הוו תמימות ובבהמות דקדש איכא חדא בעלת מום.</p>
               </div>
             </div>
@@ -529,8 +619,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-2-4">Mishneh Torah, Substitution 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹמֵר הֲרֵי זוֹ תְּמוּרַת עוֹלָה וּשְׁלָמִים דְּבָרָיו קַיָּמִים וְתִמָּכֵר וְיָבִיא בַּחֲצִי דָּמֶיהָ תְּמוּרַת עוֹלָה וּבַחֲצִי דָּמֶיהָ תְּמוּרַת שְׁלָמִים. אָמַר הֲרֵי זוֹ תְּמוּרַת עוֹלָה וּתְמוּרַת שְׁלָמִים אִם נִתְכַּוֵּן לְכָךְ מִתְּחִלָּה דְּבָרָיו קַיָּמִים וְאִם לֹא נִתְכַּוֵּן בַּתְּחִלָּה אֶלָּא לִתְמוּרַת עוֹלָה וְחָזַר וְאָמַר תְּמוּרַת שְׁלָמִים אַף עַל פִּי שֶׁחָזַר בְּתוֹךְ כְּדֵי דִּבּוּר אֵין תּוֹפְשִׂין אֶלָּא לָשׁוֹן רִאשׁוֹן וַהֲרֵי הִיא תְּמוּרַת עוֹלָה בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר </strong> הרי זו תמורת עולה ושלמים דבריו קיימים ויביא בדמיה תמורת עולה ושלמים אמר הרי זו תמורת עולה תמורת שלמים אם נתכון לכך מתחלה דבריו קיימים ואם היה נמלך אפילו תוך כדי דיבור לשון ראשון עיקר והויא תמורת עולה שם פרק כיצד מערמין במשנה הרי זו תמורת עולה תמורת שלמי׳ הרי זו תמורת עולה דברי ר׳ מאיר דאית ליה תפוס לשון ראשון א&quot;ר יוסי אם לכך נתכון מתחלה הואיל וא&quot;א לקרות שני שמות כאחת דבריו קיימים וחציה תמורת עולה וחציה תמורת שלמים אחר שתמכר ואם משאמר תמורת עולה נמלך ואמר תמורת שלמים הרי זו תמורת עולה ובהכי עסקינן שהיו לפניו עולה ושלמים כשהמיר את זו בהן ובגמרא אמר רבי יוחנן הכל מודים באומר תחול זו ואחר כך תחול זו דברי הכל תפוס לשון ראשון לא תחול זו אלא א&quot;כ חלתה זו תרויהו קדשו לא נחלקו אלא כגון משנתינו דאמר תמורת עולה תמורת שלמים ר׳ מאיר סבר מדהוה ליה למימר תמורת עולה ושלמים ואמר תמורה תמורה הוה ליה כאומר תחול זו ואח&quot;כ זו ור׳ יוסי סבר אי אמר תמורת עולה ושלמים הוה אמינא קדושה ואינה קריבה וטעה האי גברא בהכי דסבר אימא תמורה אכל חד וחד ותהוי קדושה גמורה ליקרב הילכך אע&quot;ג דאמר בהאי לישנא לתרויהו אינון והוה ליה כאומ׳ לא תחול זו אלא א&quot;כ חלה זו אם לכך נתכון מתחלה:</p>
               </div>
             </div>
@@ -546,8 +641,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-1">Mishneh Torah, Substitution 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד דִּין הַתְּמוּרוֹת לִקָּרֵב. תְּמוּרַת הָעוֹלָה תִּקָּרֵב עוֹלָה וְאִם הָיְתָה תְּמוּרָתָהּ נְקֵבָה אוֹ בַּעֲלַת מוּם תִּרְעֶה הַנְּקֵבָה עַד שֶׁיִּפּל בָּהּ מוּם וְתִמָּכֵר וְיָבִיא בְּדָמֶיהָ עוֹלָה. תְּמוּרַת הַחַטָּאת תָּמוּת כְּמוֹ שֶׁבֵּאַרְנוּ בִּפְסוּלֵי הַמֻּקְדָּשִׁין. תְּמוּרַת הָאָשָׁם תִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְיִפְּלוּ דָּמֶיהָ לִנְדָבָה. תְּמוּרַת הַשְּׁלָמִים כִּשְׁלָמִים לְכָל דָּבָר טְעוּנָה סְמִיכָה וּנְסָכִים וּתְנוּפַת חָזֶה וְשׁוֹק. תְּמוּרַת הַתּוֹדָה כְּתוֹדָה אֶלָּא שֶׁאֵינָהּ טְעוּנָה לֶחֶם כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת פְּסוּלֵי הַמֻּקְדָּשִׁין. תְּמוּרַת הַפֶּסַח אִם הֵמִיר בָּהּ קֹדֶם חֲצוֹת יוֹם אַרְבָּעָה עָשָׂר אֵין תְּמוּרָתוֹ קְרֵבָה אֶלָּא תִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְיָבִיא בְּדָמֶיהָ שְׁלָמִים וְאִם הֵמִיר בָּהּ אַחַר חֲצוֹת הֲרֵי הַתְּמוּרָה עַצְמָהּ תִּקָּרֵב שְׁלָמִים. תְּמוּרַת הַבְּכוֹר וְהַמַּעֲשֵׂר אֵינָם קְרֵבִין לְעוֹלָם שֶׁנֶּאֱמַר בִּבְכוֹר <span class="source-small">(ויקרא כז כו)</span> <span class="source-small">(ויקרא כז ל)</span> &quot;לַה׳ הוּא&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ הוּא קָרֵב וְאֵין תְמוּרָתוֹ קְרֵבָה. וְדִין הַמַּעֲשֵׂר בִּבְכוֹר תְּמוּרָתָן תִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְתֵאָכֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> דין תמורות תמורת עולה תקרב עולה פרק אלו קדשים במשנה תמורת עולה וולד תמורה וכו׳ הרי אלו כעולה וטעונה הפשט וניתוח וכליל לאישים ובגמרא על מתניתין דלעיל דאלו קדשים שוולדותיהן ותמורותיהן כיוצא בהן וכו׳ אמרינן בגמרא ותנא מייתי לה מהכא רק קדשיך אשר יהיו לך וגו׳ רק קדשיך אלו התמורות אשר יהיו לך אלו הוולדות תשא ובאת יכול יכניסנו לבית הבחירה וימנע מהן מים ומזון כדי שימותו דהא אוקים ליה תשא ובאת תלמוד לומר ועשית עולותיך הבשר והדם ודם זבחיך ישפך והאי קרא סמיך לרק קדשיך לומר כדרך שאתה נוהג בעולה אתה נוהג בתמורה. ואם היתה תמורתה נקבה או בעלת מום תרעה הנקבה ותפדה ויביא בדמיה עולה וכדתנן פרק קמא ממירין מן הצאן על הבקר וכו׳ מן הזכרים על הנקבות ואחד [בב׳] משום דכתי׳ בהמה בבהמה. תמורת חטאת תמות כדתנן ריש פרק וולד חטאות דהוי מחמש חטאות מתות הלכה למשה מסיני תמורת האשם תרעה כדתנן פרק אלו קדשים דתרעה בין זכר בין נקבה דהלכתא גמירי לה כל שבחטאת מתה באשם רועה ואי עבר ומקרב קאי בעשה דכתיב רק קדשיך אשר יהיו וגו׳ מיניה מרבינן לכל התמורות שיקרבו וכתיב רק קדשיך למעוטי תמורת אשם לרבי ישמעאל תמורת שלמים כשלמים לכל דבר כדתנן התם ריש פרקא וולד שלמים ותמורתן וכו׳ הרי הם שלמים וטעונין סמיכה ונסכים ותנופת חזה ושוק ובגמרא מנא הני מילי דתנו רבנן וכו׳ זכר לרבות את הוולד נקבה לרבות את התמורה דכתיב גבי שלמים ואם זבח שלמים קרבנו וגו׳ והוה ליה למיכתב אם מן הבקר הוא מקריב תמים יקריבנו אם זכר אם נקבה למה לי אי לאו לדרש׳ ואף על גב דכתיב והיה הוא ותמורתו יהיה קדש איצטריך קרא לרבויי דקרבה תמורת התודה כדתנן התם וולד תודה הרי אלו כתודה אלא שאין טעונה לחם ובגמרא מנין לרבות וולדות תמורות וחליפות תודה להקרבה תלמוד לומר אם על תודה יכול יהו כולן טעונות לחם תלמוד לומר על זבח התודה התודה טעונה לחם ולא וולדה ותמורתה וחליפה דהיינו כגון שאבדה והפריש אחרת תחתיה. תמור׳ הפסח אם המיר בו קודם חצות יום י&quot;ד לניסן אין תמורתו קרבה אלא תרעה ויביא בדמיה שלמים ואם המיר בו אחר חצות התמורה עצמה תקרב שלמי׳ כדתנן פרק מי שהיה טמא אמר רבי יהושע שמעתי שתמורת פסח קרבה שלמים ותמורת פסח אינה קרבה ואין לי לפרש אמר רבי עקיבא אני אפרש הפסח שאבד ונמצא קודם שחיטת הפסח ירעה עד שיסתאב ויביא בדמיו שלמים וכן תמורתו נמצא אחר שחיטת הפסח קרב שלמי׳ וכן תמורתו ובגמ׳ כשב מה תלמוד לומר אם כשב לרבות תמורת הפסח אחר הפסח שקרבה שלמים יכול אף לפני הפסח כן ת&quot;ל הוא הוא קרב ואין תמורת הפסח קרבה וכרבי זירא דאמר קודם חצות ולאחר חצות שנינו בשעת חצות היא הקובעתו לפסח אם נמצא קודם חצות קבעתיה חצות שהרי נראה וכי לא אקרביה דחייה אבל נמצא אחר חצות אפילו קודם שחיטה אין כאן קביעות ולא דיחוי ויקרב שלמים. תמורת הבכור והמעשר אינם קרבים לעולם דתנן התם באלו קדשים תמורת הבכור והמעשר וולדן וכו׳ הרי אלו כבכור ומעשר ויאכלו במומן לבעלים ובגמרא רחמנא מעטינהו דכתיב לא תפדה קדש הם הם קרבים ואין תמורתן קרבה ולכך תרעה עד שיפול בה מום ותיאכל דמיעוטא לא אתי אלא להקרבה. וכשם שאין פודין אותם כך אין פודין את תמורתן אלא תמורת הבכור לכהנים ותמורת המעשר לבעליו כדתנן התם ויאכלו במומן לבעלים וכו׳ וכל הקדשים יש להם פדיון ולתמורותיהם פדיון חוץ מן הבכור והמעשר דכתי׳ בבכור לא תפדה ובמעשר כתיב לא יגאל וכן תמורותיהן.</p>
               </div>
             </div>
@@ -562,8 +662,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-3">Mishneh Torah, Substitution 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּהֵמָה שֶׁהִקְדִּישָׁהּ חֶצְיָהּ עוֹלָה וְחֶצְיָהּ שְׁלָמִים תְּמוּרָתָהּ כָּמוֹהָ. וְכֵן כָּל בֶּהֱמַת הֶקְדֵּשׁ שֶׁאֵינָהּ קְרֵבָה מִפְּנֵי תְּחִלַּת הֶקְדֵּשָׁהּ הֲרֵי תְּמוּרָתָהּ כָּמוֹהָ. אָמַר חֲצִי בְּהֵמָה זוֹ תְּמוּרָה וְחֶצְיָהּ עוֹלָה הֲרֵי זוֹ תִּקָּרֵב עוֹלָה. חֶצְיָהּ עוֹלָה וְחֶצְיָהּ מַעֲשֵׂר תִּקָּרֵב עוֹלָה. חֶצְיָהּ תְּמוּרָה וְחֶצְיָהּ מַעֲשֵׂר הֲרֵי זוֹ סָפֵק וְאֵינָהּ קְרֵבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהמה </strong> שהקדישה חציה עולה וחציה שלמים תמורתה כמוה פרק כיצד מערימין תנו רבנן האומר בהמה זו חציה תמורת עולה וחציה תמורת שלמים תקרב עולה דברי רבי מאיר וחכמים אומרים תרעה עד שתסתאב ותמכר ויביא בדמי חציה עולה ובדמי חציה שלמים ותניא אידך אמר בהמה זו חציה עולה וחציה שלמים קדושה ואינה קרבה עושה תמורה ותמורתה כיוצא בה דכיון דהיא לא קרבה דהויא לה קדושה דחויה תמורתה נמי מכח קדושה דחויה אתיא אמר רבי יוחנן בהמה של שני שותפין הקדיש חציה שלו וחזר ולקח חציה אחרת והקדישה קדושה ואינה קרבה ועושה תמורה ותמורתה תמורה כיוצא בה. אמר חציה בהמה זו תמורה וחציה עולה הרי זו תקרב עולה חציה עולה וחציה מעשר תקרב עולה שם אמר אביי הכל מודים היכא דאמר חציה עולה וחציה מעשר דברי הכל עולה קרבה אפילו נתכוון מתחלה לכך דלא חשיבא מילתא בתריתא מידי דאין מעשר קדושה כי האי גונא אלא דרך מנין ויהא הוא עשירי והוא הדין נמי אם אמר חציה עולה וחציה תמורה לא חיילי תמורה לגבי עולה דלא קאי שום בהמה גבי שהוא ממר בה כך כתב רש&quot;י ז&quot;ל ונראה דהיינו כשאחר כך קדש חציה האחר לעולה אז קרבה עולה ואף על גב דאמר קודם על חציה שתהא מעשר או תמורה דלא חשיב כדאמ׳ דאי לא קדש חציה זו גם כן לעולה הוה ליה בהמה דחציה עולה וחציה חולין ואינה קרבה דהא אמרן דמעשר ותמורה לא חשיבי מעשר דאין דרך הקדישו בכך ותמורה משום דלא קאי שום בהמה גבי שימיר בה ואם כן לא חיילי עליה כלל שם מעשר ותמורה ומדברי הרב ז&quot;ל שכתב חציה תמורה וחציה עולה משמע דהמיר חצי׳ בחציה האחרת שהקדיש לעולה ולהכי תקרב כולה עולה דעולה ותמורתה כמוה כדילפינן לעיל ובעי אביי היכא דאמר חציה תמורה וחצי׳ מעשר מאי תמורה קרבה שכן נוהגת בכל הקדשים או דילמא מעשר קרבה שכן מקדש לפניו ולאחריו תיקו.</p>
               </div>
             </div>
@@ -578,8 +683,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-4">Mishneh Torah, Substitution 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ בַּעֲלַת מוּם עוֹבֵר וְאֵין צָרִיךְ לוֹמַר תְּמִימָה וְאַחַר כָּךְ נוֹלַד בָּהּ מוּם קָבוּעַ וְנִפְדֵּית וְהֵמִיר בָּהּ אַחַר שֶׁנִּפְדֵּית. הֲרֵי זוֹ תְּמוּרָה וְאֵינָהּ קְרֵבָה וְאֵינָהּ נִפְדֵּית אֶלָּא מַנִּיחָהּ עַד שֶׁתָּמוּת. אֵינָהּ קְרֵבָה מִפְּנֵי שֶׁבָּאָה מִכֹּחַ קְדֻשָּׁה דְּחוּיָה וְאֵינָהּ נִפְדֵּית שֶׁאֵין בְּכֹחַ קְדֻשָּׁתָהּ לִתְפּשֹׁ פִּדְיוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong> בעל מום עובר או תמימה ונולד בה אח&quot;כ מום קבוע ונפדת והמיר בה הרי זו תמורה ואינה קרבה שבאת מכח קדושה דחויה ואינה נפדית שאין בכח קדושתה לתפוס פדיונה הואיל ונפדית כדתנן פרק הזרוע כל הקדשים שקדם הקדשן את מומן או מום עובר להקדישן ואחר כך נולד להם מום קבוע ונפדו פטורין מן הבכורה וכו׳ ועושים תמורה ובבכורות פרק ב׳ תנן נמי כי האי גוונא ובגמרא אמר רב נחמן אמר רבה בר אבוה ותמורתו לאחר פדיונו מתה דהיכי ליעביד לקרביה מכח קדושה דחויא קא אתיא שכבר נפדו ליפרקה לא אלימא למתפס פדיונה הילכך מתה ותניא כוותיה מנין לתמורת פסולי המוקדשין שמתה תלמוד לומר ממעלי הגרה וכתי׳ בסיפיה דקרא טמא הוא ודרשינן הכי יש לך דבר שיש בו סימני טהרה ואסור באכילה וזהו תמור׳ פסולי המוקדשין.</p>
               </div>
             </div>
@@ -594,8 +704,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-5">Mishneh Torah, Substitution 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַתְּמוּרוֹת שֶׁהָיוּ בַּעֲלֵי מוּמִין קְבוּעִין מִתְּחִלָּתָן הֲרֵי אֵלּוּ יִפָּדוּ וְאֵינָן יוֹצְאִין לְחֻלִּין לְכָל דָּבָר כְּדֵי שֶׁיִּהְיוּ מֻתָּרִין בְּגִזָּה וַעֲבוֹדָה אַחַר פִּדְיוֹנָן. שֶׁהַקְּדֻשָּׁה חָלָה בַּתְּמוּרָה עַל בַּעֲלַת מוּם קָבוּעַ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז י)</span> &quot;אוֹ רַע בְּטוֹב&quot; וְרַע הָאָמוּר כָּאן הוּא בַּעַל מוּם וְכַיּוֹצֵא בּוֹ שֶׁאֵינוֹ רָאוּי לְקָרְבָּן וְאַף עַל פִּי כֵן כָּתוּב בּוֹ <span class="source-small">(ויקרא כז י)</span> &quot;יִהְיֶה קֹדֶשׁ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> התמורות שהיו בעלי מומין קבועין מתחלתן הרי אלו יפדו ואינן יוצאין לחולין לכל דבר שהקדושה חלה על בעלי מומין קבועין פרק ב׳ דתמורה חומר בתמורה מבקדשים שהקדושה חלה על התמורה בבעלת מום קבוע וכו׳ וכדתנן נמי פרק קמא ממירין מן התמימים על בעלי מומין ומבעלי מומין על התמימים שנאמר לא יחליפנו ולא ימיר אותו וגו׳ רע בטוב היינו בעל מום וכיוצא בו שאינו ראוי לקרבן ואף על פי כן כתוב יהיה קדש.</p>
               </div>
             </div>
@@ -610,8 +725,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-6">Mishneh Torah, Substitution 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עוֹלָה שֶׁנִּתְעָרְבָה בִּזְבָחִים וְהֵמִיר בְּאַחַת מִן הַתַּעֲרוֹבוֹת הֲרֵי זֶה מֵבִיא בְּהֵמָה אַחֶרֶת וְאוֹמֵר אִם תְּמוּרַת עוֹלָה הִיא זוֹ הֲרֵי בְּהֵמָה זוֹ שְׁלָמִים וְאִם תְּמוּרַת שְׁלָמִים הִיא זוֹ הֲרֵי בְּהֵמָה זוֹ עוֹלָה. וְנִמְצָא הַבְּהֵמָה שֶׁהֵבִיא עִם הַתְּמוּרָה כְּעוֹלָה וּשְׁלָמִים שֶׁנִּתְעָרְבוּ זֶה בָּזֶה. חָזַר וְהֵמִיר בְּאַחַת מִשְּׁתֵּיהֶן וְאֵין יָדוּעַ בְּאֵי זוֹ מֵהֶן הֵמִיר. מֵבִיא זֶבַח אַחֵר מִתּוֹךְ בֵּיתוֹ. וְאוֹמֵר עַל הַתְּמוּרָה הַשְּׁנִיָּה. אִם תְּמוּרַת תְּמוּרָה הִיא זוֹ הֲרֵי זוֹ שֶׁהֵבִיא חֻלִּין. וְאִם תְּמוּרַת עוֹלָה אוֹ שְׁלָמִים הִיא הֲרֵי זֶה שֶׁהֵבִיא עוֹלָה אוֹ שְׁלָמִים. וַהֲרֵי זֶה שֶׁהֵבִיא עִם הַתְּמוּרָה הַשְּׁנִיָּה כְּזֶבַח וּתְמוּרָה שֶׁנִּתְעָרְבוּ זֶה בָּזֶה. וּכְבָר בֵּאַרְנוּ דִּין הַתַּעֲרוֹבוֹת בְּהִלְכוֹת פְּסוּלֵי הַמֻּקְדָּשִׁין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולה </strong> שנתערבו בזבחים והמיר באחד מן התערובות ואינו יודע אם בעולה המיר והרי זו עולה או בזבחים המיר והרי היא שלמים מביא בהמה אחרת אצל זו שהמיר ואומר אם תמורה עולה היא זו הרי בהמה זו שלמים ואם תמורה שלמים היא הרי בהמה זו עולה ונמצא הבהמה שהביא התמורה בעולה ושלמים שנתערבו זה בזה ממה נפשך. חזר והמיר באחד משניהם ואין ידוע באי זה מהם דאם הוא בתמורה אין תמורה עושה תמורה ואם הוא בעולה ושלמים הרי זו תמורת עולה או שלמים ואם כן היא ספק תמורה ולכך מביא זבח אחר מתוך ביתו ואומר על התמורה השניה אם תמורה תמורה היא זו הרי שהבאתי חולין שהרי תמורת התמורה עצמה חולין דאין תמורה עושה תמורה ואם כן פשיטא דזה נמי חולין ואם תמורת עולה או שלמים היא הרי זה שהבאתי עולה או שלמים והרי זה שהביא עם התמורה השניה כזבח וספק תמורה שנתערבו זה בזה כך נראה פי׳ דברי הרב ז&quot;ל ופירשו התוספתא סוף פ&quot;ג כי מה שאמר התוספתא בתמורה האחד והרי הן כשתי זבחים שנתערבו זה בזה ולא אמר בשתי זבחים כדקתני ברישא משום דבסיפיה הויא ספק תמורה כדפי׳ ולא הוי כשני זבחים וכבר באר הרב ז&quot;ל פרק ששי דהלכות פסולי המוקדשים דקדשים שנתערב זה בזה ירעו כלם ויביא בדמי היפה ממין זה כמו ששנינו בתוספתא זו דעולה שנתערבה בזבחים ירעו ויביא בדמי יפה שבהן ממין זה וכו׳.</p>
               </div>
             </div>
@@ -626,8 +746,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 3:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-7">Mishneh Torah, Substitution 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלָמִים שֶׁנִּתְעָרְבוּ בִּבְכוֹר אוֹ בְּמַעֲשֵׂר וְהֵמִיר בְּאֶחָד מֵהֶן הֲרֵי זֶה לֹא יִקְרַב אֶלָּא יִרְעֶה עַד שֶׁיִּפּל בּוֹ מוּם וְיִפָּדֶה וְיֵאָכֵל כִּבְכוֹר אוֹ כְּמַעֲשֵׂר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלמים </strong> שנתערבו בבכור או במעשר והמיר באחד מהם ירעו כדתניא התם בתוספתא פרק שלישי המיר באחד מהן הרי זה לא יקרב ומה שכתב הרב ז&quot;ל ויאכל כבכור או מעשר כמו שבארנו ר&quot;ל דתמורה בכור ומעשר הוא קרב ואין תמורתו קרבה כדאמר׳ לעיל ולרבי כיון דהוי ספק תמורה שלמים ספק תמורה בכור או מעשר לא יקרב כדתניא בתוספתא אלא ירעה כדאמרינן:</p>
               </div>
             </div>
@@ -643,8 +768,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-1">Mishneh Torah, Substitution 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד דִּין וַלְדוֹת הַקָּדָשִׁים. וְלַד שְׁלָמִים וּוְלַד תְּמוּרַת שְׁלָמִים הֲרֵי אֵלּוּ כִּשְׁלָמִים וְהֵן עַצְמָן כִּשְׁלָמִים לְכָל דָּבָר. וְכֵן וְלַד הַתּוֹדָה וּוְלַד תְּמוּרָתָהּ הֲרֵי אֵלּוּ יִקָּרְבוּ כְּתוֹדָה אֶלָּא שֶׁאֵינָן טְעוּנִין לֶחֶם שֶׁאֵין מְבִיאִין לֶחֶם אֶלָּא עִם הַתּוֹדָה עַצְמָהּ. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ז יב)</span> &quot;עַל זֶבַח הַתּוֹדָה&quot; עָלָיו וְלֹא עַל וְלָדָהּ וְלֹא עַל תְּמוּרָתָהּ כְּמוֹ שֶׁבֵּאַרְנוּ. בַּמֶּה דְּבָרִים אֲמוּרִים בַּוְּלָדוֹת עַצְמָן אֲבָל וַלְדֵי וְלָדוֹת אֵינָן קְרֵבִין. שֶׁמִּתּוֹךְ מַעֲשָׂיו נִכָּר שֶׁהוּא מַשְׁהֶה אוֹתָן לְגַדֵּל מֵהֶן עֲדָרִים עֲדָרִים וּלְפִיכָךְ קוֹנְסִין אוֹתוֹ וְלֹא יַקְרִיבֵם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> דין וולדות הקדשים וולד שלמים ולד תמורת שלמים הרי אלו כשלמים והן עצמן כשלמים לכל דבר כדתנן ריש פרק אלו קדשים וולד קדשים ותמורתן וולד ולדן הרי הן כשלמים וכו׳ בגמרא זכר לרבות את הוולד דכתיב גבי שלמים ואם זבח שלמים קרבנו והוה ליה למכתב אם מן הבקר הוא מקריב תמים יקריבנו אם זכר אם נקבה למה לי אלא לדרשה ותנן לא נחלקו על וולד וולד שלמים ותמורה שלא יקרב על מה נחלקו על הוולד רבי אליעזר אומר לא יקרב וחכמים אומרים יקרב ובגמרא אמר ר׳ יהושע בן לוי לא נחלקו שיקרבו אלא לא יקרבו דע&quot;כ לא פליגי רבנן עליה דרבי אליעזר אלא בוולד אבל וולד דולד מתוך מעשיה ניכרת מחשבתו דלגדל קא בעי ליה ותני רבי חייא לסיועי לרבי יהושע בן לוי אם כשב הוא מקריב וולד ראשון קרב וולד שני אינו קרב דכשב וולד הוא והאי קרא גבי קדשים כתיב והיינו ע&quot;כ כרבנן דאי לרבי אליעזר וולד ראשון נמי אינו קרב והך דרשה אינה אלא אסמכתא דהא ודאי הא דוולד שני אינו קרב הוי מדרבנן שמא יגדל ממנו עדרים עדרים כן כתבו התוספות שם פרק אלו קדשים וכן וולד התודה וולד תמורתה כדתנן התם ובגמרא מנין לרבות וולדות תמורות וכו׳ ת&quot;ל אם על תודה וגו׳ יכול יהו כולן טעונות לחם תלמוד לומר על זבח התודה תודה טעונה לחם ולא וולדה ותמורתה.</p>
               </div>
             </div>
@@ -659,8 +789,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-2">Mishneh Torah, Substitution 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלַד הַחַטָּאת יָמוּת וְאֵין צָרִיךְ לוֹמַר וְלַד תְּמוּרָתָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולד </strong> החטאת ימות ואין צריך לומר וולד התמורה פרק וולד חטאת דתמורה ומעילה במשנה חמש חטאות מתות וולד חטאת ותמורת חטאת וכו׳ ואסיקנא דהוו הלכתא כדאמ׳ לעיל ולד תמורה הוי בכלל ולד חטאת דוולד חטאת להכי מתה שהרי אינה ראויה לכפרה שלא הפריש׳ מתחלה לכך והוא הדין נמי בוולד תמורה מהאי טעמא. השוחט את החטאת ומצא בה בן שמנה חי הרי זו נאכלת כבשר החטאת שוולדי קדשים במעי אמן הן קדושים ונראה דהיינו כשהיתה מעוברת כשהקדישה לחטאת דלא חשיב וולד חטאת הואיל והפרישה מעוברת דדעתיה נמי אוולד דעובר ירך אמו הואי ואפילו ילדו א&quot;ר יוחנן רצה מתכפר בה רצה בוולדה מהאי טעמ׳ דלא איקרי ולד חטאת כדא׳ פ׳ התודה.</p>
               </div>
             </div>
@@ -675,8 +810,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-4">Mishneh Torah, Substitution 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלַד תְּמוּרַת הָאָשָׁם וּוְלַד וְלָדָהּ עַד סוֹף הָעוֹלָם יִרְעוּ עַד שֶׁיִּפּל בָּהֶם מוּם וְיִמָּכְרוּ וְיִפְּלוּ דְּמֵיהֶן לִנְדָבָה. וְאִם יָלְדָה זָכָר אַחַר שֶׁהִקְרִיב אֲשָׁמוֹ הַוָּלָד עַצְמוֹ יִקָּרֵב עוֹלָה. הִפְרִישׁ נְקֵבָה לַאֲשָׁמוֹ וְיָלְדָה תִּרְעֶה הִיא וּבְנָהּ עַד שֶׁיִּפּל בָּהֶן מוּם וְיִמָּכְרוּ וְיָבִיא בִּדְמֵי שְׁנֵיהֶם אֲשָׁמוֹ. וְאִם כְּבָר הִקְרִיב אֲשָׁמוֹ יִפְּלוּ דְּמֵיהֶן לִנְדָבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולד </strong> תמורת אשם ולד ולדן עד סוף העולם ירעו כדתנן פ׳ אלו קדשים תמורת אשם וולד תמור׳ וכו׳ ירעו ויפלו דמיו לנדבה ותמורת אשם וכו׳ ובין זכר בין נקבה תרעה דגמירי כל שבחטאת מתה באשם רועה ואם ילדה זכר התמורה לאחר שהקריב אשמו הוולד עצמו יקרב עולה כדאמר רב נחמן אמר רבה בר אבוה מחלוקת קודם כפרה אבל לאחר כפרה הוא עצמו קרב עולה אלא דסלקא בקשיא בגמרא משום דתני רב חנניה לסיועיה לרבי יהושע בן לוי וולד ראשון קרב וולד שני חשיבי דתמורה גופא קרי וולד הואיל ומכח אחר אתי. הפריש נקבה לאשמו וילדה תרעה היא ובנה שם במשנה המפריש נקבה לאשם תרעה וכו׳ ולעיל מיהא מתני׳ גבי מתני׳ דתמורה עולה אמר ר׳ יוסי ברבי חנינא ומודה רבי אליעזר במפריש נקבה לאשם דאין בנה קרב אשם דלא אמר אלא במפריש נקבה לעולה וילדה דיקרב עולה משום דאיכא שם עולה על אמו בעולת העוף אבל גבי אשם נקבה דליכא שם אשם על אמו מודה דאין בנה קרב ולהכי ירעו ויביא בדמי שניהם אשמו ואם כבר הקריב אשמו יפלו דמיהן לנדבה כדתנן גבי מפריש נקבה לאשם. הפריש נקבה לעולתו וילדה אף על פי שילדה זכר ירעה ויביא בדמי עולה כרבנן דפליגי ארבי אליעזר במתניתין יפלו לנדבה הוא שיתן המעות כשנפדות ומקריבין מהן עולות נדבה ונסכים משל ציבור ואינם טעונים סמיכה ומקום שנאמר יקרב הוא עולה או יביא בדמיו עולה טעון סמיכה ונסכים משלו כדא׳ התם.</p>
               </div>
             </div>
@@ -691,8 +831,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-6">Mishneh Torah, Substitution 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלַד הַמַּעֲשֵׂר. [וּוְלַד] תְּמוּרַת הַמַּעֲשֵׂר. וְלַד תְּמוּרַת הַבְּכוֹר וּוַלְדֵי וַלְדוֹתֵיהֶן עַד סוֹף הָעוֹלָם. הֲרֵי אֵלּוּ לֹא יִקָּרְבוּ אֶלָּא יִרְעוּ עַד שֶׁיִּפּל בָּהֶן מוּם וְיֵאָכְלוּ כִּבְכוֹר וּכְמַעֲשֵׂר שֶׁנָּפַל בָּהֶן מוּם. וַלְדוֹת תְּמוּרַת הַבְּכוֹר לְכֹהֵן. וַלְדוֹת מַעֲשֵׂר וּתְמוּרָתוֹ לִבְעָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וולד </strong> המעשר תמורת המעשר וולד תמורת הבכורה וולדי וולדותיהן עד סוף העולם הרי אלו לא יקרבו דכתיב בהו מיעוטא לומר דהם קרבים ולא תמורתם כדא׳ לעיל וכדתנן פרק אלו קדשים גבי וולדות גם כן דיאכלו במומן לבעלים ולעיל בגמרא גבי תני ר׳ חייא לסיועיה לרבי יהושע בן לוי אם כשב הוא מקריב וולד ראשון קרב וולד שני אינו קרב הוא קרב ואין וולד כל הקדשים קרב ואמרינן ולד דמאן אי דעולה ואשם זכרים הם אי דחטאת הלכתא גמירי לה דלמיתה אזלי אמר רבינא לאיתויי ולד המעושרת מעשר בהמה שיצאה נקבה בעשירי ואחר כך ילדה וולדה אינו קרב אלא ירעה ויאכל במומו לבעלים כדין מעשר ופריך למה לי קרא עברה עברה מבכור קא גמר לה ובבכור לא קרב ולד דידיה דהא ליכא ולד בבכור דהא זכר הוא ומשני אפ&quot;ה איצטריך קרא דהוא קרב ואין וולד כל הקדשים קרב משום דסלקא דעתך אמינא אין דנין איפשר משאי איפשר קמ&quot;ל וולד תמורה דבכור נראה דכיון דולד הבכור לא קרב דהא לית ליה דזכר הוא הכי נמי ולד תמורתו כמעשר דאיתקדשו תרוייהו אלא הוו לכהן כבכור.</p>
               </div>
             </div>
@@ -707,8 +852,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-7">Mishneh Torah, Substitution 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלַד תְּמוּרַת הַפֶּסַח כִּתְמוּרַת הַפֶּסַח. אִם הָיְתָה אִמּוֹ קְרֵבָה שְׁלָמִים וְלָדָהּ יִקָּרֵב שְׁלָמִים וְאִם הָיָה דִּינָהּ שֶׁתִּמָּכֵר וְיָבִיא בְּדָמֶיהָ שְׁלָמִים אַף וְלָדָהּ נִמְכָּר וְיָבִיא בְּדָמָיו שְׁלָמִים. הִפְרִישׁ נְקֵבָה לְפִסְחוֹ וְיָלְדָה. אוֹ שֶׁהִפְרִישָׁהּ מְעֻבֶּרֶת. הִיא וּוְלָדָהּ יִרְעוּ עַד שֶׁיִּפּל בָּהֶן מוּם וְיָבִיא בִּדְמֵיהֶן פֶּסַח. וְאִם נִשְׁאֲרָה נְקֵבָה זוֹ עַד אַחַר הַפֶּסַח אוֹ שֶׁיָּלְדָה אַחַר הַפֶּסַח. תִּרְעֶה הִיא וּוְלָדָהּ עַד שֶׁיִּפּל בָּהֶן מוּם וְיָבִיא בִּדְמֵיהֶן שְׁלָמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולד </strong> תמורת הפסח כתמורת הפסח אם שלמים שלמים אם דמיה שלמים ולדה נמי דמיו שלמים דאף על גב דבפסח גופיה ליכא ולד דהא זכר הוא אפ&quot;ה אם הפריש נקבה לפסחו וילדה איכא מאן דאמר דקרב הוולד כדא׳ פרק אלו קדשים ולהכי בתמורה נמי אי היא קרבה ולדה נמי קרב שלמים כמוה דאף על גב דאמרינן ולד ראשון קרב מדכתיב אם כבש ולד שני אינו קרב כדאמרינן בתוספת׳ דרבי חייא והכא ולד שני הוא דתמורה גופה מכח אחר היא באה היינו דאין ולד שני קרב כזבח גופיה כי הכא במקום פסח אבל שלמים כמו אמו דהוי תמורת פסח וקרבה שלמים ולד נמי קרב כדאמר׳. הפריש נקבה לפסחו וילדה או הפרשה מעוברת היא וולדה ירעו ויביא בדמיהן פסח ואם נשארה לאחר הפסח או ילדה אחר הפסח יביא בדמיהן שלמים אחר רעיה כדתניא פרק אלו קדשים ור׳ אליעזר אומר הוא עצמו יקרב שלמים אבל רבנן סברי דכיון דהיא עצמה לא קרבה שלמים אף ע&quot;ג דפסח בשאר ימות השנה שלמים הוי ושלמים באים נקבה האי הואיל ומחמת קדושה פסולה באה דהפרשה לפסח ולא חזיא לפסח משום דהויא נקבה אידחו נמי משלמים היא וולדה אלא דמיהן יהיו שלמים.</p>
               </div>
             </div>
@@ -723,8 +873,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-8">Mishneh Torah, Substitution 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וַלְדוֹת הַקָּדָשִׁים שֶׁיָּצְאוּ דֶּרֶךְ דֹּפֶן. אוֹ שֶׁיָּלְדוּ טֻמְטוּם וְאַנְדְּרוֹגִינוּס וְכִלְאַיִם וּטְרֵפָה. הֲרֵי אֵלּוּ יִפָּדוּ וְיָבִיא בִּדְמֵיהֶן קָרְבָּן הָרָאוּי לְהָבִיא בִּדְמֵי וָלָד שֶׁל זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולדות </strong> הקדשים שיצאו דרך דופן או שהיו טומטום ואנדרוגינוס וכלאים וטריפה יפדו ויביא בדמיהן קרבן הראוי להביא פ׳ יש בקרבנות תנן רבי אליעזר אומר הכלאים והטרפה וכו׳ לא קדושים ולא מקדישים אחרים כתמורה דקדש הם ואמרינן בגמ׳ מאחר שאין קדושים מהיכן מקדישים אלא אי אתה מוצא אלא במקדיש בהמה ואח&quot;כ נטרפה דחיילה על הקדושה קודם ובמקדיש ולד ויצא דרך דופן אבל כלאים וטומטום ואנדרוגינוס אי אתה מוצא אלא בולדי קדשים שקדשה אמם קודם שנתעברה מהם דהשתא ממילא הם קדושים דעובר ירך אמו הוא ובהא הוצרך לומר דאין עושין תמורה לרבי יהודה דולד בעלמא עושה תמורה ומכל מקום שמעינן דוולדות אלו קדשי מצד אמן ואינן ראוים ליקרב ולהכי נראה דירעו ויפדו ויביא בדמיהן קרבן הראוי להביא בדמי ולד הנולד (כתקנו שלחו) כדא׳ לעיל. ולד בעלת מום הרי הוא כוולד התמימה לכל דבר ויקרב כראוי לו פרק קמא דתמורה פלוגתא דבן פדת ור׳ יוחנן סבר אף על גב דאימיה לא קדשה לגופה ולד מיהא קדש לגופיה. קדשים שהפילו נפל או שליא אסורים בהנאה ויקברו כדתנן פרק בהמה המקשה המבכרת שהפילה שליא ישליכנה לכלבים ובמוקדשים תקבר כגון בהמת שלמים שהפילה שליא דבין זכר בין נקבה דנפיק מבהמת הקדש קדש ובגמרא מאי טעמא משום דרובא בר קדושה הוא דבין זכר בין נקבה חוץ מנדמה למ&quot;ד ולדות קדשים בהוייתן הם קדושים והכא נפל קדיש משום דילפינן מבכור דקדיש נפל זכר בבכור כדכתיב שגר כדדרשינן בכריתות וכמו שכתבו התוספות פרק בהמה המקשה:</p>
               </div>
             </div>
@@ -739,8 +894,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-11">Mishneh Torah, Substitution 4:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְשַׁנֶּה אֶת הַקָּדָשִׁים מִקְּדֻשָּׁה לִקְדֻשָּׁה עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר בִּבְכוֹר <span class="source-small">(ויקרא כז כו)</span> &quot;לֹא יַקְדִּישׁ אִישׁ אֹתוֹ&quot; שֶׁלֹּא יַעֲשֶׂנּוּ עוֹלָה אוֹ שְׁלָמִים. וְהוּא הַדִּין לִשְׁאָר הַקָּדָשִׁים שֶׁאֵין מְשַׁנִּין אוֹתָן מִקְּדֻשָּׁה לִקְדֻשָּׁה אֶחָד קָדְשֵׁי מִזְבֵּחַ וְאֶחָד קָדְשֵׁי בֶּדֶק הַבַּיִת. כֵּיצַד. אִם הִקְדִּישׁ לְבֶדֶק הַהֵיכָל לֹא יְשַׁנֶּה לְבֶדֶק הַמִּזְבֵּחַ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְאֵין לוֹקִין עַל לָאו זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעב </strong> שלא ישנה הקדשים מקדושה לקדושה כדכתיב לא יקדיש איש אותו גבי בכור ותנן פרק בתרא דתמורה אחד קדשי מזבח ואחד קדשי בדק הבית אין משנין אותם מקדושה לקדושה דקדשי בדק הבית שהקדישן למזבח לא עשה כלום ובקדשי מזבח אין משנין מקדושת עולה לשלמים או איפכא ובערכין פרק המקדיש תנן רבי ישמעאל אומר כתוב א׳ אומר תקדיש גבי בכור וכתוב אחר אומר אל תקדיש וכו׳ הא כיצד מקדישו אתה הקדש עילוי להעלות הבכור בדמים ויתן טובת הנאתו לכהן ואי אתה מקדישו הקדש מזבח שיהא שם זבח אחר חל עליו ובגמר׳ ורבנן דנפקא להו הך דרשא מכל חרם קדש קדשים מיבעי להו האי קרא דלא תקדיש בלאו שאם מתפיסו שם לזבח אחר עובר בלאו.</p>
               </div>
             </div>
@@ -755,8 +915,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-12">Mishneh Torah, Substitution 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד מַעֲרִימִין עַל הַבְּכוֹר לְהַקְדִּישׁוֹ לַמִּזְבֵּחַ הֶקְדֵּשׁ אַחֵר. מַקְדִּישׁוֹ בַּבֶּטֶן קֹדֶם שֶׁיִּוָּלֵד שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז כו)</span> &quot;אֲשֶׁר יְבֻכַּר לַה׳&quot; <span class="source-small">(ויקרא כז כו)</span> &quot;לֹא יַקְדִּישׁ אִישׁ אוֹתוֹ&quot;. מִשֶּׁיְּבֻכַּר אִי אַתָּה מַקְדִּישׁוֹ אֲבָל אַתָּה מַקְדִּישׁוֹ בַּבֶּטֶן. לְפִיכָךְ יֵשׁ לוֹ לוֹמַר מַה שֶּׁבְּמֵעֶיהָ שֶׁל מַבְכֶּרֶת זוֹ אִם הוּא זָכָר הֲרֵי זוֹ עוֹלָה. אֲבָל אֵינוֹ יָכוֹל לוֹמַר זִבְחֵי שְׁלָמִים שֶׁאֵינוֹ יָכוֹל לְהַפְקִיעַ אוֹתוֹ מִקְּדֻשָּׁתוֹ כְּדֵי לֵהָנוֹת בּוֹ. וְאִם אָמַר עִם יְצִיאַת רֹב רֹאשׁוֹ יִהְיֶה עוֹלָה הֲרֵי זֶה בְּכוֹר וְאֵינוֹ עוֹלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> מערימין על הבכור להקדישו למזבח הקדש אחר מקדישו בבטן קודם שיוולד דכתיב אשר יבוכר לה׳ לא יקדיש איש אותו משיבוכר אי אתה מקדישו אבל אתה מקדישו בבטן כדתנן במתני׳ דכיצד מערימין על הבכור מבכרת שהיתה מעוברת אומר מה שבמעיה של זו אם זכר עולה ואם נקבה שלמים בכור לא קדיש אלא בכור ברחם וכיון דמעיקרא אתפסיה בקדושה אחריתי תו לא חיילא קדושת בכורה ואמרינן בגמרא דסיפא דאמר אם נקבה זבחי שלמים לא איצטריך להערים בכור דנקבה לא קדשה בבכור אלא סיפא אתיא לבהמת הקדש דאם חטאת היא ונתעברה ורוצה להערים שלא ילך למיתה ישנהו לקדושה אחרת ואתיא כמאן דאמר דולדות קדשים בהוויתן הן קדושים כלומר ביציאתן ולא במעי אמן וכיון דאכתי לא קדיש בקדושת אמו מצי לארכובי עליה קדושה אחריתי דלכי מיתיליד לא להוי ולד חטאת אבל על זכר בכור לא מצי למימר זבחי שלמים שאינו מפקיע אותו מקדושתו כדי ליהנות בו ונראה דלא אסיר הא אלא מדרבנן ואם אמר עם יציאת רוב ראשו יהיה עולה הרי זה בכור ואינו עולה שם בעיא דרב עמרם לרב ששת אמר על הבכור עם יציאת רובו עולה עולה הוי או בכור הוי עולה הוי דכל פורתא ופורת׳ דקא נפיק הוי כליל או בכור הוי דכל פורתא ופורתא במלתיה קאי שכן קדושת בכור חלה על כל בכורות דעלמא מרחם ופשטי׳ לה מבעיא דאלפא גבי לקט דאמר אביי דברי הרב ודברי התלמיד דברי מי שומעים ולכך כיון דהוי בשעת יציאת רובו דבעי למיחל קדושת בכור דברי הרב קודמים ובכור הוא.</p>
               </div>
             </div>
@@ -771,8 +936,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Substitution 4:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-substitution-4-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Substitution 4:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-4-13">Mishneh Torah, Substitution 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מַעֲרִימִין עַל בֶּהֱמַת הֶקְדֵּשׁ לְהַקְדִּישׁ עֻבָּרָהּ קְדֻשָּׁה אַחֶרֶת אֶלָּא הֲרֵי הוּא כִּקְדֻשַּׁת אִמּוֹ. שֶׁוַּלְדוֹת הַקָּדָשִׁים מִמְּעֵי אִמָּם הֵם קְדוֹשִׁים כְּמוֹ שֶׁבֵּאַרְנוּ. וַהֲרֵי כָּל עֻבָּר מֵהֶן כִּקְדֻשַּׁת אִמּוֹ וְאֵינוֹ יָכוֹל לְשַׁנּוֹתוֹ בַּבֶּטֶן כְּדֶרֶךְ שֶׁעָשָׂה בִּבְכוֹר שֶׁהַבְּכוֹר בִּיצִיאָתוֹ הוּא שֶׁמִּתְקַדֵּשׁ. אַף עַל פִּי שֶׁכָּל חֻקֵּי הַתּוֹרָה גְּזֵרוֹת הֵם כְּמוֹ שֶׁבֵּאַרְנוּ בְּסוֹף מְעִילָה. רָאוּי לְהִתְבּוֹנֵן בָּהֶן וְכָל מַה שֶּׁאַתָּה יָכוֹל לִתֵּן לוֹ טַעַם תֵּן לוֹ טַעַם. הֲרֵי אָמְרוּ חֲכָמִים הָרִאשׁוֹנִים שֶׁהַמֶּלֶךְ שְׁלֹמֹה הֵבִין רֹב הַטְּעָמִים שֶׁל כָּל חֻקֵּי הַתּוֹרָה. יֵרָאֶה לִי שֶׁזֶּה שֶׁאָמַר הַכָּתוּב <span class="source-small">(ויקרא כז י)</span> <span class="source-small">(ויקרא כז ל)</span> &quot;וְהָיָה הוּא וּתְמוּרָתוֹ יִהְיֶה קֹדֶשׁ&quot;. כָּעִנְיָן שֶׁאָמַר <span class="source-small">(ויקרא כז טו)</span> &quot;וְאִם הַמַּקְדִּישׁ יִגְאַל אֶת בֵּיתוֹ וְיָסַף חֲמִישִׁית כֶּסֶף עֶרְכְּךָ עָלָיו&quot;. יָרְדָה תּוֹרָה לְסוֹף מַחֲשֶׁבֶת הָאָדָם וּקְצָת יִצְרוֹ הָרַע. שֶׁטֶּבַע שֶׁל אָדָם נוֹטֶה לְהַרְבּוֹת קִנְיָנוֹ וְלָחוּס עַל מָמוֹנוֹ וְאַף עַל פִּי שֶׁנָּדַר וְהִקְדִּישׁ אֶפְשָׁר שֶׁחָזַר בּוֹ וְנִחַם וְיִפְדֶּה בְּפָחוֹת מִשָּׁוְיוֹ אָמְרָה תּוֹרָה אִם פָּדָה לְעַצְמוֹ יוֹסִיף חֹמֶשׁ. וְכֵן אִם הִקְדִּישׁ בְּהֵמָה קְדֻשַּׁת הַגּוּף שֶׁמָּא יַחְזֹר בּוֹ וְכֵיוָן שֶׁאֵינוֹ יָכוֹל לִפְדּוֹתָהּ יַחְלִיפֶנָּה בִּפְחוּתָה מִמֶּנָּה. וְאִם תִּתֵּן לוֹ רְשׁוּת לְהַחְלִיף הָרַע בְּיָפֶה יַחְלִיף הַיָּפֶה בְּרַע וְיֹאמַר טוֹב הוּא. לְפִיכָךְ סָתַם הַכָּתוּב בְּפָנָיו שֶׁלֹּא יַחְלִיף. וּקְנָסוֹ אִם הֶחְלִיף וְאָמַר וְהָיָה הוּא וּתְמוּרָתוֹ יִהְיֶה קֹדֶשׁ. וְכָל אֵלּוּ הַדְּבָרִים כְּדֵי לָכֹף אֶת יִצְרוֹ וּלְתַקֵּן דֵּעוֹתָיו. וְרֹב דִּינֵי הַתּוֹרָה אֵינָן אֶלָּא עֵצוֹת מֵרָחוֹק מִגְּדוֹל הָעֵצָה לְתַקֵּן הַדֵּעוֹת וּלְיַשֵּׁר כָּל הַמַּעֲשִׂים. וְכֵן הוּא אוֹמֵר <span class="source-small">(משלי כב כ)</span> &quot;הֲלֹא כָתַבְתִּי לְךָ שָׁלִישִׁים בְּמֹעֵצוֹת וָדָעַת&quot;. לְהוֹדִיעֲךָ קֹשְׁטְ אִמְרֵי אֱמֶת לְהָשִׁיב אֲמָרִים אֱמֶת לְשלְחֶיךָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> מערימין על ולד בהמת הקדש לשנותו לקדושה אחרת דתנן התם רבן שמעון בן גמליאל אומר אין קדוש׳ חלה עליהם ואפילו קדושת אמן דקסבר בהוייתן כשהם נולדים והלכך אין שום קדושה חלה עליהם ואמרי׳ בגמ׳ והאי תנא סבר ולדי קדשי׳ ממעי אמן קדושים דגבי קרא דבכור דילפינן מיניה שיכול להקדישו קדושה אחרת בבטן כתיב אך למעוטי שאר קדשים דאין אדם מקדיש אותם קדושה אחרת בבטן דבמעי אמן קדושים קדושת אמן ונקטינן כהאי תנא כדמשמע התם בגמרא. כתב הרב ז&quot;ל טעם היות התמורה קדש ותוספת חומש לפודה הקדשו דירדה תורה לסוף דעתו שאיפשר שניחם על מה שהקדיש ורוצה להחליפו בפחות ממנו או רוצה לפדות הקדשו בפחות לכך אמרה תורה שיהיה קדש מה שיחליף ושיוסיף חומש על שווי ההקדש מי שפודה הקדשו כדי לתקן דעותיו ולפי שקדושת מזבח חמורה מקדוש׳ בדק הבית החמיר׳ תורה שיהי׳ קדש כל חילוף קדושת מזבח ובקדושת ב&quot;ה שיוסיף חומש לבד על הפדיון ונאמר הלא כתבתי לך שלישים במועצות ודעת:</p>
               </div>
             </div>
@@ -782,6 +952,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-substitution-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-substitution.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-substitution-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -802,8 +976,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-substitution.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-substitution.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-substitution.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-substitution.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-substitution.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-substitution.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -829,7 +1003,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

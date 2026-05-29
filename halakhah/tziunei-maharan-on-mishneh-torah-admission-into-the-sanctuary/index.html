@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/">Open Mishneh Torah, Admission into the Sanctuary</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Admission into the Sanctuary</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>177 matched</strong> / 465 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -220,8 +221,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 1:1:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-1-1-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-1">Mishneh Torah, Admission into the Sanctuary 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל כֹּהֵן הַכָּשֵׁר לַעֲבוֹדָה אִם שָׁתָה יַיִן אָסוּר לוֹ לְהִכָּנֵס מִן הַמִּזְבֵּחַ וּלְפָנִים. וְאִם נִכְנַס וְעָבַד עֲבוֹדָתוֹ פְּסוּלָה וְחַיָּב מִיתָה בִּידֵי שָׁמַיִם שֶׁנֶּאֱמַר <span class="source-small">(ויקרא י ט)</span> &quot;וְלֹא תָמֻתוּ&quot;. וְהוּא שֶׁשָּׁתָה רְבִיעִית יַיִן חַי בְּבַת אַחַת מִיַּיִן שֶׁעָבְרוּ עָלָיו אַרְבָּעִים יוֹם. אֲבָל אִם שָׁתָה פָּחוֹת מֵרְבִיעִית יַיִן. אוֹ שָׁתָה רְבִיעִית וְהִפְסִיק בָּהּ. אוֹ מְזָגָהּ בְּמַיִם. אוֹ שֶׁשָּׁתָה יַיִן מִגִּתּוֹ בְּתוֹךְ אַרְבָּעִים אֲפִלּוּ יֶתֶר מֵרְבִיעִית. פָּטוּר וְאֵינוֹ מְחַלֵּל עֲבוֹדָה. שָׁתָה יֶתֶר מֵרְבִיעִית מִן הַיַּיִן אַף עַל פִּי שֶׁהָיָה מָזוּג וְאַף עַל פִּי שֶׁהִפְסִיק וְשָׁהָה מְעַט מְעַט חַיָּב מִיתָה וּפוֹסֵל הָעֲבוֹדָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחייב מיתה בידי שמים.</strong> וכתב הכ&quot;מ ומשמע מדברי רבינו דאסור להכנס מהמזבח ולפנים אע&quot;פ שלא עבד אבל אינו חייב מיתה אא&quot;כ עבד ע&quot;כ, אבל לא הראה מנ&quot;ל לרבינו זאת. ועי׳ בתוי&quot;ט בפ&quot;ג דכריתות מ&quot;ג דאישתמיטתיה להכ&quot;מ שכן הוא בתו&quot;כ הובא בתוס׳ כריתות דף י&quot;ג ע&quot;ב ד&quot;ה ונכנס ע&quot;ש:</p>
               </div>
             </div>
@@ -237,8 +243,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 3:8:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-3-8-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-3-8">Mishneh Torah, Admission into the Sanctuary 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטָּמֵא הַמְשֻׁלָּח מֵהַר הַבַּיִת אִם נִכְנַס עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כג יא)</span> &quot;וְיָצָא מִחוּץ לַמַּחֲנֶה&quot; זֶה מַחֲנֵה שְׁכִינָה <span class="source-small">(דברים כג יא)</span> &quot;וְלֹא יָבֹא אֶל תּוֹךְ הַמַּחֲנֶה&quot; זֶה מַחֲנֵה לְוִיָּה. וְכֵן מְצֹרָע שֶׁנִּכְנַס לִירוּשָׁלַיִם לוֹקֶה. אֲבָל אִם נִכְנַס לִשְׁאָר הֶעָרִים הַמֻּקָּפוֹת חוֹמָה אַף עַל פִּי שֶׁאֵינוֹ רַשַּׁאי לְפִי שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יג מו)</span> &quot;בָּדָד יֵשֵׁב&quot; אֵינוֹ לוֹקֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן מצורע שנכנס לירושלים לוקה.</strong> עי׳ בכ&quot;מ דהוא פלוגתא דר&quot;י ור&quot;ש בפסחים דס&quot;ז ופסק רבינו כר&quot;י לפי הכלל דר&quot;י ור&quot;ש הלכה כר&quot;י. ועי׳ בצל&quot;ח שם בפסחים שתמה ע&quot;ז מדברי רבינו לקמן בפ&quot;ד הי&quot;ב דסתרי אהדדי לפ&quot;ז ע&quot;ש. ועי׳ בספרי פ׳ נשא הובא גם בכ&quot;מ לעיל ה&quot;ב, ובפירוש התוה&quot;מ שם תמצא שדברי רבינו נובעין משם, ול&quot;ק קושית הצל&quot;ח ע&quot;ש:</p>
               </div>
             </div>
@@ -254,8 +265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 4:8:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-4-8-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-4-8">Mishneh Torah, Admission into the Sanctuary 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין הַצִּיץ מְרַצֶּה אֶלָּא בִּזְמַן שֶׁהוּא עַל מִצְחוֹ שֶׁנֶּאֱמַר <span class="source-small">(שמות כח לח)</span> &quot;וְהָיָה עַל מִצְחוֹ תָּמִיד לְרָצוֹן לָהֶם לִפְנֵי ה׳&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין הציץ מרצה אלא בזמן שהוא על מצחו שנאמר והיה על מצחו תמיד לרצון להם לפני ה׳.</strong> וכתב הכ&quot;מ בפ׳ כיצד צולין דף ע&quot;ו ובריש יומא דף ז׳ ע&quot;ב פלוגתא דר&quot;י ור&quot;ש ופסק כר&quot;י. ועי׳ בגמ׳ שם ותמצא דר&quot;י דס&quot;ל דאינו מרצה אלא בזמן שהוא על מצחו יליף מדכתיב על מצח ונשאו ור&quot;ש יליף מתמיד לרצון לפני ה׳ דאפילו אינו על מצחו מרצה ולר&quot;י אצטריך ההוא תמיד שלא יסיח דעתו ממנו ע&quot;ש, ורבינו פוסק כר&quot;י ודייק מקרא דתמיד דדוקא עודיהו על מצחו מרצה וזה להיפך מהגמ׳ ודברי הכ&quot;מ תמוהים, ועי׳ בהג׳ רצ&quot;ח שם ביומא שעמד בזה. אולם דברי רבינו נובעים מהירושלמי פ&quot;ק דיומא ה&quot;ב דאיתא שם אית תניי תני הציץ מרצה על מצחו אית תניי תני אפי׳ בזוית מ&quot;ד הציץ מרצה על מצחו והיה על מצחו תמיד ומ&quot;ד אפי׳ בזוית מן הדא דיוה&quot;כ ע&quot;כ. הרי דבירושלמי דייק המ&quot;ד דדוקא על מצחו מרצה מקרא דתמיד כדברי רבינו. וראה רבינו לסמוך על הירושלמי נגד הגמ׳ דידן משום דדברי הירושלמי היו נראין לו יותר פשוט דוהיה על מצחו תמיד משמע דדוקא על מצחו מרצה וכמש&quot;כ בשו&quot;ת מהרי&quot;ק בשורש ק׳ וז&quot;ל הרמב&quot;ם רגיל לפסוק ע&quot;פ הירושלמי יותר מכל הפוסקים הידועים אצלנו, ואפילו במקום שאין תלמודנו מוכיח כדברי הירושלמי לפעמים יפסוק כמותו היכא שתלמודנו מעמיד משנה או ברייתא בשנויי דחיקי והירושלמי מפרשה כפשטא תופס לו שיטת הירושלמי ע&quot;כ:</p>
               </div>
             </div>
@@ -271,8 +287,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 5:5:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-5-5-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-5-5">Mishneh Torah, Admission into the Sanctuary 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכָל הַמֵּסִיךְ אֶת רַגְלָיו טָעוּן טְבִילָה. וְכָל הַמֵּטִיל מַיִם טָעוּן קִדּוּשׁ יָדַיִם וְרַגְלַיִם. יָצָא חוּץ לְחוֹמַת הָעֲזָרָה אִם לִשְׁהוֹת בַּחוּץ יָצָא כְּשֶׁחוֹזֵר טָעוּן טְבִילָה וְאִם לַחְזֹר מִיָּד יָצָא] כְּשֶׁחוֹזֵר טָעוּן קִדּוּשׁ יָדַיִם וְרַגְלַיִם בִּלְבַד. וְאִם לֹא טָבַל וְלֹא קִדֵּשׁ וְעָבַד הוֹאִיל וְלֹא הִסִּיחַ דַּעְתּוֹ וְלֹא הִסִּיךְ רַגְלָיו וְלֹא הֵטִיל מַיִם עֲבוֹדָתוֹ כְּשֵׁרָה. הוֹצִיא יָדָיו חוּץ לְחוֹמַת הָעֲזָרָה אֵינוֹ צָרִיךְ לַחְזֹר וּלְקַדֵּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יצא חוץ לחומת העזרה כו׳.</strong> עי׳ בכ&quot;מ אבל צ&quot;ע מירושלמי דכלאים פ&quot;ט סוף הל&quot;א דאיתא שם ברייתא כהן שיצא לדבר עם חבירו אם הפליגו טעון טבילה אם לשעה טעון קידוש ידים ורגלים, ורישא דהאי ברייתא הוא גם בתוספתא פ&quot;א דיומא והרי דגם ביצא לדבר טעון קידש ידים ורגלים וצ&quot;ע:</p>
               </div>
             </div>
@@ -287,8 +308,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 5:11:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-5-11-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-5-11">Mishneh Torah, Admission into the Sanctuary 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִטְבִּיל יָדָיו וְרַגְלָיו בְּמֵי מִקְוֶה אֲפִלּוּ בְּמַעְיָן אֵין זֶה קִדּוּשׁ כְּלָל עַד שֶׁיִּרְחַץ בִּכְלִי. וּבְכָל כְּלֵי הַקֹּדֶשׁ מְקַדְּשִׁין בֵּין שֶׁיֵּשׁ בָּהֶן רְבִיעִית בֵּין שֶׁאֵין בָּהֶן רְבִיעִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ, </strong> ופירש&quot;י במי מערה כו׳. וכ׳ ע&quot;ז המגיה על הגליון שלא מצא דברי רש&quot;י הללו ונעלם ממנו שהוא ברש&quot;י שם דף כ׳ ע&quot;ב ד&quot;ה או שטבל ע&quot;ש:</p>
               </div>
             </div>
@@ -303,8 +329,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 5:16:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-5-16-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 5:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-5-16">Mishneh Torah, Admission into the Sanctuary 5:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד מִצְוַת קִדּוּשׁ. מַנִּיחַ יָדוֹ הַיְמָנִית עַל גַּבֵּי רַגְלוֹ הַיְמָנִית וְיָדוֹ הַשְּׂמָאלִית עַל גַּבֵּי רַגְלוֹ הַשְּׂמָאלִית וְשׁוֹחֶה וּמְקַדֵּשׁ. וְכָל הַחוֹצֵץ בִּטְבִילָה חוֹצֵץ בְּקִדּוּשׁ יָדַיִם. וְאֵינוֹ מְקַדֵּשׁ כְּשֶׁהוּא יוֹשֵׁב מִפְּנֵי שֶׁהוּא כַּעֲבוֹדָה. וְאֵין עֲבוֹדָה אֶלָּא מְעֻמָּד שֶׁנֶּאֱמַר <span class="source-small">(דברים יח ה)</span> &quot;לַעֲמֹד לְשָׁרֵת&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל החוצץ בטבילה חוצץ בקידוש ידים.</strong> הכ&quot;מ הניח חלק ולא הראה מקורו. אבל דברי רבינו הם ש&quot;ס ערוך בחולין דף ק&quot;ו ע&quot;ב וכל דבר שחוצץ בטבילה בגוף חוצץ בנטילת ידים לחולין ובקידוש ידים ורגלים במקדש:</p>
               </div>
             </div>
@@ -320,8 +351,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 9:2:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-9-2-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 9:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-9-2">Mishneh Torah, Admission into the Sanctuary 9:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁהַזָּרִים מֻזְהָרִין שֶׁלֹּא יִתְעַסְּקוּ בַּעֲבוֹדָה מֵעֲבוֹדוֹת הַקָּרְבָּנוֹת אֵין חַיָּבִין מִיתָה אֶלָּא עַל עֲבוֹדָה תַּמָּה לֹא עַל עֲבוֹדָה שֶׁיֵּשׁ אַחֲרֶיהָ עֲבוֹדָה. וְאֵין הַזָּר חַיָּב מִיתָה אֶלָּא עַל אַרְבַּע עֲבוֹדוֹת בִּלְבַד. עַל הַזְּרִיקָה וְעַל הַהַקְטָרָה וְעַל נִסּוּךְ הַמַּיִם בֶּחָג וְעַל נִסּוּךְ הַיַּיִן תָּמִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין הזר חייב מיתה אלא כו׳.</strong> עי׳ בכ&quot;מ ובמה שהקשה המ&quot;ל. והנה לכאורה לפמ&quot;ש בשו&quot;ת נו&quot;ב מהד&quot;ק חאה&quot;ע סימן נ&quot;ט דכלל זה דהלכה כר&quot;י לגבי ר&quot;ל לא איתמר רק היכא דפליגי בבבלי ולא בירושלמי, לפ&quot;ז ל&quot;ק קושית המ&quot;ל, אך כבר כתבתי במ&quot;א שמדברי הגמ&quot;י בפ&quot;ה מהל׳ יסוה&quot;ת ה&quot;ה והב&quot;י ביו&quot;ד סי׳ קנ&quot;ז והט&quot;ז שם בסק&quot;ז לא נראה כן ע&quot;ש. ונראה דהנה שם בגמ׳ איתא מ&quot;ט דרב דכתיב ואתה ובניך אתך כו׳ ועבדתם עבודת מתנה אתן את כהונתכם והזר הקרב יומת עבודת מתנה ולא עבודת סילוק כו׳ ולוי ריבה רחמנא לכל דבר המזבח ורב ההוא לאתויי שבע הזאות שבפנים ושבמצורע ולוי נפקא ליה מדבר וכל דבר ורב דבר וכל דבר לא דריש. והנה בפסחים דף מ&quot;ג ע&quot;ב נחלקו רבנן ור&quot;א דר&quot;א דריש כל ורבנן לא דרשו כל ופסק רבינו בפ&quot;א מהל׳ חו&quot;מ הל&quot;ו כרבנן ע&quot;ש במ&quot;מ ולח&quot;מ, ומש&quot;ה פסק בכאן דלא כר&quot;י דדריש מוכל. ועי׳ בחי׳ הריטב&quot;א שם ביומא שכתב דלאו למימרא דרב לא דריש ליה כלל כל דהא ליכא בתלמודא מאן דלא דריש לכל כו׳. אבל דבריו צ&quot;ע דהא באמת שמעינן לרבנן בפסחים דלא דרשו כל. ועי׳ בתוס׳ שם ד&quot;ה מאן שמעת שכתבו דאף דרבנן דרשו בעלמא כל היכא לא דרשו בדבר שאין סברא לרבות כגון עירובין וכגון נשים משום היקשא כו׳, ועי׳ בלח&quot;מ בפ&quot;א מהל׳ חו&quot;מ הל&quot;ו ופ&quot;ה מהל׳ איסורי המזבח הל&quot;א, וה&quot;נ הוי דבר שאין סברא לרבות דמעבודת מתנה יש למעט עבודת סילוק:</p>
               </div>
             </div>
@@ -336,8 +372,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 9:5:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-9-5-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 9:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-9-5">Mishneh Torah, Admission into the Sanctuary 9:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְהַמְסַדֵּר שְׁנֵי גִּזְרֵי עֵצִים עַל הַמַּעֲרָכָה הֲרֵי הוּא כְּמַקְטִיר אֵיבָרִים וְחַיָּב מִיתָה שֶׁהָעֵצִים קָרְבָּן הוּא. אֲבָל הַיּוֹצֵק וְהַבּוֹלֵל וְהַפּוֹתֵת וְהַמּוֹלֵחַ וְהַמֵּנִיף וְהַמַּגִּישׁ וּמְסַדֵּר אֶת לֶחֶם הַפָּנִים אוֹ אֶת הַבְּזִיכִין עַל הַשֻּׁלְחָן וְהַמֵּטִיב אֶת הַנֵּרוֹת וְהַמַּצִּית אֵשׁ בַּמִּזְבֵּחַ וְהַקּוֹמֵץ וְהַמְקַבֵּל דָּמִים. אַף עַל פִּי שֶׁנִּפְסְלוּ וַהֲרֵי הוּא מֻזְהָר עַל כָּל אֵלּוּ וְלוֹקֶה אֵינוֹ חַיָּב מִיתָה. מִפְּנֵי שֶׁכָּל אַחַת מֵהֶן עֲבוֹדָה שֶׁאַחֲרֶיהָ עֲבוֹדָה וְאֵינָהּ גְּמַר עֲבוֹדָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל היוצק והבולל והפותת כו׳ אע&quot;פ שנפסלו והרי הוא מוזהר על כל אלו ולוקה.</strong> עי׳ בדברי רבינו לקמן בפי&quot;ג מהל׳ מעה&quot;ק הי&quot;ב וצ&quot;ע:</p>
               </div>
             </div>
@@ -352,8 +393,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 9:10:1</h4></div>
               <a class="anchor" href="#tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-9-10-1" aria-label="Copy link to Tziunei Maharan on Mishneh Torah, Admission into the Sanctuary 9:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-9-10">Mishneh Torah, Admission into the Sanctuary 9:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטָּמֵא וּבַעַל מוּם וְשֶׁלֹּא רָחוּץ יָדַיִם וְרַגְלַיִם שֶׁשִּׁמֵּשׁ בַּמִּקְדָּשׁ אֵינָן חַיָּבִין אֶלָּא עַל עֲבוֹדוֹת שֶׁהַזָּר חַיָּב עֲלֵיהֶן מִיתָה. וְעַל שְׁאָר הָעֲבוֹדוֹת בְּאַזְהָרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הטמא ובעל מום כו׳.</strong> עי׳ בכ&quot;מ שכתב ובעל מום לא הוזכר במשנה ורבינו הזכירו אפשר שסובר רבינו דלאו דוקא נקט במתני׳ הני אלא ה&quot;ה לכל חיוב שחייבין משום עבודה כו׳. ולא היה צריך לזה שדברי רבינו הם ברייתא ערוכה בתו&quot;כ אמור פרשתא ג׳ ברייתא ד׳ איש מזרעך לדורותם אשר יהיה בו מום לא יגש להקריב כו׳ יכול יהיו חייבים על כולם ת&quot;ל לחם מה לחם מיוחד שהוא משום עבודה יצאו אותן שאינן משום עבודה ע&quot;כ. וע&quot;ש בז&quot;ר:</p>
               </div>
             </div>
@@ -363,6 +409,10 @@
               <a href="#chapter-tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-text-9">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -383,8 +433,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.manifest.json","occurrence_url":"../../data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/tziunei-maharan-on-mishneh-torah-admission-into-the-sanctuary.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -410,7 +460,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

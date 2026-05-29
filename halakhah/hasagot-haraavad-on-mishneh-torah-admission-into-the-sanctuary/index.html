@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/">Open Mishneh Torah, Admission into the Sanctuary</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Admission into the Sanctuary</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">24 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: ToratEmet | Version source: <a href="http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>255 matched</strong> / 494 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -253,8 +254,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:1:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-1-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-1">Mishneh Torah, Admission into the Sanctuary 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל כֹּהֵן הַכָּשֵׁר לַעֲבוֹדָה אִם שָׁתָה יַיִן אָסוּר לוֹ לְהִכָּנֵס מִן הַמִּזְבֵּחַ וּלְפָנִים. וְאִם נִכְנַס וְעָבַד עֲבוֹדָתוֹ פְּסוּלָה וְחַיָּב מִיתָה בִּידֵי שָׁמַיִם שֶׁנֶּאֱמַר <span class="source-small">(ויקרא י ט)</span> &quot;וְלֹא תָמֻתוּ&quot;. וְהוּא שֶׁשָּׁתָה רְבִיעִית יַיִן חַי בְּבַת אַחַת מִיַּיִן שֶׁעָבְרוּ עָלָיו אַרְבָּעִים יוֹם. אֲבָל אִם שָׁתָה פָּחוֹת מֵרְבִיעִית יַיִן. אוֹ שָׁתָה רְבִיעִית וְהִפְסִיק בָּהּ. אוֹ מְזָגָהּ בְּמַיִם. אוֹ שֶׁשָּׁתָה יַיִן מִגִּתּוֹ בְּתוֹךְ אַרְבָּעִים אֲפִלּוּ יֶתֶר מֵרְבִיעִית. פָּטוּר וְאֵינוֹ מְחַלֵּל עֲבוֹדָה. שָׁתָה יֶתֶר מֵרְבִיעִית מִן הַיַּיִן אַף עַל פִּי שֶׁהָיָה מָזוּג וְאַף עַל פִּי שֶׁהִפְסִיק וְשָׁהָה מְעַט מְעַט חַיָּב מִיתָה וּפוֹסֵל הָעֲבוֹדָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ופוסל העבודה.</strong> א&quot;א לא מחוור מן הגמרא שיהא חייב מיתה ויפסול עבודה אלא שהוא באזהרה:</p>
               </div>
             </div>
@@ -269,8 +275,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:5:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-5-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-5">Mishneh Torah, Admission into the Sanctuary 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁתָה כְּדֵי רְבִיעִית בִּלְבַד וְהָיָה בָּהּ מַיִם כָּל שֶׁהוּא. אוֹ יָשַׁן מְעַט אוֹ הָלַךְ כְּדֵי מִיל. כְּבָר עָבַר הַיַּיִן וּמֻתָּר לַעֲבֹד. אֲבָל אִם שָׁתָה יוֹתֵר מֵרְבִיעִית אֲפִלּוּ מָזוּג. שֵׁינַת מְעַט אוֹ הַדֶּרֶךְ מוֹסִיפִין בְּשִׁכְרוּתוֹ. אֶלָּא יִשְׁהֵא לְפִי הַשִּׁכְרוּת עַד שֶׁלֹּא יִשָּׁאֵר מִשִּׁכְרוּתוֹ שׁוּם דָּבָר שֶׁבָּעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> שתה רביעית.</strong> א&quot;א אף זה לא מחוור דפטור קאמרינן אבל מותר לעבוד לא אמרינן אלא שהוא מותר להורות:</p>
               </div>
             </div>
@@ -285,8 +296,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:6:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-6-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-6">Mishneh Torah, Admission into the Sanctuary 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַנְשֵׁי מִשְׁמָר מֻתָּרִין לִשְׁתּוֹת יַיִן בַּלֵּילוֹת אֲבָל לֹא בִּימֵי שַׁבָּתָן. וַאֲפִלּוּ שְׁאָר בָּתֵּי אָבוֹת שֶׁל מִשְׁמָר שֶׁאֵין עֲבוֹדָתָן הַיּוֹם. שֶׁמָּא תִּכְבַּד הָעֲבוֹדָה עַל אַנְשֵׁי בֵּית אָב שֶׁל יוֹם וְיִצְטָרְכוּ לַאֲחֵרִים מֵאַנְשֵׁי מִשְׁמַרְתָּן לְסַיְּעָן. וְאַנְשֵׁי בֵּית אָב שֶׁל אוֹתוֹ הַיּוֹם אֲסוּרִים לִשְׁתּוֹת בֵּין בַּיּוֹם בֵּין בַּלַּיְלָה. שֶׁמָּא יִשְׁתֶּה בַּלַּיְלָה וְיַשְׁכִּים לַעֲבוֹדָתוֹ וַעֲדַיִן לֹא סָר יֵינוֹ מֵעָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ועדיין לא סר יינו מעליו.</strong> א&quot;א אינו מן הטעם הזה אלא מפני שהקטרת אימורין כל הלילה:</p>
               </div>
             </div>
@@ -301,8 +317,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:7:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-7-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-7">Mishneh Torah, Admission into the Sanctuary 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל כֹּהֵן שֶׁיּוֹדֵעַ מֵאֵי זֶה מִשְׁמָר הוּא וּמֵאֵי זֶה בֵּית אָב הוּא וְיוֹדֵעַ שֶׁבָּתֵּי אֲבוֹתָיו קְבוּעִים בַּעֲבוֹדָה [הַיּוֹם] אָסוּר לוֹ לִשְׁתּוֹת יַיִן כָּל אוֹתוֹ הַיּוֹם. הָיָה יוֹדֵעַ מֵאֵי זֶה מִשְׁמָר הוּא וְאֵינוֹ מַכִּיר בֵּית אָב שֶׁלּוֹ אָסוּר לוֹ לִשְׁתּוֹת כָּל אוֹתָהּ שַׁבָּת שֶׁמִּשְׁמַרְתּוֹ עוֹבְדִין בָּהּ. לֹא הָיָה מַכִּיר מִשְׁמַרְתּוֹ וְלֹא בֵּית אֲבוֹתָיו הַדִּין נוֹתֵן שֶׁאָסוּר לִשְׁתּוֹת יַיִן לְעוֹלָם. אֲבָל תַּקָּנָתוֹ קַלְקָלָתוֹ וַהֲרֵי הוּא מֻתָּר לִשְׁתּוֹת תָּמִיד שֶׁאֵינוֹ יָכוֹל לַעֲבֹד עַד שֶׁיִּקָּבַע בְּבֵית אָב שֶׁלּוֹ וּבְמִשְׁמַרְתּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל כהן שיודע וכו׳.</strong> א&quot;א הלכה כרבי שתקנתו קלקלתו שאין עכשיו שעת עבודה ולמהרה יבנה לא חיישינן ובין מכיר ובין שאינו מכיר מותר לשתות יין דסתמא אמר אביי כמאן שתו כהני האידנא חמרא כרבי:</p>
               </div>
             </div>
@@ -317,8 +338,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:7:2</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-7-2" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-7">Mishneh Torah, Admission into the Sanctuary 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל כֹּהֵן שֶׁיּוֹדֵעַ מֵאֵי זֶה מִשְׁמָר הוּא וּמֵאֵי זֶה בֵּית אָב הוּא וְיוֹדֵעַ שֶׁבָּתֵּי אֲבוֹתָיו קְבוּעִים בַּעֲבוֹדָה [הַיּוֹם] אָסוּר לוֹ לִשְׁתּוֹת יַיִן כָּל אוֹתוֹ הַיּוֹם. הָיָה יוֹדֵעַ מֵאֵי זֶה מִשְׁמָר הוּא וְאֵינוֹ מַכִּיר בֵּית אָב שֶׁלּוֹ אָסוּר לוֹ לִשְׁתּוֹת כָּל אוֹתָהּ שַׁבָּת שֶׁמִּשְׁמַרְתּוֹ עוֹבְדִין בָּהּ. לֹא הָיָה מַכִּיר מִשְׁמַרְתּוֹ וְלֹא בֵּית אֲבוֹתָיו הַדִּין נוֹתֵן שֶׁאָסוּר לִשְׁתּוֹת יַיִן לְעוֹלָם. אֲבָל תַּקָּנָתוֹ קַלְקָלָתוֹ וַהֲרֵי הוּא מֻתָּר לִשְׁתּוֹת תָּמִיד שֶׁאֵינוֹ יָכוֹל לַעֲבֹד עַד שֶׁיִּקָּבַע בְּבֵית אָב שֶׁלּוֹ וּבְמִשְׁמַרְתּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> עד שיקבע בבית אב שלו.</strong> א&quot;א כמה דבריו חלושים וקלושים וכי כשיבנה בית המקדש לא יהיה שם מצרף ומטהר ומודיע המשמרות הראויות ושבתם ויומם ואי זה שהות יהיה שם לקביעותם:</p>
               </div>
             </div>
@@ -333,8 +359,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:10:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-10-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-10">Mishneh Torah, Admission into the Sanctuary 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁאֵין הַכֹּהֲנִים מֻזְהָרִין עַל הַיַּיִן אֶלָּא בִּשְׁעַת בִּיאָה לַמִּקְדָּשׁ כָּךְ אֵין אֲסוּרִין לְגַדֵּל פֶּרַע אֶלָּא בִּשְׁעַת בִּיאָה לַמִּקְדָּשׁ. בַּמֶּה דְּבָרִים אֲמוּרִים בְּכֹהֵן הֶדְיוֹט. אֲבָל כֹּהֵן גָּדוֹל אָסוּר לְגַדֵּל פֶּרַע וְלִקְרֹעַ בְּגָדָיו לְעוֹלָם. שֶׁהֲרֵי תָּמִיד הוּא בַּמִּקְדָּשׁ. וּלְכָךְ נֶאֱמַר בּוֹ <span class="source-small">(ויקרא כא י)</span> &quot;אֶת רֹאשׁוֹ לֹא יִפְרָע וּבְגָדָיו לֹא יִפְרֹם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אלא בשעת ביאה.</strong> א&quot;א ליתיה להאי כללא שאפילו שלא בשעת ביאה אסור לגדל פרע שהרי חייב להסתפר משלשים יום לשלשים יום כדכתיב ופרע לא ישלחו. (ביאה למקדש פירוש במשמרתם):</p>
               </div>
             </div>
@@ -349,8 +380,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:15:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-15-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-15">Mishneh Torah, Admission into the Sanctuary 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵרָאֶה לִי שֶׁכָּל כֹּהֵן הַכָּשֵׁר לַעֲבוֹדָה אִם נִכְנַס מִן הַמִּזְבֵּחַ וְלִפְנִים וְהוּא שְׁתוּי יַיִן אוֹ שִׁכּוֹר מִשְּׁאָר הַמְשַׁכְּרִין אוֹ פְּרוּעַ רֹאשׁ אוֹ קְרוּעַ בְּגָדִים כְּדֶרֶךְ שֶׁקּוֹרְעִין עַל הַמֵּתִים אַף עַל פִּי שֶׁלֹּא עָבַד עֲבוֹדָה הֲרֵי זֶה לוֹקֶה. הוֹאִיל וְהוּא רָאוּי לַעֲבוֹדָה וְנִכְנָס בִּשְׁעַת הָעֲבוֹדָה מְנֻוָּל כָּכָה וַהֲרֵי הוּא מֻזְהָר שֶׁלֹּא יִכָּנֵס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מן המזבח ולפנים.</strong> א&quot;א זה לא מצאתיו אלא כשהוא קרב למזבח שכך שנו בתורת כהנים בבאכם אל אהל מועד [אין לי אלא אוהל מועד מנין לעשות מזבח כאהל מועד] ת&quot;ל אתה ובניך אתך וגו׳ וכן יציאה כביאה מאתך מ&quot;מ מזבח קאמר אבל לפנים מן המזבח מעלות דרבנן הם ואין בהן מלקות ולא מיתה:</p>
               </div>
             </div>
@@ -365,8 +401,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 1:16:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-1-16-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 1:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-1-16">Mishneh Torah, Admission into the Sanctuary 1:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְדִין הַנִּכְנָס כָּכָה מִן הַמִּזְבֵּחַ וְלִפְנִים וְדִין הַיּוֹצֵא מִשָּׁם אֶחָד הוּא. כֵּיצַד. כְּגוֹן שֶׁשָּׁתָה רְבִיעִית יַיִן בֵּין הָאוּלָם וְלַמִּזְבֵּחַ אוֹ קָרַע בְּגָדָיו שָׁם וְיָצָא לוֹקֶה. וְכֵן אִם עָבַד בִּיצִיאָתוֹ חַיָּב מִיתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כגון ששתה רביעית יין.</strong> א&quot;א אם לדבריו אין צורך שישתה היין בין האולם למזבח ומה שאמרו בתורת כהנים מנין אף ביציאה לומר שאף אם שתה בחוץ ונכנס להיכל חייב דה&quot;ק רחמנא בזמן ביאה לא תהא שכרות בהיכל ובמזבח מיתה נמי איכא בשתוי יין:</p>
               </div>
             </div>
@@ -382,8 +423,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 2:5:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-2-5-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-2-5">Mishneh Torah, Admission into the Sanctuary 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֹּהֵן שֶׁיָּצָא מִן הַמִּקְדָּשׁ בִּשְׁעַת הָעֲבוֹדָה בִּלְבַד חַיָּב מִיתָה בֵּין כֹּהֵן גָּדוֹל בֵּין כֹּהֵן הֶדְיוֹט שֶׁנֶּאֱמַר <span class="source-small">(ויקרא י ז)</span> &quot;וּמִפֶּתַח אֹהֶל מוֹעֵד לֹא תֵצְאוּ פֶּן תָּמֻתוּ&quot;. כְּלוֹמַר לֹא תָּנִיחוּ עֲבוֹדָה וְתֵצְאוּ מְבֹהָלִים וּדְחוּפִים מִפְּנֵי גְּזֵרָה זוֹ. וְכֵן זֶה שֶׁנֶּאֱמַר בְּכֹהֵן גָּדוֹל <span class="source-small">(ויקרא כא יב)</span> &quot;וּמִן הַמִּקְדָּשׁ לֹא יֵצֵא&quot; אֵינוֹ אֶלָּא בִּשְׁעַת הָעֲבוֹדָה בִּלְבַד שֶׁלֹּא יָנִיחַ עֲבוֹדָתוֹ וְיֵצֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בין כהן הדיוט.</strong> א&quot;א תימה גדול הוא זה שלא נאמר אותו פסוק אלא לאותה שעה בשביל שנמשחו בניו ומה שאמרו בתורת כהנים מנין לכהנים שבכל הדורות לכהנים הגדולים שבכל הדורות קאמר שהרי שמן משחת קדש הוא מרבה אותם:</p>
               </div>
             </div>
@@ -398,8 +444,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 2:6:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-2-6-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-2-6">Mishneh Torah, Admission into the Sanctuary 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִם כֵּן מִפְּנֵי מָה נִשְׁנֵית אַזְהָרָה זוֹ בְּכֹהֵן גָּדוֹל. שֶׁכֹּהֵן הֶדְיוֹט שֶׁהָיָה בַּמִּקְדָּשׁ בַּעֲבוֹדָתוֹ וְשָׁמַע שֶׁמֵּת לוֹ מֵת שֶׁהוּא חַיָּב לְהִתְאַבֵּל עָלָיו אַף עַל פִּי שֶׁאֵינוֹ יוֹצֵא מִן הַמִּקְדָּשׁ אֵינוֹ עוֹבֵד מִפְּנֵי שֶׁהוּא אוֹנֵן וְאִם עָבַד וְהוּא אוֹנֵן שֶׁל תּוֹרָה חִלֵּל עֲבוֹדָתוֹ בֵּין בְּקָרְבַּן יָחִיד בֵּין בְּקָרְבַּן צִבּוּר. אֲבָל כֹּהֵן גָּדוֹל עוֹבֵד כְּשֶׁהוּא אוֹנֵן שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כא יב)</span> &quot;וּמִן הַמִּקְדָּשׁ לֹא יֵצֵא וְלֹא יְחַלֵּל&quot; כְּלוֹמַר יֵשֵׁב וְיַעֲבֹד עֲבוֹדָה שֶׁהָיָה עוֹסֵק בָּהּ וְאֵינָהּ מִתְחַלֶּלֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אע&quot;פ שאינו יוצא.</strong> א&quot;א וכיון שהוא חייב להתאבל עליו למה אינו יוצא ודאי יוצא ומטמא בעל כרחו:</p>
               </div>
             </div>
@@ -415,8 +466,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 3:9:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-3-9-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-3-9">Mishneh Torah, Admission into the Sanctuary 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִכְנַס הַמְצֹרָע לְהַר הַבַּיִת לוֹקֶה שְׁמוֹנִים. אֲבָל טְמֵא מֵת אוֹ טְבוּל יוֹם שֶׁנִּכְנַס לְעֶזְרַת נָשִׁים אוֹ מְחֻסַּר כִּפּוּרִים שֶׁנִּכְנַס לְעֶזְרַת יִשְׂרָאֵל אַף עַל פִּי שֶׁאֵינוֹ לוֹקֶה מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> או מחוסר כפורים.</strong> א&quot;א זה שבוש דמחוסר כפורים שנכנס למחנה שכינה דהיינו משער נקנור ולפנים יש בו כרת ובתוס׳ דכלים תניא כל הטמאים שנכנסו לפנים משער ניקנור אפילו הם מחוסרי כפרה הרי אלו חייבין על זדונן כרת ועל שגגתן חטאת:</p>
               </div>
             </div>
@@ -431,8 +487,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 3:13:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-3-13-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 3:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-3-13">Mishneh Torah, Admission into the Sanctuary 3:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זֶהוּ הַטָּמֵא שֶׁחַיָּב כָּרֵת עַל הַמִּקְדָּשׁ כָּל שֶׁנִּטְמָא בְּטֻמְאָה מִן הַמֵּת שֶׁהַנָּזִיר מְגַלֵּחַ עָלֶיהָ שֶׁכְּבָר נִתְפָּרֵשׁ בִּנְזִירוּת. אוֹ שֶׁיִּגַּע בָּאָדָם אוֹ בְּכֵלִים שֶׁנִּטְמְאוּ בְּאוֹתָן הַטֻּמְאוֹת שֶׁהַנָּזִיר מְגַלֵּחַ עֲלֵיהֶם שֶׁהֲרֵי הוּא שֵׁנִי לָרִאשׁוֹן שֶׁנָּגַע בְּמֵת. אוֹ שֶׁנִּטְמָא בִּשְׁאָר אֲבוֹת הַטֻּמְאוֹת שֶׁל תּוֹרָה שֶׁיִּתְפָּרְשׁוּ בִּמְקוֹמָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> או שיגע באדם.</strong> א&quot;א שבוש הוא זה שאין הנזיר מגלח על מגע כלים שנגעו במת ואפילו של חרב וכן אינו חייב על מגען על ביאת מקדש:</p>
               </div>
             </div>
@@ -447,8 +508,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 3:14:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-3-14-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 3:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-3-14">Mishneh Torah, Admission into the Sanctuary 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּלָלוֹ שֶׁל דָּבָר כָּל הַטָּעוּן בִּיאַת מַיִם מִן הַתּוֹרָה חַיָּב כָּרֵת עַל בִּיאַת הַמִּקְדָּשׁ וַאֲפִלּוּ אַחַר שֶׁטָּבַל עַד שֶׁיַּעֲרִיב שִׁמְשׁוֹ. אֲבָל הַמִּתְטַמֵּא בְּטֻמְאוֹת מִן הַמֵּת שֶׁאֵין הַנָּזִיר מְגַלֵּחַ עֲלֵיהֶן אַף עַל פִּי שֶׁהוּא טָמֵא טֻמְאַת שִׁבְעָה הֲרֵי זֶה פָּטוּר עַל בִּיאַת הַמִּקְדָּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל הטעון ביאת מים.</strong> א&quot;א דבריו סותרין זה את זה:</p>
               </div>
             </div>
@@ -463,8 +529,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 3:16:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-3-16-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 3:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-3-16">Mishneh Torah, Admission into the Sanctuary 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּכְנִיס שֶׁרֶץ וְכַיּוֹצֵא בּוֹ בַּמִּקְדָּשׁ אוֹ שֶׁהִכְנִיס אָדָם טָמֵא לַמִּקְדָּשׁ הֲרֵי זֶה חַיָּב כָּרֵת שֶׁהֲרֵי טִמֵּא מִקְדַּשׁ ה׳. אֲבָל הַזּוֹרֵק כֵּלִים טְמֵאִים לַמִּקְדָּשׁ אֲפִלּוּ הָיוּ כֵּלִים שֶׁנָּגְעוּ בְּמֵת פָּטוּר מִן הַכָּרֵת. אֲבָל חַיָּב מַלְקוֹת שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יז טז)</span> &quot;וְאִם לֹא יְכַבֵּס&quot; וְגוֹ׳ מִפִּי הַשְּׁמוּעָה לָמְדוּ עַל רְחִיצַת גּוּפוֹ עָנוּשׁ כָּרֵת וְעַל כִּבּוּס בְּגָדָיו לוֹקֶה אַרְבָּעִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ועל כיבוס בגדיו לוקה ארבעים.</strong> א&quot;א ומאחר שעל כבוס בגדים אין בו כרת המכניס כלי טמא למקדש למה ענוש כרת על כן אני אומר מה שאמר שמואל במסכת עירובין המכניס טמא שרץ למקדש חייב מלקות קאמר ומה שאמר בסוף יראה לי שאינו לוקה אלא על בגדים שהן אב הטומאה והלא טמא שרץ אינו אב הטומאה וחייב סוף דבר צריך לדקדק אחריו:</p>
               </div>
             </div>
@@ -479,8 +550,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 3:18:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-3-18-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 3:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-3-18">Mishneh Torah, Admission into the Sanctuary 3:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן טָמֵא שֶׁהִכְנִיס יָדוֹ לַמִּקְדָּשׁ מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת. וְכֵן כָּל טָמֵא בְּאָב מֵאֲבוֹת הַטֻּמְאוֹת שֶׁל דִּבְרֵיהֶם אוֹ שֶׁאָכַל אֳכָלִין טְמֵאִים וְשָׁתָה מַשְׁקִין טְמֵאִין וְנִכְנַס לַמִּקְדָּשׁ בְּמֵזִיד קֹדֶם שֶׁיִּטְבּל מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן טמא שהכניס וכו׳.</strong> א&quot;א שמעתין דזבחים קשיא עליה דעולא אמר ריש לקיש טמא שהכניס ידו למקדש לוקה ואמרי׳ התם עשה שיש בו כרת הוא ואי משום שמעתא דמסכת יומא אדרבה מהתם משמע דאפילו בטבילת מעלות אמרינן ביאה במקצת שמה ביאה דהא בעי טבילה לכהנות (ואפילו פטור מכרת מלקין אותו):</p>
               </div>
             </div>
@@ -496,8 +572,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 4:4:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-4-4-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-4-4">Mishneh Torah, Admission into the Sanctuary 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן טָמֵא שֶׁטָּבַל וְעָבַד קֹדֶם שֶׁיַּעֲרִיב שִׁמְשׁוֹ עֲבוֹדָתוֹ פְּסוּלָה וְחַיָּב מִיתָה בִּידֵי שָׁמַיִם שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כא ו)</span> &quot;וְלֹא יְחַלְּלוּ שֵׁם אֱלֹהֵיהֶם&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזּוֹ אַזְהָרָה לִטְבוּל יוֹם שֶׁעָבַד שֶׁעֲדַיִן טָמֵא הוּא שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב ז)</span> &quot;וּבָא הַשֶּׁמֶשׁ וְטָהֵר&quot; מִכְּלַל שֶׁעֲדַיִן לֹא טָהֵר. אֲבָל מְחֻסַּר כִּפּוּרִים שֶׁעָבַד אַף עַל פִּי שֶׁעֲבוֹדָתוֹ פְּסוּלָה וְחִלֵּל הֲרֵי זֶה פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וחייב מיתה בידי שמים.</strong> א&quot;א כיון שטבול יום שנכנס למקדש בכרת היכי משכחת לה טבול יום ששימש במיתה והא איכא נמי כרת בשביל ביאת מקדש ואיני מוצא אותו אלא בבמה אי נמי שעשה בית יד ארוכה לצינורא והיפך באיברים מבחוץ:</p>
               </div>
             </div>
@@ -512,8 +593,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 4:4:2</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-4-4-2" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 4:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-4-4">Mishneh Torah, Admission into the Sanctuary 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן טָמֵא שֶׁטָּבַל וְעָבַד קֹדֶם שֶׁיַּעֲרִיב שִׁמְשׁוֹ עֲבוֹדָתוֹ פְּסוּלָה וְחַיָּב מִיתָה בִּידֵי שָׁמַיִם שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כא ו)</span> &quot;וְלֹא יְחַלְּלוּ שֵׁם אֱלֹהֵיהֶם&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזּוֹ אַזְהָרָה לִטְבוּל יוֹם שֶׁעָבַד שֶׁעֲדַיִן טָמֵא הוּא שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב ז)</span> &quot;וּבָא הַשֶּׁמֶשׁ וְטָהֵר&quot; מִכְּלַל שֶׁעֲדַיִן לֹא טָהֵר. אֲבָל מְחֻסַּר כִּפּוּרִים שֶׁעָבַד אַף עַל פִּי שֶׁעֲבוֹדָתוֹ פְּסוּלָה וְחִלֵּל הֲרֵי זֶה פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וחילל ה&quot;ז פטור.</strong> א&quot;א והא אמרינן במכות עוד טומאתו בו לרבות מחוסר כיפורים ועוד מבהונות של מצורע דאמרינן בזבחים עשה שיש בו כרת הוא וכל שכן בביאת כולו ועוד וטהרה כתיב ביולדת מכלל דעד השתא טמאה היא ואמרינן בזבחים מחוסר כפורים דזב כזב דמי ובתוספתא דזבחים מונה אותו עם אותן שבמיתה:</p>
               </div>
             </div>
@@ -529,8 +615,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 5:11:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-5-11-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-5-11">Mishneh Torah, Admission into the Sanctuary 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִטְבִּיל יָדָיו וְרַגְלָיו בְּמֵי מִקְוֶה אֲפִלּוּ בְּמַעְיָן אֵין זֶה קִדּוּשׁ כְּלָל עַד שֶׁיִּרְחַץ בִּכְלִי. וּבְכָל כְּלֵי הַקֹּדֶשׁ מְקַדְּשִׁין בֵּין שֶׁיֵּשׁ בָּהֶן רְבִיעִית בֵּין שֶׁאֵין בָּהֶן רְבִיעִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בין שאין בהן (כדי) רביעית.</strong> א&quot;א ובקודח מן הכיור שיש בו לקדש ממנו ד׳ כהנים:</p>
               </div>
             </div>
@@ -546,8 +637,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 7:5:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-7-5-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-7-5">Mishneh Torah, Admission into the Sanctuary 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁמוֹנָה בָּעַיִן וְאֵלּוּ הֵן. הָעִוֵּר בֵּין בְּאֶחָד מֵעֵינָיו בֵּין מִשְּׁתֵּיהֶן. מִי שֶׁאֵינוֹ רוֹאֶה בִּשְׁתֵּי עֵינָיו אוֹ בְּאַחַת מֵהֶן. אַף עַל פִּי שֶׁאֵין נִרְאָה בָּהֶן שִׁנּוּי כְּלָל מֵחֲמַת שֶׁיָּרְדוּ מַיִם קְבוּעִים כְּנֶגֶד רוֹאוֹתָיו. מִי שֶׁאֵינוֹ רוֹאֶה בְּעֵינָיו אוֹ בְּאַחַת מֵהֶן רְאִיָּה בְּרוּרָה מֵחֲמַת שֶׁהָיָה בָּהּ סַנְוֵרִים קְבוּעִים. מִי שֶׁבְּעֵינוֹ כְּמוֹ עֵנָב אַף עַל פִּי שֶׁהוּא רוֹאֶה. מִי שֶׁיָּצָא בָּשָׂר יָתֵר בְּעֵינוֹ עַד שֶׁחִפָּה מְעַט מִן הַשָּׁחֹר שֶׁל עַיִן. מִי שֶׁנִּמְשַׁךְ הַלֹּבֶן שֶׁל עַיִן וְנִכְנַס מִמֶּנּוּ מְעַט בַּשָּׁחֹר עַד שֶׁנִּמְצָא הַשָּׁחֹר מְעֹרָב בַּלֹּבֶן וְהוּא <span class="source-small">(ויקרא כא כ)</span> &quot;תְּבַלֻּל&quot; הָאָמוּר בַּתּוֹרָה. אֲבָל אִם יָצָא מִן הַשָּׁחֹר לְתוֹךְ הַלָּבָן אֵינוֹ מוּם שֶׁאֵין מוּמִין בְּלָבָן. מִי שֶׁהָיְתָה נְקֻדָּה לְבָנָה בְּתוֹךְ הַשָּׁחֹר וְזֶהוּ <span class="source-small">(ויקרא כא כ)</span> &quot;דַּק&quot; הָאָמוּר בַּתּוֹרָה וְהוּא שֶׁתִּהְיֶה צָפָה עַל גַּבֵּי הַשָּׁחֹר. אֲבָל אִם לֹא הָיְתָה צָפָה אוֹ שֶׁהָיְתָה מְשֻׁקַּעַת בְּשָׁחֹר אֵינוֹ מוּם. וְכֵן אִם הָיְתָה נְקֻדָּה שְׁחֹרָה בְּתוֹךְ הַלֹּבֶן אֲפִלּוּ צָפָה אֵינוֹ מוּם שֶׁאֵין מוּמִים בְּלָבָן. הָיְתָה נְקֻדָּה שְׁחוֹרָה שׁוֹקַעַת בְּתוֹךְ הַשָּׁחֹר אַף זֶה נִקְרָא דַּק. אֲבָל אִם הָיְתָה צָפָה הוֹאִיל וְהִיא שְׁחֹרָה בְּשָׁחֹר אֵינוֹ מוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מי שיצא בשר יתר בעיניו.</strong> א&quot;א לא ידעתי אם עשה זה כנגד חלזון האמור במשנה בצד עיניו ואינו נראה כן שאם היה בו בשר יתר הוא יבלת בעינו האמור למטה במשנה וחלזון הוא שורה אדמימות העוברת בשחור:</p>
               </div>
             </div>
@@ -563,8 +659,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 8:1:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-8-1-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-8-1">Mishneh Torah, Admission into the Sanctuary 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמּוּמִין הַמְיֻחָדִין בָּאָדָם תִּשְׁעִים וְזֶהוּ פְּרָטָן. שְׁמוֹנָה בָּרֹאשׁ וְאֵלּוּ הֵן. מִי שֶׁאֶמְצַע קָדְקֳדוֹ שׁוֹקֵעַ לְמַטָּה כְּמוֹ שֶׁדְּחָקוֹ בְּיָדוֹ. מִי שֶׁאֶמְצַע קָדְקֳדוֹ עוֹלֶה לְמַעְלָה כְּמוֹ בֵּיצָה. מִי שֶׁפְּאַת רֹאשׁוֹ יוֹצֵא כְּנֶגֶד פָּנָיו כְּמוֹ מַקֶּבֶת. מִי שֶׁרֹאשׁוֹ יוֹצֵא מֵאֲחוֹרָיו כְּנֶגֶד עָרְפּוֹ. מִי שֶׁרֹאשׁוֹ רָחָב וְיוֹצֵא מִכָּאן וּמִכָּאן עַד שֶׁתִּמְצָא רֹאשׁוֹ עַל צַוָּארוֹ כְּמוֹ רֹאשׁ הַלֶּפֶת עַל הֶעָלִין שֶׁלּוֹ. הַקֵּרֵחַ שֶׁאֵין בְּכָל רֹאשׁוֹ שֵׂעָר כָּל עִקָּר. וְאִם יֵשׁ בּוֹ שִׁיטָה שֶׁל שֵׂעָר מֻקֶּפֶת מֵאֲחוֹרָיו מֵאֹזֶן לְאֹזֶן כָּשֵׁר. מִי שֶׁהָיָה הַשֵּׂעָר מַקִּיף מֵאֹזֶן לְאֹזֶן מִלְּפָנָיו בִּלְבַד וּשְׁאָר הָרֹאשׁ קֵרֵחַ הוּא הֲרֵי הוּא פָּסוּל. מִי שֶׁהָיָה הַשֵּׂעָר שֶׁלּוֹ מַקִּיף אֶת כָּל הָרֹאשׁ סָבִיב מִלְּפָנָיו וּמֵאַחֲרָיו וְאֵין שָׁם שֵׂעָר בְּאֶמְצַע גַּם זֶה קֵרֵחַ וּפָסוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מי שאמצע [קדקדו עולה למעלה].</strong> א&quot;א דומה שלא בא זה אלא לערבב את העולם שלא תפס דרך הגמרא ופרטיו לא באו דרך הגמרא:</p>
               </div>
             </div>
@@ -579,8 +680,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 8:13:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-8-13-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 8:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-8-13">Mishneh Torah, Admission into the Sanctuary 8:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲמִשָּׁה עָשָׂר בַּשּׁוֹקַיִם וּבָרַגְלַיִם וְאֵלּוּ הֵן. מִי שֶׁשּׁוֹקָיו עֲקֻמּוֹת עַד שֶׁמְּחַבֵּר רֶגֶל לְרֶגֶל וְאֵין אַרְכֻּבּוֹתָיו נוֹגְעוֹת זוֹ בְּזוֹ. מִי שֶׁפִּיקָתוֹ יוֹצֵאת וְהַפִּיקָה הִיא הָעֶצֶם הֶעָגל שֶׁלְּמַעְלָה מִן הֶעָקֵב מִצַּד פְּנִים וְהוּא דּוֹמֶה לְפִיקָה שֶׁטּוֹוֹת בָּהּ הַנָּשִׁים. מִי שֶׁעֲקֵבוֹ יוֹצֵא לַאֲחוֹרָיו עַד שֶׁנִּמְצָא הַשּׁוֹק כְּאִלּוּ הוּא בְּאֶמְצַע רַגְלוֹ עוֹמֵד. מִי שֶׁפַּרְסוֹתָיו רְחָבוֹת כְּשֶׁל אַוָּז אַף עַל פִּי שֶׁאֵינָן קְלוּטוֹת כְּשֶׁל אַוָּז. מִי שֶׁפִּיקָה יוֹצְאָה מִגּוּדָלוֹ. מִי שֶׁיֵּשׁ בְּרַגְלוֹ אֶצְבַּע יְתֵרָה אֲפִלּוּ שֵׁשׁ וְשֵׁשׁ. וְאִם חֲתָכָהּ כָּשֵׁר וְהוּא שֶׁלֹּא יִהְיֶה בָּהּ עֶצֶם. מִי שֶׁחָסֵר אַחַת מֵאֶצְבְּעוֹת רַגְלָיו. מִי שֶׁאֶצְבְּעוֹתָיו מֻרְכָּבוֹת זוֹ עַל גַּבֵּי זוֹ. מִי שֶׁהָיוּ אֶצְבְּעוֹת רַגְלָיו קְלוּטוֹת עַד לְמַטָּה מִן הַפֶּרֶק. וְאִם הָיוּ עַד הַפֶּרֶק אוֹ שֶׁחֲתָכָן וְהִפְרִישָׁן כָּשֵׁר. מִי שֶׁרַגְלוֹ כֻּלָּהּ שָׁוָה שֶׁנִּמְצָא רֹחַב פַּס אֶצְבְּעוֹתָיו כְּרֹחַב עֲקֵבוֹ וּכְאִלּוּ הִיא חֲתִיכָה שָׁוָה. מִי שֶׁרַגְלוֹ עֲקוּמָה דּוֹמָה לְמַגָּל שֶׁנִּמְצָא פַּס רַגְלוֹ שֶׁיֵּשׁ בּוֹ הָאֶצְבָּעוֹת עִם עֲקֵבוֹ כְּאִלּוּ הֵם שְׁנֵי רָאשֵׁי הַקֶּשֶׁת. מִי שֶׁרַגְלוֹ חֲלוּלָה וְהוּא שֶׁיִּהְיֶה אֶמְצָעָהּ גָּבוֹהַּ מֵעַל הָאָרֶץ וְנִמְצָא כְּשֶׁעוֹמֵד עוֹמֵד עַל עֲקֵבוֹ וְעַל אֶצְבְּעוֹת רַגְלָיו. הַמַּקִּישׁ בְּקַרְסֻלָּיו בְּעֵת שֶׁמְּהַלֵּךְ. מִי שֶׁמַּקִּישׁ בְּאַרְכֻּבּוֹתָיו בְּעֵת שֶׁמְּהַלֵּךְ. מִי שֶׁהוּא אִטֵּר בְּרֶגֶל יְמִינוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בשוקים וברגלים עד שלמעלה מן העקב.</strong> א&quot;א המשנה אמרה פיקה יוצא מגודלו והוא פירש למעלה הפיקין והוא מסבב אותה לענין אחר ובלע&quot;ז קורין אותו גלוטא ובעל הפיקין פירש בגמרא שיש לו כסתות הרבה והם עגבות והשופנר שאין לו כל עיקר והוא אינו מונה אותו ודומה שכל דבר שיש לו עוגל גדול קורא אותו פיקה כמו שאמרו עד פיקה של גרגרת עד שיעגילו ראש כפיקה של ערב ופיקה משרש פקעיות:</p>
               </div>
             </div>
@@ -596,8 +702,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 9:7:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-9-7-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 9:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-9-7">Mishneh Torah, Admission into the Sanctuary 9:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן הַדְלָקַת הַנֵּרוֹת כְּשֵׁרָה בְּזָרִים לְפִיכָךְ אִם הֵטִיב הַכֹּהֵן אֶת הַנֵּרוֹת וְהוֹצִיאָן לַחוּץ מֻתָּר לְזָר לְהַדְלִיקָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> והוציאן לחוץ מותר וכו׳.</strong> א&quot;א הפליג כשאמר מותר לזר להדליקן אלא שאם הדליקן כשירות:</p>
               </div>
             </div>
@@ -612,8 +723,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 9:11:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-9-11-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 9:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-9-11">Mishneh Torah, Admission into the Sanctuary 9:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֹּהֵן טְבוּל יוֹם וּמְחֻסַּר כִּפּוּרִים שֶׁנִּטְמָא וַהֲרֵי הוּא מְחֻסַּר בְּגָדִים וְשֶׁלֹּא רָחוּץ יָדַיִם וְרַגְלַיִם וְעָבַד חַיָּב עַל כָּל אֶחָד וְאֶחָד. וְאִם הָיָה זָר אֵינוֹ לוֹקֶה אֶלָּא אַחַת מִשּׁוּם זָרוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ועבד חייב.</strong> א&quot;א בתוספתא (פי&quot;ב) דזבחים כהן שעבד טמא טבול יום מחוסר בגדים ושלא רחוץ ידים ורגלים אינו חייב אלא אחת ואפשר דפליגי תנאי באיסור כולל ואיסור בת אחת:</p>
               </div>
             </div>
@@ -628,8 +744,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Hasagot HaRa&#39;avad on Mishneh Torah, Admission into the Sanctuary 9:12:1</h4></div>
               <a class="anchor" href="#hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-9-12-1" aria-label="Copy link to Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary 9:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-admission-into-the-sanctuary/#mishneh-torah-admission-into-the-sanctuary-9-12">Mishneh Torah, Admission into the Sanctuary 9:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָר שֶׁשִּׁמֵּשׁ בְּשַׁבָּת חַיָּב מִשּׁוּם שַׁבָּת וּמִשּׁוּם זָרוּת. וְכֵן בַּעַל מוּם שֶׁשִּׁמֵּשׁ בְּטֻמְאָה חַיָּב מִשּׁוּם טֻמְאָה וּמִשּׁוּם בַּעַל מוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן בעל מום.</strong> א&quot;א שתיהן שבאו עליו בבת אחת זר ששימש בשבת שהביא שתי שערות בשבת בעל מום שחתך אצבעו בסכין טמאה:</p>
               </div>
             </div>
@@ -639,6 +760,10 @@
               <a href="#chapter-hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-text-9">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -659,8 +784,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.manifest.json","occurrence_url":"../../data/lexical/occurrences/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/hasagot-haraavad-on-mishneh-torah-admission-into-the-sanctuary.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -686,7 +811,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

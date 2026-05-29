@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-borrowing-and-deposit/">Open Mishneh Torah, Borrowing and Deposit</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Borrowing and Deposit</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">21 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>289 matched</strong> / 732 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -250,8 +251,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-1">Mishneh Torah, Borrowing and Deposit 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כֵּלִים אוֹ בְּהֵמָה וְכַיּוֹצֵא בָּהֶן מִשְּׁאָר מִטַּלְטְלִין מֵחֲבֵרוֹ וְאָבַד אוֹ נִגְנַב אֲפִלּוּ נֶאֱנַס אֹנֶס גָּדוֹל כְּגוֹן שֶׁנִּשְׁבְּרָה הַבְּהֵמָה אוֹ נִשְׁבֵּית אוֹ מֵתָה חַיָּב לְשַׁלֵּם הַכּל שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יג)</span> &quot;וְכִי יִשְׁאַל אִישׁ מֵעִם רֵעֵהוּ&quot; וְגוֹ׳ <span class="source-small">(שמות כב יג)</span> &quot;וְנִשְׁבַּר אוֹ מֵת בְּעָלָיו אֵין עִמּוֹ שַׁלֵּם יְשַׁלֵּם&quot;. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁנֶּאֱנַס שֶׁלֹּא בִּשְׁעַת מְלָאכָה. אֲבָל אִם שָׁאַל בְּהֵמָה מֵחֲבֵרוֹ לַחְרשׁ בָּהּ וּמֵתָה כְּשֶׁהִיא חוֹרֶשֶׁת הֲרֵי זֶה פָּטוּר. אֲבָל אִם מֵתָה קֹדֶם שֶׁיַּחֲרשׁ בָּהּ אוֹ אַחַר שֶׁחָרַשׁ בָּהּ אוֹ שֶׁרָכַב עָלֶיהָ אוֹ דָּשׁ בָּהּ וּמֵתָה כְּשֶׁהִיא דָּשָׁה אוֹ בִּשְׁעַת רְכִיבָה הֲרֵי זֶה חַיָּב לְשַׁלֵּם. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְכֵן הַשּׁוֹאֵל בְּהֵמָה מֵחֲבֵרוֹ לֵילֵךְ בָּהּ לְמָקוֹם פְּלוֹנִי וּמֵתָה תַּחְתָּיו בְּאוֹתָהּ הַדֶּרֶךְ. אוֹ שֶׁשָּׁאַל דְּלִי לְמַלְּאוֹת בּוֹ וְנִקְרַע בַּבּוֹר בִּשְׁעַת מִלּוּי. אוֹ שֶׁשָּׁאַל קַרְדֹּם לְפַצֵּל בּוֹ עֵצִים וְנִשְׁבַּר בְּעֵת שֶׁפִּצֵּל בּוֹ מֵחֲמַת הַבִּקּוּעַ. וְכָל כַּיּוֹצֵא בָּזֶה. הֲרֵי זֶה פָּטוּר שֶׁלֹּא שָׁאַל אֶלָּא לַעֲשׂוֹת בּוֹ מְלָאכָה זוֹ וַהֲרֵי לֹא שִׁנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מצות ריד </strong> לדון בדין שואל כדכתיב כי ישאל איש מעם רעהו וגו׳. השואל שאבד או נגנב או אפילו נאנס מה שהשאילו לו חייב לשלם הכל כדכתיב בהאי קרא או נשבר או מת שלם ישלם ואם נאנסה בשעת מלאכה או מחמת המלאכה פטור דלאו לאוקומה בכילתא שאילתא כדאמרי׳ בגמרא. טען שמתה מחמת מלאכה אם היה במקום שבני אדם מצוין יביא ראיה כאיסי דסוף פרק האומנין אין רואה שבועת ה׳ הא יש רואה יביא עדים שלא שינה ומתה מחמת המלאכה כדאמר׳.</p>
               </div>
             </div>
@@ -266,8 +272,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-3">Mishneh Torah, Borrowing and Deposit 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ וְנִשְׁבַּר שָׁמִין לוֹ כְּדֶרֶךְ שֶׁשָּׁמִין בִּנְזָקִין. אוֹמְדִין כַּמָּה הָיָה שָׁוֶה שָׁלֵם וְכַמָּה הוּא שָׁוֶה עַתָּה וּמַחֲזִיר לוֹ הַכְּלִי אוֹ הַבְּהֵמָה הַשְּׁבוּרָה וּמְשַׁלֵּם הַפְּחָת. וְכֵן אִם מֵתָה הַבְּהֵמָה מַחְזִיר הַנְּבֵלָה וּמְשַׁלֵּם הַפְּחָת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמין </strong> לשואל כשנשבר כלי ששאל כמו לנזקין וכן אם מתה הבהמה פחת נבלה לניזק כדאמר׳ פ&quot;ק דב&quot;ק תשלומי נזק מלמד שהבעלים מטפלין בנבלה וכדילפינן התם מוהמת יהיה לו לניזק וקראי אחריני דמייתי התם וצריכי כולהו כדאיתא התם דף י׳.</p>
               </div>
             </div>
@@ -282,8 +293,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-4">Mishneh Torah, Borrowing and Deposit 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל בְּהֵמָה חַיָּב בִּמְזוֹנוֹתֶיהָ מִשָּׁעָה שֶׁמְּשָׁכָהּ עַד סוֹף יְמֵי שְׁאֵלָתָהּ. וְאִם כָּחַשׁ בְּשָׂרָהּ חַיָּב לְשַׁלֵּם מַה שֶּׁפָּחֲתָה בְּדָמֶיהָ. כָּחַשׁ בְּשָׂרָהּ מֵחֲמַת הַמְּלָאכָה פָּטוּר וְיִשָּׁבַע שְׁבוּעַת הַשּׁוֹמְרִין שֶׁמֵּחֲמַת מְלָאכָה כָּחֲשָׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושואל </strong> חייב במזונותיה משעת משיכתה עד סוף ימי שאלתה [דאפילו שוכר חייב במזונו׳ כל שכן שואל דכל הנאה שלו, דמשום דשוכר חייב במזונו׳ משעת שכירות הוא דלוקה כשהוא חוסם אותה ולא אמרינן אין אדם לוקה ומשלם דקודם שבא לידי מלקות בא לידי תשלומין] וכחש בשרה מחמת מלאכה פטור דלאו לאוקומא בכילתא שאילתא כדאמר׳ לעיל.</p>
               </div>
             </div>
@@ -298,8 +314,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-5">Mishneh Torah, Borrowing and Deposit 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ אוֹ בְּהֵמָה סְתָם הֲרֵי הַמַּשְׁאִיל מַחְזִירוֹ בְּכָל עֵת שֶׁיִּרְצֶה. שְׁאָלוֹ לִזְמַן קָצוּב כֵּיוָן שֶׁמָּשַׁךְ וְזָכָה אֵין הַבְּעָלִים יְכוֹלִין לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד סוֹף יְמֵי הַשְּׁאֵלָה. וַאֲפִלּוּ מֵת הַשּׁוֹאֵל הֲרֵי הַיּוֹרְשִׁין מִשְׁתַּמְּשִׁין בַּשְּׁאֵלָה עַד סוֹף הַזְּמַן. וְדִין הוּא. הַלּוֹקֵחַ קוֹנֶה הַגּוּף קִנְיַן עוֹלָם בַּדָּמִים שֶׁנָּתַן וּמְקַבֵּל מַתָּנָה קָנָה הַגּוּף קִנְיַן עוֹלָם וְלֹא נָתַן כְּלוּם וְהַשּׂוֹכֵר קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב בַּדָּמִים שֶׁנָּתַן וְהַשּׁוֹאֵל קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב וְלֹא נָתַן כְּלוּם. כְּשֵׁם שֶׁהַנּוֹתֵן כַּמּוֹכֵר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בּוֹ לְעוֹלָם כָּךְ הַמַּשְׁאִיל כַּמַּשְׂכִּיר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בְּתוֹךְ הַזְּמַן. הִנִּיחַ לָהֶם אֲבִיהֶם פָּרָה שְׁאוּלָה וּמֵתָה אֵין חַיָּבִין בָּאֳנָסֶיהָ. חָשְׁבוּ שֶׁהִיא שֶׁל אֲבִיהֶם טְבָחוּהָ וַאֲכָלוּהָ מְשַׁלְּמִין דְּמֵי בָּשָׂר בְּזוֹל. וְאִם הִנִּיחַ לָהֶם אֲבִיהֶם נְכָסִים וּמֵתָה אוֹ שֶׁטְּבָחוּהָ מְשַׁלְּמִין אֶת דָּמֶיהָ מִנְּכָסָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאל </strong> כלי מחברו לזמן קצוב אפילו מת היורשים משתמשים בו עד סוף הזמן דכמו דנותן הוי כמוכר הכי נמי שואל הוי כשוכר דמשעת משיכה אין המשכיר יכול לחזור בו ואין היורשים חייבים באונסיה כדאמר רבא ריש פרק הגוזל ומאכיל משום דלא קבילו עלייהו נטירותא ואם חשב שהיא של אביהם וטבחוה ואכלוה משלמים דמי בשר בזול שני שלישי הדמים משום דאי הוו ידעי דבעו שלומי לא הוו אכלי לה ואם הניח להם אביהם אחריות נכסים חייבים לשלם מנכסיו משום דאשתעבוד נכסי מחיים דחיוב אונסיה מוטל על השואל משעת שאלה דלא כרב פפא כדאיתא התם.</p>
               </div>
             </div>
@@ -314,8 +335,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-6">Mishneh Torah, Borrowing and Deposit 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ לַעֲשׂוֹת בּוֹ מְלָאכָה פְּלוֹנִית אֵין הַמַּשְׁאִיל יָכוֹל לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד שֶׁיַּעֲשֶׂה בּוֹ אוֹתָהּ מְלָאכָה. וְכֵן אִם שָׁאַל מִמֶּנּוּ בְּהֵמָה לֵילֵךְ בָּהּ בְּמָקוֹם פְּלוֹנִי אֵינוֹ יָכוֹל לְהַחְזִירָהּ מִיַּד הַשּׁוֹאֵל עַד שֶׁיֵּלֵךְ בָּהּ לְשָׁם וְיַחְזֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל </strong> מחברו כלי או בהמה לילך למקום פלוני או לעשות מלאכה פלונית אין מוציאו מתחת ידו עד שיעשה מה שאמר דהוי כהשאילו לזמן קצוב כדאמר׳ לעיל. שאל סתם זמנו לפי מה שהוא כדמפרש הרב ז&quot;ל מן התוס׳:</p>
               </div>
             </div>
@@ -331,8 +357,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-1">Mishneh Torah, Borrowing and Deposit 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹאֵל בַּבְּעָלִים אֲפִלּוּ נִגְנַב אוֹ אָבַד בִּפְשִׁיעָה פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יד)</span> &quot;אִם בְּעָלָיו עִמּוֹ לֹא יְשַׁלֵּם&quot;. וּבִלְבַד שֶׁשָּׁאַל הַבְּעָלִים תְּחִלָּה עִם הַחֵפֶץ כְּמוֹ שֶׁבֵּאַרְנוּ. וְאֶחָד הַשּׁוֹאֵל אֶת הַבְּעָלִים אוֹ שֶׁשְּׂכָרָן וְאֶחָד שֶׁשּׁוֹאֵל אֶת הַבְּעָלִים לְאוֹתָהּ הַמְּלָאכָה אוֹ שֶׁשְּׁאָלָן וּשְׂכָרָן לִמְלָאכָה אַחֶרֶת אוֹ לְשׁוּם דָּבָר בָּעוֹלָם. אֲפִלּוּ אָמַר לַחֲבֵרוֹ הַשְׁקֵנִי מַיִם וְשָׁאַל מִמֶּנּוּ בְּהֶמְתּוֹ וְהִשְׁקָהוּ וְנָתַן לוֹ אֶת הַבְּהֵמָה הֲרֵי זוֹ שְׁאֵלָה בִּבְעָלִים וּפָטוּר. מָשַׁךְ אֶת הַבְּהֵמָה בַּתְּחִלָּה וְאַחַר כָּךְ הִשְׁקָהוּ אֵינָהּ שְׁאֵלָה בִּבְעָלִים. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> השואל </strong> בבעלים אפילו נגנב בפשיעה פטור כדכת׳ אם בעליו עמו וגו׳ ל&quot;ש בשכירו׳ ל&quot;ש שאלה כל דהוא בשאמר לו השקיני מים ושאל ממנו בהמתו הוי שאלה בבעלים. וכן השאילה ויצא עם השואל או השוכר לטעון עמו במשאוי וכן מלמד תינוקות והנוטע לבני המדינה והמקיז להם דם והסופר שלהן אם השאיל להן בשעה שעוסקים במלאכתו הוי שמירה בבעלים. וכן כל מי שהוא שאול לאיזה דבר לאחד או לרבים והשאיל להן הוי שאלה בבעלים.</p>
               </div>
             </div>
@@ -347,8 +378,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 2:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-2-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-5">Mishneh Torah, Borrowing and Deposit 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹמֵר לִשְׁלוּחוֹ צֵא וְהִשָּׁאֵל עִם פָּרָתִי אֵינָהּ שְׁאֵלָה בַּבְּעָלִים שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יד)</span> &quot;אִם בְּעָלָיו עִמּוֹ לֹא יְשַׁלֵּם&quot; הַבְּעָלִים עַצְמָן לֹא שָׁלִיחַ. אָמַר לְעַבְדּוֹ הַכְּנַעֲנִי צֵא וְהִשָּׁאֵל עִם פָּרָתִי הֲרֵי זוֹ שְׁאֵלָה בַּבְּעָלִים שֶׁיַּד הָעֶבֶד כְּיַד רַבּוֹ. נִשְׁאַל הָעֶבֶד עִמָּהּ שֶׁלֹּא מִדַּעַת רַבּוֹ אֵינָהּ שְׁאֵלָה בַּבְּעָלִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> שאלה בבעלים ע&quot;י שליח כרבי יאשיה דאמר גבי נדרים שאין נדרי אשתו מופרין על ידי שליח דכתיב אישה יקימנו ואישה יפירנו וה&quot;נ כתיב בעליו דמשמע דוקא ולא שלוחו או משום דכתיב אישה אישה תרי זימני והכא נמי כתיב בעליו תרי זימני כמו שכתבו התוספות שם פרק השואל דף צ&quot;ו ויד עבד כיד רבו כשהוא מדעתו. ובעל שנשאל עם נכסי אשתו לא הוי שאלה בבעלים דקנין פירות לאו כקנין הגוף ושואל מאשתו או שותפין הוי שאלה בבעלים וכל הני ספקי הוו מדאוריתא.</p>
               </div>
             </div>
@@ -363,8 +399,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 2:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-2-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-11">Mishneh Torah, Borrowing and Deposit 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָּׁה שֶׁשָּׁאֲלָה וְאַחַר כָּךְ נִשֵּׂאת הֲרֵי הַבַּעַל כְּלוֹקֵחַ מִמֶּנָּה וְאֵינוֹ לֹא שׁוֹמֵר שָׂכָר וְלֹא שׁוֹאֵל. לְפִיכָךְ אִם הָיְתָה דְּבַר הַשְּׁאֵלָה בְּהֵמָה וּמֵתָה הַבַּעַל פָּטוּר אַף עַל פִּי שֶׁהוּא מִשְׁתַּמֵּשׁ בָּהּ כָּל יְמֵי שְׁאֵלָתָהּ אֲפִלּוּ פָּשַׁע מִפְּנֵי שֶׁהוּא כְּלוֹקֵחַ וְהָאִשָּׁה חַיֶּבֶת לְשַׁלֵּם כְּשֶׁיִּהְיֶה לָהּ מָמוֹן. וְאִם הוֹדִיעָה אֶת בַּעְלָהּ שֶׁהִיא שְׁאוּלָה הֲרֵי זֶה נִכְנָס תַּחְתֶּיהָ. כָּל שֶׁאָמַרְנוּ שֶׁהִיא שְׁאֵלָה בַּבְּעָלִים כָּךְ אִם הָיָה שׂוֹכֵר אוֹ נוֹשֵׂא שָׂכָר הֲרֵי הִיא שְׂכִירוּת בַּבְּעָלִים וּפָטוּר. וְכָל שֶׁאֵינָהּ שְׁאֵלָה בַּבְּעָלִים כָּךְ אֵינָהּ שְׂכִירוּת בַּבְּעָלִים. וְכָל שֶׁהוּא סָפֵק בִּשְׁאֵלָה כָּךְ הוּא סָפֵק בִּשְׂכִירוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעל </strong> במה ששאלה אשתו ואחר כך נשאת לו הוי כלוקח כשלא הודיע לו שהדבר ההוא שאול הוא ושכירות כשאלה לכל מה שנזכר למעלה דשכירות איתא נמי בבעלים כדילפינן לעיל בהלכות שכירות:</p>
               </div>
             </div>
@@ -380,8 +421,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-3-1">Mishneh Torah, Borrowing and Deposit 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹאֵל אֶת הַפָּרָה מֵחֲבֵרוֹ וּשְׁלָחָהּ לוֹ הַמַּשְׁאִיל בְּיַד בְּנוֹ אוֹ בְּיַד שְׁלוּחוֹ אוֹ בְּיַד עַבְדּוֹ. אֲפִלּוּ שְׁלָחָהּ לוֹ בְּיַד בְּנוֹ אוֹ בְּיַד עַבְדּוֹ אוֹ בְּיַד שְׁלוּחוֹ שֶׁל שׁוֹאֵל וּמֵתָה קֹדֶם שֶׁתִּכָּנֵס לִרְשׁוּת הַשּׁוֹאֵל הֲרֵי זֶה פָּטוּר. וְאִם אָמַר לוֹ הַשּׁוֹאֵל שַׁלְּחָהּ לִי בְּיַד בְּנִי בְּיַד עַבְדִּי בְּיַד שְׁלוּחִי אוֹ בְּיַד עַבְדְּךָ הָעִבְרִי אוֹ בְּיַד שְׁלוּחֲךָ. אוֹ שֶׁאָמַר לוֹ הַמַּשְׁאִיל הֲרֵינִי מְשַׁלְּחָהּ בְּיַד בִּנְךָ בְּיַד עַבְדְּךָ בְּיַד שְׁלוּחֲךָ בְּיַד בְּנִי בְּיַד עַבְדִּי הָעִבְרִי בְּיַד שְׁלוּחִי. וְאָמַר לוֹ הַשּׁוֹאֵל שְׁלַח וּשְׁלָחָהּ וּמֵתָה בַּדֶּרֶךְ הֲרֵי זֶה חַיָּב. שְׁלָחָהּ לוֹ הַמַּשְׁאִיל בְּיַד עַבְדּוֹ הַכְּנַעֲנִי אַף עַל פִּי שֶׁאָמַר לוֹ הַשּׁוֹאֵל שְׁלַח וּמֵתָה פָּטוּר מִפְּנֵי שֶׁיָּדוֹ כְּיַד רַבּוֹ וַעֲדַיִן לֹא יָצְאָה מֵרְשׁוּת הַמַּשְׁאִיל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל </strong> פרה מחברו ושלחה לו ברשותו אפילו על ידי עבד עברי של משאיל ומתה בדרך חייב השואל שהרי נכנסה לרשותו אבל על ידי עבד כנעני של משאיל לא דידו כיד רבו ולא נכנסה עדיין לרשות שואל. וכן אם אמר לו הכישה במקל עד שתכנס לרשותי ומתה קודם פטור וכן בשעה שמחזירה הוי דינא הכי אם מחזירה בתוך ימי שאלתה כדתנן התם ואם אחר ימי שאלתה הוי כשומר שכר כדאמרינן פרק האומנין דף פ׳ ואפילו מתה בביתו משום דבשכלו ימי השאלה אינו שואל עליה ומסתברא דשומר שכר מיהא הוי עליה דהואיל&#160;ונהנה בשאלה מהני להיות שומר שכר עד שתגיע ליד הבעלים.</p>
               </div>
             </div>
@@ -396,8 +442,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 3:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-3-3">Mishneh Torah, Borrowing and Deposit 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל פָּרָה מֵחֲבֵרוֹ. שְׁאָלָהּ חֲצִי הַיּוֹם וּשְׂכָרָהּ חֲצִי הַיּוֹם. שְׁאָלָהּ הַיּוֹם וּשְׂכָרָהּ לְמָחָר. שָׁאַל אַחַת וְשָׂכַר אַחַת וּמֵתָה אַחַת מֵהֶן. הַמַּשְׁאִיל אוֹמֵר שְׁאוּלָה מֵתָה בַּיּוֹם שֶׁהָיְתָה שְׁאוּלָה מֵתָה בַּשָּׁעָה שֶׁהָיְתָה שְׁאוּלָה מֵתָה וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ. אוֹ שֶׁאָמַר הַשּׁוֹאֵל שְׂכוּרָה מֵתָה בַּיּוֹם שֶׁהָיְתָה שְׂכוּרָה מֵתָה בַּשָּׁעָה שֶׁהָיְתָה שְׂכוּרָה מֵתָה. וְהַמַּשְׁאִיל אוֹמֵר אֵינִי יוֹדֵעַ אוֹ שֶׁאָמַר זֶה אֵינִי יוֹדֵעַ וְזֶה אוֹמֵר אֵינִי יוֹדֵעַ. הַמּוֹצִיא מֵחֲבֵרוֹ עָלָיו הָרְאָיָה. לֹא הָיְתָה שָׁם רְאָיָה יִשָּׁבַע הַשּׂוֹכֵר עַל הַשְּׂכוּרָה שֶׁמֵּתָה אוֹ שֶׁאֵינוֹ יוֹדֵעַ וְיִפָּטֵר. זֶה אוֹמֵר שְׁאוּלָה וְזֶה אוֹמֵר שְׂכוּרָה יִשָּׁבַע הַשּׁוֹמֵר עַל הַשְּׂכוּרָה שֶׁמֵּתָה כְּדַרְכָּהּ כְּמוֹ שֶׁטָּעַן וִיגַלְגֵּל עָלָיו שֶׁהַשְּׂכוּרָה הִיא שֶׁמֵּתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טענות </strong> שבין השואל והמשאיל המוציא מחברו עליו הראיה וכשנשבע השוכר יכול לגלגל עליו דגלגול מן התורה כדכתיב ואמרה האשה אמן אמן וכשאינו יכול לישבע משלם כי הני גווני דמפרש הרב ז&quot;ל והיינו משום דכתיב שבועת ה׳ תהיה בין שניהם והיינו היכא דשייכא ומי שאינו יכול לישבע משלם וכמו שכתבו התוספות פרק כל הנשבעין דף מ&quot;ז וכמו שיתבאר בהלכות טוען:</p>
               </div>
             </div>
@@ -413,8 +464,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-1">Mishneh Torah, Borrowing and Deposit 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ בְּחִנָּם וְנִגְנַב אוֹ אָבַד הֲרֵי זֶה נִשְׁבָּע וְנִפְטָר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;וְגֻנַּב מִבֵּית הָאִישׁ&quot; וְגוֹ׳ <span class="source-small">(שמות כב ז)</span> &quot;וְנִקְרַב בַּעַל הַבַּיִת אֶל הָאֱלֹהִים אִם לֹא שָׁלַח יָדוֹ בִּמְלֶאכֶת רֵעֵהוּ&quot;. וּמְגַלְגְּלִין עָלָיו בְּתוֹךְ הַשְּׁבוּעָה שֶׁלֹּא פָּשַׁע אֶלָּא שָׁמַר כְּדֶרֶךְ הַשּׁוֹמְרִין וְלֹא שָׁלַח בּוֹ יָד וְאַחַר נִגְנַב. שֶׁאִם נִגְנַב אַחַר שֶׁשָּׁלַח יָד בַּפִּקָּדוֹן חַיָּב בְּאַחֲרָיוּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות רטו </strong> לדון בדין שומר חנם כדכתיב כי יתן איש אל רעהו כסף או כלים וגו׳ וגנב וגו׳ שאם נגנב או אבד נשבע ונפטר כדכתיב וגנב מבית האיש וגו׳ ונקרב בעל הבית אל האלהים לישבע שנגנבה ומגלגל עליו שלא פשע ושלא שלח בה יד קודם וכדאמרינן בשבועות ובהגוזל דשלשה שבועות משביעין אותו שבועת גנבה היא עיקר שבועה ושבועה שלא פשע שאם פשע חייב כדכתיב על כל דבר פשע ואם שלח בה יד קמה ליה ברשותיה דנעשה גזלן עליה ומיחייב באונסיה ותרוייהו על ידי גלגול כדאמר׳. דרך השומרים הכל לפי הפקדון שאם הניחו במקום שאינו ראוי לאותו הפקדון לפי מה שהוא ונגנב (פטור) [חייב] דהוי פשיעה וכתיב על כל דבר פשע ואפילו נאנס כיון שפשע בתחלה חייב כלישנא בתרא דרב יוסף גבי צריפ׳ דאורבני ואפילו אם הניח הפקדון עם שלו אם לא היה ראוי לשמירה חייב כדאמר׳ ואם לא ידע אנה הניח הפקדון חייב דכל דלא ידענא פשיעותא היא כדאמרינן התם. כל המפקיד על דעת בני ביתו הסמוכין על שולחנו הוא מפקיד כדאמר רבא פרק המפקיד:</p>
               </div>
             </div>
@@ -430,8 +486,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-1">Mishneh Torah, Borrowing and Deposit 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהִפְקִידוּ אֶצְלוֹ מָעוֹת שֶׁל עֲנִיִּים אוֹ שֶׁל פִּדְיוֹן שְׁבוּיִים וּפָשַׁע בָּהֶם וְנִגְנְבוּ פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;לִשְׁמֹר&quot; וְלֹא לְחַלֵּק לָעֲנִיִּים וַהֲרֵי הוּא מָמוֹן שֶׁאֵין לוֹ תּוֹבְעִים. אֲפִלּוּ בָּאוּ עָלָיו גַּנָּבִים וְקָדַם וְהִצִּיל עַצְמוֹ בְּמָמוֹן שְׁבוּיִים פָּטוּר. אֵין לְךָ פִּדְיוֹן שְׁבוּיִים גָּדוֹל מִזֶּה. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁאֵין זֶה הַמָּמוֹן מֻפְקָד לַעֲנִיֵּי מָקוֹם זֶה אוֹ לִשְׁבוּיִים [אֵלּוּ]. אֲבָל אִם הָיוּ לַעֲנִיִּים אֵלּוּ אוֹ לִשְׁבוּיִים אֵלּוּ וַהֲרֵי הוּא קָצוּץ לָהֶן הֲרֵי זֶה הַמָּמוֹן שֶׁיֵּשׁ לוֹ תּוֹבְעִין וִישַׁלֵּם אִם פָּשַׁע אוֹ יִשָּׁבַע שֶׁלֹּא פָּשַׁע כְּדֶרֶךְ כָּל הַשּׁוֹמְרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מי </strong> שהפקידו אצלו מעות של פדיון שבויים או של עניים ופשע בהם פטור דכתיב כי יתן וגו׳ לשמור ודרשינן ולא לחלק דכיון דאמר ליה חלקם לא קרינא ביה לשמור ולאו דמפקיד הוא ומאן קתבע ועניים לא מצי תבעי דלכל חד מצי למימר לאו לדידך יהיבנא כשאינם עניי אותו מקום ואינו קצוץ להם כדאמר׳ סוף פרק החובל.</p>
               </div>
             </div>
@@ -446,8 +507,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-5-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-2">Mishneh Torah, Borrowing and Deposit 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ מָמוֹן אוֹ כֵּלִים חֲשׁוּבִין וּבָאוּ עָלָיו גַּנָּבִים וְקָדַם וְנָתַן לָהֶם הַפִּקָּדוֹן לְהַצִּיל עַצְמוֹ אִם הָיָה אָמוּד שֶׁהוּא בַּעַל מָמוֹן חַיָּב שֶׁחֶזְקָתוֹ שֶׁבִּגְלָלוֹ בָּאוּ הַגַּנָּבִים וְנִמְצָא זֶה מַצִּיל עַצְמוֹ בְּמָמוֹן חֲבֵרוֹ. וְאִם אֵינוֹ אָמוּד חֶזְקָתוֹ שֶׁלֹּא בָּאוּ אֶלָּא לְשֵׁם הַפִּקָּדוֹן וּפָטוּר. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המציל </strong> עצמו בממון חברו כשהוא אמוד חייב כדאמר׳ פרק הגוזל משום דלשמ(ט)[ע]ו באו והוא נתן להם הפקדון.</p>
               </div>
             </div>
@@ -462,8 +528,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-5-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-4">Mishneh Torah, Borrowing and Deposit 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנַיִם שֶׁהִפְקִידוּ אֵצֶל אֶחָד זֶה מֵאָה וְזֶה מָאתַיִם וְכָל אֶחָד מִשְּׁנֵיהֶם אוֹמֵר אֲנִי הוּא שֶׁהִפְקַדְתִּי הַמָּאתַיִם וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ יִשָּׁבַע כָּל אֶחָד מֵהֶן שֶׁהִפְקִיד מָאתַיִם וְנוֹטֵל כְּדִין כָּל נִשְׁבָּע וְנוֹטֵל. וְיִתֵּן מָאתַיִם לָזֶה וּמָאתַיִם לָזֶה וּמַפְסִיד מֵאָה מִבֵּיתוֹ שֶׁהֲרֵי הוּא פּוֹשֵׁעַ שֶׁהָיָה לוֹ לִכְתֹּב שֵׁם כָּל אֶחָד עַל כִּיס שֶׁלּוֹ. לְפִיכָךְ אִם הֵבִיאוּ לוֹ הַשְּׁנַיִם כְּאֶחָד שְׁלֹשׁ מֵאוֹת בְּכֶרֶךְ אֶחָד וּבָאוּ וְתָבְעוּ וְכָל אֶחָד אוֹמֵר הַמָּאתַיִם שֶׁלִּי נוֹתֵן מָנֶה לָזֶה וּמָנֶה לָזֶה וְהַשְּׁאָר יִהְיֶה מֻנָּח אֶצְלוֹ עַד לְעוֹלָם אוֹ עַד שֶׁיּוֹדֶה הָאֶחָד לַחֲבֵרוֹ. שֶׁהֲרֵי הוּא אוֹמֵר לָהֶם כֵּיוָן שֶׁרָאִיתִי שֶׁאֵין אַתֶּם מַקְפִּידִין זֶה עַל זֶה וַהֲבֵאתֶם בְּכֶרֶךְ אֶחָד לֹא הִטְרַחְתִּי עַצְמִי לֵידַע וְלִזְכֹּר תָּמִיד מִי בַּעַל הַמֵּאָה וּמִי בַּעַל הַמָּאתַיִם. וְכֵן אִם הִפְקִידוּ אֶצְלוֹ שְׁנֵי כֵּלִים אֶחָד גָּדוֹל וְאֶחָד קָטָן וְכָל אֶחָד וְאֶחָד אוֹמֵר אֲנִי הוּא בַּעַל הַגָּדוֹל וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ יִשָּׁבְעוּ שְׁנֵיהֶם וְיִתֵּן הַגָּדוֹל לְאֶחָד מֵהֶם וּדְמֵי הַגָּדוֹל לַשֵּׁנִי וְיִשָּׁאֵר לוֹ הַקָּטָן. וְאִם הֱבִיאוּם בְּכֶרֶךְ אֶחָד כְּאֶחָד נוֹתֵן הַקָּטָן לָאֶחָד וּדְמֵי הַקָּטָן לַשֵּׁנִי וְהַשְּׁאָר יִהְיֶה מֻנָּח אֶצְלוֹ עַד שֶׁיּוֹדֶה הָאֶחָד לַחֲבֵרוֹ אוֹ עַד לְעוֹלָם. וְכֵן מִי שֶׁתְּבָעוּהוּ שְׁנַיִם זֶה אוֹמֵר אֲנִי הוּא בַּעַל הַפִּקָּדוֹן וְזֶה אוֹמֵר אֲנִי הוּא וְהַשּׁוֹמֵר אוֹמֵר אֶחָד מִכֶּם הוּא וְאֵינִי יוֹדֵעַ מִי הוּא יְשַׁלֵּם לִשְׁנֵיהֶם. וְכֵן שְׁנַיִם שֶׁהִפְקִידוּ שְׁתֵּי בְּהֵמוֹת אֵצֶל רוֹעֶה וּמֵתָה אַחַת מֵהֶן וְאֵינוֹ יוֹדֵעַ שֶׁל מִי הָיְתָה יְשַׁלֵּם לִשְׁנֵיהֶם. וְאִם הִפְקִידוּ בְּעֶדְרוֹ שֶׁלֹּא מִדַּעְתּוֹ מַנִּיחַ הַבְּהֵמָה בֵּינֵיהֶם וּמִסְתַּלֵּק וְתִהְיֶה מֻנַּחַת עַד שֶׁיּוֹדֶה הָאֶחָד לַחֲבֵרוֹ אוֹ עַד שֶׁיִּרְצוּ לַחֲלֹק אוֹתָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים </strong> שהפקידו אצל אחד זה מאתים וזה מנה בכרך אחד או שני כלים אחד גדול ואחד קטן בכרך אחד וכל אחד אומר אני הוא בעל המאתים או בעל הגדול נותן מאה לכל אחד והשאר יהיה בידו עד שיודו זה לזה ואם לא היה בכרך א׳ חייב לשניהם שהיה לו לכתוב על כל אחד שם שלו והויא פשיעה וכן תבעוהו שנים זה אומר שלי הוא הפקדון וזה אומר שלי והוא אומר איני יודע משלם לשניהם דהויא פשיעה מה שאינו יודע.</p>
               </div>
             </div>
@@ -478,8 +549,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-5-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-5">Mishneh Torah, Borrowing and Deposit 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד פֵּרוֹת אֵצֶל חֲבֵרוֹ הֲרֵי זֶה לֹא יְעָרְבֵם עִם פֵּרוֹתָיו. עָבַר וְעֵרֵב יַחְשֹׁב כַּמָּה הָיָה הַפִּקָּדוֹן וְיִרְאֶה כַּמָּה חָסֵר הַכּל וְיַחְשֹׁב חֶסְרוֹן הַפִּקָּדוֹן וְיִתֵּן לוֹ אַחַר שֶׁיִּשָּׁבַע. נִסְתַּפֵּק מֵהֶן וְלֹא יָדַע כַּמָּה נִסְתַּפֵּק יוֹצִיא לוֹ חֶסְרוֹנוֹ לְחִטִּים וּלְאֹרֶז קָלוּף אַרְבָּעָה קַבִּין וּמֶחֱצָה לְכָל כּוֹר. לִשְׂעוֹרִים וּלְדֹחַן תִּשְׁעָה קַבִּין לְכָל כּוֹר. לְכֻסְּמִין וּלְזֶרַע פִּשְׁתָּן בְּגִבְעוֹלָיו וּלְאֹרֶז שֶׁאֵינוֹ קָלוּף שָׁלֹשׁ סְאִין לְכָל כּוֹר. וְכַמִּדָּה הַזֹּאת לְכָל שָׁנָה וְשָׁנָה. בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁמָּדַד לוֹ בִּימוֹת הַגֹּרֶן וְהֶחֱזִיר לוֹ בִּימוֹת הַגֹּרֶן. אֲבָל מָדַד בִּימוֹת הַגֹּרֶן וְהֶחְזִיר לוֹ בִּימוֹת הַגְּשָׁמִים אֵינוֹ מוֹצִיא לוֹ חֶסְרוֹנוֹ מִפְּנֵי שֶׁהֵן מוֹתִירוֹת. וְכֵן מוֹצִיא לוֹ שְׁתוּת לְיַיִן וּשְׁלֹשֶׁת לוֹגִין שֶׁמֶן לְמֵאָה לוֹגִין לוֹג וּמֶחֱצָה שְׁמָרִים וְלוֹג וּמֶחֱצָה בֶּלַע. אִם הָיָה מְזֻקָּק אֵינוֹ מוֹצִיא לוֹ שְׁמָרִים. וְאִם הָיוּ הַקַּנְקַנִּים יְשָׁנִים אֵינוֹ מוֹצִיא לוֹ בֶּלַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד </strong> פירות אצל חברו וערבם הנפקד עם פירותיו יחשב חסרון הפקדון לפי פירותיו לא מדדן וערבן הוי פושע וחייב דכיון שאומר איני יודע כמה הוו אינו יכול לישבע ומשלם וכשהמפקיד גם כן אינו יודע אינו חייב מן התורה:</p>
               </div>
             </div>
@@ -495,8 +571,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-1">Mishneh Torah, Borrowing and Deposit 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֵר חִנָּם שֶׁאָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע אִם הַפִּקָּדוֹן דָּבָר שֶׁכָּל מִינוֹ שָׁוֶה וּמָצוּי בַּשּׁוּק לִקְנוֹת כְּמוֹתוֹ כְּגוֹן פֵּרוֹת אוֹ יְרִיעוֹת שֶׁל צֶמֶר וְשֶׁל פִּשְׁתָּן הַשָּׁווֹת בְּכָל עִנְיָנָם אוֹ קוֹרוֹת שֶׁאֵינָן מְצֻיָּרוֹת וְכָל כַּיּוֹצֵא בָּהֶן הֲרֵי זֶה מְשַׁלֵּם וְאֵינוֹ נִשְׁבָּע. אֲבָל אִם הָיָה פִּקְדוֹן בְּהֵמָה אוֹ בֶּגֶד מְצֻיָּר אוֹ כְּלִי מְתֻקָּן אוֹ דָּבָר שֶׁאֵינוֹ מוֹצֵא לִקְנוֹת כְּמוֹתוֹ בַּשּׁוּק חוֹשְׁשִׁין שֶׁמָּא עֵינָיו נָתַן בּוֹ וּמַשְׁבִּיעִין אוֹתוֹ בְּתַקָּנַת חֲכָמִים שְׁבוּעָה בִּנְקִיטַת חֵפֶץ שֶׁאֵינוֹ בִּרְשׁוּתוֹ וְאַחַר כָּךְ מְשַׁלֵּם. וְהוּא הַדִּין לִשְׁאָר הַשּׁוֹמְרִין כְּגוֹן הַשּׁוֹאֵל שֶׁאָמַר מֵתָה אוֹ נִגְנְבָה וְשׁוֹמֵר שָׂכָר וְהַשּׂוֹכֵר שֶׁאָמַר נִגְנְבָה אוֹ שֶׁאָבְדָה אַף עַל פִּי שֶׁהֵן חַיָּבִין לְשַׁלֵּם מַשְׁבִּיעִין אוֹתָן שְׁבוּעָה שֶׁאֵינָהּ בִּרְשׁוּתָן וְאַחַר כָּךְ מְשַׁלְּמִין דְּמֵי הַבְּהֵמָה אוֹ הַחֵפֶץ שֶׁאָנוּ חוֹשְׁשִׁין לוֹ שֶׁמָּא עֵינָיו נָתַן בָּהּ. וְאִם אָמְרוּ הַבְּעָלִים יֶתֶר עַל זֶה הָיָה שָׁוֶה כּוֹלֵל בִּשְׁבוּעָתוֹ שֶׁאֵינָהּ שָׁוָה אֶלָּא כָּךְ וְכָךְ. נִמְצָא כָּל שׁוֹמֵר שֶׁנִּשְׁבַּע שְׁבוּעַת הַשּׁוֹמְרִין כּוֹלֵל בִּשְׁבוּעָתוֹ שְׁלֹשָׁה דְּבָרִים. שֶׁשָּׁמַר כְּדֶרֶךְ הַשּׁוֹמְרִין. וְשֶׁאֵרְעוֹ כָּךְ וְכָךְ וְאֵינוֹ בִּרְשׁוּתוֹ. וְשֶׁלֹּא שָׁלַח בּוֹ יָד קֹדֶם שֶׁאֵרְעוֹ הַמְאֹרָע הַפּוֹטֵר אוֹתוֹ. וְאִם רָצָה לְשַׁלֵּם נִשְׁבָּע שֶׁאֵינוֹ בִּרְשׁוּתוֹ וְכוֹלֵל בִּשְׁבוּעָתוֹ שֶׁכָּךְ וְכָךְ הָיָה שָׁוֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל </strong> שומר שרוצה לשלם ולא ישבע אין עליו שבועה כלל מן התורה ואם התנה השומר שלא ישמור אלא בדרך זו הכל כפי תנאו ואפילו הכחיש המפקיד נאמן מגו שיכול לומר נאנסו.</p>
               </div>
             </div>
@@ -511,8 +592,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 6:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-6-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-3">Mishneh Torah, Borrowing and Deposit 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֵר חִנָּם שֶׁהֵבִיא רְאָיָה שֶׁלֹּא פָּשַׁע בָּהּ פָּטוּר מִשְּׁבוּעָה וְאֵין אוֹמְרִים שֶׁמָּא שָׁלַח בּוֹ יָד קֹדֶם שֶׁיֹּאבַד. וּבַעַל הַפִּקָּדוֹן שֶׁהֵבִיא רְאָיָה שֶׁפָּשַׁע הַשּׁוֹמֵר מְשַׁלֵּם. וְאִם טָעַן וְאָמַר תְּנַאי הָיָה בֵּינֵינוּ אֵינוֹ נֶאֱמָן שֶׁהֲרֵי יֵשׁ עֵדִים שֶׁפָּשַׁע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שומר </strong> שהביא ראיה שלא פשע פטור משבועה דכתיב אין רואה שבועת ה׳ וגו׳ ואם הביא בעל הפקדון ראיה שפשע משלם כשיש עדים גם כן שהפקיד בידו דליכא מגו. הפקיד בעדים ואיכא נמי עדי ראה ליכא מגו ואם מת השומר מוציאין מן היתומים ואפילו בסימנין בדאיכא עדי ראה אם הוא אמוד ואינו רגיל אצל השומר וסימנין מובהקין דהוי אומדנא דדידיה הוו.</p>
               </div>
             </div>
@@ -527,8 +613,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 6:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-6-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-5">Mishneh Torah, Borrowing and Deposit 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּעַל הַפִּקָּדוֹן שֶׁתָּבַע פִּקְדּוֹנוֹ וְנָתַן לוֹ הַשּׁוֹמֵר וְאָמַר הַמַּפְקִיד אֵין זֶה פִּקְדוֹנִי אֶלָּא אַחֵר הוּא אוֹ שָׁלֵם הָיָה וְאַתָּה שְׁבַרְתּוֹ אוֹ חָדָשׁ הָיָה וְנִשְׁתַּמַּשְׁתָּ בּוֹ. מֵאָה סְאִין הִפְקַדְתִּי אֶצְלְךָ וְאֵין אֵלּוּ אֶלָּא חֲמִשִּׁים וּבַעַל הַבַּיִת אוֹמֵר זֶהוּ שֶׁהִפְקַדְתָּ בְּעַצְמְךָ וּמַה שֶּׁנָּתַתָּ אַתָּה נוֹטֵל. הֲרֵי הַשּׁוֹמֵר נִשְׁבָּע הֶסֵּת כִּשְׁאָר כָּל הַנִּשְׁבָּעִין שֶׁאֵין כָּל שׁוֹמֵר נִשְׁבָּע שְׁבוּעַת הַשּׁוֹמְרִין הָאֲמוּרָה בַּתּוֹרָה אֶלָּא בִּזְמַן שֶׁמּוֹדֶה בְּעַצְמוֹ שֶׁל פִּקָּדוֹן כְּמוֹ שֶׁהַמַּפְקִיד אוֹמֵר וְטוֹעֵן שֶׁנִּגְנַב אוֹ מֵת אוֹ נִשְׁבָּה. כְּלָלוֹ שֶׁל דָּבָר טוֹעֵן לִפְטֹר עַצְמוֹ מִן הַתַּשְׁלוּמִין [נִשְׁבָּע שְׁבוּעַת שׁוֹמְרִין]. אֲבָל אִם אָמַר זֶהוּ שֶׁהִשְׁאַלְתַּנִי אוֹ שֶׁהִשְׂכַּרְתָּ לִי אוֹ שֶׁנָּטַלְתִּי שָׂכָר עַל שְׁמִירָתִי וְהַבְּעָלִים אוֹמְרִים אֵינוֹ זֶה אֶלָּא אַחֵר אוֹ נִשְׁתַּנָּה מִכְּמוֹת שֶׁהָיָה הַשּׂוֹכֵר נִשְׁבָּע הֶסֵּת אוֹ שְׁבוּעַת הַתּוֹרָה אִם הוֹדָה בְּמִקְצָת. כֵּיצַד. מֵאָה סְאָה הִפְקַדְתִּי אֶצְלְךָ וְהַשּׁוֹמֵר אוֹמֵר לֹא הִפְקַדְתָּ אֶצְלִי אֶלָּא חֲמִשִּׁים נִשְׁבָּע שְׁבוּעַת הַתּוֹרָה מִפְּנֵי שֶׁהוֹדָה בְּמִקְצָת לֹא מִשּׁוּם שְׁבוּעַת הַשּׁוֹמְרִין. מֵאָה כּוֹר שֶׁל חִטִּים הִפְקַדְתִּי אֶצְלְךָ וְהוּא אוֹמֵר לֹא הִפְקַדְתָּ אֶצְלִי אֶלָּא מֵאָה שֶׁל שְׂעוֹרִים נִשְׁבָּע הֶסֵּת כִּשְׁאָר כָּל הַנִּשְׁבָּעִין בְּטַעֲנָה כָּזוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> השומר חייב שבועת שומרים אלא כשמודה בעצמו של פקדון וטוען טענה אחרת לפטור עצמו מן התשלומין אבל כשאין מודה בעצמו של פקדון אין כאן שבועת התורה אלא אם כן הוא מודה מקצת:</p>
               </div>
             </div>
@@ -544,8 +635,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-1">Mishneh Torah, Borrowing and Deposit 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד פֵּרוֹת אֵצֶל חֲבֵרוֹ הֲרֵי זֶה לֹא יִגַּע בָּהֶן וְאַף עַל פִּי שֶׁהֵן חוֹסְרִין וּמִתְמַעֲטִין וְהוֹלְכִין. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁחָסְרוּ חִסָּרוֹן הָרָאוּי לָהֶן בְּכָל שָׁנָה. אֲבָל אִם חָסְרוּ יוֹתֵר מִכְּדֵי חֶסְרוֹנָן מוֹכְרָן בְּבֵית דִּין מִפְּנֵי שֶׁהוּא מֵשִׁיב אֲבֵדָה לַבְּעָלִים. וּכְשֶׁהוּא מוֹכְרָן יִמְכֹּר לַכֹּהֲנִים בִּדְמֵי תְּרוּמָה שֶׁמָּא עָשׂוּ אוֹתָן הַבְּעָלִים תְּרוּמָה אוֹ תְּרוּמַת מַעֲשֵׂר עַל פֵּרוֹת אֲחֵרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד </strong> פירות אצל חברו וכן כל שאר דברים לא יגע בהן אפילו הן חסרין ומה שאמר שיטפל בהן אינו אלא תקנת חכמים משום השבת אבדה וכן מעות לבעל הבית אפילו מותרין לא יגע בהן. טלטל הפקדון לצרכו ונשבר חייב.</p>
               </div>
             </div>
@@ -560,8 +656,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 7:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-7-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 7:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-10">Mishneh Torah, Borrowing and Deposit 7:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מְקַבְּלִין פִּקְדוֹנוֹת לֹא מִן הַנָּשִׁים וְלֹא מִן הָעֲבָדִים וְלֹא מִן הַתִּינוֹקוֹת. קִבֵּל מִן הָאִשָּׁה יַחְזִיר לָאִשָּׁה. מֵתָה יַחְזִיר לְבַעֲלָהּ. קִבֵּל מִן הָעֶבֶד יַחְזִיר לָעֶבֶד. מֵת יַחְזִיר לְרַבּוֹ. קִבֵּל מִן הַקָּטָן יִקְנֶה לוֹ בּוֹ סֵפֶר תּוֹרָה אוֹ דֶּקֶל שֶׁיֹּאכַל בָּהֶן פֵּרוֹתָיו. וְכֻלָּן שֶׁאָמְרוּ בִּשְׁעַת מִיתָתָן שֶׁל פְּלוֹנִי הֵם אִם נֶאֱמָנִין לוֹ יַעֲשֶׂה כְּפֵרוּשָׁן וְאִם לָאו יַחְזִיר לְיוֹרְשֵׁיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קבל </strong> מן האשה או מן העבד יחזיר להם או ליורשיהם ואינו חייב להחזיר הפקדון אלא במקומו ובישובו:</p>
               </div>
             </div>
@@ -577,8 +678,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Borrowing and Deposit 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-8-1">Mishneh Torah, Borrowing and Deposit 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ בְּהֵמָה אוֹ כֵּלִים וְנִגְנְבוּ אוֹ אָבְדוּ אָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע וְנִמְצָא הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל. טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. לְמִי מְשַׁלֵּם לְמִי שֶׁהָיָה הַפִּקָּדוֹן אֶצְלוֹ שֶׁהֲרֵי אָמַר אֲשַׁלֵּם. חָזְרָה הַבְּהֵמָה עַצְמָהּ חוֹזֶרֶת לִבְעָלֶיהָ הִיא וְגִזּוֹתֶיהָ וּוַלְדוֹתֶיהָ שֶׁאֵין זֶה הַשּׁוֹמֵר קוֹנֶה שֶׁבַח הַבָּא מִגּוּפָהּ אֶלָּא שֶׁבַח הַבָּא מֵאֵלָיו. וּכְבָר בֵּאַרְנוּ שֶׁאֵין הַגַּנָּב מַחְזִיר גִּזּוֹת וּוְלָדוֹת אֶלָּא לִפְנֵי יֵאוּשׁ. נִשְׁבַּע הַשּׁוֹמֵר וְלֹא רָצָה לְשַׁלֵּם וְאַחַר כָּךְ נִמְצָא הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל. טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. לְמִי מְשַׁלֵּם לְבַעַל הַפִּקָּדוֹן. וְכֵן הַשּׂוֹכֵר פָּרָה מֵחֲבֵרוֹ וְנִגְנְבָה וְאָמַר הֲרֵינִי מְשַׁלֵּם וְאֵינִי נִשְׁבָּע וְאַחַר כָּךְ הֻכַּר הַגַּנָּב מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְתַשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה לַשּׂוֹכֵר. שֶׁאִלּוּ רָצָה הַשּׂוֹכֵר הָיָה נִשְׁבָּע שֶׁנִּגְנְבָה בְּאֹנֶס וְנִפְטָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שומר </strong> שטען שנגנב ורצה לשלם ונמצא הגנב משלם תשלומי כפל ותשלומי ד׳ וחמשה לשומר כדתנן ריש המפקיד וכדמפרש טעמא בגמרא דנעשה כמי שאומר לכשתגנב ותרצה לשלם היא קנויה לך מעכשיו והוי כאלו מכרה לו חוץ מגזותיה וולדותיה דהוי שבח הבא מגופה דלא עביד איניש דמקני לה ואם לא רצה לשלם אלא לישבע וליפטר משלם הגנב כפל וד׳ וחמשה לבעלים אף על פי שלא נגנבה מביתו ושואל דכל הנאה שלו אינו קונה הכפל בדיבור בלבד שאין זו שום טובה שהרי היה עליו להניח דעתו שהשאילה לו עד שישלם מעצמו ואז קנה הכפל וכן כל שבח הבא מאליו מקני להו כפל לשומרים כשרוצים לשלם או כשמשלם השואל וכן תבעוהו עליו בעלים ונשבע ואחר כך שילם לפנים משורת הדין קני ליה כפל ובהני בעיי הוי ספקא אי מקני להו כפל או לא. נגנב הפקדון באונס קודם שנשבע השומר עושה דין עם הגנב ואם החזירו לבית שומר הוי ספק אי כלתה שמירתו ופטור אפילו בפשיעה או לא:</p>
               </div>
             </div>
@@ -588,6 +694,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -608,8 +718,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-borrowing-and-deposit.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -635,7 +745,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

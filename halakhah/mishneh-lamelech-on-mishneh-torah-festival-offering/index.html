@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-festival-offering/">Open Mishneh Torah, Festival Offering</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Festival Offering</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">6 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Warsaw, 1881 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>142 matched</strong> / 315 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/mishneh-lamelech-on-mishneh-torah-festival-offering.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-festival-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -205,8 +206,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Festival Offering 1:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-festival-offering-1-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Festival Offering 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-1">Mishneh Torah, Festival Offering 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ מִצְוֹת עֲשֵׂה נִצְטַוּוּ יִשְׂרָאֵל בְּכָל רֶגֶל מִשָּׁלֹשׁ רְגָלִים וְאֵלּוּ הֵן. הָרְאִיָּה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג יז)</span> <span class="source-small">(שמות לד כג)</span> <span class="source-small">(דברים טז טז)</span> &quot;יֵרָאֶה כָּל זְכוּרְךָ&quot;. וְהַחֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז טו)</span> &quot;תָּחֹג לַה׳ אֱלֹהֶיךָ&quot;. וְהַשִּׂמְחָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז יד)</span> &quot;וְשָׂמַחְתָּ בְּחַגֶּךָ&quot;. הָרְאִיָּה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁנִּרְאָה פָּנָיו בָּעֲזָרָה בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג וְיָבִיא עִמּוֹ קָרְבַּן עוֹלָה בֵּין מִן הָעוֹף בֵּין מִן הַבְּהֵמָה. וּמִי שֶׁבָּא לָעֲזָרָה בְּיוֹם רִאשׁוֹן וְלֹא הֵבִיא עוֹלָה לֹא דַּיּוֹ שֶׁלֹּא עָשָׂה מִצְוַת עֲשֵׂה אֶלָּא עוֹבֵר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(שמות כג טו)</span> <span class="source-small">(שמות לד כ)</span> &quot;לֹא יֵרָאוּ פָנַי רֵיקָם&quot;. וְאֵינוֹ לוֹקֶה עַל לָאו זֶה שֶׁהֲרֵי לֹא עָשָׂה מַעֲשֶׂה. הַחֲגִיגָה הָאֲמוּרָה בַּתּוֹרָה הִיא שֶׁיַּקְרִיב שְׁלָמִים בְּיוֹם טוֹב הָרִאשׁוֹן שֶׁל חַג בְּבוֹאוֹ לְהֵרָאוֹת. וְהַדָּבָר יָדוּעַ שֶׁאֵין הַשְּׁלָמִים בָּאִים אֶלָּא מִן הַבְּהֵמָה. וּשְׁתֵּי מִצְוֹת אֵלּוּ שֶׁהֵן הָרְאִיָּה וְהַחֲגִיגָה אֵין הַנָּשִׁים חַיָּבוֹת בָּהֶן. וְהַשִּׂמְחָה הָאֲמוּרָה בָּרְגָלִים הִיא שֶׁיַּקְרִיב שְׁלָמִים יֶתֶר עַל שַׁלְמֵי חֲגִיגָה. וְאֵלּוּ הֵם הַנִּקְרָאִים שַׁלְמֵי שִׂמְחַת חֲגִיגָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כז ז)</span> &quot;וְזָבַחְתָּ שְׁלָמִים וְאָכַלְתָּ שָּׁם וְשָׂמַחְתָּ לִפְנֵי ה׳ אֱלֹהֶיךָ&quot;. וְנָשִׁים חַיָּבוֹת בְּמִצְוָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונשים חייבות במצוה זו.</strong> עיין במ&quot;ש הר&quot;ב לח&quot;מ ספי&quot;ד מהל׳ מעשה הקרבנות. ועיין בפ׳ קמא דחגיגה (דף ו׳) ובתוס׳ שם ד&quot;ה דמיחייבא ובפ&quot;ק דר&quot;ה (דף ו׳) ד&quot;ה אשה ועיין במ&quot;ש הרז&quot;ה שם ודוק. מ&quot;ש מרן ומשמע ליה דעופות בכלל זבחים הם עיין בפ׳ פרת חטאת (דף קי&quot;ט) דאמרינן א&quot;ר ששת לדברי האומר יש מנחה בבמה יש עופות בבמה ולדברי האומר אין מנחה בבמה אין עופות בבמה זבחים ולא מנחות זבחים ולא עופות הרי דמלת זבחים שוללת מנחות ועופות:</p>
               </div>
             </div>
@@ -221,8 +227,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Festival Offering 1:8:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-festival-offering-1-8-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Festival Offering 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-8">Mishneh Torah, Festival Offering 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עוֹלַת רְאִיָּה וְשַׁלְמֵי חֲגִיגָה אֵינָן דּוֹחִין לֹא אֶת הַשַּׁבָּת וְלֹא אֶת הַטֻּמְאָה לְפִי שֶׁאֵין לָהֶן זְמַן קָבוּעַ כְּקָרְבְּנוֹת הַצִּבּוּר. שֶׁאִם אֵינוֹ חוֹגֵג הַיּוֹם חוֹגֵג לְמָחָר כְּמוֹ שֶׁבֵּאַרְנוּ. אֲבָל דּוֹחִין אֶת יוֹם טוֹב וְאַף עַל פִּי שֶׁאֵין מַקְרִיבִין בְּיוֹם טוֹב נְדָרִים וּנְדָבוֹת מַקְרִיבִין עוֹלַת רְאִיָּה וְשַׁלְמֵי חֲגִיגָה וְשַׁלְמֵי שִׂמְחָה שֶׁאֵין אֵלּוּ נְדָרִים וּנְדָבוֹת אֶלָּא חוֹבוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עולת ראיה ושלמי חגיגה כו׳.</strong> כתב מרן משנה פ׳ אלו דברים כו׳. ומשנה זו איירי בחגיגת י&quot;ד שהיא רשות וכבר הביא רבינו משנה זו בפ&quot;י מהל׳ קרבן פסח הל׳ י&quot;ב ואין ללמוד מזה לחגיגת ט&quot;ו. אך הדין פשוט מההיא דכיצד צולין שכתב מרן. ויותר מזה הוא מבואר במתני׳ דפ&quot;ב דחגיגה (דף י&quot;ז) דאמרינן שאם חל להיות בשבת שיום טבוח אחר השבת ומתבאר שם דאף עולת ראיה אינה דוחה שבת ועיין בתוי&quot;ט שם ודוק: ומ&quot;ש ואע&quot;פ שאין מקריבין ביו&quot;ט נדרים ונדבות. דע דנסכים שלא הביאו הצבור עם הקרבן דקי&quot;ל דמביא אותם אף לאחר כמה ימים וכמ&quot;ש רבינו בפ&quot;ב מהל׳ מעשה הקרבנות הל׳ י&quot;ב קרבים ביו&quot;ט. כ&quot;כ רש&quot;י פ&quot;ד דתמורה (דף י&quot;ד):</p>
               </div>
             </div>
@@ -237,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Festival Offering 1:10:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-festival-offering-1-10-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Festival Offering 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-1-10">Mishneh Torah, Festival Offering 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְרִישׁ עוֹלַת רְאִיָּתוֹ וּמֵת. הַיּוֹרְשִׁין חַיָּבִין לַהֲבִיאָהּ. מֻתָּר לְהַקְרִיב בְּחֻלּוֹ שֶׁל מוֹעֵד נְדָרִים וּנְדָבוֹת שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט לט)</span> &quot;אֵלֶּה תַּעֲשׂוּ לַה׳ בְּמוֹעֲדֵיכֶם לְבַד מִנִּדְרֵיכֶם וְנִדְבֹתֵיכֶם&quot; מִכְּלַל שֶׁקְּרֵבִין בָּרֶגֶל. <span class="source-small">(במדבר כט לט)</span> &quot;לְעלֹתֵיכֶם&quot; כְּמוֹ עוֹלַת מְצֹרָע וְעוֹלַת יוֹלֶדֶת. <span class="source-small">(במדבר כט לט)</span> &quot;וּלְמִנְחֹתֵיכֶם&quot; לְהָבִיא מִנְחַת חוֹטֵא וּמִנְחַת קְנָאוֹת. <span class="source-small">(במדבר כט לט)</span> &quot;וּלְשַׁלְמֵיכֶם&quot; לְרַבּוֹת שַׁלְמֵי נָזִיר הַכּל קְרֵבִין בַּמּוֹעֵד וְאֵין קְרֵבִין בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין קרבין ביו&quot;ט.</strong> ואם עבר ושחט כיצד יעשה בזריקת הדם עיין בפ&quot;ב דביצה (דף כ׳) וכבר הביא מרן סוגיא זו בפ&quot;ב מהל׳ שגגות הלכה י&quot;ד ודוק:</p>
               </div>
             </div>
@@ -254,8 +270,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Festival Offering 2:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-festival-offering-2-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Festival Offering 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-2-1">Mishneh Torah, Festival Offering 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים פְּטוּרִין מִן הָרְאִיָּה. וְכָל הָאֲנָשִׁים חַיָּבִים בִּרְאִיָּה חוּץ מֵחֵרֵשׁ וְאִלֵּם וְשׁוֹטֶה וְקָטָן וְסוּמָא וְחִגֵּר וְטָמֵא וְעָרֵל. וְכֵן הַזָּקֵן וְהַחוֹלֶה וְהָרַךְ וְהֶעָנֹג מְאֹד שֶׁאֵינָם יְכוֹלִים לַעֲלוֹת עַל רַגְלֵיהֶן כָּל אֵלּוּ הָאַחַד עָשָׂר פְּטוּרִין. וּשְׁאָר כָּל הָאֲנָשִׁים חַיָּבִין בִּרְאִיָּה. הַחֵרֵשׁ אַף עַל פִּי שֶׁהוּא מְדַבֵּר אֲפִלּוּ חֵרֵשׁ בְּאָזְנוֹ אַחַת פָּטוּר מִן הָרְאִיָּה. וְכֵן הַסּוּמָא בְּעֵינוֹ אַחַת. אוֹ חִגֵּר בְּרַגְלוֹ אַחַת פָּטוּר. הָאִלֵּם אַף עַל פִּי שֶׁהוּא שׁוֹמֵעַ פָּטוּר. טֻמְטוּם וְאַנְדְּרוֹגִינוּס פְּטוּרִין מִפְּנֵי שֶׁהֵן סְפֵק אִשָּׁה. מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין פָּטוּר מִפְּנֵי צַד עַבְדוּת שֶׁבּוֹ. וּמִנַּיִן שֶׁכָּל אֵלּוּ פְּטוּרִין מִן הָרְאִיָּה. הֲרֵי הוּא אוֹמֵר <span class="source-small">(שמות כג יז)</span> <span class="source-small">(שמות לד כג)</span> <span class="source-small">(דברים טז טז)</span> &quot;יֵרָאֶה כָּל זְכוּרְךָ&quot; לְהוֹצִיא אֶת הַנָּשִׁים. וּמִצְוַת עֲשֵׂה שֶׁאֵין הַנָּשִׁים חַיָּבוֹת בָּהּ אֵין הָעֲבָדִים חַיָּבִים בָּהּ. וְעוֹד הֲרֵי נֶאֱמַר בְּבוֹא כָל יִשְׂרָאֵל לְהוֹצִיא הָעֲבָדִים. וְנֶאֱמַר <span class="source-small">(דברים לא יא)</span> &quot;בְּבוֹא כָל יִשְׂרָאֵל לֵרָאוֹת&quot;. כְּשֵׁם שֶׁהֵן בָּאִין לְהֵרָאוֹת לִפְנֵי ה׳ כָּךְ הֵם בָּאִים לִרְאוֹת הֲדַר קָדְשׁוֹ וּבֵית שְׁכִינָתוֹ. לְהוֹצִיא סוּמָא שֶׁאֵינוֹ רוֹאֶה. אֲפִלּוּ נִסְמֵית עֵינוֹ אַחַת שֶׁהֲרֵי אֵין רְאִיָּתוֹ שְׁלֵמָה. וְשָׁם נֶאֱמַר <span class="source-small">(דברים לא יב)</span> &quot;לְמַעַן יִשְׁמְעוּ&quot;. לְהוֹצִיא מִי שֶׁאֵין לוֹ שְׁמִיעָה גְּמוּרָה. <span class="source-small">(דברים לא יב)</span> &quot;וּלְמַעַן יִלְמְדוּ&quot;. לְהוֹצִיא מִי שֶׁאֵינוֹ מְדַבֵּר. שֶׁכָּל הַמְצֻוֶּה לִלְמֹד מְצֻוֶּה לְלַמֵּד. וְנֶאֱמַר <span class="source-small">(שמות לד כד)</span> &quot;בַּעֲלֹתְךָ לֵרָאוֹת אֶת פְּנֵי ה׳&quot; מִי שֶׁיָּכוֹל לַעֲלוֹת בְּרַגְלָיו לְהוֹצִיא חִגֵּר וְחוֹלֶה וְזָקֵן וְעָנֹג. וּכְבָר בֵּאַרְנוּ בְּהִלְכוֹת בִּיאַת הַמִּקְדָּשׁ שֶׁאֵין הַטָּמֵא רָאוּי לְבִיאָה וְכֵן הֶעָרֵל מָאוּס כְּטָמֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן הזקן והחולה והרך והענוג כו׳.</strong> טעמא דהני נראה מדברי רבינו ז&quot;ל דהיינו דומיא דזקן וחולה דמרוב ענוגם אינם מהלכים על רגליהם בלא משענת. אך רש&quot;י בפ&quot;ק דחגיגה (דף ד׳) פירש מפנקי דאין הולכים בלא מנעל ואין אדם נכנס להר הבית במנעלו ועיין בסוגית הגמרא דמייתי ראיה מדכתיב כי תבואו לראות פני וכו׳ ומשמע קצת כדברי רש&quot;י ויש ליישב לדעת רבינו ודוק. ודע דבפ&quot;ק דפסחים (דף ח׳) אמרינן א&quot;ר אמי כל אדם שיש לו קרקע עולה לרגל וכל שאין לו קרקע אינו עולה, ולא ידעתי למה השמיט רבינו דין זה. ואי משום דבפ&quot;ק דחגיגה תנן הכל חייבין בראיה חוץ מחש&quot;ו ולא תני להא דמי שאין לו קרקע הא ל&quot;ק וכמ&quot;ש התוס׳ שם בד&quot;ה חוץ ומוכח מדבריהם דהא דמי שאין לו קרקע הויא הלכתא פסיקתא וכן מוכח ממ&quot;ש בפ&quot;ק דפסחים (דף ג׳) ד&quot;ה מאליה ודברי רבינו צריכים לי תלמוד. ומ&quot;ש רבינו דטומטום פטור מפני שהוא ספק אשה קשה דטומטום אף שהוא איש פטור מפני שהוא ערל, ועיין במ&quot;ש התוס׳ בפ׳ הערל (דף פ&quot;ב ד&quot;ה התם) ודוק:</p>
               </div>
             </div>
@@ -270,8 +291,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Festival Offering 2:3:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-festival-offering-2-3-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Festival Offering 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-2-3">Mishneh Torah, Festival Offering 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל קָטָן שֶׁיָּכוֹל לֶאֱחֹז בְּיָדוֹ שֶׁל אָבִיו וְלַעֲלוֹת מִיְּרוּשָׁלַיִם לְהַר הַבַּיִת אָבִיו חַיָּב לְהַעֲלוֹתוֹ וּלְהֵרָאוֹת בּוֹ כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת שֶׁנֶּאֱמַר <span class="source-small">(שמות כג יז)</span> <span class="source-small">(שמות לד כג)</span> <span class="source-small">(דברים טז טז)</span> &quot;יֵרָאֶה כָּל זְכוּרְךָ&quot;. וְאִם הָיָה הַקָּטָן חִגֵּר אוֹ סוּמָא אוֹ חֵרֵשׁ אֲפִלּוּ בְּאַחַת אֵינוֹ חַיָּב לְחַנְּכוֹ אַף עַל פִּי שֶׁהוּא רָאוּי לִרְפוּאָה שֶׁאִלּוּ הָיָה גָּדוֹל וְהוּא כָּךְ הָיָה פָּטוּר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אביו חייב להעלותו כו׳.</strong> התוס׳ כתבו בריש חגיגה ד&quot;ה איזהו דאביו מביא עליו קרבן ראיה והוא נדבה ואינה קריבה ביו&quot;ט אלא ביום שני. אך מדברי רבינו ז&quot;ל נראה שהחינוך אינו אלא לראיית פנים בעזרה וכן הוא דעת רש&quot;י וכמ&quot;ש התוספות שם. ומ&quot;ש רבינו ואם היה הקטן חגר כו׳ לדידן דקי&quot;ל כב&quot;ה דקטן שאינו יכול לאחוז בידו של אביו ולעלות פטור א&quot;צ טעם לפיטורא דקטן חגר ובגמרא לא נסתפקו אלא אליבא דב&quot;ש. ולפ&quot;ז לא ידעתי למאי הלכתא נקט רבינו ואם היה הקטן חגר וצ&quot;ע:</p>
               </div>
             </div>
@@ -287,8 +313,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Festival Offering 3:7:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-festival-offering-3-7-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Festival Offering 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-festival-offering/#mishneh-torah-festival-offering-3-7">Mishneh Torah, Festival Offering 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם הַקְהֵל שֶׁחָל לִהְיוֹת בְּשַׁבָּת מְאַחֲרִין אוֹתוֹ לְאַחַר הַשַּׁבָּת. מִפְּנֵי תְּקִיעַת הַחֲצוֹצְרוֹת וְהַתְּחִנּוֹת שֶׁאֵינָן דּוֹחִין אֶת הַשַּׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יום הקהל שחל להיות בשבת כו׳.</strong> עיין בצדה לדרך פ׳ וילך:           סליקו להו הלכות חגיגה בס&quot;ד</p>
               </div>
             </div>
@@ -298,6 +329,10 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-festival-offering-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-festival-offering.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-festival-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -318,8 +353,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-festival-offering.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishneh-lamelech-on-mishneh-torah-festival-offering.manifest.json","occurrence_url":"../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-festival-offering.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-festival-offering.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-festival-offering.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-festival-offering.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -345,7 +380,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

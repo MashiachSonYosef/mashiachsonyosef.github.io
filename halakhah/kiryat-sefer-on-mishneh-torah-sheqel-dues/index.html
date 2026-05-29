@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-sheqel-dues/">Open Mishneh Torah, Sheqel Dues</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Sheqel Dues</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">16 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>386 matched</strong> / 892 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -221,8 +222,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-1">Mishneh Torah, Sheqel Dues 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִתֵּן כָּל אִישׁ מִיִּשְׂרָאֵל מַחֲצִית הַשֶּׁקֶל בְּכָל שָׁנָה וְשָׁנָה. אֲפִלּוּ עָנִי הַמִּתְפַּרְנֵס מִן הַצְּדָקָה חַיָּב. וְשׁוֹאֵל מֵאֲחֵרִים אוֹ מוֹכֵר כְּסוּת שֶׁעַל כְּתֵפוֹ וְנוֹתֵן מַחֲצִית הַשֶּׁקֶל כֶּסֶף שֶׁנֶּאֱמַר <span class="source-small">(שמות ל טו)</span> &quot;הֶעָשִׁיר לֹא יַרְבֶּה וְהַדַּל לֹא יַמְעִיט&quot; וְגוֹ׳. וְאֵינוֹ נוֹתְנוֹ בִּפְעָמִים רַבּוֹת הַיּוֹם מְעַט וּלְמָחָר מְעַט אֶלָּא נוֹתְנוֹ כֻּלּוֹ כְּאַחַת בְּפַעַם אַחַת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה מד </strong> ליתן כל איש מישראל מחצית השקל בכל שנה. ואפילו עני המתפרנס מן הצדקה חייב ושואל מאחרים או מוכר כסותו ונותן מחצית השקל כסף שנאמר העשיר לא ירבה והדל לא ימעיט. ואינו נותנו מעט אלא כולו כאחד בפעם אחד. דכתיב לא ימעיט ממחצית השקל דאי למימר שיתן חצי שקל הוה סגי לכתוב יתן חצי שקל וקאמר לא ימעיט דרוצה לומר אפי׳ בנתינת לא ימעיט מחצית שקל.</p>
               </div>
             </div>
@@ -237,8 +243,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-2">Mishneh Torah, Sheqel Dues 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִנְיַן כֶּסֶף הָאָמוּר בַּתּוֹרָה בְּאוֹנֵס וּבִמְפַתֶּה וּבְמוֹצִיא שֵׁם רַע וְהוֹרֵג עֶבֶד הוּא כֶּסֶף הוּא שֶׁקֶל הַנֶּאֱמָר בְּכָל מָקוֹם בַּתּוֹרָה. וּמִשְׁקָלוֹ שְׁלֹשׁ מֵאוֹת וְעֶשְׂרִים שְׂעוֹרָה. וּכְבָר הוֹסִיפוּ חֲכָמִים עָלָיו וְעָשׂוּ מִשְׁקָלוֹ כְּמִשְׁקַל הַמַּטְבֵּעַ הַנִּקְרָא סֶלַע בִּזְמַן בַּיִת שֵׁנִי. וְכַמָּה הוּא מִשְׁקַל הַסֶּלַע שְׁלֹשׁ מֵאוֹת וְאַרְבַּע וּשְׁמוֹנִים שְׂעוֹרָה בֵּינוֹנִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מנין </strong> כסף האמור בתורה באונס ומפתה ומוציא שם רע והורג עבד הוא כסף הוא שקל הנאמר בכל מקום בתורה. דבעבד כתיב כסף חמשים שקלים הרי כסף שהוא שקל. ובמפתה כתיב כסף ישקול הרי כסף שהוא שקל. ואונס ומוציא שם רע דלא כתיב בהו שקל אלא כסף ילפי בכסף כסף מה כסף קצוב הנאמר בעבד ובמפתה הוי שקל אף כסף קצוב דחמשים ומאה דאונס ומוציא שם רע הוי שקל. ומשקלו שלש מאות ועשרים שעורה דכתיב עשרים גרה השקל ומתרגמינן עשרים מעין ותניא שש מעה כסף דינר נמצא שקל ג׳ דינרין ושליש דינר שהם עשרים מעין ומעה שני פונדיונין ופונדיון שני איסרים שכל איסר הוא שמונה פרוטות נמצא מעה שהיא גרה ל&quot;ב פרוטות שהן י&quot;ו שעורה ועשרים גרה הם שלש מאות ועשרים שעורה והסלע הוא ארבעה דינרין שכל דינר ששה מעין שהן כ&quot;ד מעין נמצא תוספת על שקל של משה ארבעה מעין שהוא שתות. ואפילו שהתורה אמרה מחצית של עשרים גרה שהם עשרה גרה עשרה מעין אם המטבע של אותו הזמן גדול מהשקל כסלע שהוא שתות יותר צריך ליתן חצי הסלע שהוא י&quot;ב מעין דכתיב בערכים עשרים גרה יהיה השקל למדנו לשקל שהוא עשרים גרה. ומנין שאם רצה להוסיף עליו מוסיף ת&quot;ל יהיה דמשמע עוד הויה אחרת בתוס׳ מיקרי שקל אבל אם מטבע של אותו זמן פחות מעשרים גרה לא יפחות למחצית השקל מעשרה גרה שהם מעין דכתיב עשרים גרה הוא ואמרו יכול יפחות ת&quot;ל הוא.</p>
               </div>
             </div>
@@ -253,8 +264,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-7">Mishneh Torah, Sheqel Dues 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכּל חַיָּבִין לִתֵּן מַחֲצִית הַשֶּׁקֶל כֹּהֲנִים לְוִיִּים וְיִשְׂרְאֵלִים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. אֲבָל לֹא נָשִׁים וְלֹא עֲבָדִים וְלֹא קְטַנִּים. וְאִם נָתְנוּ מְקַבְּלִין מֵהֶם. אֲבָל הַכּוּתִים שֶׁנָּתְנוּ מַחֲצִית הַשֶּׁקֶל אֵין מְקַבְּלִין מֵהֶם. קָטָן שֶׁהִתְחִיל אָבִיו לִתֵּן עָלָיו מַחֲצִית הַשֶּׁקֶל שׁוּב אֵינוֹ פּוֹסֵק אֶלָּא נוֹתֵן עָלָיו בְּכָל שָׁנָה וְשָׁנָה עַד שֶׁיַּגְדִּיל וְיִתֵּן עַל עַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל </strong> חייבין ליתן מחצית השקל כהנים לוים וישראלים וגרים ועבדים משוחררים. דכופר נפש הוא ועוד אמרו זה יתנו כמנין זה שהם שנים עשר שבטים יתנו מחצית השקל ולאו לאפוקי גרים ועבדים משוחררים דאינם בכלל י&quot;ב שבטים אלא לאתויי כהנים לוים דהוה אמינא הא כתיב וכל מנחת כהן כליל תהיה וגו׳ והואיל ועומר ושתי הלחם ולחם הפנים באין מתרומות הלשכה היאך שוקלין קמ&quot;ל דכי כתיב לכל מנחת כהן היינו במנחת יחיד אבל מנחת ציבור אפילו הוי לכהנים חלק בה כי הכא נאכלת. אבל נשים ועבדים וקטנים אינם חייבים דכתיב כל העובר על הפקודים ואין אשה ועבד וקטן עוברים על הפקודים דאף ע&quot;ג דהוי מצות עשה שהזמן גרמה ונשים ועבדים פטורים הכא דכתיב כופר נפשו הוה אמינא דחייבים אי לאו דכתיב פקודים ואם נתנו מקבלים מהם דהא הוו בכלל כופר נפש ולא תימא אם מי שהוא חייב שהוא העשיר אינו מרבה כ&quot;ש מי שאינו חייב שלא יתן אבל גוים שנתנו אין מקבלים מהם דכתיב כי תשא את ראש בני ישראל ותרומת הלשכה ממנה באין קרבנות ציבור שהן חובה ולא אתרבו גוים מאיש איש לרבות את הגוים אלא לנדרים ונדבות כדכתיב בקרא לכל נדריהם וגו׳.</p>
               </div>
             </div>
@@ -269,8 +285,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-8">Mishneh Torah, Sheqel Dues 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשְּׁקָלִים אֵינָן נוֹהֲגִין אֶלָּא בִּפְנֵי הַבַּיִת. וּבִזְמַן שֶׁבֵּית הַמִּקְדָּשׁ קַיָּם נוֹתְנִין אֶת הַשְּׁקָלִים בֵּין בְּאֶרֶץ יִשְׂרָאֵל בֵּין בְּחוּצָה לָאָרֶץ. וּבִזְמַן שֶׁהוּא חָרֵב אֲפִלּוּ בְּאֶרֶץ יִשְׂרָאֵל אֵין נוֹהֲגִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השקלים </strong> אינם נוהגים אלא בפני הבית שנאמר ולקחת את כסף הכיפורים ונתת אותו על עבודת אהל מועד בזמן שעבודת אהל מועד וכיוצא בו נוהגת ובזמן שבית המקדש קיים נותנים את השקלים בין בארץ בין בחוצה לארץ דחובת כל ישראל הוא ובזמן שחרב בית המקדש אפילו בארץ ישראל אין נותנין דלעבודת אהל מועד כתיב.</p>
               </div>
             </div>
@@ -285,8 +306,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-9">Mishneh Torah, Sheqel Dues 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּאֶחָד בַּאֲדָר מַשְׁמִיעִין עַל הַשְּׁקָלִים כְּדֵי שֶׁיָּכִין כָּל אֶחָד וְאֶחָד מַחֲצִית הַשֶּׁקֶל שֶׁלּוֹ. וְיִהְיֶה עָתִיד לִתֵּן. בַּחֲמִשָּׁה עָשָׂר בּוֹ יָשְׁבוּ הַשֻּׁלְחָנִים בְּכָל מְדִינָה וּמְדִינָה וְתוֹבְעִין בְּנַחַת כָּל מִי שֶׁיִּתֵּן לָהֶם יְקַבְּלוּ מִמֶּנּוּ וּמִי שֶׁלֹּא נָתַן אֵין כּוֹפִין אוֹתוֹ לִתֵּן. בַּחֲמִשָּׁה וְעֶשְׂרִים בּוֹ יָשְׁבוּ בַּמִּקְדָּשׁ לִגְבּוֹת. וּמִכָּאן וְאֵילָךְ כּוֹפִין אֶת מִי שֶׁלֹּא נָתַן עַד שֶׁיִּתֵּן. וְכָל מִי שֶׁלֹּא יִתֵּן מְמַשְׁכְּנִין אוֹתוֹ וְלוֹקְחִין עֲבוֹטוֹ בַּעַל כָּרְחוֹ וַאֲפִלּוּ כְּסוּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקרוב </strong> לר&quot;ח ניסן שהוא עונת תרומה חדשה ממשכנין את מי שלא נתן עדין דאם להדיוט ממשכנין ומחזירין דכתיב אם חבול תחבול כ&quot;ש לגבוה דממשכנין ואין מחזירים דכתיב ולך תהיה צדקה מי שצריך צדקה יצא הקדש שאין צריך צדקה והא דעונת תרומה חדשה הוי מר&quot;ח ניסן מדכתיב זאת עולת חדש בחדשו לחדשי השנה חידושי יתרי כתיב לדרשה לומר לך יש חדש שאתה צריך לחדש הקרבנות ולהביאם מתרומה חדשה וגמר שנה שנה מניסן דכתיב ראשון הוא לכם לחדשי השנה פרק שני שעירי ובירושלמי ילפינן דכ&quot;א בניסן הוקם המשכן ובו ביום נתרמה תרומה דכתיב ויהי בחדש הראשון וגו׳ כ&quot;א לחדש הוקם המשכן דכתיב ונתת אותו על עבודת אהל מועד אם כן מיום שהוקם המשכן נתרמה תרומה לעבודת אהל מועד שהם הקרבנות וכך היתה בתחלה בימי המדבר:</p>
               </div>
             </div>
@@ -302,8 +328,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-4">Mishneh Torah, Sheqel Dues 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכָל מְדִינָה וּמְדִינָה כְּשֶׁגּוֹבִין הַשְּׁקָלִים מְשַׁלְּחִין אוֹתָן בְּיַד שְׁלוּחִים לַמִּקְדָּשׁ. וְיֵשׁ לָהֶם לְצָרֵף אוֹתָן בְּדִינְרֵי זָהָב מִפְּנֵי מַשּׂאוֹי הַדֶּרֶךְ. וְהַכּל מִתְקַבְּצִין לַמִּקְדָּשׁ וּמַנִּיחִין אוֹתָן בְּלִשְׁכָּה אַחַת מִן הַלְּשָׁכוֹת בַּמִּקְדָּשׁ וְסוֹגְרִין כָּל דַּלְתוֹתֶיהָ בְּמַפְתְּחוֹת וְחוֹתְמִין עָלֶיהָ חוֹתָמוֹת וּמְמַלְּאִין מִכָּל הַשְּׁקָלִים שֶׁיִּתְקַבְּצוּ שָׁם שָׁלֹשׁ קֻפּוֹת גְּדוֹלוֹת שִׁעוּר כָּל קֻפָּה כְּדֵי שֶׁתָּכִיל תֵּשַׁע סְאִין וְהַשְּׁאָר מַנִּיחִין אוֹתוֹ בַּלִּשְׁכָּה. וְזֶה שֶׁבְּתוֹךְ הַקֻּפּוֹת הוּא הַנִּקְרָא תְּרוּמַת הַלִּשְׁכָּה וְזֶה שֶׁיִּשָּׁאֵר שָׁם יֶתֶר עַל מַה שֶּׁיֵּשׁ בַּקֻּפּוֹת הוּא הַנִּקְרָא שְׁיָרֵי הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצרפין </strong> שקלים בדרבונות מפני משוי הדרך דלא הקפידה תורה אלא לשיווי חצי שקל בכל זמן מאיזה מטבע שיהיה ומשלחין אותן ביד שלוחין למקדש.</p>
               </div>
             </div>
@@ -318,8 +349,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 2:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-9">Mishneh Torah, Sheqel Dues 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁהוּא תּוֹרֵם מִתְכַּוֵּן לִתְרֹם עַל הַגָּבוּי שֶׁיֵּשׁ בַּלִּשְׁכָּה. וְעַל הַגָּבוּי שֶׁעֲדַיִן לֹא הִגִּיעַ לַלִּשְׁכָּה. וְעַל הֶעָתִיד לִגָּבוֹת כְּדֵי שֶׁיִּהְיוּ אֵלּוּ הַשְּׁקָלִים שֶׁהוֹצִיאָן לְהִסְתַּפֵּק מֵהֶן כַּפָּרָה עַל כָּל יִשְׂרָאֵל וּכְאִלּוּ הִגִּיעוּ כָּל שִׁקְלֵיהֶן לַלִּשְׁכָּה וְנִתְרְמָה מֵהֶן תְּרוּמָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשהוא </strong> תורם מתכוין לתרום על הגבוי בין הגיע ללשכה בין לא הגיע ועל העתיד לגבות כדי שיהיה כפרה על ישראל כדכתיב לכפר על נפשותיכם ואי אפשר שכלם יתנו מיד ואפילו הכי אמר קרא לכפר על כולם נראה דמתכוונים על העתיד לגבות:</p>
               </div>
             </div>
@@ -335,8 +371,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-3-1">Mishneh Torah, Sheqel Dues 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲצָיֵי הַשְּׁקָלִים הַכּל צְרִיכִין לָהֶן כְּדֵי שֶׁיִּתֵּן כָּל אֶחָד וְאֶחָד חֲצִי שֶׁקֶל שֶׁהוּא חַיָּב. לְפִיכָךְ כְּשֶׁהָיָה אָדָם הוֹלֵךְ אֵצֶל הַשֻּׁלְחָנִי וּמְצָרֵף שֶׁקֶל בִּשְׁנֵי חֲצָאִין יִתֵּן לוֹ תּוֹסֶפֶת עַל הַשֶּׁקֶל. וְאוֹתָהּ הַתּוֹסֶפֶת נִקְרֵאת קַלְבּוֹן. לְפִיכָךְ שְׁנַיִם שֶׁנָּתְנוּ שֶׁקֶל עַל שְׁנֵיהֶם חַיָּבִין בְּקַלְבּוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנים </strong> שנתנו שקל שניהם חייבים בקולבון דילפינן לעיל מעשרים גרה הוא דלא יפחות מחצי שקל וכיון דאם בא לצרף שקל בשני חצאים צריך ליתן תוספת דהיינו קולבון אם כן כשנותן שקל לשנים הוי פחות מחצי שקל לכל אחד ולכך צריכין לתת קולבון. ובירושלמי מפיק ליה מדכתיב זה יתנו כמין מטבע הוציא הקב&quot;ה מתחת כסא כבודו והראה למשה ואמר לו כזה יתנו ולכך קולבון מן התורה. הנותן על יד עני או שכנו דרך הלואה חייב בקולבון. האחין והשותפין פטורין מהקולבון אם נתנו שקל על יד שניהם והוא שלא חלקו האחין מה שהניח להן אביהן והשותפין שנשאו ונתנו במעות השותפות ונשתנה מעות השותפות אבל חלקו האחין או לא נשתנה עדין מעות שהניחו בשותפות חייבים דכל אחד לעצמו וכיון שכל אחד חייב בחצי שקל חייבים בקולבון אם נתנו שניהם שקל אבל כשבאים לפרוע ביחיד דהיינו כדאמר לא נתחייבו מעולם בקולבון כיון שהכל ממון אחד באחין שלא חלקו ובשותפין שנשתנה המעות והרי השקל עובר בשני חצאי שקלים ואינו פוחת ממה שאמרה תורה. הנותן שקל להקדש שיחשבו לו מחצית השקל ויטול חצי שקל לאחר נותן שני קולבונות.</p>
               </div>
             </div>
@@ -351,8 +392,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-3-8">Mishneh Torah, Sheqel Dues 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאָבַד שִׁקְלוֹ חַיָּב בְּאַחְרָיוּתוֹ עַד שֶׁיִּמְסְרֶנּוּ לַגִּזְבָּר. בְּנֵי הָעִיר שֶׁשָּׁלְחוּ אֶת שִׁקְלֵיהֶן בְּיַד שָׁלִיחַ וְנִגְנְבוּ אוֹ אָבְדוּ. אִם שׁוֹמֵר חִנָּם הוּא הֲרֵי זֶה נִשְׁבָּע לָהֶם וְנִפְטָר כְּדִין כָּל שׁוֹמְרֵי חִנָּם וְהֵן חוֹזְרִין וְנוֹתְנִין שִׁקְלֵיהֶן פַּעַם שְׁנִיָּה. וְאִם אָמְרוּ אַנְשֵׁי הָעִיר הוֹאִיל וְאָנוּ מְשַׁלְּמִין שְׁקָלֵינוּ אֵין רְצוֹנֵנוּ שֶׁיִּשָּׁבַע הַשָּׁלִיחַ שֶׁהוּא נֶאֱמָן לָנוּ אֵין שׁוֹמְעִין לָהֶן. לְפִי שֶׁתַּקָּנַת חֲכָמִים הִיא שֶׁאֵין הֶקְדֵּשׁ יוֹצֵא בְּלֹא שְׁבוּעָה. נִמְצְאוּ הַשְּׁקָלִים הָרִאשׁוֹנִים אַחַר שֶׁנִּשְׁבַּע הַשָּׁלִיחַ אֵלּוּ וְאֵלּוּ שְׁקָלִים הֵם וְאֵין עוֹלִין לָהֶן לְשָׁנָה אַחֶרֶת. וְהָרִאשׁוֹנִים יִפְּלוּ לְשִׁקְלֵי הַשָּׁנָה וְהָאַחֲרוֹנִים יִפְּלוּ לְשִׁקְלֵי שָׁנָה שֶׁעָבְרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שאבד שקלו חייב באחריותו עד שימסרנו לגזבר דכתי׳ זה יתנו דבעינן נתינה לגזבר ואפילו נתרמה תרומה כיון שעדין היה שקלו בידו וכן אם מסרו לשומר חנם לא נפטרו אפילו נתרמה תרומה אלא אם נגנבו נשבע להם ונפטר כדין שומר (שכר) [חנם] דכתיב ולקח בעליו וגו׳ ונותנים שקליהם פעם אחרת ואם לשומר שכר מסרו ונאנסו אחר שנתרמה תרומה נשבעין לגזברין כדכתיב כי יתן איש אל רעהו וגו׳ דפרשה שניה נאמרה בשומר שכר והם פטורים שהתרומה תורם על העתיד לגבותו ברשות הקדש הן ואם קודם שנתרמה תרומה נאנס ונשבע לאנשי העיר והם משלמים דשלא ברשות הקדש היו כיון שעדין לא נתרמה תרומה ואם אחר שגבו שנית נמצאו אלו ואלו שקלים ויתנו הראשונים או האחרונים ליד גזבר לשנה זו.</p>
               </div>
             </div>
@@ -367,8 +413,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-3-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-3-10">Mishneh Torah, Sheqel Dues 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנּוֹתֵן חֲצִי שֶׁקֶל לַחֲבֵרוֹ לְהוֹלִיכוֹ לְשֻׁלְחָנִי לִשְׁקל אוֹתוֹ עַל יָדוֹ. הָלַךְ וּשְׁקָלוֹ עַל יְדֵי עַצְמוֹ כְּדֵי שֶׁלֹּא יְמַשְׁכְּנוּ אוֹתוֹ. אִם נִתְרְמָה הַתְּרוּמָה מֵעַל הַשּׁוֹקֵל שֶׁזֶּה הַשֶּׁקֶל בִּרְשׁוּת הֶקְדֵּשׁ הוּא שֶׁכְּבָר תְּרָמוֹ עַל הֶעָתִיד לִגְבּוֹת וְנִמְצָא זֶה הִצִּיל עַצְמוֹ בְּמָמוֹן הַהֶקְדֵּשׁ וְנֶהֱנָה בַּשֶּׁקֶל הַזֶּה. וְאִם לֹא נִתְרְמָה הַתְּרוּמָה לֹא מָעַל וְהוּא חַיָּב לִתֵּן לַחֲבֵרוֹ חֲצִי שֶׁקֶל שֶׁנָּתַן לוֹ. וְכֵן הַגּוֹזֵל אוֹ הַגּוֹנֵב חֲצִי שֶׁקֶל וּשְׁקָלוֹ יָצָא וְהוּא חַיָּב לְשַׁלֵּם לַבְּעָלִים שְׁנַיִם אוֹ לְהוֹסִיף חֹמֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנותן </strong> חצי שקל לחברו ולהוליכו לשקול אותו על ידו ושקלו על עצמו כדי שלא ימשכנו אותו אם נתרמה התרומה מעל השוקל שזה השקל ברשות הקדש הוא שכבר תרמו על העתיד לגבות ונמצא זה הציל עצמו בממון הקדש. ונראה דהיינו כשהוא שומר שכר דאי לאו הכי אמרן לעיל דאפילו נתרמה תרומה לא נפטר דאין מכוונין על העתיד לגבות אלא כשהוא ביד שומר שכר ואם לא נתרמה תרומה לא מעל וחייב ליתן לחברו חצי שקל שנתן לו. וכן הגוזל או הגונב חצי שקל ושקלו יצא וחייב לשלם לבעלים שנים או להוסיף חומש אם כפר ונשבע כדכתיב ישלם שנים לרעהו וכתיב וחמישיתו יוסיף עליו.</p>
               </div>
             </div>
@@ -383,8 +434,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-3-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-3-11">Mishneh Torah, Sheqel Dues 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנּוֹתֵן מַחֲצִית הַשֶּׁקֶל מִן הַהֶקְדֵּשׁ וְנִתְרְמָה הַתְּרוּמָה מִמֶּנּוּ. כְּשֶׁיִּסְתַּפְּקוּ מִמֶּנָּה יִתְחַיֵּב בִּמְעִילָה וְיָצָא יְדֵי מַחֲצִית הַשֶּׁקֶל. נְתָנוֹ מִמְּעוֹת מַעֲשֵׂר שֵׁנִי יֹאכַל כְּנֶגְדּוֹ בִּירוּשָׁלַיִם. מִדְּמֵי שְׁבִיעִית יֹאכַל כְּנֶגְדּוֹ בִּקְדֻשַּׁת שְׁבִיעִית. הָיָה שֶׁל עִיר הַנִּדַּחַת לֹא עָשָׂה כְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנותן </strong> מחצית השקל מן ההקדש ונתרמה תרומה ממנו כשיסתפקו ממנה יתחייב במעילה ויצא ידי מחצית השקל לפי שזה ההקדש הקדש היה בכל מקום שהוא ולא נשתנה מההקדש שהיה כשנתנו לתרומת הלשכה וכשיסתפקו ממנה אז חייב קרבן מעילה. נתנו ממעות מעשר שני או שביעית יאכל כנגדן בירושלם או בקדושת שביעית דכתיב במעשר שני ונתת הכסף בכל אשר תאוה וגו׳ וכל שהוא קדוש אין קדושה חלה עליו דכתיב אך בכור אשר יבוכר לה׳ בבהמה דמשמע דלא שייך קדושה אחרת בבכור אלא בכורה ובשביעית כתיב כי קדש היא מה קדש תופס דמיו וגו׳. היה של עיר הנדחת לא עשה כלום מפני שאסור בהנאה וטעון שריפה כדכתיב ואת כל שללה תקבוץ אל תוך רחובה וגו׳.</p>
               </div>
             </div>
@@ -399,8 +455,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-3-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-3-12">Mishneh Torah, Sheqel Dues 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְרִישׁ שִׁקְלוֹ וְסָבוּר שֶׁהוּא חַיָּב בּוֹ וְנִמְצָא שֶׁאֵינוֹ חַיָּב לֹא קָדַּשׁ. הַמַּפְרִישׁ שְׁנַיִם וְנִמְצָא שֶׁאֵינוֹ חַיָּב אֶלָּא אֶחָד. אִם בְּזֶה אַחַר זֶה הָאַחֲרוֹן לֹא קָדַּשׁ. וְאִם בְּבַת אַחַת הָאֶחָד שְׁקָלִים וְהַשֵּׁנִי מוֹתַר שְׁקָלִים. הִפְרִישׁ שִׁקְלוֹ וָמֵת יִפּל לִנְדָבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפריש </strong> שקלו ונמצא שאינו חייב לא קדש הפריש שנים ונמצא שאינו חייב אלא אחד האחרון לא קדש ואם בבת אחד השני מותר שקלים. הפריש שקלו ומת יפול לנדבה דאין כפרה למת ושקלים לכפרה כדכתיב לכפר על וגו׳. מותר מה שהפריש לשקלים חולין דכתיב העשיר לא ירבה וגו׳. מעות שנמצאו בין תיבה לתיבה יפלו לקרוב דחזקה מן הקרוב הם ומן התורה סומכים על החזקות דכתיב ויצא הכהן מן הבית אל פתח הבית והסגיר את הבית וגו׳ דילמא אדנפיק ואתא בצר ליה שיעורא אלא לאו משום דאמר אוקי אחזקה מחצה על מחצה להחמיר דהוי ספקה דאוריתא ולחומרא כדגמרי׳ באזהרת ל&quot;ט וכל מעות הנמצאות בהר הבית חולין חזקה שאין הגזבר מוציא מהלשכה עד שהוא מחללן על הבהמות שלוקח לקרבנות ומן התורה סמכינן על החזקות כדלעיל:</p>
               </div>
             </div>
@@ -416,8 +477,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-1">Mishneh Torah, Sheqel Dues 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תְּרוּמַת הַלִּשְׁכָּה מַה יֵּעָשֶׂה בָּהּ. לוֹקְחִין מִמֶּנָּה תְּמִידִין שֶׁל כָּל יוֹם וְהַמּוּסָפִין וְכָל קָרְבְּנוֹת הַצִּבּוּר וְנִסְכֵּיהֶם וְהַמֶּלַח שֶׁמּוֹלְחִין בּוֹ כָּל הַקָּרְבָּנוֹת. וְכֵן הָעֵצִים אִם לֹא הֵבִיאוּ עֵצִים וְלֹא נִמְצְאוּ אֶלָּא בְּדָמִים. וְהַקְּטֹרֶת וּשְׂכַר עֲשִׂיָּתָהּ. וְלֶחֶם הַפָּנִים וּשְׂכַר עוֹשֵׂי לֶחֶם הַפָּנִים. וְהָעֹמֶר וּשְׁתֵּי הַלֶּחֶם וּפָרָה אֲדֻמָּה וְשָׂעִיר הַמִּשְׁתַּלֵּחַ וְלָשׁוֹן שֶׁל זְהוֹרִית שֶׁקּוֹשְׁרִין בֵּין קַרְנָיו. כָּל אֵלּוּ בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תרומת </strong> הלשכה לוקחין ממנה תמידין ומוספין וכל קרבנות ציבור וצרכיהן וצרכי עשייתן שעל תרומת שקלים נאמר לכפר על נפשותיכם שהקרבנות לכפרה הם באים אבל פר העלם דבר של ציבור ושעירי עבודה זרה אין באים מתרומת הלשכה דלאו אדעתא דהכי הביאו שקליהם שהרי לא היו יודעים שיחטאו. פרוכות של שערים ומנורה וכלי שרת ובגדי כהונה שעובדים בהם במקדש כולם מתרומת הלשכה דהוו כולהו צרכי ציבור וקרבן בכלל הכתוב לכפר על נפשותיכם.</p>
               </div>
             </div>
@@ -432,8 +498,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-4-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-3">Mishneh Torah, Sheqel Dues 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַבְּהֵמוֹת הַנִּמְצָאוֹת בִּירוּשָׁלַיִם אוֹ בְּחוּצָה לָהּ בְּקָרוֹב מִמֶּנָּה בָּאוֹת עוֹלוֹת כְּמוֹ שֶׁיִּתְבָּאֵר בִּפְסוּלֵי הַמֻּקְדָּשִׁין. נִסְכֵּיהֶן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. וְכֵן עוֹבֵד כּוֹכָבִים שֶׁשָּׁלַח עוֹלָתוֹ מִמְּדִינָה אַחֶרֶת וְלֹא שָׁלַח עִמָּהּ דְּמֵי נְסָכִים יָבִיאוּ נִסְכֵּיהֶם מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הבהמות הנמצאות בירושלם או קרוב לה וגו׳ תקנות חכמים ז&quot;ל אלא חביתי כהן גדול שמת שיקריבום מתרומת הלשכה מדאוריתא דכתיב בחביתי כהן גדול חק עולם כליל תקטר ודרשי׳ משל עולם משל ציבור מתרומת הלשכה ותמיה לי על הרב ז&quot;ל דבשקלים פסק כר׳ שמעון כי הכא ובמנחות כר׳ יודה דקאמר משל יורשים היה בא ולא משל ציבור. מבקרי מומין ומלמד הלכות שחיטה וקמיצה ונשים המגדלות בניהן לפרה כולן נוטלין שכר מתרומת הלשכה דכולהו צריכי קרבנות ציבור הן. שומרי ספיחי שביעית לעומר ושתי הלחם נוטלים מתרומת הלשכה. כבש פרה ושעיר המשתלח וכן מזבח העולה והיכל ועזרות נעשין משיירי הלשכה. אמת המים שבירושלם וחומת ירושלם ומגדלותיה וכל צרכי העיר באין משיירי הלשכה משום דהוו צרכי ציבור. ואין מקבלין מגוי ואפילו מגר תושב לדברים אלו דכתיב לא לכם ולנו לבנות בית לאלהינו וכתיב ולכם אין חלק וצדקה וזכרון בירושלם.</p>
               </div>
             </div>
@@ -448,8 +519,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-4-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-9">Mishneh Torah, Sheqel Dues 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מוֹתַר תְּרוּמַת הַלִּשְׁכָּה וּשְׁיָרֵי הַלִּשְׁכָּה לוֹקְחִין בּוֹ זְכָרִים וִיקָרְבוּ כֻּלָּן עוֹלוֹת שֶׁתְּנַאי בֵּית דִּין הוּא עַל כָּל הַמּוֹתָרוֹת שֶׁיִּקְרְבוּ עוֹלַת בְּהֵמָה. אֲבָל לֹא עוֹלַת הָעוֹף שֶׁאֵין בְּקָרְבְּנוֹת הַצִּבּוּר עוֹף. וְאֵלּוּ הָעוֹלוֹת הַבָּאִין מִמּוֹתַר הַשְּׁקָלִים הֵם הַנִּקְרָאִים קַיִץ לַמִּזְבֵּחַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מותר </strong> תרומת הלשכה ושיירי הלשכה לוקחין בו בהמות לקרבן והן קיץ למזבח אבל לא עופות שאין בקרבנות הציבור עוף אי משום דכתיב בהו נפש דמשמע יחיד אי משום דכתיב והקריב מן התורים היחיד מביא עוף ואין הציבור מביאין עוף. שקלים שלא הספיקו לקרבנות מוציאין את הראוי להם מקדשי בדק הבית אבל אין קדשי בדק הבית מוציאים את הראוי לו מקדשי מזבח דלכפר על נפשותיכם קאמר קרא ולא לבדק הבית.</p>
               </div>
             </div>
@@ -464,8 +540,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-sheqel-dues-4-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Sheqel Dues 4:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-11">Mishneh Torah, Sheqel Dues 4:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִשֶּׁיַגִּיעַ רֹאשׁ חֹדֶשׁ נִיסָן אֵין מַקְרִיבִין קָרְבְּנוֹת צִבּוּר אֶלָּא מִתְּרוּמָה חֲדָשָׁה. וְאִם לֹא בָּאָה הַחֲדָשָׁה לוֹקְחִין מִן הַיְשָׁנָה. לְפִיכָךְ אִם הִגִּיעַ רֹאשׁ חֹדֶשׁ נִיסָן וְיֵשׁ עִמָּהֶן בְּהֵמוֹת לִתְמִידִים מִתְּרוּמָה יְשָׁנָה פּוֹדִין אוֹתָן וְיוֹצְאִין לְחֻלִּין אַף עַל פִּי שֶׁהֵן תְּמִימִין וְיִפְּלוּ דְּמֵיהֶן לִתְרוּמָה יְשָׁנָה שֶׁמְּקִיצִין בָּהּ אֶת הַמִּזְבֵּחַ. שֶׁתְּנַאי בֵּית דִּין הוּא עַל כָּל הַבְּהֵמוֹת שֶׁלּוֹקְחִין לִתְמִידִין שֶׁאִם לֹא יִהְיוּ צְרִיכִין לָהֶן יֵצְאוּ לְחֻלִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משיגיע </strong> ראש חדש ניסן אין מקריבין קרבנות ציבור אלא מתרומה חדשה כדילפינן לעיל מזאת עולת חדש וגו׳ ואם לא באה החדשה לוקחין מן הישנה דחדוש הקרבנות דילפינן היינו כשיש תרומה חדשה ואם הגיע ראש חדש ניסן שצריכים להקריב מתרומה חדשה והיה להם בהמות לתמידין מתרומה ישנה פודין אותן וכן במותר מחללין אותו על שכר האומנים וחוזרים ולוקחים את הקטרת מהן מתרומה חדשה כדי להקריבה מתרומה כדאמר ויש במצוה תקנות חכמים ז&quot;ל ואסור לעבור עליהם וכבר אמר שלמה ע&quot;ה ופורץ גדר ישכנו נחש:</p>
               </div>
             </div>
@@ -475,6 +556,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-sheqel-dues-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -495,8 +580,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-sheqel-dues.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-sheqel-dues.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-sheqel-dues.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-sheqel-dues.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -522,7 +607,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

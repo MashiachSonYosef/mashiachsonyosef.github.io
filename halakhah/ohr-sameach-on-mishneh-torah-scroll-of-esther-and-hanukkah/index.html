@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/">Open Mishneh Torah, Scroll of Esther and Hanukkah</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Scroll of Esther and Hanukkah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">14 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>274 matched</strong> / 636 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -219,8 +220,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-1">Mishneh Torah, Scroll of Esther and Hanukkah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְרִיאַת הַמְּגִלָּה בִּזְמַנָּהּ מִצְוַת עֲשֵׂה מִדִּבְרֵי סוֹפְרִים. וְהַדְּבָרִים יְדוּעִים שֶׁהִיא תַּקָּנַת הַנְּבִיאִים. וְהַכּל חַיָּבִים בִּקְרִיאָתָהּ אֲנָשִׁים וְנָשִׁים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. וּמְחַנְּכִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ. וַאֲפִלּוּ כֹּהֲנִים בַּעֲבוֹדָתָן מְבַטְּלִין עֲבוֹדָתָן וּבָאִין לִשְׁמֹעַ מִקְרָא מְגִלָּה. וְכֵן מְבַטְּלִים תַּלְמוּד תּוֹרָה לִשְׁמֹעַ מִקְרָא מְגִלָּה קַל וָחֹמֶר לִשְׁאָר מִצְוֹת שֶׁל תּוֹרָה שֶׁכֻּלָּן נִדְחִין מִפְּנֵי מִקְרָא מְגִלָּה. וְאֵין לְךָ דָּבָר שֶׁנִּדְחֶה מִקְרָא מְגִלָּה מִפָּנָיו חוּץ מִמֵּת מִצְוָה שֶׁאֵין לוֹ קוֹבְרִין שֶׁהַפּוֹגֵעַ בּוֹ קוֹבְרוֹ תְּחִלָּה וְאַחַר כָּךְ קוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והכל חייבים בקריאתה אנשים ונשים כו׳.</strong><br><strong> הנה </strong> בה&quot;ג פסק דנשים מוציאות מינן, אבל לא שאינן מינן וכן הביאו התו׳ מתוספתא דטומטום מוציא מינו אבל לא שאינו מינו, כו׳ ונדחקו רבים להבין טעמא. ונראה פשוט דלזכר הנס מחויבים לקרות המגילה אבל מצי לקרותה בעל פה לא מן הכתב וכן איתא בגמרא שמואל דסבר נאמרה לקרות ולא נאמרה לכתוב וכבר פירשו בתו׳ דלא פליג על הן דתנן קראה בע&quot;פ לא יצא רק סבר דאין זה ברוח הקודש לכתוב אלא מדרבנן, ומפרש הגמרא דמאן דסבר נאמרה לכתוב הוא מקרא דכתוב זאת זכרון בספר דדריש בספר על מקרא מגילה כר׳ אלעזר המודעי, וקרא זה נאמר גבי מחיית עמלק, והחינוך כתב דנשים אינן במצות זכירת ומחיית עמלק דלאו בני כיבוש נינהו א&quot;כ בנשים דליכא אסמכתא מקרא זה בהם נאמרה לקרות ברוה&quot;ק היינו מדברי קבלה אבל לקרות מתוך הכתב אין זה אלא מדרבנן וא&quot;כ בנשים כשהאשה קוראה והאיש מחויב לשמוע מתוך הכתב מדברי קבלה והאשה אינה חייבת הוי כקורא האיש בעל פה, דעל הכתב אינו שומע ממי שמצווה לכתוב ברוה&quot;ק אלא מדבריהם ודו&quot;ק. ורבינו סבר כפשטא דשמועה דערכין דהכל כשירים לקרות המגילה אפילו נשים ומשמע להוציא אנשים והבן.</p>
               </div>
             </div>
@@ -235,8 +241,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:2:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-2-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-2">Mishneh Torah, Scroll of Esther and Hanukkah 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַקּוֹרֵא וְאֶחָד הַשּׁוֹמֵעַ מִן הַקּוֹרֵא יָצָא יְדֵי חוֹבָתוֹ וְהוּא שֶׁיִּשְׁמַע מִפִּי מִי שֶׁהוּא חַיָּב בִּקְרִיאָתָהּ. לְפִיכָךְ אִם הָיָה הַקּוֹרֵא קָטָן אוֹ שׁוֹטֶה הַשּׁוֹמֵעַ מִמֶּנּוּ לֹא יָצָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אם היה הקורא קטן וכו׳.</strong><br><strong> בתוספתא </strong> אר&quot;י מעשה היה וקראתי׳ כו׳ א&quot;ר מעשה היה וכו׳ אין מביאין ראיה מהמתיר. מכאן ואילך נהגו לקרותה קטן לרבים, הנה התוספתא הועתקה אות באות בירושלמי אלא בשיבוש קצת. וזה הגירסא בירושלמי מכאן והילך נהגו הרבים לקרותה בבה&quot;כ וברור שט&quot;ס קצת נפל בשני המקומות וכן צ&quot;ל בתוספתא מכאן ואילך נהגו לקרותה קטן [ברבים] וכצ&quot;ל בירושלמי מכאן והילך נהגו [ברבים] לקרותה בבהכ&quot;נ, ואל הברייתא זו כוון רבינו בפ&quot;ב הלכה ז׳ וקורא אותה גדול עם הקטן ואפילו בצבור ולא אמרינן שהשומעים שומעים קול הקטן הפטור דאיידי דחביבה יהבי דעתייהו. וזה שאמרו בתוספתא נהגו לקרותה קטן ברבים היינו עם רבים בביהכ&quot;נ והוי כמו בדוכן שצעירי הלוים היו לבסם קולם עיין ערכין סוף פרק ב׳. והאור זרוע הביא התוספתא ופירשה בהגיע לחינוך וזה לא משמע והביא הירושלמי ולא ראה כי אחדים המה ודו&quot;ק.</p>
               </div>
             </div>
@@ -251,8 +262,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:7:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-7-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-7">Mishneh Torah, Scroll of Esther and Hanukkah 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. חָל י&quot;ד לִהְיוֹת בְּאֶחָד בְּשַׁבָּת מַקְדִּימִין וְקוֹרְאִין בַּחֲמִישִׁי שֶׁהוּא יוֹם י&quot;א. חָל לִהְיוֹת בִּשְׁלִישִׁי קוֹרְאִין בְּשֵׁנִי שֶׁהוּא יוֹם י&quot;ג. חָל לִהְיוֹת בִּרְבִיעִי קוֹרְאִין בְּשֵׁנִי שֶׁהוּא יוֹם י&quot;ב. וְכָל אֵלּוּ שֶׁמַּקְדִּימִין וְקוֹרְאִין קֹדֶם י&quot;ד אֵין קוֹרְאִין אוֹתָהּ בְּפָחוֹת מֵעֲשָׂרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל אלו שמקדימין וקוראין קודם י&quot;ד כו׳ בפחות מעשרה.</strong><br><strong> בירושלמי </strong> הלכה ג׳ ר&quot;ב בשם רב יודא כל שאמרו ידחה ממקומו ובלבד בעשרה פירוש דהוה&quot;ד בחל להיות בע&quot;ש דמוקפין קורין בע&quot;ש אז צריכין המוקפין לקרות בעשרה. ופריך ואנן חמיין רבנן אפילו ביחיד פירוש דרואין אנו לרבנן דקוראין אפילו ביחיד וזה הראיה ע&quot;כ בבני מוקפין הקורין בע&quot;ש דאלו פורים בשבת אמר שם דלית אפשר עכשיו עפ&quot;י החשבון ולעיל ה&quot;ב לית כאן חל בשבת ואיך אמר ואנן חמיין ומסיק ר׳ אבינא בשם ר׳ אמי כל שאמרו ידחה ליום הכניסה ובלבד בעשרה אבל מוקפין שקוראין בי&quot;ד היינו בחל בע&quot;ש קוראין אפילו ביחיד וזה שדייק רבינו בלשון וכל שמקדימין וקורין קודם י&quot;ד אבל בני מוקפין בי&quot;ד קוראין ביחיד ואפילו בחל בשבת דפסק רבינו דלא כמשנתינו אלא כרב דקורין בי&quot;ג מ&quot;מ לא דמי למוקפין דקורין בי&quot;ד דהא אמר שם בירושלמי שהכל יוצאין בי&quot;ד שזמן קריאה לכל הוא לכן הוי אפילו ביחיד ורבינו הביא זה להלן בהלכה י&quot;א לגבי ספק.<br><strong> ולכן </strong> פסק רבינו דלכתחילה ביחיד דכן משמע לשון ירושלמי ואנן חמיין רבנן אפילו ביחיד אבל בחל בשבת בזמן שהיו מקדשין עפ&quot;י הראיה אז בני י&quot;ד קורין בי&quot;ג בערב שבת הוי שלא בזמנה וקוראין בעשרה הא ביחיד לא ודו&quot;ק. ופשט השמועה דלרב אסי גם בזמנה אין קורין אותה בפחות מעשרה דהוי כמו שלא בזמנה. ומה דהקשה הרז&quot;ה אמאי לא תני להא בהדי הנך דאין עושין פחות מעשרה. נראה משום דעיקר כהך שנויא דקריאתה זו הלילא כמו שכתב רבינו לקמן פ&quot;ג הלכה ו׳ וא&quot;כ ביום י&quot;ד חייב יחיד לקרותה מפני חיוב ההלל שאפילו יחיד גומר אותה רק בלילה סבר רב אסי דאין קורין אפילו בזמנה ביחיד משום דחובת הלל ליכא בלילה וברור.<br><strong> ובירושלמי </strong> פרק ב׳ על הך דהי׳ כותבה כו׳ אם כוון לבו יצא פריך הדא אמרה שמותר במלאכה ומשני במוקפין שקוראין בי&quot;ד והיינו בחל להיות בע&quot;ש ולא משני דמיירי כגון בכפרים משום דשלא בזמנו בעי עשרה לכן משני בחל להיות בערב שבת דאז גם במוקפין שקוראין בי&quot;ד דין זמנו יש לו וקוראין אפילו ביחיד לכתחלה ודו&quot;ק כן הוא ברור בדעת רבינו אם כי הוא שלא כהר&quot;ן.</p>
               </div>
             </div>
@@ -267,8 +283,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:9:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-9-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-9">Mishneh Torah, Scroll of Esther and Hanukkah 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁמַּקְדִּימִין וְקוֹרְאִין בְּיוֹם הַכְּנִיסָה בִּזְמַן שֶׁיֵּשׁ לָהֶם לְיִשְׂרָאֵל מַלְכוּת. אֲבָל בַּזְּמַן הַזֶּה אֵין קוֹרְאִין אוֹתָהּ אֶלָּא בִּזְמַנָּהּ שֶׁהוּא יוֹם י&quot;ד וְיוֹם ט&quot;ו. בְּנֵי הַכְּפָרִים וּבְנֵי עֲיָרוֹת קוֹרְאִין בְּי&quot;ד. וּבְנֵי כְּרַכִּין קוֹרְאִין בְּט&quot;ו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בני הכפרים כו׳</strong><br><strong> בירושלמי </strong> פריך ומרדכי ואסתר מתקנין על מה שעזרא עתיד לתקן ומשני מי שסדר המשנה סמכה למקרא משפחה ומשפחה אבל עיקר התקנה היתה כללית שעוד זמנים איכא לקריאת מגילה ולכן א&quot;ש מה דמשני בבלי ועשירי לא תקינו רבנן מאי תירוץ לתקני גם עשירי אלא כיון דמרדכי ואסתר לא כוונו לזה אלא נתנו זמנים עוד כשיצטרך לא תקנו רק שני ימים קודם ויתכן לומר כן משום דאמרו פ&quot;ק דעבו&quot;י דאדיהן של בבלאי הוי וי׳ באדר לכן לא רצו לתקן לקרוא את המגלה בי׳ באדר דהוי מימי אידיהן דבבלאי.</p>
               </div>
             </div>
@@ -283,8 +304,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:10:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-10-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-10">Mishneh Torah, Scroll of Esther and Hanukkah 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן עִיר שֶׁהָלַךְ לַכְּרַךְ אוֹ בֶּן כְּרַךְ שֶׁהָלַךְ לָעִיר אִם הָיָה דַּעְתּוֹ לַחֲזֹר לִמְקוֹמוֹ בִּזְמַן קְרִיאָה וְנִתְעַכֵּב וְלֹא חָזַר קוֹרֵא כִּמְקוֹמוֹ. וְאִם לֹא הָיָה בְּדַעְתּוֹ לַחֲזֹר אֶלָּא לְאַחַר זְמַן הַקְּרִיאָה קוֹרֵא עִם אַנְשֵׁי הַמָּקוֹם שֶׁהוּא שָׁם. וּכְרַךְ וְכָל הַסָּמוּךְ לוֹ וְכָל הַנִּרְאֶה עִמּוֹ אִם אֵין בֵּינֵיהֶם יֶתֶר עַל אַלְפַּיִם אַמָּה הֲרֵי זֶה כִּכְרַךְ וְקוֹרְאִין בַּחֲמִשָּׁה עָשָׂר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכרך וכל הסמוך כו׳.</strong><br><strong> נ&quot;ב </strong> ממדינה ומדינה נפ&quot;ל ועיר ועיר שהסמוך לשושן והנראה לשושן קוראים בט&quot;ו כשושן ועיין חי׳ רשב&quot;א.</p>
               </div>
             </div>
@@ -300,8 +326,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:9:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-9-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-9">Mishneh Torah, Scroll of Esther and Hanukkah 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין כּוֹתְבִין הַמְּגִלָּה אֶלָּא בִּדְיוֹ עַל הַגְּוִיל אוֹ עַל הַקְּלָף כְּסֵפֶר תּוֹרָה. וְאִם כְּתָבָהּ בְּמֵי עַפְּצָא וְקַנְקַנְתּוֹם כְּשֵׁרָה. כְּתָבָהּ בִּשְׁאָר מִינֵי צִבְעוֹנִין פְּסוּלָה. וּצְרִיכָה שִׂרְטוּט כַּתּוֹרָה עַצְמָהּ. וְאֵין הָעוֹר שֶׁלָּהּ צָרִיךְ לְעַבֵּד לִשְׁמָהּ. הָיְתָה כְּתוּבָה עַל הַנְּיָר אוֹ עַל עוֹר שֶׁאֵינוֹ מְעֻבָּד אוֹ שֶׁכְּתָבָהּ עַכּוּ&quot;ם אוֹ אֶפִּיקוֹרוֹס פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין העור כו׳ לעבד לשמה.</strong><br><strong> דלא </strong> עדיף ממזוזה לדעת רבינו. ויעוין סמ&quot;ג עשין סי׳ כ&quot;ב ורק לענין שירטוט אמר כאמיתה של תורה דהלכה דס&quot;ת צריכה שירטוט נסמכה על קרא דכתוב יושר דברי אמת וזה שרטוט וסרגול ולכן דריש כאמיתה על ואמת לענין שרטוט שבזה שוה לס&quot;ת דכתיב בה וכתוב יושר דברי אמת אבל לא למידי אחרינא ולכן בעי קרא שתהא כתובה על העור ובדיו ויעוי׳ תוס׳ גיטין דף ו׳ ע&quot;ב ד&quot;ה ארי&quot;צ ודו&quot;ק.</p>
               </div>
             </div>
@@ -316,8 +347,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:14:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-14-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-14">Mishneh Torah, Scroll of Esther and Hanukkah 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת יוֹם י&quot;ד לִבְנֵי כְּפָרִים וַעֲיָרוֹת וְיוֹם ט&quot;ו לִבְנֵי כְּרַכִּים לִהְיוֹת יוֹם שִׂמְחָה וּמִשְׁתֶּה וּמִשְׁלוֹחַ מָנוֹת לְרֵעִים וּמַתָּנוֹת לָאֶבְיוֹנִים. וּמֻתָּר בַּעֲשִׂיַּת מְלָאכָה, וְאַף עַל פִּי כֵן אֵין רָאוּי לַעֲשׂוֹת בּוֹ מְלָאכָה. אָמְרוּ חֲכָמִים כָּל הָעוֹשֶׂה מְלָאכָה בְּיוֹם פּוּרִים אֵינוֹ רוֹאֶה סִימַן בְּרָכָה לְעוֹלָם. בְּנֵי כְּפָרִים שֶׁקָּדְמוּ וְקָרְאוּ בְּשֵׁנִי אוֹ בַּחֲמִישִׁי אִם חִלְּקוּ מָעוֹת לָאֶבְיוֹנִים בְּיוֹם קְרִיאָתָן יָצְאוּ. אֲבָל הַשִּׂמְחָה וְהַמִּשְׁתֶּה אֵין עוֹשִׂין אוֹתָם אֶלָּא בְּיוֹם י&quot;ד. וְאִם הִקְדִּימוּ לֹא יָצְאוּ. וּסְעֻדַּת פּוּרִים שֶׁעֲשָׂאָהּ בַּלַּיְלָה לֹא יָצָא יְדֵי חוֹבָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם חלקו כו׳ יצאו.</strong><br><strong> נ&quot;ב </strong> ולכתחלה לא כדמוכח בירושלמי. ועיי&quot;ש בגליון הש&quot;ס ובהשגות הראב&quot;ד על המאור.</p>
               </div>
             </div>
@@ -332,8 +368,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:16:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-16-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-16">Mishneh Torah, Scroll of Esther and Hanukkah 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְחַיָּב לְחַלֵּק לָעֲנִיִּים בְּיוֹם הַפּוּרִים. אֵין פּוֹחֲתִין מִשְּׁנֵי עֲנִיִּים נוֹתֵן לְכָל אֶחָד מַתָּנָה אַחַת אוֹ מָעוֹת אוֹ מִינֵי תַּבְשִׁיל אוֹ מִינֵי אֳכָלִין שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט כב)</span> &quot;וּמַתָּנוֹת לָאֶבְיוֹנִים&quot;, שְׁתֵּי מַתָּנוֹת לִשְׁנֵי עֲנִיִּים. וְאֵין מְדַקְדְּקִין בִּמְעוֹת פּוּרִים אֶלָּא כָּל הַפּוֹשֵׁט יָדוֹ לִטּל נוֹתְנִין לוֹ. וְאֵין מְשַׁנִּין מָעוֹת פּוּרִים לִצְדָקָה אַחֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או מעות או מיני תבשיל כו׳.</strong><br><strong> אבל </strong> בגדים וכיו&quot;ב אינו יוצא דהוי כמו שנצטוו לשמח היתום במעות מעשר ודוקא מידי דמיכל כדתניא לוקחין עגלים ומעות של פורים ומעות חזו למיקני בהו כל מילי ומטעם זה כתבו בפרק הזהב בד&quot;ה בכל אשר תאוה כו׳ דחשיב פרי מפרי ובתו׳ סנהדרין דף מ&quot;ח דמשו&quot;ה לא הוי כטווי לאריג יעו&quot;ש.</p>
               </div>
             </div>
@@ -348,8 +389,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:18:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-18-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 2:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-18">Mishneh Torah, Scroll of Esther and Hanukkah 2:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל סִפְרֵי הַנְּבִיאִים וְכָל הַכְּתוּבִים עֲתִידִין לִבָּטֵל לִימוֹת הַמָּשִׁיחַ חוּץ מִמְּגִלַּת אֶסְתֵּר וַהֲרֵי הִיא קַיֶּמֶת כַּחֲמִשָּׁה חֻמְּשֵׁי תּוֹרָה וְכַהֲלָכוֹת שֶׁל תּוֹרָה שֶׁבְּעַל פֶּה שֶׁאֵינָן בְּטֵלִין לְעוֹלָם. וְאַף עַל פִּי שֶׁכָּל זִכְרוֹן הַצָּרוֹת יְבֻטַּל שֶׁנֶּאֱמַר <span class="source-small">(ישעיה סה טז)</span> &quot;כִּי נִשְׁכְּחוּ הַצָּרוֹת הָרִאשׁוֹנוֹת וְכִי נִסְתְּרוּ מֵעֵינִי&quot;. יְמֵי הַפּוּרִים לֹא יִבָּטְלוּ שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט כח)</span> &quot;וִימֵי הַפּוּרִים הָאֵלֶּה לֹא יַעַבְרוּ מִתּוֹךְ הַיְּהוּדִים וְזִכְרָם לֹא יָסוּף מִזַּרְעָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל ספרי הנביאים כו׳. </strong><br><strong> עיין </strong> בהשגות.<br><strong> נ&quot;ב </strong> עיין נדרים כ&quot;ב אלמלא חטאו ישראל לא ניתן להם אלא ספר יהושע בלבד כו׳ ויעוי׳ מדרש קהלת א׳ פס׳ י&quot;ד וברש&quot;י חולין דף קל&quot;ז ד&quot;ה תורת משה וכו׳.</p>
               </div>
             </div>
@@ -365,8 +411,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 3:1:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-1-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-1">Mishneh Torah, Scroll of Esther and Hanukkah 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְבַיִת שֵׁנִי כְּשֶׁמַּלְכֵי יָוָן גָּזְרוּ גְּזֵרוֹת עַל יִשְׂרָאֵל וּבִטְּלוּ דָּתָם וְלֹא הֵנִיחוּ אוֹתָם לַעֲסֹק בְּתוֹרָה וּבְמִצְוֹת. וּפָשְׁטוּ יָדָם בְּמָמוֹנָם וּבִבְנוֹתֵיהֶם וְנִכְנְסוּ לַהֵיכָל וּפָרְצוּ בּוֹ פְּרָצוֹת וְטִמְּאוּ הַטָּהֳרוֹת. וְצָר לָהֶם לְיִשְׂרָאֵל מְאֹד מִפְּנֵיהֶם וּלְחָצוּם לַחַץ גָּדוֹל עַד שֶׁרִחֵם עֲלֵיהֶם אֱלֹהֵי אֲבוֹתֵינוּ וְהוֹשִׁיעָם מִיָּדָם וְהִצִּילָם וְגָבְרוּ בְּנֵי חַשְׁמוֹנַאי הַכֹּהֲנִים הַגְּדוֹלִים וַהֲרָגוּם וְהוֹשִׁיעוּ יִשְׂרָאֵל מִיָּדָם וְהֶעֱמִידוּ מֶלֶךְ מִן הַכֹּהֲנִים וְחָזְרָה מַלְכוּת לְיִשְׂרָאֵל יֶתֶר עַל מָאתַיִם שָׁנָה עַד הַחֻרְבָּן הַשֵּׁנִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ופרצו בו פרצות.</strong><br><strong> נ&quot;ב </strong> משנה מדות פרק ב׳.</p>
               </div>
             </div>
@@ -381,8 +432,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 3:3:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-3-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-3">Mishneh Torah, Scroll of Esther and Hanukkah 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִפְּנֵי זֶה הִתְקִינוּ חֲכָמִים שֶׁבְּאוֹתוֹ הַדּוֹר שֶׁיִּהְיוּ שְׁמוֹנַת הַיָּמִים הָאֵלּוּ שֶׁתְּחִלָּתָן כ&quot;ה בְּכִסְלֵו יְמֵי שִׂמְחָה וְהַלֵּל וּמַדְלִיקִין בָּהֶן הַנֵּרוֹת בָּעֶרֶב עַל פִּתְחֵי הַבָּתִּים בְּכָל לַיְלָה וְלַיְלָה מִשְּׁמוֹנַת הַלֵּילוֹת לְהַרְאוֹת וּלְגַלּוֹת הַנֵּס. וְיָמִים אֵלּוּ הֵן הַנִּקְרָאִין חֲנֻכָּה וְהֵן אֲסוּרִין בְּהֶסְפֵּד וְתַעֲנִית כִּימֵי הַפּוּרִים. וְהַדְלָקַת הַנֵּרוֹת בָּהֶן מִצְוָה מִדִּבְרֵי סוֹפְרִים כִּקְרִיאַת הַמְּגִלָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>להראות ולגלות הנס כו׳.</strong><br><strong> פירוש </strong> דאין מדליקין ביום כמו שהיו מדליקין במנורה ביום ג&quot;כ לשיטת רבינו דהדלקה ג&quot;כ ביום משום דשרגא בטיהרא מאי מהני ופשוט.</p>
               </div>
             </div>
@@ -397,8 +453,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 3:12:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-12-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-12">Mishneh Torah, Scroll of Esther and Hanukkah 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִנְהַג קְרִיאַת הַהַלֵּל בִּימֵי חֲכָמִים הָרִאשׁוֹנִים כָּךְ הָיָה. אַחַר שֶׁמְּבָרֵךְ הַגָּדוֹל שֶׁמַּקְרֵא אֶת הַהַלֵּל מַתְחִיל וְאוֹמֵר הַלְלוּיָהּ וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְחוֹזֵר וְאוֹמֵר הַלְלוּ עַבְדֵי ה׳ וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְחוֹזֵר וְאוֹמֵר הַלְלוּ אֶת שֵׁם ה׳ וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְחוֹזֵר וְאוֹמֵר יְהִי שֵׁם ה׳ מְבֹרָךְ מֵעַתָּה וְעַד עוֹלָם וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְכֵן עַל כָּל דָּבָר. עַד שֶׁנִּמְצְאוּ עוֹנִין בְּכָל הַהַלֵּל הַלְלוּיָהּ מֵאָה וְשָׁלֹשׁ וְעֶשְׂרִים פְּעָמִים סִימָן לָהֶם שְׁנוֹתָיו שֶׁל אַהֲרֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מאה ושלש ועשרים כו׳ סימן כו׳.</strong><br><strong> נ&quot;ב </strong> ירושלמי פרק כל כתבי הלכה א׳ עיי&quot;ש.</p>
               </div>
             </div>
@@ -414,8 +475,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 4:12:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-12-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 4:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-12">Mishneh Torah, Scroll of Esther and Hanukkah 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת נֵר חֲנֻכָּה מִצְוָה חֲבִיבָה הִיא עַד מְאֹד וְצָרִיךְ אָדָם לְהִזָּהֵר בָּהּ כְּדֵי לְהוֹדִיעַ הַנֵּס וּלְהוֹסִיף בְּשֶׁבַח הָאֵל וְהוֹדָיָה לוֹ עַל הַנִּסִּים שֶׁעָשָׂה לָנוּ. אֲפִלּוּ אֵין לוֹ מַה יֹּאכַל אֶלָּא מִן הַצְּדָקָה שׁוֹאֵל אוֹ מוֹכֵר כְּסוּתוֹ וְלוֹקֵחַ שֶׁמֶן וְנֵרוֹת וּמַדְלִיק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולוקח שמן ונרות כו׳.</strong><br><strong> פירוש </strong> גם לההדור והתוספות וזה שאמר להוסיף בשבח כו׳.</p>
               </div>
             </div>
@@ -430,8 +496,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 4:14:1</h4></div>
               <a class="anchor" href="#ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-14-1" aria-label="Copy link to Ohr Sameach on Mishneh Torah, Scroll of Esther and Hanukkah 4:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-14">Mishneh Torah, Scroll of Esther and Hanukkah 4:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה לְפָנָיו נֵר בֵּיתוֹ וְנֵר חֲנֻכָּה אוֹ נֵר בֵּיתוֹ וְקִדּוּשׁ הַיּוֹם נֵר בֵּיתוֹ קוֹדֵם מִשּׁוּם שְׁלוֹם בֵּיתוֹ שֶׁהֲרֵי הַשֵּׁם נִמְחָק לַעֲשׂוֹת שָׁלוֹם בֵּין אִישׁ לְאִשְׁתּוֹ. גָּדוֹל הַשָּׁלוֹם שֶׁכָּל הַתּוֹרָה נִתְּנָה לַעֲשׂוֹת שָׁלוֹם בָּעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(משלי ג יז)</span> &quot;דְּרָכֶיהָ דַרְכֵי נֹעַם וְכָל נְתִיבֹתֶיהָ שָׁלוֹם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גדול השלום שכל התורה כו׳.</strong><br><strong> נ&quot;ב </strong> גיטין דף נ&quot;ט כל התורה כולה מפני דרכי שלום היא דכתיב דרכיה דרכי נועם וכל נתיבותיה שלום.</p>
               </div>
             </div>
@@ -441,6 +512,10 @@
               <a href="#chapter-ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -461,8 +536,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"../../data/lexical/occurrences/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ohr-sameach-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -488,7 +563,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-fasts/">Open Mishneh Torah, Fasts</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Fasts</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">18 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>180 matched</strong> / 474 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/benei-binyamin-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -229,8 +230,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-1">Mishneh Torah, Fasts 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִזְעֹק וּלְהָרִיעַ בַּחֲצוֹצְרוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר. שֶׁנֶּאֱמַר <span class="source-small">(במדבר י ט)</span> &quot;עַל הַצַּר הַצֹּרֵר אֶתְכֶם וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת&quot;. כְּלוֹמַר כָּל דָּבָר שֶׁיָּצֵר לָכֶם כְּגוֹן בַּצֹּרֶת וְדֶבֶר וְאַרְבֶּה וְכַיּוֹצֵא בָּהֶן זַעֲקוּ עֲלֵיהֶן וְהָרִיעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע. </strong> עי׳ מג&quot;א ר&quot;ס תקע&quot;ו מה שתמה בזה ובק&quot;נ פ&quot;ג מש&quot;כ דזהו באו׳ לבד. ועי׳ ר&quot;נ רפ&quot;ג דר&quot;ה ותהר&quot;י רפ&quot;ב דברכות ודו&quot;ק:</p>
               </div>
             </div>
@@ -245,8 +251,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-5">Mishneh Torah, Fasts 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תַּעֲנִיּוֹת אֵלּוּ שֶׁגּוֹזְרִין עַל הַצִּבּוּר מִפְּנֵי הַצָּרוֹת אֵינָן יוֹם אַחַר יוֹם. שֶׁאֵין רֹב הַצִּבּוּר יְכוֹלִים לַעֲמֹד בְּדָבָר זֶה. וְאֵין גּוֹזְרִין בַּתְּחִלָּה תַּעֲנִית אֶלָּא בְּשֵׁנִי בְּשַׁבָּת וּבַחֲמִישִׁי שֶׁלְּאַחֲרָיו וּבְשֵׁנִי שֶׁלְּאַחֲרָיו וְכֵן עַל הַסֵּדֶר הַזֶּה שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי עַד שֶׁיְּרֻחֲמוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תעניות </strong>
 <strong> אלו. </strong> עי׳ מג&quot;א סי׳ תקע&quot;ו ובאורי מרן הגר&quot;א ז&quot;ל וי&quot;ל בד&quot;ק ז&quot;ל ע&quot;ש. ומזה לכל ת&quot;צ הקבועים שאין לחנך בהם את הקטנים כמו ביוה&quot;כ. וכתבתי בזה בס&quot;ד בקונ׳ הר המוריה:</p>
               </div>
@@ -262,8 +273,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-9">Mishneh Torah, Fasts 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁהַצִּבּוּר מִתְעַנִּים עַל צָרָתָן כָּךְ הַיָּחִיד מִתְעַנֶּה עַל צָרָתוֹ. כֵּיצַד. הֲרֵי שֶׁהָיָה לוֹ חוֹלֶה אוֹ תּוֹעֶה בַּמִּדְבָּר אוֹ אָסוּר בְּבֵית הָאֲסוּרִין. יֵשׁ לוֹ לְהִתְעַנּוֹת עָלָיו וּלְבַקֵּשׁ רַחֲמִים בִּתְפִלָּתוֹ. וְאוֹמֵר עֲנֵנוּ וְכוּ׳ בְּכָל תְּפִלָּה שֶׁמִּתְפַּלֵּל. וְלֹא יִתְעַנֶּה בְּשַׁבָּתוֹת וְלֹא בְּמוֹעֲדוֹת וְלֹא בְּרָאשֵׁי חֳדָשִׁים וְלֹא בַּחֲנֻכָּה וּפוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כך </strong>
 <strong> היחיד מתענה על צרתו כו׳. </strong> עי׳ מ&quot;מ. ולקמן הי&quot;ב ובגמ׳ יו&quot;ד ע&quot;ב. מי שהיה לו חולה בתוך ביתו כו׳ ומקרא מפורש הוא בדהמע&quot;ה שהתענה על הילד שלו שחלה ועי׳ מלכים א׳ סי׳ ח׳ פ׳ ל&quot;ח:</p>
               </div>
@@ -279,8 +295,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:9:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-9-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:9:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-9">Mishneh Torah, Fasts 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁהַצִּבּוּר מִתְעַנִּים עַל צָרָתָן כָּךְ הַיָּחִיד מִתְעַנֶּה עַל צָרָתוֹ. כֵּיצַד. הֲרֵי שֶׁהָיָה לוֹ חוֹלֶה אוֹ תּוֹעֶה בַּמִּדְבָּר אוֹ אָסוּר בְּבֵית הָאֲסוּרִין. יֵשׁ לוֹ לְהִתְעַנּוֹת עָלָיו וּלְבַקֵּשׁ רַחֲמִים בִּתְפִלָּתוֹ. וְאוֹמֵר עֲנֵנוּ וְכוּ׳ בְּכָל תְּפִלָּה שֶׁמִּתְפַּלֵּל. וְלֹא יִתְעַנֶּה בְּשַׁבָּתוֹת וְלֹא בְּמוֹעֲדוֹת וְלֹא בְּרָאשֵׁי חֳדָשִׁים וְלֹא בַּחֲנֻכָּה וּפוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואומר </strong>
 <strong> עננו בכל תפלה. </strong> מבואר כן בגמ׳ י&quot;ג ע&quot;ב ובירושלמי פ&quot;ב ובפ&quot;ד דברכות:</p>
               </div>
@@ -296,8 +317,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:9:3</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-9-3" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:9:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-9">Mishneh Torah, Fasts 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁהַצִּבּוּר מִתְעַנִּים עַל צָרָתָן כָּךְ הַיָּחִיד מִתְעַנֶּה עַל צָרָתוֹ. כֵּיצַד. הֲרֵי שֶׁהָיָה לוֹ חוֹלֶה אוֹ תּוֹעֶה בַּמִּדְבָּר אוֹ אָסוּר בְּבֵית הָאֲסוּרִין. יֵשׁ לוֹ לְהִתְעַנּוֹת עָלָיו וּלְבַקֵּשׁ רַחֲמִים בִּתְפִלָּתוֹ. וְאוֹמֵר עֲנֵנוּ וְכוּ׳ בְּכָל תְּפִלָּה שֶׁמִּתְפַּלֵּל. וְלֹא יִתְעַנֶּה בְּשַׁבָּתוֹת וְלֹא בְּמוֹעֲדוֹת וְלֹא בְּרָאשֵׁי חֳדָשִׁים וְלֹא בַּחֲנֻכָּה וּפוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא </strong>
 <strong> יתענה בשבתות כו׳. </strong> השמיט כאן עיה&quot;כ. ואולי נמשך אחר דברי הירושלמי פ&quot;ב דתעניות הי&quot;ג ופ&quot;א דמגילה ה&quot;ו שג&quot;כ לא נזכר שם עיוה&quot;כ ועמד בזה כאאמו&quot;ר הגז&quot;ל בגליון שם ועי׳ ג&quot;כ נדרים פ&quot;ח ה&quot;ב. ואפ&quot;ל מזה ראיה לענין שמחת יו&quot;ט בנשים שכ׳ שם בשו&quot;ת רע&quot;א סי׳ א׳ ואכ&quot;מ:</p>
               </div>
@@ -313,8 +339,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:12:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-12-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-12">Mishneh Torah, Fasts 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָרוֹאֶה חֲלוֹם רַע צָרִיךְ לְהִתְעַנּוֹת לְמָחָר. כְּדֵי שֶׁיָּשׁוּב וְיֵעוֹר בְּמַעֲשָׂיו וִיחַפֵּשׂ בָּהֶן וְיַחֲזֹר בִּתְשׁוּבָה. וּמִתְעַנֶּה וַאֲפִלּוּ בְּשַׁבָּת. וּמִתְפַּלֵּל עֲנֵנוּ בְּכָל תְּפִלָּה אַף עַל פִּי שֶׁלֹּא קִבְּלָהּ מִבְּעוֹד יוֹם. וְהַמִּתְעַנֶּה בְּשַׁבָּת מִתְעַנֶּה יוֹם אַחֵר מִפְּנֵי שֶׁבִּטֵּל עֹנֶג שַׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרואה </strong>
 <strong> חלום רע צריך להתענות למחר. </strong> לא כהאחרונים שכ׳ שהוא רשות ודברי רבינו ראוים אליו דהא מצוה להתענות בעת צרה ל&quot;ע וכמש&quot;ל ה&quot;ט ובפרט בחלום שמן השמים הראוהו שיוכל לתקן בתשובה ותענית. וכמ&quot;ש חז&quot;ל יפה תענית לחלום ודאי דאין למנוע וכ&quot;כ בס׳ פתרון חלומות שאף בשבת צריך להתענות:</p>
               </div>
@@ -330,8 +361,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:14:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-14-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-14">Mishneh Torah, Fasts 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשָּׁרוּי בְּתַעֲנִית. בֵּין שֶׁהָיָה מִתְעַנֶּה עַל צָרָתוֹ אוֹ עַל חֲלוֹמוֹ בֵּין שֶׁהָיָה מִתְעַנֶּה עִם הַצִּבּוּר עַל צָרָתָם. הֲרֵי זֶה לֹא יִנְהֹג עִדּוּנִין בְּעַצְמוֹ וְלֹא יָקֵל רֹאשׁוֹ וְלֹא יִהְיֶה שָׂמֵחַ וְטוֹב לֵב אֶלָּא דּוֹאֵג וְאוֹנֵן כָּעִנְיָן שֶׁנֶּאֱמַר <span class="source-small">(איכה ג לט)</span> &quot;מַה יִּתְאוֹנֵן אָדָם חָי גֶּבֶר עַל חֲטָאָיו&quot;. וּמֻתָּר לוֹ לִטְעֹם אֶת הַתַּבְשִׁיל וַאֲפִלּוּ בִּכְדֵי רְבִיעִית וְהוּא שֶׁלֹּא יִבְלַע אֶלָּא טוֹעֵם וּפוֹלֵט. שָׁכַח וְאָכַל מַשְׁלִים תַּעֲנִיתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המ&quot;מ </strong> כ׳ מקורו מהא דאל ינהוג עדונין בעצמו. אבל שם הוא כששכח ואכל. ע&quot;ל הט&quot;ו. אבל בשרוי בתענית לא נמצא ד&quot;ז בשו&quot;מ. לפי מיעוט ידיעתי. אלא דהוא דבר המסתבר דהרי זהו מדרכי התשובה לדאוג ולהתאבל על חטאיו כמש&quot;כ רבינו פה ובה׳ תשובה:</p>
               </div>
             </div>
@@ -346,8 +382,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:15:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-15-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-15">Mishneh Torah, Fasts 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יָחִיד שֶׁהָיָה מִתְעַנֶּה עַל הַחוֹלֶה וְנִתְרַפֵּא. עַל צָרָה וְעָבְרָה. הֲרֵי זֶה מַשְׁלִים תַּעֲנִיתוֹ. הַהוֹלֵךְ מִמָּקוֹם שֶׁמִּתְעַנִּין לְמָקוֹם שֶׁאֵין מִתְעַנִּין הֲרֵי זֶה מִתְעַנֶּה וּמַשְׁלִים תַּעֲנִיתוֹ. הָלַךְ מִמָּקוֹם שֶׁאֵין מִתְעַנִּין לְמָקוֹם שֶׁמִּתְעַנִּין הֲרֵי זֶה מִתְעַנֶּה עִמָּהֶן. שָׁכַח וְאָכַל וְשָׁתָה אַל יִתְרָאֶה בִּפְנֵיהֶם וְאַל יִנְהֹג עִדּוּנִין בְּעַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שכח </strong>
 <strong> ואכל. </strong> כ&quot;ש הדבר למי שפטור מלהתענות מפני חולשתו. וכמבואר בתוספתא ספ&quot;ב ובירושלמי פ&quot;א ה&quot;ה בעוברות ומניקות. ולא ידעתי מ&quot;ט השמיטו רבינו:</p>
               </div>
@@ -363,8 +404,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 1:17:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-1-17-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 1:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-17">Mishneh Torah, Fasts 1:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכָל יוֹם תַּעֲנִית שֶׁגּוֹזְרִין עַל הַצִּבּוּר מִפְּנֵי הַצָּרוֹת. בֵּית דִּין וְהַזְּקֵנִים יוֹשְׁבִין בְּבֵית הַכְּנֶסֶת וּבוֹדְקִים עַל מַעֲשֵׂי אַנְשֵׁי הָעִיר מֵאַחַר תְּפִלַּת שַׁחֲרִית עַד חֲצוֹת הַיּוֹם. וּמְסִירִין הַמִּכְשׁוֹלוֹת שֶׁל עֲבֵרוֹת. וּמַזְהִירִין וְדוֹרְשִׁין וְחוֹקְרִין עַל בַּעֲלֵי חָמָס וַעֲבֵרוֹת וּמַפְרִישִׁין אוֹתָן. וְעַל בַּעֲלֵי זְרוֹעַ וּמַשְׁפִּילִין אוֹתָן. וְכַיּוֹצֵא בִּדְבָרִים אֵלּוּ. וּמֵחֲצִי הַיּוֹם וְלָעֶרֶב רְבִיעַ הַיּוֹם קוֹרְאִין בִּבְרָכוֹת וּקְלָלוֹת שֶׁבַּתּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(משלי ג יא)</span> &quot;מוּסַר ה׳ בְּנִי אַל תִּמְאָס וְאַל תָּקֹץ בְּתוֹכַחְתּוֹ&quot;. וּמַפְטִירִין בַּנָּבִיא בְּתוֹכָחוֹת מֵעִנְיַן הַצָּרָה. וּרְבִיעַ הַיּוֹם הָאַחֲרוֹן מִתְפַּלְּלִים מִנְחָה וּמִתְחַנְּנִים וְזוֹעֲקִים וּמִתְוַדִּים כְּפִי כֹּחָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחוקרים </strong>
 <strong> על בעלי חמס. </strong> כמש&quot;כ מן החמס אשר בכפיהם. עי׳ בגמ׳ ט&quot;ז א׳. ובתוספתא פ&quot;א ובירושלמי פ&quot;ב מבואר ביתר ביאור כל מ&quot;ש רבינו ע&quot;ש:</p>
               </div>
@@ -381,8 +427,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 2:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-2-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-2-2">Mishneh Torah, Fasts 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל עִיר שֶׁיֵּשׁ בָּהּ צָרָה מִכָּל אֵלּוּ. אוֹתָהּ הָעִיר מִתְעַנָּה וּמַתְרַעַת עַד שֶׁתַּעֲבֹר הַצָּרָה. וְכָל סְבִיבוֹתֶיהָ מִתְעַנּוֹת וְלֹא מַתְרִיעוֹת אֲבָל מְבַקְּשִׁים עֲלֵיהֶם רַחֲמִים. וּבְכָל מָקוֹם אֵין צוֹעֲקִין וְלֹא מַתְרִיעִין בְּשַׁבָּת כְּמוֹ שֶׁאָמַרְנוּ. חוּץ מִצָּרַת הַמְּזוֹנוֹת שֶׁצּוֹעֲקִין עָלֶיהָ אֲפִלּוּ בְּשַׁבָּת. אֲבָל אֵין מַתְרִיעִין עָלֶיהָ בַּחֲצוֹצְרוֹת בְּשַׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מש&quot;כ </strong> הלח&quot;מ שאין מתריעין אלא על ג׳ אמצעיהם. ע&quot;ל פ&quot;ג ה&quot;ז דאין מתריעין רק בז׳ אחרונות:</p>
               </div>
             </div>
@@ -397,8 +448,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 2:11:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-2-11-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-2-11">Mishneh Torah, Fasts 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַל הַשִּׁדָּפוֹן וְעַל הַיֵּרָקוֹן מִשֶּׁיַּתְחִיל בַּתְּבוּאָה. וַאֲפִלּוּ לֹא הִתְחִיל אֶלָּא מִמָּקוֹם קָטָן כִּמְלֹא פִּי תַּנּוּר גּוֹזְרִין עָלָיו תַּעֲנִית וּמַתְרִיעִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במ&quot;מ. </strong> מש&quot;כ שרבינו מפרש דהאי כ&quot;ש י&quot;ל שיעור מצינו טובי דכוותה. עי׳ ב&quot;ב ק&quot;נ א׳. ובתוס׳ שם. וביצה ט&quot;ו ב׳. ונדה כ&quot;ו ב׳. דאיכא שיעור בכ&quot;ש ובתרע&quot;א שבסוף ס׳ דרוש וחידוש סי׳ י׳. ובמק&quot;א כ׳ בס&quot;ד די&quot;ל דר&quot;ש דס&quot;ל כ&quot;ש למכות ג&quot;כ ל&quot;ד. ואף בטבל לדידן. ואכמ&quot;ל:</p>
               </div>
             </div>
@@ -414,8 +470,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 3:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-3-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-3-2">Mishneh Torah, Fasts 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִגִּיעַ רֹאשׁ חֹדֶשׁ כִּסְלֵו וְלֹא יָרְדוּ גְּשָׁמִים בֵּית דִּין גּוֹזְרִין שָׁלֹשׁ תַּעֲנִיּוֹת עַל הַצִּבּוּר שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וּמֻתָּרִין בָּהֶן לֶאֱכל וְלִשְׁתּוֹת בַּלַּיְלָה. וְאַנְשֵׁי מִשְׁמָר אֵין מִתְעַנִּין עִמָּהֶן מִפְּנֵי שֶׁהֵן עֲסוּקִין בַּעֲבוֹדָה. וְכָל הָעָם נִכְנָסִים לְבָתֵּי כְּנֵסִיּוֹת וּמִתְפַּלְּלִין וְזוֹעֲקִין וּמִתְחַנְּנִין כְּדֶרֶךְ שֶׁעוֹשִׂין בְּכָל הַתַּעֲנִיּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגיע </strong>
 <strong> ר&quot;ח כסלו. </strong> משנה ערוכה י׳ ע&quot;א ולא ידעתי מ&quot;ט השמיט המ&quot;מ לציינו:</p>
               </div>
@@ -432,8 +493,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 4:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-4-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-4-1">Mishneh Torah, Fasts 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְכָל יוֹם וָיוֹם מִשֶּׁבַע תַּעֲנִיּוֹת הָאַחֲרוֹנוֹת שֶׁל מָטָר מִתְפַּלְּלִין עַל סֵדֶר זֶה. מוֹצִיאִין אֶת הַתֵּבָה לִרְחוֹבָהּ שֶׁל עִיר וְכָל הָעָם מִתְקַבְּצִים וּמִתְכַּסִּים בְּשַׂקִּים. וְנוֹתְנִין אֵפֶר מַקְלֶה עַל גַּבֵּי הַתֵּבָה וְעַל גַּבֵּי סֵפֶר תּוֹרָה כְּדֵי לְהַגְדִּיל אֶת הַבְּכִיָּה וּלְהַכְנִיעַ לִבָּם. וְאֶחָד מִן הָעָם נוֹטֵל מִן הָאֵפֶר וְנוֹתֵן בְּרֹאשׁ הַנָּשִׂיא וּבְרֹאשׁ אַב בֵּית דִּין בְּמָקוֹם הֲנָחַת תְּפִלִּין כְּדֵי שֶׁיִּכָּלְמוּ וְיָשׁוּבוּ. וְכָל אֶחָד וְאֶחָד נוֹטֵל וְנוֹתֵן בְּרֹאשׁוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונותנין </strong>
 <strong> אפר מקלה כו׳ וע&quot;ג ס&quot;ת. </strong> כ&quot;ה גי׳ הרי&quot;ף והרא&quot;ש ובס׳ ת&quot;א בשם הגר&quot;ז ז&quot;ל הראה מקורו בילקוט כמדומני. ועי׳ ג&quot;כ בתרגום שני למגילת אסתר כ׳ ג&quot;כ הכי:</p>
               </div>
@@ -449,8 +515,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 4:14:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-4-14-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 4:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-4-14">Mishneh Torah, Fasts 4:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּשְּׁבִיעִית אוֹמֵר רְפָאֵנוּ ה׳ וְנֵרָפֵא וְכוּ׳. וְגוֹמֵר הַתְּפִלָּה עַל הַסֵּדֶר וְתוֹקְעִין בַּחֲצוֹצְרוֹת. וְכַסֵּדֶר הַזֶּה עוֹשִׂין בְּכָל מָקוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עי׳ </strong> השגת הראב&quot;ד. ור&quot;ל דבתוספתא מבואר שהתקיעה ותרועה ביחד אבל מ&quot;מ היו שווים בכולם תקיעה ותרועה. ומה שאמר הריעו הוא מפני הכבוד. עי׳ היטב בב&quot;י סי׳ תקע&quot;ט ובלח&quot;מ:</p>
               </div>
             </div>
@@ -466,8 +537,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 5:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-5-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-1">Mishneh Torah, Fasts 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ שָׁם יָמִים שֶׁכָּל יִשְׂרָאֵל מִתְעַנִּים בָּהֶם מִפְּנֵי הַצָּרוֹת שֶׁאֵרְעוּ בָּהֶן כְּדֵי לְעוֹרֵר הַלְּבָבוֹת לִפְתֹּחַ דַּרְכֵי הַתְּשׁוּבָה וְיִהְיֶה זֶה זִכָּרוֹן לְמַעֲשֵׂינוּ הָרָעִים וּמַעֲשֵׂה אֲבוֹתֵינוּ שֶׁהָיָה כְּמַעֲשֵׂינוּ עַתָּה עַד שֶׁגָּרַם לָהֶם וְלָנוּ אוֹתָן הַצָּרוֹת. שֶׁבְּזִכְרוֹן דְּבָרִים אֵלּוּ נָשׁוּב לְהֵיטִיב שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כו, מ)</span> &quot;וְהִתְוַדּוּ אֶת עֲוֹנָם וְאֶת עֲוֹן אֲבֹתָם&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כדי </strong>
 <strong> לעורר הלבבות, כדי לפתוח דרכי התשובה. </strong> עי׳ ח&quot;ס חא&quot;ח סי׳ ס&quot;ח:</p>
               </div>
@@ -483,8 +559,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 5:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-5-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-5">Mishneh Torah, Fasts 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְנָהֲגוּ כָּל יִשְׂרָאֵל בִּזְמַנִּים אֵלּוּ לְהִתְעַנּוֹת. וּבְי&quot;ג בַּאֲדָר זֵכֶר לַתַּעֲנִית שֶׁהִתְעַנּוּ בִּימֵי הָמָן שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט לא)</span> &quot;דִּבְרֵי הַצֹּמוֹת וְזַעֲקָתָם&quot;. וְאִם חָל י&quot;ג בַּאֲדָר לִהְיוֹת בְּשַׁבָּת מַקְדִּימִין וּמִתְעַנִּין בַּחֲמִישִׁי שֶׁהוּא י&quot;א. אֲבָל אֶחָד מֵאַרְבָּעָה יְמֵי הַצּוֹמוֹת שֶׁחָל לִהְיוֹת בְּשַׁבָּת דּוֹחִין אוֹתוֹ לְאַחַר הַשַּׁבָּת. חָל לִהְיוֹת בְּעֶרֶב שַׁבָּת מִתְעַנִּין בְּעֶרֶב שַׁבָּת. וּבְכָל הַצּוֹמוֹת הָאֵלּוּ אֵין מַתְרִיעִין וְלֹא מִתְפַּלְּלִין בָּהֶן תְּפִלַּת נְעִילָה. אֲבָל קוֹרִין בַּתּוֹרָה שַׁחֲרִית וּמִנְחָה בְּ<span class="source-small">(שמות לב יא)</span> &quot;וַיְחַל משֶׁה&quot;. וּבְכֻלָּן אוֹכְלִים וְשׁוֹתִין בַּלַּיְלָה חוּץ מִתִּשְׁעָה בְּאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונהגו </strong>
 <strong> כל ישראל בזמנים אלו להתענות &quot;ובי&quot;ג&quot; באדר. </strong> הלשון הזה מורה שט&quot;ס יש כאן ונראה דצ&quot;ל בי&quot;ג באדר ומ&quot;ש בזמנים אלו ר&quot;ל בדורות האלו ולא בימי התעניות שזכר מקודם דא&quot;כ כל ישראל בזמנים אלו וכ&quot;מ הב&quot;י סי׳ תרפ&quot;ו שהעתיק כן. אך גם לשון בזמנים אלו ל&quot;מ כן וע&quot;ד המ&quot;מ מריש מגילה. יעוי׳ בפי׳ בראשית וברא&quot;ש ריש מגילה בפ&quot;י ז&quot;ק לכל הוא מבואר דכבר היה המנהג בימי חז&quot;ל. ועי׳ במס&quot;ס פכ&quot;א ואולי ר&quot;ל דאף בזמן שיש שלום אם רצו אין מתענין מ&quot;מ נהגו להתענות בכל הזמנים האלו:</p>
               </div>
@@ -500,8 +581,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 5:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-5-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-6">Mishneh Torah, Fasts 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִשֶּׁיִּכָּנֵס אָב מְמַעֲטִין בְּשִׂמְחָה. וְשַׁבָּת שֶׁחָל תִּשְׁעָה בְּאָב לִהְיוֹת בְּתוֹכָהּ אָסוּר לְסַפֵּר וּלְכַבֵּס וְלִלְבּשׁ כְּלִי מְגֹהָץ אֲפִלּוּ כְּלִי פִּשְׁתָּן עַד שֶׁיַּעֲבֹר הַתַּעֲנִית. וַאֲפִלּוּ לְכַבֵּס וּלְהַנִּיחַ לְאַחַר הַתַּעֲנִית אָסוּר. וּכְבָר נָהֲגוּ יִשְׂרָאֵל שֶׁלֹּא לֶאֱכל בָּשָׂר בְּשַׁבָּת זוֹ וְלֹא יִכָּנְסוּ לַמֶּרְחָץ עַד שֶׁיַּעֲבֹר הַתַּעֲנִית. וְיֵשׁ מְקוֹמוֹת שֶׁנָּהֲגוּ לְבַטֵּל הַשְּׁחִיטָה מֵרֹאשׁ הַחֹדֶשׁ עַד הַתַּעֲנִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עי׳ </strong> ח&quot;ס א&quot;ח סי׳ ק&quot;ס:</p>
               </div>
             </div>
@@ -516,8 +602,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Fasts 5:14:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-fasts-5-14-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Fasts 5:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-14">Mishneh Torah, Fasts 5:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן גָּזְרוּ שֶׁלֹּא לְנַגֵּן בִּכְלֵי שִׁיר. וְכָל מִינֵי זֶמֶר וְכָל מַשְׁמִיעֵי קוֹל שֶׁל שִׁיר אָסוּר לִשְׂמֹחַ בָּהֶן וְאָסוּר לְשָׁמְעָן מִפְּנֵי הַחֻרְבָּן. וַאֲפִלּוּ שִׁירָה בַּפֶּה עַל הַיַּיִן אֲסוּרָה שֶׁנֶּאֱמַר <span class="source-small">(ישעיה כד ט)</span> &quot;בַּשִּׁיר לֹא יִשְׁתּוּ יָיִן&quot;. וּכְבָר נָהֲגוּ כָּל יִשְׂרָאֵל לוֹמַר דִּבְרֵי תֻּשְׁבָּחוֹת אוֹ שִׁיר שֶׁל הוֹדָאוֹת לָאֵל וְכַיּוֹצֵא בָּהֶן עַל הַיַּיִן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפילו </strong>
 <strong> שירה בפה על היין אסורה שנאמר בשיר לא ישתו יין. </strong> מלשון רבינו מבואר דקרא מיירי בשיר בפה ואילו בגיטין ז׳ א׳. פריך ולשלח לי׳ מהך בשיר לא ישתו יין ומשני אי מההוא ה&quot;א ה&quot;מ זימרא דמנא אבל דפומא ש&quot;ד קמ&quot;ל. א&quot;כ מ׳ דקרא מיירי בשיר בכלי. כן שאלני זה רבות בשנים גיסי הרה&quot;ג מ׳ דובער ראבינאויץ ז&quot;ל האבד&quot;ק פיאנטניצא. ואני נ&quot;ל דמלבד די&quot;ל בפשיטות דבתר דכ׳ קרא אל תשמח. ממילא בכלל בשיר, לא ישתו יין אף שיר בפה הוא. אבל יו&quot;נ דד&quot;ז תליא אם עיקר שירה בפה או בכלי. דמסתברא דכמו שהיה במקדש. ע&quot;ז נצטווינו שלא לשורר בביתנו. א&quot;כ למ&quot;ד ע&quot;ש בכלי. קרא מיירי נמי בשיר בכלי. אבל רבינו לשי׳ דפ׳ פ&quot;ג ה&quot;ג מכלי המקדש דע&quot;ש בפה. ע&quot;כ מייתי מהך קרא לשירה בפה:</p>
               </div>
@@ -528,6 +619,10 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -548,8 +643,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-fasts.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/benei-binyamin-on-mishneh-torah-fasts.manifest.json","occurrence_url":"../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-fasts.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-fasts.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-fasts.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-fasts.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -575,7 +670,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

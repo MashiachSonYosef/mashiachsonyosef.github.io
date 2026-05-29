@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/">Open Mishneh Torah, Woman Suspected of Infidelity</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Woman Suspected of Infidelity</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">39 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>603 matched</strong> / 1527 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -244,8 +245,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-1">Mishneh Torah, Woman Suspected of Infidelity 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנּוּי הָאָמוּר בַּתּוֹרָה <span class="source-small">(במדבר ה יד)</span> &quot;וְקִנֵּא אֶת אִשְׁתּוֹ&quot; הוּא שֶׁיֹּאמַר לָהּ בִּפְנֵי עֵדִים אַל תִּסָּתְרִי עִם אִישׁ פְּלוֹנִי. אֲפִלּוּ הָיָה אָבִיהָ אוֹ אָחִיהָ אוֹ עַכּוּ&quot;ם אוֹ עֶבֶד אוֹ שָׁחוּף הוּא הָאִישׁ שֶׁאֵינוֹ מִתְקַשֶּׁה וְאֵינוֹ מוֹלִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה נה </strong> לעשות לסוטה כתורת הקנאות הסדורה בתורה. וקינוי האמור בתורה וקנא את אשתו הוא שיאמר לה בפני עדים אל תסתרי עם איש פלוני דכתיב והיא נטמאה ועד אין בה ודרשינן תרי אין בה לנטמאה אלא חד דכל מקום דאמר׳ תורה עד הרי כאן שנים מדכתיב לא יקום עד א׳ מכלל דעד הוי שנים וקאמר קרא עד אין בה הא חד יש בה. בטומאה עד א׳ נאמן לאוסרה ואינה שותה אבל לא בקינוי ולא בסתירה דבעינן שני עדים. אפילו היה אביה או אחיה או גוי או עבד מקנין על ידן דאף על גב דכתיב נטמאה נטמאה שני פעמים אחד לבעל ואחד לבועל והוה אמינא היכא דמיתסתרא בהא סתירה הוא דמשתעי קרא אבל הני הואיל דאסירי וקיימי עלה לא קמ&quot;ל דכי אתא קרא לגופיה אתא להיכא דאינו קרוב או פסול לה דאסר עליה על ידי קינוי זה ולאו למעוטי הני אתא ואפילו שחו(ץ)[ף] הוא האיש שאינו מתקשה ואינו מוליד דלא מיעוט רחמנא מאיש דכתיב בקרא ושכב איש אותה אלא קטן והא דכתיב שכבת זרע פרט דמי שקנא לה דרך איברים ששוכב עמה דרך קירוב בשר.</p>
               </div>
             </div>
@@ -260,8 +266,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-2">Mishneh Torah, Woman Suspected of Infidelity 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַסְּתִירָה הָאֲמוּרָה בַּתּוֹרָה <span class="source-small">(במדבר ה יג)</span> &quot;וְנִסְתְּרָה&quot; הוּא שֶׁתִּסָּתֵר עִם אוֹתוֹ הָאִישׁ שֶׁאָמַר לָהּ אַל תִּסָּתְרִי עִמּוֹ בִּפְנֵי שְׁנֵי עֵדִים. אִם שָׁהֲתָה עִמּוֹ כְּדֵי טֻמְאָה שֶׁהוּא כְּדֵי לִצְלוֹת בֵּיצָה וּלְגָמְעָהּ הֲרֵי זוֹ אֲסוּרָה עַל בַּעְלָהּ עַד שֶׁתִּשְׁתֶּה מֵי הַמָּרִים וְיִבָּדֵק הַדָּבָר. וּבִזְמַן שֶׁאֵין שָׁם מֵי סוֹטָה תֵּאָסֵר עָלָיו לְעוֹלָם וְתֵצֵא בְּלֹא כְּתֻבָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הסתירה </strong> האמורה בתורה היא ששהתה עמו כדי טומאה שהוא כדי לצלות ביצה ולגמעה דכתיב ונסתרה והיא נטמאה דמשמע דסתירה הויא כשיעור טומאה דהוי כהאי שיעור׳. והרי זו אסורה על בעלה עד שתשתה מי המרים כדכתיב בהדיא בקרא והביא האיש את אשתו וגו׳ ובזמן שאין שם מי סוטה תיאסר עליו לעולם דכיון דתלה רחמנא בשתיה לפני ה׳ והשתא א&quot;א נשארה באיסורא לעולם.</p>
               </div>
             </div>
@@ -276,8 +287,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-3">Mishneh Torah, Woman Suspected of Infidelity 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנֵּא לָהּ עַל שְׁנַיִם כְּאֶחָד וְאָמַר לָהּ אַל תִּסָּתְרִי עִם פְּלוֹנִי וּפְלוֹנִי. וְנִסְתְּרָה עִם שְׁנֵיהֶן כְּאֶחָד וְשָׁהֲתָה כְּדֵי טֻמְאָה. אֲפִלּוּ הֵם שְׁנֵי אַחֶיהָ אוֹ אָבִיהָ וְאָחִיהָ הֲרֵי זוֹ אֲסוּרָה עַד שֶׁתִּשְׁתֶּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קנא </strong> לה על ב׳ כאחד ונסתרה עמהם הרי זו אסורה עד שתשתה. [כיון שיש כדי שיעור טומאה דחד מיניהו].</p>
               </div>
             </div>
@@ -292,8 +308,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-4">Mishneh Torah, Woman Suspected of Infidelity 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמַר לָהּ בִּפְנֵי שְׁנַיִם אַל תְּדַבְּרִי עִם פְּלוֹנִי אֵין זֶה קִנּוּי. וְאַף עַל פִּי שֶׁנִּסְתְּרָה עִמּוֹ בְּעֵדִים וְשָׁהֲתָה כְּדֵי טֻמְאָה לֹא נֶאֶסְרָה עָלָיו וְאֵינָהּ שׁוֹתָה בְּקִנּוּי זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר </strong> לה בפני ב׳ אל תדברי עם פלוני אפילו נסתרה עמו כדי טומאה לא נאסרה עליו דכתיב ונסתרה והיא נטמאה סתירה בעינן אחר קינוי דסתירה דכיון דכתיב ונסתרה משמע שעשתה הפך הקינוי שהקינוי היה בלא תסתתרי.</p>
               </div>
             </div>
@@ -308,8 +329,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-6">Mishneh Torah, Woman Suspected of Infidelity 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמַר לָהּ לֹא תִּסָּתְרִי עִם אִישׁ פְּלוֹנִי וְהָיָה קָטָן פָּחוֹת מִבֶּן תֵּשַׁע שָׁנִים וְיוֹם אֶחָד. אוֹ שֶׁאָמַר לָהּ אַל תִּסָּתְרִי עִם בְּהֵמָה זוֹ אֵין זֶה קִנּוּי שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְשָׁכַב אִישׁ אֹתָהּ&quot; פְּרָט לְקָטָן וְלִבְהֵמָה שֶׁאֵין אוֹסְרִין אוֹתָהּ עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אל </strong> תסתרי עם פלוני והיה קטן פחות מבן ט׳ שנים ויום אחד אין ביאתו ביאה כדילפינן לעיל מהלכתא והא דכתיב ושכב איש אותה ולא קטן לא ממעט אלא קטן פחות מבן ט׳ דאין ביאתו ביאה כדאמרינן דבן ט׳ ויום א׳ הוי כאיש לענין ביאה דכל העריות נסקלין על ידו. וכן אמר לה אל תסתרי עם בהמה ונסתרה אינו קינוי דאיש כתיב ואין זנות בבהמה מדכתיב אתנן זונה ומחיר כלב ואלו אתנן כלב לא אסר קרא דלאו זנות הוא ולא חייל עליה שם אתנן כלל ואין קטן זה ובהמה אוסרין אותה עליו כדאמרינן.</p>
               </div>
             </div>
@@ -324,8 +350,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-7">Mishneh Torah, Woman Suspected of Infidelity 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּעַל שֶׁמָּחַל עַל קִנּוּיוֹ קֹדֶם שֶׁתִּסָּתֵר קִנּוּיוֹ מָחוּל וּכְאִלּוּ לֹא קִנֵּא לָהּ מֵעוֹלָם. אֲבָל אִם מָחַל אַחַר שֶׁתִּסָּתֵר אֵינוֹ יָכוֹל לִמְחל. גֵּרְשָׁהּ הֲרֵי זֶה כְּמִי שֶׁמָּחַל וְאִם הֶחֱזִירָהּ צָרִיךְ לְקַנְּאוֹת קִנּוּי אַחֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מחל </strong> על קנוייו מחול דביה תלא רחמנא דכתיב וקנא את אשתו והא מחיל ולאחר סתירה אין מחילתו מחילה דהא נאסרת ואין לה היתר עד שתשתה מי המרים. גרשה הוי כמחילה ואם החזירה צריכה קינוי אחר דכיון דאם נסתרה אחר שגרשה עם מי שקנא לה ואפילו זנתה בעדים מותרת לחזור לו אין קינוייו קינוי לכשיחזירנה אלא צריך קינוי אחר.</p>
               </div>
             </div>
@@ -340,8 +371,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-8">Mishneh Torah, Woman Suspected of Infidelity 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנֵּא לָהּ בִּפְנֵי שְׁנַיִם וְרָאָה אוֹתָהּ שֶׁנִּסְתְּרָה עִם זֶה שֶׁקִּנֵּא לָהּ עָלָיו וְשָׁהֲתָה כְּדֵי טֻמְאָה הֲרֵי זוֹ אֲסוּרָה עָלָיו וְיוֹצִיא וְיִתֵּן כְּתֻבָּה. שֶׁאֵינוֹ יָכוֹל לְהַשְׁקוֹתָהּ עַל פִּי עַצְמוֹ. וְכֵן אִם שָׁמַע הָעָם מְרַנְּנִין אַחֲרֶיהָ אַחַר הַקִּנּוּי וְהַסְּתִירָה עַד שֶׁשָּׁמַע מֵהַנָּשִׁים הַטּוֹוֹת לְאוֹר הַלְּבָנָה נוֹשְׂאוֹת וְנוֹתְנוֹת בָּהּ שֶׁזִּנְּתָה עִם הָאִישׁ שֶׁקִּנֵּא לָהּ עָלָיו הֲרֵי זֶה אָסוּר לְקַיְּמָהּ וְיוֹצִיא וְיִתֵּן כְּתֻבָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם </strong> נסתרה על פיו בלא עדים נאסרה עליו דהא נסתרה בפניו אבל אינה שותה על פיו כדאמרינן לעיל דבעינן ב׳ עדים לסתירה. וכן רינון סתירה מהנשים הטוות לאור הלבנה ושזנתה עם מי שקנא לה בעלה אסור לקיימה אבל אינה שותה דכתיב וטהורה היא וגו׳ ולא שישאו ויתנו בה מוזרות בלבנה דהא אינה טהורה. וכן עד אחד בסתירה אחר קינוי אם נאמן לו ודעתו סומכת עליו יוציאנה ואם לאו מותרת לו דבעינן שני עדים לסתירה כדאמרינן.</p>
               </div>
             </div>
@@ -356,8 +392,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-10">Mishneh Torah, Woman Suspected of Infidelity 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ שֶׁבֵּית דִּין מְקַנִּין לָהֶן. מִי שֶׁנִּתְחָרֵשׁ בַּעְלָהּ אוֹ שֶׁנִּשְׁתַּטָּה אוֹ שֶׁהָיָה בִּמְדִינָה אַחֶרֶת אוֹ שֶׁהָיָה חָבוּשׁ בְּבֵית הָאֲסוּרִין. לֹא לְהַשְׁקוֹתָהּ אֶלָּא לְפָסְלָהּ מִכְּתֻבָּתָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חרש </strong> או שוטה או שאינו בעיר או חבוש ושמעו שהיו מרננין אחריה ב&quot;ד קוראין אותה ואומרים לה אל תסתרי עם איש פלוני דכתיב איש וכו׳ ריבה ב&quot;ד. ואם באו עדים שנסתרה עמו אח&quot;כ אוסרין אותה על בעלה. נראה דהוי מדרבנן דקרא דאיש איש לא איצטריך אלא לאוסרה לבעל ולבועל כמו שכתבו בתוס׳ פרק ארוסה.</p>
               </div>
             </div>
@@ -372,8 +413,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-12">Mishneh Torah, Woman Suspected of Infidelity 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁתָת מֵי הַמָּרִים וְנִקְּתָה מֵהֶן וְחָזַר וְקִנֵּא לָהּ עִם הָאִישׁ שֶׁהִשְׁקָה עַל יָדוֹ וְנִסְתְּרָה עִמּוֹ אֵינוֹ יָכוֹל לְהַשְׁקוֹתָהּ עַל יָדוֹ פַּעַם שְׁנִיָּה אֶלָּא תֵּאָסֵר עָלָיו לְעוֹלָם וְתֵצֵא בְּלֹא כְּתֻבָּה. אֲבָל אִם קִנֵּא לָהּ עִם אַחֵר וְנִסְתְּרָה עִם הָאַחֵר בְּעֵדִים מַשְׁקִין אוֹתָהּ פַּעַם שְׁנִיָּה וַאֲפִלּוּ כַּמָּה פְּעָמִים. וְהוּא שֶׁיַּשְׁקֶה אוֹתָהּ בְּכָל פַּעַם בִּגְלַל אִישׁ אַחֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אשה שותה ושונה באיש א׳ דכתיב זאת תורת הקנאות זאת שאין האשה שותה ושונה דזאת משמע דממעטה זאת ולא אחרת והיינו באיש אחד ובועל אחד אבל איש אחד וב׳ בועלים או שני אנשים ובועל א׳ שותה ושונה דכתיב תורת הקנאות תורה א׳ לכל הקנאות שבכולן יעשה כתורה הזאת.</p>
               </div>
             </div>
@@ -388,8 +434,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-14">Mishneh Torah, Woman Suspected of Infidelity 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁקִּנֵּא לָהּ בַּעְלָהּ וְנִסְתְּרָה אַחַר הַקִּנּוּי עִמּוֹ בְּעֵדִים וַהֲרֵי הִיא עוֹמֶדֶת לִשְׁתּוֹת וּבָא עֵד אֶחָד וְהֵעִיד עָלֶיהָ שֶׁנִּבְעֲלָה בְּפָנָיו עִם זֶה שֶׁקִּנֵּא לָהּ עִמּוֹ הֲרֵי זֶה אֲסוּרָה עַל בַּעְלָהּ לְעוֹלָם. וְאֵינָהּ שׁוֹתָה וְיוֹצֵאת בְּלֹא כְּתֻבָּה. וַאֲפִלּוּ הָיָה עֵד טֻמְאָה זֶה אֶחָד מֵעֵדֵי הַסְּתִירָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְעֵד אֵין בָּהּ&quot; וַהֲרֵי כָּאן עֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עד </strong> א׳ לטומאה אחר עדות קינוי וסתירה (עליו) אסורה על בעלה לעולם דכתיב והיא נטמאה ועד אין בה דהוו שנים הא חד אית בה ואינה שותה דהא נטמאה דעד א׳ נאמן בה בטומאה אחר קינוי וסתיר׳ בעדים כדאמרינן דמדקאמר ועד אין בה והיא לא נתפש׳ משמע דמחזיקינן לה בנבעלת דאי עד אין בה דקאמר קרא היינו שני עדים ועד אחד אין נאמן בה לאוסרה היכי קאי והיא לא נתפשה אאין נאמן בה הא אמרת דאין מחזקין לה בנבעלת אלא וודאי כדאמר. ואפילו עבד ושפחה וקרוב ונשים השונאות זו את זו נאמנות לעדות זה הואיל וקדם קינוי וסתירה בעדים כשרים רגלים לדבר שנטמא והואיל שלא הקפידה תורה על שני עדים דרגלים לדבר הכי נמי לא הקפידה שיהיה איש דאפילו אשה ועבד כשר כדאמרן והיינו משום דרגלים לדבר אחר קינוי וסתירה אבל אי מעיד בטומאה ולא קדם קינוי וסתירה בעדים לא נאסרה דילפינן דבר דבר מה התם שני עדים אף הכא ב׳ עדים ואף על גב דכי כתיבא קינוי בתר סתירה וטומאה כתיבא דכתיב ונסתרה והיא נטמאה ועד אין בה וסמיך ליה ועבר עליו רוח קנאה וגו׳ האי ועבר וכבר עבר דאלו בתר טומאה קינוי למה לי.</p>
               </div>
             </div>
@@ -404,8 +455,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-16">Mishneh Torah, Woman Suspected of Infidelity 1:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּא עֵד אֶחָד כָּשֵׁר וְאָמַר נִטְמֵאת הֲרֵי זוֹ אֵינָהּ שׁוֹתָה כְּמוֹ שֶׁבֵּאַרְנוּ. בָּא עֵד אֶחָד וְהִכְחִישׁוֹ וְאָמַר לֹא נִטְמֵאת אֵין שׁוֹמְעִין לוֹ. שֶׁעֵד אֶחָד בְּטֻמְאַת סוֹטָה כִּשְׁנַיִם. וְאֵין דְּבָרָיו שֶׁל אַחֲרוֹן דּוֹחִין דִּבְרֵי הָרִאשׁוֹן שֶׁהוּא כִּשְׁנַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא </strong> עד א׳ והעיד שנטמאת שנאמן אחר קינוי וסתירה כמו שאמרנו ואחר כן בא עד אחר ואמר לא נטמאת אין שומעין לו דאין דבריו של זה שהוא א׳ דוחין דברי הא׳ שהוא כשנים לטומאת סוטה כדאמר. ואם באו שניהם כאחת או שבאו שנים ואמרו לא נטמאת הרי הם שוים ומכחישים והרי היא כספקא אם נטמאת כשנסתרה אם לאו ושותה. ועד א׳ או נשים ועבדים רבים הרי הם כמחצה על מחצה ושותה אם באו כא׳ והיו כולן פסולין הלך אחר הרוב בין לטומאה בין לשתות ואם היו מחצה על מחצה נמי שותה דכל מקום שהאמינה תורה עד א׳ הלך אחר רוב דעות ועשה שתי נשים באשה אחת כשני אנשים באיש א׳.</p>
               </div>
             </div>
@@ -420,8 +476,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:20:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-1-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 1:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-20">Mishneh Torah, Woman Suspected of Infidelity 1:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל סוֹטָה שֶׁאָמַרְנוּ שֶׁאֵינָהּ שׁוֹתָה מִפְּנֵי עֵדֵי טֻמְאָה הֲרֵי זוֹ אֲסוּרָה עַל בַּעְלָהּ לְעוֹלָם וְתֵצֵא בְּלֹא כְּתֻבָּה שֶׁהֲרֵי נֶאֶסְרָה בְּקִנּוּי וּסְתִירָה. וְהַשְּׁתִיָּה שֶׁתַּתִּירָהּ נִמְנְעָה שֶׁהֲרֵי יֵשׁ בָּהּ עֵד כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> שאינה שותה מפני עידי טומאה הרי זו אסורה על בעלה לעולם שהרי נאסר׳ בקינוי וסתירה והשתיה שמתירה נמנעת שהרי יש עד כמו שנתבאר:</p>
               </div>
             </div>
@@ -437,8 +498,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-1">Mishneh Torah, Woman Suspected of Infidelity 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָׁה שֶׁקִּנֵּא לָהּ וְנִסְתְּרָה אֵין כּוֹפִין אוֹתָהּ לִשְׁתּוֹת. אֶלָּא אִם רָצְתָה וְאָמְרָה הֵן נִטְמֵאתִי תֵּצֵא בְּלֹא כְּתֻבָּה וְנֶאֶסְרָה עַל בַּעְלָהּ לְעוֹלָם וְאֵינָהּ שׁוֹתָה. וְכֵן אִם אָמְרָה אֵינִי טְמֵאָה וְאֵינִי שׁוֹתָה אֵין כּוֹפִין אוֹתָהּ לִשְׁתּוֹת וְתֵצֵא בְּלֹא כְּתֻבָּה. וְכֵן אִם אָמַר בַּעְלָהּ אֵינִי רוֹצֶה לְהַשְׁקוֹתָהּ אוֹ שֶׁבְּעָלָהּ בַּעְלָהּ אַחַר שֶׁנִּסְתְּרָה הֲרֵי זוֹ אֵינָהּ שׁוֹתָה וְנוֹטֶלֶת כְּתֻבָּתָהּ וְיוֹצְאָה וְהִיא אֲסוּרָה [עָלָיו] לְעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> זמן שלא נמחקה מגלתה אין כופין אותה לשתות אם אמרה איני שותה או שלא רצה בעלה להשקותה ואסורה עליו לעולם דמדכתיב קרא יתירא והשקה את המים בתר דכתיב וכתב ומחה וכו׳ ואחר ישקה את האשה את המים לרבות שאם אמרה איני שותה לאחר שנמחקה המגלה שמערערין אותה ומשקין אותה בעל כרחה משמע דקודם שנמחקה אין כופין אותה לשתות. וכן אם בעלה בעלה אחר שנסתרה אינה שותה ואסורה עליו דכתיב אשר תשטה אשה תחת אישה ונטמאה נטמאה ונטמאה וי&quot;ו יתירא דאסורה לבעל ולבועל קודם שתשתה א&quot;נ דכתיב איש איש ב׳ פעמים וכתיב ונקה האיש מעון דכשהוא אינו מנוקה מעון אין המים בודקין את אשתו ולכך לא תשתה.</p>
               </div>
             </div>
@@ -453,8 +519,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-2">Mishneh Torah, Woman Suspected of Infidelity 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן הַנָּשִׁים שֶׁאֵינָן רְאוּיוֹת לִשְׁתּוֹת אַף עַל פִּי שֶׁהֵן רוֹצוֹת לִשְׁתּוֹת וּבַעְלֵיהֶן רוֹצִים לְהַשְׁקוֹתָן אֶלָּא יוֹצְאוֹת בְּלֹא כְּתֻבָּה מִשֶּׁיָּבוֹאוּ עֵדֵי סְתִירָה אַחַר עֵדֵי קִנּוּי וְיֵאָסְרוּ עַל בַּעְלֵיהֶן לְעוֹלָם. וַחֲמֵשׁ עֶשְׂרֵה נָשִׁים הֵן. וְאֵלּוּ הֵן. אֲרוּסָה. וְשׁוֹמֶרֶת יָבָם. וּקְטַנָּה אֵשֶׁת הַגָּדוֹל. וּגְדוֹלָה אֵשֶׁת הַקָּטָן. וְאֵשֶׁת אַנְדְּרוֹגִינוּס. וְאֵשֶׁת הַסּוּמָא. וְאֵשֶׁת הַחִגֵּר אוֹ הָאִלֵּם. אוֹ מִי שֶׁאֵינוֹ שׁוֹמֵעַ. אוֹ שֶׁהוּא כְּרוּת יָד. וְכֵן הַחִגֶּרֶת. וְהָאִלֶּמֶת. וְהַסּוּמָא. וּכְרוּתַת יָד. וְשֶׁאֵינָהּ שׁוֹמַעַת. כָּל אַחַת מֵאֵלּוּ אֵינָהּ רְאוּיָה לִשְׁתּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו </strong> שאינן ראויות לשתות אפילו רצתה היא והוא ארוסה ושומרת יבם אשר תשטה אשה תחת אישה תחת פרט לארוסה ושומרת יבם שאינה תחת אישה תשטה אשה פרט לקטנה תחת אישה פרט לאשת קטן ואשת אנדרוגינוס שאינו אישה ונעלם מעיני אשה פרט לאשת סומא והעמיד הכהן את האשה פרט לחגרת דהוי קרא יתירא דהא כתיב והעמידה לפני ה׳ ונתן על כפיה פרט למי שאין לה כף ואע&quot;ג דלאו קרא יתירה הוא בעי׳ קרא כדכתיב או שהיתה עקומה או יבשה שאינה יכולה ליקח בה ואפילו כפה א׳ שנאמר כפיה ואמרה האשה פרט לאלמת ואמר אל האשה פרט לאינה שומעת וכל שמעכב אותו מעכב אותה וכל שמעכב אותה מעכב אותו דכתיב אשה תחת אישה להקיש איש לאשה במה שמפורש בה ואשה לאיש במה שמפורש בו וט&quot;ו נשים הן.</p>
               </div>
             </div>
@@ -469,8 +540,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-4">Mishneh Torah, Woman Suspected of Infidelity 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְטַנָּה שֶׁהִשִּׂיאָהּ אָבִיהָ אִם זִנְּתָה בִּרְצוֹנָהּ נֶאֶסְרָה עַל בַּעְלָהּ. לְפִיכָךְ מְקַנִּין לָהּ לֹא לְהַשְׁקוֹתָהּ אֶלָּא לְפָסְלָהּ מִכְּתֻבָּתָהּ כְּמוֹ שֶׁאָמַרְנוּ. אֲבָל קְטַנָּה בַּת מֵאוּן אֵין מְקַנִּין לָהּ שֶׁאֵין לָהּ רָצוֹן לְהֵאָסֵר עַל בַּעְלָהּ. וַאֲפִלּוּ הָיָה כֹּהֵן לֹא נֶאֶסְרָה עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטנה </strong> שהשיאה אביה וזנתה ברצונה נאסרה על בעלה דהא אשת איש היא דיש לו רשות לקדשה כדכתיב את בתי נתתי לאיש אסרה הזה התירה. קנא לארוסתו או לזקוקתו ונסתרה אחר שנשאת הרי זו שותה דכתיב דבר אל בני ישראל ואמרת אליהם לרבות ארוסה ושומרת יבם לקינוי ותחת אישה לא בעי אלא סתירה כדכתיב אשר תשטה אשה דהיינו סתירה תחת אישה. נשואה שקנא לה ונסתרה קודם שיבעול אותה בעלה אינה שותה דכתיב ויתן איש בך את שכבתו מבלעדי אישך שקדמה שכיבת בעל לשכיבת בועל דמבלעדי אישך משמע שבעלה נתן בה את שכבתו קודם לסתירה זו.</p>
               </div>
             </div>
@@ -485,8 +561,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-6">Mishneh Torah, Woman Suspected of Infidelity 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגִּיֹּרֶת וְהַמְשֻׁחְרֶרֶת וְאֵשֶׁת הַגֵּר וְאֵשֶׁת עֶבֶד מְשֻׁחְרָר וּמַמְזֶרֶת וְאֵשֶׁת מַמְזֵר וְאֵשֶׁת סְרִיס חַמָּה אוֹ סְרִיס אָדָם הַמֻּתָּרוֹת לְבַעְלֵיהֶן הֲרֵי הֵן כְּכָל הַנָּשִׁים וְשׁוֹתוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גיורת </strong> ומשוחררת ואשת הגר ואשת עבד משוחרר שותות דאע&quot;ג דכתיב בני ישראל דמשמע ולא בני גרים קמ&quot;ל דאמרת ריבוייא הוא אע&quot;ג דדרשינן ליה לעיל לקינוי ארוסה ושומרת יבם וכבר הוקשה אשה לאיש. וממזרת ואשת ממזר לא תימא לא יעשה שלום ביניהם הלואי לא יפרה ולא ירבה הואיל וכל דורותיו ממזרים אלא תשתה דלא אשכחן בה מיעוט. ואשת סריס המותרת לו דאע&quot;ג דמבלעדי אישך קאמר רחמנא והאי לאו בר הכי הוא קמ&quot;ל דלמיקדם שכיבת בעל לבועל הוא דאתא וסריס בר שכיבה הוא אע&quot;ג דלאו בר זריעה הוא. מעוברת ומניקה מקנא לה בעלה ומשקה אותה כמות שהיא. אשה העומדת לשתות ומת בעלה אינה שותה דכתיב והביא האיש את אשתו.</p>
               </div>
             </div>
@@ -501,8 +582,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-8">Mishneh Torah, Woman Suspected of Infidelity 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אִישׁ שֶׁבָּא בִּיאָה אֲסוּרָה מִיָּמָיו אַחַר שֶׁהִגְדִּיל אֵין הַמַּיִם הַמְאָרְרִים בּוֹדְקִין אֶת אִשְׁתּוֹ. וַאֲפִלּוּ בָּא עַל אֲרוּסָתוֹ בְּבֵית חָמִיו שֶׁאָסוּר מִדִּבְרֵי סוֹפְרִים אֵין הַמַּיִם בּוֹדְקִין אֶת אִשְׁתּוֹ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה לא)</span> &quot;וְנִקָּה הָאִישׁ מֵעָוֹן וְהָאִשָּׁה הַהִיא תִּשָּׂא אֶת עֲוֹנָהּ&quot;. בִּזְמַן שֶׁהָאִישׁ מְנֻקֶּה מֵעָוֹן אִשָּׁה נוֹשְׂאָה אֶת עֲוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> איש שבא ביאה אסורה מימיו אחר שהגדיל אין המים בודקין את אשתו דכתיב ונקה האיש מעון בזמן שהאיש מנוקה מעון אשה נושאת את עונה ועון דידיה היינו באיסור ביאה כעון דידה לפיכך אם היתה אסורה עליו אינה שותה ותהיה אסורה עליו אף משום זה.</p>
               </div>
             </div>
@@ -517,8 +603,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-2-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-10">Mishneh Torah, Woman Suspected of Infidelity 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאֵין לוֹ אִשָּׁה הָרְאוּיָה לֵילֵד וְלֹא בָּנִים וְנָשָׂא עֲקָרָה אוֹ זְקֵנָה אוֹ אַיְלוֹנִית אֵינָהּ שׁוֹתָה וְלֹא נוֹטֶלֶת כְּתֻבָּה. הָיוּ לוֹ בָּנִים אוֹ אִשָּׁה אַחֶרֶת רְאוּיָה לֵילֵד הֲרֵי זֶה מַשְׁקֶה אוֹתָהּ אַף עַל פִּי שֶׁהִיא זְקֵנָה אוֹ עֲקָרָה אוֹ אַיְלוֹנִית וְאֵינָהּ רְאוּיָה לֵילֵד שֶׁלֹּא נֶאֱמַר בַּתּוֹרָה <span class="source-small">(במדבר ה כח)</span> &quot;וְנִזְרְעָה זָרַע&quot; אֶלָּא בִּרְאוּיָה לֵילֵד שֶׁאִם הָיְתָה יוֹלֶדֶת בְּצַעַר תֵּלֵד בְּרֶוַח. הָיָה דַּרְכָּהּ לֵילֵד נְקֵבוֹת תֵּלֵד זְכָרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עקרה </strong> או זקנה או אילונית דאינם ראוים לקיימן כשאין לו אשה אחרת או בנים שהרי נצטוו ישראל על פריה ורביה אינה שותה ואם היו לו בנים או אשה ראויה לילד הרי זה משקה אותם דלא נאמר ונזרעה זרע אלא בראויה לילד שאם היתה יולדת בצער תלד בריוח נקבות תלד זכרים. היו לו בנים ומתו בין קינוי לסתירה כבר נראית לשתות ומשקה אותה ואם לא היתה ראוי׳ מקודם אע&quot;פ שנראית אח&quot;כ כשילדה גרושתו בין קינוי לסתירה כבר נדחית האילונית מלשתות דבשעת קינוי תליא מילתא.</p>
               </div>
             </div>
@@ -533,8 +624,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-2-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-12">Mishneh Torah, Woman Suspected of Infidelity 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אִשָּׁה שֶׁהָיָה לָהּ קִנּוּי וּסְתִירָה וְלֹא שָׁתְתָה מֵי הַמָּרִים בֵּין שֶׁלֹּא רָצָה בַּעְלָהּ לְהַשְׁקוֹתָהּ בֵּין שֶׁלֹּא רָצְתָה הִיא וּבֵין שֶׁבָּא לָהּ עֵד טֻמְאָה אוֹ הוֹדֵית אוֹ הָיְתָה מֵאֵלּוּ הַנָּשִׁים שֶׁאֵינָן רְאוּיוֹת לִשְׁתּוֹת אוֹ שֶׁקִּנְּאוּ לָהּ בֵּית דִּין. הוֹאִיל וְנֶאֶסְרָה עַל בַּעְלָהּ מִכָּל מָקוֹם הֲרֵי הִיא אֲסוּרָה עַל זֶה שֶׁנִּתְיַחֲדָה עִמּוֹ לְעוֹלָם כְּדֶרֶךְ שֶׁהִיא אֲסוּרָה עַל בַּעְלָהּ. וְאִם עָבַר וּנְשָׂאָהּ מוֹצִיאִין אוֹתָהּ מִתַּחְתָּיו בְּגֵט אֲפִלּוּ הָיוּ לָהּ כַּמָּה בָּנִים מִמֶּנּוּ. מִפִּי הַשְּׁמוּעָה לָמְדוּ כְּשֵׁם שֶׁאֲסוּרָה לַבַּעַל כָּךְ אֲסוּרָה לַבּוֹעֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם </strong> שאסורה לבעל כשאינה שותה מצד כל מה שנאמר כך אסור לבועל דהא הושוו באיסור כדילפי׳ לעיל ואם נשאה הבועל מוציאין אותה ממנו ואפילו היו לה כמה בנים ממנו דהא אסורה עליו מן התורה ואם לא קדם קינוי ובאו עדים שנסתרה ומצאו דבר מכוער גורשה בעלה ונשאת לזה לא תצא מן התורה אלא מדברי סופרים כשלא היו לה בנים ואם באו ב׳ עדים שזנתה עם זה הרי זו תצא אע&quot;פ שלא קנא לה בעלה ממנו שהרי אסורה לזה מן התורה:</p>
               </div>
             </div>
@@ -550,8 +646,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-1">Mishneh Torah, Woman Suspected of Infidelity 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד סֵדֶר הַשְׁקָאַת סוֹטָה. הַבַּעַל בָּא לְבֵית דִּין שֶׁבְּעִירוֹ וְאוֹמֵר לָהֶן אִשְׁתִּי זוֹ קִנֵּאתִי לָהּ עִם פְּלוֹנִי וְנִסְתְּרָה עִמּוֹ וְאֵלּוּ הֵן עֵדַי וַהֲרֵי הִיא אוֹמֶרֶת שֶׁהִיא טְהוֹרָה וַאֲנִי רוֹצֶה לְהַשְׁקוֹתָהּ לִבְדֹּק הַדָּבָר. וּבֵית דִּין שׁוֹמְעִין דִּבְרֵי הָעֵדִים. וּמוֹסְרִין לוֹ שְׁנֵי תַּלְמִידֵי חֲכָמִים לְשָׁמְרוֹ שֶׁמָּא יָבֹא עָלֶיהָ קֹדֶם שְׁתִיָּה. שֶׁהֲרֵי נֶאֶסְרָה עָלָיו עַד שֶׁתִּשְׁתֶּה. וּמְשַׁלְּחִין אוֹתוֹ לִירוּשָׁלַיִם שֶׁאֵין מַשְׁקִין אֶת הַסּוֹטָה אֶלָּא בְּבֵית דִּין הַגָּדוֹל שֶׁל שִׁבְעִים זְקֵנִים בַּמִּקְדָּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> משקין הסוטה אלא בב&quot;ד הגדול של ע&quot;א במקדש דאתיא תורה תורה כתיב הכא ועשה לה הכהן את כל התורה וכתיב התם בזקן ממרא על פי התורה אשר יורוך מה להלן בע&quot;א דכתיב על פי הדבר אשר יגידו לך מן המקום ההוא מקום מיוחד דהיינו לשכת הגזית אף כאן בע&quot;א וה&quot;נ כתיב לפני ה׳ דהיינו בירושלם. וכדי שלא ימחק השם מאיימין עליה דסברא היא אבל אינו מעכב. ומעמידין אותה כנגד שער המזרח דכתיב והעמיד הכהן את האשה לפני ה׳ בשער ניקנור הוא שער העזרה המזרחי דרך כל הנכנסין ומבחוץ. ומשביע בלשון שהיא מדברת דכתיב ואמרה האשה וגו׳ בכל לשון שהיא שומעת דאל האשה משמע דברים הנכנסים בלבה שתהא מכרת בלשון ואומר לה בלשון שהיא מכרת אם לא שכב איש אותך ואם לא שטית וגו׳ עד מבלעדי אישך כדכתיב ואמר אל האשה אם לא שכב וכו׳ ואומר לה יתן ה׳ אותך וכו׳ עד לנפיל ירך כדכתיב והשביע וגו׳ ואמר הכהן אל האשה יתן ה׳ וגו׳ והיא אומרת אמן אמן בלשון שמכרת כדאמרינן לעיל דכתיב ואמרה האשה אמן אמן. ומודיעה שהבטן תלקה תחלה ואח&quot;כ הירך מדכתיב לצבות בטן ולנפיל ירך לבטנו וירכו של בועל ולא כתיב בטנו וירכו שמעת מינה נמי דמודיעה שהבטן תלקה תחלה שהמים כדרך כניסתן יבדקוה דלקללה הקדים הירך לבטן לפי שהתחילה בעבירה תחלה.</p>
               </div>
             </div>
@@ -566,8 +667,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-8">Mishneh Torah, Woman Suspected of Infidelity 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא מְגִלָּה שֶׁל עוֹר טָהוֹר כְּמוֹ סֵפֶר תּוֹרָה וְכוֹתֵב עָלֶיהָ בִּלְשׁוֹן הַקֹּדֶשׁ בִּדְיוֹ שֶׁאֵין בּוֹ קַנְקַנְתּוֹם לִשְׁמָהּ שֶׁל אִשָּׁה כְּמוֹ הַגֵּט. וְכוֹתֵב כָּל הַדְּבָרִים שֶׁהִשְׁבִּיעַ אוֹתָהּ בָּהֶם אוֹת בְּאוֹת מִלָּה בְּמִלָּה. וְכוֹתֵב אֶת הַשֵּׁם כִּכְתָבוֹ. וְאֵינוֹ כּוֹתֵב אָמֵן אָמֵן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ </strong> מביא מגלה של עור טהור כמו ס&quot;ת דכתיב וכתב וגו׳ כספר ובלשון הקדש נמי כספר ובדיו שאין בו קנקנתום שנבלע בקלף מפני שאינו יכול לימחות וכתיב וכתב וכו׳ ומחה כתב שיכול למחות. ולשמה של אשה כמו הגט דכתיב ביה וכתב לה לשמה והכא נמי כתיב ועשה לה הכהן דהיינו כתיבה ומחיקה לשמה. וכותב כל הדברים שהשביע אותה בהם אות באות דכתיב וכתב את האלות האלה בספר האלות אלות ממש יתן ה׳ אותך ובאו בה המים וגו׳ האלות לרבות קללות הבאות מחמת ברכות שהם הנקי ממי המרים האלה וגו׳ ומיעוטא הוא הא אם שטית לא תנקי האלה למעוטי קללות שבמשנה תורה יככה ה׳ וגו׳ דאיקרו אלה כדכתיב והיה בשמעו את דברי האלה דהוה משמע שיכתוב אותם האלות להכי כתיב אלה האלה למעוטי צוואות והשביע הכהן את האשה וגו׳ דלא תימא לא ידלג וקבלת אמן נמי איצטריך למעוטינהו וה&quot;א דהאלות לרבות משום דאלות גופ׳ ריבוייא הוא וה&quot;א דהאלה מיעוטא משום דאלה גופא מיעוטא הוא. וכותב את השם ככתבו דכיון דכתיב וכתב את האלות האלה היינו כמו שהן כתובות בתורה ממש ואינו כותב אמן דהיינו קבלה כדאמרן.</p>
               </div>
             </div>
@@ -582,8 +688,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-9">Mishneh Torah, Woman Suspected of Infidelity 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא כְּלִי חֶרֶשׂ שֶׁלֹּא נַעֲשָׂה בּוֹ מְלָאכָה מֵעוֹלָם וְלֹא יֵרָאֶה כִּכְלִי בָּלֶה מֵאֹרֶךְ הַזְּמַן. וְאִם הֶחְזִירוֹ לַכִּבְשָׁן עַד שֶׁנִּתְחַדֵּשׁ כָּשֵׁר. וְנוֹתֵן לְתוֹכוֹ חֲצִי לוֹג מַיִם מִן הַכִּיּוֹר. וּבַחֲצִי לוֹג שֶׁהָיָה בַּמִּקְדָּשׁ הָיָה מוֹדְדוֹ. וְנִכְנַס בּוֹ לַהֵיכָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר </strong> כך מביא כלי חרש שלא נעשה בו מלאכה דכתיב בכלי חרש וילפינן כלי כלי ממצורע מה התם חרש חדשה אף כאן חרש חדשה והתם מנ&quot;ל את הצפור הא׳ אל כלי חרש על מים חיים מה מים חיים שלא נעשתה בהם מלאכה אף כלי שלא נעשתה בו מלאכה ולא מצית פרכית מה למצורע שכן טעון עץ ארז ואזוב וגו׳ דאמר קרא בכלי חרש כלי שאמרתי לך כבר מדלא כתיב ולקח כלי חרש ונתן בו מים וכתיב בכלי חרש משמע שכבר הוזכר כלי זה במקום אחר וקאמר רחמנא הכא שבאותו כלי שאמרתי לך במקום אחר קח אותם ומאי ניהו דמצורע. ונותן לתוכו חצי לוג מן הכיור דכתיב מים קדושים ואין קדושים אלא שנתקדשו בכלי. ונוטל מעפר קרקע המשכן כדכתיב ומן העפר וגו׳ ונותנו על גבי המים כדי שיראה על פני המים דכתיב ומן העפר וכו׳ ונתן אל המים מדלא כתיב ונתן במים אלא אל המים משמע שלא יהיה נבלע בתוכן. ונותן לתוכן דבר מר דכתיב מי המרים שמרים כבר קודם מחיקה אלמא מחמת דבר אחר הם מרים ואין מרירה על שם קללת בדיקתם דהא מקמי מחיקה לאו בני בדיקה נינהו ומוחק לתוכן המגלה לשמה דכתיב ומחה וגו׳. וימחוק יפה יפה עד שלא ישאר במגלה רושם דכתיב ואחר ישקה ואחר דקאמר אמחיקה קאי הכתיבה למעלה ואם לא נמחקה יפה לא ישקנה א&quot;נ כיון דכתיב ומחה ממילא שמעי׳ אי רשומו ניכר דלא מחוי הוא.</p>
               </div>
             </div>
@@ -598,8 +709,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-11">Mishneh Torah, Woman Suspected of Infidelity 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ כֹּהֵן אֶחָד בָּא אֵלֶיהָ מִכֹּהֲנֵי הָעֲזָרָה וְאוֹחֵז בִּבְגָדֶיהָ מִכְּנֶגֶד פָּנֶיהָ וְקוֹרֵעַ עַד שֶׁהוּא מְגַלֶּה אֶת לִבָּהּ. וּמְגַלֶּה שְׂעָרָהּ וְסוֹתֵר מַחְלְפוֹת רֹאשָׁהּ כְּדֵי לְנַוְּלָהּ. וּמֵבִיא חֶבֶל מִצְרִי כְּדֵי לְהַזְכִּירָהּ מַעֲשֵׂה מִצְרַיִם שֶׁעָשְׂתָה. וְאִם לֹא מָצְאוּ מִצְרִי מֵבִיא חֶבֶל מִכָּל מָקוֹם. וְקוֹשְׁרוֹ לְמַעְלָה מִדָּדֶיהָ כְּדֵי שֶׁלֹּא יִפְּלוּ הַבְּגָדִים וְנִמְצֵאת עֲרֻמָּה שֶׁהֲרֵי נִקְרְעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכהן </strong> א׳ אוחז בבגדיה מכנגד פניה וקורע עד שתגלה לבה דכתיב והעמיד הכהן וגו׳ ופרע את ראש האשה אין לי אלא ראשה גופה מנין ת&quot;ל האשה א&quot;כ מה ת&quot;ל ופרע את ראש מלמד שהכהן סותר את שערה מרבה בגילויה שסותר קליעתה.</p>
               </div>
             </div>
@@ -614,8 +730,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-12">Mishneh Torah, Woman Suspected of Infidelity 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא עִשָּׂרוֹן קֶמַח שְׂעוֹרִים מִשֶּׁל בַּעַל. וְנוֹתְנוֹ בִּכְפִיפָה מִצְרִית. וְהַחֶבֶל וְהַכְּפִיפָה בָּאִין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְנוֹתְנוֹ לְיָדֶיהָ כְּדֵי לְיַגְּעָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומביא </strong> קמח שעורים עשרון משל בעל כדכתיב והביא האיש וגו׳ והביא את קרבנו עליה וגו׳ ונותנו לידה כדי ליגעה כדכתיב ונתן על כפיה ואחר כך לוקח המנחה מידה ונותנה לכלי שרת כדכתיב ולקח הכהן מיד האשה וגו׳ ואינו נותן עליה לא שמן ולא לבונה דכתיב לא יצוק עליה שמן וגו׳. ובכל זמן שפורע את ראשה ונותן העשרון על ידיה יהיו המים בכלי ביד הכהן ויראה אותה את המים דכתיב וביד הכהן יהיו מי המרים וגו׳ ואח&quot;כ משקה אותה כדכתי׳ והשקה. ואחר שתשתה לוקח כלי שרת שבו המנחה ונותנו על ידיה. וכהן מניח ידו תחתיה ומניפה דכתיב ולקח הכהן מיד האשה וכתיב בשלמים ידיו תביאנה אתיא יד יד מה כאן כהן אף להלן כהן ומה להלן בעלים אף כאן בעלים הא כיצד מניח ידו תחת ידי הבעלים ומניף ואחר כך מגיש המנחה לקרן דרומית מערבית של מזבח כשאר מנחות של יחיד שיתבאר בס&quot;ד וקומץ ומקטיר הקומץ כדכתיב וקמץ והקטיר וגו׳ והשאר לכהנים שכל הנקמצין שייריהן נאכלין לכהנים דכתיב בתורת סתם מנחה וזאת תורת המנחה עד והנותרת ממנה וגו׳.</p>
               </div>
             </div>
@@ -630,8 +751,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-16">Mishneh Torah, Woman Suspected of Infidelity 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִם טְהוֹרָה הִיא יוֹצֵאת וְהוֹלֶכֶת לָהּ וַהֲרֵי הִיא מֻתֶּרֶת לְבַעְלָהּ. וְאִם טְמֵאָה הִיא מִיָּד פָּנֶיהָ מוֹרִיקוֹת וְעֵינֶיהָ בּוֹלְטוֹת וְהִיא מִתְמַלֵּאת גִּידִין גִּידִין וְהֵן אוֹמְרִין הוֹצִיאוּהָ (הוֹצִיאוּהָ) כְּדֵי שֶׁלֹּא תִּפְרשֹׁ נִדָּה וְהַנִּדּוֹת מְטַמְּאוֹת עֶזְרַת נָשִׁים. וְהֵן מוֹצִיאִין אוֹתָהּ מֵעֶזְרַת נָשִׁים שֶׁהִיא עוֹמֶדֶת בָּהּ. וּבִטְנָהּ צָבָה בַּתְּחִלָּה וְאַחַר כָּךְ תִּפּל יְרֵכָהּ וְתָמוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם </strong> טהורה היא יוצאה והולכת לה ומותרת לבעלה דכתיב ואם לא נטמאה וטהורה היא ונקתה דכיון דאם טמאה היא מיד פניה מוריקות ונראים בה סימני טומאה כדכתיב והיה אם נטמאה ובאו בה המים המאררי׳ וגו׳ דמשמע דמיד ניכרים בה הא כשאינן ניכרים בה מיד היא טהורה והולכה מיד ואם טמאה הוא מיד פניה מוריקות וכו׳ כדאמר. ובטנה צבה בתחלה ואח&quot;כ תפול ירכה כדכתיב וצבתה בטנה וגו׳ שהמים בודקין דרך כניסתן כדמשמע פשטיה דקרא ובאו בה המים המאררים דרך ביאתן ומיתתה אח&quot;כ נראה דילפי׳ לה מדכתיב אם לא שכב הנקי מדשני קרא בלישניה ולא כתיב חיי או לשון אחר משמע דאם לא שכב הנקי כלומר תתחנקי דהיינו מיתה ואת כי שטית וכל מאורעות שיארעו לה יארעו לצבות בטן ולנפיל ירך כדכתיב לצבות בטן וגו׳ דהיינו בטנו וירכו של בועל דאלו לבטנה לא צריך וכדאמרינן לעיל. ואם בעל ביאה אסורה מעולם אין המים בודקים אשתו כדכתיב ונקה האיש מעון וכדאמר לעיל ואם עבר והשקה אותה חוטא שגורם שימחה שם המפורש במים לבטלה ואסור מדאוריתא כדכתיב ואבדתם את שמם וכתיב לא תעשון כן וגו׳.</p>
               </div>
             </div>
@@ -646,8 +772,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:20:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-20">Mishneh Torah, Woman Suspected of Infidelity 3:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סוֹטָה שֶׁיֵּשׁ לָהּ זְכוּת תַּלְמוּד תּוֹרָה אַף עַל פִּי שֶׁאֵינָהּ מְצֻוָּה עַל תַּלְמוּד תּוֹרָה הֲרֵי זֶה תּוֹלֶה לָהּ וְאֵינָהּ מֵתָה לִשְׁעָתָהּ אֶלָּא נִמֹּקֶת וְהוֹלֶכֶת וָחֳלָאִים כְּבֵדִים בָּאִין עָלֶיהָ עַד שֶׁתָּמוּת אַחַר שָׁנָה אוֹ שְׁתַּיִם אוֹ שָׁלֹשׁ לְפִי זְכוּתָהּ. וְהִיא מֵתָה בִּצְבִיַּת בֶּטֶן וּבִנְפִילַת אֵיבָרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוטה </strong> שיש לה זכות ת&quot;ת תולה לה עד שנה או ב׳ או ג׳ לפי זכותה דילפינן ונקתה ונזרעה זרע ע&quot;י זכיות ונקתה כדי זריעת זרע ט׳ חדשים ויש אומרים שנים עשר חדש דהוי זרע הראוי לספר בשבחו של מקום כדכתיב זרע יעבדנו יסופר וגו׳ זרע הראוי לספר שהוא בן י&quot;ב חדש ובסוף מתה בצביית בטן ובנפילת איברים כדכתיב בקרא וזכות אינו תולה אלא לארכות הזמן של המיתה.</p>
               </div>
             </div>
@@ -662,8 +793,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:21:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-21-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:21:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-21">Mishneh Torah, Woman Suspected of Infidelity 3:21</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סוֹטָה שֶׁשָּׁתָת מֵי הַמָּרִים וְלֹא מֵתָה מִיָּד הֲרֵי הִיא מֻתֶּרֶת לְבַעְלָהּ. וַאֲפִלּוּ הָיָה כֹּהֵן. וְאַף עַל פִּי שֶׁהִתְחִילוּ הֶחֳלָאִים לָבוֹא עָלֶיהָ וְחָלוּ שְׁאָר אֵיבָרֶיהָ הוֹאִיל וְלֹא צָבְתָה בִּטְנָהּ וְלֹא הִתְחִיל יְרֵכָהּ לִנְפּל הֲרֵי זוֹ מֻתֶּרֶת. אֲבָל מִשֶּׁהִתְחִיל בִּטְנָהּ לַצְבּוֹת וִירֵכָהּ לִנְפּל הֲרֵי זוֹ אֲסוּרָה וַדָּאִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומיד </strong> מתחיל לצבות בטנה ולנפול ירכה ומשהתחילה בטנה לצבות וירכה לנפול היא אסורה וודאית ואם היתה טהורה הרי זו תתעבר ותלד זכר ואם היתה יולדת בקושי תלד במהרה ואם היתה יולדת נקבות תלד זכרים דכתיב ונזרעה זרע דמשמע דתשתנה לטובה דאם היתה רגילה בבנים מאי ברכתא אלא שתלד בריוח ויפים.</p>
               </div>
             </div>
@@ -678,8 +814,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:23:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-23-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:23:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-23">Mishneh Torah, Woman Suspected of Infidelity 3:23</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּאוּ עֵדֵי טֻמְאָה אַחַר שֶׁשָּׁתְתָה הֲרֵי זוֹ תֵּצֵא בְּלֹא כְּתֻבָּה וַאֲסוּרָה לְבַעְלָהּ. וַאֲפִלּוּ לֹא אֵרַע לָהּ דָּבָר מִדְּבָרִים אֵלּוּ מִפְּנֵי שֶׁאֵין הַמַּיִם בּוֹדְקִין אֶלָּא מִי שֶׁאֵין לָהּ עֵדִים שֶׁמּוֹדִיעִין זְנוּתָהּ. וְעוֹד שֶׁמָּא בַּעְלָהּ אֵינוֹ מְנֻקֶּה מֵעָוֹן לְפִיכָךְ לֹא בָּדְקוּ הַמַּיִם אֶת אִשְׁתּוֹ. אֲבָל אִם בָּא עֵד אֶחָד וְהֵעִיד שֶׁהָיְתָה טְמֵאָה אֵינָהּ אֲסוּרָה וְתֵשֵׁב תַּחַת בַּעְלָהּ שֶׁהֲרֵי שָׁתְתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong> באו לה אח&quot;כ עידי טומאה אסורה לבעלה אע&quot;פ שלא בדקוה המים דאין מים בודקי׳ למי שיש לה עדים דכתיב וטהורה היא בתר דכתיב ואם לא נטמאה דה&quot;ל למימר ואם לא נטמאה ונקתה וגו׳ אלא למידרש דכי טהורה נזרעה זרע ולא שניצולה מן המים מפני שהיו לה עדים בטומאתה וי&quot;ו יתירה למעוטי שתלתה לה זכות דבהא לא אמר קרא ונזרעה ועד אחד שבא אח&quot;כ לטומאה אינו אוסרה שהרי שתתה.</p>
               </div>
             </div>
@@ -694,8 +835,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:24:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-3-24-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 3:24:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-24">Mishneh Torah, Woman Suspected of Infidelity 3:24</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָּׁה שֶׁזִּנְּתָה בְּאֹנֶס אוֹ בִּשְׁגָגָה אוֹ שֶׁבָּא עָלֶיהָ זֶה שֶׁקִּנֵּא לָהּ עִמּוֹ דֶּרֶךְ אֵיבָרִים אֵין הַמַּיִם בּוֹדְקִין אוֹתָהּ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְהִיא לֹא נִתְפָּשָׂה&quot; פְּרָט לַאֲנוּסָה שֶׁהֲרֵי נִתְפְּשָׂה בְּחָזְקָה. <span class="source-small">(במדבר ה כז)</span> &quot;וַתִּמְעל מַעַל בְּאִישָׁהּ&quot; פְּרָט לְשׁוֹגֶגֶת. <span class="source-small">(במדבר ה יג)</span> &quot;וְשָׁכַב אִישׁ אֹתָהּ שִׁכְבַת זֶרַע&quot; פְּרָט לְבָא עָלֶיהָ דֶּרֶךְ אֵיבָרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אשה </strong> שזנתה באונס או בשגגה או דרך איברים אין המים בודקי׳ אותה דכתיב והוא לא נתפשה פרט לאנוסה שהרי נתפשה בחזקה ותמעול מעל באשה פרט לשוגגת שכבת זרע פרט לבא עליה דרך איברים:</p>
               </div>
             </div>
@@ -711,8 +857,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-2">Mishneh Torah, Woman Suspected of Infidelity 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מַשְׁקִין אֶת הַסּוֹטָה אֶלָּא בַּיּוֹם. וְכָל הַיּוֹם כָּשֵׁר לְהַשְׁקוֹת סוֹטָה. וְאֵין מַשְׁקִין שְׁתֵּי סוֹטוֹת כְּאַחַת שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה טז)</span> &quot;וְהֶעֱמִיד אֹתָהּ הַכֹּהֵן&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> משקין את הסוטה אלא ביום דאתיא תורה תורה כתיב הכא ועשה לה הכהן את כל התורה וגו׳ וכתיב התם על פי התורה אשר יורוך ועל המשפט מה משפט ביום כדנפקא לן מביום הנחילו את בניו דכתיב נמי משפט בפרשת נחלות אף מגלת סוטה ביום. ואין משקין ב׳ סוטות כא׳ דכתיב והעמיד אותה הכהן אותה לבדה.</p>
               </div>
             </div>
@@ -727,8 +878,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-3">Mishneh Torah, Woman Suspected of Infidelity 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סוֹטָה שֶׁאָמְרָה אֵינִי שׁוֹתָה מֵחֲמַת יִרְאָה וָפַחַד שֶׁיֵּשׁ לָהּ יְכוֹלָה לַחֲזֹר וְלוֹמַר הֲרֵינִי שׁוֹתָה. אֲבָל אָמְרָה אֵינִי שׁוֹתָה וְהִיא בְּרִיאָה וְאֵינָהּ יְרֵאָה וְלֹא פּוֹחֶדֶת אֵינָהּ יְכוֹלָה לַחֲזֹר וְלוֹמַר הִנְנִי שׁוֹתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרה </strong> איני שותה מחמת יראה יכולה לחזור ולומר שותה אני אבל אמרה איני שותה מחמת בריותא הא אחזיק נפשה בטומאה ולא מצי הדרא בה.</p>
               </div>
             </div>
@@ -743,8 +899,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-4">Mishneh Torah, Woman Suspected of Infidelity 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרָה אֵינִי שׁוֹתָה קֹדֶם שֶׁתִּמָּחֵק הַמְּגִלָּה הֲרֵי מְגִלָּתָהּ נִגְנֶזֶת וְאֵינָהּ כְּשֵׁרָה לְהַשְׁקוֹת בָּהּ סוֹטָה אַחֶרֶת. וּמִנְחָתָהּ מִתְפַּזֶּרֶת עַל הַדֶּשֶׁן. וְאִם אָמְרָה אֵינִי שׁוֹתָה אַחַר שֶׁנִּמְחֲקָה הַמְּגִלָּה מְעַרְעֲרִין אוֹתָהּ וּמַשְׁקִין אוֹתָהּ בְּעַל כָּרְחָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרה </strong> איני שותה קודם שתמחק המגלה מגלתה נגנזת דאית בה קדושת שם המפורש ואינה כשרה להשקות בה סוטה אחרת דלשמה בעי כדילפינן לעיל מדכתיב ועשה לה לשמה ומנחתה מתפזרת על הדשן דהואיל וקדשה בכלי דכלי שרת מקדשין כדכתיב כל הנוגע בהם יקדש היא נשרפת בעזרה דהיינו מתפזרת ואם אמרה איני שותה אחר שנמחקה המגלה משקין אותה בעל כרחה דכתיב והשקה את האשה אחר המחיקה ללמדך שאם נמחקה המגלה ואמרה איני שותה ולא הודת לומר טמאה אני משקין אותה בעל כרחה כדאמר. אמרה טמאה אני אף על פי שנמחקה המגלה המים נשפכין מפני שאין בהם קדושה ואין משקין אותה ע&quot;כ דמים באות לבדוק והאי בדוקה ועומדת היא ומנחתה מתפזרת על הדשן דקדשה בכלי כדאמרינן.</p>
               </div>
             </div>
@@ -759,8 +920,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-7">Mishneh Torah, Woman Suspected of Infidelity 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְגִלַּת סוֹטָה שֶׁכְּתָבָהּ בַּלַּיְלָה פְּסוּלָה שֶׁנֶּאֱמַר וְכָתַב וְגוֹ׳ <span class="source-small">(במדבר ה כד)</span> &quot;וְהִשְׁקָה&quot; וְגוֹ׳ <span class="source-small">(במדבר ה כה)</span> &quot;וְהִקְרִיב&quot; וְגוֹ׳ כְּשֵׁם שֶׁקָּרְבָּנָהּ בַּיּוֹם כָּךְ כְּתִיבַת הַמְּגִלָּה וְהַשְׁקָיָתָהּ בַּיּוֹם. כְּתָבָהּ לְמַפְרֵעַ פְּסוּלָה שֶׁנֶּאֱמַר הָאָלָה עַל הַסֵּדֶר. כְּתָבָהּ קֹדֶם שֶׁתְּקַבֵּל עָלֶיהָ הַשְּׁבוּעָה פְּסוּלָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה כא)</span> &quot;וְהִשְׁבִּיעַ&quot; וְכָתַב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מגלת </strong> סוטה שכתבה בלילה פסולה דכתיב וכתב וגו׳ והקריב וגו׳ והשקה וגו׳ כשם שקרבנה ביום דכתיב ביום צותו את בני ישראל להקריב כך כתיבת המגלה והשקייתה ביום. כתבה למפרע פסולה דכתיב וכתב את האלות האלה משמע כמו שהן סדורין בפרשה. כתבה קודם שתקבל עליה השבועה פסולה דכתיב והשביע ואח&quot;כ וכתב. כתבה אגרת בלא שרטוט פסולה שנאמר בספר והלכה למשה מסיני שהספרים צריכין שרטוט כתבה על ב׳ דפין כדפין של ספר העשויים עמודים פסולה ספר א׳ אמר רחמנא ולא ב׳ או ג׳ ספרים ואינו כותב לא על הנייר ולא על הדפתרא אלא במגלת ספר שנאמר בספר ואם כתבה פסולה. ואם כתב ישראל או כהן קטן פסולה שנאמר וכתב הכהן. ואינו כותב אלא בדיו שאין בו קנקנתוס שנאמר וכתב ומחה כתב שיכול לימחות וקומוס וקנקנתוס עבדי רושם ואינו יכול למחות דנבלע בקלף ולכך פסולה.</p>
               </div>
             </div>
@@ -775,8 +941,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-10">Mishneh Torah, Woman Suspected of Infidelity 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִשְׁאַר בַּמְּגִלָּה רשֶׁם כְּתָב נִכָּר פְּסוּלָה עַד שֶׁיִּמְחֹק יָפֶה יָפֶה. כָּתַב אוֹת אַחַת וּמְחָקָהּ וְחָזַר וְכָתַב אוֹת שְׁנִיָּה וּמְחָקָהּ עַד שֶׁהִשְׁלִים פְּסוּלָה עַד שֶׁתִּהְיֶה כֻּלָּהּ כְּתוּבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשאר </strong> במגלה רושם כתב ניכר פסולה עד שימחוק יפה יפה דכתיב ואחר ישקה ואמחיקה הכתובה למעלה קאי וקאמר דאם לא נמחקה יפה לא ישקנה עד שימחקנה יפה. כתב אות א׳ ומחקה וחזר וכתב אות שנייה ומחקה עד שהשלים את כולן פסולה דכתיב את כל התורה עד שתהא כולה כאחד. כתבה או מחקה שלא לשמה פסולה דכתיב ועשה לה הכהן לה לשמה דקאי אכתיבה ואמחיקה. עירב מחיקת ב׳ מגלות שנכתבו לב׳ נשים והשקה לשתיהן פסולה לפי שכל אח׳ מהן לא שתתה מגלתה וכתיב ומחה וגו׳ והשקה את האשה וגו׳ את המים שהם מי מגלתה. מחקן בשתי כוסות וערבן וחזר וחלקן לב׳ הכוסות כשר דאמר יש ברירה והרי הובררו מימיה. נשפכו המים כותב מגלה אחרת ומביא מים אחרים דבעיא ומחה והשקה ואם נשתיירו מהם והשקה אותה השיירים כשר דהא השקה דלא קפיד קרא אלא אמחיית כולה.</p>
               </div>
             </div>
@@ -791,8 +962,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-12">Mishneh Torah, Woman Suspected of Infidelity 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵי סוֹטָה שֶׁלָּנוּ נִפְסָלִין בְּלִינָה. הִקְדִּים עָפָר לַמַּיִם פְּסוּלָה. לֹא הָיָה שָׁם עָפָר בַּהֵיכָל מֵבִיא עָפָר מִבַּחוּץ וּמַנִּיחוֹ בַּהֵיכָל וְלוֹקֵחַ מִמֶּנּוּ וְנוֹתֵן עַל פְּנֵי הַמַּיִם. וְאֵינוֹ מֵבִיא אֵפֶר אֲבָל מֵבִיא רַקְבּוּבִית שֶׁהִיא כְּעָפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> סוטה שלנו נפסלין בלינה [משום דכתיב מים קדושים (במדבר ה, יז) והיינו מן הכיור שנתקדשו בכלי כדאמרינן לעיל ומשום הכי נפסלים בלינה]. הקדים עפר למים פסולה כדכתיב ונתן אל המים אלמא מים ברישא וכתיב ועשה לה הכהן את כל התורה דבעינן כסדר הכתוב בפרשה. לא היה שם עפר בהיכל מביא עפר מבחוץ ומניחו בהיכל ולוקח ממנו ונותן על פני המים דכתיב ומן העפר אשר יהיה בקרקע המשכן ואי הוה כתיב ומן העפר אשר יהיה מקרקע ולא כתיב בקרקע משמע דאינו מקפיד אלא שיכניס העפר להיכל יכול יזמין עפר מבחוץ ויכניס בהיכל ודיו בכניסתן ת&quot;ל בקרקע בקרקעיתו ואי לא כתיב אשר יהיה יכול לא מצא שם עפר תיחוח נוח לינטל יחפור בקרדומות ת&quot;ל אשר יהיה מדלא כתיב ומקרקע המשכן יקח ש&quot;מ לא הקפיד אלא שיהא מונח בקרקעית המשכן שעה אחד הא כיצד יש שם עפר תיחוח הבא משם אין שם תן שם על הקרקעית וחוזר ונוטלו ונותנו לתוך המים ואם חפר והוציא עפר כשר דהא כקרקע הוי ולא אתא אשר יהיה אלא למצוה דעפר תיחוח בהיכל אפילו הכניסו מבחוץ כדאמר דאין צריך לחופרו משם אבל אי חפר כשר דהא הויא בקרקע וקרקע בית המקדש אין צריך לרבות דמה טומאת הגוף ליכנס בטומאת הגוף למקדש שאינו במיתת ב&quot;ד אלא כרת לא חלק הכתוב בין מקדש למשכן דכתיב כי את מקדש ה׳ טמא וכו׳ וכתיב את משכן ה׳ טמא וכו׳ בטומאת אשת איש חמורה לא כ&quot;ש שהושווה משכן ומקדש לבודקן ולבערן מתוכן וא&quot;כ מה ת&quot;ל בקרקע שלא יביא מתוך קופתו לתוך כלי ויכניס להיכל אלא מקרקעיתו יטול ואם אין שם יביא ויניח ואח&quot;כ יטלנו ונתקיים אשר יהיה ונתקיים בקרקע כדלעיל. ואינו מביא אפר דאף ע&quot;ג דאפר עפר מיקרי כדכתיב מעפר שריפת וגו׳ הכא דכתיב עפר וקרקע אפר לא הוי עפר אבל מביא רקבובית ירק ומקדש במקום והמקום מקדשו וחוזר ונותנו למים דעפר איקרי.</p>
               </div>
             </div>
@@ -807,8 +983,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-14">Mishneh Torah, Woman Suspected of Infidelity 4:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִקְרִיב אֶת מִנְחָתָהּ וְאַחַר כָּךְ הִשְׁקָהּ כְּשֵׁרָה. נִטְמֵאת מִנְחָתָהּ קֹדֶם שֶׁיַּנִּיחֶנָה בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּפָּדֶה כְּכָל הַמְּנָחוֹת שֶׁנִּטְמְאוּ קֹדֶם שֶׁיִּתְקַדְּשׁוּ בִּכְלִי שָׁרֵת וְיָבִיאוּ מִנְחָה אַחֶרֶת. נִטְמֵאת הַמִּנְחָה אַחַר שֶׁקִּדְּשָׁהּ בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּשָּׂרֵף. וְכֵן אִם אָמְרָה טְמֵאָה אֲנִי קֹדֶם שֶׁתִּקָּמֵץ הַמִּנְחָה. אוֹ שֶׁאָמְרָה אֵינִי שׁוֹתָה. אוֹ שֶׁלֹּא רָצָה בַּעְלָהּ לְהַשְׁקוֹתָהּ. אוֹ שֶׁבָּאוּ עֵדֵי טֻמְאָה. אוֹ שֶׁמֵּת הוּא. אוֹ שֶׁמֵּתָה הִיא. הֲרֵי הַמִּנְחָה כֻּלָּהּ נִשְׂרֶפֶת. וְאִם אֵרַע אֶחָד מֵאֵלּוּ אַחַר שֶׁקָּרַב הַקֹּמֶץ אֵין הַשְּׁיָרִים נֶאֱכָלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקריב </strong> מנחתה ואח&quot;כ השקה כשרה דכתיב בתר והקריב אותה אל המזבח וגו׳ ואחר ישקה את האשה וגו׳ והשקה את האשה וכו׳ ולכתחלה ישקה קודם ואח&quot;כ יקריב דקודם כתיב והשקה את האשה את מי המרים וגו׳ ולבתר והקריב וגו׳ ובתחלת סדר הכתוב משפט דבריו ולבסוף מרבה מקראות לדרוש בדיעבד שאם הקריב ואחר כך השקה כשרה כדאמר. וכל שנטמאת המנחה קודם שתקדש בכלי שרת תפדה דלא קדשה אבל אחר שקדשה בכלי שרת תשרף דכלי שרת מקדשים כדכתיב כל הנוגע בהם יקדש והיינו קדושת הגוף דאין להם פדיון דאינה יוצאה עוד לחולין. וכן אם אמרה טמאה אני קודם שתקמץ המנחה דאינה נקמצת כיון שאינה שותה כדאמר לעיל דהא בדוקה ועומדת היא או שאמרה איני שותה דהרשות בידה כל שלא נמחקה המגלה כדילפינן לעיל או שלא רצה בעלה להשקותה דביה תלא רחמנא כדכתיב והביא האיש את אשתו או שבאו עידי טומאה דאינה שותה דכתיב ועד אין בה דאע&quot;ג דדרשינן ליה לעיל לעד א׳ נאמן בסוטה ולסוטה וודאית שלא תשתה עוד אין מקרא יוצא מידי פשוטו ודרשי׳ ליה הכי ועד אין בה הוא דאמר והביא האיש את אשתו וגו׳ וכל האמור בפרשה הא יש בה עד אין המים בודקין אותה או שמת הוא דשוב אינה שותה דאמאן בעיא למשרייה וכתיב ואם לא נטמאה האשה וטהורה היא ונקתה ונזרעה זרע או שטתה היא שהרי אינה שותה הרי המנחה כולה נשרפת כיון שקדשה בכלי ואם אירע א׳ מאלו אחר שקרב הקומץ אין השיירים נאכלים כיון דאינה שותה. היה בעלה כהן אין שיירי מנחתה נאכלין מפני שיש לבעל חלק בהם כדכתיב והביא את מנחתה וכו׳ וכתיב וכל מנחת כהן כליל תהיה לא תאכל אבל אינה עולה כולה לאישי׳ דיש לה חלק בה שהיא מתכפרת ונפש כי תקריב מנחה קרינא בה אלא הקומץ קרב לעצמו ושיירים מתפזרים על בית הדשן נמצאו עדיה זוממין מנחתה תצא לחולין דבטעות אקדשה.</p>
               </div>
             </div>
@@ -823,8 +1004,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-16">Mishneh Torah, Woman Suspected of Infidelity 4:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַנֵּא לְאִשְׁתּוֹ עַל יְדֵי אֲנָשִׁים הַרְבֵּה וְנִסְתְּרָה עִם כָּל אֶחָד וְאֶחָד מֵהֶם הֲרֵי זֶה מֵבִיא מִנְחָה אַחַת עַל יְדֵי כֻּלָּן כְּשֶׁמַּשְׁקֶה אוֹתָהּ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה טו)</span> &quot;מִנְחַת קְנָאֹת הִיא&quot;. מִנְחָה אַחַת לְקִנּוּיִין הַרְבֵּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קינוי </strong> על יד אנשים הרבה וסתירה עם כל א׳ מהם מביא מנחה א׳ לכולן דכתיב מנחת קנאות מנחה אחת לקינויין הרבה וכתיב זאת תורת הקנאות תורה אחד לקינויין הרבה.</p>
               </div>
             </div>
@@ -839,8 +1025,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-17">Mishneh Torah, Woman Suspected of Infidelity 4:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַבַּעַל לְגַלְגֵּל בִּשְׁבוּעָה עָלֶיהָ שֶׁלֹּא זִנְּתָה עִם אִישׁ זֶה שֶׁקִּנֵּא לָהּ בּוֹ וְלֹא עִם אִישׁ אַחֵר. וְשֶׁלֹּא זִנְּתָה תַּחְתָּיו מִשֶּׁנִּתְאָרְסָה קֹדֶם שֶׁתִּנָּשֵׂא וְלֹא אַחַר שֶׁנִּשֵּׂאת. אֲבָל אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה קֹדֶם הָאֵרוּסִין וְלֹא אַחַר שֶׁגֵּרְשָׁהּ אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ. שֶׁאִם זִנְּתָה בְּעֵת זֶה לֹא תֵּאָסֵר עָלָיו. וְכָל שֶׁתִּבָּעֵל וְלֹא תִּהְיֶה אֲסוּרָה לוֹ אֵינוֹ מַתְנֶה עִמָּהּ. לְפִיכָךְ אִם כָּנַס יְבִמְתּוֹ אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה כְּשֶׁהָיְתָה שׁוֹמֶרֶת יָבָם. אֲבָל מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחַת אָחִיו שֶׁאִם זִנְּתָה תַּחַת אָחִיו הֲרֵי זוֹ אֲסוּרָה עָלָיו. וְכֵן אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחְתָּיו בַּנִּשּׂוּאִין הָרִאשׁוֹנִים. וְיֵשׁ לוֹ לְגַלְגֵּל עָלֶיהָ בִּלְהַבָּא שֶׁלֹּא תִּזְנֶה תַּחְתָּיו וְשֶׁלֹּא תִּזְנֶה אַחַר שֶׁיַּחְזִירֶנָּה אִם יְגָרֵשׁ וְיַחֲזִיר. לְפִיכָךְ כְּשֶׁתִּזְנֶה לְהַבָּא מַיִם בּוֹדְקִין אוֹתָהּ וְיֶאֶרְעוּ לָהּ אוֹתָן הַמְאֹרָעוֹת. לְכָךְ נֶאֱמַר <span class="source-small">(במדבר ה כב)</span> &quot;אָמֵן אָמֵן&quot;. אָמֵן מֵאִישׁ זֶה אָמֵן מֵאִישׁ אַחֵר. אָמֵן נְשׂוּאָה אָמֵן אֲרוּסָה. אָמֵן לְשֶׁעָבַר אָמֵן לְהַבָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש </strong> לבעל לגלגל עליה מאיש אחר ומשעת אירוסין שלא זנתה דכתיב אמן אמן אמן על האלה ועל השבועה דכתיב בקרא ואיש אחר כתיב בקרא דכתיב כי שטית תחת אישך דמשמע בין מאיש זה בין מאיש אחר וכל שתבעל ולא תאסר עליו אינו מגלגל עליה ומגלגל עליה אם זנתה בנישואי אחיו דהא אסורה עליו כדאמר לעיל במצות יבום וכן בנישואין הראשונים שלו אם גרשה והחזירה דהא אסורה לו אם זנתה בנישואין הראשונים ומגלגל עליה בלהבא שלא תזנה ואפילו אחר שיחזירה אם יגרשנה ויחזיר כל הני לפי׳ מאמן תניינא אמן ארוסה ונשואה דהויא אסורה עליו אם זנתה ולהבא נמי דהא הויא אסורה עליו אלו זנתה. ויש במצוה זו קצת דברים מדברי סופרים סמוכים על ושמרתם וגו׳ ואלא תסור וגו׳:<br><strong> אזהרת פב ופג </strong> שהזהירה תורה על מנחת קנאות שלא יצוק עליה שמן ולא יתן עליה לבונה וכו׳ ואם נתן לוקה על השמן בפני עצמו ועל הלבונה בפני עצמה דכיון דכתיב לאו אכל חדא מגיד שהוא ב׳ אזהרות.</p>
               </div>
             </div>
@@ -855,8 +1046,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:18:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-4-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Woman Suspected of Infidelity 4:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-18">Mishneh Torah, Woman Suspected of Infidelity 4:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת חֲכָמִים עַל בְּנֵי יִשְׂרָאֵל לְקַנְּאוֹת לִנְשֵׁיהֶן שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יד)</span> &quot;וְקִנֵּא אֶת אִשְׁתּוֹ&quot;. וְכָל הַמְקַנֵּא אֶת אִשְׁתּוֹ נִכְנְסָה בּוֹ רוּחַ טָהֳרָה. וְלֹא יְקַנֵּא לָהּ לֹא מִתּוֹךְ שְׂחוֹק וְלֹא מִתּוֹךְ שִׂיחָה וְלֹא מִתּוֹךְ קַלּוּת רֹאשׁ וְלֹא מִתּוֹךְ מְרִיבָה וְלֹא לְהַטִּיל עָלֶיהָ אֵימָה. וְאִם עָבַר וְקִנֵּא לָהּ בִּפְנֵי עֵדִים מִתּוֹךְ אֶחָד מִכָּל הַדְּבָרִים הָאֵלּוּ הֲרֵי זֶה קִנּוּי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל </strong> המקנא את אשתו נכנסה בו רוח טהרה דכתיב ועבר עליו רוח קנאה הוא רוח טהרה ששונא את הפריצות וכל מי שאינו מקפיד על אשתו ובני ביתו ומזהירן עד שידע שהם שלמים מכל חטא הרי זה חוטא שנאמר וידעת כי שלום אהלך ופקדת נוך ולא תחטא:</p>
               </div>
             </div>
@@ -866,6 +1062,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -886,8 +1086,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-woman-suspected-of-infidelity.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -913,7 +1113,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

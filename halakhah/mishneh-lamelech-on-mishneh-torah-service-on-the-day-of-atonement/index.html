@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/">Open Mishneh Torah, Service on the Day of Atonement</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Service on the Day of Atonement</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Warsaw, 1881 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>196 matched</strong> / 483 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -220,8 +221,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 1:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-1-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-1-1">Mishneh Torah, Service on the Day of Atonement 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְיוֹם הַצּוֹם מַקְרִיבִין תָּמִיד בַּשַּׁחַר וְתָמִיד בֵּין הָעַרְבַּיִם כְּסֵדֶר כָּל יוֹם וְיוֹם. וּמַקְרִיבִין מוּסַף הַיּוֹם פַּר וְאַיִל וְשִׁבְעָה כְּבָשִׂים כֻּלָּם עוֹלוֹת. וְשָׂעִיר חַטָּאת נַעֲשֶׂה בַּחוּץ וְהוּא נֶאֱכָל לָעֶרֶב. וְעוֹד מַקְרִיבִין יֶתֶר עַל מוּסָף זֶה. פַּר בֶּן בָּקָר לְחַטָּאת וְהוּא נִשְׂרָף. וְאַיִל לְעוֹלָה. וּשְׁנֵיהֶם מִשֶּׁל כֹּהֵן גָּדוֹל. וְאַיִל הַבָּא מִשֶּׁל צִבּוּר הָאָמוּר בְּפָרָשַׁת <span class="source-small">(ויקרא טז א)</span> &quot;אַחֲרֵי מוֹת&quot;. וְהוּא הָאַיִל הָאָמוּר בְּחֻמַּשׁ הַפְּקוּדִים בִּכְלַל הַמּוּסָף. וְהוּא הַנִּקְרָא אֵיל הָעָם. וְעוֹד מְבִיאִין מִשֶּׁל צִבּוּר שְׁנֵי שְׂעִירֵי עִזִּים. אֶחָד קָרֵב חַטָּאת וְהוּא נִשְׂרָף. וְהַשֵּׁנִי שָׂעִיר הַמִּשְׁתַּלֵּחַ. נִמְצְאוּ כָּל הַבְּהֵמוֹת הַקְּרֵבִים בְּיוֹם זֶה חֲמֵשׁ עֶשְׂרֵה. שְׁנֵי תְּמִידִין. וּפַר. וּשְׁנֵי אֵילִים וְשִׁבְעָה כְּבָשִׂים כֻּלָּם עוֹלוֹת. וּשְׁנֵי שְׂעִירִים חַטָּאת אֶחָד נַעֲשֶׂה בַּחוּץ וְנֶאֱכַל לָעֶרֶב וְהַשֵּׁנִי נַעֲשֶׂה בִּפְנִים וְנִשְׂרָף. וּפַר כֹּהֵן גָּדוֹל לְחַטָּאת וְהוּא נִשְׂרָף:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושניהם משל כ&quot;ג כו׳.</strong> ספ&quot;ק דשבועות תניא אשר לו יכול לא יביא ואם הביא כשר ת&quot;ל שוב אשר לו הכתוב שנה עליו לעכב והכי איתא בפ&quot;ה דיומא (דף נ&quot;א) ולא ידעתי למה השמיט רבינו דין זה:</p>
               </div>
             </div>
@@ -236,8 +242,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 1:2:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-1-2-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-1-2">Mishneh Torah, Service on the Day of Atonement 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֲבוֹדַת כָּל חֲמֵשׁ עֶשְׂרֵה בְּהֵמוֹת אֵלּוּ הַקְּרֵבִין בְּיוֹם זֶה אֵינָהּ אֶלָּא בְּכֹהֵן גָּדוֹל בִּלְבַד. אֶחָד כֹּהֵן הַמָּשׁוּחַ בְּשֶׁמֶן הַמִּשְׁחָה אוֹ הַמְרֻבֶּה בִּבְגָדִים. וְאִם הָיְתָה שַׁבָּת אַף מוּסַף שַׁבָּת אֵין מַקְרִיב אוֹתוֹ אֶלָּא כֹּהֵן גָּדוֹל. וְכֵן שְׁאָר הָעֲבוֹדוֹת שֶׁל יוֹם זֶה כְּגוֹן הַקְטָרַת הַקְּטֹרֶת שֶׁל כָּל יוֹם וַהֲטָבַת הַנֵּרוֹת הַכּל עָשׂוּי בְּכֹהֵן גָּדוֹל נָשׂוּי שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז ו)</span> <span class="source-small">(ויקרא טז יא)</span> <span class="source-small">(ויקרא טז יז)</span> &quot;וְכִפֶּר בַּעֲדוֹ וּבְעַד בֵּיתוֹ&quot;. בֵּיתוֹ זוֹ אִשְׁתּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עבודת כל ט&quot;ו בהמות אלו כו׳.</strong> מ&quot;ש מרן בשם הרמב&quot;ן דאף ביוה&quot;כ היו פייסות אחת לתרומת הדשן והשני מי מדשן כו׳. עיין במ&quot;ש התוספות פרק ט׳ דזבחים (דף פ&quot;ח:) ד&quot;ה משום חולשא:</p>
               </div>
             </div>
@@ -252,8 +263,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 1:8:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-1-8-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-1-8">Mishneh Torah, Service on the Day of Atonement 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל לֵילֵי יוֹם הַכִּפּוּרִים כֹּהֵן גָּדוֹל יוֹשֵׁב וְדוֹרֵשׁ אִם הָיָה חָכָם. וְאִם הָיָה תַּלְמִיד דּוֹרְשִׁים לְפָנָיו. אִם הָיָה רָגִיל לִקְרֹא קוֹרֵא וְאִם לָאו קוֹרִין לְפָנָיו. כְּדֵי שֶׁלֹּא יִישַׁן. וּבַמֶּה קוֹרִין לְפָנָיו. בְּכִתְבֵי הַקֹּדֶשׁ. בִּקֵּשׁ לְהִתְנַמְנֵם פִּרְחֵי לְוִיָּה מַכִּין לְפָנָיו בְּאֶצְבַּע צְרֵדָה. וְאוֹמְרִים לוֹ אִישִׁי כֹּהֵן גָּדוֹל עֲמֹד וְהִצְטַנֵּן מְעַט עַל הָרִצְפָּה כְּדֵי שֶׁלֹּא תִּישַׁן. וּמִתְעַסְּקִין עִמּוֹ עַד שֶׁמַּגִּיעַ זְמַן שְׁחִיטָה. וְלֹא הָיוּ שׁוֹחֲטִין עַד שֶׁמַּכִּירִין שֶׁעָלָה עַמּוּד הַשַּׁחַר בְּוַדַּאי שֶׁמָּא יִשְׁחֲטוּ בַּלַּיְלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכין אותו באצבע צרדה וכו׳.</strong> במתני׳ תנן מכין לפניו ועיין בכתבי מהרי&quot;א סי׳ קנ&quot;ד (א&quot;ה עיין במ&quot;ש הרב המחבר פ&quot;א מה׳ בית הבחירה הלכה י&quot;ב):</p>
               </div>
             </div>
@@ -269,8 +285,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 2:2:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-2-2-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-2-2">Mishneh Torah, Service on the Day of Atonement 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל עֵת שֶׁיְּשַׁנֶּה הַבְּגָדִים וְיִפְשֹׁט בְּגָדִים וְלוֹבֵשׁ בְּגָדִים אֲחֵרִים טָעוּן טְבִילָה. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז כג)</span> &quot;וּפָשַׁט אֶת בִּגְדֵי הַבָּד&quot; <span class="source-small">(ויקרא טז כד)</span> &quot;וְרָחַץ אֶת בְּשָׂרוֹ בַמַּיִם בְּמָקוֹם קָדוֹשׁ וְלָבַשׁ אֶת בְּגָדָיו&quot;. וְחָמֵשׁ טְבִילוֹת וַעֲשָׂרָה קִדּוּשִׁין טוֹבֵל כֹּהֵן גָּדוֹל וּמְקַדֵּשׁ בּוֹ בַּיּוֹם. כֵּיצַד. בַּתְּחִלָּה פּוֹשֵׁט בִּגְדֵי חֹל שֶׁעָלָיו וְטוֹבֵל וְעוֹלֶה וּמִסְתַּפֵּג וְלוֹבֵשׁ בִּגְדֵי זָהָב וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וְשׁוֹחֵט אֶת הַתָּמִיד וּמַקְטִיר קְטֹרֶת שֶׁל שַׁחַר שֶׁל כָּל יוֹם וּמֵיטִיב אֶת הַנֵּרוֹת וּמַקְטִיר אֵיבְרֵי הַתָּמִיד עִם הַחֲבִיתִין וְהַנְּסָכִים וּמַקְרִיב הַפָּר וְשִׁבְעָה כְּבָשִׂים שֶׁל מוּסַף הַיּוֹם. וְאַחַר כָּךְ מְקַדֵּשׁ יָדָיו וְרַגְלָיו וּפוֹשֵׁט בִּגְדֵי הַזָּהָב וְטוֹבֵל וְעוֹלֶה וּמִסְתַּפֵּג וְלוֹבֵשׁ בִּגְדֵי לָבָן. וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו וְעוֹבֵד עֲבוֹדַת הַיּוֹם כָּל הַוִּדּוּיִּים עִם הַהַגְרָלָה וּזְרִיקַת הַדָּמִים בִּפְנִים וְהַקְטָרַת הַקְּטֹרֶת בְּקֹדֶשׁ הַקָּדָשִׁים. וּמוֹסֵר הַשָּׂעִיר לַמְשַׁלְּחוֹ לַעֲזָאזֵל. וּמוֹצִיא אֵימוּרֵי הַפָּר וְהַשָּׂעִיר הַנִּשְׂרָפִים וּמוֹסֵר שְׁאֵרָן לִשְׂרֵפָה. וְאַחַר כָּךְ מְקַדֵּשׁ יָדָיו וְרַגְלָיו וּפוֹשֵׁט בִּגְדֵי לָבָן וְטוֹבֵל וְעוֹלֶה וּמִסְתַּפֵּג. וְלוֹבֵשׁ בִּגְדֵי זָהָב וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וּמַקְרִיב שְׂעִיר חַטָּאת שֶׁל מוּסָף הַיּוֹם וְאֵילוֹ וְאֵיל הָעָם. וְהֵם עוֹלוֹת. וּמַקְטִיר אֵימוּרֵי פַּר וְשָׂעִיר הַנִּשְׂרָפִין. וּמַקְרִיב תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם. וְאַחַר כָּךְ מְקַדֵּשׁ יָדָיו וְרַגְלָיו וּפוֹשֵׁט בִּגְדֵי זָהָב. וְטוֹבֵל וְעוֹלֶה וּמִסְתַּפֵּג וְלוֹבֵשׁ בִּגְדֵי לָבָן. וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וְנִכְנָס לְקֹדֶשׁ הַקָּדָשִׁים. וּמוֹצִיא מִשָּׁם אֶת הַכַּף וְאֶת הַמַּחְתָּה. וְאַחַר כָּךְ מְקַדֵּשׁ יָדָיו וְרַגְלָיו וּפוֹשֵׁט בִּגְדֵי לָבָן. וְטוֹבֵל וְעוֹלֶה וּמִסְתַּפֵּג. וְלוֹבֵשׁ בִּגְדֵי זָהָב וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וּמַקְטִיר קְטֹרֶת שֶׁל בֵּין הָעַרְבַּיִם שֶׁל כָּל יוֹם וּמֵיטִיב אֶת הַנֵּרוֹת בֵּין הָעַרְבַּיִם. וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וּפוֹשֵׁט בִּגְדֵי זָהָב וְלוֹבֵשׁ בִּגְדֵי חֹל וְיוֹצֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וטובל ועולה ומסתפג.</strong> והנה ספוג זה הוזכר בגמרא במקומות הרבה וכל שמזכיר טבילת כ&quot;ג קתני עלה ומסתפג ולא ראיתי למפרשים אם ספוג זה הוא חיוב או אורחא דמלתא נקט דמסתמא כל הטובל מסתפג לאחר טבילה. ומדברי רבינו דקאמר ומסתפג משמע דחיובא הוא. ונראה דחיוב זה הוא משום דקי&quot;ל דאפי׳ נימא אחת או עפר אם היתה בין בשר לבגד הרי זו חציצה ועבודתה פסולה וכמ&quot;ש רבינו בפ&quot;י מהל׳ כלי המקדש הל׳ ו׳. ולפי זה יש לחוש שמא בטבילה נדבק בבשרו מעפרירות המים נימא או עפר ומש&quot;ה חייב להסתפג אחר טבילה ואף דנימא דאין לחוש לזה מ&quot;מ הרי כתב רבינו שם בדין ז׳ שצריך ליזהר שלא תכנס הרוח בשעת עבודה בין בשרו לבגדו עד שיתרחק הבגד מעליו ופשיטא דלא גרעי מים מרוח וא&quot;כ צריך לספוג משום דשמא המים יהיו מבדילים בין הבגד לבשר ומש&quot;ה קאמר רבינו ועולה ומסתפג. האמת דבפ&quot;ק דתמיד מ&quot;א תנן ירד וטבל עלה ונסתפג והתם פשיטא דאורחא דמלתא נקט וזהו שרבינו בפ&quot;ח מהלכות בית הבחירה כשהעתיק משנה זו השמיט הא דעלה ונסתפג יע&quot;ש:</p>
               </div>
             </div>
@@ -286,8 +307,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 3:5:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-3-5-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-3-5">Mishneh Torah, Service on the Day of Atonement 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמַכְנִיס דָּמָן לַהֵיכָל וּמַזֶּה מִדַּם שְׁנֵיהֶן בַּיּוֹם הַזֶּה אַרְבָּעִים וְשָׁלֹשׁ הַזָּיוֹת. וְאֵלּוּ הֵן. מַזֶּה תְּחִלָּה מִדַּם הַפָּר שְׁמוֹנֶה הַזָּיוֹת בְּקֹדֶשׁ הַקָּדָשִׁים בֵּין בַּדֵּי הָאָרוֹן קָרוֹב לַכַּפֹּרֶת בְּטֶפַח שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז יד)</span> &quot;וְלִפְנֵי הַכַּפֹּרֶת יַזֶּה&quot; וְגוֹ׳. וּמַזֶּה שָׁם אַחַת לְמַעְלָה וְשֶׁבַע לְמַטָּה. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזֶּה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז יד)</span> &quot;שֶׁבַע פְּעָמִים&quot; יַזֶּה יֶתֶר עַל הַזָּיָה רִאשׁוֹנָה. וְכָךְ הָיָה מוֹנֶה. אַחַת. אַחַת וְאַחַת אַחַת וּשְׁתַּיִם אַחַת וְשָׁלֹשׁ אַחַת וְאַרְבַּע אַחַת וְחָמֵשׁ אַחַת וְשֵׁשׁ אַחַת וְשֶׁבַע. וְלָמָּה מוֹנֶה כָּכָה שֶׁמָּא יִשְׁכַּח וְיִמְנֶה הַזָּיָה רִאשׁוֹנָה מִכְּלַל הַשֶּׁבַע. וְאַחַר כָּךְ מַזֶּה מִדַּם הַשָּׂעִיר בֵּין בַּדֵּי הָאָרוֹן שְׁמוֹנֶה אַחַת לְמַעְלָה וְשֶׁבַע לְמַטָּה וּמוֹנֶה כְּדֶרֶךְ שֶׁמּוֹנֶה בְּדַם הַפָּר. וְחוֹזֵר וּמַזֶּה בַּהֵיכָל עַל הַפָּרֹכֶת מִדַּם הַפָּר שְׁמוֹנֶה. אַחַת לְמַעְלָה וְשֶׁבַע לְמַטָּה שֶׁכָּךְ נֶאֱמַר בְּדַם הַפָּר <span class="source-small">(ויקרא טז טו)</span> &quot;עַל הַכַּפֹּרֶת וְלִפְנֵי הַכַּפֹּרֶת&quot;. וּמוֹנֶה כְּדֶרֶךְ שֶׁמּוֹנֶה בִּפְנִים. וְחוֹזֵר וּמַזֶּה מִדַּם הַשָּׂעִיר כֵּן עַל הַפָּרֹכֶת שְׁמוֹנֶה הַזָּיוֹת אַחַת לְמַעְלָה וְשֶׁבַע לְמַטָּה. שֶׁנֶּאֱמַר בְּדַם הַשָּׂעִיר <span class="source-small">(ויקרא טז טו)</span> &quot;וְעָשָׂה אֶת דָּמוֹ כַּאֲשֶׁר עָשָׂה לְדַם הַפָּר&quot;. וּמוֹנֶה כְּדֶרֶךְ שֶׁמּוֹנֶה בִּפְנִים. וְכָל אֵלּוּ הַהַזָּיוֹת אֵינוֹ מִתְכַּוֵּן בָּהֶן לְהַזּוֹת לֹא לְמַעְלָה וְלֹא לְמַטָּה אֶלָּא כְּמַצְלִיף. וְאַחַר כָּךְ מְעָרֵב שְׁנֵי הַדָּמִים דַּם הַפָּר וְדַם הַשָּׂעִיר וּמַזֶּה מִשְּׁנֵיהֶם אַרְבַּע הַזָּיוֹת עַל אַרְבַּע קַרְנוֹת מִזְבַּח הַזָּהָב שֶׁבַּהֵיכָל וְשֶׁבַע הַזָּיוֹת עַל אֶמְצָעוֹ שֶׁל מִזְבֵּחַ זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומכניס דמן כו׳.</strong> לא ביאר רבינו ז&quot;ל אם לא נגע הדם בבדי הארון או בכפורת אם עלתה לו הזיה או לא. ומדברי התוס׳ בפ&quot;ק דזבחים (דף ט&quot;ו) ד&quot;ה אלא חטאת העוף מוכח דלא בעינן שיגע הדם בפרוכת ובין הבדים. ולפ&quot;ז אם נקטעה ידו של מזה עד שלא הגיע הדם לא נפסלה ההזיה משום בעל מום. אבל בהזאת מזבח אם נקטעה ידו קודם שיגיע הדם לאויר המזבח נפסל וכמו שפסק רבינו בפ&quot;ב מהל׳ פסולי המוקדשין וכן בזריקה אבל לא ראיתי לרבינו שחולק בזה:</p>
               </div>
             </div>
@@ -303,8 +329,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 4:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-4-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-4-1">Mishneh Torah, Service on the Day of Atonement 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֵדֶר כָּל הַמַּעֲשִׂים שֶׁבְּיוֹם זֶה כָּךְ הוּא. כַּחֲצוֹת הַלַּיְלָה מְפִיסִין לִתְרוּמַת הַדֶּשֶׁן. וּמְסַדְּרִין אֶת הַמַּעֲרָכָה וּמְדַשְּׁנִין אֶת הַמִּזְבֵּחַ כְּדֶרֶךְ שֶׁעוֹשִׂין בְּכָל יוֹם עַל הַסֵּדֶר שֶׁבֵּאַרְנוּ עַד שֶׁיַּגִּיעוּ לִשְׁחִיטַת הַתָּמִיד. כְּשֶׁיַּגִּיעוּ לִשְׁחֹט אֶת הַתָּמִיד פּוֹרְסִין סָדִין שֶׁל בּוּץ בֵּין כֹּהֵן גָּדוֹל וּבֵין הָעָם. וְלָמָּה שֶׁל בּוּץ כְּדֵי שֶׁיַּכִּיר שֶׁעֲבוֹדַת הַיּוֹם בְּבִגְדֵי בּוּץ. וּפוֹשֵׁט בִּגְדֵי חֹל וְטוֹבֵל וְלוֹבֵשׁ בִּגְדֵי זָהָב וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וְשׁוֹחֵט בְּתָמִיד רֹב שְׁנַיִם וּמַנִּיחַ אַחֵר לִגְמֹר הַשְּׁחִיטָה. וּמְקַבֵּל הַדָּם וְזוֹרְקוֹ עַל הַמִּזְבֵּחַ כְּמִצְוָתוֹ. וְאַחַר כָּךְ נִכְנָס לַהֵיכָל וּמַקְטִיר קְטֹרֶת שֶׁל שַׁחַר וּמֵיטִיב אֶת הַנֵּרוֹת. וּמַקְטִיר אֵיבְרֵי הַתָּמִיד וְהַחֲבִיתִין וְהַנְּסָכִים כְּכָל סֵדֶר הַתָּמִיד שֶׁל כָּל יוֹם שֶׁבֵּאַרְנוּ. וְאַחַר הַתָּמִיד מַקְרִיב הַפָּר וְשִׁבְעַת הַכְּבָשִׂים שֶׁל מוּסַף הַיּוֹם. וְאַחַר כָּךְ מְקַדֵּשׁ יָדָיו וְרַגְלָיו וּפוֹשֵׁט בִּגְדֵי זָהָב. וְטוֹבֵל וְלוֹבֵשׁ בִּגְדֵי לָבָן וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וּבָא לוֹ אֵצֶל פָּרוֹ. וּפָרוֹ הָיָה עוֹמֵד בֵּין הָאוּלָם וְלַמִּזְבֵּחַ רֹאשׁוֹ לַדָּרוֹם וּפָנָיו לַמַּעֲרָב וְהַכֹּהֵן עוֹמֵד בַּמִּזְרָח וּפָנָיו לַמַּעֲרָב. וְסוֹמֵךְ שְׁתֵּי יָדָיו עַל רֹאשׁ הַפָּר וּמִתְוַדֶּה. וְכָךְ הָיָה אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ אֲנִי וּבֵיתִי. אָנָּא הַשֵּׁם כַּפֵּר נָא לַחֲטָאִים וְלַעֲוֹנוֹת וְלַפְּשָׁעִים שֶׁחָטָאתִי וְשֶׁעָוִיתִי וְשֶׁפָּשַׁעְתִּי לְפָנֶיךָ אֲנִי וּבֵיתִי כַּכָּתוּב בְּתוֹרַת משֶׁה עַבְדֶּךָ לֵאמֹר <span class="source-small">(ויקרא טז ל)</span> &quot;כִּי בַיּוֹם הַזֶּה יְכַפֵּר עֲלֵיכֶם לְטַהֵר אֶתְכֶם מִכּל חַטֹּאתֵיכֶם לִפְנֵי ה׳ תִּטְהָרוּ&quot;. וְאַחַר כָּךְ מַגְרִיל עַל שְׁנֵי הַשְּׂעִירִים. וְקוֹשֵׁר לָשׁוֹן שֶׁל זְהוֹרִית בְּרֹאשׁ הַמִּשְׁתַּלֵּחַ וּמַעֲמִידוֹ כְּנֶגֶד בֵּית שִׁלּוּחוֹ וְלַנִּשְׁחָט כְּנֶגֶד בֵּית שְׁחִיטָתוֹ. וּבָא לוֹ אֵצֶל פָּרוֹ שְׁנִיָּה וְסוֹמֵךְ שְׁתֵּי יָדָיו עַל רֹאשׁוֹ וּמִתְוַדֶּה וִדּוּי שֵׁנִי. וְכָךְ הוּא אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ אֲנִי וּבֵיתִי וּבְנֵי אַהֲרֹן עַם קְדוֹשֶׁיךָ. אָנָּא הַשֵּׁם כַּפֵּר נָא לַחֲטָאִים וְלַעֲוֹנוֹת וְלַפְּשָׁעִים שֶׁחָטָאתִי וְשֶׁעָוִיתִי וְשֶׁפָּשַׁעְתִּי לְפָנֶיךָ אֲנִי וּבֵיתִי וּבְנֵי אַהֲרֹן עַם קְדוֹשֶׁיךָ כַּכָּתוּב בְּתוֹרַת משֶׁה עַבְדֶּךָ כִּי בַיּוֹם הַזֶּה וְגוֹ׳. וְאַחַר כָּךְ שׁוֹחֵט אֶת הַפָּר וּמְקַבֵּל אֶת דָּמוֹ וְנוֹתְנוֹ לְמִי שֶׁהוּא מְנַדְנְדוֹ שֶׁלֹּא יִקָּרֵשׁ (וּמַנִּיחָהּ) עַל הָרֹבֶד הָרְבִיעִי שֶׁל הֵיכָל מִבַּחוּץ. וְנוֹטֵל אֶת הַמַּחְתָּה וְחוֹתֶה בָּהּ אֵשׁ מֵעַל הַמִּזְבֵּחַ מִן הַסָּמוּךְ לַמַּעֲרָב. שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז יב)</span> &quot;מֵעַל הַמִּזְבֵּחַ מִלִּפְנֵי ה׳&quot;. וְיוֹרֵד וּמַנִּיחָהּ עַל הָרֹבֶד שֶׁבָּעֲזָרָה. וּמוֹצִיאִין לוֹ אֶת הַכַּף וּכְלִי מָלֵא קְטֹרֶת דַּקָּה מִן הַדַּקָּה. וְחוֹפֵן מִמֶּנָּה מְלֹא חָפְנָיו לֹא מְחוּקוֹת וְלֹא גְּדוּשׁוֹת אֶלָּא טְפוּפוֹת הַגָּדוֹל לְפִי גָּדְלוֹ וְהַקָּטָן לְפִי קָטְנוֹ וְנוֹתֵן לְתוֹךְ הַכַּף. כְּבָר בֵּאַרְנוּ שֶׁהוֹלָכָה בִּשְׂמֹאל פּוֹסֶלֶת בְּדַם הַקָּדָשִׁים וּשְׁאָר הָעֲבוֹדוֹת. וּלְפִיכָךְ הָיָה מִן הַדִּין שֶׁיּוֹלִיךְ הַמַּחְתָּה בִּשְׂמֹאלוֹ וְכַף הַקְּטֹרֶת בִּימִינוֹ. אֲבָל מִפְּנֵי כֹּבֶד הַמַּחְתָּה וְעוֹד שֶׁהִיא חַמָּה. אֵינוֹ יָכוֹל לְסָבְלָהּ בִּשְׂמֹאלוֹ עַד הָאָרוֹן. לְפִיכָךְ נוֹטֵל הַמַּחְתָּה בִּימִינוֹ וְכַף הַקְּטֹרֶת בִּשְׂמֹאלוֹ. וּמְהַלֵּךְ בַּהֵיכָל עַד שֶׁהוּא מַגִּיעַ לְקֹדֶשׁ הַקָּדָשִׁים. מָצָא הַפָּרֹכֶת פְּרוּפָה נִכְנַס לְקֹדֶשׁ הַקָּדָשִׁים עַד שֶׁהוּא מַגִּיעַ לָאָרוֹן. הִגִּיעַ לָאָרוֹן נוֹתֵן הַמַּחְתָּה בֵּין שְׁנֵי הַבַּדִּים וּבְבַיִת שֵׁנִי שֶׁלֹּא הָיָה אָרוֹן הָיָה מַנִּיחָהּ עַל אֶבֶן הַשְּׁתִיָּה. וְאוֹחֵז שְׂפַת הַכַּף בְּרָאשֵׁי אֶצְבְּעוֹתָיו אוֹ בְּשִׁנָּיו. וּמְעָרֶה הַקְּטֹרֶת בְּגוּדָלוֹ לְתוֹךְ חָפְנָיו עַד שֶׁמַּחְזִירָהּ לִמְלֹא חָפְנָיו כְּשֶׁהָיְתָה. וְזוֹ הִיא עֲבוֹדָה קָשָׁה שֶׁבַּמִּקְדָּשׁ. וְצוֹבֵר אֶת הַקְּטֹרֶת עַל גַּבֵּי הַגֶּחָלִים בְּיָדוֹ לְפָנִים בַּמַּחְתָּה. כְּדֵי שֶׁתִּהְיֶה הַקְּטֹרֶת קְרוֹבָה לָאָרוֹן וּרְחוֹקָה מִפָּנָיו שֶׁלֹּא יִכָּוֶה. וּמַמְתִּין שָׁם עַד שֶׁיִּתְמַלֵּא הַבַּיִת עָשָׁן וְיֵצֵא. וְהוּא מְהַלֵּךְ אֲחוֹרַנִּית מְעַט מְעַט פָּנָיו לַקֹּדֶשׁ וַאֲחוֹרָיו לַהֵיכָל עַד שֶׁיֵּצֵא מִן הַפָּרֹכֶת. וּמִתְפַּלֵּל שָׁם בַּהֵיכָל אַחַר שֶׁיֵּצֵא תְּפִלָּה קְצָרָה שֶׁלֹּא לְהַבְעִית אֶת הָעָם שֶׁמָּא יֹאמְרוּ מֵת בַּהֵיכָל. וְכָךְ הָיָה מִתְפַּלֵּל. יְהִי רָצוֹן מִלְּפָנֶיךָ ה׳ אֱלֹהֵינוּ שֶׁאִם תִּהְיֶה שָׁנָה זוֹ שְׁחוּנָה תִּהְיֶה גְּשׁוּמָה. וְלֹא יָסוּר שֵׁבֶט מִבֵּית יְהוּדָה. וְלֹא יִהְיוּ עַמְּךָ בֵּית יִשְׂרָאֵל צְרִיכִין לְפַרְנָסָה [א.] וְאַל תִּכָּנֵס לְפָנֶיךָ תְּפִלַּת עוֹבְרֵי דְּרָכִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ מקדש ידיו ורגליו ופושט בגדי זהב וטובל ולובש וכו׳.</strong> לא ידעתי למה לא כתב רבינו בטבילה זו דפורסין סדין של בוץ בין כ&quot;ג ובין העם וכמ&quot;ש בטבילה ראשונה ובמתני׳ נאמרה פריסת סדין הלזו בשני מקומות האחת היא בדף ל׳ שהיא הטבילה הראשונה שהיתה בחול שהיה פושט בגדי חול ובדף ל&quot;ד תנן הביאוהו לבית הפרוה כו׳ פרסו סדין של בוץ וזו היא הטבילה השניה שהיה פושט בגדי זהב ולובש בגדי לבן. וכמבואר וליכא למימר דס&quot;ל לרבינו דבכל החמש טבילות היה פריסת סדין וכיון דלמדנו בטבילה הראשונה ה&quot;ה לאינך ומש&quot;ה לא הוצרך לבאר דבכל טבילה וטבילה היתה פריסת סדין. משום דנהי דבעיקר פריסת הסדין פשיטא שהיה נוהג בכל הטבילות משום דטעמא דפריסת סדין הוא לפי שגנאי הוא לראות כ&quot;ג כשהוא ערום וכמ&quot;ש רבינו ריש פ&quot;ה מהל׳ כלי המקדש ומש&quot;ה כשהיה פושט את בגדיו וטובל שהיה ערום היו פורסין סדין ובגמ׳ לא קא יהבי טעמא אלא למה שהיה של בוץ ולא מדבר אחר אבל עיקר הפריסה הוא מטעמא דכתיבנא ולפי זה פשיטא שדבר זה נוהג בכל הטבילות אבל במה שהיה של בוץ היה צריך רבינו ללמדנו דגם בטבילה שניה היה של בוץ לפי שהיה עולה על הדעת שכיון שכבר הכיר בטבילה ראשונה שעבודת היום בבגדי לבן שוב אין צריך לעשות היכר אחר והיה פורסין סדין ממין שירצה וראיה לזה שהרי עיקר מילתיה דרב כהנא לא אמרה אלא בטבילה שניה וטבילה ראשונה אמרינן בגמרא כדאמר רב כהנא כדי שיכיר כו׳ ה&quot;נ והתוס׳ בדף ל&quot;א ד&quot;ה כדאמר הקשו דמ&quot;ש דאמרה למילתיה אסיפא ולא ארישא ותירצו דברישא לא הוצרך לאומרו דפשיטא דצריך היכר כו׳ וסד&quot;א דכיון דכבר פירשו פעם אחת סדין של בוץ כדי שיכיר סגי בהכי להכי איצטריך רב כהנא לפרש דתרי היכרי הוו עבדי עכ&quot;ד. ולפי זה יש לתמוה על רבינו דלמה לא ביאר לנו דלא סגי בחד היכרא. ודע דמדברי התוספות נראה דלא היה היכר כי אם בב׳ טבילות הראשונות אבל בשאר הטבילות לא היה צריך היכר ומדברי רבינו נ&quot;ל דלכל הטבילות היה היכר והיו פורסין סדין של בוץ:</p>
               </div>
             </div>
@@ -319,8 +350,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 4:2:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-4-2-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-4-2">Mishneh Torah, Service on the Day of Atonement 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בִּשְׁעַת הַקְטָרַת הַקְּטֹרֶת בְּקֹדֶשׁ הַקָּדָשִׁים. כָּל הָעָם פּוֹרְשִׁים מִן הַהֵיכָל בִּלְבַד וְאֵינָן פּוֹרְשִׁים מִבֵּין הָאוּלָם וְלַמִּזְבֵּחַ. שֶׁאֵין פּוֹרְשִׁים מִבֵּין הָאוּלָם וְלַמִּזְבֵּחַ אֶלָּא בִּשְׁעַת הַקְטָרָה בַּהֵיכָל בְּכָל יוֹם וּבִשְׁעַת מַתַּן דָּמִים בַּהֵיכָל כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת תְּמִידִין. וְאַחַר כָּךְ נוֹטֵל דַּם הַפָּר מִזֶּה שֶׁהוּא מְנַדְנְדוֹ. וְנִכְנָס בּוֹ לְקֹדֶשׁ הַקָּדָשִׁים וּמַזֶּה מִמֶּנּוּ שָׁם שְׁמוֹנֶה הַזָּיוֹת בֵּין בַּדֵּי הָאָרוֹן. וְיוֹצֵא וּמַנִּיחוֹ בַּהֵיכָל עַל כַּן הַזָּהָב שֶׁהָיָה שָׁם. וְאַחַר כָּךְ יוֹצֵא מִן הַהֵיכָל וְשׁוֹחֵט אֶת הַשָּׂעִיר וּמְקַבֵּל אֶת דָּמוֹ וְנִכְנָס בּוֹ לְקֹדֶשׁ הַקָּדָשִׁים. וּמַזֶּה מִמֶּנּוּ שָׁם שְׁמוֹנֶה הַזָּיוֹת בֵּין בַּדֵּי הָאָרוֹן. וְיוֹצֵא וּמַנִּיחוֹ עַל כַּן הַזָּהָב שֵׁנִי שֶׁבַּהֵיכָל. וְאַחַר כָּךְ נוֹטֵל דַּם הַפָּר מֵעַל הַכַּן וּמַזֶּה מִמֶּנּוּ עַל הַפָּרֹכֶת כְּנֶגֶד הָאָרוֹן שְׁמוֹנֶה הַזָּיוֹת וּמַנִּיחַ דַּם הַפָּר וְנוֹטֵל דַּם הַשָּׂעִיר וּמַזֶּה מִמֶּנּוּ עַל הַפָּרֹכֶת כְּנֶגֶד הָאָרוֹן שְׁמוֹנֶה הַזָּיוֹת. וְאַחַר כָּךְ מְעָרֶה דַּם הַפָּר לְתוֹךְ דַּם הַשָּׂעִיר וּמַחֲזִיר הַכּל לַמִּזְרָק שֶׁהָיָה בּוֹ דַּם הַפָּר כְּדֵי שֶׁיִּתְעָרְבוּ יָפֶה יָפֶה. וְעוֹמֵד לְפָנִים מִמִּזְבַּח הַזָּהָב בֵּין הַמִּזְבֵּחַ וְהַמְּנוֹרָה. וּמַתְחִיל לְהַזּוֹת מִדַּם הַתַּעֲרֹבֶת עַל קַרְנוֹת מִזְבַּח הַזָּהָב. וְהוּא מְסַבֵּב וְהוֹלֵךְ וּמַזֶּה עַל הַקְּרָנוֹת מִבַּחוּץ. וּמַתְחִיל מִקֶּרֶן מִזְרָחִית צְפוֹנִית. לִצְפוֹנִית מַעֲרָבִית. לְמַעֲרָבִית דְּרוֹמִית. לִדְרוֹמִית מִזְרָחִית. וְעַל כֻּלָּן הוּא נוֹתֵן מִלְּמַטָּן לְמַעְלָן. חוּץ מִן הָאַחֲרוֹנָה שֶׁהָיְתָה לְפָנָיו שֶׁהוּא נוֹתֵן מִלְּמַעְלָן לְמַטָּן. כְּדֵי שֶׁלֹּא יִתְלַכְלְכוּ כֵּלָיו. וְחוֹתֶה הַגֶּחָלִים וְהָאֵפֶר שֶׁבְּמִזְבַּח הַזָּהָב הֵילָךְ וְהֵילָךְ עַד שֶׁמְּגַלֶּה זְהָבוֹ. וּמַזֶּה מִדַּם הַתַּעֲרֹבֶת עַל טָהֳרוֹ שֶׁל מִזְבֵּחַ שֶׁבַע פְּעָמִים בְּצַד הַדָּרוֹם בְּמָקוֹם שֶׁשָּׁלְמוּ מַתְּנוֹת קַרְנוֹתָיו. וְיוֹצֵא וְשׁוֹפֵךְ שְׁיָרֵי הַדָּם עַל יְסוֹד מַעֲרָבִי שֶׁל מִזְבֵּחַ הַחִיצוֹן. וְאַחַר כָּךְ בָּא אֵצֶל שָׂעִיר הַמִּשְׁתַּלֵּחַ וְסוֹמֵךְ שְׁתֵּי יָדָיו עַל רֹאשׁוֹ וּמִתְוַדֶּה. וְכָךְ הוּא אוֹמֵר אָנָּא הַשֵּׁם חָטְאוּ עָווּ וּפָשְׁעוּ לְפָנֶיךָ עַמְּךָ בֵּית יִשְׂרָאֵל. אָנָּא הַשֵּׁם כַּפֵּר נָא לַחֲטָאִים וְלַעֲוֹנוֹת וְלַפְּשָׁעִים שֶׁחָטְאוּ וְשֶׁעָווּ וְשֶׁפָּשְׁעוּ לְפָנֶיךָ עַמְּךָ בֵּית יִשְׂרָאֵל כַּכָּתוּב בְּתוֹרַת משֶׁה עַבְדֶּךָ <span class="source-small">(ויקרא טז ל)</span> &quot;כִּי בַיּוֹם הַזֶּה יְכַפֵּר עֲלֵיכֶם&quot; וְגוֹ׳. וְאַחַר כָּךְ מְשַׁלֵּחַ אֶת הַשָּׂעִיר לַמִּדְבָּר. וּמוֹצִיא אֵימוּרֵי פַּר וְשָׂעִיר שֶׁהִכְנִיס דָּמָן לְפָנִים וְנוֹתְנָן בִּכְלִי. וּמְשַׁלֵּחַ הַשְּׁאָר לְבֵית הַדֶּשֶׁן לִשְׂרֵפָה. וְיוֹצֵא לְעֶזְרַת הַנָּשִׁים וְקוֹרֵא שָׁם אַחַר שֶׁיַּגִּיעַ הַשָּׂעִיר לַמִּדְבָּר. וְאַחַר כָּךְ מְקַדֵּשׁ וּפוֹשֵׁט בִּגְדֵי לָבָן וְטוֹבֵל וְלוֹבֵשׁ בִּגְדֵי זָהָב וּמְקַדֵּשׁ יָדָיו וְרַגְלָיו. וְעוֹשֶׂה הַשָּׂעִיר הַנַּעֲשֶׂה בַּחוּץ שֶׁהוּא מִכְּלַל קָרְבְּנוֹת מוּסַף הַיּוֹם. וּמַקְרִיב אֵילוֹ וְאֵיל הָעָם שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז כד)</span> &quot;וְיָצָא וְעָשָׂה אֶת עלָתוֹ וְאֶת עלַת הָעָם&quot;. וּמַקְטִיר הָאֵימוּרִין שֶׁל פַּר וְשָׂעִיר הַנִּשְׂרָפִין. וּמַקְרִיב תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם. וְאַחַר כָּךְ מְקַדֵּשׁ יָדָיו וְרַגְלָיו וּפוֹשֵׁט בִּגְדֵי זָהָב וְטוֹבֵל וְלוֹבֵשׁ בִּגְדֵי לָבָן וּמְקַדֵּשׁ וְנִכְנָס לְקֹדֶשׁ הַקָּדָשִׁים וּמוֹצִיא אֶת הַכַּף וְאֶת הַמַּחְתָּה. וְאַחַר כָּךְ מְקַדֵּשׁ וּפוֹשֵׁט בִּגְדֵי לָבָן וְטוֹבֵל וְלוֹבֵשׁ בִּגְדֵי זָהָב וּמְקַדֵּשׁ וּמַקְטִיר קְטֹרֶת שֶׁל בֵּין הָעַרְבַּיִם וּמֵיטִיב אֶת הַנֵּרוֹת שֶׁל בֵּין הָעַרְבַּיִם כִּשְׁאָר הַיָּמִים. וְאַחַר כָּךְ מְקַדֵּשׁ יָדָיו וְרַגְלָיו וּפוֹשֵׁט בִּגְדֵי זָהָב וְלוֹבֵשׁ בִּגְדֵי עַצְמוֹ וְיוֹצֵא לְבֵיתוֹ וְכָל הָעָם מְלַוִּין אוֹתוֹ עַד בֵּיתוֹ. וְיוֹם טוֹב הָיָה עוֹשֶׂה עַל שֶׁיָּצָא בְּשָׁלוֹם מִן הַקֹּדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><br><strong>מ&quot;ש </strong>מרן בשם הר&quot;י קורקוס דאיכא למידק דבפרק שלישי כתב על אמצעו של מזבח וכו׳. עיין מוהרימ&quot;ט חא&quot;ה סימן ח׳ ודוק:</p>
               </div>
             </div>
@@ -336,8 +372,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 5:14:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-5-14-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 5:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-5-14">Mishneh Torah, Service on the Day of Atonement 5:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנֵי שְׂעִירֵי יוֹם הַכִּפּוּרִים מִצְוָתָן שֶׁיִּהְיוּ שָׁוִין בְּמַרְאֶה וּבְקוֹמָה וּבְדָמִים. וּלְקִיחָתָן כְּאַחַת. אַף עַל פִּי שֶׁאֵינָן שָׁוִין כְּשֵׁרִין. לָקַח אֶחָד מֵהֶן הַיּוֹם וְאֶחָד לְמָחָר כְּשֵׁרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני שעירי יוה&quot;כ כו׳.</strong> כתב מרן ופסק כרב דאמר אין ב&quot;ח נדחים כו׳. ועיין לקמן רפ&quot;ד מהל׳ קרבן פסח הלכה ו׳. ועיין בקרבן חגיגה סי׳ ב׳:</p>
               </div>
             </div>
@@ -352,8 +393,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 5:18:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-5-18-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Service on the Day of Atonement 5:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-service-on-the-day-of-atonement/#mishneh-torah-service-on-the-day-of-atonement-5-18">Mishneh Torah, Service on the Day of Atonement 5:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה טְרֵפָה פָּסוּל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז י)</span> &quot;יָעֳמַד חַי&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה טריפה פסול וכו׳.</strong> הקשה הר&quot;ב לח&quot;מ דבפ&quot;ק דחולין ממעטינן טריפה מסברא דאין גורל קובע לעזאזל אלא בדבר הראוי לה׳ וא&quot;כ קרא למה לי. ונ&quot;ל דאיצטריך להיכא דנטרף אחר הגרלה וכה&quot;ג אמרינן בפ׳ שני שעירים (דף ס&quot;ג) דאיצטריך קרא למעט בעל מום ומחוסר זמן משעיר המשתלח והתם בפ&quot;ק דחולין בלאו האי קרא פשיט דאזלינן בתר רובא ודוק:     סליקו להו הלכות עבודת יום הכפורים בס&quot;ד</p>
               </div>
             </div>
@@ -363,6 +409,10 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -383,8 +433,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.manifest.json","occurrence_url":"../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-service-on-the-day-of-atonement.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -410,7 +460,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

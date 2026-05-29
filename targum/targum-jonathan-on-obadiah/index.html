@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -143,10 +147,6 @@
         <p class="meta">21 total source units | imported 2026-05-14</p>
         <p class="meta source-citation">Hebrew version: Mikraot Gedolot | Version source: <a href="https://www.sefaria.org">www.sefaria.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>50 matched</strong> / 241 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/targum-jonathan-on-obadiah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/targum-jonathan-on-obadiah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -527,6 +527,10 @@
               <a href="#chapter-targum-jonathan-on-obadiah-text-1">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/targum-jonathan-on-obadiah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/targum-jonathan-on-obadiah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -547,10 +551,10 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"targum-jonathan-on-obadiah","work_title":"Targum Jonathan on Obadiah","work_slug":"targum/targum-jonathan-on-obadiah","scope_label":"All imported Hebrew works","generated_at":"2026-05-16T00:16:24.715Z","total_occurrences":322,"units":{"targum-jonathan-on-obadiah-1-1":{"unit_id":"targum-jonathan-on-obadiah-1-1","anchor_id":"targum-jonathan-on-obadiah-1-1","source_ref":"Targum Jonathan on Obadiah 1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3bacf09adb7f","tok-44ab6c0fa8b0","tok-000a556a4adb","tok-df20ce300d2d","tok-77c5537eb102","tok-6b902f8eb11e","tok-276ec1de90df","tok-c63dda18ab9f","tok-e2bd4a64c909","tok-b6bce367a098","tok-37214f5a70b6","tok-77c5537eb102","tok-fffa5658c5a1","tok-1cf605438f06","tok-e8debbe10d23","tok-080845a8d8f7","tok-71ca899ffeb7","tok-f0df8c8b5acc","tok-48f9daff298c"]}]},"targum-jonathan-on-obadiah-1-2":{"unit_id":"targum-jonathan-on-obadiah-1-2","anchor_id":"targum-jonathan-on-obadiah-1-2","source_ref":"Targum Jonathan on Obadiah 1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-a630b6c22acd","tok-676326b7bf06","tok-4f779f966fc9","tok-1cf605438f06","tok-84774ab7dc42","tok-65a0e7709d4d","tok-11fc2458e11e"]}]},"targum-jonathan-on-obadiah-1-3":{"unit_id":"targum-jonathan-on-obadiah-1-3","anchor_id":"targum-jonathan-on-obadiah-1-3","source_ref":"Targum Jonathan on Obadiah 1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-5ccd17ef8678","tok-f5189773cea4","tok-34c283d1497c","tok-5b6bd251a628","tok-5987fa0b6367","tok-84be0da8df26","tok-5d71bf98053c","tok-1896d2883747","tok-28667edc1567","tok-df358762cf66","tok-fc6a7c228ed3","tok-df20ce300d2d","tok-175153243e6f","tok-bd24baa5b82f","tok-beaf95aef92c","tok-ce4c902770c1"]}]},"targum-jonathan-on-obadiah-1-4":{"unit_id":"targum-jonathan-on-obadiah-1-4","anchor_id":"targum-jonathan-on-obadiah-1-4","source_ref":"Targum Jonathan on Obadiah 1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1372a75951ad","tok-3d984b423304","tok-26f8bafd8590","tok-62326662719a","tok-b1666294cd68","tok-e5dbdc5ebdd1","tok-5e033acb7982","tok-a917db3a3f42","tok-e77ad6767fd8","tok-f8a388e6ebd5","tok-df20ce300d2d","tok-77c5537eb102"]}]},"targum-jonathan-on-obadiah-1-5":{"unit_id":"targum-jonathan-on-obadiah-1-5","anchor_id":"targum-jonathan-on-obadiah-1-5","source_ref":"Targum Jonathan on Obadiah 1:5","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1372a75951ad","tok-d742bbf33a2a","tok-efec2c2b31ff","tok-906e3f44c117","tok-1372a75951ad","tok-629be897700e","tok-0e0a2bc087b6","tok-01126950c9c9","tok-4900fb3b5e5f","tok-b3664474543a","tok-712e67060cf6","tok-13e4ad1cde7d","tok-ebf8379141e8","tok-62326662719a","tok-f8e0d144853a","tok-55552c555287","tok-cc86ff077c1e","tok-906e3f44c117","tok-3cf22321d53e","tok-add266852eb5","tok-764608b1752e"]}]},"targum-jonathan-on-obadiah-1-6":{"unit_id":"targum-jonathan-on-obadiah-1-6","anchor_id":"targum-jonathan-on-obadiah-1-6","source_ref":"Targum Jonathan on Obadiah 1:6","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-01126950c9c9","tok-b5ef50223154","tok-64adedafb306","tok-28e40212ef74","tok-ba0f634fbe79"]}]},"targum-jonathan-on-obadiah-1-7":{"unit_id":"targum-jonathan-on-obadiah-1-7","anchor_id":"targum-jonathan-on-obadiah-1-7","source_ref":"Targum Jonathan on Obadiah 1:7","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-b6bce367a098","tok-335c9a5b4bda","tok-188c489c031e","tok-864063546879","tok-c282cbbe6947","tok-98988dc54b18","tok-b57b77cece44","tok-5f345053083c","tok-30511dc9db90","tok-326801442571","tok-1319c317eaef","tok-280bae9fb5a4","tok-ca1455204da2","tok-9c2785dbaae3","tok-2e2f18531532","tok-fa19a4b34234","tok-cc1dc703886e","tok-60b1155caab3","tok-6900377435d1"]}]},"targum-jonathan-on-obadiah-1-8":{"unit_id":"targum-jonathan-on-obadiah-1-8","anchor_id":"targum-jonathan-on-obadiah-1-8","source_ref":"Targum Jonathan on Obadiah 1:8","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-3cf22321d53e","tok-17d2491b11b0","tok-e1aa0bf36056","tok-df20ce300d2d","tok-77c5537eb102","tok-8bbd7335f0bb","tok-b0f82f3d37a6","tok-923fe7f4571c","tok-a1d5fa8cfb5a","tok-d2590511806d","tok-56ea4963e3e5","tok-925c49dbb02f","tok-e8eb0b6b67d8","tok-0c3e0eeaa358"]}]},"targum-jonathan-on-obadiah-1-9":{"unit_id":"targum-jonathan-on-obadiah-1-9","anchor_id":"targum-jonathan-on-obadiah-1-9","source_ref":"Targum Jonathan on Obadiah 1:9","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-02f2c337937f","tok-4c2aeed3148e","tok-805907ff4d56","tok-4ce5273b6446","tok-a5ca81c5bb84","tok-0034ca7f6c85","tok-d2590511806d","tok-56ea4963e3e5","tok-61403a0f9c83","tok-e8eb0b6b67d8","tok-0c3e0eeaa358","tok-e523e32b9fbb"]}]},"targum-jonathan-on-obadiah-1-10":{"unit_id":"targum-jonathan-on-obadiah-1-10","anchor_id":"targum-jonathan-on-obadiah-1-10","source_ref":"Targum Jonathan on Obadiah 1:10","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2e5fdbbe5cf6","tok-d59ce6ecd42e","tok-729d4cae2d15","tok-f72c90c7cd2a","tok-2b5281d916e3","tok-438301640527","tok-cc26dc8ece3b"]}]},"targum-jonathan-on-obadiah-1-11":{"unit_id":"targum-jonathan-on-obadiah-1-11","anchor_id":"targum-jonathan-on-obadiah-1-11","source_ref":"Targum Jonathan on Obadiah 1:11","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-2a0e8e7f6193","tok-e47a96ce0389","tok-7b3b5981cba9","tok-146d334dfd6b","tok-463b18f06889","tok-d97d5781e953","tok-407304cd3b43","tok-82a8d3b864e8","tok-a4b0884f3236","tok-c2d4c49a9ab7","tok-abd5b07f8b70","tok-141d7481f272","tok-a76d47eca84e","tok-654f120e6585","tok-4b709c066a66","tok-65a0e7709d4d","tok-9c560b8f68fe","tok-a4b266836417"]}]},"targum-jonathan-on-obadiah-1-12":{"unit_id":"targum-jonathan-on-obadiah-1-12","anchor_id":"targum-jonathan-on-obadiah-1-12","source_ref":"Targum Jonathan on Obadiah 1:12","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-38a4f9de6b64","tok-c75be0169337","tok-152b351f37a3","tok-2a0e8e7f6193","tok-c2e993548fc9","tok-7e2837136b3d","tok-65d1568c453f","tok-24f8b751321b","tok-2a0e8e7f6193","tok-f45a3b32af66","tok-72eec60b918b","tok-11fcc777306f","tok-196e68a58345","tok-6c63f56baf61","tok-1055a4bb3473"]}]},"targum-jonathan-on-obadiah-1-13":{"unit_id":"targum-jonathan-on-obadiah-1-13","anchor_id":"targum-jonathan-on-obadiah-1-13","source_ref":"Targum Jonathan on Obadiah 1:13","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-078b74efad5b","tok-5dc73382db64","tok-2bdfb802b401","tok-2a0e8e7f6193","tok-f45a3b32af66","tok-38a4f9de6b64","tok-4b709c066a66","tok-65a0e7709d4d","tok-26b6b0e4be81","tok-2a0e8e7f6193","tok-c2e993548fc9","tok-2b1f818ae09b","tok-f839bd473472","tok-da5320fa08a7","tok-2a0e8e7f6193","tok-c2e993548fc9"]}]},"targum-jonathan-on-obadiah-1-14":{"unit_id":"targum-jonathan-on-obadiah-1-14","anchor_id":"targum-jonathan-on-obadiah-1-14","source_ref":"Targum Jonathan on Obadiah 1:14","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-70f1cb663b07","tok-bde657abf440","tok-44685da8145a","tok-d4c54ffcb932","tok-50b90136bea2","tok-96a3bc197918","tok-f10b76a9dee0","tok-4589ee5bd6ee","tok-6c63f56baf61","tok-1055a4bb3473"]}]},"targum-jonathan-on-obadiah-1-15":{"unit_id":"targum-jonathan-on-obadiah-1-15","anchor_id":"targum-jonathan-on-obadiah-1-15","source_ref":"Targum Jonathan on Obadiah 1:15","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f8afe1d9f1b8","tok-fc3605def712","tok-d9fae991940f","tok-9105634cc5a3","tok-68a7d7cd38c7","tok-b6bce367a098","tok-37214f5a70b6","tok-77c5537eb102","tok-bde657abf440","tok-af1484c4d471","tok-d97d5781e953","tok-9a9a1fdbe0ed","tok-c45ac777afa2","tok-de000fbdb943","tok-30511dc9db90","tok-35bed9cacea7","tok-82428c14f04c","tok-e1e20ef04d85"]}]},"targum-jonathan-on-obadiah-1-16":{"unit_id":"targum-jonathan-on-obadiah-1-16","anchor_id":"targum-jonathan-on-obadiah-1-16","source_ref":"Targum Jonathan on Obadiah 1:16","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f8afe1d9f1b8","tok-9a9a1fdbe0ed","tok-408606d9d258","tok-bde657abf440","tok-ad6492529a5d","tok-2ea430507c9a","tok-4f6cd6ff78fc","tok-cb4b86f5570c","tok-af1484c4d471","tok-d97d5781e953","tok-772bad16b7dd","tok-5f72a86306d0","tok-d7f0b6eee609","tok-e20ba4fa8e1e","tok-ec4ad083e1b3","tok-d3e463f51160","tok-251f66fcac9d","tok-eddba8de4859"]}]},"targum-jonathan-on-obadiah-1-17":{"unit_id":"targum-jonathan-on-obadiah-1-17","anchor_id":"targum-jonathan-on-obadiah-1-17","source_ref":"Targum Jonathan on Obadiah 1:17","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-00ec1ecec0b9","tok-f1aca17dc201","tok-97b893d3f066","tok-0e28b7e4fc2a","tok-d3e463f51160","tok-4af8e31a811e","tok-f736d196b5f6","tok-494c3500474b","tok-729d4cae2d15","tok-ebc6313b1c1a","tok-d97d5781e953","tok-03d88e9aec0c","tok-aa12615c1b44","tok-d711e2b8d960"]}]},"targum-jonathan-on-obadiah-1-18":{"unit_id":"targum-jonathan-on-obadiah-1-18","anchor_id":"targum-jonathan-on-obadiah-1-18","source_ref":"Targum Jonathan on Obadiah 1:18","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d3e463f51160","tok-494c3500474b","tok-729d4cae2d15","tok-985f3172e042","tok-236ccc2bd79a","tok-1b2dc5420b01","tok-a78ebf70b410","tok-2b5f6171cea3","tok-9756c89565fd","tok-1b2dc5420b01","tok-64adedafb306","tok-196790b3b7ca","tok-4e210e723949","tok-3a31aea6b7d2","tok-f95fb52293de","tok-62fd140ec5cf","tok-000dc5d60124","tok-bc0e8145facb","tok-093b23f43312","tok-5c1ef466419e","tok-64adedafb306","tok-f8afe1d9f1b8","tok-77c5537eb102","tok-2f30f535342d","tok-7de923d7b70d"]}]},"targum-jonathan-on-obadiah-1-19":{"unit_id":"targum-jonathan-on-obadiah-1-19","anchor_id":"targum-jonathan-on-obadiah-1-19","source_ref":"Targum Jonathan on Obadiah 1:19","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-f736d196b5f6","tok-805907ff4d56","tok-4ce5273b6446","tok-50b90136bea2","tok-6157241f1221","tok-0c3e0eeaa358","tok-b0eccb4092b3","tok-e1dd19da7de3","tok-50b90136bea2","tok-543551e43e98","tok-b4ffa6b93535","tok-f736d196b5f6","tok-50b90136bea2","tok-3610edbb0a68","tok-d012d23fd89f","tok-ca5dd901dde8","tok-3610edbb0a68","tok-c8b882ff84e9","tok-1b2dc5420b01","tok-644e4bd36b34","tok-50b90136bea2","tok-805907ff4d56","tok-543551e43e98","tok-54600a9e3abe"]}]},"targum-jonathan-on-obadiah-1-20":{"unit_id":"targum-jonathan-on-obadiah-1-20","anchor_id":"targum-jonathan-on-obadiah-1-20","source_ref":"Targum Jonathan on Obadiah 1:20","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1fcf9bd9a7ca","tok-035cfa2debaf","tok-dbf56a3bcd86","tok-06af11d9b0e3","tok-9ac297732abe","tok-5c996a0b90dc","tok-0d874a687b8d","tok-712e67060cf6","tok-926bb548a1f1","tok-1fcf9bd9a7ca","tok-141d7481f272","tok-9222cb6c49bb","tok-e873a85c4817","tok-50b90136bea2","tok-3610edbb0a68","tok-543551e43e98","tok-ddcb6cd28ca4"]}]},"targum-jonathan-on-obadiah-1-21":{"unit_id":"targum-jonathan-on-obadiah-1-21","anchor_id":"targum-jonathan-on-obadiah-1-21","source_ref":"Targum Jonathan on Obadiah 1:21","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-be246ea4c5c3","tok-9e5041558c36","tok-e602d60d54d5","tok-f1aca17dc201","tok-2ba183b7ed25","tok-50b90136bea2","tok-6157241f1221","tok-0c3e0eeaa358","tok-71b3fb2fc6c1","tok-86a88848c7e3","tok-321a06947f35","tok-bde657abf440","tok-af1484c4d471","tok-805907ff4d56","tok-543551e43e98"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/targum-jonathan-on-obadiah.manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/targum-jonathan-on-obadiah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/targum-jonathan-on-obadiah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/targum-jonathan-on-obadiah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
-    (() => {
+    (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
       const lexiconNode = document.querySelector("[data-lexical-lexicon]");
       const configNode = document.querySelector("[data-lexical-config]");
@@ -558,7 +562,7 @@
       const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
       const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
       const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
       const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
       const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
       const chunkPromises = new Map();
@@ -574,7 +578,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -591,6 +594,12 @@
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
         return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
       };
       const loadManifest = async () => {
         if (!lexicalConfig.manifest_url) return null;
@@ -673,8 +682,9 @@
         const state = { index: 0 };
         textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
       };
+      const loadedOccurrences = await loadOccurrences();
       document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
         if (!unitData) return;
         unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
           const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-fasts/">Open Mishneh Torah, Fasts</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Fasts</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">2 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Warsaw, 1881 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>19 matched</strong> / 48 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/mishneh-lamelech-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -189,8 +190,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Fasts 1:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-fasts-1-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Fasts 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-1">Mishneh Torah, Fasts 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִזְעֹק וּלְהָרִיעַ בַּחֲצוֹצְרוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר. שֶׁנֶּאֱמַר <span class="source-small">(במדבר י ט)</span> &quot;עַל הַצַּר הַצֹּרֵר אֶתְכֶם וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת&quot;. כְּלוֹמַר כָּל דָּבָר שֶׁיָּצֵר לָכֶם כְּגוֹן בַּצֹּרֶת וְדֶבֶר וְאַרְבֶּה וְכַיּוֹצֵא בָּהֶן זַעֲקוּ עֲלֵיהֶן וְהָרִיעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה מן התורה לזעוק ולהריע בחצוצרות וכו׳.</strong> (א&quot;ה כתב ה&quot;ה וראיתי לרבינו וכו׳ ועיין בדברי הרב המחבר בספר דרשותיו בדרך מצותיך ח&quot;א (דף ס׳):</p>
               </div>
             </div>
@@ -205,8 +211,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Fasts 1:9:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-fasts-1-9-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Fasts 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-9">Mishneh Torah, Fasts 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁהַצִּבּוּר מִתְעַנִּים עַל צָרָתָן כָּךְ הַיָּחִיד מִתְעַנֶּה עַל צָרָתוֹ. כֵּיצַד. הֲרֵי שֶׁהָיָה לוֹ חוֹלֶה אוֹ תּוֹעֶה בַּמִּדְבָּר אוֹ אָסוּר בְּבֵית הָאֲסוּרִין. יֵשׁ לוֹ לְהִתְעַנּוֹת עָלָיו וּלְבַקֵּשׁ רַחֲמִים בִּתְפִלָּתוֹ. וְאוֹמֵר עֲנֵנוּ וְכוּ׳ בְּכָל תְּפִלָּה שֶׁמִּתְפַּלֵּל. וְלֹא יִתְעַנֶּה בְּשַׁבָּתוֹת וְלֹא בְּמוֹעֲדוֹת וְלֹא בְּרָאשֵׁי חֳדָשִׁים וְלֹא בַּחֲנֻכָּה וּפוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא יתענה בשבתות ולא במועדות ולא בר&quot;ח ולא בחנוכה ופורים.</strong> (א&quot;ה עיין בפ&quot;ו מהלכות כלי מקדש דין ט׳ כי שם צידד הרב המחבר לומר דאסור להתענות בע&quot;פ מחצות ולמעלה יע&quot;ש):</p>
               </div>
             </div>
@@ -216,6 +227,10 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-fasts-text-1">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -236,8 +251,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-fasts.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishneh-lamelech-on-mishneh-torah-fasts.manifest.json","occurrence_url":"../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-fasts.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-fasts.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-fasts.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-fasts.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -263,7 +278,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

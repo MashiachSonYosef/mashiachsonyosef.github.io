@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-rebels/">Open Mishneh Torah, Rebels</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Rebels</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">29 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>585 matched</strong> / 1439 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-rebels.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-rebels-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -252,8 +253,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-1-1">Mishneh Torah, Rebels 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין הַגָּדוֹל שֶׁבִּירוּשָׁלַיִם הֵם עִקַּר תּוֹרָה שֶׁבְּעַל פֶּה. וְהֵם עַמּוּדֵי הַהוֹרָאָה וּמֵהֶם חֹק וּמִשְׁפָּט יוֹצֵא לְכָל יִשְׂרָאֵל. וַעֲלֵיהֶן הִבְטִיחָה תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יא)</span> &quot;עַל פִּי הַתּוֹרָה אֲשֶׁר יוֹרוּךָ&quot; זוֹ מִצְוַת עֲשֵׂה. וְכָל הַמַּאֲמִין בְּמשֶׁה רַבֵּנוּ וּבְתוֹרָתוֹ חַיָּב לִסְמֹךְ מַעֲשֵׂה הַדָּת עֲלֵיהֶן וְלִשָּׁעֵן עֲלֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוות רלה </strong> לעשות על פי התורה שיאמרו לנו ב&quot;ד הגדול שבירושלם שהם עקר תורה שבעל פה ועמודי ההוראה שנאמר על פי התורה אשר יורוך ועל המשפט אשר יאמרו לך תעשה וגו׳:</p>
               </div>
             </div>
@@ -268,8 +274,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 1:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-1-2">Mishneh Torah, Rebels 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁאֵינוֹ עוֹשֶׂה כְּהוֹרָאָתָן עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יא)</span> &quot;לֹא תָסוּר מִכָּל הַדָּבָר אֲשֶׁר יַגִּידוּ לְךָ יָמִין וּשְׂמֹאל&quot;. וְאֵין לוֹקִין עַל לָאו זֶה מִפְּנֵי שֶׁנִּתָּן לְאַזְהָרַת מִיתַת בֵּית דִּין. שֶׁכָּל חָכָם שֶׁמּוֹרֶה עַל דִּבְרֵיהֶם מִיתָתוֹ בְּחֶנֶק שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יב)</span> &quot;וְהָאִישׁ אֲשֶׁר יַעֲשֶׂה בְזָדוֹן&quot; וְגוֹ׳. אֶחָד דְּבָרִים שֶׁלָּמְדוּ אוֹתָן מִפִּי הַשְּׁמוּעָה וְהֵם תּוֹרָה שֶׁבְּעַל פֶּה. וְאֶחָד דְּבָרִים שֶׁלְּמַּדוּם מִפִּי דַּעְתָּם בְּאַחַת מִן הַמִּדּוֹת שֶׁהַתּוֹרָה נִדְרֶשֶׁת בָּהֶן וְנִרְאָה בְּעֵינֵיהֶם שֶׁדָּבָר זֶה כָּךְ הוּא. וְאֶחָד דְּבָרִים שֶׁעֲשָׂאוּם סְיָג לַתּוֹרָה וּלְפִי מַה שֶּׁהַשָּׁעָה צְרִיכָה וְהֵן הַגְּזֵרוֹת וְהַתַּקָּנוֹת וְהַמִּנְהָגוֹת. כָּל אֶחָד וְאֶחָד מֵאֵלּוּ הַשְּׁלֹשָׁה דְּבָרִים מִצְוַת עֲשֵׂה לִשְׁמֹעַ לָהֶן. וְהָעוֹבֵר עַל כָּל אֶחָד מֵהֶן עוֹבֵר בְּלֹא תַּעֲשֶׂה. הֲרֵי הוּא אוֹמֵר <span class="source-small">(דברים יז יא)</span> &quot;עַל פִּי הַתּוֹרָה אֲשֶׁר יוֹרוּךָ&quot; אֵלּוּ הַתַּקָּנוֹת וְהַגְּזֵרוֹת וְהַמִּנְהָגוֹת שֶׁיּוֹרוּ בָּהֶם לָרַבִּים כְּדֵי לְחַזֵּק הַדָּת וּלְתַקֵּן הָעוֹלָם. וְעַל הַמִּשְׁפָּט אֲשֶׁר יֹאמְרוּ אֵלּוּ דְּבָרִים שֶׁיִּלְמְדוּ אוֹתָן מִן הַדִּין בְּאַחַת מִן הַמִּדּוֹת שֶׁהַתּוֹרָה נִדְרֶשֶׁת בָּהֶן. מִכָּל הַדָּבָר אֲשֶׁר יַגִּידוּ לְךָ זוֹ הַקַּבָּלָה שֶׁקִּבְּלוּ אִישׁ מִפִּי אִישׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שדמ </strong> שלא לסור מדבריהם וכל מי שאינו עושה כהוראתן עובר בלאו זה דכתיב ולא תסור מכל הדבר אשר יגידו לך ימין ושמאל ואין לוקין על לאו זה כשעשה הפך הוראתן מפני שניתן לאזהרת מיתת ב&quot;ד שכל חכם שממרה על דבריהם מיתתו בחנק כדכתיב והאיש אשר יעשה בזדון וגו׳ ומת האיש ההוא. אחד דברים שלמדו אותן מפי השמועה והם תורה שבעל פה ואחד דברים שלמדום בא׳ מן המדות שהתורה נדרשת בהן ואחד דברים שעשאום גדר וסייג לתורה כל העובר על אחד מהן עובר בלאו זה כדכתיב על פי התורה אשר יורוך אלו התקנות והגזרות והמנהגות ועל המשפט אשר יאמרו אלו דברים שלמדו אותן מן הדין באחד מן המדות שהתורה נדרשת בהם מכל הדבר אשר יגידו לך ימין ושמאל זו הקבלה שקבלו איש מפי איש ותניא פרק הנחנקין כי יפלא ממך במופלא שבב&quot;ד הכתוב מדבר למעוטי תלמיד ממך זה יועץ שנחלק בעיבור הבינה הקרוי סוד ועצה למשפט זה הדין אם נחלק בדבר הלמד בדין ג&quot;ש גם הוא נהרג דאלו דין ממש כתיב להדיא בין דין לדין בין דם לדם בין דם נדה לדם זיבה או לידה שנחלקו בהן בין דין לדין בין דיני נפשות ודיני ממונות ומכות ובין נגע לנגע בין נגעי אדם נגעי בתים נגעי בגדים שנחלקו בהם דברי אלו החרמים והערכים וההקדשות שהן חלים ובאים ע&quot;י דיבור פה וכתיב ריבות ולא כתיב ריב לרבות הני והשקאת סוטה ועריפת עגלה וטהרת מצורע שכולם באים ע&quot;י ריב בשעריך זה לקט שכחה ופאה שהן לעניים דכתיב בהם ואכלו בשעריך וקמת מב&quot;ד דמדכתיב וקמת מכלל דביושבין עסקינן והיינו ב&quot;ד שיושבין במקום הקבוע להם אזהר רחמנא שכשיש מחלוקת ביניהם שיעלו לשאול ועלית אל המקום מלמד שב&quot;ה גבוה מכל הארצות אל המקום מלמד שהמקום גורם לאפוקי מצאן בבית פאגי והמרה עליהם. ובכל הדברים הולכים אחר הרוב כדכתיב אחרי רבים וגו׳ ואם אין ידוע היכן הדין נוטה בשל תורה הלך אחר המחמיר ובשל סופרים הלך אחר המקל ואף על פי שבבריתא זאת לא הוזכרו גזרות ותקנות נראה שסמך הרב ז&quot;ל על מה שאמרו בכמה מקומות אסמכינהו אלאו דלא תסור במה שיש בו גדר וסייג ובמה שאין בו גדר כחנוכה ומגלה אקרא דכתיב שאל אביך ויגדך וכדאיתא בדוכתיה והקשה עליו הרמב&quot;ן ז&quot;ל בהשגותיו על ספר המצות כמה קושיות על זה שנראה שהרב ז&quot;ל משוה כל מה שהוא מדרבנן למה שהוא מן התורה בכלל לאו זה וכבר כתבתי בהקדמת הספר מה שנוכל לתרץ לדעת הרב ז&quot;ל ואומר אני שאין כוונת הרב ז&quot;ל שהעושה הדבר שאיסורו מדרבנן שיהיה עובר על עשה דעל פי התורה אשר יורוך ועל לאו דלא תסור אלא בעשה הוא להודות ולהאמין על מה שיגזרו ויתקנו שהוא חייב לעשותו וכמו שכתב וכל המאמין במשה רבינו ובתורתו חייב לסמוך מעשה הדת עליהם ולישען עליהן וכן הלאו הוא שלא לחלוק עליהן במה שיורו אפילו בגזרות וכמו שכתב כל מי שאינו עושה כהוראתן עובר בלא תעשה שנאמר לא תסור מכל הדבר וגו׳ שרוצה לומר כל מי שאינו עושה כהוראתן אלא שחולק על עיקר הוראתו וכמו שכתב אחר כך מצות עשה לשמוע להם והעובר על כל אחת מהן עובר בלא תעשה וכו׳ שנראה שהמצוה היא השמועה שהיא ההודאה וההוראה והלאו הוא מה שהוא הפך זה שאינו מודה לדבריהם וחולק עליהם וזה נקרא עובר בענין זה על לאו זה אבל מי שעובר על דבר שהוא מדרבנן להנאתו או לתועלתו או לתאבון בין בשוגג בין במזיד הרי הוא עובר על דברי חכמים והוא פורץ גדר ישכנו נחש ואינו עובר על לאו ועשה שאם הוא עובר הרי כל דברי חכמים הם כדברי תורה ממש וכמו שהקשה עליו הרמב&quot;ן ז&quot;ל והרי השני דברים אחרים גם כן שהם דברים שלמדום מפי השמועה והם תורה שבעל פה והדברים שלמדום מן המדות שהתורה נדרשת בהם שהם נכללים בכלל לאו ועשה זה אינו אלא ענין ההודאה וההוראה כמו שכתבתי שאם הוא עובר על דבר שהוא מפי השמועה שהיא תורה שבעל פה יהיה נכלל בכלל הלאו או העשה של אותו הכתוב ויהיה עובר על אותו הלאו או עשה שנדרש עליו הדבר ההוא. וכן הדבר שנילמד מאחד מן המדות שהתורה נדרשת בהן הוא נכלל באותו הענין שנדרש עליו והעובר יהיה עובר על אותו לאו או עשה הנדרש עליו אם ילמדו על הדבר ההיא שהיא כמו הלאו ועשה אבל לא יהיה עובר על לאו ועשה זה כי אם בהיותו חולק ומכחיש עיקר הדבר שדרשו או שלמדו או שגזרו שאינו אמת אצלו ואם מורה לעשות כדבריו יהיה זקן ממרא כמו שיבאר אחר זה:</p>
               </div>
             </div>
@@ -285,8 +296,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-1">Mishneh Torah, Rebels 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין הַגָּדוֹל שֶׁדָּרְשׁוּ בְּאַחַת מִן הַמִּדּוֹת כְּפִי מַה שֶּׁנִּרְאָה בְּעֵינֵיהֶם שֶׁהַדִּין כָּךְ וְדָנוּ דִּין. וְעָמַד אַחֲרֵיהֶם בֵּית דִּין אַחֵר וְנִרְאֶה לוֹ טַעַם אַחֵר לִסְתֹּר אוֹתוֹ. הֲרֵי זֶה סוֹתֵר וְדָן כְּפִי מַה שֶּׁנִּרְאֶה בְּעֵינָיו. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז ט)</span> &quot;אֶל הַשֹּׁפֵט אֲשֶׁר יִהְיֶה בַּיָּמִים הָהֵם&quot;. אֵינְךָ חַיָּב לָלֶכֶת אֶלָּא אַחַר בֵּית דִּין שֶׁבְּדוֹרְךָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב&quot;ד </strong> הגדול שדרשו באחד מן המדות ועמד ב&quot;ד אחר ונראה לו טעם אחר לסתור אותו הרי זה סותרה כפי מה שנראה בעיניו כדכתיב או אל השופט אשר יהיה בימים ההם אין לך אלא שופט שבימיך.</p>
               </div>
             </div>
@@ -301,8 +317,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 2:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-2-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-2">Mishneh Torah, Rebels 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁגָּזְרוּ גְּזֵרָה אוֹ תִּקְּנוּ תַּקָּנָה וְהִנְהִיגוּ מִנְהָג וּפָשַׁט הַדָּבָר בְּכָל יִשְׂרָאֵל. וְעָמַד אַחֲרֵיהֶם בֵּית דִּין אַחֵר וּבִקֵּשׁ לְבַטֵּל דְּבָרִים הָרִאשׁוֹנִים וְלַעֲקֹר אוֹתָהּ הַתַּקָּנָה וְאוֹתָהּ הַגְּזֵרָה וְאוֹתוֹ הַמִּנְהָג. אֵינוֹ יָכוֹל עַד שֶׁיִּהְיֶה גָּדוֹל מִן הָרִאשׁוֹנִים בְּחָכְמָה וּבְמִנְיָן. הָיָה גָּדוֹל בְּחָכְמָה אֲבָל לֹא בְּמִנְיָן. בְּמִנְיָן אֲבָל לֹא בְּחָכְמָה. אֵינוֹ יָכוֹל לְבַטֵּל אֶת דְּבָרָיו. אֲפִלּוּ בָּטַל הַטַּעַם שֶׁבִּגְלָלוֹ גָּזְרוּ הָרִאשׁוֹנִים אוֹ הִתְקִינוּ אֵין הָאַחֲרוֹנִים יְכוֹלִין לְבַטֵּל עַד שֶׁיְּהוּ גְּדוֹלִים מֵהֶם. וְהֵיאַךְ יִהְיוּ גְּדוֹלִים מֵהֶם בְּמִנְיָן הוֹאִיל וְכָל בֵּית דִּין וּבֵית דִּין שֶׁל שִׁבְעִים וְאֶחָד הוּא. זֶה מִנְיַן חַכְמֵי הַדּוֹר שֶׁהִסְכִּימוּ וְקִבְּלוּ הַדָּבָר שֶׁאָמְרוּ בֵּית דִּין הַגָּדוֹל וְלֹא חָלְקוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב&quot;ד </strong> שגזרו או תקנו ופשט הדבר אין ב&quot;ד אחר יכול לבטל אפילו בטל הטעם שבגללו גזרו עד שיהיה גדול בחכמה ובמניין ובדברים שראו ב&quot;ד לגזור ולאסור לעשות סייג אם פשט איסורן בכל ארץ ישראל אין ב&quot;ד הגדול שאחריו יכולים לבטל אלא לפי שעה כדברי תורה שיכולין ב&quot;ד לעקור בהוראת שעה כדי להציל רבים או להחזיר רבים לדת כאליהו בהר הכרמל דסמכו עליו לשחוטי חוץ משום דהוה מוחזק וכדאמ׳ ס&quot;פ הנחנקין וביבמות דרשינן לה מדכתיב אליו תשמעון אפילו אומר לך וכו׳ ובקראי משמע שעל פי הדיבור עשה כדכתיב וכדברך עשיתי וגו׳ שהקרבתי בשעת איסור הבמות דכיון שעל פי הדיבור הותר לצורך שעה הוא הדין שלא ע&quot;פ הדיבור שהרי אין נביא רשאי לחדש דבר וכמו שכתבו בתוספות התם ס&quot;פ הנחנקין.</p>
               </div>
             </div>
@@ -317,8 +338,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 2:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-2-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-5">Mishneh Torah, Rebels 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁנִּרְאֶה לָהֶן לִגְזֹר גְּזֵרָה אוֹ לְתַקֵּן תַּקָּנָה אוֹ לְהַנְהִיג מִנְהָג צְרִיכִין לְהִתְיַשֵּׁב בַּדָּבָר וְלֵידַע תְּחִלָּה אִם רֹב הַצִּבּוּר יְכוֹלִין לַעֲמֹד בָּהֶן אוֹ אִם אֵין יְכוֹלִין לַעֲמֹד. וּלְעוֹלָם אֵין גּוֹזְרִין גְּזֵרָה עַל הַצִּבּוּר אֶלָּא אִם כֵּן רֹב הַצִּבּוּר יְכוֹלִין לַעֲמֹד בָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> ב&quot;ד גוזרין גזרה על הצבור אלא אם כן רוב הצבור יכולים לעמוד בה וב&quot;ד הקטן מהם יכולים לבטלה:</p>
               </div>
             </div>
@@ -333,8 +359,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 2:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-2-9">Mishneh Torah, Rebels 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹאִיל וְיֵשׁ לְבֵית דִּין לִגְזֹר וְלֶאֱסֹר דָּבָר הַמֻּתָּר וְיַעֲמֹד אִסּוּרוֹ לְדוֹרוֹת וְכֵן יֵשׁ לָהֶן לְהַתִּיר אִסּוּרֵי תּוֹרָה לְפִי שָׁעָה. מַהוּ זֶה שֶׁהִזְהִירָה תּוֹרָה <span class="source-small">(דברים יג א)</span> &quot;לֹא תּוֹסִיף עָלָיו וְלֹא תִגְרַע מִמֶּנּוּ&quot;. שֶׁלֹּא לְהוֹסִיף עַל דִּבְרֵי תּוֹרָה וְלֹא לִגְרֹעַ מֵהֶן וְלִקְבֹּעַ הַדָּבָר לְעוֹלָם בְּדָבָר שֶׁהוּא מִן הַתּוֹרָה בֵּין בַּתּוֹרָה שֶׁבִּכְתָב בֵּין בַּתּוֹרָה שֶׁבְּעַל פֶּה. כֵּיצַד. הֲרֵי כָּתוּב בַּתּוֹרָה <span class="source-small">(שמות כג יט)</span> &quot;לֹא תְבַשֵּׁל גְּדִי בַּחֲלֵב אִמּוֹ&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזֶּה הַכָּתוּב אָסַר לְבַשֵּׁל ולֶאֱכל בָּשָׂר בְּחָלָב. בֵּין בְּשַׂר בְּהֵמָה בֵּין בְּשַׂר חַיָּה. אֲבָל בְּשַׂר הָעוֹף מֻתָּר בְּחָלָב מִן הַתּוֹרָה. אִם יָבוֹא בֵּית דִּין וְיַתִּיר בְּשַׂר חַיָּה בְּחָלָב הֲרֵי זֶה גּוֹרֵעַ. וְאִם יֶאֱסֹר בְּשַׂר הָעוֹף וְיֹאמַר שֶׁהוּא בִּכְלַל הַגְּדִי וְהוּא אָסוּר מִן הַתּוֹרָה הֲרֵי זֶה מוֹסִיף. אֲבָל אִם אָמַר בְּשַׂר הָעוֹף מֻתָּר מִן הַתּוֹרָה וְאָנוּ נֶאֱסֹר אוֹתוֹ וְנוֹדִיעַ לָעָם שֶׁהוּא גְּזֵרָה שֶׁלֹּא יָבוֹא מִן הַדָּבָר חוֹבָה וְיֹאמְרוּ הָעוֹף מֻתָּר מִפְּנֵי שֶׁלֹּא נִתְפָּרֵשׁ כָּךְ הַחַיָּה מֻתֶּרֶת שֶׁהֲרֵי לֹא נִתְפָּרְשָׁה. וְיָבוֹא אַחֵר לוֹמַר אַף בְּשַׂר בְּהֵמָה מֻתֶּרֶת חוּץ מִן הָעֵז. וְיָבוֹא אַחֵר לוֹמַר אַף בְּשַׂר הָעֵז מֻתָּר בַּחֲלֵב פָּרָה אוֹ הַכִּבְשָׂה שֶׁלֹּא נֶאֱמַר אֶלָּא אִמּוֹ שֶׁהִיא מִינוֹ. וְיָבוֹא אַחֵר לוֹמַר אַף בַּחֲלֵב הָעֵז שֶׁאֵינָהּ אִמּוֹ מֻתָּר שֶׁלֹּא נֶאֱמַר אֶלָּא אִמּוֹ. לְפִיכָךְ נֶאֱסֹר כָּל בָּשָׂר בְּחָלָב אֲפִלּוּ בְּשַׂר עוֹף. אֵין זֶה מוֹסִיף אֶלָּא עוֹשֶׂה סְיָג לַתּוֹרָה. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שמה </strong> שלא להוסיף על התורה לא במצות שבכתב ולא בתורה שבעל פה כמו שאוסר בשר העוף ואומר שהוא אסור מן התורה חייב משום אל תוסף אלא א&quot;כ יאמר בשר העוף מותר מן התורה ואנו נאסור אותו משום גדר וסייג שלא יבוא לאכול בשר חיה שאינו מפורש גם כן והוא אסור מה&quot;ת:<br><strong> אזהרת שמו </strong> שלא לגרוע מן התורה שבכתב או בעל פה כמו אם יתיר בשר חיה בחלב הרי זה גורע:</p>
               </div>
             </div>
@@ -350,8 +381,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-1">Mishneh Torah, Rebels 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאֵינוֹ מוֹדֶה בַּתּוֹרָה שֶׁבְּעַל פֶּה אֵינוֹ זָקֵן מַמְרֵא הָאָמוּר בַּתּוֹרָה. אֶלָּא הֲרֵי זֶה בִּכְלַל הָאֶפִּיקוֹרוֹסִין [וּמִיתָתוֹ בְּכָל אָדָם]:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שאינו מודה בתורה שבע&quot;פ אינו זקן ממרא אלא הרי הוא בכלל המינים שמורידים אותם ולא מעלין אבל זקן ממרא האמור בתורה הוא חכם שיש בידו קבלה ודן ככל חכמי ישראל וחלק עמהם בדין מן הדינים והורה לעשות שלא כהוראתם חייב מיתה כשיהיה חכם שהגיע להוראה כדכתיב כי יפלא ואין ב&quot;ד יכולין למחול לו כדאיתא התם דף פ&quot;ח כדי שלא ירבו מחלוקת בישראל ואינו חייב עד שיחלוק בדבר שחייבין על זדונו כרת ועל שגגתו חטאת כדיליף התם לרבי מאיר מדכתיב הכא כי יפלא ממך דבר וכתיב התם ונעלם דבר מעיני הקהל מה להלן דבר שחייב על זדונו כרת ועל שגגתו חטאת וכדילפי׳ בהוריות אף כאן דבר שזדונו וכו׳ ותרגמו התם האי מתניתין דלעיל דקתני דמיקטיל אבל הני דחשיב בה הלכה וג&quot;ש וערכין וחרמין והקדשות וכולהו הנך דתתוקם כרבי מאיר דאיכא צד בכולהו דאתי לידי זדון כרת ושגגת חטאת ואפילו בדיני ממונות יכול לבא לידי כך כגון לקדש בהן האשה וכדמפרש התם בכולהו דתני בההיא מתניתין וכן בתפילין אף על פי שאין בהם כרת וחטאת אם חלק בהם חייב והחיוב בזה מפי הקבלה וצריך שיורה לעשות כהוראתו ובלאו הכי לא מחייב כדתנן התם ואם הורה לעשות חייב כדכתיב והאיש אשר יעשה בזדון אינו חייב עד שיורה לעשות או יעשה הוא על פי הוראתו כמורה בחלב ודם דמעיקרא לאו בר קטלא הוא וכשעושה דבר שיש בו חיוב מיתת ב&quot;ד דמעיקרא נמי הוה מיקטיל בלא הוראה אפ&quot;ה השתא לא בעי התראה כמעיקרא ומסית דלא בעי התראה השתא אי אמר טעמא לא מקבלינן מיניה שהרי שמע מפי ב&quot;ד שלא לעשות ועשה כדאיתא התם דף פ&quot;ח ויחלוק עליהם והן יושבין בלשכת הגזית כדילפינן מדכתיב מן המקום ההוא המקום גורם לאפוקי מצאן בבית פאגי כדאמר׳ לעיל ותלמיד שלא הגיע להוראה כדכתיב יפלא וגו׳ וכל הפטורים ממיתה מכין ועונשים אותם.</p>
               </div>
             </div>
@@ -366,8 +402,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 3:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-3-8">Mishneh Torah, Rebels 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵיצַד דָּנִין זָקֵן מַמְרֵא. בְּעֵת שֶׁיִּפָּלֵא דָּבָר וְיוֹרֶה בּוֹ חָכָם הַמַּגִּיעַ לְהוֹרָאָה בֵּין בְּדָבָר שֶׁיֵּרָאֶה בְּעֵינָיו בֵּין בְּדָבָר שֶׁקִּבֵּל מֵרַבּוֹתָיו. הֲרֵי הוּא וְהַחוֹלְקִין עִמּוֹ עוֹלִין לִירוּשָׁלַיִם וּבָאִין לְבֵית דִּין שֶׁעַל פֶּתַח הַר הַבַּיִת. אוֹמְרִים לָהֶן בֵּית דִּין כָּךְ הוּא הַדִּין. אִם שָׁמַע וְקִבֵּל מוּטָב וְאִם לָאו בָּאִין כֻּלָּן לְבֵית דִּין שֶׁעַל פֶּתַח הָעֲזָרָה וְאוֹמְרִים לָהֶם גַּם הֵם כָּךְ הוּא הַדִּין. אִם קִבְּלוּ יֵלְכוּ לָהֶן וְאִם לָאו כֻּלָּן בָּאִין לְבֵית דִּין הַגָּדוֹל לְלִשְׁכַּת הַגָּזִית שֶׁמִּשָּׁם תּוֹרָה יוֹצֵאת לְכָל יִשְׂרָאֵל שֶׁנֶּאֱמַר <span class="source-small">(דברים יז י)</span> &quot;מִן הַמָּקוֹם הַהוּא אֲשֶׁר יִבְחַר ה׳&quot;. וּבֵית דִּין אוֹמֵר לָהֶם כָּךְ הוּא הַדִּין וְיוֹצְאִין כֻּלָּן. חָזַר זֶה הֶחָכָם לְעִירוֹ וְשָׁנָה וְלִמֵּד כְּדֶרֶךְ שֶׁהוּא לָמוּד הֲרֵי זֶה פָּטוּר. הוֹרָה לַעֲשׂוֹת אוֹ שֶׁעָשָׂה כְּהוֹרָאָתוֹ חַיָּב מִיתָה וְאֵינוֹ צָרִיךְ הַתְרָאָה. אֲפִלּוּ נָתַן טַעַם לִדְבָרָיו אֵין שׁוֹמְעִין לוֹ אֶלָּא כֵּיוָן שֶׁבָּאוּ עֵדִים שֶׁעָשָׂה כְּהוֹרָאָתוֹ אוֹ שֶׁהוֹרָה לַאֲחֵרִים לַעֲשׂוֹת גּוֹמְרִין דִּינוֹ לְמִיתָה בְּבֵית דִּין שֶׁבְּעִירוֹ. וְתוֹפְסִין אוֹתוֹ וּמַעֲלִין אוֹתוֹ מִשָּׁם לִירוּשָׁלַיִם. וְאֵין מְמִיתִין אוֹתוֹ בְּבֵית דִּין שֶׁבְּעִירוֹ וְלֹא בְּבֵית דִּין הַגָּדוֹל שֶׁיָּצָא חוּץ לִירוּשָׁלַיִם אֶלָּא מַעֲלִין אוֹתוֹ לְבֵית דִּין הַגָּדוֹל שֶׁבִּירוּשָׁלַיִם. וְעַד הָרֶגֶל מְשַׁמְּרִין אוֹתוֹ וְחוֹנְקִין אוֹתוֹ בָּרֶגֶל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יג יב)</span> &quot;וְכָל יִשְׂרָאֵל יִשְׁמְעוּ וְיִרָאוּ&quot; מִכְּלָל שֶׁצָּרִיךְ הַכְרָזָה. וְאַרְבָּעָה צְרִיכִין הַכְרָזָה. זָקֵן מַמְרֵא. וְעֵדִים זוֹמְמִין. וְהַמֵּסִית. וּבֵן סוֹרֵר וּמוֹרֶה. שֶׁהֲרֵי בְּכֻלָּן נֶאֱמַר יִשְׁמְעוּ וְיִרָאוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זקן </strong> ממרא עולה לירושלים עד לפתח הר הבית אם שמע וקבל מב&quot;ד שהוא שם מוטב ואם לאו כולם באים לפתח העזרה אם לא קבל כולן באים לב&quot;ד הגדול ללשכת הגזית שמשם תורה יוצאה לכל ישראל שנאמר מן המקום ההוא אשר יבחר ה׳ אם לא קבל והלך והורה לעשות או עשה חייב מיתה ומעלין אותו לב&quot;ד הגדול ומשמרים אותו עד הרגל וממיתים אותו ברגל כדכתיב וכל ישראל ישמעו ויראו ולא יזידון עוד שצריך להשמיע מיתתו לרבים שעומדים שם ברגל כדי שלא יעשה אדם עוד כן וצריך גם כן הכרזה מדכתיב ישמעו ויראו וד׳ צריכין הכרזה כדאמ׳ לעיל בהלכות עדות כדכתיב בעדים זוממים גם כן ישמעו ויראו:</p>
               </div>
             </div>
@@ -383,8 +424,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-4-1">Mishneh Torah, Rebels 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זֶה שֶׁחָלַק עַל בֵּית דִּין הַגָּדוֹל בְּדָבָר שֶׁחַיָּבִין עַל זְדוֹנוֹ כָּרֵת וְעַל שִׁגְגָתוֹ חַטָּאת. בֵּין שֶׁהָיוּ הֵן אוֹסְרִים וְהוּא מַתִּיר בֵּין שֶׁהָיוּ הֵן מַתִּירִין וְהוּא אוֹסֵר הֲרֵי זֶה חַיָּב מִיתָה. אֲפִלּוּ הוּא הָיָה אוֹמֵר מִפִּי הַקַּבָּלָה וְאָמַר כָּךְ קִבַּלְתִּי מֵרַבּוֹתַי וְהֵן אוֹמְרִים כָּךְ נִרְאֶה בְּעֵינֵינוּ שֶׁהַדִּין נוֹתֵן. הוֹאִיל וְנָשָׂא וְנָתַן עֲלֵיהֶן בַּדָּבָר וְעָשָׂה אוֹ שֶׁהוֹרָה לַעֲשׂוֹת הֲרֵי זֶה חַיָּב. וְאֵין צָרִיךְ לוֹמַר אִם הֵם מוֹרִים מִפִּי הַקַּבָּלָה. וְכֵן אִם חָלַק עֲלֵיהֶם בִּגְזֵרָה מִן הַגְּזֵרוֹת שֶׁגָּזְרוּ בְּדָבָר שֶׁיֵּשׁ בְּשִׁגְגָתוֹ חַטָּאת וּזְדוֹנוֹ כָּרֵת. כְּגוֹן שֶׁהִתִּיר הֶחָמֵץ בְּיוֹם אַרְבָּעָה עָשָׂר בְּנִיסָן בְּשָׁעָה שִׁשִּׁית. אוֹ אֲסָרוֹ בַּהֲנָאָה בְּשָׁעָה חֲמִישִׁית. הֲרֵי זֶה חַיָּב מִיתָה. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה </strong> שחלק על ב&quot;ד הגדול אפילו היה אומר הוא מפי הקבלה והם אומרים כך נראה בעינינו שהדין נוטה חייב ואצ&quot;ל אם אמרו הם ג&quot;כ מפי הקבלה כר׳ אלעזר שאמר התם הכי דאפילו הן אומרים כך הוא בעינינו נהרג כדי שלא ירבו מחלוקת בישראל ולא הרגו את עקביא בן מהללאל מפני שלא הורה הלכה למעשה בד׳ דברים שנחלק על חכמים בלשכת הגזית כדאיתא בעדיות וכן אם חלק בגזרה מן הגזרות כגון שהתיר חמץ בשעה ששית או אסרו בהנאה חמשית דאיכא כרת בזדונו וחטאת בשוגג לענין אם קדש בו את האשה ואחד שנחלק בדבר שיש בזדונו כרת וכו׳ או בדבר המביא לידי כך בכל הני דמפרש התם בהאי מתניתין אליבא דר׳ מאיר וכדאמרינן לעיל וכדמפרש להו הרב ז&quot;ל כדמפרש להו התם בגמרא ואם הורה הזקן במצות תפילין להוסיף חמישית בבית החיצון וחיוב זה הוא מפי הקבלה אף על פי שאינו דבר שחייבים על זדונו כרת דכתיב על פי התורה אשר יורוך וכתיב לא תסור מן הדבר שצריך שיהא שם הדבר ולא יסור ממנו שלא יפסול אותו בתוספתו ואם היה גרוע הרי אין שם דבר ולא ימצא זה כי אם בתפילין כמו שאמר בגמרא לדעת ר׳ יהודה ומודה לר׳ מאיר בדבר שחייבו על זדונו כרת דלא בעי דקדוק זה כמו שכתב הראב&quot;ד ז&quot;ל ובשאר מצות שבתורה פטור מן המיתה:</p>
               </div>
             </div>
@@ -400,8 +446,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-1">Mishneh Torah, Rebels 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַלֵל אָבִיו וְאִמּוֹ נִסְקָל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כ ט)</span> &quot;אָבִיו וְאִמּוֹ קִלֵּל דָּמָיו בּוֹ&quot;. וְאֶחָד הַמְקַלֵּל בְּחַיֵּיהֶן אוֹ לְאַחַר מִיתָתָן הֲרֵי זֶה נִסְקָל. וְצָרִיךְ עֵדִים וְהַתְרָאָה כִּשְׁאָר כָּל מְחֻיָּבֵי מִיתוֹת בֵּית דִּין. וְאֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה וְכֵן הַטֻּמְטוּם וְהָאַנְדְּרוֹגִינוּס. וְהוּא שֶׁיִּהְיוּ גְּדוֹלִים שֶׁהִגִּיעוּ לִכְלַל הָעֳנָשִׁין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שמז </strong> שלא לקלל אב ואם ואזהרתיה מלא תקלל חרש וכדאמר׳ בשבועות פרק קמא מה חרש מיוחד שהוא בחיים אף כל שהוא בחיים ובפרק ד׳ מיתות מפיק לה מדכתיב לא תקלל במה הצד כדאיתא התם דף ס&quot;ו. והמקלל אביו ואמו נסקל כדכתיב אביו ואמו קלל דמיו בו וכתיב בסקילה דמיהם בם ואחד המקלל בחייהם או לאחר מיתתם הרי זה נסקל כדילפינן פרק אלו הן הנחנקין דף פ&quot;ה אביו ואמו קלל לאחר מיתה דקרא יתירא הוא דהא כתיב ברישיה דקרא אשר יקלל את אביו ואת אמו ולר׳ יאשיה דאיצטריך ליה אביו ואמו לאביו בלא אמו או איפכא נפקא ליה מדכתיב ומקלל אביו ואמו מות יומת וצריך עדים והתראה ככל מחוייבי מיתה כדילפינן לעיל בהלכות סנהדרין. ואחד האיש ואחד האשה ואחד טומטום ואנדרוגינוס כדתניא פ&quot;ד מיתות דף ס&quot;ו איש איש כי יקלל וגו׳ מה ת&quot;ל איש איש לרבות בת שקללה וטומטום ואנדרוגינוס דהא דאמרינן בעלמא השוה הכתוב אשה לאיש היינו היכא דכתיב בלשון זכר אבל היכא דכתיב בלשון איש ממעטינן אשה אי לאו דכתיב איש תרי זימני דאין מיעוט א&quot;מ אלא לרבות והוא שיהיו גדולים דאי לא הכי לא הוו בני עונשין ואביו ואמו לר׳ יונתן משמע שניהם כאחד ומשמע כל אחד בפני עצמו עד שיפרוט לך הכתוב יחדו כדאיתא התם ובכמה דוכתיה. אינו חייב סקילה עד שיקללם בשם מן השמות המיוחדים כדתנן התם וילפינן לה בגמרא מדכתיב בנקבו שם יומת מה ת&quot;ל שם היה לו לכתוב בנקבו יומת מה ת&quot;ל שם אם אינו ענין לו דהא כתיב ונוקב שם ה׳ יומת תנהו ענין למקלל אביו ואמו כר׳ מנחם דדריש הכי וכדאמרינן פרק כ&quot;ו מהלכות סנהדרין ואם קללם בכינוי פטור וכדתנן התם וחכמים פוטרים אבל הוא לוקה כמו שלוקה על כל אדם כשר כדילפינן בהלכות סנהדרין כדאמר׳. המקלל אבי אביו או אבי אמו הוי כמקלל כל אדם מישראל דדוקא אאביו חייב סקילה:</p>
               </div>
             </div>
@@ -416,8 +467,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 5:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-5-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-5">Mishneh Torah, Rebels 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּכֶּה אָבִיו וְאִמּוֹ מִיתָתוֹ בְּחֶנֶק שֶׁנֶּאֱמַר <span class="source-small">(שמות כא טו)</span> &quot;מַכֵּה אָבִיו וְאִמּוֹ מוֹת יוּמָת&quot;. וְצָרִיךְ עֵדִים וְהַתְרָאָה כִּשְׁאָר כָּל מְחֻיָּבֵי מִיתַת בֵּית דִּין. וְאֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה וְכֵן הַטֻּמְטוּם וְאַנְדְּרוֹגִינוּס וְהוּא שֶׁיַּגִּיעוּ לִכְלַל עֳנָשִׁין. אֵינוֹ חַיָּב חֶנֶק עַד שֶׁיַּעֲשֶׂה בָּהֶן חַבּוּרָה אֲבָל אִם לֹא עָשָׂה בָּהֶן חַבּוּרָה הֲרֵי זֶה כְּמַכֶּה אֶחָד מִיִּשְׂרָאֵל. וְהַמַּכֶּה אוֹתָן לְאַחַר מִיתָה פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שמח </strong> שלא להכות אב ואם ואזהרתיה מלא יוסיף שהוא מוזהר שלא להכות אדם מישראל ואביו ואמו בכלל ופן יוסיף מיירי בבנו אף ע&quot;ג דארבעים יכנו לא מיירי בבנו וחייב חנק כדתנן ריש הנחנקין מדכתיב מכה אביו ואמו מות יומת דכל מיתה האמורה בתורה סתם אינה אלא חנק וכדילפינן לעיל בהלכות סנהדרין וצריך עדים והתראה כשאר מחוייבים כדילפינן התם לעיל ואחד האיש ואחד האשה וטומטום ואנדרוגינוס דהשוה הכתוב אשה לאיש לכל עונשין שבתורה. ואינו חייב עד שיעשה חבורה דאמרינן התם מכה אביו ואמו אימא עד דקטיל ליה לא ס&quot;ד דאי קטל חד בסייף ואי קטל אביו בחנק ולמ&quot;ד דמיתה חנק חמור יליף ליה התם מדכתיב הכהו וימות משמע דהכאה סתם לאו מיתה היא אבל חבורה מיהא בעיא מדכתיב מכה אדם ומכה בהמה מה מכה בהמה עד דעביד בה חבורה כדכתיב מכה נפש בהמה אף מכה אדם ומשום דבבהמה הכחישה באבנים נמי חייב אע&quot;ג דלא עביד בה חבורה אמרינן אם אינו ענין למכה נפש בהמה תנהו ענין לנפש אדם דהיינו אביו דבעיא חבורה והיקשא למה לי לדחזקיה מה מכה בהמה לא חילקת בה וכו׳ כדאיתא התם וכשאינו עושה חבורה הוי כמכה אחד מישראל. המכה לאחר מיתה פטור משום דליכא חבורה וכדאמרינן התם.</p>
               </div>
             </div>
@@ -432,8 +488,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 5:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-5-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-6">Mishneh Torah, Rebels 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהִכָּה אֶת אָבִיו עַל אָזְנוֹ וְחֵרְשׁוֹ חַיָּב וְנֶהֱרָג. שֶׁאִי אֶפְשָׁר שֶׁיֵּעָשֶׂה חֵרֵשׁ בְּלֹא חַבּוּרָה אֶלָּא יָצָאת טִפַּת דָּם בִּפְנִים בָּאֹזֶן וְנִתְחָרֵשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שהכה אביו וחרשו חייב דאי אפשר בלא חבורה ואם עשה להם חבורה לרפואה פטור דכתיב מכה אדם ומכה בהמה מה מכה בהמה לרפואה פטור מתשלומין שהרי לא הזיקה אף מכה אדם דהיינו אביו לרפואה פטור ממיתה אף על גב דאיכא חבורה.</p>
               </div>
             </div>
@@ -448,8 +509,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 5:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-5-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-9">Mishneh Torah, Rebels 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁתוּקִי חַיָּב עַל אִמּוֹ וְאֵינוֹ חַיָּב עַל אָבִיו אַף עַל פִּי שֶׁנִּבְדְּקָה אִמּוֹ וְאָמְרָה בֶּן פְּלוֹנִי הוּא אֵינוֹ נִסְקָל אוֹ נֶחְנָק עַל פִּיהָ. אֲבָל בְּנוֹ מִן הַשִּׁפְחָה וּמִן הָעַכּוּ&quot;ם אֵינוֹ חַיָּב לֹא עַל אָבִיו וְלֹא עַל אִמּוֹ. וְכֵן גֵּר שֶׁהוֹרָתוֹ שֶׁלֹּא בִּקְדֻשָּׁה אַף עַל פִּי שֶׁלֵּדָתוֹ בִּקְדֻשָּׁה אֵינוֹ חַיָּב עַל מַכַּת אָבִיו וְקִלְלָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שתוקי </strong> חייב על אמו אבל לא על אביו אע&quot;פ שנבדקה אמו ואמרה מפלוני הוא לא סמכינן עלה. בנו מן השפחה ומן הנכרית אינו חייב לא על אביו ולא על אמו דלא בנו הוא לענין יבום ולענין ירושה כדאיתא בדוכתיה וכן גר שהורתו שלא בקדושה אע&quot;פ שלידתו בקדושה וכיון שאינו חייב על אביו אינו חייב על אמו שהולידו בקדושה משום דכתיב ומקלל אביו ואמו את שהוא חייב על אביו חייב על אמו וכו׳.</p>
               </div>
             </div>
@@ -464,8 +530,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 5:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-5-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-12">Mishneh Torah, Rebels 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיוּ אָבִיו וְאִמּוֹ רְשָׁעִים גְּמוּרִים וְעוֹבְרֵי עֲבֵרוֹת. אֲפִלּוּ נִגְמַר דִּינָן לַהֲרִיגָה וְהֵם יוֹצְאִים לֵהָרֵג אָסוּר לְהַכּוֹתָן וּלְקַלְּלָם. וְאִם קִלֵּל אוֹ חָבַל בָּהֶן פָּטוּר. וְאִם עָשׂוּ תְּשׁוּבָה הֲרֵי זֶה חַיָּב וְנֶהֱרָג עֲלֵיהֶן אַף עַל פִּי שֶׁהֲרֵי הֵן יוֹצְאִין לְמִיתָה. בַּמֶּה דְּבָרִים אֲמוּרִים בִּבְנוֹ. אֲבָל אַחֵר שֶׁבָּא וְהִכָּהוּ וְקִלֵּל אַחַר שֶׁנִּגְמַר דִּינוֹ אַף עַל פִּי שֶׁעָשָׂה תְּשׁוּבָה הֲרֵי זֶה פָּטוּר הוֹאִיל וְהוּא הוֹלֵךְ לְמִיתָה. וְאִם בִּיְּשׁוֹ חַיָּב בִּקְנַס הַמְבַיֵּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קלל </strong> או חבל אביו הרשע פטור דמקשינן הכאה לקללה מה קללה בעושה מעשה עמך כדכתיב ונשיא בעמך אף מכה בעושה מעשה עמך דגמרינן במה מצינו ואית דאמרי היקשא דכתיב מכה אביו ומקלל אביו גבי הדדי בפרשת משפטים אלא שמקרא אחד מפסיק בנתים ואם עשו תשובה אף ע&quot;פ שיוצאין למיתה חייבין מידי דהוה לאחר מיתה דחייב המקלל ומכה דפטור היינו משום דליכא חבורה והכא איתא חבורה דחי הוא אלא דסופו למות ואפ&quot;ה אחר שהכהו או קללו פטור מדכתיב בעמך במקויים שבעמך שראוי להתקיים ולא זה שנגמר דינו ומקשינן הכאה לקללה ואם ביישו חייב בבשת כיון דעשה תשובה ולא גמרינן מקללה.</p>
               </div>
             </div>
@@ -480,8 +551,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 5:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-5-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 5:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-5-13">Mishneh Torah, Rebels 5:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עָבַר אָבִיו וְאִמּוֹ עַל עֲבֵרָה שֶׁלּוֹקִין עָלֶיהָ וְהָיָה הוּא חַזָּן לִפְנֵי הַדַּיָּנִים לֹא יַכֶּה אוֹתָם. וְכֵן אִם נִתְחַיֵּב נִדּוּי לֹא יִהְיֶה שָׁלִיחַ לְנַדּוֹתָם. וְלֹא יִדְחֹף אוֹתָם וְלֹא יְבַזֶּה אוֹתָם בִּשְׁלִיחוּת בֵּית דִּין אַף עַל פִּי שֶׁהֵן רְאוּיִין לְכָךְ וְלֹא עָשׂוּ תְּשׁוּבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> הבן נעשה שליח להכות האב אם נתחייב מלקות ולא לבזותם אף על פי שראוים לכך חוץ ממסית ומדיח כדתנא ר׳ ישמעאל התם מדכתיב לא תחמול ולא תכסה עליו ואם נתחייב שבועה לבנו משביעו בשבועה שאין בה אלה והמבזה אביו ארור מפי הגבורה וכו׳:</p>
               </div>
             </div>
@@ -497,8 +573,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-1">Mishneh Torah, Rebels 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כִּבּוּד אָב וָאֵם מִצְוַת עֲשֵׂה גְּדוֹלָה וְכֵן מוֹרָא אָב וָאֵם. שָׁקַל אוֹתָן הַכָּתוּב בִּכְבוֹדוֹ וּבְמוֹרָאוֹ. כָּתוּב <span class="source-small">(שמות כ יב)</span> &quot;כַּבֵּד אֶת אָבִיךָ וְאֶת אִמֶּךָ&quot; וְכָתוּב <span class="source-small">(משלי ג ט)</span> &quot;כַּבֵּד אֶת ה׳ מֵהוֹנֶךָ&quot;. וּבְאָבִיו וְאִמּוֹ כָּתוּב <span class="source-small">(ויקרא יט ג)</span> &quot;אִישׁ אִמּוֹ וְאָבִיו תִּירָאוּ&quot; וְכָתוּב <span class="source-small">(דברים ו יג)</span> &quot;אֶת ה׳ אֱלֹהֶיךָ תִּירָא&quot;. כְּדֶרֶךְ שֶׁצִּוָּה עַל כְּבוֹד שְׁמוֹ הַגָּדוֹל וּמוֹרָאוֹ כָּךְ צִוָּה עַל כְּבוֹדָם וּמוֹרָאָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות רלו </strong> לכבד אב ואם דכתיב בדברות כבד את אביך ואת אמך ובירוש׳ דפאה אמרינן כיבוד אב ואם החמיר בו הכתוב מכבוד המקום דכתיב ביה כבד ה׳ מהונך אם יתן לך בית תקבע מזוזה טלית שים ציצית וכו׳ אבל בכיבוד אב ואם כתיב כבד את אביך אפילו אין לך כלום צריך אתה לטחון בריחים בשבילם:<br><strong> מצות רלז </strong> לירא מהם דכתיב איש אמו ואביו תיראו והשוה הכתוב מוראם למורא המקום כדכתיב את ה׳ אלהיך תירא והמקלל אביו ואמו בסקילה כמגדף. הקדים אב לאם לכבוד ואם לאב למורא ללמד ששניהם שוים לכבוד ולמורא וכדתנן סוף כריתות ובכל מה שהוא כבודם ומוראם כדמפרש להו הרב ז&quot;ל חייב בכל מדאוריתא דהוו בכלל כיבוד ומורא.</p>
               </div>
             </div>
@@ -513,8 +594,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 6:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-6-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 6:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-6">Mishneh Torah, Rebels 6:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה חַיָּבִין בְּמוֹרָא וְכָבוֹד. אֶלָּא שֶׁהָאִישׁ יֵשׁ בְּיָדוֹ לַעֲשׂוֹת וְהָאִשָּׁה אֵין בְּיָדָהּ לַעֲשׂוֹת שֶׁהֲרֵי רְשׁוּת אֲחֵרִים עָלֶיהָ. לְפִיכָךְ אִם נִתְגָּרְשָׁה אוֹ נִתְאַלְמְנָה הֲרֵי שְׁנֵיהֶם שָׁוִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחד </strong> האיש ואחד האשה חייבין במורא וכבוד בכיבוד כתיב סתם כבד את אביך וגו׳ אפילו הבת ובמורא דכתיב איש אמו ואביו תיראו ואמרינן פרק קמא דקידושין אין לי אלא איש אשה מנין כשהוא אומר תיראו הרי כאן שנים אם כן מה ת&quot;ל איש איש ספק בידו לעשות ואשה אין ספק בידה שרשות אחרים עליה ואם נתגרשה שניהם שוים וכדאיתא התם.</p>
               </div>
             </div>
@@ -529,8 +615,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 6:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-6-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 6:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-7">Mishneh Torah, Rebels 6:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַד הֵיכָן הוּא כִּבּוּד אָב וְאֵם. אֲפִלּוּ נָטְלוּ כִּיס שֶׁל זְהוּבִים שֶׁלּוֹ וְהִשְׁלִיכוּ בְּפָנָיו לַיָּם לֹא יַכְלִימֵם וְלֹא יְצַעֵר בִּפְנֵיהֶם וְלֹא יִכְעֹס כְּנֶגְדָּם אֶלָּא יְקַבֵּל גְּזֵרַת הַכָּתוּב וְיִשְׁתֹּק. וְעַד הֵיכָן מוֹרָאָן אֲפִלּוּ הָיָה לוֹבֵשׁ בְּגָדִים חֲמוּדוֹת וְיוֹשֵׁב בָּרֹאשׁ בִּפְנֵי הַקָּהָל וּבָא אָבִיו וְאִמּוֹ וְקָרְעוּ בְּגָדָיו וְהִכּוּהוּ בְּרֹאשׁוֹ וְיָרְקוּ בְּפָנָיו לֹא יַכְלִימֵם אֶלָּא יִשְׁתֹּק וְיִירָא וְיִפְחַד מִמֶּלֶךְ מַלְכֵי הַמְּלָכִים שֶׁצִּוָּהוּ בְּכָךְ. שֶׁאִלּוּ מֶלֶךְ בָּשָׂר וָדָם גָּזַר עָלָיו דָּבָר שֶׁהוּא מְצַעֵר יֶתֶר מִזֶּה לֹא הָיָה יָכוֹל לְפַרְכֵּס בַּדָּבָר. קַל וָחֹמֶר לְמִי שֶׁאָמַר וְהָיָה הָעוֹלָם כִּרְצוֹנוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועד </strong> היכן כיבודם אפילו נטל כיסו והטילו לים בפניו לא יכלימהו אלא יקבל גזרת הכתוב ויפחד ממלך מלכי המלכים שצוהו בכך שאפילו מלך בשר ודם אם גזר עליו בדבר שהוא מצטער יותר מזה אינו יכול לפרכס ואסור לאדם להכביד על בניו אלא ימחול להם שהאב שמחל כבודו מחול דדוקא במלך ילפינן דאין כבודו מחול מדכתיב שום תשים עליך מלך שתהא אימתו עליך כדאיתא התם. ומכה בנו גדול עובר משום ולפני עור וגו׳ ואם אי אפשר לו לעמוד לדעת אביו או אמו שנשתטו ילך לו ויצווה לאחרים.</p>
               </div>
             </div>
@@ -545,8 +636,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 6:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-6-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 6:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-11">Mishneh Torah, Rebels 6:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּמְזֵר חַיָּב בִּכְבוֹד אָבִיו וּמוֹרָאוֹ אַף עַל פִּי שֶׁהוּא פָּטוּר עַל מַכָּתוֹ וְקִלְלָתוֹ עַד שֶׁיַּעֲשֶׂה תְּשׁוּבָה. אֲפִלּוּ הָיָה אָבִיו רָשָׁע וּבַעַל עֲבֵרוֹת מְכַבְּדוֹ וּמִתְיָרֵא מִמֶּנּוּ. רָאָהוּ עוֹבֵר עַל דִּבְרֵי תּוֹרָה לֹא יֹאמַר לוֹ אַבָּא עָבַרְתָּ עַל דִּבְרֵי תּוֹרָה אֶלָּא יֹאמַר לוֹ אַבָּא כָּתוּב בַּתּוֹרָה כָּךְ וְכָךְ כְּאִלּוּ הוּא שׁוֹאֵל מִמֶּנּוּ וְלֹא כְּמַזְהִירוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ממזר </strong> חייב בכבוד אביו ואמו ובמוראם אף על פי שהוא פטור על מכתם וקללתם כשלא עשו תשובה כדאמר׳ לעיל וכדאמרינן ביבמות פ׳ כיצד והיינו לענין חיובא אבל לענין איסורא אפילו לא עשה תשובה אסור לו להכותו וחייב לכבדו כדא׳ התם.</p>
               </div>
             </div>
@@ -561,8 +657,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 6:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-6-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 6:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-12">Mishneh Torah, Rebels 6:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאָמַר לוֹ אָבִיו לַעֲבֹר עַל דִּבְרֵי תּוֹרָה בֵּין שֶׁאָמַר לוֹ לַעֲבֹר עַל מִצְוַת לֹא תַּעֲשֶׂה אוֹ לְבַטֵּל מִצְוַת עֲשֵׂה אֲפִלּוּ שֶׁל דִּבְרֵיהֶם. הֲרֵי זֶה לֹא יִשְׁמַע לוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט ג)</span> &quot;אִישׁ אִמּוֹ וְאָבִיו תִּירָאוּ וְאֶת שַׁבְּתֹתַי תִּשְׁמֹרוּ&quot;. כֻּלְּכֶם חַיָּבִין בִּכְבוֹדִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שאמר לו אביו לעבור על דברי תורה לא ישמע לו דכתיב איש אמו ואביו תיראו ואת שבתותי תשמורו וגו׳ כולכם חייבים בכבודי וכדאמ׳ פרק אלו מציאות. אמר לו אביו השקני ויש בידו לעשות מצוה שאין שם אחרים לעשותה יתחזק בה שהוא ואביו חייבין במצוה דאי איכא אחרים לעשותה הוא פטור דעוסק במצוה פטור מן המצוה ולא מפליגין בין מצוה למצוה ותלמוד גדול מכיבוד אב ואם שכל אותם שנים שהיה יעקב בבית עבר לא נענש וכדאיתא סוף פרק קמא דמגלה.</p>
               </div>
             </div>
@@ -577,8 +678,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 6:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-6-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 6:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-6-13">Mishneh Torah, Rebels 6:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמַר לוֹ אָבִיו הַשְׁקֵנִי מַיִם וְיֵשׁ בְּיָדוֹ לַעֲשׂוֹת מִצְוָה אִם אֶפְשָׁר לַמִּצְוָה שֶׁתֵּעָשֶׂה עַל יְדֵי אֲחֵרִים תֵּעָשֶׂה וְיִתְעַסֵּק בִּכְבוֹד אָבִיו שֶׁאֵין מְבַטְּלִין מִצְוָה מִפְּנֵי מִצְוָה. וְאִם אֵין שָׁם אֲחֵרִים לַעֲשׂוֹתָהּ יִתְעַסֵּק בַּמִּצְוָה וְיָנִיחַ כָּבוֹד אָבִיו שֶׁהוּא וְאָבִיו חַיָּבִים בִּדְבַר מִצְוָה. וְתַלְמוּד תּוֹרָה גָּדוֹל מִכְּבוֹד אָב וָאֵם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר </strong> לו אביו השקני וכן אמו מתעסק קודם באביו שהיא גם כן מצווה בכבודו כשהיא נשואה לא ואמרינן פרק הנושא את אביך זו אשת אביך ואת אמך זה בעל אמך וי&quot;ו יתירא לרבות אחיך הגדול והני מילי מחיים אבל לאחר מיתה לא:</p>
               </div>
             </div>
@@ -594,8 +700,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-1">Mishneh Torah, Rebels 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּן סוֹרֵר וּמוֹרֶה הָאָמוּר בַּתּוֹרָה הֲרֵי נִתְפָּרְשָׁה בּוֹ סְקִילָה וְלֹא עָנַשׁ הַכָּתוּב אֶלָּא אִם כֵּן הִזְהִיר. וְהֵיכָן הִזְהִיר לֹא תֹאכְלוּ עַל הַדָּם לֹא תֹּאכַל אֲכִילָה הַמְּבִיאָה לִידֵי שְׁפִיכוּת דָּמִים וְזוֹ אֲכִילַת בֵּן סוֹרֵר וּמוֹרֶה שֶׁאֵינוֹ נֶהֱרָג אֶלָּא עַל אֲכִילָה מְכֹעֶרֶת שֶׁאָכַל. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא כ)</span> &quot;זוֹלֵל וְסֹבֵא&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזּוֹלֵל הוּא הָאוֹכֵל בָּשָׂר בְּרַעַבְתָּנוּת וְסוֹבֵא הַשּׁוֹתֶה יַיִן בְּרַעַבְתָּנוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שמט </strong> שלא יהיה הבן סורר ומורה על קול אביו ואמו ואזהרתי׳ מדכתיב לא תאכלו על הדם ודרשינן פרק ד׳ מיתות אזהרה בן סורר ומורה מנין דכתיב לא תאכלו על הדם לא תאכל אכילה המביאה לידי שפיכות דמים שהרי אינו נהרג אלא על אכילה מכוערת שנאמר זולל וסובא ומפי השמועה למדו שזולל הוא האוכל בשר ברעבתנות וסובא השותה יין ברעבתנו׳ והוא תרטימר בשר במלוגמ׳ אחד וחצי לוג יין בבת אחת כתנא קמא דרבי יוסי דבשאר מאכל ומשקה אינו נעשה בן סורר ומורה אלא בבשר ויין דכתיב אל תהי בסובאי יין בזוללי בשר למו ויין מזיג ולא מזיג בשר בשיל ולא בשיל דבהכי אימשיך. ואינו חייב עד שיגנוב מאביו ויקנה בשר ויין בזול ויאכל וישתה חוץ מרשותו כדתנן התם פרק בן סורר משום דשכיח ליה לגנוב תמיד מאביו ולא בעית מאביו כיון שאוכל ברשות אחרים שלא יראהו אביו ובכי האי גוונא מימשיך וכן כשהוא בזול מימשיך ושכיח ליה וכתיב נמי זולל זול דרך אסמכתא ובלאו הכי לא מימשך. ואם היתה אכילת מצוה אפילו היתה ברקים ופוחזים פטור דלא מימשיך או אכילת איסור אפילו מדבריהם דכתיב איננו שומע בקולנו שלא עבר על אכילה זו אלא בקולם יצא זה שעבר בה על דברי תורה ואפילו היתה אכילה זו מבשר עוף פטור דלא חשיב ולא מימשיך בתריה ולהשלים חייב כדאיתא התם ובשר חי ויין חי נמי לא מימשיך בתריהו.</p>
               </div>
             </div>
@@ -610,8 +721,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-5">Mishneh Torah, Rebels 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לֹא עָנַשׁ הַכָּתוּב קָטָן שֶׁלֹּא בָּא לִכְלַל הַמִּצְוֹת. וְכֵן אִישׁ שֶׁגָּדַל וַהֲרֵי הוּא בִּרְשׁוּת עַצְמוֹ אֵינוֹ נִסְקָל מִפְּנֵי שֶׁגָּנַב וְאָכַל וְשָׁתָה אֲכִילָה זוֹ הַמְכֹעֶרֶת. הָא כֵּיצַד. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁאֵין דִּין זֶה אֶלָּא בְּבֶן שְׁלֹשׁ עֶשְׂרֵה שָׁנָה וְיוֹם אֶחָד שֶׁהֵבִיא שְׁתֵּי שְׂעָרוֹת עַד שֶׁיַּקִּיף כָּל הַגִּיד וְאַחַר שֶׁיַּקִּיף הַשֵּׂעָר כָּל הַגִּיד הֲרֵי הוּא בִּרְשׁוּת עַצְמוֹ וְאֵינוֹ נִסְקָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> דין בן סורר אלא בבן י&quot;ג ויום א׳ שהביא שתי שערות עד שיקיף כל הגיד דהיינו ג׳ חדשים דקטן פטור דלא בא לכלל מצות וכתיב נמי כי יהיה לאיש בן בן הסמוך לגבורתו של איש בתחלת אישותו חייביה קרא דהינו ג׳ חדשים דכתיב בן ולא הראוי לקרותו אב והינו לאחר ג׳ חדשים דראוי לקרותו אב אם נתעברה אשר בתחלת אישותו שהיה בן י&quot;ג ושתי שערות והוכר העובר וקודם שלשה חדשים דלא הוכר העובר אינו ראוי לקרותו אב ואם הקיף השיער כל הגיד הוי איש ולא בן.</p>
               </div>
             </div>
@@ -626,8 +742,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-7">Mishneh Torah, Rebels 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד דָּנִין בֵּן סוֹרֵר וּמוֹרֶה. מְבִיאִין אוֹתוֹ אָבִיו וְאִמּוֹ תְּחִלָּה לְבֵית דִּין שֶׁל שְׁלֹשָׁה וְאוֹמְרִין לָהֶן בְּנֵנוּ זֶה סוֹרֵר וּמוֹרֶה. וּמְבִיאִין שְׁנֵי עֵדִים שֶׁגָּנַב מִשֶּׁל אָבִיו וְקָנָה בָּשָׂר וְיַיִן בְּמַה שֶּׁגָּנַב וְאָכַל אוֹתָהּ אֲכִילָה הָאֲמוּרָה אַחַר הַהַתְרָאָה. וְזוֹ הִיא עֵדוּת הָרִאשׁוֹנָה וּמַלְקִין אוֹתוֹ כִּשְׁאָר חַיָּבֵי מַלְקוֹת. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא יח)</span> &quot;וְיִסְּרוּ אֹתוֹ וְלֹא יִשְׁמַע אֲלֵיהֶם&quot;. חָזַר וְגָנַב מִשֶּׁל אָבִיו וְאָכַל אֲכִילָה זוֹ. אָבִיו וְאִמּוֹ מְבִיאִין אוֹתוֹ לְבֵית דִּין שֶׁל שְׁלֹשָׁה וְעֶשְׂרִים וּמְבִיאִין שְׁנֵי עֵדִים וּמְעִידִין עָלָיו שֶׁגָּנַב וְאָכַל אֲכִילָה זוֹ הָאֲמוּרָה אַחַר שֶׁהִתְרוּ בּוֹ. וְזוֹ הִיא עֵדוּת אַחֲרוֹנָה אֲפִלּוּ הָיוּ הַשְּׁנַיִם הָרִאשׁוֹנִים הֵם הָאַחֲרוֹנִים. וְאַחַר שֶׁמְּקַבְּלִין עֵדוּתָן בּוֹדְקִין אוֹתוֹ שֶׁמָּא הִקִּיף הַשֵּׂעָר אֶת כָּל הַגִּיד. אִם לֹא הִקִּיף וְלֹא שָׁלְמוּ לוֹ שְׁלֹשָׁה חֳדָשִׁים גּוֹמְרִין דִּינוֹ כְּדֶרֶךְ כָּל הֲרוּגֵי בֵּית דִּין וְסוֹקְלִין אוֹתוֹ. וְאֵינוֹ נִסְקָל עַד שֶׁיְּהוּ שָׁם שְׁלֹשָׁה הָרִאשׁוֹנִים שֶׁנֶּאֱמַר <span class="source-small">(דברים כא כ)</span> &quot;בְּנֵנוּ זֶה&quot; זֶהוּ שֶׁלָּקָה בִּפְנֵיכֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> דנין בן סורר ומורה מביאין אותו אביו ואמו לב&quot;ד של שלשה ומביאין ב׳ עדים שגנב ואכל כדאמרינן לעיל וכדאמרינן התם מתרין אותו בפני ב׳ ומלקין בפני ג׳ ההתראה היא הוכחה שלא ירגיל דכתיב ויסרו והמלקות ילפינן ליה נמי מדכתיב ויסרו אותו ולמדנו ויסרו אותו דמוציא שם רע מויסרו אותו דבן סורר וההוא דבן סורר מדכתיב בן ולמדנו בן מבין הכות הרשע וכדכתיב התם ואם לא שמע וחזר כדכתיב ולא ישמע אליהם וחזר ואכל ושתה מביאין אותו אצל ב&quot;ד של כ&quot;ג שדנין דיני נפשות ומעידין עליו כבתחלה וגומרין דינו ונסקל בפני השלשה הראשונים כדכתיב בננו זה זהו שלקה בפניהם וכדתנן התם ואף על גב דמהא דרשינן שרואים אותו ולא סומין לכתוב קרא בננו הוא מאי בננו זה שמע מינה תרתי.</p>
               </div>
             </div>
@@ -642,8 +763,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-8">Mishneh Torah, Rebels 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם מָחֲלוּ לוֹ אָבִיו וְאִמּוֹ קֹדֶם שֶׁיִּגָּמֵר דִּינוֹ פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם </strong> מחלו לו אביו ואמו קודם שנגמר דינו פטור שהכתוב תלה בהם דכתיב ותפשו בו כדאמרינן פ׳ אלו הנחנקין.</p>
               </div>
             </div>
@@ -658,8 +784,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-9">Mishneh Torah, Rebels 7:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּרַח עַד שֶׁלֹּא נִגְמַר דִּינוֹ וְאַחַר כָּךְ הִקִּיף הַשֵּׂעָר מִלְּמַטָּה פָּטוּר. וְאִם מִשֶּׁנִּגְמַר דִּינוֹ בָּרַח אֲפִלּוּ הִזְקִין כָּל עֵת שֶׁיִּמָּצֵא יִסָּקֵל שֶׁכָּל מִי שֶׁנִּגְמַר דִּינוֹ הֲרֵי הוּא כְּהָרוּג וְאֵין לוֹ דָּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ברח </strong> עד שלא נגמר דינו ואחר כך הקיף השער למטה פטור כדתנן התם פרק בן סורר משום דתו לא דיינינן ליה דאלו עבר השתא לאו בר קטלא הוא ואם משנגמר דינו הוי כגברא קטילא ושוב אין לנו לחפש בזכותו ולהצילו.</p>
               </div>
             </div>
@@ -674,8 +805,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-10">Mishneh Torah, Rebels 7:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה אָבִיו רוֹצֶה וְאִמּוֹ אֵינָהּ רוֹצָה אִמּוֹ רוֹצָה וְאָבִיו אֵינוֹ רוֹצֶה אֵינוֹ נַעֲשֶׂה בֵּן סוֹרֵר וּמוֹרֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים כא יט)</span> &quot;וְתָפְשׂוּ בוֹ אָבִיו וְאִמּוֹ&quot;. הָיָה אֶחָד מֵהֶן גִּדֵּם אוֹ חִגֵּר אוֹ אִלֵּם אוֹ סוּמָא אוֹ חֵרֵשׁ אֵינוֹ נַעֲשֶׂה בֵּן סוֹרֵר וּמוֹרֶה שֶׁנֶּאֱמַר וְתָפְשׂוּ בוֹ וְלֹא גִּדְּמִים. <span class="source-small">(דברים כא יט)</span> &quot;וְהוֹצִיאוּ אֹתוֹ&quot; וְלֹא חִגְּרִים. <span class="source-small">(דברים כא כ)</span> &quot;וְאָמְרוּ&quot; וְלֹא אִלְּמִים. <span class="source-small">(דברים כא כ)</span> &quot;בְּנֵנוּ זֶה&quot; וְלֹא סוּמִים. <span class="source-small">(דברים כא כ)</span> &quot;אֵינֶנּוּ שֹׁמֵעַ בְּקלֵנוּ&quot; וְלֹא חֵרְשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אינו </strong> נעשה בן סורר ומורה עד שירצו אביו ואמו שניהם דכתיב ותפשו בו אביו ואמו כדאמרינן פרק אלו הנחנקין. היה אחד מהם גדם או חגר או אלם או סומא או חרש אינו נעשה בן סורר דכתיב ותפשו בו אביו ואמו ולא גדמין והוציאו אותו ולא חגרין ואמרו ולא אלמין בננו זה ולא סומין דזה משמע שרואין אותו איננו שומע בקולנו ולא חרשין דחרשין אינם יודעים אם קבל דבריהם אם לאו שאם אמר להם איני מקבל אינו שומע לו ואף על פי שרואין שאינו מקיים מצותם מיהו איננו שומע בקולנו כתיב ואיכא להפוכי לזכותא ולמדרש דבשעת הקול הוא דקאמרי דלא שמע דהא קרא&#160;יתירא הוא כוליה כדפי׳ רש&quot;י ז&quot;ל התם עלה דמתני׳.</p>
               </div>
             </div>
@@ -690,8 +826,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-11">Mishneh Torah, Rebels 7:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גְּזֵרַת הַכָּתוּב הוּא שֶׁיִּסָּקֵל בֵּן סוֹרֵר וּמוֹרֶה. אֲבָל הַבַּת אֵינָהּ נִדּוֹנֵית בְּדִין זֶה שֶׁאֵין דַּרְכָּהּ לְהִמָּשֵׁךְ בַּאֲכִילָה וּשְׁתִיָּה כְּאִישׁ. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא יח)</span> &quot;בֵּן&quot; וְלֹא בַּת וְלֹא טֻמְטוּם וְאַנְדְּרוֹגִינוּס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבת </strong> אינה נידונת בדין זה דאין דרכה להמשך באכילה ושתיה כזו וכתיב נמי בן ולא בת וטומטום ואנדרוגינוס וצריך שיהיה בן בשעת התראה ולא טומטום שקרעוהו אחר כך ונמצא זכר דכתוב כי יהיה לאיש בן סורר ומורה וגו׳ עד שיהיה בן משעת התראה.</p>
               </div>
             </div>
@@ -706,8 +847,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Rebels 7:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-rebels-7-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Rebels 7:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rebels/#mishneh-torah-rebels-7-13">Mishneh Torah, Rebels 7:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּן סוֹרֵר וּמוֹרֶה צָרִיךְ הַכְרָזָה. כֵּיצַד מַכְרִיזִין עָלָיו. כּוֹתְבִין לְכָל יִשְׂרָאֵל בְּבֵית דִּין פְּלוֹנִי סָקַלְנוּ פְּלוֹנִי מִפְּנֵי שֶׁהָיָה בֵּן סוֹרֵר וּמוֹרֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן </strong> סורר ומורה צריך הכרזה דכתיב ביה ישמעו ויראו וגו׳ בן סורר ומורה אביו יורשו ככל הרוגי בית דין ואף על פי שהוא גורם מיתתו יורש אותו וכדאמרינן התם:</p>
               </div>
             </div>
@@ -717,6 +863,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-rebels-text-7">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-rebels.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-rebels-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -737,8 +887,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rebels.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-rebels.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rebels.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rebels.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-rebels.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-rebels.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -764,7 +914,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

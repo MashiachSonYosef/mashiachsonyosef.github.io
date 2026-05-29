@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-kings-and-wars/">Open Mishneh Torah, Kings and Wars</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Kings and Wars</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">77 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>795 matched</strong> / 2182 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -330,8 +331,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:1:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-1-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-1">Mishneh Torah, Kings and Wars 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ מִצְוֹת נִצְטַוּוּ יִשְׂרָאֵל בִּשְׁעַת כְּנִיסָתָן לָאָרֶץ. לְמַנּוֹת לָהֶם מֶלֶךְ שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;שׂוֹם תָּשִׂים עָלֶיךָ מֶלֶךְ&quot;. וּלְהַכְרִית זַרְעוֹ שֶׁל עֲמָלֵק שֶׁנֶּאֱמַר <span class="source-small">(דברים כה יט)</span> &quot;תִּמְחֶה אֶת זֵכֶר עֲמָלֵק&quot;. וְלִבְנוֹת בֵּית הַבְּחִירָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ה)</span> &quot;לְשִׁכְנוֹ תִדְרְשׁוּ וּבָאתָ שָּׁמָּה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>למנות להם מלך.</strong> ראה יוסף בן מתתיהו הכהן, קדמוניות ח&quot;ד, ח, י&quot;ז שלדעתו אין מניית מלך מצוה, אבל לדעת ידידיה האלכסנדרוני ח&quot;ב, שס&quot;ב, מניית מלך מצוה, לשי׳ יוסף בן מתתיהו אין למלך לעשות דבר בלי עצת הכהן גדול והזקנים, ולדעת ידידיה האלכסנדרוני אם יהיה קשה לו לשפוט בעצמו ישפוט הכהן גדול שהוא ג&quot;כ הנביא.</p>
               </div>
             </div>
@@ -346,8 +352,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:1:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-1-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-1">Mishneh Torah, Kings and Wars 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁלֹשׁ מִצְוֹת נִצְטַוּוּ יִשְׂרָאֵל בִּשְׁעַת כְּנִיסָתָן לָאָרֶץ. לְמַנּוֹת לָהֶם מֶלֶךְ שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;שׂוֹם תָּשִׂים עָלֶיךָ מֶלֶךְ&quot;. וּלְהַכְרִית זַרְעוֹ שֶׁל עֲמָלֵק שֶׁנֶּאֱמַר <span class="source-small">(דברים כה יט)</span> &quot;תִּמְחֶה אֶת זֵכֶר עֲמָלֵק&quot;. וְלִבְנוֹת בֵּית הַבְּחִירָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ה)</span> &quot;לְשִׁכְנוֹ תִדְרְשׁוּ וּבָאתָ שָּׁמָּה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולבנות בית הבחירה.</strong> ראה מדרש רבה בראשית פ׳ ס&quot;ד בימי ר&quot;י בן חנניה גזרה מלכות שיבנה ביהמ&quot;ק נראה דאין איסור בדבר לבנות ביהמ&quot;ק קודם מניית מלך, ועיין ביחוסי תנאים ואמוראים כתב יד ערך ר׳ יהושע בן חנניה הביא ד׳ המדרש וכ׳ כשרצו לבנות בית המקדש שלא ברשות קיסר, וראה שאילת דוד להגאון מקרלין קונטרס דרישת ציון.</p>
               </div>
             </div>
@@ -362,8 +373,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:3:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-3-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-3">Mishneh Torah, Kings and Wars 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מַעֲמִידִין מֶלֶךְ בַּתְּחִלָּה אֶלָּא עַל פִּי בֵּית דִּין שֶׁל שִׁבְעִים זְקֵנִים וְעַל פִּי נָבִיא. כִּיהוֹשֻׁעַ שֶׁמִּנָּהוּ משֶׁה רַבֵּנוּ וּבֵית דִּינוֹ. וּכְשָׁאוּל וְדָוִד שֶׁמִּנָּם שְׁמוּאֵל הָרָמָתִי וּבֵית דִּינוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיהושע שמינהו משה רבינו.</strong> ע׳ יומא ע&quot;ג אין שואלין באורים ותומים אלא למלך הוא זה מלך, ופירש&quot;י דהא ביהושע משתעי קרא, וע׳ רשב&quot;ם ב&quot;ב ע&quot;ה ע&quot;א, ורש&quot;י סנהדרין מ&quot;ח ד&quot;ה הרוגי מלכות, וזקני התוס׳ יו&quot;ט פ&quot;ו דסוטה מ&quot;ח דיהושע היה מלך, ובמדרש רבה נשא פ׳ י&quot;ד חשבוהו בין השופטים, ועיין ספר הנצחון לרבינו ליפמן מילהויזן אות קס&quot;ב כ׳ ולא עוד אלא המורד בראש ישראל אף אם לא נמשח למלכות חייב מיתה, מאחר שבמקום מלך הוא עומד כמו שנאמר ביהושע כל אשר ימרה וכו׳ ויהושע לא נמשח למלכות וכו׳ ועד&quot;ז היתה המלחמה בין איש בשת בן שאול ובין דוד אעפ&quot;י ששניהם היו צדיקים גמורים כי לפי שנמשח דוד למלך החזיק הוא וכל עמו את כל העם שאחרי בית שאול למורדים במלכות עכ&quot;ד. וע׳ שו&quot;ת דברי מלכיאל ח&quot;א סימן ע׳, ושו&quot;ת צפנת פענח סימן רמ&quot;ב, ושו&quot;ת משפט כהן סי׳ קמ&quot;ד אות כ&quot;ב.</p>
               </div>
             </div>
@@ -378,8 +394,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:4:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-4-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-4">Mishneh Torah, Kings and Wars 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מַעֲמִידִין מֶלֶךְ מִקְּהַל גֵּרִים אֲפִלּוּ אַחַר כַּמָּה דּוֹרוֹת עַד שֶׁתִּהְיֶה אִמּוֹ מִיִּשְׂרָאֵל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;לֹא תוּכַל לָתֵת עָלֶיךָ אִישׁ נָכְרִי אֲשֶׁר לֹא אָחִיךָ הוּא&quot;. וְלֹא לְמַלְכוּת בִּלְבַד אֶלָּא לְכָל שְׂרָרוֹת שֶׁבְּיִשְׂרָאֵל. לֹא שַׂר צָבָא וְלֹא שַׂר חֲמִשִּׁים אוֹ שַׂר עֲשָׂרָה. אֲפִלּוּ מְמֻנֶּה עַל אַמַּת הַמַּיִם שֶׁמְּחַלֵּק מִמֶּנָּה לַשָּׂדוֹת. וְאֵין צָרִיךְ לוֹמַר דַּיָּן אוֹ נָשִׂיא שֶׁלֹּא יְהֵא אֶלָּא מִיִּשְׂרָאֵל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;מִקֶּרֶב אַחֶיךָ תָּשִׂים עָלֶיךָ מֶלֶךְ&quot; כָּל מְשִׂימוֹת שֶׁאַתָּה מֵשִׂים לֹא יְהוּ אֶלָּא מִקֶּרֶב אַחֶיךָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מעמידין מלך.</strong> ע׳ מדרש תנאים לספר דברים י&quot;ז, ט&quot;ו.</p>
               </div>
             </div>
@@ -394,8 +415,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:4:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-4-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-4">Mishneh Torah, Kings and Wars 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מַעֲמִידִין מֶלֶךְ מִקְּהַל גֵּרִים אֲפִלּוּ אַחַר כַּמָּה דּוֹרוֹת עַד שֶׁתִּהְיֶה אִמּוֹ מִיִּשְׂרָאֵל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;לֹא תוּכַל לָתֵת עָלֶיךָ אִישׁ נָכְרִי אֲשֶׁר לֹא אָחִיךָ הוּא&quot;. וְלֹא לְמַלְכוּת בִּלְבַד אֶלָּא לְכָל שְׂרָרוֹת שֶׁבְּיִשְׂרָאֵל. לֹא שַׂר צָבָא וְלֹא שַׂר חֲמִשִּׁים אוֹ שַׂר עֲשָׂרָה. אֲפִלּוּ מְמֻנֶּה עַל אַמַּת הַמַּיִם שֶׁמְּחַלֵּק מִמֶּנָּה לַשָּׂדוֹת. וְאֵין צָרִיךְ לוֹמַר דַּיָּן אוֹ נָשִׂיא שֶׁלֹּא יְהֵא אֶלָּא מִיִּשְׂרָאֵל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;מִקֶּרֶב אַחֶיךָ תָּשִׂים עָלֶיךָ מֶלֶךְ&quot; כָּל מְשִׂימוֹת שֶׁאַתָּה מֵשִׂים לֹא יְהוּ אֶלָּא מִקֶּרֶב אַחֶיךָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא למלכות בלבד.</strong> במשחא דרבותא חו&quot;מ סימן ז׳ ד׳ קל&quot;ג הקשה מקידושין ע&quot;ו דאיתי הגיתי נכרי היה ובא להתגייר והיאך מסר דוד שליש העם ביד איתי וכו׳ דלולא דבריהם היה נראה דאיתי הגיתי ישראל גמור היה ונקרא גיתי ע&quot;ש שהיה שוכן בגת, וראה שו&quot;ת תשב&quot;ץ, ח&quot;ג סימן צ&quot;ו שנשאל אם אוריה החתי היה ישראל או גר והביא מקידושין דאיתי הגיתי היה גר אבל אוריה וצלק לא נתברר לרבותינו ופלא שהרי בקידושין אמרי׳ דיתיב בחת, ואולי לא גרס כן. וע׳ שו&quot;ת מהרי&quot;ט ח&quot;ב יו&quot;ד סימן ט&quot;ז שכ׳ וכן אמרי׳ בגמרא דואג האדומי דאתי מאדום איתי הגיתי דאתי מגת ועיין ס׳ עין זוכר מע׳ א׳ אות ק&quot;ה וע׳ שו&quot;ת מהרי&quot;ל סימן ע&quot;ד דאוריה ישראל הוי, וע׳ שו&quot;ת רבינו אברהם בן הרמב&quot;ם הוצאת מק&quot;נ סימן כ&quot;ה וז&quot;ל ילמדנו רבינו אל מי מתיחסים דואג האדומי ואוריה החתי ועבד מלך הכושי, אינם מיחס ישראל אלא גרים הם, ואבא מארי זצ&quot;ל היה סובר שאוריה החתי גר תושב, ויש אומרים שדואג מן ישראל אלא שהוא נתחנך בארץ אדום, וי&quot;א שהוא גר אדומי אברהם ביר׳ משה זצו&quot;ל עכ&quot;ל. ע&quot;ש בהערות ועיין ס׳ ברכת שמואל למהר&quot;ש קידנובר פ׳ תצא דאוריה החתי הי׳ מבני חת ונתגייר. וע׳ שו&quot;ת הרמב&quot;ם מק&quot;נ סי׳ שנ&quot;א דמלחמת בית דוד וכיוצא בו כל אנשי הצבא בחזקת צדיקים הם, ושם מבואר דגם במלחמת שאול וכדומה גט כריתות כותב לאשתו, ובבעל הטורים פ׳ מטות מבואר דכל היוצא למלחמת משה גט כריתות כותב לאשתו, וע׳ שו&quot;ת בית יעקב סימן ה, ומצאתי בראב&quot;ן ח&quot;ג דפוס ירושלים ד׳ נ&quot;ה ע&quot;ב שכתב אע&quot;ג דבמלחמת שאול כתיב ראיה גדולה הוא לכאן דהא ישי אבי דוד אמר כן לדוד וכמו שלימדו אביו הנהיג גם הוא לחיילותיו לעשות כן, וע׳ ריטב&quot;א הובא בשיטה מקובצת כתובות ט׳, ובשו&quot;ת שואל ומשיב מהד&quot;ג ח&quot;א סימן ל&quot;ו הקשה כן מעצמו דהלא כתוב אצל שאול ולרגע אישתמיט מיני׳ דרבן ש&quot;י דברי הקדמונים הנ&quot;ל. ובני הרב מ׳ דוד נ&quot;י הראני בספר הנצחון אות קפ&quot;ב שכ׳ וזה למד מישי אביו שאמר לו ואת עשרת חרוצי החלב. וע׳ עושה שלום אות א׳ ערך אלמנה דדוקא במלחמת בית דוד הי׳ כותב גט כריתות ובשאר מלחמות אמר דהיו כותבין גט לאשתו דאל&quot;כ לא אמרו כל היוצא למלחמת בית דוד ול&quot;ר דברי הטור וע&quot;ש.</p>
               </div>
             </div>
@@ -410,8 +436,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:4:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-4-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-4">Mishneh Torah, Kings and Wars 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מַעֲמִידִין מֶלֶךְ מִקְּהַל גֵּרִים אֲפִלּוּ אַחַר כַּמָּה דּוֹרוֹת עַד שֶׁתִּהְיֶה אִמּוֹ מִיִּשְׂרָאֵל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;לֹא תוּכַל לָתֵת עָלֶיךָ אִישׁ נָכְרִי אֲשֶׁר לֹא אָחִיךָ הוּא&quot;. וְלֹא לְמַלְכוּת בִּלְבַד אֶלָּא לְכָל שְׂרָרוֹת שֶׁבְּיִשְׂרָאֵל. לֹא שַׂר צָבָא וְלֹא שַׂר חֲמִשִּׁים אוֹ שַׂר עֲשָׂרָה. אֲפִלּוּ מְמֻנֶּה עַל אַמַּת הַמַּיִם שֶׁמְּחַלֵּק מִמֶּנָּה לַשָּׂדוֹת. וְאֵין צָרִיךְ לוֹמַר דַּיָּן אוֹ נָשִׂיא שֶׁלֹּא יְהֵא אֶלָּא מִיִּשְׂרָאֵל. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;מִקֶּרֶב אַחֶיךָ תָּשִׂים עָלֶיךָ מֶלֶךְ&quot; כָּל מְשִׂימוֹת שֶׁאַתָּה מֵשִׂים לֹא יְהוּ אֶלָּא מִקֶּרֶב אַחֶיךָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ מ&quot;ש ובהכי ניחא היאך מלך רחבעם,</strong> ע׳ רמב&quot;ן יבמות מ&quot;ה, וריטב&quot;א קידושין י&quot;ג שכתב כדברי רבינו, וע׳ נובי&quot;ק חו&quot;מ סימן א׳ דנעמה לא היתה בעצמה גיורת רק שבא מנעמון ולא הי׳ לפניו דברי הרמב&quot;ן וריטב&quot;א וע׳ מדבר קדמות מע׳ נ׳ אות כ&quot;ד.</p>
               </div>
             </div>
@@ -426,8 +457,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:6:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-6-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-6">Mishneh Torah, Kings and Wars 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מַעֲמִידִין מֶלֶךְ וְלֹא כֹּהֵן גָּדוֹל. לֹא קַצָּב. וְלֹא סַפָּר. וְלֹא בַּלָּן [א.] וְלֹא בֻּרְסִי. לֹא מִפְּנֵי שֶׁהֵן פְּסוּלִין אֶלָּא הוֹאִיל וְאֻמָּנוּתָן נִקְלָה הָעָם מְזַלְזְלִין בָּהֶן לְעוֹלָם. וּמִשֶּׁיַּעֲשֶׂה בִּמְלָאכָה מֵאֵלּוּ יוֹם אֶחָד נִפְסָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא בלן.</strong> בשו&quot;ת תשב&quot;ץ ח&quot;א סימן ט&quot;ז כ׳ דלכן השמיט הרמב&quot;ם כאן איזהו מהן שנמנו בגמ׳ משום דאין מלאכתו מנוולת בכל מקום והכל לפי המקומות עיי&quot;ש.</p>
               </div>
             </div>
@@ -442,8 +478,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:6:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-6-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-6">Mishneh Torah, Kings and Wars 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מַעֲמִידִין מֶלֶךְ וְלֹא כֹּהֵן גָּדוֹל. לֹא קַצָּב. וְלֹא סַפָּר. וְלֹא בַּלָּן [א.] וְלֹא בֻּרְסִי. לֹא מִפְּנֵי שֶׁהֵן פְּסוּלִין אֶלָּא הוֹאִיל וְאֻמָּנוּתָן נִקְלָה הָעָם מְזַלְזְלִין בָּהֶן לְעוֹלָם. וּמִשֶּׁיַּעֲשֶׂה בִּמְלָאכָה מֵאֵלּוּ יוֹם אֶחָד נִפְסָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכסף משנה כתב ולא גרס גרע.</strong> ובב׳ כ&quot;י הרמב&quot;ם שבספריה נ&quot;י כתב גרע, וכן הביא בשו&quot;ת התשב&quot;ץ ח&quot;א סימן ט&quot;ז לשון הרמב&quot;ם ומעתיק גרע הרי שגם לפני׳ היתה גירסא זו כמו בכל כ&quot;י ודפוס רומא ר&quot;מ.</p>
               </div>
             </div>
@@ -458,8 +499,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:6:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-6-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:6:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-6">Mishneh Torah, Kings and Wars 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מַעֲמִידִין מֶלֶךְ וְלֹא כֹּהֵן גָּדוֹל. לֹא קַצָּב. וְלֹא סַפָּר. וְלֹא בַּלָּן [א.] וְלֹא בֻּרְסִי. לֹא מִפְּנֵי שֶׁהֵן פְּסוּלִין אֶלָּא הוֹאִיל וְאֻמָּנוּתָן נִקְלָה הָעָם מְזַלְזְלִין בָּהֶן לְעוֹלָם. וּמִשֶּׁיַּעֲשֶׂה בִּמְלָאכָה מֵאֵלּוּ יוֹם אֶחָד נִפְסָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומשיעשה מלאכה.</strong> ראה פרקי דר׳ אליעזר חתן דומה למלך ואסור בעשיית מלאכה וראה ירושלמי סופ&quot;ב דסנהדרין חמי מה כתיב שום תשים ומראה הפנים שם.</p>
               </div>
             </div>
@@ -474,8 +520,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:7:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-7-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-7">Mishneh Torah, Kings and Wars 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁמַּעֲמִידִין הַמֶּלֶךְ מוֹשְׁחִין אוֹתוֹ בְּשֶׁמֶן הַמִּשְׁחָה. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א י א)</span> &quot;וַיִּקַּח שְׁמוּאֵל אֶת פַּךְ הַשֶּׁמֶן וַיִּצֹק עַל רֹאשׁוֹ וַיִּשָּׁקֵהוּ&quot;. וּמֵאַחַר שֶׁמּוֹשְׁחִין הַמֶּלֶךְ הֲרֵי זֶה זוֹכֶה לוֹ וּלְבָנָיו עַד עוֹלָם. שֶׁהַמַּלְכוּת יְרֻשָּׁה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז כ)</span> &quot;לְמַעַן יַאֲרִיךְ יָמִים עַל מַמְלַכְתּוֹ הוּא וּבָנָיו בְּקֶרֶב יִשְׂרָאֵל&quot;. הֵנִיחַ בֵּן קָטָן מְשַׁמְּרִין לוֹ הַמְּלוּכָה עַד שֶׁיַּגְדִּיל. כְּמוֹ שֶׁעָשָׂה יְהוֹיָדָע לְיוֹאָשׁ. וְכָל הַקּוֹדֵם בְּנַחֲלָה קֹדֶם לִירֻשַּׁת הַמְּלוּכָה. וְהַבֵּן הַגָּדוֹל קוֹדֵם לְקָטָן מִמֶּנּוּ. וְלֹא הַמַּלְכוּת בִּלְבַד אֶלָּא כָּל הַשְּׂרָרוֹת וְכָל הַמִּנּוּיִין שֶׁבְּיִשְׂרָאֵל יְרֻשָּׁה לִבְנוֹ וּלְבֶן בְּנוֹ עַד עוֹלָם. וְהוּא שֶׁיִּהְיֶה הַבֵּן מְמַלֵּא מְקוֹם אֲבוֹתָיו בְּחָכְמָה וּבְיִרְאָה. הָיָה מְמַלֵּא בְּיִרְאָה אַף עַל פִּי שֶׁאֵינוֹ מְמַלֵּא בְּחָכְמָה מַעֲמִידִין אוֹתוֹ בִּמְקוֹם אָבִיו וּמְלַמְּדִין אוֹתוֹ. וְכָל מִי שֶׁאֵין בּוֹ יִרְאַת שָׁמַיִם אַף עַל פִּי שֶׁחָכְמָתוֹ מְרֻבָּה אֵין מְמַנִּין אוֹתוֹ לְמִנּוּי מִן הַמִּנּוּיִין שֶׁבְּיִשְׂרָאֵל. כֵּיוָן שֶׁנִּמְשַׁח דָּוִד זָכָה בְּכֶתֶר מַלְכוּת. וַהֲרֵי הַמַּלְכוּת לוֹ וּלְבָנָיו הַזְּכָרִים עַד עוֹלָם. שֶׁנֶּאֱמַר <span class="source-small">(שמואל ב ז טז)</span> &quot;כִּסְאֲךָ יִהְיֶה נָכוֹן עַד עוֹלָם&quot;. וְלֹא זָכָה אֶלָּא לִכְשֵׁרִים שֶׁנֶּאֱמַר <span class="source-small">(תהילים קלב יב)</span> &quot;אִם יִשְׁמְרוּ בָנֶיךָ בְּרִיתִי&quot;. אַף עַל פִּי שֶׁלֹּא זָכָה אֶלָּא לִכְשֵׁרִים לֹא תִכָּרֵת הַמְּלוּכָה מִזֶּרַע דָּוִד לְעוֹלָם. הַקָּדוֹשׁ בָּרוּךְ הוּא הִבְטִיחוֹ בְּכָךְ שֶׁנֶּאֱמַר <span class="source-small">(תהילים פט לא)</span> &quot;אִם יַעַזְבוּ בָנָיו תּוֹרָתִי וּבְמִשְׁפָּטַי לֹא יֵלֵכוּן&quot; <span class="source-small">(תהילים פט לג)</span> &quot;וּפָקַדְתִּי בְשֵׁבֶט פִּשְׁעָם וּבִנְגָעִים עֲוֹנָם&quot; <span class="source-small">(תהילים פט לד)</span> &quot;וְחַסְדִּי לֹא אָפִיר מֵעִמּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מושחין אותו בשמן המשחה.</strong> ע׳ תוס׳ הרא&quot;ש הוריות י&quot;א שכתב אע&quot;ג דכתיב אשר יתן ממנו על זר ומלך בכלל זה אפשר דדרש על בשר אדם לא ייסך ודרשי׳ אדם ולא מלך ע&quot;ש וצ&quot;ע הלא תקשה דיש בי׳ איסור מעילה ואף שראיתי באבני נזר יו&quot;ד סימן שי&quot;ג דלא נמצא בשום מקום דיש איסור מעילה בשמן המשחה משמע מש&quot;ס כריתות ו׳ שמא מעלתי בשמן המשחה דיש בזה איסור מעילה וע׳ ראב&quot;ד בתו&quot;כ פ׳ שמיני דמשמע דאין דין מעילה בשמן המשחה ועיין רמ&quot;ה כריתות כ&quot;י ומוזכר בישרש יעקב שכ׳ דיצאת ב&quot;ק מה טל אין בו מעילה שכל דנעשית מצותו לא מעל ומשמע דפשיטא ליה דיש לשמן המשחה דין מעילה ובישועות מלכו פ&quot;א מכלי המקדש ה&quot;ה נסתפק אי יש מעילה בשמן המשחה ולא הביא מכ&quot;ז ופשט דברי הרמב&quot;ם מורין דאין בו מעילה.</p>
               </div>
             </div>
@@ -490,8 +541,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:7:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-7-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-7">Mishneh Torah, Kings and Wars 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁמַּעֲמִידִין הַמֶּלֶךְ מוֹשְׁחִין אוֹתוֹ בְּשֶׁמֶן הַמִּשְׁחָה. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א י א)</span> &quot;וַיִּקַּח שְׁמוּאֵל אֶת פַּךְ הַשֶּׁמֶן וַיִּצֹק עַל רֹאשׁוֹ וַיִּשָּׁקֵהוּ&quot;. וּמֵאַחַר שֶׁמּוֹשְׁחִין הַמֶּלֶךְ הֲרֵי זֶה זוֹכֶה לוֹ וּלְבָנָיו עַד עוֹלָם. שֶׁהַמַּלְכוּת יְרֻשָּׁה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז כ)</span> &quot;לְמַעַן יַאֲרִיךְ יָמִים עַל מַמְלַכְתּוֹ הוּא וּבָנָיו בְּקֶרֶב יִשְׂרָאֵל&quot;. הֵנִיחַ בֵּן קָטָן מְשַׁמְּרִין לוֹ הַמְּלוּכָה עַד שֶׁיַּגְדִּיל. כְּמוֹ שֶׁעָשָׂה יְהוֹיָדָע לְיוֹאָשׁ. וְכָל הַקּוֹדֵם בְּנַחֲלָה קֹדֶם לִירֻשַּׁת הַמְּלוּכָה. וְהַבֵּן הַגָּדוֹל קוֹדֵם לְקָטָן מִמֶּנּוּ. וְלֹא הַמַּלְכוּת בִּלְבַד אֶלָּא כָּל הַשְּׂרָרוֹת וְכָל הַמִּנּוּיִין שֶׁבְּיִשְׂרָאֵל יְרֻשָּׁה לִבְנוֹ וּלְבֶן בְּנוֹ עַד עוֹלָם. וְהוּא שֶׁיִּהְיֶה הַבֵּן מְמַלֵּא מְקוֹם אֲבוֹתָיו בְּחָכְמָה וּבְיִרְאָה. הָיָה מְמַלֵּא בְּיִרְאָה אַף עַל פִּי שֶׁאֵינוֹ מְמַלֵּא בְּחָכְמָה מַעֲמִידִין אוֹתוֹ בִּמְקוֹם אָבִיו וּמְלַמְּדִין אוֹתוֹ. וְכָל מִי שֶׁאֵין בּוֹ יִרְאַת שָׁמַיִם אַף עַל פִּי שֶׁחָכְמָתוֹ מְרֻבָּה אֵין מְמַנִּין אוֹתוֹ לְמִנּוּי מִן הַמִּנּוּיִין שֶׁבְּיִשְׂרָאֵל. כֵּיוָן שֶׁנִּמְשַׁח דָּוִד זָכָה בְּכֶתֶר מַלְכוּת. וַהֲרֵי הַמַּלְכוּת לוֹ וּלְבָנָיו הַזְּכָרִים עַד עוֹלָם. שֶׁנֶּאֱמַר <span class="source-small">(שמואל ב ז טז)</span> &quot;כִּסְאֲךָ יִהְיֶה נָכוֹן עַד עוֹלָם&quot;. וְלֹא זָכָה אֶלָּא לִכְשֵׁרִים שֶׁנֶּאֱמַר <span class="source-small">(תהילים קלב יב)</span> &quot;אִם יִשְׁמְרוּ בָנֶיךָ בְּרִיתִי&quot;. אַף עַל פִּי שֶׁלֹּא זָכָה אֶלָּא לִכְשֵׁרִים לֹא תִכָּרֵת הַמְּלוּכָה מִזֶּרַע דָּוִד לְעוֹלָם. הַקָּדוֹשׁ בָּרוּךְ הוּא הִבְטִיחוֹ בְּכָךְ שֶׁנֶּאֱמַר <span class="source-small">(תהילים פט לא)</span> &quot;אִם יַעַזְבוּ בָנָיו תּוֹרָתִי וּבְמִשְׁפָּטַי לֹא יֵלֵכוּן&quot; <span class="source-small">(תהילים פט לג)</span> &quot;וּפָקַדְתִּי בְשֵׁבֶט פִּשְׁעָם וּבִנְגָעִים עֲוֹנָם&quot; <span class="source-small">(תהילים פט לד)</span> &quot;וְחַסְדִּי לֹא אָפִיר מֵעִמּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מושחין אותו בשמן המשחה.</strong> ע׳ כד הקמח לרבינו בחיי אות תפילין שכתב ולכך היתה הנחת תפילין בגבהו של ראש מקום שמלכי ישראל נמשחים שם בשמן המשחה, וראה רמב&quot;ן שמות כ&quot;ט, ז, ונתיבות עולם למהר&quot;ל מפראג נתיב העבודה פט&quot;ו.</p>
               </div>
             </div>
@@ -506,8 +562,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:7:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-7-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:7:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-7">Mishneh Torah, Kings and Wars 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁמַּעֲמִידִין הַמֶּלֶךְ מוֹשְׁחִין אוֹתוֹ בְּשֶׁמֶן הַמִּשְׁחָה. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א י א)</span> &quot;וַיִּקַּח שְׁמוּאֵל אֶת פַּךְ הַשֶּׁמֶן וַיִּצֹק עַל רֹאשׁוֹ וַיִּשָּׁקֵהוּ&quot;. וּמֵאַחַר שֶׁמּוֹשְׁחִין הַמֶּלֶךְ הֲרֵי זֶה זוֹכֶה לוֹ וּלְבָנָיו עַד עוֹלָם. שֶׁהַמַּלְכוּת יְרֻשָּׁה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז כ)</span> &quot;לְמַעַן יַאֲרִיךְ יָמִים עַל מַמְלַכְתּוֹ הוּא וּבָנָיו בְּקֶרֶב יִשְׂרָאֵל&quot;. הֵנִיחַ בֵּן קָטָן מְשַׁמְּרִין לוֹ הַמְּלוּכָה עַד שֶׁיַּגְדִּיל. כְּמוֹ שֶׁעָשָׂה יְהוֹיָדָע לְיוֹאָשׁ. וְכָל הַקּוֹדֵם בְּנַחֲלָה קֹדֶם לִירֻשַּׁת הַמְּלוּכָה. וְהַבֵּן הַגָּדוֹל קוֹדֵם לְקָטָן מִמֶּנּוּ. וְלֹא הַמַּלְכוּת בִּלְבַד אֶלָּא כָּל הַשְּׂרָרוֹת וְכָל הַמִּנּוּיִין שֶׁבְּיִשְׂרָאֵל יְרֻשָּׁה לִבְנוֹ וּלְבֶן בְּנוֹ עַד עוֹלָם. וְהוּא שֶׁיִּהְיֶה הַבֵּן מְמַלֵּא מְקוֹם אֲבוֹתָיו בְּחָכְמָה וּבְיִרְאָה. הָיָה מְמַלֵּא בְּיִרְאָה אַף עַל פִּי שֶׁאֵינוֹ מְמַלֵּא בְּחָכְמָה מַעֲמִידִין אוֹתוֹ בִּמְקוֹם אָבִיו וּמְלַמְּדִין אוֹתוֹ. וְכָל מִי שֶׁאֵין בּוֹ יִרְאַת שָׁמַיִם אַף עַל פִּי שֶׁחָכְמָתוֹ מְרֻבָּה אֵין מְמַנִּין אוֹתוֹ לְמִנּוּי מִן הַמִּנּוּיִין שֶׁבְּיִשְׂרָאֵל. כֵּיוָן שֶׁנִּמְשַׁח דָּוִד זָכָה בְּכֶתֶר מַלְכוּת. וַהֲרֵי הַמַּלְכוּת לוֹ וּלְבָנָיו הַזְּכָרִים עַד עוֹלָם. שֶׁנֶּאֱמַר <span class="source-small">(שמואל ב ז טז)</span> &quot;כִּסְאֲךָ יִהְיֶה נָכוֹן עַד עוֹלָם&quot;. וְלֹא זָכָה אֶלָּא לִכְשֵׁרִים שֶׁנֶּאֱמַר <span class="source-small">(תהילים קלב יב)</span> &quot;אִם יִשְׁמְרוּ בָנֶיךָ בְּרִיתִי&quot;. אַף עַל פִּי שֶׁלֹּא זָכָה אֶלָּא לִכְשֵׁרִים לֹא תִכָּרֵת הַמְּלוּכָה מִזֶּרַע דָּוִד לְעוֹלָם. הַקָּדוֹשׁ בָּרוּךְ הוּא הִבְטִיחוֹ בְּכָךְ שֶׁנֶּאֱמַר <span class="source-small">(תהילים פט לא)</span> &quot;אִם יַעַזְבוּ בָנָיו תּוֹרָתִי וּבְמִשְׁפָּטַי לֹא יֵלֵכוּן&quot; <span class="source-small">(תהילים פט לג)</span> &quot;וּפָקַדְתִּי בְשֵׁבֶט פִּשְׁעָם וּבִנְגָעִים עֲוֹנָם&quot; <span class="source-small">(תהילים פט לד)</span> &quot;וְחַסְדִּי לֹא אָפִיר מֵעִמּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנאמר ויקח שמואל וגו׳.</strong> ראה מאירי הוריות שהביא דברי רבינו דשאול נמשח בשמן המשחה אעפ&quot;י שממלכי ישראל היה אבל ברד&quot;ק כתב דשאול נמשח בשמן אפרסמון, וראה תוס׳ כריתות ה׳ וחסדי דוד על התוספתא פ&quot;ד דסנהדרין, ושער יוסף לחיד&quot;א על הוריות ד׳ י&quot;א ד׳ ק&quot;ג מדפי הס׳.</p>
               </div>
             </div>
@@ -522,8 +583,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:12:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-1-12-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-1-12">Mishneh Torah, Kings and Wars 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מוֹשְׁחִין מֶלֶךְ בֶּן מֶלֶךְ. אֶלָּא אִם כֵּן הָיְתָה שָׁם מַחְלֹקֶת אוֹ מִלְחָמָה מוֹשְׁחִין אוֹתוֹ כְּדֵי לְסַלֵּק הַמַּחֲלֹקֶת. לְפִיכָךְ מָשְׁחוּ שְׁלֹמֹה מִפְּנֵי אֲדֹנִיָּה. וְיוֹאָשׁ מִפְּנֵי עֲתַלְיָה. וּמָשְׁחוּ יְהוֹאָחָז מִפְּנֵי יְהוֹיָקִים אָחִיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כדי לסלק המחלוקת.</strong> ע׳ מאירי שקלים פ&quot;ו ע׳ צ&quot;ו ומ&quot;מ במקום שיש מחלוקת ועוררין עליו בתחלת מלכותו מושחין אותו לפרסם לכל שהוא המלך, וברש&quot;י כריתות ה׳ כי איכא מחלוקת לאו ירושה הוא ובעי משיחה בתחלה.</p>
               </div>
             </div>
@@ -539,8 +605,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:1:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-2-1-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-1">Mishneh Torah, Kings and Wars 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּבוֹד גָּדוֹל נוֹהֲגִין בַּמֶּלֶךְ. וּמְשִׂימִין לוֹ אֵימָה וְיִרְאָה בְּלֵב כָּל אָדָם. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;שׂוֹם תָּשִׂים&quot; שֶׁתְּהֵא אֵימָתוֹ עָלֶיךָ. אֵין רוֹכְבִין עַל סוּסוֹ. וְאֵין יוֹשְׁבִין עַל כִּסְאוֹ. וְאֵין מִשְׁתַּמְּשִׁין בְּשַׁרְבִיטוֹ. וְלֹא בְּכִתְרוֹ. וְלֹא בְּאֶחָד מִכָּל כְּלֵי תַּשְׁמִישָׁיו. וּכְשֶׁהוּא מֵת כֻּלָּן נִשְׂרָפִין לְפָנָיו. וְכֵן לֹא יִשְׁתַּמֵּשׁ בַּעֲבָדָיו וְשִׁפְחוֹתָיו וְשַׁמָּשָׁיו אֶלָּא מֶלֶךְ אַחֵר. לְפִיכָךְ אֲבִישַׁג הָיְתָה מֻתֶּרֶת לִשְׁלֹמֹה וַאֲסוּרָה לַאֲדוֹנִיָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבוד גדול נוהגין במלך.</strong> ע׳ תומים סימן י&quot;ז דברשע לא שייך כבוד מלך, וע׳ ב&quot;ב ד׳ גבי הורדוס, וראה זכר זאת ליעקב בסו&quot;ס דע&quot;ת להגאון מברעזאן, וע׳ פני יהושע ברכות ד׳ דהמלך מחויב בכבוד עצמו דכמה דברים הותרו משום כבוד המלכות וכ&quot;ש שאין לו לפגום בכבודו בעצמו.</p>
               </div>
             </div>
@@ -555,8 +626,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:1:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-2-1-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-1">Mishneh Torah, Kings and Wars 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּבוֹד גָּדוֹל נוֹהֲגִין בַּמֶּלֶךְ. וּמְשִׂימִין לוֹ אֵימָה וְיִרְאָה בְּלֵב כָּל אָדָם. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טו)</span> &quot;שׂוֹם תָּשִׂים&quot; שֶׁתְּהֵא אֵימָתוֹ עָלֶיךָ. אֵין רוֹכְבִין עַל סוּסוֹ. וְאֵין יוֹשְׁבִין עַל כִּסְאוֹ. וְאֵין מִשְׁתַּמְּשִׁין בְּשַׁרְבִיטוֹ. וְלֹא בְּכִתְרוֹ. וְלֹא בְּאֶחָד מִכָּל כְּלֵי תַּשְׁמִישָׁיו. וּכְשֶׁהוּא מֵת כֻּלָּן נִשְׂרָפִין לְפָנָיו. וְכֵן לֹא יִשְׁתַּמֵּשׁ בַּעֲבָדָיו וְשִׁפְחוֹתָיו וְשַׁמָּשָׁיו אֶלָּא מֶלֶךְ אַחֵר. לְפִיכָךְ אֲבִישַׁג הָיְתָה מֻתֶּרֶת לִשְׁלֹמֹה וַאֲסוּרָה לַאֲדוֹנִיָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן לא ישתמש.</strong> עכ&quot;מ כלומר שלא בעל דוד את אבישג, ע׳ מאירי סנהדרין ע׳ ס&quot;ה והוא שאבישג היתה מותרת לשלמה ואסורה לאדוניה ואפי׳ היתה נבעלת לדוד.</p>
               </div>
             </div>
@@ -571,8 +647,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:3:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-2-3-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-3">Mishneh Torah, Kings and Wars 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאָסוּר לִרְאוֹתוֹ כְּשֶׁהוּא עֵרוֹם וְלֹא כְּשֶׁהוּא מִסְתַּפֵּר. וְלֹא כְּשֶׁהוּא בְּבֵית הַמֶּרְחָץ. וְלֹא כְּשֶׁהוּא מִסְתַּפֵּג. וְאֵינוֹ חוֹלֵץ שֶׁנֶּאֱמַר <span class="source-small">(דברים כה ט)</span> &quot;וְיָרְקָה בְּפָנָיו&quot; וְזֶה בִּזָּיוֹן. וַאֲפִלּוּ רָצָה אֵין שׁוֹמְעִין לוֹ. שֶׁהַמֶּלֶךְ שֶׁמָּחַל עַל כְּבוֹדוֹ אֵין כְּבוֹדוֹ מָחוּל. וְהוֹאִיל וְאֵינוֹ חוֹלֵץ אֵינוֹ מְיַבֵּם. וְכֵן [אִם מֵת הוּא] כֵּיוָן שֶׁאִי אֶפְשָׁר לְיַבֵּם אֶת אִשְׁתּוֹ כָּךְ אֵין חוֹלְצִין לָהּ אֶלָּא תֵּשֵׁב לְעוֹלָם בְּזִקָּתָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא כשהוא בבית המרחץ.</strong> עיין לחם משנה וראה באר הגולה מגנצה פרק כ&quot;ב ה&quot;א ולא הראה את עצמו ערום בבית המרחץ ולא בבית הכסא ולא כשהיה מסתפר ולא היה רוחץ עצמו עם שאר העם ואם הי׳ רוצה שירחצו אחרים עמו הרשות בידו וע&quot;ש בהארות והערות ע׳ קס&quot;ה - קס&quot;ו.</p>
               </div>
             </div>
@@ -587,8 +668,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-2-5-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-5">Mishneh Torah, Kings and Wars 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלֶךְ מִסְתַּפֵּר בְּכָל יוֹם. וּמְתַקֵּן עַצְמוֹ וּמִתְנָאֶה בְּמַלְבּוּשִׁין נָאִים וּמְפֹאָרִים. שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְיוֹשֵׁב עַל כִּסֵּא מַלְכוּתוֹ בַּפַּלְטֵרִין שֶׁלּוֹ. וּמֵשִׂים כֶּתֶר בְּרֹאשׁוֹ. וְכָל הָעָם בָּאִין אֵלָיו בְּעֵת שֶׁיִּרְצֶה. וְעוֹמְדִין לְפָנָיו וּמִשְׁתַּחֲוִים אַרְצָה. אֲפִלּוּ נָבִיא עוֹמֵד לִפְנֵי הַמֶּלֶךְ מִשְׁתַּחֲוֶה אַרְצָה. שֶׁנֶּאֱמַר <span class="source-small">(מלכים א א כג)</span> &quot;הִנֵּה נָתָן הַנָּבִיא וַיָּבֹא לִפְנֵי הַמֶּלֶךְ וַיִּשְׁתַּחוּ לַמֶּלֶךְ&quot;. אֲבָל כֹּהֵן גָּדוֹל אֵינוֹ בָּא לִפְנֵי הַמֶּלֶךְ אֶלָּא אִם רָצָה. וְאֵינוֹ עוֹמֵד לְפָנָיו אֶלָּא הַמֶּלֶךְ עוֹמֵד לִפְנֵי כֹּהֵן גָּדוֹל. שֶׁנֶּאֱמַר <span class="source-small">(במדבר כז כא)</span> &quot;וְלִפְנֵי אֶלְעָזָר הַכֹּהֵן יַעֲמֹד&quot;. אַף עַל פִּי כֵן מִצְוָה עַל כֹּהֵן גָּדוֹל לְכַבֵּד אֶת הַמֶּלֶךְ וּלְהוֹשִׁיבוֹ וְלַעֲמֹד מִפָּנָיו כְּשֶׁיָּבוֹא לוֹ. וְלֹא יַעֲמֹד הַמֶּלֶךְ לְפָנָיו אֶלָּא כְּשֶׁיִּשְׁאַל לוֹ בְּמִשְׁפַּט הָאוּרִים. וְכֵן מִצְוָה עַל הַמֶּלֶךְ לְכַבֵּד לוֹמְדֵי הַתּוֹרָה. וּכְשֶׁיִּכָּנְסוּ לְפָנָיו סַנְהֶדְרִין וְחַכְמֵי יִשְׂרָאֵל יַעֲמֹד לִפְנֵיהֶם וְיוֹשִׁיבֵם בְּצִדּוֹ. וְכֵן הָיָה יְהוֹשָׁפָט מֶלֶךְ יְהוּדָה עוֹשֶׂה אֲפִלּוּ לְתַלְמִיד חָכָם הָיָה עוֹמֵד מִכִּסְאוֹ וּמְנַשְּׁקוֹ וְקוֹרֵא לוֹ רַבִּי וּמוֹרִי. בַּמֶּה דְּבָרִים אֲמוּרִים בִּזְמַן שֶׁיִּהְיֶה הַמֶּלֶךְ בְּבֵיתוֹ לְבַדּוֹ הוּא וַעֲבָדָיו יַעֲשֶׂה זֶה בְּצִנְעָה. אֲבָל בְּפַרְהֶסְיָא בִּפְנֵי הָעָם לֹא יַעֲשֶׂה. וְלֹא יַעֲמֹד מִפְּנֵי אָדָם. וְלֹא יְדַבֵּר רַכּוֹת. וְלֹא יִקְרָא לְאָדָם אֶלָּא בִּשְׁמוֹ כְּדֵי שֶׁתְּהֵא יִרְאָתוֹ בְּלֵב הַכּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועומדין לפניו אפי׳ נביא.</strong> כן מבואר במדרש רבה ר&quot;פ נשא, וע׳ שו&quot;מ מהד&quot;ג ח&quot;א סימן תכ&quot;ג.</p>
               </div>
             </div>
@@ -603,8 +689,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-2-5-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-5">Mishneh Torah, Kings and Wars 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלֶךְ מִסְתַּפֵּר בְּכָל יוֹם. וּמְתַקֵּן עַצְמוֹ וּמִתְנָאֶה בְּמַלְבּוּשִׁין נָאִים וּמְפֹאָרִים. שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְיוֹשֵׁב עַל כִּסֵּא מַלְכוּתוֹ בַּפַּלְטֵרִין שֶׁלּוֹ. וּמֵשִׂים כֶּתֶר בְּרֹאשׁוֹ. וְכָל הָעָם בָּאִין אֵלָיו בְּעֵת שֶׁיִּרְצֶה. וְעוֹמְדִין לְפָנָיו וּמִשְׁתַּחֲוִים אַרְצָה. אֲפִלּוּ נָבִיא עוֹמֵד לִפְנֵי הַמֶּלֶךְ מִשְׁתַּחֲוֶה אַרְצָה. שֶׁנֶּאֱמַר <span class="source-small">(מלכים א א כג)</span> &quot;הִנֵּה נָתָן הַנָּבִיא וַיָּבֹא לִפְנֵי הַמֶּלֶךְ וַיִּשְׁתַּחוּ לַמֶּלֶךְ&quot;. אֲבָל כֹּהֵן גָּדוֹל אֵינוֹ בָּא לִפְנֵי הַמֶּלֶךְ אֶלָּא אִם רָצָה. וְאֵינוֹ עוֹמֵד לְפָנָיו אֶלָּא הַמֶּלֶךְ עוֹמֵד לִפְנֵי כֹּהֵן גָּדוֹל. שֶׁנֶּאֱמַר <span class="source-small">(במדבר כז כא)</span> &quot;וְלִפְנֵי אֶלְעָזָר הַכֹּהֵן יַעֲמֹד&quot;. אַף עַל פִּי כֵן מִצְוָה עַל כֹּהֵן גָּדוֹל לְכַבֵּד אֶת הַמֶּלֶךְ וּלְהוֹשִׁיבוֹ וְלַעֲמֹד מִפָּנָיו כְּשֶׁיָּבוֹא לוֹ. וְלֹא יַעֲמֹד הַמֶּלֶךְ לְפָנָיו אֶלָּא כְּשֶׁיִּשְׁאַל לוֹ בְּמִשְׁפַּט הָאוּרִים. וְכֵן מִצְוָה עַל הַמֶּלֶךְ לְכַבֵּד לוֹמְדֵי הַתּוֹרָה. וּכְשֶׁיִּכָּנְסוּ לְפָנָיו סַנְהֶדְרִין וְחַכְמֵי יִשְׂרָאֵל יַעֲמֹד לִפְנֵיהֶם וְיוֹשִׁיבֵם בְּצִדּוֹ. וְכֵן הָיָה יְהוֹשָׁפָט מֶלֶךְ יְהוּדָה עוֹשֶׂה אֲפִלּוּ לְתַלְמִיד חָכָם הָיָה עוֹמֵד מִכִּסְאוֹ וּמְנַשְּׁקוֹ וְקוֹרֵא לוֹ רַבִּי וּמוֹרִי. בַּמֶּה דְּבָרִים אֲמוּרִים בִּזְמַן שֶׁיִּהְיֶה הַמֶּלֶךְ בְּבֵיתוֹ לְבַדּוֹ הוּא וַעֲבָדָיו יַעֲשֶׂה זֶה בְּצִנְעָה. אֲבָל בְּפַרְהֶסְיָא בִּפְנֵי הָעָם לֹא יַעֲשֶׂה. וְלֹא יַעֲמֹד מִפְּנֵי אָדָם. וְלֹא יְדַבֵּר רַכּוֹת. וְלֹא יִקְרָא לְאָדָם אֶלָּא בִּשְׁמוֹ כְּדֵי שֶׁתְּהֵא יִרְאָתוֹ בְּלֵב הַכּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שנאמר ולפני אלעזר.</strong> ע׳ ספרי זוטא מפורש כן.</p>
               </div>
             </div>
@@ -619,8 +710,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-2-5-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-5">Mishneh Torah, Kings and Wars 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלֶךְ מִסְתַּפֵּר בְּכָל יוֹם. וּמְתַקֵּן עַצְמוֹ וּמִתְנָאֶה בְּמַלְבּוּשִׁין נָאִים וּמְפֹאָרִים. שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְיוֹשֵׁב עַל כִּסֵּא מַלְכוּתוֹ בַּפַּלְטֵרִין שֶׁלּוֹ. וּמֵשִׂים כֶּתֶר בְּרֹאשׁוֹ. וְכָל הָעָם בָּאִין אֵלָיו בְּעֵת שֶׁיִּרְצֶה. וְעוֹמְדִין לְפָנָיו וּמִשְׁתַּחֲוִים אַרְצָה. אֲפִלּוּ נָבִיא עוֹמֵד לִפְנֵי הַמֶּלֶךְ מִשְׁתַּחֲוֶה אַרְצָה. שֶׁנֶּאֱמַר <span class="source-small">(מלכים א א כג)</span> &quot;הִנֵּה נָתָן הַנָּבִיא וַיָּבֹא לִפְנֵי הַמֶּלֶךְ וַיִּשְׁתַּחוּ לַמֶּלֶךְ&quot;. אֲבָל כֹּהֵן גָּדוֹל אֵינוֹ בָּא לִפְנֵי הַמֶּלֶךְ אֶלָּא אִם רָצָה. וְאֵינוֹ עוֹמֵד לְפָנָיו אֶלָּא הַמֶּלֶךְ עוֹמֵד לִפְנֵי כֹּהֵן גָּדוֹל. שֶׁנֶּאֱמַר <span class="source-small">(במדבר כז כא)</span> &quot;וְלִפְנֵי אֶלְעָזָר הַכֹּהֵן יַעֲמֹד&quot;. אַף עַל פִּי כֵן מִצְוָה עַל כֹּהֵן גָּדוֹל לְכַבֵּד אֶת הַמֶּלֶךְ וּלְהוֹשִׁיבוֹ וְלַעֲמֹד מִפָּנָיו כְּשֶׁיָּבוֹא לוֹ. וְלֹא יַעֲמֹד הַמֶּלֶךְ לְפָנָיו אֶלָּא כְּשֶׁיִּשְׁאַל לוֹ בְּמִשְׁפַּט הָאוּרִים. וְכֵן מִצְוָה עַל הַמֶּלֶךְ לְכַבֵּד לוֹמְדֵי הַתּוֹרָה. וּכְשֶׁיִּכָּנְסוּ לְפָנָיו סַנְהֶדְרִין וְחַכְמֵי יִשְׂרָאֵל יַעֲמֹד לִפְנֵיהֶם וְיוֹשִׁיבֵם בְּצִדּוֹ. וְכֵן הָיָה יְהוֹשָׁפָט מֶלֶךְ יְהוּדָה עוֹשֶׂה אֲפִלּוּ לְתַלְמִיד חָכָם הָיָה עוֹמֵד מִכִּסְאוֹ וּמְנַשְּׁקוֹ וְקוֹרֵא לוֹ רַבִּי וּמוֹרִי. בַּמֶּה דְּבָרִים אֲמוּרִים בִּזְמַן שֶׁיִּהְיֶה הַמֶּלֶךְ בְּבֵיתוֹ לְבַדּוֹ הוּא וַעֲבָדָיו יַעֲשֶׂה זֶה בְּצִנְעָה. אֲבָל בְּפַרְהֶסְיָא בִּפְנֵי הָעָם לֹא יַעֲשֶׂה. וְלֹא יַעֲמֹד מִפְּנֵי אָדָם. וְלֹא יְדַבֵּר רַכּוֹת. וְלֹא יִקְרָא לְאָדָם אֶלָּא בִּשְׁמוֹ כְּדֵי שֶׁתְּהֵא יִרְאָתוֹ בְּלֵב הַכּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יהושפט מלך יהודה.</strong> בב׳ כתבי יד הרמב&quot;ם בספריה נ&quot;י הגירסא אסא מלך יהודה, וכן הוא הגירסא ברמב&quot;ם דפוס רומא ר&quot;מ. וברבינו בחיי פ׳ וישלח הגירסא יהושפט כמו שהוא בגמרא שלפנינו, וכתב דרבותא קמ&quot;ל משום שהיה מלך וכתיב שום תשים עליך מלך ולדעת רבינו מצוה למלך לכבד לומדי תורה, ובפסקי ריא&quot;ז כ&quot;י על קידושין פ&quot;ק גם לפניו הי׳ הגירסא בגמ׳ כמו שהוא לפנינו, יהושפט מלך יהודה, ובסמיכת חכמים ברכות כ&quot;ח טעות נזדקר לפניו חזקיה מלך יהודה.</p>
               </div>
             </div>
@@ -635,8 +731,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:4</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-2-5-4" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 2:5:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-2-5">Mishneh Torah, Kings and Wars 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלֶךְ מִסְתַּפֵּר בְּכָל יוֹם. וּמְתַקֵּן עַצְמוֹ וּמִתְנָאֶה בְּמַלְבּוּשִׁין נָאִים וּמְפֹאָרִים. שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְיוֹשֵׁב עַל כִּסֵּא מַלְכוּתוֹ בַּפַּלְטֵרִין שֶׁלּוֹ. וּמֵשִׂים כֶּתֶר בְּרֹאשׁוֹ. וְכָל הָעָם בָּאִין אֵלָיו בְּעֵת שֶׁיִּרְצֶה. וְעוֹמְדִין לְפָנָיו וּמִשְׁתַּחֲוִים אַרְצָה. אֲפִלּוּ נָבִיא עוֹמֵד לִפְנֵי הַמֶּלֶךְ מִשְׁתַּחֲוֶה אַרְצָה. שֶׁנֶּאֱמַר <span class="source-small">(מלכים א א כג)</span> &quot;הִנֵּה נָתָן הַנָּבִיא וַיָּבֹא לִפְנֵי הַמֶּלֶךְ וַיִּשְׁתַּחוּ לַמֶּלֶךְ&quot;. אֲבָל כֹּהֵן גָּדוֹל אֵינוֹ בָּא לִפְנֵי הַמֶּלֶךְ אֶלָּא אִם רָצָה. וְאֵינוֹ עוֹמֵד לְפָנָיו אֶלָּא הַמֶּלֶךְ עוֹמֵד לִפְנֵי כֹּהֵן גָּדוֹל. שֶׁנֶּאֱמַר <span class="source-small">(במדבר כז כא)</span> &quot;וְלִפְנֵי אֶלְעָזָר הַכֹּהֵן יַעֲמֹד&quot;. אַף עַל פִּי כֵן מִצְוָה עַל כֹּהֵן גָּדוֹל לְכַבֵּד אֶת הַמֶּלֶךְ וּלְהוֹשִׁיבוֹ וְלַעֲמֹד מִפָּנָיו כְּשֶׁיָּבוֹא לוֹ. וְלֹא יַעֲמֹד הַמֶּלֶךְ לְפָנָיו אֶלָּא כְּשֶׁיִּשְׁאַל לוֹ בְּמִשְׁפַּט הָאוּרִים. וְכֵן מִצְוָה עַל הַמֶּלֶךְ לְכַבֵּד לוֹמְדֵי הַתּוֹרָה. וּכְשֶׁיִּכָּנְסוּ לְפָנָיו סַנְהֶדְרִין וְחַכְמֵי יִשְׂרָאֵל יַעֲמֹד לִפְנֵיהֶם וְיוֹשִׁיבֵם בְּצִדּוֹ. וְכֵן הָיָה יְהוֹשָׁפָט מֶלֶךְ יְהוּדָה עוֹשֶׂה אֲפִלּוּ לְתַלְמִיד חָכָם הָיָה עוֹמֵד מִכִּסְאוֹ וּמְנַשְּׁקוֹ וְקוֹרֵא לוֹ רַבִּי וּמוֹרִי. בַּמֶּה דְּבָרִים אֲמוּרִים בִּזְמַן שֶׁיִּהְיֶה הַמֶּלֶךְ בְּבֵיתוֹ לְבַדּוֹ הוּא וַעֲבָדָיו יַעֲשֶׂה זֶה בְּצִנְעָה. אֲבָל בְּפַרְהֶסְיָא בִּפְנֵי הָעָם לֹא יַעֲשֶׂה. וְלֹא יַעֲמֹד מִפְּנֵי אָדָם. וְלֹא יְדַבֵּר רַכּוֹת. וְלֹא יִקְרָא לְאָדָם אֶלָּא בִּשְׁמוֹ כְּדֵי שֶׁתְּהֵא יִרְאָתוֹ בְּלֵב הַכּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יעשה זה בצינעא.</strong> בכתבי יד הרמב&quot;ם שבספריה נ&quot;י כתוב יעשה זה וכיוצא בו בצינעא.</p>
               </div>
             </div>
@@ -652,8 +753,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:1:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-1-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-1">Mishneh Torah, Kings and Wars 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּעֵת שֶׁיֵּשֵׁב הַמֶּלֶךְ עַל כִּסֵּא מַלְכוּתוֹ כּוֹתֵב לוֹ סֵפֶר תּוֹרָה לְעַצְמוֹ יֶתֶר עַל הַסֵּפֶר שֶׁהִנִּיחוּ לוֹ אֲבוֹתָיו. וּמַגִּיהוֹ מִסֵּפֶר הָעֲזָרָה עַל פִּי בֵּית דִּין שֶׁל שִׁבְעִים וְאֶחָד. אִם לֹא הִנִּיחוּ לוֹ אֲבוֹתָיו אוֹ שֶׁנֶּאֱבַד כּוֹתֵב שְׁנֵי סִפְרֵי תּוֹרָה. אֶחָד מַנִּיחוֹ בְּבֵית גְּנָזָיו שֶׁהוּא מְצֻוֶּה בּוֹ כְּכָל אֶחָד מִיִּשְׂרָאֵל. וְהַשֵּׁנִי לֹא יָזוּז מִלְּפָנָיו אֶלָּא בְּעֵת שֶׁיִּכָּנֵס לְבֵית הַכִּסֵּא. אוֹ לְבֵית הַמֶּרְחָץ. אוֹ לְמָקוֹם שֶׁאֵין רָאוּי לִקְרִיאָה. יוֹצֵא לַמִּלְחָמָה וְהוּא עִמּוֹ. נִכְנָס וְהוּא עִמּוֹ. יוֹשֵׁב בַּדִּין וְהוּא עִמּוֹ. מֵסֵב וְהוּא כְּנֶגְדּוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;וְהָיְתָה עִמּוֹ וְקָרָא בוֹ כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כותב לו ס&quot;ת לעצמו.</strong> בכ&quot;י הרמב&quot;ם הגי׳ ס&quot;ת לשמו וראה פילון ח&quot;ב ע׳ שס&quot;ג דהמלך כתב בעצמו הס&quot;ת ובתרגום יונתן שופטים ויכתבון לו סביא ית פרשת אורייתא דא ומבואר דס&quot;ת של מלך נכתב ע&quot;י הזקנים ובמאירי סנהדרין ע׳ ע&quot;ב כ׳ והוא הענין במה שאמר אח&quot;כ שתיכף שהומלך כותב או מכתב ס&quot;ת לשמו. ובשו&quot;ת הגאונים שערי תשובה סי׳ קמ&quot;ט דעת רבינו האי דרק עשרת הדברות הי׳ כתוב בו וראה ערוך ערך תפל בשם ר&quot;נ גאון וכן הוא בס׳ גאון הגאונים לר&quot;ש ווערטהימר בנימוקי ר&quot;נ גאון סימן ט&quot;ז, ובמדרש בראשית רבתי לר׳ משה הדרשן מק&quot;נ ת&quot;ש ירושלים ע׳ ע&quot;ו. ובס׳ סוד מספר לר&quot;א אבן עזרא כתב דספרו של מלך הכוונה על ספר דברים וכן מבואר מידידיה האלכסנדרוני ח&quot;ב ע׳ שס&quot;ב שהכוונה שיכתוב לו ספר דברים.</p>
               </div>
             </div>
@@ -668,8 +774,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:1:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-1-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-1">Mishneh Torah, Kings and Wars 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּעֵת שֶׁיֵּשֵׁב הַמֶּלֶךְ עַל כִּסֵּא מַלְכוּתוֹ כּוֹתֵב לוֹ סֵפֶר תּוֹרָה לְעַצְמוֹ יֶתֶר עַל הַסֵּפֶר שֶׁהִנִּיחוּ לוֹ אֲבוֹתָיו. וּמַגִּיהוֹ מִסֵּפֶר הָעֲזָרָה עַל פִּי בֵּית דִּין שֶׁל שִׁבְעִים וְאֶחָד. אִם לֹא הִנִּיחוּ לוֹ אֲבוֹתָיו אוֹ שֶׁנֶּאֱבַד כּוֹתֵב שְׁנֵי סִפְרֵי תּוֹרָה. אֶחָד מַנִּיחוֹ בְּבֵית גְּנָזָיו שֶׁהוּא מְצֻוֶּה בּוֹ כְּכָל אֶחָד מִיִּשְׂרָאֵל. וְהַשֵּׁנִי לֹא יָזוּז מִלְּפָנָיו אֶלָּא בְּעֵת שֶׁיִּכָּנֵס לְבֵית הַכִּסֵּא. אוֹ לְבֵית הַמֶּרְחָץ. אוֹ לְמָקוֹם שֶׁאֵין רָאוּי לִקְרִיאָה. יוֹצֵא לַמִּלְחָמָה וְהוּא עִמּוֹ. נִכְנָס וְהוּא עִמּוֹ. יוֹשֵׁב בַּדִּין וְהוּא עִמּוֹ. מֵסֵב וְהוּא כְּנֶגְדּוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;וְהָיְתָה עִמּוֹ וְקָרָא בוֹ כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כותב לו ס&quot;ת לעצמו.</strong> בשו&quot;ת מחנה חיים ח&quot;א סי׳ ט׳ בנחלקה מלכות ישראל לב׳ ממלכות אי כ&quot;א מחויב לכתוב ס&quot;ת, וע׳ שו&quot;ת משיב דברים יו&quot;ד סי׳ קנ&quot;ט. מ&quot;ש מתוס׳ סנהדרין כ׳ ד&quot;ה מלך וראה ירושלמי הוריות פ&quot;ג ה&quot;ג דמלך יהודה ומלך ישראל שניהם היה להם דין מלך וכן מפורש בר&quot;נ סנהדרין שם דכל מלך שהמליכוהו עשרת השבטים עליהם דין מלך יש לו לכל דבר.</p>
               </div>
             </div>
@@ -684,8 +795,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:1:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-1-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-1">Mishneh Torah, Kings and Wars 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּעֵת שֶׁיֵּשֵׁב הַמֶּלֶךְ עַל כִּסֵּא מַלְכוּתוֹ כּוֹתֵב לוֹ סֵפֶר תּוֹרָה לְעַצְמוֹ יֶתֶר עַל הַסֵּפֶר שֶׁהִנִּיחוּ לוֹ אֲבוֹתָיו. וּמַגִּיהוֹ מִסֵּפֶר הָעֲזָרָה עַל פִּי בֵּית דִּין שֶׁל שִׁבְעִים וְאֶחָד. אִם לֹא הִנִּיחוּ לוֹ אֲבוֹתָיו אוֹ שֶׁנֶּאֱבַד כּוֹתֵב שְׁנֵי סִפְרֵי תּוֹרָה. אֶחָד מַנִּיחוֹ בְּבֵית גְּנָזָיו שֶׁהוּא מְצֻוֶּה בּוֹ כְּכָל אֶחָד מִיִּשְׂרָאֵל. וְהַשֵּׁנִי לֹא יָזוּז מִלְּפָנָיו אֶלָּא בְּעֵת שֶׁיִּכָּנֵס לְבֵית הַכִּסֵּא. אוֹ לְבֵית הַמֶּרְחָץ. אוֹ לְמָקוֹם שֶׁאֵין רָאוּי לִקְרִיאָה. יוֹצֵא לַמִּלְחָמָה וְהוּא עִמּוֹ. נִכְנָס וְהוּא עִמּוֹ. יוֹשֵׁב בַּדִּין וְהוּא עִמּוֹ. מֵסֵב וְהוּא כְּנֶגְדּוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;וְהָיְתָה עִמּוֹ וְקָרָא בוֹ כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהניחו לו אבותי׳.</strong> ע׳ כ&quot;מ וראה מאירי סנהדרין עמוד ע&quot;ב דאפי׳ הניחו לו אבותיו דצריך לכתוב שתים.</p>
               </div>
             </div>
@@ -700,8 +816,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:4:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-4-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-4">Mishneh Torah, Kings and Wars 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלֹא יַרְבֶּה לוֹ כֶּסֶף וְזָהָב לְהַנִּיחַ בִּגְנָזָיו וּלְהִתְגָּאוֹת בּוֹ אוֹ לְהִתְנָאוֹת בּוֹ. אֶלָּא כְּדֵי שֶׁיִּתֵּן לְחֵילוֹתָיו וְלַעֲבָדָיו וּלְשַׁמָּשָׁיו. וְכָל כֶּסֶף וְזָהָב שֶׁיַּרְבֶּה לְאוֹצַר בֵּית ה׳ וְלִהְיוֹת שָׁם מוּכָן לְצָרְכֵי הַצִּבּוּר וּלְמִלְחֲמוֹתָם הֲרֵי זֶה מִצְוָה לְהַרְבּוֹתוֹ. וְאֵין אָסוּר אֶלָּא לְהַרְבּוֹת לְעַצְמוֹ בְּבֵית גְּנָזָיו שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יז)</span> &quot;וְלֹא יַרְבֶּה לּוֹ&quot;. וְאִם הִרְבָּה לוֹקֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא ירבה.</strong> עיין חידושי רמ&quot;ה סנהדרין כ&quot;א בשם י&quot;א דלא ירבה לו מסים לנכסים שלו אלא כדי שיבא לו כדי אפסניא ולא יכביד על העם יתר אבל אם באו לו ארוחות לביזות מותר ע&quot;ש דאם נתנו לו במתנה מותר.</p>
               </div>
             </div>
@@ -716,8 +837,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:5:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-5-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-5">Mishneh Torah, Kings and Wars 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלֶךְ אָסוּר לִשְׁתּוֹת דֶּרֶךְ שִׁכְרוּת. שֶׁנֶּאֱמַר <span class="source-small">(משלי לא ד)</span> &quot;אַל לַמְלָכִים שְׁתוֹ יָיִן&quot;. אֶלָּא יִהְיֶה עוֹסֵק בַּתּוֹרָה וּבְצָרְכֵי יִשְׂרָאֵל בַּיּוֹם וּבַלַּיְלָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;וְהָיְתָה עִמּוֹ וְקָרָא בוֹ כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלך אסור לשתות.</strong> ע׳ חולין ד׳ לאו אורחא דמלכא משתי׳ זבחי ראיה להגאון רא&quot;י בחי׳ שם.</p>
               </div>
             </div>
@@ -732,8 +858,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:6:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-6-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-6">Mishneh Torah, Kings and Wars 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן לֹא יִהְיֶה שָׁטוּף בְּנָשִׁים. אֲפִלּוּ לֹא הָיְתָה לוֹ אֶלָּא אַחַת לֹא יִהְיֶה מָצוּי אֶצְלָהּ תָּמִיד כִּשְׁאָר הַטִּפְּשִׁים. שֶׁנֶּאֱמַר <span class="source-small">(משלי לא ג)</span> &quot;אַל תִּתֵּן לַנָּשִׁים חֵילֶךָ&quot;. עַל הֲסָרַת לִבּוֹ הִקְפִּידָה תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יז)</span> &quot;וְלֹא יָסוּר לְבָבוֹ&quot;. שֶׁלִּבּוֹ הוּא לֵב כָּל קְהַל יִשְׂרָאֵל לְפִיכָךְ דִּבְּקוֹ הַכָּתוּב בַּתּוֹרָה יֶתֶר מִשְּׁאָר הָעָם שֶׁנֶּאֱמַר <span class="source-small">(דברים יז יט)</span> &quot;כָּל יְמֵי חַיָּיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשאר הטפשים.</strong> ע׳ שו&quot;ת רבינו אברהם בן הרמב&quot;ם הוצאת מק&quot;נ סימן מ&quot;ה אריכת דברים בזה.</p>
               </div>
             </div>
@@ -748,8 +879,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:7:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-7-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-7">Mishneh Torah, Kings and Wars 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ שֶׁמַּלְכֵי בֵּית דָּוִד דָּנִין אוֹתָן וּמְעִידִין עֲלֵיהֶן. אֲבָל מַלְכֵי יִשְׂרָאֵל גָּזְרוּ חֲכָמִים שֶׁלֹּא יָדוּן וְלֹא דָּנִין אוֹתוֹ. וְלֹא מֵעִיד וְלֹא מְעִידִין עָלָיו. מִפְּנֵי שֶׁלִּבָּן גַּס בָּהֶן וְיָבוֹא מִן הַדָּבָר תַּקָּלָה וְהֶפְסֵד עַל הַדָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דנין אותן</strong> ע׳ רבינו חננאל יומא ע&quot;ד דמלך אינו מעיד כדכתיב בית דוד דינו לבקר משפט ואין עד נעשה דיין ונפלאין דבריו וע׳ דבר אברהם ח&quot;ב סימן ל&quot;ב ענף ג׳ אות י&quot;ט.</p>
               </div>
             </div>
@@ -764,8 +900,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:8:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-8-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-8">Mishneh Torah, Kings and Wars 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמּוֹרֵד בְּמֶלֶךְ יִשְׂרָאֵל יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. אֲפִלּוּ גָּזַר עַל אֶחָד מִשְּׁאָר הָעָם שֶׁיֵּלֵךְ לְמָקוֹם פְּלוֹנִי וְלֹא הָלַךְ אוֹ שֶׁלֹּא יָצָא מִבֵּיתוֹ וְיָצָא חַיָּב מִיתָה. וְאִם רָצָה לְהָרְגוֹ יֵהָרֵג. שֶׁנֶּאֱמַר <span class="source-small">(יהושע א יח)</span> &quot;כָּל אִישׁ אֲשֶׁר יַמְרֶה אֶת פִּיךָ&quot;. וְכֵן כָּל הַמְבַזֶּה אֶת הַמֶּלֶךְ אוֹ הַמְחָרְפוֹ יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. כְּשִׁמְעִי בֶּן גֵּרָא. וְאֵין לַמֶּלֶךְ רְשׁוּת לַהֲרֹג אֶלָּא בְּסַיִף בִּלְבַד. וְיֵשׁ לוֹ לֶאֱסֹר וּלְהַכּוֹת בְּשׁוֹטִין לִכְבוֹדוֹ. אֲבָל לֹא יַפְקִיר מָמוֹן וְאִם הִפְקִיר הֲרֵי זֶה גֵּזֶל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש למלך רשות להרגו.</strong> ע׳ שו&quot;ת מהר&quot;י וייל סימן קי&quot;ד וכן הוא בשו&quot;ת מהר&quot;ם מינץ סי׳ ק&quot;ו דאעפ&quot;י שבדין נהרג כגון מורד במלכות דודאי חייב מיתה המלך בודאי ימית אותו שאסור למלך למחול על כבודו וראה דרכי משה יו&quot;ד סימן שמ&quot;ה. וע׳ מ&quot;ש בספרי בית דוד סי׳ כ&quot;ח וסימן קי&quot;ג באריכות. ע׳ רמ&quot;ה סנהדרין מ&quot;ט דמצד מורד במלכות אין הסנהדרין דנין כלל רק המלך והיינו דלא חשיב בשום דוכתא מורד במלכות בין חייבי מיתה וע׳ ט&quot;ז יו&quot;ד סי׳ קנ&quot;ז סק&quot;ח דאע&quot;ג דבדין תורה לא היה חייב מיתה אלא מצד חוק המלכות שמרד בדוד מ&quot;מ מוסרין אותו ובשו&quot;ת שמן המשחה סימן ג׳ תמה דהא מורד במלכות חייב מיתה מדין תורה ע&quot;ש ובמח&quot;כ צדקו דברי הטו&quot;ז והחתם סופר אה&quot;ע סי׳ קנ&quot;א כ׳ דאין הסנהדרין דנין דין מורד במלכות רק המלך וכיון לדעת רמ&quot;ה. ועיין חומות ירושלים סימן פ&quot;ב די&quot;ל רק אם המלך בעצמו דנו אבל סנהדרין הדנין למורד דנין בכל מיתה אפי׳ בסקילה ואמרו לדוד הי׳ לך לדונו בסנהדרין ומצינו לשון דמך בראשך במורד במלכות ואבשלום הקימו עליו גל עכ&quot;ד ובמחכ&quot;ת ל&quot;ר ד׳ הט&quot;ז והרמ&quot;ה.</p>
               </div>
             </div>
@@ -780,8 +921,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:8:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-8-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-8">Mishneh Torah, Kings and Wars 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמּוֹרֵד בְּמֶלֶךְ יִשְׂרָאֵל יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. אֲפִלּוּ גָּזַר עַל אֶחָד מִשְּׁאָר הָעָם שֶׁיֵּלֵךְ לְמָקוֹם פְּלוֹנִי וְלֹא הָלַךְ אוֹ שֶׁלֹּא יָצָא מִבֵּיתוֹ וְיָצָא חַיָּב מִיתָה. וְאִם רָצָה לְהָרְגוֹ יֵהָרֵג. שֶׁנֶּאֱמַר <span class="source-small">(יהושע א יח)</span> &quot;כָּל אִישׁ אֲשֶׁר יַמְרֶה אֶת פִּיךָ&quot;. וְכֵן כָּל הַמְבַזֶּה אֶת הַמֶּלֶךְ אוֹ הַמְחָרְפוֹ יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. כְּשִׁמְעִי בֶּן גֵּרָא. וְאֵין לַמֶּלֶךְ רְשׁוּת לַהֲרֹג אֶלָּא בְּסַיִף בִּלְבַד. וְיֵשׁ לוֹ לֶאֱסֹר וּלְהַכּוֹת בְּשׁוֹטִין לִכְבוֹדוֹ. אֲבָל לֹא יַפְקִיר מָמוֹן וְאִם הִפְקִיר הֲרֵי זֶה גֵּזֶל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש למלך רשות להרגו.</strong> ע׳ מלחמת מצוה להרשב&quot;ש עמוד י&quot;ט שכתב ואם גואל הדם יחם לבבו והרגם אינו נהרג וזה יותר טוב מנימוס הנוצרים שתחייב אדם מיתה והמלך יפטרנו אבל נמצא דבר טוב בהם שיצטרך לשמור עצמו מגואל הדם עכ&quot;ד ובהדרש והעיון ח&quot;ב מאמר קע&quot;ב אות ז׳ נסתפק בזה אם רשות חנינה במלך ישראל כמו אצל שאר אומות ע&quot;ש ומפורש הדבר ברשב&quot;ש.</p>
               </div>
             </div>
@@ -796,8 +942,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:8:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-8-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:8:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-8">Mishneh Torah, Kings and Wars 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמּוֹרֵד בְּמֶלֶךְ יִשְׂרָאֵל יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. אֲפִלּוּ גָּזַר עַל אֶחָד מִשְּׁאָר הָעָם שֶׁיֵּלֵךְ לְמָקוֹם פְּלוֹנִי וְלֹא הָלַךְ אוֹ שֶׁלֹּא יָצָא מִבֵּיתוֹ וְיָצָא חַיָּב מִיתָה. וְאִם רָצָה לְהָרְגוֹ יֵהָרֵג. שֶׁנֶּאֱמַר <span class="source-small">(יהושע א יח)</span> &quot;כָּל אִישׁ אֲשֶׁר יַמְרֶה אֶת פִּיךָ&quot;. וְכֵן כָּל הַמְבַזֶּה אֶת הַמֶּלֶךְ אוֹ הַמְחָרְפוֹ יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ. כְּשִׁמְעִי בֶּן גֵּרָא. וְאֵין לַמֶּלֶךְ רְשׁוּת לַהֲרֹג אֶלָּא בְּסַיִף בִּלְבַד. וְיֵשׁ לוֹ לֶאֱסֹר וּלְהַכּוֹת בְּשׁוֹטִין לִכְבוֹדוֹ. אֲבָל לֹא יַפְקִיר מָמוֹן וְאִם הִפְקִיר הֲרֵי זֶה גֵּזֶל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין רשות למלך להרוג את המורד אלא בסייף.</strong> בחסדי דוד פ&quot;ט דסנהדרין הראה מקור דינו בתוספתא שם וכן הוא במראה הפנים על ירושלמי סנהדרין ובשו&quot;ת חיים שאל ח&quot;א סוסי׳ פ&quot;ט שהביא מרדב&quot;ז דהעיר מסנהדרין נ&quot;ב ובשו&quot;ת מהר&quot;ם יפה סימן צ&quot;ג העיר מקורו מסנהדרין נ&quot;ב וקדמו הרדב&quot;ז וראה מאירי סנהדרין ע׳ קצ&quot;ז דהמלך אין לו רשות להרוג אלא בסייף ומה שאמרו כדרך שהמלכות עושה הוא אומרה אלא על מלכי אוה&quot;ע וע׳ רמב&quot;ם פיהמ&quot;ש סנהדרין פ&quot;ו ובשו&quot;ת מאורות נתן לאאמו&quot;ר הגאון זצוק&quot;ל סימן קכ&quot;ג. וע׳ זהר משפטים תמה ע&quot;פ אם אמיתך בחרב ע׳ בס׳ בגדי ישע להג׳ ר׳ ישעי׳ עטייה ד׳ קפ&quot;ג שכ׳ כן ליישב קושיית הזהר עפ&quot;י דברי רבינו דמיתת מלך בסייף וע׳ בית מנחם למהר&quot;ם יפה בהקדמה שכתב כן מהא דאם אמיתך בחרב.</p>
               </div>
             </div>
@@ -812,8 +963,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:10:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-3-10-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-3-10">Mishneh Torah, Kings and Wars 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַהוֹרֵג נְפָשׁוֹת שֶׁלֹּא בִּרְאָיָה בְּרוּרָה. אוֹ בְּלֹא הַתְרָאָה. אֲפִלּוּ בְּעֵד אֶחָד. אוֹ שׂוֹנֵא שֶׁהָרַג בִּשְׁגָגָה. יֵשׁ לַמֶּלֶךְ רְשׁוּת לְהָרְגוֹ וּלְתַקֵּן הָעוֹלָם כְּפִי מַה שֶּׁהַשָּׁעָה צְרִיכָה. וְהוֹרֵג רַבִּים בְּיוֹם אֶחָד וְתוֹלֶה וּמַנִּיחָן תְּלוּיִים יָמִים רַבִּים לְהָטִיל אֵימָה וּלְשַׁבֵּר יַד רִשְׁעֵי הָעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש למלך רשות להרגו.</strong> ע׳ מורה נבוכים ח&quot;ג פ׳ מ׳ שאם לא יהרגהו ב&quot;ד המלך יהרגו שיש לו להרוג באמתלאות ובדדמי, ועיין שיטה מקובצת ב&quot;מ פ&quot;ג בשם ריטב&quot;א ומדיני המלכות להרוג בלא עדים ובלא התראה וכו׳ כמו שראינו בדוד שהרג גר עמלקי וע׳ רמב&quot;ם פ&quot;ב מרוצח ה&quot;ד ופי&quot;ח מסנהדרין ה&quot;ו ופירוש המשניות להרמב&quot;ם סנהדרין פ&quot;ו. וראה מחזור ויטרי ע׳ של&quot;ב שהביא ממדרש שוחר טוב והוא לא יודע הכמנת עדים דמשמע דמדיני המלך הי׳ יכולים להטמין עדים כמו מסית ומדיח ע&quot;ש ובתוס&quot;ר שם פ&quot;ט.</p>
               </div>
             </div>
@@ -829,8 +985,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:2:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-4-2-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-4-2">Mishneh Torah, Kings and Wars 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְשׁוֹלֵחַ בְּכָל גְּבוּל יִשְׂרָאֵל וְלוֹקֵחַ מִן הָעָם הַגִּבּוֹרִים וְאַנְשֵׁי חַיִל וְעוֹשֶׂה מֵהֶן חַיִל לְמֶרְכַּבְתּוֹ וּבְפָרָשָׁיו וּמַעֲמִיד מֵהֶן עוֹמְדִים לְפָנָיו. וּמַעֲמִיד מֵהֶן אֲנָשִׁים לָרוּץ לְפָנָיו. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א ח יא)</span> &quot;וְשָׂם לוֹ בְּמֶרְכַּבְתּוֹ וּפָרָשָׁיו וְרָצוּ לִפְנֵי מֶרְכַּבְתּו&quot;ֹ. וְלוֹקֵחַ מִן הַיָּפִים שֶׁבָּהֶם לִהְיוֹת שַׁמָּשִׁים וְעוֹמְדִים לְפָנָיו שֶׁנֶּאֱמַר <span class="source-small">(שמואל א ח טז)</span> &quot;וְאֶת בַּחוּרֵיכֶם הַטּוֹבִים&quot; <span class="source-small">(שמואל א ח טז)</span> &quot;יִקָּח וְעָשָׂה לִמְלַאכְתּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושולח בכל וכו׳.</strong> עיין ירושלמי פ&quot;ט דנדרים ה&quot;ד בנות ישראל על שאול בכינה כשהיו בעליהן הולכות למלחמה היה מעלה להם מזונות ומבואר דהמלך פרנס את נשי בעלי הצבא.</p>
               </div>
             </div>
@@ -845,8 +1006,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:4:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-4-4-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-4-4">Mishneh Torah, Kings and Wars 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן לוֹקֵחַ מִכָּל גְּבוּל יִשְׂרָאֵל נָשִׁים וּפִילַגְשִׁים. נָשִׁים בִּכְתֻבָּה וְקִדּוּשִׁין. וּפִילַגְשִׁים בְּלֹא כְּתֻבָּה וּבְלֹא קִדּוּשִׁין. אֶלָּא בְּיִחוּד בִּלְבַד קוֹנֶה אוֹתָהּ וּמֻתֶּרֶת לוֹ. אֲבָל הַהֶדְיוֹט אָסוּר בְּפִילֶגֶשׁ אֶלָּא בְּאָמָה הָעִבְרִיָּה בִּלְבַד אַחַר יִעוּד. וְיֵשׁ לוֹ [רְשׁוּת] לַעֲשׂוֹת הַפִּילַגְשִׁים שֶׁלּוֹקֵחַ לְאַרְמוֹנוֹ טַבָּחוֹת וְאוֹפוֹת וְרַקָּחוֹת. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א ח יג)</span> &quot;וְאֶת בְּנוֹתֵיכֶם יִקָּח לְרַקָּחוֹת וּלְטַבָּחוֹת וּלְאֹפוֹת&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים בכתובה וקדושין ופלגשים וכו׳.</strong> עיין שו&quot;ת רבינו אברהם בן הרמב&quot;ם הוצאת מק&quot;נ סימן כ&quot;א שכתב החכמים בארו שאשה בכתובה וקדושין ופלגש בלא כתובה ולא קידושין וע&quot;ש בהערות דהוא לא כגירסת הה&quot;מ פ&quot;א מאישות ה&quot;ד.</p>
               </div>
             </div>
@@ -861,8 +1027,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:6:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-4-6-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-4-6">Mishneh Torah, Kings and Wars 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלוֹקֵחַ הַשָּׂדוֹת וְהַזֵּיתִים וְהַכְּרָמִים לַעֲבָדָיו כְּשֶׁיֵּלְכוּ לַמִּלְחָמָה וְיִפְשְׁטוּ עַל מְקוֹמוֹת אֵלּוּ אִם אֵין לָהֶם מַה יֹּאכְלוּ אֶלָּא מִשָּׁם. וְנוֹתֵן דְּמֵיהֶן. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א ח יד)</span> &quot;וְאֶת שְׂדוֹתֵיכֶם וְאֶת כַּרְמֵיכֶם וְזֵיתֵיכֶם הַטּוֹבִים יִקָּח וְנָתַן לַעֲבָדָיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולוקח השדות.</strong> ע׳ תוס׳ סנהדרין כ׳ ד&quot;ה מלך ורדב&quot;ז כאן וקושי׳ התוס׳ מבואר בזהר פ׳ וישב וע׳ אור לישרים שבסו&quot;ס שו&quot;ת אורים גדולים פ׳ שופטים שכ׳ שמדברי הרמב&quot;ם מוכח כי לא הותר כי אם במלחמה.</p>
               </div>
             </div>
@@ -877,8 +1048,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:9:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-4-9-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-4-9">Mishneh Torah, Kings and Wars 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הֲרוּגֵי הַמֶּלֶךְ מָמוֹנָן לַמֶּלֶךְ. וְכָל הַמַּמְלָכוֹת שֶׁכּוֹבֵשׁ הֲרֵי אוֹצְרוֹת הַמְּלָכִים לַמֶּלֶךְ. וּשְׁאָר הַבִּזָּה שֶׁבּוֹזְזִין בּוֹזְזִין וְנוֹתְנִין לְפָנָיו וְהוּא נוֹטֵל מֶחֱצָה בָּרֹאשׁ. וּמַחֲצִית הַבִּזָּה חוֹלְקִין אוֹתָהּ כָּל אַנְשֵׁי הַצָּבָא בְּיַחַד עִם הָעָם הַיּוֹשְׁבִין עַל הַכֵּלִים בַּמַּחֲנֶה לְשָׁמְרָם חוֹלְקִין בְּשָׁוֶה. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א ל כד)</span> &quot;כִּי כְּחֵלֶק הַיֹּרֵד בַּמִּלְחָמָה וּכְחֵלֶק הַיּשֵׁב עַל הַכֵּלִים יַחְדָּו יַחֲלֹקוּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הרוגי המלך ממונם וכו׳.</strong> ע׳ שו&quot;ת מהר&quot;ם מינץ סי׳ ק&quot;ו שכ׳ על ה׳ הרמב&quot;ם פ&quot;ז מה׳ אבילות מדקאמר והתורה נתנה לו רשות וכו׳ וממונם למלך מיירי במלך ישראל אבל בתשו׳ גאוני מזרח ומערב סימן קע&quot;ט כ׳ הרוגי מלכות נכסיהן למלך אף במלכות עכו&quot;ם וראה שו&quot;ת הרשב&quot;א ח&quot;א סי׳ אלף קנ&quot;ט וז&quot;ל ואיני מכניס עצמי בדין הרוגי מלכות של אוה&quot;ע אם נכסיהם למלך אם לאו אלא אפי׳ לדברי׳ שזכה בהן המלך וכו׳ ובהה&quot;מ פ&quot;ה מה׳ גזילה ואבידה הי&quot;ג כתב וזה מבואר שהרי הרוגי מלכות נכסיהן למלך כדאי׳ פ׳ נגמר הדין משמע דפשיטא לי׳ לרבינו דגם בהרוגי מלכות של עכו&quot;ם נכסיהן למלך, ובג&quot;ש ח&quot;ב ע׳ רי&quot;ג. תשובה לגאון ואין ליורשין כח להוציא מידו וכו׳ ועוד הרוגי מלכות נכסיהם למלך ומפורש דגם במלך עכו&quot;ם שייך זה. ובספר המצות לרס&quot;ג ח&quot;א ד׳ רס&quot;ב תמה שם ע&quot;ד רש&quot;י דנכסיהם למלך מיירי רק במלכי ישראל וכ׳ לא ידענא מנ&quot;ל הא וכו׳ דמרמב&quot;ם ה׳ אבל משמע דאין חילוק בדבר ובמחכת&quot;ה ל&quot;ר כל דברי הראשונים שהבאתי. וע׳ מאירי סנהדרין עמוד ר&quot;ד דלא נאמר הרוגי מלכות ממונם למלך אלא במורד בלבד אבל בעבירה שאין לב&quot;ד רשות להרגו ורשות המלך להרוג לתקון העולם ממונם ליורשים.</p>
               </div>
             </div>
@@ -894,8 +1070,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:5:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-5-5-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-5">Mishneh Torah, Kings and Wars 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן מִצְוַת עֲשֵׂה לְאַבֵּד זֵכֶר עֲמָלֵק. שֶׁנֶּאֱמַר <span class="source-small">(דברים כה יט)</span> &quot;תִּמְחֶה אֶת זֵכֶר עֲמָלֵק&quot;. וּמִצְוַת עֲשֵׂה לִזְכֹּר תָּמִיד מַעֲשָׂיו הָרָעִים וַאֲרִיבָתוֹ. כְּדֵי לְעוֹרֵר אֵיבָתוֹ. שֶׁנֶּאֱמַר <span class="source-small">(דברים כה יז)</span> &quot;זָכוֹר אֵת אֲשֶׁר עָשָׂה לְךָ עֲמָלֵק&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ זָכוֹר בַּפֶּה לֹא תִּשְׁכָּח בַּלֵּב. שֶׁאָסוּר לִשְׁכֹּחַ אֵיבָתוֹ וְשִׂנְאָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן מ&quot;ע לאבד זרע עמלק.</strong> ע׳ חינוך דהחיוב על כל יחיד וראה יראים מכ&quot;י סימן תל&quot;ה דמצות מחיית עמלק מוטלת על המלך ולא על שאר ישראל ושכן מבואר בסמ&quot;ג ל&quot;ת רכ&quot;ו.</p>
               </div>
             </div>
@@ -910,8 +1091,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:7:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-5-7-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-7">Mishneh Torah, Kings and Wars 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמֻתָּר לִשְׁכֹּן בְּכָל הָעוֹלָם חוּץ מֵאֶרֶץ מִצְרַיִם. מִן הַיָּם הַגָּדוֹל וְעַד הַמַּעֲרָב אַרְבַּע מֵאוֹת פַּרְסָה עַל אַרְבַּע מֵאוֹת פַּרְסָה כְּנֶגֶד אֶרֶץ כּוּשׁ וּכְנֶגֶד הַמִּדְבָּר. הַכּל אָסוּר לְהִתְיַשֵּׁב בָּהּ. בִּשְׁלֹשָׁה מְקוֹמוֹת הִזְהִירָה תּוֹרָה שֶׁלֹּא לָשׁוּב לְמִצְרַיִם. שֶׁנֶּאֱמַר <span class="source-small">(דברים יז טז)</span> &quot;לֹא תֹסִפוּן לָשׁוּב בַּדֶּרֶךְ הַזֶּה עוֹד&quot;. <span class="source-small">(דברים כח סח)</span> &quot;לֹא תֹסִיף עוֹד לִרְאֹתָהּ&quot;. <span class="source-small">(שמות יד יג)</span> &quot;לֹא תֹסִפוּ לִרְאֹתָם עוֹד עַד עוֹלָם&quot;. וַאֲלֶכְּסַנְדְּרִיאָה בִּכְלַל הָאִסּוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חוץ מארץ מצרים.</strong> בס׳ כ&quot;י חמאת החמדה לר׳ שת הרופא בר׳ יפת מובא במאמרו של לוין ע׳ י&quot;א דנ&quot;ל דזה האיסור בעבור מצרים הישנה שהי׳ ישראל משועבדים לשם אבל זו אחרת היא נתחדשה אחר שהחריב נבוכדנצר את מצרים ונשארה מ׳ שנה לא עבר עליה עוף וע&quot;ז סמכו החכמים ששכנו במצרים כגון הרמב&quot;ם ז&quot;ל ושאר רבנים וקהליהם וע׳ ריקנטי סי׳ תקע&quot;ג.</p>
               </div>
             </div>
@@ -926,8 +1112,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:9:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-5-9-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-9">Mishneh Torah, Kings and Wars 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לָצֵאת מֵאֶרֶץ יִשְׂרָאֵל לְחוּצָה לָאָרֶץ לְעוֹלָם. אֶלָּא לִלְמֹד תּוֹרָה אוֹ לִשָּׂא אִשָּׁה אוֹ לְהַצִּיל מִן הָעַכּוּ&quot;ם. וְיַחְזֹר לָאָרֶץ. וְכֵן יוֹצֵא הוּא לִסְחוֹרָה. אֲבָל לִשְׁכֹּן בְּחוּצָה לָאָרֶץ אָסוּר אֶלָּא אִם כֵּן חָזַק שָׁם הָרָעָב עַד שֶׁנַּעֲשָׂה שְׁוֵה דִּינָר חִטִּין בִּשְׁנֵי דִּינָרִין. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁהָיוּ הַמָּעוֹת מְצוּיוֹת וְהַפֵּרוֹת בְּיֹקֶר. אֲבָל אִם הַפֵּרוֹת בְּזוֹל וְלֹא יִמְצָא מָעוֹת וְלֹא בְּמָה יִשְׂתַּכֵּר וְאָבְדָה פְּרוּטָה מִן הַכִּיס. יֵצֵא לְכָל מָקוֹם שֶׁיִּמְצָא בּוֹ רֶוַח. וְאַף עַל פִּי שֶׁמֻּתָּר לָצֵאת אֵינָהּ מִדַּת חֲסִידוּת שֶׁהֲרֵי מַחְלוֹן וְכִלְיוֹן שְׁנֵי גְּדוֹלֵי הַדּוֹר הָיוּ וּמִפְּנֵי צָרָה גְּדוֹלָה יָצְאוּ וְנִתְחַיְּבוּ כְּלָיָה לַמָּקוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונתחייבו כלייה למקום.</strong> באבני שש סימן מ&quot;ד כ׳ ע&quot;ז דתמיה כיון דמדינא מותר לצאת אלא שמדת חסידות שלא לצאת היאך יתחייבו כליה על שיצאו אטו מי שאינו מתנהג בחסידות יתחייב כליה ע&quot;ש וראה תוס׳ יבמות מ&quot;ה ד&quot;ה דמשום איסור דרבנן לא נתחייבו כליה וראה יראים הוצאת שיף מכ&quot;י סימן קכ&quot;ד שהביא ראיה מסוטה ט׳ דגניבת דעת איסור תורה דאי דרבנן לא הי׳ נענש אבישלום וע׳ שו&quot;ת הרדב&quot;ז חלק הל׳ סימן ב׳ אלפים פ׳.</p>
               </div>
             </div>
@@ -942,8 +1133,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:11:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-5-11-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-11">Mishneh Torah, Kings and Wars 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ חֲכָמִים כָּל הַשּׁוֹכֵן בְּאֶרֶץ יִשְׂרָאֵל עֲוֹנוֹתָיו מְחוּלִין. שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג כד)</span> &quot;וּבַל יֹאמַר שָׁכֵן חָלִיתִי הָעָם הַיּשֵׁב בָּהּ נְשֻׂא עָוֹן&quot;. אֲפִלּוּ הָלַךְ בָּהּ אַרְבַּע אַמּוֹת זוֹכֶה לְחַיֵּי הָעוֹלָם הַבָּא. וְכֵן הַקָּבוּר בָּהּ נִתְכַּפֵּר לוֹ. וּכְאִלּוּ הַמָּקוֹם שֶׁהוּא בּוֹ מִזְבַּח כַּפָּרָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים לב מג)</span> &quot;וְכִפֶּר אַדְמָתוֹ עַמּוֹ&quot;. וּבַפֻּרְעָנוּת הוּא אוֹמֵר <span class="source-small">(עמוס ז יז)</span> &quot;עַל אֲדָמָה טְמֵאָה תָּמוּת&quot;. וְאֵינוֹ דּוֹמֶה קוֹלַטְתּוֹ מֵחַיִּים לְקוֹלַטְתּוֹ אַחַר מוֹתוֹ. וְאַף עַל פִּי כֵן גְּדוֹלֵי הַחֲכָמִים הָיוּ מוֹלִיכִים מֵתֵיהֶם לְשָׁם. צֵא וּלְמַד מִיַּעֲקֹב אָבִינוּ וְיוֹסֵף הַצַּדִּיק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן הקבור בה.</strong> ע׳ שו&quot;ת הרמב&quot;ם מק&quot;נ סימן שע&quot;ב.</p>
               </div>
             </div>
@@ -958,8 +1154,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:11:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-5-11-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-11">Mishneh Torah, Kings and Wars 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ חֲכָמִים כָּל הַשּׁוֹכֵן בְּאֶרֶץ יִשְׂרָאֵל עֲוֹנוֹתָיו מְחוּלִין. שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג כד)</span> &quot;וּבַל יֹאמַר שָׁכֵן חָלִיתִי הָעָם הַיּשֵׁב בָּהּ נְשֻׂא עָוֹן&quot;. אֲפִלּוּ הָלַךְ בָּהּ אַרְבַּע אַמּוֹת זוֹכֶה לְחַיֵּי הָעוֹלָם הַבָּא. וְכֵן הַקָּבוּר בָּהּ נִתְכַּפֵּר לוֹ. וּכְאִלּוּ הַמָּקוֹם שֶׁהוּא בּוֹ מִזְבַּח כַּפָּרָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים לב מג)</span> &quot;וְכִפֶּר אַדְמָתוֹ עַמּוֹ&quot;. וּבַפֻּרְעָנוּת הוּא אוֹמֵר <span class="source-small">(עמוס ז יז)</span> &quot;עַל אֲדָמָה טְמֵאָה תָּמוּת&quot;. וְאֵינוֹ דּוֹמֶה קוֹלַטְתּוֹ מֵחַיִּים לְקוֹלַטְתּוֹ אַחַר מוֹתוֹ. וְאַף עַל פִּי כֵן גְּדוֹלֵי הַחֲכָמִים הָיוּ מוֹלִיכִים מֵתֵיהֶם לְשָׁם. צֵא וּלְמַד מִיַּעֲקֹב אָבִינוּ וְיוֹסֵף הַצַּדִּיק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מזבח כפרה.</strong> ע׳ אבות דר&quot;נ פכ&quot;ו שכל א׳ ראויה למזבחות.</p>
               </div>
             </div>
@@ -974,8 +1175,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:12:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-5-12-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-5-12">Mishneh Torah, Kings and Wars 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לְעוֹלָם יָדוּר אָדָם בְּאֶרֶץ יִשְׂרָאֵל אֲפִלּוּ בְּעִיר שֶׁרֻבָּהּ עַכּוּ&quot;ם וְאַל יָדוּר בְּחוּצָה לָאָרֶץ וַאֲפִלּוּ בְּעִיר שֶׁרֻבָּהּ יִשְׂרָאֵל. שֶׁכָּל הַיּוֹצֵא לְחוּצָה לָאָרֶץ כְּאִלּוּ עוֹבֵד עֲבוֹדָה זָרָה. שֶׁנֶּאֱמַר <span class="source-small">(שמואל א כו יט)</span> &quot;כִּי גֵרְשׁוּנִי הַיּוֹם מֵהִסְתַּפֵּחַ בְּנַחֲלַת ה׳ לֵאמֹר לֵךְ עֲבֹד אֱלֹהִים אֲחֵרִים&quot;. וּבַפֻּרְעָנֻיּוֹת הוּא אוֹמֵר <span class="source-small">(יחזקאל יג ט)</span> &quot;וְאֶל אַדְמַת יִשְׂרָאֵל לֹא יָבֹאוּ&quot;. כְּשֵׁם שֶׁאָסוּר לָצֵאת מֵהָאָרֶץ לְחוּצָה לָאָרֶץ כָּךְ אָסוּר לָצֵאת מִבָּבֶל לִשְׁאָר הָאֲרָצוֹת. שֶׁנֶּאֱמַר <span class="source-small">(ירמיה כז כב)</span> &quot;בָּבֶלָה יוּבָאוּ וְשָׁמָּה יִהְיוּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לעולם ידור אדם.</strong> ע׳ דמשק אליעזר על חולין פ&quot;א מדפי הס׳ ד׳ כ&quot;א שכ׳ וכבר כתבתי תשובה ארוכה ורחבה מני ים לאאמו&quot;ר הגאון החסיד כשנסע עם אמי מורתי הצנועה החסידה לארץ הקדושה דמן טעמים אלו יש למנוע בזמנינו ליסע שלא יחייב עצמו כל החיובים אלו בקרבנות ועולת התמיד וקטורת ותרומות ומעשרות וכ&quot;כ ר&quot;ת שם ובקידושין שאין לנסוע לא&quot;י בזה&quot;ז מפני שכמה מצות תלויין בה וכו׳, וכמה חבטו ראשונים לידע מקום המקדש כדאי׳. באיזהו מקומן היכן הוא וכו׳ הרי שנסתפקו במקדש מקום המזבח ומקום ק&quot;ק ואנו לא נסתפק בכל א&quot;י ומי הוא היודע ועד מה שכבשו עולי מצרים ולא כבשו עולי בבל ומהו סוריא ושנער וכו׳ וסבב שמן בשם אחר עד שיבא מורה ע&quot;ש.</p>
               </div>
             </div>
@@ -991,8 +1197,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:1:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-6-1-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-6-1">Mishneh Torah, Kings and Wars 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין עוֹשִׂין מִלְחָמָה עִם אָדָם בָּעוֹלָם עַד שֶׁקּוֹרְאִין לוֹ שָׁלוֹם. אֶחָד מִלְחֶמֶת הָרְשׁוּת וְאֶחָד מִלְחֶמֶת מִצְוָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, י)</span> &quot;כִּי תִקְרַב אֶל עִיר לְהִלָּחֵם עָלֶיהָ וְקָרָאתָ אֵלֶיהָ לְשָׁלוֹם&quot;. אִם הִשְׁלִימוּ וְקִבְּלוּ שֶׁבַע מִצְוֹת שֶׁנִּצְטַוּוּ בְּנֵי נֹחַ עֲלֵיהֶן אֵין הוֹרְגִין מֵהֶן נְשָׁמָה וַהֲרֵי הֵן לְמַס. שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, יא)</span> &quot;יִהְיוּ לְךָ לָמַס וַעֲבָדוּךָ&quot;. קִבְּלוּ עֲלֵיהֶן הַמַּס וְלֹא קִבְּלוּ הָעַבְדוּת אוֹ שֶׁקִּבְּלוּ הָעַבְדוּת וְלֹא קִבְּלוּ הַמַּס. אֵין שׁוֹמְעִין לָהֶם עַד שֶׁיְּקַבְּלוּ שְׁנֵיהֶם. וְהָעַבְדוּת שֶׁיְּקַבְּלוּ הוּא שֶׁיִּהְיוּ נִבְזִים וּשְׁפָלִים לְמַטָּה וְלֹא יָרִימוּ רֹאשׁ בְּיִשְׂרָאֵל אֶלָּא יִהְיוּ כְּבוּשִׁים תַּחַת יָדָם. וְלֹא יִתְמַנּוּ עַל יִשְׂרָאֵל לְשׁוּם דָּבָר שֶׁבָּעוֹלָם. וְהַמַּס שֶׁיְּקַבְּלוּ שֶׁיִּהְיוּ מוּכָנִים לַעֲבוֹדַת הַמֶּלֶךְ בְּגוּפָם וּמָמוֹנָם. כְּגוֹן בִּנְיַן הַחוֹמוֹת. וְחֹזֶק הַמְּצוּדוֹת. וּבִנְיַן אַרְמוֹן הַמֶּלֶךְ וְכַיּוֹצֵא בּוֹ. שֶׁנֶּאֱמַר <span class="source-small">(מלכים א ט, טו)</span> &quot;וְזֶה דְבַר הַמַּס אֲשֶׁר הֶעֱלָה הַמֶּלֶךְ שְׁלֹמֹה לִבְנוֹת אֶת בֵּית ה׳ וְאֶת בֵּיתוֹ וְאֶת הַמִּלּוֹא וְאֵת חוֹמַת יְרוּשָׁלָםִ&quot; <span class="source-small">(מלכים א ט, יט)</span> &quot;וְאֵת כָּל עָרֵי הַמִּסְכְּנוֹת אֲשֶׁר הָיוּ לִשְׁלֹמֹה&quot; <span class="source-small">(מלכים א ט, כ)</span> &quot;כָּל הָעָם הַנּוֹתָר מִן הָאֱמֹרִי&quot; <span class="source-small">(מלכים א ט, כא)</span> &quot;וַיַּעֲלֵם שְׁלֹמֹה לְמַס עֹבֵד עַד הַיּוֹם הַזֶּה&quot; <span class="source-small">(מלכים א ט, כב)</span> &quot;וּמִבְּנֵי יִשְׂרָאֵל לֹא נָתַן שְׁלֹמֹה עָבֶד כִּי הֵם אַנְשֵׁי הַמִּלְחָמָה וַעֲבָדָיו וְשָׂרָיו וְשָׁלִישָׁיו וְשָׂרֵי רִכְבּוֹ וּפָרָשָׁיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין עושין מלחמה.</strong> ע׳ שבועות ל&quot;ה אמר שמואל מלכותא דקטלא חד משיתא בעלמא לא מיענשא כתבו התוס׳ למלחמת הרשות הכתוב מדבר והיינו במלכי ישראל כמ&quot;ש מהרש&quot;א, וזה פלא ואינו מבואר בשום מקום, וע׳ חתם סופר או&quot;ח סימן ר&quot;ח, ומהר&quot;ם שיק חו&quot;מ סימן נ׳, וע׳ שו&quot;ת מקום שמואל סימן ח׳ ג&quot;כ דהא דאמר שמואל מלכותא דקטלא חד משיתא בעלמא לא מיענש דמיירי במלחמת ישראל דמלחמת רשות שלהם מיקרי מלחמת מצוה.</p>
               </div>
             </div>
@@ -1007,8 +1218,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:4:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-6-4-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-6-4">Mishneh Torah, Kings and Wars 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם לֹא הִשְׁלִימוּ אוֹ שֶׁהִשְׁלִימוּ וְלֹא קִבְּלוּ שֶׁבַע מִצְוֹת. עוֹשִׂין עִמָּהֶם מִלְחָמָה וְהוֹרְגִין כָּל הַזְּכָרִים הַגְּדוֹלִים. וּבוֹזְזִין כָּל מָמוֹנָם וְטַפָּם. וְאֵין הוֹרְגִין אִשָּׁה וְלֹא קָטָן שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, יד)</span> &quot;וְהַנָּשִׁים וְהַטָּף&quot; זֶה טַף שֶׁל זְכָרִים. בַּמֶּה דְּבָרִים אֲמוּרִים בְּמִלְחֶמֶת הָרְשׁוּת שֶׁהוּא עִם שְׁאָר הָאֻמּוֹת. אֲבָל שִׁבְעָה עֲמָמִין וַעֲמָלֵק שֶׁלֹּא הִשְׁלִימוּ אֵין מַנִּיחִין מֵהֶם נְשָׁמָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, טו)</span> &quot;כֵּן תַּעֲשֶׂה לְכָל&quot; וְגוֹ׳ <span class="source-small">(דברים כ, טז)</span> &quot;רַק מֵעָרֵי הָעַמִּים&quot; <span class="source-small">(דברים כ, טז)</span> &quot;לֹא תְחַיֶּה כָּל נְשָׁמָה&quot;. וְכֵן הוּא אוֹמֵר בַּעֲמָלֵק <span class="source-small">(דברים כה, יט)</span> &quot;תִּמְחֶה אֶת זֵכֶר עֲמָלֵק&quot;. וּמִנַּיִן שֶׁאֵינוֹ מְדַבֵּר אֶלָּא בְּאֵלּוּ שֶׁלֹּא הִשְׁלִימוּ שֶׁנֶּאֱמַר <span class="source-small">(יהושע יא, יט)</span> &quot;לֹא הָיְתָה עִיר אֲשֶׁר הִשְׁלִימָה אֶל בְּנֵי יִשְׂרָאֵל בִּלְתִּי הַחִוִּי ישְׁבֵי גִבְעוֹן אֶת הַכּל לָקְחוּ בַמִּלְחָמָה&quot; <span class="source-small">(יהושע יא, כ)</span> &quot;כִּי מֵאֵת ה׳ הָיְתָה לְחַזֵּק אֶת לִבָּם לִקְרַאת הַמִּלְחָמָה אֶת יִשְׂרָאֵל לְמַעַן הַחֲרִימָם&quot;. מִכְלַל שֶׁשָּׁלְחוּ לָהֶם לְשָׁלוֹם וְלֹא קִבְּלוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עושין עמהן מלחמה.</strong> ע׳ מדרש דברים רבה מכ&quot;י הוצאת ר&quot;ש ליברמן עמוד ל&quot;ג דאם ברחו הלגיונות והניחו הארץ אין אתה מצווה לרדוף אחריהם אבל אם ברחו המלכים מצווה אתה לרדוף אחריהם עד סוף העולם.</p>
               </div>
             </div>
@@ -1023,8 +1239,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:4:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-6-4-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-6-4">Mishneh Torah, Kings and Wars 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם לֹא הִשְׁלִימוּ אוֹ שֶׁהִשְׁלִימוּ וְלֹא קִבְּלוּ שֶׁבַע מִצְוֹת. עוֹשִׂין עִמָּהֶם מִלְחָמָה וְהוֹרְגִין כָּל הַזְּכָרִים הַגְּדוֹלִים. וּבוֹזְזִין כָּל מָמוֹנָם וְטַפָּם. וְאֵין הוֹרְגִין אִשָּׁה וְלֹא קָטָן שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, יד)</span> &quot;וְהַנָּשִׁים וְהַטָּף&quot; זֶה טַף שֶׁל זְכָרִים. בַּמֶּה דְּבָרִים אֲמוּרִים בְּמִלְחֶמֶת הָרְשׁוּת שֶׁהוּא עִם שְׁאָר הָאֻמּוֹת. אֲבָל שִׁבְעָה עֲמָמִין וַעֲמָלֵק שֶׁלֹּא הִשְׁלִימוּ אֵין מַנִּיחִין מֵהֶם נְשָׁמָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, טו)</span> &quot;כֵּן תַּעֲשֶׂה לְכָל&quot; וְגוֹ׳ <span class="source-small">(דברים כ, טז)</span> &quot;רַק מֵעָרֵי הָעַמִּים&quot; <span class="source-small">(דברים כ, טז)</span> &quot;לֹא תְחַיֶּה כָּל נְשָׁמָה&quot;. וְכֵן הוּא אוֹמֵר בַּעֲמָלֵק <span class="source-small">(דברים כה, יט)</span> &quot;תִּמְחֶה אֶת זֵכֶר עֲמָלֵק&quot;. וּמִנַּיִן שֶׁאֵינוֹ מְדַבֵּר אֶלָּא בְּאֵלּוּ שֶׁלֹּא הִשְׁלִימוּ שֶׁנֶּאֱמַר <span class="source-small">(יהושע יא, יט)</span> &quot;לֹא הָיְתָה עִיר אֲשֶׁר הִשְׁלִימָה אֶל בְּנֵי יִשְׂרָאֵל בִּלְתִּי הַחִוִּי ישְׁבֵי גִבְעוֹן אֶת הַכּל לָקְחוּ בַמִּלְחָמָה&quot; <span class="source-small">(יהושע יא, כ)</span> &quot;כִּי מֵאֵת ה׳ הָיְתָה לְחַזֵּק אֶת לִבָּם לִקְרַאת הַמִּלְחָמָה אֶת יִשְׂרָאֵל לְמַעַן הַחֲרִימָם&quot;. מִכְלַל שֶׁשָּׁלְחוּ לָהֶם לְשָׁלוֹם וְלֹא קִבְּלוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל שבעה עממין ועמלק.</strong> ע׳ תשובת הגאונים לי&quot;ק סימן ק&quot;כ דנשים פטורות מיוצאי צבא כל זכר, וע׳ קידושין ב׳ לאו דרכה של אשה לעשות מלחמה, ובד׳ ל&quot;ד אין דרכה של אשה לכבוש, וע׳ נזיר נ&quot;ט לא תצא אשה בכלי זיין למלחמה ורש&quot;י שם, ובחינוך סי׳ תר&quot;ג דאינו אלא בזכרים.</p>
               </div>
             </div>
@@ -1039,8 +1260,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:4:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-6-4-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-6-4">Mishneh Torah, Kings and Wars 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם לֹא הִשְׁלִימוּ אוֹ שֶׁהִשְׁלִימוּ וְלֹא קִבְּלוּ שֶׁבַע מִצְוֹת. עוֹשִׂין עִמָּהֶם מִלְחָמָה וְהוֹרְגִין כָּל הַזְּכָרִים הַגְּדוֹלִים. וּבוֹזְזִין כָּל מָמוֹנָם וְטַפָּם. וְאֵין הוֹרְגִין אִשָּׁה וְלֹא קָטָן שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, יד)</span> &quot;וְהַנָּשִׁים וְהַטָּף&quot; זֶה טַף שֶׁל זְכָרִים. בַּמֶּה דְּבָרִים אֲמוּרִים בְּמִלְחֶמֶת הָרְשׁוּת שֶׁהוּא עִם שְׁאָר הָאֻמּוֹת. אֲבָל שִׁבְעָה עֲמָמִין וַעֲמָלֵק שֶׁלֹּא הִשְׁלִימוּ אֵין מַנִּיחִין מֵהֶם נְשָׁמָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כ, טו)</span> &quot;כֵּן תַּעֲשֶׂה לְכָל&quot; וְגוֹ׳ <span class="source-small">(דברים כ, טז)</span> &quot;רַק מֵעָרֵי הָעַמִּים&quot; <span class="source-small">(דברים כ, טז)</span> &quot;לֹא תְחַיֶּה כָּל נְשָׁמָה&quot;. וְכֵן הוּא אוֹמֵר בַּעֲמָלֵק <span class="source-small">(דברים כה, יט)</span> &quot;תִּמְחֶה אֶת זֵכֶר עֲמָלֵק&quot;. וּמִנַּיִן שֶׁאֵינוֹ מְדַבֵּר אֶלָּא בְּאֵלּוּ שֶׁלֹּא הִשְׁלִימוּ שֶׁנֶּאֱמַר <span class="source-small">(יהושע יא, יט)</span> &quot;לֹא הָיְתָה עִיר אֲשֶׁר הִשְׁלִימָה אֶל בְּנֵי יִשְׂרָאֵל בִּלְתִּי הַחִוִּי ישְׁבֵי גִבְעוֹן אֶת הַכּל לָקְחוּ בַמִּלְחָמָה&quot; <span class="source-small">(יהושע יא, כ)</span> &quot;כִּי מֵאֵת ה׳ הָיְתָה לְחַזֵּק אֶת לִבָּם לִקְרַאת הַמִּלְחָמָה אֶת יִשְׂרָאֵל לְמַעַן הַחֲרִימָם&quot;. מִכְלַל שֶׁשָּׁלְחוּ לָהֶם לְשָׁלוֹם וְלֹא קִבְּלוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ אלא שאפשר לטעון.</strong> ע׳ מדרש תנאים דברים כ, ט&quot;ז, לא תחיה כל נשמה יכול אפי׳ השלימו ת&quot;ל רק ובהג&quot;ה שם.</p>
               </div>
             </div>
@@ -1055,8 +1281,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:5:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-6-5-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-6-5">Mishneh Torah, Kings and Wars 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה כְּתָבִים שָׁלַח יְהוֹשֻׁעַ עַד שֶׁלֹּא נִכְנַס לָאָרֶץ. הָרִאשׁוֹן שָׁלַח לָהֶם מִי שֶׁרוֹצֶה לִבְרֹחַ יִבְרַח. וְחָזַר וְשָׁלַח מִי שֶׁרוֹצֶה לְהַשְׁלִים יַשְׁלִים. וְחָזַר וְשָׁלַח מִי שֶׁרוֹצֶה לַעֲשׂוֹת מִלְחָמָה יַעֲשֶׂה. אִם כֵּן מִפְּנֵי מָה הֶעֱרִימוּ יוֹשְׁבֵי גִּבְעוֹן. לְפִי שֶׁשָּׁלַח לָהֶם בַּכְּלָל וְלֹא קִבְּלוּ. וְלֹא יָדְעוּ מִשְׁפַּט יִשְׂרָאֵל וְדִמּוּ שֶׁשּׁוּב אֵין פּוֹתְחִין לָהֶם לְשָׁלוֹם. וְלָמָּה קָשָׁה הַדָּבָר לַנְּשִׂיאִים וְרָאוּ שֶׁרָאוּי לְהַכּוֹתָם לְפִי חֶרֶב לוּלֵי הַשְּׁבוּעָה. מִפְּנֵי שֶׁכָּרְתוּ לָהֶם בְּרִית וַהֲרֵי הוּא אוֹמֵר <span class="source-small">(דברים ז, ב)</span> &quot;לֹא תִכְרֹת לָהֶם בְּרִית&quot; אֶלָּא הָיָה דִּינָם שֶׁיִּהְיוּ לְמַס עֲבָדִים. וְהוֹאִיל וּבְטָעוּת נִשְׁבְּעוּ לָהֶן בְּדִין הָיָה שֶׁיֵּהָרְגוּ עַל שֶׁהִטְעוּם לוּלֵי חִלּוּל הַשֵּׁם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפי ששלח.</strong> ובראב&quot;ד שלא שלח להם אלא עד שלא עברו את הירדן, ע׳ תוס׳ גיטין מ&quot;ו שכתבו כן דלאחר שנכנסו לארץ לא יכול להשלים, וראה מגדל לר׳ דוד בר׳ יעקב הכהן על גיטין מתלמידו של מהרש&quot;ל שאלוניקי שנ&quot;ז שם, וע׳ יחוסי תנאים ואמוראים אות ג׳ שכתב ג&quot;כ כדברי התוס׳.</p>
               </div>
             </div>
@@ -1071,8 +1302,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:10:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-6-10-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-6-10">Mishneh Torah, Kings and Wars 6:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלֹא הָאִילָנוֹת בִּלְבַד. אֶלָּא כָּל הַמְשַׁבֵּר כֵּלִים. וְקוֹרֵעַ בְּגָדִים. וְהוֹרֵס בִּנְיָן. וְסוֹתֵם מַעְיָן. וּמְאַבֵּד מַאֲכָלוֹת דֶּרֶךְ הַשְׁחָתָה. עוֹבֵר בְּלֹא תַשְׁחִית. וְאֵינוֹ לוֹקֶה אֶלָּא מַכַּת מַרְדּוּת מִדִּבְרֵיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וסותם מעין.</strong> ראה ידידיה האלכסנדרוני ח&quot;ב ע׳ תרכ&quot;ט שלא לסתום המעיין ומבואר שם מפורש דאסור לסתום אמת המים לפי תורת משה ואף שאין מקור לד׳ רבינו, כמ&quot;ש בשאלת שלמה ח&quot;א סי׳ מ&quot;ד דלא ראה מי שיגלה מקור דברי הרמב&quot;ם אנו רואים שאיסור זה כבר ידוע הי׳ בימי ידידיה האלכסנדרוני ובודאי יש איזה מקור משותף לשניהם ונאבדו המקורות.</p>
               </div>
             </div>
@@ -1087,8 +1323,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:14:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-6-14-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 6:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-6-14">Mishneh Torah, Kings and Wars 6:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאָסוּר לְהִפָּנוֹת בְּתוֹךְ הַמַּחֲנֶה אוֹ עַל פְּנֵי הַשָּׂדֶה בְּכָל מָקוֹם. אֶלָּא מִצְוַת עֲשֵׂה לְתַקֵּן שָׁם דֶּרֶךְ מְיֻחֶדֶת לְהִפָּנוֹת בָּהּ. שֶׁנֶּאֱמַר <span class="source-small">(דברים כג, יג)</span> &quot;וְיָד תִּהְיֶה לְךָ מִחוּץ לַמַּחֲנֶה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואסור להפנות בתוך המחנה.</strong> ע׳ בספר המצות לרבינו מצוה קע&quot;ב ג&quot;כ דנצטוינו דוקא בעת מלחמה וקשה מעירובין נ&quot;ה וירושלמי פ׳ כיצד מעברין ה&quot;א דמצוה זו נוהגת גם בשעת חנייתן, וע׳ תוספתא פ&quot;ד דמגילה דהיוצא למלחמת הרשות חופר ויושב, וע׳ זהר הרקיע לתשב&quot;ץ דעתו דאפי׳ שלא בשעת מלחמה נוהג והביא ראיה מברכות כ&quot;ה.</p>
               </div>
             </div>
@@ -1104,8 +1345,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:2:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-7-2-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-7-2">Mishneh Torah, Kings and Wars 7:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁתֵּי פְּעָמִים מְדַבֵּר מְשׁוּחַ מִלְחָמָה אֶל הָעָם. אַחַת בַּסְּפַר בְּעֵת שֶׁיּוֹצְאִין קֹדֶם שֶׁיַּעַרְכוּ הַמִּלְחָמָה. אוֹמֵר לָעָם <span class="source-small">(דברים כ, ו)</span> &quot;מִי הָאִישׁ אֲשֶׁר נָטַע כֶּרֶם וְלֹא חִלְּלוֹ&quot; וְגוֹ׳. כְּשֶׁיִּשְׁמַע דְּבָרָיו יַחְזֹר מֵעוֹרְכֵי הַמִּלְחָמָה. וְאַחַת בְּעוֹרְכֵי הַמִּלְחָמָה אוֹמֵר <span class="source-small">(דברים כ, ג)</span> &quot;אַל תִּירְאוּ וְאַל תַּחְפְּזוּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחת בספר.</strong> ע׳ מאירי סוטה שם שהביא גי׳ אחרת אחת בשופר כשהי׳ תוקעים בשופר לצאת מארצם והוא גורס בספר בשוא תחת הסמך שלא הי׳ דנין לאלה לחזור אלא משהלכו עמהן עד הספר היה עליהם.</p>
               </div>
             </div>
@@ -1120,8 +1366,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:3:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-7-3-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-7-3">Mishneh Torah, Kings and Wars 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֵת שֶׁעוֹרְכִין הַמַּעֲרָכוֹת וְהֵם קְרֵבִים לְהִלָּחֵם. מְשׁוּחַ מִלְחָמָה עוֹמֵד בְּמָקוֹם גָּבוֹהַּ וְכָל הַמַּעֲרָכוֹת לְפָנָיו. וְאוֹמֵר לָהֶם בִּלְשׁוֹן הַקֹּדֶשׁ <span class="source-small">(דברים כ, ג)</span> &quot;שְׁמַע יִשְׂרָאֵל אַתֶּם קְרֵבִים הַיּוֹם לַמִּלְחָמָה עַל אֹיְבֵיכֶם&quot;. <span class="source-small">(דברים כ, ג)</span> &quot;אַל יֵרַךְ לְבַבְכֶם אַל תִּירְאוּ וְאַל תַּחְפְּזוּ וְאַל תַּעַרְצוּ מִפְּנֵיהֶם&quot;. <span class="source-small">(דברים כ, ד)</span> &quot;כִּי ה׳ אֱלֹהֵיכֶם הַהלֵךְ עִמָּכֶם לְהִלָּחֵם לָכֶם עִם אֹיְבֵיכֶם לְהוֹשִׁיעַ אֶתְכֶם&quot;. עַד כָּאן אוֹמֵר מְשׁוּחַ מִלְחָמָה וְכֹהֵן אַחֵר תַּחְתָּיו מַשְׁמִיעַ אוֹתוֹ לְכָל הָעָם בְּקוֹל רָם. וְאַחַר כָּךְ מְדַבֵּר מְשׁוּחַ מִלְחָמָה <span class="source-small">(דברים כ, ה)</span> &quot;מִי הָאִישׁ אֲשֶׁר בָּנָה בַיִת חָדָשׁ&quot; וְגוֹ׳ <span class="source-small">(דברים כ, ו)</span> &quot;וּמִי הָאִישׁ אֲשֶׁר נָטַע כֶּרֶם&quot; וְגוֹ׳ <span class="source-small">(דברים כ, ז)</span> &quot;וּמִי הָאִישׁ אֲשֶׁר אֵרַשׂ&quot; וְגוֹ׳. עַד כָּאן מְשׁוּחַ מִלְחָמָה מְדַבֵּר וְהַשּׁוֹטֵר מַשְׁמִיעַ לְכָל הָעָם בְּקוֹל רָם. וְאַחַר כָּךְ מְדַבֵּר הַשּׁוֹטֵר מֵעַצְמוֹ וְאוֹמֵר <span class="source-small">(דברים כ, ח)</span> &quot;מִי הָאִישׁ הַיָּרֵא וְרַךְ הַלֵּבָב&quot; וְשׁוֹטֵר אַחֵר מַשְׁמִיעַ לְכָל הָעָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עת שעורכין.</strong> ע׳ ס׳ שלטי הגבורים לר׳ אברהם בן דוד הרופא מנטובה שע&quot;ז מפרק מ&quot;א עד פרק מ&quot;ד כל דיני נטיעת המחנות בזמן המלחמה, וכתב הנה לא נפלאת היא ממני שיהי׳ רבים מהתלמידים שחשקה נפשם בתורה ולא ירצו לפנות לבם אפי׳ כרגע לדברים אחרים של חכמה, גם כי ייחסו לתקון הקיבוץ המדיני שימאסו לדעת באמרי בינה איך נפלו גבורים ויאבדו כלי מלחמה, ועל כן יאשימו אותי כי פתחתי פה ודברי לשוני בהם יותר מדאי, בקשתות וכדונים בחרבות בחניתות באלות ברמחים ובשאר הכלים ויתר המשפטים הצריכים ללוחמים עיי&quot;ש באריכות בנועם לשונו.</p>
               </div>
             </div>
@@ -1136,8 +1387,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:5:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-7-5-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-7-5">Mishneh Torah, Kings and Wars 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַבּוֹנֶה בַּיִת לִישִׁיבָתוֹ. וְאֶחָד הַבּוֹנֶה בֵּית הַבָּקָר. בֵּית הָעֵצִים. בֵּית הָאוֹצָרוֹת. הוֹאִיל וְרָאוּי לְדִירָה. וְאֶחָד הַבּוֹנֶה. וְאֶחָד הַלּוֹקֵחַ. וְאֶחָד שֶׁנִּתָּן לוֹ בְּמַתָּנָה אוֹ הַיּוֹרֵשׁ. הֲרֵי זֶה חוֹזֵר. אֲבָל הַבּוֹנֶה [בֵּית הַתֶּבֶן] וּבֵית שַׁעַר. אַכְסַדְרָה וּמִרְפֶּסֶת. אוֹ בַּיִת שֶׁאֵין בּוֹ אַרְבַּע אַמּוֹת עַל אַרְבַּע אַמּוֹת. אוֹ הַגּוֹזֵל בַּיִת. הֲרֵי זֶה אֵינוֹ חוֹזֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או בית (שיש) [שאין] בו ד׳ על ד׳.</strong> ע׳ שו&quot;ת מהרלנ&quot;ח סימן ק׳, דדעת הר&quot;מ כמ&quot;ש בה׳ מזוזה שאם יש בו כדי לרבעו וע׳ כנה&quot;ג או&quot;ח בסוף הס׳ בחי׳ על הר&quot;מ וראה בפיהמ&quot;ש לרמב&quot;ם אהלות פ&quot;ג ה&quot;ז.</p>
               </div>
             </div>
@@ -1152,8 +1408,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:8:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-7-8-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-7-8">Mishneh Torah, Kings and Wars 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּחֲזִיר אֶת גְּרוּשָׁתוֹ. וְהַמְאָרֵס אִשָּׁה הָאֲסוּרָה עָלָיו. כְּגוֹן אַלְמָנָה לְכֹהֵן גָּדוֹל. גְּרוּשָׁה וַחֲלוּצָה לְכֹהֵן הֶדְיוֹט. מַמְזֶרֶת וּנְתִינָה לְיִשְׂרָאֵל. בַּת יִשְׂרָאֵל לְמַמְזֵר וּלְנָתִין. אֵינוֹ חוֹזֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כגון אלמנה לכה&quot;ג.</strong> ע׳ מרדכי גיטין סי׳ תל&quot;ב דכהנים לא הלכו למלחמה והביא ראיה מקידושין כ&quot;א כהן מהו ביפת תואר וכו׳ דשמא גם כהן משוח מלחמה היה חוזר לביתו אחר שאמר לפני העם, וע׳ שו&quot;ת בנימין זאב סימן ק&quot;ב שכתב תדע דגבי מלחמת בית דוד אמרינן כל היוצא והתם עכצ&quot;ל דהיה שם כהן דהא כהן משוח מלחמה הי׳ עמהם שקורא אליהם בלשון הקודש ואי אפשר לומר לאחר שהיה קורא הכהן הפסוק לישראל היה חוזר לביתו ולא היה נכנס לעורכי המלחמה דהא הארון יוצא עמהם למלחמה וכו׳ והארון הכהנים הי׳ נושאים אותו, ואח&quot;כ הביא הב&quot;ז ראי׳ מקידושין ותמהני עליו דהלא בסוף התשובה הזכיר המרדכי בגיטין והלא שם מפורש כל מ&quot;ש שם, ומכאן מבואר דגם כה&quot;ג הי׳ הולך למלחמה, וברמב&quot;ם פי&quot;ב משמיטה ויובל הי&quot;ב לפיכך הובדלו מדרכי העולם לא עורכין מלחמה כשאר ישראל מבואר דשבט לוי לא הי׳ הולכין למלחמה, וכן הוא ברשב&quot;ם פ׳ במדבר, וע׳ תוס׳ הריב&quot;א עה&quot;ת פ׳ כי תצא וז&quot;ל והק׳ ר&quot;י מאי בעי פשיטא דשרי דהא פנחס היה עמהם והוא היה משוח מלחמה וכו׳ ופנחס היה עמהם עיי&quot;ש, וע׳ בס׳ בית דוד על משניות סוטה שם שכתב נראה מזה דגם הוא יוצא למלחמה ואין לתמוה ע&quot;ז דאדרבה מוטב שיהי׳ עמהם זכיות הרבה ועוד דלפעמים הי׳ צריכין לו לשאול באו&quot;ת. ובשושנים לדוד מר׳ דוד פרדו כ׳ דלא מצי׳ בשום מקום דכ&quot;ג יוצא למלחמה אפילו למלחמת מצוה כ&quot;ש למלחמת הרשות וכו׳ דמשנה דסוטה לאו בכ&quot;ג איירי רק כהן משיח ואולי כ&quot;ג שנפסל מחמת מומו שאינו חוזר לעבודתו אבל כ&quot;ג העובד פשוט דאינו יוצא כמ&quot;ש הר&quot;מ דאינו יוצא מירושלים עכ&quot;ד, וע׳ נזיר מ&quot;ז אמר מר זוטרא לענין החיותו משיח מלחמה קודם מ&quot;ט דתלי ביה רבים ופירש&quot;י דעביד מלחמה בשביל רבים הרי דמשיח מלחמה מסדר מערכות המלחמה, ועיין ספר החשמונאים א׳ פ&quot;ג פסוק נ&quot;א דיהודה המכבי הי׳ הכהן משיח מלחמה וראש הצבא ובספר רבותינו שבגולה לב&quot;ד הרב נתן נטע לייטר ז&quot;ל במאמרו של אאמו&quot;ר הגאון הקדוש זצ&quot;ל הביא שם הערה בשמי.</p>
               </div>
             </div>
@@ -1168,8 +1429,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:8:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-7-8-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-7-8">Mishneh Torah, Kings and Wars 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּחֲזִיר אֶת גְּרוּשָׁתוֹ. וְהַמְאָרֵס אִשָּׁה הָאֲסוּרָה עָלָיו. כְּגוֹן אַלְמָנָה לְכֹהֵן גָּדוֹל. גְּרוּשָׁה וַחֲלוּצָה לְכֹהֵן הֶדְיוֹט. מַמְזֶרֶת וּנְתִינָה לְיִשְׂרָאֵל. בַּת יִשְׂרָאֵל לְמַמְזֵר וּלְנָתִין. אֵינוֹ חוֹזֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לממזר ולנתין.</strong> ע׳ ירושלמי פ&quot;ד דקידושין ה&quot;ה אין ממזר יוצא למלחמה, וכאן מבואר להיפך, ע׳ מנחת קנאות סוטה מ&quot;ד.</p>
               </div>
             </div>
@@ -1184,8 +1450,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:10:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-7-10-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 7:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-7-10">Mishneh Torah, Kings and Wars 7:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ שֶׁאֵין יוֹצְאִין לְעוֹרְכֵי הַמִּלְחָמָה כָּל עִקָּר. וְאֵין מַטְרִיחִין אוֹתָם לְשׁוּם דָּבָר בָּעוֹלָם. הַבּוֹנֶה בַּיִת וַחֲנָכוֹ. וְהַנּוֹשֵׂא אֲרוּסָתוֹ אוֹ שֶׁיִּבֵּם. וּמִי שֶׁחִלֵּל כַּרְמוֹ. אֵין יוֹצְאִין עַד תֹּם שָׁנָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים כד, ה)</span> &quot;נָקִי יִהְיֶה לְבֵיתוֹ שָׁנָה אֶחָת וְשִׂמַּח אֶת אִשְׁתּוֹ אֲשֶׁר לָקָח&quot;. מִפִּי הַקַּבָּלָה לָמְדוּ שֶׁיִּהְיֶה נָקִי שָׁנָה בֵּין לַבַּיִת שֶׁקָּנָה בֵּין לָאִשָּׁה שֶׁנָּשָׂא בֵּין לַכֶּרֶם שֶׁהִתְחִיל לֶאֱכל פִּרְיוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והנושא ארוסתו.</strong> עיין מדרש שמואל פכ&quot;ב שפלשתים שמחו שדוד לא יוכל לילך למלחמה ולא ידעו שדוד חכם ויודע שבמלחמות מצוה מותר, וזה נעלם לרגע מפנים יפות פ׳ שופטים אחר נשיקת עפרו.</p>
               </div>
             </div>
@@ -1201,8 +1472,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:1:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-8-1-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-8-1">Mishneh Torah, Kings and Wars 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲלוּצֵי צָבָא כְּשֶׁיִּכָּנְסוּ בִּגְבוּל הָעַכּוּ&quot;ם וְיִכְבְּשׁוּם וְיִשְׁבּוּ מֵהֶן. מֻתָּר לָהֶן לֶאֱכל נְבֵלוֹת וּטְרֵפוֹת וּבְשַׂר חֲזִיר וְכַיּוֹצֵא בּוֹ אִם יִרְעַב וְלֹא מָצָא מַה יֹּאכַל אֶלָּא מַאֲכָלוֹת אֵלּוּ הָאֲסוּרִים. וְכֵן שׁוֹתֶה יֵין נֶסֶךְ. מִפִּי הַשְּׁמוּעָה לָמְדוּ וּבָתִּים מְלֵאִים כָּל טוּב עָרְפֵּי חֲזִירִים וְכַיּוֹצֵא בָּהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ערפי חזרים.</strong> ע׳ שו&quot;ת הרמב&quot;ם מק&quot;נ סימן קנ&quot;ד הביא הגירסא בחולין קדלי, ולפנינו הגירסא כתלי וראה ספר מדרשי התורה להקדוש ר׳ שלמה אשתרוק הוצאת מק&quot;נ פ׳ ואתחנן גרס ג&quot;כ קדלי דחזירי, ובהג&quot;ה שם כתב שנראה שכן גרס הר&quot;מ, וזכה לכוין לאמיתו שכן מפורש בשו&quot;ת הר&quot;מ.</p>
               </div>
             </div>
@@ -1217,8 +1493,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:2:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-8-2-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-8-2">Mishneh Torah, Kings and Wars 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן בּוֹעֵל אִשָּׁה בְּגֵיוּתָהּ אִם תְּקָפוֹ יִצְרוֹ. אֲבָל לֹא יִבְעָלֶנָּה וְיֵלֵךְ לוֹ. אֶלָּא מַכְנִיסָהּ לְתוֹךְ בֵּיתוֹ. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא, יא)</span> &quot;וְרָאִיתָ בַּשִּׁבְיָה אֵשֶׁת יְפַת תֹּאַר&quot;. וְאָסוּר לִבְעל אוֹתָהּ בִּיאָה שְׁנִיָּה עַד שֶׁיִּשָּׂאֶנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא מכניסה לתוך ביתו.</strong> ע׳ מאירי קידושין כ&quot;א עמוד 124 וז&quot;ל כבר ידעת שכל היוצא למלחמה שראה אשה בשביה וחשקה אם תקפו יצרו עליה מותר לו לבא עליה אף בגיותה על דעת שיכניסה לביתו, אבל לא על דעת שיבעלנה וילך לו, אבל כל שבדעתו לכנסה מותר לו לבעול ביאה ראשונה בגיותה עכ&quot;ל.</p>
               </div>
             </div>
@@ -1233,8 +1514,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:3:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-8-3-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-8-3">Mishneh Torah, Kings and Wars 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אֵשֶׁת יְפַת תֹּאַר מֻתֶּרֶת אֶלָּא בִּשְׁעַת הַשִּׁבְיָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא, יא)</span> &quot;וְרָאִיתָ בַּשִּׁבְיָה&quot;. בֵּין בְּתוּלָה בֵּין בְּעוּלָה בֵּין אֵשֶׁת אִישׁ. שֶׁאֵין אִישׁוּת לְעַכּוּ&quot;ם. וְחָשַׁקְתָּ אַף עַל פִּי שֶׁאֵינָהּ יָפָה. בָהּ וְלֹא בַּחֲבֶרְתָּהּ שֶׁלֹּא יִבְעל שְׁתַּיִם. וְלָקַחְתָּ לְךָ לְאִשָּׁה שֶׁלֹּא יִקַּח שְׁתַּיִם וְיִבְעל אַחַת וְיַנִּיחַ אַחַת לְאָבִיו אוֹ לְאָחִיו. וּמִנַּיִן שֶׁלֹּא יִלְחָצֶנָּה בַּמִּלְחָמָה. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא, יב)</span> &quot;וַהֲבֵאתָהּ אֶל תּוֹךְ בֵּיתֶךָ&quot;. יַכְנִיסָהּ לְמָקוֹם וְאַחַר כָּךְ יִבְעל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומנין שלא ילחצנה במלחמה.</strong> עיין מאירי קידושין כ&quot;א עמוד 125 וז&quot;ל וראוי לו שלא ילחצנה במלחמה להביאה בנזיפה או להבהילה להתגייר אלא נותן לה מתון עד שתעשה מה שתעשה בישוב הדעת.</p>
               </div>
             </div>
@@ -1249,8 +1535,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:11:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-8-11-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-8-11">Mishneh Torah, Kings and Wars 8:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמְקַבֵּל שֶׁבַע מִצְוֹת וְנִזְהָר לַעֲשׂוֹתָן הֲרֵי זֶה מֵחֲסִידֵי אֻמּוֹת הָעוֹלָם. וְיֵשׁ לוֹ חֵלֶק לָעוֹלָם הַבָּא. וְהוּא שֶׁיְּקַבֵּל אוֹתָן וְיַעֲשֶׂה אוֹתָן מִפְּנֵי שֶׁצִּוָּה בָּהֶן הַקָּדוֹשׁ בָּרוּךְ הוּא בַּתּוֹרָה וְהוֹדִיעָנוּ עַל יְדֵי משֶׁה רַבֵּנוּ שֶׁבְּנֵי נֹחַ מִקֹּדֶם נִצְטַוּוּ בָּהֶן. אֲבָל אִם עֲשָׂאָן מִפְּנֵי הֶכְרֵעַ הַדַּעַת אֵין זֶה גֵּר תּוֹשָׁב וְאֵינוֹ מֵחֲסִידֵי אֻמּוֹת הָעוֹלָם וְלֹא מֵחַכְמֵיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המקבל וכו׳ והוא שקיבל.</strong> במשנת ר׳ אליעזר נוירק תרצ&quot;ד ע׳ קכ&quot;א הפרש בין חסידי ישראל לחסידי או&quot;ה וכו׳ בד&quot;א כשעושין אותן ואומרין מכח שצוה אותנו אבינו נח מפי הגבורה אנו עושין וכו׳ אבל אם עשו שבע מצות ואמרו מפי פלוני שמענו או מדעת עצמנו שכך הדעת מכרעת וכו׳ ומפורש מקור דברי רבינו, ובתולדות אדם לר&quot;ז מווילנא הובא שהראה מד׳ המדרש, ובב&quot;ח תרכ&quot;ב עמוד שכ&quot;ב הביא מהגאון מהר&quot;צ חיות ז&quot;ל שהמדרש הוא מזויף, וע׳ מה שכתב ע&quot;ז בהמגיד שנה ח׳ בהצופה ע׳ ט&quot;ו שבודאי נמצא באיזה מדרש, ועכשיו נתגלו ד׳ המדרש, וכנראה הי׳ לפני הגאון ר&quot;ז מדרש אגור שהוא מדרש משנת ר&quot;א, וע׳ שו&quot;ת הרמב&quot;ם מק&quot;נ סי׳ קכ&quot;ד דרמז לס׳ היד וכ׳ כמו שתראה בברייתא דר׳ אליעזר.</p>
               </div>
             </div>
@@ -1265,8 +1556,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:11:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-8-11-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 8:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-8-11">Mishneh Torah, Kings and Wars 8:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמְקַבֵּל שֶׁבַע מִצְוֹת וְנִזְהָר לַעֲשׂוֹתָן הֲרֵי זֶה מֵחֲסִידֵי אֻמּוֹת הָעוֹלָם. וְיֵשׁ לוֹ חֵלֶק לָעוֹלָם הַבָּא. וְהוּא שֶׁיְּקַבֵּל אוֹתָן וְיַעֲשֶׂה אוֹתָן מִפְּנֵי שֶׁצִּוָּה בָּהֶן הַקָּדוֹשׁ בָּרוּךְ הוּא בַּתּוֹרָה וְהוֹדִיעָנוּ עַל יְדֵי משֶׁה רַבֵּנוּ שֶׁבְּנֵי נֹחַ מִקֹּדֶם נִצְטַוּוּ בָּהֶן. אֲבָל אִם עֲשָׂאָן מִפְּנֵי הֶכְרֵעַ הַדַּעַת אֵין זֶה גֵּר תּוֹשָׁב וְאֵינוֹ מֵחֲסִידֵי אֻמּוֹת הָעוֹלָם וְלֹא מֵחַכְמֵיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא מחכמיהם.</strong> ע׳ בציוני מהר&quot;נ בשם תולדות אדם ובשו&quot;ת מהר&quot;ם אלשקר דכתוב אלא מחכמיהם כן הוא גם בב׳ כ&quot;י הרמב&quot;ם, וכן העתיק ר׳ יוסף בר שם טוב בספרו כבוד אלקים כמ&quot;ש הגר&quot;מ שטרשין בפרחי צפון ח&quot;ב ע׳ פ&quot;ד. ובספר מעשה האפוד לר׳ יצחק בן משה המכונה פרופוט דוראן מהקדמת האפודי עמוד ג׳ העתיק לשון הרמב&quot;ם ג&quot;כ אלא מחכמיהם.</p>
               </div>
             </div>
@@ -1282,8 +1578,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:1:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-1-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-1">Mishneh Torah, Kings and Wars 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַל שִׁשָּׁה דְּבָרִים נִצְטַוָּה אָדָם הָרִאשׁוֹן. עַל עֲבוֹדָה זָרָה. וְעַל בִּרְכַּת הַשֵּׁם. וְעַל שְׁפִיכוּת דָּמִים. וְעַל גִּלּוּי עֲרָיוֹת. וְעַל הַגֵּזֶל. וְעַל הַדִּינִים. אַף עַל פִּי שֶׁכֻּלָּן הֵן קַבָּלָה בְּיָדֵינוּ מִמּשֶׁה רַבֵּנוּ. וְהַדַּעַת נוֹטָה לָהֶן. מִכְּלַל דִּבְרֵי תּוֹרָה יֵרָאֶה שֶׁעַל אֵלּוּ נִצְטַוָּה. הוֹסִיף לְנֹחַ אֵבֶר מִן הַחַי שֶׁנֶּאֱמַר <span class="source-small">(בראשית ט, ד)</span> &quot;אַךְ בָּשָׂר בְּנַפְשׁוֹ דָמוֹ לֹא תֹאכֵלוּ&quot;. נִמְצְאוּ שֶׁבַע מִצְוֹת. וְכֵן הָיָה הַדָּבָר בְּכָל הָעוֹלָם עַד אַבְרָהָם. בָּא אַבְרָהָם וְנִצְטַוָּה יֶתֶר עַל אֵלּוּ בְּמִילָה. וְהוּא הִתְפַּלֵּל שַׁחֲרִית. וַיִּצְחָק הִפְרִישׁ מַעֲשֵׂר וְהוֹסִיף תְּפִלָּה אַחֶרֶת לִפְנוֹת הַיּוֹם. וְיַעֲקֹב הוֹסִיף גִּיד הַנָּשֶׁה וְהִתְפַּלֵּל עַרְבִית. וּבְמִצְרַיִם נִצְטַוָּה עַמְרָם בְּמִצְוֹת יְתֵרוֹת. עַד שֶׁבָּא משֶׁה רַבֵּנוּ וְנִשְׁלְמָה תּוֹרָה עַל יָדוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הוסיף לנח</strong> אבר מה&quot;ח. ע׳ ר&quot;נ סנהדרין נ&quot;ו שהביא דברי רבינו, ושכן מבואר במדרש רבה פ׳ ואלה המשפטים.</p>
               </div>
             </div>
@@ -1298,8 +1599,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:1:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-1-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-1">Mishneh Torah, Kings and Wars 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַל שִׁשָּׁה דְּבָרִים נִצְטַוָּה אָדָם הָרִאשׁוֹן. עַל עֲבוֹדָה זָרָה. וְעַל בִּרְכַּת הַשֵּׁם. וְעַל שְׁפִיכוּת דָּמִים. וְעַל גִּלּוּי עֲרָיוֹת. וְעַל הַגֵּזֶל. וְעַל הַדִּינִים. אַף עַל פִּי שֶׁכֻּלָּן הֵן קַבָּלָה בְּיָדֵינוּ מִמּשֶׁה רַבֵּנוּ. וְהַדַּעַת נוֹטָה לָהֶן. מִכְּלַל דִּבְרֵי תּוֹרָה יֵרָאֶה שֶׁעַל אֵלּוּ נִצְטַוָּה. הוֹסִיף לְנֹחַ אֵבֶר מִן הַחַי שֶׁנֶּאֱמַר <span class="source-small">(בראשית ט, ד)</span> &quot;אַךְ בָּשָׂר בְּנַפְשׁוֹ דָמוֹ לֹא תֹאכֵלוּ&quot;. נִמְצְאוּ שֶׁבַע מִצְוֹת. וְכֵן הָיָה הַדָּבָר בְּכָל הָעוֹלָם עַד אַבְרָהָם. בָּא אַבְרָהָם וְנִצְטַוָּה יֶתֶר עַל אֵלּוּ בְּמִילָה. וְהוּא הִתְפַּלֵּל שַׁחֲרִית. וַיִּצְחָק הִפְרִישׁ מַעֲשֵׂר וְהוֹסִיף תְּפִלָּה אַחֶרֶת לִפְנוֹת הַיּוֹם. וְיַעֲקֹב הוֹסִיף גִּיד הַנָּשֶׁה וְהִתְפַּלֵּל עַרְבִית. וּבְמִצְרַיִם נִצְטַוָּה עַמְרָם בְּמִצְוֹת יְתֵרוֹת. עַד שֶׁבָּא משֶׁה רַבֵּנוּ וְנִשְׁלְמָה תּוֹרָה עַל יָדוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויעקב הוסיף.</strong> ע׳ לח&quot;מ ובאמת מפורש כן בפירוש המשניות חולין פ&quot;ט. ע׳ בראשית רבה ה׳ פ&quot;ד, וכן הוא בילקוט יתרו רע&quot;ב ויבא יהודה והוסיף מצות יבום, וכן הוא בסדר עולם רבה פ&quot;ה כ&quot;י אוקספורד ובחזקוני פ׳ בראשית חשיב ג&quot;כ זה. וראיתי בשואל ומשיב מה&quot;ת ח&quot;א סימן י&quot;ד שהביא מד׳ הר&quot;מ כאן דיהודה הוסיף מצות יבום ואחר בקשת הסליחה זכרונו הטעהו ולא נמצא כן בד׳ הר&quot;מ כאן, וע׳ בסו&quot;ס שו&quot;ת מעיל שמואל הק׳ מדוע לא הזכיר יהודה שתיקן מצות יבום, ולא נזכר שכבר הזכירו זה במקומות הנ&quot;ל, ורבינו השמיט זאת, וע׳ מבוא לסדר עולם רבה רטנר ע׳ פ&quot;ט.</p>
               </div>
             </div>
@@ -1314,8 +1620,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:2:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-2-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-2">Mishneh Torah, Kings and Wars 9:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁעָבַד עֲבוֹדָה זָרָה הֲרֵי זֶה חַיָּב. וְהוּא שֶׁיַּעֲבֹד כְּדַרְכָּהּ. וְכָל עֲבוֹדָה זָרָה שֶׁבֵּית דִּין שֶׁל יִשְׂרָאֵל מְמִיתִין עָלֶיהָ בֶּן נֹחַ נֶהֱרָג עָלֶיהָ. וְכָל שֶׁאֵין בֵּית דִּין שֶׁל יִשְׂרָאֵל מְמִיתִין עָלֶיהָ אֵין בֶּן נֹחַ נֶהֱרָג עָלֶיהָ. וְאַף עַל פִּי שֶׁאֵינוֹ נֶהֱרָג אָסוּר בַּכּל. וְאֵין מְנִיחִין אוֹתוֹ לְהָקִים מַצֵּבָה. וְלֹא לִטַּע אֲשֵׁרָה. וְלֹא לַעֲשׂוֹת צוּרוֹת וְכַיּוֹצֵא בָּהֶן לְנוֹי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלא לעשות צורות.</strong> ע׳ מכילתא יתרו פ&quot;ג וב&quot;ק צ&quot;ז ברש&quot;י ותוס׳ שם, וצפנת פענח הל׳ ע&quot;ז, וטל תורה ירושלמי מגילה פ&quot;ק ה&quot;א ושו&quot;ת שאלת שלמה ח&quot;א סימן כ&quot;א.</p>
               </div>
             </div>
@@ -1330,8 +1641,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:3:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-3-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-3">Mishneh Torah, Kings and Wars 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁבֵּרֵךְ אֶת הַשֵּׁם. בֵּין שֶׁבֵּרֵךְ בַּשֵּׁם הַמְיֻחָד. בֵּין שֶׁבֵּרֵךְ בְּכִנּוּי בְּכָל לָשׁוֹן חַיָּב. מַה שֶּׁאֵין כֵּן בְּיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין שבירך בכינוי בכל לשון חייב.</strong> ע׳ שו&quot;ת גאוני מזרח ומערב סימן ק&quot;ג שכ׳ ואין חילוק בין שם המיוחד לכינויין לבין ישראל לגוי לכל לשון אלא בין סקילה לאזהרה אבל לענין נידוי אחד גוים ואחד ישראל ואחד שם וכל הכינויין ואפי׳ בכל לשון חייב לנדותו.</p>
               </div>
             </div>
@@ -1346,8 +1662,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:4:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-4-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-4">Mishneh Torah, Kings and Wars 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁהָרַג נֶפֶשׁ אֲפִלּוּ עֵבָּר בִּמְעֵי אִמּוֹ נֶהֱרָג עָלָיו. וְכֵן אִם הָרַג טְרֵפָה אוֹ שֶׁכְּפָתוֹ וּנְתָנוֹ לִפְנֵי אֲרִי אוֹ שֶׁהִנִּיחוֹ בָּרָעָב עַד שֶׁמֵּת. הוֹאִיל וְהֵמִית מִכָּל מָקוֹם נֶהֱרָג. וְכֵן אִם הָרַג רוֹדֵף שֶׁיָּכוֹל לְהַצִּילוֹ בְּאֶחָד מֵאֵיבָרָיו נֶהֱרָג עָלָיו. מַה שֶּׁאֵין כֵּן בְּיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפי׳ עובר במעי אמו נהרג עליו.</strong> ע׳ יוסף בן מתתיהו הכהן במאמרו נגד אפיון מאמר ב׳ אות כ&quot;ד ואסרה (התורה) על הנשים להפיל את הזרע את הנזרע או לשחתו ואם תמצא אשה עושה כזאת יהי׳ משפטה כמשפט רוצחת בנים כי הכריתה נפש מישראל ומעטה את משפחת האדם&quot;, וע׳ ספר חסידים מק&quot;נ סימן תשי&quot;ח, ושו&quot;ת בשמים ראש סי׳ שפ&quot;ו, ומהרי&quot;ט ח&quot;א סימן צ&quot;ט ושו&quot;ת חות יאיר סימן ל&quot;א, ושו&quot;ת שאלת יעב&quot;ץ ח&quot;א סימן מ&quot;ג, ושו&quot;ת אמונת שמואל סימן י&quot;ד.</p>
               </div>
             </div>
@@ -1362,8 +1683,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:4:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-4-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-4">Mishneh Torah, Kings and Wars 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁהָרַג נֶפֶשׁ אֲפִלּוּ עֵבָּר בִּמְעֵי אִמּוֹ נֶהֱרָג עָלָיו. וְכֵן אִם הָרַג טְרֵפָה אוֹ שֶׁכְּפָתוֹ וּנְתָנוֹ לִפְנֵי אֲרִי אוֹ שֶׁהִנִּיחוֹ בָּרָעָב עַד שֶׁמֵּת. הוֹאִיל וְהֵמִית מִכָּל מָקוֹם נֶהֱרָג. וְכֵן אִם הָרַג רוֹדֵף שֶׁיָּכוֹל לְהַצִּילוֹ בְּאֶחָד מֵאֵיבָרָיו נֶהֱרָג עָלָיו. מַה שֶּׁאֵין כֵּן בְּיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או שכפתו.</strong> ע׳ ב&quot;ר פ׳ נח על פסוק מיד כל חיה זה המוסר את חבירו לחיה להרגו, ע׳ שו&quot;ת שמן למאור סימן כ&quot;ז ובהשמטות שם.</p>
               </div>
             </div>
@@ -1378,8 +1704,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:4:3</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-4-3" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-4">Mishneh Torah, Kings and Wars 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁהָרַג נֶפֶשׁ אֲפִלּוּ עֵבָּר בִּמְעֵי אִמּוֹ נֶהֱרָג עָלָיו. וְכֵן אִם הָרַג טְרֵפָה אוֹ שֶׁכְּפָתוֹ וּנְתָנוֹ לִפְנֵי אֲרִי אוֹ שֶׁהִנִּיחוֹ בָּרָעָב עַד שֶׁמֵּת. הוֹאִיל וְהֵמִית מִכָּל מָקוֹם נֶהֱרָג. וְכֵן אִם הָרַג רוֹדֵף שֶׁיָּכוֹל לְהַצִּילוֹ בְּאֶחָד מֵאֵיבָרָיו נֶהֱרָג עָלָיו. מַה שֶּׁאֵין כֵּן בְּיִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם הרג רודף.</strong> ע׳ מל&quot;מ דאין ב&quot;ד הורגין למי שיכול להציל באחד מאבריו, וכן מפורש במאירי על סנהדרין ד׳ מ&quot;ט ע׳ ר&quot;ה.</p>
               </div>
             </div>
@@ -1394,8 +1725,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:6:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-6-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-6">Mishneh Torah, Kings and Wars 9:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ חַיָּב עַל מְפֻתַּת אָבִיו וַאֲנוּסַת אָבִיו הֲרֵי הִיא אִמּוֹ מִכָּל מָקוֹם. וְחַיָּב עַל אֵשֶׁת אָבִיו אֲפִלּוּ לְאַחַר מִיתַת אָבִיו. וְחַיָּב עַל הַזָּכוּר בֵּין קָטָן בֵּין גָּדוֹל וְעַל הַבְּהֵמָה בֵּין קְטַנָּה בֵּין גְּדוֹלָה. וְהוּא נֶהֱרָג לְבַדּוֹ וְאֵין הוֹרְגִין אֶת הַבְּהֵמָה. שֶׁלֹּא נִצְטַוּוּ בַּהֲרִיגַת בְּהֵמָה אֶלָּא יִשְׂרָאֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין הורגין את הבהמה.</strong> ע׳ ס׳ הישר לר&quot;ת ד׳ פ&quot;ד ע&quot;א ד&quot;ה שאל שכתב דבשור לא אמרינן ספק לקולא.</p>
               </div>
             </div>
@@ -1410,8 +1746,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:11:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-9-11-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 9:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-9-11">Mishneh Torah, Kings and Wars 9:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הָאֵבֶר אוֹ הַבָּשָׂר הַפּוֹרֵשׁ מִן הַבְּהֵמָה אוֹ מִן הַחַיָּה. אֲבָל הָעוֹף יֵרָאֶה לִי שֶׁאֵין בֶּן נֹחַ נֶהֱרָג עַל אֵבֶר מִן הַחַי מִמֶּנּוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ ומ&quot;ש ורבינו בפ&quot;ד וכו׳,</strong> ע׳ רשב&quot;א חולין קכ&quot;ט הביא קושיא זו בשם הרמב&quot;ן ותירץ כד׳ הלחם משנה, וראה אשכול הוצאת אוערבך הל׳ טרפות סימן כ׳.</p>
               </div>
             </div>
@@ -1427,8 +1768,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 10:2:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-10-2-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 10:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-10-2">Mishneh Torah, Kings and Wars 10:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן נֹחַ שֶׁאֲנָסוֹ אַנָּס לַעֲבֹר עַל אַחַת מִמִּצְוֹתָיו. מֻתָּר לוֹ לַעֲבֹר. אֲפִלּוּ נֶאֱנַס לַעֲבֹד עֲבוֹדָה זָרָה עוֹבֵד. לְפִי שֶׁאֵינָן מְצֻוִּין עַל קִדּוּשׁ הַשֵּׁם. וּלְעוֹלָם אֵין עוֹנְשִׁין מֵהֶן לֹא קָטָן וְלֹא חֵרֵשׁ וְלֹא שׁוֹטֶה לְפִי שֶׁאֵינָן בְּנֵי מִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא קטן.</strong> ע׳ רמב&quot;ם פ&quot;ט דעדות ה&quot;ט, ותנא דבי אליהו רבה פי&quot;ד, ושו&quot;ת מהרי&quot;ל סי׳ קצ&quot;ו.</p>
               </div>
             </div>
@@ -1443,8 +1789,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 10:6:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-10-6-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 10:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-10-6">Mishneh Torah, Kings and Wars 10:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִפִּי הַקַּבָּלָה שֶׁבְּנֵי נֹחַ אֲסוּרִין בְּהַרְבָּעַת בְּהֵמָה וּבְהַרְכָּבַת אִילָן בִּלְבַד. וְאֵין נֶהֱרָגִין עֲלֵיהֶן. וְעַכּוּ&quot;ם שֶׁהִכָּה יִשְׂרָאֵל אֲפִלּוּ חָבַל בּוֹ כָּל שֶׁהוּא אַף עַל פִּי שֶׁהוּא חַיָּב מִיתָה אֵינוֹ נֶהֱרָג:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובהרכבת אילן.</strong> ע׳ שאילתות שאילתא קי&quot;ג ובשאילת שלום שם, וש&quot;כ יו&quot;ד רצ&quot;ז סק&quot;ג, והגהמ&quot;ר פ&quot;ו דגיטין. ועיין כסף משנה שכ׳ וסובר רבינו דאע&quot;ג דלית הלכתא כר&quot;א, ע׳ ר&quot;ן סנהדרין נ&quot;ו הביא ראיה לד׳ הרמב&quot;ם דהלכה כר&quot;א אע&quot;ג דהוא יחיד מדא׳ בגמ׳ מנה&quot;מ אמילתא דר&quot;א ולא קאמר מ&quot;ט דר&quot;א, והביאו בכללי התלמוד לר׳ בצלאל אשכנזי עמוד ל&quot;ג-ל&quot;ד. ומה שתמה הרדב&quot;ז כאן שהשמיט סירוס, ע׳ רא&quot;ש ב&quot;מ פ׳ השוכר את הפועלים סימן ו׳ שכ׳ דלית הלכתא כר׳ חידקא ובש&quot;ש תמה עליו וע׳ ס׳ זרעא דיוסף סימן י&quot;ג.</p>
               </div>
             </div>
@@ -1459,8 +1810,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 10:9:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-10-9-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 10:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-10-9">Mishneh Torah, Kings and Wars 10:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עַכּוּ&quot;ם שֶׁעָסַק בַּתּוֹרָה חַיָּב מִיתָה. לֹא יַעֲסֹק אֶלָּא בְּשֶׁבַע מִצְוֹת שֶׁלָּהֶן בִּלְבַד. וְכֵן עַכּוּ&quot;ם שֶׁשָּׁבַת אֲפִלּוּ בְּיוֹם מִימוֹת הַחל אִם עֲשָׂאָהוּ לְעַצְמוֹ כְּמוֹ שַׁבָּת חַיָּב מִיתָה. וְאֵין צָרִיךְ לוֹמַר אִם עָשָׂה מוֹעֵד לְעַצְמוֹ. כְּלָלוֹ שֶׁל דָּבָר אֵין מְנִיחִין אוֹתָן לְחַדֵּשׁ דָּת וְלַעֲשׂוֹת מִצְוֹת לְעַצְמָן מִדַּעְתָּן. אֶלָּא אוֹ יִהְיֶה גֵּר צֶדֶק וִיקַבֵּל כָּל הַמִּצְוֹת. אוֹ יַעֲמֹד בְּתוֹרָתוֹ וְלֹא יוֹסִיף וְלֹא יִגְרַע. וְאִם עָסַק בַּתּוֹרָה אוֹ שָׁבַת אוֹ חִדֵּשׁ דָּבָר. מַכִּין אוֹתוֹ וְעוֹנְשִׁין אוֹתוֹ וּמוֹדִיעִין אוֹתוֹ שֶׁהוּא חַיָּב מִיתָה עַל זֶה. אֲבָל אֵינוֹ נֶהֱרָג:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עכו&quot;ם שעוסק בתורה חייב מיתה.</strong> עכ&quot;מ דכל דאינך דאמרינן בהו חייב מיתה היינו חיוב מיתה לשמים בעלמא אבל אינו נהרג וכן מפורש דעת רבינו בשו&quot;ת הרמב&quot;ם מק&quot;נ סי׳ שס&quot;ד ע&quot;ש וע׳ אור זרוע ח&quot;א אלפא ביתא אות י&quot;ב ומספרות הגאונים אסף ע׳ קס&quot;ח ומאירי חגיגה י&quot;ג, ותוס׳ הרי&quot;ד ב&quot;ק ל&quot;ח, וס׳ והזהיר משפטים ע׳ מ&quot;ו, ופירוש ס׳ יצירה לר&quot;י ברצלונא ע׳ כ&quot;ג ובתשובה הארכתי.</p>
               </div>
             </div>
@@ -1476,8 +1832,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 11:1:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-11-1-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 11:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-11-1">Mishneh Torah, Kings and Wars 11:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלֶךְ הַמָּשִׁיחַ עָתִיד לַעֲמֹד וּלְהַחְזִיר מַלכוּת דָּוִד לְיָשְׁנָהּ לַמֶּמְשָׁלָה הָרִאשׁוֹנָה. וּבוֹנֶה הַמִּקְדָּשׁ וּמְקַבֵּץ נִדְחֵי יִשְׂרָאֵל. וְחוֹזְרִין כָּל הַמִּשְׁפָּטִים בְּיָמָיו כְּשֶׁהָיוּ מִקֹּדֶם. מַקְרִיבִין קָרְבָּנוֹת. וְעוֹשִׂין שְׁמִטִּין וְיוֹבְלוֹת כְּכָל מִצְוָתָן הָאֲמוּרָה בַּתּוֹרָה. וְכָל מִי שֶׁאֵינוֹ מַאֲמִין בּוֹ. אוֹ מִי שֶׁאֵינוֹ מְחַכֶּה לְבִיאָתוֹ. לֹא בִּשְׁאָר נְבִיאִים בִּלְבַד הוּא כּוֹפֵר. אֶלָּא בַּתּוֹרָה וּבְמשֶׁה רַבֵּנוּ. שֶׁהֲרֵי הַתּוֹרָה הֵעִידָה עָלָיו שֶׁנֶּאֱמַר <span class="source-small">(דברים ל, ג)</span> &quot;וְשָׁב ה׳ אֱלֹהֶיךָ אֶת שְׁבוּתְךָ וְרִחֲמֶךָ וְשָׁב וְקִבֶּצְךָ&quot; וְגוֹ׳ <span class="source-small">(דברים ל, ד)</span> &quot;אִם יִהְיֶה נִדַּחֲךָ בִּקְצֵה הַשָּׁמָיִם&quot; וְגוֹ׳ <span class="source-small">(דברים ל, ה)</span> &quot;וֶהֱבִיאֲךָ ה׳&quot;. וְאֵלּוּ הַדְּבָרִים הַמְפֹרָשִׁים בַּתּוֹרָה הֵם כּוֹלְלִים כָּל הַדְּבָרִים שֶׁנֶּאֶמְרוּ עַל יְדֵי כָּל הַנְּבִיאִים. אַף בְּפָרָשַׁת בִּלְעָם נֶאֱמַר וְשָׁם נִבֵּא בִּשְׁנֵי הַמְּשִׁיחִים. בַּמָּשִׁיחַ הָרִאשׁוֹן שֶׁהוּא דָּוִד שֶׁהוֹשִׁיעַ אֶת יִשְׂרָאֵל מִיַּד צָרֵיהֶם. וּבַמָּשִׁיחַ הָאַחֲרוֹן שֶׁעוֹמֵד מִבָּנָיו שֶׁמּוֹשִׁיעַ אֶת יִשְׂרָאֵל [בָּאַחֲרוֹנָה]. וְשָׁם הוּא אוֹמֵר <span class="source-small">(במדבר כד, יז)</span> &quot;אֶרְאֶנּוּ וְלֹא עַתָּה&quot; זֶה דָּוִד. <span class="source-small">(במדבר כד, יז)</span> &quot;אֲשׁוּרֶנּוּ וְלֹא קָרוֹב&quot; זֶה מֶלֶךְ הַמָּשִׁיחַ. <span class="source-small">(במדבר כד, יז)</span> &quot;דָּרַךְ כּוֹכָב מִיַּעֲקֹב&quot; זֶה דָּוִד. <span class="source-small">(במדבר כד, יז)</span> &quot;וְקָם שֵׁבֶט מִיִּשְׂרָאֵל&quot; זֶה מֶלֶךְ הַמָּשִׁיחַ. <span class="source-small">(במדבר כד, יז)</span> &quot;וּמָחַץ פַּאֲתֵי מוֹאָב&quot; זֶה דָּוִד. וְכֵן הוּא אוֹמֵר <span class="source-small">(שמואל ב ח, ב)</span> &quot;וַיַּךְ אֶת מוֹאָב וַיְמַדְּדֵם בַּחֶבֶל&quot; <span class="source-small">(במדבר כד, יז)</span> &quot;וְקַרְקַר כָּל בְּנֵי שֵׁת&quot; זֶה הַמֶּלֶךְ הַמָּשִׁיחַ שֶׁנֶּאֱמַר בּוֹ <span class="source-small">(זכריה ט, י)</span> &quot;וּמָשְׁלוֹ מִיָּם עַד יָם&quot;. <span class="source-small">(במדבר כד, יח)</span> &quot;וְהָיָה אֱדוֹם יְרֵשָׁה&quot; זֶה דָּוִד. שֶׁנֶּאֱמַר <span class="source-small">(שמואל ב ח, יד)</span> &quot;וַתְּהִי אֱדוֹם לְדָוִד לַעֲבָדִים&quot; וְגוֹ׳. <span class="source-small">(במדבר כד, יח)</span> &quot;וְהָיָה יְרֵשָׁה&quot; וְגוֹ׳ זֶה הַמֶּלֶךְ הַמָּשִׁיחַ שֶׁנֶּאֱמַר <span class="source-small">(עובדיה א, כא)</span> &quot;וְעָלוּ מוֹשִׁעִים בְּהַר צִיּוֹן&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראה</strong> ירושלמי מעשר שני פ&quot;ב ה&quot;ב זאת אומרת שביהמ&quot;ק עתיד להבנות קודם מלכות בית דוד, וע׳ מגילה י&quot;ז כיון שנבנית ירושלים בא דוד, ופסיקתא זוטרתא פ׳ בלק, ובמדרש הנעלם פ׳ תרומה ביהמ&quot;ק קודם לקיבוץ גליות, וע׳ שו&quot;ת שמחת יום טוב לרי&quot;ט אלגזי סימן צ&quot;ב, וס׳ פתיל תכלת ד׳ ס&quot;ה, וס׳ ויקן יוסף בריש הס׳ קו׳ לחיות זרע אריכת דברים בזה. וע׳ משפטי הוראה להמהר&quot;צ חיות ד׳ ט׳ ע&quot;א ובהוספות לספרי שבסוף ספרו דרכי הוראה הביא מירו׳ מע&quot;ש, ועוד משמע כן מפסחים ה׳ בשכר ג׳ זכו לבנין ביהמ&quot;ק ולשמו של משיח הרי דחשבו ביהמ&quot;ק קודם משיח.</p>
               </div>
             </div>
@@ -1493,8 +1854,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:2:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-12-2-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-12-2">Mishneh Torah, Kings and Wars 12:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ חֲכָמִים אֵין בֵּין הָעוֹלָם הַזֶּה לִימוֹת הַמָּשִׁיחַ אֶלָּא שִׁעְבּוּד מַלְכֻיּוֹת בִּלְבַד. יֵרָאֶה מִפְּשׁוּטָן שֶׁל דִּבְרֵי הַנְּבִיאִים. שֶׁבִּתְחִלַּת יְמוֹת הַמָּשִׁיחַ תִּהְיֶה מִלְחֶמֶת גּוֹג וּמָגוֹג. וְשֶׁקֹּדֶם מִלְחֶמֶת גּוֹג וּמָגוֹג יַעֲמֹד נָבִיא לְיַשֵּׁר יִשְׂרָאֵל וּלְהָכִין לִבָּם. שֶׁנֶּאֱמַר <span class="source-small">(מלאכי ג, כג)</span> &quot;הִנֵּה אָנֹכִי שׁלֵחַ לָכֶם אֵת אֵלִיָּה&quot; וְגוֹ׳. וְאֵינוֹ בָּא לֹא לְטַמֵּא הַטָּהוֹר. וְלֹא לְטַהֵר הַטָּמֵא. וְלֹא לִפְסל אֲנָשִׁים שֶׁהֵם בְּחֶזְקַת כַּשְׁרוּת. וְלֹא לְהַכְשִׁיר מִי שֶׁהֻחְזְקוּ פְּסוּלִין. אֶלָּא לָשׂוּם שָׁלוֹם בָּעוֹלָם. שֶׁנֶּאֱמַר <span class="source-small">(מלאכי ג, כד)</span> &quot;וְהֵשִׁיב לֵב אָבוֹת עַל בָּנִים&quot;. וְיֵשׁ מִן הַחֲכָמִים שֶׁאוֹמְרִים שֶׁקֹּדֶם בִּיאַת הַמָּשִׁיחַ יָבוֹא אֵלִיָּהוּ. וְכָל אֵלּוּ הַדְּבָרִים וְכַיּוֹצֵא בָּהֶן לֹא יֵדַע אָדָם אֵיךְ יִהְיוּ עַד שֶׁיִּהְיוּ. שֶׁדְּבָרִים סְתוּמִין הֵן אֵצֶל הַנְּבִיאִים. גַּם הַחֲכָמִים אֵין לָהֶם קַבָּלָה בִּדְבָרִים אֵלּוּ. אֶלָּא לְפִי הֶכְרֵעַ הַפְּסוּקִים. וּלְפִיכָךְ יֵשׁ לָהֶם מַחְלֹקֶת בִּדְבָרִים אֵלּוּ. וְעַל כָּל פָּנִים אֵין סִדּוּר הֲוָיַת דְּבָרִים אֵלּוּ וְלֹא דִּקְדּוּקֵיהֶן עִקָּר בַּדָּת. וּלְעוֹלָם לֹא יִתְעַסֵּק אָדָם בְּדִבְרֵי הַהַגָּדוֹת. וְלֹא יַאֲרִיךְ בַּמִּדְרָשׁוֹת הָאֲמוּרִים בְּעִנְיָנִים אֵלּוּ וְכַיּוֹצֵא בָּהֶן. וְלֹא יְשִׂימֵם עִקָּר. שֶׁאֵין מְבִיאִין לֹא לִידֵי יִרְאָה וְלֹא לִידֵי אַהֲבָה. וְכֵן לֹא יְחַשֵּׁב הַקִּצִּין. אָמְרוּ חֲכָמִים תִּפַּח רוּחָם שֶׁל מְחַשְּׁבֵי הַקִּצִּים. אֶלָּא יְחַכֶּה וְיַאֲמִין בִּכְלַל הַדָּבָר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושקודם מלחמת גוג ומגוג.</strong> ע׳ רמב&quot;ם פ&quot;ד דנזיר וכ&quot;מ ולח&quot;מ שם ופלא שלא זכרו דברי הרמב&quot;ם כאן, וע׳ מחזיק ברכה או&quot;ח סי׳ ת&quot;ר אות א׳.</p>
               </div>
             </div>
@@ -1509,8 +1875,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:2:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-12-2-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-12-2">Mishneh Torah, Kings and Wars 12:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרוּ חֲכָמִים אֵין בֵּין הָעוֹלָם הַזֶּה לִימוֹת הַמָּשִׁיחַ אֶלָּא שִׁעְבּוּד מַלְכֻיּוֹת בִּלְבַד. יֵרָאֶה מִפְּשׁוּטָן שֶׁל דִּבְרֵי הַנְּבִיאִים. שֶׁבִּתְחִלַּת יְמוֹת הַמָּשִׁיחַ תִּהְיֶה מִלְחֶמֶת גּוֹג וּמָגוֹג. וְשֶׁקֹּדֶם מִלְחֶמֶת גּוֹג וּמָגוֹג יַעֲמֹד נָבִיא לְיַשֵּׁר יִשְׂרָאֵל וּלְהָכִין לִבָּם. שֶׁנֶּאֱמַר <span class="source-small">(מלאכי ג, כג)</span> &quot;הִנֵּה אָנֹכִי שׁלֵחַ לָכֶם אֵת אֵלִיָּה&quot; וְגוֹ׳. וְאֵינוֹ בָּא לֹא לְטַמֵּא הַטָּהוֹר. וְלֹא לְטַהֵר הַטָּמֵא. וְלֹא לִפְסל אֲנָשִׁים שֶׁהֵם בְּחֶזְקַת כַּשְׁרוּת. וְלֹא לְהַכְשִׁיר מִי שֶׁהֻחְזְקוּ פְּסוּלִין. אֶלָּא לָשׂוּם שָׁלוֹם בָּעוֹלָם. שֶׁנֶּאֱמַר <span class="source-small">(מלאכי ג, כד)</span> &quot;וְהֵשִׁיב לֵב אָבוֹת עַל בָּנִים&quot;. וְיֵשׁ מִן הַחֲכָמִים שֶׁאוֹמְרִים שֶׁקֹּדֶם בִּיאַת הַמָּשִׁיחַ יָבוֹא אֵלִיָּהוּ. וְכָל אֵלּוּ הַדְּבָרִים וְכַיּוֹצֵא בָּהֶן לֹא יֵדַע אָדָם אֵיךְ יִהְיוּ עַד שֶׁיִּהְיוּ. שֶׁדְּבָרִים סְתוּמִין הֵן אֵצֶל הַנְּבִיאִים. גַּם הַחֲכָמִים אֵין לָהֶם קַבָּלָה בִּדְבָרִים אֵלּוּ. אֶלָּא לְפִי הֶכְרֵעַ הַפְּסוּקִים. וּלְפִיכָךְ יֵשׁ לָהֶם מַחְלֹקֶת בִּדְבָרִים אֵלּוּ. וְעַל כָּל פָּנִים אֵין סִדּוּר הֲוָיַת דְּבָרִים אֵלּוּ וְלֹא דִּקְדּוּקֵיהֶן עִקָּר בַּדָּת. וּלְעוֹלָם לֹא יִתְעַסֵּק אָדָם בְּדִבְרֵי הַהַגָּדוֹת. וְלֹא יַאֲרִיךְ בַּמִּדְרָשׁוֹת הָאֲמוּרִים בְּעִנְיָנִים אֵלּוּ וְכַיּוֹצֵא בָּהֶן. וְלֹא יְשִׂימֵם עִקָּר. שֶׁאֵין מְבִיאִין לֹא לִידֵי יִרְאָה וְלֹא לִידֵי אַהֲבָה. וְכֵן לֹא יְחַשֵּׁב הַקִּצִּין. אָמְרוּ חֲכָמִים תִּפַּח רוּחָם שֶׁל מְחַשְּׁבֵי הַקִּצִּים. אֶלָּא יְחַכֶּה וְיַאֲמִין בִּכְלַל הַדָּבָר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן לא יחשב הקצין.</strong> ע׳ מ&quot;ש רבינו באגרת תימן אגרת הרמב&quot;ם דפוס לייפציג ד׳ ו׳ ע&quot;א, וראה מאור עינים פ׳ מ&quot;ג, וראה פייטן סליחות יום ב׳ של עשי&quot;ת חשבון אחר חשבון עמך יפתר חכה וסכה דוד וחזר לפתור זמן קול התור מתי לפתור ובכל זאת חלילה באמנה לשקר, דנראה דהחשבון אין בו איסור אלא אם כופר כשאינו בא בחשבון המקוה. וע׳ האמונות והדעות לרבינו סעדיה גאון מאמר ח׳.</p>
               </div>
             </div>
@@ -1525,8 +1896,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:3:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-12-3-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-12-3">Mishneh Torah, Kings and Wars 12:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בִּימֵי הַמֶּלֶךְ הַמָּשִׁיחַ. כְּשֶׁתִּתְיַשֵּׁב מַמְלַכְתּוֹ וְיִתְקַבְּצוּ אֵלָיו כָּל יִשְׂרָאֵל. יִתְיַחֲסוּ כֻּלָּם עַל פִּיו בְּרוּחַ הַקֹּדֶשׁ שֶׁתָּנוּחַ עָלָיו. שֶׁנֶּאֱמַר <span class="source-small">(מלאכי ג, ג)</span> &quot;וְיָשַׁב מְצָרֵף וּמְטַהֵר&quot; וְגוֹ׳. וּבְנֵי לֵוִי מְטַהֵר תְּחִלָּה וְאוֹמֵר זֶה מְיֻחָס כֹּהֵן וְזֶה מְיֻחָס לֵוִי. וְדוֹחֶה אֶת שֶׁאֵינָן מְיֻחָסִין לְיִשְׂרָאֵל. הֲרֵי הוּא אוֹמֵר <span class="source-small">(עזרא ב, סג)</span> &quot;וַיֹּאמֶר הַתִּרְשָׁתָא לָהֶם&quot; וְגוֹ׳ <span class="source-small">(עזרא ב, סג)</span> &quot;עַד עֲמֹד כֹּהֵן לְאוּרִים וּלְתֻמִּים&quot;. הִנֵּה לָמַדְתָּ שֶׁבְּרוּחַ הַקֹּדֶשׁ מְיַחֲסִין הַמֻּחְזָקִין וּמוֹדִיעִין הַמְיֻחָס. וְאֵינוֹ מְיַחֵס יִשְׂרָאֵל אֶלָּא לְשִׁבְטֵיהֶם. שֶׁמּוֹדִיעַ שֶׁזֶּה מִשֵּׁבֶט פְּלוֹנִי וְזֶה מִשֵּׁבֶט פְּלוֹנִי. אֲבָל אֵינוֹ אוֹמֵר עַל שֶׁהֵן בְּחֶזְקַת כַּשְׁרוּת זֶה מַמְזֵר וְזֶה עֶבֶד. שֶׁהַדִּין הוּא שֶׁמִּשְׁפָּחָה שֶׁנִּטְמְעָה נִטְמְעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובני לוי מטהר תחלה.</strong> ע׳ שו&quot;ת מהרי&quot;ט ח&quot;א סי׳ קמ&quot;ט דמ&quot;ש הרב דבתרומה של תורה אינו אוכל ולא מיוחס היינו כשיבנה ביהמ&quot;ק משום דפסק דל&quot;א בתרומה דאורייתא משום דלא ליתא לאסקינהו ליוחסין.</p>
               </div>
             </div>
@@ -1541,8 +1917,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:3:2</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-12-3-2" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-12-3">Mishneh Torah, Kings and Wars 12:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בִּימֵי הַמֶּלֶךְ הַמָּשִׁיחַ. כְּשֶׁתִּתְיַשֵּׁב מַמְלַכְתּוֹ וְיִתְקַבְּצוּ אֵלָיו כָּל יִשְׂרָאֵל. יִתְיַחֲסוּ כֻּלָּם עַל פִּיו בְּרוּחַ הַקֹּדֶשׁ שֶׁתָּנוּחַ עָלָיו. שֶׁנֶּאֱמַר <span class="source-small">(מלאכי ג, ג)</span> &quot;וְיָשַׁב מְצָרֵף וּמְטַהֵר&quot; וְגוֹ׳. וּבְנֵי לֵוִי מְטַהֵר תְּחִלָּה וְאוֹמֵר זֶה מְיֻחָס כֹּהֵן וְזֶה מְיֻחָס לֵוִי. וְדוֹחֶה אֶת שֶׁאֵינָן מְיֻחָסִין לְיִשְׂרָאֵל. הֲרֵי הוּא אוֹמֵר <span class="source-small">(עזרא ב, סג)</span> &quot;וַיֹּאמֶר הַתִּרְשָׁתָא לָהֶם&quot; וְגוֹ׳ <span class="source-small">(עזרא ב, סג)</span> &quot;עַד עֲמֹד כֹּהֵן לְאוּרִים וּלְתֻמִּים&quot;. הִנֵּה לָמַדְתָּ שֶׁבְּרוּחַ הַקֹּדֶשׁ מְיַחֲסִין הַמֻּחְזָקִין וּמוֹדִיעִין הַמְיֻחָס. וְאֵינוֹ מְיַחֵס יִשְׂרָאֵל אֶלָּא לְשִׁבְטֵיהֶם. שֶׁמּוֹדִיעַ שֶׁזֶּה מִשֵּׁבֶט פְּלוֹנִי וְזֶה מִשֵּׁבֶט פְּלוֹנִי. אֲבָל אֵינוֹ אוֹמֵר עַל שֶׁהֵן בְּחֶזְקַת כַּשְׁרוּת זֶה מַמְזֵר וְזֶה עֶבֶד. שֶׁהַדִּין הוּא שֶׁמִּשְׁפָּחָה שֶׁנִּטְמְעָה נִטְמְעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהדין הוא שמשפחה שנטמעה נטמעה,</strong> ראה בר&quot;נ קידושין פרק עשרה יוחסין הוצאת ווילנא ד׳ ל׳ ע&quot;ב מה שכתב על דברי רבינו וסיים כיון שאין אליהו עתיד לגלותן אף היודעים בהם [עכשיו] אין מגלין אותם שאין בין עולם הזה לימות המשיח לענין זה כלום עכ&quot;ל.</p>
               </div>
             </div>
@@ -1557,8 +1938,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:5:1</h4></div>
               <a class="anchor" href="#haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-12-5-1" aria-label="Copy link to Haggahot Kevod Melakhim on Mishneh Torah, Kings and Wars 12:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-kings-and-wars/#mishneh-torah-kings-and-wars-12-5">Mishneh Torah, Kings and Wars 12:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּבְאוֹתוֹ הַזְּמַן לֹא יִהְיֶה שָׁם לֹא רָעָב וְלֹא מִלְחָמָה. וְלֹא קִנְאָה וְתַחֲרוּת. שֶׁהַטּוֹבָה תִּהְיֶה מֻשְׁפַּעַת הַרְבֵּה. וְכָל הַמַּעֲדַנִּים מְצוּיִין כֶּעָפָר. וְלֹא יִהְיֶה עֵסֶק כָּל הָעוֹלָם אֶלָּא לָדַעַת אֶת ה׳ בִּלְבַד. וּלְפִיכָךְ יִהְיוּ יִשְׂרָאֵל חֲכָמִים גְּדוֹלִים וְיוֹדְעִים דְּבָרִים הַסְּתוּמִים וְיַשִּׂיגוּ דַּעַת בּוֹרְאָם כְּפִי כֹּחַ הָאָדָם. שֶׁנֶּאֱמַר <span class="source-small">(ישעיה יא, ט)</span> &quot;כִּי מָלְאָה הָאָרֶץ דֵּעָה אֶת ה׳ כַּמַּיִם לַיָּם מְכַסִּים&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא מלחמה.</strong> עיין שו&quot;ת רמ&quot;ע מפאנו סימן ט&quot;ו.</p>
               </div>
             </div>
@@ -1568,6 +1954,10 @@
               <a href="#chapter-haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-text-12">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1588,8 +1978,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.manifest.json","occurrence_url":"../../data/lexical/occurrences/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/haggahot-kevod-melakhim-on-mishneh-torah-kings-and-wars.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1615,7 +2005,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/">Open Mishneh Torah, Offerings for Those with Incomplete Atonement</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Offerings for Those with Incomplete Atonement</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">29 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>756 matched</strong> / 2223 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -241,8 +241,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-1">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבָעָה הֵן הַנִּקְרָאִין מְחֻסְּרֵי כַּפָּרָה. הַזָּבָה. וְהַיּוֹלֶדֶת. וְהַזָּב. וְהַמְצֹרָע. וְלָמָּה נִקְרָאוּ מְחֻסְּרֵי כַּפָּרָה שֶׁכָּל אֶחָד מֵהֶן אַף עַל פִּי שֶׁטָּהַר מִטֻּמְאָתוֹ וְטָבַל וְהֶעֱרִיב שִׁמְשׁוֹ עֲדַיִן הוּא חָסֵר וְלֹא גָּמְרָה טָהֳרָתוֹ כְּדֵי לֶאֱכל בְּקָדָשִׁים עַד שֶׁיָּבִיא קָרְבָּנוֹ. וְקֹדֶם שֶׁיָּבִיא כַּפָּרָתוֹ אָסוּר הוּא לֶאֱכל בְּקָדָשִׁים כְּמוֹ שֶׁבֵּאַרְנוּ בִּפְסוּלֵי הַמֻּקְדָּשִׁין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קסו </strong> שתקריב הזבה כשתטהר קרבן. ארבעה הן מחוסרי כפרה זב וזבה יולדת ומצורע ולמה נקראו מחוסרי כפרה שאף ע&quot;פ שטהרו מטומאתן לא נגמרה טהרתן לאכול בקדשים עד שיביאו קרבנם בפ׳ הערל מפרש טעמא דמתניתין דתנן טבל ועלה אוכל במעשר העריב שמשו אוכל בתרומה הביא כפרתו אוכל בקדשים מנ&quot;ל אמר רבא אמר רב חסדא תלתא קראי כתיבי כתיב לא יאכל מן הקדשים כי אם רחץ בשרו במים הא רחץ טהור וכתיב ובא השמש וטהר ואחר יאכל מן הקדשים וכתיב וכפר עליה הכהן וטהרה הא כיצד כאן למעשר כאן לתרומה כאן לקדשים כדמפרש התם.</p>
               </div>
             </div>
@@ -257,8 +262,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-2">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גֵּר שֶׁמָּל וְטָבַל וַעֲדַיִן לֹא הֵבִיא קָרְבָּנוֹ. אַף עַל פִּי שֶׁהוּא אָסוּר לֶאֱכל בְּקָדָשִׁים עַד שֶׁיָּבִיא קָרְבָּנוֹ אֵינוֹ מִמְּחֻסְּרֵי כַּפָּרָה. שֶׁקָּרְבָּנוֹ עִכְּבוֹ לִהְיוֹת גֵּר גָּמוּר וְלִהְיוֹת כְּכָל כְּשֵׁרֵי יִשְׂרָאֵל וּמִפְּנֵי זֶה אֵינוֹ אוֹכֵל בְּקָדָשִׁים שֶׁעֲדַיִן לֹא נַעֲשָׂה כִּכְשֵׁרֵי יִשְׂרָאֵל. וְכֵיוָן שֶׁיָּבִיא קָרְבָּנוֹ וְיֵעָשֶׂה יִשְׂרָאֵל כָּשֵׁר אוֹכֵל בְּקָדָשִׁים. הֵבִיא פְּרֵדָה אַחַת בְּשַׁחֲרִית אוֹכֵל בְּקָדָשִׁים לָעֶרֶב וְיָבִיא פְּרֵדָה שְׁנִיָּה. שֶׁקָּרְבָּנוֹ שֶׁל גֵּר עוֹלַת בְּהֵמָה אוֹ שְׁנֵי בְּנֵי יוֹנָה אוֹ שְׁתֵּי תּוֹרִים וּשְׁנֵיהֶן עוֹלָה. כְּמוֹ שֶׁבֵּאַרְנוּ בְּמַעֲשֵׂה הַקָּרְבָּנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גר </strong> שמל וטבל ולא הביא קרבנו אסור לאכול בקדשים ואינו מחוסר כפרה פ׳ ד׳ מחוסרי כפרה במשנה רבי אליעזר בן יעקב אומר גר מחוסר כפרה ובגמרא ות&quot;ק מ&quot;ט לא תני גר כי קתני מידי דמישרי לאכול בקדשים גר כי קא מייתי קרבן לאכשוריה נפשיה למיעל בקהל הוא ולא מחוסר כפרה איקרי. הביא פרידה אחד בשחרית אוכל בקדשים לערב שם בבריתא מעוכב לאכול בקדשים עד שיביא קנו הביא פרידה אחד שחרית אוכל בקדשים לערב ובלבד שיביא השניה כל הקינין שבתורה אחד חטאת ואחד עולה כאן שתיהן עולות כדילפינן מדור המדבר דכתיב וכי יגור אתכם גר אשר בתוככם לדורותיכם ועשה אשה ריח ניחוח לה׳ כאשר תעשו כן יעשה אי זהו דבר שכולו לה׳ הוי אומר זה עולת העוף אימא אתם עולה ושלמים ואף הם עולה ושלמים ת&quot;ל ככם כגר יהיה לכם הקשתיו במקצת ולא לכל קרבנותיכם ומיהו עולה מסתבר דמכשרה דכולה כליל לה׳.</p>
               </div>
             </div>
@@ -273,8 +283,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-3">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב וְהַזָּבָה קָרְבָּן כָּל אַחַת מֵהֶן שְׁתֵּי תּוֹרִים אוֹ שְׁנֵי בְּנֵי יוֹנָה אֶחָד עוֹלָה וְאֶחָד חַטָּאת. וְהַיּוֹלֶדֶת קָרְבָּנָהּ כֶּבֶשׂ עוֹלָה וּבֶן יוֹנָה אוֹ תּוֹר חַטָּאת. וְאִם אֵין יָדָהּ מַשֶּׂגֶת מְבִיאָה שְׁתֵּי תּוֹרִים אוֹ שְׁנֵי בְּנֵי יוֹנָה אֶחָד עוֹלָה וְאֶחָד חַטָּאת. וְהַמְצֹרָע קָרְבָּנוֹ שְׁלֹשָׁה כְּבָשִׂים אֶחָד עוֹלָה וְאֶחָד אָשָׁם. וְכִשְׂבָּה לְחַטָּאת. וְאִם אֵין יָדוֹ מַשֶּׂגֶת מֵבִיא קֵן אֶחָד עוֹלָה וְאֶחָד חַטָּאת וְכֶבֶשׂ לְאָשָׁם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזב </strong> והזבה קרבן כל אחד מהם ב׳ תורים או שני בני יונה אחד עולה ואחד חטאת כדכתיב בפרשת מצורע גבי זב וביום השמיני יקח לו ב׳ תורים או שני בני יונה וגבי זבה וביום השמיני תקח לה ב׳ תורים או שני בני יונה וכו׳ וכתיב בהו ועשה אותם הכהן אחד חטאת והאחד עולה והיולדת קרבנה כבש עולה ובן יונה או תור חטאת ואם אין ידה משגת מביאה ב׳ תורים או ב׳ בני יונה אחד עולה וא׳ חטאת כדכתיב בהדיא בקרא גבי יולדת והמצורע קרבנו ג׳ כבשים אחד עולה ואחד אשם וכשבה לחטאת כדכתיב וביום השמיני יקח ב׳ כבשים תמימים וכבשה אחת תמימה וכתיב ולקח הכהן את הכבש האחד והקריב אותו לאשם וגו׳ וכתיב ועשה הכהן את החטאת דהיינו כבשה וכתיב ואחר ישחט את העולה דהיינו הכבש האחר ואם אין ידו משגת מביא קן אחד עולה ואחד חטאת וכבש לאשם כדכתיב התם בהדיא ואם דל הוא וגו׳.</p>
               </div>
             </div>
@@ -289,8 +304,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-4">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָּב וְהַזָּבָה וְהַמְצֹרָע מֵבִיא כָּל אֶחָד מִשְּׁלָשְׁתָּן כַּפָּרָתוֹ בַּיּוֹם הַשְּׁמִינִי לְטָהֳרָתוֹ שֶׁכָּל אֶחָד מֵהֶן סוֹפֵר שִׁבְעָה יְמֵי טָהֳרָה וְטוֹבֵל בַּיּוֹם הַשְּׁבִיעִי וּמַעֲרִיב שִׁמְשׁוֹ וּמַקְרִיב קָרְבְּנוֹתָיו בַּיּוֹם הַשְּׁמִינִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הזב </strong> והזבה והמצורע מביאין כפרתן ביום השמיני לטהרתן כדכתיב בכולהו וביום השמיני יביא וגו׳ וכתיב בזב וספר לו שבעת ימים לטהרתו וכבס בגדיו ורחץ במים וכו׳ ובזבה כתיב וספרה לה שבעת ימים ואחר תטהר.</p>
               </div>
             </div>
@@ -305,8 +325,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-5">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַיּוֹלֶדֶת אֵינָהּ מְבִיאָה קָרְבָּנָהּ בְּיוֹם אַרְבָּעִים לְזָכָר אוֹ בְּיוֹם שְׁמוֹנִים לִנְקֵבָה. אֶלָּא מַעֲרֶבֶת שִׁמְשָׁהּ וּמְבִיאָהּ קָרְבָּנָהּ לְמָחָר שֶׁהוּא יוֹם אַרְבָּעִים וְאֶחָד לְזָכָר וְיוֹם שְׁמוֹנִים וְאֶחָד לִנְקֵבָה וְהוּא הַיּוֹם שֶׁנֶּאֱמַר בּוֹ <span class="source-small">(ויקרא יב ו)</span> &quot;וּבִמְלֹאת יְמֵי טָהֳרָהּ לְבֵן אוֹ לְבַת תָּבִיא&quot; וְגוֹ׳. וְאִם הֵבִיאָה קָרְבָּנָהּ תּוֹךְ יְמֵי מְלֹאת לֹא יָצָאת אֲפִלּוּ הֵבִיאָה עַל וְלָדוֹת הָרִאשׁוֹנִים בְּתוֹךְ יְמֵי מְלֹאת שֶׁל וָלָד זֶה לֹא יָצָאת. עָבְרוּ יָמִים אֵלּוּ וְלֹא הֵבִיאוּ כַּפָּרָתָן הֲרֵי אֵלּוּ מַקְרִיבִין כַּפָּרָתָן לְאַחַר זְמַן. וְכָל זְמַן שֶׁלֹּא הִקְרִיבוּ חַטָּאתָם אֲסוּרִים לֶאֱכל בְּקָדָשִׁים. אֲבָל הָעוֹלָה (וְהָאָשָׁם) אֵינָן מְעַכְּבִין. כְּבָר בֵּאַרְנוּ בְּמַעֲשֵׂה הַקָּרְבָּנוֹת שֶׁכָּל מְחֻיְּבֵי קָרְבָּן אֵין מַקְרִיבִין עַל יָדָן אֶלָּא מִדַּעְתָּן. חוּץ מִמְּחֻסְּרֵי כַּפָּרָה שֶׁאֵין צְרִיכִין דַּעַת בְּעָלִים שֶׁהֲרֵי אָדָם מֵבִיא קָרְבָּן עַל בָּנָיו וּבְנוֹתָיו הַקְּטַנִּים אִם הָיוּ מְחֻסְּרֵי כַּפָּרָה וּמַאֲכִילָן בִּזְבָחִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היולדת </strong> אינה מביאה קרבנה ביום מ׳ לזכר או ביום פ׳ לנקבה אלא מערבת שמשה ומביאה קרבנה למחר שהוא יום מ&quot;א ויום פ&quot;א והוא היום שנאמר בו ובמלאת ימי טהרה לבן או לבת ודרשינן יום מלאת תביא תוך מלאת לא תביא ספ&quot;ק דכריתות במשנה המפלת לאור פ&quot;א ב&quot;ש פוטרים מן הקרבן וב&quot;ה מחייבין וע&quot;כ לא נחלקו אלא באור פ&quot;א אבל ביום פ׳ לכ&quot;ע פטורה אם הפילה דכל שהפילה תוך ימי מלאת ילפינן התם פ&quot;ד מחוסרי כפרה דמביאה קרבן אחד על וולדות הרבה כדכתיב זאת תורת היולדת וכל היכא דכתיב תורה משמע רבים ואם הפילה ביום פ&quot;א לכ&quot;ע מביאה קרבן אחר שהרי הוא אחר מלאת לא נחלקו אלא בליל פ&quot;א דלב&quot;ש הואיל שאינה ראויה להביא קרבן בלילה דכתיב ביום צוותו את בני ישראל להקריב וגו׳ הרי הוא כתוך ימי מלאת ולב&quot;ה כיון שכלו ימי טהרה ואם ראת בליל זו טמאה הרי הוא לאחר ימי מלאת ולכך חייבת להביא קרבן אחר על נפל זה ותניא אמרו להם ב&quot;ה לב&quot;ש הרי הוא אומר או לבת לרבות אור שמונים ואחד שמביאה קרבן על מה שהפילה שהרי הוא אחר מלאת ואם הביאה קרבנה תוך ימי מלאת לא יצאת כדדרשינן יום מלאת תביא תוך מלאת לא תביא אפילו הביאה על וולדות הראשונים בתוך ימי מלאת של ולד זה לא יצאת דדרשינן על ובמלאת ימי וגו׳ תביא וגו׳ יום מלאת תביא תוך מלאת לא תביא יכול לא תביא על לידה זאת שלפני מלאת כלומר שלא נשלמו פ&quot;א יום ללידה זו אבל תביא על לידה אחרת שילדה קודם ועברו ימי מלאת ולא הביאה וילדה ועתה היא תוך ימי מלאת של לידה זו ת&quot;ל ובמלאת ימי טהרה וגו׳ ביום מלאת תביא תוך מלאת לא תביא. עברו ימים אלו ולא הביאו כפרתם הרי אלו מקריבים כפרתם לאחר זמן וכל זמן שלא הקריבו חטאתם אסורים לאכול בקדשים אבל העולה והאשם אינם מעכבים דכתיב גבי יולדת והקריבו לפני ה׳ מלמד שאין מעכבה לאכול בקדשים אלא אחד מהם ואי זהו זה חטאת דכתיב וכפר עליה הכהן וטהרה גבי אחד לחטאת מי שהוא בא לכפר בו הכפרה תלויה וגבי מצורע כתיב ועשה הכהן את החטאת וכפר על המטהר ותניא בת&quot;כ מה ת&quot;ל וכפר לפי שנאמר בסמוך והעלה הכהן את העולה ואת המנחה המזבחה וכפר יכול יהו כולם מעכבים ת&quot;ל ועשה הכהן את החטאת וכפר מלמד שכפרה בחטאת. מחוסרי כפרה אין צריך דעת בעלים שהרי אדם מביא קרבן על בניו ובנותיו הקטנים אם היו מחוסרי כפרה דכתיב זאת תורת הזב בין גדול בין קטן כדאמ׳ ר׳ יוחנן פרק אין בין המודר דתורת אתי לרבויי קטן.</p>
               </div>
             </div>
@@ -321,8 +346,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-6">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵי זוֹ הִיא זָבָה. זוֹ שֶׁזָּב דָּמָהּ שְׁלֹשָׁה יָמִים זֶה אַחַר זֶה בְּלֹא עֵת נִדָּתָהּ. וְזוֹ הִיא זָבָה גְּדוֹלָה שֶׁצְּרִיכָה סְפִירַת שִׁבְעָה וְחַיֶּבֶת בְּקָרְבָּן. וּכְבָר בֵּאַרְנוּ בְּעִנְיַן הַנִּדָּה אֵימָתַי תִּהְיֶה הָאִשָּׁה זָבָה בְּדָמִים שֶׁתִּרְאֶה וְאֵימָתַי לֹא תִּהְיֶה זָבָה אֶלָּא נִדָּה אוֹ טְהוֹרָה וּמָתַי תִּהְיֶה סְפֵק זָבָה. כָּל מָקוֹם שֶׁאָמַרְנוּ שֶׁהִיא זָבָה וְסוֹפֶרֶת שִׁבְעָה הֲרֵי הִיא חַיֶּבֶת לְהָבִיא קָרְבָּן וְחַטָּאתָהּ נֶאֱכֶלֶת. וְכָל מָקוֹם שֶׁאָמַרְנוּ שֶׁהִיא סְפֵק זָבָה הֲרֵי זוֹ מְבִיאָה קָרְבָּן וְאֵין חַטָּאתָה נֶאֱכֶלֶת. שֶׁכְּבָר בֵּאַרְנוּ שֶׁחַטַּאת הָעוֹף הַבָּאָה עַל הַסָּפֵק תִּשָּׂרֵף. וְשָׁם בֵּאַרְנוּ מַה תֵּלֵד הָאִשָּׁה אוֹ מַה תַּפִּיל וְתִהְיֶה טְמֵאָה לֵידָה וּמַה תֵּלֵד אוֹ תַּפִּיל וְלֹא תִּהְיֶה טְמֵאָה לֵידָה. וְכָל מָקוֹם שֶׁאָמַרְנוּ שֶׁהִיא טְמֵאָה לֵידָה הֲרֵי זוֹ מְבִיאָה קָרְבָּן וְחַטָּאתָהּ נֶאֱכֶלֶת. וְכָל מָקוֹם שֶׁאָמַרְנוּ שֶׁאֵינָהּ טְמֵאָה לֵידָה הֲרֵי זוֹ פְּטוּרָה מִן הַקָּרְבָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי </strong> זו היא זבה שזב דמה ג׳ ימים זו זה אחר זה בלא עת נדתה וזו היא זבה גדולה שצריכה ספירת שבעה וחייבת בקרבן כדכתיב ואשה כי יזוב זוב דמה ימים רבים בלא עת נדתה ותניא בת&quot;כ ימים שנים רבים שלשה יכול ימים הרבה א&quot;ר עקיבא כל ששמעו מרובה ושמעו ממועט תפשת מרובה לא תפשת תפשת מועט תפשת ואמר ימים ואמר רבים מה ימים שנים דתפשת מעט תפשת אף רבים מיעוט רבים ג׳ יכול שנים ושלשה הרי חמשה וכי נאמר ימים ורבים לא נאמר אלא ימים רבים וכתיב בלא עת נדתה אחר שיצאו שבעת ימי נדתה וכתיב בה וספרה לה שבעת ימים ואחר תטהר וביום השמיני תקח לה ב׳ תורים ובהלכות נדה נתבאר. זבה ונדה וספק זבה וזב חטאתם נאכלת וספק אין חטאתם נאכלת שחטאת העוף הבאה על הספק תשרף כדתניא פרק אין בערכין כל זבות הטועות מביאות קרבן לסוף שבעה ימים נקיים חוץ מפתחה שבעה ושמנה שמביאות קרבן דממה נפשך זבות נינהו כדאמרינן התם אבל אחרנייתא אינו נאכל החטאת דשמא לא ימי זיבה היו וחטאת זו חולין ומליקתה נבלה דחולין מלוקין אינו אלא נבלה ובהלכות נדה התבאר מה תלד או תפיל ותהיה טמאה לידה או לא תהיה וכל שטמאה לידה מביאה קרבן וחטאתה נאכלת וכל שאינה טמאה לידה פטורה מן הקרבן כדכתיב ובמלאת ימי טהרה לבן או לבת תביא וגו׳ כל שטמאה לידה ויש לה ימי טהרה מביא קרבן אבל שאינה טמאה לידה אינה מביאה קרבן:</p>
               </div>
             </div>
@@ -337,8 +367,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-7">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁלֹּא הֻחְזְקָה עֵבָּרָה וְהִפִּילָה וְלֹא יָדְעָה מַה הִפִּילָה. אִם נֵפֶל שֶׁחַיֶּבֶת עָלָיו קָרְבָּן אוֹ דָּבָר שֶׁאֵינָהּ חַיֶּבֶת עָלָיו קָרְבָּן. הֲרֵי זוֹ סְפֵק יוֹלֶדֶת וּמְבִיאָהּ קָרְבָּן וְאֵין חַטָּאתָה נֶאֱכֶלֶת. וְכֵן שְׁתֵּי נָשִׁים שֶׁהִפִּילוּ שְׁנֵי נְפָלִים נֵפֶל אֶחָד רָאוּי לְהַקְרִיב עָלָיו וְהַנֵּפֶל הָאַחֵר פְּטוּרָה עָלָיו וְאֵין אַחַת מֵהֶן מַכֶּרֶת נִפְלָהּ. כָּל אַחַת מִשְּׁתֵּיהֶן מְבִיאָה קָרְבָּן מִסָּפֵק וְאֵין חַטַּאת אַחַת מִשְּׁתֵּיהֶן נֶאֱכֶלֶת שֶׁחַטַּאת הָעוֹף הַבָּאָה עַל הַסָּפֵק נִשְׂרֶפֶת שֶׁמָּא אֵינָהּ חַיֶּבֶת וְנִמְצֵאת חַטָּאת זוֹ חֻלִּין שֶׁנִּשְׁחֲטוּ בָּעֲזָרָה שֶׁהֵן אֲסוּרִין בַּהֲנָאָה כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת שְׁחִיטָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קסז </strong> שתקריב היולדת כשתטהר קרבן וספק יולדת מביאה קרבן ואינו נאכל כדתנן בפרק קמא דכריתות ואלו מביאות ואינן נאכלות המפלת ואינה יודעת מה הפילה וב׳ נשים שהפילו אחד ממין פטור ואחד ממין חובה ואין ידוע אי זו הפילה סנדל או שליא שהוא ממין החובה ואי זו הפילה ממין פטור דגים וחגבים מפני שהפילו במחבואה אחד ומביאות כל אחד שתי תורים ולא שתיהן קרבן אחד על ידי תנאי כר׳ יוסי דלית הלכתא כותיה וילפינן בנזיר דחטאת העוף באה על הספק כדתניא פרק מי שאמר ר׳ יוסי בר חנינא אומר מנין לחטאת העוף שהיא באה על הספק כגון דלידה או דזיבה דאינה נאכלת ת&quot;ל והזב את זובו לזכר ולנקבה מקיש נקבה לזכר מה זכר מביא קרבן על הודאי אף נקבה מביאה קרבן על הודאי ומה זכר מביא על הספק אשם תלוי אף נקבה תביא על הספק אפילו ספק לידה ועדין לא שמענו אם ממין בהמה אם ממין עוף אלא ממה שלמדנו שמביא זכר על הספק מאותו מין שמביא על הודאי אף נקבה ממין שמביאה על הוודאי שהוא עוף מביאה נמי על ספק לידה אימא זכר מביא קרבן ונאכל שהרי אשם תלוי נאכל אף נקבה תביא קרבן ונאכל לא אם אמרת בזכר שכן איסור אחד לבד יש בו דדילמא שומן הוא מה שאכל ומייתי חולין לעזרה תאמר בנקבה שיש בה ב׳ איסורין מאי ב׳ איסורין איסור נבלה דמליקה נבל׳ ואיסור חולין בעזרה. אחד היולדת ואחד המפלת ולד אחד או וולדות הרבה הרי זו מביאה קרבן אחד לכולן כדתנא תנא קמיה דרב ששת פ&quot;ד מחוסרי כפרה זאת תורת היולדת לזכר או לנקבה מלמד שמביאה קרבן אחד על ולדות הרבה דכל היכא דכתיב תורה משמע רבים יכול אף על הלידה ועל הזיבה תביא קרבן אחד כגון שראת ג׳ ימים בימי זיבה והפסיקה רביעי וילדה בחמשי דיולדת בזוב הויא ת&quot;ל זאת על לידה א׳ תביא משמע ואקשי׳ אלא מעתה אכלה דם וילדה ה&quot;ה דאין מביאה אלא קרבן אחד אי לאו זאת אלא אימא הכי יכול על הלידה שלפני מלאת ועל הלידה שלאחר מלאת לא תביא אלא קרבן אחד ת&quot;ל זאת משמע על לידה א׳ וכיון דהוה בעינן מעיקרא לרבויי דאפילו על לידה וזיבה לא תביא אלא קרבן אחד משמע דפשוט דעל לידה והפלה לא מייתי אלא קרבן אחד כל שילדה והפילה תוך ימי מלאת אבל הפילה אחר ימי מלאת תביא אף על השני ואם הפילה תוך ימי מלאת וחזרה והפילה תוך ימי מלאת של נפל זה השני וחזרה והפילה תוך ימי מלאת שלישי פטורה ואינה מביאה אלא על לידה ראשונה שהרי אחרון תוך ימי מלאת שלישי ושלישי תוך ימי מלאת של שני ושני תוך ימי מלאת של ראשון ואינה מביאה אלא קרבן אחד על הכל כדתנן פ&quot;ד מחוסרי כפרה. היולדת טומטום או אנדרוגינוס והפילה נפל אחר מ׳ מיום לידתו הרי זו מביאה קרבן על נפל זה שמא זכר הוא הראשון והרי הפילה אחר ימי מלאת ואין חטאתה נאכלת שמא נקבה היא הראשונה ובתוך ימי מלאת הפילה וחיוב קרבן לטומטום ואנדרוגינוס ילפינן מדכתיב ואם נקבה תלד ה&quot;ל למיכתב ואם נקבה היא מאי תלד הא אין דבר תלוי אלא בלידה.</p>
               </div>
             </div>
@@ -353,8 +388,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-10">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁיֵּשׁ עָלֶיהָ סְפֵק חָמֵשׁ לֵידוֹת אוֹ סְפֵק חָמֵשׁ זִיבוֹת. מְבִיאָה קָרְבָּן אֶחָד וְאוֹכֶלֶת בִּזְבָחִים וְאֵין הַשְּׁאָר עָלֶיהָ חוֹבָה. הָיוּ עָלֶיהָ חָמֵשׁ לֵידוֹת וַדָּאוֹת וְחָמֵשׁ זָבוֹת וַדָּאוֹת מְבִיאָה קָרְבָּן אֶחָד וְאוֹכֶלֶת בִּזְבָחִים וְהַשְּׁאָר עָלֶיהָ חוֹבָה. וְכֵן הַדִּין בְּזָב. הָיוּ עָלֶיהָ חָמֵשׁ לֵידוֹת וַדָּאוֹת וְחָמֵשׁ לֵידוֹת סָפֵק אוֹ חָמֵשׁ לֵידוֹת וַדָּאוֹת וְחָמֵשׁ זִיבוֹת סָפֵק. מְבִיאָה שְׁנֵי קָרְבָּנוֹת אֶחָד עַל הַוַּדַּאי וְנֶאֱכָל וּשְׁאָר הַוַּדָּאוֹת עָלֶיהָ חוֹבָה וְאֶחָד עַל הַסָּפֵק וְאֵינוֹ נֶאֱכָל וְאֵין הַשְּׁאָר עָלֶיהָ חוֹבָה וְאוֹכֶלֶת בִּזְבָחִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האשה </strong> שיש עליה ספק חמש זיבות או ה׳ לידות מביאה קרבן אחד ואוכלת בזבחים ואין השאר עליה חובה היו לידות וזיבות ודאות השאר עליה חובה כדתנן ספ&quot;ק דכריתות וטעמא שהרי קרבן זה לטהרה בא והרי הוא כטבילה אם נטמאה האשה כמה טומאות טבילה אחת לכולן אף קרבן זה כן ואין השאר עליה חובה לא הצריכוה חכמים להביאה שאף האחד בקושי התירו להקריב ספק מליקת חולין למזבח שאם לא כן אין תקנה ליטהר בקדשים אבל ה׳ לידות וזיבות ודאות מביאה קרבן ואוכלת בזבחים כמו שפירשתי מדין טבילה והשאר עליה חובה כדאמ׳ יכול תביא על הלידה שלפני מלאת ועל הלידה שלאחר מלאת קרבן אחד לשניהם ת&quot;ל זאת היו עליה ה׳ לידות ודאות וחמש לידות ספק או חמש לידות ודאות וחמש זיבות ספק מביאה ב׳ קרבנות א׳ על הודאי ונאכל ושאר הודאות עליה חובה ואחד על הספק ואינו נאכל ואין השאר עליה חובה ואוכלת בזבחים שם בריתא פלוגתא דת&quot;ק ורבי יוחנן בן נורי ורבי עקיבא ונקטינן כת&quot;ק כטעמא דלעיל.</p>
               </div>
             </div>
@@ -369,8 +409,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-11">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁנִּתְגַּיְּרָה וְאֵין יָדוּעַ אִם עַד שֶׁלֹּא נִתְגַּיְּרָה יָלְדָה אוֹ מִשֶּׁנִּתְגַּיְּרָה יָלְדָה. הֲרֵי זוֹ מְבִיאָה קָרְבָּן מִסָּפֵק וְאֵין חַטָּאתָהּ נֶאֱכֶלֶת. כְּבָר בֵּאַרְנוּ בְּהִלְכוֹת שְׁגָגוֹת שֶׁכָּל מְחֻסְּרֵי כַּפָּרָה מִסָּפֵק שֶׁעָבַר עֲלֵיהֶם [יוֹם הַכִּפּוּרִים] חַיָּבִין לְהָבִיא אַחַר יוֹם הַכִּפּוּרִים. שֶׁקָּרְבָּן זֶה מַכְשִׁירָן לֶאֱכל בְּקָדָשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האשה </strong> שנתגיירה ואין ידוע אם עד שלא נתגיירה ילדה או משנתגיירה ילדה מביאה קרבן מספק ואינו נאכל ס&quot;פ הזרוע תני ר׳ חייא ח׳ ספיקות נאמרו בגר ארבע מהן לחיוב וד׳ מהן לפטור וחד מהני דחיוב הוי קרבן אשתו דספק איסור כרת הוא לאכול בקדשים עד שתביא כפרה דמחוסר כיפורים אסור בקדשים וענוש כרת. ספק מחוסרי כפרה שעבר עליו י&quot;ה חייבין להביא לאחר י&quot;ה דלאו לכפרה אתי דבצער לידה נתכפרה אלא להכשירה לאכול בקדשים וכן בשאר מחוסרי כפרה מספק כדילפינן פ&quot;ג דהלכות שגגות.</p>
               </div>
             </div>
@@ -385,8 +430,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-1-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-1-12">Mishneh Torah, Offerings for Those with Incomplete Atonement 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁיֵּשׁ עָלֶיהָ לֵידָה אוֹ זִיבָה. מְבִיאָה מְעוֹת הַקִּנִּים וְנוֹתֶנֶת בַּשּׁוֹפָר וְאוֹכֶלֶת בְּקָדָשִׁים לָעֶרֶב חֲזָקָה שֶׁאֵין בֵּית דִּין שֶׁל כֹּהֲנִים עוֹמְדִין מִשָּׁם עַד שֶׁיִּכְלוּ כָּל הַמָּעוֹת שֶׁבַּשּׁוֹפָר וְיַקְרִיבוּ כְּנֶגְדָּן קִנִּים. כְּמוֹ שֶׁבֵּאַרְנוּ בִּשְׁקָלִים וּבְהִלְכוֹת כְּלֵי הַמִּקְדָּשׁ וְהָעוֹבְדִין בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האשה </strong> שיש עליה לידה או זיבה מביאה מעות הקינים ונותנת בשופר ואוכלת בקדשים לערב חזקה שאין ב&quot;ד של כהנים עומדים משם עד שיכלו כל המעות שבשופר ויקריבו כנגדן קינים בשקלים פי&quot;ג שופרות בתלמוד ירושלמי. האשה שהביאה חטאתה ומתה יביאו יורשים עולתה דנשתעבדו נכסיה ושעבודא דאוריתא כדתנן ספ&quot;ק דקינין:</p>
               </div>
             </div>
@@ -402,8 +452,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-2-1">Mishneh Torah, Offerings for Those with Incomplete Atonement 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַזָב הָאָמוּר בַּתּוֹרָה הוּא שִׁכְבַת זֶרַע הַבָּא מֵחֳלָיֵי הַחֲלָלִים שֶׁהִיא מִתְקַבֶּצֶת בָּהֶן. וּכְשֶׁיּוֹצֵא הַזּוֹב אֵינוֹ יוֹצֵא בְּקֹשִׁי כְּשִׁכְבַת זֶרַע וְאֵין בִּיצִיאָתוֹ תַּאֲוָה וְלֹא הֲנָאָה אֶלָּא נִגְרָר וְיוֹצֵא כְּמוֹ בָּצֵק שֶׁל שְׂעוֹרִים כֵּהֶה כְּלֹבֶן בֵּיצָה הַמּוּזֶרֶת. אֲבָל שִׁכְבַת זֶרַע לְבָנָה קְשׁוּרָה כְּלֹבֶן בֵּיצָה שֶׁאֵינָהּ מוּזֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קסח </strong> שיקריב הזב כשיטהר קרבן פרק בנות כותיים אמר רב הונא זוב דומה למי בצק של שעורים זוב דיהא ודומה ללובן ביצה המוזרת אבל שכבת זרע קשורה ודומה ללובן ביצה שאינה מוזרת שנוצר האפרוח בה כשהיא תחת התרנגולת וילפינן בת&quot;כ דהאי זיבה מחמת שכבת זרע הוא אלא שהיא זיבה כלובן ביצה המוזרת דכתיב כי יהיה זב יכול זב מכל מקום יהא טמא ת&quot;ל מבשרו ולא כל בשרו אחר שחלק הכתוב בין בשר לבשר זכיתי לדון טמא בזב וטמא בזבה מה זבה ממקום שהיא מתטמאה טומאה קלה נדה מטמאה טומאה חמורה זבה אף הזב ממקום שהוא מטמא טומאה קלה קרי מטמא טומאה חמורה זיבה. ראית הזב מחמת אונס או חולי אינו זב דכתיב מבשרו מחמת בשרו הוא שיהיה טמא ולא מחמת חולי ואונס מכאן אמרו במס׳ זבים פ&quot;ב בשבעה דרכים בודקין את הזב עד שלא נזקק לזיבה במאכל ובמשתה וכו׳ ואע&quot;ג דהאי מבשרו מפקי׳ ליה בת&quot;כ שיהא זיבה ממקום שכבת זרע ולא נימא כל מקום שזב כגון רוקו וכו׳ נראה דהתם דרשי׳ מדכתיב מבשרו מקצת בשרו ולא כל בשרו והוה סגי למיכתב מבשר וכתב מבשרו ללמד מחמת בשרו ולא מחמת חולי.</p>
               </div>
             </div>
@@ -418,8 +473,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-2-3">Mishneh Torah, Offerings for Those with Incomplete Atonement 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָרוֹאֶה קֶרִי אֵינוֹ מִתְטַמֵּא בְּזוֹב מֵעֵת לְעֵת שֶׁרְאִיָּה זוֹ שֶׁל זוֹב מֵחֲמַת שִׁכְבַת זֶרַע הִיא. וְכֵן לְמַרְאֶה וּלְהִרְהוּר תּוֹלִין בָּהֶן מֵעֵת לְעֵת. אֲבָל לְמַאֲכָל וּלְמִשְׁתֶּה וְלִקְפִיצָה וּלְמַשָּׂא. תּוֹלִין בָּהֶן כָּל זְמַן שֶׁמִּצְטַעֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרואה </strong> קרי אינו מתטמא בזוב מעת לעת כדתנן פ&quot;ב דזבין שראיה זו של זוב מחמת שכבת זרע שראה היא א&quot;נ כיון דראה קרי האי זיבה מחמת חולשה דקרי היא וכן למראה ולהרהור תולין כל מעת לעת כדתניא בתוספתא כשם שתולין לו שכבת זרע מעת לעת כך תולין למראה ולהרהור מעת לעת אבל למאכל ולמשתה למשא ולקפיצה תולין לו כל זמן שהוא מצטער.</p>
               </div>
             </div>
@@ -434,8 +494,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-2-4">Mishneh Torah, Offerings for Those with Incomplete Atonement 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמָּל וְאַחַר כָּךְ רָאָה זוֹב בֵּין עַכּוּ&quot;ם בֵּין יִשְׂרָאֵל תּוֹלִין בַּמִּילָה כָּל זְמַן שֶׁמִּצְטַעֵר. עַכּוּ&quot;ם שֶׁרָאָה קֶרִי וְאַחַר כָּךְ נִתְגַּיֵּר מְטַמֵּא בְּזִיבָה מִיָּד וְאֵין תּוֹלִין לוֹ מֵעֵת לְעֵת. קָטָן אֵין תּוֹלִין לוֹ לֹא בְּמַרְאֶה וְלֹא בְּהִרְהוּר שֶׁאֵין לְקָטָן מַרְאֶה וְהִרְהוּר הַמֵּבִיא לִידֵי זוֹב. לְפִיכָךְ בּוֹדְקִין אוֹתוֹ בַּחֲמִשָּׁה דְּרָכִים בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שמל ואח&quot;כ ראה זוב בין גוי בין ישראל תולין במילה כל זמן שמצטער כדתניא בתוספתא דזבין ובת&quot;כ ילפינן לגרים דמטמאים בזיבה דכתיב בני ישראל אין לי אלא בני ישראל מנין לרבות את הגרים ואת העבדים משוחררים ת&quot;ל ואמרת אליהם גוי שנתגייר וראה קרי מטמא בזיבה מיד ואין תולין לו מעת לעת ופי׳ רבי׳ שמשון בפי׳ סדר טהרות במס׳ זבין טעמא משום דבישראל שקריו טמא מציל מזיבה אבל גוי דקריו טהור אינו מציל מזיבה וכדתניא בספרי והיה לפנות ערב ירחץ במים מלמד שקרי פוטר בזיבה מעת לעת והיינו בישראל דשייכא ביה טומאת קרי וטבילה ע&quot;כ. קטן אין תולין לו במראה שאין לקטן מראה והרהור המביא לידי זוב כדאמר׳ בתוספתא דזבים פ&quot;ב לפי׳ בודקין אותו בה׳ דרכים בלבד ובת&quot;כ ובפ׳ בנות כותיים ילפינן מדכתיב איש איש דתינוק בן יום א׳ מטמא בזיבה וכשם שתולין לו בחליו כך תולין לו בחולי אמו. בד&quot;א שבודקין את הזב בדרכים אלה בראיה שניה של זוב שבה יעשה זוב אבל בראיה ראשונה אפילו ראה אותה באונס וראה שניה מחמת בשרו הרי זה טמא טומאת זיבות בפ׳ בנות כותיים אמר רב הונא ראיה ראשונה של זב מטמאה באונס שנאמר זאת תורת הזב ואשר תצא ממנו שכבת זרע מה שכבת זרע מטמא באונס אותה טומאה קלה האמורה בה מגע וטומאת ערב אף ראיה ראשונה של זב מטמאה באונס להצטרף לשניה לטמא בזב גמור והא דכתיב מבשרו ולא מחמת אונסו ע&quot;כ אראיה שניה דכתיב בתריה קאי ולא אראשונה דהא איתקש לשכבת זרע דכל עצמו מחמת אונס חימום בא ואעפ&quot;כ בודקין אותו בראשונה כדתנן פ&quot;ב דזבין ראה ראיה ראשונה בודקין אותו ומוקמי׳ לה לקרבן דאי קמייתא באונס לא מיצטרפא לשלש לקרבן אבל מצטרפת לשניה לטומאה דאם ראיה שניה בלא אונס אע&quot;פ שראיה ראשונה באונס עושה משכב ומושב ובעי שבעה נקיים וביאת מים חיים דכי כתיב מבשרו ולא מחמת אונסו אשניה כתיב אבל ראשונה איתקש לשכבת זרע כדא׳ ובראיה שלישית אין בודקין אותו כלל אפילו ראה אותה מחמת אונס כדתנן התם שלישית אין בודקין אותו רבי אליעזר אומר אף בשלישית בודקין אותו ואמרינן פ׳ בנות כותיים דבאתים פליגי דכתיב והזב את זובו לזכר ולנקבה רבנן לא דרשי את הזב חדא זובו תרתי לזכר כלומר עד כאן יש לו דין זכר שאינו מטמא באונס בשניה מכאן ואילך דהיינו בשלישית לנקבה כתיב כלומר יש לו דין נקבה שמטמאה באונס כדילפינן מדכתיב כי יזוב זוב דמה וגו׳.</p>
               </div>
             </div>
@@ -450,8 +515,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-2-6">Mishneh Torah, Offerings for Those with Incomplete Atonement 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָרוֹאֶה רְאִיָּה אַחַת שֶׁל זוֹב הֲרֵי הוּא כְּבַעַל קֶרִי. רָאָה שְׁתַּיִם הֲרֵי זֶה זוֹב וְצָרִיךְ סְפִירַת שִׁבְעָה וּבִיאַת מַיִם חַיִּים וְאֵינוֹ חַיָּב בְּקָרְבָּן. רָאָה שָׁלֹשׁ רְאִיּוֹת הֲרֵי זֶה זָב גָּמוּר וְחַיָּב בְּקָרְבָּן. וְאֵין בֵּין זָב שֶׁרָאָה שְׁתֵּי רְאִיּוֹת לְרוֹאֶה שָׁלֹשׁ אֶלָּא קָרְבָּן בִּלְבַד. וּדְבָרִים אֵלּוּ כֻּלָּן דִּבְרֵי קַבָּלָה מִפִּי משֶׁה רַבֵּנוּ מִסִּינַי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הרואה </strong> ראיה ראשונה של זוב הרי הוא כבעל קרי ראה שתים הרי זה זוב וצריך ספירת שבעה וביאת מים חיים ואינו חייב בקרבן ראה ג׳ ראיות הרי זה זב גמור וחייב בקרבן כדתנן פ&quot;ק דמגילה אין בין זב הרואה שתי ראיות לרואה שלש אלא קרבן ובגמרא הא לענין משכב ומושב וספירת שבעה זה וזה שוין מנה&quot;מ דשוין לטומאה ואין שוין לקרבן דת&quot;ר ר׳ סימאי אומר מנה הכתוב שתים וקרא טמא ואיש כי יהיה זב מבשרו זובו טמא הרי שתי זיבות מנויות כאן וקראו טמא שלש וקראו טמא דכתיב וזאת תהיה טומאתו בזובו רר בשרו את זובו או החתים בשרו מזובו הרי לך שלש וקראו טמא דכתיב טומאתו היא הא כיצד אם משנים טמא למה פרט לך הכתוב (שתים) שלש לטומאה אלא שתים לטומאה ושלש לקרבן ולא מצית אמרת ב׳ לקרבן וג׳ לטומאה דכתיב וכפר עליו הכהן לפני ה׳ מזובו משמע מקצת זבין מביאין קרבן ומקצת אין מביאין קרבן הא כיצד ראה שלש מביא שתים אינו מביא או אינו אלא ראה שתים מביא שלש אינו מביא אמרת עד שלא ראה שלש ראה שתים והרי כבר ירד לכל חומר זב ומי הוציאו ואיצטריך דרבי סימאי ואיצטריך מזובו כדאיתא התם. אחד הרואה שתי ראיות או ג׳ בזה אחר זה או ראיה אחת בכל יום הרי זה זב כדא׳ פ׳ כיצד הרגל וזאת תהיה טומאתו בזובו תלה הכתוב את הזב בראיות ואת הזבה בימים דכתיב כי יזוב זוב דמה ימים רבים ימים שנים רבים שלשה ובזב כתיב ג׳ ראיות בקרא דכתיב זוב תלתא זמני וכתיב טומאתו היא דמשמע בהנך שלשה הויא טומאה ומדכתיב זאת ממעט זבה מראיות ביום א׳ אבל זב בימים נמי מטמא כדכתיב והזב את זובו לזכר ולנקבה מקיש זכר לנקבה מה נקבה מטמאה בימים אף זכר בימים. ואם הפסיק הזב בין ראיה לראיה יום שלם אינם מצטרפות דבזבה בעיא ג׳ ימים רצופים כדתנן ימים רבים וכתיב וספרה לה שבעת ימים מה שבעת ימים הם רצופים כדכתיב ואחר תטהר אחר אחר לכולן וכדתנן פ&quot;ק דזבין ראה אחת היום ושתים למחר ב׳ היום ואחד למחר ג׳ לשלשה ימים או לשלשה לילות הרי זה זב גמור וטעמא דטומאתו תלויה בזובו כדכתיב טומאתו היא ואינה תלויה בימים לכך אפילו ראה שלשתן בשעה אחד הוי זב וכן כשראה ג׳ ראיות בשלשה ימים רצופים אבל כשהיתה הפסקה בין ראיה יום שלם אין מצטרפין לא לקרבן ולא לטומאה דבעיא רצופין כדא׳.</p>
               </div>
             </div>
@@ -466,8 +536,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-2-9">Mishneh Torah, Offerings for Those with Incomplete Atonement 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רְאִיַּת הַזָּב אֵין לָהּ שִׁעוּר אֶלָּא הָרוֹאֶה כָּל שֶׁהוּא טָמֵא שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טו ג)</span> &quot;הֶחְתִּים בְּשָׂרוֹ&quot; כָּל שֶׁהוּא. נִכָּר בִּבְשָׂרוֹ מְטַמֵּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראיית </strong> הזב אין לה שיעור כדתנן ריש פ׳ יוצא דופן ומטמאין בכל שהן אפילו כעין החרדל ובפחות מכאן ובגמרא אמר שמואל זב צריך בחתימת פי האמה ואמרינן דאתי כר׳ נתן משום ר׳ ישמעאל ולא הודו לו חכמים דסברי דבכל שהו טמא כדכתיב או החתים בשרו כל שניכר בבשרו מטמאה. היה הזוב נגרר ויוצא ולא פסק אם יש מתחלת הראיה עד סופה בכדי טבילה וסיפוג או יותר נחשבת כשתים שם פ&quot;א דזבין במשנה שאם ראה א׳ והפסיק כדי טבילה וסיפוג שהוא כדי שירד ויטבול ויעלה ויסתפג כפי מה שפירשו בתוס׳ ואחר כך ראה שתים או אחת מרובה כשתים או אפכא שראה קודם שתים או מרובה כשתים והפסיק וראה א׳ הרי זה זב גמור והרב ז&quot;ל כתב דא׳ ארוכה כשתים היה נחשבת כשתים וממילא משמע דבין בתחל׳ בין בסוף הוא כשתי החלוקות השנויות במשנה כמו שכתב בסמוך אבל שיעור הארוכה שתהא כדי טבילה וסיפוג לא הוזכר במשנה זו אלא מדתנן בסמוך ראה א׳ ארוכה כשלש והיא כדי שתי טבילות וב׳ סיפוגין משמע דבאחת ארוכה כשתים הוי ארוכה כטבילה וסיפוג ונרא׳ דכיון דזוב אין לו שיעור כדילפינן לעיל דבכל שהוא מטמא א&quot;כ כשראה אחת ארוכה כשתים כיון שמתחלת ראייתו בכל שהו נטמא והיה שהות לטבול ועדין הוא רואה נחשב כשתים וכן בארוכה כשלש כיון דיש כשתי טבילות חשיבה כשלש כיון דיש כדי טהרה בין תחלת ראיה לאמצעיתה וכן בין אמצעיתה לסופה ובת&quot;כ ילפינן ראיות גדולות מדכתיב זוב ג׳ זימני וקטנות מהחתים וכו׳ ולמה נאמרו קטנות ליתן שיעור לגדולות כקטנות שאם ראה אחת מרובה וארוכה כשלש בקטנות טמא ראה א׳ ביום והפסיק וראה ב׳ או א׳ מרובה כשתים או אפכא כדתנן במתניתין לעיל הרי זה זב גמור.</p>
               </div>
             </div>
@@ -482,8 +557,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-2-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-2-12">Mishneh Torah, Offerings for Those with Incomplete Atonement 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רָאָה רְאִיָּה אַחַת מִקְּצָתָהּ בְּסוֹף הַיּוֹם וּמִקְצָתָהּ בִּתְחִלַּת הַלַּיְלָה אַף עַל פִּי שֶׁאֵינָהּ אֲרֻכָּה כִּשְׁתַּיִם הֲרֵי אֵלּוּ שְׁתֵּי רְאִיּוֹת שֶׁהַיָּמִים מְחַלְּקִין הָרְאִיָּה. לְפִיכָךְ הָרוֹאֶה רְאִיָּה אַחַת בֵּין הַשְּׁמָשׁוֹת שֶׁהוּא סָפֵק מִן הַיּוֹם וּמִן הַלַּיְלָה הֲרֵי זֶה סָפֵק לְטֻמְאָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראה </strong> ראיה אח׳ מקצתה בסוף היום ומקצתה בתחלת הלילה אף על פי שאינה ארוכה כשתים הימים מחלקים והויא כשתי ראיות כדתנן התם ראה אחת היום ואחת בין השמשות אחת בין השמשות ואחת למחר אם יודע שמקצת הראיה היום ומקצתה למחר ודאי לטומאה ולקרבן ואם ספק ודאי לטומאה וספק לקרבן דאותה של בין השמשות נחלקת לשתים כיון דיש בה משני ימים והרי יש כאן שלש ראיות ואם דשמא כולה מהיום או כולה מהלילה ודאי לטומאה דמה נפשך איכא שתים וספק לקרבן דמספקא לן שמא ב׳ שמא שלש דאי כולה מן היום או כולה מן הלילה איכא שתים עם הראיה ראשונה דבראיה זו לא היה מתחלתה לסופה כדי טבילה וסיפוג ואפילו הכי אי מקצתה היתה ביום ומקצתה היתה בלילה הוו שלש ראיות דימים מחלקים דכיון דזוב מטמא בכל שהו כדילפינן לעיל וראה כל שהו בסוף יום זה וכל שהו בתחלת יום הבא אחריו דהיינו בין השמשות הרי הם שתי ראיות כיון דהוו כשני ימים וילפינן לעיל מדכתיב לזכר ולנקבה מה נקבה בימים אף זכר בימים והרב ז&quot;ל לא כתב ודאי לטומאה ולקרבן שהרי כתב שאם ראה א׳ בסוף היום מקצתה ומקצתה בתחלת הלילה אע&quot;פ שאינה ארוכה שהימים מחלקים ומשום דאם ראה בבין השמשות אי איפשר שיהיה ידוע אם היה מקצתה היום ומקצתה למחר ולכך מספקינן לה בקרבן ומביא ואינו נאכל אבל אם היה ידוע שהיה מקצת הראיה בסוף היום ומקצתה בתחלת יום הבא היה מביא קרבן ודאי כדתנן במתניתין ראיה א׳ בין השמשות של יום השבת וראיה שניה בין השמשות של מוצאי שבת הרי זה ספק לטומאה וספק לקרבן שמא היה הפסק בין שתי הראיות יום שבת ואינם מצטרפות או שמא לא היה הפסק יום א׳ דאחת מהן היתה מקצתה ביום ומקצתה בלילה והרי יש כאן שלש ראיות וחייב קרבן ולפיכך מביא מספק ואינו נאכל וכדתנן בההיא מתניתין ראה ב׳ ימים בין השמשות ספק לטומאה ולקרבן:</p>
               </div>
             </div>
@@ -499,8 +579,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-3-1">Mishneh Torah, Offerings for Those with Incomplete Atonement 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַיָּמִים שֶׁהַזָּב רוֹאֶה בָּהֶן זִיבוֹת הֲרֵי הוּא טָמֵא. וּכְשֶׁיִּפְסֹק הַזִּיבוֹת מוֹנֶה שִׁבְעָה יָמִים נְקִיִּים כְּזָבָה וְטוֹבֵל בַּשְּׁבִיעִי וּמַעֲרִיב שִׁמְשׁוֹ וּבַשְּׁמִינִי מֵבִיא קָרְבָּנוֹ אִם הָיָה בַּעַל שָׁלֹשׁ רְאִיּוֹת. וְאִם רָאָה רְאִיָּה שֶׁל זוֹב אֲפִלּוּ בְּסוֹף יוֹם שְׁבִיעִי אַחַר שֶׁטָּבַל סָתַר הַכּל וּמַתְחִיל לִמְנוֹת שִׁבְעָה יָמִים נְקִיִּים מֵאַחַר יוֹם רְאִיָּה הָאַחֲרוֹנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הימים שהזב רואה בהם זיבות הרי הוא טמא וכשיפסוק הזיבות מונה שבעה וטובל ומערי׳ שמשו ובשמיני מביא קרבן אם היה בעל שלש [ראיות] וכדכת׳ וכי יטהר הזב מזובו וספר לו שבעת ימים לטהרתו דהיינו שבעת ימים טהורים מטומאת זיבה שלא יראה זוב שבעת ימים רצופים ורחץ במים וגו׳ וביום השמיני וגו׳ ואם ראה זוב אפילו בסוף שביעי אחר שטבל סתר הכל וחוזר למנות מאחר יום הראיה דשבעה ימים רצופים בעיא כדכתיב שבעת ימים לטהרתו.</p>
               </div>
             </div>
@@ -515,8 +600,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-3-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-3-2">Mishneh Torah, Offerings for Those with Incomplete Atonement 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָב שֶׁרָאָה קֶרִי בְּאֶחָד מִשִּׁבְעַת יְמֵי הַסְּפִירָה אֵינוֹ סוֹתֵר אֶלָּא יוֹמוֹ בִּלְבַד וּמַשְׁלִים שִׁבְעָה יָמִים וּמֵבִיא קָרְבָּנוֹ. כֵּיצַד. רָאָה קֶרִי בַּיּוֹם הַחֲמִישִׁי סוֹפֵר אַחֲרָיו שְׁלֹשָׁה יָמִים וְטוֹבֵל בַּשְּׁלִישִׁי וּמֵבִיא קָרְבָּנוֹ בָּרְבִיעִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זב </strong> שראה קרי באחד משבעת ימי הספירה אינו סותר אלא יומו כדאמ׳ פרק בנות כותיים תני אבוה דר׳ אבין מה גרם לו זובו שבעה לפיכך סותר שבעה מה גרם לו קריו יום א׳ לפיכך סותר יום אחד וכדאמר׳ פרק תינוקת לטמאה בה אמר רחמנא זאת תורת הזב ואשר תצא ממנו שכבת זרע לטמאה בה מה זיבה סותרת דבעינן שבעת ימים רצופים אף קרי סותר אימא זיבה סותרת הכל אף קרי סותר הכל ת&quot;ל לטמאה בה אין לך סתירה אלא בטומאתה האמור בה מה טומאת קרי יום א׳ אף סתירתו יום א׳.</p>
               </div>
             </div>
@@ -531,8 +621,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-3-3">Mishneh Torah, Offerings for Those with Incomplete Atonement 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זָב שֶׁבָּדַק בְּיוֹם רִאשׁוֹן מִימֵי הַסְּפִירָה וּמָצָא טָהוֹר וְלֹא בָּדַק כָּל שִׁבְעָה וּבַיּוֹם הַשְּׁבִיעִי בָּדַק וּמָצָא טָהוֹר הֲרֵי זֶה בְּחֶזְקַת טָהֳרָה. אֲפִלּוּ בָּדַק בְּיוֹם הַטֻּמְאָה עַצְמָהּ וּמָצָא טָהוֹר וּפָסַק הַזּוֹב וְלֹא בָּדַק לְמָחָר בִּתְחִלַּת יְמֵי הַסְּפִירָה וּבָדַק בַּשְּׁבִיעִי אוֹ בַּשְּׁמִינִי וּמָצָא טָהוֹר עָלוּ לוֹ יְמֵי הַסְּפִירָה וַהֲרֵי זֶה בְּחֶזְקַת טָהֳרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זב </strong> שבדק ביום א׳ מימי הספירה ומצא טהור ולא בדק כל שבעה וביום שביעי בדק ומצא טהור הרי זה בחזקת טהרה שם פרק תנוקת פלוגתא דר׳ אליעזר ור׳ יהושע ור׳ עקיבא במתנ׳ דתני ר׳ יוסי ור׳ שמעון אמרי הלכה כר׳ אליעזר ואע&quot;ג דאין למדין הלכה מפי תלמוד הא פסיק תלמודא בפ&quot;ק הלכתא כר׳ אליעזר בארבע והאי חד מינייהו דקאמר ר׳ אליעזר הכא במתניתין דבדק יום א׳ ויום שביעי ומצא טהור ושאר ימים לא בדק דהוי בחזקת טהרה ובגמרא איבעיא להו בדקו עצמן יום א׳ ויום ח׳ נמצאו טהור ושאר הימים לא בדקה לר׳ אליעזר מהו ואמר רב היא היא תחלתן אע&quot;פ שאין סופן טהור ואמר רב נמי התם נדה שהפרישה בטהרה בשלישי שלה סופרתן למנין שבעה נקיים וכי קאמר רב בר משלישי כגון דלא בדקה אלא ביום שלישי זה שפסקה וביום שביעי ואשמועינן כי היכי דתחלתן אע&quot;פ שאין סופן הכי נמי סופן אע&quot;פ שאין תחלתן.</p>
               </div>
             </div>
@@ -547,8 +642,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-3-4">Mishneh Torah, Offerings for Those with Incomplete Atonement 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל רְאִיָּה שֶׁהִיא סוֹתֶרֶת אֵינָהּ מְבִיאָה לִידֵי קָרְבָּן. כֵּיצַד. רָאָה שְׁתֵּי רְאִיּוֹת וְהִפְסִיק יוֹם אוֹ יוֹמַיִם וַהֲרֵי הוּא מוֹנֶה שִׁבְעָה יָמִים נְקִיִּים וּבְתוֹךְ הַשִּׁבְעָה רָאָה רְאִיָּה שֶׁל זוֹב אֵינָהּ מִצְטָרֶפֶת לִשְׁתַּיִם אֶלָּא סוֹתֶרֶת וּמַתְחִיל לִמְנוֹת כְּמוֹ שֶׁבֵּאַרְנוּ. אֲפִלּוּ רָאָה בְּתוֹךְ יְמֵי הַסְּפִירָה שָׁלֹשׁ רְאִיּוֹת זוֹ אַחַר זוֹ. אֲפִלּוּ רָאָה אוֹתָם בְּיוֹם אֶחָד. אֲפִלּוּ רָאָה שָׁלֹשׁ רְאִיּוֹת בְּסוֹף יוֹם שְׁבִיעִי שֶׁל שִׁבְעָה יָמִים נְקִיִּים. אֵינוֹ מֵבִיא קָרְבָּן שֶׁרְאִיּוֹת אֵלּוּ לִסְתִירָה הֵן. רָאָה שָׁלֹשׁ רְאִיּוֹת בְּלֵיל שְׁמִינִי מֵבִיא קָרְבָּן שֶׁאֵין רְאִיּוֹת אֵלּוּ סוֹתְרִין. בַּמֶּה דְּבָרִים אֲמוּרִים בְּזָב בַּעַל שְׁתֵּי רְאִיּוֹת. אֲבָל בְּזָב בַּעַל שָׁלֹשׁ רְאִיּוֹת בְּלֵיל שְׁמִינִי שֶׁלְּאַחַר שִׁבְעַת יָמִים נְקִיִּים אֵינוֹ מֵבִיא קָרְבָּן שֵׁנִי עַל שָׁלֹשׁ רְאִיּוֹת אֵלּוּ אֶלָּא קָרְבָּן אֶחָד עַל הַשָּׁלֹשׁ הָרִאשׁוֹנוֹת. שֶׁאַף עַל פִּי שֶׁאֵין שָׁלֹשׁ אַחֲרוֹנוֹת סוֹתְרוֹת הֲרֵי לֹא יָצָא לִזְמַן שֶׁרָאוּי לְקָרְבָּן וְהַלַּיְלָה מְחֻסַּר זְמַן הוּא לַכּל. חוּץ מִיּוֹלֶדֶת שֶׁהִפִּילָה בְּלֵיל שְׁמוֹנִים וְאֶחָד שֶׁהִיא מְבִיאָה קָרְבָּן שֵׁנִי כְּמוֹ שֶׁבֵּאַרְנוּ. וְדָבָר זֶה מִפִּי הַקַּבָּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> ראיה שהיא סותרת אינה מביאה לידי קרבן ואפילו ראה ג׳ ראיות בסוף יום שביעי של שבעת ימים נקיים אינו מביא קרבן שראיות אלו לסתירה אבל ראה ג׳ ראיות בליל שמיני מביא קרבן שאין ראיות אלו סותרות והיינו בעל ב׳ ראיות שזיבה ראשונה בת שתי ראיות היתה אבל היה זב בעל ג׳ ראיות וראה שלש בליל ח׳ שלאחר שבעת ימים נקיים אינו מביא קרבן שני על שלש ראיות אלו דאף על גב דאינן סותרות הרי לא יצא לזמן הראוי לקרבן דלילה מחוסר זמן לכל הוא. חוץ מיולדת שהפילה בליל פ&quot;א שמביאה קרבן שני כדילפינן לעיל מדכתיב או לבת אליבא דבית הילל ואמרינן התם סוף פרק קמא דכריתות זב שראה שלש ראיות בליל שמיני מה ב&quot;ה אומרים בדבר זה טעמייהו דב&quot;ה במפלת בליל פ&quot;א משום דכתיב לבת אבל זב שראה שלש ראיות בליל ח׳ פטרי דלא מיתרי קראי או דילמא ל&quot;ש ואמרינן תני חדא זב שראה שלש ראיות בליל ח׳ מביא קרבן ותניא אידך דאינו מביא ואמר רבי אלעזר הני תנאי סברי לילה מחוסר זמן והא דתניא מביא בזב שזיבה ראשונה שלו היתה של שתי ראיות ולא היה מחוייב קרבן ולכך מביא על שלש ראיות אלו שראה בליל ח׳ וקמ&quot;ל דדוקא ראה בליל ח׳ אבל ביממא דיום שביעי לא דקסבר כל ראיה שסותרת אין מביאה לידי קרבן והא דתני אין מביא בזב בעל ג׳ ראיות דכיון דלא יצא לשעה הראויה לקרבן כולה חדא זיבה אריכתא היא. אמר רבי יוחנן ראה א׳ בליל ח׳ ושתים ביום ח׳ מביא שתי קרבנות שתים בלילה וא׳ ביום אינו מביא ואמר רב יוסף תדע דהא ראיה ראשונה שכבת זרע בעלמא הוא דאין לה אלא טומאת ערב ולכך כד חזי תרתי אחרנייתא ביממא מצטרפי לה אבל ב׳ בלילה וא׳ ביום ח׳ אינו מצטרף ואין מביא קרבן על זיבה זו אחרונה דעיקר׳ בליל ח׳ היתה ואף על פי שאינה סותרת כיון דלא יצתה לשעה הראויה לקרבן אינו מביא כדא׳.</p>
               </div>
             </div>
@@ -563,8 +663,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-3-6">Mishneh Torah, Offerings for Those with Incomplete Atonement 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכּל מִתְטַמְּאִין בְּזִיבָה אֲפִלּוּ קָטָן בֶּן יוֹמוֹ וְהַגֵּרִים וְהָעֲבָדִים וְחֵרֵשׁ וְשׁוֹטֶה. וְיֵרָאֶה לִי שֶׁמְּבִיאִין עֲלֵיהֶן כַּפָּרָה כְּדֵי לְהַאֲכִילָן בְּקָדָשִׁים וְחַטָּאתָן נֶאֱכֶלֶת שֶׁהֲרֵי הֵן כְּקָטָן שֶׁאֵינוֹ בֶּן דַּעַת. וּסְרִיס אָדָם וּסְרִיס חַמָּה מִתְטַמְּאִין בְּזִיבָה כְּכָל הָאֲנָשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל </strong> מתטמאין בזיבה אפילו קטן בן יומו פרק ב׳ דזבים תנן הכל מטמאין בזיבה אף הגרים ועבדים בין משוחררים בין שאינן משוחררים וחרש ושוטה וקטן ותניא בת&quot;כ בני ישראל מנין לרבות את הגרים ועבדים משוחררים תלמוד לומר ואמרת אליהם איש שאין לי אלא איש מנין לרבות את האשה ואת הקטן תלמוד לומר איש איש דברי רבי יהודה ומשוחררים לאו דוקא דהא תנן בין שאינן משוחררים אלא למימר דאפי׳ משוחררים צריכים ריבוי וכי האי גונא אשכחן פרק הערל גבי טומאת לידה כדמייתי רבי שמעון בפרק ב׳ דזבין והרי העבדים וחרש ושוטה הם כקטן שמביאין עליהם כפרה להאכילן בקדשים וחטאתן נאכלת וסריס אדם וסריס חמה מתטמאין בזיבה כדתנן התם דהא הוו בכלל בני ישראל. וטומטום ואנדרוגינוס נותנין עליהם חומרי האיש וחומרי האשה שמטמאין בלובן ובאודם וטומאתם בספק כדתנן במתני׳ ולפיכך אין קרבנם נאכל. היה מונה שבעת ימים נקיים ללובן וראה אודם או איפכא הרי זה אינו סותר כדתניא בתוספתא דפרק קמא דזבין ונראה דטעמא משום דאע&quot;ג דמטמא בלובן ובאודם היינו בלובן משום איש ובאודם משום אשה ולא אתי אודם דמשום אשה וסותר לובן דמשום איש וכן איפכא:</p>
               </div>
             </div>
@@ -580,8 +685,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-4-1">Mishneh Torah, Offerings for Those with Incomplete Atonement 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁיִּתְרַפֵּא הַצָּרוּעַ מִצָּרַעְתּוֹ אַחַר שֶׁמְּטַהֲרִין אוֹתוֹ בְּעֵץ אֶרֶז וְאֵזוֹב וּשְׁנִי תוֹלַעַת וּשְׁתֵּי צִפֳּרִים וּמְגַלְּחִין אֶת כָּל בְּשָׂרוֹ וּמַטְבִּילִין אוֹתוֹ אַחַר כָּל זֹאת יִכָּנֵס לִירוּשָׁלַיִם וּמוֹנֶה שִׁבְעַת יָמִים וּבַיּוֹם הַשְּׁבִיעִי מְגַלֵּחַ תִּגְלַחְתּוֹ שְׁנִיָּה כַּתִּגְלַחַת הָרִאשׁוֹנָה וְטוֹבֵל וַהֲרֵי הוּא טְבוּל יוֹם וּמַעֲרִיב שִׁמְשׁוֹ וּלְמָחָר בַּשְּׁמִינִי טוֹבֵל פַּעַם שְׁנִיָּה וְאַחַר כָּךְ מַקְרִיבִין קָרְבְּנוֹתָיו. וּמִפְּנֵי מָה טוֹבֵל בַּשְּׁמִינִי אַחַר שֶׁטּוֹבֵל מֵאֶמֶשׁ. מִפְּנֵי שֶׁהָיָה רָגִיל בְּטֻמְאָה בִּימֵי חִלּוּטוֹ וְאֵינוֹ נִזְהָר מִשּׁוּם טֻמְאָה וְשֶׁמָּא נִטְמָא אַחַר שֶׁטָּבַל. לְפִיכָךְ טוֹבֵל בַּשְּׁמִינִי בְּעֶזְרַת הַנָּשִׁים בְּלִשְׁכַּת הַמְצֹרָעִים שֶׁשָּׁם אַף עַל פִּי שֶׁלֹּא הִסִּיחַ דַּעְתּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קסט </strong> שיקריב מצורע כשיטהר קרבן אחר שיטהר בעץ ארז כדכתיב שנים צפורים חיות טהורות ועץ ארז ושני תולעת ואזוב וצוה הכהן ושחט וגו׳ וגלח את כל שערו ורחץ במים וטהר ואחר יבא אל המחנה ומונה שבעת ימים כדכתיב וישב מחוץ לאהלו שבעת ימים וביום השביעי מגלח תגלחת שניה כדכתיב והיה ביום השביעי יגלח את כל שערו כתגלחת ראשונה כדתנן בפרק י&quot;ד דנגעים משום דשתיהן שוות דמילי טובא כתיבי בשניה דלא כתיבי בראשונה וילפי מהדדי בג&quot;ש בת&quot;כ נאמר וגלח את כל שערו בראשונה וגלח את כל שערו בשניה וטובל כדכתי׳ ורחץ בשרו במים וטהר ומעריב שמשו ולמחר בשמיני טובל פעם שניה כדתנן התם טבל בלשכת המצורעים בא ועמד בשער ניקנור רבי יהודה אומר אינו צריך טבילה ונראה דהך טבילה הויא דרבנן דלא כתיב בתורה.</p>
               </div>
             </div>
@@ -596,8 +706,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 4:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-4-2">Mishneh Torah, Offerings for Those with Incomplete Atonement 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִתְאַחֵר וְלֹא גִּלֵּחַ בַּשְּׁבִיעִי וְגִלֵּחַ בַּשְּׁמִינִי אוֹ אַחַר כַּמָּה יָמִים בַּיּוֹם שֶׁיְּגַלֵּחַ יִטְבּל וְיַעֲרִיב שִׁמְשׁוֹ וּלְמָחָר יָבִיא קָרְבְּנוֹתָיו אַחַר שֶׁיִּטְבּל פַּעַם שְׁנִיָּה כְּמוֹ שֶׁבֵּאַרְנוּ. כֵּיצַד עוֹשִׂין לוֹ. הַמְצֹרָע עוֹמֵד חוּץ לְעֶזְרַת יִשְׂרָאֵל כְּנֶגֶד פֶּתַח מִזְרָחִית בְּאַסְקֻפַּת שַׁעַר נִיקָנוֹר וּפָנָיו לְמַעֲרָב וְשָׁם עוֹמְדִים כָּל מְחֻסְּרֵי כַּפָּרָה בְּעֵת שֶׁמְּטַהֲרִין אוֹתָן וְשָׁם מַשְׁקִין אֶת הַסּוֹטוֹת. וְהַכֹּהֵן לוֹקֵחַ אָשָׁם שֶׁל מְצֹרָע כְּשֶׁהוּא חַי וּמְנִיפוֹ עִם לוֹג הַשֶּׁמֶן בַּמִּזְרָח כְּדֶרֶךְ כָּל הַתְּנוּפוֹת. וְאִם הֵנִיף זֶה בִּפְנֵי עַצְמוֹ וְזֶה בִּפְנֵי עַצְמוֹ יָצָא. וְאַחַר כָּךְ מֵבִיא אֶת הָאָשָׁם שֶׁל מְצֹרָע עַד הַפֶּתַח וּמַכְנִיס שְׁתֵּי יָדָיו לָעֲזָרָה וְסוֹמֵךְ עָלָיו וְשׁוֹחֲטִין אוֹתוֹ מִיָּד. וּמְקַבְּלִין שְׁנֵי כֹּהֲנִים אֶת דָּמוֹ. אֶחָד מְקַבֵּל בִּכְלִי וְזוֹרְקוֹ עַל גַּבֵּי הַמִּזְבֵּחַ וְאֶחָד בְּיָדוֹ הַיְמָנִית וּמְעָרֶה לְיָדוֹ הַשְּׂמָאלִית וּמַזֶּה בְּאֶצְבָּעוֹ הַיְמָנִית. וְאִם שִׁנָּה וְקִבֵּל בִּשְׂמֹאל תְּחִלָּה פָּסַל. הַכֹּהֵן שֶׁקִּבֵּל מִקְצָת הַדָּם בִּכְלִי מוֹלִיכוֹ וְזוֹרְקוֹ עַל הַמִּזְבֵּחַ תְּחִלָּה. וְאַחַר כָּךְ יָבוֹא הַכֹּהֵן שֶׁקִּבֵּל הַדָּם בְּכַפּוֹ אֵצֶל הַמְצֹרָע. הַכֹּהֵן מִבִּפְנִים וְהַמְצֹרָע מִבַּחוּץ. וּמַכְנִיס הַמְצֹרָע רֹאשׁוֹ וְנוֹתֵן הַכֹּהֵן מִן הַדָּם שֶׁבְּכַפּוֹ עַל תְּנוּךְ אָזְנוֹ הַיְמָנִית. וְאַחַר כָּךְ יַכְנִיס יָדוֹ הַיְמָנִית וְיִתֵּן עַל בֹּהֶן יָדוֹ וְאַחַר כָּךְ יַכְנִיס רַגְלוֹ הַיְמָנִית וְיִתֵּן עַל בֹּהֶן רַגְלוֹ וְאִם נָתַן עַל הַשְּׂמֹאל לֹא יָצָא. וְאַחַר כָּךְ יַקְרִיב חַטָּאתוֹ וְעוֹלָתוֹ. וְאַחַר שֶׁיִּתֵּן הַדָּם עַל הַבְּהוֹנוֹת נוֹטֵל הַכֹּהֵן מִלּוֹג הַשֶּׁמֶן וְיוֹצֵק לְתוֹךְ כַפּוֹ שֶׁל חֲבֵרוֹ הַשְּׂמָאלִית וְאִם יָצַק לְתוֹךְ כַּף עַצְמוֹ יָצָא. וְטוֹבֵל אֶצְבָּעוֹ הַיְמָנִית בַּשֶּׁמֶן שֶׁבְּכַפּוֹ וּמַזֶּה שֶׁבַע פְּעָמִים כְּנֶגֶד בֵּית קֹדֶשׁ הַקֳדָשִׁים עַל כָּל הֲזָיָה טְבִילַת אֶצְבַּע בְּשֶׁמֶן. וְאִם הִזָּה וְלֹא כִּוֵּן כְּנֶגֶד בֵּית קֹדֶשׁ הַקֳדָשִׁים כְּשֵׁרוֹת. וְאַחַר כָּךְ יָבוֹא אֵצֶל הַמְצֹרָע וְיִתֵּן מִן הַשֶּׁמֶן עַל מְקוֹם דַּם הָאָשָׁם בִּתְנוּךְ אֹזֶן וּבֹהֶן יָדוֹ וּבֹהֶן רַגְלוֹ. וְהַנּוֹתָר מִן הַשֶּׁמֶן שֶׁבְּכַפּוֹ יִתְּנֶנּוּ עַל רֹאשׁ הַמִּתְטַהֵר וְאִם לֹא נָתַן לֹא כִּפֵּר. וּשְׁאָר הַלּוֹג מִתְחַלֵּק לַכֹּהֲנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נתאחר </strong> ולא גלח בשביעי כשיגלח יעריב שמשו ויביא קרבנותיו למחרת כדתניא בתורת כהנים גלח בשביעי מביא קרבנותיו בשמיני גלח בשמיני אין מביא קרבנותיו בו ביום דברי רבי עקיבא אמר ליה רבי טרפון מה בין זה לנזיר אמר לו שהנזיר טהרתו תלויה בימים ומצורע טהרתו תלויה בתגלחת אין מביא קרבנותיו אלא אם כן מעורב שמש. כיצד עושין לו המצורע עומד חוץ לעזרת ישראל כנגד פתח מזרחית כדתניא בתוספתא ומעמידו בשער ניקנור וכו׳ כדכתיב והעמיד הכהן המטהר את האיש המטהר ואותם לפני ה׳ בשער ניקנור ולא בעזרה עצמה לפי שהוא מחוסר כיפורים והכהן מניף אשמו עם לוג השמן כדכתיב והניף אותם תנופה לפני ה׳ ואם הניף כל אחד בפני עצמו יצא דכתיב אותו לאשם והניף דמשמע דאשם לחודיה טעון תנופה והדר כתיב אותם תנופה משמע תרוייהו יכול יניף שניהם ויחזור ויניף כל אחד תלמוד לומר תנופה ולא תנופות כן מצאתי בפירוש ת&quot;כ לרב רבי הלל בן רבינו אליקים ז&quot;ל. ואח&quot;כ מביא את האשם ומכניס שתי ידיו וסומך כדתנן במתני׳ דנגעי׳ ובתוספתא כל הסמיכות שבמקדש תכף לסמיכה שחיטה חוץ מזו שהיתה בשער ניקנור שאין יכול ליכנס לעזרה עד שיזרוק עליו מדם אשמו וחטאתו ולזה כתב הרב ז&quot;ל ושוחטין אותו מיד דאף על גב דאי איפשר שיהיה תכף לסמיכה שחיטה אפילו הכי לא יעכבנו אלא מיד כשיגיע למקום השחיטה ישחטנו. ומקבלין שני כהנים את דמו אחד מקבל וזורקו על גבי המזבח ואחד בידו הימנית ומערה לידו השמאלית ומזה באצבעו הימנית כדתנן במתני׳ ובתוס׳ ותניא בסוף פרק הוציאו לו ולקח הכהן מדם האשם יכול בכלי תלמוד לומר ונתן מה נתינה בעצמו של כהן אף לקיחה בעצמו של כהן יכול אף למזבח כן דקי&quot;ל דאשם מצורע טעון מתן דמים לגבי מזבח כשאר אשמות דאף על גב דלא כתיב ביה הרי הוא דבר שהיה בכלל ויצא מן הכלל והחזירו לך הכתוב לכללו בפי׳ דלכך נאמר כי כחטאת האשם הוא לכהן מה חטאת טעונה מתן דמים ואימורים אף זה טעון מתן דמים ואימורים יכול לא יתקבל בכלי אלא בעצמו של כהן כדכתיב ונתן תלמוד לומר כי כחטאת האשם הוא לכהן מה חטאת טעונת כלי לקבל דמה כדילפינן בהיקשא דזאת התורה לעולה למנחה וגו׳ ובעולה ובשלמים כתיב וישם באגנות ואשם נמי מהכא גמר דבעי כלי אלא אשם מצורע משום דיצא לידון בדבר החדש שהוא בהן יד ובהן רגל ואזן ימנית הוצרך להחזירו לכללו בהיקשא דכחטאת האשם נמצאת אתה אומר אשם מצורע שני כהנים מקבלין את דמו אחד ביד ואחד בכלי זה שקבל בכלי בא לו אצל מזבח וזה שקבל ביד בא לו אצל מצורע ומה שכתב הרב שמקבל בידו הימנית ומערה לידו השמאלית ומזה באצבעו הימנית ואם שנה וקבל בשמאל בתחלה פסל מצאתי בתוספתא בהפך זה שקבל בכלי מקבל בימין וזה שקבל ביד מקבל בשמאל ואם שנה פסל ופירוש הר&quot;ש מקבל בשמאל דכתיב על כפו השמאלית וכתיב נמי וטבל באצבעו הימנית ע&quot;כ וקשיא דהאי קרא לא כתיב אלא גבי לוג שמן כדכתיב ולקח הכהן מלוג השמן ויצק על כף הכהן השמאלית וטבל הכהן את אצבעו הימנית מן השמן אשר על כפו השמאלית וגו׳ וגבי דם לא הוזכר ימנית ושמאלית אלא ולקח הכהן מדם האשם ונתן הכהן על תנוך אזן המטהר הימנית וגו׳ ואיפשר דאיכא היקשא מדם לשמן דכתיב בדם ונתן הכהן על תנוך וכתיב בשמן יתן הכהן על תנוך וגו׳ על דם האשם כי היכי דדם ושמן ניתנים בתנוך ובאזנות במקום אחד כדכתיב על דם האשם הכי נמי נתינה דכתיב בתרוייהו בעצמו של כהן הויא בכף שמאלית כדכתיב גבי שמן כפו השמאלית ולמה שכתב הרב ז&quot;ל שמקבל בידו הימנית וחוזר ומערה לידו השמאלית ומזה באצבעו הימנית נראה דיליף לה הכי מדתנ׳ לה פרק הוציאו לו ובת&quot;כ ולקח הכהן יכול בכלי תלמוד לומר ולקח הכהן ונתן הכהן מה נתינה בעצמו של כהן אף לקיחה שהיא קבלה בעצמו של כהן ואם כן יכול אף זריקה של מזבח תהא ביד תלמוד לומר כי כחטאת האשם הוא לכהן מה חטאת טעונה כלי כדאמ׳ לעיל אף אשם זה טעון כלי ומדלא מפלגינן בין קבלה לנתינת בהונות דכתיב בה ונתן אלא דבקבלה דהיינו לקיחה דכתיב בקרא איכא כלי ונתינה דכתיב ונתן הויא בעצמו של כהן משמע דביד שמקבל לזרוק דהיינו ימין בה הוא מקבל ג&quot;כ ליתן בבהונות והיינו נמי דאיצטריכו ב׳ כהנים לקבל את דמו דאי קבלה לזריקה בימין וקבלה ליתן בבהונות בשמאל בכהן חד הוה סגי שיקבל בשתי ידיו ויזרוק מדם שקבל בימינו ויתן בבהונות אח&quot;כ מדם שקבל בשמאלו אלא מדאיצטריך ב׳ כהני׳ כדתנן במתני׳ משמע דתרוייהו בחד ידא דהיינו ימנית אלא שצריך אחר כך לערות ממנה לשמאל כדי להזות באצבע ימין דומיא דהזאת שמן באצבע ימין ולשון התוס׳ נמי איפשר דמאי דקתני זה שקבל ביד מקבל בשמאל דלדעת הרב ר&quot;ל זה שקבל ביד ימין חוזר ומערה לשמאל אבל אפילו שנאמר דלשון התוספתא היא קבלה מתחלה בשמאל מלשון הגמרא דפרק הוציאו לו ולשון תורת כהנים נרא׳ דקבלה ליתן בבהונות נמי הויא בימין כדפי׳ לדעת הרב ז&quot;ל כנ&quot;ל. ומכניס המצורע ראשו ונותן הכהן מן הדם שבכפו על תנוך אזנו הימנית כדתנן במתני׳ שלהי נגעים ובת&quot;כ דריש אי כתיב ונתן על תוך יכול על תוך ודאי תלמוד לומר נוך אי נוך יכול על גבו של אוזן ת&quot;ל תוך נוך הא כיצד זה גדר האמצעי. ואח&quot;כ יכניס ידו הימנית וכן רגלו שאינו יכול ליכנס כל גופו עדין לעזרה כדכתיב ברישא דענינא והעמיד הכהן המטהר את האיש המטהר ואותם לפני ה׳ פתח אהל מועד אבל תנוך ובהונות בעי׳ שיהיו בעזרה כדכתיב גבי הזאת שמן וכפר עליו הכהן לפני ה׳ דקאי נמי אהזאת תנוך ובהונות ואם נתן על השמאל לא יצא דהא ימנית כתיב בתנוך ובהונות וכתי׳ גבי תורת המצורע תהיה לעיכובא ואחר יקריב הכהן חטאתו ועולתו כדכתיב בקרא ועשה הכהן את החטאת וגו׳ ואחר ישחט את העולה. ואחר שיתן מן הדם על הבהונות נוטל הכהן מלוג השמן ויצק לתוך כפו של חברו כדתנן במתניתין והיינו משום דכתיב בקרא ולקח הכהן מלוג השמן ויצק על כף הכהן השמאלית משמע שהכהן העושה את ההזאות היה יוצק על כף כהן אחר ואם יצק לתוך כף עצמו יצא דהא לא כתיב בהדיא דיצוק לתוך כף אחר וכתיב נמי וטבל הכהן את אצבעו הימנית מן השמן אשר על כפו השמאלית דמשמע כף הכהן המזה עצמו. וטובל אצבעו הימנית בשמן ומזה ז׳ פעמים כדכתיב והזה שבע פעמים לפני ה׳ דהיינו כנגד בית קדשי הקדשים על כל הזיה טבילת אצבע בשמן דשבע פעמים אטבילת אצבע ואהזאה קאי וטבל והזה שבע פעמים לפני ה׳ ואם הזה ולא כיוון כנגד בית קדש הקדשים כשרות כדתניא בהקומץ שלא מכוונות כשרות דלאו מבפנים נינהו אלא בעזרה היה עומד והופך פניו לצד בית קדשי הקדשים ומזה על קרקע העזרה. ואחר כך יתן מן השמן על מקום שנתן דם האשם בתנוך ובהונות כדכתיב בקרא על מקום דם האשם ואף על פי שנתקנח הדם אין דם גורם אלא מקום דם דלהכי כתיב מקום דם גבי מצורע עני. והנותר מן השמן יתן על ראש המטהר ואם לא נתן לא כפר כר׳ עקיבא דפליג במתני׳ ארבי יוחנן בן נורי וטעמא דרבי עקיבא דקרא קאי נמי אנתינה בראש כדכתיב על ראש המטהר וכפר וגו׳ ופרק הוציאו לו תניא דברי הכל מתנות הראש אין מעכבות ומפרש תלמודא טעמא משום דכתיב ומיתר והנותר דהוי שירי שיריים ומתרצים התוספות בריתא זו אליבא דרבי עקיבא. ושאר הלוג מתחלק לכהנים ואינו נאכל אלא בעזרה לזכרי כהונה כדתנן פרק התדיר אם ראית שמן מתחלק בעזרה אי אתה צריך לשאול עליו מהו אלא מותר רקיקי מנחות ישראל ולוג שמן של מצורע וטעמא משום דהוקדש לאשם כדכתיב והקריב אותו לאשם ואת לוג השמן וכתיב כי כחטאת האשם הוא לכהן קדש קדשים הוא לרבות לוג שמן של מצורע דהוי קדש קדשי׳ דאי באשם מישתעי קרא הא כתב קרא בצו את אהרן זאת תורת האשם קדש קדשים הוא תורה אחת לכל האשמות שהם קדש קדשים אלא האי קדש קדשים לרבות לוג שמן של מצורע אתא כדתניא בת&quot;כ. ואסור לאכול ממנו עד הזאת שבע ומתן בהונות כדתניא בתוספ׳ עד מתי מועלין בשמן עד שיתן מתנותיו דהיינו מתן בהונות שאחר שבע הזאות שנגמרה מצותו בר מיציקת הראש והוה ליה כקדשים שהזריקה מוציאה מידי מעילה ור&quot;ש פליג אתנא קמא וסבר דבתר שבע הזאות אזלינן וטעמא דת&quot;ק כדכתיב והזה מן השמן באצבעו שבע פעמים וגו׳ ונתן הכהן על תנוך אוזן וגו׳ והנותר בשמן וגו׳. ואם אכל לוקה כאוכל קדשים קודם זריקה דאיתקש לאשם כדאמרינן:</p>
               </div>
             </div>
@@ -613,8 +728,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-5-1">Mishneh Torah, Offerings for Those with Incomplete Atonement 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵי זֶהוּ תְּנוּךְ אֹזֶן זֶה גָּדֵר הָאֶמְצָעִי. נָתַן עַל צִדֵּי הַבְּהוֹנוֹת כָּשֵׁר. נָתַן עַל צִדֵּי צִדֵּיהֶן פָּסוּל. בֵּין שֶׁנָּתַן הַשֶּׁמֶן עַל דַּם הָאָשָׁם עַצְמוֹ מִלְמַעְלָה בֵּין שֶׁנָּתַן בְּצַד הַדָּם אֲפִלּוּ נִתְקַנֵּחַ הַדָּם קֹדֶם שֶׁיִּתֵּן הַשֶּׁמֶן עַל בְּהוֹנוֹת יָצָא שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יד כח)</span> &quot;עַל מְקוֹם דַּם הָאָשָׁם&quot;. אֵין לוֹ בֹּהֶן יַד יְמָנִית אוֹ בֹּהֶן רֶגֶל יְמָנִית אוֹ שֶׁאֵין לוֹ אֹזֶן יְמָנִית אֵין לוֹ טָהֳרָה עוֹלָמִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי </strong> זהו תנוך אוזן זה גדר האמצעי כדילפינן לעיל נתן על צידי הבהונות כשר צדי צדדין פסול דעל על דכתיב גבי מצורע עני לא איצטריך דהא כתיב על מקום דם האשם אלא חד על להכשיר צדדין של בהן כדכתיב ועליו מטה מנשה וחד לפסול צדי צדדין נתינת שמן בבהונות בין שהיה שם הדם בין שנתקנח כדכתיב על מקום דם האשם אין הדם גורם אלא מקום גורם. אין לו אזן או בהן ימנית אין לו טהרה עולמית כדתנן במתניתין דשלהי נגעים אליבא דת&quot;ק דר׳ אליעזר וטעמא דבעינן קרא כדכתיב ימנית וכתיב זאת תהיה תורת המצורע לעיכובא.</p>
               </div>
             </div>
@@ -629,8 +749,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-5-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-5-2">Mishneh Torah, Offerings for Those with Incomplete Atonement 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲשַׁם מְצֹרָע שֶׁשְּׁחָטוֹ שֶׁלֹּא לִשְׁמוֹ אוֹ שֶׁלֹּא נָתַן מִדָּמוֹ עַל גַּבֵּי בְּהוֹנוֹת הֲרֵי זֶה עוֹלֶה לַמִּזְבֵּחַ וְטָעוּן נְסָכִים כְּנִסְכֵּי אֲשַׁם מְצֹרָע וְצָרִיךְ הַמְצֹרָע אָשָׁם אַחֵר לְהַכְשִׁירוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אשם </strong> מצורע ששחטו שלא לשמו או לא נתן מדמו על בהונות הרי זה טעון נסכים ועולה למזבח וצריך המצורע אשם אחר להכשירו פרק הוציאו לו מימרא דרבי יוחנן ותניא כותיה אשם מצורע ששחטו שלא לשמו או שלא נתן מדמו על גבי בהונות הרי זה עולה לגבי מזבח וטעון נסכים וצריך אשם אחר להכשירו למצורע זה שיאכל בקדשים דעבודה שלא נגמרה הרי היא כמי שאינה ובפרק קמא דמנחות מייתי האי בריתא ובפרק ב׳ דמדות ומפרש התם רבי יוחנן טעמא דטעון נסכים שאם אי אתה אומר כן פסלתו מליקרב על גב המזבח דלמצורע לא חזי דהא נשחט שלא לשמו ותנן כל הזבחים שנזבחו שלא לשמן כשרים אלא שלא עלו לבעלים משום חובה ולעולה לא חזי דהא לא ניתק לרעיה ולנדבה לא חזי דהא אין אשם בא בנדבה אבל בנסכים אתי למזבח ואשם לכהנים וצריך אשם אחר להכשירו. הקדים חטאתו לאשמו שם ריש מנחות בריתא הקדים חטאתו לאשמו לא יהא אחר ממרס אלא תעובר צורתה ובעי למימר טעמא משום דכתיב זאת תהיה כהויתה תהיה אלא משום דשחיטה לאו עבוד׳ היא הוה מצי למרס בדמו עד שיזה מדם האשם אלא דמסיק רב פפא דטעמא משום דיש מחוסר זמן לבו ביום וכיון דכתיב אשם ברישא והדר חטאת הוי חטאת כמחוסר זמן.</p>
               </div>
             </div>
@@ -645,8 +770,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-5-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-5-4">Mishneh Torah, Offerings for Those with Incomplete Atonement 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לְאָדָם לְהָבִיא אֲשָׁמוֹ הַיּוֹם וְלוֹגוֹ אַחַר עֲשָׂרָה יָמִים. וְאִם רָצָה לְשַׁנּוֹת הַלּוֹג לַאֲשַׁם מְצֹרָע אַחֵר מְשַׁנֶּה אַף עַל פִּי שֶׁקָּדַשׁ בִּכְלִי. חָסַר הַלּוֹג עַד שֶׁלֹּא יָצַק יְמַלְּאֶנּוּ. חָסַר מֵאַחַר שֶׁיָּצַק יָבִיא אַחֵר בַּתְּחִלָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש </strong> לאדם להביא אשמו היום ולוגו למחר או אחר עשרה ימים פרק הקומץ זוטא אמרו לו לרבי מאיר והלא אדם מביא זבחו היום ונסכיו עד עשרה ימים דאמר מר מנחתם ונסכיהם אפילו למחר אלמא לאו מזבח נינהו ואמרו לו לרבי מאיר והלא אדם מביא אשמו היום ולוגו למחר ועד עשרה ימים מטעמא דאמר דלאו מזבח הוא ולהכי אין חייבין עליו משום פגול אפילו בא עם האשם דאיפשר לשנותו לאשם אחר כדאמ׳ התם לרבנן דר&quot;מ. חסר הלוג עד שלא יצק ימלאנו מאחר שיצק יביא אחר בתחלה סוף נגעים פלוגתא דרבי עקיבא ור&quot;ש במתניתין וטעמא דרבי עקיבא דלא אמרינן דקבעא ליה לוג שהוא כלי שרת כיון דלא יצק עדין על כפו השמאלית ובת&quot;כ מפיק לה מדכתיב מלוג השמן ויצק וכתיב נמי גבי לוג קדש קדשים הוא כדאמר׳ לעיל דאתא לרבות לוג שמן של מצורע דהוי קדש קדשים וכתב הוא פרט לשחסר כל שהו וכיון דאכתי לא נעשית מצותו ימלאנו והוי כשר אבל כיון דיצק וחסר אחר כך פסול הילכך בעינן להביא אחר שלם כתחלה. יצק מן השמן לכפו והתחיל להזות ונשפך הלוג עד שלא גמר מתן שבע יביא אחר ויתחיל במתן שבע כדאמ׳ בתוספתא נתן מקצת מתנות בפנים ונשפך הלוג יביא לוג אחר ויתחיל בתחלה ורבי אליעזר ור&quot;ש אומר ממקום שפסק וטעמ׳ דרבנן דכל שבע הזאות מצוה אחת וכן כל מתן בהונות מצוה אחת ולהכי יביא אחר בתחלה כשנשפך השמן במקצת בהונות כדתניא בהאי תוספתא גופה לרבנן ומייתו לה שלהי פרק הוציאו לו וכן גמר מתן שבע ונשפך קודם שיתחיל בבהונות יביא לוג אחר כדתניא התם גמר מתנות שבבהונות ונשפך הלוג דברי הכל מתנות הראש אינן מעכבות ומפ׳ מאי טעמא לא מעכבי אלימא משום דכתיב והנותר מן השמן דקרו ליה שירים אלא מעתה והנותרת מן המנחה הכי נמי דלא מעכבי והאמר מר שירים שחסרו בין קמיצה להקטרה אין מקטירין את הקומץ עליהם שאני הכא דכתיב ומיתר והנותר דמתנות בהונות קרויין שירים דכתיב בהו ומיתר השמן ומתנות הראש קרויין שירי שירים דכתיב והנותר בשירים הראשונים יתן על ראש המטהר ובתוס׳ שם ופרק בתרא דזבחים מתרצינן בריתא זו אליבא דהני תנאי רבי עקיבא ורבי יוחנן בן נורי דפליגי במתני׳ והרב ז&quot;ל כתב לעיל גבי מתנות הראש אם לא נתן לא כפר כרבי עקיבא משמע דמתנות הראש מעכבי והכא כתב שמתנת הראש אינה מעכבת ותירץ רבינו ברוך בפרק קמא דזבחים בריתא זו אליבא דרבי עקיבא ורבי יוחנן בן נורי דהאי דאמרינן דברי הכל אין מעכבת היינו דאינו קרוי מחוסר כפורים ומותר לאכול בקדשים וליכנס למקדש כיון דקבל מן השמן ומדם האשם על הבהונות ואיפשר לומר לדעת הרב ז&quot;ל דרבי עקיבא דאמר אם לא נתן לא כפר היינו כשלא נשפך השמן והכא דאמרי׳ דברי הכל לא מעכבי היינו כשנשפך שלא יביא אחר בתחלה ואף על גב דכשלא נשפך הוה משמע טפי דלא יעכבו מהא דאמרינן ראוי לבילה אין בילה מעכבת בו הכא שאני דכתיב בהדיא בקרא והנותר בשמן אשר על כף הכהן יתן על ראש המטהר דמשמע כשיש שמן שלא נשפך יתן אותו על ראש המטהר ואם לאו לא כפר כדכתיב יתן על ראש המטהר וכפר דמשמע אם לא נתן לא כפר לרבי עקיבא. הקדים מתן שמן למתן דם ימלא הלוג שמן ויחזור ויתן שמן לאחר מתן דם כדתניא בתוספתא דנגעים ומייתי לה ריש מנחות וטעמא דבעינן כמו שאמור בענין על מקום דם האשם יתן השמן מן הלוג. הקדים מתן בהונות על מתן שבע ימלא ויחזור ויתן על הבהונות אחר מתן שבע כדכתיב והזה מן השמן באצבעו שבע פעמים דמשמע דבעי׳ מן השמן שלם והוא לוג כשיזה שבע פעמים ונראה מלשון התוספתא דלא בעינן שיחזור למתן שבעה שכבר עלו לו ומהאי לוג אחר יתחיל בתחלה על גבי בהונות וכן כתב הר&quot;ש ז&quot;ל דעלו לו מתן שבע אף על גב דהיה חסר הלוג ובמה שנתן מתן בהונות קודם לא חיישינן אלא אשמן שבלוג אבל אשמן שביד לא מעכב ועכובא דמשמע מזאת תהיה תורת המצורע היינו שתהיה כל תורתו על הסדר. נתן שבע מתנות שלא לשמן לא הורצה.</p>
               </div>
             </div>
@@ -661,8 +791,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-5-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-5-8">Mishneh Torah, Offerings for Those with Incomplete Atonement 5:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְצֹרָע שֶׁנִּתְנַגֵּעַ אַחַר שֶׁהֵבִיא אֲשָׁמוֹ צָרִיךְ קָרְבָּן אַחֵר לְצָרַעַת שְׁנִיָּה. וְכֵן אִם הֵבִיא אֲשָׁמוֹ וְנִתְנַגֵּעַ צָרִיךְ קָרְבָּן עַל כָּל אַחַת וְאַחַת. אֲבָל אִם נִתְנַגֵּעַ וְנִרְפָּא וְהֵבִיא צִפֳּרָיו וְחָזַר וְנִתְנַגֵּעַ וְנִתְרַפֵּא וְהֵבִיא צִפֳּרָיו קָרְבָּן אֶחָד לְכֻלָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצורע </strong> שנתנגע לאחר שהביא אשמו צריך קרבן אחר לצרעת שניה וכן אם הביא אשם (וחזר) ונתנגע אבל נתנגע ונרפא והביא ציפוריו וחזר ונתנגע ונרפא והביא ציפוריו קרבן אחד לכולן פרק ארבעה מחוסרי כפרה במשנה בכלל חמשה שמביאים קרבן אחד על דברים הרבה תנן מצורע שנתנגע נגעים הרבה הביא ציפוריו ונתנגע לא עלו לו עד שיביא חטאתו ובגמר׳ מפרש טעמא דמצורע מביא קרבן אחד על נגעים הרבה דכתיב זאת תורת המצורע תורה אחד למצורעים הרבה ובת&quot;כ מפיק ליה מדכתיב וכבשה אחת מלמד שאחת על נגעים הרבה ומזאת תהיה דריש תורה אחד לכל המצורעים לפי שמצינו שחלק הכתוב בטומאותיהם ובשבועותיהם ופריך בגמרא והאמר ברישא אין מביא אלא קרבן אחד והיכי תנן בסיפא לא עלו לו דמשמע שצריך לחזור ולהביא לבסוף שתי צפרים לכל נגע ונגע עד שיביא חטאתו או אשמו לרבי יהודה ומסיק חסורי מחסרא והכי קתני הביא צפורין ונתנגע אין מביא אלא קרבן א׳ ולאקבועי בעניות ועשירות לא מקבע עד שיביא חטאת או אשם לרבי יהודה. מצורע שהביא קרבן עני והעשיר או עשיר והעני הכל הולך אחר האשם כרבי יהודה דפליג ארבי שמעון בשלהי נגעים ובפרק ארבעה מחוסרי כפרה פליג נמי בבריתא רבי אלעזר ואמר דהכל הולך אחר צפרין ואמר רב שלשתן מקרא אחד דרשו אשר לא תשיג ידו בטהרתו רבי שמעון סבר חטאת דהוא דבר המכפרו דעל שבעה דברים נגעים באים ר׳ יהודה סבר דבר המכשירו והוא אשם שמדמו נותנים על הבהונות ומכשירו בקדשים רבי אליעזר בן יעקב אומר דבר הגורם לו כפרה דהיינו צפרים שמדם הצפור מזין עליו תחלה ובת&quot;כ דרשינן כתיב אשר תשיג ידו מאשר תשיג ידו את אשר תשיג ידו תלתא קראי חד להיה עשיר והעני קודם הבאת אשם דמביא קרבן עני וחד להיה עשיר והעני אחר הבאת אשם דמביא קרבן עני דלא כרבי יהודה אף ע&quot;ג דסתם ספרא כרבי יהודה וחד לעני בשעת אשם והעשיר דמביא קרבן עשיר והא נמי דלא כרבי יהודה דלדידיה הכל תלוי בשעת אשם כדדרשינן בטהרתו דבר המכשירו.</p>
               </div>
             </div>
@@ -677,8 +812,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-5-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-5-10">Mishneh Torah, Offerings for Those with Incomplete Atonement 5:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנֵי מְצֹרָעִים שֶׁנִּתְעָרְבוּ קָרְבְּנוֹתֵיהֶן וְנִזְרַק דַּם אַחַת מִשְּׁתֵי הַחַטָּאוֹת שֶׁלָּהֶן וְאַחַר כָּךְ מֵת אֶחָד מִן הַמְצֹרָעִים כֵּיצַד עוֹשֶׂה זֶה הַמְצֹרָע הַחַי. לְהָבִיא חַטַּאת בְּהֵמָה אֵינוֹ יָכוֹל שֶׁמָּא זוֹ שֶׁנִּזְרַק דָּמָהּ חַטָּאתוֹ הִיא וְאֵין מְבִיאִין חַטַּאת בְּהֵמָה עַל הַסָּפֵק. וּלְהָבִיא חַטַּאת הָעוֹף אֵינוֹ יָכוֹל שֶׁעָשִׁיר שֶׁהֵבִיא קָרְבַּן עָנִי לֹא יָצָא. וְכֵיצַד יַעֲשֶׂה. יִכְתֹּב כָּל נְכָסָיו לְאַחֵר וְנִמְצָא עָנִי וְיָבִיא חַטַּאת הָעוֹף מִסָּפֵק וְלֹא תֵּאָכֵל כְּמוֹ שֶׁבֵּאַרְנוּ וְנִמְצָא אוֹכֵל בְּקָדָשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ב׳ </strong> מצורעים שנתערבו קרבנותיהם ונזרק דם א׳ מן החטאות שלהן ואחר כך מת אחד מהם היאך יטהר זה החי לאכול בקדשים שאילו היה מצורע חברו חי אף ע&quot;פ שנתערבו הקרבנות זה יקרב לשם מה שהוא וזה לשם מה שהוא אבל השתא אין אנו יכולים להקריב חטאת שנשאר שמא הוא חטאת שמתו בעליה ולמיתה אזלא וקרבן אחר אינו יכול להביא דשמא אותו שקרב היה שלו ונפטר ונמצא מביא חולין לעזרה דאין חטאת בא בנדבה ואפי׳ בתנאי אם מחוייב חטאת אני הרי זה לחטאת ואם לאו יהא שלמי נדבה דמתן דמים לא שוו בחטאת ושלמים וכיצד יעשה יכתוב נכסיו לאחר ויביא קרבן עני וכמו שהשיב רבי יהושע לאנשי אסכנדריא וכיון דמייתי בדלות חטאת העוף בא על הספק ואין בה משום חולין לעזרה ולא תאכל כדאמר לעיל והיינו כשהביא כבר אשם קודם מיתת חבירו דאי לאו הכי לית ליה תקנתא לרבי שמעון דאשם קבע אבל לרבי יהודה אם הביא אשם הא קבע ליה בעשירות ואינו יכול להביא עוף בדלות כדאמר׳ לעיל.</p>
               </div>
             </div>
@@ -693,8 +833,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-5-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Offerings for Those with Incomplete Atonement 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-offerings-for-those-with-incomplete-atonement/#mishneh-torah-offerings-for-those-with-incomplete-atonement-5-11">Mishneh Torah, Offerings for Those with Incomplete Atonement 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עָשִׁיר שֶׁאָמַר קָרְבָּנוֹ שֶׁל מְצֹרָע זֶה עָלָיו וְהַמְצֹרָע הָיָה עָנִי הֲרֵי זֶה מֵבִיא עַל יָדוֹ קָרְבְּנוֹת עָשִׁיר שֶׁהֲרֵי יַד הַנּוֹדֵר מַשֶּׂגֶת. וְעָנִי שֶׁאָמַר קָרְבָּנוֹ שֶׁל מְצֹרָע זֶה עָלַי וְהָיָה הַמְצֹרָע עָשִׁיר הֲרֵי זֶה מֵבִיא עַל יָדוֹ קָרְבְּנוֹת עָשִׁיר שֶׁהֲרֵי זֶה הַנּוֹדֵר חַיָּב בְּקָרְבְּנוֹת עָשִׁיר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עשיר </strong> שאמר קרבנו של מצורע זה עלי אפילו היה המצורע עני מביא עליו קרבן עשיר שהרי יד הנודר משגת ועני שאמר קרבנו של מצורע זה עלי והיה מצור׳ עשיר מביא על ידו קרבן עשיר שהרי נתחייב בקרבן עשיר בערכין פרק השג יד תנן אבל בקרבנות אינו כן וכו׳ ובגמרא היה המצורע עני מביא המדיר קרבן עני כדתנן במתניתין ואמר רבי יצחק כשהיה מדירו עני ולא תימא אמצורע גופיה חס רחמנא בעניות כדכתיב ואם דל הוא אבל לא אמדיר אפילו הוא עני דכתי׳ הוא דמשמע דקאי דוקא אמצורע דאמר רב אדא בר אהבה כתיב ואין ידו משגת לרבות את הנודר אבל מדירו עשיר מביא בעשירות דהא אזלינן נמי בתר נודר ומצורע עשיר ומדירו עני מביא קרבן עשיר דסד&quot;א הואיל ואיתרבי נודר מואין ידו משגת דאמרינן לרבות את הנודר דחס רחמנא עליה כי הוי מצורע עני והוא נמי עני הכי נמי כשמצורע עני ואפילו הוא עשיר קמ&quot;ל דלא ערכי׳ ליה מואין ידו משגת אלא היכא דאיהו נמי עני אבל אם הוא עשיר ומצורע עני או הוא עני ומצורע עשיר מביא עליו קרבן עשיר כדתנן בשלהי נגעים מצורע עני שהביא קרבן עשיר יצא ועשיר שהביא קרבן עני לא יצא ותניא בת&quot;כ זאת תורת אשר בו נגע צרעת מלמד שהעני שהביא קרבן עשיר יצא יכול אף עשיר שהביא קרבן עני תלמוד לומר זאת תורת אשר בו נגע צרעת מלמד שמביא אדם על ידי בנו ובתו וכו׳ קרבן עני ומאכילן בזבחים:</p>
               </div>
             </div>
@@ -704,6 +849,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -724,8 +873,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-offerings-for-those-with-incomplete-atonement.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -751,7 +900,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

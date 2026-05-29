@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-substitution/">Open Mishneh Torah, Substitution</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Substitution</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">7 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>143 matched</strong> / 405 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/yad-eitan-on-mishneh-torah-substitution.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/yad-eitan-on-mishneh-torah-substitution-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -200,8 +201,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Substitution 1:1:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-substitution-1-1-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Substitution 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-1">Mishneh Torah, Substitution 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמֵּמִיר לוֹקֶה עַל כָּל בְּהֵמָה וּבְהֵמָה שֶׁיָּמִיר שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז י)</span> &quot;לֹא יַחֲלִיפֶנּוּ וְלֹא יָמִיר אֹתוֹ&quot; וְאַף עַל פִּי שֶׁלֹּא עָשָׂה מַעֲשֶׂה. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁכָּל מִצְוַת לֹא תַּעֲשֶׂה שֶׁאֵין בָּהּ מַעֲשֶׂה אֵין לוֹקִין עָלֶיהָ חוּץ מִנִּשְׁבָּע וּמֵמִיר וּמְקַלֵּל אֶת חֲבֵרוֹ בְּשֵׁם. שְׁלֹשָׁה לָאוִין אֵלּוּ אִי אֶפְשָׁר שֶׁיִּהְיֶה בָּהֶן מַעֲשֶׂה כְּלָל וְלוֹקִין עֲלֵיהֶן. וְלָמָּה לוֹקִין עַל הַתְּמוּרָה וַהֲרֵי לָאו שֶׁבָּהּ נִתָּק לַעֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז לג)</span> &quot;וְאִם הָמֵר יְמִירֶנּוּ וְהָיָה הוּא וּתְמוּרָתוֹ יִהְיֶה קֹדֶשׁ&quot;. מִפְּנֵי שֶׁיֵּשׁ בָּהּ עֲשֵׂה וּשְׁנֵי לָאוִין. וְעוֹד שֶׁאֵין לָאו שֶׁבָּהּ שָׁוֶה לַעֲשֵׂה. שֶׁהַצִּבּוּר וְהַשֻּׁתָּפִין אֵין עוֹשִׂין תְּמוּרָה אִם הֵמִירוּ אַף עַל פִּי שֶׁהֵן מֻזְהָרִין שֶׁלֹּא יָמִירוּ. נִמְצֵאתָ אוֹמֵר שֶׁהַיָּחִיד שֶׁהֵמִיר הֲרֵי הַתְּמוּרָה קֹדֶשׁ. וַאֲפִלּוּ הֵמִיר בְּשַׁבָּת לוֹקֶה אַרְבָּעִים. וְאֶחָד מִן הַשֻּׁתָּפִין שֶׁהֵמִיר. אוֹ מִי שֶׁהֵמִיר בְּקָרְבָּן מִקָּרְבְּנוֹת הַצִּבּוּר. הוֹאִיל וְיֵשׁ לוֹ בָּהֶן שֻׁתָּפוּת הֲרֵי זֶה לוֹקֶה וְאֵין הַתְּמוּרָה קֹדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהמיר בקרבן מקרבנות הצבור כו׳ אין התמורה קדש.</strong> בס׳ שאלת הכהנים תורה הקשה דאמאי לא כתב רבינו דה&quot;נ אם המירו צבור בבהמת חולין שלהן על קרבן של יחיד אינה תמורה וכדאיתא בתוספתא. וי&quot;ל דרבינו סמך אמ&quot;ש רפ&quot;ד דפסולי המוקדשין גבי חטאות המתות דתמורה א&quot;י לומר בצבור:</p>
               </div>
             </div>
@@ -216,8 +222,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Substitution 1:4:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-substitution-1-4-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Substitution 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-4">Mishneh Torah, Substitution 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּתְכַּפֵּר הוּא שֶׁעוֹשֶׂה תְּמוּרָה אֲבָל לֹא הַמַּקְדִּישׁ. כֵּיצַד. הִקְדִּישׁ בְּהֵמָה שֶׁיִּתְכַּפֵּר בָּהּ חֲבֵרוֹ כְּגוֹן שֶׁהִקְדִּישׁ קָרְבְּנוֹת נָזִיר שֶׁיִּתְכַּפֵּר בָּהֶם פְּלוֹנִי הַנָּזִיר. אוֹתוֹ הַנָּזִיר הוּא שֶׁעוֹשֶׂה בָּהֶן תְּמוּרָה אֲבָל לֹא זֶה שֶׁהִקְדִּישׁ לְפִי שֶׁאֵינָן שֶׁלּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המתכפר הוא שעושה תמורה אבל לא המקדיש כיצד כו׳ כגון שהקדיש קרבנות נזיר שיתכפר בהם פלוני הנזיר כו׳.</strong> הרב כ&quot;מ קיצר בכאן ומתבאר בגמרא פ&quot;ק דתמורה (דף י׳ ע&quot;א). וראיתי בשו&quot;ת ושב הכהן שכתב דכוונת רבינו הוא שהמשיל הענין בנזיר לומר דאף באב שהדיר את בנו בנזיר דינא הכי שהבן הוא המתכפר ועושה תמורה ולא האב אע&quot;פ שהוא הדירו. ודבריו תמוהין דהא אין האב מדיר רק בנו קטן וקטן אפילו הגיע לעונת נדרים הוה איבעיא דלא איפשיטא אי עושה כלל תמורה כמ&quot;ש רבינו בסמוך. ואין לומר דאיירי דעכשיו הוא גדול דהא בכה&quot;ג ה&quot;ל נזירות אביו כמ&quot;ש התוי&quot;ט ספ&quot;ג דסוטה, ומיהו בירושלמי דנזיר ל&quot;מ הכי:</p>
               </div>
             </div>
@@ -232,8 +243,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Substitution 1:14:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-substitution-1-14-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Substitution 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-14">Mishneh Torah, Substitution 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַמֵּמִיר תָּמִים בְּבַעַל מוּם אוֹ בַּעַל מוּם בְּתָמִים אוֹ שֶׁהֵמִיר בָּקָר בְּצֹאן אוֹ צֹאן בְּבָקָר. אוֹ כְּבָשִׂים בְּעִזִּים אוֹ עִזִּים בִּכְבָשִׂים אוֹ נְקֵבוֹת בִּזְכָרִים אוֹ זְכָרִים בִּנְקֵבוֹת. אוֹ שֶׁהֵמִיר אֶחָד בְּמֵאָה אוֹ מֵאָה בְּאֶחָד בֵּין בְּבַת אַחַת בֵּין בָּזוֹ אַחַר זוֹ. הֲרֵי זוֹ תְּמוּרָה וְלוֹקֶה כְּמִנְיַן הַבְּהֵמוֹת שֶׁהֵמִיר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולוקה כמנין הבהמות שהמיר.</strong> הכ&quot;מ לא הראה מקורו. ונראה שהטעם משום דאמר גופין מחולקים גם בבהמה כמ&quot;ש המ&quot;ל ריש ה׳ איסורי ביאה ובהל׳ שגגות ע&quot;ש:</p>
               </div>
             </div>
@@ -248,8 +264,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Substitution 1:20:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-substitution-1-20-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Substitution 1:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-1-20">Mishneh Torah, Substitution 1:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַחַטָּאוֹת שֶׁדִּינָן שֶׁיָּמוּתוּ אֵינָן עוֹשִׂין תְּמוּרָה וְכָל חַטָּאת שֶׁדִּינָהּ שֶׁתִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְתִמָּכֵר עוֹשָׂה תְּמוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל החטאות שדינן שימותו אין עושין תמורה וכל חטאת שדינה שתרעה עד שיפול בה מום ותמכר עושה תמורה.</strong> הרב בעל כ&quot;מ לא הראה מקורו. והוא משנה מפורשת רפ&quot;ד דתמורה ורפ&quot;ג דמעילה:</p>
               </div>
             </div>
@@ -265,8 +286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Substitution 3:1:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-substitution-3-1-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Substitution 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-1">Mishneh Torah, Substitution 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד דִּין הַתְּמוּרוֹת לִקָּרֵב. תְּמוּרַת הָעוֹלָה תִּקָּרֵב עוֹלָה וְאִם הָיְתָה תְּמוּרָתָהּ נְקֵבָה אוֹ בַּעֲלַת מוּם תִּרְעֶה הַנְּקֵבָה עַד שֶׁיִּפּל בָּהּ מוּם וְתִמָּכֵר וְיָבִיא בְּדָמֶיהָ עוֹלָה. תְּמוּרַת הַחַטָּאת תָּמוּת כְּמוֹ שֶׁבֵּאַרְנוּ בִּפְסוּלֵי הַמֻּקְדָּשִׁין. תְּמוּרַת הָאָשָׁם תִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְיִפְּלוּ דָּמֶיהָ לִנְדָבָה. תְּמוּרַת הַשְּׁלָמִים כִּשְׁלָמִים לְכָל דָּבָר טְעוּנָה סְמִיכָה וּנְסָכִים וּתְנוּפַת חָזֶה וְשׁוֹק. תְּמוּרַת הַתּוֹדָה כְּתוֹדָה אֶלָּא שֶׁאֵינָהּ טְעוּנָה לֶחֶם כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת פְּסוּלֵי הַמֻּקְדָּשִׁין. תְּמוּרַת הַפֶּסַח אִם הֵמִיר בָּהּ קֹדֶם חֲצוֹת יוֹם אַרְבָּעָה עָשָׂר אֵין תְּמוּרָתוֹ קְרֵבָה אֶלָּא תִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְיָבִיא בְּדָמֶיהָ שְׁלָמִים וְאִם הֵמִיר בָּהּ אַחַר חֲצוֹת הֲרֵי הַתְּמוּרָה עַצְמָהּ תִּקָּרֵב שְׁלָמִים. תְּמוּרַת הַבְּכוֹר וְהַמַּעֲשֵׂר אֵינָם קְרֵבִין לְעוֹלָם שֶׁנֶּאֱמַר בִּבְכוֹר <span class="source-small">(ויקרא כז כו)</span> <span class="source-small">(ויקרא כז ל)</span> &quot;לַה׳ הוּא&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ הוּא קָרֵב וְאֵין תְמוּרָתוֹ קְרֵבָה. וְדִין הַמַּעֲשֵׂר בִּבְכוֹר תְּמוּרָתָן תִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְתֵאָכֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תמורת הבכור והמעשר אינן קריבין לעולם שנאמר בבכור לה׳ הוא.</strong> עיין מ&quot;ש הלח&quot;מ דבגמרא מפיק לה מקודש הם ורבינו דמפיק לה מהאי קרא אולי היה בגירסתו כן ע&quot;כ. וא&quot;צ לזה דדברי רבינו מבוארים פ&quot;ק דתמורה (דף ה:) דאביי ורבא נפקא להו מדכתיב לה׳ הוא. והא דבפ&quot;ג שם דריש ליה אביי גופיה מקודש הם י&quot;ל דאביי שם לרבא בר רב עזא השיב כן אבל לשיטתו ע&quot;כ מלה׳ הוא נפיק דהא איהו ס&quot;ל כל מילתא דאמר רחמנא לא תעביד אי עביד מהני ואיצטריך ליה קדש הם לומר בהוייתן יהו ולא תהני, וכבר הרגישו התוס׳ בזבחים שם דאביי ורבא נפקא להו מלה׳ הוא דלרבא נמי איצטריך ליה קדש הם דאין עולין מבטלין זה את זה דהא סבירא ליה כמאן דאמר דאין מערבין לקרנות וכר׳ יונתן דמשמע אחד אחד עד שיפרוט לך הכתוב יחדיו כדאיתא בפרק קמא דתמורה ופרק השואל (דף ק&quot;ה) וליכא למילף מולקח דם הפר ומדם השעיר דאין עולין מבטלין זא&quot;ז אלא מקודש הם. וכדאמרינן בזבחים (דף פ&quot;א:) עיי&quot;ש ולתרווייהו מלה׳ הוא נפקא דאין תמורת בכור ומעשר קריבה. ואע&quot;ג דרבינו ס&quot;ל דמערבין לקרנות כמ&quot;ש פ&quot;ד מהל׳ עבודת יוה&quot;כ מ&quot;מ ממעט כאן תמורה מלה׳ הוא משום דאיהו ס&quot;ל כאביי דאי עביד מהני כמ&quot;ש במ&quot;א וכמ&quot;ש הלח&quot;מ פ&quot;ו מהל׳ בכורות וא&quot;כ איצטריך ליה נמי קדש הם דבהווייתן יהו ומש&quot;ה יליף דאין תמורתן קריבה מלה׳ הוא ובחידושי לזבחים (דף ל&quot;ז:) בספרי משכיל לאיתן יישבתי בזה גם קושיית התוס׳ בעז&quot;ה עיי&quot;ש:</p>
               </div>
             </div>
@@ -281,8 +307,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Substitution 3:2:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-substitution-3-2-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Substitution 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-2">Mishneh Torah, Substitution 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תְּמוּרַת הַבְּכוֹר לַכֹּהֲנִים וּתְמוּרַת הַמַּעֲשֵׂר לַבְּעָלִים. וּכְשֵׁם שֶׁאֵין פּוֹדִין בְּכוֹר וּמַעֲשֵׂר שֶׁנָּפַל בָּהֶן מוּם כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת אִסּוּרֵי מִזְבֵּחַ כָּךְ אֵין פּוֹדִים תְּמוּרָתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכשם שאין פודין בכור ומעשר שנפל בהן מום כך אין פודין תמורתן.</strong> הכ&quot;מ הראה מקום להמשנה דפ&quot;ג דתמורה (דף כ&quot;א) ואינו מספיק דהכי מיתנייא התם כל הקדשים יש להן פדיון ולתמורותיהן פדיון חוץ מן הבכור ומן המעשר ואיכא למימר דהאי חוץ אהן עצמן קאי ולא אתמורה וכדמשמע בסוגיא דזבחים (דף ע&quot;ה:) וכ&quot;כ התוס׳ בהדיא שם בד&quot;ה בכור ע&quot;ש. אבל הדין שכתב רבינו בעא לה רמי ב&quot;ח שם בכור אינו נפדה תמורתו מהו ופשיט לה רבא מברייתא דתניא בכור ומעשר משהוממו עושין תמורה ותמורתן כיוצא בהן, ומזה הוא שיצא לרבינו ודלא כמ&quot;ש הכ&quot;מ. ודע דגבי מעשר תניא נמי בספ&quot;ק דתמורה (דף י&quot;ג) ואפשר דרמי ב&quot;ח ידע לה ולכך לא מבעיא ליה רק גבי בכור:</p>
               </div>
             </div>
@@ -297,8 +328,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Substitution 3:4:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-substitution-3-4-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Substitution 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-substitution/#mishneh-torah-substitution-3-4">Mishneh Torah, Substitution 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ בַּעֲלַת מוּם עוֹבֵר וְאֵין צָרִיךְ לוֹמַר תְּמִימָה וְאַחַר כָּךְ נוֹלַד בָּהּ מוּם קָבוּעַ וְנִפְדֵּית וְהֵמִיר בָּהּ אַחַר שֶׁנִּפְדֵּית. הֲרֵי זוֹ תְּמוּרָה וְאֵינָהּ קְרֵבָה וְאֵינָהּ נִפְדֵּית אֶלָּא מַנִּיחָהּ עַד שֶׁתָּמוּת. אֵינָהּ קְרֵבָה מִפְּנֵי שֶׁבָּאָה מִכֹּחַ קְדֻשָּׁה דְּחוּיָה וְאֵינָהּ נִפְדֵּית שֶׁאֵין בְּכֹחַ קְדֻשָּׁתָהּ לִתְפּשֹׁ פִּדְיוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש בע&quot;מ כו׳ והמיר בה אחר שנפדית ה&quot;ז תמורה ואינה קריבה ואינה נפדית.</strong> עיין בלח&quot;מ שהקשה דמניין לרבינו דמתפיס בתמורה אחר פדיון בע&quot;מ ומ&quot;ש מולדות קדשים דאחר פדיונן הוו חולין והניח בצ&quot;ע. ונעלם ממנו סוגיא ערוכה דבכורות (דף ט&quot;ז ע&quot;א) ודברי התוס׳ שם:</p>
               </div>
             </div>
@@ -308,6 +344,10 @@
               <a href="#chapter-yad-eitan-on-mishneh-torah-substitution-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yad-eitan-on-mishneh-torah-substitution.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/yad-eitan-on-mishneh-torah-substitution-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -328,8 +368,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/yad-eitan-on-mishneh-torah-substitution.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yad-eitan-on-mishneh-torah-substitution.manifest.json","occurrence_url":"../../data/lexical/occurrences/yad-eitan-on-mishneh-torah-substitution.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yad-eitan-on-mishneh-torah-substitution.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yad-eitan-on-mishneh-torah-substitution.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yad-eitan-on-mishneh-torah-substitution.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -355,7 +395,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

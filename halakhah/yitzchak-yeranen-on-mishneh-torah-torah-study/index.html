@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-torah-study/">Open Mishneh Torah, Torah Study</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Torah Study</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">10 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>341 matched</strong> / 869 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/yitzchak-yeranen-on-mishneh-torah-torah-study.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-torah-study-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -221,8 +222,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 1:1:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-1-1-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-1-1">Mishneh Torah, Torah Study 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִתַּלְמוּד תּוֹרָה. אֲבָל קָטָן אָבִיו חַיָּב לְלַמְּדוֹ תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יא יט)</span> &quot;וְלִמַּדְתֶּם אֹתָם אֶת בְּנֵיכֶם לְדַבֵּר בָּם&quot;. וְאֵין הָאִשָּׁה חַיֶּבֶת לְלַמֵּד אֶת בְּנָהּ. שֶׁכָּל הַחַיָּב לִלְמֹד חַיָּב לְלַמֵּד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים וכו׳.</strong> ועיין מ&quot;ש הלח&quot;מ והוא תימה איך הביא ההיא דמדרבנן למ&quot;ש רבינו דאיירי מדאורייתא וצ&quot;ל דקאי לקמן ה&quot;ו דשם שייכי דברי הלח&quot;מ אלו.</p>
               </div>
             </div>
@@ -237,8 +243,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 1:2:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-1-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-1-2">Mishneh Torah, Torah Study 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁחַיָּב אָדָם לְלַמֵּד אֶת בְּנוֹ כָּךְ הוּא חַיָּב לְלַמֵּד אֶת בֶּן בְּנוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים ד ט)</span> &quot;וְהוֹדַעְתָּם לְבָנֶיךָ וְלִבְנֵי בָנֶיךָ&quot;. וְלֹא בְּנוֹ וּבֶן בְּנוֹ בִּלְבַד אֶלָּא מִצְוָה עַל כָּל חָכָם וְחָכָם מִיִּשְׂרָאֵל לְלַמֵּד אֶת כָּל הַתַּלְמִידִים אַף עַל פִּי שֶׁאֵינָן בָּנָיו. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> &quot;וְשִׁנַּנְתָּם לְבָנֶיךָ&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ בָּנֶיךָ אֵלּוּ תַּלְמִידֶיךָ שֶׁהַתַּלְמִידִים קְרוּיִין בָּנִים שֶׁנֶּאֱמַר <span class="source-small">(מלכים ב ב ג)</span> &quot;וַיֵּצְאוּ בְנֵי הַנְּבִיאִים&quot;. אִם כֵּן לָמָּה נִצְטַוָּה עַל בְּנוֹ וְעַל בֶּן בְּנוֹ. לְהַקְדִּים בְּנוֹ לְבֶן בְּנוֹ וּבֶן בְּנוֹ לְבֶן חֲבֵרוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם וכו׳.</strong> ועיין מ&quot;ש הלח&quot;מ ולענ&quot;ד י&quot;ל דקא בעי עד היכן ורצונו לומר עד כמה דורות יש חיוב להקדימן ואמר עד בן בנו דיותר מכן אין דין קדימה והוא ממש כברייתא דתני דחייב ללמד את בן בנו תורה ומפרש רבינו דהך חיובא הוא להקדים דלקריאה לכל העולם חייב ללמד וכדכתב רבינו ולפי&quot;ז תורה יוצאה דלא כמ&quot;ש מרן דמסתברא דגם בן בנו חייב להקדימו לזולתו.<br><strong> עוד</strong> כתב הלח&quot;מ וז&quot;ל ועוד קשה אמאי לא תירצו בש&quot;ס וכו׳ יעו&quot;ש וי&quot;ל דדחיקא ליה להש&quot;ס לומר דעד היכן קאי לשכר דלא נרמז בשום דוכתא שצריך להשכיר מלמד כי היכי דתבעי בפשיטות ברמז.</p>
               </div>
             </div>
@@ -254,8 +265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 2:2:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-2-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-2-2">Mishneh Torah, Torah Study 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַכְנִיסִין אֶת הַתִּינוֹקוֹת לְהִתְלַמֵּד כְּבֶן שֵׁשׁ כְּבֶן שֶׁבַע לְפִי כֹּחַ הַבֵּן וּבִנְיַן גּוּפוֹ. וּפָחוֹת מִבֶּן שֵׁשׁ אֵין מַכְנִיסִים אוֹתוֹ. וּמַכֶּה אוֹתָן הַמְלַמֵּד לְהַטִּיל עֲלֵיהֶם אֵימָה. וְאֵינוֹ מַכֶּה אוֹתָם מַכַּת אוֹיֵב מַכַּת אַכְזָרִי. לְפִיכָךְ לֹא יַכֶּה אוֹתָם בְּשׁוֹטִים וְלֹא בְּמַקְלוֹת אֶלָּא בִּרְצוּעָה קְטַנָּה. וְיוֹשֵׁב וּמְלַמְּדָן כָּל הַיּוֹם כֻּלּוֹ וּמִקְצָת מִן הַלַּיְלָה כְּדֵי לְחַנְּכָן לִלְמֹד בַּיּוֹם וּבַלַּיְלָה. וְלֹא יִבָּטְלוּ הַתִּינוֹקוֹת כְּלָל חוּץ מֵעַרְבֵי שַׁבָּתוֹת וְיָמִים טוֹבִים בְּסוֹף הַיָּמִים וּבְיָמִים טוֹבִים. אֲבָל בְּשַׁבָּת אֵין קוֹרִין בַּתְּחִלָּה אֲבָל שׁוֹנִין בָּרִאשׁוֹן. וְאֵין מְבַטְּלִין הַתִּינוֹקוֹת וַאֲפִלּוּ לְבִנְיַן בֵּית הַמִּקְדָּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכניסין וכו׳.</strong> עיין מ&quot;ש מרן ז&quot;ל ולפי מ&quot;ש התוס׳ שם בכתובות דף ג׳ ד&quot;ה בר שית דהיינו בר שית ויום אחד וכו׳ והכריחו כן בהכרח גמור אזלא לה לתירוץ מרן.</p>
               </div>
             </div>
@@ -270,8 +286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 2:3:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-2-3-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-2-3">Mishneh Torah, Torah Study 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְלַמֵּד הַתִּינוֹקוֹת שֶׁהוּא מֵנִיחַ הַתִּינוֹקוֹת וְיוֹצֵא אוֹ שֶׁהוּא עוֹשֶׂה מְלָאכָה אַחֶרֶת עִמָּהֶן אוֹ שֶׁהוּא מִתְרַשֵּׁל בְּלִמּוּדָן הֲרֵי זֶה בִּכְלַל <span class="source-small">(ירמיה מח י)</span> &quot;אָרוּר עוֹשֶׂה מְלֶאכֶת ה׳ רְמִיָּה&quot;. לְפִיכָךְ אֵין רָאוּי לְהוֹשִׁיב מְלַמֵּד אֶלָּא בַּעַל יִרְאָה מָהִיר לִקְרוֹת וּלְדַקְדֵּק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מלמד התנוקות וכו׳.</strong> ועיין מ&quot;ש הלח&quot;מ ותמיה לי עליו טובא דרש&quot;י דבריו כמ&quot;ש ר&quot;ח שכתב דף כ&quot;א ע&quot;א דגריס ולא דייק שלומד הרבה ולא דייק בלמוד התנוקות שלא ישתבשו ע&quot;כ ואהא מייתי עובדא דיואב וכו׳ הרי בפירוש כפי׳ ר&quot;ח דמאי דלא דייק הוא בלימוד התינוקות.</p>
               </div>
             </div>
@@ -286,8 +307,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 2:4:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-2-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-2-4">Mishneh Torah, Torah Study 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִי שֶׁאֵין לוֹ אִשָּׁה לֹא יְלַמֵּד תִּינוֹקוֹת מִפְּנֵי אִמּוֹתֵיהֶם הַבָּאוֹת אֵצֶל בְּנֵיהֶם. וְכָל אִשָּׁה לֹא תְּלַמֵּד תִּינוֹקוֹת מִפְּנֵי אֲבוֹתֵיהֶם שֶׁהֵם בָּאִים אֵצֶל הַבָּנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל אשה לא תלמד תנוקות וכו׳.</strong> ועיין מ&quot;ש מרן ונראה דדוקא בהיות אשתו עמו שמשמרתו הוא דשרי ברם בשאינה שרויה אצלו בבית הספר אסור וקשה דהרי רבינו פרק כ&quot;ב מאיסורי ביאה הי&quot;ג כתב וז&quot;ל ואין המלמד צריך שתהיה אשתו שרויה אצלו בבית הספר:</p>
               </div>
             </div>
@@ -303,8 +329,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 4:2:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-4-2-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-4-2">Mishneh Torah, Torah Study 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד מְלַמְּדִים. הָרַב יוֹשֵׁב בָּרֹאשׁ וְהַתַּלְמִידִים מֻקָּפִים לְפָנָיו כַּעֲטָרָה כְּדֵי שֶׁיְּהוּ כֻּלָּם רוֹאִים הָרַב וְשׁוֹמְעִים דְּבָרָיו. וְלֹא יֵשֵׁב הָרַב עַל הַכִּסֵּא וְתַלְמִידָיו עַל הַקַּרְקַע אֶלָּא אוֹ הַכּל עַל הָאָרֶץ אוֹ הַכּל עַל הַכִּסְאוֹת. וּבָרִאשׁוֹנָה הָיָה הָרַב יוֹשֵׁב וְהַתַּלְמִידִים עוֹמְדִים וּמִקֹּדֶם חֻרְבַּן בַּיִת שֵׁנִי נָהֲגוּ הַכּל לְלַמֵּד לַתַּלְמִידִים וְהֵם יוֹשְׁבִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובראשונה היה הרב יושב והתלמידים עומדים וכו׳.</strong> דבריו לכאורה הם היפך ש&quot;ס ערוך וכבר העיר הלח&quot;מ בזה ומה שתירץ נ׳ בזה דרבינו סבור דלעולם צריך שיהיו שוין דהיינו או שניהם על גבי קרקע או שניהם על המטה וכמ&quot;ש ר׳ אבהו וכו׳ ואפ&quot;ה התלמידים מעומד והרב מיושב משום דמה שיושב אינו למעלתו אלא שצריך ישוב הדעת לערוך הדברים ולהבינם ואין זו מעלה אבל כשהוא יושב והתלמידים יושבים אלא שהוא על הכסא והתלמידים ע&quot;ג קרקע אז מעלה הוא לו ופחיתות לתלמידים ויש לעיין בתירוץ זה דמ&quot;ש דהרב יושב והתלמידים לא אדרבא אפכא מסתברא דיותר צריך ישוב הדעת לתלמיד מהרב ולתלמידים לא עבדינן תקנתא ולרב עבדינן ועוד דבש&quot;ס שתירצו לרומיא דקראי רכות מעומד קשות מיושב קאי למשה נמצא דמסתברא לעשות לתלמידים תקנתא ועוד יש להקשות דכיון דמוכרח לרב לישב מכח שצריך לערוך הדברים ולהבינם א&quot;כ ישבו גם התלמידים משום ואתה פה עמוד עמדי וכי יש איסור בדבר אם ישבו ועיין ישוב לזה בנחלת יעקב סדר יתרו על פסוק מדוע אתה יושב לבדך.</p>
               </div>
             </div>
@@ -320,8 +351,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 6:5:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-6-5-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-6-5">Mishneh Torah, Torah Study 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה שֶׁהָיוּ הוֹלְכִין בַּדֶּרֶךְ. הָרַב בָּאֶמְצַע גָּדוֹל מִימִינוֹ וְקָטָן מִשְּׂמֹאלוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה שהיו מהלכין בדרך וכו׳.</strong> ועיין להרב מקראי קודש דף ק&quot;ח ולהרב אש דת דף ט&quot;ז וספר חנן אלהים דף קל&quot;א מה שהקשו דלמה השמיט דאי השמאל פנוי גם במצדד אסור לימין וכפי׳ רש&quot;י יעו&quot;ש בדבריהם באורך. ולענ&quot;ד רבינו לא מפרש כפירוש רש&quot;י אלא באופן אחר כשמשני בש&quot;ס דמצדד אצדודי הכי פירושו דמ&quot;ש גדול מימינו וכן גבריאל בימינו היה במצדד אבל מי שהוא בשמאל גם בלא מצדד שרי וכן הא דשרי במצדד בימין הוי גם אם השמאל פנוי ומאי דנקטו בברייתא שלשה לאו דוקא ולפ&quot;ז מאי דתניא בעירובין דף נ&quot;ד נסתלק אהרן וישב לשמאל משה ולא ישב בימין במצדד אצדודי היינו משום שהיו יושבים סמוך לכותל ולא שייך מצדד לפי דאי אפשר בלא&quot;ה וחיליה דרבינו לפרש הכי נגד פי׳ רש&quot;י ממתני׳ דתמיד ופסקה רבינו ריש פ&quot;ה מכלי המקדש בזמן שכהן גדול היה רוצה להקטיר היה עולה בכבש והסגן בימינו והתם צד שמאל פנוי ואפ&quot;ה כיון דמצדד אצדודי שרי ורש&quot;י יתרץ לזה כיון דאח&quot;כ כשהיה באמצע הכבש היה אוחזו בימינו וכיון שלאותו הכרח אח&quot;כ צריך שיהיה לימינו מתחילה היה לימינו ורבינו לא ניחא ליה בהכי.</p>
               </div>
             </div>
@@ -336,8 +372,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 6:14:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-6-14-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 6:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-6-14">Mishneh Torah, Torah Study 6:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים בְּמִי שֶׁנִּדּוּהוּ עַל שֶׁבִּזָּה תַּלְמִידֵי חֲכָמִים. אֲבָל מִי שֶׁנִּדּוּהוּ עַל שְׁאָר דְּבָרִים שֶׁחַיָּבִים עֲלֵיהֶם נִדּוּי אֲפִלּוּ נִדָּהוּ קָטָן שֶׁבְּיִשְׂרָאֵל חַיָּב הַנָּשִׂיא וְכָל יִשְׂרָאֵל לִנְהֹג בּוֹ נִדּוּי עַד שֶׁיַּחֲזֹר בִּתְשׁוּבָה מִדָּבָר שֶׁנִּדּוּהוּ בִּשְׁבִילוֹ וְיַתִּירוּ לוֹ. עַל עֶשְׂרִים וְאַרְבָּעָה דְּבָרִים מְנַדִּין אֶת הָאָדָם בֵּין אִישׁ בֵּין אִשָּׁה. וְאֵלּוּ הֵן: א) הַמְבַזֶּה אֶת הֶחָכָם וַאֲפִלּוּ לְאַחַר מוֹתוֹ. ב) הַמְבַזֶּה שְׁלִיחַ בֵּית דִּין. ג) הַקּוֹרֵא לַחֲבֵרוֹ עֶבֶד. ד) מִי שֶׁשָּׁלְחוּ לוֹ בֵּית דִּין וְקָבְעוּ לוֹ זְמַן וְלֹא בָּא. ה) הַמְזַלְזֵל בְּדָבָר אֶחָד מִדִּבְרֵי סוֹפְרִים וְאֵין צָרִיךְ לוֹמַר בְּדִבְרֵי תּוֹרָה. ו) מִי שֶׁלֹּא קִבֵּל עָלָיו אֶת הַדִּין מְנַדִּין אוֹתוֹ עַד שֶׁיִּתֵּן. ז) מִי שֶׁיֵּשׁ בִּרְשׁוּתוֹ דָּבָר הַמַּזִּיק כְּגוֹן כֶּלֶב רַע אוֹ סֻלָּם רָעוּעַ מְנַדִּין אוֹתוֹ עַד שֶׁיָּסִיר הֶזֵּקוֹ. ח) הַמּוֹכֵר קַרְקַע שֶׁלּוֹ לְעוֹבֵד כּוֹכָבִים מְנַדִּין אוֹתוֹ עַד שֶׁיְּקַבֵּל עָלָיו כָּל אֹנֶס שֶׁיָּבוֹא מִן הָעוֹבֵד כּוֹכָבִים לְיִשְׂרָאֵל חֲבֵרוֹ בַּעַל הַמֵּצָר. ט) הַמֵּעִיד עַל יִשְׂרָאֵל בְּעַרְכָּאוֹת שֶׁל עוֹבְדֵי כּוֹכָבִים וְהוֹצִיא מִמֶּנּוּ בְּעֵדוּתוֹ מָמוֹן שֶׁלֹּא כְּדִין יִשְׂרָאֵל, מְנַדִּין אוֹתוֹ עַד שֶׁיְּשַׁלֵּם. י) טַבָּח כֹּהֵן שֶׁאֵינוֹ מַפְרִישׁ הַמַּתָּנוֹת וְנוֹתְנָן לְכֹהֵן אַחֵר מְנַדִּין אוֹתוֹ עַד שֶׁיִּתֵּן. יא) הַמְחַלֵּל יוֹם טוֹב שֵׁנִי שֶׁל גָּלֻיּוֹת אַף עַל פִּי שֶׁהוּא מִנְהָג. יב) הָעוֹשֶׂה מְלָאכָה בְּעֶרֶב הַפֶּסַח אַחַר חֲצוֹת. יג) הַמַּזְכִּיר שֵׁם שָׁמַיִם לְבַטָּלָה אוֹ לִשְׁבוּעָה בְּדִבְרֵי הֲבַאי. יד) הַמֵּבִיא אֶת הָרַבִּים לִידֵי חִלּוּל הַשֵּׁם. טו) הַמֵּבִיא אֶת הָרַבִּים לִידֵי אֲכִילַת קָדָשִׁים בַּחוּץ. טז) הַמְחַשֵּׁב שָׁנִים וְקוֹבֵעַ חֳדָשִׁים בְּחוּצָה לָאָרֶץ. יז) הַמַּכִשִׁיל אֵת הָעִוֵּר. יח) הַמְעַכֵּב הָרַבִּים מִלַּעֲשׂוֹת מִצְוָה. יט) טַבָּח שֶׁיָּצְאָה טְרֵפָה מִתַּחַת יָדוֹ. כ) טַבָּח שֶׁלֹּא בָּדַק סַכִּינוֹ לִפְנֵי חָכָם. כא) הַמַּקְשֶׁה עַצְמוֹ לְדַעַת. כב) מִי שֶׁגֵּרֵשׁ אֶת אִשְׁתּוֹ וְעָשָׂה בֵּינוֹ וּבֵינָהּ שֻׁתָּפוּת אוֹ מַשָּׂא וּמַתָּן הַמְּבִיאִין לָהֶן לְהִזָּקֵק זֶה לָזֶה כְּשֶׁיָּבוֹאוּ לְבֵית דִּין מְנַדִּין אוֹתָם. כג) חָכָם שֶׁשְּׁמוּעָתוֹ רָעָה. כד) הַמְנַדֶּה מִי שֶׁאֵינוֹ חַיָּב נִדּוּי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המכשיל את העור.</strong> וכתב הר&quot;א כגון המכה בנו גדול ע&quot;כ וכתב מרן ויש לתמוה דלמה פירש דבר זה יותר מכל הדברים המוזכרים כאן ואפשר דרצונו לומר אף שבש&quot;ס לא נזכר אלא מכה בנו גדול יפה כיון רבינו לכתוב מכשיל את העור ללמדנו דמכה בנו גדול לאו דוקא וזהו שכתב הר&quot;א כגון המכה בנו גדול.<br><strong> והנה</strong> דבריו אלה דוחק ולענ&quot;ד נראה כוונת הראב&quot;ד והן קדם אבאר דעתי במאי דנסתפק הרב יד מלאכי סימן שס&quot;ז היכא דנתן מכשול לפני אדם ולא נכשל מי נימא כיון דנתן המכשול אף דלא נכשל עבר אלפני עור או דילמא כיון דלא נכשל לא עבר אף שכיון להכשילו ואיהו לדידיה החליט המאמר דעבר מההיא דואלו מגלחין דף י&quot;ז ע&quot;א דאמתא דרבי חזיא לההוא גברא דמחי בנו גדול שמתיה דקא עבר אלפני עור דתניא וכו׳ ופי׳ רש&quot;י דכיון דגדול הוא שמא מבעט באביו ונמצא מכשילו הרי דמיד דמכה לבנו עובר אף שאפשר שלא יבעט ושוב נרגש מש&quot;ס קידושין דף ל&quot;ב דאיתא שם רב הונא קרע שיראי באנפי בריה וכו׳ ודילמא רתח וקא עבר אלפני עור ומשני דמחיל ליה ומלישנא דילמא רתח וכו׳ משמע דכל (עיור) [היכא] דלא רתח לא עבר היפך ההיא במו&quot;ק ונדחק בישובו והעלה כמו שהבין בההיא דמו&quot;ק.<br><strong> וכשאני</strong> לעצמי לא כן אדמה ואדרבה נהפוך דכל עוד דלא נכשל אף שכיון המכשיל להכשילו אינו עובר וכפשטא דש&quot;ס דקידושין דקאמר ודילמא רתח וקעבר אלפני עור דמשמע בהדיא דדוקא כשרתח עובר המכשיל שהוא אביו ואי לא לא דמעולם לא מצינו עונש בישראל על המחשבה כידוע ומ&quot;ש באלו מגלחין אין ראיה משם כלל וה&quot;ק התם אמתיה דרבי חזיה לההוא גברא דמחי בנו גדול שמתיה דקא עבר אלפני עור דתניא ולפני עור זה המכה וכו׳ והיינו טעמא [שמא] מבעט באביו ונמצא מכשילו ופירוש דברייתא הוי דהמכה בנו גדול עובר היכא דמבעט וקמ&quot;ל ברייתא דאף דהאב מכוין להוכיחו וליסרו ולהדריכו בדרך ישר אפ&quot;ה כיון שהוא גדול ומתוך כך יבא לבעט איכא איסורא דלפני עור ולעולם היכא דמבעט ואמתיה דרבי דשמתיה מיד אף דלא חזא דביעט משום דהכה לבנו ולא חשש שמא יבעט ודעתו אף שיבעט ואף [דאפשר] דלא יבעט ואז אינו עובר מ&quot;מ כיון דלא חשש לשמא יבעט ראוי לשמתא ואיהו עבד הכי להכותו אף דיבעט והרי זה דומה למי שנתכוון לאכול בשר חזיר ועלה בידו בשר טלה דצריך כפרה וסליחה והרי זה כיון ג&quot;כ (למכשיל) [להכשיל] אף שלא נכשל ראוי לשמתו וצריך סליחה וכפרה ומ&quot;מ הלאו אינו עובר אם לא נעשה האיסור דהיינו שנכשל חבירו במה שנתן המכשול לפניו.<br><strong> ומה</strong> שהביא ראיה מהרב זקן אהרן וסיים עליו הרי תנא דמסייע לי דלא שייך איסור דולפני עור אלא קודם שחטא וכו׳ לא הבנתיו דודאי הכי הוא דאם חטא כבר ליכא לפני עצמו ואנו עסוקים היכא דלא נכשל והוא ענין אחר ומה שסייע לעצמו מדברי מהר&quot;א ששון סי׳ קס&quot;ב מדין רבית דעובר מיד בשעת ההלואה אף שאפשר לא יתן וכו׳ יעו&quot;ש הא קא יהיב טעמא דגלי קרא דכתיב את כספך לא תתן לו בנשך וכו׳ וא&quot;כ איך יליף מהתם ועוד אפשר דכוונתו דלעולם אם לא לקח ריבית אינו עובר אלא כשלקח משעת ההלואה הוא עובר וכעת אין הספר בידי לראות דבריו ואיך שיהיה דעתי בל עימו אלא דכל דלא נכשל אינו עובר המכשיל אלפני עור אבל הא מיהא בר שמתא הוא ונראה דזו היא דעת הר&quot;א בהשגה שכתב כגון המכה בנו גדול כלומר דהאי שמתא לאו במכשיל את העור דהיינו שעבר אלפני עור אלא אף באינו מכשילו אלא עשה מעשה שאפשר שיוכשל העור כגון מכה בנו גדול בר שמתא הוא וכעובדא דאמתה דרב ורבינו אפשר דזו היא כוונתו ג&quot;כ אלא שאין לשונו מבורר ויגיד עליו ריעו מ&quot;ש פ&quot;ו מהל׳ ממרים ה&quot;ט שכתב והמכה בנו גדול מנדין אותו שהרי הוא עובר אלפני עור לא תתן מכשול ומשו&quot;ה הר&quot;א ז&quot;ל כתב לשונו כמו פירוש לדברי רבינו.</p>
               </div>
             </div>
@@ -353,8 +394,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 7:4:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-7-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 7:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-7-4">Mishneh Torah, Torah Study 7:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַהוּ הַמִּנְהָג שֶׁיִּנְהֹג הַמְנֻדֶּה בְּעַצְמוֹ וְשֶׁנּוֹהֲגִין עִמּוֹ. מְנֻדֶּה אָסוּר לְסַפֵּר וּלְכַבֵּס כְּאָבֵל כָּל יְמֵי נִדּוּיוֹ. וְאֵין מְזַמְּנִין עָלָיו. וְלֹא כּוֹלְלִין אוֹתוֹ בַּעֲשָׂרָה לְכָל דָּבָר שֶׁצָּרִיךְ עֲשָׂרָה. וְלֹא יוֹשְׁבִין עִמּוֹ בְּאַרְבַּע אַמּוֹת. אֲבָל שׁוֹנֶה הוּא לַאֲחֵרִים וְשׁוֹנִין לוֹ וְנִשְׂכָּר וְשׂוֹכֵר. וְאִם מֵת בְּנִדּוּי בֵּית דִּין שׁוֹלְחִין וּמַנִּיחִין אֶבֶן עַל אֲרוֹנוֹ כְּלוֹמַר שֶׁהֵן רוֹגְמִין אוֹתוֹ לְפִי שֶׁהוּא מֻבְדָּל מִן הַצִּבּוּר. וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין מַסְפִּידִין אוֹתוֹ וְאֵין מְלַוִּין אֶת מִטָּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מנודה אסור לספר ולכבס כאבל כל ימי נידוייו.</strong> ולא כתב אי אסור בתשמיש המיטה או לא וכתב מרן בב&quot;י חלק יו&quot;ד סי׳ של&quot;ד דס&quot;ל כהרי&quot;ף לקולא כיון דלא אפשיטא בש&quot;ס יעו&quot;ש וכן הביא הטור שדעת הרי&quot;ף והרא&quot;ש להקל יעו&quot;ש ואין זה כ&quot;כ הכרח בדעתם דס&quot;ל להקל אי משום שכתבו וכל הני בעיי דלא אפשיטא להקל לא קיימי לבעיית המנודה דמנודה מהו בתשמיש המיטה אלא לשאר בעיי דלעיל דסלקן בתיקו וראיה דכתבו כן בבעיי דלעיל ואי דעתם גם בהאי בעיא הו&quot;ל לכתוב כן לקמן אחר הך בעיא דמנודה מהו בתשמיש המטה זאת ועוד דמלישנא דכתבו כל הני בעיי דסלקן בתיקו נראה דדוקא הנהו דלעיל דסלקן בתיקו ולא הא דתשמיש המטה דלא נאמרה בה האי לישנא דתיקו ואחרונה הכביד דברי הרא&quot;ש שהראנו החכם השלם שלמה בן עזרא נר&quot;ו בנדרים דף כ׳ ע&quot;ב גבי בני תשע מדות וחד מינייהו בני נידוי וכתב הרא&quot;ש אם הוא או היא מנודין ואסורין בתשמיש המטה וה&quot;ה נמי אבל אלא מילתא דשכיחא נקט הרי דעשה נידוי ואבל חד וכתב דאסורין ואיך אפשר לומר דפסק להקל אלא ודאי דלא קאי להאי בעיא דתשמיש המטה ולולי דבריו היינו אומרים דהנך ט׳ מידות לאו איסורא ממש נינהו אלא כמו עניני עזות ודברים מכוערים ברם לדידיה דפירש כן צ&quot;ל דנפשטא הבעיא (בהא) [מהא] דנדרים והש&quot;ס לא חש לפשוט ממנו דהוי אמורא וצ&quot;ע.<br><strong> ונראה</strong> לישב דהטור לא הוה ליה דברי הרא&quot;ש הנ&quot;ל דנדרים שכתב באו&quot;ח סי׳ ר&quot;מ וז&quot;ל בני נידוי בני נידה אע&quot;פ שאינו ממזר מן התורה ויש מפרשים שאם [הם] בנידוי או הוא או היא שאסורים בתשמיש המטה וה&quot;ה אם אחד משניהם אבל עכ&quot;ל ואי הוה גרסי כן בהרא&quot;ש הו&quot;ל למימר ואדוני אבי פירש פי׳ וכן מרן שם לא כתב שהם דברי הרא&quot;ש נראה דלא הוו גרסי כן ומ&quot;מ לא ימלט מן הגמגום בזה ושוב אחר זמן רב ראיתי לרבינו פרק כ&quot;א מהל׳ איסו&quot;ב הי&quot;ב כתב וכן אסרו חכמים שלא ישמש וכו׳ ולא כשהיה אחד מהם מנודה וצריך לעיין גם אחר זמן רב מזה ראיתי סוף משנה ב׳ מפי&quot;ד דמסכת (טהרות) [נגעים] דתני הכי נכנס לפנים מן החומה מנודה מביתו ז׳ ימים ואסור בתשמיש המטה וצריך לעיין גם בזה.</p>
               </div>
             </div>
@@ -369,8 +415,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Torah Study 7:11:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-torah-study-7-11-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Torah Study 7:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-7-11">Mishneh Torah, Torah Study 7:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִדּוּי עַל תְּנַאי אֲפִלּוּ עַל פִּי עַצְמוֹ צָרִיךְ הֲפָרָה. תַּלְמִיד חָכָם שֶׁנִּדָּה עַצְמוֹ וַאֲפִלּוּ נִדָּה עַצְמוֹ עַל דַּעַת פְּלוֹנִי וַאֲפִלּוּ עַל דָּבָר שֶׁחַיָּב עָלָיו נִדּוּי הֲרֵי זֶה מֵפֵר לְעַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והשגת </strong> הר&quot;א. עיין בספרי תועפות ראם דף כ&quot;ד ע&quot;א.</p>
               </div>
             </div>
@@ -380,6 +431,10 @@
               <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-torah-study-text-7">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yitzchak-yeranen-on-mishneh-torah-torah-study.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-torah-study-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -400,8 +455,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-torah-study.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yitzchak-yeranen-on-mishneh-torah-torah-study.manifest.json","occurrence_url":"../../data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-torah-study.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-torah-study.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yitzchak-yeranen-on-mishneh-torah-torah-study.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-torah-study.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -427,7 +482,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

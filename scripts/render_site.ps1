@@ -10,7 +10,8 @@ param(
   [switch]$OnlyOverlayExports,
   [switch]$SkipSitePages,
   [switch]$OnlySitePages,
-  [int]$MaxTocUnitLinks = 2000
+  [int]$MaxTocUnitLinks = 2000,
+  [string]$LexicalAssetBaseUrl = ''
 )
 
 $ErrorActionPreference = 'Stop'
@@ -64,6 +65,19 @@ function Write-Utf8 {
     $resolved = (Resolve-Path -Path '.').Path + '\' + $Path
   }
   [System.IO.File]::WriteAllText($resolved, $Content, [System.Text.UTF8Encoding]::new($false))
+}
+
+function Join-PublicUrl {
+  param(
+    [AllowNull()][string]$BaseUrl,
+    [string]$RelativePath
+  )
+
+  $relative = ($RelativePath -replace '\\', '/').TrimStart('/')
+  $base = if ($null -ne $BaseUrl) { [string]$BaseUrl } else { '' }
+  $base = $base.Trim()
+  if (-not $base) { return $relative }
+  return ($base.TrimEnd('/') + '/' + $relative)
 }
 
 function Get-SourceUnitCount {
@@ -1905,7 +1919,7 @@ function Write-WorkLexicalPayloadFiles {
   for ($start = 0; $start -lt $forms.Count; $start += $maxFormsPerChunk) {
     $chunkForms = @($forms[$start..([Math]::Min($start + $maxFormsPerChunk - 1, $forms.Count - 1))])
     $chunkNumber = [int]($start / $maxFormsPerChunk)
-    $chunkId = ('{0}-{1:D3}' -f $WorkId, $chunkNumber)
+    $chunkId = ('chunk-{0:D3}' -f $chunkNumber)
 
     $chunkEntryIds = @{}
     foreach ($form in @($chunkForms)) {
@@ -2405,7 +2419,8 @@ function Append-WorkLexicalDownloadLinks {
     [System.Text.StringBuilder]$Builder,
     [object]$Source,
     [string]$RootHref,
-    [AllowNull()][object]$WorkLexicalExternal
+    [AllowNull()][object]$WorkLexicalExternal,
+    [string]$AssetBaseUrl = ''
   )
 
   $workId = [string]$Source.work_id
@@ -2418,22 +2433,26 @@ function Append-WorkLexicalDownloadLinks {
 
   $workClaimCsv = "data/public-lexical/by-work/$workId.csv"
   if (Test-Path -LiteralPath $workClaimCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$workClaimCsv"" download>Book claims CSV</a>")
+    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $workClaimCsv } else { "$RootHref$workClaimCsv" }
+    $links.Add("<a class=""export-button"" href=""$href"" download>Book claims CSV</a>")
   }
 
   $tokenStatusCsv = "data/public-lexical/by-work/$workId-token-status.csv"
   if (Test-Path -LiteralPath $tokenStatusCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$tokenStatusCsv"" download>Token status CSV</a>")
+    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $tokenStatusCsv } else { "$RootHref$tokenStatusCsv" }
+    $links.Add("<a class=""export-button"" href=""$href"" download>Token status CSV</a>")
   }
 
   $compactTokenClaimsCsv = "data/public-lexical/by-work/$workId-token-claims-min60.csv"
   if (Test-Path -LiteralPath $compactTokenClaimsCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$compactTokenClaimsCsv"" download>Token claims CSV</a>")
+    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $compactTokenClaimsCsv } else { "$RootHref$compactTokenClaimsCsv" }
+    $links.Add("<a class=""export-button"" href=""$href"" download>Token claims CSV</a>")
   }
 
   $aiOptionsCsv = "data/public-lexical/by-work/$workId-ai-options-min60.csv"
   if (Test-Path -LiteralPath $aiOptionsCsv) {
-    $links.Add("<a class=""export-button"" href=""$($RootHref)$aiOptionsCsv"" download>AI options CSV</a>")
+    $href = if ($AssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $AssetBaseUrl -RelativePath $aiOptionsCsv } else { "$RootHref$aiOptionsCsv" }
+    $links.Add("<a class=""export-button"" href=""$href"" download>AI options CSV</a>")
   }
 
   if ($links.Count -gt 0) {
@@ -2605,10 +2624,13 @@ foreach ($source in $renderSources) {
   $workLexicalPayload = $null
   $workLexicalExternal = if ($workHasLexical) {
     if ($SkipLexicalPayloadFiles) {
+      $manifestRelative = "data/lexical/$($source.work_id).manifest.json"
+      $occurrenceRelative = "data/lexical/occurrences/$($source.work_id).json"
+      $assetRoot = if ($LexicalAssetBaseUrl.Trim()) { $LexicalAssetBaseUrl.TrimEnd('/') + '/' } else { $rootHref }
       [pscustomobject]@{
-        manifest_url = "$rootHref" + "data/lexical/$($source.work_id).manifest.json"
-        occurrence_url = "$rootHref" + "data/lexical/occurrences/$($source.work_id).json"
-        root_href = $rootHref
+        manifest_url = if ($LexicalAssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $LexicalAssetBaseUrl -RelativePath $manifestRelative } else { "$rootHref$manifestRelative" }
+        occurrence_url = if ($LexicalAssetBaseUrl.Trim()) { Join-PublicUrl -BaseUrl $LexicalAssetBaseUrl -RelativePath $occurrenceRelative } else { "$rootHref$occurrenceRelative" }
+        root_href = $assetRoot
       }
     } else {
       $workLexicalPayload = Get-WorkLexicalPayload -WorkOccurrence $workOccurrence -LexicalCache $lexicalCache
@@ -2792,7 +2814,7 @@ foreach ($source in $renderSources) {
   }
 
   if ($workHasLexical) {
-    Append-WorkLexicalDownloadLinks -Builder $page -Source $source -RootHref $rootHref -WorkLexicalExternal $workLexicalExternal
+    Append-WorkLexicalDownloadLinks -Builder $page -Source $source -RootHref $rootHref -WorkLexicalExternal $workLexicalExternal -AssetBaseUrl $LexicalAssetBaseUrl
   }
 
   [void]$page.AppendLine('        </article>')

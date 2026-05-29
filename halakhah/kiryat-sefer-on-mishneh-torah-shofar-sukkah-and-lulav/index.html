@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/">Open Mishneh Torah, Shofar, Sukkah and Lulav</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Shofar, Sukkah and Lulav</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">54 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>842 matched</strong> / 2422 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -283,8 +284,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-1">Mishneh Torah, Shofar, Sukkah and Lulav 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה שֶׁל תּוֹרָה לִשְׁמֹעַ תְּרוּעַת הַשּׁוֹפָר בְּרֹאשׁ הַשָּׁנָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט א)</span> &quot;יוֹם תְּרוּעָה יִהְיֶה לָכֶם&quot;. וְשׁוֹפָר שֶׁתּוֹקְעִין בּוֹ בֵּין בְּרֹאשׁ הַשָּׁנָה בֵּין בְּיוֹבֵל הוּא קֶרֶן הַכְּבָשִׂים הַכָּפוּף. וְכָל הַשּׁוֹפָרוֹת פְּסוּלִין חוּץ מִקֶּרֶן הַכֶּבֶשׂ. וְאַף עַל פִּי שֶׁלֹּא נִתְפָּרֵשׁ בַּתּוֹרָה תְּרוּעָה בְּשׁוֹפָר בְּרֹאשׁ הַשָּׁנָה הֲרֵי הוּא אוֹמֵר בְּיוֹבֵל <span class="source-small">(ויקרא כה ט)</span> &quot;וְהַעֲבַרְתָּ שׁוֹפַר&quot; וְכוּ׳ <span class="source-small">(ויקרא כה ט)</span> &quot;תַּעֲבִירוּ שׁוֹפָר&quot;. וּמִפִּי הַשְּׁמוּעָה לָמְדוּ מַה תְּרוּעַת יוֹבֵל בְּשׁוֹפָר אַף תְּרוּעַת רֹאשׁ הַשָּׁנָה בְּשׁוֹפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה מא </strong> לשמוע תרועת השופר בראש השנה. שנאמר יום תרועה יהיה לכם ומנין שבשופר תלמוד לומר והעברת שופר תרועה אין לי אלא ביובל בראש השנה מנין ת&quot;ל בחדש השביעי שאין ת&quot;ל בחדש השביעי דהא כתב לן בכמה דוכתי דיום הכיפורים בחדש השביעי והכא יום הכיפורים כתיב ביום הכיפורים תעבירו אלא מה ת&quot;ל בחדש השביעי שיהיו כל התרועות של חודש השביעי כזה. ובספרי איתא כתיב תרועה בראש השנה וביובל מה תרועת יובל בשופר אף תרועת ראש השנה בשופר. וכל השופרות כשרים מדאוריתא דפשוט וכפוף לא כתיב בתורה אלא תעבירו שופר כתיב ביובל וגמרה ר&quot;ה מיניה חוץ ממה שלא נקרא שופר אלא קרן דפסול מדאוריתא דשופר כתיב. ולמצוה הוא דבעו של איל כדאמר תקעו לפני בשופר של איל כדי שאזכור לכם עקידת יצחק.</p>
               </div>
             </div>
@@ -299,8 +305,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-3">Mishneh Torah, Shofar, Sukkah and Lulav 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹפָר שֶׁל עַכּוּ&quot;ם אֵין תּוֹקְעִין בּוֹ לְכַתְּחִלָּה וְאִם תָּקַע יָצָא. וְשֶׁל עִיר הַנִּדַּחַת אִם תָּקַע בּוֹ לֹא יָצָא. שׁוֹפָר הַגָּזוּל שֶׁתָּקַע בּוֹ יָצָא שֶׁאֵין הַמִּצְוָה אֶלָּא בִּשְׁמִיעַת הַקּוֹל אַף עַל פִּי שֶׁלֹּא נָגַע בּוֹ וְלֹא הִגְבִּיהוֹ הַשּׁוֹמֵעַ יָצָא וְאֵין בַּקּוֹל דִּין גֵּזֶל. וְכֵן שׁוֹפָר שֶׁל עוֹלָה לֹא יִתְקַע בּוֹ וְאִם תָּקַע יָצָא שֶׁאֵין בַּקּוֹל דִּין מְעִילָה. וְאִם תֹּאמַר וַהֲלֹא נֶהֱנָה בִּשְׁמִיעַת הַקּוֹל. מִצְוֹת לֹא לֵהָנוֹת נִתְּנוּ. לְפִיכָךְ הַמֻּדָּר הֲנָיָה מִשּׁוֹפָר מֻתָּר לִתְקֹעַ בּוֹ תְּקִיעָה שֶׁל מִצְוָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שופר </strong> של ע&quot;ג כשר מדאוריתא דאע&quot;ג דנשתמשו בו לע&quot;ג ונאסר בהנאה כדכתיב אבד תאבדון וגו׳ בכלים שנשתמשו בהן לע&quot;ז הכתוב מדבר אפילו הכי מצות לאו ליהנות נתנו אין קיומם הנאת הגוף אלא עבודת עבד לרבו ואם של ע&quot;ז של ישראל הוא לא יצא דאין לה בטלה עולמית כדילפינן מושם בסתר וכתותי מכתת שיעורה וה&quot;ה תקרובת ע&quot;ז שמסרוה לפניו לשם דורון דקי&quot;ל דאין לה בטלה עולמית דאיתקש למת דכתיב ויאכלו זבחי מתים מה מת אסור בהנאה כדילפינן שם שם מעגלה ערופה אף תקרובת ע&quot;ז אסור בהנאה. ושל עיר הנדחת נמי לא יצא דכתותי מיכתת שיעוריה דהא לשריפה קאי כדכתיב ושרפת וגו׳ וכשרוף דמי כדילפינן דכל העומד לישרף או לינתץ כשרוף או כנתוץ דמי מבית המוחלטת דלא הוה מטמאת בביאה משום דעומדת לינתץ אי לאו דאמר קרא ונתץ את הבית דאפילו בשעת נתינה קרוי בית הא לאו הכי לא דכל העומד לינתץ כנתוץ דמי ובשופר בעינן שיעור כדלקמן. אבל בשופר הגזול ושל עולה יצא דאין בקול גזל ומעילה וגם אינו נהנה דמצות לאו ליהנות נתנו וגו׳. והראב&quot;ד כתב בירושלמי דאע&quot;ג דיש בקול דין גזל יום תרועה יהיה לכם כתיב דמשמע לכם מכל מקום. והמודר הנאה מחברו או משופר מותר לתקוע בו תקיעה של מצוה דמצות לאו ליהנות נתנו כדאמר ולאו הנאה הוא.</p>
               </div>
             </div>
@@ -315,8 +326,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-4">Mishneh Torah, Shofar, Sukkah and Lulav 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹפָר שֶׁל רֹאשׁ הַשָּׁנָה אֵין מְחַלְּלִין עָלָיו אֶת יוֹם טוֹב וַאֲפִלּוּ בְּדָבָר שֶׁהוּא מִשּׁוּם שְׁבוּת. כֵּיצַד. הָיָה הַשּׁוֹפָר בְּרֹאשׁ הָאִילָן אוֹ מֵעֵבֶר הַנָּהָר וְאֵין לוֹ שׁוֹפָר אֶלָּא הוּא אֵינוֹ עוֹלֶה בָּאִילָן וְאֵינוֹ שָׁט עַל פְּנֵי הַמַּיִם כְּדֵי לַהֲבִיאוֹ. וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין חוֹתְכִין אוֹתוֹ אוֹ עוֹשִׂין בּוֹ מְלָאכָה. מִפְּנֵי שֶׁתְּקִיעַת שׁוֹפָר מִצְוַת עֲשֵׂה וְיוֹם טוֹב עֲשֵׂה וְלֹא תַּעֲשֶׂה וְאֵין עֲשֵׂה דּוֹחֶה לֹא תַּעֲשֶׂה וַעֲשֵׂה. מֻתָּר לִתֵּן בְּתוֹכוֹ מַיִם אוֹ יַיִן אוֹ חֹמֶץ בְּיוֹם טוֹב כְּדֵי לְצַחְצְחוֹ. וְלֹא יִתֵּן לְתוֹכוֹ מֵי רַגְלַיִם לְעוֹלָם מִפְּנֵי הַכָּבוֹד שֶׁלֹּא יִהְיוּ מִצְוֹת בְּזוּיוֹת עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שופר </strong> של ראש השנה אין מחללין עליו י&quot;ט לא בדבר שהוא משום שבות ואין צריך לומר בדבר שהוא משום מלאכה. משום דשופר עשה ויו&quot;ט עשה ולא תעשה ואין עשה דוחה לא תעשה ועשה. דכיון דגלי קרא בציצית דאתי עשה דציצית ודחי לא תעשה דכלאים משמע דעשה ולא תעשה לא דחי. והכא אפילו לא תעשה גרידה לא הוה דחי משום דבעידנא דקא מעקר לאו לא מקיים עשה. ומאי דקאמר עשה ולא תעשה קושטא דמילתא קאמר אבל לא צריך. ומשום הכי נמי עשו חיזוק חכמים לדבריהם כשל תורה דלא דחי שבות דידהו משום דהוו מכשירין דהא גופא דתקיעה שבות היא ודחיה לה עשה דשופר משום דבעידנא דמעקר לשבות מקיים ליה לעשה אבל מכשירים דמעקר ליה לשבות ואכתי לא מקיים עשה לא דכיון דנתנה תורה מקום לחכמים לאסור מה שאסרו משום שבות העמידו דבריהם אפילו היכא דאתי לידי דחיית עשה כיון דבההיא עידנא לא מקיים ליה לעשה כדאמר והוה איפשר לעשות מכשיר דמצוה מבעוד יום. ומים או יין כדי לצחצחו מותר ליתן בתוכו ביו&quot;ט ולא יתן לתוכו מי רגלים לעולם שלא יהו מצות בזויות עליו כדילפינן מושפך וכסה במה ששפך יכסה שלא יכסה ברגל שלא יהו מצות בזויות עליו.</p>
               </div>
             </div>
@@ -331,8 +347,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-5">Mishneh Torah, Shofar, Sukkah and Lulav 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שִׁעוּר הַשּׁוֹפָר כְּדֵי שֶׁיֹּאחֲזֶנּוּ בְּיָדוֹ וְיֵרָאֶה לְכָאן וּלְכָאן. נִסְדַּק לְאָרְכּוֹ פָּסוּל. לְרָחְבּוֹ אִם נִשְׁתַּיֵּר בּוֹ כַּשִּׁעוּר כָּשֵׁר וּכְאִלּוּ נִכְרַת מִמְּקוֹם הַסֶּדֶק. נִקַּב אִם סְתָמוֹ שֶׁלֹּא בְּמִינוֹ פָּסוּל. סְתָמוֹ בְּמִינוֹ אִם נִשְׁתַּיֵּר רֻבּוֹ שָׁלֵם וְלֹא עִכְּבוּ הַנְּקָבִים שֶׁנִּסְתְּמוּ אֶת הַתְּקִיעָה הֲרֵי זֶה כָּשֵׁר. קְדָחוֹ בְּזִכְרוּתוֹ כָּשֵׁר שֶׁמִּין בְּמִינוֹ אֵינוֹ חוֹצֵץ. דִּבֵּק שִׁבְרֵי שׁוֹפָרוֹת עַד שֶׁהִשְׁלִימוֹ לְאֶחָד פָּסוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושיעור </strong> דשופר נראה דהוי בכלל שיעורין הלכה למשה מסיני דשיעור שיאחזנו בידו ויראה לכאן ולכאן טפח הוי דהוא ד׳ אצבעות בגודל. נסדק לארכו פסול אי משום שתי שופרות כדפרש&quot;י ז&quot;ל ואנן חד שופר בעינן. אי משום דלאו שם שופר עליו אלא כחתיכת שופר שתקנה. נסדק לרחבו אם נשתייר כשיעור לצד הפה כשר דהוה ליה כאלו ניטל כל מה שלמעלה ואע&quot;ג דלאו שופר שלם הוא לא איכפת לן בהכי אלא אשיעורא דאי הוה קפדינן אשלם לא הוה ביה שיעורא. ניקב אם סתמו שלא במינו פסול ואפילו נשתייר רובו שלם ואפילו לא היה מעכב עכשיו סתימת הנקבים את התקיעה פסול כיון דבסתימת שלא במינו חזרה התקיעה לכמו שהיתה קודם שניקב הרי קול שופר ודבר אחר אף ע&quot;ג דהשתא לא מעכב סתמו במינו אם נשתייר רובו שלם ולא עכבו הנקבים שנסתמו את התקיעה הרי זה כשר דאי מעכבי הנקבים שנסתמו אף ע&quot;ג דנשתייר רוב שלם הוי פסול דהוי שופר ודבר אחר ואי לא נשתייר רובו שלם אף ע&quot;ג דלא מעכב השתא את התקיעה נמי פסול דהוה כדבק שברי שופרות דפסול דשופר אחד אמר רחמנא ולא ב׳ או ג׳. קדחו בזכרותו שהוא עצם הבולט מן הראש ונכנס לתוכו ומוציאין אותו והוא לא הוציאו אלא נקב את הזכרות כשר שמין במינו אינו חוצץ והוי הקול מן השופר. והא דמין במינו אינו חוצץ ילפי׳ מדבעינן בכלי שרת לקיחה ממש דכתיב ולקח והיינו המזרק שבו הדם ואי הוי מזרק תוך מזרק לא הוי חציצה דהוי דרך שירות כדנילף במצות לולב. דבק שברי שופרות עד שהשלימו לאחד פסול דהוה ליה ב׳ או ג׳ שופרות וקרא שופר קאמר. הוסיף עליו כל שהוא בין במינו בין שלא במינו פסול דהוה ליה שני שופרות. צפהו זהב מבפנים או במקום הנחת פיו פסול ואם מבחוץ אם נשתנה קולו מכמות שהיה נמי פסול טעמא דכולם לפי שאין הקול קול שופר אלא קול זהב ואם לא נשתנה קולו כשצפהו מבחוץ כשר דקול שופר הוי. וטעמא דפסול כשצפהו במקום הנחת פה דאינו מגיע פיו לשופר וכתיב והעברת דמשמע דהוא עצמו מעביר הקול בשופר והיינו כשמגיע לשופר. נתן שופר בתוך שופר אם קול פנימי שמע יצא דחיצון כמאן דליתיה אבל אם שמע קול חיצון לא יצא שהקול יוצא באויר שבין חיצון לפנימי והיינו ב׳ או ג׳ שופרות. הרחיב את הקצר וקיצר את הרחב פסול דכתיב והעברת ובעינן דרך העברתו כדרך שהאיל מעבירו בראשו בבהמה מחיים היה ארוך וקצרו כשר דלא תימא דפסול משום דכתיב והעברת שופר אלא כיון דאית ביה שיעור כשר. גרדו בין מבפנים בין מבחוץ אפילו העמידו על גלדו כשר דאכתי שופר הוי. וכל הקולות כשר בשופר והעברת קול שופר הוא דבעינן לא שנא דק או עבה או צח כשר. התוקע לתוך הבור או המערה או חבית גדולה העומדים בפנים יצאו דשמעו קול שופר אבל עומדים בחוץ לא יצאו אי דשמעו קול הברה ואנן בעינן קול שופר לחוד:</p>
               </div>
             </div>
@@ -348,8 +369,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-1">Mishneh Torah, Shofar, Sukkah and Lulav 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכּל חַיָּבִין לִשְׁמֹעַ קוֹל שׁוֹפָר כֹּהֲנִים לְוִיִּים וְיִשְׂרְאֵלִים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. אֲבָל נָשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִין. מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין וְטֻמְטוּם וְאַנְדְּרוֹגִינוּס חַיָּבִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל </strong> חייבים לשמוע קול שופר כהנים לוים וישראלים. דלא תימא כהנים לוים דליתנהו במצות יובל דמוכרים לעולם וגואלים לעולם ליתנהו נמי בתקיעת שופר קמ&quot;ל דנהי דליתנהו בכל דין השמטת קרקע אבל בהשמטת כספים ושילוח עבדים איתנהו ולהכי איתנהו נמי בתקיעת שופר. וגרים ועבדים משוחררים נמי דחייבים בכל המצות אבל נשים ועבדים וקטנים פטורים משום דהוי מצות עשה שהזמן גרמה וכל מצות עשה שהזמן גרמה נשים פטורות. כדילפינן מתפילין דכתיב בהו למען תהיה תורת ה׳ בפיך הוקשה כל התורה לתפילין מה תפילין מצות עשה שהזמן גרמה דכתיב מימים ימימה ונשים פטורות דאיתקוש תפילין לתלמוד תורה דכתיב ושננתם וקשרתם ונשים פטורות מתלמוד תורה דכתיב לבניך הכי נמי דתפילין ואיתקש כל התורה כולה במצות עשה שהזמן גרמה לתפילין כדאמר. ועבדים אתקשו לאשה בגזירה שוה דלה לה כתיב באשה וכתב לה ספר כריתות וכתיב בשפחה חרופה או חפשה לא ניתן לה מה אשה פטורה ממצות עשה שהזמן גרמה אף עבדים וקטנים דלאו בני חיוב מצוה נינהו. מי שחציו עבד וחציו בן חורין וטומטום ואנדרוגינוס חייבים טומטום שמא זכר הוא ואנדרוגינוס נמי דבריה בפני עצמה היא ולאו אשה הוא. השומע תקיעת שופר ממי שאינו חייב לא יצא דתוקע ושומע כולהו מחד קרא נפקין וכי היכי דשומע בר חיוב הכי נמי תוקע. אנדרוגינוס מוציא את מינו ולא שאינו מינו דאף על גב דהוי חייב לא מפיק לאנשים דהוו ודאי בני חיובא. טומטום אפילו מינו אינו מוציא דשמא השומע זכר והיא נקבה לכשקרע ומי שחציו עבד אפילו עצמו אינו מוציא דלא אתי צד עבדות שבו ומפיק צד חירות שבו וכיצד יצא ידי חובתו שישמע מבן חורין שיתקע לו דבין בתקיעה בין בשמיעה נפיק איניש ידי חובתיה דקרא קאמר יום תרועה ולא קפיד אתוקע או אשומע אלא בחד מתרי גווני נפיק.</p>
               </div>
             </div>
@@ -364,8 +390,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-4">Mishneh Torah, Shofar, Sukkah and Lulav 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּתְעַסֵּק בִּתְקִיעַת שׁוֹפָר לְהִתְלַמֵּד לֹא יָצָא יְדֵי חוֹבָתוֹ. וְכֵן הַשּׁוֹמֵעַ מִן הַמִּתְעַסֵּק לֹא יָצָא. נִתְכַּוֵּן שׁוֹמֵעַ לָצֵאת יְדֵי חוֹבָתוֹ וְלֹא נִתְכַּוֵּן הַתּוֹקֵעַ לְהוֹצִיאוֹ אוֹ שֶׁנִּתְכַּוֵּן הַתּוֹקֵעַ לְהוֹצִיאוֹ וְלֹא נִתְכַּוֵּן הַשּׁוֹמֵעַ לָצֵאת לֹא יָצָא יְדֵי חוֹבָתוֹ. עַד שֶׁיִּתְכַּוֵּן שׁוֹמֵעַ וּמַשְׁמִיעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המתעסק </strong> בתקיעת שופר להתלמד לא יצא ידי חובתו ונראה דכוונת שומע ומשמיע דבעינן למאן דאמר מצות צריכות כוונה היינו מדרבנן.</p>
               </div>
             </div>
@@ -380,8 +411,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-6">Mishneh Torah, Shofar, Sukkah and Lulav 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם טוֹב שֶׁל רֹאשׁ הַשָּׁנָה שֶׁחָל לִהְיוֹת בְּשַׁבָּת אֵין תּוֹקְעִין בַּשּׁוֹפָר בְּכָל מָקוֹם. אַף עַל פִּי שֶׁהַתְּקִיעָה מִשּׁוּם שְׁבוּת וּמִן הַדִּין הָיָה שֶׁתּוֹקְעִין יָבוֹא עֲשֵׂה שֶׁל תּוֹרָה וְיִדְחֶה שְׁבוּת שֶׁל דִּבְרֵיהֶם. וְלָמָּה אֵין תּוֹקְעִין גְּזֵרָה שֶׁמָּא יִטְּלֶנּוּ בְּיָדוֹ וְיוֹלִיכֶנּוּ לְמִי שֶׁיִּתְקַע לוֹ וְיַעֲבִירֶנּוּ אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים. אוֹ יוֹצִיאוֹ מֵרְשׁוּת לִרְשׁוּת וְיָבוֹא לִידֵי אִסּוּר סְקִילָה. שֶׁהַכּל חַיָּבִים בִּתְקִיעָה וְאֵין הַכּל בְּקִיאִין לִתְקֹעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>י&quot;ט </strong> של ראש השנה שחל להיות בשבת תוקעין מדאוריתא אלא שחכמים העמידו דבריהם לעשות גדר שלא יבא לידי איסור סקילה:</p>
               </div>
             </div>
@@ -397,8 +433,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-3-1">Mishneh Torah, Shofar, Sukkah and Lulav 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה תְּקִיעוֹת חַיָּב אָדָם לִשְׁמֹעַ בְּרֹאשׁ הַשָּׁנָה. תֵּשַׁע תְּקִיעוֹת. לְפִי שֶׁנֶּאֱמַר תְּרוּעָה בְּיוֹבֵל וּבְרֹאשׁ הַשָּׁנָה שָׁלֹשׁ פְּעָמִים. וְכָל תְּרוּעָה פְּשׁוּטָה לְפָנֶיהָ וּפְשׁוּטָה לְאַחֲרֶיהָ. וּמִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁכָּל תְּרוּעוֹת שֶׁל חֹדֶשׁ הַשְּׁבִיעִי אֶחָד הֵן. בֵּין בְּרֹאשׁ הַשָּׁנָה בֵּין בְּיוֹם הַכִּפּוּרִים שֶׁל יוֹבֵל תֵּשַׁע תְּקִיעוֹת תּוֹקְעִין בְּכָל אֶחָד מִשְּׁנֵיהֶן. תְּקִיעָה וּתְרוּעָה וּתְקִיעָה. תְּקִיעָה וּתְרוּעָה וּתְקִיעָה. תְּקִיעָה וּתְרוּעָה וּתְקִיעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כמה </strong> תקיעות חייב אדם לשמוע בראש השנה תשע. לפי שנאמרה תרועה ביובל ובראש השנה ג׳ פעמים וכל תרועה פשוטה לפניה ופשוטה לאחריה דכתיב והעברת שופר תרועה הרי פשוטה לפניה תעבירו שופר הרי פשוטה לאחריה ומפי השמועה למדו שכל תרועה של חדש השביעי אחד הן בין בראש השנה בין ביובל של יום הכיפורים שאין ת&quot;ל בחדש השביעי דהא ידענא דיום כיפור בחדש השביעי הוא אלא אתא לאשמועינן דכל תרועות של חדש השביעי זה כזה. ומנין לג׳ של שלש שלש דכתיב תרועה ג׳ פעמים בר&quot;ה וביובל ומנין ליתן האמור של זה בזה ת&quot;ל שביעי שביעי לג&quot;ש נאמר בראש השנה בחדש השביעי ונאמר ביובל והעברת שופר תרועה בחדש השביעי הא כיצד ג׳ שהן תשע והשתא דאתי בג&quot;ש הקשה דלעיל לתקיעה לפניה ולאחריה לא צריך. תרועה האמורה בתורה מספקא לן אם היא היללה או האנחה או שניהן כאחד האנחה והיללה שדרכה לבא אחריה ולכך אנו עושים הכל לצאת מידי ספק תרועה דמתרגמא יבבא ובאימיה דסיסרא כתיב נשקפה ותיבב והיינו או גנוחי גנחה או ילולי יללה. נמצא מנין התקיעות ל׳ כדי לצאת מכל ספק ובסימן תשר&quot;ת היה נראה לומר שהיה יוצא ידי ספק מדאוריתא דההפסקה נראה דהוי דרבנן אלא דאפשר דאהפסקה נמי חיישינן מדאוריתא ולא נפיק ידי חובתיה דכתיב והעברת ותעבירו דמינייהו ילפינן פשוטה לפניה ולאחריה ומשמע לפניה דוקא ולאחריה דוקא בלא הפסק שום תקיעה בנתים והכא דאיכא הפסק בין תקיעה ראשונה ליבבא אי תרועה דקרא הוי יבבות לא נפיק ידי חובתיה מדאוריתא דהא דאמר שמע ט׳ תקיעות בט׳ שעות יצא שאני הכא דהפסיק בתקיעה אחרת לשם מצוה כדכתב הרמב&quot;ן ז&quot;ל. שיעור תרועה כשתי תקיעות למאן דסבירא להו שיעור תקיעה אחד כתרועה אפשר דילפינן ליה מדכתיב והעברת שופר תרועה דמשמע שתהא העברה כשיעור התרועה ולפי׳ הרב ז&quot;ל נראה דהכי קים להו דשיעור תרועה כשתי תקיעות והוי בכלל שיעורין הל&quot;מ והכי נמי שיעור ג׳ שברים כתרועה ואף על גב דתקיעה אית לה שיעור כדאמר אם האריך בה כשתים לא עלתה לו אלא אחת דלמעלה לית בה שיעור דפסוקי תקיעתה בעינן דבכל תרועה בעינן העברה חדא בתחלה וחדא בסוף כדילפינן והאי כולה חדא היא. שמע ט׳ תקיעות בט׳ שעות ביום יצא כיון ששמען כסדרן אבל שמען מט׳ בני אדם כאחד לא יצא דבעינן תקיעה לפני התרועה ואחריה והכא כולהו הוו בבת אחת ואינו יוצא ידי חובתו עד שישמע כל הט׳ תקיעות כדילפינן דכולהו חדא מצוה נינהו ואית דאמר בגמרא דחד מדאוריתא ותרי מדברי סופרים דקראי דוהעברת שופר תרועה ויום תרועה יהיה לכם לתלמודו הוא בא כדאיתא התם. ויש במצוה זו ציוויין ואזהרות מדרבנן סמוכים אלא תסור ואקרא דושמרתם את משמרתי ורובן יש להן סמך מן המקרא בברכות של ראש השנה:</p>
               </div>
             </div>
@@ -414,8 +455,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-1">Mishneh Torah, Shofar, Sukkah and Lulav 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שִׁעוּר הַסֻּכָּה גָּבְהָהּ אֵין פָּחוֹת מֵעֲשָׂרָה טְפָחִים וְלֹא יָתֵר עַל עֶשְׂרִים אַמָּה. וְרָחְבָּהּ אֵין פָּחוֹת מִשִּׁבְעָה טְפָחִים עַל שִׁבְעָה טְפָחִים. וְיֵשׁ לוֹ לְהוֹסִיף בְּרָחְבָּהּ אֲפִלּוּ כַּמָּה מִילִין. הָיְתָה פְּחוּתָה מֵעֲשָׂרָה אוֹ מִשִּׁבְעָה עַל שִׁבְעָה אוֹ גְּבוֹהָה מֵעֶשְׂרִים אַמָּה כָּל שֶׁהוּא הֲרֵי זוֹ פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה מב </strong> לישב בסוכה כל ז׳ ימי החג דכתיב בסוכות תשבו ז׳ ימים. שיעור הסוכה גובהה אין פחות מעשרה טפחים ולא יתר על עשרים אמה ורחבה אין פחות משבעה טפחים על שבעה טפחים. גובהה אין פחות מעשרה ילפינן דעד עשרה הוא דחשיב רשות ובפחות מעשרה חלל לא חשיב סכך דכתיב בבית עולמים והבית אשר בנה שלמה שלשים אמה קומתו וכתיב קומת הכרוב האחד עשר אמות וכן הכרוב השני ותניא מה מצינו בבית עולמים כרובים בשליש הבית הן עומדים משכן נמי כרובים בשליש הבית הן עומדין ומשכן כמה הוי עשר אמות דכתיב עשר אמות אורך הקרש כמה הוי להו שיתין פושכיה תילתא כמה הוי עשרים פושכי נמצא גובה הכרובים של משכן כלה לסוף עשרים טפחים מן הארץ והם עומדים על הכפורת דל עשרה דארון וכפורת דארון הוי ט׳ דכתיב אמה וחצי קומתו וכפורת טפח דכתיב אל פני הכפורת ואין פני פחות מטפח פשו להו עשרה לכרובים וכתיב ויהיו הכרובים פורשי כנפים למעלה סוככים בכנפיהם על הכפורת אלמא מכנפיהם ולמטה עד הכפורת והוי סכך וכנפיהן למעלה לגובהן היו פרוסות אלמא תחת כנפיהם עשרה טפחים חלל וקרי ליה סוכה ולא תימא דגדנפייה להדי רישייהו דהוי ליה עשרה טפחים עם עובי הכנפים אלא עילויה רישייהו פרסי׳ גדנפייהו דלמעלה כתיב והוו ליה חללה עשרה אלמא דכל פחות מעשרה חלל לאו סכך הוא. ולא יתר על עשרים אמה דאמר רבה כתיב בסוכות תשבו שבעת ימים אמרה תורה צא מדירת קבע ושב בדירת עראי עד עשרים אמה אדם עושה דירתו דירת עראי למעלה מעשרים אמה אין אדם עושה דירתו דירת עראי אלא דירת קבע שצריך לעשות יתדותיה ומחיצותיה חזקים וקבועים שלא תפול ואנן דירת עראי בעינן כדכתיב בסוכות תשבו שבעת ימים עשה סוכה לשבעה והיינו עראי. ורחבה אין פחות משבעה טפחים על ז׳ טפחים מדאוריתא בכלל שיעורין דהוו הלכה למשה מסיני. היתה פחותה מעשרה או מז׳ על שבעה או יותר מעשרים אמה פסולה כדאמר.</p>
               </div>
             </div>
@@ -430,8 +476,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-2">Mishneh Torah, Shofar, Sukkah and Lulav 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שֶׁאֵין לָהּ שָׁלֹשׁ דְּפָנוֹת פְּסוּלָה. הָיוּ לָהּ שְׁתֵּי דְּפָנוֹת גְּמוּרוֹת זוֹ בְּצַד זוֹ כְּמִין גַּ&quot;ם עוֹשֶׂה דֹּפֶן שֶׁיֵּשׁ בְּרָחְבּוֹ יֶתֶר עַל טֶפַח וּמַעֲמִידוֹ בְּפָחוֹת מִשְּׁלֹשָׁה סָמוּךְ לְאֶחָד מִשְּׁתֵּי הַדְּפָנוֹת וְדַיּוֹ. וְצָרִיךְ לַעֲשׂוֹת לָהּ צוּרַת פֶּתַח מִפְּנֵי שֶׁאֵין לָהּ שָׁלֹשׁ דָּפְנוֹת גְּמוּרוֹת. וּכְבָר בֵּאַרְנוּ בְּהִלְכוֹת שַׁבָּת שֶׁצּוּרַת פֶּתַח הָאָמוּר בְּכָל מָקוֹם אֲפִלּוּ קָנֶה מִכָּאן וְקָנֶה מִכָּאן וְקָנֶה עַל גַּבֵּיהֶן אַף עַל פִּי שֶׁאֵינוֹ מַגִּיעַ לָהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה </strong> שאין לה שלשה דפנות פסולה היו לה שנים גמורות זו בצד זו כמין גם עושה דופן שיש ברוחבו יותר על טפח ומעמידו בפחות משלשה סמוך לאחד משתי הדפנות. דכתיב בסכת בסכת בסוכות בסכת תשבו ישבו בסכת כי בסכות הושבתי חד מלא ותרין חסרין דיש אם למסורת דמה שמסר משה בספר תורה לישראל היא האם והעיקר לא כמו שהוא נקרא הרי כאן ארבע. (כ)[ד]ל חד לגופיה דאין דורשין תחלת פסוק הנאמר ראשון אינו לדרשה אלא למשמעו אתא פשו להו תלתא שתים כהלכתן מזרחית דרומית ומערבית וצפונית כשיעור משך סוכה ז׳ טפחים ושלישית אפילו טפח דאתאי הלכתא דמחיצין דאמרן דהוו הלכה למשה מסיני למיגרעיה לדופן ג׳ של סוכה ולאוקומא אטפח. ונראה דמדאוריתא סגי בטפח מצומצם סמוך לאחד מהדפנות ואפילו בסוכה העשויה כמבוי דמיקרו נמי כי האי גונא כהלכתן דהא הלכתא אוקמיה אטפח בכל מקום שיהיה. קנים שיוצאים מסכך הסוכה לפני הסוכה ודופן אחד נמשכת עמהן כשרה דהוי מן הסוכה והוי כשתים כהלכתן וג׳ אפילו טפח דלא ממשכא עד הרביעית וכשרה.</p>
               </div>
             </div>
@@ -446,8 +497,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-4">Mishneh Torah, Shofar, Sukkah and Lulav 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּפָנוֹת שֶׁהָיוּ דְּבוּקוֹת בְּגַג הַסֻּכָּה וְלֹא הָיוּ מַגִּיעוֹת לָאָרֶץ אִם הָיוּ גְּבוֹהוֹת מִן הָאָרֶץ שְׁלֹשָׁה טְפָחִים פְּסוּלָה. פָּחוֹת מִכֵּן כְּשֵׁרָה. הָיוּ הַדְּפָנוֹת דְּבוּקוֹת לָאָרֶץ וְלֹא הָיוּ מַגִּיעוֹת לַסְּכָךְ אִם גְּבוֹהוֹת עֲשָׂרָה טְפָחִים אַף עַל פִּי שֶׁהֵן רְחוֹקִין מִן הַגַּג כַּמָּה אַמּוֹת כְּשֵׁרָה וּבִלְבַד שֶׁיִּהְיוּ הַדְּפָנוֹת מְכֻוָּנוֹת תַּחַת שְׂפַת הַגַּג. הִרְחִיק אֶת הַגַּג מִן הַדֹּפֶן שְׁלֹשָׁה טְפָחִים פְּסוּלָה. פָּחוֹת מִכֵּן כְּשֵׁרָה. תָּלָה מְחִצָּה שֶׁגְּבוֹהָה אַרְבָּעָה וּמַשֶּׁהוּ בְּאֶמְצַע בְּפָחוֹת מִשְּׁלֹשָׁה סָמוּךְ לָאָרֶץ וּבְפָחוֹת מִשְּׁלֹשָׁה סָמוּךְ לַגַּג הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דפנות </strong> שלא היו מגיעות לארץ אם היו גבוהות מן הארץ ג׳ טפחים פסולה דהוה ליה סוכה בלא דפנות אבל תוך שלשה כלבוד דמי דהוי הלכתא למשה מסיני. היו מגיעות לארץ ולא לסכך כל שהדפנות גבוהות עשרה טפחים ומכוונת נגד הסכך כשרה אע&quot;ג דמרחקי מן הגג כמה אמות דהא הוי הני דפנות לסוכה אבל אם אינם מכוונות לסכך אלא דמרחקי שלשה טפחים מכנגד הסכך פסולה דאויר ג׳ פוסל בסכך ואפילו מן הצד. תלה מחיצה ד׳ ועשהו בפחות משלשה סמוך לארץ ולגג כשרה דתרי לבוד נמי אמרינן דהלכתא היא בין (חרבין) [חד בין] תרי. העושה סוכתו בין האילנות והאילנות דפנות לה ואותם הדפנות הם יכולים לעמוד ברוח מצויה כשרה אבל אינם עומדים ברוח מצויה פסולה דלא הוו מחיצה דכל מחיצה שאינה עומדת ברוח מצויה לאו שמה מחיצה דבעינן מחיצות מגיעות לתוך ג׳ לארץ ומכוונות לסכך והאי דפנות הואיל ונעין ונדין על ידי רוח מצויה דיבשה לאו הכי הוו.</p>
               </div>
             </div>
@@ -462,8 +518,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-6">Mishneh Torah, Shofar, Sukkah and Lulav 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹשֶׂה סֻכָּתוֹ בְּרֹאשׁ הָעֲגָלָה אוֹ בְּרֹאשׁ הַסְּפִינָה כְּשֵׁרָה וְעוֹלִין לָהּ בְּיוֹם טוֹב. בְּרֹאשׁ הָאִילָן אוֹ עַל גַּבֵּי הַגָּמָל כְּשֵׁרָה וְאֵין עוֹלִין לָהּ בְּיוֹם טוֹב. לְפִי שֶׁאָסוּר לַעֲלוֹת בְּיוֹם טוֹב בָּאִילָן אוֹ עַל גַּבֵּי בְּהֵמָה. הָיוּ מִקְצָת הַדְּפָנוֹת עֲשׂוּיוֹת בִּידֵי אָדָם וּמִקְצָתָן אִילָנוֹת רוֹאִין כָּל שֶׁאִלּוּ נִטְּלוּ הָאִילָנוֹת הִיא יְכוֹלָה לַעֲמֹד בַּדְּפָנוֹת שֶׁבִּידֵי אָדָם עוֹלִין לָהּ בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה </strong> סוכתו בראש העגלה או בראש הספינה כשרה. והכי נמי בראש האילן או על גבי גמל כשרה מדאוריתא דסוכה דירת עראי בעינן כדילפינן מקרא דבסוכות תשבו שבעת ימים.</p>
               </div>
             </div>
@@ -478,8 +539,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-7">Mishneh Torah, Shofar, Sukkah and Lulav 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שֶׁאֵין לָהּ גַּג פְּסוּלָה. כֵּיצַד. כְּגוֹן שֶׁהָיוּ רָאשֵׁי הַדְּפָנוֹת דְּבוּקוֹת זוֹ בָּזוֹ כְּמִין צְרִיף. אוֹ שֶׁסָּמַךְ רֹאשׁ הַדֹּפֶן שֶׁל סֻכָּה לַכֹּתֶל. אִם הָיָה לָהּ גַּג אֲפִלּוּ טֶפַח. אוֹ שֶׁהִגְבִּיהַּ הַדֹּפֶן הַסָּמוּךְ לַכֹּתֶל מִן הַקַּרְקַע טֶפַח הֲרֵי זוֹ כְּשֵׁרָה. סֻכָּה עֲגֻלָּה אִם יֵשׁ בְּהֶקֵּפָהּ כְּדֵי לְרַבֵּעַ בָּהּ שִׁבְעָה טְפָחִים עַל שִׁבְעָה טְפָחִים אַף עַל פִּי שֶׁאֵין לָהּ זָוִיּוֹת הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה </strong> שאין לה גג פסולה והיא העשויה כמין צריף או שסמכה לכותל ואם היה לה גג טפח או שהגביה מן הקרקע טפח הרי זו כשרה דכיון דאיכא טפח דגג שוה מסיכוך כשר שאר שיפוע תשלום ז׳ טפחים חשיב ליה גג והכי נמי הגביה מן הקרקע טפח ההוא טפח חשיב בכותלים של סוכה בשיפוע תשלום עשרה טפחים ושאר השיפוע חשיב ליה גג ונראה דהכי גמירי לה ולמחיצה דכל שיש טפח שוה בין בגג בין במחיצה חשיב ליה לשיפוע מחיצה. סוכה עגולה שיש לרבע בה ז׳ על ז׳ טפחים כשרה דכיון דילפינן סוכה דירת עראי לא בעינן זויות.</p>
               </div>
             </div>
@@ -494,8 +560,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-8">Mishneh Torah, Shofar, Sukkah and Lulav 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכֵּךְ עַל גַּבֵּי אַכְסַדְרָה שֶׁיֵּשׁ לָהּ פְּצִימִין בֵּין שֶׁהָיוּ נִרְאִין מִבִּפְנִים וְאֵין נִרְאִין מִבַּחוּץ בֵּין שֶׁהָיוּ נִרְאִין מִבַּחוּץ וְאֵין נִרְאִין מִבִּפְנִים כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך </strong> על גבי אכסדרה שיש לה פצימין שהם עומדים בולטים ברוח ג׳ אפילו אין נראין מבחוץ או מבפנים כשרה דאמרינן פי תקרה יורד וסותם דהיינו גוד אחית דאמרן דאתאי הלכתא דמחיצין לגוד ולבוד ודופן עקומה ואע&quot;ג דהאי פי תקרה לגגות הוא דעבידה ולא לאוירה כיון דאית בה הני תרי פצימי אמרינן גוד אחית אבל ליכא פצימי לא אמרינן משום דהאי תקרה לאו לאוירה עבידה וכי אגמריה רחמנא למשה גוד אחית במחיצה העשויה לחלל שלה גמירי.</p>
               </div>
             </div>
@@ -510,8 +581,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-10">Mishneh Torah, Shofar, Sukkah and Lulav 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכֵּךְ עַל גַּבֵּי מָבוֹי שֶׁיֵּשׁ לוֹ לֶחִי אוֹ עַל גַּבֵּי בְּאֵר שֶׁיֵּשׁ לָהּ פַּסִּין הֲרֵי זוֹ סֻכָּה כְּשֵׁרָה לְאוֹתָהּ שַׁבָּת שֶׁבְּתוֹךְ הֶחָג בִּלְבַד. מִתּוֹךְ שֶׁלֶּחִי זֶה וּפַסִּין אֵלּוּ מְחִצּוֹת לְעִנְיַן שַׁבָּת נַחְשֹׁב אוֹתָן כִּמְחִצּוֹת לְעִנְיַן סֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך </strong> על גבי מבוי שיש לו לחי או על גבי פסי ביראות כשרה אף על גב דלסוכה בעינן שנים כהלכתן ושלישית אפילו טפח הכא כיון דלחי ופסי ביראות הוו מחיצה לשבת מהני לכל מה שצריך מחיצה לאותה שבת דהרי מחיצה היא עכשיו.</p>
               </div>
             </div>
@@ -526,8 +602,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-11">Mishneh Torah, Shofar, Sukkah and Lulav 4:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָעַץ אַרְבָּעָה קֻנְדִּיסִין עַל אַרְבַּע זָוִיּוֹת הַגַּג וְסִכֵּךְ עַל גַּבָּן הוֹאִיל וְהַסִּכּוּךְ עַל שְׂפַת הַגַּג כָּשֵׁר וְרוֹאִין אֶת הַמְּחִצּוֹת הַתַּחְתּוֹנוֹת כְּאִלּוּ הֵן עוֹלוֹת לְמַעְלָה עַל שְׂפַת הַסִּכּוּךְ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נעץ </strong> ד׳ קונדסין על ד׳ זויות הגג וסכך על גבן על שפת הגג כשרה דאמרינן גוד אחית מחיצתה דהלכתא דמחיצה אתא לגוד בין גוד אחית בין גוד אסיק.</p>
               </div>
             </div>
@@ -542,8 +623,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-12">Mishneh Torah, Shofar, Sukkah and Lulav 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שֶׁיֵּשׁ לָהּ פְּתָחִים רַבִּים וְיֵשׁ בִּכְתָלֶיהָ חַלּוֹנוֹת הַרְבֵּה הֲרֵי זוֹ כְּשֵׁרָה. וְאַף עַל פִּי שֶׁפָּרוּץ מְרֻבֶּה עַל הָעוֹמֵד. וּבִלְבַד שֶׁלֹּא יִהְיֶה שָׁם פֶּתַח יֶתֶר עַל עֶשֶׂר. אֲבָל אִם הָיָה שָׁם פֶּתַח יֶתֶר עַל עֶשֶׂר אַף עַל פִּי שֶׁיֵּשׁ לָהּ צוּרַת פֶּתַח צָרִיךְ שֶׁלֹּא יִהְיֶה הַפָּרוּץ מְרֻבֶּה עַל הָעוֹמֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרוץ </strong> מרובה על העומד הותר בסוכה משום דסגי לה בשתים כהלכתן ושלישית אפילו טפח ואפילו הוי פתחים בשתי הדפנות אחד או שנים דכי מצרפה להו בהדי שתי דפנות הפרוצות הוה ליה פרוץ מרובה ושריה מה שאין כן בשבת דבעינן שלש מחיצות שלימות.</p>
               </div>
             </div>
@@ -558,8 +644,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-13">Mishneh Torah, Shofar, Sukkah and Lulav 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שֶׁאֲוִירָהּ גָּבוֹהַּ מֵעֶשְׂרִים אַמָּה וּמִעֲטָהּ בְּכָרִים וּכְסָתוֹת אֵינוֹ מִעוּט וַאֲפִלּוּ בִּטְּלָם. מִעֲטָהּ בְּתֶבֶן וּבִטְּלוֹ הֲרֵי זֶה מִעוּט. וְאֵין צָרִיךְ לוֹמַר עָפָר וּבִטְּלוֹ. אֲבָל בֶּעָפָר סְתָם אֵינוֹ מִעוּט. הָיְתָה גְּבוֹהָה מֵעֶשְׂרִים אַמָּה וְהוּצִין יוֹרְדִין לְתוֹךְ עֶשְׂרִים אִם הָיְתָה צִלָּתָן מְרֻבָּה מֵחֲמָתָן יֵחָשְׁבוּ כְּגַג עָבֶה וּכְשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה </strong> שאוירה גבוה מעשרים אמה ומיעטה בכרים וכסתות אינו מיעוט ואפילו בטלם שאין סוף להניחם שם כל שבעה מפני הפסד ממונו ואפילו בטלינהו בטלה דעתו אצל כל אדם והרי חללה יותר מעשרים. תבן ואין צריך לומר עפר ובטלם הוי מיעוט. היתה גבוהה מעשרים והוצין יורדין לתוך כ׳ אם צלתן מרובה מחמתן יחשבו כגג עבה וכשרה דסוכ׳ דמשמע סכך לא מיקרי אלא בצלתו מרובה מחמתו. בנה בה איצטבה באמצע אם יש משפת האצטבה ולכותל פחות מארבע אמות כשרה דאמר דופן עקומה דהיא בכלל מחיצין הלכה למשה מסיני דאתי לגוד וללבו׳ ולדופן עקומה דרואין כאלו המחיצות נוגעות באצטבה והרי נתמעט חלל מתחתיו ובשיש באצטבה שיעור סוכה בנה בה עמוד ויש בו הכשר סוכה פסולה דלא אמרינן גוד אסיק כי האי גוונא דליכא מחיצות ניכרות ונמצא על גב העמוד סכך כשר בלא מחיצות.</p>
               </div>
             </div>
@@ -574,8 +665,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-15">Mishneh Torah, Shofar, Sukkah and Lulav 4:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה פְּחוּתָה מֵעֲשָׂרָה וְחָקַק בָּהּ לְהַשְׁלִימָהּ לַעֲשָׂרָה. אִם יֵשׁ מִשְּׂפַת חֲקָק וְלַכֹּתֶל שְׁלֹשָׁה טְפָחִים פְּסוּלָה. פָּחוֹת מִכֵּן כְּשֵׁרָה. שֶׁכָּל פָּחוֹת מִשְּׁלֹשָׁה הֲרֵי הוּא כְּדָבוּק כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת שַׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה </strong> פחותה מעשרה וחקק בה להשלימה לעשרה אם יש משפת חקק ולכותל ג׳ טפחים פסולה דלא הוי לבוד וליכא דפנות ואנן דפנות בעינן פחות מכאן כשרה דאמרינן לבוד דהוא הלכתא בכלל מחיצין הלכה למשה מסיני.</p>
               </div>
             </div>
@@ -590,8 +686,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-4-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-16">Mishneh Torah, Shofar, Sukkah and Lulav 4:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּפְנֵי סֻכָּה כְּשֵׁרִין מִן הַכּל שֶׁאֵין אָנוּ צְרִיכִין אֶלָּא מְחִצָּה מִכָּל מָקוֹם וַאֲפִלּוּ מִבַּעֲלֵי חַיִּים. וְעוֹשֶׂה אָדָם אֶת חֲבֵרוֹ דֹּפֶן בְּיוֹם טוֹב כְּדֵי שֶׁיֹּאכַל וְיִשְׁתֶּה וְיִישַׁן בְּסֻכָּה כְּשֵׁרָה שֶׁחֲבֵרוֹ דֹּפֶן לָהּ. וְהוּא שֶׁיַּעֲשֶׂה אוֹתוֹ שֶׁלֹּא לְדַעַת זֶה שֶׁנַּעֲשָׂה דֹּפֶן. אֲבָל אִם עֲשָׂהוּ לְדַעַת אָסוּר בְּיוֹם טוֹב וּמֻתָּר בִּשְׁאָר יְמֵי הֶחָג. וְכֵן עוֹשֶׂה בְּכֵלִים דֹּפֶן רְבִיעִית בְּיוֹם טוֹב. אֲבָל דֹּפֶן שְׁלִישִׁית לֹא יַעֲשֶׂה אוֹתָהּ בְּכֵלִים בְּיוֹם טוֹב לְפִי שֶׁהוּא מַכְשִׁיר הַסֻּכָּה וְאֵין עוֹשִׂין אֹהֶל עֲרַאי בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דופני </strong> סוכה כשרים מן הכל שאין אנו צריכים אלא מחיצה מכל מקום והני גמירי לה למחיצה ואפילו מבעלי חיים ועושה אדם את חברו דופן ביו&quot;ט וכן מכלים דאהל עראי לא אסור מדאוריתא:</p>
               </div>
             </div>
@@ -607,8 +708,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-1">Mishneh Torah, Shofar, Sukkah and Lulav 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַסְכָךְ שֶׁל סֻכָּה אֵינוֹ כָּשֵׁר מִכָּל דָּבָר. אֵין מְסַכְּכִין אֶלָּא בְּדָבָר שֶׁגִּדּוּלוֹ מִן הָאָרֶץ שֶׁנֶּעֱקַר מִן הָאָרֶץ וְאֵינוֹ מְקַבֵּל טֻמְאָה וְאֵין רֵיחוֹ רַע וְאֵינוֹ נוֹשֵׁר וְאֵינוֹ נוֹבֵל תָּמִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מסככין אלא בדבר שגידולו מן הארץ שנעקר מן הארץ ואינו מקבל טומאה. למאן דסבר כי בסוכות הושבתי את בני ישראל ענני כבוד היו סוכות שהושיבן במדבר בסוכות הושבתי מתרגמינן במטלות ענני יליף לה מדכתיב ואיד יעלה מן הארץ והשקה וגו׳ מה איד דבר שאינו מקבל טומאה דלא נאמרה טומאה אלא בכלים ואוכלים ומשקין ואדם וזה אינו אחד מאלה אף סוכה דבר שאינו מקבל טומאה ומה איד גידולו מן הארץ ונעקר ממנה כדכתיב ואיד יעלה מן הארץ. ואמרו בבראשית רבה על דעתיה דר&quot;ל דיליף מואיד יעלה מן הארץ דמי לאדם אחד שאמר לחברו תן לי סאה חטין אמר לו הבא קופתך וטול כך אמר הקב&quot;ה לארץ אייתי עננים וקביל מטרא. ולמאן דאמ׳ סוכות ממש מפני החמה בשעת חנייתן עשו להם יליף לה להא מילתא מדכתיב חג הסוכות תעשה לך באספך מגרנך ומיקבך בפיסולת גורן ויקב הכתוב מדבר פסולת גורן קשי תבואה פסולת יקב זמורות ואשכולות ריקנין דכתיב מגרנך ומיקבך ולא גורן ויקב עצמו דמשמע מה שאתה אוספו וניטלו מן הגורן וגורן הוא האוכל ומה שאתה אוסף ובורר מתוכו הוא הפיסולת והני לאו לקבלי טומאה וגידולם מן הארץ ונעקרים ממנה. סיכך בדבר שאין גידולו מן הארץ כגון מיני מתכות ועצמות ועורות או במחובר לארץ כגון שהדלה עליה גפנים וכיוצא בהם או בדבר המקבל טומאה כגון מחצלאות העשויות לשכיב׳ וכיוצא בהן פסולה כדילפינן מקראי כדכתיב.</p>
               </div>
             </div>
@@ -623,8 +729,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-3">Mishneh Torah, Shofar, Sukkah and Lulav 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכְּכָהּ בָּאֳכָלִין פְּסוּלָה מִפְּנֵי שֶׁהֵן מְקַבְּלִין טֻמְאָה. סוֹכֵי תְּאֵנִים וּבָהֶן תְּאֵנִים. פַּרְכִּילֵי עֲנָבִים וּבָהֶם עֲנָבִים. מִכְבָּדוֹת וּבָהֶם תְּמָרִים. וְכֵן כָּל כַּיּוֹצֵא בָּהֶן. רוֹאִין אִם פְּסלֶת מְרֻבָּה עַל הָאֳכָלִין מְסַכְּכִין בָּהֶן וְאִם לָאו אֵין מְסַכְּכִין בָּהֶן. סִכֵּךְ בִּירָקוֹת שֶׁאִם יִבשׁוּ יִבּלוּ וְלֹא יִשָּׁאֵר בָּהֶן מַמָּשׁ אַף עַל פִּי שֶׁהֵן עַתָּה לַחִים הֲרֵי מְקוֹמָן נֶחְשָׁב כְּאִלּוּ הוּא אֲוִיר וּכְאִלּוּ אֵינָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכי </strong> תאנים ובהן תאנים וכן כל כיוצא בהן אם פסולת מרובה על האוכלים מסככין בהן דבטיל מדאוריתא דכתיב אחרי רבים להטות. ירקות שאינן מאכל אדם מסככין בהם מדאוריתא בעודם לחים וחוצצין מדאוריתא בפני הטומאה. ומסככין מדאוריתא אפילו בפשתן שרק ונפץ אותו דאכתי לא מקבל טומאה והרי הוא גידולי קרקע אף על גב שנשתנית צורתו וכן בכל חבלים אפילו בחבלי פשתן מדאוריתא דלא מקבלי טומאה. סיככה בחצים זכרים כשרה בנקבות פסולה דמקבלי טומאה ונראה דהוי דרבנן טומאת בית קיבול העשוי למלאות וצ&quot;ע בהלכות כלים פ&quot;ב.</p>
               </div>
             </div>
@@ -639,8 +750,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-6">Mishneh Torah, Shofar, Sukkah and Lulav 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַחְצֶלֶת קָנִים אוֹ מַחְצֶלֶת גֶּמִי אוֹ חֲלָף. קְטַנָּה סְתָמָה לִשְׁכִיבָה לְפִיכָךְ אֵין מְסַכְּכִין בָּהּ אֶלָּא אִם כֵּן עָשָׂה אוֹתָהּ לְסִכּוּךְ. גְּדוֹלָה סְתָמָה לְסִכּוּךְ לְפִיכָךְ מְסַכְּכִין בָּהּ אֶלָּא אִם כֵּן עָשָׂה אוֹתָהּ לִשְׁכִיבָה. וְאִם יֵשׁ לָהּ קִיר אֲפִלּוּ גְּדוֹלָה אֵין מְסַכְּכִין בָּהּ שֶׁהֲרֵי הִיא כִּכְלִי קִבּוּל. וַאֲפִלּוּ נִטַּל הַקִּיר שֶׁלָּהּ אֵין מְסַכְּכִין בָּהּ מִפְּנֵי שֶׁהִיא כְּשִׁבְרֵי כֵּלִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מחצלת </strong> הקטנה מאי זה דבר שתהיה סתמה לשכיבה וראויה לקבל טומאה לכשישכב בה הזב ולכך אינה ראויה לסיכך כדילפינן לעיל למקבלי טומאה. ומה שהוא טמא מדרס הזב מטמא טמא מת וה&quot;ה לכל הטומאות ואפילו הוא פשוטי כלי עץ דילפינן בק&quot;ו מפץ קנים שראוי לשכיבה שיקבל טומאה מגע במת ומהפכין קטנים של חרס שטהורין בזב דלא חזו לישיבה וכתיב אשר ישב עליו הזב יצא זה שאומרים עמוד ונעשה מלאכתינו ועוד שהן של חרס ולא מטמאו אלא מאוירן ואין יכול להכניס אצבעו לתוכו שפיהן צר ובהיסט נמי לא דכל שאינו מטמא במגע אינו מטמא בהיסט משום דאפקיה רחמנא בלשון נגיעה ואפילו הכי טמאין באוהל המת דכתיב וכל כלי פתוח מפץ שטמא בזב אינו דין שיהא טמא במת. ומחצלת גדולה סתמה לסיכוך אלא אם כן עשאה לשכיבה דראויה לקבל טומאה. ואם יש לה קיר אפילו גדולה אין מסככין בה דהוי כלי קבול וכל שיש לו בית קבול טמאה.</p>
               </div>
             </div>
@@ -655,8 +771,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-8">Mishneh Torah, Shofar, Sukkah and Lulav 5:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תִּקְרָה שֶׁאֵין עָלֶיהָ מַעֲזִיבָה שֶׁהִיא הַטִּיט וְהָאֲבָנִים אֶלָּא נְסָרִין תְּקוּעִין בִּלְבַד הֲרֵי זוֹ פְּסוּלָה שֶׁהֲרֵי לֹא נַעֲשׂוּ לְשֵׁם סֻכָּה אֶלָּא לְשֵׁם בַּיִת. לְפִיכָךְ אִם פִּקְפֵּק הַנְּסָרִים וְהֵנִיד הַמַּסְמְרִים לְשֵׁם סֻכָּה הֲרֵי זוֹ כְּשֵׁרָה. וּבִלְבַד שֶׁלֹּא יִהְיֶה בְּכָל נֶסֶר וְנֶסֶר אַרְבָּעָה טְפָחִים. וְכֵן אִם נָטַל אֶחָד מִבֵּינְתַיִם וְהִנִּיחַ בִּמְקוֹמוֹ סְכָךְ כָּשֵׁר לְשֵׁם סֻכָּה הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תקרה </strong> שאין עליה מעזיבה שהוא הטיט והעפר אלא נסרים תקועים פסול דכתיב חג הסוכות תעשה לך ולא מן העשוי כבר לשם בית לפיכך אם פקפק הנסרים לשם סוכה כשרה.</p>
               </div>
             </div>
@@ -671,8 +792,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-9">Mishneh Torah, Shofar, Sukkah and Lulav 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שֶׁנַּעֲשֵׂית כְּהִלְכָתָהּ מִכָּל מָקוֹם כְּשֵׁרָה אַף עַל פִּי שֶׁלֹּא נַעֲשֵׂית לְשֵׁם מִצְוָה. וְהוּא שֶׁתִּהְיֶה עֲשׂוּיָה לְצֵל כְּגוֹן סֻכַּת עַכּוּ&quot;ם וְסֻכַּת בְּהֵמָה וְכָל כַּיּוֹצֵא בָּהֶן. אֲבָל סֻכָּה שֶׁנַּעֲשֵׂית מֵאֵלֶיהָ פְּסוּלָה לְפִי שֶׁלֹּא נַעֲשֵׂית לְצֵל. וְכֵן הַחוֹטֵט בְּגָדִישׁ וְעָשָׂהוּ סֻכָּה אֵינָהּ סֻכָּה שֶׁהֲרֵי לֹא עִמֵּר גָּדִישׁ זֶה לְצֵל. לְפִיכָךְ אִם עָשָׂה בַּתְּחִלָּה חֲלַל טֶפַח בְּמֶשֶׁךְ שִׁבְעָה לְשֵׁם סֻכָּה וְחָטַט בָּהּ אַחֲרֵי כֵן וְהִשְׁלִימָהּ לַעֲשָׂרָה כְּשֵׁרָה שֶׁהֲרֵי נַעֲשָׂה סְכָךְ שֶׁלָּהּ לְצֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה </strong> העשויה כהלכתה אע&quot;פ שלא נעשה לשם סוכת מצוה כשרה והוא שתהיה עשויה לצל דחג הסוכות תעשה לך וגו׳ לא דרשינן ליה לשם חג אבל סוכה שנעשית מאליה פסולה שלא נעשית לצל. וכן החוטט בגדיש אינה סוכה דבעינן תעשה ולא מן העשוי ואם בתחילה עשה טפח חלל במשך שבעה לשם סוכה והשלימה אח&quot;כ לעשרה כשרה דחלל טפח אהל הוא ויש שם סכך עליו מתחלה.</p>
               </div>
             </div>
@@ -687,8 +813,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-12">Mishneh Torah, Shofar, Sukkah and Lulav 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹשֶׂה סֻכָּתוֹ תַּחַת הָאִילָן כְּאִלּוּ עֲשָׂאָהּ בְּתוֹךְ הַבַּיִת. הִדְלָה עָלֶיהָ עָלֵי הָאִילָנוֹת וּבַדֵּיהֶן וְסִכֵּךְ עַל גַּבָּן וְאַחַר כָּךְ קָצְצָן. אִם הָיָה הַסִּכּוּךְ הַרְבֵּה מֵהֶן כְּשֵׁרָה. וְאִם לֹא הָיָה הַסִּכּוּךְ שֶׁהָיָה מִתְּחִלָּתוֹ כָּשֵׁר הַרְבֵּה מֵהֶן צָרִיךְ לְנַעֲנֵעַ אוֹתָן אַחַר קְצִיצָתָן כְּדֵי שֶׁתִּהְיֶה עֲשׂוּיָה לְשֵׁם סֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה </strong> סוכתו תחת האילן כאלו עשאה בתוך הבית דהוי אילן סכך פסול כמחובר דכתיב באספך מגרנך ומיקבך בפיסולת גורן ויקב הכתוב מדבר. הדלה עליה עלי האילנות וסיכך על גבן ואחר כן קצצן אם היא בסיכוך הרבה מהן כשרה ואם לא היה הסיכוך שהיה מתחלת כשר הרבה מהן צריך לעשות אותן אחר קציצתן שתהיה לסוכה דכתיב תעשה לך ולא מן העשוי והאי כיון דהשתא בקציצה הוי כשר הרי היה עשוי.</p>
               </div>
             </div>
@@ -703,8 +834,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-13">Mishneh Torah, Shofar, Sukkah and Lulav 5:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֵרֵב דָּבָר שֶׁמְּסַכְּכִין בּוֹ בְּדָבָר שֶׁאֵין מְסַכְּכִין בּוֹ וְסִכֵּךְ בִּשְׁנֵיהֶם אַף עַל פִּי שֶׁהַכָּשֵׁר יָתֵר עַל הַפָּסוּל פְּסוּלָה. סִכֵּךְ בָּזֶה לְעַצְמוֹ וּבָזֶה לְעַצְמוֹ זֶה בְּצַד זֶה. אִם יֵשׁ בַּסְּכָךְ פָּסוּל שְׁלֹשָׁה טְפָחִים בְּמָקוֹם אֶחָד בֵּין בָּאֶמְצַע בֵּין מִן הַצַּד הֲרֵי זוֹ פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עירב </strong> דבר שמסככין בו בדבר שאין מסככין בו וסיכך בשניהם אע&quot;פ שהכשר יתר על הפסול פסולה שהרי מועיל הפסול להכשר סוכה שתהא צלתה מרובה מחמתה. סיכך בזה לעצמו ובזה לעצמו זה בצד זה אם יש בסכך פסול שלשה טפחים בסוכת שבעה באיזה צד שיהיו פסולה שהרי אין כאן הכשר סוכה ובסוכה גדולה שישאר בה שבעה על שבעה מסכך כשר. סכך פסול פוסל באמצע בד׳ טפחים ומן הצד בד׳ אמות דאמ׳ דופן עקומה הלכה למשה מסיני ושאר השיעורין בכלל שיעורין הל&quot;מ. סיכך בדבר פסול ודבר כשר זה בצד זה ואין במקום אחד מסכך הפסול רוחב שלשה טפחים אם היה כל הסכך הכשר יותר על כל הפסול כשר דמדאורית׳ אזלינן בתר רובא דכתיב אחרי רבים ואם היה זה כמו זה בצמצום פסולה שסכך פסול כפרוץ נחשב ולענין סוכה אגמרי רחמנא למשה גדור רובא משום דבעינן צילתה מרובה מחמתה והיינו לדעת הרב ז&quot;ל.</p>
               </div>
             </div>
@@ -719,8 +855,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-17">Mishneh Torah, Shofar, Sukkah and Lulav 5:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פָּרַשׂ עָלֶיהָ בֶּגֶד מִלְּמַעְלָה אוֹ שֶׁפָּרַשׂ תַּחְתֶּיהָ מִפְּנֵי הַנֶּשֶׁר פְּסוּלָה. פְּרָשׂוֹ כְּדֵי לְנָאוֹתָהּ כְּשֵׁרָה. וְכֵן אִם סִכְּכָהּ כְּהִלְכָתָהּ וְעִטְּרָהּ בְּמִינֵי פֵּרוֹת וּבְמִינֵי מְגָדִים וְכֵלִים שֶׁתְּלוּיִין בֵּין בִּכְתָלֶיהָ בֵּין בַּסְּכָךְ כְּדֵי לְנָאוֹתָהּ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פירש </strong> בגד עליה או תחתיה פסולה דהוי דבר המקבל טומאה ופסול כדילפינן לעיל ואם לנאותה אין שם סכך עליו וכשר וכן בכל מה שמונח בה לנוי. ואין ממעטין בגובה הסוכה לא להכשיר ולא לפסול אבל מן הצד ממעטין דהרי אינה מחזקת ראשו ורובו ושלחנו דהוי שיעור רוחב סוכה קטנה ואם מופלגים מן הסכך ארבעה טפחים לא בטיל לגבי סוכה והוו סכך פסול.</p>
               </div>
             </div>
@@ -735,8 +876,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:19:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-19-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-19">Mishneh Torah, Shofar, Sukkah and Lulav 5:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סְכָךְ שֶׁהָיוּ בּוֹ חַלּוֹנוֹת חַלּוֹנוֹת שֶׁהָאֲוִיר נִרְאֶה מֵהֶן. אִם יֵשׁ בְּכָל הָאֲוִיר כְּכָל מָקוֹם הַמְסֻכָּךְ הֲרֵי זוֹ פְּסוּלָה מִפְּנֵי שֶׁחַמָּתָהּ תִּהְיֶה מְרֻבָּה מִצִּלָּתָהּ. וְכָל שֶׁהַחַמָּה מְרֻבָּה עַל הַצֵּל אֵינוֹ סְכָךְ. וְאִם הָיָה הַסְּכָךְ רַב עַל הָאֲוִיר כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה </strong> שיש בה מקומות מגולין אם יש בכל האויר כמקום המסוכך פסולה שהיה חמתה מרובה מצילתה ואין לה סכך ואם היה הסכך רב על האויר כשרה והוא שאין במקום אחד אויר ג&quot;ט ואם יש אויר ג&quot;ט בין מאמצע בין מן הצד באופן שלא נשאר הכשר סוכה ודפנות במקום אחד פסולה כולה עד שימעט האויר משלשה טפחים. מעטו בדבר הפסול לסכך בסוכה גדולה כשרה דהרי איכא הכשר סוכה כיון שמעט ובסוכה קטנה פסולה דליכא הכשר סוכה אלא באויר ובסכך פסולה שמיעט בו. היה רוב הסיכוך צלתו מרובה ומיעוטו חמתה מרובה הואיל וצילת הכל מרובה מחמתה הכל כשרה דשם סכך עליו. סוכה מעובה כמין בית כשרה דסכך קרינן ביה היה הסיכוך מדולדל מקצתו למעלה ומקצתו למטה אם אין ביניהם שלשה אמרינן לבוד ואם היה ברוחב העולה טפח או יותר אע&quot;פ שהוא גבוה שלשה טפחים כשר דאמר חבוט רמי השפל והשלך דהוא ענין גוד אחית דהוי הל&quot;מ אלא דלענין מחיצה שייך גוד אחית ולענין המוטל לרוחב שייך חבטה והוא שיהיה מכוון לשפת היורד.</p>
               </div>
             </div>
@@ -751,8 +897,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:22:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-22-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:22:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-22">Mishneh Torah, Shofar, Sukkah and Lulav 5:22</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹשֶׂה סֻכָּה עַל גַּבֵּי סֻכָּה. הַתַּחְתּוֹנָה פְּסוּלָה כְּמִי שֶׁעָשָׂה סֻכָּה בְּתוֹךְ הַבַּיִת וְהָעֶלְיוֹנָה כְּשֵׁרָה בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁהַתַּחְתּוֹנָה פְּסוּלָה בְּשֶׁהָיָה גֹּבַהּ חֲלַל הָעֶלְיוֹנָה עֲשָׂרָה טְפָחִים אוֹ יֶתֶר וְהָיָה גַּג הַתַּחְתּוֹנָה יָכוֹל לְקַבֵּל כָּרִים וּכְסָתוֹת שֶׁל עֶלְיוֹנָה אֲפִלּוּ עַל יְדֵי הַדְּחָק. אֲבָל אִם אֵין גָּבְהָהּ שֶׁל עֶלְיוֹנָה עֲשָׂרָה אוֹ שֶׁלֹּא הָיְתָה הַתַּחְתּוֹנָה יְכוֹלָה לְקַבֵּל כָּרִים וּכְסָתוֹת שֶׁל עֶלְיוֹנָה אֲפִלּוּ עַל יְדֵי הַדְּחָק (אַף) הַתַּחְתּוֹנָה כְּשֵׁרָה וְהוּא שֶׁלֹּא יִהְיֶה גֹּבַהּ שְׁתֵּיהֶן יֶתֶר עַל עֶשְׂרִים אַמָּה שֶׁהַתַּחְתּוֹנָה בַּסְּכָךְ הָעֶלְיוֹנָה הִיא נִתֶּרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה </strong> על גבי סוכה התחתונה פסולה כמי שעשאה בתוך הבית דכתיב בסוכת תשבו ולא בסוכה שתחת סוכה ולא בסוכה שתחת האילן ולא בסוכה שבתוך הבית ולא תימא דסוכות תרתי משמע דהא סכת כתיב דיש אם למקרא [למסורת] ואפי׳ למאן דאמר יש אם למקרא מודה דלא לחנם נכתב המסורת. והא דמיפסלה משום סוכה שתחת סוכה היינו כשהעליונה כשרה דגבוהה עשרה ויכולה לקבל כרים וכסתות אפילו על ידי הדחק אבל אי לאו הכי אף התחתונה כשרה דחשבינן לסכך עליונה כסכך תחתונה והוא שאין גובה העליונה יותר מעשרים אמה. מטה שבתוך הסוכה אם גבוהה עשרה טפחים היושב תחתיה לא יצא ידי חובתו מפני שהיא כסוכה בתוך סוכה דכיון דקפיד רחמנא למיפסיל סוכה שתחת סוכה הכא נמי קפיד לפסול סוכה שיש תחתיה אהל שכיוצא בו פסול מלמעלה וכן כילה שיש לה גג טפח דלענין טומאה טפח על טפח הוי אהל אם גבוהה עשרה טפחים אין ישנין תחתיה וכן המעמיד ד׳ עמודים וגו׳ הרי זו כסוכה שתחת סוכה ומדברי התוספות נראה דלאו מדאוריתא הוו האי פיסולה.</p>
               </div>
             </div>
@@ -767,8 +918,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-5-25-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-25">Mishneh Torah, Shofar, Sukkah and Lulav 5:25</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שְׁאוּלָה כְּשֵׁרָה וְכֵן הַגְּזוּלָה כְּשֵׁרָה. כֵּיצַד. אִם תָּקַף עַל חֲבֵרוֹ וְהוֹצִיאוֹ מִסֻּכָּתוֹ וּגְזָלָהּ וְיָשַׁב בָּהּ יָצָא שֶׁאֵין הַקַּרְקַע נִגְזֶלֶת. וְאִם גָּזַל עֵצִים וְעָשָׂה מֵהֶן סֻכָּה יָצָא. שֶׁתַּקָּנַת חֲכָמִים הִיא שֶׁאֵין לְבַעַל הָעֵצִים אֶלָּא דְּמֵי עֵצִים בִּלְבַד. וַאֲפִלּוּ גָּזַל נְסָרִים וְהִנִּיחָן וְלֹא חִבְּרָן וְלֹא שָׁנָה בָּהֶן כְּלוּם יָצָא. הָעוֹשֶׂה סֻכָּתוֹ בִּרְשׁוּת הָרַבִּים הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה </strong> שאולה כשרה דכתיב כל האזרח בישראל ישבו בסוכות מלמד שכל ישראל ראויין לישב בסוכה אחד וסכת כתיב דמשמע סוכה אחד שישבו בה זה אחר זה ואי איפשר שיהא לכולן דהא לא מטי שוה פרוטה לכל חד אלא על ידי שאלה. וכן סוכה גזולה כשרה דקרקע אינה נגזלת והוה ליה שאולה וכשר ואם גזל עצים ועשה מהם סוכה מדאוריתא הוה פסולה דכתיב לך אלא משום תקנת מריש אינו חייב אלא דמים וכשרה מדרבנן. והמסכך ברשות הרבים נמי אע&quot;ג דהוי גזל רבים יצא דקרקע אינה נגזלת והוה ליה שאולה:</p>
               </div>
             </div>
@@ -784,8 +940,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-1">Mishneh Torah, Shofar, Sukkah and Lulav 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִן הַסֻּכָּה. טֻמְטוּם וְאַנְדְּרוֹגִינוּס חַיָּבִים מִסָּפֵק. וְכֵן מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין חַיָּב. קָטָן שֶׁאֵינוֹ צָרִיךְ לְאִמּוֹ שֶׁהוּא [כְּבֶן חָמֵשׁ] כְּבֶן שֵׁשׁ חַיָּב בְּסֻכָּה מִדִּבְרֵי סוֹפְרִים כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים </strong> ועבדים וקטנים פטורים מן הסוכה. נשים הלכתא היא דהוה סד&quot;א תשבו כעין תדורו מה דירה איש ואשתו אף סוכה איש ואשתו קמ&quot;ל הלכתא אי נמי דהוה יליף ט&quot;ו מט&quot;ו דחג המצות מה להלן נשים חייבות אף כאן נשים חייבות קמ&quot;ל וקרא דכל האזרח אוקמי ליה לגרים דחייבים בסוכה דס&quot;ד ישראל ולא גרים קמ&quot;ל ועבדים דילפינן לה לה מאשה וקטנים דלאו בני חיובא נינהו. טומטום ואנדרוגינוס חייבים מספק דאוריתא. ומי שחציו עבד וחציו בן חורין חייב נמי משום צד חירות שבו דהוי כגר דחייב.</p>
               </div>
             </div>
@@ -800,8 +961,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-6-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-2">Mishneh Torah, Shofar, Sukkah and Lulav 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חוֹלִים וּמְשַׁמְּשֵׁיהֶן פְּטוּרִים מִן הַסֻּכָּה. וְלֹא חוֹלֶה שֶׁיֵּשׁ בּוֹ סַכָּנָה אֶלָּא אֲפִלּוּ חָשׁ בְּרֹאשׁוֹ וַאֲפִלּוּ חָשׁ בְּעֵינָיו. מִצְטַעֵר פָּטוּר מִן הַסֻּכָּה הוּא וְלֹא מְשַׁמְּשָׁיו. וְאֵיזֶהוּ מִצְטַעֵר זֶה שֶׁאֵינוֹ יָכוֹל לִישֹׁן בַּסֻּכָּה מִפְּנֵי הָרוּחַ אוֹ מִפְּנֵי הַזְּבוּבִים וְהַפַּרְעוֹשִׁים וְכַיּוֹצֵא בָּהֶן אוֹ מִפְּנֵי הָרֵיחַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חולין </strong> ומשמשיהם וכל הני דפטירי היינו משום דכתיב תשבו שהוא כעין תדורו וכמו שאין אדם דר במקום שמצטער הכי נמי בסוכה. האבל חייב בסוכה דאף על גב דמצטע׳ פטור היינו מצטער מחמת הסוכה אבל הכא אי(נ)[ה]ו הוא דקמצטער נפשיה וחובה עליו לישב דעתו למצוה. וחתן וכל השושבינין נמי פטורין כל שבעת ימי המשתה משום צער חתן שמצטער דלא מצי עיילי כל בני חופה בסוכה.</p>
               </div>
             </div>
@@ -816,8 +982,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-6-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-4">Mishneh Torah, Shofar, Sukkah and Lulav 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלוּחֵי מִצְוָה פְּטוּרִים מִן הַסֻּכָּה בֵּין בַּיּוֹם וּבֵין בַּלַּיְלָה. הוֹלְכֵי דְּרָכִים בַּיּוֹם פְּטוּרִים מִן הַסֻּכָּה בַּיּוֹם וְחַיָּבִין בַּלַּיְלָה. הוֹלְכֵי דְּרָכִים בַּלַּיְלָה פְּטוּרִים מִן הַסֻּכָּה בַּלַּיְלָה וְחַיָּבִים בַּיּוֹם. שׁוֹמְרֵי הָעִיר בַּיּוֹם פְּטוּרִים מִן הַסֻּכָּה בַּיּוֹם וְחַיָּבִים בַּלַּיְלָה. שׁוֹמְרֵי הָעִיר בַּלַּיְלָה פְּטוּרִים מִן הַסֻּכָּה בַּלַּיְלָה וְחַיָּבִים בַּיּוֹם. שׁוֹמְרֵי גִּנּוֹת וּפַרְדֵּסִין פְּטוּרִין בֵּין בַּיּוֹם וּבֵין בַּלַּיְלָה שֶׁאִם יַעֲשֶׂה הַשּׁוֹמֵר סֻכָּה יֵדַע הַגַּנָּב שֶׁיֵּשׁ לַשּׁוֹמֵר מָקוֹם קָבוּעַ וְיָבוֹא וְיִגְנֹב מִן מָקוֹם אַחֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלוחי </strong> מצוה פטורין מן הסוכה דכתיב ובלכתך בדרך בשבתך בביתך פרט לעוסק במצוה דפטור מן המצוה. ההולכי דרכים וגו׳ דכתיב תשבו כעין תדורו וכשם שכל השנה אינו נמנע מלכת בדרך בסחורה כך כל ימות החג שאינו י&quot;ט לא הצריכו הכתוב למנוע. ושומרי העיר ביום ובלילה וגנות ופרדסים פטורים בעת שמירתם דכתיב תשבו כעין תדורו דכיון שאין דרך לקבוע שם אינו חייב לעשות שם סוכה ולרבה משום שאם יעשה סוכה ידע הגנב ויבא ויגנוב וגו׳ ואית ליה תשבו כעין תדורו.</p>
               </div>
             </div>
@@ -832,8 +1003,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-6-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-5">Mishneh Torah, Shofar, Sukkah and Lulav 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד הִיא מִצְוַת הַיְשִׁיבָה בַּסֻּכָּה. שֶׁיִּהְיֶה אוֹכֵל וְשׁוֹתֶה וְדָר בַּסֻּכָּה כָּל שִׁבְעַת הַיָּמִים בֵּין בַּיּוֹם וּבֵין בַּלַּיְלָה כְּדֶרֶךְ שֶׁהוּא דָּר בְּבֵיתוֹ בִּשְׁאָר יְמוֹת הַשָּׁנָה. וְכָל שִׁבְעַת הַיָּמִים עוֹשֶׂה אָדָם אֶת בֵּיתוֹ עַרְאַי וְאֶת סֻכָּתוֹ קֶבַע שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג מב)</span> &quot;בַּסֻּכֹּת תֵּשְׁבוּ שִׁבְעַת יָמִים&quot;. כֵּיצַד. כֵּלִים הַנָּאִים וּמַצָּעוֹת הַנָּאוֹת בַּסֻּכָּה. וּכְלֵי שְׁתִיָּה כְּגוֹן אֲשִׁישׁוֹת וְכוֹסוֹת בַּסֻּכָּה. אֲבָל כְּלֵי אֲכִילָה כְּגוֹן קְדֵרוֹת וּקְעָרוֹת חוּץ לַסֻכָּה. הַמְּנוֹרָה בַּסֻּכָּה. וְאִם הָיְתָה סֻכָּה קְטַנָּה מַנִּיחָהּ חוּץ לַסֻּכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> היא מצות הסוכה שיהיה אוכל ושותה ודר בסוכה כל שבעה בין ביום בין בלילה דאע&quot;ג דכתיב שבעת ימים כתיב הכא תשבו וכתיב התם במילואים תשבו יומם וליל׳ מה להלן ימים ואפילו לילות אף כאן ימים ואפילו לילות. כל שבעת הימים עושה אדם את ביתו עראי וסוכתו קבע שנאמר בסוכות תשבו שבעת ימים. אוכלים ושותים וישנים בסוכה כל שבעת ימים בין ביום בין בלילה כמו שאין אדם אוכל חוץ מביתו אלא אם אכל אכילת עראי חוץ לסוכה כביצה או פחות או יותר מעט.</p>
               </div>
             </div>
@@ -848,8 +1024,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-6-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-7">Mishneh Torah, Shofar, Sukkah and Lulav 6:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲכִילָה בְּלֵילֵי יוֹם טוֹב הָרִאשׁוֹן בַּסֻּכָּה חוֹבָה. אֲפִלּוּ אָכַל כְּזַיִת פַּת יָצָא יְדֵי חוֹבָתוֹ. מִכָּאן וְאֵילָךְ רְשׁוּת. רָצָה לֶאֱכל סְעֻדָּה סוֹעֵד בַּסֻּכָּה. רָצָה אֵינוֹ אוֹכֵל כָּל שִׁבְעָה אֶלָּא פֵּרוֹת אוֹ קְלָיוֹת חוּץ לַסֻּכָּה אוֹכֵל כְּדִין אֲכִילַת מַצָּה בְּפֶסַח:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אכילה </strong> בליל יו&quot;ט הראשון בסוכ׳ חובה אפי׳ אכל כזית פת יצא ידי חובתו דילפי׳ ט&quot;ו מט&quot;ו של חג המצות דכתיב בערב תאכלו מצות ומכאן ואילך רשות כדין אכילת מצה בפסח. ואם ירדו גשמים נכנס לביתו כל הני משום דכל ענינים שאדם רגיל לצאת מדירתו רשאי לצאת מביתו דתשבו כעין תדורו.</p>
               </div>
             </div>
@@ -864,8 +1045,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-6-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 6:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-11">Mishneh Torah, Shofar, Sukkah and Lulav 6:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּמַר מִלֶּאֱכל בַּיּוֹם הַשְּׁבִיעִי בְּשַׁחֲרִית לֹא יַתִּיר סֻכָּתוֹ. אֲבָל מוֹרִיד הוּא אֶת כֵּלָיו וּמְפַנֶּה אוֹתָן מִן הַמִּנְחָה וּלְמַעְלָה. אֵין לוֹ מָקוֹם לְפַנּוֹת פּוֹחֵת בָּהּ אַרְבָּעָה עַל אַרְבָּעָה. וְאִם הֻצְרַךְ לִסְעֹד בִּשְׁאָר הַיּוֹם צָרִיךְ לֶאֱכל בַּסֻּכָּה, שֶׁמִּצְוָתָהּ כָּל שִׁבְעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומצות </strong> הסוכה כל היום עד הלילה של יום שמיני חג עצרת. מי שלא עשה סוכה בין בשוגג בין במזיד עושה סוכה בחולו של מועד דכתיב חג הסוכות תעשה לך שבעת ימים דדרשינן לרבנן עשה סוכה בחג כל שבעת ימים ואפילו ביום שביעי. עצי סוכה אסורים כל שבעת ימי החג דכתיב חג הסוכות שבעת ימים לה׳ כשם שחל ש&quot;ש על חגיגה שהם שלמי חגיגה לאוסרן עד לאחר הקטרת אימורין כך חל ש&quot;ש על הסוכה דאקשינהו קרא חג הסוכות מה חג לה׳ אף סוכה לה׳ והיינו בכל מה שצריך להכשר סוכה ובעודה קיימת מדאורייתא. ונוי סוכה נראה דלא אסירי אלא מדרבנן משום בזויי מצוה ויש במצוה זו דברים מדרבנן סמוכים אלא תסור ואקרא דושמרתם את משמרתי וגו׳:</p>
               </div>
             </div>
@@ -881,8 +1067,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-1">Mishneh Torah, Shofar, Sukkah and Lulav 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(ויקרא כג מ)</span> &quot;כַּפּוֹת תְּמָרִים&quot; הָאֲמוּרוֹת בַּתּוֹרָה הֵן חֲרָיוֹת שֶׁל דֶּקֶל כְּשֶׁיִּצְמְחוּ קֹדֶם שֶׁיִּתְפָּרְדוּ הֶעָלִין שֶׁלָּהֶן לְכָאן וּלְכָאן אֶלָּא כְּשֶׁיִּהְיֶה כְּמוֹ שַׁרְבִיט. וְהוּא הַנִּקְרָא לוּלָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה מג </strong> לנטול לולב עם שלש מינין כל שבעת ימי החג במקדש דכתיב ולקחתם לכם לקיחה לכל אחד ואחד מדכתיב ולקחתם לשון רבים ולא כתיב ולקחת לשון יחיד במקדש. כפות תמרים האמורות בתורה הם חריות של דקל כשיצמחו קודם שיתפרדו העלין שלהן דכפת כתיב שיהיו עליו מחוברין וכפותין ולא פרודין ואין לשון זה נופל אלא בלולב שהוא כמו שרביט. פרי עץ הדר האמור בתורה זה אתרוג דכתיב פרי עץ שהעץ כפרי בטעם שוה ולא תימא פלפלים דלא איפשר דאינקט חדא לא מינכרה לקיחתה ואי נקיט תרי או תלתא חד קאמר רחמנא ולא שנים ושלשה הלכך לא איפשר ר׳ אומר אל תקרי הדר אלא הדיר מה דיר זה עד שבאים קטנים עדין גדולים של שתים ושלש שנים קיימים הכא נמי גדולים של אשתקד וקטנים של שנה זו שהאתרוג דר וגדל באילנות שתים ושלש שנים וכשבאים וחונטין של עכשיו עדין גדולים של אשתקד קיימים בו כדיר צאן ר׳ אבהו אמר אל תקרי הדר אלא הדר דבר שדר באילנו משנה לשנה כדאמרן בן עזאי אומר אל תקרי הדר אלא הידור שכן בלשון יון קורין למים הידור ואי זו שגדל על כל מים הוי אומר זה אתרוג. וענף עץ עבות האמור בתורה הוא ההדס שעליו חופין את עציו כגון ג׳ עלין בגבעול אחד דכתיב ענף עץ עבות עץ שהוא עבות שענפיו חופים את עצו וזהו הדס דאי תימא זיתא דעליו ארוכים ומרובים ומכסים את העץ הא כתיב עבות דבעינן מעשה שרשרות שיהו מורכבין זה על זה ואי אמרת דולבא דהיינו ערמון דקלוע הוא הא אין עליו רצופים לכסות כל עצו ולא תימא נמי הרדופני דעליו הן כמין קליעה דכתיב דרכיה דרכי נועם והאי עוקץ את הידים שראשי עליו חדים כמחט הילכך זה הדס ר׳ אליעזר בן יעקב אומר ענף עץ עץ שטעם עצו ופריו שוה והיכי דמי עבות דקיימי תלתא בחד קינה דתרי וחד אין זה עבות אבל נקרא הדס שוטה. ערבי נחל האמורות בתורה הם מין ידוע הנקרא ערבי נחל עלה שלו משוך כנחל ולא עגול ופיו חלק וקנה שלה אדום הוא הנקרא ערבה ורוב מין זה גדל על כל הנחלים לכך נאמר ערבי נחל אבל אפא הגדל במדבר ובהרים כשר דכתיב ערבי לשון רבים וצפצפא שעלה שלה עגול ואינו בנחל פסול ויש ערבה שאין פיה חלק אבל אינו כמסר אלא יש בו תלמים קטנים כפי מגל קטן וזה כשר דאע&quot;ג דיש לה שם ליווי חילפה גילה כשרה דערבי נחל אמר רחמנא מכל מקום וכל הדברים האלו מפי השמועה ממשה רבינו נתפרש.</p>
               </div>
             </div>
@@ -897,8 +1088,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-5">Mishneh Torah, Shofar, Sukkah and Lulav 7:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבָּעָה מִינִין אֵלּוּ מִצְוָה אַחַת הֵן וּמְעַכְּבִין זֶה אֶת זֶה וְכֻלָּן נִקְרָאִים מִצְוַת לוּלָב. וְאֵין פּוֹחֲתִין מֵהֶן וְאֵין מוֹסִיפִין עֲלֵיהֶן. וְאִם לֹא נִמְצָא אֶחָד מֵהֶן אֵין מְבִיאִים תַּחְתָּיו מִין אַחֵר הַדּוֹמֶה לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ארבעה </strong> מינין אלו מצוה אחד הן דכולהו כתיבי בחד קרא ומעכבין זה את זה דכתיב ולקחתם שתהא לקיחה תמה דהכי משמע ולקחתם ואין פוחתין מהן ואין מוסיפין עליהם דארבעה מינין דווקא כתיב בקרא ואם לא מצא אחד מהם אינו מביא אחר הדומה לו תחתיו דאהני הוא דקפיד רחמנא כדאמר. מצוה מן המובחר לאגוד הדס וערבה עם הלולב משום זה אלי ואנוהו התנאה לפניו במצות אבל לא לעיכוב דאם לא אגדן ונטלן אחד אחד יצא והיינו כשארבעתן מצויין אצלו דבעינן לקיחה תמה וכל היכא דאין ארבעתם לאו לקיחה שלימה היא ולהכי אם חסר לו מין אחד לא יטול עד שימצא השאר.</p>
               </div>
             </div>
@@ -913,8 +1109,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-7">Mishneh Torah, Shofar, Sukkah and Lulav 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה נוֹטֵל מֵהֶן. לוּלָב אֶחָד וְאֶתְרוֹג אֶחָד וּשְׁנֵי בַּדֵּי עֲרָבָה וּשְׁלֹשָׁה בַּדֵּי הֲדַס. וְאִם רָצָה לְהוֹסִיף בַּהֲדַס כְּדֵי שֶׁתִּהְיֶה אֲגֻדָּה גְּדוֹלָה מוֹסִיף. וְנוֹיֵי מִצְוָה הוּא. אֲבָל שְׁאָר הַמִּינִין אֵין מוֹסִיפִין עַל מִנְיָנָם וְאֵין גּוֹרְעִין מֵהֶן. וְאִם הוֹסִיף אוֹ גָּרַע (פָּסוּל):</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כמה </strong> נוטל מהן לולב אחד אתרוג אחד ושני בדי ערבה וג׳ בדי הדס דכתיב פרי עץ הדר אחד כפת תמרים אחד משמע דכפת כתיב ענף חד עץ חד עבות חד ערבי נחל שתים דמיעוט רבים שנים. ואם רצה להוסיף בהדס וגו׳ טעמא דשריותא דתוספת הדס מה שאין כן בשאר המינין להאי גירסת הרב ז&quot;ל משום דהדס לא ילפינן ג׳ בדי הדס אלא מיתורא דענף עץ עבות ולהכי אמרינן דמנינא לאו דוקא מלעיל אבל בהנך אחריני דילפי מנינא ממשמעותא דכתיב פרי עץ וכתיב כפת וכתיב ערבי דמיעוט רבים שנים הוי מנינא דוקא בין מלעיל בין מלרע ואם הוסיף או גרע פסול דכתיב לא תוסיף עליו ולא תגרע ממנו ופשטי׳ דקרא דקאמר עליו משמע דתוספת במנין עצמו איקרי תוספת כדדייק קרא עליו דמשמע ממינה.</p>
               </div>
             </div>
@@ -929,8 +1130,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-8">Mishneh Torah, Shofar, Sukkah and Lulav 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה שִׁעוּר אֹרֶךְ כָּל מִין מֵהֶם. לוּלָב אֵין פָּחוֹת מֵאַרְבָּעָה טְפָחִים וְאִם הָיָה אָרֹךְ כָּל שֶׁהוּא כָּשֵׁר. וּמְדִידָתוֹ מִשִּׁדְרָתוֹ בִּלְבַד לֹא מֵרֹאשׁ הֶעָלִים. וַהֲדַס וַעֲרָבָה אֵין פָּחוֹת מִשְּׁלֹשָׁה טְפָחִים. וְאִם הָיוּ אֲרֻכִּין כָּל שֶׁהֵן כְּשֵׁרִים. וַאֲפִלּוּ אֵין בְּכָל בַּד וּבַד אֶלָּא שְׁלֹשָׁה עָלִין לַחִין כְּשֵׁרִים וְהוּא שֶׁיִּהְיוּ בְּרֹאשׁ הַבַּד. וְאִם אָגַד הַלּוּלָב צָרִיךְ שֶׁיִּהְיֶה שְׁדֵרוֹ שֶׁל לוּלָב יוֹצֵא מִן הַהֲדַס וַעֲרָבָה טֶפַח אוֹ יוֹתֵר. וְשִׁעוּר אֶתְרוֹג אֵין פָּחוֹת מִכְּבֵיצָה וְאִם הָיָה גָּדוֹל כָּל שֶׁהוּא כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיעורי </strong> ארבעה מינין נראה דהוו דאוריתא ובכלל שיעורין הל&quot;מ דטפח שדרו של לולב היוצא מן ההדס דהוי דאוריתא כדמוכח פרק המפלת ולמעלה אין להן שיעור.</p>
               </div>
             </div>
@@ -945,8 +1151,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-9">Mishneh Torah, Shofar, Sukkah and Lulav 7:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִשֶּׁיַּגְבִּיהַ אַרְבָּעָה מִינִין אֵלּוּ בֵּין שֶׁהִגְבִּיהָן כְּאַחַת בֵּין בָּזֶה אַחַר זֶה בֵּין בְּיָמִין בֵּין בִּשְׂמֹאל יָצָא. וְהוּא שֶׁיַּגְבִּיהָן דֶּרֶךְ גְּדִילָתָן. אֲבָל שֶׁלֹּא דֶּרֶךְ גְּדִילָתָן לֹא יָצָא. וּמִצְוָה כְּהִלְכָתָהּ שֶׁיַּגְבִּיהַּ אֲגֻדָּה שֶׁל שְׁלֹשָׁה מִינִין בְּיָמִין וְאֶתְרוֹג בִּשְׂמֹאל וְיוֹלִיךְ וְיָבִיא וְיַעֲלֶה וְיוֹרִיד וִינַעֲנֵעַ הַלּוּלָב שְׁלֹשָׁה פְּעָמִים בְּכָל רוּחַ וְרוּחַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משיגביה </strong> ארבעה מינין אלו בין בבת אחת בין בזה אחר זה יצא דכתיב ולקחתם לכם והא לקחם והוא שיגביה דרך גדילתם דכל המצות כולם אין אדם יוצא בהן אלא דרך גדילתם דכתיב עצי שטים עומדים שעומדים דרך גדילתם ואם לא הגביהם דרך גדילתם לא יצא כדילפינן. כל לקיחת לולב על ידי דבר אחר שהוא דרך כבוד והידור ללולב הוי לקיחה תמה ולא הוי חציצה אבל אי לאו דרך כבוד והידור הוא לא הוי לקיחה תמה והוי חציצה ולא יצא דכתיב ולקחתם שתהא לקיחה תמה ולקיחה על ידי דבר אחר שאין כבוד והידור ללולב לא שמה לקיחה ואם הוא ממינו אפילו אינו דרך נוי הויא לקיחה ואיפשר דילפינן לה מדבעי׳ בכלי שרת לקיחה ממש דכתיב ולקח והיינו המזרק שבו הדם ואפ&quot;ה אם נתן מזרק בתוך מזרק לא הוי חציצה כיון שהוא מינו וגלי קרא דכי האי גוונא הוי דרך שירות דכתיב ואת כל כלי השרת אשר ישרתו בם בקודש שני כלים ושירות אחד דהיינו מזרק בתוך מזרק ומינה דלא הוי חציצה במין במינו.</p>
               </div>
             </div>
@@ -961,8 +1172,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-13">Mishneh Torah, Shofar, Sukkah and Lulav 7:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת לוּלָב לְהִנָּטֵל בְּיוֹם רִאשׁוֹן שֶׁל חַג בִּלְבַד בְּכָל מָקוֹם וּבְכָל זְמַן וַאֲפִלּוּ בְּשַׁבָּת שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג מ)</span> &quot;וּלְקַחְתֶּם לָכֶם בַּיּוֹם הָרִאשׁוֹן&quot;. וּבַמִּקְדָּשׁ לְבַדּוֹ נוֹטְלִין אוֹתוֹ בְּכָל יוֹם וָיוֹם מִשִּׁבְעַת יְמֵי הֶחָג שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג מ)</span> &quot;וּשְׂמַחְתֶּם לִפְנֵי ה׳ אֱלֹהֵיכֶם&quot; וְגוֹ׳. חָל יוֹם הַשַּׁבָּת לִהְיוֹת בְּתוֹךְ יְמֵי הֶחָג אֵינוֹ נִטָּל בְּשַׁבָּת גְּזֵרָה שֶׁמָּא יוֹלִיכֶנּוּ בְּיָדוֹ אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים כְּמוֹ שֶׁגָּזְרוּ בְּשׁוֹפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות </strong> לולב להנטל ביום ראשון של חג בלבד בכל מקום ובכל זמן ואפילו בשבת שנאמר ולקחתם לכם ביום הראשון ביום ואפילו בשבת הראשון ואפילו בגבולין והיינו לר׳ אליעזר ולרבנן דקיימא לן כוותיהו לא איצטריך קרא למשרי טלטול אלא ביום ולא בלילה ובמקדש לבדו נוטלין בכל יום מז׳ ימי החג דכתיב ושמחתם לפני ה׳ אלהיכם שבעת ימים ולא בגבולין שבעת ימים.</p>
               </div>
             </div>
@@ -977,8 +1193,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:19:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-19-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-19">Mishneh Torah, Shofar, Sukkah and Lulav 7:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל שֶׁחַיָּב בְּשׁוֹפָר וּבְסֻכָּה חַיָּב בִּנְטִילַת הַלּוּלָב. וְכָל הַפָּטוּר מִשּׁוֹפָר וְסֻכָּה פָּטוּר מִנְּטִילַת לוּלָב. קָטָן הַיּוֹדֵעַ לְנַעֲנֵעַ חַיָּב בְּלוּלָב מִדִּבְרֵי סוֹפְרִים כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> שחייב בשופר ובסוכה חייב בנטילת לולב וכל הפטור מהן פטור מנטילת לולב דהוי מצות עשה שהזמן גרמא דנשים ועבדים פטורים דילפינן מתפילין כדכתיב במצות מ׳.</p>
               </div>
             </div>
@@ -993,8 +1214,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:20:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-20">Mishneh Torah, Shofar, Sukkah and Lulav 7:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲלָכָה לְמשֶׁה מִסִּינַי שֶּׁמְּבִיאִין בַּמִּקְדָּשׁ עֲרָבָה אַחֶרֶת חוּץ מֵעֲרָבָה שֶׁבַּלּוּלָב. וְאֵין אָדָם יוֹצֵא יְדֵי חוֹבָתוֹ בַּעֲרָבָה שֶׁבַּלּוּלָב. וְשִׁעוּרָהּ אֲפִלּוּ עָלֶה אֶחָד בְּבַד אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הלכה </strong> למשה מסיני שמביאין במקדש ערבה אחרת חוץ מערבה שבלולב ואין אדם יוצא ידי חובתו בערבה שבלולב מדאיצטריך הל&quot;מ ושיעורה אפילו עלה אחד בבד אחד והיינו במקדש ולא בגבולין.</p>
               </div>
             </div>
@@ -1009,8 +1235,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:26:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-7-26-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 7:26:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-26">Mishneh Torah, Shofar, Sukkah and Lulav 7:26</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲדַס שֶׁבַּלּוּלָב אָסוּר לְהָרִיחַ בּוֹ מִפְּנֵי שֶׁאֵינוֹ רָאוּי אֶלָּא לְרֵיחַ וְהוֹאִיל וְהֻקְצָה לְמִצְוָה אָסוּר לְהָרִיחַ בּוֹ. אֲבָל אֶתְרוֹג מֻתָּר לְהָרִיחַ בּוֹ שֶׁהֲרֵי הֻקְצָה לְמִצְוָה מֵאֲכִילָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הדס </strong> שבלולב אסור להריח בה דגמרי׳ מסוכה דילפינן דחל שם שמים עליה מדכתיב חג הסוכות שבעת ימים לה׳ מה חג לה׳ אף סוכה לה׳ כדלעיל ונראה דמדרבנן היא דילפינן הדס מסוכה דלא קרא ולא היקשה איכא:</p>
               </div>
             </div>
@@ -1026,8 +1257,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-1">Mishneh Torah, Shofar, Sukkah and Lulav 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבַעַת מִינִין הָאֵלּוּ שֶׁהֵן לוּלָב וַהֲדַס וַעֲרָבָה וְאֶתְרוֹג שֶׁהָיָה אֶחָד מֵהֶן יָבֵשׁ אוֹ גָּזוּל אוֹ גָּנוּב אֲפִלּוּ לְאַחַר יֵאוּשׁ אוֹ שֶׁיִּהְיֶה מֵאֲשֵׁרָה הַנֶּעֱבֶדֶת אַף עַל פִּי שֶׁבִּטְּלוּ הָאֲשֵׁרָה מִלְּעָבְדָהּ. אוֹ שֶׁהָיָה שֶׁל עִיר הַנִּדַּחַת. הֲרֵי זֶה פָּסוּל. הָיָה אֶחָד מֵהֶן שֶׁל עֲבוֹדַת כּוֹכָבִים לֹא יִטּל לְכַתְּחִלָּה וְאִם נָטַל יָצָא. הָיָה כָּמוּשׁ וְלֹא גָּמַר לִיבַשׁ כָּשֵׁר. וּבִשְׁעַת הַדְּחָק אוֹ בִּשְׁעַת הַסַּכָּנָה לוּלָב הַיָּבֵשׁ כָּשֵׁר אֲבָל לֹא שְׁאָר הַמִּינִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ארבעה </strong> מינין אלו שהיה אחד מהן יבש פסול. דכתיב באתרוג הדר ויבש לאו הדר הוא וילפינן שאר מינין מאתרוג מדאתקשו כולהו אמרינן מה אתרוג בעינן הדר אף שאר מינין הדר בעינן. וכן גזול וגנוב פסול דכתיב ולקחתם לכם משלכם ואפילו לאחר יאוש לא קני דלאו שלכם הוא ולמ&quot;ד קני הוה מצוה הבאה בעבירה ונראה דמדרבנן הוי פיסול מצוה הבאה בעבירה למ&quot;ד יאוש כדי קני. היה אחד מאלו המינין של אשרה ושל עיר הנדחת הרי זה פסול כאשרה דמשה אותן שהיה בשעת כיבוש ארץ ישראל שהצריכו הכתוב שרפה כדכתיב ואשריהם תשרפון באש ולולב ושאר מינין צריכין שיעור והאי כמאן דמכתת שיעוריה כיון דלשרפה קאי דכל העומד לישרף כשרוף דמי כדלעיל. וע&quot;ז של ישראל דאין לה ביטול כדילפינן באזהרת מ׳ הוו כאשרה דמשה דמיכתת שיעוריה. ועיר הנדחת כתיב בה ושרפת וגו׳ ומיכתת שיעוריה. ובע&quot;ז ואשרה של גוי שנטלן בשאלה פסול משום שאול ובשאר ימים אפילו במקדש דהוי דאוריתא כשר ואפילו גזול אי לאו מצוה הבאה בעבירה דלא כתיב לכם אלא ביום ראשון. היה כמוש ולא גמר ליבש כשר דאכתי מיחזי הדר ובשעת הדחק או הסכנה לולב היבש כשר אבל לא שאר מינים. ואיפשר דטעמא דבלולב מכשרינן יבש בשעת הדחק משום דכתי׳ כפת בלא וי&quot;ו דנראה דלא יליף מאתרוג מה שאין כן בשאר מינין דכתיבי בו&quot;ו דמהדר אריש קרא ומשום זה אלי ואנוהו הוא דבעינן לולב לא כדפרש&quot;י ז&quot;ל במתניתן דלולב דהא דאקשי׳ שאר מינין לאתרוג בגמר׳ היינו הדס וערבה לחוד כדפי׳. אתרוג של ערלה ושל תרומ׳ טמאה פסו׳ דלשריפה קיימי. ערלה יליף מכלאי הכרם כפרש&quot;י (בשלהי תרומה) דאיתקש לכלאי הכרם דכתיב בהו פן תקדש תוקד אש. ותרומה טמאה היתר הסקה ילפינן מדכתיב ואני נתתי לך את משמרת תרומותי שתי תרומות במשמע אחת תרומה טהורה ואחת תרומה טמאה וכתיב לך תהא להסקה. ושל טבל ביום א׳ פסול דלא קרינן ביה לכם אבל של מעשר שני ותרומה טהורה כשר.</p>
               </div>
             </div>
@@ -1042,8 +1278,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-3">Mishneh Torah, Shofar, Sukkah and Lulav 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לוּלָב שֶׁנִּקְטַם רֹאשׁוֹ פָּסוּל. נִסְדַּק אִם נִתְרַחֲקוּ שְׁנֵי סְדָקָיו זֶה מִזֶּה עַד שֶׁיֵּרָאוּ כִּשְׁנַיִם פָּסוּל. הָיָה עָקוּם לְפָנָיו שֶׁהֲרֵי שְׁדֵרוֹ כְּגַב בַּעַל חֲטוֹטֶרֶת פָּסוּל. הָיָה עָקוּם לַאֲחוֹרָיו כָּשֵׁר שֶׁזּוֹ הִיא בְּרִיָּתוֹ. נֶעֱקַם לְאֶחָד מִצְּדָדָיו פָּסוּל. נִפְרְדוּ עָלָיו זֶה מֵעַל זֶה וְלֹא נִדַּלְדְּלוּ כַּעֲלֵי הַחֲרָיוֹת כָּשֵׁר. נִפְרְצוּ עָלָיו וְהוּא שֶׁיִּדַּלְדְּלוּ מִשְּׁדֵרוֹ שֶׁל לוּלָב כַּעֲלֵי הַחֲרָיוֹת פָּסוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לולב </strong> שנקטם ראשו או נסדק כי המניק או היה עקום לפניו או לצדדיו או שנפרצו עליו פסול. כל הני משום דלא הוי הדר ונחלקה התיומת נמי פסול דלאו הדר הוא. ולולבא דסליק בחד הוצה נמי פסול אי משום דלאו לולב מיקרי אי משום דלאו הדר הוא. ואם אין עליו מגיעות זו לעיקרה של זו פסול נמי דלאו הדר הוא.</p>
               </div>
             </div>
@@ -1058,8 +1299,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-5">Mishneh Torah, Shofar, Sukkah and Lulav 8:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲדַס שֶׁנִּקְטַם רֹאשׁוֹ כָּשֵׁר. נָשְׁרוּ רֹב עָלָיו אִם נִשְׁתַּיְּרוּ שְׁלֹשָׁה עָלִין בְּקֵן אֶחָד כָּשֵׁר. הָיוּ עֲנָבָיו מְרֻבּוֹת מֵעָלָיו אִם יְרֻקּוֹת כָּשֵׁר וְאִם אֲדֻמּוֹת אוֹ שְׁחוֹרוֹת פָּסוּל. וְאִם מִעֲטָן כָּשֵׁר. וְאֵין מְמַעֲטִין אוֹתָן בְּיוֹם טוֹב לְפִי שֶׁהוּא כִּמְתַקֵּן. עָבַר וְלִקְּטָן אוֹ שֶׁלִּקְּטָן אֶחָד אֶחָד לַאֲכִילָה הֲרֵי זֶה כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הדס </strong> שנקטם ראשו כשר דאכתי הדר הוא ואם נשתיירו שלשה עליו בקן אחד כשר דהא עליו חופין את עצו במקום העלין. היו ענביו שחורות או אדומות מרובות מעליו פסול דבטילי עלים לגבי ענבים ואם מיעטן כשר דאזלינן בתר רובא מדאוריתא אבל ירוקות מין הדס הן וכשר.</p>
               </div>
             </div>
@@ -1074,8 +1320,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-6">Mishneh Torah, Shofar, Sukkah and Lulav 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֲרָבָה שֶׁנִּקְטַם רֹאשָׁהּ כְּשֵׁרָה. נִפְרְצוּ עָלֶיהָ פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ערבה </strong> שנקטם ראשה כשרה דאכתי הדר ונפרצו עליה פסולה נמי מהאי טעמא.</p>
               </div>
             </div>
@@ -1090,8 +1341,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-7">Mishneh Torah, Shofar, Sukkah and Lulav 8:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶתְרוֹג שֶׁנִּקַּב נֶקֶב מְפֻלָּשׁ כָּל שֶׁהוּא פָּסוּל. וְשֶׁאֵינוֹ מְפֻלָּשׁ אִם הָיָה כְּאִיסָר אוֹ יֶתֶר פָּסוּל. חָסֵר כָּל שֶׁהוּא פָּסוּל. נִטַּל דָּדוֹ וְהוּא הָרֹאשׁ הַקָּטָן שֶׁשּׁוֹשַׁנְתּוֹ בּוֹ פָּסוּל. נִטַּל הָעֵץ שֶׁהוּא תָּלוּי בּוֹ בָּאִילָן מֵעִקַּר הָאֶתְרוֹג וְנִשְׁאַר מְקוֹמוֹ גּוּמָא פָּסוּל. עָלְתָה חֲזָזִית עָלָיו אִם בִּשְׁנַיִם וּשְׁלֹשָׁה מְקוֹמוֹת פָּסוּל. וְאִם בְּמָקוֹם אֶחָד אִם עָלְתָה עַל רֻבּוֹ פָּסוּל. וְאִם עַל דָּדוֹ וַאֲפִלּוּ כָּל שֶׁהוּא פָּסוּל. נִקְלַף הַקְּרוּם הַחִיצוֹנָה שֶׁלּוֹ שֶׁאֵינוֹ מְחַסְּרוֹ אֶלָּא נִשְׁאָר יָרֹק כְּמוֹת שֶׁהִיא בְּרִיָּתוֹ אִם נִקְלַף כֻּלּוֹ פָּסוּל וְאִם נִשְׁאַר מִמֶּנּוּ כָּל שֶׁהוּא כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אתרוג </strong> שניקב נקב מפולש כל שהוא או שאינו מפולש כאיסר אפילו שאינו חסר פסול דלאו הדר הוא ואם חסר אפילו כל שהוא פסול דפרי עץ קאמר רחמנא שלם ולא חסר והרב ז&quot;ל כתב דפסול משום דבעינן לקיחה תמה דכתיב ולקחתם לכם וגו׳. ניטל דדו או העץ שתלוי בו ונשאר במקומו גימה פסול מדין חסר. עלתה חזזית בשנים או בשלשה מקומות או ברובו במקום אחד או כל שהוא בדדו פסול ונראה דמשום הדר הוא פסול. נקלף אם נשאר ממנו כל שהוא כשר דמציל על כולו ואכתי הדר הוא ואם נקלף כולו פסול דלאו הדר הוא. אתרוג שהוא תפוח סרוח כבוש שלוק שחור לבן מנומר ירוק ככרתי שהוא כעשב פסול וכל הני נראה דמיפסלי משום דאינם הדר. עשהו כמין ברייתו אע&quot;פ שעשהו כמין דפין דפין כשר דהוי הדר. התיום והבוסר נמי הוו הדר כושי פסול בכל מקום דומה לכושי במקום שהם כעין שחורות כשר דהוו הדר למקומו.</p>
               </div>
             </div>
@@ -1106,8 +1362,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-9">Mishneh Torah, Shofar, Sukkah and Lulav 8:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אֵלּוּ שֶׁאָמַרְנוּ שֶׁהֵם פְּסוּלִין מִפְּנֵי מוּמִין שֶׁבֵּאַרְנוּ אוֹ מִפְּנֵי גֵּזֶל וּגְנֵבָה בְּיוֹם טוֹב רִאשׁוֹן בִּלְבַד אֲבָל בְּיוֹם טוֹב שֵׁנִי עִם שְׁאָר הַיָּמִים הַכּל כָּשֵׁר. וְהַפַּסְלָנוּת שֶׁהוּא מִשּׁוּם עֲבוֹדַת כּוֹכָבִים אוֹ מִפְּנֵי שֶׁאוֹתוֹ אֶתְרוֹג אָסוּר בַּאֲכִילָה בֵּין בְּיוֹם טוֹב רִאשׁוֹן בֵּין בִּשְׁאָר יָמִים פָּסוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> שהוא פסול משום שאינו שלכם ביו&quot;ט ראשון בלבד הוא דכתיב לכם ביום הראשון אבל הפסולים משום שאינם הדר או משום ע&quot;ז או משום שאסור באכילה בין בי&quot;ט ראשון בין בשאר הימים של תורה במקדש פסולים.</p>
               </div>
             </div>
@@ -1122,8 +1383,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-10">Mishneh Torah, Shofar, Sukkah and Lulav 8:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם יוֹצֵא בְּיוֹם טוֹב רִאשׁוֹן שֶׁל חַג בְּלוּלָבוֹ שֶׁל חֲבֵרוֹ שֶׁיִּשְׁאָלֶנּוּ מִמֶּנּוּ עַד שֶׁיִּתְּנֶנּוּ לוֹ בְּמַתָּנָה. נְתָנוֹ לוֹ עַל מְנָת לְהַחֲזִירוֹ הֲרֵי זֶה יוֹצֵא בּוֹ יְדֵי חוֹבָתוֹ וּמַחֲזִירוֹ. שֶׁמַּתָּנָה עַל מְנָת לְהַחֲזִיר שְׁמָהּ מַתָּנָה. וְאִם לֹא הֶחְזִירוֹ לֹא יָצָא שֶׁנִּמְצָא כְּגָזוּל. וְאֵין נוֹתְנִין אוֹתוֹ לְקָטָן שֶׁהַקָּטָן קוֹנֶה וְאֵינוֹ מַקְנֶה לַאֲחֵרִים מִן הַתּוֹרָה וְנִמְצָא שֶׁאִם הֶחְזִירוֹ לוֹ אֵינוֹ חוֹזֵר. וְאֶחָד הַלּוּלָב וְאֶחָד כָּל מִין וָמִין מֵאַרְבַּע מִינִין שֶׁבּוֹ אִם הָיָה אֶחָד מֵהֶן שָׁאוּל אֵין יוֹצְאִין בּוֹ בְּיוֹם טוֹב רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> אדם יוצא ביו&quot;ט הראשון של חג בלולבו של חברו דבעינן שלכם עד שיתננו לו במתנה נתנו במתנה על מנת להחזיר שמה מתנה ואם לא החזירו לא יצא דנמצא גזול. ואין נותנין אותו לקטן דכשדעת אחרת מקנה יש לו זכיה מן התורה דאומר אדם לבתו קטנה צאי וקבל קידושיך ויש לה יד לזכות בהן ומתקדשת. ואחד לולב ואחד כל המינין אם היה אחד מהן שאול אין יוצאין בו בי&quot;ט ראשון דקרא דלכם אכולהו כתיב. שותפין שקנו לולב או אתרוג בשותפות אין אחד מהם יוצא ביום ראשון עד שיתן חלקו לחברו במתנה דבעינן שיהא כולו שלו. האחין שקנו אתרוגין בתפיסת הבית ונטל אחד מהן אתרוג אם יכול לאוכלו ואין האחין מקפידין יצא ואם הם מקפידים לא יצא עד שיתנו לו חלקם במתנה ואם קנו אתרוג עם מינים אחרים אפילו אינם מקפידים לא יצאו דכל שאין שם מאותו המין אין מחילתה בסתם מועלת עד שיתן אותו במתנה.</p>
               </div>
             </div>
@@ -1138,8 +1404,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-8-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Shofar, Sukkah and Lulav 8:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-12">Mishneh Torah, Shofar, Sukkah and Lulav 8:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁכָּל הַמּוֹעֲדוֹת מִצְוָה לִשְׂמֹחַ בָּהֶן. בְּחַג הַסֻּכּוֹת הָיְתָה בַּמִּקְדָּשׁ יוֹם שִׂמְחָה יְתֵרָה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג מ)</span> &quot;וּשְׂמַחְתֶּם לִפְנֵי ה׳ אֱלֹהֵיכֶם שִׁבְעַת יָמִים&quot;. וְכֵיצַד הָיוּ עוֹשִׂין. עֶרֶב יוֹם טוֹב הָרִאשׁוֹן הָיוּ מְתַקְּנִין בַּמִּקְדָּשׁ מָקוֹם לַנָּשִׁים מִלְּמַעְלָה וְלָאֲנָשִׁים מִלְּמַטָּה כְּדֵי שֶׁלֹּא יִתְעָרְבוּ אֵלּוּ עִם אֵלּוּ. וּמַתְחִילִין לִשְׂמֹחַ מִמּוֹצָאֵי יוֹם טוֹב הָרִאשׁוֹן. וְכֵן בְּכָל יוֹם וְיוֹם מִימֵי חֻלּוֹ שֶׁל מוֹעֵד מַתְחִילִין מֵאַחַר שֶׁיַּקְרִיבוּ תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם לִשְׂמֹחַ לִשְׁאָר הַיּוֹם עִם כָּל הַלַּיְלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ </strong> שכל המועדות מצוה לשמוח בהם בחג הסוכות היתה שמחה יתירה במקדש שנאמר ושמחתם לפני ה׳ אלהיכם שבעת ימים ומצוה להרבות בשמחה זו שהשמחה שישמח אדם בעשיית המצות ובאהבת האל עבודה גדולה היא והמונע עצמו ממנו ראוי ליפרע ממנו שנאמר תחת אשר לא עבדת את ה׳ אלהיך בשמחה ובטוב לבב והמגיס דעתו וחולק כבוד לעצמו במקומות אלו חוטא ואמר שלמה אל תתהדר לפני מלך והמשפיל על עצמו ומקיל בכבודו הוא הגדול המכובד וכן דוד מלך ישראל אמר ונקלותי עוד מזאת ואין הגדולה והכבוד אלא לשמוח לפני ה׳ שנאמר והמלך דוד מפזז ומכרכר לפני ה׳ ויש במצוה זו דברים מדרבנן נכללים בלא תסור ובושמרתם את משמרתי עשו משמרת למשמרתי ויש מה שאינו בכלל אלו אלא מנהג נביאים ועל הכל אנו חייבים מן התורה שלא למרות את פיהם:</p>
               </div>
             </div>
@@ -1149,6 +1420,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1169,8 +1444,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-shofar-sukkah-and-lulav.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1196,7 +1471,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

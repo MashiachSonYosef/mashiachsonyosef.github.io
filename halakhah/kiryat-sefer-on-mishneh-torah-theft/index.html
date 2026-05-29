@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-theft/">Open Mishneh Torah, Theft</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Theft</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">49 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>626 matched</strong> / 1825 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-theft.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-theft-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -284,8 +285,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-1">Mishneh Torah, Theft 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַגּוֹנֵב מָמוֹן מִשְּׁוֵה פְּרוּטָה וּלְמַעְלָה עוֹבֵר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט יא)</span> &quot;לֹא תִגְנֹב&quot;. וְאֵין לוֹקִין עַל לָאו זֶה שֶׁהֲרֵי נִתָּן לְתַשְׁלוּמִין שֶׁהַגַּנָּב חִיְּבַתּוּ תּוֹרָה לְשַׁלֵּם. וְאֶחָד הַגּוֹנֵב מָמוֹן יִשְׂרָאֵל אוֹ הַגּוֹנֵב מָמוֹן עַכּוּ&quot;ם וְאֶחָד הַגּוֹנֵב אֶת הַגָּדוֹל אוֹ אֶת הַקָּטָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת ערה </strong> שלא לגנוב ממון משוה פרוטה ולמעלה דכתיב לא תגנובו ומיירי בממון דהוי דבר הלמד מעניינו דכתיב גבי לאוי דממון וכדאמר׳ פרק אלו הן הנחנקין דף פ&quot;ו ופחות משוה פרוטה אינו נחשב גזל בעיניהם שעוברים על מדתם רחמנים הם ומוחלין על דבר קל אבל בני נח אכזרים הם וכדאיתא פרק ארבע מיתות דף כ&quot;ט ואין לוקין על לאו זה שהרי ניתק לתשלומין שחייבו תורה לשלם מה שגנב ואמרינן ריש פרק אלו הן הלוקין דלאו שניתק לעשה פטור ממלקות דבעינן דומיא דלאו דחסימה שהוא כתוב אצל פרשת מלקות ונתקו נמי הכתוב לעשה להיות ענשו של לאו ותיקונו לומר לא תעשה כך ואם עשה עשה זאת והפטר כדפי׳ רש&quot;י ז&quot;ל התם דף י&quot;ד ואחד הגונב ממון ישראל או ממון גוי עובד עבודה זרה וכדילפינן פרק הגוזל ומאכיל דף קי&quot;ג אחרי נמכר גאולה תהיה לו שלא יוציאוהו בית דין מיד גוי אלא בגאולה והתם כתיב או לעקר משפחת גר זה הנמכר לעבודה זרה עצמה לחטוב לה עצים ואכולהו קאי גאולה תהיה לו ואחד הגונב את הגדול ואת הקטן. אסור לגנוב כל שהוא מן התורה דאף על גב דאינו עובר אלא אשוה פרוטה לענין איסור אפילו כל שהו כחצי שיעור באיסורין וכו׳. אסור לגנוב דרך שחוק או ע&quot;מ לשלם כדתניא פרק איזהו נשך דמריבית ואונאה הוה ילפינן גניבה שהרי מחסרו ממון לא תגנובו למה לי לא תגנוב ע&quot;מ למיקט לצערו לא תגנוב על מנת לשלם תשלומי כפל שרוצה ויודע בו שלא יקבל וכו׳. ואי זהו גנב הלוקח ממון חברו בסתר ואם לקח בגלוי בחוזק יד הוא גזלן ולסטים מזויין כיון דמיטמר מאינשי גנב הוא כדאיתא פרק הכונס דף נ&quot;ז ובמרובה דף ע&quot;ט גזלן היכי דמי כגון בניהו בן יהוידע דכתיב ויגזול את החנית מיד המצרי וגו׳:</p>
               </div>
             </div>
@@ -300,8 +306,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-4">Mishneh Torah, Theft 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גַּנָּב שֶׁהֵעִידוּ עָלָיו עֵדִים כְּשֵׁרִים שֶׁגָּנַב חַיָּב לְשַׁלֵּם שְׁנַיִם לְבַעַל הַגְּנֵבָה. אִם גָּנַב דִּינָר מְשַׁלֵּם שְׁנַיִם. גָּנַב חֲמוֹר אוֹ כְּסוּת אוֹ גָּמָל מְשַׁלֵּם שְׁנַיִם בְּדָמֶיהָ. נִמְצָא מַפְסִיד כַּשִּׁעוּר שֶׁבִּקֵּשׁ לְחַסֵּר אֶת חֲבֵרוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קצג </strong> לדון לגנב בתשלומין או במיתה כדכתיב כי יגנוב וגו׳ אם במחתרת וגו׳ וגונב איש ומכרו וגו׳ הגנב משלם שנים כדכתיב ישלם שנים לרעהו ונוהג בכל כדנילף לפנים וכו׳. המודה מעצמו בבית דין פטור מכל כדכתיב אשר ירשיעון אלהים פרט למרשיע עצמו שאינו משלם שנים וכן כל הקנסות ילפינן&#160;מהכא וכו׳.</p>
               </div>
             </div>
@@ -316,8 +327,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-6">Mishneh Torah, Theft 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תַּשְׁלוּמֵי כֶּפֶל נוֹהֲגִין בַּכּל חוּץ מִשֶּׂה וְשׁוֹר שֶׁהַגּוֹנֵב אֶת הַשּׁוֹר אוֹ אֶת הַשֶּׂה וְטָבַח אוֹ מָכַר מְשַׁלֵּם עַל הַשֶּׂה תַּשְׁלוּמֵי אַרְבָּעָה וְעַל הַשּׁוֹר תַּשְׁלוּמֵי חֲמִשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תשלומי </strong> כפל נוהג בכל חוץ משור ושה דמשלם ארבעה וחמשה וכדילפינן ריש מרובה על כל דבר פשע כלל על שור על חמור וכו׳ פרט על כל אבדה חזר וכלל כלל ופרט וכלל אי אתה דן אלא כעין הפרט שהוא מטלטל וגופו ממון יצאו קרקעות ושטרות ועבדים שהוקשו לקרקעות כדכתיב והתנחלתם אותם לבניכם וגו׳ יצאה הקדש דרעהו כתיב ומשום דאיכא פרטי יתירא וכל חד מרבי כעין דידיה הוי אמינא עופות לא דלא קדשי דבכורה דומיא דשור וחמור להכי כתב שה ואכתי לא הוו מייתי עוף טמא דלית בהו טומאת בגדים אבית הבליעה וכדילפי׳ בחולין מנבלה וטרפה לא יאכל לטמאה בה מי שאיסורו משום בל תאכל נבלה כתב כל דהוא ריבוייא ואיבעית אימא כל בעלמא כלל הוא מיהו כל דהכא ריבוייא הוא מדכתיב בראש הפרשה כי יתן איש אל רעהו כסף או כלים לשמור כלל ופרט וכלל ואי ס&quot;ד האי כל נמי כלל הוא לכתוב רחמנא להני פרטי גבי האיך כלל ופרט על כל דבר פשע למה לי ש&quot;מ ריבויא הוא והני פרטי שור וחמור וכו׳ למעוטי קרקעות ועבדים ושטרות ושלמה למעוטי דבר שאינו מסויים כשלמה שכיון שאין לבעלים בו סימן פטור מכפל על כל אבדה לטוען טענת גנב באבדה דמשלם תשלומי כפל ותשלומי ארבעה וחמשה דוקא בשור ושה ולא נילף שור שור משבת דשור דסיפיה דקרא ושה דרישא מיתרי כדאמרי׳ התם במרובה דף ס&quot;ז לומר שור ושה אין מידי אחרינא לא.</p>
               </div>
             </div>
@@ -332,8 +348,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-7">Mishneh Torah, Theft 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה שֶׁגָּנְבוּ חַיָּבִין לְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְתַשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. הָיְתָה אֵשֶׁת אִישׁ שֶׁאֵין לָהּ לְשַׁלֵּם הֲרֵי הַכֶּפֶל עָלֶיהָ חוֹב עַד שֶׁתִּתְגָּרֵשׁ אוֹ יָמוּת בַּעְלָהּ וּבֵית דִּין נִפְרָעִים מִמֶּנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> האיש ואחד האשה המה בתשלומי כפל וד׳ וכו׳ כדילפינן פרק קמא דף ט&quot;ו איש או אשה כי יעשו מכל חטאת השוה הכתוב אשה לאיש לכל עונשין שבתור׳ ואית דתני אשר תשים לפניהם השוה לכל דינים שבתורה ואית דתני והמית איש או אשה השוה הכתוב וכו׳ וצריכי כולהו כדאיתא התם. אשת איש שאין לה לשלם נפרעין ממנה לאחר שתתגרש כדתנן פרק החובל דף פ&quot;ז העבד והאשה פגיעתן רעה החובל בהן חייב והם שחבלו באחרים פטורים אבל משלמין אחר גירושין ואחר שיחרו׳ דנכסי מלוג משועבדין לבעל לפירות ולירושה. קטן שגנב פטור מכפל ואף מקרן אם נאבד כדתנן נמי התם.</p>
               </div>
             </div>
@@ -348,8 +369,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-11">Mishneh Torah, Theft 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה הַגְּנֵבָה בְּיַד הַגַּנָּב וְהִשְׁבִּיחָה מֵאֵלֶיהָ כְּגוֹן כִּבְשָׂה שֶׁיָּלְדָה וּגְזָזָהּ מְשַׁלֵּם אוֹתָהּ וְאֶת גִּזּוֹתֶיהָ וְאֶת וַלְדוֹתֶיהָ. וְאִם אַחַר יֵאוּשׁ יָלְדָה וּגְזָזָהּ מְשַׁלֵּם כִּשְׁעַת הַגְּנֵבָה. הוֹצִיא עָלֶיהָ הוֹצָאָה וְהִשְׁבִּיחָהּ כְּגוֹן שֶׁפִּטְּמָהּ הֲרֵי הַשֶּׁבַח שֶׁל גַּנָּב אֲפִלּוּ לִפְנֵי יֵאוּשׁ. וּכְשֶׁמַּחְזִיר הַגְּנֵבָה עִם הַכֶּפֶל נוֹטֵל הַשֶּׁבַח מִן הַבְּעָלִים אוֹ מְחַשְּׁבִין לוֹ מִן הַכֶּפֶל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבח </strong> הגניבה מאליה לבעלים ואחר יאוש לגנב ואם השביחה על ידי שפטמה אפילו קודם יאוש לגנב ונראה שהשביחה מאליה אפילו לאחר יאוש מן התורה הוא לגנב וכשהשביחה הוא שבח דידיה אפילו קודם יאוש דא&quot;ל אנא מפטימנא ואת שקלת כדאמרינן במרובה דף ס&quot;ה והיינו משום דדרשינן וכו׳ נשתנית הגניבה אפי׳ לפני יאוש השבח לגנב ואינו משלם אלא דמי׳ דשינוי קונה מן התורה כדאמר רבה דף ס&quot;ו שינוי קונה כתיבא ותנינא כתיבא והשיב את הגזילה אשר גזל כעין שגזל יחזיר ואם לאו דמים בעלמא בעי שלומי וכתבו התוספות דאפילו בשינוי החוזר לבריתו קאמר רבה וצריכי תרי קראי לשינוי שאינו חוזר ושינוי החוזר האי אשר גזל וקרא גבי אתנן [היא] (הכי) ולא שנוייהם כדאמרינן התם דף ס&quot;ה. גנב כחושה והשמינה או איפכא נראה דלא חשיב שינוי ולהכי משלם תשלומי כפל וארבעה וחמשה אלא שמשלם כעין שגנב משום דא&quot;ל אנא פטימנא ואת שקלת כדאיתא התם טלה ונעשה איל משלם תשלומי כפל כשעת הגניבה דחשיב שינוי ולהכי אינו משלם ד׳ וה׳ כדאמר ר׳ אילעי התם דף ס&quot;ה.</p>
               </div>
             </div>
@@ -364,8 +390,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-14">Mishneh Torah, Theft 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּנַב בְּהֵמָה אוֹ כְּלִי וְכַיּוֹצֵא בָּהֶן וּבִשְׁעַת הַגְּנֵבָה הָיָה שָׁוֶה אַרְבָּעָה וְעַכְשָׁו בִּשְׁעַת הַעֲמָדָה בַּדִּין שָׁוֶה שְׁנַיִם מְשַׁלֵּם קֶרֶן כִּשְׁעַת הַגְּנֵבָה וְתַשְׁלוּמֵי כֶּפֶל אוֹ אַרְבָּעָה וַחֲמִשָּׁה כִּשְׁעַת הַעֲמָדָה בַּדִּין. הָיָה שָׁוֶה בִּשְׁעַת הַגְּנֵבָה שְׁנַיִם וּבִשְׁעַת הַעֲמָדָה בַּדִּין אַרְבָּעָה אִם שָׁחַט אוֹ מָכַר אוֹ שָׁבַר הַכְּלִי אוֹ אִבְּדוֹ מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל אוֹ אַרְבָּעָה וַחֲמִשָּׁה כִּשְׁעַת הַעֲמָדָה בַּדִּין. וְאִם מֵתָה הַבְּהֵמָה אוֹ אָבַד הַכְּלִי מֵאֵלָיו מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל כִּשְׁעַת הַגְּנֵבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הוזלה </strong> הגניבה בשעת העמדה בדין משלם קרן כשעת גניבה וכפל וארבעה וחמשה כשעת העמדה בדין כדאמר רב דף ס&quot;ה אמר קרא גניבה וחיים אחייה לקרן כעין שגנב החייהו לקרן של גניבה שיהא שלם ודוקא גניבה עצמה דהוא קרן הוא דרבי רחמנא ולא כפל וארבעה וחמשה ואם הוקרה נמי כעין שגנב דאשעתא דגניבה הוא דמחייב ולא הוה שויא אלא זוזא אבל איבדה ביד או תברה משלם כמו שהיתה שוה או דההיא שעתא הוא דגזיל לה דכל כמה דאיתא בעינה ברשותה דמרה הוה קימא דהא בעי לאהדורי.</p>
               </div>
             </div>
@@ -380,8 +411,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-15">Mishneh Torah, Theft 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁגָּנַב כְּלִי וּשְׁבָרוֹ אוֹ פִּחֲתוֹ אוֹ נִשְׁבַּר אוֹ נִפְחַת מֵאֵלָיו אֵין שָׁמִין לוֹ הַפְּחָת אֶלָּא רוֹאִין כַּמָּה הָיָה שָׁוֶה אוֹתוֹ הַכְּלִי וּמְשַׁלֵּם לַבְּעָלִים שְׁנַיִם בְּדָמָיו וְהַכְּלִי הַשָּׁבוּר יִהְיֶה לַגַּנָּב. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְאִם רָצוּ הַבְּעָלִים לִטּל הַכְּלִי הַשָּׁבוּר וִישַׁלֵּם לָהֶם הַפְּחָת וְהַכֶּפֶל שׁוֹמְעִין לָהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגניבה </strong> שנפחתה אין שמין לו הפחת ושיהיו השברים לבעלים אלא ישלם בהמה שלמה או כלים מעולים והשבר שלו דאף על גב דלנזקין אמרינן ישיב לרבות שוה כסף וכו׳ ואמרינן והמת יהיה לו מלמד שהבעלים מטפלין בנבלה גבי גנב וגזלן שאני דכתיב אשר גזל כעין שגזל הילכך צריך להחזיר הגניבה או דמיה ולא סובין ובירושלמי מפיק לגניבה מדכתיב חיים שנים ולא מתים וטעמא דגנב וגזלן קנו מיד כשהוציאו מרשות בעלים ומזיק לא נתחייב אלא כשעה שהזיק כמו שכתבו התוספות פרק קמא דף י&quot;א.</p>
               </div>
             </div>
@@ -396,8 +432,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-16">Mishneh Torah, Theft 1:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגַּנָּב שֶׁגָּנַב וְטָבַח אוֹ מָכַר לִפְנֵי יֵאוּשׁ בְּעָלִים אַף עַל פִּי שֶׁלֹּא קָנָה לוֹקֵחַ וַהֲרֵי הַגְּנֵבָה חוֹזֶרֶת בְּעַצְמָהּ מִיַּד הַלּוֹקֵחַ הֲרֵי זֶה מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. וְאֵין צָרִיךְ לוֹמַר אִם טָבַח אוֹ מָכַר לְאַחַר יֵאוּשׁ שֶׁהוּא מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה שֶׁהֲרֵי הוֹעִיל בְּמַעֲשָׂיו וְקָנָה הַלּוֹקֵחַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכר </strong> או טבח לפני יאוש שלא קנה לוקח משלם ארבעה וחמשה כרב נחמן דף ס&quot;ח דאמר ומכרו אמר רחמנא והא זבין לא שנא לפני יאוש לא שנא לאחר יאוש.</p>
               </div>
             </div>
@@ -412,8 +453,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 1:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-1-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 1:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-1-17">Mishneh Torah, Theft 1:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵב מִגַּנָּב אַחֵר אַף עַל פִּי שֶׁנִּתְיָאֲשׁוּ הַבְּעָלִים אֵינוֹ מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְאִם טָבַח וּמָכַר אֵינוֹ מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה לַגַּנָּב הָרִאשׁוֹן שֶׁהֲרֵי דִּין הַבְּהֵמָה הַזֹּאת לַחֲזֹר בְּעֵינֶיהָ לַבְּעָלִים וְלֹא קְנָאָהּ הַגַּנָּב וְלַבְּעָלִים אֵינוֹ מְשַׁלֵּם הַכֶּפֶל אוֹ אַרְבָּעָה וַחֲמִשָּׁה מִפְּנֵי שֶׁלֹּא גְּנָבָהּ מֵרְשׁוּתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגונב </strong> מן הגנב פטור מכפל ומארבעה וחמשה דכתיב וגונב מבית האיש ולא מבית הגנב לגנב עצמו לא משלם כפל דהא לא קנה דהדרא בעינא. ואם קנאה הגנב האחד בשינוי מעשה משלם כפל הגנב הב׳ לא׳ דקרינא ביה וגונב מבית האיש דהא קנאה ביאוש ושינוי רשות ושמכרה משלם כפל מי שגנב ללוקח מן הגנב דקרינא ביה מבית האיש כדאמרינן:</p>
               </div>
             </div>
@@ -429,8 +475,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-1">Mishneh Torah, Theft 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵּב אֶת הָעַכּוּ&quot;ם אוֹ שֶׁגָּנַב נִכְסֵי הֶקְדֵּשׁ אֵינוֹ מְשַׁלֵּם אֶלָּא הַקֶּרֶן בִּלְבַד שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ח)</span> &quot;יְשַׁלֵּם שְׁנַיִם לְרֵעֵהוּ&quot; לְרֵעֵהוּ וְלֹא לַהֶקְדֵּשׁ לְרֵעֵהוּ וְלֹא לְעַכּוּ&quot;ם. וְכֵן הַגּוֹנֵב קָדָשִׁים מִבֵּית בַּעֲלֵיהֶן בֵּין קָדְשֵׁי קָדָשִׁים בֵּין קָדָשִׁים קַלִּים בֵּין קָדָשִׁים שֶׁאֵין הַבְּעָלִים חַיָּבִין בְּאַחֲרָיוּתָן בֵּין קָדָשִׁים שֶׁהַבְּעָלִים חַיָּבִין בְּאַחֲרָיוּתָן הֲרֵי זֶה פָּטוּר מִן הַכֶּפֶל וּמִתַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;וְגֻנַּב מִבֵּית הָאִישׁ&quot; וְלֹא מִבֵּית הֶקְדֵּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גניבת </strong> הקדש וגוי אימעיטו מכפל וד׳ וה׳ דכתיב רעהו ואפילו קדשים שחייב באחריותן כרבנן דרבי שמעון פרק מרובה דע&quot;ד וטעמא דרבנן כדמפרש בגמרא דכתיב וגונב מבית האיש ולא מבית הקדש מבית איש דשייך ביה רעהו ולא מבית הקדש ואגב דגבי גנב איצטריך למכתב האי לישנא למידרש ולא מבית הגנב נקט ליה נמי לענין הקדש. וכן הגונב עבדים ושטרות וקרקעות אינו משלם כפל וכדילפינן לעיל פרק קמא.</p>
               </div>
             </div>
@@ -445,8 +496,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-3">Mishneh Torah, Theft 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵב פֶּטֶר חָמוֹר שֶׁל חֲבֵרוֹ קֹדֶם שֶׁיִּפָּדֶה מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל לַבְּעָלִים. שֶׁאַף עַל פִּי שֶׁאֵינוֹ עַכְשָׁו שֶׁלּוֹ רָאוּי לִהְיוֹתוֹ לוֹ אַחַר שֶׁיִּפָּדֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגונב </strong> פטר חמור קודם שיפדה משלם תשלומי כפל וכדתניא פרק קמא דבכורות דף י&quot;א דמשלם כפל אף על פי שאין לו עכשיו רשות יש לו לאחר זמן ואי ס&quot;ד להקדש מדמיה ליה וגונב מבית האיש אמר רחמנא ולא מבית הקדש ותו לא מידי.</p>
               </div>
             </div>
@@ -461,8 +517,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-4">Mishneh Torah, Theft 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵב טִבְלוֹ שֶׁל חֲבֵרוֹ וַאֲכָלוֹ מְשַׁלֵּם לוֹ דְּמֵי טִבְלוֹ. וְכֵן אִם גָּנַב חֶלְבּוֹ וַאֲכָלוֹ מְשַׁלֵּם לוֹ דְּמֵי חֶלְבּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגונב </strong> טבלו של חברו ואכלו משלם לו דמי טבלו כר׳ מחברו ספ&quot;ק דקידושין דאף דמי תרומה והמעשר שבו משלם כיון שלא הפרישם&#160;עדין וגונב חלב ואכלו אע&quot;פ שמתחייב בנפשו משלם כדאמ׳ פרק אלו נערות.</p>
               </div>
             </div>
@@ -477,8 +538,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-5">Mishneh Torah, Theft 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּנַב תְּרוּמָה מִבְּעָלֶיהָ הַיִּשְׂרְאֵלִים שֶׁהִפְרִישׁוּהָ אֵינוֹ מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל. שֶׁאֵין לָהֶם בָּהּ אֶלָּא טוֹבַת הֲנָאָה וְטוֹבַת הֲנָאָה אֵינָהּ מָמוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גונב </strong> תרומה מישראל אין בו כפל דאין לו בה אלא טובת הנאה ואינה ממון כדאיתא התם סוף האיש מקדש וכו׳.</p>
               </div>
             </div>
@@ -493,8 +559,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-6">Mishneh Torah, Theft 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵב מִשֶּׁל אָבִיו וְטָבַח אוֹ מָכַר וְאַחַר כָּךְ מֵת אָבִיו מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. וְאִם מֵת אָבִיו וְאַחַר כָּךְ טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְאֵינוֹ מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. גָּנַב וְטָבַח אוֹ מָכַר וְאַחַר כָּךְ הִקְדִּישׁ מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. וְאִם הִקְדִּישׁ וְאַחַר כָּךְ טָבַח אוֹ מָכַר אַף עַל פִּי שֶׁהִקְדִּישׁוֹ קָדָשִׁים קַלִּים מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְאֵינוֹ מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁהִקְדִּישׁ אַחַר יֵאוּשׁ. אֲבָל אִם הִקְדִּישׁ לִפְנֵי יֵאוּשׁ אֵינוֹ קָדוֹשׁ וְאִם טָבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גנב </strong> משל אביו וטבח ומכר ואחר כך מת אביו או גנב וטבח ומכר ואחר כך הקדיש אחר יאוש בעלים משלם ארבעה וה׳ כדתנן במרובה ד&quot;ע ואם טבח אחר שמת אביו או הקדיש אינו משלם ד׳ וה׳ כדתנן דע&quot;ד וטעמא דוטבחו כולו משמע וברישא קרינא ביה כולו באיסור ובסיפא לא קרינא ביה כולו באיסור אלא חלק אחיו ולא חלקו דהא מת אביו וכו׳ והקדש נמי כי קא טבח דהקדש קא טבח ולא דבעלים.</p>
               </div>
             </div>
@@ -509,8 +580,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-7">Mishneh Torah, Theft 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִקְדִּישׁוּ הַבְּעָלִים וְהוּא בְּבֵית הַגַּנָּב אֵינוֹ קָדוֹשׁ לְפִי שֶׁאֵינוֹ בִּרְשׁוּתָן וְאַף עַל פִּי שֶׁלֹּא נִתְיָאֲשׁוּ. וְאִם טָבַח אוֹ מָכַר אֲפִלּוּ אַחַר הֶקְדֵּשָׁן מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקדישו </strong> הבעלים בבית הגנב אפילו לפני יאוש אינו קדוש כדאמר רבי יוחנן במרובה דס&quot;ח שניהם אינם יכולים להקדיש זה לפי שאינו שלו וזה לפי שאינו ברשותו וכתיב איש כי יקדיש את ביתו מה ביתו שלו אף כל שלו ומה ביתו ברשותו אף כל ברשותו וכדאמ׳ נמי התם דף ס&quot;ט.</p>
               </div>
             </div>
@@ -525,8 +601,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-8">Mishneh Torah, Theft 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹחֵט וְנִתְנַבְּלָה בְּיָדוֹ וְהַנּוֹחֵר וְהַמְעַקֵּר מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל בִּלְבַד. אֲבָל אִם שָׁחַט לִרְפוּאָה אוֹ לִכְלָבִים אוֹ שֶׁנִּמְצֵאת טְרֵפָה אוֹ שֶׁשְּׁחָטוֹ בָּעֲזָרָה מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. אַף עַל פִּי שֶׁחֻלִּין שֶׁנִּשְׁחֲטוּ בַּעֲזָרָה אֲסוּרִין בַּהֲנָאָה הוֹאִיל וְאִסּוּרָן מִדִּבְרֵיהֶם הֲרֵי זֶה חַיָּב לְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השוחט </strong> ונפסלה בשחיטה אינו משלם תשלומי ד׳ וה׳ דהא לאו שחיטה היא כלל כדתנן דמ&quot;ח אבל שחט לרפואה או לכלבים או נמצאת טריפה שלא נפסלה בשחיטה או חולין בעזרה דאין איסורן מן התורה חייב בארבעה וחמש׳ כדתנן התם ד&quot;ע.</p>
               </div>
             </div>
@@ -541,8 +622,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-9">Mishneh Torah, Theft 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן הַגּוֹנֵב כִּלְאַיִם הַבָּא מִן הַשֶּׂה וּמִמִּין אַחֵר אוֹ שֶׁגָּנַב טְרֵפָה אוֹ קִטַּעַת אוֹ חִגֶּרֶת אוֹ סוּמָא אוֹ בֶּהֱמַת הַשֻּׁתָּפִין וְטָבַח וּמָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגונב </strong> בהמת כלאים שטבח או מכר חייב ד׳ וה׳ דכתיב שור או שה או מייתר לרבות כלאים דאף על גב דאו דשור או כשב או עז דרשינן פרט לכלאים ולנדמה הכא גבי גניבה דלא כתיב אלא שור או שה דאי אתה יכול להוציא כלאים מביניהם דאין עיבורן שוה אתא או לרבות וכשב ועז דעיבורן שוה ויכול לצאת כלאים מביניהם או למעט כדאמ׳ התם דע&quot;ח וכן טריפה או חגרת או סומא חייב ד׳ וה׳ במכירה אע&quot;ג דכתיב וטבחו דמשמע כולה והך חסרה היא אפ&quot;ה הא זבין כל מאי דגנב וכן (על) בהמת שותפין דהא טבחה או מכרה כולה כדאמר׳ דע&quot;ח.</p>
               </div>
             </div>
@@ -557,8 +643,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-10">Mishneh Torah, Theft 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּנַב וְנָתַן לְאַחֵר בְּמַתָּנָה אוֹ שֶׁנָּתַן לְאַחֵר לִטְבֹּחַ וְטָבַח אוֹ שֶׁנָּתַן לְאַחֵר לִמְכֹּר וּמְכָרָהּ לְאַחֵר. גָּנַב וְהִקִּיף גָּנַב וְהֶחְלִיף גָּנַב וּפָרַע בְּהֶקֵּפוֹ אוֹ שֶׁשְּׁלָחוֹ סִבְלוֹנוֹת לְבֵית חָמִיו מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נתינה </strong> הוי בכלל מכירה דדומיא דטביחה הוא כל זמן שמשתמש לו ויצא מרשותו ועל ידי שליח נמי חייב ולא אמרינן אין שליח לדבר עבירה בכל התורה כולה משום דכתיב וטבחו או מכרו מה מכירה דלא אפשר דלאו על ידי אחר מחייב וכדאמר׳ דף ע&quot;ט ובדף ע&quot;א אמרינן נמי או לרבות את השליח תחת לרבות את השליח וגנב והקדיש נמי מה לי מכרו להדיוט מה לי מכרו לשמים כדאמרינן התם וכו׳.</p>
               </div>
             </div>
@@ -573,8 +664,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-11">Mishneh Torah, Theft 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּנַב וּמָכַר וְהִקְנָה לַמּוֹכֵר לְאַחַר שְׁלֹשִׁים יוֹם וּבְתוֹךְ שְׁלֹשִׁים יוֹם הֻכַּר הַגַּנָּב אֵינוֹ מְשַׁלֵּם אֶלָּא כֶּפֶל. מְכָרוֹ חוּץ מֵאֶחָד מִמֵּאָה שֶׁבּוֹ אוֹ חוּץ מִיָּדוֹ אוֹ רַגְלוֹ כְּלָלוֹ שֶׁל דָּבָר שֶׁשִּׁיֵּר בּוֹ דָּבָר הַנִּתָּר עִמּוֹ בִּשְׁחִיטָה פָּטוּר מִתַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. וְאִם מְכָרוֹ חוּץ מִגִּזָּתוֹ אוֹ חוּץ מִקַּרְנָיו חַיָּב בְּתַשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה שֶׁאֵלּוּ אֵינָם נִתָּרִים עִמּוֹ בִּשְׁחִיטָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מכירה </strong> לאחר שלשים יום לא משלם אלא כשהוכר הגנב לאחר שלשים משום דלא הוחלטה עד אחר שלשים ובעינן מכירה דומיא דטביחה שאינה חוזרת כדאיתא התם. שייר במכירה דבר הניתר עמו בשחיטה הוי [שיור] (שווי) כדתנן התם דע&quot;ה וחוץ מגיזת׳ או קרניה חייב דאין ניתרין עמו בשחיטה כמו בשרו וכיון דכתיב וטבחו או מכרו מידי דצריך טביחה הוי שיור כמכירה גיזת וקרנים דלא צריכי טביחה לא הוי שיור כתנא דאמר הכי משמיה דר׳ שמעון בן אלעזר כדאיתא התם. גנבה וקטעה ומכרה סלקא התם בתיקו אי אמרינן מאי דגנב הא לא זבין והוי שיור או דילמא מאי דזבין הא לא שייר. מכרה חוץ ממלאכתה אם לא ישחטנה או חוץ משלשים יום שיעשה בה מלאכתו מיבעיא התם אי הוי שיור או לא ולא איפשיטא היתה לו בה שותפות פטור&#160;כדתנן התם דע&quot;ח דלא קרינא ביה ומכרו כולו באיסור.</p>
               </div>
             </div>
@@ -589,8 +685,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-14">Mishneh Torah, Theft 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שֻׁתָּפִין שֶׁגָּנְבוּ. אִם טָבַח אֶחָד מֵהֶן אוֹ מָכַר מִדַּעַת חֲבֵרוֹ מְשַׁלְּמִין תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. וְאִם עָשָׂה שֶׁלֹּא מִדַּעַת חֲבֵרוֹ פְּטוּרִין מִתַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה וְחַיָּבִין בְּכֶפֶל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שותפין </strong> שגנבו ומכר אחד שלא מדעת חברו פטור מד׳ וה׳ אפילו על חלקו הואיל וליכא וטבחו כולו בחיובא כדאמר התם ואף על גב דחמשה בקר ואפילו ה׳ חצאין ה&quot;מ היכא שגנב בהמת שותפין וטבחו ואחר כך הודה לאחד מהם על חלקו דבשעת טביחה הויא כוליה בחיובא ואם היה מדעת חברו הוי טבחו כולו בחיובא דחברו נמי עשאו שליח והא רבינן שליח לעבירה לענין זה תחת לרבות את השליח כדאמרינן.</p>
               </div>
             </div>
@@ -605,8 +706,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-15">Mishneh Torah, Theft 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּנַב וְעָמַד בַּדִּין וְאָמְרוּ לוֹ הַדַּיָּנִין צֵא תֵּן לוֹ מַה שֶּׁגָּנַבְתָּ וְיָצָא וְאַחַר כָּךְ טָבַח אוֹ מָכַר פָּטוּר מִתַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. אָמְרוּ לוֹ חַיָּב אַתָּה לִתֵּן לוֹ וְטָבַח אוֹ מָכַר אַחַר כָּךְ הֲרֵי זֶה חַיָּב בְּתַשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה הוֹאִיל וְלֹא חָתְכוּ הַדִּין עָלָיו וַעֲדַיִן עוֹמֵד הוּא בִּגְנֵבָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;span class=&quot;&quot;&gt;גנב שעמד בדין ואמר׳ לו צא תן לו טבח או מכר אח&quot;כ פטור דכיון דפסקינן למילתיה הוה ליה גזלן וגזלן אינו משלם ד׳ וה׳ ואם אמרו לו חייב אתה ליתן לו אכתי גנב הוא כדאמ׳ פרק מרובה דף ס&quot;ט.&lt;/span&gt;</p>
               </div>
             </div>
@@ -621,8 +727,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 2:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-2-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-2-16">Mishneh Torah, Theft 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵב בִּרְשׁוּת הַבְּעָלִים הוֹאִיל וְהַגְּנֵבָה עֲדַיִן הִיא בִּרְשׁוּתָם פָּטוּר מִן הַכֶּפֶל. וְכֵן אִם טָבַח וּמָכַר שָׁם בִּרְשׁוּתָן פָּטוּר. וְאִם הִגְבִּיהַּ הַגְּנֵבָה נִתְחַיֵּב מִשּׁוּם גּוֹנֵב אַף עַל פִּי שֶׁעֲדַיִן לֹא הוֹצִיאָהּ מֵרְשׁוּת הַבְּעָלִים. כֵּיצַד. גָּנַב טָלֶה מִן הַדִּיר וְהָיָה מוֹשְׁכוֹ וְיוֹצֵא וּמֵת בִּרְשׁוּת הַבְּעָלִים פָּטוּר. הִגְבִּיהוֹ אוֹ הוֹצִיאוֹ מֵרְשׁוּת הַבְּעָלִים וּמֵת חַיָּב. נְתָנוֹ שָׁם בְּבֵית הַבְּעָלִים לִבְכוֹרַת בְּנוֹ אוֹ לְבַעַל חוֹבוֹ אוֹ לְשׁוֹמֵר חִנָּם וּלְשׁוֹאֵל לְנוֹשֵׂא שָׂכָר וּלְשׂוֹכֵר וְהָיָה מוֹשְׁכוֹ זֶה שֶׁנִּתַּן לוֹ וּמֵת פָּטוּר הַשּׁוֹמֵר. הִגְבִּיהוֹ אוֹ שֶׁהוֹצִיאוֹ מֵרְשׁוּת הַבְּעָלִים וּמֵת חַיָּב הַשּׁוֹמֵר אוֹ בַּעַל הַחוֹב שֶׁנִּתַּן לוֹ מִפְּנֵי שֶׁעֲדַיִן לֹא הוֹצִיאוֹ הַגַּנָּב מֵרְשׁוּת בְּעָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גניבה </strong> שלא יצאת עדין מרשות בעלים פטור מכפל ומד׳ וה׳ כדתנן דע&quot;ט וטעמא דלא נעשת עליו גנב ואי הגביהו או הוציאו הוה קני וחייב וכן אם נתנו לב&quot;ח או לד׳ שומרים אם הגביהו או הוציאו ומת חייבים כדתנן נמי התם. גנב בהמה מן העדר והטמינה ביער כיון שהכישה חייב דהא הויא ברשותיה וכדאמר׳ התם וכל שגנב אפילו החזירה לרשות בעלים וטבחה או מכרה חייב דהא קנאה קודם וכדתנן התם:</p>
               </div>
             </div>
@@ -638,8 +749,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-3-1">Mishneh Torah, Theft 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ בְּהִלְכוֹת נַעֲרָה שֶׁכָּל הָעוֹשֶׂה עֲבֵרָה שֶׁיֵּשׁ בָּהּ עֲוֹן מִיתַת בֵּית דִּין וְתַשְׁלוּמִין אֵינוֹ מְשַׁלֵּם אַף עַל פִּי שֶׁהָיָה שׁוֹגֵג. וְהָעוֹשֶׂה עֲבֵרָה שֶׁנִּתְחַיֵּב בָּהּ מַלְקוֹת וְתַשְׁלוּמִין לוֹקֶה וְאֵינוֹ מְשַׁלֵּם שֶׁאֵין אָדָם לוֹקֶה וּמְשַׁלֵּם. לְפִיכָךְ אִם הָיָה שׁוֹגֵג אוֹ לֹא הִתְרוּ בּוֹ מְשַׁלֵּם וְאֵינוֹ לוֹקֶה. בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁנִּתְחַיֵּב בְּתַשְׁלוּמִין עִם עֲוֹן מִיתַת בֵּית דִּין כְּאַחַת אוֹ שֶׁנִּתְחַיֵּב תַּשְׁלוּמִין וּמַלְקוֹת בְּבַת אַחַת. אֲבָל אִם נִתְחַיֵּב בְּתַשְׁלוּמִין וְאַחַר כָּךְ נִתְחַיֵּב בְּמִיתַת בֵּית דִּין אוֹ בְּמַלְקוֹת אוֹ שֶׁנִּתְחַיֵּב מַלְקוֹת אוֹ מִיתַת בֵּית דִּין וְאַחַר כָּךְ נִתְחַיֵּב בְּתַשְׁלוּמִין הֲרֵי זֶה לוֹקֶה וּמְשַׁלֵּם וּמֵת וּמְשַׁלֵּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גנב </strong> כיס בשבת שגררה עד שהוציאה מרשות היחיד של בעלים לרשות הרבים ואבדו פטור דכל שיש מיתה ותשלומין כאחד אינו משלם אע&quot;פ שהיה שוגג דכל שמתחייב בנפשו אמרינן קים ליה בדרבה מיניה אבל קדם גניבה לאיסור שבת כגון שהגביהו שם ברשות הבעלים חייב תשלומי כפל אף על פי שחייב סקילה כדילפינן בהלכות נערה בתולה וכן אם נתחייב בגניבה ומלקות כאחד כגנב וטבח בי&quot;ה והתרו בו פטור מן התשלומין ואם לא התרו בו חייב דכשחייב מלקות כתיב כדי רשעתו ודרשינן משום רשעה אחת שהוא מלקות אתה מחייבו ואי אתה מחייבו משום שתי רשעיות. ובמכירה בשבת כשנעשית מלאכה בשעת המכירה שלא תקנה עד שתנוח בחצר הלוקח איסור שבת ומכירה באין כאחד ופטור ואם שחט בשבת על ידי שליח חייב ד׳ וה׳ שיש שליח לטביחה כדילפינן והוא לא חלל שבת.</p>
               </div>
             </div>
@@ -654,8 +770,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 3:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-3-7">Mishneh Torah, Theft 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ שְׁנַיִם מְעִידִים שֶׁגָּנַב בֵּין שֶׁהֵעִידוּ הֵן עַצְמָן שֶׁטָּבַח אוֹ מָכַר בֵּין שֶׁהֵעִידוּ אֲחֵרִים שֶׁטָּבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. הָיוּ שְׁנַיִם מְעִידִים שֶׁגָּנַב וְעֵד אֶחָד מֵעִיד שֶׁטָּבַח אוֹ מָכַר אוֹ שֶׁהוֹדָה מֵעַצְמוֹ שֶׁטָּבַח אוֹ מָכַר מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל וְאֵינוֹ מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה שֶׁהַמּוֹדֶה בִּקְנָס פָּטוּר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העדים </strong> שהעידו על הגניבה ומעידין ג&quot;כ על הטביחה או על המכירה משלם ואם לא היו ב׳ עדים או הודה הוא פטור דב׳ עדים בעיא ואשר ירשיעון אלהים כתיב וכדא׳ לעיל.</p>
               </div>
             </div>
@@ -670,8 +791,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 3:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-3-8">Mishneh Torah, Theft 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהוֹדָה בִּקְנָס וְאַחַר כָּךְ בָּאוּ עֵדִים. אִם הוֹדָה בַּתְּחִלָּה בִּפְנֵי בֵּית דִּין וּבְבֵית דִּין פָּטוּר. אֲבָל אִם הוֹדָה חוּץ לְבֵית דִּין אוֹ שֶׁהוֹדָה בִּפְנֵי שְׁנַיִם בִּלְבַד וְאַחַר כָּךְ בָּאוּ עֵדִים הֲרֵי זֶה מְשַׁלֵּם קְנָס עַל פִּיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המודה </strong> בגניבה בב&quot;ד ואחר כך באו עדים פטור כדילפינן בגמרא לרב דף ס&quot;ד אם המצא תמצא בידו הגניבה אם תמצא בעדים אם תחלה תמצא בעדים תמצא הכפל שהוא קנס בדיינים פרט למרשיע את עצמו אע&quot;פ שבאו עדים אחר כך אינו משלם כפל ואם פטר עצמו תחלה מכלום שאמר לא גנבתי ובאו עדים שגנב ואחר כך אמר טבחתי ובאו עדים שטבח משלם ולא אמרינן מודה בקנס ואחר כך באו עדים פטור אלא היכא דאיכא קרן וקנס דאיחייב ליה ממונא בהודאתו ומתכוין להחזיר ממון אבל הכא בהודאתו לא מתחייב במידי וכדאמרינן התם דף ע&quot;ה דפטר עצמו מכלום דאינו בא להשיב כלום בהודאתו דיודע הוא שמודה בקנס פטור מתכוין להפטר בהודאתו וכדא׳.</p>
               </div>
             </div>
@@ -686,8 +812,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 3:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-3-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-3-10">Mishneh Torah, Theft 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵב שׁוֹר שֶׁל שְׁנֵי שֻׁתָּפִין וּטְבָחוֹ אוֹ מְכָרוֹ וְהוֹדָה בְּבֵית דִּין לְאֶחָד מֵהֶן וְכָפַר בָּאַחֵר וְאַחַר כָּךְ בָּאוּ עֵדִים שֶׁגָּנַב וְטָבַח אוֹ מָכַר מְשַׁלֵּם לְזֶה שֶׁכָּפַר לוֹ חֲמִשָּׁה חֲצָאֵי בָּקָר וְאַרְבָּעָה חֲצָאֵי צֹאן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טבח </strong> שור של ב׳ שותפין והודה בב&quot;ד לאחד וכפר באחר ובאו עדים משלם לו ה׳ חצאי בקר חמשה בקר אמר רחמנא ואפילו חמשה חצאי כיון שטבח הכל באיסור.</p>
               </div>
             </div>
@@ -702,8 +833,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 3:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-3-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-3-11">Mishneh Torah, Theft 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דִּין הַגַּנָּב לְשַׁלֵּם הַקֶּרֶן וְהַכֶּפֶל אוֹ תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה מִן הַמִּטַּלְטְלִין שֶׁלּוֹ. אִם לֹא נִמְצְאוּ לוֹ מִטַּלְטְלִין בֵּית דִּין יוֹרְדִין לִנְכָסָיו וְגוֹבִין הַכּל מִן הַיָּפֶה שֶׁבִּנְכָסָיו כִּשְׁאָר הַנִּזָּקִין שֶׁנֶּאֱמַר בָּהֶן <span class="source-small">(שמות כב ד)</span> &quot;מֵיטַב שָׂדֵהוּ&quot;. וְאִם אֵין לוֹ קַרְקַע וְלֹא מִטַּלְטְלִין בֵּית דִּין מוֹכְרִין אוֹתוֹ וְנוֹתְנִין דָּמָיו לַנִּזָּק שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ב)</span> &quot;אִם אֵין לוֹ וְנִמְכַּר בִּגְנֵבָתוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גובין </strong> מן הגנב כשאר נזקין דכתיב בהו מיטב שדהו וכו׳ וכדאמ׳ פ&quot;ק דף ה׳ כולן כאבות לשלם ממיטב מ&quot;ט אתיא תחת נתינה ישלם כסף דבכולהו כתיב חד מהני לישני וילפינן ממזיק ובד׳ שומרים כתיב ישלם בתשלומי כפל ישלם שנים וקרן בכלל [כפל] ובתשלומי ד׳ וה׳ כתיב חמשה בקר ישלם וכו׳. אם אין לגנב דבר נמכר בגניבתו כדכתיב אם אין לו ונמכר בגניבתו אם המצא תמצא בידו הגניבה וגו׳. האיש נמכר בגניבתו לא האשה כדתנן בסוטה דף כ&quot;ג ובגמרא מ&quot;ט אמר קרא ונמכר בגניבתו בגניבתו ולא בגניבתה. ואינו נמכר אלא על הקרן כדתניא פ&quot;ק דקידושין דף י&quot;ח בגניבתו ולא בכפלו דאם אין לו ממה לשלם הכפל אינו נמכר. ואם אין הגנב שוה כנגד דמי הגניבה ימכר והשאר עליו חוב כדאיתא התם בגניבתו כיון שנמכר פעם אחד שוב אינו נמכר דאם אינו שוה כל גניבתו אינו נמכר בשביל חציה ולכשיוצא משום חציה וכן בגניבתו של זה נמכר פעם אחד ולא יותר אפילו על גניבה אחרת ובשני בני אדם גנב לאחד ונמכר וגנב לאחר חוזר ונמכר והיינו דאמר התם כאן באדם אחד כאן בשני בני אדם לפי׳ הרב ז&quot;ל בשני בני אדם חוזר ונמכר ובאדם אחד לא דלכל אחד שגנב קאמר קרא ונמכר בגניבתו פעם אחד לכל אחד כת&quot;ק דבריתא דת&quot;ר גניבו אלף ושוה ת&quot;ק נמכר ול&quot;ג לדעת הרב ז&quot;ל וחוזר ונמכר ודרשינן נמי התם גניבו ת&quot;ק ושוה אלף אינו נמכר כלל כדכתיב ונמכר בגניבתו דאינו נמכר אלא על גניבתו וממה ששוה יותר אינו בשביל גניבתו שאין כל דמיו מובלעים בגניבתו.</p>
               </div>
             </div>
@@ -718,8 +854,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 3:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-3-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 3:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-3-16">Mishneh Torah, Theft 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּנַב לָזֶה וְחָזַר וְגָנַב לָזֶה וְחָזַר וְגָנַב לָזֶה כֻּלָּם שֻׁתָּפִין בּוֹ. אִם הָיוּ דָּמָיו כְּנֶגֶד הַקֶּרֶן שֶׁל שְׁלָשְׁתָּן אוֹ פָּחוֹת מִן הַקֶּרֶן נִמְכָּר וּמְחַלְּקִין בֵּינֵיהֶן וּשְׁאָר הַכְּפֵלוֹת חוֹב עָלָיו. וְאִם הָיוּ דָּמָיו יֶתֶר אֵינוֹ נִמְכָּר וְהַכּל חוֹב עָלָיו עַד שֶׁיַּעֲשִׁיר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גנב </strong> לכמה בני אדם כולן שותפין בדמי המכר ומחלקים ביניהם. ושותפים שגנבו כל אחד נמכר על חלקו דהא קרינא ביה ונמכר בגניבתו:</p>
               </div>
             </div>
@@ -735,8 +876,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-4-1">Mishneh Torah, Theft 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטוֹעֵן שֶׁנִּגְנַב מִבֵּיתוֹ הַפִּקָּדוֹן אִם נִשְׁבַּע וְאַחַר כָּךְ בָּאוּ עֵדִים שֶׁשֶּׁקֶר טָעַן וְשֶׁהַפִּקָּדוֹן הַזֶּה אֶצְלוֹ הֲרֵי זֶה מְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל שֶׁהֲרֵי הוּא עַצְמוֹ הַגַּנָּב. וְאִם טָבַח וּמָכַר אַחַר שֶׁנִּשְׁבַּע מְשַׁלֵּם תַּשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה. וְאֵינוֹ מֵבִיא אָשָׁם עַל פִּי עֵדִים עַל שְׁבוּעָתוֹ. וְאֵינוֹ מֵבִיא חֹמֶשׁ שֶׁאֵין הַחֹמֶשׁ מִשְׁתַּלֵּם עִם הַכֶּפֶל. וְאִם בָּאוּ עֵדִים קֹדֶם שֶׁיִּשָּׁבַע אֵינוֹ מְשַׁלֵּם אֶלָּא הַקֶּרֶן בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טוען </strong> טענת גנב בפקדון ונשבע משלם כפל ד׳ וה׳ כדאמר ר׳ יוחנן פרק הגוזל דק&quot;ו דמה גנב משלם אף טוען טענת גנב בפקדון נמי משלם כפל ד׳ וה׳ ואי תימא מה לגנב שמשלם כפל שלא בשבועה הא היקשא היא ואין משיבין עליה דסמיכי קראי אהדדי אם ימצא הגנב הרי גנב ואם לא ימצא הגנב כמו שאמר אלא הוא עצמו גנבו וטען טענת גנב משלם והיינו בשבועה כדכתיב אם לא ימצא הגנב ונקרב בעל הבית כלומר אם לא נמצא כמו שטען והוא כבר נשבע בדבר שלא שלח בו יד מה כתיב אחריו על כל דבר פשע וגו׳ ישלם שנים וכדמייתי נמי במרובה דף ס&quot;ג וממאי דהאי ונקרב לשבועה דכתיב שליחות יד למטה שבועת ה׳ תהיה בין שניהם אם לא שלח ידו וגו׳ מה שם לשבועה אף שליחות יד דהכא דכתיב ונקרב בע&quot;ה אם לא שלח ידו וגו׳ לשבועה. חומש ואשם לא שייכי אלא כשהודה אחר שנשבע ולא בבאו עדים וכדאמר׳ דק&quot;ו דכתיב בגזל הגר והתודו את חטאתם וגו׳ והשיב אשמו וגו׳ וחמישיתו יוסף עליו וגומר כי הכא דכתיב והשיב את הגזלה וגו׳ או מכל אשר ישבע עליו לשקר וגו׳ וחמישיתו יוסף עליו וגומר. ואם שלח יד בפקדון קודם שטען טענת גנב דקמה ליה ברשותיה נתחייב בו ופטור מכפל אפילו נשבע ובאו עדים כדאמר רב ששת דק&quot;ז דכתיב ונקרב בעל הבית וגו׳ אם לא שלח ידו וגו׳ הא שלח ידו פטור מכל הדין הזה. וכן בטענת אבדה ונשבע וחזר וטען גנבה ונשבע ובאו עדים פטור כדאמר ר׳ יוחנן התם משום דיצא מידי בעלים בשבועה ראשונה וטוען טענת גנב באבדה בליסטים מזויין דפוטר עצמו הוי כטוען על הפקדון ומשלם כפל כדכתיב על כל אבדה אשר יאמר וגומר כדאמר ר׳ יוחנן במרובה דף ס&quot;ג ובטוען טענת גנב מוקמינן ליה להאי קרא כדאיתא התם.</p>
               </div>
             </div>
@@ -751,8 +897,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 4:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-4-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-4-5">Mishneh Torah, Theft 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטּוֹעֵן טַעֲנַת גַּנָּב בְּפִקָּדוֹן וְנִשְׁבַּע. וְאַחַר כָּךְ בָּאוּ עֵדִים שֶׁהוּא בִּרְשׁוּתוֹ. וְחָזַר וְטָעַן בּוֹ טַעֲנַת גַּנָּב וְנִשְׁבַּע וְאַחַר כָּךְ בָּאוּ עֵדִים שֶׁעֲדַיִן בִּרְשׁוּתוֹ הוּא. אֲפִלּוּ מֵאָה פְּעָמִים חַיָּב כֶּפֶל עַל כָּל טַעֲנָה וְטַעֲנָה. וְאִם נִשְׁבַּע חָמֵשׁ פְּעָמִים נִמְצָא מְשַׁלֵּם שִׁשָּׁה הַקֶּרֶן שֶׁהִפְקִיד אֶצְלוֹ וַחֲמִשָּׁה בְּקֶרֶן מִשּׁוּם חֲמִשָּׁה כְּפֵלוֹת שֶׁל חָמֵשׁ שְׁבוּעוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טוען </strong> טענת גנב ונשבע וחוזר וטוען ונשבע חייב כפל על כל טענה או חומש על כל הודאה דאיבעיא ליה התם לרב פפא דף ק&quot;ח ופשיט דכתיב וחמישיתו יוסף עליו וגו׳ התורה רבתה חומשין הרבה לקרן אחד בכפר וחזר וכפר וה&quot;ה לכפל כמו שכתב רש&quot;י ז&quot;ל שם ממון המחייבו בכפל.</p>
               </div>
             </div>
@@ -767,8 +918,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 4:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-4-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-4-6">Mishneh Torah, Theft 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טָעַן טַעֲנַת גַּנָּב וְנִשְׁבַּע וְחָזַר וְטָעַן טַעֲנַת אֲבֵדָה וְנִשְׁבַּע. וּבָאוּ עֵדִים שֶׁלֹּא נִגְנַב וְהוֹדָה הוּא שֶׁלֹּא אָבַד הוֹאִיל וּמְשַׁלֵּם תַּשְׁלוּמֵי כֶּפֶל עַל פִּי עֵדִים אֵינוֹ מְשַׁלֵּם חֹמֶשׁ עַל שְׁבוּעָה אַחֲרוֹנָה אַף עַל פִּי שֶׁהוֹדָה. שֶׁהַמָּמוֹן הַמְחַיְּבוֹ בְּכֶפֶל פּוֹטְרוֹ מִן הַחֹמֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם </strong> טען נגנב ונשבע וחזר וטען אבד ובאו עדים שלא נגנב פוטרו מחומש אם הודה הוא אח&quot;כ שלא אבד דהא איחייב כפל עלויה דהאי ממון.</p>
               </div>
             </div>
@@ -783,8 +939,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 4:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-4-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-4-7">Mishneh Torah, Theft 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מָסַר שׁוֹרוֹ לִשְׁנַיִם וְטָעֲנוּ טַעֲנַת גַּנָּב וְנִשְׁבְּעוּ וְהוֹדָה אֶחָד מֵהֶם וְהַשֵּׁנִי בָּאוּ עָלָיו עֵדִים. שְׁנֵיהֶן מְשַׁלְּמִין אֶת הַקֶּרֶן. וְאִם תָּפַשׂ בַּעַל הַפִּקָּדוֹן אֶת הַכֶּפֶל אֵין מוֹצִיאִין מִיָּדוֹ. וְזֶה שֶׁהוּא מְשַׁלֵּם חֹמֶשׁ כִּשְׁאָר הַנִּשְׁבָּעִין שְׁבוּעַת הַפִּקָּדוֹן שֶׁהוֹדוּ מֵעַצְמָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מסר </strong> לשנים והודה אחד והאחר באו עליו עדים שלא נגנב איבעיא לן התם מי אמרינן בחד גברא קפיד רחמנא דלא לשלם חומש וכפלא והכא האי לישלם חמשא והאי כפלא או דילמא עלויה חד ממונא קפיד רחמנא דלא לישלם חומש וכפלא תיקו.</p>
               </div>
             </div>
@@ -799,8 +960,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 4:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-4-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-4-8">Mishneh Torah, Theft 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּעַל הַפִּקָּדוֹן שֶׁתָּבַע אֶת הַשּׁוֹמֵר וְנִשְׁבַּע שֶׁנִּגְנַב וְאַחַר כָּךְ הֻכַּר הַגַּנָּב וְתָבַע הַשּׁוֹמֵר אֶת הַגַּנָּב וְהוֹדָה לוֹ הַגַּנָּב שֶׁגָּנַב וְתָבַע בַּעַל הַפִּקָּדוֹן אֶת הַגַּנָּב וְכָפַר וּבָאוּ עֵדִים שֶׁגָּנַב. אִם בֶּאֱמֶת נִשְׁבַּע הַשּׁוֹמֵר כְּשֶׁטָּעַן שֶׁנִּגְנַב נִפְטַר הַגַּנָּב מִן הַכֶּפֶל בְּהוֹדָאָתוֹ לַשּׁוֹמֵר. וְאִם בְּשֶׁקֶר נִשְׁבַּע אֵין מוֹצִיאִין הַכֶּפֶל מִן הַגַּנָּב. וְאִם תָּפְשׂוּ הַבְּעָלִים הַכֶּפֶל אֵין מוֹצִיאִין מִיָּדָן. תָּבְעוּ הַבְּעָלִים אֶת הַשּׁוֹמֵר וְשִׁלֵּם וְאַחַר כָּךְ הֻכַּר הַגַּנָּב וּתְבָעוּהוּ הַבְּעָלִים וְהוֹדָה לָהֶן שֶׁגָּנַב וְאַחַר כָּךְ תְּבָעוֹ הַשּׁוֹמֵר וְכָפַר בּוֹ וּבָאוּ עֵדִים שֶׁגָּנַב אֵין מוֹצִיאִין הַכֶּפֶל מִן הַגַּנָּב וְאִם תָּפַשׂ הַשּׁוֹמֵר אֶת הַכֶּפֶל אֵין מוֹצִיאִין מִיָּדוֹ וְכֵן הַדִּין בְּתַשְׁלוּמֵי אַרְבָּעָה וַחֲמִשָּׁה אִם טָבַח הַגַּנָּב אוֹ מָכַר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשבע </strong> השומר באמת שנגנב נפטר הגנב מן הכפל בהודאתו לשומר דהוי כבעלים דניחא להו לבעלים דתיקו בשמירתו כיון דגברא מהימנא הוא ואם בשקר טען סלקא בתיקו אם ההודאה לו הוי כהודאה לבעלים או דילמא לא ניחא ליה למריה דלהוי תו שומר עלה כרב טביומי דמתני הכי התם דף ק&quot;ח לא רצה השומר לישבע ושילם ואחר כך הוכר הגנב והודה לבעלים וכפר לשומר ובאו עדים איבעיא לן אי נפטר גנב בהודאת בעלים דרמיא עליהו למעבד מילתא דטיבותא לשומר כי היכי דהוא עבד להו מילתא דטיבותא לשלומי או דילמא מצי אמר שומר לבעלים כיון דשקליתו לכו דמי אסתלקיתו וכו׳ תיקו כדמייתי התם דק&quot;ח.</p>
               </div>
             </div>
@@ -815,8 +981,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 4:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-4-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-4-9">Mishneh Torah, Theft 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַטּוֹעֵן טַעֲנַת גַּנָּב בְּפִקָּדוֹן שֶׁל קָטָן אַף עַל פִּי שֶׁנָּתַן לוֹ כְּשֶׁהוּא קָטָן וּתְבָעוֹ כְּשֶׁהוּא גָּדוֹל וְנִשְׁבַּע וְאַחַר כָּךְ בָּאוּ עֵדִים הֲרֵי זֶה פָּטוּר מִן הַכֶּפֶל שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;כִּי יִתֵּן אִישׁ&quot; וְאֵין נְתִינַת קָטָן כְּלוּם וְצָרִיךְ שֶׁתִּהְיֶה נְתִינָה וּתְבִיעָה שָׁוִין בַּגָּדוֹל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פקדון </strong> של קטן אפילו תבעו כשהוא גדול פטור מכפל דכתיב כי יתן איש ובעינן נתינה ותביעה בגדול. הגונב ממה שהופקד אצלו אף על פי שהחזירו חייב באחריותו עד שיודיע לבעלים דכלתה לו שמירתו כר׳ עקיבא ותו לא מהימן לבעלים כדאיתא התם דף קי&quot;ח.</p>
               </div>
             </div>
@@ -831,8 +1002,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 4:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-4-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-4-10">Mishneh Torah, Theft 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֵר שֶׁגָּנַב מֵרְשׁוּתוֹ כְּגוֹן שֶׁגָּנַב טָלֶה מֵעֵדֶר שֶׁהֻפְקַד אֶצְלוֹ וְסֶלַע מִכִּיס שֶׁהֻפְקַד אֶצְלוֹ. אִם יֵשׁ עָלָיו עֵדִים חַיָּב בְּכֶפֶל. וְאַף עַל פִּי שֶׁהֶחְזִיר הַסֶּלַע לִמְקוֹמוֹ וְהַטָּלֶה לְעֶדְרוֹ הֲרֵי זֶה חַיָּב בְּאַחֲרָיוּתָן עַד שֶׁיּוֹדִיעַ הַבְּעָלִים. שֶׁהֲרֵי כָּלְתָה שְׁמִירָתוֹ וּכְאִלּוּ לֹא הֶחְזִיר כְּלוּם עַד שֶׁיּוֹדִיעַ בְּעָלָיו. אֲבָל הַגּוֹנֵב סֶלַע מִכִּיס חֲבֵרוֹ אוֹ כְּלִי מִבֵּיתוֹ וְהֶחְזִיר דָּבָר הַגָּנוּב מִבֵּיתוֹ לִמְקוֹמוֹ אִם יָדְעוּ הַבְּעָלִים בִּגְנֵבָתוֹ וְלֹא יָדְעוּ בַּחֲזִירָתוֹ עֲדַיִן הַגַּנָּב חַיָּב בְּאַחֲרָיוּתוֹ עַד שֶׁיִּמְנֶה אֶת מְעוֹתָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגונב </strong> סלע מחברו והחזירו ולא ידעו הבעלים לא גניבה ולא חזרה כיון שהחזירו למקומו נפטר אף על פי שלא מנו הבעלים את המעות ומצאום שלם. ובבעלי חיים כיון שלא ידעו הגניבה אף על פי שמנו ומצאו שלם חייב הגנב כדאמ׳ רב חסדא פרק הגוזל ומאכיל דף קי&quot;ח הואיל ואנקטיה נגרי ברייתא למידה לצאת חוץ ומעתה צריכה שמירה יפה וכיון דלא ידעו בעלים לא מזדהרי בה:</p>
               </div>
             </div>
@@ -848,8 +1024,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-5-1">Mishneh Torah, Theft 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לִקְנוֹת מִן הַגַּנָּב הַחֵפֶץ שֶׁגָּנַב. וְעָוֹן גָּדוֹל הוּא שֶׁהֲרֵי מַחֲזִיק יְדֵי עוֹבְרֵי עֲבֵרָה וְגוֹרֵם לוֹ לִגְנֹב גְּנֵבוֹת אֲחֵרוֹת שֶׁאִם לֹא יִמְצָא לוֹקֵחַ אֵינוֹ גּוֹנֵב וְעַל זֶה נֶאֱמַר <span class="source-small">(משלי כט כד)</span> &quot;חוֹלֵק עִם גַּנָּב שׂוֹנֵא נַפְשׁוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong> שקנה מן הגנב קודם יאוש בעלים מן התורה אינו קנין דאין אדם מוכר מה שאינו שלו ואם נתיאשו הבעלים קנה ביאוש ושינוי רשות. נכנס לתוך בית חברו ויצא בכלים תחת כנפיו בע&quot;ה אומר גנובים הם המוציא מחברו עליו הראיה מן התורה וכל דיני הפרק מדרבנן:</p>
               </div>
             </div>
@@ -865,8 +1046,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-6-1">Mishneh Torah, Theft 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל דָּבָר שֶׁחֶזְקָתוֹ שֶׁהוּא גָּנוּב אָסוּר לִקַּח אוֹתוֹ. וְכֵן אִם רֹב אוֹתוֹ הַדָּבָר שֶׁהוּא גָּנוּב אֵין לוֹקְחִין אוֹתוֹ. לְפִיכָךְ אֵין לוֹקְחִים מִן הָרוֹעִים צֶמֶר אוֹ חָלָב אוֹ גְּדָיִים. אֲבָל לוֹקְחִין מֵהֶן חָלָב וּגְבִינָה בַּמִּדְבָּר אֲבָל לֹא בַּיִּשּׁוּב. וּמֻתָּר לִקַּח מִן הָרוֹעִים אַרְבַּע צֹאן אוֹ אַרְבַּע גִּזּוֹת שֶׁל צֶמֶר מֵעֵדֶר קָטָן אוֹ חָמֵשׁ מֵעֵדֶר גָּדוֹל. שֶׁאֵין חֶזְקָתוֹ שֶׁהוּא גָּנוּב בְּדָבָר זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נראה </strong> דמן התורה אסור לקנות שום גניבה דבר הידוע שהוא גנוב בפחות משווי וקודם יאוש לעכבו בידו וכן מה שחזקתו שהוא גנוב או מה שרובו גנוב דחזקה ורובא מדאוריתא כדילפינן בעלמא ואפשר דילפינן הא מילתא מדאמרינן הגונב מן הגנב פטור מכפל כדילפינן לעיל מן וגונב מבית האיש הא קרן חייב לבעלים דאם ידע שדבר זה שגנב היה גנוב ולא אייאש מריה אינו חייב קרן לגנב שהיה גנוב אתו שהרי אינו שלו וא&quot;כ מה שלוקח מן הגנב בפחות הוי נמי דבעלים והוי נמי כגונב על ידי שליח דאף על גב דאין שליח לדבר עבירה היינו לענין איסור לאו לא תגנוב דשליח הוא דעבד ולא משלם אבל מי שהגניבה בידו אף על גב דלאו באיסורא אתא לידיה שלא גנבה הוא אפ&quot;ה חייב להחזירה לבעליו דאפילו מאי דאתא לידיה בהתירא הוי גזל בידיה כמציאה ושכר שכיר ומשום ולפני עור לא תתן מכשול נמי אסיר מדאוריתא כדכתיב פרק ה׳ דהלכות גזלה:</p>
               </div>
             </div>
@@ -882,8 +1068,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-7-1">Mishneh Torah, Theft 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹקֵל לַחֲבֵרוֹ מִמִּשְׁקָלוֹת חֲסֵרוֹת מִן הַמִּשְׁקָל שֶׁהִסְכִּימוּ עָלָיו בְּנֵי אוֹתָהּ הַמְּדִינָה. אוֹ הַמּוֹדֵד בְּמִדָּה חֲסֵרָה מִן הַמִּדָּה שֶׁהִסְכִּימוּ עָלֶיהָ. הֲרֵי זֶה עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט לה)</span> &quot;לֹא תַעֲשׂוּ עָוֶל בַּמִּשְׁפָּט בַּמִּדָּה בַּמִּשְׁקָל וּבַמְּשׂוּרָה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעו </strong> שלא יעשה עול במדות ובמשקלות שלא יחסרו ממה שהסכימו באותה המדינה דכתיב לא תעשו עול במדה במשקל ובמשורה ואף על פי שהוא גונב אינו משלם כפל דאמרינן בריש אי זהו נשך טומן משקלותיו במלח היינו גזל מעליא לעבור עליו משעת עשיה אף על פי שלא שקל בהן ונראה דנקרא גניבה כיון שאינו יודע הלוקח שנותן לו חסר וכיון דבידו לידע ולשקול הוו גזל ולא משלם כפל:</p>
               </div>
             </div>
@@ -898,8 +1089,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 7:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-7-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 7:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-7-3">Mishneh Torah, Theft 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁמַּשְׁהֶה בְּבֵיתוֹ אוֹ בַּחֲנוּתוֹ מִדָּה חֲסֵרָה אוֹ מִשְׁקַל חָסֵר עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כה יג)</span> &quot;לֹא יִהְיֶה לְךָ בְּכִיסְךָ&quot; וְגוֹ׳. וַאֲפִלּוּ לַעֲשׂוֹת הַמִּדָּה עָבִיט שֶׁל מֵימֵי רַגְלַיִם אָסוּר. שֶׁאַף עַל פִּי שֶׁאֵין זֶה לוֹקֵחַ וּמוֹכֵר בָּהּ שֶׁמָּא יָבוֹא מִי שֶׁאֵינוֹ יוֹדֵעַ שֶׁהִיא חֲסֵרָה וְיִמְדֹּד בָּהּ. וְאֵין לוֹקִין עַל לָאו זֶה שֶׁהֲרֵי אֵין בּוֹ מַעֲשֶׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעז </strong> שלא ישהה ברשותו מדה או משקל חסר אף על פי שאינו לוקח ונותן בהם דכתיב לא יהיה לך בכיסך אבן ואבן איפה ואיפה גדולה וקטנה ואם מדות בני העיר חתומות מותר לשהות זו שאינה חתומה וכתב הרשב&quot;ם ז&quot;ל אסור לאדם שישהה וכו׳ דזימנין אתי למדוד ומיהו קרא לא אזהר גדולה וקטנה אלא כשתקנה על מנת למוד בה וכו׳ בפ׳ הספינה דף פ&quot;ט.</p>
               </div>
             </div>
@@ -914,8 +1110,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 7:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-7-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-7-8">Mishneh Torah, Theft 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַנּוֹשֵׂא וְהַנּוֹתֵן עִם יִשְׂרָאֵל אוֹ עִם עַכּוּ&quot;ם אִם מָדַד אוֹ שָׁקַל בְּחָסֵר עוֹבֵר עַל לֹא תַּעֲשֶׂה וְחַיָּב לְהַחְזִיר. וְכֵן אָסוּר לְהַטְעוֹת אֶת הָעַכּוּ&quot;ם בְּחֶשְׁבּוֹן אֶלָּא יְדַקְדֵּק עִמּוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כה נ)</span> &quot;וְחִשַּׁב עִם קֹנֵהוּ&quot; אַף עַל פִּי שֶׁהוּא כָּבוּשׁ תַּחַת יָדֶיךָ. קַל וָחֹמֶר לְעַכּוּ&quot;ם שֶׁאֵינוֹ כָּבוּשׁ תַּחַת יָדֶיךָ. וַהֲרֵי הוּא בִּכְלַל <span class="source-small">(דברים כה טז)</span> &quot;כִּי תוֹעֲבַת ה׳ אֱלֹהֶיךָ כָּל עשֵֹׁה אֵלֶּה כּל עשֵֹׁה עָוֶל&quot; מִכָּל מָקוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמודד </strong> או שוקל לגוי בחסר עובר וחייב להחזיר וכדילפינן לעיל גזל הגוי פרק אחד וכן אסור להטעותו כדכתיב וחשב עם קונהו ידקדק עמו וכדאמר׳ לעיל וכתיב כי תועבת ה׳ כל עושה אלה כל עושה עול מכל מקום. וכן עובר אם הטעה במדת הקרקע כדכתיב לא תעשו עול במשפט במדה זו מדת קרקע שהרי מדת כלי כתוב כדכתיב משורה כדאמרינן ומים במשורה תשתה. ובני חבורה המקפידין זה על זה עוברין משום מדה וכו׳ וענין הכתוב הוא לא תעשו עול במשפט מדת הקרקע ולא במשפט משקל ולא במשפט המדה הקטנה שהיא המשורה ע&quot;כ:</p>
               </div>
             </div>
@@ -930,8 +1131,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 7:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-7-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 7:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-7-11">Mishneh Torah, Theft 7:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּסִּיג גְּבוּל רֵעֵהוּ וְהִכְנִיס מִתְּחוּם חֲבֵרוֹ בְּתוֹךְ תְּחוּמוֹ אֲפִלּוּ מְלוֹא אֶצְבַּע. אִם בְּחָזְקָה עָשָׂה הֲרֵי זֶה גַּזְלָן. וְאִם הִסִּיג בַּסֵּתֶר הֲרֵי זֶה גַּנָּב. וְאִם בְּאֶרֶץ יִשְׂרָאֵל הִסִּיג הַגְּבוּל הֲרֵי זֶה עוֹבֵר בִּשְׁנֵי לָאוִין בְּלָאו גְּנֵבָה אוֹ בְּלָאו גְּזֵלָה וּבְלָאו <span class="source-small">(דברים יט יד)</span> &quot;לֹא תַסִּיג&quot;. וְאֵין חַיָּב בְּלָאו זֶה אֶלָּא בְּאֶרֶץ יִשְׂרָאֵל שֶׁנֶּאֱמַר <span class="source-small">(דברים יט יד)</span> &quot;בְּנַחֲלָתְךָ אֲשֶׁר תִּנְחַל&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעח </strong> שלא ישיג גבול והוי בכלל גזל או גניבה אלא שבא&quot;י עובר עוד בלאו זה כדכתיב לא תשיג וגו׳ בנחלתך אשר תנחל וגו׳ קשה עונשן של מדות דלא אפשר בתשובה כדאיתא התם בגמרא וכן הכופר בהן ככופר ביציאת מצרים והמקבל כמודה ביציאת מצרים שהוא גרמא לכל המצות:</p>
               </div>
             </div>
@@ -947,8 +1153,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-8-1">Mishneh Torah, Theft 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְצַדֵּק הַמֹּאזְנַיִם וְהַמִּשְׁקָלוֹת וְהַמִּדּוֹת יָפֶה יָפֶה וּלְדַקְדֵּק בְּחֶשְׁבּוֹנָן בִּשְׁעַת עֲשִׂיָּתָן שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט לו)</span> &quot;מֹאזְנֵי צֶדֶק&quot; וְגוֹ׳. וְכֵן בְּמִדַּת הַקַּרְקַע צָרִיךְ לְדַקְדֵּק בְּחֶשְׁבּוֹן מְשִׁיחַת הַקַּרְקַע עַל פִּי הָעִקָּרִים הַמִּתְבָּאֲרִים בְּכִתְבֵי הַגִּימָטְרִיָּא. שֶׁאֲפִילוּ מְלוֹא אֶצְבַּע מִן הַקַּרְקַע רוֹאִין אוֹתָהּ כְּאִלּוּ הִיא מְלֵאָה כַּרְכּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קצד </strong> לצדק המאזנים והמשקלות והמדות יפה כדכתיב מאזני צדק אבן שלימה וצדק יהיה לך וגו׳ וצריך לדקדק במדידת הקרקע ובעשיית המשקלות ואיכות המדידה ועשיית המאזנים שיהו שלמים וצודקים והכרעת המאזנים מן התורה כדכתיב וצדק צדק משלך ותן לו דצדק מיותר הוא למדרש אף על פי שאיפה שלימה מדדת תן לו הכרעה משלך אפילו כשמוכרין מין במין ובמדה נמי למדוד בריוח ואין הכתוב מקפיד אלא שיוסיף על המשקל או בשעת המשקל או לאחר כן כדאמר׳ פרק הספינה דף פ&quot;ח ואמרינן נמי התם מנין שאין מוחקין במקום שגודשין או איפכא תלמוד לומר שלימה שיהא האיפה שלימה שלא יבוא לידי רמאות שיאמרו הרואים כך המנהג וירמה הלוקח את המוכר או איפכא ומנין אפילו לפחות מן הדמים לא ימחוק במקום שגודשין ולהוסיף על הדמים לא יגדוש דכתיב איפא שלימה וצדק יהיה לך וצדק לטפויי אתא וצדק מ&quot;מ דאף לזה יכול לבוא לידי רמאות דאיכא דחזי במדידה ולא ידע בפחיתה או בתוספת ובספרי יליף להו לכולהו מוצדק שהוא מיותר ומנין שאין מעיינין במקום שמכריעין או איפכא דכתיב אבן שלימה ואפילו לפחות או להוסיף על הדמים דכתיב אבן שלימה וצדק כדאמרינן. ואמרינן נמי יהיה לך מלמד שמעמידין אגרדמים ו(א)[ל]ב&quot;ד קמוזהר וקרא יתירא קדריש דמצי למכתב לא יהיה לך אבן ואבן כי אם איפה שלימה וצדק וכתיב יהיה לך להעמיד שוטר לצדק המשקלות והמדות ולפסוק השער וכדאמרינן התם פרק הספינה:</p>
               </div>
             </div>
@@ -964,8 +1175,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 9:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-9-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-9-1">Mishneh Torah, Theft 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַגּוֹנֵב נֶפֶשׁ אָדָם עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(שמות כ יג)</span> <span class="source-small">(דברים ה טז)</span> &quot;לֹא תִגְנֹב&quot;. פָּסוּק זֶה הָאָמוּר בַּעֲשֶׂרֶת הַדְּבָרִים הִיא אַזְהָרָה לְגוֹנֵב נְפָשׁוֹת. וְכֵן הַמּוֹכְרוֹ עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁזֶּה בִּכְלַל <span class="source-small">(ויקרא כה מב)</span> &quot;לֹא יִמָּכְרוּ מִמְכֶּרֶת עָבֶד&quot;. וְאֵין לוֹקִין עַל שְׁנֵי לָאוִין אֵלּוּ מִפְּנֵי שֶׁהוּא לָאו שֶׁנִּתָּן לְאַזְהָרַת מִיתַת בֵּית דִּין שֶׁנֶּאֱמַר <span class="source-small">(דברים כד ז)</span> &quot;כִּי יִמָּצֵא אִישׁ גֹּנֵב נֶפֶשׁ מֵאֶחָיו&quot; וְגוֹ׳ וּמִיתָתוֹ בְּחֶנֶק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת רעט </strong> שלא לגנוב נפש מישראל כדכתיב לא תגנוב והוא אזהרה לגונב נפשות כדאמרינן בסנהדרין פרק הנחנקין לא תגנוב בגונב נפשות הכתוב מדבר דבר הלמד מענינו במה כל הענין מדבר בנפשות לא תרצח לא תנאף שחייבים מיתת ב&quot;ד אף לא תגנוב בגניבה שיש בה מיתת ב&quot;ד כדתניא התם דף פ&quot;ו וכן המוכרו נכלל בלאו דלא ימכרו ממכרת עבד וכדאמרינן התם ואין לוקין על לאו שניתן לאזהרת מיתת ב&quot;ד כדילפינן בעלמ׳ משום דלאו זה למיתה הוא ולא להתראת מלקות.</p>
               </div>
             </div>
@@ -980,8 +1196,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 9:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-9-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 9:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-9-2">Mishneh Torah, Theft 9:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַגַּנָּב חַיָּב מִיתַת חֶנֶק עַד שֶׁיִּגְנֹב אֶת הַיִּשְׂרָאֵל וְיַכְנִיסֵנוּ לִרְשׁוּתוֹ וְיִשְׁתַּמֵּשׁ בּוֹ וְיִמְכְּרֶנּוּ לַאֲחֵרִים שֶׁנֶּאֱמַר <span class="source-small">(דברים כד ז)</span> &quot;וְהִתְעַמֶּר בּוֹ וּמְכָרוֹ&quot;. וַאֲפִלּוּ לֹא נִשְׁתַּמֵּשׁ בּוֹ אֶלָּא בְּפָחוֹת מִשְּׁוֵה פְּרוּטָה כְּגוֹן שֶׁנִּשְׁעַן עָלָיו אוֹ נִסְמַךְ בּוֹ אַף עַל פִּי שֶׁהַנִּגְנָב יָשֵׁן הֲרֵי זֶה נִשְׁתַּמֵּשׁ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> הגנב חייב מיתת חנק עד שיכניסנו לרשותו וישתמש בו וימכרנו לאחרים כדכתיב והתעמר בו ומכרו וכדתנן התם דף פ&quot;ה עד שיכנסנו לרשותו מדכתיב ונמצא בידו ותניא במכילתא ונמצא אין מציאה בכל מקום אלא בעדים בידו ברשותו וכן הוא אומר ויקח את כל ארצו מידו והתעמר בו משמע עימור כל שהוא ואפילו פחות משוה פרוטה בנטען או נסמך בו ואפילו הוא ישן כדאמרינן התם. מכרו לאחד מקרוביו של נגנב פטור דכתיב גונב נפש מאחיו עד שיבדילנה מאחיו ומקרוביו במכירה כדתניא התם וכן אם היה ישן משעת גניבה עד מכירה או מכר אשה לעוברה פטור דהוי בעי׳ התם בגמרא אי דרך עימור בכך דזגא עליה כשהיא ישן או אוקמ׳ לאשה באפי זיקא וכל כמה שהיה עב׳ מועיל יותר להגין בפני הרוח והרי נשתמש בעובר או אין דרך עמור בכך תיקו וכל ספק נפשות להקל דדילמא אין דרך עמור בכך ואף על גב דאמרינן לעיל דאפילו נתעמר בו כל שהוא ישן הוי עמור היינו משום דגנבו ומכרו ניעור.</p>
               </div>
             </div>
@@ -996,8 +1217,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 9:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-9-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 9:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-9-5">Mishneh Torah, Theft 9:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגּוֹנֵב אֶת בְּנוֹ אוֹ אֶת אָחִיו הַקָּטָן וְכֵן הָאַפּוֹטְרוֹפִּין שֶׁגָּנְבוּ אֶת הַיְתוֹמִים שֶׁהֵן סְמוּכִין אֶצְלָם וּבַעַל הַבַּיִת שֶׁגָּנַב אֶחָד מִבְּנֵי בֵּיתוֹ הַסְּמוּכִין עַל שֻׁלְחָנוֹ וּמְלַמֵּד תִּינוֹקוֹת שֶׁגָּנַב אֶחָד מִן הַקְּטַנִּים הַלּוֹמְדִים אֶצְלוֹ. אַף עַל פִּי שֶׁנִּשְׁתַּמֵּשׁ בּוֹ וּמְכָרוֹ פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כא טז)</span> &quot;וְנִמְצָא בְיָדוֹ&quot; פְּרָט לְאֵלּוּ שֶׁהֵן מְצוּיִין בְּיָדָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגונב </strong> בנו או כל שמצוי אצלו פטור כדתנן התם ובגמרא אמר אביי דאמר קרא הנמצא בידו קרא יתירא הוא למדרש פרט למצוי דאי ללמד שימצא בעדים הא כתיב כי ימצא.</p>
               </div>
             </div>
@@ -1012,8 +1238,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 9:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-9-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 9:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-9-6">Mishneh Torah, Theft 9:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַגּוֹנֵב אֶת הַגָּדוֹל אוֹ הַגּוֹנֵב אֶת הַקָּטָן בֶּן יוֹמוֹ שֶׁכָּלוּ לוֹ חֳדָשָׁיו בֵּין זָכָר בֵּין נְקֵבָה בֵּין שֶׁהָיָה הַגַּנָּב אִישׁ אוֹ אִשָּׁה הֲרֵי אֵלּוּ נֶהֱרָגִין שֶׁנֶּאֱמַר <span class="source-small">(דברים כד ז)</span> &quot;גֹּנֵב נֶפֶשׁ&quot; מִכָּל מָקוֹם. וְאֶחָד הַגּוֹנֵב אֶת יִשְׂרָאֵל אוֹ שֶׁגָּנַב גֵּר אוֹ עֶבֶד מְשֻׁחְרָר שֶׁנֶּאֱמַר <span class="source-small">(דברים כד ז)</span> &quot;נֶפֶשׁ מֵאֶחָיו&quot; וְאֵלּוּ בִּכְלַל אַחֵינוּ הֵן בְּתוֹרָה וּבְמִצְוֹת. אֲבָל הַגּוֹנֵב אֶת הָעֶבֶד אוֹ מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> הגונב גדול או קטן בן יומו שכלו לו חדשיו בין איש בין אשה כדתניא התם וטעמא דקטן דכיון דכלו לו חדשיו וחייבין מיתה על הריגתו הכי נמי בגניבה ומכירה תניא נמי התם אין לי אלא איש שגנב אשה מנין תלמוד לומר וגונב איש אפילו אשה גונבת משמע אשה שגנבה אשה מנין תלמוד לומר ומת הגנב ההוא מ&quot;מ וכתיב נמי גונב נפש מכל מקום. וגונב גר או עבד משוחרר הוי כגונב ישראל כדכתיב מאחיו ואלו בכלל אחיו הם אבל עבד או אפילו חציו עבד פטור דכתיב בני ישראל מבני ישראל חד למעוטי עבד וחד למעוטי חציו עבד וחציו בן חורין דמבני יתירא הוא דהוה ליה למכתב מאחיו בני ישראל.</p>
               </div>
             </div>
@@ -1028,8 +1259,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 9:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-9-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 9:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-9-7">Mishneh Torah, Theft 9:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבָּא בַּמַּחְתֶּרֶת בֵּין בַּיּוֹם בֵּין בַּלַּיְלָה אֵין לוֹ דָּמִים אֶלָּא אִם הֲרָגוֹ בַּעַל הַבַּיִת אוֹ שְׁאָר הָאָדָם פְּטוּרִין. וּרְשׁוּת יֵשׁ לַכּל לְהָרְגוֹ בֵּין בְּחל בֵּין בְּשַׁבָּת בְּכָל מִיתָה שֶׁיְּכוֹלִין לַהֲמִיתוֹ שֶׁנֶּאֱמַר <span class="source-small">(שמות כב א)</span> &quot;אֵין לוֹ דָּמִים&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבא </strong> במחתרת אין לו דמים כדכתיב אם במחתרת ימצא הגנב וגו׳ ותנן בפרק בן סורר דע&quot;ב דנידון על שם סופו ובגמרא מ&quot;ט דמחתרת חזקה אין אדם מעמיד עצמו על ממונו ורואה שאחר נוטלו ושותק ויודע זה הגנב ומימר אמר אי קאי באפי קטילנא ליה ומלמדתך תורה מאחר שהוא בא להרגך השכם אתה להרגו כדכתיב אין לו דמים כלומר הרי הוא לך כמי שאין לו דם ונשמה ומותר להורגו וקרא דכתיב אם זרחה השמש עליו דמים לו דמשמע ביום חייב אינו [כן] דא&quot;כ יאמר אם זרחה השמש ולא יאמר עליו למדרש אם הדבר ברור לך כשמש שאינו בא להרוג. וכל אדם נמי רשאי להרגו דכיון דחשבין ליה רודף הא ילפינן התם ניתן להצילו בנפשו מהיקשא דכי כאשר יקום איש על רעהו ורצחו וכו׳ דנערה מאורסה ניתן להצילה מדכתיב ואין מושיע לה הא יש לה מושיע מושיעה בכל דבר שיכול להושיע והכא נמי כתיב והוכה ומת ודרשינן והוכה בכל אדם ואפילו אינו בעל הממון מדלא כתיב והוכהו וקמ&quot;ל דרודף הוא וכדאמרינן התם. ובין בחול בין בשבת ילפינן מדכתיב אין לו דמים גבי איניש דעלמא לומר אין לו דמים אפילו בשבת סד&quot;א מידי דהוה אהרוגי ב&quot;ד בשבת לא קטלינן קמ&quot;ל הכא משום פקוח נפש דהאיך. ואחד הבא במחתרת או שנמצא בתוך חצרו או גגו או קרפיפו דכתיב ימצא הגנב מכל מקום מדלא כתיב אם במחתרת ימצאנו וכתיב הגנב יתירא משמע בכל צדדין שיראה לו שהוא גנב ומה תלמוד לומר מחתרת מפני שרוב גנבים מצויים במחתר׳ ותניא נמי מחתרתו זו היא התראתו דכל גנב הוי כבא במחתרת דבא להרוג וזו היא התראתו כדאיתא התם ולהכי קטן נמי שהוא רודף ניתן להציל הנרדף בנפשו אף על גב דקטן הוא ולא בר קבולי התראה הוא מחתרתו זו היא התראתו כדאמ׳.</p>
               </div>
             </div>
@@ -1044,8 +1280,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 9:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-9-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 9:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-9-10">Mishneh Torah, Theft 9:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה הַדָּבָר בָּרוּר לְבַעַל הַבַּיִת שֶׁזֶּה הַגַּנָּב הַבָּא עָלָיו אֵינוֹ הוֹרְגוֹ וְלֹא בָּא אֶלָּא עַל עִסְקֵי מָמוֹן אָסוּר לְהָרְגוֹ וְאִם הֲרָגוֹ הֲרֵי זֶה הוֹרֵג נֶפֶשׁ. שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ב)</span> &quot;אִם זָרְחָה הַשֶּׁמֶשׁ עָלָיו&quot; אִם בָּרוּר לְךָ הַדָּבָר כַּשֶׁמֶשׁ שֶׁיֵּשׁ לוֹ שָׁלוֹם עִמְּךָ אֶל תַּהַרְגֵהוּ. לְפִיכָךְ אָב הַבָּא בַּמַּחְתֶּרֶת עַל בְּנוֹ אֵינוֹ נֶהֱרָג שֶׁוַּדַּאי שֶׁאֵינוֹ הוֹרְגוֹ. אֲבָל הַבֵּן הַבָּא עַל אָבִיו נֶהֱרָג:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה </strong> הדבר ברור שאינו בא אלא על עסקי ממון כאב הבא במחתרת על הבן אינו נהרג דתניא התם אין לו דמים אם זרחה השמש עליו וכי השמש עליו בלבד זרחה אלא אם ברור לך הדבר כשמש שאין לך שלום עמו הרגהו ואם לאו אל תהרגהו דדרשינן סמוכין אימתי מותר להרגו בזמן שהשמש זרחה עליו כלומר שברור לך שלהרגך בא ותניא אידך אם ברור לך כשמש שיש לו שלום עמך אל תהרגהו ואם לאו הרגהו קשיא סתמא אסתמא דבקמיתא אמרינן דבסתם אל תהרגהו ובתריתא אמרינן דבסתם הרגהו לא קשיא כאן באב על הבן מספק אל יהרגהו בנו דודאי רחמני היא על בנו ואפילו מציל ממונו מידו לא יהרגנו הילכך דמים לו עד שיודע לך כשמש שהוא אכזרי עליך ושונאך ובתריתא בבן על האב וכ&quot;ש אינש בעלמא הרגהו מספק דודאי אדעתא דהכי אתא דאי קיימת ליה באפיה קטיל לך עד שיודע כשמש שהוא רחמני עליך כאב על הבן וכדאיתא התם דף ע&quot;ב. וכן הגנב שגנב ויוצא או שלא גנב ומצאו יוצא הואיל ופנה עורף יש לו דמים דהא לא נמצא במחתרת וקרא כתיב אם במחתרת וגו׳ וכן אם הקיפוהו בני אדם או עדים אינו נהרג כדרך התרגום שאומר אם עינא דסהדיא נפלת עלוהי וכו׳. וכן הבא במחתרת לתוך גינתו או שדהו שאין רוב הבעלים מצויים שם יש לו דמים שחזקתו שבא על ממון בלבד ולא מרבינן גנו חצרו אלא משום דבעל הבית מצוי שם.</p>
               </div>
             </div>
@@ -1060,8 +1301,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Theft 9:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-theft-9-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Theft 9:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-theft/#mishneh-torah-theft-9-13">Mishneh Torah, Theft 9:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל גַּנָּב שֶׁיֵּשׁ לוֹ דָּמִים אִם נָפַל עָלָיו גַּל בְּשַׁבָּת מְפַקְּחִים עָלָיו. וְאִם שָׁבַר כֵּלִים בְּבִיאָתוֹ חַיָּב בְּתַשְׁלוּמִין. אֲבָל מִי שֶׁאֵין לוֹ דָּמִים שֶׁשָּׁבַר כֵּלִים בְּבִיאָתוֹ פָּטוּר כְּמוֹ שֶׁבֵּאַרְנוּ: סְלִיקוּ לְהוּ הִלְכוֹת גְּנֵבָה בְּסַ&quot;ד</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> גנב שיש לו דמים אם נפל עליו גל בשבת מפקחים עליו כדאמרינן התם כדתני׳ התם דמים לו בין בחול בין בשבת ואמרינן לא נצרכה אלא לפקח עליו את הגל היכא דלא בא על עסקי נפשות ואם שבר כלים בביאתו חייב בתשלומין ומי שאין לו דמים פטור מן התשלומין כדתנן התם דפטור מלשלם משום דחיוב מיתה ותשלומין באין כאחד ואע&quot;ג שניצל פטור דקיימא לן חייבי מיתות שוגגין אין משלמין ממון שעם המיתה אף על פי שאין נהרגין:</p>
               </div>
             </div>
@@ -1071,6 +1317,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-theft-text-9">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-theft.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-theft-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1091,8 +1341,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-theft.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-theft.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-theft.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-theft.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-theft.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-theft.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1118,7 +1368,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

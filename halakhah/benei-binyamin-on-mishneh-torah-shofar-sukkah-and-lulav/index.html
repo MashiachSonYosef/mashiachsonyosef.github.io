@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/">Open Mishneh Torah, Shofar, Sukkah and Lulav</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Shofar, Sukkah and Lulav</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">31 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>297 matched</strong> / 842 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -260,8 +261,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-1-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-1">Mishneh Torah, Shofar, Sukkah and Lulav 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה שֶׁל תּוֹרָה לִשְׁמֹעַ תְּרוּעַת הַשּׁוֹפָר בְּרֹאשׁ הַשָּׁנָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט א)</span> &quot;יוֹם תְּרוּעָה יִהְיֶה לָכֶם&quot;. וְשׁוֹפָר שֶׁתּוֹקְעִין בּוֹ בֵּין בְּרֹאשׁ הַשָּׁנָה בֵּין בְּיוֹבֵל הוּא קֶרֶן הַכְּבָשִׂים הַכָּפוּף. וְכָל הַשּׁוֹפָרוֹת פְּסוּלִין חוּץ מִקֶּרֶן הַכֶּבֶשׂ. וְאַף עַל פִּי שֶׁלֹּא נִתְפָּרֵשׁ בַּתּוֹרָה תְּרוּעָה בְּשׁוֹפָר בְּרֹאשׁ הַשָּׁנָה הֲרֵי הוּא אוֹמֵר בְּיוֹבֵל <span class="source-small">(ויקרא כה ט)</span> &quot;וְהַעֲבַרְתָּ שׁוֹפַר&quot; וְכוּ׳ <span class="source-small">(ויקרא כה ט)</span> &quot;תַּעֲבִירוּ שׁוֹפָר&quot;. וּמִפִּי הַשְּׁמוּעָה לָמְדוּ מַה תְּרוּעַת יוֹבֵל בְּשׁוֹפָר אַף תְּרוּעַת רֹאשׁ הַשָּׁנָה בְּשׁוֹפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ג) </strong>
 <strong> ליטול </strong>
 <strong> לולב במקדש כל ז׳ ימי החג. </strong> חסר ליטול במדינה יום א׳ ובמקדש כל ז׳ ימות החג כצ&quot;ל:</p>
@@ -278,8 +284,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-1-4-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-4">Mishneh Torah, Shofar, Sukkah and Lulav 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹפָר שֶׁל רֹאשׁ הַשָּׁנָה אֵין מְחַלְּלִין עָלָיו אֶת יוֹם טוֹב וַאֲפִלּוּ בְּדָבָר שֶׁהוּא מִשּׁוּם שְׁבוּת. כֵּיצַד. הָיָה הַשּׁוֹפָר בְּרֹאשׁ הָאִילָן אוֹ מֵעֵבֶר הַנָּהָר וְאֵין לוֹ שׁוֹפָר אֶלָּא הוּא אֵינוֹ עוֹלֶה בָּאִילָן וְאֵינוֹ שָׁט עַל פְּנֵי הַמַּיִם כְּדֵי לַהֲבִיאוֹ. וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין חוֹתְכִין אוֹתוֹ אוֹ עוֹשִׂין בּוֹ מְלָאכָה. מִפְּנֵי שֶׁתְּקִיעַת שׁוֹפָר מִצְוַת עֲשֵׂה וְיוֹם טוֹב עֲשֵׂה וְלֹא תַּעֲשֶׂה וְאֵין עֲשֵׂה דּוֹחֶה לֹא תַּעֲשֶׂה וַעֲשֵׂה. מֻתָּר לִתֵּן בְּתוֹכוֹ מַיִם אוֹ יַיִן אוֹ חֹמֶץ בְּיוֹם טוֹב כְּדֵי לְצַחְצְחוֹ. וְלֹא יִתֵּן לְתוֹכוֹ מֵי רַגְלַיִם לְעוֹלָם מִפְּנֵי הַכָּבוֹד שֶׁלֹּא יִהְיוּ מִצְוֹת בְּזוּיוֹת עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא </strong>
 <strong> יתן לתוכו מ&quot;ר &quot;לעולם&quot;. </strong> מרבה אפי׳ לאחר זמן מצותו דאף שתשמישי מצוה נזרקין מ&quot;מ תשמיש מגונה אסור:</p>
               </div>
@@ -295,8 +306,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 1:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-1-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-5">Mishneh Torah, Shofar, Sukkah and Lulav 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שִׁעוּר הַשּׁוֹפָר כְּדֵי שֶׁיֹּאחֲזֶנּוּ בְּיָדוֹ וְיֵרָאֶה לְכָאן וּלְכָאן. נִסְדַּק לְאָרְכּוֹ פָּסוּל. לְרָחְבּוֹ אִם נִשְׁתַּיֵּר בּוֹ כַּשִּׁעוּר כָּשֵׁר וּכְאִלּוּ נִכְרַת מִמְּקוֹם הַסֶּדֶק. נִקַּב אִם סְתָמוֹ שֶׁלֹּא בְּמִינוֹ פָּסוּל. סְתָמוֹ בְּמִינוֹ אִם נִשְׁתַּיֵּר רֻבּוֹ שָׁלֵם וְלֹא עִכְּבוּ הַנְּקָבִים שֶׁנִּסְתְּמוּ אֶת הַתְּקִיעָה הֲרֵי זֶה כָּשֵׁר. קְדָחוֹ בְּזִכְרוּתוֹ כָּשֵׁר שֶׁמִּין בְּמִינוֹ אֵינוֹ חוֹצֵץ. דִּבֵּק שִׁבְרֵי שׁוֹפָרוֹת עַד שֶׁהִשְׁלִימוֹ לְאֶחָד פָּסוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מש&quot;כ </strong> המ&quot;מ ששיעור &quot;זה&quot; הוא טפח אולי צ&quot;ל &quot;האחיזה&quot; שכ&quot;ה בגמ׳ מ&quot;ק כ&quot;ב ב׳ חולין קכ&quot;ג א׳ ומש&quot;ש הכ&quot;מ ששם נתבאר שהוא טפח שוחק לא נמצא שם לפנינו אבל הוא מוכח כן בערובין ד׳ ב׳ שבכל דאורייתא הוא לחומרא:</p>
               </div>
             </div>
@@ -312,8 +328,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 2:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-2-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-1">Mishneh Torah, Shofar, Sukkah and Lulav 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכּל חַיָּבִין לִשְׁמֹעַ קוֹל שׁוֹפָר כֹּהֲנִים לְוִיִּים וְיִשְׂרְאֵלִים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. אֲבָל נָשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִין. מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין וְטֻמְטוּם וְאַנְדְּרוֹגִינוּס חַיָּבִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל </strong>
 <strong> נו&quot;ע וקטנים פטורים. </strong> ל&quot;י למה ל&quot;כ כאן דמחנכין אותם כמש&quot;כ בק&quot;ש ותפלה ובהמ&quot;ז וכל המצות:</p>
               </div>
@@ -329,8 +350,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 2:4:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-2-4-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-4">Mishneh Torah, Shofar, Sukkah and Lulav 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּתְעַסֵּק בִּתְקִיעַת שׁוֹפָר לְהִתְלַמֵּד לֹא יָצָא יְדֵי חוֹבָתוֹ. וְכֵן הַשּׁוֹמֵעַ מִן הַמִּתְעַסֵּק לֹא יָצָא. נִתְכַּוֵּן שׁוֹמֵעַ לָצֵאת יְדֵי חוֹבָתוֹ וְלֹא נִתְכַּוֵּן הַתּוֹקֵעַ לְהוֹצִיאוֹ אוֹ שֶׁנִּתְכַּוֵּן הַתּוֹקֵעַ לְהוֹצִיאוֹ וְלֹא נִתְכַּוֵּן הַשּׁוֹמֵעַ לָצֵאת לֹא יָצָא יְדֵי חוֹבָתוֹ. עַד שֶׁיִּתְכַּוֵּן שׁוֹמֵעַ וּמַשְׁמִיעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומתעסק </strong>
 <strong> ל&quot;י י&quot;ח. </strong> ועמ&quot;מ וכ&quot;מ דרבינו ס&quot;ל מצאצ&quot;כ ואולם י&quot;ל דאה&quot;נ דגם רבינו דס&quot;ל דאמצ&quot;כ מ&quot;מ זהו אם אין עבירה בעשייתה אז יוצא בלא כוונה אבל כשלא יכוון איכא עבירה בעשייתה ודאי דלא יצא בלא כוונה וא&quot;כ א&quot;ש דבמצה כשאכל בלא כוונה אין חשש כלל שפיר יוצא י&quot;ח משא&quot;כ בתקיעת שופר כשתוקע להתעסק אסור משום שבות ע&quot;כ בלא כוונה אסור וא&quot;י י&quot;ח ושז&quot;כ רבינו פ&quot;ג מתשובה ה&quot;ה שהשי&quot;ת דן למצרים לפי ששעבדו בישראל לפי שהם לא נצטוו ביחוד ע&quot;ז והראב&quot;ד השיגו דאדרבה הם מצוה עבדי וע׳ רמב&quot;ן פ׳ לך ולהאמור א&quot;ש דאם היו המצרים מכוונים לשם מצוה או עכ&quot;פ אם לא עשו לשמ&quot;צ אבל לא הי׳ כלל עבירה בשעבודם אז שפיר היו צריכים לקבל שכר ע&quot;ז משא&quot;כ במה שעשו היה דבר עבירה כמ&quot;ש בסנהדרין נ&quot;ח ב׳ א&quot;כ צדקו ד׳ רבינו כאאמו&quot;ר הגז&quot;ל והאריך הרבה בדרושים ויש להוסיף דבלא עבירה כל מצוה סתמא לשמה קאי משא&quot;כ כשיש עבירה בהעדר הכוונה ע&quot;ז ל&quot;ש סתמא לשמה והארכתי בחי׳ בס&quot;ד ומש&quot;כ הכ&quot;מ בשם הר&quot;ן עי׳ תוס׳ פסחים קט&quot;ו ד&quot;ה מתקיף ועי׳ בכ&quot;מ פ&quot;ב מק&quot;ש ואש&quot;ק הלח&quot;מ ובחיבורי בה&quot;פ הארכתי בענין מצ&quot;כ אם מדאו׳ או דרבנן והעלתי דברים חדשים בס&quot;ד:</p>
               </div>
@@ -346,8 +372,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-2-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-6">Mishneh Torah, Shofar, Sukkah and Lulav 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם טוֹב שֶׁל רֹאשׁ הַשָּׁנָה שֶׁחָל לִהְיוֹת בְּשַׁבָּת אֵין תּוֹקְעִין בַּשּׁוֹפָר בְּכָל מָקוֹם. אַף עַל פִּי שֶׁהַתְּקִיעָה מִשּׁוּם שְׁבוּת וּמִן הַדִּין הָיָה שֶׁתּוֹקְעִין יָבוֹא עֲשֵׂה שֶׁל תּוֹרָה וְיִדְחֶה שְׁבוּת שֶׁל דִּבְרֵיהֶם. וְלָמָּה אֵין תּוֹקְעִין גְּזֵרָה שֶׁמָּא יִטְּלֶנּוּ בְּיָדוֹ וְיוֹלִיכֶנּוּ לְמִי שֶׁיִּתְקַע לוֹ וְיַעֲבִירֶנּוּ אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים. אוֹ יוֹצִיאוֹ מֵרְשׁוּת לִרְשׁוּת וְיָבוֹא לִידֵי אִסּוּר סְקִילָה. שֶׁהַכּל חַיָּבִים בִּתְקִיעָה וְאֵין הַכּל בְּקִיאִין לִתְקֹעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או </strong>
 <strong> מוציאו מרשות לרשות. </strong> שלא כדברי התוס׳ שכ׳ בסוכה מ&quot;ג א׳ דלהוצאה מרשות לרשות ל&quot;ג דמנכרא מילתא ובאמת כדברי התוס׳ מבואר ביומא מ&quot;ד ב׳ ואולי י&quot;ל משום דהתם מיירי בכהנים דזריזין הם לא גזרו כ&quot;כ משא&quot;כ בשופר ולולב שלכל מסור בכל ענין גזרו וי&quot;ל בזה קו׳ הט&quot;א ושעה&quot;מ דלב&quot;ש דס&quot;ל הוצאה ביו&quot;ט אסור כמו בשבת א&quot;כ גם ביו&quot;ט נגזר שמא יעבירנו די&quot;ל דב&quot;ש ס&quot;ל כדברי הבל&quot;ע דביו&quot;ט ליכא כלל איסור העברת ד&quot;א ברה&quot;ר דגמ׳ ג&quot;ל ואין למדין ק&quot;ו מהלכה (ע׳ הקובץ פ&quot;א מ&quot;ש בשמו) ומשום הוצאה מרה&quot;י לרה&quot;ר אין לגזור דמנכרא מילתא וב&quot;ש לס&quot;ל לחלק כדברינו ועי׳ בא&quot;ר ומרן הגר&quot;א ז&quot;ל בפ&quot;ב דידים דר&quot;א לבד ס&quot;ל דא&quot;ד ק&quot;ו מהלכה ולא ר׳ יהושע עש&quot;ה [ובזה א&quot;ש קו׳ התוס׳ ר&quot;ה ט׳ א׳ ע&quot;ד ר&quot;ח שם ועי׳ ג&quot;כ בא&quot;י והארכתי במ&quot;א בס&quot;ד] וא&quot;כ לדידן ודאי ל&quot;ש לומר כד׳ הבל&quot;ע אבל לב&quot;ש דס&quot;ל כר&quot;א דא&quot;ד ק&quot;ו מהלכה שפיר י&quot;ל כן:</p>
               </div>
@@ -364,8 +395,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-3-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-3-10">Mishneh Torah, Shofar, Sukkah and Lulav 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּנְהָג הַפָּשׁוּט בְּסֵדֶר הַתְּקִיעוֹת שֶׁל רֹאשׁ הַשָּׁנָה בְּצִבּוּר כָּךְ הוּא. אַחַר שֶׁקּוֹרְאִין בַּתּוֹרָה וּמַחְזִירִין הַסֵּפֶר לִמְקוֹמוֹ יוֹשְׁבִין כָּל הָעָם וְאֶחָד עוֹמֵד וּמְבָרֵךְ בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לִשְׁמֹעַ קוֹל שׁוֹפָר וְכָל הָעָם עוֹנִין אָמֵן. וְחוֹזֵר וּמְבָרֵךְ שֶׁהֶחֱיָנוּ וְכָל הָעָם עוֹנִין אַחֲרָיו אָמֵן. וְתוֹקֵעַ שְׁלֹשִׁים תְּקִיעוֹת שֶׁאָמַרְנוּ מִפְּנֵי הַסָּפֵק עַל הַסֵּדֶר. וְאוֹמְרִים קַדִּישׁ וְעוֹמְדִין וּמִתְפַּלְּלִין תְּפִלַּת מוּסָף. וְאַחַר שֶׁגּוֹמֵר שְׁלִיחַ צִבּוּר בְּרָכָה רְבִיעִית שֶׁהִיא מַלְכֻיּוֹת תּוֹקֵעַ תְּקִיעָה שְׁלֹשָׁה שְׁבָרִים תְּרוּעָה תְּקִיעָה פַּעַם אַחַת. וּמְבָרֵךְ בְּרָכָה חֲמִישִׁית שֶׁהִיא זִכְרוֹנוֹת. וְאַחַר שֶׁגּוֹמְרָהּ תּוֹקֵעַ תְּקִיעָה שְׁלֹשָׁה שְׁבָרִים וּתְקִיעָה. וּמְבָרֵךְ בְּרָכָה שִׁשִּׁית שֶׁהִיא שׁוֹפָרוֹת. וְאַחַר שֶׁגּוֹמְרָהּ תּוֹקֵעַ תְּקִיעָה תְּרוּעָה וּתְקִיעָה פַּעַם אַחַת וְגוֹמֵר הַתְּפִלָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחר </strong>
 <strong> שקוראים בתורה ומחזירים הספר. </strong> ז&quot;א לפי מנהגינו ועי׳ פסחים ס&quot;ד ב׳ קיבל את המלא:</p>
               </div>
@@ -381,8 +417,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-3-10-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-3-10">Mishneh Torah, Shofar, Sukkah and Lulav 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּנְהָג הַפָּשׁוּט בְּסֵדֶר הַתְּקִיעוֹת שֶׁל רֹאשׁ הַשָּׁנָה בְּצִבּוּר כָּךְ הוּא. אַחַר שֶׁקּוֹרְאִין בַּתּוֹרָה וּמַחְזִירִין הַסֵּפֶר לִמְקוֹמוֹ יוֹשְׁבִין כָּל הָעָם וְאֶחָד עוֹמֵד וּמְבָרֵךְ בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לִשְׁמֹעַ קוֹל שׁוֹפָר וְכָל הָעָם עוֹנִין אָמֵן. וְחוֹזֵר וּמְבָרֵךְ שֶׁהֶחֱיָנוּ וְכָל הָעָם עוֹנִין אַחֲרָיו אָמֵן. וְתוֹקֵעַ שְׁלֹשִׁים תְּקִיעוֹת שֶׁאָמַרְנוּ מִפְּנֵי הַסָּפֵק עַל הַסֵּדֶר. וְאוֹמְרִים קַדִּישׁ וְעוֹמְדִין וּמִתְפַּלְּלִין תְּפִלַּת מוּסָף. וְאַחַר שֶׁגּוֹמֵר שְׁלִיחַ צִבּוּר בְּרָכָה רְבִיעִית שֶׁהִיא מַלְכֻיּוֹת תּוֹקֵעַ תְּקִיעָה שְׁלֹשָׁה שְׁבָרִים תְּרוּעָה תְּקִיעָה פַּעַם אַחַת. וּמְבָרֵךְ בְּרָכָה חֲמִישִׁית שֶׁהִיא זִכְרוֹנוֹת. וְאַחַר שֶׁגּוֹמְרָהּ תּוֹקֵעַ תְּקִיעָה שְׁלֹשָׁה שְׁבָרִים וּתְקִיעָה. וּמְבָרֵךְ בְּרָכָה שִׁשִּׁית שֶׁהִיא שׁוֹפָרוֹת. וְאַחַר שֶׁגּוֹמְרָהּ תּוֹקֵעַ תְּקִיעָה תְּרוּעָה וּתְקִיעָה פַּעַם אַחַת וְגוֹמֵר הַתְּפִלָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחוזר </strong>
 <strong> ומברך שהחיינו. </strong> אולי כיון בלשון &quot;חוזר&quot; שצריך להמתין עד עניית אמן של כל הקהל וכדקיי&quot;ל כו׳:</p>
               </div>
@@ -399,8 +440,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-4-16-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-16">Mishneh Torah, Shofar, Sukkah and Lulav 4:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּפְנֵי סֻכָּה כְּשֵׁרִין מִן הַכּל שֶׁאֵין אָנוּ צְרִיכִין אֶלָּא מְחִצָּה מִכָּל מָקוֹם וַאֲפִלּוּ מִבַּעֲלֵי חַיִּים. וְעוֹשֶׂה אָדָם אֶת חֲבֵרוֹ דֹּפֶן בְּיוֹם טוֹב כְּדֵי שֶׁיֹּאכַל וְיִשְׁתֶּה וְיִישַׁן בְּסֻכָּה כְּשֵׁרָה שֶׁחֲבֵרוֹ דֹּפֶן לָהּ. וְהוּא שֶׁיַּעֲשֶׂה אוֹתוֹ שֶׁלֹּא לְדַעַת זֶה שֶׁנַּעֲשָׂה דֹּפֶן. אֲבָל אִם עֲשָׂהוּ לְדַעַת אָסוּר בְּיוֹם טוֹב וּמֻתָּר בִּשְׁאָר יְמֵי הֶחָג. וְכֵן עוֹשֶׂה בְּכֵלִים דֹּפֶן רְבִיעִית בְּיוֹם טוֹב. אֲבָל דֹּפֶן שְׁלִישִׁית לֹא יַעֲשֶׂה אוֹתָהּ בְּכֵלִים בְּיוֹם טוֹב לְפִי שֶׁהוּא מַכְשִׁיר הַסֻּכָּה וְאֵין עוֹשִׂין אֹהֶל עֲרַאי בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואפי׳ </strong>
 <strong> מבעלי חיים. </strong> עי׳ ל&quot;מ פ&quot;א מנזירות ה&quot;ד ובשעה&quot;מ מש&quot;כ מענין חיישינן למיתה ועמש&quot;ל פ&quot;ב מתשובה ה&quot;ז בס&quot;ד וא&quot;ש כמה דברים בזה וע׳ שבועות ל&quot;ז ב׳ וקדושין ל׳ א׳ ומש&quot;ל פ&quot;ז מיו&quot;ט הי&quot;ב. ומה שפלפל השעה&quot;מ בה׳ סוכה כמה זמן מרובה ראיתי מביאים ראיה ממ&quot;ק כ&quot;ג א׳ דא׳ שם וכמה ז&quot;מ אר&quot;פ שלשים יום ולע&quot;ד אינו ראיה כלל עי׳ יבמות קי&quot;א ב׳ עד ל׳ יום מוקמי אינש אנפשיה כו׳ וא&quot;כ אין ראיה מזה למק&quot;א דשם לענין שכנס אשתו מיירי:</p>
               </div>
@@ -417,8 +463,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 5:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-5-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-2">Mishneh Torah, Shofar, Sukkah and Lulav 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכֵּךְ בְּדָבָר שֶׁאֵין גִּדּוּלָיו מִן הָאָרֶץ אוֹ בִּמְחֻבָּר לָאָרֶץ אוֹ בְּדָבָר שֶׁמְּקַבֵּל טֻמְאָה פְּסוּלָה. אֲבָל אִם עָבַר וְסִכֵּךְ בְּדָבָר הַנּוֹבֵל וְנוֹשֵׁר אוֹ בְּדָבָר שֶׁרֵיחוֹ רַע כְּשֵׁרָה. שֶׁלֹּא אָמְרוּ אֵין מְסַכְּכִין בְּאֵלּוּ אֶלָּא כְּדֵי שֶׁלֹּא יַנִּיחַ הַסֻּכָּה וְיֵצֵא. וְצָרִיךְ לְהִזָּהֵר שֶׁלֹּא יִהְיוּ הוּצִין וְעָלִין שֶׁל סְכָךְ יוֹרְדִין לְתוֹךְ עֲשָׂרָה טְפָחִים כְּדֵי שֶׁלֹּא יָצֵר לוֹ בִּישִׁיבָתוֹ. סִכְּכָהּ בְּמִינֵי מַתָּכוֹת אוֹ בַּעֲצָמוֹת וְעוֹרוֹת פְּסוּלָה מִפְּנֵי שֶׁאֵינָן גִּדּוּלֵי קַרְקַע. הִדְלָה עָלֶיהָ גְּפָנִים וְכַיּוֹצֵא בָּהֶן עַד שֶׁנַּעֲשׂוּ סֻכָּה פְּסוּלָה שֶׁהֲרֵי לֹא נֶעֶקְרוּ. סִכְּכָהּ בִּכְלֵי עֵץ וּבְמַחֲצָלוֹת הָעֲשׂוּיוֹת לִשְׁכִיבָה וְכַיּוֹצֵא בָּהֶן פְּסוּלָה מִפְּנֵי שֶׁהֵן מְקַבְּלִין טֻמְאָה. וְכֵן אִם סִכְּכָהּ בְּשִׁבְרֵי כֵּלִים וּבְלִיּוֹתֵיהֶן פְּסוּלָה הוֹאִיל וְהָיוּ מְקַבְּלִין טֻמְאָה שֶׁמָּא יְסַכֵּךְ בִּשְׁבָרִים שֶׁעֲדַיִן לֹא טָהֲרוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל </strong>
 <strong> אם עבר וסיכך כו׳ בדבר שריחו רע כשירה. </strong> עכ&quot;מ בשם הר&quot;נ ולכאורה מ׳ כן מהא דפ&quot;ה מה׳ שבת ה&quot;י ושם אף דיעבד אסור כמש&quot;כ בת׳ הרשב&quot;א והביאו הרמ&quot;א ר&quot;ס רס&quot;ד ואולי דשאני עטרן דאינו פסול מצד עצמו רק שמא יניחו מותר דיעבד ואף הרשב&quot;א יודה לזה ורק משום לתא דשמא יטה הוא שי&quot;ל דאף בדיעבד א&quot;י וילה&quot;ר לזה דבדיעבד יצא דאלכ&quot;ק וכי רב יהודא ואביי כיחידאה אמרו למילתייהו דהרי חכמים חולקים שם על רי&quot;ש א&quot;ו דגם שם בדיעבד ש&quot;ד וא&quot;כ י&quot;ל דגם חכמים אינם מחולקים עמו שם רק דרישא אף בדיעבד וסיפא לכתחילה ומיהו גם בל&quot;ז מ׳ דבדיעבד ש&quot;ד מדא׳ אין מסככין ע&quot;ש י&quot;ב א׳:</p>
               </div>
@@ -434,8 +485,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 5:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-5-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 5:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-10">Mishneh Torah, Shofar, Sukkah and Lulav 5:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲבִילֵי קַשׁ וַחֲבִילֵי עֵצִים וַחֲבִילֵי זְרָדִין אֵין מְסַכְּכִין בָּהֶן גְּזֵרָה שֶׁמָּא יַעֲשֶׂה אוֹתָן חֲבִילוֹת עַל גַּגּוֹ כְּדֵי לְיַבְּשָׁן וְיִמָּלֵךְ וְיֵשֵׁב תַּחְתֵּיהֶן לְשֵׁם סֻכָּה וְהוּא מִתְּחִלָּה לֹא עָשָׂה סְכָךְ זֶה לְצֵל וְנִמְצֵאת כְּסֻכָּה שֶׁנַּעֲשֵׂית מֵאֵלֶיהָ. וְאִם הִתִּירָם כְּשֵׁרוֹת. וְאֵין חֲבִילָה פְּחוּתָה מֵעֶשְׂרִים וַחֲמִשָּׁה בַּדִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהשגת </strong> הראב&quot;ד ול&quot;י למה לא כתב כצ&quot;ל:</p>
               </div>
             </div>
@@ -450,8 +506,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-5-25-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-25">Mishneh Torah, Shofar, Sukkah and Lulav 5:25</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שְׁאוּלָה כְּשֵׁרָה וְכֵן הַגְּזוּלָה כְּשֵׁרָה. כֵּיצַד. אִם תָּקַף עַל חֲבֵרוֹ וְהוֹצִיאוֹ מִסֻּכָּתוֹ וּגְזָלָהּ וְיָשַׁב בָּהּ יָצָא שֶׁאֵין הַקַּרְקַע נִגְזֶלֶת. וְאִם גָּזַל עֵצִים וְעָשָׂה מֵהֶן סֻכָּה יָצָא. שֶׁתַּקָּנַת חֲכָמִים הִיא שֶׁאֵין לְבַעַל הָעֵצִים אֶלָּא דְּמֵי עֵצִים בִּלְבַד. וַאֲפִלּוּ גָּזַל נְסָרִים וְהִנִּיחָן וְלֹא חִבְּרָן וְלֹא שָׁנָה בָּהֶן כְּלוּם יָצָא. הָעוֹשֶׂה סֻכָּתוֹ בִּרְשׁוּת הָרַבִּים הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה </strong>
 <strong> סוכתו ברה&quot;ר. </strong> עי׳ ירושלמי ספ&quot;ו דב&quot;ק ובתוספתא שם ובמה&quot;פ שם ועי׳ רש&quot;י ז׳ א׳ ד&quot;ה וכן לשבת כ&quot;א הרה&quot;ג שליט&quot;א [ז&quot;ל] ועי׳ ירושלמי פ&quot;ג דסוכה גמליאל זוגא עבד סוכה ברה&quot;ר עבר רשב&quot;ל א&quot;ל מאן שרא לך ובחדושי הארכתי בס&quot;ד בדינים חדשים בזה ועי׳ חידושי ח&quot;ס שם ל&quot;א א׳:</p>
               </div>
@@ -468,8 +529,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-6-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-1">Mishneh Torah, Shofar, Sukkah and Lulav 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִן הַסֻּכָּה. טֻמְטוּם וְאַנְדְּרוֹגִינוּס חַיָּבִים מִסָּפֵק. וְכֵן מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין חַיָּב. קָטָן שֶׁאֵינוֹ צָרִיךְ לְאִמּוֹ שֶׁהוּא [כְּבֶן חָמֵשׁ] כְּבֶן שֵׁשׁ חַיָּב בְּסֻכָּה מִדִּבְרֵי סוֹפְרִים כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טומטם </strong>
 <strong> ואנדרוגינוס חייבין מספק וכן מי שח&quot;ע וחב&quot;ח. </strong> אין לשון &quot;וכן&quot; מדוייק דחב&quot;ח אינו משום ספק כמו טו&quot;א וי&quot;ל בדוחק:</p>
               </div>
@@ -485,8 +551,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-6-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-6">Mishneh Torah, Shofar, Sukkah and Lulav 6:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אוֹכְלִין וְשׁוֹתִין וִישֵׁנִים בַּסֻּכָּה כָּל שִׁבְעָה בֵּין בַּיּוֹם וּבֵין בַּלַּיְלָה. וְאָסוּר לֶאֱכל סְעֻדָּה חוּץ לַסֻכָּה כָּל שִׁבְעָה אֶלָּא אִם אָכַל אֲכִילַת עֲרַאי כְּבֵיצָה אוֹ פָּחוֹת אוֹ יֶתֶר מְעַט. וְאֵין יְשֵׁנִים חוּץ לַסֻכָּה אֲפִלּוּ שְׁנַת עֲרַאי. וּמֻתָּר לִשְׁתּוֹת מַיִם וְלֶאֱכל פֵּרוֹת חוּץ לַסֻּכָּה. וּמִי שֶׁיַּחֲמִיר עַל עַצְמוֹ וְלֹא יִשְׁתֶּה חוּץ לַסֻכָּה אֲפִלּוּ מַיִם הֲרֵי זֶה מְשֻׁבָּח:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור </strong>
 <strong> לאכול חוץ לסוכה כל שבעה כביצה. </strong> מ׳ דכל ז׳ שווים ואף בשויו&quot;ט מותר כביצה ולא כהסוברים דבשויו&quot;ט אף פחות מזה אסור חוץ לסוכה עי׳ שעה&quot;מ ואולי י&quot;ל דלילה הראשונה אינה בכלל על ה&quot;ז רצה אינו אוכל כל ז׳ וא&quot;כ י&quot;ל דכזית הראשון לילה הא׳ אסור אף כזית חוץ לסוכה וצע&quot;ק:</p>
               </div>
@@ -502,8 +573,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:11:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-6-11-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-11">Mishneh Torah, Shofar, Sukkah and Lulav 6:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גָּמַר מִלֶּאֱכל בַּיּוֹם הַשְּׁבִיעִי בְּשַׁחֲרִית לֹא יַתִּיר סֻכָּתוֹ. אֲבָל מוֹרִיד הוּא אֶת כֵּלָיו וּמְפַנֶּה אוֹתָן מִן הַמִּנְחָה וּלְמַעְלָה. אֵין לוֹ מָקוֹם לְפַנּוֹת פּוֹחֵת בָּהּ אַרְבָּעָה עַל אַרְבָּעָה. וְאִם הֻצְרַךְ לִסְעֹד בִּשְׁאָר הַיּוֹם צָרִיךְ לֶאֱכל בַּסֻּכָּה, שֶׁמִּצְוָתָהּ כָּל שִׁבְעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong>
 <strong> הוצרך לסעוד. </strong> מ&quot;ז ב׳ כיון דאי מתרמי לי׳ סעודתא כו׳:</p>
               </div>
@@ -519,8 +595,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:12:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-6-12-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-12">Mishneh Torah, Shofar, Sukkah and Lulav 6:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל זְמַן שֶׁיִּכָּנֵס לֵישֵׁב בַּסֻּכָּה כָּל שִׁבְעָה מְבָרֵךְ קֹדֶם שֶׁיֵּשֵׁב אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לֵישֵׁב בַּסֻּכָּה. וּבְלֵילֵי יוֹם טוֹב הָרִאשׁוֹן מְבָרֵךְ עַל הַסֻּכָּה וְאַחַר כָּךְ עַל הַזְּמַן. וּמְסַדֵּר כָּל הַבְּרָכוֹת עַל הַכּוֹס. נִמְצָא מְקַדֵּשׁ מְעֻמָּד וּמְבָרֵךְ לֵישֵׁב בַּסֻּכָּה וְיוֹשֵׁב וְאַחַר כָּךְ מְבָרֵךְ עַל הַזְּמַן. וְכָזֶה הָיָה מִנְהַג רַבּוֹתַי וְרַבָּנֵי סְפָרַד לְקַדֵּשׁ מְעֵמָּד בְּלַיִל רִאשׁוֹן שֶׁל חַג הַסֻּכּוֹת כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובלילי </strong>
 <strong> יו&quot;ט הראשון מברך על הסוכה ואח&quot;כ על הזמן. </strong> קצת מ׳ מזה דבליל יו&quot;ט שני זמן קודם וכבר העירותי מכמה שנים ראיה לזה מירושלמי פ&quot;ח דברכות ה&quot;א דבליל סוכות מברך יין קידוש נר הבדלה סוכה זמן והרי לא אד&quot;ו ראש ולא משכ&quot;ל רק בליל ב׳ ומצאתי שכבר קדמוני אך באמת א&quot;ר כלל כמש&quot;כ במקומו בס&quot;ד:</p>
               </div>
@@ -536,8 +617,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:13:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-6-13-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-13">Mishneh Torah, Shofar, Sukkah and Lulav 6:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּזְּמַן הַזֶּה שֶׁאָנוּ עוֹשִׂין שְׁנֵי יָמִים טוֹבִים. יוֹשְׁבִין בַּסֻּכָּה שְׁמוֹנָה יָמִים. וּבַיּוֹם הַשְּׁמִינִי שֶׁהוּא יוֹם טוֹב רִאשׁוֹן שֶׁל שְׁמִינִי עֲצֶרֶת יוֹשְׁבִין בָּהּ וְאֵין מְבָרְכִין לֵישֵׁב בַּסֻּכָּה. וְכֵן טֻמְטוּם וְאַנְדְּרוֹגִינוּס לְעוֹלָם אֵין מְבָרְכִין לֵישֵׁב בַּסֻּכָּה מִפְּנֵי שֶׁהֵן חַיָּבִים מִסָּפֵק וְאֵין מְבָרְכִין מִסָּפֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ </strong> נחסר הציון בשם הר&quot;ן שלהי סוכה:</p>
               </div>
             </div>
@@ -552,8 +638,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:15:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-6-15-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 6:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-15">Mishneh Torah, Shofar, Sukkah and Lulav 6:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁלֹּא עָשָׂה סֻכָּה בֵּין בְּשׁוֹגֵג בֵּין בְּמֵזִיד עוֹשֶׂה סֻכָּה בְּחֻלּוֹ שֶׁל מוֹעֵד. אֲפִלּוּ בְּסוֹף יוֹם שְׁבִיעִי עוֹשֶׂה סֻכָּה, שֶׁמִּצְוָתָהּ כָּל שִׁבְעָה. עֲצֵי סֻכָּה אֲסוּרִין כָּל שְׁמוֹנַת יְמֵי הֶחָג בֵּין עֲצֵי דְּפָנוֹת בֵּין עֲצֵי סְכָךְ אֵין נֵאוֹתִין מֵהֶן לְדָבָר אַחֵר כָּל שְׁמוֹנַת הַיָּמִים מִפְּנֵי שֶׁיּוֹם הַשְּׁבִיעִי כֻּלּוֹ הַסֻּכָּה מֻקְצָה עַד בֵּין הַשְּׁמָשׁוֹת וְהוֹאִיל וְהֻקְצַת לְבֵין הַשְּׁמָשׁוֹת שֶׁל שְׁמִינִי הֻקְצַת לְכָל הַיּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין </strong>
 <strong> עצי דפנות. </strong> הרא&quot;ש חולק ע&quot;ז ובפשוטו מ׳ כן מלשון עצי סוכה ולא &quot;סכך&quot; דאף הדפנות במשמע ובחידושי פלפלתי מזה בס&quot;ד לענין סוכה מעצי אשירה עי׳ שעה&quot;מ ונוב&quot;ת חא&quot;ח סקל&quot;א והארכתי בחידושי בס&quot;ד בחבורי סד&quot;מ בקונ׳ נויי סוכה דבל&quot;ז הרי ל&quot;ה סוכה הראוי לשבעה ואכמ&quot;ל:</p>
               </div>
@@ -570,8 +661,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-8-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-8">Mishneh Torah, Shofar, Sukkah and Lulav 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה שִׁעוּר אֹרֶךְ כָּל מִין מֵהֶם. לוּלָב אֵין פָּחוֹת מֵאַרְבָּעָה טְפָחִים וְאִם הָיָה אָרֹךְ כָּל שֶׁהוּא כָּשֵׁר. וּמְדִידָתוֹ מִשִּׁדְרָתוֹ בִּלְבַד לֹא מֵרֹאשׁ הֶעָלִים. וַהֲדַס וַעֲרָבָה אֵין פָּחוֹת מִשְּׁלֹשָׁה טְפָחִים. וְאִם הָיוּ אֲרֻכִּין כָּל שֶׁהֵן כְּשֵׁרִים. וַאֲפִלּוּ אֵין בְּכָל בַּד וּבַד אֶלָּא שְׁלֹשָׁה עָלִין לַחִין כְּשֵׁרִים וְהוּא שֶׁיִּהְיוּ בְּרֹאשׁ הַבַּד. וְאִם אָגַד הַלּוּלָב צָרִיךְ שֶׁיִּהְיֶה שְׁדֵרוֹ שֶׁל לוּלָב יוֹצֵא מִן הַהֲדַס וַעֲרָבָה טֶפַח אוֹ יוֹתֵר. וְשִׁעוּר אֶתְרוֹג אֵין פָּחוֹת מִכְּבֵיצָה וְאִם הָיָה גָּדוֹל כָּל שֶׁהוּא כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong>
 <strong> היה גדול כל שהוא כשר. </strong> מהא דר&quot;ע דהיה מביאו על כתיפו לבהמ&quot;ד:</p>
               </div>
@@ -587,8 +683,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:10:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-10-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-10">Mishneh Torah, Shofar, Sukkah and Lulav 7:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. מוֹלִיךְ וּמְנַעְנֵעַ רֹאשׁ הַלּוּלָב שָׁלֹשׁ פְּעָמִים וּמֵבִיא וּמְנַעְנֵעַ רֹאשׁ הַלּוּלָב שָׁלֹשׁ פְּעָמִים וְכֵן בַּעֲלִיָּה וִירִידָה. וְהֵיכָן מוֹלִיךְ וּמֵבִיא. בִּשְׁעַת קְרִיאַת הַהַלֵּל בְּ <span class="source-small">(תהילים קיח א)</span> <span class="source-small">(תהילים קיח כט)</span> &quot;הוֹדוּ לַה׳ כִּי טוֹב&quot; תְּחִלָּה וָסוֹף וּבְ<span class="source-small">(תהילים קיח כה)</span> &quot;אָנָּא ה׳ הוֹשִׁיעָה נָּא&quot;. וְכָל הַיּוֹם כָּשֵׁר לִנְטִילַת לוּלָב וְאֵינוֹ נוֹטֵל בַּלַּיְלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואינו </strong>
 <strong> נוטל בלילה. </strong> שבת קל&quot;א ב׳ סוכה מ&quot;ג א׳:</p>
               </div>
@@ -604,8 +705,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:13:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-13-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-13">Mishneh Torah, Shofar, Sukkah and Lulav 7:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת לוּלָב לְהִנָּטֵל בְּיוֹם רִאשׁוֹן שֶׁל חַג בִּלְבַד בְּכָל מָקוֹם וּבְכָל זְמַן וַאֲפִלּוּ בְּשַׁבָּת שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג מ)</span> &quot;וּלְקַחְתֶּם לָכֶם בַּיּוֹם הָרִאשׁוֹן&quot;. וּבַמִּקְדָּשׁ לְבַדּוֹ נוֹטְלִין אוֹתוֹ בְּכָל יוֹם וָיוֹם מִשִּׁבְעַת יְמֵי הֶחָג שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג מ)</span> &quot;וּשְׂמַחְתֶּם לִפְנֵי ה׳ אֱלֹהֵיכֶם&quot; וְגוֹ׳. חָל יוֹם הַשַּׁבָּת לִהְיוֹת בְּתוֹךְ יְמֵי הֶחָג אֵינוֹ נִטָּל בְּשַׁבָּת גְּזֵרָה שֶׁמָּא יוֹלִיכֶנּוּ בְּיָדוֹ אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים כְּמוֹ שֶׁגָּזְרוּ בְּשׁוֹפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובמקדש </strong>
 <strong> לבדו נוטלין אותו בכל יום ויום. </strong> עי׳ ח&quot;ס ל&quot;ח ע&quot;א מה שמסתפק בזה מתי נטלו במקדש:</p>
               </div>
@@ -621,8 +727,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:15:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-15-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-15">Mishneh Torah, Shofar, Sukkah and Lulav 7:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִשֶּׁחָרַב בֵּית הַמִּקְדָּשׁ הִתְקִינוּ שֶׁיִּהְיֶה לוּלָב נִטָּל בְּכָל מָקוֹם כָּל שִׁבְעַת יְמֵי הֶחָג זֵכֶר לַמִּקְדָּשׁ. וְכָל יוֹם וָיוֹם מְבָרֵךְ עָלָיו אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל נְטִילַת לוּלָב מִפְּנֵי שֶׁהִיא מִצְוָה מִדִּבְרֵי סוֹפְרִים. וְתַקָּנָה זוֹ עִם כָּל הַתַּקָּנוֹת שֶׁהִתְקִין רַבָּן יוֹחָנָן בֵּן זַכַּאי מִשֶּׁחָרַב בֵּית הַמִּקְדָּשׁ כְּשֶׁיִּבָּנֶה בֵּית הַמִּקְדָּשׁ יַחְזְרוּ הַדְּבָרִים לְיָשְׁנָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משחרב </strong>
 <strong> בהמ&quot;ק התקינו. </strong> לא ידעתי מדוע לא כ׳ ריב&quot;ז שהוא היה המתקן כל התקנות האלו: וכמבואר להדיא במשנה שם. וכמש&quot;כ להלן:</p>
               </div>
@@ -638,8 +749,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:15:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-15-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:15:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-15">Mishneh Torah, Shofar, Sukkah and Lulav 7:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִשֶּׁחָרַב בֵּית הַמִּקְדָּשׁ הִתְקִינוּ שֶׁיִּהְיֶה לוּלָב נִטָּל בְּכָל מָקוֹם כָּל שִׁבְעַת יְמֵי הֶחָג זֵכֶר לַמִּקְדָּשׁ. וְכָל יוֹם וָיוֹם מְבָרֵךְ עָלָיו אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל נְטִילַת לוּלָב מִפְּנֵי שֶׁהִיא מִצְוָה מִדִּבְרֵי סוֹפְרִים. וְתַקָּנָה זוֹ עִם כָּל הַתַּקָּנוֹת שֶׁהִתְקִין רַבָּן יוֹחָנָן בֵּן זַכַּאי מִשֶּׁחָרַב בֵּית הַמִּקְדָּשׁ כְּשֶׁיִּבָּנֶה בֵּית הַמִּקְדָּשׁ יַחְזְרוּ הַדְּבָרִים לְיָשְׁנָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ותקנה </strong>
 <strong> זו עם כל התקנות. </strong> ביצה ה׳ ב׳:</p>
               </div>
@@ -655,8 +771,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:18:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-18-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-18">Mishneh Torah, Shofar, Sukkah and Lulav 7:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּבַזְּמַן הַזֶּה שֶׁהַכּל עוֹשִׂין עַל פִּי הַחֶשְׁבּוֹן נִשְׁאָר הַדָּבָר כְּמוֹת שֶׁהָיָה שֶׁלֹּא יִנָּטֵל לוּלָב בְּשַׁבָּת כְּלָל לֹא בִּגְבוּלִין וְלֹא בְּאֶרֶץ יִשְׂרָאֵל וַאֲפִלּוּ בְּיוֹם רִאשׁוֹן. וְאַף עַל פִּי שֶׁהַכּל יוֹדְעִים בִּקְבִיעַת הַחֹדֶשׁ. וּכְבָר בֵּאַרְנוּ שֶׁעִקַּר הָאִסּוּר בִּנְטִילַת הַלּוּלָב בְּשַׁבָּת גְּזֵרָה שֶׁמָּא יַעֲבִירֶנּוּ אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכבר </strong>
 <strong> בארנו כו׳ שמא יעבירנו. </strong> סמוך עמש&quot;ל פ&quot;ב ה&quot;ו גם משום ההוצאה. ועי׳ ספ&quot;א ממגילה:</p>
               </div>
@@ -672,8 +793,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:19:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-19-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:19:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-19">Mishneh Torah, Shofar, Sukkah and Lulav 7:19</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל שֶׁחַיָּב בְּשׁוֹפָר וּבְסֻכָּה חַיָּב בִּנְטִילַת הַלּוּלָב. וְכָל הַפָּטוּר מִשּׁוֹפָר וְסֻכָּה פָּטוּר מִנְּטִילַת לוּלָב. קָטָן הַיּוֹדֵעַ לְנַעֲנֵעַ חַיָּב בְּלוּלָב מִדִּבְרֵי סוֹפְרִים כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל </strong>
 <strong> הפטור משופר וסוכה פטור מלולב. </strong> אין הכלל מדוייק כ&quot;כ. דוק ותשכח:</p>
               </div>
@@ -689,8 +815,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:24:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-7-24-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 7:24:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-24">Mishneh Torah, Shofar, Sukkah and Lulav 7:24</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּךְ הָיָה הַמִּנְהָג בִּירוּשָׁלַיִם. יוֹצֵא אָדָם מִבֵּיתוֹ שַׁחֲרִית וְלוּלָבוֹ בְּיָדוֹ. וְנִכְנָס לְבַיִת הַכְּנֶסֶת וְהוּא בְּיָדוֹ. מִתְפַּלֵּל וְהוּא בְּיָדוֹ. וְיוֹצֵא לְבַקֵּר חוֹלִים וּלְנַחֵם אֲבֵלִים וְהוּא בְּיָדוֹ. וּכְשֶׁיִּכָּנֵס לַמִּדְרָשׁ מְשַׁלְּחוֹ לְבֵיתוֹ בְּיַד בְּנוֹ אוֹ בְּיַד עַבְדּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתפלל </strong>
 <strong> והוא בידו. </strong> בגמ׳ קורא ק&quot;ש ומתפלל. גם השמיט רבינו מש&quot;ש קורא בתורה ונושא את כפיו מניחו ע&quot;ג קרקע. וע&quot;ש בירושלמי ספ&quot;ג ובכפ&quot;ת שם:</p>
               </div>
@@ -707,8 +838,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-1">Mishneh Torah, Shofar, Sukkah and Lulav 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבַעַת מִינִין הָאֵלּוּ שֶׁהֵן לוּלָב וַהֲדַס וַעֲרָבָה וְאֶתְרוֹג שֶׁהָיָה אֶחָד מֵהֶן יָבֵשׁ אוֹ גָּזוּל אוֹ גָּנוּב אֲפִלּוּ לְאַחַר יֵאוּשׁ אוֹ שֶׁיִּהְיֶה מֵאֲשֵׁרָה הַנֶּעֱבֶדֶת אַף עַל פִּי שֶׁבִּטְּלוּ הָאֲשֵׁרָה מִלְּעָבְדָהּ. אוֹ שֶׁהָיָה שֶׁל עִיר הַנִּדַּחַת. הֲרֵי זֶה פָּסוּל. הָיָה אֶחָד מֵהֶן שֶׁל עֲבוֹדַת כּוֹכָבִים לֹא יִטּל לְכַתְּחִלָּה וְאִם נָטַל יָצָא. הָיָה כָּמוּשׁ וְלֹא גָּמַר לִיבַשׁ כָּשֵׁר. וּבִשְׁעַת הַדְּחָק אוֹ בִּשְׁעַת הַסַּכָּנָה לוּלָב הַיָּבֵשׁ כָּשֵׁר אֲבָל לֹא שְׁאָר הַמִּינִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במ&quot;מ </strong> ד&quot;ה וראיתי. מן הירושלמי צ&quot;ל הירושלמי. ודע דבשו&quot;ת ח&quot;צ סי&quot;ט ונ&quot;ל דמ&quot;מ צריך ליטול יבש אף ביום א׳ אם א&quot;ל אחר דמ&quot;מ איכא ביה חיובא דרבנן דלא גרע יום א׳ מיום ב׳ וע׳ ק&quot;נ פ&quot;ג אות נ׳. ובאמת יש לחקור בזה אם חל חיובא דרבנן במקום חיוב דאורייתא ומצאתי כאאמו&quot;ר הגז&quot;ל בחיבורו הנחמד על המשניות פ&quot;ג דברכות מהד&quot;ק. חקר במי שאינו יכול לברך בעצמו די&quot;ל דמ&quot;מ חייב הוא לשמוע אף מאשה ואף שאינה חייבת מדאו׳. מ&quot;מ יצא בזה י&quot;ח דרבנן. אך י&quot;ל דכה&quot;ג לא חל חיוב דרבנן במקום דאורייתא אלא שאנוס הוא וא&quot;א לקיים כדאורייתא. וילה&quot;ר מקו׳ הגרע&quot;א פ&quot;ה דדמאי מ&quot;י. תרומה יחזור ויתרום. שה&quot;ק על הרא&quot;ש ורע&quot;ב. דת&quot;ל דה&quot;ל תרומה דרבנן ומ&quot;מ יחזור ויתרום משום חיובא דאורייתא דבאינו נקוב חייב בתרומה מדאו׳. ולהאמור א&quot;ש. דבמקום חיובא דאו׳ לא תקנו רז&quot;ל כלל חיוב דרבנן. דה&quot;ל מלתא דל&quot;ש דל&quot;ג חז&quot;ל. עכד&quot;ק הנעימים. ועי׳ ט&quot;ז וש&quot;ך סי׳ פ&quot;ז ס&quot;ק ב׳ קרוב לזה וע׳ ירושלמי פ&quot;ג דברכות ה&quot;ד לענין טבילת בע&quot;ק. ויל&quot;ח דסייג שאני ודו&quot;ק ובמק&quot;א כ׳ בס&quot;ד עוד דוגמאות לזה:</p>
               </div>
             </div>
@@ -723,8 +859,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-8-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-2">Mishneh Torah, Shofar, Sukkah and Lulav 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶתְרוֹג שֶׁל עָרְלָה וְשֶׁל תְּרוּמָה טְמֵאָה וְשֶׁל טֶבֶל פָּסוּל. שֶׁל דְּמַאי כָּשֵׁר שֶׁאֶפְשָׁר שֶׁיַּפְקִיר נְכָסָיו וְיִהְיֶה עָנִי שֶׁמֻּתָּר לוֹ לֶאֱכל דְּמַאי. אֶתְרוֹג שֶׁל תְּרוּמָה טְהוֹרָה וְשֶׁל מַעֲשֵׂר שֵׁנִי בִּירוּשָׁלַיִם לֹא יִטּל שֶׁמָּא יַכְשִׁירוֹ לְטֻמְאָה. וְאִם נָטַל כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמא </strong>
 <strong> נכשירנו לטומאה. </strong> עי׳ נוב&quot;ת סקל&quot;א. מ&quot;ט פ׳ רבינו כהך מ&quot;ד. ואפ&quot;ל דמחלקותם תליא אם הכשר כטומאה עי׳ חולין קי&quot;ח ב׳ דרב וריו&quot;ח פליגי בזה ורבינו פ׳ שם כריו&quot;ח ע&quot;כ אף הכשר אסור ודו&quot;ק:</p>
               </div>
@@ -740,8 +881,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-8-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-5">Mishneh Torah, Shofar, Sukkah and Lulav 8:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲדַס שֶׁנִּקְטַם רֹאשׁוֹ כָּשֵׁר. נָשְׁרוּ רֹב עָלָיו אִם נִשְׁתַּיְּרוּ שְׁלֹשָׁה עָלִין בְּקֵן אֶחָד כָּשֵׁר. הָיוּ עֲנָבָיו מְרֻבּוֹת מֵעָלָיו אִם יְרֻקּוֹת כָּשֵׁר וְאִם אֲדֻמּוֹת אוֹ שְׁחוֹרוֹת פָּסוּל. וְאִם מִעֲטָן כָּשֵׁר. וְאֵין מְמַעֲטִין אוֹתָן בְּיוֹם טוֹב לְפִי שֶׁהוּא כִּמְתַקֵּן. עָבַר וְלִקְּטָן אוֹ שֶׁלִּקְּטָן אֶחָד אֶחָד לַאֲכִילָה הֲרֵי זֶה כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong>
 <strong> &quot;ממעטין&quot; אותם ביו&quot;ט עבר &quot;ולקטן מותר&quot;. </strong> שינוי הלשון ישבתי בס&quot;ד בדברים נעימים בחיבורי סד&quot;מ ח&quot;ז קונ׳ עמק סוכות:</p>
               </div>
@@ -757,8 +903,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-8-5-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-5">Mishneh Torah, Shofar, Sukkah and Lulav 8:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲדַס שֶׁנִּקְטַם רֹאשׁוֹ כָּשֵׁר. נָשְׁרוּ רֹב עָלָיו אִם נִשְׁתַּיְּרוּ שְׁלֹשָׁה עָלִין בְּקֵן אֶחָד כָּשֵׁר. הָיוּ עֲנָבָיו מְרֻבּוֹת מֵעָלָיו אִם יְרֻקּוֹת כָּשֵׁר וְאִם אֲדֻמּוֹת אוֹ שְׁחוֹרוֹת פָּסוּל. וְאִם מִעֲטָן כָּשֵׁר. וְאֵין מְמַעֲטִין אוֹתָן בְּיוֹם טוֹב לְפִי שֶׁהוּא כִּמְתַקֵּן. עָבַר וְלִקְּטָן אוֹ שֶׁלִּקְּטָן אֶחָד אֶחָד לַאֲכִילָה הֲרֵי זֶה כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או </strong>
 <strong> שלקטן א׳ א׳ לאכילה. </strong> לא באר רבינו דא&quot;ל הושענה אחריתי ועי׳ אחרונים. והנ&quot;ל לכאורה שדחה סוגיא זו מקמי הך דביצה י&quot;ז ב׳. דמ׳ להפוך אך באמת אינם שוים כמש&quot;ש בחי׳ בס&quot;ד. ואפ&quot;ל דלד׳ הרלב&quot;ח דל&quot;ש ביו&quot;ט איסור מתקן כלל משום דמותר מכשירי או&quot;נ א&quot;כ לא פריך מידי. ולכן נראה דהקושיא רק בזמן המקדש דאף בשבת היו נוטלין הלולב. וא&quot;כ בכה&quot;ג ה&quot;ל מתקן בשבת. דלא הותר בשבת איסור תיקון. וא&quot;כ לדידן ל&quot;ש כלל קו׳ זו. ועוד כתבתי שם בס&quot;ד ישובים נכונים. מ&quot;ש הכ&quot;מ ורבינו השמיט אינו כן שזכרה בפ&quot;ז ה&quot;ה:</p>
               </div>
@@ -774,8 +925,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:15:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-8-15-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Shofar, Sukkah and Lulav 8:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-15">Mishneh Torah, Shofar, Sukkah and Lulav 8:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשִּׂמְחָה שֶׁיִּשְׂמַח אָדָם בַּעֲשִׂיַּת הַמִּצְוָה וּבְאַהֲבַת הָאֵל שֶׁצִּוָּה בָּהֶן. עֲבוֹדָה גְּדוֹלָה הִיא. וְכָל הַמּוֹנֵעַ עַצְמוֹ מִשִּׂמְחָה זוֹ רָאוּי לְהִפָּרַע מִמֶּנּוּ שֶׁנֶּאֱמַר <span class="source-small">(דברים כח מז)</span> &quot;תַּחַת אֲשֶׁר לֹא עָבַדְתָּ אֶת ה׳ אֱלֹהֶיךָ בְּשִׂמְחָה וּבְטוּב לֵבָב&quot;. וְכָל הַמֵּגִיס דַּעְתּוֹ וְחוֹלֵק כָּבוֹד לְעַצְמוֹ וּמִתְכַּבֵּד בְּעֵינָיו בִּמְקוֹמוֹת אֵלּוּ חוֹטֵא וְשׁוֹטֶה. וְעַל זֶה הִזְהִיר שְׁלֹמֹה וְאָמַר <span class="source-small">(משלי כה ו)</span> &quot;אַל תִּתְהַדַּר לִפְנֵי מֶלֶךְ&quot;. וְכָל הַמַּשְׁפִּיל עַצְמוֹ וּמֵקֵל גּוּפוֹ בִּמְקוֹמוֹת אֵלּוּ הוּא הַגָּדוֹל הַמְכֻבָּד הָעוֹבֵד מֵאַהֲבָה. וְכֵן דָּוִד מֶלֶךְ יִשְׂרָאֵל אָמַר <span class="source-small">(שמואל ב ו כב)</span> &quot;וּנְקַלֹּתִי עוֹד מִזֹּאת וְהָיִיתִי שָׁפָל בְּעֵינָי&quot;. וְאֵין הַגְּדֻלָּה וְהַכָּבוֹד אֶלָּא לִשְׂמֹחַ לִפְנֵי ה׳ שֶׁנֶּאֱמַר <span class="source-small">(שמואל ב ו טז)</span> &quot;וְהַמֶּלֶךְ דָּוִד מְפַזֵּז וּמְכַרְכֵּר לִפְנֵי ה׳&quot;: סָלִיק הִלְכוֹת שׁוֹפָּר סֻכָּה וְלוּלָב</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל </strong>
 <strong> המונע עצמו כו׳ וכל המגיס דעתו כו׳. </strong> ע׳ ירושלמי פ&quot;ה ה&quot;ד. ומד&quot;ר במדבר פ&quot;ד ויומא ל&quot;ח א׳:</p>
               </div>
@@ -786,6 +942,10 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -806,8 +966,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json","occurrence_url":"../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-shofar-sukkah-and-lulav.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -833,7 +993,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

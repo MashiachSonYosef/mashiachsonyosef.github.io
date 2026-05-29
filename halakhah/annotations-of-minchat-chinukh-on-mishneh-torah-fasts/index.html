@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-fasts/">Open Mishneh Torah, Fasts</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Fasts</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">5 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>92 matched</strong> / 185 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/annotations-of-minchat-chinukh-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -204,8 +205,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Fasts 1:1:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-fasts-1-1-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Fasts 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-1">Mishneh Torah, Fasts 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִזְעֹק וּלְהָרִיעַ בַּחֲצוֹצְרוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר. שֶׁנֶּאֱמַר <span class="source-small">(במדבר י ט)</span> &quot;עַל הַצַּר הַצֹּרֵר אֶתְכֶם וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת&quot;. כְּלוֹמַר כָּל דָּבָר שֶׁיָּצֵר לָכֶם כְּגוֹן בַּצֹּרֶת וְדֶבֶר וְאַרְבֶּה וְכַיּוֹצֵא בָּהֶן זַעֲקוּ עֲלֵיהֶן וְהָרִיעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולהריע בחצוצרות.</strong> נ&quot;ב לדברי רבינו ז&quot;ל שהוא מ&quot;ע כמו במועד על הקרבנות, נראה ג&quot;כ כי הכהנים מחויבין לתקוע וכן מבואר בלשון המשנה וכ&quot;כ רבינו ז&quot;ל לקמן בפ&quot;ד הט&quot;ו תקעו בני אהרן אך כאן לא כתב מזה, גם בפ&quot;ד בגבולין סתם וכתב תוקעין ולא כתב שהיו הכהנים בני אהרן ולומר שהיה חילוק בין מקדש ובין גבולין לא ידעתי כיון דלדידיה הוא מ&quot;ע גמורה לא ידעתי מנין לו החילוק ועיין לקמן בהה&quot;מ החילוק לרבינו בין גבולין ובין מקדש וזה החילוק לא הזכיר, ועיין ברש&quot;י במשנה פ׳ סדר תעניות:</p>
               </div>
             </div>
@@ -220,8 +226,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Fasts 1:4:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-fasts-1-4-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Fasts 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-4">Mishneh Torah, Fasts 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִדִּבְרֵי סוֹפְרִים לְהִתְעַנּוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר עַד שֶׁיְּרֻחֲמוּ מִן הַשָּׁמַיִם. וּבִימֵי הַתַּעֲנִיּוֹת הָאֵלּוּ זוֹעֲקִין בִּתְפִלּוֹת וּמִתְחַנְּנִים וּמְרִיעִין בַּחֲצוֹצְרוֹת בִּלְבַד. וְאִם הָיוּ בַּמִּקְדָּשׁ מְרִיעִין בַּחֲצוֹצְרוֹת וּבְשׁוֹפָר. הַשּׁוֹפָר מְקַצֵּר וְהַחֲצוֹצְרוֹת מַאֲרִיכוֹת. שֶׁמִּצְוַת הַיּוֹם בַּחֲצוֹצְרוֹת. וְאֵין תּוֹקְעִין בַּחֲצוֹצְרוֹת וְשׁוֹפָר כְּאֶחָד אֶלָּא בַּמִּקְדָּשׁ שֶׁנֶּאֱמַר <span class="source-small">(תהילים צח ו)</span> &quot;בַּחֲצֹצְרוֹת וְקוֹל שׁוֹפָר הָרִיעוּ לִפְנֵי הַמֶּלֶךְ ה׳&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בחצוצרות ובשופר.</strong> נ&quot;ב עיין לח&quot;מ וצ&quot;ע דבגמרא ר&quot;ה דף כ&quot;ו משמע שהיו שני שופרות וחצוצרות באמצע ולמה השמיט רבינו. גם זה נראה מלשונו שא&quot;צ רק שופר אחד. אח&quot;ז ראיתי בס׳ יום תרועה שהרגיש בזה וע&quot;ש בתוס׳. גם צ&quot;ע כיון דרבינו כולל החצוצרות של תענית ושל מקדש במ&quot;ע אחת למה לא הביא שמחויבין להיות דוקא מן כסף וגם לכתחלה מן העשת כמ&quot;ש בפ&quot;ג מה׳ כלי המקדש, ודוחק לומר שסמך על מה שמבואר שכאן היה להקדים. וגם שם נראה מלשונו דדוקא החצוצרות של מועדות ובאמת לדעת רבינו דין אחד לשניהם ועיין בר&quot;ה וצ&quot;ע:</p>
               </div>
             </div>
@@ -237,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Fasts 3:3:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-fasts-3-3-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Fasts 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-3-3">Mishneh Torah, Fasts 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עָבְרוּ אֵלּוּ וְלֹא נַעֲנוּ בֵּית דִּין גּוֹזְרִין שָׁלֹשׁ תַּעֲנִיּוֹת אֲחֵרוֹת עַל הַצִּבּוּר שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וּבְשָׁלֹשׁ אֵלּוּ אוֹכְלִין וְשׁוֹתִין מִבְּעוֹד יוֹם כְּמוֹ שֶׁעוֹשִׂין בְּצוֹם כִּפּוּר. וְאַנְשֵׁי מִשְׁמָר מִתְעַנִּין מִקְצָת הַיּוֹם וְלֹא מַשְׁלִימִין. וְאַנְשֵׁי בֵּית אָב וְהֵם הָעוֹסְקִין בַּעֲבוֹדָה בְּאוֹתוֹ הַיּוֹם לֹא יִהְיוּ מִתְעַנִּים כָּל עִקָּר. וְכָל תַּעֲנִית שֶׁאוֹכְלִין בָּהּ מִבְּעוֹד יוֹם אִם אָכַל וּפָסַק וְגָמַר שֶׁלֹּא לֶאֱכל אֵינוֹ חוֹזֵר וְאוֹכֵל אַף עַל פִּי שֶׁיֵּשׁ שְׁהוּת בַּיּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במ&quot;מ </strong> שם, לא יהיו חמורין אלו מתשעה באב. נ&quot;ב ודעת רבינו בפי׳ המשנה בסוף תענית דגם ט&quot;ב חייב בתוספת כמו יוה&quot;כ ע&quot;ש:</p>
               </div>
             </div>
@@ -254,8 +270,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Fasts 5:5:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-fasts-5-5-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Fasts 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-5">Mishneh Torah, Fasts 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְנָהֲגוּ כָּל יִשְׂרָאֵל בִּזְמַנִּים אֵלּוּ לְהִתְעַנּוֹת. וּבְי&quot;ג בַּאֲדָר זֵכֶר לַתַּעֲנִית שֶׁהִתְעַנּוּ בִּימֵי הָמָן שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט לא)</span> &quot;דִּבְרֵי הַצֹּמוֹת וְזַעֲקָתָם&quot;. וְאִם חָל י&quot;ג בַּאֲדָר לִהְיוֹת בְּשַׁבָּת מַקְדִּימִין וּמִתְעַנִּין בַּחֲמִישִׁי שֶׁהוּא י&quot;א. אֲבָל אֶחָד מֵאַרְבָּעָה יְמֵי הַצּוֹמוֹת שֶׁחָל לִהְיוֹת בְּשַׁבָּת דּוֹחִין אוֹתוֹ לְאַחַר הַשַּׁבָּת. חָל לִהְיוֹת בְּעֶרֶב שַׁבָּת מִתְעַנִּין בְּעֶרֶב שַׁבָּת. וּבְכָל הַצּוֹמוֹת הָאֵלּוּ אֵין מַתְרִיעִין וְלֹא מִתְפַּלְּלִין בָּהֶן תְּפִלַּת נְעִילָה. אֲבָל קוֹרִין בַּתּוֹרָה שַׁחֲרִית וּמִנְחָה בְּ<span class="source-small">(שמות לב יא)</span> &quot;וַיְחַל משֶׁה&quot;. וּבְכֻלָּן אוֹכְלִים וְשׁוֹתִין בַּלַּיְלָה חוּץ מִתִּשְׁעָה בְּאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ונהגו כל ישראל.</strong> נ&quot;ב ורבינו השמיט שבזמן גזירה הוא צום מד&quot;ק. ונ&quot;מ שנוהג בהם כל החומרות כמו בט&quot;ב, עיין בר&quot;נ במס׳ ר&quot;ה ואפילו לא ס&quot;ל מ&quot;מ צ&quot;ע למה השמיטוהו דנ&quot;מ לשאר קולות:</p>
               </div>
             </div>
@@ -270,8 +291,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Fasts 5:7:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-fasts-5-7-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Fasts 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-7">Mishneh Torah, Fasts 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תִּשְׁעָה בְּאָב לֵילוֹ כְּיוֹמוֹ לְכָל דָּבָר. וְאֵין אוֹכְלִין אֶלָּא מִבְּעוֹד יוֹם. וּבֵין הַשְּׁמָשׁוֹת שֶׁלּוֹ אָסוּר כְּיוֹם הַכִּפּוּרִים. וְלֹא יֹאכַל בָּשָׂר וְלֹא יִשְׁתֶּה יַיִן בַּסְּעֻדָּה הַמַּפְסִיק בָּהּ. אֲבָל שׁוֹתֶה הוּא יַיִן מִגִּתּוֹ שֶׁיֵּשׁ לוֹ שְׁלֹשָׁה יָמִים אוֹ פָּחוֹת. וְאוֹכֵל בָּשָׂר מָלִיחַ שֶׁיֵּשׁ לוֹ שְׁלֹשָׁה יָמִים אוֹ יֶתֶר. וְלֹא יֹאכַל שְׁנֵי תַּבְשִׁילִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במ&quot;מ, </strong> ודבר ברור הוא. נ&quot;ב ודעת רבינו בפי׳ המשנה בסוף תענית מפורש שיש לט&quot;ב תוספת ע&quot;ש, וכבר רשמתי לעיל ג&quot;כ. ויש לפלפל בזה ואכ&quot;מ:</p>
               </div>
             </div>
@@ -281,6 +307,10 @@
               <a href="#chapter-annotations-of-minchat-chinukh-on-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/annotations-of-minchat-chinukh-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -301,8 +331,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.manifest.json","occurrence_url":"../../data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-fasts.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -328,7 +358,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/">Open Mishneh Torah, Scroll of Esther and Hanukkah</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Scroll of Esther and Hanukkah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">6 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>142 matched</strong> / 314 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -205,8 +206,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-1">Mishneh Torah, Scroll of Esther and Hanukkah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְרִיאַת הַמְּגִלָּה בִּזְמַנָּהּ מִצְוַת עֲשֵׂה מִדִּבְרֵי סוֹפְרִים. וְהַדְּבָרִים יְדוּעִים שֶׁהִיא תַּקָּנַת הַנְּבִיאִים. וְהַכּל חַיָּבִים בִּקְרִיאָתָהּ אֲנָשִׁים וְנָשִׁים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. וּמְחַנְּכִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ. וַאֲפִלּוּ כֹּהֲנִים בַּעֲבוֹדָתָן מְבַטְּלִין עֲבוֹדָתָן וּבָאִין לִשְׁמֹעַ מִקְרָא מְגִלָּה. וְכֵן מְבַטְּלִים תַּלְמוּד תּוֹרָה לִשְׁמֹעַ מִקְרָא מְגִלָּה קַל וָחֹמֶר לִשְׁאָר מִצְוֹת שֶׁל תּוֹרָה שֶׁכֻּלָּן נִדְחִין מִפְּנֵי מִקְרָא מְגִלָּה. וְאֵין לְךָ דָּבָר שֶׁנִּדְחֶה מִקְרָא מְגִלָּה מִפָּנָיו חוּץ מִמֵּת מִצְוָה שֶׁאֵין לוֹ קוֹבְרִין שֶׁהַפּוֹגֵעַ בּוֹ קוֹבְרוֹ תְּחִלָּה וְאַחַר כָּךְ קוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קריאת המגילה מצות עשה מדברי סופרים והדברים ידועים שהיא תקנת הנביאים.</strong><br><strong> תקנת </strong> הנביאים. נ. ב. מרדכי הי׳ נביא עי׳ מגילה דף י&quot;ד ע&quot;א ברש&quot;י ד&quot;ה נבואה.</p>
               </div>
             </div>
@@ -221,8 +227,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:2</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-2" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-1">Mishneh Torah, Scroll of Esther and Hanukkah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְרִיאַת הַמְּגִלָּה בִּזְמַנָּהּ מִצְוַת עֲשֵׂה מִדִּבְרֵי סוֹפְרִים. וְהַדְּבָרִים יְדוּעִים שֶׁהִיא תַּקָּנַת הַנְּבִיאִים. וְהַכּל חַיָּבִים בִּקְרִיאָתָהּ אֲנָשִׁים וְנָשִׁים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. וּמְחַנְּכִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ. וַאֲפִלּוּ כֹּהֲנִים בַּעֲבוֹדָתָן מְבַטְּלִין עֲבוֹדָתָן וּבָאִין לִשְׁמֹעַ מִקְרָא מְגִלָּה. וְכֵן מְבַטְּלִים תַּלְמוּד תּוֹרָה לִשְׁמֹעַ מִקְרָא מְגִלָּה קַל וָחֹמֶר לִשְׁאָר מִצְוֹת שֶׁל תּוֹרָה שֶׁכֻּלָּן נִדְחִין מִפְּנֵי מִקְרָא מְגִלָּה. וְאֵין לְךָ דָּבָר שֶׁנִּדְחֶה מִקְרָא מְגִלָּה מִפָּנָיו חוּץ מִמֵּת מִצְוָה שֶׁאֵין לוֹ קוֹבְרִין שֶׁהַפּוֹגֵעַ בּוֹ קוֹבְרוֹ תְּחִלָּה וְאַחַר כָּךְ קוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן מבטלין תלמוד תורה לשמוע מקרא מגילה קל וחומר לשאר מצות של תורה שכולן נדחין מפני מקרא מגילה.</strong><br><strong> קל </strong> וחומר לשאר מצות, נ. ב. קשה דהא ת&quot;ת נדחה מפני מצוה ועי׳ תוס׳ מו&quot;ק דף ט׳ ע&quot;ב וצ&quot;ל דהרמב&quot;ם סובר דמקרא מגילה דאיכא פרסומא ניסא הוי ג&quot;כ מצוה ואינו כמו ת&quot;ת דאמר בירושלמי שהביאו שם בתוס׳ זה שינון וזה שינון, ולענין חשיבות פשוט להרמב&quot;ם דת&quot;ת גדול משאר מצות אלא דלפ&quot;ז קשה יותר דא&quot;כ אין ראיה דמקרא מגילה עדיף מת&quot;ת דהא ע&quot;כ דוחה ת&quot;ת משום דהוי כמו קיום מצוה והלמד ע&quot;מ לעשות כמו שהקשה הירוש׳ שהביאו התוס׳ הנ&quot;ל.</p>
               </div>
             </div>
@@ -237,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Scroll of Esther and Hanukkah 1:2:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-2-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Scroll of Esther and Hanukkah 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-2">Mishneh Torah, Scroll of Esther and Hanukkah 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַקּוֹרֵא וְאֶחָד הַשּׁוֹמֵעַ מִן הַקּוֹרֵא יָצָא יְדֵי חוֹבָתוֹ וְהוּא שֶׁיִּשְׁמַע מִפִּי מִי שֶׁהוּא חַיָּב בִּקְרִיאָתָהּ. לְפִיכָךְ אִם הָיָה הַקּוֹרֵא קָטָן אוֹ שׁוֹטֶה הַשּׁוֹמֵעַ מִמֶּנּוּ לֹא יָצָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אם היה הקורא קטן או שוטה השומע ממנו לא יצא.</strong><br><strong> קטן </strong> או שוטה, נ. ב. עיין לח&quot;מ ומוכח דגירסתו כאן גם חרש וכן הוא גירסת הב&quot;י ועיינתי ברמב&quot;ם דפוס שונצינו וכתוב שם גם חרש.</p>
               </div>
             </div>
@@ -254,8 +270,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Scroll of Esther and Hanukkah 3:9:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-9-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Scroll of Esther and Hanukkah 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-9">Mishneh Torah, Scroll of Esther and Hanukkah 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַיּוֹם כָּשֵׁר לִקְרִיאַת הַהַלֵּל. וְהַקּוֹרֵא אֶת הַהַלֵּל לְמַפְרֵעַ לֹא יָצָא. קָרָא וְשָׁהָה וְחָזַר וְקָרָא אַף עַל פִּי שֶׁשָּׁהָה כְּדֵי לִגְמֹר אֶת כֻּלּוֹ יָצָא. יָמִים שֶׁגּוֹמְרִין בָּהֶן אֶת הַהַלֵּל יֵשׁ לוֹ לְהַפְסִיק בֵּין פֶּרֶק לְפֶרֶק אֲבָל בְּאֶמְצַע הַפֶּרֶק לֹא יַפְסִיק. וְיָמִים שֶׁקּוֹרְאִין בָּהֶן בְּדִלּוּג אֲפִלּוּ בְּאֶמְצַע הַפֶּרֶק פּוֹסֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיין </strong> בלח&quot;מ מה שהקשה על המ&quot;מ, ונ. ב. דבריו תמוהין דזהו על שהיחיד גומר בהן את ההלל.</p>
               </div>
             </div>
@@ -271,8 +292,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Scroll of Esther and Hanukkah 4:5:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-5-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Scroll of Esther and Hanukkah 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-5">Mishneh Torah, Scroll of Esther and Hanukkah 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מַדְלִיקִין נֵרוֹת חֲנֻכָּה קֹדֶם שֶׁתִּשְׁקַע הַחַמָּה אֶלָּא עִם שְׁקִיעָתָהּ לֹא מְאַחֲרִין וְלֹא מַקְדִּימִין. שָׁכַח אוֹ הֵזִיד וְלֹא הִדְלִיק עִם שְׁקִיעַת הַחַמָּה מַדְלִיק וְהוֹלֵךְ עַד שֶׁתִּכְלֶה רֶגֶל מִן הַשּׁוּק. וְכַמָּה הוּא זְמַן זֶה כְּמוֹ חֲצִי שָׁעָה אוֹ יֶתֶר. עָבַר זְמַן זֶה אֵינוֹ מַדְלִיק. וְצָרִיךְ שֶׁיִּתֵּן שֶׁמֶן בַּנֵּר כְּדֵי שֶׁתִּהְיֶה דּוֹלֶקֶת וְהוֹלֶכֶת עַד שֶׁתִּכְלֶה רֶגֶל מִן הַשּׁוּק. הִדְלִיקָהּ וְכָבְתָה אֵינוֹ זָקוּק לְהַדְלִיקָהּ פַּעַם אַחֶרֶת. נִשְׁאֲרָה דּוֹלֶקֶת אַחַר שֶׁכָּלְתָה רֶגֶל מִן הַשּׁוּק אִם רָצָה לְכַבּוֹתָהּ אוֹ לְסַלְּקָהּ עוֹשֶׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין מדליקין נרות חנוכה קודם שתשקע החמה אלא עם שקיעתה לא מאחרין ולא מקדימין.</strong><br><strong> לא </strong> מאחרין ולא מקדימין, כתב הרב המגיד יצא לו ממה שאמרו בשבת דף כ&quot;ג ע&quot;ב תנא ובלבד שלא יקדים ולא יאחר והוא מפרשה בנר חנוכה עכ&quot;ל, ונ. ב. ונראה דהא דהכריח הרמב&quot;ם לפרש דאיירי בנר חנוכה ולא כפשוטו דאיירי בנר של שבת, הוא משום דאמרינן בברכות דף כ&quot;ז ע&quot;א דרב מצלי של שבת בערב שבת מבעוד יום, ופסק כן הרמב&quot;ם בפ&quot;ג מהל׳ תפלה ה&quot;ז, הרי מוכח דמותר להקדים בקבלת שבת וע&quot;כ דהברייתא קאי לענין נר חנוכה, ובאמת התוס׳ בברכות שם תמהו בזה עיי&quot;ש.<br><strong> אכן </strong> אכתי צ&quot;ע היאך יפרש הרמב&quot;ם הגמ׳ בשבת דאיירי לענין נר חנוכה, דהא להדיא איירי בענין נר שבת דאמר שם דביתהו דרב יוסף הות מאחרה ומדלקת א&quot;ל ר&quot;י תניא לא ימיש עמוד הענן יומם מלמד שעמוד הענן משלים לעמוד האש כו׳ סברה לאקדומה א&quot;ל ההוא סבא תנינא ובלבד שלא יקדים ושלא יאחר, הרי מבואר דאיירי לענין נר של שבת, ונראה דהרמב&quot;ם מפרש עובדא דרב יוסף בשבת חנוכה וסובר כשיטת בה&quot;ג המובא בר&quot;ן דנר חנוכה קדים לנר שבת דמכיון שהדליק נר שבת הוי בזה קבלת שבת, ולכן היתה מאחרת נר של שבת מכיון דאין להדליק נר חנוכה לפני שקיעה&quot;ח, וא&quot;ל ר&quot;י דאין לאחר נר שבת מלא ימיש וסברה היא לאקדומי נר שבת ולהקדים עוד יותר נר של חנוכה וא&quot;ל ההוא סבא אין מקדימין ואין מאחרין לנר חנוכה, ולכן אי אפשר להקדים נר שבת דבהכרח נצטרך להקדים נר חנוכה כשי׳ הבה&quot;ג.</p>
               </div>
             </div>
@@ -287,8 +313,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Even Ha&#39;azel on Mishneh Torah, Scroll of Esther and Hanukkah 4:9:1</h4></div>
               <a class="anchor" href="#even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-9-1" aria-label="Copy link to Even Ha'azel on Mishneh Torah, Scroll of Esther and Hanukkah 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-9">Mishneh Torah, Scroll of Esther and Hanukkah 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נֵר חֲנֻכָּה שֶׁהִדְלִיקוֹ חֵרֵשׁ שׁוֹטֶה וְקָטָן אוֹ עַכּוּ&quot;ם לֹא עָשָׂה כְּלוּם עַד שֶׁיַּדְלִיקֶנּוּ מִי שֶׁהוּא חַיָּב בַּהַדְלָקָה. הִדְלִיקוֹ מִבִּפְנִים וְהוֹצִיאוֹ דָּלוּק וְהִנִּיחוֹ עַל פֶּתַח בֵּיתוֹ לֹא עָשָׂה כְּלוּם עַד שֶׁיַּדְלִיקֶנּוּ בִּמְקוֹמוֹ. אָחַז הַנֵּר בְּיָדוֹ וְעָמַד לֹא עָשָׂה כְּלוּם שֶׁהָרוֹאֶה אוֹמֵר לְצָרְכּוֹ הוּא עוֹמֵד. עֲשָׁשִׁית שֶׁהָיְתָה דּוֹלֶקֶת כָּל הַיּוֹם כֻּלּוֹ לְמוֹצָאֵי שַׁבָּת מְכַבֶּה וּמְבָרֵךְ וּמַדְלִיקָהּ שֶׁהַהַדְלָקָה הִיא הַמִּצְוָה וְלֹא הַהַנָּחָה. וּמֻתָּר לְהַדְלִיק נֵר חֲנֻכָּה מִנֵּר חֲנֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיין </strong> בלח&quot;מ ובמש&quot;כ בתוך דבריו וז&quot;ל ונראה דכונתו היא דאע&quot;ג דהאי לא דמי לגמרי לקינסא דאע&quot;ג דבקינסא איכא בזוי הכא ליכא בזוי דבקינסא זה דאנו מדליקין אינה היא עצמה המצוה אלא שאנו מדליקין בו הנר מצוה וא&quot;כ ודאי דהתם איכא בזיון אבל הכא אלו המעות הם עצמם הם המצוה שהרי עליהם מחללין המעשר וכו׳, ונ. ב. עי׳ בחידושי הרמב&quot;ן שהוכיח מהא דאמרינן דאם הנחה עושה מצוה אסור מוכח דבקינסא אסור וא&quot;כ מוכח דאפי׳ בכה&quot;ג דמע&quot;ש אסור דהוא דמי ממש לזה.</p>
               </div>
             </div>
@@ -298,6 +329,10 @@
               <a href="#chapter-even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -318,8 +353,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"../../data/lexical/occurrences/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/even-haazel-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -345,7 +380,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../midrash/tractate-kallah/">Open Tractate Kallah</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Tractate Kallah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">6 total source units | imported 2026-04-27</p>
         <p class="meta source-citation">Hebrew version: Talmud Bavli, Vilna 1883 ed. | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001300957">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>25 matched</strong> / 36 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/gras-nuschah-on-tractate-kallah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/gras-nuschah-on-tractate-kallah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -212,8 +212,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 1:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-1-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-kallah/#tractate-kallah-1-1">Tractate Kallah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כלה בלא ברכה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;אסורה לבעלה כנדה מה נדה שלא טבלה אסורה לבעלה (כנדה) אף כלה בלא ברכה אסורה לבעלה. ומניין לברכת חתנים מן התורה שנאמר (בראשית כ״ד:ס׳) ויברכו את רבקה. ומנין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;שאפילו אלמנה אסורה שנאמר (רות ד׳:י״א) ויקח (בועז) עשרה אנשים וגו׳ ויאמרו כל העם אשר בשער והזקנים עדים יתן ה׳ וגו׳ ויהי ביתך כבית פרץ וגו׳.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">אף אלמנה שנאמר (ועי׳ במס׳ כלה רבתי):</p>
               </div>
             </div>
@@ -229,8 +234,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 2:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-2-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-kallah/#tractate-kallah-2-1">Tractate Kallah 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;המרצה מעות לאשה מידו לידה בשביל להסתכל בה אפילו הוא כמשה רבינו שקבל תורה מהר סיני לא ינקה מדינה של גיהנם שנאמר (משלי י״א:כ״א) יד ליד לא ינקה רע. הרי הוא אומר (במדבר ל״א:נ׳) ונקרב את קרבן ה׳ איש אשר מצא כלי זהב אצעדה וגו׳ אצעדה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;זו בירית. וצמיד אלו השיראים. עגול זה דפוס של (בית) הדדים. כומז זה דפוס של בית הרחם. לכפר על נפשותינו לפני ה׳ א״ל משה לישראל שמא חזרתם לקלקלכם הראשון. אמרו לו (שם) לא נפקד ממנו איש אמר להם א״כ כפרה זו למה. אמרו לו אם מידי עבירה יצאנו מידי הרהור לא יצאנו. טבעת למה &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;לפי שכל המסתכל באשה בכוונה כאילו בא עליה מכאן אמרו חכמים כל הנוגע באצבע קטנה של אשה כאילו נוגע באותו מקום.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מכאן אמרו חכמים כל המסתכל באצבע קטנה של אשה כאילו מסתכל באותו מקום וכל הנוגע:</p>
               </div>
             </div>
@@ -246,8 +256,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 3:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-3-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-kallah/#tractate-kallah-3-1">Tractate Kallah 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;המשמש מטתו מעומד אוחזתו אחילו וזו היא אש של עצמות. ואיזו היא רפואתו קמח של עדשים ויין. כל הרפואות כולן אדם עושה אותן כשהוא שבע וזו כשהוא רעב. כל הרפואות כולן אדם עושה אותן &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;על גבי רגליו וזה עושה אותן רגלו אחת במטה ורגלו אחת בארץ. כל הרפואות כולן אין אדם עושה אותן אלא &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;עד שלש שעות ושלש פעמים וזו עושה אותה עד שיתרפא</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">רגליו על הארץ וזו עושה אותה:</p>
               </div>
             </div>
@@ -262,8 +277,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 3:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-3-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 3:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-kallah/#tractate-kallah-3-1">Tractate Kallah 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;המשמש מטתו מעומד אוחזתו אחילו וזו היא אש של עצמות. ואיזו היא רפואתו קמח של עדשים ויין. כל הרפואות כולן אדם עושה אותן כשהוא שבע וזו כשהוא רעב. כל הרפואות כולן אדם עושה אותן &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;על גבי רגליו וזה עושה אותן רגלו אחת במטה ורגלו אחת בארץ. כל הרפואות כולן אין אדם עושה אותן אלא &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;עד שלש שעות ושלש פעמים וזו עושה אותה עד שיתרפא</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">שלש פעמים בשלשה ימים וזו:</p>
               </div>
             </div>
@@ -279,8 +299,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 5:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-5-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-kallah/#tractate-kallah-5-1">Tractate Kallah 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אמרו עליו על ר״ט שהיה עשיר גדול ולא היה נותן מתנות לאביונים &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;פעם אחת מצאו רבי עקיבא אמר לו רבי רצונך שאקח לך עיר אחת או שתים [אמר לו הן] מיד עמד ר״ט ונתן לו ארבעה אלפים דינרי זהב. &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;נטלו ר״ע חלקו לעניים. לימים מצאו ר״ט א״ל היכן העיירות שלקחת לי תפסו בידו והביאו לבית המדרש. והביא ספר תהלים והניחו בפניהן והיו הולכין וקורין עד שהגיעו לפסוק זה פזר נתן לאביונים וגו׳ א״ל זו העיר שקניתי לך. עמד ר״ט ונשקו ואמר לו רבי אלופי רבי בחכמה ואלופי בדרך ארץ והוסיף לו ממון לבזבז.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כראוי:</p>
               </div>
             </div>
@@ -295,8 +320,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Kallah 5:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-kallah-5-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Kallah 5:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-kallah/#tractate-kallah-5-1">Tractate Kallah 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אמרו עליו על ר״ט שהיה עשיר גדול ולא היה נותן מתנות לאביונים &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;פעם אחת מצאו רבי עקיבא אמר לו רבי רצונך שאקח לך עיר אחת או שתים [אמר לו הן] מיד עמד ר״ט ונתן לו ארבעה אלפים דינרי זהב. &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;נטלו ר״ע חלקו לעניים. לימים מצאו ר״ט א״ל היכן העיירות שלקחת לי תפסו בידו והביאו לבית המדרש. והביא ספר תהלים והניחו בפניהן והיו הולכין וקורין עד שהגיעו לפסוק זה פזר נתן לאביונים וגו׳ א״ל זו העיר שקניתי לך. עמד ר״ט ונשקו ואמר לו רבי אלופי רבי בחכמה ואלופי בדרך ארץ והוסיף לו ממון לבזבז.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">נטלן ר״ע חלקן:</p>
               </div>
             </div>
@@ -306,6 +336,10 @@
               <a href="#chapter-gras-nuschah-on-tractate-kallah-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/gras-nuschah-on-tractate-kallah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/gras-nuschah-on-tractate-kallah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -326,10 +360,10 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-kallah","work_title":"Gra\u0027s Nuschah on Tractate Kallah","work_slug":"gra/gras-nuschah-on-tractate-kallah","scope_label":"All imported Hebrew works","generated_at":"2026-05-16T00:15:01.060Z","total_occurrences":37,"units":{"gras-nuschah-on-tractate-kallah-1-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-1-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-4055c9320e46","tok-5985fc477533","tok-fcd7405db8d2","tok-ff9f0d7f31ca","tok-586fa48808a0","tok-489acd22e0bd","tok-d7e1e67577e1"]}]},"gras-nuschah-on-tractate-kallah-2-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-2-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-2-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1457b5c75535","tok-c2227fef2622","tok-9486339a4253","tok-d51dc3d10fa3","tok-20ef9f3100a2","tok-34d2478cb104","tok-74da744348ce","tok-3ccbcc9b3a46","tok-d391e2b6a32d","tok-71b9ef53e5b9","tok-99abee995b20","tok-e83b2342702d","tok-e74c6c2aa704","tok-1dd1f0e360a1","tok-8e163270179f"]}]},"gras-nuschah-on-tractate-kallah-3-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1eadf183cdc5","tok-6139828f2d0e","tok-5461801c32d9","tok-22b9dc5a4014","tok-21c4f4542edd","tok-4c605d9568f1"]}]},"gras-nuschah-on-tractate-kallah-3-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-3-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-3-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 3:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-ba36f31a0da3","tok-80701ee9e7cb","tok-93a2e52c1f0c","tok-1d11435d4902","tok-22b9dc5a4014"]}]},"gras-nuschah-on-tractate-kallah-5-1-1":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-1","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-355dee055876"]}]},"gras-nuschah-on-tractate-kallah-5-1-2":{"unit_id":"gras-nuschah-on-tractate-kallah-5-1-2","anchor_id":"gras-nuschah-on-tractate-kallah-5-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Kallah 5:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1610746e6065","tok-432e1951b372","tok-9ddb0b8fbbd6"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-tractate-kallah.manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/gras-nuschah-on-tractate-kallah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/gras-nuschah-on-tractate-kallah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/gras-nuschah-on-tractate-kallah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
-    (() => {
+    (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
       const lexiconNode = document.querySelector("[data-lexical-lexicon]");
       const configNode = document.querySelector("[data-lexical-config]");
@@ -337,7 +371,7 @@
       const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
       const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
       const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
       const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
       const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
       const chunkPromises = new Map();
@@ -353,7 +387,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -370,6 +403,12 @@
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
         return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
       };
       const loadManifest = async () => {
         if (!lexicalConfig.manifest_url) return null;
@@ -452,8 +491,9 @@
         const state = { index: 0 };
         textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
       };
+      const loadedOccurrences = await loadOccurrences();
       document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
         if (!unitData) return;
         unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
           const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-sheqel-dues/">Open Mishneh Torah, Sheqel Dues</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Sheqel Dues</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">11 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>70 matched</strong> / 231 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/benei-binyamin-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -210,8 +211,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 1:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-1-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-1">Mishneh Torah, Sheqel Dues 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִתֵּן כָּל אִישׁ מִיִּשְׂרָאֵל מַחֲצִית הַשֶּׁקֶל בְּכָל שָׁנָה וְשָׁנָה. אֲפִלּוּ עָנִי הַמִּתְפַּרְנֵס מִן הַצְּדָקָה חַיָּב. וְשׁוֹאֵל מֵאֲחֵרִים אוֹ מוֹכֵר כְּסוּת שֶׁעַל כְּתֵפוֹ וְנוֹתֵן מַחֲצִית הַשֶּׁקֶל כֶּסֶף שֶׁנֶּאֱמַר <span class="source-small">(שמות ל טו)</span> &quot;הֶעָשִׁיר לֹא יַרְבֶּה וְהַדַּל לֹא יַמְעִיט&quot; וְגוֹ׳. וְאֵינוֹ נוֹתְנוֹ בִּפְעָמִים רַבּוֹת הַיּוֹם מְעַט וּלְמָחָר מְעַט אֶלָּא נוֹתְנוֹ כֻּלּוֹ כְּאַחַת בְּפַעַם אַחַת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפילו </strong>
 <strong> עני המתפרנס מה&quot;צ. </strong> ב&quot;ב ט׳ א׳ ועי׳ ירושלמי פ&quot;א דפאה. וע&quot;ל ה&quot;ט וי&quot;ל דלגבוה שאני ועי׳ ר&quot;ה:</p>
               </div>
@@ -227,8 +233,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 1:8:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-1-8-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-8">Mishneh Torah, Sheqel Dues 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשְּׁקָלִים אֵינָן נוֹהֲגִין אֶלָּא בִּפְנֵי הַבַּיִת. וּבִזְמַן שֶׁבֵּית הַמִּקְדָּשׁ קַיָּם נוֹתְנִין אֶת הַשְּׁקָלִים בֵּין בְּאֶרֶץ יִשְׂרָאֵל בֵּין בְּחוּצָה לָאָרֶץ. וּבִזְמַן שֶׁהוּא חָרֵב אֲפִלּוּ בְּאֶרֶץ יִשְׂרָאֵל אֵין נוֹהֲגִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין </strong>
 <strong> בא&quot;י בין בח&quot;ל. </strong> פשוט הדבר דחובת הגוף הוא וכדתנן ספ&quot;ק דקדושין:</p>
               </div>
@@ -245,8 +256,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 2:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-2-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-1">Mishneh Torah, Sheqel Dues 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד כּוֹנְסִין הַשֻּׁלְחָנִים אֶת הַשְּׁקָלִים בְּכָל מְדִינָה וּמְדִינָה. מַנִּיחִין לִפְנֵיהֶם שְׁתֵּי תֵּבוֹת שׁוּלֵי הַתֵּבָה רְחָבִין מִלְּמַטָּה וּפִיהָ צַר מִלְּמַעְלָה כְּמִין שׁוֹפָר כְּדֵי שֶׁיַּשְׁלִיכוּ לְתוֹכָן וְלֹא יִהְיֶה אֶפְשָׁר לִקַּח מֵהֶן בְּנַחַת. וְלָמָּה עוֹשִׂין שְׁתֵּי תֵּבוֹת. אַחַת שֶׁמַּשְׁלִיכִין בָּהּ שְׁקָלִים שֶׁל שָׁנָה זוֹ. וְהַשְּׁנִיָּה מַנִּיחִין בָּהּ שִׁקְלֵי שָׁנָה שֶׁעָבְרָה. שֶׁגּוֹבִין מִמִּי שֶׁלֹּא שָׁקַל בְּשָׁנָה שֶׁעָבְרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולמה </strong>
 <strong> עושין. </strong> כמש&quot;ש במשנה תקלין חדתין ות&quot;ע:</p>
               </div>
@@ -262,8 +278,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 2:6:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-2-6-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-2-6">Mishneh Torah, Sheqel Dues 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְחוֹזֵר וּמְמַלֵּא אוֹתָן פַּעַם שְׁלִישִׁית מִן הַשָּׁלֹשׁ קֻפּוֹת הַגְּדוֹלוֹת בְּתִשְׁרֵי וּמִסְתַּפְּקִין מֵהֶן עַד שֶׁיִּכְלוּ עַד רֹאשׁ חֹדֶשׁ נִיסָן. וּבְרֹאשׁ חֹדֶשׁ נִיסָן תּוֹרְמִין מִתְּרוּמָה חֲדָשָׁה. לֹא הִסְפִּיקוּ לָהֶן הַשְּׁקָלִים שֶׁבְּשָׁלֹשׁ קֻפּוֹת הַגְּדוֹלוֹת וְכָלוּ עַד שֶׁלֹּא הִגִּיעַ נִיסָן חוֹזְרִין וְתוֹרְמִין מִשְּׁיָרֵי הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עי׳ </strong> כ&quot;מ מש&quot;כ והלכה כמותו לגבי ר&quot;מ עי׳ פ&quot;י ממעילה הי&quot;ג פ׳ רבינו דאין מועלים בשירים. ועי׳ בפי׳ התוס׳ בהשמטות לשקלים משש&quot;ב:</p>
               </div>
             </div>
@@ -279,8 +300,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 4:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-4-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-1">Mishneh Torah, Sheqel Dues 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תְּרוּמַת הַלִּשְׁכָּה מַה יֵּעָשֶׂה בָּהּ. לוֹקְחִין מִמֶּנָּה תְּמִידִין שֶׁל כָּל יוֹם וְהַמּוּסָפִין וְכָל קָרְבְּנוֹת הַצִּבּוּר וְנִסְכֵּיהֶם וְהַמֶּלַח שֶׁמּוֹלְחִין בּוֹ כָּל הַקָּרְבָּנוֹת. וְכֵן הָעֵצִים אִם לֹא הֵבִיאוּ עֵצִים וְלֹא נִמְצְאוּ אֶלָּא בְּדָמִים. וְהַקְּטֹרֶת וּשְׂכַר עֲשִׂיָּתָהּ. וְלֶחֶם הַפָּנִים וּשְׂכַר עוֹשֵׂי לֶחֶם הַפָּנִים. וְהָעֹמֶר וּשְׁתֵּי הַלֶּחֶם וּפָרָה אֲדֻמָּה וְשָׂעִיר הַמִּשְׁתַּלֵּחַ וְלָשׁוֹן שֶׁל זְהוֹרִית שֶׁקּוֹשְׁרִין בֵּין קַרְנָיו. כָּל אֵלּוּ בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושעיר </strong>
 <strong> המשתלח ולשון של זהורית. </strong> עי׳ מל&quot;מ ותוס׳ ישנים יומא ס&quot;ז:</p>
               </div>
@@ -296,8 +322,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-2">Mishneh Torah, Sheqel Dues 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל פַּר הֶעְלֵם דָּבָר שֶׁל צִבּוּר וּשְׂעִירֵי עֲבוֹדַת כּוֹכָבִים בַּתְּחִלָּה גּוֹבִין לָהֶן וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. פָּרוֹכוֹת שֶׁל הֵיכָל תַּחַת בִּנְיָן עֲשׂוּיוֹת וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה אֶלָּא מִקָּדְשֵׁי בֶּדֶק הַבַּיִת. אֲבָל פָּרוֹכוֹת שֶׁל שְׁעָרִים בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. הַמְּנוֹרָה וּכְלֵי שָׁרֵת מִצְוָתָן שֶׁיָּבוֹאוּ מִמּוֹתַר הַנְּסָכִים. וּבְהִלְכוֹת כְּלֵי הַמִּקְדָּשׁ וְהָעוֹבְדִים בּוֹ יִתְבָּאֵר מַה הוּא מוֹתַר הַנְּסָכִים. וְאִם לֹא הָיָה לָהֶן מוֹתַר נְסָכִים יָבִיאוּ מִתְּרוּמַת הַלִּשְׁכָּה. בִּגְדֵי כְּהֻנָּה בֵּין בִּגְדֵי כֹּהֵן גָּדוֹל בֵּין שְׁאָר בִּגְדֵי הַכֹּהֲנִים שֶׁעוֹבְדִין בָּהֶן בַּמִּקְדָּשׁ הַכּל מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל </strong>
 <strong> פר העלם דבר. </strong> הוריות ג׳ ב׳ מנחות נ&quot;ב א׳ ותוספתא פ&quot;ב:</p>
               </div>
@@ -313,8 +344,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-2">Mishneh Torah, Sheqel Dues 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל פַּר הֶעְלֵם דָּבָר שֶׁל צִבּוּר וּשְׂעִירֵי עֲבוֹדַת כּוֹכָבִים בַּתְּחִלָּה גּוֹבִין לָהֶן וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. פָּרוֹכוֹת שֶׁל הֵיכָל תַּחַת בִּנְיָן עֲשׂוּיוֹת וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה אֶלָּא מִקָּדְשֵׁי בֶּדֶק הַבַּיִת. אֲבָל פָּרוֹכוֹת שֶׁל שְׁעָרִים בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. הַמְּנוֹרָה וּכְלֵי שָׁרֵת מִצְוָתָן שֶׁיָּבוֹאוּ מִמּוֹתַר הַנְּסָכִים. וּבְהִלְכוֹת כְּלֵי הַמִּקְדָּשׁ וְהָעוֹבְדִים בּוֹ יִתְבָּאֵר מַה הוּא מוֹתַר הַנְּסָכִים. וְאִם לֹא הָיָה לָהֶן מוֹתַר נְסָכִים יָבִיאוּ מִתְּרוּמַת הַלִּשְׁכָּה. בִּגְדֵי כְּהֻנָּה בֵּין בִּגְדֵי כֹּהֵן גָּדוֹל בֵּין שְׁאָר בִּגְדֵי הַכֹּהֲנִים שֶׁעוֹבְדִין בָּהֶן בַּמִּקְדָּשׁ הַכּל מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרוכות </strong>
 <strong> של היכל. </strong> לא ידעתי מ&quot;ט השמיט רבינו הא דנשים האורגות (ד׳) שאמר שם בכתובות בהדי הני שזכר רבינו והובאו בכמ&quot;ש:</p>
               </div>
@@ -330,8 +366,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:3</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-3" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-2">Mishneh Torah, Sheqel Dues 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל פַּר הֶעְלֵם דָּבָר שֶׁל צִבּוּר וּשְׂעִירֵי עֲבוֹדַת כּוֹכָבִים בַּתְּחִלָּה גּוֹבִין לָהֶן וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. פָּרוֹכוֹת שֶׁל הֵיכָל תַּחַת בִּנְיָן עֲשׂוּיוֹת וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה אֶלָּא מִקָּדְשֵׁי בֶּדֶק הַבַּיִת. אֲבָל פָּרוֹכוֹת שֶׁל שְׁעָרִים בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. הַמְּנוֹרָה וּכְלֵי שָׁרֵת מִצְוָתָן שֶׁיָּבוֹאוּ מִמּוֹתַר הַנְּסָכִים. וּבְהִלְכוֹת כְּלֵי הַמִּקְדָּשׁ וְהָעוֹבְדִים בּוֹ יִתְבָּאֵר מַה הוּא מוֹתַר הַנְּסָכִים. וְאִם לֹא הָיָה לָהֶן מוֹתַר נְסָכִים יָבִיאוּ מִתְּרוּמַת הַלִּשְׁכָּה. בִּגְדֵי כְּהֻנָּה בֵּין בִּגְדֵי כֹּהֵן גָּדוֹל בֵּין שְׁאָר בִּגְדֵי הַכֹּהֲנִים שֶׁעוֹבְדִין בָּהֶן בַּמִּקְדָּשׁ הַכּל מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמנורה </strong>
 <strong> וכ&quot;ש. </strong> מה שהשאיר הכ&quot;מ בתימה מ&quot;ט השמיט ד&quot;ז דמקבה&quot;ב אתו ע&quot;ל ה&quot;ח דמזבח עצמו משירי לשכה. וא&quot;כ ל&quot;ק כלל:</p>
               </div>
@@ -347,8 +388,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:4</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-4-2-4" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 4:2:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-2">Mishneh Torah, Sheqel Dues 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל פַּר הֶעְלֵם דָּבָר שֶׁל צִבּוּר וּשְׂעִירֵי עֲבוֹדַת כּוֹכָבִים בַּתְּחִלָּה גּוֹבִין לָהֶן וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. פָּרוֹכוֹת שֶׁל הֵיכָל תַּחַת בִּנְיָן עֲשׂוּיוֹת וְאֵינָן בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה אֶלָּא מִקָּדְשֵׁי בֶּדֶק הַבַּיִת. אֲבָל פָּרוֹכוֹת שֶׁל שְׁעָרִים בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. הַמְּנוֹרָה וּכְלֵי שָׁרֵת מִצְוָתָן שֶׁיָּבוֹאוּ מִמּוֹתַר הַנְּסָכִים. וּבְהִלְכוֹת כְּלֵי הַמִּקְדָּשׁ וְהָעוֹבְדִים בּוֹ יִתְבָּאֵר מַה הוּא מוֹתַר הַנְּסָכִים. וְאִם לֹא הָיָה לָהֶן מוֹתַר נְסָכִים יָבִיאוּ מִתְּרוּמַת הַלִּשְׁכָּה. בִּגְדֵי כְּהֻנָּה בֵּין בִּגְדֵי כֹּהֵן גָּדוֹל בֵּין שְׁאָר בִּגְדֵי הַכֹּהֲנִים שֶׁעוֹבְדִין בָּהֶן בַּמִּקְדָּשׁ הַכּל מִתְּרוּמַת הַלִּשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בגדי </strong>
 <strong> כהונה. </strong> תוספתא ספ&quot;ק דיומא ותו&quot;כ פ׳ צו ואולם בתוספתא פ&quot;ב דשקלים איתא דבאים משירי לשכה ועי׳ קדושין נ&quot;ד א׳ הכא בכתנות כהונה שלא בלו. וע&quot;ש בתוס׳ והתם לר&quot;י קיימינן ולדידי׳ אין מועלים בשירים א&quot;כ א&quot;א ללמוד מדכ׳ בגדי קדושים דבאים משירי הלשכה כיון דל&quot;ש בהו קדושה. וע&quot;כ לדידי׳ מתהל&quot;ש באו וכמש&quot;ש בספרא וסתם ספרא ר׳ יהודא. וה&quot;נ ס&quot;ל לרבינו לשיטתי׳. כמש&quot;ל פ&quot;ב ה&quot;ו בס&quot;ד. והך תוספתא אתיא כר&quot;מ דמועלים בשירים. ועי׳ ירושלמי פ&quot;ג דיומא ה&quot;ו בגדי קודש כו׳ תפתר שבא כו׳ ודו&quot;ק שו&quot;ר בהגהת מבן הגר&quot;א ז&quot;ל בתוס׳ דשקלים שהגיה &quot;מתרומת&quot;:</p>
               </div>
@@ -364,8 +410,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 4:4:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-4-4-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-4">Mishneh Torah, Sheqel Dues 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גֵּר שֶׁמֵּת וְהִנִּיחַ זְבָחִים אִם יֵשׁ לוֹ נְסָכִים קְרֵבִין מִשֶּׁלּוֹ וְאִם לָאו בָּאִין מִתְּרוּמַת הַלִּשְׁכָּה. כֹּהֵן גָּדוֹל שֶׁמֵּת וְלֹא מִנּוּ אַחֵר תַּחְתָּיו מַקְרִיבִין אֶת הַחֲבִיתִין מִתְּרוּמַת הַלִּשְׁכָּה. מְבַקְּרֵי מוּמִים שֶׁבִּירוּשָׁלַיִם וְתַלְמִידֵי חֲכָמִים הַמְלַמְּדִים הִלְכוֹת שְׁחִיטָה לַכֹּהֲנִים וְהִלְכוֹת קְמִיצָה וְנָשִׁים הַמְגַדְּלוֹת בְּנֵיהֶן לְפָרָה אֲדֻמָּה כֻּלָּן נוֹטְלִין שְׂכָרָן מִתְּרוּמַת הַלִּשְׁכָּה. וְכַמָּה הוּא שְׂכָרָן. כְּמוֹ שֶׁיִּפְסְקוּ לָהֶן בֵּית דִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והלכות </strong>
 <strong> קמיצה. </strong> בירושלמי פ&quot;ד ה&quot;ד א׳ נמי ה׳ זריקה ובקבלה וצע&quot;ק שלא זכרו רבינו ואולי דקמיצה הוא מעבודות קלות. והיו צריכות ללמוד משא&quot;כ הני וע&quot;ל ה׳ שחיטה ק&quot;ל קצת דהא בזר כשירה וצ&quot;ל כד׳ הצל&quot;ח ברכות ל&quot;א א׳ דלא הי׳ הכהנים מניחים לשחוט ק&quot;צ לזרים וע׳ תוס׳ קדושין ע&quot;ה והצל&quot;ח כיון לזהו. מיהו גם בל&quot;ז א&quot;ש:</p>
               </div>
@@ -381,8 +432,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Sheqel Dues 4:8:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-sheqel-dues-4-8-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Sheqel Dues 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-4-8">Mishneh Torah, Sheqel Dues 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֶּבֶשׁ הָיוּ בּוֹנִין מֵהַר הַבַּיִת לְהַר הַמִּשְׁחָה שֶׁעָלָיו מוֹצִיאִין פָּרָה אֲדֻמָּה. וְכֶבֶשׁ שֶׁמּוֹצִיאִין עָלָיו שָׂעִיר הַמִּשְׁתַּלֵּחַ. וּשְׁנֵיהֶם נַעֲשִׂין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְכֵן מִזְבַּח הָעוֹלָה וְהַהֵיכָל וְהָעֲזָרוֹת נַעֲשִׂין מִשְּׁיָרֵי הַלִּשְׁכָּה. אַמַּת הַמַּיִם שֶׁבִּירוּשָׁלַיִם וְחוֹמַת יְרוּשָׁלַיִם וְכָל מִגְדְּלוֹתֶיהָ וְכָל צָרְכֵי הָעִיר בָּאִין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְעוֹבֵד כּוֹכָבִים שֶׁהִתְנַדֵּב מָעוֹת לַדְּבָרִים הָאֵלּוּ אוֹ לַעֲשׂוֹת עִמָּהֶם בְּחִנָּם אֵין מְקַבְּלִין מִמֶּנּוּ וַאֲפִלּוּ גֵּר תּוֹשָׁב. שֶׁנֶּאֱמַר <span class="source-small">(עזרא ד ג)</span> &quot;לֹא לָכֶם וָלָנוּ לִבְנוֹת&quot; וְגוֹ׳ וְנֶאֱמַר <span class="source-small">(נחמיה ב כ)</span> &quot;וְלָכֶם אֵין חֵלֶק&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עמש&quot;כ </strong> הכ&quot;מ אבל בגמ׳ דידן. ע&quot;ש בש&quot;ק מש&quot;כ ע&quot;ז:</p>
               </div>
             </div>
@@ -392,6 +448,10 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-sheqel-dues-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -412,8 +472,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sheqel-dues.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/benei-binyamin-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sheqel-dues.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sheqel-dues.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-sheqel-dues.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -439,7 +499,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

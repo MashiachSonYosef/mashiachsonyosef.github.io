@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-sheqel-dues/">Open Mishneh Torah, Sheqel Dues</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Sheqel Dues</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">1 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>188 matched</strong> / 377 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/shorshei-hayam-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -188,8 +189,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Shorshei HaYam on Mishneh Torah, Sheqel Dues 1:1:1</h4></div>
               <a class="anchor" href="#shorshei-hayam-on-mishneh-torah-sheqel-dues-1-1-1" aria-label="Copy link to Shorshei HaYam on Mishneh Torah, Sheqel Dues 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-sheqel-dues/#mishneh-torah-sheqel-dues-1-1">Mishneh Torah, Sheqel Dues 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִתֵּן כָּל אִישׁ מִיִּשְׂרָאֵל מַחֲצִית הַשֶּׁקֶל בְּכָל שָׁנָה וְשָׁנָה. אֲפִלּוּ עָנִי הַמִּתְפַּרְנֵס מִן הַצְּדָקָה חַיָּב. וְשׁוֹאֵל מֵאֲחֵרִים אוֹ מוֹכֵר כְּסוּת שֶׁעַל כְּתֵפוֹ וְנוֹתֵן מַחֲצִית הַשֶּׁקֶל כֶּסֶף שֶׁנֶּאֱמַר <span class="source-small">(שמות ל טו)</span> &quot;הֶעָשִׁיר לֹא יַרְבֶּה וְהַדַּל לֹא יַמְעִיט&quot; וְגוֹ׳. וְאֵינוֹ נוֹתְנוֹ בִּפְעָמִים רַבּוֹת הַיּוֹם מְעַט וּלְמָחָר מְעַט אֶלָּא נוֹתְנוֹ כֻּלּוֹ כְּאַחַת בְּפַעַם אַחַת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;span class=&quot;H&quot;&gt;שורש מצות מחצית השקל מצות &lt;/span&gt;
 <strong> עשה מן התורה ליתן כל איש מישראל מחצית השקל בכל שנה ושנה אפי׳ עני המתפרנס מן הצדקה חייב כו׳ שנא׳ העשיר לא ירבה והדל לא ימעיט כו׳.</strong> ע&quot;כ. הנה רבינו לא מנה במנין המצוות כי אם עשה ליתן מחצית השקל בכל שנה ושנה וכאן בחיבורו גם כן לא כתב כי אם מצות עשה ליתן מחצית השקל כו׳ ולא כת׳ דאיכא נמי לאו דהעשיר לא ירבה והדל לא ימעיט וגם במנין הלאוי׳ לא מנה לאו זה וגם כל מוני המצוות כהרמב&quot;ן וסיעתיה ז&quot;ל לא מנו לאו זה במנין הלאוין וצריך טעם למה.<br><strong> וראיתי </strong> להרמב&quot;ן בפי׳ התורה בפרש׳ כי תשא שכת׳ וז&quot;ל וטעם העשיר לא ירבה והדל לא ימעיט שיביאו השקלים בהשוייה ונראה מן הכתוב הזה שאם הביא הדל בשקלו פחות ממחצית השקל שהוא עובר בלאו הזה שהכתוב הזה מניעה שאם נאמר בעשיר לא ירבה שיהיה שלילות לומר שבכך די לו לא נוכל לפרש כן בוהדל לא ימעיט וא&quot;כ שתיהם מניעות אם שקל העשיר היחיד יותר ושקל הדל פחות עברו בלאו ושמא מה שהיו תורמי׳ על האבוד ועל העתי׳ לגבות יתוקן להם זה כי הדל הממעיט במותר עתיד לגבות הוא ומן העשיר המרבה לא יתרומו הגבאים ביתרון ולא יהיו מזכין במותרות וראיתי לבה&quot;ג ולכל המוני׳ המצות שלא הזכירו הלאו הזה עכ&quot;ל.<br><strong> והנראה </strong> לע&quot;ד בכוונת דבריו דבתחילה כתב שהעשיר ששקל יותר והדל ששקל פחות עוברים בלאו וא&quot;כ היה ראוי למנות הלאו הזה בכלל מנין הלאוין ואח&quot;כ כ׳ דשמא לאו זה איתיה בתקנתא לעולם ואין כאן עברת לאו לנותן דעיקר העברת הלאו הזה אינו בשעת נתינתו ביד הגבאי אלא בשעת קניית הגזבר הקרבנות מהשקלים הגבאים שאם מזכה להם בקניית הקרבנות לכל אחד ואחד לפי שיעור הכסף שנתן אז איכא משום העשיר לא ירבה והדל לא ימעיט אבל כשהגזבר מזכה לכולם בקרבנות בהשואה ואינו זוכה ביתרון שנותן העשיר כשתורם הקופה בקניית הקרבנות אלא במחצית השקל לבד ואת היותר ממחצית השקל מניחו בקופה לשאר דברים שבמקדש ולא בקרבנות אע&quot;פ שהעשיר הרבה סתם הגזבר אינו מזכה לו אלא במחצית השקל לבד וגם הדל שמיעט בנתינתו שנתן עכשיו פחות ממחצית השקל הגזבר מזכה לו כשתורם ללקיחת הקרבנות על מה שעתיד לשקול עוד ולהשלים מחצית השקל שהרי ממשכנו וכונת הכתוב דהעשיר לא ירבה והדל לא ימעיט הוא שיעשו בצד שבמקדש אופן בענין השקלים של לקיחת הקרבנות שהעשיר לא ירבה והדל לא ימעיט כדי שיהיה יד כולם שוה בו וא&quot;כ אין זה לאו כשאר לאוין דעלמא ומפני כן לא מנו מוני הלאוין וזהו שסיים הרמב&quot;ן וכתב וראיתי לכל מוני המצות שלא הזכירו הלאו הזה כלומ׳ ואפשר שהוא מן הטעם הזה דלאו זה אינו כשאר לאוין אלא תקון שיעשו גזברי המקדש לזכיית הקרבנות שיהיה יד כולם שוה.<br><strong> והנה </strong> בירושלמי דמס׳ שקלים פרק קמא הלכה א׳ אתמר רבי חגי בשם רשב&quot;ן ג׳ תרומות נאמרו בפרשה זאת תרומת אדנים ותרומת שקלים ותרומת משכן כו׳ תרומת משכן למשכן מה שירצו יעשו כדי שתהא יד כולם שוה תרומת אדנים לאדנים העשיר לא ירבה כו׳ ופי׳ דברי הירושלמי הלזו כתב ה׳ מג&quot;א בספר זית רענן בפרשת תרומה ובספר קרבן העדה וז&quot;ל פי׳ למשכן מה שירצו יעשו שכל אחד מביא נדבת לבו לקרבן מה שירצו כו׳ פי׳ כדאיתא בפ&quot;ב דשקלים שאם רצו היו שוקלין דרכונות ובלבד שתהא יד כולם שוה שלא יביא אחד יותר מחבירו אבל תרומת אדנים היה צריך דוקא מחצית השקל העשיר לא ירבה כו׳ עכ&quot;ל. מבואר יוצא מדברי הירושלמי הנז׳ דלאו זה העשיר לא ירבה כו׳ לא נאמר אלא על תרומת אדנים ולא על תרומת שקלים לקרבנות וא&quot;כ קשה לכאורה למה לא כתב הרמב&quot;ן דטעם מונה המצוות לא מנו בכלל הלאוין הוא מפני שלאו זה אינו לדורות שלא נאמר לאו זה אלא לתרומת אדנים שאינו נוהג לדורות.<br><strong> ואפשר </strong> לומר דמ&quot;ש בירושלמי דתרומ׳ האדנים העשיר לא ירבה והדל לא ימעיט אין הכונה לומר דקרא דהעשיר לא ירבה כו׳ לא נאמ׳ אלא דוקא גבי תרומת האדנים ולא לתרומת שקלים לקרבנות דאדרבא עיקר הכתוב הזה דהעשיר לא ירבה כו׳ נאמר בריש פרש׳ כי תשא בציווי מצות מחצית השקל לקרבנות הבאים לכפר על הנפש לא במצות תרומת האדנים ומ&quot;ש בירוש׳ תרומת האדנים העשיר לא ירבה לשון מושאל כלומר דאף עפ&quot;י דלגבי תרומת שקלים לקרבנות מה שירצו יעשו דלא בעינן דוקא מחצית השקל של תורה מעשרים גרה השקל וה&quot;ה חצי דרכון וחצי מטבע העובר דלא קפיד קרא אלא שיהיה יד כולם שוה בתרומת האדנים שהיו מאת אדנים למאת ככר הכסף שגבו ממחצית השקל של ת&quot;ר אלף אנשים לא היו צריכין להוסיף עוד ולא לפחות משיעור מחצית השקל הזה כי זהו שיעור מאת הככר ככר לאדן כמ&quot;ש בפרשת פקודי וזהו שאמרו תרומת אדנים העשיר לא ירבה והדל לא ימעיט מה שאין כן בתרומת השקלים לקרבנות שאם היו צריכין יותר שוקלי׳ דרכונות ובלבד שתהא יד כולם שוה באותו מטבע באופ׳ דעיקר קרא דהעשיר לא ירבה והדל לא ימעיט לא בא אלא לומר שיהיה יד כולם שוה בזכיית הקרבנות כדברי הרמב&quot;ן ודוק.</p>
               </div>
@@ -200,6 +206,10 @@
               <a href="#chapter-shorshei-hayam-on-mishneh-torah-sheqel-dues-text-1">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/shorshei-hayam-on-mishneh-torah-sheqel-dues.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/shorshei-hayam-on-mishneh-torah-sheqel-dues-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -220,8 +230,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/shorshei-hayam-on-mishneh-torah-sheqel-dues.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/shorshei-hayam-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"../../data/lexical/occurrences/shorshei-hayam-on-mishneh-torah-sheqel-dues.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/shorshei-hayam-on-mishneh-torah-sheqel-dues.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/shorshei-hayam-on-mishneh-torah-sheqel-dues.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/shorshei-hayam-on-mishneh-torah-sheqel-dues.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -247,7 +257,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

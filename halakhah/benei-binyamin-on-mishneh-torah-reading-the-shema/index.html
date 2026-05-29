@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-reading-the-shema/">Open Mishneh Torah, Reading the Shema</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Reading the Shema</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>247 matched</strong> / 683 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/benei-binyamin-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -214,8 +215,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 1:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-1-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-1">Mishneh Torah, Reading the Shema 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פַּעֲמַיִם בְּכָל יוֹם קוֹרְאִין קְרִיאַת שְׁמַע, בָּעֶרֶב וּבַבֹּקֶר. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> ״וּבְשָׁכְבְּךָ וּבְקוּמֶךָ״ בְּשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם שׁוֹכְבִין וְזֶה הוּא לַיְלָה. וּבְשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם עוֹמְדִין וְזֶה הוּא יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מ&quot;ע </strong>
 <strong> לקרות ק&quot;ש (ב&quot;פ ביום).</strong> הש&quot;א פלפל הרבה מנ&quot;ל לפסוק דק&quot;ש דאורייתא ובסופו הביא ממאמר אגדה בסוטה מ&quot;ב א׳ אבל לעד&quot;נ יותר דסמך עמ&quot;ש בקדושין ל&quot;ג א׳ ב׳. דאין אדם רשאי לעמוד מפני רבו אלא שו&quot;ע לבד שלא יהי׳ כבודו חמור מכבוד שמים ע&quot;ש ברש&quot;י. ובירושל׳ פ&quot;ג דבכורים ה&quot;א. ומשמע דעיקר קבלת מ&quot;ש גופיה היא דאורייתא ורבינו ז&quot;ל פ׳ כן להלכה פ&quot;ו מת&quot;ת ה&quot;ז. אך יל&quot;ע בעיקר הדברים שם ואכ&quot;מ. ומ&quot;ש רבינו &quot;ב&quot;פ ביום&quot; ע׳ להרמב&quot;ן ז&quot;ל בס׳ המצות שחולק ע&quot;ז וס&quot;ל דהם ב׳ מצות נפרדות לקרות ק&quot;ש ביום ובלילה. ועמש&quot;ל פ&quot;ד ה&quot;א בס&quot;ד. ובחיבורינו הש&quot;ד בתשובה לענין תשלומין לק&quot;ש הראתי דהוא מחלוקת הירושלמי והבבלי אם כל ג&quot;פ פרשיות מה&quot;ת. עמש&quot;ל פ&quot;ה ממזוזה ה&quot;א בס&quot;ד:</p>
               </div>
@@ -231,8 +237,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 1:1:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-1-1-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-1">Mishneh Torah, Reading the Shema 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פַּעֲמַיִם בְּכָל יוֹם קוֹרְאִין קְרִיאַת שְׁמַע, בָּעֶרֶב וּבַבֹּקֶר. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> ״וּבְשָׁכְבְּךָ וּבְקוּמֶךָ״ בְּשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם שׁוֹכְבִין וְזֶה הוּא לַיְלָה. וּבְשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם עוֹמְדִין וְזֶה הוּא יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מש&quot;כ </strong> הכ&quot;מ וטעמא דקרא משום דמתחלת כו׳. ע׳ ריש ברכות בתרי לישני דשם:</p>
               </div>
             </div>
@@ -247,8 +258,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 1:9:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-1-9-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-9">Mishneh Torah, Reading the Shema 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵיזֶה הוּא זְמַן קְרִיאַת שְׁמַע בַּלַּיְלָה. מִצְוָתָהּ מִשְּׁעַת יְצִיאַת הַכּוֹכָבִים עַד חֲצִי הַלַּיְלָה. וְאִם עָבַר וְאִחֵר וְקָרָא עַד שֶׁלֹּא עָלָה עַמּוּד הַשַּׁחַר יָצָא יְדֵי חוֹבָתוֹ שֶׁלֹּא אָמְרוּ עַד חֲצוֹת אֶלָּא כְּדֵי לְהַרְחִיק אָדָם מִן הַפְּשִׁיעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כדי </strong>
 <strong> להרחיק את האדם מן הפשיעה.</strong> שינה רבינו ז&quot;ל לשון המשנה &quot;מן העבירה&quot; מה שאין דרכו בכך. נ&quot;ל דדינא קמ&quot;ל דהש&quot;א הקשה היכן מצינו כזאת דאם לא קרא עד חצות שלא יקרא עוד. והרי עיקר התקנה שלא ישכח מלקרות וא&quot;כ מה הועילו חז&quot;ל בתקנתם. דמ&quot;מ ה&quot;ה מבטל מצות ק&quot;ש. ואולם באמת א&quot;ש. כמו שתי׳ אאמו&quot;ר הגז&quot;ל בחידושיו דמצינו טובא כה&quot;ג. ע׳ ביצה ט&quot;ו ב׳. דטעמא דערובי תבשילין לרבא כדי שיברור מנה יפה ליו&quot;ט ובכ&quot;ז כשלא הניח ע&quot;ת אסור לאפות ולבשל. וכן בגילוח בחוה&quot;מ שאסרו לגלח כדי שלא יכנס לרגל כשהוא מנוול. וה&quot;נ כ׳ בתשובת הרשב&quot;א. דאם עבר והדליק בפו&quot;ש הפסולות לנר שבת (אף אם הוא הטעם שמא יכבה ויניחנו ויצא. ע׳ פה&quot;מ לרבינו פ&quot;ב דשבת ובת&quot;י בשם ריב&quot;נ כ&quot;א א׳. והארכתי במקומו בס&quot;ד) אסור להשתמש לאורן. וע&quot;כ דהוא כמשחז&quot;ל חלל עליו שבת אחת כדי שישמור שבתות הרבה עכ&quot;ד אאמו&quot;ר ז&quot;ל. ואולם י&quot;ל שדעת רבינו א&quot;כ. אלא דבדיעבד אין הסייג לעיכובא. ורק שלא יבא לשכוח את ק&quot;ש באכילתו ושתייתו וא&quot;כ א&quot;ש מ&quot;ש מן העבירה. דא׳ בגמ׳ הכא הוא שגירת לישנא דאינך דנקט שם במשנה דהם הרחקות מעבירה גמורה אחרת דלאו וכרת שעובר בקום ועשה. משא&quot;כ הכא היא רק שלא יבא לשכוח לעבור על עשה דק&quot;ש בשב ואל תעשה. ע&quot;כ כ׳ רבינו &quot;מן הפשיעה&quot; ר&quot;ל שכחה. שהוא בכלל פשיעה. ע׳ ברכות כ&quot;ח א׳ ונקרא פושע. וכ&quot;ה בביצה ט&quot;ז ב׳ פסחים צ&quot;ו ב׳ ועוכ&quot;מ. ונ&quot;ל דמלשון הגמ׳ מן העבירה דומיא דאינך ראיה לשיטת ס׳ יראים סי׳ י&quot;א דאיכא לאו במניעת קריאת שמע. ובחבורי סוד יראים הארכתי בס&quot;ד:</p>
               </div>
@@ -265,8 +281,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 2:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-2-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-2">Mishneh Torah, Reading the Shema 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אָדָם קוֹרִין כְּדַרְכָּן בֵּין עוֹמְדִין בֵּין מְהַלְּכִין בֵּין שׁוֹכְבִין בֵּין רוֹכְבִין עַל גַּבֵּי בְּהֵמָה. וְאָסוּר לִקְרוֹת קְרִיאַת שְׁמַע וְהוּא מֻטָּל וּפָנָיו טוּחוֹת בַּקַּרְקַע אוֹ מֻשְׁלָךְ עַל גַּבּוֹ וּפָנָיו לְמַעְלָה. אֲבָל קוֹרֵא הוּא וְהוּא שׁוֹכֵב עַל צִדּוֹ. וְאִם הָיָה בַּעַל בָּשָׂר הַרְבֵּה וְאֵינוֹ יָכוֹל לְהִתְהַפֵּךְ עַל צִדּוֹ אוֹ שֶׁהָיָה חוֹלֶה נוֹטֶה מְעַט לְצִדּוֹ וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין </strong>
 <strong> רוכבין ע&quot;ג בהמה.</strong> ע׳ הקובץ מד׳ התוספתא בתפלה. ויש לחלק דבק&quot;ש לא הקילו דבשעה קלה יכול לכוון. וע׳ ברכות ל׳ א׳. אבל מקור טהור מהא דרוכב כמהלך בקדושין ל&quot;ג ב׳. ועמ&quot;ש הגר&quot;א ז&quot;ל בא&quot;ח ס&quot;י ס&quot;ג סק&quot;ב:</p>
               </div>
@@ -282,8 +303,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 2:5:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-2-5-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-5">Mishneh Torah, Reading the Shema 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה עוֹסֵק בְּתַלְמוּד תּוֹרָה וְהִגִּיעַ זְמַן קְרִיאַת שְׁמַע פּוֹסֵק וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. הָיָה עוֹסֵק בְּצָרְכֵי רַבִּים לֹא יִפְסֹק אֶלָּא יִגְמֹר עִסְקֵיהֶן וְיִקְרָא אִם נִשְׁאָר עֵת לִקְרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה </strong>
 <strong> עוסק בצרכי רבים.</strong> עי׳ כ&quot;מ וא&quot;צ לזה שהוא תלמוד ערוך בתוספתא פ&quot;א דברכות בר&quot;ע וראב&quot;ע שהיו עסוקים בצרכי ציבור. אך בירושלמי פ&quot;א ה&quot;ה הגירסא והיו עסוקים במצות. וע׳ באורי הגר&quot;א ז&quot;ל סי׳ ע׳ סק&quot;י. (בכ&quot;מ. כי תניא ההיא בעיבור השנה כצ&quot;ל):</p>
               </div>
@@ -299,8 +325,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 2:7:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-2-7-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-7">Mishneh Torah, Reading the Shema 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁיָּרַד לִטְבּל אִם יָכוֹל לַעֲלוֹת וּלְהִתְכַּסּוֹת קֹדֶם שֶׁתָּנֵץ הַחַמָּה יַעֲלֶה וְיִתְכַּסֶּה וְיִקְרָא. וְאִם הָיָה מִתְיָרֵא שֶׁמָּא תָּנֵץ הַחַמָּה קֹדֶם שֶׁיִּקְרָא יִתְכַּסֶּה בַּמַּיִם שֶׁהוּא עוֹמֵד בָּהֶן וְיִקְרָא. וְלֹא יִתְכַּסֶּה לֹא בַּמַּיִם הָרָעִים שֶׁרֵיחָן רַע וְלֹא בְּמֵי הַמִּשְׁרֶה וְלֹא בְּמַיִם צְלוּלִין מִפְּנֵי שֶׁעֶרְוָתוֹ נִרְאֵית בָּהֶן. אֲבָל מִתְכַּסֶּה הוּא בְּמַיִם עֲכוּרִין שֶׁאֵין רֵיחָן רַע וְקוֹרֵא בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong>
 <strong> הי׳ מתיירא כו׳ יתכסה במים ויקרא.</strong> מדין זה ראי׳ למש&quot;כ אאמו&quot;ר הגז&quot;ל בהא דהקורא ק&quot;ש בלא תפילין דאינו אסור רק כשאינו מניח כלל. וע׳ ברכות (מ&quot;ז:) ור&quot;ה (י&quot;ז.) ותוס׳ שם. אבל במי שעתיד להניחן בו ביום. אין איסור כלל לקרותה כשרואה שעובר זמן ק&quot;ש ואין בידו תפילין. וראיה לדבר יגיד עליו ריעו. בברכות י&quot;ד ב׳. א׳ שם ר&quot;י הקורא ק&quot;ש בלא תפילין כאילו הקריב עולה בלא מנחה וזבח בלא נסכים. והכוונה דקיי&quot;ל מקריב אדם זבחו היום ונסכיו מכאן ולאחר עשרה ימים. כמ&quot;ש בזבחים מ&quot;ד א׳ וכ&quot;מ. ואפילו לכתחילה הוא כן. ושפת&quot;י. ומוכרח הוא כן. מהך דהכא. דאל&quot;כ איך יצוייר שיקרא ק&quot;ש בעודו במים וכי יניח תפילין שמה ע&quot;ל פ&quot;ד מתפילין הכ&quot;ג. ודו&quot;ל דמיירי בשבת ויו&quot;ט דלאו ז&quot;ת היא. א&quot;ו כדברי אאמו&quot;ר ז&quot;ל. שו&quot;מ אח&quot;ז באא&quot;ז הלבו&quot;ש ז&quot;ל. שכ&quot;כ להדיא בא&quot;ח סנ&quot;ח ס&quot;ב עש&quot;ה. וחידוש שלא הועתק באחרונים:</p>
               </div>
@@ -317,8 +348,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 3:2:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-3-2-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-2">Mishneh Torah, Reading the Shema 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין קוֹרִין לֹא בְּבֵית הַמֶּרְחָץ וְלֹא בְּבֵית הַכִּסֵּא אַף עַל פִּי שֶׁאֵין בּוֹ צוֹאָה וְלֹא בְּבֵית הַקְּבָרוֹת וְלֹא בְּצַד הַמֵּת עַצְמוֹ וְאִם הִרְחִיק אַרְבַּע אַמּוֹת מִן הַקֶּבֶר אוֹ מִן הַמֵּת מֻתָּר לִקְרוֹת. וְכָל מִי שֶׁקָּרָא בְּמָקוֹם שֶׁאֵין קוֹרִין בּוֹ חוֹזֵר וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל </strong>
 <strong> מי שקרא במקום שאין קורים בו חוזר וקורא.</strong> ע׳ הראב&quot;ד ובכ&quot;מ. ומרן הגר&quot;א ז&quot;ל הביא מברכות כ&quot;ב ב׳. אע&quot;פ שהתפלל הואיל וחטא תפלתו תועבה. ולע&quot;ד יל&quot;ע בזה דלמא רק בתפילה א׳ הכי דזר&quot;ת. ע&quot;ש בתוס׳ ובערובין ס&quot;ד א׳ ד&quot;ה שיכור. ומנ&quot;ל גם לק&quot;ש. ואולי יש לדון משום אי עבד ל&quot;מ. אלא די&quot;ל לשי׳ המהרכי&quot;ט דאם לא יתוקן האיסור ל&quot;א אעל&quot;מ ל&quot;ש זה בכאן וי&quot;ל קצת. אך האחרונים לא העלו דבר ברור בדעת רבינו בזה ואכמ&quot;ל:</p>
               </div>
@@ -335,8 +371,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 4:1:1</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-4-1-1" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-1">Mishneh Torah, Reading the Shema 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִקְּרִיאַת שְׁמַע. וּמְלַמְּדִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ בְּעוֹנָתָהּ וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ כְּדֵי לְחַנְּכָן בְּמִצְוֹת. מִי שֶׁהָיָה לִבּוֹ טָרוּד וְנֶחְפַּז לִדְבַר מִצְוָה פָּטוּר מִכָּל הַמִּצְוֹת וּמִקְּרִיאַת שְׁמַע. לְפִיכָךְ חָתָן שֶׁנָּשָׂא בְּתוּלָה פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיָּבוֹא עָלֶיהָ. לְפִי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה שֶׁמָּא לֹא יִמְצָא לָהּ בְּתוּלִים. וְאִם שָׁהָה עַד מוֹצָאֵי שַׁבָּת וְלֹא בָּעַל חַיָּב לִקְרוֹת מִמּוֹצָאֵי שַׁבָּת וְאֵילָךְ שֶׁהֲרֵי נִתְקָרְרָה דַּעְתּוֹ וְלִבּוֹ גַּס בָּהּ אַף עַל פִּי שֶׁלֹּא בָּעַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong>
 <strong> שהיה לבו טרוד ונחפז לדבר מצוה פטור מכל המצות.</strong> ע׳ כ&quot;מ. ובסוכה כ&quot;ה ב׳ א׳ שם חתן פטור מתפלה ותפלין וק&quot;ש. מ׳ דבשאר מצות חייב. ועיין תוס׳ רפ&quot;ג בכה&quot;ג במי שמתו מוטל לפניו דהוא דומיא דחתן:</p>
               </div>
@@ -352,8 +393,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Benei Binyamin on Mishneh Torah, Reading the Shema 4:1:2</h4></div>
               <a class="anchor" href="#benei-binyamin-on-mishneh-torah-reading-the-shema-4-1-2" aria-label="Copy link to Benei Binyamin on Mishneh Torah, Reading the Shema 4:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-1">Mishneh Torah, Reading the Shema 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִקְּרִיאַת שְׁמַע. וּמְלַמְּדִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ בְּעוֹנָתָהּ וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ כְּדֵי לְחַנְּכָן בְּמִצְוֹת. מִי שֶׁהָיָה לִבּוֹ טָרוּד וְנֶחְפַּז לִדְבַר מִצְוָה פָּטוּר מִכָּל הַמִּצְוֹת וּמִקְּרִיאַת שְׁמַע. לְפִיכָךְ חָתָן שֶׁנָּשָׂא בְּתוּלָה פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיָּבוֹא עָלֶיהָ. לְפִי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה שֶׁמָּא לֹא יִמְצָא לָהּ בְּתוּלִים. וְאִם שָׁהָה עַד מוֹצָאֵי שַׁבָּת וְלֹא בָּעַל חַיָּב לִקְרוֹת מִמּוֹצָאֵי שַׁבָּת וְאֵילָךְ שֶׁהֲרֵי נִתְקָרְרָה דַּעְתּוֹ וְלִבּוֹ גַּס בָּהּ אַף עַל פִּי שֶׁלֹּא בָּעַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך </strong>
 <strong> מי שנשא בתולה.</strong> נסתפק כאאמו&quot;ר הגז&quot;ל אם נשאר אח&quot;ז עת לקרות אם הוא חייב דהא באונן כה&quot;ג חייב לקרות אחר הקבורה. והכא לא שייך פלוגתת הראשונים לענין הבדלה המובא בהרא&quot;ש רפ&quot;ג אם שייך תשלומין. דהא בשעת הדחק יכול לקרות ק&quot;ש אף אחר עה&quot;ש. כמש&quot;ל פ&quot;א הי&quot;ב. ובנד&quot;ד אין לנו אנוס גדול ממנו. וביותר תקשה לשי׳ הראב&quot;ד דבק&quot;ש ביום חייב. עי׳ כ&quot;מ. א&quot;כ איך משכ&quot;ל בערבית לפטור. והאריך בזה. וע׳ פ&quot;ת יו&quot;ד סקצ&quot;ב סק&quot;ד בשם שו&quot;ת אבן השוהם דב&quot;ר אין לבעול ביום. אך לא נודע לי טעמו ע&quot;ש ובכ&quot;מ בגמ׳ משמע שלא כדבריו וכמש&quot;כ בתשובה בס&quot;ד. ולענ&quot;ד לה&quot;ר לד׳ רבינו דאף מק&quot;ש ביום פטור. דאל&quot;כ ק׳ מנ&quot;ל הוא דעוסק במצוה פטור מהמ&quot;צ כמ&quot;ש בסוכה כ&quot;ה א׳. דנלמד מק&quot;ש ופסח ושם מצריך הגמ׳ הני תרי קראי. והל&quot;ל דבק&quot;ש ל&quot;ה רק חצי מצוה. דביום הרי באמת חייב לקרות. וביותר דגם לפי האמת קשה מנ&quot;ל דבמטא זימנא פטור בעבמ&quot;צ ממצוה שלימה. כיון דבק&quot;ש ל&quot;ה רק חצי מצוה. א&quot;ו מוכח דאף מק&quot;ש דיום נמי פטור חתן. אך י&quot;ל דהרמ&quot;נ ס&quot;ל כשי׳ הרמב&quot;ן ז&quot;ל בס׳ המצות דק&quot;ש הם ב׳ מצות. וא&quot;כ גם בביטול ק&quot;ש דערבית לבד נמי ה&quot;ה מבטל מ&quot;ע שלימה. ורבינו ז&quot;ל לשיטתיה דס&quot;ל דהן מצוה א׳. ואולי י&quot;ל דאף לרבינו אין ראיה. דמ&quot;מ כשהוא מבטל גם ק&quot;ש דערבית לבד. הרי לא נשאר רק חצי מצוה. וא&quot;כ סוף סוף מתבטל ממצוה שלימה. ויש לפשוט מזה ספיקות האחרונים אם שייך חצי שיעור במצוה כמו באיסור. ויש לדון בזה מתי התחלת המצוה בק&quot;ש אם ביום או בלילה וכמדומני עמד בזה הפמ&quot;ג בפתיחתו לה׳ ק&quot;ש. ועי׳ במגילה ג׳ א׳. אמש בטלתם תמיד של בה&quot;ע כו׳. והרי היו עוסקים במלחמת כיבוש א&quot;י שהוא חובה כמ&quot;ש בסוטה מ&quot;ד א׳. אך אם כבר התחילו להקריבו בבוקר א&quot;ש קצת. ומצות הקרבת התמידים לרבינו הוא ג&quot;כ מ&quot;ע אחת כמו מצות ק&quot;ש. אך יל&quot;ח דשם שניהם ביום משא&quot;כ ק&quot;ש. י&quot;ל דלילה קודם. עי׳ כ&quot;מ פ&quot;א. והוא מגמ׳ ריש ברכות. ועי׳ תוס׳ שם מש&quot;כ מתמיד ובמפרשים שם ומש&quot;כ בס&quot;ד באורך בס&quot;פ פ׳ ואתחנן:</p>
               </div>
@@ -364,6 +410,10 @@
               <a href="#chapter-benei-binyamin-on-mishneh-torah-reading-the-shema-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/benei-binyamin-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -384,8 +434,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-reading-the-shema.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/benei-binyamin-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"../../data/lexical/occurrences/benei-binyamin-on-mishneh-torah-reading-the-shema.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-reading-the-shema.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/benei-binyamin-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/benei-binyamin-on-mishneh-torah-reading-the-shema.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -411,7 +461,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

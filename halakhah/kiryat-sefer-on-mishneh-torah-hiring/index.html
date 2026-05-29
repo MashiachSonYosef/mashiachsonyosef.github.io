@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-hiring/">Open Mishneh Torah, Hiring</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Hiring</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">32 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>536 matched</strong> / 1511 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-hiring.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-hiring-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -291,8 +292,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-1-1">Mishneh Torah, Hiring 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבָּעָה שׁוֹמְרִים נֶאֶמְרוּ בַּתּוֹרָה וּשְׁלֹשָׁה דִּינִין יֵשׁ לָהֶם. וְאֵלּוּ הֵן הָאַרְבָּעָה שׁוֹמְרִין. שׁוֹמֵר חִנָּם. וְהַשּׁוֹאֵל. וְנוֹשֵׂא שָׂכָר. וְהַשּׂוֹכֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות ריא </strong> לדון בדיני שוכר ונושא שכר וד׳ שומרים הם ודיניהם שלשה וכדתנן להו פרק השוכר דף צ&quot;ג ויליף להו מקראי פרק השואל דף צ&quot;ד דתנו רבנן פרשה ראשונה נאמרה בש&quot;ח דכתיב כי יתן איש אל רעהו כסף או כלים לשמור ופטר בה על הגניבה כדכתיב וגונב מבית האיש שטוען שנגנבה הימנו וכתיב ונקרב בעל הבית אל האלהים ואוקימנא לשבועה דכתיב הכא שליחות יד אם לא שלח ידו וכתיב בפרשה שניה נמי שליחות יד שבועת ה׳ תהיה בין שניהם אם לא שלח ידו מה שליחות יד דהתם בשבועה אף שליחות יד דהכא בשבועה שלא שלח בה יד. פרשה שניה בש&quot;ש כי יתן איש אל רעהו חמור או שור או שה ובה חייב על הגניבה ופטר על האונסין בשבועה דכתיב ומת או נשבר או נשבה אין רואה שבועת ה׳ תהיה בין שניהם ואם גנוב יגנב ישלם&#160;ומסתברא דשניה בשומר שכר שכן חייב בגניבה ואבדה כדאמרינן. פרשת שלישית בשואל כדכתיב בהדיא וכי ישאל איש מעם רעהו ונשבר או מת שלם ישלם חייב עליה אונסין כשאין בעליו עמו ופטור במתה מחמת&#160;מלאכה כדנילף בהלכות שאלה בס&quot;ד. ושומר שכר והשוכר דין אחד להם כדתנן התם [וילפינן מדכתיב (שמות כב, יד) גבי שואל אם שכיר הוא בא בשכרו שאין לו משפט שואל ולא פי׳ מה דינו ולפי׳ אמרו שהוא כשומר שכר שהוא מהנה לבעל הוא נהנה גם כן מה שאין כן בשומר חנם] וגניבה כתיבה בהדיא בפרשה שומר שכר ואבדה ילפינן לה מדכתיב אם גנב יגנב אין לי אלא גניבה אבדה מנין ת&quot;ל אם גנב יגנב מ&quot;מ ולמ&quot;ד דברה תורה כלשון בני אדם ילפינן לה בק&quot;ו מגניבה שקרובה לאונס וחייב בה אבדה שקרובה לפשיעה לא כ&quot;ש ואידך מילתא דאתיא בק&quot;ו טרח וכתב לה קרא כדאמ׳ התם דף צ&quot;ד ושואל דאמרינן דחייב בכל בשלמא שבורה ומתה דכתיב ביה או נשבר או מת אלא שבויה מנ&quot;ל דאי תימא נילף מיניהו מה לשבורה ומתה שכן אונסא דסליק אדעתא הוא תאמר בשבויה שכן אונסא דלא סליק אדעתא הוא וכו׳ תניא ר׳ יונתן אומר או לרבות את השבויה ולר׳ יאשיה דבעי או לחלק הכא לא צריך סברא הוא דנשבר בלא מת נמי חייב דמה לי קטליה פלגא מה לי קטליה כולה וגניבה ואבדה ילפינן לה משומר שכר דפטר בו שבורה ומתה וחייב גניבה ואבדה ולפטור כשבעליו עמו מנלן דכיון דמשומר שכר ילפינן דיו לבא מן הדין להיות כנדון כעין ש&quot;ש מה להלן בבעלים פטור דילפינן לה בהיקשא דילמוד עליון מתחתון כדכתיב וכי ישאל וי&quot;ו מוסיף על ענין ראשון וילמוד עליון מתחתון אף כאן בבעלים פטור ולמאן דלית ליה דיו אמרינן וכי ישאל וי&quot;ו מוסיף על ענין ראשון וילמד עליון מתחתון לענין פיטור בעלים ותחתון מעליון לגניבה ואבידה בין לפיטור בין לחיוב ואין משיבין על ההיקש ופשיעה דלא כתיבה בשומר שכר ושואל לחיובא אתי בק&quot;ו משומר חנם ולפשיעה דפטור בכולהו שומרין בבעלים קסבר מקרא נדרש לפניו אשומר שכר ולפני פניו אשומר חנם וכי כתיב אם בעליו עמו בשואל אשומר שכר ואשומר חנם נמי כתיב דמקרא נדרש בסמיכת פרשיות ואף ע&quot;פ שאין היקש מפורש בהן וכי היכי דבשומר חנם דכתיב ביה פשיעה פטור בבעלים דקאי אם בעליו עמו נמי עליה הכי נמי בשומר שכר ושואל דילפי חיובא דפשיעה משומר חנם פטירי בבעלים מדכתיב אם בעליו עמו בשואל דקאי אכולהו חיובי דידיה דפטור כשבעליו עמו וקאי נמי אכולהו חיובי דשומר שכר דאם&#160;בעליו עמו פטור וכדאמרינן. ופיטורא דכולהו חיובי בבעלים היינו כשהיו הבעלים עמו בשאלה או בשכירות בשעת שאלה או שכירות אף על פי שלא היו בשעת גניבה או שאר חיובי כדתניא התם ממשמע שנאמר אם בעליו עמו לא ישלם איני יודע שאם אין בעליו עמו ישלם אלא מה ת&quot;ל בעליו אין עמו ישלם לומר לך היה עמו בשעת שאלה אין צריך להיות עמו בשעת שבורה ומתה היה עמו בשעת שבורה ומתה צריך להיות עמו בשעת שאלה והכי אשמועינן קרא בעליו אין עמו בשעת שאלה אע&quot;פ שהיה עמו בשעת שבורה ומתה חייב ולא תימא איפוך שתפטור בשעת שבורה ולא בשעת שאלה דכתיב וכי ישאל איש מעם רעהו ומשמע דאשעת שאלה קפיד דמעם רעהו משמע ולא רעהו עמו שלא נשאל לו ועלה מסיק קרא שלם ישלם אלמא אשעת שאלה קפיד ואפ&quot;ה צריכי בעליו עמו (ול&quot;ש בבעלים) ובעליו אין עמו דאי לאו הנך הוה אמינא האי אורחיה דקרא הוא לאישתעוי הכי ולא שנא בבעלים ול&quot;ש שלא בבעלים חייב והשתא דגלי סיפא דבבעלים פטור ואחד מינייהו קאי פטור ולא על חבריה ילפינן מדכתיב מעם רעהו גילוי מילתא דבשעת שאלה קפיד קרא כי היכי דלא תימא איפוך.</p>
               </div>
             </div>
@@ -307,8 +313,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 1:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-1-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-1-4">Mishneh Torah, Hiring 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל שׁוֹמֵר שֶׁפָּשַׁע בִּתְחִלָּתוֹ אַף עַל פִּי שֶׁנֶּאֱנַס בְּסוֹפוֹ חַיָּב כְּמוֹ שֶׁיִּתְבָּאֵר. וְאֵין הַשּׁוֹאֵל רַשַּׁאי לְהַשְׁאִיל אֲפִלּוּ שָׁאַל סֵפֶר תּוֹרָה שֶׁכָּל שֶׁקּוֹרֵא בּוֹ עוֹשֶׂה מִצְוָה לֹא יַשְׁאִילֶנּוּ לְאַחֵר. וְכֵן אֵין הַשּׂוֹכֵר רַשַּׁאי לְהַשְׂכִּיר אֲפִלּוּ הִשְׂכִּירוֹ סֵפֶר תּוֹרָה לֹא יַשְׂכִּירֶנּוּ לְאַחֵר שֶׁהֲרֵי זֶה אוֹמֵר לוֹ אֵין רְצוֹנִי שֶׁיִּהְיֶה פִּקְדוֹנִי בְּיַד אַחֵר. עָבַר הַשּׁוֹמֵר וּמָסַר לַשּׁוֹמֵר הַשֵּׁנִי אִם יֵשׁ עֵדִים שֶׁשְּׁמָרָהּ הַשּׁוֹמֵר הַשֵּׁנִי כְּדֶרֶךְ הַשּׁוֹמְרִין וְנֶאֱנַס פָּטוּר הַשּׁוֹמֵר הָרִאשׁוֹן שֶׁהֲרֵי יֵשׁ עֵדִים שֶׁנֶּאֱנַס. וְאִם אֵין שָׁם עֵדִים חַיָּב הַשּׁוֹמֵר הָרִאשׁוֹן לְשַׁלֵּם לַבְּעָלִים מִפְּנֵי שֶׁמָּסַר לְשׁוֹמֵר אַחֵר וְיַעֲשֶׂה הוּא דִּין עִם הַשּׁוֹמֵר הַשֵּׁנִי. אֲפִלּוּ הָיָה הָרִאשׁוֹן שׁוֹמֵר חִנָּם וּמָסַר לְשׁוֹמֵר שָׂכָר חַיָּב שֶׁהֲרֵי יֵשׁ לְבַעַל הַחֵפֶץ לוֹמַר לוֹ אַתָּה נֶאֱמָן אֶצְלִי לְהִשָּׁבַע וְזֶה אֵינוֹ נֶאֱמָן. לְפִיכָךְ אִם הָיָה דֶּרֶךְ הַבְּעָלִים לְהַפְקִיד תָּמִיד דָּבָר זֶה אֵצֶל הַשּׁוֹמֵר הַשֵּׁנִי הֲרֵי זֶה הַשּׁוֹמֵר הָרִאשׁוֹן פָּטוּר מִלְּשַׁלֵּם שֶׁהֲרֵי הוּא אוֹמֵר לַבְּעָלִים זֶה הַדָּבָר שֶׁהִפְקַדְתֶּם אֶצְלִי אוֹ הִשְׁאַלְתֶּם אֶמֶשׁ הֱיִיתֶם מַפְקִידִין אוֹתוֹ אֵצֶל זֶה שֶׁהִפְקַדְתִּי אֲנִי אֶצְלוֹ. וְהוּא שֶׁלֹּא יְמַעֵט שְׁמִירָתוֹ. כֵּיצַד יְמַעֵט שְׁמִירָתוֹ. כְּגוֹן שֶׁהָיָה מֻפְקָד אֶצְלוֹ בְּשָׂכָר וְהִפְקִידוֹ אֵצֶל אוֹתוֹ הַשֵּׁנִי בְּחִנָּם אוֹ שֶׁהָיָה שָׁאוּל אֶצְלוֹ וְהִפְקִידוֹ אֵצֶל אוֹתוֹ הַשֵּׁנִי בְּשָׂכָר הוֹאִיל וּמִעֵט שְׁמִירָתוֹ פּוֹשֵׁעַ הוּא וּמְשַׁלֵּם. אַף עַל פִּי שֶׁשָּׁאַל אוֹ שֶׁשָּׂכַר בַּבְּעָלִים הֲרֵי הוּא הוֹצִיא הַדָּבָר הַשָּׁמוּר מִיָּדוֹ לְיַד שׁוֹמֵר אַחֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> השואל רשאי להשאיל ולא השוכר להשכיר כדאמ׳ פרק אלו מציאות ופרק כל הגט כאן שנה ר׳ וכו׳ משום דלא לצורך אחרים השאילה לו ונמצא עובר על דעתו. עבר ומסר לשומר אחר אפילו מיעט בשמירה וטען שומר השני שנאנס אם יש לו עדים פטור אם אין לו עדים חייב השומר האחד ואינו נאמן שומר השני בשבועה אם לא כשהיה דרך הבעלים להפקיד אצלו ולא מיעט בשמירתו ואם הוסיף בשמירה יחזירו דמי הפרה לבעלים דאין השוכר עושה סחורה בפרתו של חברו כדתנן במתניתין פרק המפקיד לר׳ יוסי וכו׳:</p>
               </div>
             </div>
@@ -324,8 +335,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-2-1">Mishneh Torah, Hiring 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה דִּינִין הָאֲמוּרִין בַּתּוֹרָה בְּאַרְבָּעָה הַשּׁוֹמְרִין אֵינָן אֶלָּא בְּמִטַּלְטְלִין שֶׁל יִשְׂרָאֵל וְשֶׁל הֶדְיוֹט שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;כֶּסֶף אוֹ כֵלִים&quot; <span class="source-small">(שמות כב ט)</span> &quot;וְכָל בְּהֵמָה&quot; יָצְאוּ קַרְקָעוֹת וְיָצְאוּ הָעֲבָדִים שֶׁהֻקְּשׁוּ לְקַרְקָעוֹת וְיָצְאוּ הַשְּׁטָרוֹת שֶׁאֵין גּוּפָן מָמוֹן וְיָצְאוּ הֶקְדֵּשׁוֹת שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;כִּי יִתֵּן אִישׁ אֶל רֵעֵהוּ&quot; וְיָצְאוּ נִכְסֵי עַכּוּ&quot;ם. מִכָּאן אָמְרוּ חֲכָמִים הָעֲבָדִים וְהַשְּׁטָרוֹת וְהַקַּרְקָעוֹת וְהַהֶקְדֵּשׁוֹת שׁוֹמֵר חִנָּם שֶׁלָּהֶן אֵינוֹ נִשְׁבָּע. וְנוֹשֵׂא שָׂכָר אוֹ שׂוֹכֵר אֵינוֹ מְשַׁלֵּם. וְאִם קָנוּ מִיָּדוֹ חַיָּב בְּאַחֲרָיוּתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה </strong> דינין של ד׳ שומרים אינם אלא במטלטלין של ישראל ושל הדיוט וכדתנן פרק הזהב ובגמרא מנא הני מילי דת&quot;ר כי יתן איש אל רעהו כלל כסף או כלים פרט וגונב מבית איש חזר וכלל ואי אתה דן אלא כעין הפרט שהוא מטלטל וגופו ממון יצאו קרקעות ועבדים שהוקשו להם כדכתיב והתנחלתם אותם לבניכם לרשת אחוזה וגו׳ ויצאו שטרו׳ שאין גופן ממון והקדשות רעהו אמר רחמנא ולא של הקדש וכיון דכתיב רעהו אין הגוי בכלל ובשומר שכר נמי כתיב כי יתן איש וכו׳ לכלל ופרט וכלל רעהו למעוטי הקדש וגוי ושואל נמי הוי כוותיהו. [אלא דלא הוזכרו שואל ושוכר במיעוטא דהני משום דלא שייך שאלה בקרקעות ובשטרות על הרוב ושכירות לא שייך בשטרות וכן לא שייך שאלה ושכירות בהקדש כן כתב רבי עובדיה ז&quot;ל בפירוש המשנה במסכת שבועות (פ&quot;ו מ&quot;ה)] ואם פשע אחד מהשומרים באחד מדברים הללו חייב דהוי כמזיק בידים לדעת הרב ז&quot;ל. ומחובר לקרקע אפילו אינו צריך לקרקע הוי כקרקע כדתנן פרק שבועת הדינים דאין חכמים מודים לו לרבי מאיר דאמר יש דברים שהן בקרקע ואינן כקרקע ואמרינן התם ובפרק השואל דבענבים העומדות ליבצר פליגי דרבנן סברי לאו כבצורות דמיין לענין שומרים ולשבועה כיון דלענין שבת לאו כבצורות דמיין לכולי עלמא והא דאמרינן בעלמא כל העומד ליבצר כבציר דמי הכא שאני דכולהו קראי קפדי אמטלטלין תלושין ככסף או כלים. הפקיד הקדיש ופדאו או איפכא שהקדישו אחר שהשאילו או שהפקיד גוי ונתגייר בעי׳ תחלתן וסופן נכסי הדיוט וישראל כדדרשי׳ במכילתא כי יתן איש אל רעהו וגו׳ ישלם שנים לרעהו ולא להקדש וגוי כדא׳ ומשמע דבעינן רעהו בשעת נתינה ובשעת תשלומין.</p>
               </div>
             </div>
@@ -340,8 +356,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-2-6">Mishneh Torah, Hiring 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה בְּדִין הַשּׁוֹמְרִין בֵּין שֶׁהָיָה הַדָּבָר הַשָּׁמוּר שֶׁל אִשָּׁה אוֹ שֶׁהָיָה בְּיַד הָאִשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד </strong> האיש ואחד האשה בדיני השומרים כדאמרינן פרקא קמא דבבא קמא ואלה המשפטים אשר תשים לפניהם וגו׳ השוה הכתוב אשה לאיש לכל הדינים שבתורה דלפניהם כולן בכלל. קטן שהפקיד נשבעין לו שבועת שומרים לדעת הרב ז&quot;ל כיון ששבועת שמא היא אינה על טענת קטן דאמרינן בעלמא אין נשבעין על טענת קטן דאף על גב דמקרא דהכא ילפינן לה מדכתיב כי יתן איש אל רעהו כסף או כלים לשמור וגו׳ לא לענין שומרים פטרו הכתוב כיון ששבוע׳ של שמא היא אלא עירוב פרשיות&#160;שנו כאן.</p>
               </div>
             </div>
@@ -356,8 +377,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 2:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-2-8">Mishneh Torah, Hiring 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּדֶרֶךְ שֶׁתִּקְּנוּ חֲכָמִים מְשִׁיכָה בְּלָקוֹחוֹת כָּךְ תִּקְּנוּ מְשִׁיכָה בְּשׁוֹמְרִין. הָאוֹמֵר לַחֲבֵרוֹ שְׁמֹר לִי זֶה וְאָמַר לוֹ הַנַּח לְפָנַי הֲרֵי זֶה שׁוֹמֵר חִנָּם. אָמַר לוֹ הַנַּח לְפָנֶיךָ אוֹ הַנַּח סְתָם אוֹ שֶׁאָמַר לוֹ הֲרֵי הַבַּיִת לְפָנֶיךָ אֵינוֹ לֹא שׁוֹמֵר חִנָּם וְלֹא שׁוֹמֵר שָׂכָר וְאֵינוֹ חַיָּב שְׁבוּעָה כְּלָל אֲבָל מַחֲרִים עַל מִי שֶׁלָּקַח הַפִּקָּדוֹן שֶׁלּוֹ וְלֹא יַחֲזִירוֹ לִבְעָלָיו. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. אֶחָד הַמַּפְקִיד אוֹ הַמַּשְׁאִיל אוֹ הַמַּשְׂכִּיר אֶת חֲבֵרוֹ בְּעֵדִים אוֹ שֶׁלֹּא בְּעֵדִים דִּין אֶחָד יֵשׁ לָהֶן כֵּיוָן שֶׁהוֹדָה זֶה מִפִּי עַצְמוֹ שֶׁשָּׁמַר לוֹ אוֹ שֶׁשָּׁאַל מִמֶּנּוּ הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הַשּׁוֹמְרִין שֶׁאֵין אוֹמְרִים מִגּוֹ לְפָטְרוֹ מִשְּׁבוּעָה אֶלָּא לְפָטְרוֹ מִלְּשַׁלֵּם. אֲפִלּוּ הָיָה הַדָּבָר הַשָּׁאוּל אוֹ הַמֻּפְקָד אוֹ הַמֻּשְׂכָּר שְׁוֵה פְּרוּטָה הֲרֵי זֶה הַשּׁוֹמֵר נִשְׁבָּע עָלָיו. וְאֵין אֶחָד מִן הַשּׁוֹמְרִים צָרִיךְ לְהוֹדָיָה בְּמִקְצָת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כדרך </strong> שתקנו משיכה בלקוחות תקנו בשומרים להתחייב בשמירה ואם אמר הנח לפני הרי זה שומר חנם כיון שהניחה ברשותו. דין שבועת שומרים אפילו בלא עדים דלא איברו סהדי אלא לשקרי ואין אומרין מגו שיכול לומר לא קבלתי שום דבר שיהא נאמן בלא שבועה ושבועת שומרים אין צריך הודיה במקצת כדכתיב וגונב מבית האיש וגו׳ ולקח בעליו ולא ישלם אפילו על שוה פרוטה דהוי ממון נשבעין דאף על גב דמכסף או כלים ילפינן שני כסף עירוב פרשיות כתיב כאן ואינו אלא בטענת מודה מקצת.</p>
               </div>
             </div>
@@ -372,8 +398,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 2:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-2-9">Mishneh Torah, Hiring 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַתְנֶה שׁוֹמֵר חִנָּם לִהְיוֹת פָּטוּר מִשְּׁבוּעָה וְהַשּׁוֹאֵל לִהְיוֹת פָּטוּר מִלְּשַׁלֵּם. וְכֵן מַתְנֶה בַּעַל הַפִּקָּדוֹן עַל שׁוֹמֵר חִנָּם אוֹ נוֹשֵׂא שָׂכָר וְשׂוֹכֵר לִהְיוֹת חַיָּבִין בַּכּל כְּשׁוֹאֵל. שֶׁכָּל תְּנַאי בְּמָמוֹן אוֹ בִּשְׁבוּעוֹת שֶׁל מָמוֹן קַיָּם וְאֵין צָרִיךְ קִנְיָן וְלֹא עֵדִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> תנאי שבממון או בשבועות של ממון קיים ואין צריך לא קניין כיון שהתנה בשעת המסירה ולא עדים כיון שהם מודים וכדאמרינן סוף פרק השוכר את הפועלים דלא הוי מתנה על מה שכתוב בתורה אפילו לר׳ מאיר משום דמעיקרא לא שעבד נפשי׳ אלא במה שהתנה ולא ירד לתורת שומרים אלא למקצת. טען שהיה שם תנאי והשומר מכחיש נשבע שבועת שומרים כדינו ומגלגל שלא היה שם תנאי המחייבו דגלגל מדאוריתא כדילפינן בעלמא מדכתיב אמן אמן. טען שלא נעשה שומר או לא היו דברים מעולם או החזרתי אין כאן שבועת שומרים:</p>
               </div>
             </div>
@@ -389,8 +420,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-3-1">Mishneh Torah, Hiring 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֵר שֶׁטָּעַן שֶׁנֶּאֱנַס אֹנֶס גָּדוֹל כְּגוֹן שְׁבוּרָה וּמֵתָה. אִם נֶאֱנַס בְּמָקוֹם שֶׁהָעֵדִים מְצוּיִין שָׁם מַצְרִיכִין אוֹתוֹ רְאָיָה עַל טַעֲנָתוֹ שֶׁנֶּאֱנַס וְיִפָּטֵר אַף מִשְּׁבוּעַת שׁוֹמְרִים וְאִם לֹא הֵבִיא רְאָיָה יְשַׁלֵּם שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ט)</span> &quot;אֵין רֹאֶה&quot; <span class="source-small">(שמות כב י)</span> &quot;שְׁבֻעַת ה׳ תִּהְיֶה בֵּין שְׁנֵיהֶם&quot; הָא בְּמָקוֹם שֶׁאֶפְשָׁר לְהָבִיא רְאָיָה אֵין שָׁם שְׁבוּעָה אֶלָּא אוֹ יָבִיא רְאָיָה אוֹ יְשַׁלֵּם. אֲבָל אִם טָעַן שֶׁנֶּאֱנַס בְּמָקוֹם שֶׁאֵין הָעֵדִים מְצוּיִין שָׁם אֵין מַצְרִיכִין אוֹתוֹ רְאָיָה אֶלָּא יִשָּׁבַע שֶׁנֶּאֱנַס וְיִפָּטֵר. וְאִם הֵבִיא עֵדִים שֶׁלֹּא פָּשַׁע בָּהּ נִפְטָר אַף מִן הַשְּׁבוּעָה. מַעֲשֶׂה בְּאֶחָד שֶׁהֵבִיא חָבִית שֶׁל יַיִן בְּשָׂכָר וּשְׁבָרָהּ בַּשּׁוּק שֶׁל מְחוֹזָא וּבָאוּ לִפְנֵי חֲכָמִים וְאָמְרוּ שׁוּק זֶה שֶׁטָּעַנְתָּ שֶׁנִּשְׁבְּרָה בּוֹ חָבִית בְּנֵי אָדָם מְצוּיִין שָׁם אוֹ תָּבִיא רְאָיָה שֶׁלֹּא פָּשַׁעְתָּ אֶלָּא נִתְקַלְתָּ וְנָפַלְתָּ אוֹ תְּשַׁלֵּם דָּמֶיהָ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שומר </strong> שטען שנאנס במקום שעדים מצוים יביא ראיה ויפטר משבועה ואם לא יביא ראיה ישלם כדדריש איסי סוף האומנים ומת או נשבר או נשבה אין רואה שבועת ה׳ תהיה בין שניהם הא יש רואה יביא ראיה ויפטר ואם לא הביא ראיה אינו נפטר בשבועה אלא ישלם דלא פטר בשבועה אלא כשאין רואה שאין עדים מצויים שם.</p>
               </div>
             </div>
@@ -405,8 +441,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 3:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-3-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-3-2">Mishneh Torah, Hiring 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּעֲבִיר חָבִית מִמָּקוֹם לְמָקוֹם בְּשָׂכָר וְנִשְׁבְּרָה דִּין תּוֹרָה הוּא שֶׁיְּשַׁלֵּם שֶׁאֵין זֶה אֹנֶס גָּדוֹל וַהֲרֵי הַשְּׁבִירָה כִּגְנֵבָה וַאֲבֵדָה שֶׁהוּא חַיָּב בָּהֶן. אֲבָל תִּקְּנוּ חֲכָמִים שֶׁיִּהְיֶה חַיָּב שְׁבוּעָה שֶׁלֹּא פָּשַׁע בָּהּ שֶׁאִם אַתָּה אוֹמֵר יְשַׁלֵּם אֵין לְךָ אָדָם שֶׁיַּעֲבִיר חָבִית לַחֲבֵרוֹ לְפִיכָךְ עָשׂוּ בּוֹ שְׁבִירַת הֶחָבִית כְּמִיתַת הַבְּהֵמָה וּשְׁבִירָתָהּ. וְעוֹד תִּקְּנוּ בְּדָבָר זֶה שֶׁאִם נָשְׂאוּ אוֹתָהּ שְׁנַיִם בְּמוֹט וְנִשְׁבְּרָה מְשַׁלְּמִין חֲצִי דָּמֶיהָ הוֹאִיל וּמַשּׂוֹי זֶה גָּדוֹל לְגַבֵּי אֶחָד וְקַל לְגַבֵּי שְׁנַיִם הֲרֵי הוּא כְּאֹנֶס וְאֵינוֹ אֹנֶס וּמְשַׁלְּמִין מֶחֱצָה אִם יֵשׁ עֵדִים שֶׁלֹּא פָּשְׁעוּ בָּהּ. נִשְׁבְּרָה בְּמָקוֹם שֶׁאֵין הָעֵדִים מְצוּיִין נִשְׁבָּעִין שֶׁלֹּא שְׁבָרוּהָ בִּפְשִׁיעָה וּמְשַׁלְּמִין חֲצִי דָּמֶיהָ. שֶׁהֲרֵי לֹא הָיָה לְכָל אֶחָד לְהַעֲבִיר אֶלָּא מַשּׂוֹי שֶׁיָּכוֹל לְהַעֲבִירוֹ בִּפְנֵי עַצְמוֹ. מִכָּאן אַתָּה לָמֵד שֶׁהָאֶחָד שֶׁהֶעֱבִיר חָבִית גְּדוֹלָה שֶׁאֵין דֶּרֶךְ כָּל הַסַּבָּלִים לְהַעֲבִירָהּ שֶׁהוּא פּוֹשֵׁעַ וְאִם נִשְׁבְּרָה בְּיָדוֹ מְשַׁלֵּם הַכּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבירת </strong> חבית על ידי המעבירה ממקום למקום לא הוי אונס גדול אלא כגניבה ואבידה ומשלם מן התורה וכל שמשלמים דמים משלמים כמה היתה שוה ביום החזרה.</p>
               </div>
             </div>
@@ -421,8 +462,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 3:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-3-4">Mishneh Torah, Hiring 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רוֹעֶה שֶׁבָּאוּ זְאֵבִים וְטָרְפוּ מִמֶּנּוּ אִם הָיָה זְאֵב אֶחָד אֵין זֶה אֹנֶס אֲפִלּוּ בִּשְׁעַת מִשְׁלַחַת זְאֵבִים. וְאִם הָיוּ שְׁנֵי זְאֵבִים הֲרֵי זֶה אֹנֶס. שְׁנֵי כְּלָבִים אֵינָן אֹנֶס אֲפִלּוּ בָּאוּ מִשְּׁתֵי רוּחוֹת. הָיוּ יֶתֶר עַל שְׁנַיִם הֲרֵי זֶה אֹנֶס. לִסְטִים מְזֻיָּן הֲרֵי הוּא אֹנֶס וַאֲפִלּוּ הָיָה הָרוֹעֶה מְזֻיָּן וּבָא לוֹ לִסְטִים אַחֵר מְזֻיָּן הֲרֵי זֶה אֹנֶס שֶׁאֵין הָרוֹעֶה מוֹסֵר נַפְשׁוֹ כְּלִסְטִים. הָאֲרִי וְהַדֹּב וְהַנָּמֵר וְהַבַּרְדְּלָס וְהַנָּחָשׁ הֲרֵי אֵלּוּ אֳנָסִין. אֵימָתַי בִּזְמַן שֶׁבָּאוּ מֵאֲלֵיהֶן. אֲבָל אִם הוֹלִיכָם לִמְקוֹם גְּדוּדֵי חַיּוֹת וְלִיסְטִים אֵין אֵלּוּ אֳנָסִין וְחַיָּב לְשַׁלֵּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני </strong> זאבים שבאו לרועה וטרפו הרי זה אונס ושני כלבים אינם אונס ולא הוי כנשבר או מת וכדתנן במתניתין התם סוף פרק השוכר את הפועלים. ליסטים מזויינין הוי אונס וכן ארי ודוב ונמר וברדלס ונחש הוי אונס דומיא דנשבר או מת והיינו בזמן שבאו מאליהן אבל הוליכן הוא למקומם או הביא הליסטים בהגרותו עמו חייב לשלם ואם היה יכול השומר להביא רועים שומר חנם בחנם ושומר שכר בשכר ולא הביא חייב לשלם. רועה שהניח עדרו ובא לעיר ובאו זאבים וטרפו אומדים אם לא היה יכול להציל על ידי הרועים אם היה שם פטור.</p>
               </div>
             </div>
@@ -437,8 +483,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 3:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-3-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-3-9">Mishneh Torah, Hiring 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵתָה הַבְּהֵמָה כְּדַרְכָּהּ הֲרֵי זֶה אֹנֶס וְהָרוֹעֶה פָּטוּר. סִגְפָהּ וּמֵתָה אֵינוֹ אֹנֶס. תְּקָפַתּוּ וְעָלְתָה לְרָאשֵׁי צוּקִין וּתְקָפַתּוּ וְנָפְלָה הֲרֵי זֶה אֹנֶס. הֶעֱלָהּ לְרָאשֵׁי צוּקִין אוֹ שֶׁעָלְתָה מֵאֵלֶיהָ וְהוּא יָכוֹל לְמָנְעָהּ וְלֹא מְנָעָהּ אַף עַל פִּי שֶׁתְּקָפַתּוּ וְנָפְלָה וּמֵתָה אוֹ נִשְׁבְּרָה חַיָּב שֶׁכָּל שֶׁתְּחִלָּתוֹ בִּפְשִׁיעָה וְסוֹפוֹ בְּאֹנֶס חַיָּב. וְכֵן רוֹעֶה שֶׁהֶעֱבִיר הַבְּהֵמוֹת עַל הַגֶּשֶׁר וְדָחֲפָה אַחַת מֵהֶן לַחֲבֵרְתָהּ וְנָפְלָה לְשִׁבּלֶת הַנָּהָר הֲרֵי זֶה חַיָּב שֶׁהָיָה לוֹ לְהַעֲבִירָן אַחַת אַחַת שֶׁאֵין הַשּׁוֹמֵר נוֹטֵל שָׂכָר אֶלָּא לִשְׁמֹר שְׁמִירָה מְעֵלָּה וְהוֹאִיל וּפָשַׁע בַּתְּחִלָּה וְהֶעֱבִירָן כְּאֶחָד אַף עַל פִּי שֶׁנֶּאֱנַס בַּסּוֹף בְּעֵת הַנְּפִילָה הֲרֵי הוּא חַיָּב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סגף </strong> הבהמה ומתה לא הוי אונס העלה לראשי צוקין או שהיה יכול למנעה ולא מנעה ונפלה ומתה או נשברה חייב שתחלתו בפשיעה וסופו באונס חייב דבתר מעיקרא אזלינן והרי פשע דנשבר או מת דפטר רחמנא היינו שמת שלא מחמתו ואם פשע בה ומתה שם כדרכה אין יציאתה גרמה לה דכיון דמתה כדרכה מה לי הכא מה לי התם ופטור אבל נגנבה משם ומתה ביד הגנב חייב דיציאתה גרמה להגנב והרי היתה אבודה ביד הגנב כדאמרינן התם פרק המפקיד:</p>
               </div>
             </div>
@@ -454,8 +505,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-4-1">Mishneh Torah, Hiring 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׂוֹכֵר אֶת הַחֲמוֹר לְהוֹלִיכָהּ בָּהָר וְהוֹלִיכָהּ בַּבִּקְעָה אִם הֻחְלְקָה פָּטוּר אַף עַל פִּי שֶׁעָבַר עַל דַּעַת הַבְּעָלִים. וְאִם הוּחַמָּה חַיָּב. שְׂכָרָהּ לְהוֹלִיכָהּ בַּבִּקְעָה וְהוֹלִיכָהּ בָּהָר אִם הֻחְלְקָה חַיָּב שֶׁהַחֲלָקוּת יֶתֶר בָּהָר מִן הַבִּקְעָה. וְאִם הוּחַמָּה פָּטוּר שֶׁחֲמִימוּת בַּבִּקְעָה יֶתֶר מִן הָהָר מִפְּנֵי הָרוּחַ שֶׁמְּנַשֶּׁבֶת בְּרֹאשׁ הֶהָרִים. וְאִם הוּחַמָּה מֵחֲמַת הַמַּעֲלָה חַיָּב וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְכֵן הַשּׂוֹכֵר אֶת הַפָּרָה לַחְרשׁ בָּהָר וְחָרַשׁ בַּבִּקְעָה וְנִשְׁבַּר הַקַּנְקַן וְהוּא הַכְּלִי שֶׁחוֹרֵשׁ בּוֹ הֲרֵי הַשּׂוֹכֵר פָּטוּר וְדִין בַּעַל הַפָּרָה עִם הָאֻמָּנִין שֶׁחָרְשׁוּ. וְכֵן אִם לֹא שִׁנָּה עַל דַּעַת הַבְּעָלִים וְנִשְׁבַּר הַקַּנְקַן דִּין בַּעַל הַפָּרָה עִם הָאֻמָּנִין. שְׂכָרָהּ לַחְרשׁ בַּבִּקְעָה וְחָרַשׁ בָּהָר וְנִשְׁבַּר הַקַּנְקַן הַשּׂוֹכֵר חַיָּב וְדִינוֹ שֶׁל שׂוֹכֵר עִם הָאֻמָּנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השוכר </strong> חמור להוליכו למקום אחד או פרה לחרוש בה במקום אחד ושנה והוזק החמור או נשבר הקנקן של הפרה שחורשין בו אם היה השינוי סבת ההיזק חייב דלא הוי אונס כיון ששנה. ואם הוסיף על משא&#160;האדם אחד משלשים שלא מדעתו חייב בנזקו ושוכר בהמה סתם לא ישנה ממנהג המדינה:</p>
               </div>
             </div>
@@ -471,8 +527,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-5-1">Mishneh Torah, Hiring 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׂוֹכֵר אֶת הַבְּהֵמָה וְחָלְתָה אוֹ נִשְׁתטֵּית אוֹ נִלְקְחָה לַעֲבוֹדַת הַמֶּלֶךְ אַף עַל פִּי שֶׁאֵין סוֹפָהּ לַחְזֹר אִם נִלְקְחָה דֶּרֶךְ הֲלִיכָה הֲרֵי הַמַּשְׂכִּיר אוֹמֵר לַשּׂוֹכֵר הֲרֵי שֶׁלְּךָ לְפָנֶיךָ וְחַיָּב לִתֵּן לוֹ שְׂכָרוֹ מָשְׁלָם. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁשְּׂכָרָהּ לָשֵׂאת עָלֶיהָ מַשּׂוֹי שֶׁאֶפְשָׁר לְהַשְׁלִיכוֹ בְּלֹא הַקְפָּדָה אֲבָל אִם שְׂכָרָהּ לִרְכֹּב עָלֶיהָ אוֹ לָשֵׂאת עָלֶיהָ כְּלֵי זְכוּכִית וְכַיּוֹצֵא בָּהֶן חַיָּב לְהַעֲמִיד לוֹ חֲמוֹר אַחֵר אִם שָׂכַר מִמֶּנּוּ חֲמוֹר וְאִם לֹא הֶעֱמִיד יַחְזִיר הַשָּׂכָר וְיַחְשֹׁב עִמּוֹ עַל שָׂכָר כַּמָּה שֶׁהָלַךְ בָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המשכיר </strong> לחבירו חמור או ספינה או בית החיוב והפטור כמו שכתב הרב ז&quot;ל מהמשנה וגמרא הוא מן התורה דסברא היא דבכה&quot;ג חייב ובכה&quot;ג פטור ודינין אלו פרק האומנין:</p>
               </div>
             </div>
@@ -488,8 +549,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-6-1">Mishneh Torah, Hiring 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּשְׂכִּיר בַּיִת לַחֲבֵרוֹ בְּבִירָה גְּדוֹלָה מִשְׁתַּמֵּשׁ בְּזִיזֶיהָ וּבִכְתָלֶיהָ עַד אַרְבַּע אַמּוֹת וּבְתַרְבַּץ שֶׁל חָצֵר וּבָרְחָבָה שֶׁאֲחוֹרֵי הַבָּתִּים. וּמָקוֹם שֶׁנָּהֲגוּ לְהִשְׁתַּמֵּשׁ בָּעֳבִי הַכְּתָלִים מִשְׁתַּמֵּשׁ בָּעֳבִי הַכְּתָלִים. וּבְכָל אֵלּוּ הַדְּבָרִים הוֹלְכִין אַחַר מִנְהַג הַמְּדִינָה וְהַשֵּׁמוֹת הַיְדוּעִין לָהֶם כְּדֶרֶךְ שֶׁאָמַרְנוּ בְּעִנְיַן מִקָּח וּמִמְכָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המשכיר </strong> בית לחבירו מה שהוא משתמש בו ומה שחייב לעשות במה שחייב המשכיר הכל מן&#160;התורה ומסברא וכן זמני השכירות והיציאות מן הבית:</p>
               </div>
             </div>
@@ -505,8 +571,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-7-1">Mishneh Torah, Hiring 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁמַּתְנֶה אָדָם כָּל תְּנַאי שֶׁיִּרְצֶה בְּמִקָּח וּמִמְכָּר כָּךְ מַתְנֶה בִּשְׂכִירוּת שֶׁהַשְּׂכִירוּת מְכִירָה לִזְמַן קָצוּב הִיא וְכָל שֶׁמִּמְכָּרוֹ בִּנְכָסָיו מִמְכָּר שׂוֹכֵר שְׂכִירוּתוֹ שְׂכִירוּת. וְכָל שֶׁאֵין לוֹ לִמְכֹּר כָּךְ אֵין לוֹ לִשְׂכֹּר אֶלָּא אִם כֵּן יֵשׁ לוֹ פֵּרוֹת בִּלְבַד בְּאוֹתָהּ הַקַּרְקַע הֲרֵי זֶה שׂוֹכֵר וְאֵינוֹ מוֹכֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> תנאי שבממון קיים כדאמרינן לעיל וכל קרקע הידוע לא׳ הוא בחזקתו והמע&quot;ה כדילפינן בעלמא והשבועות מדרבנן:</p>
               </div>
             </div>
@@ -522,8 +593,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-8-1">Mishneh Torah, Hiring 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַשּׂוֹכֵר מֵחֲבֵרוֹ שָׂדֶה לְזָרְעָהּ אוֹ כֶּרֶם לֶאֱכל פֵּרוֹתָיו בְּדָמִים אוֹ שֶׁשָּׂכַר מִמֶּנּוּ בְּפֵרוֹת קְצוּבִים כְּגוֹן שֶׁשָּׂכַר מִמֶּנּוּ שָׂדֶה זוֹ בְּעֶשְׂרִים כּוֹר בְּשָׁנָה וְכֶרֶם זֶה בְּעֶשְׂרִים כַּדֵּי יַיִן בְּכָל שָׁנָה שְׁנֵיהֶן דִּין אֶחָד יֵשׁ לָהֶן. וְהַשּׂוֹכֵר בְּפֵרוֹת הוּא הַנִּקְרָא חוֹכֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> השוכר </strong> או החוכר או המקבל מה שחייב לעשות הוא ומה שחייב בעל הקרקע ומה שיזרעו בקרקע ודיני בית השלחין בשיבש המעין או נקצץ האילן של בית האילן מה שהוא מוכר וכן אם אכלה חגב או נשתדפה השדה שקבל ומה שהוא מנהג המדינה לענין הקצירה או עקירה או חרישה ומה שנותן לו חכירותו מתוך השדה או הכרם או ממקום אחר ומה שזורע בשדה ומה שאינו זורע ומה שיש לו למקבל בשבח השדה ומה שמקבל עליו בעל השדה בנטעים וחיוב המקבל ליטפל בשדה או חוכרה כל דינין אלו מן התורה דרך סברא או מנהג&#160;המדינה:</p>
               </div>
             </div>
@@ -539,8 +615,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 9:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-9-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-9-1">Mishneh Torah, Hiring 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׂוֹכֵר אֶת הַפּוֹעֲלִים וְאָמַר לָהֶם לְהַשְׁכִּים וּלְהַעֲרִיב מָקוֹם שֶׁנָּהֲגוּ שֶׁלֹּא לְהַשְׁכִּים וְשֶׁלֹּא לְהַעֲרִיב אֵינוֹ יָכוֹל לְכוּפָן. מָקוֹם שֶׁנָּהֲגוּ לָזוּן יָזוּן. לְסַפֵּק בִּגְרוֹגָרוֹת אוֹ בִּתְמָרִים וְכַיּוֹצֵא בָּהֶן לְפוֹעֲלִים יְסַפֵּק הַכֹּל כְּמִנְהַג הַמְּדִינָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שכירות </strong> הפועלים הכל כמנהג המדינה ומה שביניהם לבעל הבית או לשלוחו הדין כמו שכתב הרב ז&quot;ל מן הגמרא דסברא הוא דדינא הכי. פועל חוזר בו בחצי היום בדבר שאינו אבוד דכתיב כי לי בני ישראל עבדים ולא עבדים לעבדים ושמין לו מה שעשה או מה שעתיד לעשות אם היה קבלן. וכל שאר הפרק דיניו&#160;נלמדין דרך סברא ומציאת פועל לעצמו אם לא כששכרו למציאות:</p>
               </div>
             </div>
@@ -556,8 +637,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 10:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-10-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-10-1">Mishneh Torah, Hiring 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּלְוֶה אֶת חֲבֵרוֹ עַל הַמַּשְׁכּוֹן בֵּין שֶׁהִלְוָהוּ מָעוֹת בֵּין שֶׁהִלְוָהוּ פֵּרוֹת בֵּין שֶׁמִּשְׁכְּנוֹ בִּשְׁעַת הַלְוָאָתוֹ בֵּין שֶׁמִּשְׁכְּנוֹ אַחַר שֶׁהִלְוָהוּ הֲרֵי זֶה שׁוֹמֵר שָׂכָר. לְפִיכָךְ אִם אָבַד הַמַּשְׁכּוֹן אוֹ נִגְנַב חַיָּב בְּדָמָיו. וְאִם נֶאֱנַס הַמַּשְׁכּוֹן כְּגוֹן שֶׁנִּלְקַח בְּלִסְטִים מְזֻיָּן וְכַיּוֹצֵא בּוֹ מִשְּׁאָר אֳנָסִין יִשָּׁבַע שֶׁנֶּאֱנַס וִישַׁלֵּם בַּעַל הַמַּשְׁכּוֹן אֶת חוֹבוֹ עַד פְּרוּטָה אַחֲרוֹנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלוה </strong> את חברו על המשכון בכל גוונא הוי שומר שכר כדתנן התם פרק האומנין ובגמרא מסקינן טעמא משום פרוטה דרב יוסף דמצוה קעביד דהלוה לחברו ומשום דמצוה קא עביד מיפטר מלמיתב ריפתא לעניא דקי&quot;ל העוסק במצוה פטור מן המצוה ולהכי הוי שומר שכר דכיון דבשעת הלואה נשכר בפרוטה דרב יוסף נמצא שהוא שומר שכר עליו לעולם כמו שכתב בנימוקי יוסף בשם הרשב&quot;א ז&quot;ל והראב&quot;ד ז&quot;ל כתב דכל שעתא נמי הוי שומר שכר מפני שממתין לו ואינו מוכר המשכון ליפרע ממנו דמשמע שהוא פטור מפרוטה לעני כל זמן המשך המשכון בידו כמו שכתבו שם.</p>
               </div>
             </div>
@@ -572,8 +658,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 10:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-10-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 10:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-10-2">Mishneh Torah, Hiring 10:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הָאוֹמֵר לַחֲבֵרוֹ שְׁמֹר לִי וְאֶשְׁמֹר לְךָ הֲרֵי זֶה שְׁמִירָה בַּבְּעָלִים. אָמַר לוֹ שְׁמֹר לִי הַיּוֹם וְאֶשְׁמֹר לְךָ לְמָחָר. הַשְׁאִילֵנִי הַיּוֹם וַאֲנִי אַשְׁאִילְךָ לְמָחָר. שְׁמֹר לִי הַיּוֹם וְאַשְׁאִילְךָ לְמָחָר. הַשְׁאִילֵנִי הַיּוֹם וְאֶשְׁמֹר לְךָ לְמָחָר. כֻּלָּן נַעֲשׂוּ שׁוֹמְרֵי שָׂכָר זֶה לָזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שמור </strong> לי ואשמור לך הוי שומר שכר וכן בשאלה וחייב כשאינם בבעלים וכדאיתא התם.</p>
               </div>
             </div>
@@ -588,8 +679,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 10:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-10-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 10:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-10-3">Mishneh Torah, Hiring 10:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הָאֻמָּנִין שׁוֹמְרֵי שָׂכָר הֵן. וְכֻלָּן שֶׁאָמְרוּ טל אֶת שֶׁלְּךָ וְהָבֵא מָעוֹת אוֹ שֶׁאוֹמֵר לוֹ הָאֻמָּן גְּמַרְתִּיו וְלֹא לָקְחוּ הַבְּעָלִים אֶת הַכְּלִי הָאֻמָּן שׁוֹמֵר חִנָּם. אֲבָל אִם אָמַר הָאֻמָּן הָבֵא מָעוֹת וְטל שֶׁלְּךָ עֲדַיִן הוּא נוֹשֵׂא שָׂכָר כְּשֶׁהָיָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> האומנין שומרי שכר הן בההיא הנאה דקתפיס המלאכה עד שיתן לו שכרו הוי כשומר שכר כדאמר׳ התם ואם אמר טול שלך והבא מעות או כבר גמרתיו מעתה הוי שומר חנם. נתן לאומנין וקלקלו חייבים שהם שומרי שכר וכל החיוב והפטור של האומן מטעם זה:</p>
               </div>
             </div>
@@ -605,8 +701,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 11:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-11-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 11:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-11-1">Mishneh Torah, Hiring 11:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִתֵּן שְׂכַר הַשָּׂכִיר בִּזְמַנּוֹ שׁנֶּאֱמַר <span class="source-small">(דברים כד טו)</span> &quot;בְּיוֹמוֹ תִתֵּן שְׂכָרוֹ&quot; וְגוֹ׳. וְאִם אִחֲרוֹ לְאַחַר זְמַנּוֹ עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כד טו)</span> &quot;וְלֹא תָבוֹא עָלָיו הַשֶּׁמֶשׁ&quot;. וְאֵין לוֹקִין עָלָיו שֶׁהֲרֵי הוּא חַיָּב לְשַׁלֵּם. אֶחָד שְׂכַר הָאָדָם וְאֶחָד שְׂכַר הַבְּהֵמָה וְאֶחָד שְׂכַר הַכֵּלִים חַיָּב לִתֵּן בִּזְמַנּוֹ וְאִם אִחֵר לְאַחַר זְמַן עוֹבֵר בְּלֹא תַּעֲשֶׂה. וְגֵר תּוֹשָׁב יֵשׁ בּוֹ מִשּׁוּם בְּיוֹמוֹ תִתֵּן שְׂכָרוֹ וְאִם אִחֲרוֹ אֵינוֹ עוֹבֵר בְּלֹא תַּעֲשֶׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות ריב </strong> ליתן שכר השכיר בזמנו דכתי׳ ביומו תתן שכרו וגו׳ ואף על גב דבשכר לילה כתיב סבירא ליה לרב ז&quot;ל דבלילה עובר בשל יום ובשל יום עובר אף בשל לילה ואם כן עשה דביומו תתן שכרו הוא על כל שכיר:<br><strong> אזהרת שז </strong> שלא יאחר שכר שכיר אחר זמנו דכתיב ולא תבא עליו השמש ואין לוקין על לאו זה שהרי הוא חייב לשלם דקי&quot;ל פרק אלו הן הלוקין דכל המשלם אינו לוקה. אחד שכר האדם או בהמה או כלים חייב ליתן ועובר כדתנן במתני׳ פרק המקבל דף קי&quot;א ובגמרא אין לי אלא שכר אדם מנין לרבות בהמה וכלים תלמוד לומר בארצך כל שבארצך. וגר תושב יש בו משום ביומו תתן שכרו ואם איחר אינו עובר בלא תעשה משום בל תלין כדתנן במתני׳ וכתנא דבי רבי ישמעאל וילפינן בהמה וכלים ללא תלין מדכתיב ולא תלין פעולת שכיר אתך עד בקר כל שפעולתו אתך ואפילו בהמה וכלים דאתך קרא יתירא הוא וכתיב ברישיה דהאי קרא לא תעשק את רעך וגו׳ ודרשינן רעך ולא גר תושב.</p>
               </div>
             </div>
@@ -621,8 +722,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 11:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-11-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 11:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-11-2">Mishneh Torah, Hiring 11:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַכּוֹבֵשׁ שְׂכַר שָׂכִיר כְּאִלּוּ נָטַל נַפְשׁוֹ מִמֶּנּוּ שֶׁנֶּאֱמַר <span class="source-small">(דברים כד טו)</span> &quot;וְאֵלָיו הוּא נשֵֹׁא אֶת נַפְשׁוֹ&quot;. וְעוֹבֵר בְּאַרְבַּע אַזְהָרוֹת וַעֲשֵׂה. עוֹבֵר מִשּׁוּם בַּל <span class="source-small">(ויקרא יט יג)</span> &quot;תַּעֲשֹׁק&quot; וּמִשּׁוּם בַּל <span class="source-small">(ויקרא יט יג)</span> &quot;תִּגְזל&quot; וּמִשּׁוּם לֹא תָלִין פְּעֻלַּת שָׂכִיר וּמִשּׁוּם <span class="source-small">(דברים כד טו)</span> &quot;לֹא תָבוֹא עָלָיו הַשֶּׁמֶשׁ&quot; וּמִשּׁוּם <span class="source-small">(דברים כד טו)</span> &quot;בְּיוֹמוֹ תִתֵּן שְׂכָרוֹ&quot;. אֵי זֶהוּ זְמַנּוֹ שְׂכִיר יוֹם גּוֹבֶה כָּל הַלַּיְלָה וְעָלָיו נֶאֱמַר <span class="source-small">(ויקרא יט יג)</span> &quot;לֹא תָלִין פְּעֻלַּת שָׂכִיר אִתְּךָ עַד בֹּקֶר&quot;. וּשְׂכִיר לַיְלָה גּוֹבֶה כָּל הַיּוֹם וְעָלָיו נֶאֱמַר בְּיוֹמוֹ תִתֵּן שְׂכָרוֹ. וּשְׂכִיר שָׁעוֹת שֶׁל יוֹם גּוֹבֶה כָּל הַיּוֹם וּשְׂכִיר שָׁעוֹת שֶׁל לַיְלָה גּוֹבֶה כָּל הַלַּיְלָה. שְׂכִיר שַׁבָּת שְׂכִיר חֹדֶשׁ שְׂכִיר שָׁנָה שְׂכִיר שָׁבוּעַ יָצָא בַּיּוֹם גּוֹבֶה כָּל הַיּוֹם יָצָא בַּלַּיְלָה גּוֹבֶה כָּל (אוֹתוֹ) הַלַּיְלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הכובש שכר שכיר כאלו נוטל נפשו כדכתיב ואליו הוא נושא את נפשו ועובר בארבע לאוין ועשה משום בל תלין האמור בת&quot;כ והוא הדין לא תעשק ולא תגזול דכתיב גביה ומשום לא תבוא עליו השמש דכתיב בכי תצא ומשום עשה דביומו תתן שכרו. שכיר יום גובה כל הלילה ונאמר עליו לא תלין פעולת שכיר אתך עד בקר ושכיר לילה גובה כל היום ונאמר עליו ביומו תתן שכרו ושכיר שעות ביום של יום גובה כל היום ונאמר עליו ביומו תתן שכרו ושכיר שעות של לילה כל הלילה כרב דאמר הכי התם דכיון שכלתה שכירותו מחצות איכא משום לא תבוא ושכיר שעות בלילה נמי לכשיעלה עמוד השחר עובר משום בל תלין דהא נשתעבד לו קודם לכן וכן שכיר שבת או חודש או שנה או שבוע יצא בלילה גובה כל אותו הלילה דהא נשתעבד לו קודם כרב כדאמר׳ דאתי כרבי יהודה לגבי רבי שמעון. וכל שהכלי ביד האומן אפילו שגמרו אינו עובר וכשנתנה לו בחצי היום כיון ששקעה עליו חמה עובר משום בל תלין דהוי כשכיר שעות ביום דקבלנות כשכירות הוא כדפשיט התם רב ששת דעובר דאין אומן קונה בשבח כלי ושכירות הוא דאי הוה קונה הוה הלואה ולא שם שכירות.</p>
               </div>
             </div>
@@ -637,8 +743,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 11:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-11-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 11:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-11-4">Mishneh Torah, Hiring 11:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹמֵר לִשְׁלוּחוֹ צֵא וּשְׂכֹר לִי פּוֹעֲלִים. אָמַר לָהֶם שְׂכַרְכֶם עַל בַּעַל הַבַּיִת שְׁנֵיהֶם אֵינָן עוֹבְרִין מִשּׁוּם בַּל <span class="source-small">(ויקרא יט יג)</span> &quot;תָּלִין&quot; זֶה לְפִי שֶׁלֹּא שְׂכָרָן וְזֶה לְפִי שֶׁאֵין פְּעֻלָּתָן אֶצְלוֹ. וְאִם לֹא אָמַר לָהֶם שְׂכַרְכֶם עַל בַּעַל הַבַּיִת הַשָּׁלִיחַ עוֹבֵר. אֵין הַשּׂוֹכֵר עוֹבֵר אֶלָּא בִּזְמַן שֶׁתְּבָעוֹ הַשָּׂכִיר וְלֹא נָתַן לוֹ אֲבָל אִם לֹא תְּבָעוֹ אוֹ שֶׁתְּבָעוֹ וְלֹא הָיָה לוֹ מַה יִּתֵּן לוֹ אוֹ שֶׁהִמְחָהוּ אֵצֶל אַחֵר וְקִבֵּל הֲרֵי זֶה פָּטוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שליח </strong> שאמר לפועלים שכרכם על בע&quot;ה הוא אינו עובר לפי שאין פעולתו עליו ולא קרינא ביה פעולתו אתך ובעל הבית אינו עובר משום שלא שכרו ולא קרינא ביה שכיר גביה ואם אמר שכרכם עלי שכרו עליו הוא וכן כשלא אמר שכרכם על בע&quot;ה מסתמא הוא עליו ונוטל מבע&quot;ה מה שהקנהו כדאיתא התם. אינו עובר אלא בזמן שתבעו ויש לו כדתניא התם לא תלין פעולת שכיר יכול אפי׳ לא תבעו ת&quot;ל אתך לדעתך שלא מדעתו [לא] יכול אפילו אין לו ת&quot;ל אתך שיש אתך יכול אפילו המחהו אצל שולחני ת&quot;ל אתך ולא שהמחהו.</p>
               </div>
             </div>
@@ -653,8 +764,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 11:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-11-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 11:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-11-5">Mishneh Torah, Hiring 11:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּשְׁהֶה שְׂכַר שָׂכִיר עַד אַחַר זְמַנּוֹ אַף עַל פִּי שֶׁכְּבָר עָבַר בַּעֲשֵׂה וְלֹא תַּעֲשֶׂה הֲרֵי זֶה חַיָּב לִתֵּן מִיָּד. וְכָל עֵת שֶׁיִּשְׁהֶה עוֹבֵר עַל לָאו שֶׁל דִּבְרֵיהֶם שֶׁנֶּאֱמַר <span class="source-small">(משלי ג כח)</span> &quot;אַל תֹּאמַר לְרֵעֲךָ לֵךְ וָשׁוּב&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המשהא </strong> עד אחר זמנו אף על פי שכבר עבר בעשה ולא תעשה כדדרשינן התם עד בקר מלמד שאינו עובר אלא עד בקר ראשון בלבד ממשמע שנאמר לא תלין הייתי יודע שעד בקר הוא דכל לינה שבמקרא לינת לילה היא אפילו הכי חייב ליתן מיד.</p>
               </div>
             </div>
@@ -669,8 +785,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 11:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-11-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 11:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-11-6">Mishneh Torah, Hiring 11:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל שָׂכִיר שֶׁשְּׂכָרוֹ בְּעֵדִים וּתְבָעוֹ בִּזְמַנּוֹ וְאָמַר בַּעַל הַבַּיִת נָתַתִּי לְךָ שְׂכָרְךָ וְהַשָּׂכִיר אוֹמֵר לֹא נָטַלְתִּי כְּלוּם תִּקְּנוּ חֲכָמִים שֶׁיִּשָּׁבַע הַשָּׂכִיר בִּנְקִיטַת חֵפֶץ וְיִטּל כְּדִין כָּל נִשְׁבָּע וְנוֹטֵל מִפְּנֵי שֶׁבַּעַל הַבַּיִת טָרוּד בְּפוֹעֲלָיו וְזֶה הַשָּׂכִיר נוֹשֵׂא נַפְשׁוֹ לָזֶה. אֲפִלּוּ הָיָה הַשָּׂכִיר קָטָן הַשָּׂכִיר נִשְׁבָּע וְנוֹטֵל. שְׂכָרוֹ שֶׁלֹּא בְּעֵדִים מִתּוֹךְ שֶׁיָּכוֹל לוֹמַר לֹא הָיוּ דְּבָרִים מֵעוֹלָם וְלֹא שְׂכַרְתִּיךָ נֶאֱמָן לוֹמַר שְׂכַרְתִּיךָ וְנָתַתִּי לְךָ שְׂכָרְךָ וְיִשָּׁבַע בַּעַל הַבַּיִת הֶסֵּת שֶׁנָּתַן אוֹ שְׁבוּעַת הַתּוֹרָה אִם הוֹדָה בְּמִקְצָת כִּשְׁאָר הַטְּעָנוֹת. הָיָה לוֹ עֵד אֶחָד שֶׁשְּׂכָרוֹ אֵינוֹ מוֹעִיל לוֹ כְּלוּם וְכֵן אִם תְּבָעוֹ אַחַר זְמַנּוֹ אַף עַל פִּי שֶׁשְּׂכָרוֹ בְּעֵדִים הַמּוֹצִיא מֵחֲבֵרוֹ עָלָיו הָרְאָיָה. וְאִם לֹא הֵבִיא רְאָיָה יִשָּׁבַע בַּעַל הַבַּיִת הֶסֵּת. הֵבִיא רְאָיָה שֶׁתְּבָעוֹ כָּל זְמַנּוֹ הֲרֵי זֶה נִשְׁבָּע וְנוֹטֵל כָּל אוֹתוֹ הַיּוֹם שֶׁל תְּבִיעָה. כֵּיצַד. הָיָה עוֹשֶׂה עִמּוֹ בְּיוֹם שֵׁנִי עַד הָעֶרֶב זְמַנּוֹ כָּל לֵיל שְׁלִישִׁי וּבַיּוֹם הַשְּׁלִישִׁי אֵינוֹ נִשְׁבָּע וְנוֹטֵל. וְאִם הֵבִיא עֵדִים שֶׁהָיָה תּוֹבְעוֹ כָּל לֵיל שְׁלִישִׁי הֲרֵי זֶה נִשְׁבָּע וְנוֹטֵל כָּל יוֹם שְׁלִישִׁי. אֲבָל מִלֵּיל רְבִיעִי וָהָלְאָה הַמּוֹצִיא מֵחֲבֵרוֹ עָלָיו הָרְאָיָה. וְכֵן אִם הֵבִיא עֵדִים שֶׁהָיָה תּוֹבְעוֹ וְהוֹלֵךְ עַד יוֹם חֲמִישִׁי הֲרֵי זֶה נִשְׁבָּע וְנוֹטֵל כָּל יוֹם חֲמִישִׁי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבועת </strong> שבין שכיר ובעל הבית מדרבנן דמדאוריתא המוציא מחבירו עליו הראיה כדילפינן בעלמא ואם יש הודאה במקצת יש שבועה מן התורה:</p>
               </div>
             </div>
@@ -686,8 +807,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 12:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-12-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 12:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-12-1">Mishneh Torah, Hiring 12:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַפּוֹעֲלִים שֶׁהֵן עוֹשִׂין בְּדָבָר שֶׁגִּדּוּלוֹ מִן הָאָרֶץ וַעֲדַיִן לֹא נִגְמְרָה מְלַאכְתּוֹ בֵּין בְּתָלוּשׁ בֵּין בִּמְחֻבָּר וְיִהְיוּ מַעֲשֵׂיהֶן גְּמִירַת הַמְּלָאכָה הֲרֵי עַל בַּעַל הַבַּיִת מִצְוָה שֶׁיַּנִּיחַ אוֹתָן לֶאֱכל מִמַּה שֶּׁהֵן עוֹשִׂין בּוֹ. שֶׁנֶּאֱמַר <span class="source-small">(דברים כג כה)</span> &quot;כִּי תָבֹא בְּכֶרֶם רֵעֶךָ&quot; וְגוֹ׳ וְכָתוּב <span class="source-small">(דברים כג כו)</span> &quot;כִּי תָבֹא בְּקָמַת רֵעֶךָ&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁאֵין הַכָּתוּב מְדַבֵּר אֶלָּא בְּשָׂכִיר וְכִי אִלּוּ לֹא שְׂכָרוֹ מִי הִתִּיר לוֹ שֶׁיָּבוֹא בְּכֶרֶם רֵעֵהוּ בַּקָּמָה שֶׁלּוֹ שֶׁלֹּא מִדַּעְתּוֹ אֶלָּא כָּךְ הוּא אוֹמֵר כִּי תָבֹא לִרְשׁוּת בְּעָלִים לַעֲבוֹדָה תֹּאכַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות ריג </strong> שיניח בעל הבית לשכיר שיאכל ממה שהוא עושה בו בגידולי קרקע כדכתיב כי תבא בכרם רעך ואכלת ענבים כנפשך שבעך ואל כליך לא תתן וכתיב כי תבא בקמת רעך וקטפת מלילות בידך וחרמש לא תניף על קמת רעך וכדתנן פרק השוכר את הפועלים דף פ&quot;ז ותניא כי תבא נאמר כאן ביאה ונאמר להלן ביאה ולא תבא עליו השמש מה להלן בפועל הכתוב מדבר אף כאן בפועל ואשכחן כרם כל מילי מנלן כתיב קמה כי תבא בקמת רעך וגו׳ ואי פרכ׳ מה לקמה שכן חייבת בחלה כרם יוכיח מה לכרם שחייב בעוללות קמה תוכיח וחזר הדין לא ראי זה כראי זה הצד השוה שבהן שכן דבר שגידולי קרקע ובשעת גמר מלאכה פועל אוכל בו כדכתיב ואל כליך לא תתן בסיפי׳ דקרא דמשמע אלא לכליו של בעל הבית תתן אלמא בשעת מלאכת חיבורן קאי ובקרא דקמה נמי כתיב וחרמש לא תניף אלמא בשעת חרמש קאי אף כל שהוא גידולי קרקע וגמר מלאכה פועל אוכל בו ומשום דאיכא למיפרך מה לצד השוה שכן יש בהם צד מזבח יין לנסכים וסלת למנחות ילפינן מדכתיב וחרמש לרבות כל בעלי חרמש ומשום דאיכא דלאו בר חרמש כגון מוסק בזתים וגודר בתמרים דרשינן ליה מקמה לרבות כל בעלי קומה העומדים בקומה בארץ והכל בכלל ואף על גב דקמה מחייב השתא דאתי חרמש ואיתרבי ליה כל דבר חרמש אף על גב דלא מחייב בחלה קמה למה לי לרבות כל בעלי קמה כדאמרינן והשתא דנפקא לן מחרמש ומקמה קרא דכי תבא בכרם רעך למה לי להלכותיו לא תבא בכרם וכו׳ בפועל מיירי דנאמר כאן ביאה וכו׳ כדאמרינן לעיל וכולי קרא דרשינן ליה.</p>
               </div>
             </div>
@@ -702,8 +828,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 12:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-12-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 12:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-12-2">Mishneh Torah, Hiring 12:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַה בֵּין הָעוֹשֶׂה בְּתָלוּשׁ לְעוֹשֶׂה בִּמְחֻבָּר. שֶׁהָעוֹשֶׂה בְּתָלוּשׁ אוֹכֵל בַּדָּבָר עַד שֶׁלֹּא נִגְמַר מְלַאכְתּוֹ וּמִשֶּׁתִּגָּמֵר מְלַאכְתּוֹ אָסוּר לוֹ לֶאֱכל. וְהָעוֹשֶׂה בִּמְחֻבָּר כְּגוֹן בּוֹצֵר וְקוֹצֵר אֵינוֹ אוֹכֵל אֶלָּא כְּשֶׁיִּגְמֹר עֲבוֹדָתוֹ כְּגוֹן שֶׁיִּבְצֹר וְיִתֵּן בַּסַּל עַד שֶׁיְּמַלְּאֶנּוּ וִינַפֵּץ הַסַּל לְמָקוֹם אַחֵר וְיַחְזֹר וְיִבְצֹר וִימַלְּאֶנּוּ וְאֵינוֹ אוֹכֵל אֶלָּא עַד אַחַר שֶׁיְּמַלֵּא הַסַּל. אֲבָל מִפְּנֵי הֶשֵּׁב אֲבֵדָה לַבְּעָלִים אָמְרוּ חֲכָמִים שֶׁיִּהְיוּ הַפּוֹעֲלִין אוֹכְלִין בַּהֲלִיכָתָן מֵאֹמֶן לְאֹמֶן וּבַחֲזִירָתָן מִן הַגַּת כְּדֵי שֶׁלֹּא יִבָּטְלוּ מִמְּלַאכְתָּן וְיֵשְׁבוּ לֶאֱכל אֶלָּא אוֹכְלִין בְּתוֹךְ הַמְּלָאכָה כְּשֶׁהֵן מְהַלְּכִין וְאֵינָן מְבַטְּלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה </strong> בתלוש שהוא גידולי קרקע אינו אוכל אלא עד שלא יגמור עבודתו והעושה במחובר בקוצר ובוצר אינו אוכל אלא כשיגמור כגון שימלא הסל כשהוא בוצר כדתנן התם במתני׳ ואמרינן בגמרא אדם שאוכל בתלוש מנא לן דכתיב קמה קמה שתי פעמים אם אינו ענין לאדם במחובר תנהו ענין לאדם בתלוש ור׳ אמי אמר לא צריך קרא דכתיב כי תבא בכרם רעך מי לא עסקינן ששכרו לכתף ואמר ליכול ורבינא נמי אמר לא צריך קרא דכתיב לא תחסום שור בדישו מכדי כל מילי איתנהו בחסימה דילפינן שור שור משבת דכתיב ביה וכל בהמתך ואם כן ליכתוב רחמנא לא תדוש בחסימה שור דכתב רחמנא למה לי לאוקושי חוסם לנחסם ונחסם לחוסם אדם לשור ושור לאדם לענין אכילת פועלים מה חוסם אוכל במחובר אף נחסם ומה נחסם אוכל בתלוש בשעת מלאכה אף חוסם כשהוא פועל אוכל בתלוש בשעת מלאכה:</p>
               </div>
             </div>
@@ -718,8 +849,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 12:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-12-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 12:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-12-3">Mishneh Torah, Hiring 12:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְבַטֵּל מִמְּלַאכְתּוֹ וְאָכַל אוֹ שֶׁאָכַל שֶׁלֹּא בִּשְׁעַת גְּמַר מְלָאכָה הֲרֵי זֶה עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כג כו)</span> &quot;וְחֶרְמֵשׁ לֹא תָנִיף&quot; וְגוֹ׳. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁכָּל זְמַן שֶׁהוּא עוֹסֵק בִּקְצִירָה לֹא יָנִיף חֶרְמֵשׁ לַאֲכִילָתוֹ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְכֵן פּוֹעֵל שֶׁהוֹלִיךְ בְּיָדוֹ מִמַּה שֶּׁעָשָׂה אוֹ שֶׁלָּקַח יֶתֶר עַל אֲכִילָתוֹ וְנוֹתֵן לַאֲחֵרִים עוֹבֵר בְּלֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כג כה)</span> &quot;וְאֶל כֶּלְיְךָ לֹא תִתֵּן&quot;. וְאֵין לוֹקִין עַל שְׁנֵי לָאוִין אֵלּוּ שֶׁאִם אָכַל אוֹ הוֹלִיךְ חַיָּב לְשַׁלֵּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת שח </strong> שלא יאכל השכיר במחובר לקרקע בשעת מלאכה כדכתיב וחרמש לא תניף על קמת רעך ר&quot;ל כשאתה עוסק במלאכה לא תניף חרמש לאכילתך אלא אחר שעשה מלאכה במלוי הסל לפירוש הרב ז&quot;ל וכדכתיב וקטפת מלילות בידך:<br><strong> אזהרת שט </strong> שלא להוליך בידו ממה שעושה או ליקח יתר על אכילתו לתת לאחרים כדכתיב ואל כליך לא תתן ואין לוקין על לאו זה שאם לקח מה שאין לו בו זכות חייב לשלם.</p>
               </div>
             </div>
@@ -734,8 +870,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 12:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-12-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 12:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-12-4">Mishneh Torah, Hiring 12:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַחוֹלֵב וְהַמְחַבֵּץ וְהַמְגַבֵּן אֵינוֹ אוֹכֵל מִפְּנֵי שֶׁאֵינָן גִּדּוּלֵי קַרְקַע. הַמְנַכֵּשׁ בִּבְצָלִים וּבְשׁוּמִין אַף עַל פִּי שֶׁתּוֹלְשִׁין קְטַנִּים מִבֵּין הַגְּדוֹלִים וְכָל כַּיּוֹצֵא בָּזֶה אֵינוֹ אוֹכֵל מִפְּנֵי שֶׁאֵין מַעֲשֵׂיהֶם גְּמַר מְלָאכָה. וְאֵין צָרִיךְ לוֹמַר שׁוֹמְרֵי גִּנּוֹת וּפַרְדֵּסִים וְכָל דָּבָר הַמְחֻבָּר כַּמִּקְשָׁאוֹת וְהַמִּדְלָעוֹת שֶׁאֵין אוֹכְלִין כְּלָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>החולב </strong> והמחבץ והמגבן אינם אוכלים כדתניא התם מה דיש מיוחד שגידולו קרקע וכו׳ ואף על גב דכתיב כי תבא בכרם רעך דהוי גידולי קרקע כיון דכתיב קמה לרבות כל בעלי קומה הוה אמינא דליחייב נמי דלאו גידולי קרקע נינהו קמ&quot;ל. המנכש בבצלים ושומים ושומרי גנות אינם אוכלים כדתניא נמי התם מה דיש שהוא מיוחד שבשעת גמר מלאכה ופועל אוכל בו יצא מנכש וכו׳ ואף ע&quot;ג דכתיב ואל כליך לא תתן דהוא גמר מלאכה איצטריך דיש דאף על גב דמשליף קטיני מביני אלימי והרי נותן לכליו של בעל הבית הא סוף לאו גמר מלאכה היא דעקר פעולה משום תיקון גדולים הוא שהם מחוברים ועומדים.</p>
               </div>
             </div>
@@ -750,8 +891,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 12:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-12-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 12:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-12-5">Mishneh Torah, Hiring 12:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבּוֹדֵל בִּתְמָרִים וּבִגְרוֹגָרוֹת אֵינוֹ אוֹכֵל מִפְּנֵי שֶׁנִּגְמְרָה מְלַאכְתָּן לְמַעֲשֵׂר. הָעוֹשֶׂה בְּחִטִּים וְכַיּוֹצֵא בָּהֶן אַחַר שֶׁעָשׂוּ כְּגוֹן שֶׁשְּׂכָרָן לָבוּר צְרוֹרוֹת אוֹ לְנַפֵּחַ אוֹתָן אוֹ לִטְחֹן הֲרֵי אֵלּוּ אוֹכְלִין שֶׁעֲדַיִן לֹא נִגְמְרָה מְלַאכְתָּן לְחַלָּה. אֲבָל הַלָּשׁ וְהַמְקַטֵּף וְהָאוֹפֶה אֵינוֹ אוֹכֵל מִפְּנֵי שֶׁנִּגְמְרָה מְלַאכְתָּן לְחַלָּה וְאֵין הַפּוֹעֵל אוֹכֵל אֶלָּא מִדָּבָר שֶׁעֲדַיִן לֹא נִגְמְרָה מְלַאכְתּוֹ לְחַלָּה וּלְמַעֲשֵׂר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> הפועל אוכל אלא מדבר שעדיין לא נגמרה מלאכתו למעשר ולחלה כדילפינן התם מה דיש מיוחד דבר שלא נגמרה מלאכתו למעשר היכא דלא שייך חלה כבודל בתמרים ובגרוגרות והיכא דשייך חלה לא חשוב אלא שנגמרה מלאכתו לחלה. אין הפועל אוכל בשל הקדש דכתיב בכרם רעך ואכלת ולא של הקדש היה עושה בידיו ולא ברגליו או איפכא ואפילו בכתפו דאינו מזיז ידיו ורגליו הרי זה אוכל כדתנן במתני׳ התם דף צ&quot;א ובגמרא מאי טעמא כי תבא בכרם רעך בכל מאי דעביד.</p>
               </div>
             </div>
@@ -766,8 +912,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 12:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-12-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 12:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-12-10">Mishneh Torah, Hiring 12:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה עוֹשֶׂה בִּתְאֵנִים לֹא יֹאכַל בַּעֲנָבִים בַּעֲנָבִים לֹא יֹאכַל בִּתְאֵנִים שֶׁנֶּאֱמַר <span class="source-small">(דברים כג כה)</span> &quot;בְּכֶרֶם&quot; &quot;וְאָכַלְתָּ עֲנָבִים&quot;. וְהָעוֹשֶׂה בְּגֶפֶן זוֹ אֵינוֹ אוֹכֵל בְּגֶפֶן אַחֶרֶת. וְלֹא יֹאכַל עֲנָבִים וְדָבָר אַחֵר. וְלֹא יֹאכַל בְּפַת וְלֹא בְּמֶלַח וְאִם קָצַץ עַל בַּעַל הַבַּיִת עַל שִׁעוּר מַה שֶּׁיֹּאכַל אוֹכֵל אוֹתוֹ בֵּין בְּמֶלַח בֵּין בְּפַת בֵּין בְּכָל דָּבָר שֶׁיִּרְצֶה. אָסוּר לְפוֹעֵל לָמֹץ בַּעֲנָבִים שֶׁנֶּאֱמַר וְאָכַלְתָּ עֲנָבִים. וְלֹא יִהְיוּ בָּנָיו אוֹ אִשְׁתּוֹ מְהַבְהֲבִין לוֹ הַשִּׁבֳּלִין בָּאוּר שֶׁנֶּאֱמַר <span class="source-small">(דברים כג כה)</span> &quot;וְאָכַלְתָּ עֲנָבִים כְּנַפְשְׁךָ&quot; עֲנָבִים כְּמוֹת שֶׁהֵן. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה </strong> עושה בענבים לא יאכל בתאנים או איפכא דכתיב בכרם ואכלת ענבים והעושה בגפן זה אינו אוכל באחרת דממה שהוא נותן לכליו של בעל בעי׳ כדאיתא התם. לא יאכל ענבים ודבר אחר לטבול ענבים במלח לממתקן שיאכל הרבה דכתיב ענבים אסור למוץ בענבים דכתיב ואכלת ולא מוצץ ולא יהבהבו ויאכל דהוי כענבים ודבר אחר דהבהוב ממתק טעמן ואכילה גסה ממעטינן לה מדכתיב שבעך. ויש לו לאכול אפילו יותר מכדי שכרו דכתיב כנפשך שבעך. ועד שלא הילכו שתי וערב בגת אינם שותים יין דהוי עושין במין זה ואוכלים במין אחר עד שיהלכו שתי וערב דהשתא עושין בענבים ויין. ולא זכתה תורה לאכול אלא לפועל עצמו לא לבניו אפילו מחלקו דכתיב ואל כליך לא תתן ומה שהוא אינו אוכל הוי כנותן&#160;לכליו להוליכו לביתו ואפילו הוא נזיר אינו נותן חלקו להם.</p>
               </div>
             </div>
@@ -782,8 +933,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 12:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-12-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 12:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-12-14">Mishneh Torah, Hiring 12:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פּוֹעֵל שֶׁהָיָה עוֹשֶׂה הוּא וְאִשְׁתּוֹ וּבָנָיו וַעֲבָדָיו וְהִתְנָה עִם הַבַּעַל הַבַּיִת שֶׁלֹּא יֹאכְלוּ מִמַּה שֶּׁהֵן עוֹשִׂין לֹא הוּא וְלֹא הֵם הֲרֵי אֵלּוּ אֵינָן אוֹכְלִין. בַּמֶּה דְּבָרִים אֲמוּרִים בִּגְדוֹלִים מִפְּנֵי שֶׁיֵּשׁ בָּהֶם דַּעַת וַהֲרֵי מָחֲלוּ אֲבָל קְטַנִּים אֵינוֹ יָכוֹל לִפְסֹק עֲלֵיהֶם שֶׁלֹּא יֹאכְלוּ שֶׁאֵינָן אוֹכְלִין מִשֶּׁל אֲבִיהֶן אוֹ מִשֶּׁל אֲדוֹנֵיהֶם אֶלָּא מִשֶּׁל שָׁמַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יכול </strong> פועל לפסוק עליו שלא יאכל אף על פי שזכתה לו תורה הרי הוא מוחל ואינו יכול לפסוק על קטנים דמשל שמים הוא אוכל במתנת גמילות חסדים כשאר מתנות עניים:</p>
               </div>
             </div>
@@ -799,8 +955,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Hiring 13:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-hiring-13-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Hiring 13:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-hiring/#mishneh-torah-hiring-13-1">Mishneh Torah, Hiring 13:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבְּהֵמָה אוֹכֶלֶת כָּל זְמַן שֶׁהִיא עוֹשָׂה בְּגִדּוּלֵי קַרְקַע בֵּין בִּמְחֻבָּר בֵּין בְּתָלוּשׁ. וְאוֹכֶלֶת מִמַּשּׂאוֹי שֶׁעַל גַּבָּהּ עַד שֶׁתִּהְיֶה פּוֹרֶקֶת וּבִלְבַד שֶׁלֹּא יִטּל בְּיָדוֹ וְיַאֲכִילֶנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אזהרת שי </strong> שלא יחסום שור בדישו דכתיב לא תחסום שור בדישו וגו׳ אלא מניחה שתאכל כל זמן שעושה בגידולי קרקע בין במחובר בין בתלוש דכתיב בדישו דהוי גידולי קרקע ותלוש וילפינן למחובר מדהוה ליה למכתב לא תדוש בחסימה כדאמר׳ לעיל וכתב לא תחסום שור לאקושי חוסם לנחסם מה חוסם אוכל במחובר אף נחסם אוכל במחובר ואוכל ממשאוי שעל גבה עד שתפרוק שהרי עושה השור מלאכה בגידולי קרקע ואחד דישה ואחד כל מלאכות שבגידולי קרקע אחד שור ואחד כל מיני בהמה וחיה טמאים או טהורים כדתנן סוף פרק הפרה ואחד שור ואחד כל בהמה וכו׳ לחסימה דיליף בגמ׳ דבדברות אחרונות הוסיף שור וחמור והלא היו בכלל וכל בהמתך הכתוב בצידן אלא שור אתא לאגמורי שור שור לחסימה דחיה ועוף כיוצא בו מדכתיב וכל בהמתך וכל משמע ריבויה ואחד דישה ושאר מלאכות של גידולי קרקע כי דייש שהוא גידולי קרקע ולא נאמר בדישו אלא בהווה. החוסם את הפועל פטור כדילפינן מדכתיב כנפשך מה נפשך אם חסמת פטור אף פועל אם חסמת פטור דלא תימא קל וחומר דאי אתה מצווה להחיותו ואתה מצווה על חסימתו. חסמה קודם לכן וחסמה בקול חייב דלא תימא שור בדישו אמר רחמנא דלא קאמר לא תדוש בחסימה וכדאמ׳ בכהנים יין ושכר אל תשת וגו׳ בבואכם הא מישתא ומיעל שרי אלא מה התם בשעת ביאה לא תהא שכרות הכא נמי בשעת דישה לא תהא חסימה וחסימה בקול חייב כרבי יוחנן התם ד&quot;צ דעקימת פיו הוי מעשה ללקות והוי ליה לאו שיש בו מעשה דבדבור נעשה מעשה. שכר בהמה ודש בה בחסימה לוקה ומשלם דקודם שיבוא לידי מלקות בחסימה בא לידי תשלומי מזונותיה שהו׳ משעת משיכה. והדש בפרתו של גוי עובר משום דלא תחסום שור בדישו דשור קאמר רחמנא לא שנא דישראל ולא שנא דגוי וגוי הדש בפרתו של ישראל אינו עובר הישראל דלא תחסום אישראל הדש קא מזהר לא אגוי ואם אינה נהנית באכילתה ומנעה מותר שלא הקפידה תורה אלא הנאתה וסתם דיש לאו בתרומה ומעשר משתעי קרא דאין תרומה ומעשר סתם אלא מן המירוח ואילך כדכתיב כדגן מן הגורן אבל בדמאי וגידולי תרומה עובר דדבר תורה חולין גמורין הן:</p>
               </div>
             </div>
@@ -810,6 +971,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-hiring-text-13">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-hiring.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-hiring-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -830,8 +995,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-hiring.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-hiring.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-hiring.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-hiring.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-hiring.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-hiring.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -857,7 +1022,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

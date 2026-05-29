@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../midrash/ruth-rabbah/">Open Ruth Rabbah</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Ruth Rabbah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">1 total source units | imported 2026-05-09</p>
         <p class="meta source-citation">Hebrew version: Midrash Rabbah, Vilna, 1878 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001987091/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>21 matched</strong> / 46 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/mishnat-derabbi-eliezer-on-ruth-rabbah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/mishnat-derabbi-eliezer-on-ruth-rabbah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -191,8 +191,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishnat DeRabbi Eliezer on Ruth Rabbah 1:1:1</h4></div>
               <a class="anchor" href="#mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1" aria-label="Copy link to Mishnat DeRabbi Eliezer on Ruth Rabbah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/ruth-rabbah/#ruth-rabbah-default-default-1-1">Ruth Rabbah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וַיְהִי בִּימֵי שְׁפֹט הַשֹּׁפְטִים <span class="source-small">(רות א, א)</span>, אוֹי לַדּוֹר שֶׁשָּׁפְטוּ אֶת שׁוֹפְטֵיהֶם, וְאוֹי לַדּוֹר שֶׁשּׁוֹפְטָיו צְרִיכִין לְהִשָּׁפֵט, שֶׁנֶּאֱמַר <span class="source-small">(שופטים ב, יז)</span>: וְגַם אֶל שֹׁפְטֵיהֶם לֹא שָׁמֵעוּ, וּמִי הָיוּ, רַב אָמַר בָּרָק וּדְבוֹרָה הָיוּ. רַבִּי יְהוֹשֻׁעַ בֶּן לֵוִי אָמַר, שַׁמְגַּר וְאֵהוּד הָיוּ. רַב הוּנָא אָמַר דְּבוֹרָה וּבָרָק וְיָעֵל הָיוּ, שְׁפֹט חַד, שֹׁפְטִים תְּרֵין, הַשֹּׁפְטִים תְּלָתָא.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומי היו כו׳. </strong>דבל&quot;ז י&quot;ל כפרש&quot;י לפני מלוך כו׳ ששפטו השופטים או כתרגום נגיד נגידים ובימי בועז היו כנזכר במגלה משא&quot;כ עתה דדרש לגנאי אוי לדור כו׳ ע&quot;כ ל&quot;ל דקאי אבועז דהרי צדיק גמור היה ולא עליו נאמר לשון וי לכ&quot;א ברק ודבורה דוי לדרא דאשה מדבריית כדאית׳ בש&quot;ס:</p>
               </div>
             </div>
@@ -202,6 +207,10 @@
               <a href="#chapter-default-default-1">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishnat-derabbi-eliezer-on-ruth-rabbah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/mishnat-derabbi-eliezer-on-ruth-rabbah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -222,10 +231,10 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"mishnat-derabbi-eliezer-on-ruth-rabbah","work_title":"Mishnat DeRabbi Eliezer on Ruth Rabbah","work_slug":"midrash/mishnat-derabbi-eliezer-on-ruth-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-16T00:15:40.542Z","total_occurrences":49,"units":{"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1":{"unit_id":"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1","anchor_id":"mishnat-derabbi-eliezer-on-ruth-rabbah-default-default-1-1-1","source_ref":"Mishnat DeRabbi Eliezer on Ruth Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-82cdd8fddbfc","tok-6fb3f70d17a0","tok-707d31096d3e","tok-83a4672d3e01","tok-72271437b0ba","tok-981675e6f066","tok-fca7de604bc8","tok-380446f2474b","tok-707d31096d3e","tok-9ba26e98217b","tok-4e5ca71efb60","tok-f875cd72cb92","tok-a5f236647886","tok-4f34c601e47b","tok-8500ee3e1466","tok-7b8d1605054a","tok-ee517701da05","tok-6fb3f70d17a0","tok-e531932f42c0","tok-4891f4c02b3c","tok-dd74c50df106","tok-86c3e3b89ed9","tok-046b69152abe","tok-c3e556313fb6","tok-0fab0ac21e4f","tok-1043ea6ff13d","tok-707d31096d3e","tok-65d7d84ae33c","tok-8c80261bbe79","tok-723e0e2ed23f","tok-ec92d53f5cb9","tok-f05fb6ea4f72","tok-3eac5bf642fa","tok-90c4a13d4048","tok-2b5a5c1165c7","tok-f79409459e68","tok-864c45f01de2","tok-9920ed0b183c","tok-ac6893ea284b","tok-f33e85694d89","tok-a9b8997c9702","tok-ffe7e8acba69","tok-1f7ddf556731","tok-9544957b1b58","tok-d8df0dcf41cf","tok-df6f09bbaf1b","tok-12d75ff93ccf","tok-7ef6e6209b64","tok-54df1b4f20e5"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishnat-derabbi-eliezer-on-ruth-rabbah.manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishnat-derabbi-eliezer-on-ruth-rabbah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishnat-derabbi-eliezer-on-ruth-rabbah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishnat-derabbi-eliezer-on-ruth-rabbah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
-    (() => {
+    (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
       const lexiconNode = document.querySelector("[data-lexical-lexicon]");
       const configNode = document.querySelector("[data-lexical-config]");
@@ -233,7 +242,7 @@
       const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
       const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
       const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
       const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
       const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
       const chunkPromises = new Map();
@@ -249,7 +258,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -266,6 +274,12 @@
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
         return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
       };
       const loadManifest = async () => {
         if (!lexicalConfig.manifest_url) return null;
@@ -348,8 +362,9 @@
         const state = { index: 0 };
         textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
       };
+      const loadedOccurrences = await loadOccurrences();
       document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
         if (!unitData) return;
         unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
           const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);

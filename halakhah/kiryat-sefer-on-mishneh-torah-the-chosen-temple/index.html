@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-the-chosen-temple/">Open Mishneh Torah, The Chosen Temple</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, The Chosen Temple</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">58 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>946 matched</strong> / 2359 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-the-chosen-temple.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-the-chosen-temple-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -287,8 +288,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-1">Mishneh Torah, The Chosen Temple 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לַעֲשׂוֹת בַּיִת לַה׳ מוּכָן לִהְיוֹת מַקְרִיבִים בּוֹ הַקָּרְבָּנוֹת. וְחוֹגְגִין אֵלָיו שָׁלֹשׁ פְּעָמִים בַּשָּׁנָה שֶׁנֶּאֱמַר <span class="source-small">(שמות כה ח)</span> &quot;וְעָשׂוּ לִי מִקְדָּשׁ&quot;. וּכְבָר נִתְפָּרֵשׁ בַּתּוֹרָה מִשְׁכָּן שֶׁעָשָׂה משֶׁה רַבֵּנוּ. וְהָיָה לְפִי שָׁעָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ט)</span> &quot;כִּי לֹא בָאתֶם עַד עָתָּה&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קד </strong> לבנות בית המקדש לה׳ מוכן להיות מקריבים בו הקרבנות וחוגגין (עליו) [אליו] שלש פעמים בשנה דכתיב ועשו לי מקדש ושכנתי בתוכם וכיון שצוה בתורה להקריב בו הקרבנות ולראות בו לפני ה׳ משמע דלהכי צוה בבנינו ומשכן שעשה משה היה לפי שעה דכתיב כי לא באתם עד עתה אל המנוחה ואל הנחלה משמע שבית עולמים שהוא נחלה הוא בכלל מצות ועשו לי מקדש.</p>
               </div>
             </div>
@@ -303,8 +309,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-3">Mishneh Torah, The Chosen Temple 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיוָן שֶׁנִּבְנָה הַמִּקְדָּשׁ בִּירוּשָׁלַיִם נֶאֶסְרוּ כָּל הַמְּקוֹמוֹת כֻּלָּן לִבְנוֹת בָּהֶן בַּיִת לַה׳ וּלְהַקְרִיב בָּהֶן קָרְבָּן. וְאֵין שָׁם בַּיִת לְדוֹרֵי הַדּוֹרוֹת אֶלָּא בִּירוּשָׁלַיִם בִּלְבַד וּבְהַר הַמּוֹרִיָּה שֶׁבָּהּ נֶאֱמַר <span class="source-small">(דברי הימים א כב א)</span> &quot;וַיֹּאמֶר דָּוִיד זֶה הוּא בֵּית ה׳ הָאֱלֹהִים וְזֶה מִּזְבֵּחַ לְעלָה לְיִשְׂרָאֵל&quot; וְאוֹמֵר <span class="source-small">(תהילים קלב יד)</span> &quot;זֹאת מְנוּחָתִי עֲדֵי עַד&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכיון </strong> שנבנה בית המקדש בירושלם נאסרו כל המקומות כולן לבנות בית לה׳ ולהקריב בהם קרבן ואין בית לדורי הדורות אלא בירושלם דכתיב כי לא באתם עד עתה אל המנוחה ואל הנחלה ומשתעי קרא בהתר במות וקאמר עד מתי אני אומר לכם איש כל הישר בעיניו כי לא באתם עד עתה וגו׳ אבל לא משבאתם אל המנוחה שהיא שילה שנחו מלכבוש ואל הנחלה שהיא ירושלם ומדחלקן הכתוב לכתוב שניהן משמע שיש התר במות בין שילה לירושלם דאי לא הו&quot;ל למיכתב מנוחה לחוד ומדכתיב נחלה ש&quot;מ דהכי קאמר להו ואחר קדושת המנוחה תחזרו להתר הראשון עד בואכם אל הנחלה משמע דמבית עולמים שהיא נחלה נאסרו הבמות ולא הותרו אחר כך שהיא נחלה שאין לה הפסק דקדושה לשעתה ולעתיד לבא כדכתיב זאת מנוחתי עדי עד.</p>
               </div>
             </div>
@@ -319,8 +330,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-5">Mishneh Torah, The Chosen Temple 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן הַדְּבָרִים שֶׁהֵן עִקָּר בְּבִנְיַן הַבַּיִת. עוֹשִׂין בּוֹ קֹדֶשׁ וְקֹדֶשׁ הַקָּדָשִׁים וְיִהְיֶה לִפְנֵי הַקֹּדֶשׁ מָקוֹם אֶחָד וְהוּא הַנִּקְרָא אוּלָם. וּשְלָשְתָּן נִקְרָאִין הֵיכָל. וְעוֹשִין מְחִצָּה אַחֶרֶת סָבִיב לַהֵיכָל רְחוֹקָה מִמֶּנּוּ כְּעֵין קַלְעֵי הֶחָצֵר שֶׁהָיוּ בַּמִּדְבָּר. וְכָל הַמֻּקָּף בִּמְחִיצָה זוֹ שֶׁהוּא כְּעֵין חֲצַר אֹהֶל מוֹעֵד הוּא הַנִּקְרָא עֲזָרָה וְהַכּל נִקְרָא מִקְדָּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והדברים </strong> שהן עיקר הבית הם הקדש וקדש הקדשים ולפני הקדש מקום הנקרא אולם ושלשתן נקראים היכל אלא שאין קדושתם שוה דקדושת היכל ואולם לאו קדושה חדא היא אלא אולם ובין האולם ולמזבח חדא קדושה היא דהא במשכן לא היה אולם ואף על גב דכל מדות הבית נמסר לדוד על פי נביאים כדכתיב הכל בכתב מיד ה׳ עלי השכיל כל מלאכת התבנית עלי השכיל אותי לימד אפילו הכי לענין קדושת הבית ליכא שינוי בין משכן למקדש דכמו דבמשכן ליכא אלא ג׳ קדושות קדש הקדשים וקדש וחצר אהל מועד כן במקדש הן שלש קדושות (לפנים) לפנים והיכל ועזרה והכל נקרא מקדש כמו במשכן שהכל נקרא גם כן משכן.</p>
               </div>
             </div>
@@ -335,8 +351,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-6">Mishneh Torah, The Chosen Temple 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְעוֹשִׂין בַּמִּקְדָּשׁ כֵּלִים. מִזְבֵּחַ לָעוֹלָה וְלִשְׁאָר הַקָּרְבָּנוֹת. וְכֶבֶשׁ שֶׁעוֹלִים בּוֹ לַמִּזְבֵּחַ. וּמְקוֹמוֹ לִפְנֵי הָאוּלָם מָשׁוּךְ לְדָרוֹם. וְכִיּוֹר וְכַנּוֹ לְקַדֵּשׁ מִמֶּנּוּ הַכֹּהֲנִים יְדֵיהֶם וְרַגְלֵיהֶם לָעֲבוֹדָה. וּמְקוֹמוֹ בֵּין הָאוּלָם וְלַמִּזְבֵּחַ מָשׁוּךְ לְדָרוֹם שֶׁהוּא שְׂמֹאל הַנִּכְנָס לַמִּקְדָּשׁ. וּמִזְבֵּחַ לַקְּטֹרֶת וּמְנוֹרָה וְשֻׁלְחָן וּשְׁלָשְׁתָּן בְּתוֹךְ הַקֹּדֶשׁ לִפְנֵי קֹדֶשׁ הַקָּדָשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ועושין </strong> במקדש כלים מזבח לעולה ולשאר קרבנות וכבש שעולים בו למזבח דכתיב מזבח אדמה תעשה לי וזבחת עליו את עולותיך וגו׳ ואם מזבח אבנים תעשה לי וגו׳ בבית עולמי׳ ומדכתיב ולא תעלה במעלות שלא יעשה מעלות בכבש שלו אלא חלק למדנו שהיה לו כבש ומקומו לפני האולם משוך לדרום וכיור וכנו בין האולם ולמזבח משוך לדרום דכתיב על ירך המזבח צפונה שיהא צפון העזרה פנוי מכלים ואפילו מן המזבח מדהוה ליה למיכתב צפון וכתב צפונה לדרשא אתא כדאמר׳ משמע דמזבח משוך לדרום ובכיור כתיב ונתת את הכיור בין אהל מועד ובין המזבח ובעינן מזבח לפני פתח אהל מועד כדכתיב ואת מזבח העולה לפני פתח אהל מועד בלא דבר מפסיק בינה לפתח אהל מועד ולהכי היה כיור משוך קימעא מזויות המזבח ולדרום נמצא שאינו כנגד המזבח כלל אלא בין אהל מועד ולמזבח ומזבח לקטרת ומנורה ושלחן בקדש לפני קדש הקדשים מנורה בדרום ושלחן בצפון ושניהם בהיכל בצד שבפנים מחוץ לפרכת דכתיב ושמת את השולחן מחוץ לפרכת ואת המנורה נכח השלחן על צלע המשכן תימנה והשלחן תתן על צלע צפון וכיון דכתיב מחוץ לפרכת משמע אצלו בצד קדש הקדשים ומשום דכתיב ואת המנורה נכח השולחן בעינן דחזו אהדדי שלחן ומנורה ולהכי הוה מזבח משוך כלפי חוץ קימעא.</p>
               </div>
             </div>
@@ -351,8 +372,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-8">Mishneh Torah, The Chosen Temple 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁבּוֹנִין הַהֵיכָל וְהָעֲזָרָה בּוֹנִין בַּאֲבָנִים גְּדוֹלוֹת. וְאִם לֹא מָצְאוּ אֲבָנִים בּוֹנִין בִּלְבֵנִים. וְאֵין מְפַצְּלִין אֶת אַבְנֵי הַבִּנְיָן בְּהַר הַבַּיִת אֶלָּא מְפַצְּלִין אוֹתָן וּמְסַתְּתִין אוֹתָן מִבַּחוּץ וְאַחַר כָּךְ מַכְנִיסִין אוֹתָן לַבִּנְיָן. שֶׁנֶּאֱמַר <span class="source-small">(מלכים א ה לא)</span> &quot;אֲבָנִים גְּדלוֹת אֲבָנִים יְקָרוֹת לְיַסֵּד הַבָּיִת אַבְנֵי גָזִית&quot;. וְאוֹמֵר <span class="source-small">(מלכים א ו ז)</span> &quot;וּמַקָּבוֹת וְהַגַּרְזֶן כָּל כְּלִי בַרְזֶל לֹא נִשְׁמַע בַּבַּיִת בְּהִבָּנֹתוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בנין </strong> היכל ועזרה הוי אפילו בלבנים אם לא מצאו אבנים דלא הוזכרו אבנים אלא במזבח וכשבונין אותו באבנים אין מסתתין אותם אלא בחוץ דכתיב במזבח לא תבנה אתהם גזית ודרשינן בו אי אתה בונה גזית אבל אתה בונה גזית בהיכל ובקדש הקדשים משמע דמיעט בהיכל דומיא דמזבח דאבני מזבח שנגעו בהם ברזל אפילו בחוץ פסולות מה שאין כן באבני היכל והיינו דכתיב לא נשמע בבית בהבנותו.</p>
               </div>
             </div>
@@ -367,8 +393,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-9">Mishneh Torah, The Chosen Temple 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין בּוֹנִין בּוֹ עֵץ בּוֹלֵט כְּלָל אֶלָּא אוֹ בַּאֲבָנִים אוֹ בִּלְבֵנִים וְסִיד. וְאֵין עוֹשִׂין אַכְסַדְרוֹת שֶׁל עֵץ בְּכָל הָעֲזָרָה אֶלָּא שֶׁל אֲבָנִים אוֹ לְבֵנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> בונין בו עץ כלל דכתיב לא תטע לך אשרה ודרשינן ליה לא תטע לך אשרה לא תטע לך כל עץ אצל מזבח וגו׳ דהיינו מעזרת ישראל ולפנים.</p>
               </div>
             </div>
@@ -383,8 +414,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-10">Mishneh Torah, The Chosen Temple 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמְרַצְּפִין אֶת כָּל הָעֲזָרָה בַּאֲבָנִים יְקָרוֹת. וְאִם נֶעֶקְרָה אֶבֶן אַף עַל פִּי שֶׁהִיא עוֹמֶדֶת בִּמְקוֹמָהּ. הוֹאִיל וְנִתְקַלְקְלָה פְּסוּלָה וְאָסוּר לַכֹּהֵן הָעוֹבֵד לַעֲמֹד עָלֶיהָ בִּשְׁעַת הָעֲבוֹדָה עַד שֶׁתִּקָּבַע בָּאָרֶץ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומרצפין </strong> את כל העזרה באבנים יקרות והן מתקדשות בקדושת עזרה דמתקדשת בשירי מנחה בירושלם מה ירושלם דבר הנאכל בה דהיינו לחמי תודה מקדשה כדכתיב ואעמידה שתי תודות אף עזרה דבר הנאכל בה ואם יצאה ממנה נפסלה דהיינו שיירי מנחה הוא דמתקדשת בה ונראה דקדושת ירושלם בשתי תודות עד דאתא נחמיה גמרא גמירי לה ולהכי גמרינן מינה לקדושת עזרה בשיירי מנחה ולכך אם נעקרה אבן אחד אסור לכהן לעמוד עליה בשעת עבודה עד שתקבע בארץ דאבני הרצפה ומקומן הוא דנתקדשו בשיירי מנחה. ומצוה מן המובחר לרומם את בית ה׳ וליפותו כפי כח הצבור כדכתיב לרומם את בית אלהינו.</p>
               </div>
             </div>
@@ -399,8 +435,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-12">Mishneh Torah, The Chosen Temple 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין בּוֹנִין אֶת הַמִּקְדָּשׁ בַּלַּיְלָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ט טו)</span> &quot;וּבְיוֹם הָקִים אֶת הַמִּשְׁכָּן&quot; בַּיּוֹם מְקִימִין לֹא בַּלַּיְלָה. וְעוֹסְקִין בַּבִּנְיָן מֵעֲלוֹת הַשַּׁחַר עַד צֵאת הַכּוֹכָבִים. וְהַכּל חַיָּבִין לִבְנוֹת וּלְסָעֵד בְּעַצְמָן וּבְמָמוֹנָם אֲנָשִׁים וְנָשִׁים כְּמִקְדַּשׁ הַמִּדְבָּר. וְאֵין מְבַטְּלִין תִּינוֹקוֹת שֶׁל בֵּית רַבָּן לַבִּנְיָן. וְאֵין בִּנְיַן בֵּית הַמִּקְדָּשׁ דּוֹחֶה יוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> בונין אותו בלילה דכתיב במשכן וביום הקים את המשכן ביום מקימים ולא בלילה. והכל חייבין לבנות (ולחמד) [ולסעד] בעצמם ובממונם אנשים ונשים כמקדש המדבר דכתיב ביה ויבאו האנשים על הנשים. אין מבטלין תינוקות של בית רבן (לבדק) [לבנין] הבית [דאנשים ונשים כתיב (שמות לה, כב) ולא טף]. ואין בנין בית המקדש דוחה יום טוב דאין עשה דוחה לא תעשה ועשה וכל שכן שבת דאינו דוחה אלא משום דשכיח טובא הוה אמינא דלידחי להכי איצטריך קרא דאך את שבתותי תשמורו ומקדשי תיראו אני ה׳ כלכם חייבים בכבודי אתם והמקדש חייבים בכבודי שהזהרתי על השבת ויום טוב נמי שבתות מיקרו.</p>
               </div>
             </div>
@@ -415,8 +456,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-13">Mishneh Torah, The Chosen Temple 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּזְבֵּחַ אֵין עוֹשִׂין אוֹתוֹ אֶלָּא בִּנְיַן אֲבָנִים (גָּזִית) וְזֶה שֶׁנֶּאֱמַר בַּתּוֹרָה <span class="source-small">(שמות כ כא)</span> &quot;מִזְבַּח אֲדָמָה תַּעֲשֶׂה לִּי&quot; שֶׁיִּהְיֶה מְחֻבָּר בָּאֲדָמָה שֶׁלֹּא יִבְנוּהוּ לֹא עַל גַּבֵּי כֵּפִין וְלֹא עַל גַּבֵּי מְחִלּוֹת. וְזֶה שֶׁנֶּאֱמַר <span class="source-small">(שמות כ כב)</span> &quot;וְאִם מִזְבַּח אֲבָנִים&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁאֵינוֹ רְשׁוּת אֶלָּא חוֹבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין </strong> עושין מזבח אלא בנין אבנים דכתיב אבנים שלמות תבנה את מזבח וגו׳ וזה שנאמר ואם מזבח אדמה תעשה לי שיהא מחובר באדמה שלא יהא חלול על גבי כפין או מחילות וזה שנאמר ואם מזבח אבנים אינו רשות אלא חובה כמו ואם תקריב מנחת בכורים.</p>
               </div>
             </div>
@@ -431,8 +477,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-14">Mishneh Torah, The Chosen Temple 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אֶבֶן שֶׁנִּפְגְּמָה כְּדֵי שֶׁתַּחְגֹּר בָּהּ הַצִּפֹּרֶן כְּסַכִּין שֶׁל שְׁחִיטָה הֲרֵי זוֹ פְּסוּלָה לַכֶּבֶשׁ וְלַמִּזְבֵּחַ שֶׁנֶּאֱמַר <span class="source-small">(דברים כז ו)</span> &quot;אֲבָנִים שְׁלֵמוֹת תִּבְנֶה אֶת מִזְבַּח ה׳&quot;. וּמֵהֵיכָן הָיוּ מְבִיאִין אַבְנֵי מִזְבֵּחַ מִן בְּתוּלַת הַקַּרְקַע חוֹפְרִין עַד שֶׁמַּגִּיעִין לְמָקוֹם הַנִּכָּר שֶׁאֵינוֹ מְקוֹם עֲבוֹדָה וּבִנְיָן וּמוֹצִיאִין מִמֶּנּוּ הָאֲבָנִים. אוֹ מִן הַיָּם הַגָּדוֹל. וּבוֹנִין מֵהֶן. וְכֵן אַבְנֵי הַהֵיכָל וְהָעֲזָרוֹת שְׁלֵמוֹת הָיוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> אבן שנפגמה כחגירת צפורן פסולה לכבש ולמזבח דכתיב אבנים שלימות תבנה את מזבח וגו׳ ובפגימה כל שהיא כחגירת צפורן לא הויא אבן שלימה וכן אבני ההיכל והעזרות שלימות היו ואם נפגמו פסולין ואין להם פדיון אלא נגנזין [דכיון דנתקדשו במקומם נתקדשו קדושת הגוף ואין להם פדיון דבעינן העמדה והערכה וליכא]:<br><strong> אזהרת קצח </strong> שלא לבנות המזבח גזית שהיא אבן שנגע בה ברזל דכתיב לא תבנה אתהן גזית אין גזית אלא גזוזות שהונף עליהם ברזל ובין במזבח בין בכבש המזבח פסולות אף על פי שאינן פגומות דכתיב כי חרבך הנפת עליה ותחלליה וכבש ילפינן דהוי כמזבח לענין אותם שעלו ולא ירדו דכתיב המזבח לרבות את הכבש. והבונה אבן פגום עובר בעשה דכתיב אבנים שלימות תבנה. אבן שנפגמה אחר כך או שנגע בה ברזל אותה האבן פסולה והשאר כשרות דכתיב לא תבנה אתהן גזית הן פסולות ולא המזבח כלו פסול:</p>
               </div>
             </div>
@@ -447,8 +498,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-17">Mishneh Torah, The Chosen Temple 1:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין עוֹשִׂין מַדְרֵגוֹת לַמִּזְבֵּחַ שֶׁנֶּאֱמַר <span class="source-small">(שמות כ כג)</span> &quot;לֹא תַעֲלֶה בְמַעֲלֹת עַל מִזְבְּחִי&quot;. אֶלָּא בּוֹנִין כְּמוֹ תֵּל בִּדְרוֹמוֹ שֶׁל מִזְבֵּחַ מִתְמַעֵט וְיוֹרֵד מֵרֹאשׁ הַמִּזְבֵּחַ עַד הָאָרֶץ וְהוּא הַנִּקְרָא כֶּבֶשׁ. וְהָעוֹלֶה בְּמַעֲלוֹת עַל הַמִּזְבֵּחַ לוֹקֶה. וְכֵן הַנּוֹתֵץ אֶבֶן אַחַת מִן הַמִּזְבֵּחַ אוֹ מִכָּל הַהֵיכָל אוֹ מִבֵּין הָאוּלָם וְלַמִּזְבֵּחַ דֶּרֶךְ הַשְׁחָתָה לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ג)</span> &quot;וְנִתַּצְתֶּם אֶת מִזְבְּחֹתָם&quot; וְגוֹ׳ <span class="source-small">(דברים יב ד)</span> &quot;לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אזהרת קצט </strong> שלא לעלות במדרגות למזבח דכתיב לא תעלה במעלות על מזבחי מכאן שיעשו כבש למזבח והעולה במעלות לוקה וכן נותץ אבן אחת מן המזבח או מן ההיכל או מבין האולם ולמזבח כל שהוא לפנים מן המזבח לוקה דכתיב ונתצתם את מזבחותם וגו׳ לא תעשון כן לה׳ אלהיכם וגו׳.</p>
               </div>
             </div>
@@ -463,8 +519,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:18:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-18">Mishneh Torah, The Chosen Temple 1:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְּנוֹרָה וְכֵלֶיהָ וְהַשֻּׁלְחָן וְכֵלָיו וּמִזְבַּח הַקְּטֹרֶת וְכָל כְּלֵי שָׁרֵת אֵין עוֹשִׂין אוֹתָן אֶלָּא מִן הַמַּתֶּכֶת בִּלְבַד. וְאִם עֲשָׂאוּם שֶׁל עֵץ אוֹ עֶצֶם אוֹ אֶבֶן אוֹ שֶׁל זְכוּכִית פְּסוּלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המנורה </strong> וכליה ושלחן וכליו ומזבח הקטרת אין עושין אותם אלא מן המתכת דאף על גב דכתיב ככר זהב טהור יעשה אותה ואת כל הכלים האלה לאו לעיכובא כתיב אלא למצוה והא דכתיב זהב לומר דאם באה זהב באה ככר אינה באה זהב שהביאה משאר מיני מתכות אינה צריכה לבוא ככר אלא או פחות או יתר אלמא משאר מיני מתכות שמעינן דכשרה דאוקמי׳ ריבוייא דתיעשה לרבות שאר מיני מתכות דמשמע תעשה מ&quot;מ ואפילו השפודין וכל הכלים אם יש כח בצבור עושין אותם של זהב דכתיב כל כליה.</p>
               </div>
             </div>
@@ -479,8 +540,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:20:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-1-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 1:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-20">Mishneh Torah, The Chosen Temple 1:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין עוֹשִׂין כָּל הַכֵּלִים מִתְּחִלָּתָן אֶלָּא לְשֵׁם הַקֹּדֶשׁ. וְאִם נַעֲשׂוּ מִתְּחִלָּתָן לְהֶדְיוֹט אֵין עוֹשִׂין אוֹתָן לְגָבוֹהַּ. וּכְלִי גָּבוֹהַּ עַד שֶׁלֹּא נִשְׁתַּמֵּשׁ בָּהֶן גָּבוֹהַּ רַשַּׁאי לְהִשְׁתַּמֵּשׁ בָּהֶן הֶדְיוֹט. וּמִשֶּׁנִּשְׁתַּמֵּשׁ בָּהֶן גָּבוֹהַּ אֲסוּרִין לְהֶדְיוֹט. אֲבָנִים וְקוֹרוֹת שֶׁחֲצָבָן מִתְּחִלָּה לְבֵית הַכְּנֶסֶת אֵין בּוֹנִין אוֹתָן לְהַר הַבַּיִת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> עושין כל הכלים מתחלתן אלא לשם הקודש דכתיב את תבנית המשכן ואת תבנית כל כליו וכן תעשו משמע דעשיית כל הכלים דומיא דמשכן דעשייתו לקודש מתחלתו כדמשמע ועשו לי מקדש שמתחלת עשייתו יהיה לשם הקודש ואם נעשו מתחלתן להדיוט אין עושין אותן לגבוה דתחלתן לקדש בעינן כדאמר׳. וכלי גבוה עד שלא נשתמש בו גבוה רשאי להשתמש בהם הדיוט ומשנשתמש גבוה אסורין להדיוט דכלי שרת עבודתן מחנכתן כדילפינן מדכתיב אשר ישרתו בהם בקדש תלאן הכתוב בשירות מדכפל קרא בלישניה כלי השרת אשר ישרתו בם משמע שנעשו כלים על ידי שירות. אבנים וקורות שחצבתן מתחלה לבית הכנסת אין בונין אותם בהר הבית ואי קדושת בית הכנסת לא הויא דאוריתא משום דבית הכנסת הוי לתפלה בקבע מיחזי קדושתיה חמירא מקדושת הר הבית אלא שנראה דרשה גמורה הא דרשינן והשמותי את מקדשכם לרבות בתי כנסיות ובתי מדרשות:</p>
               </div>
             </div>
@@ -496,8 +562,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-1">Mishneh Torah, The Chosen Temple 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּזְבֵחַ מְקוֹמוֹ מְכֻוָּן בְּיוֹתֵר. וְאֵין מְשַׁנִּין אוֹתוֹ מִמְּקוֹמוֹ לְעוֹלָם. שֶׁנֶּאֱמַר <span class="source-small">(דברי הימים א כב א)</span> &quot;זֶה מִזְבַּח לְעוֹלָה לְיִשְׂרָאֵל&quot;. וּבַמִּקְדָּשׁ נֶעֱקַד יִצְחָק אָבִינוּ שֶׁנֶּאֱמַר <span class="source-small">(בראשית כב ב)</span> &quot;וְלֶךְ לְךָ אֶל אֶרֶץ הַמֹּרִיָּה&quot;. וְנֶאֱמַר בְּדִבְרֵי הַיָּמִים <span class="source-small">(דברי הימים ב ג א)</span> &quot;וַיָּחֶל שְׁלֹמֹה לִבְנוֹת אֶת בֵּית ה׳ בִּירוּשָׁלַיִם בְּהַר הַמּוֹרִיָּה אֲשֶׁר נִרְאָה לְדָוִיד אָבִיהוּ אֲשֶׁר הֵכִין בִּמְקוֹם דָּוִיד בְּגֹרֶן אָרְנָן הַיְבוּסִי&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המזבח </strong> מכוון ביותר ואין משנין אותו ממקומו שבנה אותו שלמה שהוא מקום העקידה ושבנה נח ושהקריבו עליו אדם ובניו ומשם נברא דכתיב וייצר ה׳ אלהים את האדם עפר מן האדמה אדם מכפרתו נברא דכתיב הכא מן האדמה וכתיב התם מזבח אדמה תעשה לי.</p>
               </div>
             </div>
@@ -512,8 +583,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-3">Mishneh Torah, The Chosen Temple 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִדּוֹת הַמִּזְבֵּחַ מְכֻוָּנוֹת הַרְבֵּה וְצוּרָתוֹ יְדוּעָה אִישׁ מֵאִישׁ. וּמִזְבֵּחַ שֶׁבָּנוּ בְּנֵי הַגּוֹלָה כְּעֵין מִזְבֵּחַ שֶׁעָתִיד לְהִבָּנוֹת עָשׂוּהוּ וְאֵין לְהוֹסִיף עַל מִדָּתוֹ וְלֹא לִגְרֹעַ מִמֶּנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מדות </strong> המזבח מכוונות ביותר דקפיד קרא אמדת ארכו ורחבו וקומתו וצורתו ידועה איש מאיש עד משה רבינו דבתורה לא נתפרשה ואין להוסיף על מה שבנו ועל מה שעתיד להבנות ולא לגרוע ממנו.</p>
               </div>
             </div>
@@ -528,8 +604,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-4">Mishneh Torah, The Chosen Temple 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּשְׁלֹשָׁה נְבִיאִים עָלוּ עִמָּהֶם מִן הַגּוֹלָה. אֶחָד הֵעִיד לָהֶן עַל מְקוֹם הַמִּזְבֵּחַ. וְאֶחָד הֵעִיד לָהֶן עַל מִדּוֹתָיו. וְאֶחָד הֵעִיד לָהֶן שֶׁמַּקְרִיבִין עַל הַמִּזְבֵּחַ הַזֶּה כָּל הַקָּרְבָּנוֹת אַף עַל פִּי שֶׁאֵין שָׁם בַּיִת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה </strong> נביאים עלו עמהם מן הגולה אחד העיד להם על מקום המזבח שיהא בנוי במקום שנברא ממנו אדם הראשון ואחד העיד על מדותיו שיש לו מקום להוסיף עד ששים אמה דכתיב ויאמר דוד זה בית אלהים וזה מזבח לעולה בישראל כי בית מה בית ששים אמה ארכו כדכתיב והבית וגו׳ ששים אמה ארכו אף מזבח עד ששים אמה ראוי לו ומקודש המקום אם ירצו והם הוסיפו עליו כפי הצורך ל&quot;ב על ל&quot;ב ולא הוצרכו לששים והכי גמירי לה איש מפי איש עד משה כדאמרי׳ עד דאתא דוד ואסמכיה אקרא ונביא שלישי העיד להם שמקריבים על המזבח הזה כל הקרבנות אף על פי שאין שם בית דקדושת הבית קדשה לשעתה ולעתיד לבא דקדושת ירושלם ומקדש מפי השכינה ושכינה אינה בטלה משם דכתיב והשמותי את מקדשכם אף על פי ששוממין בקדושתן הם עומדים.</p>
               </div>
             </div>
@@ -544,8 +625,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:5:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-5-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-5">Mishneh Torah, The Chosen Temple 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִזְבֵּחַ שֶׁעָשָׂה משֶׁה וְשֶׁעָשָׂה שְׁלֹמֹה וְשֶׁעָשׂוּ בְּנֵי הַגּוֹלָה וְשֶׁעָתִיד לְהֵעָשׂוֹת כֻּלָּן עֶשֶׂר אַמּוֹת גֹּבַהּ כָּל אֶחָד מֵהֶן. וְזֶה הַכָּתוּב בַּתּוֹרָה <span class="source-small">(שמות כז א)</span> &quot;וְשָׁלֹשׁ אַמּוֹת קוֹמָתוֹ&quot; מְקוֹם הַמַּעֲרָכָה בִּלְבַד. וּמִזְבֵּחַ שֶׁעָשׂוּ בְּנֵי הַגּוֹלָה וְכֵן הֶעָתִיד לְהִבָּנוֹת מִדַּת אָרְכּוֹ וְרָחְבּוֹ ל&quot;ב אַמּוֹת עַל ל&quot;ב אַמּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המזבחות </strong> שנעשו ושעתיד לעשות כולן עשר אמות וזה שכתוב בתורה ושלש אמות קומתו מקום המערכה בלבד דנאמר כאן רבוע ונאמר להלן רבוע במזבח הזהב אמה ארכו ואמה רחבו רבוע ואמתים קומתו מה להלן גובהו פי שנים בארכו אף כאן גובהו פי שנים בארכו דכתיב חמש אמות אורך וגו׳ הרי עשר אמות גובה ולא תימא איפשר כהן עומד על גבי המזבח ועבודה בידו וכל העם רואים אותו מבחוץ דאין גובה היקף הקלעים של חצר אלא חמש אמות כדכתיב וקומה חמש אמות דכתיב ואת קלעי החצר ואת מסך שער החצר אשר על המשכן ועל המזבח מה משכן עשר אמות גובה הוא שצריך שיהיו הקלעים של חצר סביביו דהכי הוה גובה המשכן דכתיב עשר אמות אורך הקרש אף מזבח צריך הקף לבד עשר אמות דקלעים חמש עשרה אמות היו גבוהין שלא יראה כהן ועבודה בידו ומה תלמוד לומר וקומה חמש אמות למעלה מן המזבח היה גובהן חמש אמות ושלש אמות קומתו דכתי׳ במזבח היינו משפת סובב ולמעלה עד מקום הקרנות ולמטה הימנו ששה אמות וגובה הקרן אמה הרי עשרה כדאמר׳ ומזבח שעשו בני הגולה וכן העתיד ליבנות מדת ארכן ורחבן ל&quot;ב על ל&quot;ב דעד ששים היו יכולין להוסיף כדילפי׳ לעיל אלא דלא הוצרכו.</p>
               </div>
             </div>
@@ -560,8 +646,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-6">Mishneh Torah, The Chosen Temple 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶשֶׂר אַמּוֹת שֶׁל גֹּבַהּ הַמִּזְבֵּחַ מֵהֶן בְּאַמָּה בַּת חֲמִשָּׁה טְפָחִים וּמֵהֶן בְּאַמָּה בַּת שִׁשָּׁה טְפָחִים. וּשְׁאָר כָּל אַמּוֹת הַבִּנְיָן בְּאַמָּה בַּת שִׁשָּׁה טְפָחִים. וְגֹבַהּ כָּל הַמִּזְבֵּחַ נ&quot;ח טְפָחִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עשר </strong> אמות של גובה המזבח באמה בת ששה חוץ מאמת יסוד ואמת קרן דהוו באמת בת חמש דעלה חמשה טפחים וכנס חמשה זהו יסוד עלה חמשה אמות שהם שלשה טפחים וכנס חמשה טפחים זהו סובב דכתיב ונתת אותה תחת כרכוב המזבח מלמטה כרכוב הוא הסובב שמקיף את כל המזבח וגובה מקום המערכה מן הסובב שלש אמות שהם י&quot;ח טפחים נמצא רוחב מקום המערכה כ&quot;ד אמות וד׳ טפחים על כ&quot;ד וד׳ טפחים אחר שחסרנו אמה סביב ממקום הקרנות ואמה סביב ממקום רגלי הכהנים וצורת ותבנית זה הוא שהיא ידוע איש מאיש עד משה רבינו והיא הצורה והתבנית שנתפרשה בבנין העתיד דכתיב ואלה מדות המזבח באמות אמה אמה וטופח וחיק האמה ואמה רוחב וגבולה אל שפתה סביב זרת האחד וזה גב המזבח מדות המזבח מזבח העולה באמות אמה אמה וטפח מדת המזבח יהיה באותן אמה שהאמה בינונית תחזיק מהן אמה וטפח הרי שעלה אמה בת חמשה טפחים שהוא יסוד כדכתיב וחיק האמה כלומר באלו האמות אני אומר שיהו בנות חמש האמה דהיינו יסוד דעלה אמה כדאמר׳ וחיק על שם שהוא חיקוייו ותיקונו של מזבח מלמטה ואמה רוחב כניסה דיסוד ודסובב בת חמש וגבולה אל שפתה סביב גובהו דקרן באמה בת חמש וכל שאר מדות המזבח באמה בת שש ורש&quot;י ז&quot;ל פירש פרק שתי הלחם ובריש ערובין דאמה רוחב לא קאי אלא אכניסה דסובב לא אכניסה דיסוד דהוא בת שש ולדבריו יתישב גרסא ל&quot;ש הכי ול&quot;ש הכי מה שאינה מתישבת לדברי הרב ז&quot;ל דקאמר דכניסה דיסוד נמי באמה בת חמש ורבוע כל קרן אמה על אמה דומיא דמזבח הזהב דהוה רבוע אמה על אמה וחלול דכתיב ומלאו במזרק בזויות המזבח אלמא קיבול יש במזרקים בזויות המזבח.</p>
               </div>
             </div>
@@ -576,8 +667,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-9">Mishneh Torah, The Chosen Temple 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְחוּט שֶׁל סִקְרָה הָיָה חוֹגֵר בְּאֶמְצַע הַמִּזְבֵּחַ [כְּשִׁשָּׁה טְפָחִים מִסּוֹף הַסּוֹבֵב וּלְמַטָּה] לְהַבְדִּיל בֵּין דָּמִים הָעֶלְיוֹנִים לְדָמִים הַתַּחְתּוֹנִים. וְנִמְצָא גָּבְהוֹ מִן הָאָרֶץ עַד מְקוֹם הַמַּעֲרָכָה תֵּשַׁע אַמּוֹת פָּחוֹת טֶפַח:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וחוט </strong> של סקרא היה חגור באמצע המזבח להבדיל בין דמים העליונים לדמים התחתונים דמים העליונים חטאת בהמה דמים התחתונים חטאת העוף ומנא לן דבעינן הבדל בין אלו לאלו דכתיב והיתה הרשת עד חצי המזבח. הרשת כעין ציור מצודה בקליעה ושל נחשת הויא בתחתיו של מזבח עשוי [כמו] נפה וגבוה עד חציו של מזבח כדכתיב עד חצי המזבח ומדקפיד קרא אחציה משמע דנתנה מחצה בין דמים העליונים לדמים התחתונים.</p>
               </div>
             </div>
@@ -592,8 +688,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-10">Mishneh Torah, The Chosen Temple 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יְסוֹד הַמִּזְבֵּחַ לֹא הָיָה מַקִּיף מֵאַרְבַּע רוּחוֹתָיו כְּמוֹ הַסּוֹבֵב. אֶלָּא הָיָה הַיְסוֹד מָשׁוּךְ כְּנֶגֶד כָּל רוּחַ צָפוֹן וּמַעֲרָבִי וְאוֹכֵל בַּדָּרוֹם אַמָּה אַחַת וּבַמִּזְרָח אַמָּה אַחַת. וְקֶרֶן דְּרוֹמִית מִזְרָחִית לֹא הָיָה לָהּ יְסוֹד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הקרנות היה להן כנגדן מלמטה יסוד חוץ מקרן דרומית מזרחית שלא היה לה יסוד לפי שלא היתה בחלקו של טורף דכתיב ביה בנימין זאב יטרף שנתנבא עליו יעקב בבקר יאכל עד באחסנתיה יתבני מקדשא וקרן דרומית מזרחית לא היתה בחלקו אלא רצועה מחלקו של יהודה שהיתה נכנסת בחלק בנימן וכך התנו שהאויר של בנימן וקרקע של יהודה ולמעלה משלשה לאו קרקע&#160;הוא ובקרן מערבית דרומית היו השיתין שהדמים יורדים בהם ומתערבים באותה הקרן באמה ואית דסברי דשיתין מששת ימי בראשית נבראו דכתיב בראשית אל תיקרי בראשית אלא&#160;ברא&#160;שית.</p>
               </div>
             </div>
@@ -608,8 +709,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-13">Mishneh Torah, The Chosen Temple 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֶבֶשׁ הָיָה בָּנוּי לִדְרוֹמוֹ שֶׁל מִזְבֵּחַ. אָרְכּוֹ שְׁלֹשִׁים וּשְׁתַּיִם אַמָּה עַל רֹחַב ט&quot;ז אַמָּה וְהָיָה אוֹכֵל בָּאָרֶץ שְׁלֹשִׁים אַמָּה מִצַּד הַמִּזְבֵּחַ. וּפוֹרֵחַ מִמֶּנָּה אַמָּה עַל הַיְסוֹד וְאַמָּה עַל הַסּוֹבֵב. וַאֲוִיר מְעַט הָיָה מַפְסִיק בֵּין הַכֶּבֶשׁ לַמִּזְבֵּחַ כְּדֵי לִתֵּן הָאֵיבָרִים לַמִּזְבֵּחַ בִּזְרִיקָה. וְגֹבַהּ הַכֶּבֶשׁ תֵּשַׁע אַמּוֹת פָּחוֹת שְׁתוּת עַד כְּנֶגֶד הַמַּעֲרָכָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכבש </strong> היה בנוי לדרומו של מזבח דמדכתיב ולא תעלה במעלות משמע אלא כבש חלק ולדרומו דכתיב ושחט אותו על ירך המזבח צפונה שיהא ירך בצפון ופניו של מזבח שהיא מצד הכבש לדרום כאדם השוכב ארצה ורגליו לצפון נמצא ראשו ופניו שהם צד המזבח של כבש והכבש לדרום דשיער הכתוב באדם רבוע ומושכב ארצה כדכתיב רבוע ואף על גב דאיבעי ליה רבוע שיהא מרובע ולא עגול אפ&quot;ה מדה&quot;ל למיכתב מרובע וכתב רבוע משמע הכי ומשמע הכי הילכך תרוייהו יליף מינה ותנא מייתי לה מדכתיב ביחזקאל במזבח ומעלותיה פונות קדים כל פונות שאתה פונה לא יהו אלא דרך ימין למזרח דפנות קדים כתיב בקרא ואין לך רוח ראויה לכך אלא דרום דבעינן דרך ימין כדילפינן מים שלמה דכתי׳ פונים (פונים). ואורך הכבש ל&quot;ב ורחבה י&quot;ו שעולים בו במשא איברים כבדים והוא חלק צריך שיהא משופע ביותר ונוח לעלות לכך האריכוהו ל&quot;ב לתשעה אמות גובה ואויר היה מפסיק בין הכבש למזבח כדי ליתן האיברים למזבח בזריקה דכתיב ועשית עולותיך הבשר והדם הקיש בשר לדם מה דם בזריקה כדכתיב וזרקו אף בשר בזריקה אלמא אויר יש ומחמת האויר הויא זריקה שעומד בכבש וזורק אל עבר האויר למערכה דאי תימא זריקה הינו משום דלמערכה דלוקה הוא זורק דאין יכול לסדר סביב על ראשי העצים אלא הימנו והלאה במקום שדולקת הא לא איפשר בלאו הכי ולהא לא איצטריך קרא אלא לאשמועינן דיש אויר בין כבש למזבח אי נמי לא מצית אמרת עומד בצד המערכה וזורק דהפסק אויר בעינן בזריקה כי דם מה דם אויר מפסיק בינו למזבח דכשזורק מרחיק עצמו לזרוק אף בשר מפסיק אויר בזריקתו בינו למזבח. וגובה הכבש תשעה אמות פחות שתות עד כנגד המערכה ולא תימא הרי עולה במעלות על המזבח שתות אמה דהא אמרן לעיל דאמה גובה יסוד הויא אמה בת חמש הרי חסר שתות שלא היתה גבוהה מקום המערכה אלא תשעה אמות פחות שתות דאמה אחת בת חמשה כדאמר׳. ושני כבשים יוצאים פונים ליסוד ולסובב ומובדלים מן המזבח כמלוא נימא אי משום דכתיב במזבח סביב שיהא הקף למזבח כל דהו ואי הוו מחוברין שוב אין הקף ואפילו בחוט אין אדם יכול לסובבו אי משום דכתיב רבוע ואי מחוברין לא הוה בנינו של מזבח מרובע ואיצטריך למיכת׳ סביב ואיצטרי׳ למיכת׳ רבוע ואע&quot;ג דאפקינהו לתרוייהו להך דרשא שלא יהא בנין אחר מחובר בו דאי כתב רחמנא סביב הוה אמינא דעגיל מעגל ולא יהו לו זויות להכי כתב רחמנא רבוע ואי כתב רחמנא רבוע הוה אמינא ארכו יתר על רחבו וזויות יהו לו כתב רחמנא סביב שיהו כל סביביו שוין ואף על גב דכתיב במזבח חמש אמות אורך וחמש אמות רוחב הרי שסביבותיו שוין איפשר דהוי אמינא דהיינו למעלה אבל למטה לא קפיד להכי איצטריך סביב לומר שיהו כל סביביו שוין ואפילו מלמטה דאי תימא לעיכובא קשיא דלעכב מהמזבח נפקא (ורכובה) [ורבובה] ושתי שלחנות היו במערבו של כבש.</p>
               </div>
             </div>
@@ -624,8 +730,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-16">Mishneh Torah, The Chosen Temple 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁבּוֹנִין הַמִּזְבֵּחַ בּוֹנִין אוֹתוֹ כֻּלּוֹ אָטוּם כְּמִין עַמּוּד וְאֵין עוֹשִׂין בּוֹ חָלָל כְּלָל. אֶלָּא מֵבִיא אֲבָנִים שְׁלֵמוֹת גְּדוֹלוֹת וּקְטַנּוֹת וּמֵבִיא סִיד וְזֶפֶת וְקוּנְיָא וּמְמַחֶה וְשׁוֹפַךְ לְתוֹךְ מַלְבֵּן גָּדוֹל כְּמִדָּתוֹ וּבוֹנֶה וְעוֹלֶה. וְנוֹתֵן בְּתוֹךְ הַבִּנְיָן גּוּף שֶׁל עֵץ אוֹ אֶבֶן בְּקֶרֶן דְּרוֹמִית מִזְרָחִית כְּמִדַּת הַיְסוֹד. וְכֵן נוֹתֵן בְּתוֹךְ כָּל קֶרֶן וְקֶרֶן עַד שֶׁיַּשְׁלִים הַבִּנְיָן וְיָסִיר הַגּוּפִים שֶׁבְּתוֹךְ הַבִּנְיָן כְּדֵי שֶׁתִּשָּׁאֵר קֶרֶן דְּרוֹמִית מִזְרָחִית בְּלֹא יְסוֹד וְיִשָּׁאֲרוּ הַקְּרָנוֹת חֲלוּלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> עושין המזבח חלל אלא אטום כדילפינן לעיל שלא יבננו על גבי כפין וגו׳ ונותן על גבי הבנין גוף של עץ בקרן דרומית מזרחית כמדת היסוד שהיה בחלק יהודה כדאמר׳ לעיל וכדי שלא ישאר הבנין פגום היה משים הגוף של עץ דכשהיה מסירו היה נשאר מקום חבורו חלק בלי שום פגימה.</p>
               </div>
             </div>
@@ -640,8 +751,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-17">Mishneh Torah, The Chosen Temple 2:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבַּע קְרָנוֹת שֶׁל מִזְבֵּחַ וִיסוֹדוֹ וְרִבּוּעוֹ מְעַכְּבִין. וְכָל מִזְבֵּחַ שֶׁאֵין לוֹ קֶרֶן יְסוֹד וְכֶבֶשׁ וְרִבּוּעַ הֲרֵי הוּא פָּסוּל שֶׁאַרְבַּעְתָּן מְעַכְּבִין. אֲבָל מִדַּת אָרְכּוֹ וּמִדַּת רָחְבּוֹ וּמִדַּת קוֹמָתוֹ אֵינָן מְעַכְּבִין. וְהוּא שֶׁלֹּא יִפְחֹת מֵאַמָּה עַל אַמָּה בְּרוּם שָׁלֹשׁ אַמּוֹת כְּשִׁעוּר מְקוֹם הַמַּעֲרָכָה שֶׁל מִזְבַּח מִדְבָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> מזבח שאין לו קרנות ויסוד וכבש וריבוע הרי הוא פסול שארבעתן מעכבין דכל מקום שנאמר המזבח לעכב דהמזבח משמע כשהוא כן הוא דמיקרי מזבח ואי לא לא ובקרנות כתיב קרנות המזבח וביסוד כתיב אל יסוד המזבח ובכבש כתיב אל פני המזבח והוא הכבש שאין פניו של מזבח שעולים לו דרך שם כי היכי דחשיב צד מזרחית פני אהל מועד מחמת שהפתח שם ובריבוע כתיב רבוע יהיה המזבח אבל מדת ארכו ומדת רחבו וקומתו אינם מעכבים דלא כתיב בהו המזבח והא דכתיב עלי השכיל ומיירי אף גבי מזבח דמה בית ששים אף מזבח ששים היינו שיהא קדוש עד ששים אם ירצו להרחיבו אבל לא שיהא חובה לעשות כן כדאמר׳ לעיל ובלבד שלא יפחות ממזבח מדבר אמה על אמה ברום שלש אמות.</p>
               </div>
             </div>
@@ -656,8 +772,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:18:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-2-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 2:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-2-18">Mishneh Torah, The Chosen Temple 2:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִזְבֵּחַ שֶׁנִּפְגַּם מִבִּנְיָנוֹ אִם נִפְגַּם מִבִּנְיָנוֹ טֶפַח פָּסוּל פָּחוֹת מִטֶּפַח כָּשֵׁר וְהוּא שֶׁלֹּא יִהְיֶה בַּנִּשְׁאָר אֶבֶן פְּגוּמָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מזבח </strong> שנפגם מבנינו טפח פסול פחות מטפח כשר דכל שהו פחות מטפח חשיב מרובע אבל אי נפגם מבנינו טפח לא חשיב מזבח מרובע והוא שלא יהא נשאר אבן פגומה דכתיב אבנים שלמות:</p>
               </div>
             </div>
@@ -673,8 +794,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-1">Mishneh Torah, The Chosen Temple 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְּנּוֹרָה מְפֹרֶשֶׁת צוּרָתָהּ בַּתּוֹרָה. וְאַרְבָּעָה גְּבִיעִים וּשְׁנֵי כַּפְתּוֹרִים וּשְׁנֵי פְּרָחִים הָיוּ בִּקְנֵה הַמְּנוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(שמות כה לד)</span> <span class="source-small">(שמות לז כ)</span> &quot;וּבַמְּנֹרָה אַרְבָּעָה גְבִעִים מְשֻׁקָּדִים כַּפְתֹּרֶיהָ וּפְרָחֶיהָ&quot;. וְעוֹד פֶּרַח שְׁלִישִׁי הָיָה סָמוּךְ לִירֵכָהּ שֶׁל מְנוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ח ד)</span> &quot;עַד יְרֵכָהּ עַד פִּרְחָהּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המנורה </strong> מפורשת צורתה בתורה שנים ועשרים גביעים דכתיב שלשה גביעים משוקדים וגו׳ כן לששת הקנים היוצאים מן המנורה הרי י&quot;ח ובמנורה ארבעה גביעים הרי כ&quot;ב והפרחים תשעה דכתיב כפתור ופרח כן לששת הקנים היוצאים מן המנורה הרי שש ובמנורה שתים דכתיב משוקדים כפתוריה ופרחיה מיעוט רבים שנים דתפשת מעט תפשת ועוד פרח שלישי סמוך לירכה דכתיב עד ירכה עד פרחה הרי תשעה והכפתורים אחד עשר דכתי׳ כפתור ופרח כן לששת הקנים הרי ששה ובמנורה שנים דכתיב כפתוריה מיעוט רבים שנים ועוד שלשה כפתורים אחרים שהיו במנורה שמהן יוצאים הששה קנים מצדיה כדכתיב וכפתור תחת שני הקנים ממנה מתוך הכפתור היו נמשכים הקנים משני צידיה אילך ואילך וכפתור וכפתור הרי י&quot;א ושלש רגלים היו לה דירכה היא הרגל של מטה העשוי כמין תיבה וג׳ הרגלים יוצאים ממנה ולמטה וכל הגביעים וכפתורים ופרחים היו משוקדים מצויירים כשקדים בעשייתן דכתיב ארבעה גביעים משוקדים כפתוריה ופרחיה והוא אחד מן המקומות שאין להם הכרע שאין ידוע אם הגביעים משוקדים אם כפתוריה ופרחיה משוקדים ולהכי עבדינן לכולהו משוקדים וגביעי׳ וכפתורים ופרחים דששה קני מנורה קשיא דמשמע דאגביעים לחוד קאי משוקדים דכתיב שלשה גביעים משוקדי׳ והדר כתי׳ בקנה האחד [כפתו׳] ופרח ונראה כפי׳ התוספות פרק הוציאו לו דהאי דאין לו הכרע היינו משום דאיכא אתנחתא בגביעים ובמנורה ארבעה גביעים ומשמע משוקדים כפתוריה ופרחיה ובקרא דשלשה גביעים מוכח דמשוקדים לא קאי אלא אגביעים דכתיב שלשה גביעים משוקדים ולהכי אין לו הכרע והשתא איפשר לומר דכיון דמהאי טעמא הוא דאין לו הכרע אם כן עבדינן לכולהו דקני מנורה נמי משוקדים כיון דאין הכרע אמשוקדים דמנורה אי הוו משוקדים כולהו אי לא דאי תימא דמשוקדים דמנורה לא קאי אלא אכפתוריה ופרחיה בשלשה גביעים נמי קרא דמשוקדים בקנה הא׳ כפתור ופרח איהו דחיק ואוקי אנפשיה דקאי משוקדים אסופיה דקרא דכפתור ופרח דמ&quot;ש מנורה גופא מקני מנורה דעבדינן משוקדים לכפתורים ופרחים דידה ולא דקני׳ וכי היכי דהוו גביעים כפתורים ופרחים במנורה גופא הכא נמי הוו בקנים דידה ולהכי אי כולהו גביעים כפתורים ופרחים דמנורה בעו משוקדים משום דאין הכרע אהיכא קאי הכא נמי כולהו דקנים בעו משוקדים דמ&quot;ש הני מהני דקרא דידהו נמי לא קאי משוקדים בהדיא בגביעים לחוד כדפי׳.</p>
               </div>
             </div>
@@ -689,8 +815,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-3">Mishneh Torah, The Chosen Temple 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִמְצְאוּ כָּל הַגְּבִיעִים שְׁנַיִם וְעֶשְׂרִים. וְהַפְּרָחִים תִּשְׁעָה. וְהַכַּפְתּוֹרִים אַחַד עָשָׂר. וְכֻלָּן מְעַכְּבִין זֶה אֶת זֶה וַאֲפִלּוּ חָסֵר אֶחָד מִן הַשְּׁנַיִם וְאַרְבָּעִים מְעַכֵּב אֶת כֻּלָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכולם </strong> מעכבים זה את זה אפילו חסר אחד מן השנים וארבעים דהויה כתיב בהו גביעיה כפתוריה ופרחיה ממנה יהיו משמע לעכב והיינו כשבאה זהב אבל אם עשאוה משאר מיני מתכות לא מעכבי דכתיב זהב טהור וגו׳ גביעיה כפתוריה ופרחיה ממנה יהיה ודרשינן הכי באה זהב באה גביעים כפתורים ופרחים אינה באה זהב אינה באה גביעים וגו׳ ושאר מיני מתכות מרבינן להו בכלל ופרט דכתיב ועשית מנורה כלל דמשמע מכל דבר זהב טהור פרט תעשה המנורה חזר וכלל ואי אתה דן אלא כעין הפרט מה הפרט מפורש של מתכת אף כל של מתכת וכן של זהב בעינן ככר עם נרותיה ומקשה ושאר מיני מתכות אין מקפידין על משקלה דכתיב ככר זהב טהור יעשה אותה באה זהב באה ככר אינה באה זהב אינה באה ככר ואם היתה חלולה כשרה דלא קפיד קרא אלא אמקשה. ואין עושין אותה לעולם מן הגרוטאות זהב שבור דמקשה מקשה כתיב תרי זימני בויקחו לי תרומה לעכב דמקשה משמע חתיכה אחת כדמתרגמינן נגיד משוך שנמשך הכל מחתיכה אחת בין עשאה זהב בין שאר מיני מתכות.</p>
               </div>
             </div>
@@ -705,8 +836,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-6">Mishneh Torah, The Chosen Temple 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמֶּלְקָחַיִם וְהַמַּחְתּוֹת וּכְלֵי הַשֶּׁמֶן אֵינָן מִכְּלַל הַכִּכָּר שֶׁהֲרֵי נֶאֱמַר בַּמְּנוֹרָה <span class="source-small">(שמות כה לא)</span> <span class="source-small">(שמות לז יז)</span> &quot;זָהָב טָהוֹר&quot; וְחָזַר וְאָמַר וּמַלְקָחֶיהָ וּמַחְתֹּתֶיהָ זָהָב טָהוֹר. וְלֹא נֶאֱמַר נֵרוֹתֶיהָ זָהָב טָהוֹר מִפְּנֵי שֶׁהַנֵּרוֹת קְבוּעִין בַּמְּנוֹרָה וְהֵם מִכְּלַל הַכִּכָּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המלקחים </strong> והמחתות וכלי השמן אינם מכלל הככר דכתיב אותה למעט מלקחים ומחתות וכתיב את כל הכלים לרבות נרותיה שהם מגופה שהרי נאמר במנורה זהב טהור ולא היה צריך לאומרו במלקחים ומחתות אלא מפני שלא היו מכלל הככר והרי שלא נאמר נרותיה זהב טהור מפני שהם מכלל הככר שהם קבועים במנורה.</p>
               </div>
             </div>
@@ -721,8 +857,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-7">Mishneh Torah, The Chosen Temple 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שִׁבְעַת קְנֵי הַמְּנוֹרָה מְעַכְּבִין זֶה אֶת זֶה. וְשִׁבְעַת נֵרוֹתֶיהָ מְעַכְּבִין זֶה אֶת זֶה בֵּין שֶׁהָיְתָה שֶׁל זָהָב בֵּין שֶׁהָיְתָה שֶׁל שְׁאָר מִינֵי מַתָּכוֹת. וְכָל הַנֵּרוֹת קְבוּעִים בַּקָּנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבעת </strong> קני מנורה מעכבין זה את זה דהויה כתיב בהו דמשמע לעכב דכתיב ירכה וקנה וגו׳ יהיו וכתיב כפתוריהם וקנותם ממנה יהיו ושבעה נרותיה נמי מעכבין בין היתה של זהב בין של שאר מיני מתכות איפשר משום דכתיב נרותיה תרי זימני בחד קרא משמע לעכב. וכל הנרות קבועים בקנים דכיון דהוו באות מן הככר כדילפינן הוו מקשה מחוברים לה.</p>
               </div>
             </div>
@@ -737,8 +878,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-8">Mishneh Torah, The Chosen Temple 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שֵׁשֶׁת הַנֵּרוֹת הַקְּבוּעִים בְּשֵׁשֶׁת הַקָּנִים הַיּוֹצְאִים מִן הַמְּנוֹרָה כֻּלָּן פְּנֵיהֶם לַנֵּר הָאֶמְצָעִי שֶׁעַל קְנֵי הַמְּנוֹרָה וְזֶה הַנֵּר הָאֶמְצָעִי פָּנָיו כְּנֶגֶד קֹדֶשׁ הַקָּדָשִׁים וְהוּא הַנִּקְרָא נֵר מַעֲרָבִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וששה </strong> הנרות פניהם לנר האמצעי שעל קנה המנורה והנר האמצעי כנגד קדש הקדשים והוא נקרא נר מערבי דכתיב אל מול פני המנורה שהיא הנר האמצעי יאירו שבעת הנרות הששה נרות היו פונים אל מול האמצעי הפתילות שבהם והאמצעי עצמו לא היה נוטה אל אחד מהצדדין ומאיר אל מול עצמו הוא וכתיב ביה יערוך אותו אהרן לפני ה׳ שהיה כנגד קדש הקדשים שהשלשה צפוניים פונים לדרום והדרומיים לצפון ואין שום אחת מהם פונה לצד ההיכל שהוא לפני השם אלא הנר האמצעי בלבד ונמצא שעליו כתוב יערוך אותו לפני ה׳ וגו׳.</p>
               </div>
             </div>
@@ -753,8 +899,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-10">Mishneh Torah, The Chosen Temple 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גֹּבַהּ הַמְּנוֹרָה הָיָה שְׁמוֹנָה עָשָׂר טֶפַח. הָרַגְלַיִם וְהַפֶּרַח שְׁלֹשָׁה טְפָחִים. וּשְׁנֵי טְפָחִים חָלָק. וְטֶפַח שֶׁבּוֹ גָּבִיעַ כַּפְתּוֹר וָפֶרַח. וּטְפָחַיִם חָלָק. וְטֶפַח כַּפְתּוֹר וּשְׁנֵי קָנִים יוֹצְאִין מִמֶּנּוּ אֶחָד הֵילָךְ וְאֶחָד הֵילָךְ וְנִמְשָׁכִים וְעוֹלִין כְּנֶגֶד גֹּבַהּ הַמְּנוֹרָה. וְטֶפַח חָלָק. וְטֶפַח כַּפְתּוֹר וּשְׁנֵי קָנִים יוֹצְאִים מִמֶּנּוּ אֶחָד הֵילָךְ וְאֶחָד הֵילָךְ וְנִמְשָׁכִין וְעוֹלִין כְּנֶגֶד גֹּבַהּ הַמְּנוֹרָה. וְטֶפַח חָלָק. וְטֶפַח כַּפְתּוֹר וּשְׁנֵי קָנִים יוֹצְאִים מִמֶּנּוּ אֶחָד הֵילָךְ וְאֶחָד הֵילָךְ וְנִמְשָׁכִין וְעוֹלִין כְּנֶגֶד גֹּבַהּ הַמְּנוֹרָה. וּטְפָחַיִם חָלָק. נִשְׁתַּיְּרוּ שְׁלֹשָׁה טְפָחִים שֶׁבָּהֶן שְׁלֹשָׁה גְּבִיעִים כַּפְתּוֹר וָפֶרַח:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גובה </strong> של מנורה י&quot;ח טפחים שלשה טפחים ירכה ופרחה שמנה טפחים חלק בין חמשה מקומות טפח שבו גביע כפתור ופרח ג׳ טפחים מכפתר כפתר כפתר לששת הקנים היוצאים ממנה ושלשה טפחים לשלשה גביעים תשלום הארבעה כפתר ופרח הרי שמנה עשר.</p>
               </div>
             </div>
@@ -769,8 +920,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-12">Mishneh Torah, The Chosen Temple 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשֻּׁלְחָן הָיָה אָרְכּוֹ שְׁנֵים עָשָׂר טֶפַח וְרָחְבּוֹ שִׁשָּׁה טְפָחִים. וְהָיָה מֻנָּח אָרְכּוֹ לְאֹרֶךְ הַבַּיִת וְרָחְבּוֹ לְרֹחַב הַבַּיִת. וְכֵן שְׁאָר כָּל הַכֵּלִים שֶׁבַּמִּקְדָּשׁ אָרְכָּן לְאָרְכּוֹ שֶׁל בַּיִת וְרָחְבָּן לְרֹחַב הַבַּיִת חוּץ מִן הָאָרוֹן שֶׁהָיָה אָרְכּוֹ לְרֹחַב הַבַּיִת. וְכֵן נֵרוֹת הַמְּנוֹרָה כְּנֶגֶד רֹחַב הַבַּיִת בֵּין הַצָּפוֹן וּבֵין הַדָּרוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השלחן </strong> היה ארכו שנים עשר טפח ורחבו ששה טפחים כדכתיב אמתים ארכו אמה רחבו אמה סתם שהיא בינונית בת ששה טפחים והיה מונח ארכו לארך הבית ורחבו לרוחב הבית וכן שאר כל הכלים חוץ מן הארון שהיה ארכו לרוחב הבית והיו הבדים דוחקים את הפרכת ובולטים ונראים כשני דדי אשה כדכתיב בין שדי ילין ומנא לן דבדיו לפותיא דארון הוו יתבי ולא לארכו דאי הוו לארכו לא הוו בין בד לבד אלא שתי אמות ומחצה כרחבו של ארון ותרי גברא באמתא ופלגא לא מסתגי להו ומנ&quot;ל דבארבעה הוו דרו ליה דכתיב ונסעו הקהתים תרי נושאי המקדש נמי תרי והקימו הלויים את המשכן כשהיו רוצים לחנות עד בוא אלו נושאי הארון וכן נרות המנורה היו בין צפון לדרום ולא היה לפניהם שהוא נגד קדשי הקדשים אלא נר האמצעי כדאמר׳ מדכתיב יערוך אותו אהרן וגו׳ לפני ה׳ דקאי אנר האמצעי וכיון דגלי קרא בארון ומנורה שיהו מונחים בין צפון לדרום משמע דשאר כלים היו מונחין כדרכן ארכן ורחבן לאורך ורוחב הבית דארון ומנורה הוו כשני כתובין הבאים כאחד ואין מלמדי׳ דלא קיימא כמ&quot;ד מנורה מזרח ומערב ולא כמ&quot;ד שלחן צפון ודרום.</p>
               </div>
             </div>
@@ -785,8 +941,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-13">Mishneh Torah, The Chosen Temple 3:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבָּעָה סְנִיפִין שֶׁל זָהָב הָיוּ לַשֻּׁלְחָן מְפֻצָּלִין בְּרָאשֵׁיהֶן שֶׁהָיוּ סוֹמְכִין בָּהֶן שְׁתֵּי הַמַּעֲרָכוֹת שֶׁל לֶחֶם הַפָּנִים. שְׁנַיִם מִסֵּדֶר זֶה. וּשְׁנַיִם מִסֵּדֶר זֶה. וְהֵם הַנֶּאֱמָרִים בַּתּוֹרָה <span class="source-small">(שמות כה כט)</span> &quot;וּקְשׂוֹתָיו&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הסניפין </strong> שסומכין בהם שתי המערכות מכאן ומכאן הם קשותיו שמקשה את הלחם ומחזקו שלא ישבר. מנקיותיו אלו הקנים שמנקין הלחם מעיפוש אשר יוסך בהם זהב טהור שמסככין בהם את הלחם על הלחם מסככין אותם בין חלה לחברתה והבזיכין הם כפותיו והדפוסין שעושין בהם הלחם הם קערותיו ומנין אלו הכלים לא פחות משנים כשני בזיכין דכתיב כפותיו מיעוט רבים שנים ולא יותר מעשרים ושמנה קנים כפי מה שהיו צריכין ללחם.</p>
               </div>
             </div>
@@ -801,8 +962,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-16">Mishneh Torah, The Chosen Temple 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּשְׁנֵי שֻׁלְחָנוֹת הָיוּ בָּאוּלָם מִבִּפְנִים עַל פֶּתַח הַבַּיִת. אֶחָד שֶׁל שַׁיִשׁ נוֹתְנִין עָלָיו לֶחֶם הַפָּנִים בִּכְנִיסָתוֹ. וְאֶחָד שֶׁל זָהָב נוֹתְנִין עָלָיו לֶחֶם בִּיצִיאָתוֹ. שֶׁמַּעֲלִין בַּקֹּדֶשׁ וְלֹא מוֹרִידִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושתי </strong> שלחנות היו באולם ושל זהב נותנים לחם הפנים ביציאתו דמעלין בקדש ולא מורידין דהוי דאוריתא כדילפינן ממחתות החטאים דעשו אותם רקועי פחים ציפוי בתחלה תשמישי מזבח ועכשיו גופו של מזבח.</p>
               </div>
             </div>
@@ -817,8 +983,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:17:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-17">Mishneh Torah, The Chosen Temple 3:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִזְבַּח הַקְּטֹרֶת הָיָה מְרֻבָּע אַמָּה עַל אַמָּה. וְהוּא נָתוּן בַּהֵיכָל מְכֻוָּן בֵּין הַצָּפוֹן לַדָּרוֹם מָשׁוּךְ בֵּין הַשֻּׁלְחָן וְהַמְּנוֹרָה לַחוּץ. וּשְׁלָשְׁתָּן הָיוּ מֻנָּחִין מִשְּׁלִישׁ הַהֵיכָל וְלִפְנִים כְּנֶגֶד הַפָּרֹכֶת הַמַּבְדִּיל בֵּין הַקֹּדֶשׁ וּבֵין קֹדֶשׁ הַקָּדָשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מזבח </strong> הקטרת היה אמה על אמה כדכתי׳ אמה ארכו ואמה רחבו רבוע ואמתים קומתו והוא נתון בהיכל מכוון בין צפון לדרום משוך בין השלחן והמנורה לחוץ דכתיב ביה ונתת אותו לפני הפרכת אשר על ארון העדות שמא תאמר משוך מכנגד הארון לצפון או לדרום תלמוד לומר לפני הכפרת מכוון כנגד ארון מבחוץ ומשוך קימעא כי היכי דליחזו שלחן ומנורה אהדדי דכתיב בהו ואת המנורה נכח השלחן ושלשתן היו מונחין משליש כל ההיכל ולפנים שהוא חצי ההיכל לצד קדש הקדשים מדכתיב מחוץ לפרכת לפני הפרכת משמע הצד שהוא לפניו וחוצה לו מיד.</p>
               </div>
             </div>
@@ -833,8 +1004,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:18:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-3-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 3:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-18">Mishneh Torah, The Chosen Temple 3:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכִּיּוֹר הָיוּ לוֹ שְׁנֵים עָשָׂר דָּד כְּדֵי שֶׁיִּהְיוּ כָּל הַכֹּהֲנִים הָעוֹסְקִים בַּתָּמִיד מְקַדְּשִׁים מִמֶּנּוּ כְּאֶחָד. וּמוּכְנִי עָשׂוּ לוֹ שֶׁיִּהְיוּ בָּהּ הַמַּיִם תָּמִיד. וְהִיא חֹל כְּדֵי שֶׁלֹּא יִהְיוּ הַמַּיִם שֶׁבָּהּ נִפְסָלִין בְּלִינָה שֶׁהַכִּיּוֹר מִכְּלֵי הַקֹּדֶשׁ וּמְקַדֵּשׁ וְכָל דָּבָר שֶׁיִּתְקַדֵּשׁ בִּכְלִי קֹדֶשׁ אִם לָן נִפְסַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכיור </strong> כמין דוד גדולה והוא מכלי הקדש כדכתיב ועשית כיור נחשת וגו׳ ומקדשים [ממנה] וכל דבר שיתקדש בכלי קדש אם לן נפסל דכלי קדש מקדשין דכתיב כל אשר יגע בהם יקדש ונפסל בלינה כמזבח כדילפינן בדוכתא לקמן ולכך עשו מוכני שהוא חול כדי שלא יפסלו המים כדאמ׳:</p>
               </div>
             </div>
@@ -850,8 +1026,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-4-1">Mishneh Torah, The Chosen Temple 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶבֶן הָיְתָה בְּקֹדֶשׁ הַקָּדָשִׁים בְּמַעֲרָבוֹ שֶׁעָלֶיהָ הָיָה הָאָרוֹן מֻנָּח. וּלְפָנָיו צִנְצֶנֶת הַמָּן וּמַטֵּה אַהֲרֹן. וּבְעֵת שֶׁבָּנָה שְׁלֹמֹה אֶת הַבַּיִת וְיָדַע שֶׁסּוֹפוֹ לֵחָרֵב בָּנָה בּוֹ מָקוֹם לִגְנֹז בּוֹ הָאָרוֹן לְמַטָּה בְּמַטְמוֹנִיּוֹת עֲמֻקוֹת וַעֲקַלְקַלּוֹת וְיֹאשִׁיָּהוּ הַמֶּלֶךְ צִוָּה וּגְנָזוֹ בַּמָּקוֹם שֶׁבָּנָה שְׁלֹמֹה שֶׁנֶּאֱמַר <span class="source-small">(דברי הימים ב לה ג)</span> &quot;וַיֹּאמֶר לַלְוִיִּם הַמְּבִינִים לְכָל יִשְׂרָאֵל הַקְּדוֹשִׁים לַה׳ תְּנוּ אֶת אֲרוֹן הַקֹּדֶשׁ בַּבַּיִת אֲשֶׁר בָּנָה שְׁלֹמֹה בֶן דָּוִיד מֶלֶךְ יִשְׂרָאֵל אֵין לָכֶם מַשָּׂא בַּכָּתֵף עַתָּה עִבְדוּ אֶת ה׳ אֱלֹהֵיכֶם&quot; וְגוֹ׳. וְנִגְנַז עִמּוֹ מַטֵּה אַהֲרֹן וְהַצִּנְצֶנֶת וְשֶׁמֶן הַמִּשְׁחָה וְכָל אֵלּוּ לֹא חָזְרוּ בְּבַיִת שֵׁנִי. וְאַף אוּרִים וְתֻמִּים שֶׁהָיוּ בְּבַיִת שֵׁנִי לֹא הָיוּ מְשִׁיבִין בְּרוּחַ הַקֹּדֶשׁ. וְלֹא הָיוּ נִשְׁאָלִין בָּהֶן שֶׁנֶּאֱמַר <span class="source-small">(עזרא ב סג)</span> <span class="source-small">(נחמיה ז סה)</span> &quot;עַד עֲמֹד כֹּהֵן לְאוּרִים וְתֻמִּים&quot;. וְלֹא הָיוּ עוֹשִׂין אוֹתָן אֶלָּא לְהַשְׁלִים שְׁמוֹנָה בְּגָדִים לְכֹהֵן גָּדוֹל כְּדֵי שֶׁלֹּא יְהֵא מְחֻסַּר בְּגָדִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבן </strong> היתה בקדש הקדשים במערבו דכתיב והאבן הזאת אשר שמתי מצבה יהיה בית אלהים ועליה היה הארון מונח ולפניו צנצנת המן דכתיב קח צנצנת אחת מלא העומר מן והנח אותו לפני ה׳ דהיינו לפני הארון כדכתיב ויניחהו אהרן לפני העדות למשמרת ומטה אהרן דכתיב השב את מטה אהרן לפני העדות למשמרת ונגנזו עם הארון ושמן המשחה ואורים ותומים נמי לא חזרו בבית שני.</p>
               </div>
             </div>
@@ -866,8 +1047,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-4-2">Mishneh Torah, The Chosen Temple 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּבַיִת רִאשׁוֹן הָיָה כֹּתֶל מַבְדִּיל בֵּין הַקֹּדֶשׁ וּבֵין קֹדֶשׁ הַקָּדָשִׁים עָבְיוֹ אַמָּה. וְכֵיוָן שֶׁבָּנוּ הַבַּיִת שֵׁנִי נִסְתַּפֵּק לָהֶם אִם עֳבִי הַכֹּתֶל הָיָה מִמִּדַּת הַקֹּדֶשׁ אוֹ מִמִּדַּת קֹדֶשׁ הַקָּדָשִׁים לְפִיכָךְ עָשׂוּ קֹדֶשׁ הַקָּדָשִׁים עָבְיוֹ עֶשְׂרִים אַמָּה תְּמִימוֹת וְעָשׂוּ הַקֹּדֶשׁ אַרְבָּעִים אַמָּה תְּמִימוֹת וְהִנִּיחוּ אַמָּה יְתֵרָה בֵּין הַקֹּדֶשׁ וּבֵין קֹדֶשׁ הַקָּדָשִׁים וְלֹא בָּנוּ כֹּתֶל בְּבַיִת שֵׁנִי אֶלָּא עָשׂוּ שְׁתֵּי פָּרוֹכוֹת אַחַת מִצַּד קֹדֶשׁ הַקָּדָשִׁים וְאַחַת מִצַּד הַקֹּדֶשׁ וּבֵינֵיהֶן אַמָּה כְּנֶגֶד עֳבִי הַכֹּתֶל שֶׁהָיָה בָּרִאשׁוֹן. אֲבָל בְּמִקְדָּשׁ רִאשׁוֹן לֹא הָיְתָה שָׁם אֶלָּא פָרֹכֶת אַחַת בִּלְבַד שֶׁנֶּאֱמַר <span class="source-small">(שמות כו לג)</span> &quot;וְהִבְדִּילָה הַפָּרֹכֶת לָכֶם&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בבית </strong> ראשון היה כותל מפסיק בין הקדש ובין קדש הקדשים דכתיב והבדילה הפרכת לכם בין הקדש ובין קדש הקדשים דבבית המקדש היה כותל בנין במקום פרכת ובבית שני נסתפקו אם היה עובי הכתל הזה ממדת הקדש או ממדת קדש הקדשים ולכך עשו שתי פרכת לקלוט ביניהם אויר המחיצה.</p>
               </div>
             </div>
@@ -882,8 +1068,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-4-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-4-3">Mishneh Torah, The Chosen Temple 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַהֵיכָל שֶׁבָּנוּ בְּנֵי גּוֹלָה הָיָה מֵאָה אַמָּה עַל מֵאָה אַמָּה עַל רוּם מֵאָה. וְכֵן הָיְתָה מִדַּת רוּמוֹ. בָּנוּ גֹּבַהּ שֵׁשׁ אַמּוֹת אָטוּם סָתוּם כְּמוֹ יְסוֹד לוֹ. וְרוּם כָּתְלֵי הַבַּיִת אַרְבָּעִים אַמָּה וְרוּם הַכִּיּוּר שֶׁבַּתִּקְרָה אַמָּה וְעַל גַּבָּיו גֹּבַהּ שְׁתֵּי אַמּוֹת פָּנוּי שֶׁיִּכָּנֵס בּוֹ הַדֶּלֶף וְהוּא הַנִּקְרָא בֵּית דִּילְפָא. וָעֳבִי הַתִּקְרָה שֶׁעַל גַּבֵּי בֵּית דִּילְפָא אַמָּה. וּמַעֲזִיבָה גֹּבַהּ אַמָּה. וַעֲלִיָּה בְּנוּיָה עַל גַּבָּיו גֹּבַהּ כְּתָלֶיהָ אַרְבָּעִים אַמָּה. וּבְגַגָּהּ גֹּבַהּ אַמָּה כִּיּוּר וְאַמָּתַיִם גֹּבַהּ בֵּית דִּילְפָא וְאַמָּה תִּקְרָה וְאַמָּה מַעֲזִיבָה וְגֹבַהּ הַמַּעֲקֶה שָׁלֹשׁ אַמּוֹת וְטַס שֶׁל בַּרְזֶל כְּמוֹ סַיִף גָּבְהוֹ אַמָּה עַל גַּבֵּי הַמַּעֲקֶה סָבִיב כְּדֵי שֶׁלֹּא יָנוּחוּ עָלָיו הָעוֹפוֹת וְהוּא הַנִּקְרָא כָּלֶה עוֹרֵב. הֲרֵי הַכּל מֵאָה אַמָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> ההיכל שהוא קדש הקדשים והקדש והאולם הם מאה אמה על [מאה] אמה ברום מאה אמה אורך קדש הקדשים עשרים על עשרים אמה ואורך הקרש שהוא ההיכל ארבעים אמה על עשרים דכתיב וכן תעשו לדורות כתבנית משכן של מדבר דרחבו עשר אמות דרוחב שמנה קרשים של צד מערב י&quot;ב אמות אמה וחצי האמה רוחב הקרש האחד דלשתי אמות של עובי קרשי צפון ודרום נשארו עשר והאורך עשרים קרש שהם שלשים אמה כדכתיב בקרא הרי שהיה המשכן רחבו שליש ארכו וקדש הקדשים בפני עצמו היה מרובע עשר על עשר והקרש עשרים על עשר רוחב וכן בבית עולמים קדש הקדשים עשרים על עשרים מרובע וההיכל ארבעים על עשרים שהאורך כפל הרוחב שפירוש וכן תעשו לדורות אינו כתבנית ממש אלא שיהיו מתיחסים ארך ורוחב של בית עולמים לאורך ורוחב של משכן כדפרישי׳ ובגובה לא היה מתיחס בית עולמים למשכן שלא היה גבוה אלא עשר אמות נראה דהכי גמירי לה דלא קאי וכן תעשו לדורות אלא אאורך ורוחב לא אגובה דגובה קרשי המשכן לא הוו איפשר להיות יותר מעשר אמות גובה אבל בבנין בית עולמים כל כמה דהוה גבוה טפי מעלי כיון דהוה איפשר וכל שאר הבנין של בית עולמים עד תשלום מאה על מאה. האולם ויציעים ותאים אף על גב דבמשכן לא הוו דוגמתן אפי׳ הכי על פי נביאים נמסר דוגמתן לדוד כל מלאכת התבנית ארך ורחב ורום כדכתיב ויתן דוד לשלמה בנו את כל תבנית האולם ואת גנזיו ועליותיו וחדריו הפנימי ואת הכפרת וכתיב הכל בכתב מיד ה׳ עלי השכיל אותי לימד וקדושת כל שהיה סביב ההיכל שהוא ארך ששים על עשרים נראה דהוי כקדושת עזרה דהא מכלל ארך ורוחב העזרה הוו:</p>
               </div>
             </div>
@@ -899,8 +1090,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 5:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-5-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-5-1">Mishneh Torah, The Chosen Temple 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַר הַבַּיִת וְהוּא הַר הַמּוֹרִיָּה הָיָה חֲמֵשׁ מֵאוֹת אַמָּה עַל חֲמֵשׁ מֵאוֹת אַמָּה וְהָיָה מֻקָּף חוֹמָה. וְכֵפִין עַל גַּבֵּי כֵּפִין הָיוּ בְּנוּיוֹת מִתַּחְתָּיו. מִפְּנֵי אֹהֶל הַטֻּמְאָה. וְכֻלּוֹ הָיָה מְקֹרֶה סְטָיו לְפָנִים מִסְּטָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הר </strong> הבית והוא הר המוריה היה חמש מאות אמה על חמש מאות אמה כדכתיב ביחזקאל מדד רוח הקדים חמש מאות קנים בקנה המדה סביב וכן צפון ודרום ומערב וכתיב לארבע רוחות מדדו חומה לי סביב סביב אורך חמש מאות ורוחב חמש מאות להבדיל בין הקדש לחול הרי שהיה מוקף הכל והיה קדש לגבי ירושלם שאין זבין וזבות נדות [ויולדות] נכנסות לשם שכל הר הבית מקודש כדכתיב בהר ה׳ יראה דמשמע דכל ההר הוא מקודש לה׳ כמחנה שכינה ולויה ונראה דקדושת הר הבית שוי לה אברהם אבינו שקראה הר וקדושת העזרה יצחק אבינו שקראה שדה דכתיב ויצא יצחק לשוח בשדה והעזרה היא כשדה שאינה מכוסה וקדושת הבית עצמו יעקב אבינו שקראו בית דכתיב אין זה כי אם בית אלהים וכל הר הבית הזה כפין על גבי כפין בנוי מתחתיו מפני אהל הטומאה ולפנים מן החיל העזרה שהיתה קפ&quot;ז על קל&quot;ה רחוקה מדרום הר הבית יתר מכל הרוחות וקרובה מן המערב ולא הוצרכו אלא לשיעור זה במקום זה ולכך לא קדשו יותר בשיירי מנחה וכל מה שבתוך ארך ורחב זה הוי מחנה שכינה וכל בנייני ההיכל כולו מאה אמה על מאה אמה הוי תוך אורך ורוחב העזרה שהיא קפ&quot;ז על קל&quot;ה כדאמרינן:</p>
               </div>
             </div>
@@ -916,8 +1112,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-6-1">Mishneh Torah, The Chosen Temple 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּקְדָשׁ כֻּלּוֹ לֹא הָיָה בְּמִישׁוֹר אֶלָּא בְּמַעֲלֵה הָהָר. כְּשֶׁאָדָם נִכְנָס מִשַּׁעַר מִזְרָחִי שֶׁל הַר הַבַּיִת מְהַלֵּךְ עַד סוֹף הַחֵיל בְּשָׁוֶה. וְעוֹלֶה מִן הַחֵיל לְעֶזְרַת הַנָּשִׁים בִּשְׁתֵּים עֶשְׂרֵה מַעֲלוֹת רוּם כָּל מַעֲלָה חֲצִי אַמָּה וְשִׁלְחָהּ חֲצִי אַמָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדש </strong> כלו לא היה במישור ולא רצו לישר אותו להנמיך הגבוה ולהגביה השפל משום דאיקרי הר ה׳ משמע דבעודו הר הוא דקדיש ומפני זה עשו כותל שע&quot;ג שער המזרחי של הר הבית נמוך כדי שיהא העומד בהר המשחה רואה פתח ההיכל כשמזה מדם הפרה נוכח ההיכל דכתיב והזה אל נוכח פני אהל מועד וגו׳.</p>
               </div>
             </div>
@@ -932,8 +1133,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-6-7">Mishneh Torah, The Chosen Temple 6:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַלְּשָׁכוֹת הַבְּנוּיוֹת בַּקֹּדֶשׁ וּפְתוּחוֹת לַחל אִם הָיוּ גַּגּוֹתֵיהֶן שָׁוִין עִם קַרְקַע הָעֲזָרָה תּוֹכָן חֹל וְגַגּוֹתֵיהֶן קֹדֶשׁ וְאִם אֵינָן שָׁוִין אַף גַּגּוֹתֵיהֶן חֹל שֶׁהַגַּגּוֹת וְהָעֲלִיּוֹת לֹא נִתְקַדְּשׁוּ. לְפִיכָךְ גַּגִּים אֵלּוּ אֵין אוֹכְלִין שָׁם קָדְשֵׁי קָדָשִׁים וְלֹא שׁוֹחֲטִין קָדָשִׁים קַלִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הגגות </strong> והעליות לא נתקדשו בין גגי ירושלם בקדושתה לקדשים קלים בין גגי העזרה לקדשי קדשים. היו בנויות בחול ופתוחות לקדש תוכן קודש לענין אכילת קדשי קדשים דהתורה רבתה חצרות הרבה אצל אכילה אחת דכתיב בחצר אהל מועד יאכלוה דכיון דכתיב במקום קדוש אמאי הדר כתב בחצר אהל מועד יאכלוה דהיינו חצר אהל מועד היינו במקום קדוש אלא לרבות חצרות הרבה כדאמ׳ אבל לא לשחוט שם קדשים קלים דהא בעינן לפני אהל מועד למעוטי צדי צדדים והנכנס לשם בטומאה פטור דדוקא לאכילה הוא דאיתרבו כדאמ׳ דלטומאה ליכא חיובא אלא באורך קפ&quot;ז על רוחב קל&quot;ה. המחילות הפתוחות לעזרה קדש החלונות ועובי החומות בין לאכילת קדשי קדשים בין לטומאה דאף על פי שהלכו מבפנים בשיירי מנחה ובשיר של פגעים בקדושת עזרה.</p>
               </div>
             </div>
@@ -948,8 +1154,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-6-10">Mishneh Torah, The Chosen Temple 6:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית דִּין שֶׁרָצוּ לְהוֹסִיף עַל יְרוּשָׁלַיִם אוֹ לְהוֹסִיף עַל הָעֲזָרָה מוֹסִיפִין. וְיֵשׁ לָהֶם לִמְשֹׁךְ הָעֲזָרָה עַד הַמָּקוֹם שֶׁיִּרְצוּ מֵהַר הַבַּיִת וְלִמְשֹׁךְ חוֹמַת יְרוּשָׁלַיִם עַד מָקוֹם שֶׁיִּרְצוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> מוסיפין על העיר או על העזרות אם רצו למשוך העזרה או חומת ירושלם עד מקום שירצו אלא על פי מלך ועל פי נביא ואורים ותומים וסנהדרין של ע&quot;א דכתיב ככל אשר אני מראה אותך את תבנית המשכן ואת תבנית כל כליו וכן תעשו קרא יתירא למדרש לדורות ובימי משה שהוא מלך ונביא ואחיו כהן גדול ואורים ותומים ושבעים זקנים דוכן תעשו משמע דאתא לרבויי כל&#160;הנך&#160;לדורות. ובתוספת העיר עושין בית דין שתי תודות ולוקחים לחם חמץ שבהם והולכין בית דין אחר שתי התודות שהולכות זו אחר זו ועומדין בכלי השיר על כל פנה ופנה ועל כל אבן ואבן דכתיב בספר עזרא דקאמר נחמיה כשנבנית חומת ירושלם ובא לקדש את העיר ואעמידה שתי תודות גדולות אצל החומה מבחוץ ותהלוכות לימין מעל החומה להקיף את העיר בתהלוכות שהלכו דרך ימין כשפניהם לחלל העיר הלכו תמיד לצד ימינם עד שהקיפו את כולה ומדקאמר גדולות משמע דהיינו גדולות שבתודה ואשמועינן דשל חמץ היו שהן גדולות שבלחמי תודה דכתיב על חלות לחם חמץ יקריב וגו׳ כנגד מצה הבא חמץ שיהא סלת במין החמץ כנגד שלשה מינין שבמצה ובמצה שלשה מינין כדכתיב על זבח התודה חלות מצות וגו׳ הרי מין אחד ורקיקי מצות הרי שני מינין סלת מורבכת חלות הרי שלשה מינין ובכל מין עשר חלות כדילפינן התם אלמא חלות החמץ גדולות כשלש של מצה והליכת בית דין אחריהם דכתיב וילך אחריהם הושעיא וחצי שרי יהודה ואוכלין שם לחם אחד ועל פי נביא אוכלין את זו ושורפין זו דחגי זכריה ומלאכי היו שם ועל פיהם ברוח הקדש עשו ואין טעם בדבר ונראה דעד השתא גמרא גמירי לה הכי עד דאתא נחמיה. ואם הוסיפו על ירושלם מקדשין אותה בשיירי מנחה בירושלם מה ירושלם דבר הנאכל בה ויוצא ממנה נפסל אף בדבר הנאכל בה ויוצא ממנה נפסל דהיינו שיירי מנחה ובחמץ כתודה לא איפשר אלא במצה ואוכלין אותן בסוף המקום שקדשו בירושלם דהכי גמירי לה כדאמ׳.</p>
               </div>
             </div>
@@ -964,8 +1175,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-6-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 6:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-6-14">Mishneh Torah, The Chosen Temple 6:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מָקוֹם שֶׁלֹּא נַעֲשָׂה בְּכָל אֵלּוּ וְכַסֵּדֶר הַזֶּה אֵין קָדוֹשׁ גָּמוּר. וְזֶה שֶׁעָשָׂה עֶזְרָא שְׁתֵּי תּוֹדוֹת זִכָּרוֹן הוּא שֶׁעָשָׂה לֹא בְּמַעֲשָׂיו נִתְקַדֵּשׁ הַמָּקוֹם שֶׁלֹּא הָיָה שָׁם לֹא מֶלֶךְ וְלֹא אוּרִים וְתֻמִּים. וּבְמַה נִּתְקַדְּשָׁה בִּקְדֻשָּׁה רִאשׁוֹנָה שֶׁקִּדְּשָׁהּ שְׁלֹמֹה שֶׁהוּא קִדֵּשׁ הָעֲזָרָה וִירוּשָׁלַיִם לִשְׁעָתָן וְקִדְּשָׁן לֶעָתִיד לָבוֹא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> מקום שלא נתקדש בכל אלו כסדר הזה אין קידוש גמור ואי משום קדושת עזרא שהיתה בלי מלך ואורים ותומים לא היתה אלא זכר בעלמא דקדושה ראשונה שקדשה שלמה לעזרה וירושלם קדשה לשעתה ולעתיד לבא דקדושתן מפני השכינה ושכינה אינה בטלה כדכתיב והשמותי את מקדשכם אף על פי ששוממין בקדושתן הן עומדים אבל קדושת הארץ לתרומה ומעשרות ושביעית מפני שהוא כיבוש רבים והרי נתבטל ועזרא בחזקה הוא שקדש כל המקומות שהחזיקו בהם עולי בבל:</p>
               </div>
             </div>
@@ -981,8 +1197,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-1">Mishneh Torah, The Chosen Temple 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְיִרְאָה מִן הַמִּקְדָּשׁ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט ל)</span> <span class="source-small">(ויקרא כו ב)</span> &quot;וּמִקְדָּשִׁי תִּירָאוּ&quot;. וְלֹא מִן הַמִּקְדָּשׁ אַתָּה יָרֵא אֶלָּא מִמִּי שֶׁצִּוָּה עַל יִרְאָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קה </strong> ליראה מן המקדש דכתיב ומקדשי תיראו ולא מן המקדש אתה ירא אלא ממי שצוה על יראתו וכתיב והיה מחניך קדוש קדשהו מכאן אמרו לא יכנס אדם להר הבית במקלו וכו׳ וכתיב של נעליך מעל רגלך כי המקום אשר אתה עומד עליו קודש הוא משמע דבמקום קדוש אסור להכנס במנעל וכן בכל כיוצא בו וכל הדברים שאמר שלא יעשנו במקדש הם ליראה מן המקדש ונראה דישיבה בעזרה נמי הוי בכלל יראת מקדש אלא שהותרה למלכי בית דוד כדכתיב ויבא המלך דוד וישב לפני ה׳.</p>
               </div>
             </div>
@@ -997,8 +1218,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:7:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-7">Mishneh Torah, The Chosen Temple 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁהַמִּקְדָּשׁ הַיּוֹם חָרֵב בַּעֲוֹנוֹתֵינוּ חַיָּב אָדָם בְּמוֹרָאוֹ כְּמוֹ שֶׁהָיָה נוֹהֵג בּוֹ בְּבִנְיָנוֹ. לֹא יִכָּנֵס אֶלָּא לְמָקוֹם שֶׁמֻּתָּר לְהִכָּנֵס לְשָׁם וְלֹא יֵשֵׁב בָּעֲזָרָה וְלֹא יָקֵל רֹאשׁוֹ כְּנֶגֶד שַׁעַר הַמִּזְרָח שֶׁנֶּאֱמַר <span class="source-small">(ויקרא יט ל)</span> <span class="source-small">(ויקרא כו ב)</span> &quot;אֶת שַׁבְּתֹתַי תִּשְׁמֹרוּ וּמִקְדָּשִׁי תִּירָאוּ&quot;. מַה שְּׁמִירַת שַׁבָּת לְעוֹלָם אַף מוֹרָא מִקְדָּשׁ לְעוֹלָם שֶׁאַף עַל פִּי שֶׁחָרֵב בִּקְדֻשָּׁתוֹ עוֹמֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובזמן </strong> זה גם כן חייב אדם במוראו דהא קדשה לעתיד כדאמר׳ וכתיב הכא את שבתותי תשמורו ומקדשי תיראו מה שמירת שבת לעולם אף יראת מקדש לעולם שאף על פי שחרב בקדושתו עומד ומה שאסור חוץ למקדש נראה דהוי דרבנן דאי מדאוריתא אפילו בזמן הזה אסיר דיראת מקדש לעולם כדילפינן ואיסור עשיית בית תבנית היכל וגו׳&#160;איפשר דהוי נמי מדרבנן כל שלא איכוון לקדש.</p>
               </div>
             </div>
@@ -1013,8 +1239,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-11">Mishneh Torah, The Chosen Temple 7:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה מַחֲנוֹת הָיוּ בַּמִּדְבָּר. מַחֲנֵה יִשְׂרָאֵל וְהוּא אַרְבַּע מַחֲנוֹת. וּמַחֲנֵה לְוִיָּה שֶׁנֶּאֱמַר בָּהּ <span class="source-small">(במדבר א נ)</span> &quot;וְסָבִיב לַמִּשְׁכָּן יַחֲנוּ&quot;. וּמַחֲנֵה שְׁכִינָה וְהוּא מִפֶּתַח חֲצַר אֹהֶל מוֹעֵד וְלִפְנִים. וּכְנֶגְדָּן לְדוֹרוֹת. מִפֶּתַח יְרוּשָׁלַיִם עַד הַר הַבַּיִת כְּמַחֲנֵה יִשְׂרָאֵל. וּמִפֶּתַח הַר הַבַּיִת עַד פֶּתַח הָעֲזָרָה שֶׁהוּא שַׁעַר נִיקָנוֹר כְּמַחֲנֵה לְוִיָּה. וּמִפֶּתַח הָעֲזָרָה וְלִפְנִים מַחֲנֵה שְׁכִינָה. וְהַחֵיל וְעֶזְרַת הַנָּשִׁים מַעֲלָה יְתֵרָה בְּבֵית עוֹלָמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלש </strong> מחנות היו במחנה ישראל שהוא ארבע מחנות של דגלים ומחנה לויה דכתיב סביב למשכן יחנו ומחנה שכינה והוא מפתח חצר אהל מועד ולפנים וכנגדן לדורות מפתח ירושלם עד הר הבית מחנה ישראל מפתח הר הבית עד שער ניקנור מחנה לויה ומן השער ולפנים מחנה שכינה.</p>
               </div>
             </div>
@@ -1029,8 +1260,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:12:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-12">Mishneh Torah, The Chosen Temple 7:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אֶרֶץ יִשְׂרָאֵל מְקֻדֶּשֶׁת מִכָּל הָאֲרָצוֹת. וּמַה הִיא קְדֻשָּׁתָהּ שֶׁמְּבִיאִין מִמֶּנָּה הָעֹמֶר וּשְׁתֵּי הַלֶּחֶם וְהַבִּכּוּרִים מַה שֶּׁאֵין מְבִיאִין כֵּן מִשְּׁאָר אֲרָצוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> ארץ ישראל מקודשת מכל הארצות שמביאין ממנה העומר ושתי הלחם והבכורים מה שאין מביאין כן משאר ארצות דכתיב בעומר וקצרתם את קצירה ולא קציר חוצה לארץ והבאתם את עומר וכתיב בשתי הלחם ממושבותיכם תביאו לחם תנופה וכתיב בבכורים ולקחת מראשית כל פרי האדמה אשר תביא מארצך.</p>
               </div>
             </div>
@@ -1045,8 +1281,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-13">Mishneh Torah, The Chosen Temple 7:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶשֶׂר קְדֻשּׁוֹת הֵן בְּאֶרֶץ יִשְׂרָאֵל וְזוֹ לְמַעְלָה מִזּוֹ. עֲיָרוֹת הַמֻּקָּפוֹת חוֹמָה מְקֻדָּשׁוֹת מִשְּׁאָר הָאָרֶץ שֶׁמְּשַׁלְּחִין מִתּוֹכָן אֶת הַמְצֹרָעִים וְאֵין קוֹבְרִין בְּתוֹכָן מֵת עַד שֶׁיִּרְצוּ שִׁבְעָה טוֹבֵי הָעִיר אוֹ כָּל אַנְשֵׁי הָעִיר. וְאִם יָצָא הַמֵּת חוּץ לָעִיר אֵין מַחֲזִירִין אוֹתוֹ לְתוֹכָהּ אַף עַל פִּי שֶׁרָצוּ כֻּלָּן לְהַחְזִירוֹ. רָצוּ בְּנֵי הָעִיר לְהוֹצִיא הַקֶּבֶר מִן הַמְּדִינָה מְפַנִּין אוֹתוֹ. וְכָל הַקְּבָרוֹת מְפַנִּין חוּץ מִקֶּבֶר נָבִיא אוֹ מֶלֶךְ. קֶבֶר שֶׁהִקִּיפַתּוּ הָעִיר בֵּין מֵאַרְבַּע רוּחוֹתָיו בֵּין מִשְּׁתֵי רוּחוֹת זוֹ כְּנֶגֶד זוֹ אִם הָיְתָה בֵּינוֹ וּבֵין הָעִיר יֶתֶר מֵחֲמִשִּׁים אַמָּה לְכָאן וַחֲמִשִּׁים לְכָאן אֵין מְפַנִּין אוֹתוֹ עַד שֶׁיִּרְצוּ כֻּלָּן. פָּחוֹת מִכָּאן מְפַנִּין אוֹתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיירות </strong> המוקפות חומה מקודשות משאר הארץ שמשלחין מתוכה מצורעין ואיפשר דילפינן לה מדכתיב והשליכו אתהן אל מחוץ לעיר ודרשינן אתהן חוץ לעיר ולא אדם מצורע חוץ לעיר אלא חוץ לעיר המוקפת חומה משמע דמוקפת חומה קדשה לכך מדכתי׳ עיר סתם דלא הויא מוקפת חומה וכתיב אותם למעוטי ולהכי הוא דחשיב מחנה ישראל כיון דמוקפות חומה מימות יהושע הוו קדשי להא מילתא אבל לא לענין אכילת קדשים ונראה דכיון דמדאוריתא הוו מחנה ישראל עיירות המוקפות חומה אפי׳ לענין קדשים קלים הנאכלי׳ בכל מחנה ישראל נמי אי לאו משום דאיכא הפסק בין ירושלם לעיירות המוקפות חומה ונפסלין ביוצא אבל אי הוו סמוכות זו לזו הוו נאכלין כמחנה דמדבר דלא הוה הפסק מחנות והיו נאכלין בכל מחנה ישראל.</p>
               </div>
             </div>
@@ -1061,8 +1302,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:14:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-14">Mishneh Torah, The Chosen Temple 7:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יְרוּשָׁלַיִם מְקֻדֶּשֶׁת מִשְּׁאָר הָעֲיָרוֹת הַמֻּקָּפוֹת חוֹמָה. שֶׁאוֹכְלִין קָדָשִׁים קַלִּים וּמַעֲשֵׂר שֵׁנִי לְפָנִים מֵחוֹמָתָהּ. וְאֵלּוּ דְּבָרִים שֶׁנֶּאֶמְרוּ בִּירוּשָׁלַיִם. אֵין מְלִינִין בָּהּ אֶת הַמֵּת. וְאֵין מַעֲבִירִין בְּתוֹכָהּ עַצְמוֹת אָדָם. וְאֵין מַשְׂכִּירִין בְּתוֹכָהּ בָּתִּים. וְאֵין נוֹתְנִין בְּתוֹכָהּ מָקוֹם לְגֵר תּוֹשָׁב. וְאֵין מְקַיְּמִין בָּהּ קִבְרוֹת חוּץ מִקִּבְרֵי בֵּית דָּוִד וְקֶבֶר חֻלְדָּה שֶׁהָיוּ בָּהּ מִימוֹת נְבִיאִים הָרִאשׁוֹנִים. וְאֵין נוֹטְעִין בָּהּ גַּנּוֹת וּפַרְדֵּסִים. וְאֵינָהּ נִזְרַעַת וְאֵינָהּ נֶחֱרֶשֶׁת שֶׁמָּא תִּסְרַח. וְאֵין מְקַיְּמִין בָּהּ אִילָנוֹת חוּץ מִגִּנַּת וְרָדִים שֶׁהָיְתָה שָׁם מִימוֹת נְבִיאִים הָרִאשׁוֹנִים. וְאֵין מְקַיְּמִין בָּהּ אַשְׁפָּה מִפְּנֵי הַשְּׁרָצִים. וְאֵין מוֹצִיאִין הֵימֶנָּה זִיזִין וּגְזוּזְטְרָאוֹת לִרְשׁוּת הָרַבִּים מִפְּנֵי אֹהֶל הַטֻּמְאָה. וְאֵין עוֹשִׂין בָּהּ כִּבְשׁוֹנוֹת מִפְּנֵי הֶעָשָׁן. וְאֵין מְגַדְּלִין בָּהּ תַּרְנְגוֹלוֹת מִפְּנֵי הַקָּדָשִׁים. וְכֵן לֹא יְגַדְּלוּ הַכֹּהֲנִים תַּרְנְגוֹלִים בְּכָל אֶרֶץ יִשְׂרָאֵל מִפְּנֵי הַטָּהֳרוֹת. וְאֵין הַבַּיִת נֶחְלָט בָּהּ. וְאֵינוֹ מִטַּמֵּא בִּנְגָעִים. וְאֵינָהּ נַעֲשֵׂית עִיר הַנִּדַּחַת. וְאֵינָהּ מְבִיאָה עֶגְלָה עֲרוּפָה לְפִי שֶׁלֹּא נִתְחַלְּקָה לִשְׁבָטִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ירושלם </strong> מקודשת משאר עיירות המוקפות חומה דאוכלים בה קדשים קלים ובמוקפת חומה לא דאי איפשר להוציאם כדאמרינן ומעשר שני דכתיב והבאתם שמה וגו׳ וכתיב לא תוכל לאכול בשעריך וגו׳ דמשמע דאפילו בעיירות המוקפות חומה דחשיבי מחנה ישראל לשילוח מצורעים אין יכולין לאכול שם מעשר שני ואין הבית נחלט בה דלא נתחלקה לשבטים ומאן קא מקנה ליה ואינה מטמאה בנגעים דכתיב ונתתי נגע צרעת בבית ארץ אחוזתכם ארץ אחוזתכם מיטמאה בנגעים ולא ירושלם מיטמאה בנגעים ואינה נעשית עיר הנדחת ולא מביאה עגלה ערופה דכתיב עירך וירושלם לא נתחלקה לשבטים וכתיב בעגלה ערופה כי ימצא חלל באדמה אשר ה׳ אלהיך נותן לך לרשתה (וירושלם לא נתחלקה לשבטים) ונראה דמהכא הוא דילפינן בעלמא דירושלם לא נתחלקה לשבטים לדידן דקיימא לן הכי דכיון דכתיב עירך וכתיב אשר ה׳ אלהיך נותן לך לרשתה משמע דאתא למעט מה שאינו עיר מיוחד לך ואינה ירושה מיוחדת לך אלא לכל ישראל והיינו ירושלם.</p>
               </div>
             </div>
@@ -1077,8 +1323,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-15">Mishneh Torah, The Chosen Temple 7:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַר הַבַּיִת מְקֻדָּשׁ מִמֶּנָּה שֶׁאֵין זָבִין וְזָבוֹת נִדּוֹת וְיוֹלְדוֹת נִכְנָסִין לְשָׁם. וּמֻתָּר לְהַכְנִיס הַמֵּת עַצְמוֹ לְהַר הַבַּיִת וְאֵין צָרִיךְ לוֹמַר טְמֵא מֵת שֶׁהוּא נִכְנָס לְשָׁם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הר </strong> הבית מקודש הימנה דהוה מחנה לויה שאין זבין וזבות נדות ויולדות נכנסות לשם דכתיב וישלחו מן המחנה כל צרוע וכל זב וכל טמא לנפש וכתיב במצורע בדד ישב מחוץ למחנה מושבו שאין טמא אחר משולח שם זבים וטמאי מתים למדנו ששלוחו של מצורע קשה מכלן יכול יהו זבין משתלחין חוץ למחנה אחת תלמוד לומר מחניהם תן מחנה לזה ומחנה לזה מדלא כתיב מחנם משמע מחנה לכל אחד ואחד דתרתי מחנות כתיבי וישלחו מן המחנה מחוץ למחנה תשלחו ליתן מחנה שלישית למצורע ומדכתיב בדד ישב כדאמרינן משמע דמצורע חמור מכלן ומדכתיב מחניהם משמע תן מחנה לכל אחד מצורע וזב וטמא מת דכולן חמורין זה מזה בטומאותיהן מצורע ואחר כך זב ואחר כך טמא מת דאי כולהו שוין לענין שילוח לכתוב שלוח בקל ואנא ידענא כ&quot;ש דחמור ומדכתבינהו כולהו משמע שילוח של זה לא כשילוחו של זה ומדכתיב ויקח משה את עצמות יוסף עמו במחיצתו דהוא מחנה לויה משמע דטמא מת עצמו אינו משולח אלא ממחנה שכינה אם כן זב דחמיר טפי משולח חוץ למחנה לויה ומדזב הוא במחנה ישראל משמע דמצורע משולח ממנו כדי שיהיה בדד כדאמר׳.</p>
               </div>
             </div>
@@ -1093,8 +1344,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:18:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-18-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-18">Mishneh Torah, The Chosen Temple 7:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֶזְרַת יִשְׂרָאֵל מְקֻדֶּשֶׁת מֵעֶזְרַת נָשִׁים שֶׁאֵין מְחֻסַּר כִּפּוּרִים נִכְנַס לְשָׁם. וְטָמֵא שֶׁנִּכְנַס לְשָׁם חַיָּב כָּרֵת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עזרת </strong> ישראל מקודשת ממנה דהוה מחנה שכינה ואין מחוסר כיפורים נכנס לשם כדילפינן מדכתיב וטהרה מכלל דלא נגמרה טהרתה וטמא שנכנס לשם חייב כרת דמשכן ומקדש כתיב מעלת עזרת כהנים נראה דהויא מדרבנן דאי מדאוריתא הא איפשר לזר לשחוט בעזרת ישראל ולא היה צריך ליכנס בעזרת כהנים.</p>
               </div>
             </div>
@@ -1109,8 +1365,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:20:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-20-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-20">Mishneh Torah, The Chosen Temple 7:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּין הָאוּלָם וְלַמִּזְבֵּחַ מְקֻדָּשׁ מִמֶּנָּה שֶׁאֵין בַּעֲלֵי מוּמִין וּפְרוּעֵי רֹאשׁ וּקְרוּעֵי בְּגָדִים נִכְנָסִין לְשָׁם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין </strong> האולם ולמזבח מקודש מעזרה שאין בעלי מומין ופרועי ראש נכנסין לשם דכתיב כל אשר בו מום לא יקרב וכתיב ראשיכם אל תפרעו לאהרן ולבניו שהיו במקדש.</p>
               </div>
             </div>
@@ -1125,8 +1386,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:21:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-21-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:21:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-21">Mishneh Torah, The Chosen Temple 7:21</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַהֵיכָל מְקֻדָּשׁ מִבֵּין הָאוּלָם וְלַמִּזְבֵּחַ. שֶׁאֵין נִכְנָס לְשָׁם אֶלָּא רְחוּץ יָדַיִם וְרַגְלַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ההיכל </strong> מקודש ממנו שאין נכנס לשם אלא רחוץ ידים ורגלים דכתיב בבואם אל אהל מועד ירחצו מים או בגשתם אל המזבח לשרת למזבח לשרת בעינן רחיצה אבל להיכל אפילו בלא שירות בעינן רחיצה אם נכנס להשתחויה ואפילו ברחיצה מיחייב אכתי אם נכנס ביאה ריקנית.</p>
               </div>
             </div>
@@ -1141,8 +1407,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:22:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-22-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:22:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-22">Mishneh Torah, The Chosen Temple 7:22</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּית קֹדֶשׁ הַקָּדָשִׁים מְקֻדָּשׁ מִמֶּנּוּ שֶׁאֵין נִכְנָס לְשָׁם אֶלָּא כֹּהֵן גָּדוֹל בְּיוֹם הַכִּפּוּרִים בִּשְׁעַת הָעֲבוֹדָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בית </strong> קדש הקדשים מקודש ממנו שאין נכנס לשם אלא כהן גדול ביום הכיפורים ד׳ פעמים כדילפינן בדוכתא.</p>
               </div>
             </div>
@@ -1157,8 +1428,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:23:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-7-23-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 7:23:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-23">Mishneh Torah, The Chosen Temple 7:23</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מָקוֹם שֶׁהָיָה בַּעֲלִיָּה מְכֻוָּן עַל קֹדֶשׁ הַקָּדָשִׁים אֵין נִכְנָסִין לוֹ אֶלָּא פַּעַם אַחַת בְּשָׁבוּעַ לֵידַע מַה הוּא צָרִיךְ לְחַזֵּק בִּדְקוֹ. בְּשָׁעָה שֶׁנִּכְנָסִין הַבַּנָּאִים לִבְנוֹת וּלְתַקֵּן בַּהֵיכָל אוֹ לְהוֹצִיא מִשָּׁם אֶת הַטֻּמְאָה. מִצְוָה שֶׁיִּהְיוּ הַנִּכְנָסִין כֹּהֲנִים תְּמִימִים. לֹא מָצְאוּ תְּמִימִים יִכָּנְסוּ בַּעֲלֵי מוּמִין. וְאִם אֵין שָׁם כֹּהֲנִים יִכָּנְסוּ לְוִיִּם. לֹא מָצְאוּ לְוִיִּם יִכָּנְסוּ יִשְׂרָאֵל. מִצְוָה בִּטְהוֹרִים. לֹא מָצְאוּ טְהוֹרִים יִכָּנְסוּ טְמֵאִים. טָמֵא וּבַעַל מוּם יִכָּנֵס בַּעַל מוּם וְאַל יִכָּנֵס טָמֵא שֶׁהַטֻּמְאָה דְּחוּיָה בְּצִבּוּר. וְכָל הַנִּכְנָסִין לַהֵיכָל לְתַקֵּן יִכָּנְסוּ בְּתֵבוֹת. אִם אֵין שָׁם תֵּבוֹת אוֹ אִי אֶפְשָׁר לָהֶם שֶׁיַּעֲשׂוּ בְּתֵבוֹת יִכָּנְסוּ דֶּרֶךְ פְּתָחִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מקום </strong> שהיה בעליה מכוון על קדש הקדשים אין נכנסין לשם אלא פעם אחד בשבוע דאף על גב דעליות לא נתקדשו כדאמ׳ לעיל עליות היכל נתקדשו כדכתיב ועליותיו וחדריו וכתיב הכל מיד ה׳ עלי השכיל וקדושתה היא שלא יכנסו שם ללא לצורך דהא קדושת היכל נמי היא שלא יכנסו ללא לצורך. כשנכנסין להיכל להוציא את הטומאה ולתקן את ההיכל מצוה בתמימים אין תמימים יכנסו בעלי מומין דכתיב אך אל הפרכת לא יבא בבעלי מומין אך חלק דאכין ורכין מיעוטין דשרי לעיולי למלאכת ריקועין שמחפין בהם בית קדש הקדשים מתוכו וכן בשאר כיון דלא איפשר בלאו הכי דליכא אחריני נכנסין כדגלי קרא בבעל מום בעל מום וטמא יכנס טמא שהטומאה דחויה בצבור דכתיב מועדו ואפילו בטומאה:</p>
               </div>
             </div>
@@ -1174,8 +1450,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-8-1">Mishneh Torah, The Chosen Temple 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁמִירַת הַמִּקְדָּשׁ מִצְוַת עֲשֵׂה. וְאַף עַל פִּי שֶׁאֵין שָׁם פַּחַד מֵאוֹיְבִים וְלֹא מִלִּסְטִים. שֶׁאֵין שְׁמִירָתוֹ אֶלָּא כָּבוֹד לוֹ. אֵינוֹ דּוֹמֶה פַּלְטֵרִין שֶׁיֵּשׁ עָלָיו שׁוֹמְרִין לְפַלְטֵרִין שֶׁאֵין עָלָיו שׁוֹמְרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות קו </strong> לשמר את המקדש דכתיב ושמרו את משמרת אהל מועד ושמירה זו אינה מפחד אויבים אלא כבוד לו ושמירה זו מצותה כל הלילה כדרך השומרים והשומרים הם הכהנים הלוים דכתיב ואתה ובניך אתך כלומר אתם תהיו שומרים לו וכתיב והחונים לפני אהל מועד וגו׳ משה אהרן ובניו משה לוי אהרן ובניו כהנים:<br><strong> אזהרת ר </strong> שלא להשבית שמירתו דכתיב ושמרתם את משמרת הקדש ולשון שמירה אזהרה היא דהשמר פן ואל אינו אלא לא תעשה.</p>
               </div>
             </div>
@@ -1190,8 +1471,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-8-4">Mishneh Torah, The Chosen Temple 8:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת שְׁמִירָתוֹ שֶׁיִּהְיוּ הַכֹּהֲנִים שׁוֹמְרִים מִבִּפְנִים וְהַלְוִיִּם מִבַּחוּץ. וְכ&quot;ד עֵדָה שׁוֹמְרִין אוֹתוֹ בְּכָל לַיְלָה תָּמִיד בְּכ&quot;ד מָקוֹם. הַכֹּהֲנִים בִּשְׁלֹשָׁה מְקוֹמוֹת וְהַלְוִיִּם בְּכ&quot;א מָקוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות </strong> שמירתו שיהיו הכהנים שומרים מבפנים והלוים מבחוץ. הכהנים שומרים בשלשה מקומות דכתיב אהרן ובניו שומרי משמרת המקדש אהרן בחד מקום ובניו בשני מקומות דכתיב שומרים משמרת למשמרת הרבה שמירות ואי בחד מקום הוו כולהו אם כן לא הוי אלא שמירה אחת ובבית הניצוץ ובבית המוקד ובבית אבטינס היו שומרים שעליות לא נתקדשו בקדושת עזרה ובית המוקד חציה בחול ושם היו יושבין והיו במקום גבוה שהכהנים שומרים מלמעלה דכתיב וילוו עליך וישרתוך בעבודתך הכתוב מדבר דהיינו שמירה שהם שומרים כמו כן בא הכתוב ולימד שילוו עליך שיהיו טפלין לך בשמירתן שאינם שומרים בגובה כמותך אלא למטה אצל השערים דלכך קרי להו בקרא שוערים ושמירת לוים נמי ילפינן מדכתיב והחונים לפני המשכן קדמה לפני אהל מועד מזרחה משה והדר אהרן ובניו שומרי משמרת הקדש דהא קרא לא חשיב משה בהדי כהנים דמדכתיב והחונים בראש הפסוק שמע מינה הכי מידריש החונים לפני המשכן קדמה משה והדר אהרן דאם היה משה עמהם לא היה לו לכתוב והחונים אלא לפני המשכן קדמה משה אהרן ובניו ושיהיו הלוים שומרים בכ&quot;א מקומות ילפי׳ מדכתי׳ בדברי הימים למזרחה ליום ששה לצפונה ליום ארבעה לנגבה ליום ארבעה לאסופי שנים שנים לפרבר למערב ארבעה למסלה שנים ותלתא מינייהו כהנים וכ&quot;א לויים דבכ&quot;ד מקומות נקראו כהנים לויים.</p>
               </div>
             </div>
@@ -1206,8 +1492,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-the-chosen-temple-8-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, The Chosen Temple 8:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-8-11">Mishneh Torah, The Chosen Temple 8:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּשַּׁחַר קֹדֶם שֶׁיַּעֲלֶה עַמּוּד הַשַּׁחַר סָמוּךְ לוֹ יָבוֹא הַמְמֻנֶּה שֶׁל מִקְדָּשׁ וְיִדְפֹּק עַל הַכֹּהֲנִים שֶׁבְּבֵית הַמּוֹקֵד וְהֵן פּוֹתְחִין לוֹ. נָטַל אֶת הַמַּפְתֵּחַ וּפָתַח אֶת הַשַּׁעַר הַקָּטָן שֶׁבֵּין בֵּית הַמּוֹקֵד וּבֵין הָעֲזָרָה וְנִכְנַס מִבֵּית הַמּוֹקֵד לָעֲזָרָה וְנִכְנְסוּ אַחֲרָיו הַכֹּהֲנִים וּשְׁתֵּי אֲבוּקוֹת שֶׁל אוּר בְּיָדָם וְנֶחְלְקוּ לִשְׁתֵּי כִּתּוֹת. כַּת הוֹלֶכֶת לְמִזְרָח וְכַת הוֹלֶכֶת לְמַעֲרָב. וְהָיוּ בּוֹדְקִין וְהוֹלְכִין אֶת כָּל הָעֲזָרָה עַד שֶׁיַּגִּיעוּ שְׁתֵּי הַכִּתּוֹת לִמְקוֹם בֵּית עוֹשֵׂי חֲבִיתִין. הִגִּיעוּ אֵלּוּ וְאֵלּוּ אוֹמְרִין שָׁלוֹם הַכּל שָׁלוֹם. וְהֶעֱמִידוּ עוֹשֵׂי חֲבִיתִין לַעֲשׂוֹת חֲבִיתִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וסמוך </strong> לעליית עמוד השחר בודקין את כל העזרה שזה מכלל השמירה ואומרים שלם הכל שלם והעמידו עושה חביתין להחם חמין לרבוכה של מנחת כהן גדול הנעשית במחבת דכתיב מורבכת תביאנה מלמד שנעשיה ברותחין כל צרכה. ויש בענייני הלכות אלו דברים מדרבנן משום סייג לתורה סמוכים אלא תסור ואקרא דושמרתם את משמרתי עשו משמרת למשמרתי:</p>
               </div>
             </div>
@@ -1217,6 +1508,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-the-chosen-temple-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-the-chosen-temple.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-the-chosen-temple-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1237,8 +1532,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-the-chosen-temple.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-the-chosen-temple.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-the-chosen-temple.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-the-chosen-temple.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-the-chosen-temple.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-the-chosen-temple.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1264,7 +1559,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

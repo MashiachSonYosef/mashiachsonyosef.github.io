@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/">Open Mishneh Torah, Scroll of Esther and Hanukkah</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Scroll of Esther and Hanukkah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">34 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: ToratEmet | Version source: <a href="http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html">www.toratemetfreeware.com</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>749 matched</strong> / 2175 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -239,8 +240,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-1">Mishneh Torah, Scroll of Esther and Hanukkah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְרִיאַת הַמְּגִלָּה בִּזְמַנָּהּ מִצְוַת עֲשֵׂה מִדִּבְרֵי סוֹפְרִים. וְהַדְּבָרִים יְדוּעִים שֶׁהִיא תַּקָּנַת הַנְּבִיאִים. וְהַכּל חַיָּבִים בִּקְרִיאָתָהּ אֲנָשִׁים וְנָשִׁים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. וּמְחַנְּכִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ. וַאֲפִלּוּ כֹּהֲנִים בַּעֲבוֹדָתָן מְבַטְּלִין עֲבוֹדָתָן וּבָאִין לִשְׁמֹעַ מִקְרָא מְגִלָּה. וְכֵן מְבַטְּלִים תַּלְמוּד תּוֹרָה לִשְׁמֹעַ מִקְרָא מְגִלָּה קַל וָחֹמֶר לִשְׁאָר מִצְוֹת שֶׁל תּוֹרָה שֶׁכֻּלָּן נִדְחִין מִפְּנֵי מִקְרָא מְגִלָּה. וְאֵין לְךָ דָּבָר שֶׁנִּדְחֶה מִקְרָא מְגִלָּה מִפָּנָיו חוּץ מִמֵּת מִצְוָה שֶׁאֵין לוֹ קוֹבְרִין שֶׁהַפּוֹגֵעַ בּוֹ קוֹבְרוֹ תְּחִלָּה וְאַחַר כָּךְ קוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הכל חייבין בקריאתה אנשים ונשים וגרים ועבדים משוחררים וכו׳.</strong> אפשר דרבינו ז&quot;ל סבור כדכתב הרב&quot;י בסי׳ תרפ&quot;ט דעבדים שמלו וטבלו לשם עבדות אינם חייבים ולהכי מפרש הוא ז&quot;ל דדוקא עבדים משוחררים ואין לדמותם לנשים דשאני נשים שע&quot;י אשה נעשה הנס וכמ&quot;ש שם הרב&quot;י ז&quot;ל אבל אין לומר דרבינו ז&quot;ל מפרש דעבדים דברייתא הם משוחררים משום דאם הם עבדים ממש נלמד מדין נשים דא&quot;כ איך פירש דהם עבדים משוחררים דהשתא נמי קשה דבכלל גרים הם א&quot;ו דהעיקר כמו שפירשתי:</p>
               </div>
             </div>
@@ -255,8 +261,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-1">Mishneh Torah, Scroll of Esther and Hanukkah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְרִיאַת הַמְּגִלָּה בִּזְמַנָּהּ מִצְוַת עֲשֵׂה מִדִּבְרֵי סוֹפְרִים. וְהַדְּבָרִים יְדוּעִים שֶׁהִיא תַּקָּנַת הַנְּבִיאִים. וְהַכּל חַיָּבִים בִּקְרִיאָתָהּ אֲנָשִׁים וְנָשִׁים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. וּמְחַנְּכִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ. וַאֲפִלּוּ כֹּהֲנִים בַּעֲבוֹדָתָן מְבַטְּלִין עֲבוֹדָתָן וּבָאִין לִשְׁמֹעַ מִקְרָא מְגִלָּה. וְכֵן מְבַטְּלִים תַּלְמוּד תּוֹרָה לִשְׁמֹעַ מִקְרָא מְגִלָּה קַל וָחֹמֶר לִשְׁאָר מִצְוֹת שֶׁל תּוֹרָה שֶׁכֻּלָּן נִדְחִין מִפְּנֵי מִקְרָא מְגִלָּה. וְאֵין לְךָ דָּבָר שֶׁנִּדְחֶה מִקְרָא מְגִלָּה מִפָּנָיו חוּץ מִמֵּת מִצְוָה שֶׁאֵין לוֹ קוֹבְרִין שֶׁהַפּוֹגֵעַ בּוֹ קוֹבְרוֹ תְּחִלָּה וְאַחַר כָּךְ קוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן מבטלין תלמוד תורה.</strong> בפ&quot;ק (דף ג׳) אמרו שמבטלין ת&quot;ת ק&quot;ו מעבודה ומה עבודה שהיא חמורה מבטלין ת&quot;ת לא כ&quot;ש ובגמ׳ הקשו דאדרבא ת&quot;ת חמירא ואמר שם דת&quot;ת דרבים חמירא מעבודה וא&quot;כ נראה לכאורה דת&quot;ת דרבים לא מבטלינן מקמי מגילה כיון דלא ילפינן לה מעבודה וא&quot;כ קשה על רבינו ז&quot;ל למה אמר סתם מבטלין ת&quot;ת ולא חילק בין יחיד לרבים. ונראה ודאי דאפילו ת&quot;ת דרבים מבטלינן והראיה דבגמרא שאלו שם מקרא מגילה ומת מצוה הי מנייהו עדיף ואנן קיי&quot;ל דמת מצוה דוחה אפילו תלמוד תורה דרבים וא&quot;כ אי תלמוד תורה דרבים דוחה מקרא מגילה מאי קמבעיא ליה השתא תלמוד תורה דרבים דדוחה מקרא מגילה מת מצוה דוחה אותה כל שכן מקרא מגילה שנדחית מפני מת מצוה אלא ודאי דאפילו תלמוד תורה דרבים נדחה מפני מקרא מגילה ולהכי קמבעיא ליה:</p>
               </div>
             </div>
@@ -271,8 +282,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:2:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-2-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-2">Mishneh Torah, Scroll of Esther and Hanukkah 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד הַקּוֹרֵא וְאֶחָד הַשּׁוֹמֵעַ מִן הַקּוֹרֵא יָצָא יְדֵי חוֹבָתוֹ וְהוּא שֶׁיִּשְׁמַע מִפִּי מִי שֶׁהוּא חַיָּב בִּקְרִיאָתָהּ. לְפִיכָךְ אִם הָיָה הַקּוֹרֵא קָטָן אוֹ שׁוֹטֶה הַשּׁוֹמֵעַ מִמֶּנּוּ לֹא יָצָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד הקורא ואחד השומע מן הקורא יצא ידי חובתו.</strong> פרק הקורא למפרע (מגילה דף י&quot;ט:) משנה הכל כשרים וכו׳ חוץ מחש״ו ר׳ יהודה מכשיר בקטן ובגמ׳ אמרו מאן תנא חרש דיעבד נמי לא א״ר מתנה ר׳ יוסי היא דתנן הקורא את שמע ולא השמיע לאזנו יצא ר׳ יוסי אומר לא יצא וממאי דר׳ יוסי וכו׳ עוד אמרו במאי אוקימתה כר׳ יהודה וכו׳ אלא הא דתני יהודה בריה דר״ש בן פזי וכו׳ ואלא מאי ר׳ יהודה ואפי׳ לכתחלה וכו׳ אלא הא דתניא וכו׳ לעולם ר׳ יהודה ואפילו לכתחלה ולא קשיא הא דידיה והא דרביה וכו׳ השתא דאתית להכי אפילו תימא ר׳ יהודה וכו׳ והא דתני ר״י בריה דר״ש בן פזי ר״מ היא וכי הך סוגיא איתא בברכות פ׳ היה קורא (ברכות דף ט&quot;ו). והרב״י נר״ו תמה על רבינו ז״ל תימה גדולה בסי׳ תרפ״ט דהוא ז״ל פסק דשומע מן החרש לא יצא ובגמ׳ אמרו דהך אתיא כר׳ יוסי ובגמרא פ׳ היה קורא איפסיקא הלכתא דלא כר׳ יוסי וכן רבינו ז״ל עצמו בפ״ב מהל׳ ק״ש כתב ואם לא השמיע לאזנו יצא (וכן בהלכות קריאת התורה גבי חרש שאינו שומע הברכה פסק דיצא דהיינו כר׳ יהודה). ועוד נ״ל לדקדק דכיון דבגמרא אמרו במסקנא השתא דאתית להכי אפילו תימא וכו׳ משמע דבמסקנא עדיפא ליה לגמ׳ לאוקמי מתני׳ כר׳ יהודה משום דהוי הלכתא כוותיה וכדכתבו התוס׳ ז״ל א״כ נראה דבמסקנא מתני׳ ר׳ יהודה היא וליכא בה פלוגתא כלל ובקטן שהגיע לחינוך מכשיר אבל בקטן שלא הגיע לחינוך לא וא״כ קשה דהיה לו לרבינו ז״ל לפסוק כמסקנא והיה לומר דבקטן שהגיע לחינוך כשר אבל בקטן שלא הגיע לא. וי״ל ולתרץ הכל דרבינו ז״ל הוקשה לו בהלכה קושיא והוא דכשאמר בגמרא לעולם ר׳ יהודה ואפילו לכתחלה דהיכי אפשר לומר דאם היה ר׳ יהודה מכשיר בחרש ואפילו לכתחלה היל״ל במתניתין ר׳ יהודה מכשיר בקטן ובחרש ומדקאמר בקטן מכלל דבשאר מודה דבשלמא למאי דס״ד מעיקרא דר״י מכשיר בחרש בדיעבד אבל לכתחלה לא אתי שפיר דלא אמר ר״י מכשיר בקטן ובחרש משום דבקטן מכשיר לכתחלה ובחרש אינו כן דלכתחלה אינו כשר אלא דוקא בדיעבד אבל השתא דאמרינן דאפילו לכתחלה מכשיר בחרש קשה, לכך מפרש הוא ז״ל הסוגיא דכשאמרו בגמרא לעולם ר״י ואפילו לכתחילה ר״ל דר׳ יהודה לכתחלה קאמר ומתני׳ דמגילה וההיא דשמע לא דמיין אהדדי דבמגילה דהוי פרסומי בעינן טפי שמיעת אזן ור׳ יהודה דאמר התם יצא הכא מודה דלא יצא וא״כ מתני׳ דחרש נמי אתיא כר״י ומש״ה אמר מכשיר בקטן דבהחרש מודה דלא יצא וטעמא דפרסומי ניסא כדכתב הרב ב״י. והשתא אתי שפיר נמי דסתמיות דרבי לא קשו אהדדי דבמגילה סתם לן לא יצא משום פרסומי ניסא אבל בשמע דליכא פרסומי סתם לן דיצא ועל זה אמרו בגמרא השתא דאתית להכי כלומר השתא דאשמעת לן פלוגתא דר״מ לא צריך לן לדחוקי ולומר דלית ליה דרביה אלא דרביה אית ליה וברייתא דבן פזי הוא ר״מ וברייתא דברכת המזון הוא ר׳ יהודה אבל מתני׳ דחרש אתי ככ״ע מטעמא דפרישית משום פרסומי ניסא ודלא כרש״י ז״ל דקאמר ולפי המסקנא אתי מתני׳ כר׳ יהודה וחסורי מחסרא וכו׳ וכן מה שאמרו בגמ׳ בפ׳ היה קורא השתא דאתית להכי וכו׳ הא ר״מ הא ר״י פירוש בכה״ג הברייתא דתורם ר״מ ודברכת המזון ר׳ יהודה אבל מתני׳ אתי ככ״ע ולהכי פסק רבינו ז״ל בחרש דלא יצא דכ״ע מודו אבל בשמע ותורם פסק דיצא משום דליכא טעמא דפרסומי ניסא כדפרישית. וא״ת כשהקשו בגמרא ואמרו ואלא מאי ר׳ יהודה ואפילו לכתחלה אלא הא דתניא וכו׳ אמאי לא הקשו ממתני׳ דא״כ דר׳ יהודה הוא לכתחלה לא משיירא מתניתין כלל דהל״ל ר״י מכשיר בקטן ובחרש כדאקשינן. וי״ל דהוא הדין דהמקשה הוה מצי לאקשויי אלא רוצה להקשות לו מהברייתא דקאמרה בפירוש דלכתחלה לא וע״כ אתי כר׳ יהודה דאל״כ אתיא דלא כמאן:</p>
               </div>
             </div>
@@ -287,8 +303,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:3:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-3-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-3">Mishneh Torah, Scroll of Esther and Hanukkah 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוָה לִקְרוֹת אֶת כֻּלָּהּ. וּמִצְוָה לִקְרוֹתָהּ בַּלַּיְלָה וּבַיּוֹם. וְכָל הַלַּיְלָה כָּשֵׁר לִקְרִיאַת הַלַּיְלָה. וְכָל הַיּוֹם כָּשֵׁר לִקְרִיאַת הַיּוֹם. וּמְבָרֵךְ קֹדֶם קְרִיאָתָהּ בַּלַּיְלָה שָׁלֹשׁ בְּרָכוֹת וְאֵלּוּ הֵן. בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל מִקְרָא מְגִלָּה. בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם שֶׁעָשָׂה נִסִּים לַאֲבוֹתֵינוּ בַּיָּמִים הָהֵם וּבַזְּמַן הַזֶּה. בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם שֶׁהֶחֱיָנוּ וְקִיְּמָנוּ וְהִגִּיעָנוּ לַזְּמַן הַזֶּה. וּבַיּוֹם אֵינוֹ חוֹזֵר וּמְבָרֵךְ שֶׁהֶחֱיָנוּ. וּמָקוֹם שֶׁנָּהֲגוּ לְבָרֵךְ אַחֲרֶיהָ מְבָרֵךְ בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם הָאֵל הָרָב אֶת רִיבֵנוּ וְהַדָּן אֶת דִּינֵנוּ וְהַנּוֹקֵם אֶת נִקְמָתֵנוּ וְהַנִּפְרָע לָנוּ מִצָּרֵינוּ וְהַמְשַׁלֵּם גְּמוּל לְכָל אֹיְבֵי נַפְשֵׁנוּ בָּרוּךְ אַתָּה ה׳ הַנִּפְרָע לְיִשְׂרָאֵל מִכָּל צָרֵיהֶם הָאֵל הַמּוֹשִׁיעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל הלילה כשר לקריאת הלילה וכו׳.</strong> כתב ה&quot;ה ז&quot;ל דנלמד זה מדאמר במשנה (כ׳:) כל דבר שמצותו ביום כשר כל היום דבר שמצותו בלילה כשר כל הלילה. וקשה דשם ס&quot;פ הקורא את המגילה למפרע (כ&quot;א) אמרו זה הכלל לאתויי מאי ואמר דדבר שמצותו ביום אתי לאתויי סידור בזיכים ודבר שמצותו בלילה אתי לאתויי אכילת פסחים ודלא כר׳ אליעזר וא&quot;כ זה הכלל הוא אינו שהוא דלא כהלכתא שהרי רבינו ז&quot;ל בהלכות קרבן פסח פסק כר&quot;א וכן בסידור בזיכין פסק בהל׳ תמידין דלא כר׳ יוסי וא&quot;כ איך נלמוד מכלל זה. ועוד קשה דאמאי אמר בגמ׳ דדבר שמצותו בלילה וכו׳ אתי לאתויי דלא כר&quot;א דזה הכלל אינו משום דהלכתא כר&quot;א דסתם מתני׳ אתי כוותיה והוי דוחק דקשיא סתמא אסתמא נימא דאתי לאתויי מקרא מגילה בלילה דכשר כל הלילה כדכתב רבינו ז&quot;ל. וי&quot;ל לקושיא האחת ואע&quot;ג דכלל זה אינו מ&quot;מ מתני׳ כללא כייל בכל הדברים ואע&quot;ג דבההיא דאכילת פסחים פליג ר&quot;א מ&quot;מ היכא דלא אשכחינן פלוגתא ודאי דאמרינן דהדרינן לכללין דמתני׳ והיכא דאתכחיש כללין אתכחיש והיכא דלא אתכחיש לא אתכחיש. ולשניה יש לומר דגמרא לא שני הכי משום דלא אשכחן במשנה דקאמרה דחייב אדם לשנות את המגילה בלילה אלא ריב&quot;ל אמרה ואם כן טפי מסתבר לאוקמי כללא לאתויי דבר המפורש במשנה יותר מדבר שאינו מפורש במשנה:</p>
               </div>
             </div>
@@ -303,8 +324,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:6:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-6-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-6">Mishneh Torah, Scroll of Esther and Hanukkah 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּנֵי הַכְּפָרִים שֶׁאֵינָם מִתְקַבְּצִים בְּבָתֵּי כְּנֵסִיּוֹת אֶלָּא בְּשֵׁנִי וּבַחֲמִישִׁי תִּקְּנוּ לָהֶם שֶׁיִּהְיוּ מַקְדִּימִין וְקוֹרְאִים בְּיוֹם הַכְּנִיסָה. כֵּיצַד. אִם חָל יוֹם י&quot;ד לִהְיוֹת בְּשֵׁנִי אוֹ בַּחֲמִישִׁי קוֹרְאִין בּוֹ בַּיּוֹם. וְאִם חָל בְּיוֹם אַחֵר חוּץ מִשֵּׁנִי וַחֲמִישִׁי מַקְדִּימִין וְקוֹרְאִין בְּשֵׁנִי אוֹ בַּחֲמִישִׁי הַסָּמוּךְ לְי&quot;ד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בני הכפרים וכו׳.</strong> נראה שרבינו מפרש ביום הכניסה שקורין הכפרים הוא בכפר שלהם דשם מתכנסים בבתי כנסיות ואינן מתקבצים אלא בשני ובחמישי בבתי כנסיות שלהם וכן כתבו התוס׳ ז&quot;ל בפ&quot;ק דיבמות (דף י&quot;ד) בשם הרב רבי חיים ותירץ קושיא חזקה שיש שם בגמרא וכן מורה לשון רבינו ז&quot;ל שכתב שאינן מתקבצים בבתי כנסיות וכו׳ משמע דהוא בבתי כנסיות שלהם וכן מורה הלשון שכתב לקמן כפר שמקדימין וקורין וכן בזמן שאין נכנסין בו ואם הוא מפרש שבאים לעיר לקרות לא היל&quot;ל אלא בזמן שאין נכנסין לעיר מאי בו אלא הכונה היא שבו בכפר עצמו היו מתכנסין בבית הכנסת ולהכי אמר דאם אין נכנסים בכפר בשני ובחמישי להתאסף שם אין קורין אותה אלא בי&quot;ד:</p>
               </div>
             </div>
@@ -319,8 +345,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:7:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-7-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-7">Mishneh Torah, Scroll of Esther and Hanukkah 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. חָל י&quot;ד לִהְיוֹת בְּאֶחָד בְּשַׁבָּת מַקְדִּימִין וְקוֹרְאִין בַּחֲמִישִׁי שֶׁהוּא יוֹם י&quot;א. חָל לִהְיוֹת בִּשְׁלִישִׁי קוֹרְאִין בְּשֵׁנִי שֶׁהוּא יוֹם י&quot;ג. חָל לִהְיוֹת בִּרְבִיעִי קוֹרְאִין בְּשֵׁנִי שֶׁהוּא יוֹם י&quot;ב. וְכָל אֵלּוּ שֶׁמַּקְדִּימִין וְקוֹרְאִין קֹדֶם י&quot;ד אֵין קוֹרְאִין אוֹתָהּ בְּפָחוֹת מֵעֲשָׂרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד חל י&quot;ד להיות באחד בשבת וכו׳ וכל אלו שמקדימין וכו׳. </strong> כתב ה&quot;ה שלא בזמנה קודם לכן מחמת איזו סיבה שיהיה וכו׳ כלומר לא תימא יום הכניסה דכפרים כדפרישית דא&quot;כ קשה דבזמן רב אסי ורב כבר נתבטל יום הכניסה וכדהקשו עליו אלא אימא מחמת איזו סיבה אחרת כמו מפרש בים ויוצא בשיירא וכדכתב הר&quot;ן ז&quot;ל. ובהשגות א&quot;א וכו׳. כוונת ההשגה במ&quot;ש ומאי דכתב הרב ז&quot;ל ודחה להא דרב אסי (דף ה׳) לאו מילתא היא לפי הנראה דהכונה להקשות עליו מה שהקשה על הרי&quot;ף ז&quot;ל הר&quot;ז הלוי ז&quot;ל דהוא דחה להא דרב אסי משום דאמר ר׳ יוחנן לקמן דבין הכתובים לא יצא ה&quot;מ בציבור (אבל ביחיד) דמשמע דביחיד יצא ועל זה הקשה דמ&quot;מ נימא דהלכתא כרב אסי דעד כאן לא קאמר רב אסי אלא דמצוה לאהדורי היכא דאפשר אבל היכא דלא אפשר יצא וא&quot;כ ר&quot;י דאמר לקמן יצא הוא היכא דלא אפשר זו נראה כוונתו ז&quot;ל. ואם כן הבין ה&quot;ה ז&quot;ל בדבריו אלו לכאורה קשה מאי דקאמר וזה דעת רב אסי ממש דאדרבא נראה זה כסיוע לדברי הראב&quot;ד ז&quot;ל אא&quot;כ נאמר דמתחלה רצה להודות לו ואמר כלומר ודאי דהדין עמו דדעת רב אסי כך הוא אבל מ&quot;מ הרשב&quot;א ז&quot;ל הכריח כדברי ההלכות ז&quot;ל מכח ההיא דירושלמי. ואפשר לומר דהוא הבין בדברי הראב&quot;ד ז&quot;ל שהקשה להרי&quot;ף ז&quot;ל דאמאי דחה לדרב אסי לגמרי נהי דלית הלכתא כוותיה מכח ההיא דר׳ יוחנן ועוד דאין הלכה כתלמיד במקום הרב וכדכתבו התוספות מ&quot;מ מיחש מיהו חיישינן כי היכי דחייש רב גופיה והיכא דאפשר למיהדר בתר עשרה מצוה למיהדר ולכך השיג עליו ה&quot;ה ז&quot;ל דהיכי קאמר הכי דאם כן פירש היינו דעת רב אסי ממש וכיון דהוא מודה דלית הלכתא כרב אסי משום דאין הלכה כתלמיד במקום הרב א&quot;כ ודאי דלא חיישינן לדרב אסי כלל. וכתב עוד ומ&quot;מ וכו׳, הרגיש לפי פירושו שפירשו דפלוגתא דרב ורב אסי הוא אי מצוה למיהדר או לא א&quot;כ רב דס&quot;ל דאינו אפילו מצוה אם כן תקשי ליה מההיא דסמכו של בית רבי שמבטלין ת&quot;ת שלהם לקרותה וכדהקשה הר&quot;ן ז&quot;ל ותירצו הוא בעצמו דמ&quot;מ אע&quot;פ שאין צריך לחזר אחריהם ברוב עם הדרת מלך. ומ&quot;ש דודאי אפילו רב אסי וכו׳ משמע דדקדק מלשון רב אסי מדלא קאמר אין קורין אלא בעשרה דהוה משמע עיכובא ומדקאמר קורין אותה בי׳ משמע דלכתחלה קאמר. ויש לדקדק דהרי אמר קורין שלא בזמנה בעשרה והאי קורין משמע עיכובא וכדמשמע מדברי רבינו ז&quot;ל שכתב וכל אלו שמקדימין וכו׳ אין קורין אותה בפחות מעשרה דמשמע דהוא עיכובא. ויש לומר דמאי דקאמר קורין הוא משום בזמנה ביחיד והתם לא שייך לומר אין קורין אלא ביחיד אבל רב אסי היל&quot;ל בין בזמנה בין שלא בזמנה אין קורין אותה אלא בעשרה:</p>
               </div>
             </div>
@@ -335,8 +366,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:8:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-8-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-8">Mishneh Torah, Scroll of Esther and Hanukkah 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּפָר שֶׁמַּקְדִּימִין וְקוֹרְאִין בְּיוֹם הַכְּנִיסָה בִּזְמַן שֶׁאֵין נִכְנָסִין בּוֹ בְּשֵׁנִי וּבַחֲמִישִׁי אֵין קוֹרְאִין אוֹתָהּ אֶלָּא בְּי&quot;ד. וְכָל עִיר שֶׁאֵין בָּהּ עֲשָׂרָה בַּטְלָנִין קְבוּעִין בְּבֵית הַכְּנֶסֶת לְצָרְכֵי הַצִּבּוּר הֲרֵי הִיא כִּכְפָר וּמַקְדִּימִין וְקוֹרְאִין בְּיוֹם הַכְּנִיסָה. וְאִם אֵין שָׁם עֲשָׂרָה בְּנֵי אָדָם תַּקָּנָתוֹ קַלְקָלָתוֹ וַהֲרֵי הֵם כְּאַנְשֵׁי עִיר גְּדוֹלָה וְאֵין קוֹרְאִין אֶלָּא בְּי&quot;ד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל עיר שאין בה עשרה בטלנין וכו׳ תקנתו קלקלתו וכו׳ ואין קורין אלא בי&quot;ד.</strong> ר&quot;ל הקלקול שלו הוא מתקן דהקלקול שלו הוא דאין בו עשרה בני אדם דרים שם ומפני כך הוא מתוקן דהוא כעיר גדולה ובגמרא (דף ג׳:) איכא מימרא דריב&quot;ל כרך שישב ולבסוף הוקף וכו׳ ולא הזכירה כאן רבינו ז&quot;ל ונראה שהוא סבור כפירוש רש&quot;י ז&quot;ל דלא נאמרה לענין מקרא מגילה אלא לענין בתי ערי חומה. עוד שם כרך שחרב ולבסוף ישב ואוקמוה בגמרא כרך שחרב מעשרה בטלנין והיינו ודאי שלא הוקף מימות יהושע שאם הוקף מימות יהושע אפילו אין בו י׳ בטלנים נדון ככרך, ולא הזכיר רבינו ז&quot;ל מכל דבר זה כלל:</p>
               </div>
             </div>
@@ -351,8 +387,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:9:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-9-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-9">Mishneh Torah, Scroll of Esther and Hanukkah 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁמַּקְדִּימִין וְקוֹרְאִין בְּיוֹם הַכְּנִיסָה בִּזְמַן שֶׁיֵּשׁ לָהֶם לְיִשְׂרָאֵל מַלְכוּת. אֲבָל בַּזְּמַן הַזֶּה אֵין קוֹרְאִין אוֹתָהּ אֶלָּא בִּזְמַנָּהּ שֶׁהוּא יוֹם י&quot;ד וְיוֹם ט&quot;ו. בְּנֵי הַכְּפָרִים וּבְנֵי עֲיָרוֹת קוֹרְאִין בְּי&quot;ד. וּבְנֵי כְּרַכִּין קוֹרְאִין בְּט&quot;ו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א שמקדימין וכו׳.</strong> שם (דף ב׳:) אמר ר׳ יהודה וכו׳ והוא כדברי חכמים. ובגמרא הקשו מינה לההיא דאימתי במקום שנכנסין בשני ובחמישי וכו׳ ואוקימו חד כר׳ יהודה וחד כר׳ יוסי ב&quot;ר יהודה ורבינו ז&quot;ל פסקה לתרתי משום דבגמ׳ לא הקשו אלא דמשמע להו כר&quot;י שאמר אימתי וכו׳ בזמן שאין מלכות קאמרה דהוא בזמנו אבל רבינו ז&quot;ל ביאר הדבר כבר שלא דבר אלא בזמן שנוהג הכניסה:</p>
               </div>
             </div>
@@ -367,8 +408,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:10:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-10-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-10">Mishneh Torah, Scroll of Esther and Hanukkah 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן עִיר שֶׁהָלַךְ לַכְּרַךְ אוֹ בֶּן כְּרַךְ שֶׁהָלַךְ לָעִיר אִם הָיָה דַּעְתּוֹ לַחֲזֹר לִמְקוֹמוֹ בִּזְמַן קְרִיאָה וְנִתְעַכֵּב וְלֹא חָזַר קוֹרֵא כִּמְקוֹמוֹ. וְאִם לֹא הָיָה בְּדַעְתּוֹ לַחֲזֹר אֶלָּא לְאַחַר זְמַן הַקְּרִיאָה קוֹרֵא עִם אַנְשֵׁי הַמָּקוֹם שֶׁהוּא שָׁם. וּכְרַךְ וְכָל הַסָּמוּךְ לוֹ וְכָל הַנִּרְאֶה עִמּוֹ אִם אֵין בֵּינֵיהֶם יֶתֶר עַל אַלְפַּיִם אַמָּה הֲרֵי זֶה כִּכְרַךְ וְקוֹרְאִין בַּחֲמִשָּׁה עָשָׂר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן עיר שהלך לכרך וכו׳.</strong> עיין בהרב&quot;י ז&quot;ל כי הוא האריך לבאר זה יפה. ומה שאמר רבינו ז&quot;ל ונתעכב וכו׳ הוא משום דסובר דהכל תלוי במחשבה ואין תלוי הדבר במעשה אבל מלשון ה&quot;ה ז&quot;ל נראה שהדבר תלוי במעשה שכתב אלא כשעתיד לחזור וכו׳ ואין מתעכב שם ביום י&quot;ד וכו׳ משמע דהדבר תלוי במעשה, ואע&quot;פ שנראה שבא לפרש דברי רבינו ז&quot;ל לא בא לפרש אלא ענין זמן הקריאה דקאמר רבינו ז&quot;ל דאיירי בזמן קריאת המקום שהוא בו עתה אבל בהא לא קא מיירי דודאי פליג רבינו ז&quot;ל עליה. ומ&quot;ש אלא כשעתיד לחזור ואינו מתעכב דמשמע דתרתי בעינן מחשבה ומעשה אבל בחד מנייהו קורא כאנשי המקום ולבסוף נראה דכתב איפכא דקאמר אין דעתו לחזור אלא שנתעכב וכו׳ דמשמע דתרתי בעינן לקרות כאנשי המקום אשר שם מחשבה ומעשה וא&quot;כ נראה דקשיא דיוקא אדיוקא. הא לאו מילתא היא דודאי הכל תלוי במעשה ופי׳ דעתו ואין דעתו ר&quot;ל המעשה אבל אינה תלויה במחשבה כלל. עוד איכא (בגמרא דף י&quot;ט) אמר רבא בן כפר שהלך לעיר בין כך ובין כך קורא עמהן ולא הביאה רבינו ז&quot;ל משום דלדידן הכפרים והעיירות שוים דליכא יום הכניסה וכמ&quot;ש ה&quot;ה ז&quot;ל לקמן גבי חל יום חמשה עשר וכו׳ שאמר ודברי רבינו ז&quot;ל הם בזמן הזה שאין לנו יום הכניסה אע&quot;ג דזה ודאי דוחק דכיון דהזכיר הדינים שהוא בזמן הכניסה היה לו להזכיר הכל ולא להזכיר מקצת ולהניח מקצת:</p>
               </div>
             </div>
@@ -383,8 +429,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:12:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-12-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-12">Mishneh Torah, Scroll of Esther and Hanukkah 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָרְאוּ אֶת הַמְּגִלָּה בַּאֲדָר רִאשׁוֹן וְאַחַר כָּךְ עִבְּרוּ בֵּית דִּין אֶת הַשָּׁנָה חוֹזְרִים וְקוֹרְאִים אוֹתָהּ בָּאֲדָר הַשֵּׁנִי בִּזְמַנָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קראו את המגילה באדר ראשון ואחר כך עיברו בית דין וכו׳.</strong> הוא הדין למתנות לאביונים שאם נתנו בראשון צריך לתת בשני דכן אמרו שם במשנה (דף ו׳:) אין בין אדר ראשון לשני אלא מקרא מגילה ומתנות לאביונים ורבינו ז&quot;ל כיון דכתב דלא יצא מידי מקרא מגילה הוא הדין ממתנות דכולה חדא מילתא היא:</p>
               </div>
             </div>
@@ -399,8 +450,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:13:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-13-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-13">Mishneh Torah, Scroll of Esther and Hanukkah 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין קוֹרְאִין אֶת הַמְּגִלָּה בְּשַׁבָּת גְּזֵרָה שֶׁמָּא יִטּל אוֹתָהּ בְּיָדוֹ וְיֵלֵךְ אֵצֶל מִי שֶׁהוּא בָּקִי לִקְרוֹתָהּ וְיַעֲבִירֶנָּה אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים. שֶׁהַכּל חַיָּבִים בִּקְרִיאָתָהּ וְאֵין הַכּל בְּקִיאִין בִּקְרִיאָתָהּ. לְפִיכָךְ אִם חָל זְמַן קְרִיאָתָהּ בְּשַׁבָּת מַקְדִּימִין וְקוֹרְאִין אוֹתָהּ קֹדֶם הַשַּׁבָּת. וְשׁוֹאֲלִין וְדוֹרְשִׁין בְּהִלְכוֹת פּוּרִים בְּאוֹתָהּ שַׁבָּת כְּדֵי לְהַזְכִּיר שֶׁהוּא פּוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושואלין ודורשין בהלכות פורים וכו׳.</strong> מלשון רבינו ז&quot;ל משמע דמשום דהוא נדחה וקראו המגילה אתמול וישכחו שהיום הוא פורים לכך הצריכו לדרוש בעניינו של יום אבל אם לא היה נדחה שקראו המגילה היום לא היה צריך ובגמרא לא מוכח הכי דאמרו שם בפירקא קמא (דף ד׳) על מימרא דרבי יהושע בן לוי פורים שחל וכו׳ והקשו שם מאי איריא פורים אפילו יום טוב נמי דתניא משה תקן להם לישראל וכו׳ מהו דתימא נגזור משום דרבה קמ&quot;ל משמע דרבותא הוא לאשמועינן דמזכירין כאן וכל שכן כשלא היה נדחה וא&quot;כ למה כתב רבינו ז&quot;ל טעם זה שיוכל האדם לטעות. ונראה לומר דרבינו ז&quot;ל רצה לומר דאף על גב דאיכא למגזר משום דרבה וא&quot;כ לא היה ראוי לקרות בשבת זו כדאמרו בגמ׳ אע&quot;ג דבשאר פורים קורין מ&quot;מ קורין בשבת זו כדי להזכיר שהוא פורים והשתא ודאי פשיטא דקורין בשאר פורים מכ&quot;ש ולא צריכנא להאי טעמא הכא אלא משום דאיכא למגזר משום הכי:</p>
               </div>
             </div>
@@ -416,8 +472,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:3:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-3-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-3">Mishneh Torah, Scroll of Esther and Hanukkah 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת הַמְּגִלָּה עַל פֶּה לֹא יָצָא יְדֵי חוֹבָתוֹ. הַלּוֹעֵז שֶׁשָּׁמַע אֶת הַמְּגִלָּה הַכְּתוּבָה בִּלְשׁוֹן הַקֹּדֶשׁ וּבִכְתַב הַקֹּדֶשׁ אַף עַל פִּי שֶׁאֵינוֹ יוֹדֵעַ מַה הֵן אוֹמְרִין יָצָא יְדֵי חוֹבָתוֹ. וְכֵן אִם הָיְתָה כְּתוּבָה יְוָנִית וּשְׁמָעָהּ יָצָא אַף עַל פִּי שֶׁאֵינוֹ מַכִּיר, וַאֲפִלּוּ הָיָה הַשּׁוֹמֵעַ עִבְרִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם היתה כתובה יונית.</strong> בגמרא (דף י&quot;ח) רב ושמואל דאמרי תרווייהו בלעז וכו׳ וכבר כתב רבינו ז&quot;ל בהלכות תפילין פרק חמישי דכבר נשתקע יונית מן העולם ומפני זה לא הביאו בהלכות הך דרב ושמואל. אבל הרא&quot;ש ז&quot;ל כתב בפסקיו דטעם ההלכות הוא דס&quot;ל דרב ושמואל לאו אליבא דנפשייהו קאמרי אלא אליבא דרשב&quot;ג ולית הלכתא כרשב&quot;ג ע&quot;כ. ולא הבינותיו דהא מוכח בגמרא דרב ושמואל ס&quot;ל כרשב&quot;ג דהקשו שם ולימא הלכתא כרשב&quot;ג ותירצו אי אמר הלכה כרשב&quot;ג ה&quot;א ה&quot;מ שאר ספרים וכו׳ משמע דאית להו דהלכה כרשב&quot;ג וכן בפ&quot;ק (דף ט׳:) אמרו אמר ר׳ אבהו אמר ר׳ יוחנן הלכה כרשב&quot;ג וליכא מאן דפליג עליה וצ&quot;ע:</p>
               </div>
             </div>
@@ -432,8 +493,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:5:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-5-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-5">Mishneh Torah, Scroll of Esther and Hanukkah 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת הַמְּגִלָּה בְּלֹא כַּוָּנָה לֹא יָצָא. כֵּיצַד. הָיָה כּוֹתְבָהּ אוֹ דּוֹרְשָׁהּ אוֹ מַגִּיהָהּ אִם כִּוֵּן אֶת לִבּוֹ לָצֵאת בִּקְרִיאָה זוֹ יָצָא וְאִם לֹא כִּוִּן לִבּוֹ לֹא יָצָא. קָרָא וְהוּא מִתְנַמְנֵם הוֹאִיל וְלֹא נִרְדַּם בַּשֵּׁנָה יָצָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא את המגילה בלא כוונה לא יצא וכו׳.</strong> כתב ה&quot;ה ז&quot;ל ואולי שהכל מודים במגילה, וקשה דהא בר&quot;ה פרק ראוהו בית דין הקשו לרבא דאמר מצות אינן צריכות כוונה מההיא דהיה עובר אחורי בית הכנסת ושמע קול שופר או קול מגילה אם כיון לבו יצא ואם לאו לא יצא ואמרו מאי לאו כיון לבו לצאת לא לקרות וא&quot;כ משמע דבמגילה נמי למ&quot;ד אין מצות צריכות כוונה לא בעי כוונה לצאת דהא תרוייהו תני בברייתא וא&quot;כ איך כתב דהכל מודים במגילה הא מאי דפסק כרבא דאמר מצות אינן צריכות כוונה וכמ&quot;ש הוא ז&quot;ל בפרק חמישי ודאי דלא מודה במגילה, וכ&quot;ת דמאי דאמרו בגמרא כיון לצאת לא קאי אלא אשופר וברייתא לצדדין קתני דבכולהו בעינן כוונה אבל לא דמי האי כוונה להאי כוונה דבמגילה בעינן לצאת ובשופר לשמוע מ&quot;מ קשה לו מנין לחלק בין מגילה לשופר ולמשכוני נפשין לאוקמי ברייתא בהאי דוחקא. ואפשר היה לחלק דבשופר עביד קצת מעשה שהיא התקיעה ולהכי לא בעי כוונה אבל במגילה דלא עביד מעשה כלל בעי כוונה וכעין זה חילק רבינו יונה ז&quot;ל סוף פ&quot;ק דברכות דהקשה על רבינו האיי ז&quot;ל ושאר הפוסקים שפסקו דמצות אינן צריכות כוונה מההיא דפתח בחמרא וסיים בשיכרא ותירץ שאפילו מי שסובר דמצות אינן צריכות כוונה ה&quot;מ בדבר שיש בו מעשה קצת שהמעשה הוא במקום כוונה כגון נטילת לולב וכו׳. אבל קשה לי על זה דבגמ׳ מוכח בהדיא דלמ&quot;ד מצות אינן צריכות כוונה הוי אפילו בקריאת שמע דלא שייך שם מעשה כלל וכן בתקיעה לא שייך מעשה כדכתב ה&quot;ה ז&quot;ל בפרק חמישי מהלכות שופר וצ&quot;ע:</p>
               </div>
             </div>
@@ -448,8 +514,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:6:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-6-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-6">Mishneh Torah, Scroll of Esther and Hanukkah 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁהַמְכַוֵּן לִבּוֹ בַּכְּתִיבָה יָצָא. בְּשֶׁנִּתְכַּוֵּן לָצֵאת בַּקְּרִיאָה שֶׁקּוֹרֵא בְּסֵפֶר שֶׁמַּעְתִּיק מִמֶּנּוּ בְּשָׁעָה שֶׁהוּא כּוֹתֵב. אֲבָל אִם לֹא נִתְכַּוֵּן לָצֵאת בִּקְרִיאָה זוֹ שֶׁכָּתַב לֹא יָצָא. שֶׁאֵינוֹ יוֹצֵא יְדֵי חוֹבָתוֹ אֶלָּא בִּקְרִיאָתָהּ מִסֵּפֶר שֶׁכֻּלָּהּ כְּתוּבָה בּוֹ בִּשְׁעַת קְרִיאָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שקורא בספר וכו׳.</strong> נראה ודאי שצריך שאותו ספר יהיה מגילה עשויה כתקנה:</p>
               </div>
             </div>
@@ -464,8 +535,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:7:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-7-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-7">Mishneh Torah, Scroll of Esther and Hanukkah 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת הַמְּגִלָּה וְטָעָה בִּקְרִיאָתָהּ וְקָרָא קְרִיאָה מְשֻׁבֶּשֶׁת יָצָא. לְפִי שֶׁאֵין מְדַקְדְּקִין בִּקְרִיאָתָהּ. קְרָאָהּ עוֹמֵד אוֹ יוֹשֵׁב יָצָא וַאֲפִלּוּ בְּצִבּוּר. אֲבָל לֹא יִקְרָא בְּצִבּוּר יוֹשֵׁב לְכַתְּחִלָּה מִפְּנֵי כְּבוֹד הַצִּבּוּר. קְרָאוּהָ שְׁנַיִם אֲפִלּוּ עֲשָׂרָה כְּאֶחָד יָצְאוּ הַקּוֹרְאִין וְהַשּׁוֹמְעִים מִן הַקּוֹרְאִין. וְקוֹרֵא אוֹתָהּ גָּדוֹל עִם הַקָּטָן וַאֲפִלּוּ בְּצִבּוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל לא יקרא בצבור וכו׳.</strong> מדברי הטור ז&quot;ל משמע דרבינו ז&quot;ל פליג על הירושלמי דאמר אפילו לכתחלה שהרי כתב הקורא את המגילה וכו׳ אבל בירושלמי משמע דאפילו לכתחלה וכו׳ והרמב&quot;ם ז&quot;ל כתב וכו׳. דמשמע מדקאמר והרמב&quot;ם ז&quot;ל כתב דפליג על הירושלמי. אבל אפשר דרבינו ז&quot;ל לא פליג עליה אלא דהוקשה לו על הירושלמי דמתני׳ בדיעבד קאמר ואיך קאמר דאפילו לכתחלה ותירץ דמתני׳ מיירי אפילו בצבור ובצבור לכתחלה לא מטעמא דקאמר אבל הירושלמי דקאמר אפילו לכתחלה לא קאמר אלא ביחיד ואולי שזה דעת ה&quot;ה ז&quot;ל שהביא הירושלמי על דברי רבינו ז&quot;ל משמע דלא פליג:</p>
               </div>
             </div>
@@ -480,8 +556,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:7:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-7-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-7">Mishneh Torah, Scroll of Esther and Hanukkah 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת הַמְּגִלָּה וְטָעָה בִּקְרִיאָתָהּ וְקָרָא קְרִיאָה מְשֻׁבֶּשֶׁת יָצָא. לְפִי שֶׁאֵין מְדַקְדְּקִין בִּקְרִיאָתָהּ. קְרָאָהּ עוֹמֵד אוֹ יוֹשֵׁב יָצָא וַאֲפִלּוּ בְּצִבּוּר. אֲבָל לֹא יִקְרָא בְּצִבּוּר יוֹשֵׁב לְכַתְּחִלָּה מִפְּנֵי כְּבוֹד הַצִּבּוּר. קְרָאוּהָ שְׁנַיִם אֲפִלּוּ עֲשָׂרָה כְּאֶחָד יָצְאוּ הַקּוֹרְאִין וְהַשּׁוֹמְעִים מִן הַקּוֹרְאִין. וְקוֹרֵא אוֹתָהּ גָּדוֹל עִם הַקָּטָן וַאֲפִלּוּ בְּצִבּוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וקורא אותה גדול עם הקטן וכו׳.</strong> נראה דהשמיענו דאע&quot;ג דאחד מן הקוראים דהיינו הקטן אינו מוציא האחרים ידי חובתם ודילמא יהיב דעתיה אקטן מ&quot;מ כיון שגדול קורא עמו לית לן בה:</p>
               </div>
             </div>
@@ -496,8 +577,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:14:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-14-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-14">Mishneh Torah, Scroll of Esther and Hanukkah 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת יוֹם י&quot;ד לִבְנֵי כְּפָרִים וַעֲיָרוֹת וְיוֹם ט&quot;ו לִבְנֵי כְּרַכִּים לִהְיוֹת יוֹם שִׂמְחָה וּמִשְׁתֶּה וּמִשְׁלוֹחַ מָנוֹת לְרֵעִים וּמַתָּנוֹת לָאֶבְיוֹנִים. וּמֻתָּר בַּעֲשִׂיַּת מְלָאכָה, וְאַף עַל פִּי כֵן אֵין רָאוּי לַעֲשׂוֹת בּוֹ מְלָאכָה. אָמְרוּ חֲכָמִים כָּל הָעוֹשֶׂה מְלָאכָה בְּיוֹם פּוּרִים אֵינוֹ רוֹאֶה סִימַן בְּרָכָה לְעוֹלָם. בְּנֵי כְּפָרִים שֶׁקָּדְמוּ וְקָרְאוּ בְּשֵׁנִי אוֹ בַּחֲמִישִׁי אִם חִלְּקוּ מָעוֹת לָאֶבְיוֹנִים בְּיוֹם קְרִיאָתָן יָצְאוּ. אֲבָל הַשִּׂמְחָה וְהַמִּשְׁתֶּה אֵין עוֹשִׂין אוֹתָם אֶלָּא בְּיוֹם י&quot;ד. וְאִם הִקְדִּימוּ לֹא יָצְאוּ. וּסְעֻדַּת פּוּרִים שֶׁעֲשָׂאָהּ בַּלַּיְלָה לֹא יָצָא יְדֵי חוֹבָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרו חכמים כל העושה מלאכה ביום פורים אינו רואה סימן ברכה.</strong> לא ידעתי למה לא חילק רבינו ז&quot;ל בין אתרא דנהוג לאתרא דלא נהוג וכמו שחילקו בגמ׳ וכן נטיעה של שמחה שאמרו שם שמותר. והטור ז&quot;ל ביאר כל זה:</p>
               </div>
             </div>
@@ -512,8 +598,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:14:2</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-14-2" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:14:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-14">Mishneh Torah, Scroll of Esther and Hanukkah 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת יוֹם י&quot;ד לִבְנֵי כְּפָרִים וַעֲיָרוֹת וְיוֹם ט&quot;ו לִבְנֵי כְּרַכִּים לִהְיוֹת יוֹם שִׂמְחָה וּמִשְׁתֶּה וּמִשְׁלוֹחַ מָנוֹת לְרֵעִים וּמַתָּנוֹת לָאֶבְיוֹנִים. וּמֻתָּר בַּעֲשִׂיַּת מְלָאכָה, וְאַף עַל פִּי כֵן אֵין רָאוּי לַעֲשׂוֹת בּוֹ מְלָאכָה. אָמְרוּ חֲכָמִים כָּל הָעוֹשֶׂה מְלָאכָה בְּיוֹם פּוּרִים אֵינוֹ רוֹאֶה סִימַן בְּרָכָה לְעוֹלָם. בְּנֵי כְּפָרִים שֶׁקָּדְמוּ וְקָרְאוּ בְּשֵׁנִי אוֹ בַּחֲמִישִׁי אִם חִלְּקוּ מָעוֹת לָאֶבְיוֹנִים בְּיוֹם קְרִיאָתָן יָצְאוּ. אֲבָל הַשִּׂמְחָה וְהַמִּשְׁתֶּה אֵין עוֹשִׂין אוֹתָם אֶלָּא בְּיוֹם י&quot;ד. וְאִם הִקְדִּימוּ לֹא יָצְאוּ. וּסְעֻדַּת פּוּרִים שֶׁעֲשָׂאָהּ בַּלַּיְלָה לֹא יָצָא יְדֵי חוֹבָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בני כפרים שקדמו וכו׳.</strong> נראה דס&quot;ל דמ&quot;ש במשנה (דף ה׳) אע&quot;פ שאמרו מקדימין וכו׳ מותרים וכו׳ ר&quot;ל דרשאין לתת מתנות לאביונים באותו היום. וא&quot;ת והיכי קאמר אע&quot;פ שאמרו וכו׳ אדרבה הואיל ואמרו הול&quot;ל וכדהקשו לעיל בגמ׳ דברייתא דאמרה אע&quot;פ שאמרו והקשו אדרבה משום שאמרו הוא הכא נמי משום דאמרי מקדימין משום הכי רשאין דאל&quot;כ לא הוי רשאין. וכ&quot;ת ה&quot;ק אע&quot;פ שאמרו מקדימין מ&quot;מ רשאין ולא חייבין דס&quot;ד דחייבין לתת מתנות לאביונים א&quot;כ מה הקשו בגמ׳ בברייתא נימא דמ&quot;ש הברייתא נמי ה&quot;ק דאע&quot;פ שאמרו כפרים מקדימין וכו׳ דהוה ס&quot;ד דחייבים קמ&quot;ל דגובין כלומר אם ירצו גובין דכן הוא פירוש הברייתא לדעת רבינו ז&quot;ל. וי&quot;ל דשפיר פריך בברייתא דאע&quot;פ שפירושה הוא רשות מ&quot;מ לא הוזכר בברייתא לשון רשות כדי שיפול עליו לשון אע&quot;פ כמו שהוזכר במשנה לשון מותרין שהוא רשות, א&quot;נ י&quot;ל דמתני׳ מאי דקאמר קאי אמותרין בהספד. וא&quot;ת לדעת רבינו ז&quot;ל דחלוקת המעות ביום הקדימה רשות א&quot;כ היכי קאמר ר&quot;י בגמ׳ מפני שעיניהן של עניים נשואות וצריך לחלק ביום הקריאה לכך אין קוראין אותה בשבת הא לדעתו ז&quot;ל דחילוק יום הקדימה רשות ולמה דחו המגילה משום קריאתו בשביל זה. הא לאו מילתא היא כלל דבשלמא כשאנו יכולים לחלק ביום י&quot;ד ויום ט&quot;ו עצמו ודאי דהחלוקה ביום הקדימה רשות אבל כשאין אנו יכולים לחלק ביום פורים עצמו כמו היכא דאיתרמי בשבת אז ודאי דהחלוקה ביום הקדימה חשוב מפני שעיניהן של עניים נשואות למקרא מגילה:</p>
               </div>
             </div>
@@ -528,8 +619,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:15:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-15-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-15">Mishneh Torah, Scroll of Esther and Hanukkah 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד חוֹבַת סְעֻדָּה זוֹ. שֶׁיֹּאכַל בָּשָׂר וִיתַקֵּן סְעֻדָּה נָאָה כְּפִי אֲשֶׁר תִּמְצָא יָדוֹ. וְשׁוֹתֶה יַיִן עַד שֶׁיִּשְׁתַּכֵּר וְיֵרָדֵם בְּשִׁכְרוּתוֹ. וְכֵן חַיָּב אָדָם לִשְׁלֹחַ שְׁתֵּי מְנוֹת בָּשָׂר אוֹ שְׁנֵי מִינֵי תַּבְשִׁיל אוֹ שְׁנֵי מִינֵי אֳכָלִין לַחֲבֵרוֹ שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט יט)</span> &quot;וּמִשְׁלוֹחַ מָנוֹת אִישׁ לְרֵעֵהוּ&quot;, שְׁתֵּי מָנוֹת לְאִישׁ אֶחָד. וְכָל הַמַּרְבֶּה לִשְׁלֹחַ לְרֵעִים מְשֻׁבָּח. וְאִם אֵין לוֹ מַחֲלִיף עִם חֲבֵרוֹ זֶה שׁוֹלֵחַ לְזֶה סְעֻדָּתוֹ וְזֶה שׁוֹלֵחַ לְזֶה סְעֻדָּתוֹ כְּדֵי לְקַיֵּם וּמִשְׁלוֹחַ מָנוֹת אִישׁ לְרֵעֵהוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם אין לו מחליף וכו׳.</strong> שם (דף ז׳:) אביי בר אבין ור&quot;ח מחלפי סעודתייהו להדדי ע&quot;כ. ופירוש רבינו ז&quot;ל בה מבואר. ורש&quot;י ז&quot;ל פירש זה אוכל עם זה בפורים של שנה זו ובשניה סועד חבירו עמו. וקשה על דבריו דא&quot;כ לא היה מקיים מצות משלוח מנות אלא אחד מהם שהיה נותן סעודתו לחבירו אבל חבירו לא היה מקיים וכן הקשה מהרי&quot;ק ז&quot;ל. ול&quot;נ לתרץ דהיו עושין כך זה היה נותן סעודתו לחבירו במתנה בשנה זו ואחר שהיה שלו אז חבירו כשהיה נותן לו מאותה סעודה והיה סועד עמו נמצא שגם הוא נותן לו כיון שכבר היתה קנויה לו במתנה והרי נתן מהנתון לו:</p>
               </div>
             </div>
@@ -544,8 +640,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:16:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-16-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-16">Mishneh Torah, Scroll of Esther and Hanukkah 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְחַיָּב לְחַלֵּק לָעֲנִיִּים בְּיוֹם הַפּוּרִים. אֵין פּוֹחֲתִין מִשְּׁנֵי עֲנִיִּים נוֹתֵן לְכָל אֶחָד מַתָּנָה אַחַת אוֹ מָעוֹת אוֹ מִינֵי תַּבְשִׁיל אוֹ מִינֵי אֳכָלִין שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט כב)</span> &quot;וּמַתָּנוֹת לָאֶבְיוֹנִים&quot;, שְׁתֵּי מַתָּנוֹת לִשְׁנֵי עֲנִיִּים. וְאֵין מְדַקְדְּקִין בִּמְעוֹת פּוּרִים אֶלָּא כָּל הַפּוֹשֵׁט יָדוֹ לִטּל נוֹתְנִין לוֹ. וְאֵין מְשַׁנִּין מָעוֹת פּוּרִים לִצְדָקָה אַחֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין משנין מעות פורים וכו׳.</strong> בפרק השוכר את האומנין (בבא מציעא דף ע&quot;ח) אמרו על מתני׳ דהשוכר את החמור להוליכה בהר וכו׳ אתיא כר״מ דאמר כל המעביר על דעת בעל הבית גזלן הוי. והקשו הי ר״מ וכו׳ אלא הא ר״מ דמגבת פורים דתניא מגבת פורים לפורים מגבת העיר לאותה העיר כו׳ ר׳ אליעזר אומר מגבת פורים לפורים ואין העני רשאי ליקח מהם רצועה לסנדלו אא״כ התנה במעמד אנשי העיר דברי ר׳ יעקב שאמר משום ר״מ ורשב״ג מיקל ודחו דדילמא התם לאו טעמא משום דמעביר על דעת בעל הבית גזלן הוי אלא דאדעתא דפורים הוא דיהיב ליה אדעתא דמידי אחרינא לא יהיב ליה וחזרו לומר אלא הא ר״מ דתניא ר״ש ב״א אומר ואסיקו מההיא דסבר ר״מ ברייתא דהמעביר על דעת בעה״ב גזלן הוי ומשמע להו להלכות ולהרא״ש ז״ל דכיון דמסקנא סבר ר״מ הכי א״כ איגלאי מילתא דמאי דקאמר מעיקרא ואין העני רשאי וכו׳ מהך טעמא ודחיה דאדחו בגמרא דילמא התם דאדעתא דפורים וכו׳ לא קמה וא״כ כיון דטעמא משום דמעביר על דעת בעה״ב גזלן הוי כיון דלית הלכתא כוותיה בהא ה״ה דההיא דמגבת דכולא חד טעמא הוי ולהכי לא כתבו בהלכות בפ׳ השוכר את האומנין ההיא דאין העני רשאי. אבל רבינו ירוחם ז״ל כתב דיש גורסים בההיא דאין העני רשאי וכו׳ דברי ר״מ שאמר משום ר״ע וכיון דכן ודאי דהלכתא כההיא ברייתא דהא קי״ל כר״ע מחבירו ולפי זה ההיא דחיה דדילמא התם משום דאדעתא וכו׳ קמה לה וטעמא דההיא ברייתא לא הוי משום מעביר על דעת בעל הבית גזלן הוי וכן הוא דעת הטור ז״ל שהביא ההיא דאין העני רשאין ליקח מהם רצועה וכו׳. ודעת רבינו ז״ל שלא הזכיר זה הוא כדעת ה״ה:</p>
               </div>
             </div>
@@ -560,8 +661,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:18:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-18-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 2:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-18">Mishneh Torah, Scroll of Esther and Hanukkah 2:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל סִפְרֵי הַנְּבִיאִים וְכָל הַכְּתוּבִים עֲתִידִין לִבָּטֵל לִימוֹת הַמָּשִׁיחַ חוּץ מִמְּגִלַּת אֶסְתֵּר וַהֲרֵי הִיא קַיֶּמֶת כַּחֲמִשָּׁה חֻמְּשֵׁי תּוֹרָה וְכַהֲלָכוֹת שֶׁל תּוֹרָה שֶׁבְּעַל פֶּה שֶׁאֵינָן בְּטֵלִין לְעוֹלָם. וְאַף עַל פִּי שֶׁכָּל זִכְרוֹן הַצָּרוֹת יְבֻטַּל שֶׁנֶּאֱמַר <span class="source-small">(ישעיה סה טז)</span> &quot;כִּי נִשְׁכְּחוּ הַצָּרוֹת הָרִאשׁוֹנוֹת וְכִי נִסְתְּרוּ מֵעֵינִי&quot;. יְמֵי הַפּוּרִים לֹא יִבָּטְלוּ שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט כח)</span> &quot;וִימֵי הַפּוּרִים הָאֵלֶּה לֹא יַעַבְרוּ מִתּוֹךְ הַיְּהוּדִים וְזִכְרָם לֹא יָסוּף מִזַּרְעָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל ספרי הנביאים וכו׳.</strong> השיג ע&quot;ז הראב&quot;ד ז&quot;ל [לא יבטל] דבר מכל הספרים שאין ספר שאין בו למוד וכו׳, נראה כונתו שהוא הבין בדברי רבינו ז&quot;ל שר&quot;ל שספרי הנביאים יתבטלו לגמרי ואין לומדים מהם לדבר מן הדברים וכמאן דליתיה ואמר שאין הדבר כן שהרי כל ספר וספר מהם אנו לומדים ממנו דברים הרבה וא&quot;כ יתבטלו אותם הדינים, וזה אמרו שאין ספר שאין בו למודין, לכך אמר דאין הכוונה כמ&quot;ש רבינו ז&quot;ל שיגנזו אלא קיימים יהיו אלא אע&quot;פ שאין קוראים בהם בכל שעה אלא לשום עת רחוק מ&quot;מ במגילת אסתר קורין:</p>
               </div>
             </div>
@@ -577,8 +683,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:1:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-1-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-1">Mishneh Torah, Scroll of Esther and Hanukkah 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְבַיִת שֵׁנִי כְּשֶׁמַּלְכֵי יָוָן גָּזְרוּ גְּזֵרוֹת עַל יִשְׂרָאֵל וּבִטְּלוּ דָּתָם וְלֹא הֵנִיחוּ אוֹתָם לַעֲסֹק בְּתוֹרָה וּבְמִצְוֹת. וּפָשְׁטוּ יָדָם בְּמָמוֹנָם וּבִבְנוֹתֵיהֶם וְנִכְנְסוּ לַהֵיכָל וּפָרְצוּ בּוֹ פְּרָצוֹת וְטִמְּאוּ הַטָּהֳרוֹת. וְצָר לָהֶם לְיִשְׂרָאֵל מְאֹד מִפְּנֵיהֶם וּלְחָצוּם לַחַץ גָּדוֹל עַד שֶׁרִחֵם עֲלֵיהֶם אֱלֹהֵי אֲבוֹתֵינוּ וְהוֹשִׁיעָם מִיָּדָם וְהִצִּילָם וְגָבְרוּ בְּנֵי חַשְׁמוֹנַאי הַכֹּהֲנִים הַגְּדוֹלִים וַהֲרָגוּם וְהוֹשִׁיעוּ יִשְׂרָאֵל מִיָּדָם וְהֶעֱמִידוּ מֶלֶךְ מִן הַכֹּהֲנִים וְחָזְרָה מַלְכוּת לְיִשְׂרָאֵל יֶתֶר עַל מָאתַיִם שָׁנָה עַד הַחֻרְבָּן הַשֵּׁנִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בבית שני וכו׳.</strong> כתב ה&quot;ה וכשאמרו בפ&quot;ק דר&quot;ה לא בטלה מגילת תענית לענין חנוכה ופורים וכו׳. פ&quot;ק דר&quot;ה (דף י&quot;ט:) אמרו והלכתא בטלה והלכתא לא בטלה קשיא הלכתא אהלכתא ל&quot;ק כאן בחנוכה ופורים כאן בשאר יומי. וא&quot;ת לפי דעת רבינו ז&quot;ל דלא בטלה בחנוכה ופורים ר&quot;ל ביומייהו דוקא א&quot;כ לימא אידי ואידי בחנוכה ופורים ומאי דקאמר בטלה הוא לפניהם ולאחריהם ודקאמר לא בטלה היינו ביומייהו. וי&quot;ל דעדיפא מינה משני דבטלה הוי לגמרי בין ביומייהו בין לפניהם ולאחריהם ועוד דסתמא דגמרא הוא דמתרץ קושטא דמילתא דקים לה לגמרא דבחנוכה ופורים לא בטלה ובשאר יומי בטלה:</p>
               </div>
             </div>
@@ -593,8 +704,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:4:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-4-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-4">Mishneh Torah, Scroll of Esther and Hanukkah 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל שֶׁחַיָּב בִּקְרִיאַת הַמְּגִלָּה חַיָּב בְּהַדְלָקַת נֵר חֲנֻכָּה וְהַמַּדְלִיק אוֹתָהּ בַּלַּיְלָה הָרִאשׁוֹן מְבָרֵךְ שָׁלֹשׁ בְּרָכוֹת וְאֵלּוּ הֵן. בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לְהַדְלִיק נֵר שֶׁל חֲנֻכָּה וְשֶׁעָשָׂה נִסִּים לַאֲבוֹתֵינוּ וְכוּ׳. וְשֶׁהֶחֱיָנוּ וְקִיְּמָנוּ וְכוּ׳. וְכָל הָרוֹאֶה אוֹתָהּ וְלֹא בֵּרֵךְ מְבָרֵךְ שְׁתַּיִם. שֶׁעָשָׂה נִסִּים לַאֲבוֹתֵינוּ וְשֶׁהֶחֱיָנוּ. וּבִשְׁאָר הַלֵּילוֹת הַמַּדְלִיק מְבָרֵךְ שְׁתַּיִם וְהָרוֹאֶה מְבָרֵךְ אַחַת שֶׁאֵין מְבָרְכִין שֶׁהֶחֱיָנוּ אֶלָּא בַּלַּיְלָה הָרִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמדליק אותה בלילה הראשון מברך ג׳ ברכות כו׳ וכל הרואה אותה ולא בירך מברך שתים.</strong> כתב ה&quot;ה ז&quot;ל מימרא מבוארת ואמרו בה הרואה אותה ולא בירך x. ונראה לי שיש ט&quot;ס בדבריו וכן צריך להגיה ואמרו בה וכל הרואה אותה מברך כלומר דייק לשון רבינו ז&quot;ל שהוסיף על לשון המימרא מלת כל שאמר כל הרואה מברך וקאמר דמ&quot;ש רבינו ז&quot;ל וכל הרואה אותה כוונתו לומר דבכל אופן שיראה אותה אפילו שהדליקו עליו בתוך ביתו ולכך קאמר כל. וז&quot;ש ואמרו בה הרואה אותה וכו׳ דעתו ז&quot;ל על מה שכתב כל הרואה הוא מפני שדעתו ז&quot;ל וכו׳:</p>
               </div>
             </div>
@@ -609,8 +725,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:5:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-5-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-5">Mishneh Torah, Scroll of Esther and Hanukkah 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכָל יוֹם וָיוֹם מִשְּׁמוֹנַת הַיָּמִים אֵלּוּ גּוֹמְרִין אֶת הַהַלֵּל וּמְבָרֵךְ לְפָנָיו אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לִגְמֹר אֶת הַהַלֵּל בֵּין יָחִיד בֵּין צִבּוּר. אַף עַל פִּי שֶׁקְּרִיאַת הַהַלֵּל מִצְוָה מִדִּבְרֵי סוֹפְרִים מְבָרֵךְ עָלָיו אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ כְּדֶרֶךְ שֶׁמְּבָרֵךְ עַל הַמְּגִלָּה וְעַל הָעֵרוּב. שֶׁכָּל וַדַּאי שֶׁל דִּבְרֵיהֶם מְבָרְכִין עָלָיו. אֲבָל דָּבָר שֶׁהוּא מִדִּבְרֵיהֶם וְעִקַּר עֲשִׂיָּתָן לוֹ מִפְּנֵי הַסָּפֵק כְּגוֹן מַעֲשֵׂר דְּמַאי אֵין מְבָרְכִין עָלָיו. וְלָמָּה מְבָרְכִין עַל יוֹם טוֹב שֵׁנִי וְהֵם לֹא תִּקְּנוּהוּ אֶלָּא מִפְּנֵי הַסָּפֵק כְּדֵי שֶׁלֹּא יְזַלְזְלוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע״פ שקריאת הלל מצוה מד״ס מברך עליו.</strong> ה״ה ז״ל האריך בלשון זה לפרש הסוגיא לדעת רבינו ז״ל וצריך אני לבאר דעתו בפירוש הסוגיא שנראה מחולף ממה שכתב רבינו ז״ל בתשובותיו לחכמי לוניל הביאה מ״ע בסוף הלכות מילה דשם כתב רבינו ז״ל וז״ל וכן האנדרוגינוס אין מברכין על מילתו (מפני שהוא אינו זכר ודאי) ושאלו ממנו חכמי לוני״ל ז״ל וז״ל והלא ספק תורה הוא ועל ספק דרבנן הוא דלא מברכינן (עליו) אבל ספק דאורייתא מברכינן (עליו) חוץ מן הדמאי מפני שרוב ע״ה מעשרין הן כדאיתא בפרק במה מדליקין וכו׳ ושם השיב רבינו ז״ל כמבואר באותה תשובה ואיני חש להעתיקה שהספר מצוי ביד כל אדם. ונראה דדעת חכמי לוניל הוא לפרש הסוגיא דפרק במה מדליקין כך דהקשו שם (דף כ&quot;ג) דהיכי מברכינן בחנוכה משום דהיא מצוה דדבריהם הא בדמאי אין מברכין עליו אע״פ שמצותו מצוה מדבריהם ותירץ אביי ואמר ודאי דדבריהם בעי ברכה ספק דדבריהם לא בעי ברכה פי׳ כל דבר שהוא ודאי מדבריהם כלומר בכל המצות בין שיהיו מדרבנן כגון נר חנוכה ועירוב בין שיהיו מדאורייתא כגון מעשר וכיוצא בו כיון שהם מצות בודאי הנה הברכות אשר תקנו בהם חכמים נקראו מצוה מדבריהם ודאית ולכך בעי ברכה אבל ספק דדבריהם כלומר כל דבר שהמצוה אינה ודאית אלא ספק בין שנפל לי הספק אם עשיתי המצוה או לא בין שהמצוה עצמה תקנוה חכמים מפני הספק בכל איזה אופן שיהיה הנה הברכה נקרא בהן ספק דדבריהם ולכך לא בעי ברכה והקשו מיו״ט שהוא ספק מדבריהם ותירצו דטעמא דיו״ט כי היכי דלא לזלזלו ביה ובא רבא ונחלק על אביי ואמר דודאי ספק דבריהם בעי ברכה וטעמא דדמאי הוא מפני שרוב ע״ה מעשרין הן וכו׳ ואע״ג דאמרינן בפרק מי שמתו (ברכות דף כ&quot;א) דספק קרא ק״ש לא בעי ברכה מפני שק״ש הוי דרבנן היינו דוקא היכא דהמצוה עצמה היא מדרבנן אבל ברכת המצוה שעיקר המצוה מן התורה כגון דמאי שעיקר המעשר מן התורה ודאי דמברכינן אי לאו טעמא דרוב ע״ה מעשרין וכדכתב הר״ן ז״ל בפ׳ במה מדליקין חילוק זה לדעת המפרשים, נמצינו למדין לפי דעת זה דבכל ספק דאורייתא כלומר שהמצוה היא של תורה מברכינן אבל היכא דהמצוה מדרבנן כגון ספק בירך בק״ש וידוע לו שקרא ק״ש ודאי דלא מברכינן. זו היא דעתם של חכמי לוניל. ומפני כן השיגו על דברי רבינו ז״ל דעל ספק דרבנן הוא דלא מברכינן אבל על ספק דאורייתא מברכינן דקי״ל כרבא וזו היא דעת הראב״ד ז״ל בהשגות. וה״ה ז״ל הבין כאן שפירוש הסוגיא הוא כן לדעת רבינו ז״ל בחילוף קצת שסובר הוא שדעתו ז״ל הוא דרבא לא פליג אאביי כלומר דס״ל ודאי דכל ספק דדבריהם לא בעי ברכה מכח ההיא דמי שמתו דספק קרא ק״ש וכו׳ דלא מסתבר ליה לחלק כחילוק המפרשים ז״ל בין היכא שהמצוה היא מדבריהם להיכא דהמצוה היא מדאורייתא דמשמע ליה דהכל שוה ובכל ענין מודה רבא לאביי דלא בעי ברכה ומה שהוצרך לתרץ בדמאי רוב ע״ה מעשרין וכו׳ הוא משום דדמאי הוי עיקר תקנתו על הספק כלומר שרבנן מתחילה תקנוהו על הספק וכיון דכן הוי כודאי דדבריהם והוא מצוה מהם ולכך ראוי לברך עליו אי לאו טעמא משום דרוב ע״ה מעשרין וכו׳. נמצא לפי דעת זה שבכל ספק שנסתפק לי אין מברכין עליו אבל בדבר שעיקר תקנתו על הספק כלומר שחכמים תקנו עליו מן הספק כמו דמאי ודאי דמברכין זולת דמאי מטעמא דרוב ע״ה מעשרין הן וא״כ לפי זה לא צריכנא ביו״ט טעמא דלא ליזלזלו ביה דהרי יו״ט עיקר תקנתו על הספק הוא, וא״כ יש לתמוה טובא כפי פירוש זה שמפרש ה״ה ז״ל בדעת רבינו ז״ל דא״כ איך כתב רבינו ז״ל טעמא ביו״ט משום דלא ליזלזלו ביה והא קי״ל כרבא לגבי דאביי ולדידיה לא צריכא לטעמא דאתי לזלזולי וטעמא דיו״ט לאו מש״ה הוא אלא משום דעיקר תקנתו על הספק. וע״ק דאיך כתב ועיקר עשייתן לא מן הספק כגון דמאי וכו׳ דלדברי רבא אינו כן דכל דבר שיהיה כמו דמאי שעיקר תקנתו על הספק ודאי דמברכינן עליה ובדמאי שאני שרוב ע״ה מעשרין הן וא״כ איך כתב דכל ספק שיהיה כמו דמאי שאין מברכין עליו. ורבינו ז״ל באותה תשובה נראה שמפרש הסוגיא באופן אחר וה״פ ודאי דדבריהם כגון נר חנוכה ועירוב בעי ברכה אבל דבר שעיקר תקנתו על הספק כגון דמאי לא בעי ברכה והקשו על זה מיו״ט שעיקר תקנתו על הספק והיכי בעי ברכה ותירצו משום דלא ליזלזלו ביה ובא רבא ותירץ דכל דבר שעיקר תקנתו על הספק מברכין דלא כאביי שהרי ביו״ט מברכין וטעמא דלא מברכינן בדמאי מפני שרוב ע״ה מעשרין הן אבל לענין ספק שנסתפק לנו אי מברכינן אי לא בהא לא איירי סוגיין כלל דכ״ע מודו דלא מברכינן וראיה ממה שאמרו בשמיני ספק שביעי מיתב יתבינן ברוכי לא מברכינן זהו מה שביאר שם רבינו ז״ל באותה תשובה. ולפי זה ג״כ קשה הקושיא שהקשיתי דכיון דקי״ל כרבא לא היה לו להזכיר כאן בהל׳ חנוכה טעמא דלא יזלזלו. ועוד איך כתב כגון מעשר דמאי כמו שהקשינו למעלה. ומ״מ עכ״פ צ״ל שה״ה ז״ל לא ראה אותה תשובה של רבינו ז״ל ולא הבין בדבריו שהוא מפרש הסוגייא כך דאלת״ה איך כתב דרבא לא פליג אאביי דהא בהדיא אמרינן בברכות כו׳ דעכ״פ צריך אתה לומר דפליג אאביי כיון דמאי דקאמר אביי הוא דדבר שעיקר תקנתו על הספק מברכינן א״כ ודאי דרבא פליג אהא כמו שאמר ה״ה ז״ל לבסוף דאי לאו טעמא דרוב ע״ה מעשרין הוה קאמר בדמאי דמברכינן משום דעיקר תקנתו על הספק כדכתיבנא ובשלמא אי ה״ה ז״ל הבין בדברי רבינו ז״ל דמפרש דמאי דקאמר אביי ספק דדבריהם לא בעי ברכה איירי בכל ספק דדבריהם בין שעיקר תקנתו על הספק בין ספק שנסתפק לנו ניחא דקאמר דלא פליג אאביי אמאי דקאמר דספק שנסתפק לנו דלא מברכינן אלא אמאי דקאמר דהיכא דעיקר תקנתו על הספק אין מברכין אהא לחודיה פליג עליה אבל אי מפרש כפירוש רבינו ז״ל דסוגיין לא איירי אלא כשעיקר תקנתו על הספק לחודיה ועל דא קאמר אביי ספק דדבריהם לא בעי ברכה א״כ היכי קאמר דלא פליג רבא עליה א״ו כדאמרנו. ותו איכא לאקשויי קושיא חזקה בדברי רבינו ז״ל דס״ל דכל ספק אפילו של תורה אין מברכין עליו כגון ספק מילה כדכתב בהדיא בהלכות מילה דא״כ איך כתב בהל׳ ק״ש פרק שני ספק קרא ק״ש ספק לא קרא חוזר וקורא ומברך לפניה ולאחריה הא הוי ספיקא בדבר דרבנן והיה לו לעשות המצוה בלא ברכה וכמו דבמילה עושה המצוה בלא ברכה ה״נ היה לו לקרות ק״ש בלא ברכה והרב״י בטא״ח סי׳ ס״ז כתב שדעתו של רבינו ז״ל כדעת ה״ר יונה שכל דבר שהוא ספק של תורה מברכים עליו ולאפוקי מדברי האומרים דכיון דהברכות דרבנן נינהו משום ספיקא דרבנן אינו חוזר ומברך ע״כ. ואצלי לענ״ד נראה ממ״ש שרבינו ז״ל דעתו הפוך מדעת ה״ר יונה שהרי במילה פסק שאין מברכין עליו מספיקא ואצלי שהרב״י ז״ל עצמו פליג דידיה אדידיה שהרב ז״ל בטי״ד סימן כ״ח גבי כיסוי הדם דכוי שכתב הטור שאין לברך עליו הביא לשון הרא״ש ז״ל שכתב בשם ה״ר יונה ז״ל שצריך לברך על כיסוי הדם בכוי והוא חלק עליו ואמר דאפילו דהמצוה מדאורייתא אין מברכים עליו מספיקא וכתב הוא ז״ל שכן הוא דעת הרמב״ם ז״ל שלא כדעת ה״ר יונה ז״ל. והרב״י כתב שם שדעת הראב״ד ז״ל בהשגות כדעת ה״ר יונה א״כ קשיא דידיה אדידיה. ונ״ל לתרץ הקושיא ולומר שמה שאמר שם ספק קרא אינו ר״ל שיש לו ג״כ ספק בברכות דאז אינו חוזר ומברך אלא ר״ל שבברכות אין לו ספק שודאי לו שלא אמרן והוא דומה לחלוקה שלאחריה שכתב אבל אם יודע שקרא ונסתפק לו אם בירך וכי היכי דהתם פשיטא ליה בחדא ומספקא ליה בחדא בחלוקה קמייתא נמי פשוט לו בברכות שלא אמרן ואין לו ספק אלא בקריאה ולהכי חוזר ומברך כיון שפשוט לו שלא אמרן ומיהו אם היה פשוט לו שקרא ק״ש אע״פ שקראה בלא ברכותיה לא יחזור ויקראנה בברכותיה דאפשר דהרב״י ז״ל סבור כדעת הרא״ה כתבו הרב״י ז״ל בסימן מ״ו דסובר דהיכא שקראה מתחילה בלא ברכות אינו יכול לחזור ולקרותה בברכות דכבר יצא י״ח ולהכי כתב רבינו ז״ל ספק אם קרא כלומר דוקא ספק אבל בודאי קרא אע״פ שלא קרא הברכות כבר יצא ואין לו לחזור ולברך אבל גבי מילה שכתב שיעשה מילה בלא ברכה הוא מפני שהוא ספק אם הוא זכר וחייב במילה או אם היא נקבה ופטור ואם נסתפק לו אם חל עליו חיוב ברכה או לא חל אז ודאי אזלינן לקולא אבל הכא כבר ידע שיש עליו חיוב ברכה ולא אמרה ולהכי יחזור ויברך. ולקושיא הראשונה שהקשיתי על מה שהבין ה״ה ז״ל בדברי רבינו ז״ל עלה בדעתי לומר דרבא ג״כ צריך לטעמא דלא לזלזלו ביה דאל״כ תקשי ליה היכי מברכינן על יו״ט שני הא הוא מנהג ואין מברכין על המנהג לדעת רבינו ז״ל כמו שכתב גבי קריאת ההלל וכן הקשה ר״ת ז״ל לדעת מי שסובר שאין מברכין על מנהג בפרק היה קורא בד״ה ימים שהיחיד גומר בהם וכו׳ ולהכי ודאי דלדעת רבינו ז״ל צריך רבא לטעמא דלא ליזלזלו ביה ומפני כן מברכים אע״פ שהוא מנהג ומה שחולק על אביי הוא דסבור דכל דבר שעיקר תקנתו על הספק מברכינן חוץ מהדמאי מפני שרוב ע״ה מעשרין הן. ומ״ש רבינו ז״ל אבל דבר שהוא מדבריהם ועיקר עשייתן וכו׳ אין מברכין ר״ל דבר שעיקר תקנתו על הספק והוא ספק דומה לדמאי שבדמאי יותר נוטה אחד מצדדי הספק מהצד האחר דודאי נוטה [שלא] לברך מפני שרוב ע״ה מעשרין הן ולזה כתב רבינו ז״ל כגון מעשר דמאי כלומר שהוא נוטה יותר לצד שאין ראוי לברך מצד שראוי לברך. כל זה עלה בדעתי לדחוק ולפרש אבל מה אעשה שלשונו אומר ולמה מברכין וכו׳ והם לא תקנוהו אלא מפני הספק דמשמע שמה שהוקשה לו הוא מפני שיו״ט שני הוא על הספק ולפי מה שפירש אין הקושיא אלא מפני שלדידן הוא מנהג, ועוד שלפי מה שמפרש רבינו באותה תשובה אין התירוץ הזה עולה כלל שנראה שרבא לית ליה טעמא דלזלזלו וכו׳ שכן כתב שם ובא רבא ופריק וכו׳ אל תאמר דכל דבר שעיקר תקנתו על הספק לא תקנו עליו ברכה שהרי יו״ט שני מפני הספק הוא משמע דלית ליה טעמא דלא ליתו לזלזולי ביה דאל״כ היכי קאמר שהרי יו״ט שני מפני הספק הוא וכו׳ הא איכא טעמא דלא ליתו לזלזולי ביה על כן דברי רבינו ז״ל צל״ע. ומ״מ למדנו דעת רבינו ז״ל ממה שכתב באותה תשובה דכל דבר שנסתפק לנו בברכות בין שהמצוה מן התורה בין שהיא מדרבנן אין מברכים והביא ראיה ממה שאמרו בסוכה מיתב יתבינן ברוכי לא מברכינן דאינו סובר הוא ז״ל דטעמא דלא מברכינן משום דסתרי אהדדי כדכתב הרב האלפסי במסכת סוכה אלא סובר דטעמא משום דהוי ספק ולכך לא מברכינן מספיקא דלא שייך טעמא דלא ליזלזולי ביה ואע״ג דמזלזלי ולא יתבי בסוכה מ״מ אין זה זלזול כזלזול יו״ט דאתי לחלל יו״ט ובכל דבר שעיקר תקנתו על הספק כלומר שחכמים גזרו ותקנו עליו ביחוד ולא הניחוהו בכלל שאר הספקות כמו דמאי דחכמים נמנו לגזור עליו ביחוד וכן יו״ט שני אז ודאי מברכינן משום דהוי מצוה מדבריהם אי לאו דאיכא טעמא כמו בדמאי דרוב ע״ה מעשרין הן אבל כל דבר שלא נמנו עליו חכמים לתקן בו ביחוד אלא הניחו לנו הדבר שנדון בו ככל הספקות שבתורה אז ודאי עושין המצוה ולא מברכין. וה״ר יונה בפרק מי שמתו כתב דכל דבר שהוא ספק של תורה מברכין עליו והביא ראיה מדאמרינן בשבת פרק במה מדליקין דאין מברכין על הדמאי בשעה שמפרישין ממנו מעשר ואמרינן התם טעמא מפני שהוא ספק של דבריהם דמשמע דוקא מפני שהוא ספק של דבריהם אין מברכין עליו הא אם היה ספק דאורייתא מברכין עליו ע״כ. וכיוצא בזה כתב הרא״ש ז״ל בשמו בריש פרק כסוי הדם גבי כוי דמברכים עליו מפני שספק דאורייתא הוא. ויש לתמוה עליו דהא דמאי ספק של תורה הוא דהוא ספק אם הוציא מעשר או לא הפריש מעשר וחייב להפרישו מן התורה והרי הוא דומה לכוי דשמא חיה היא וחייב לכסות מדאורייתא או בהמה הוא ופטור דכותה נמי הא ואיך חילק מדמאי לכוי. וחכמי לוני״ל בשאלתם לרבינו ז״ל והראב״ד ז״ל בהשגות משמע דס״ל דדמאי הוא דאורייתא שכן כתבו בשאלתם על ספק דאורייתא מברכין חוץ מן הדמאי מפני שרוב ע״ה מעשרין ע״כ, משמע דדמאי ספק דאורייתא קרי להו ולא נקרא ספק דדבריהם אלא מפני שהברכה היא מדבריהם. ואולי יש לדחוק ולפרש דברי הר׳ יהודה ז״ל דהכי קאמר דוקא דמאי מפני דהוי ספק דבריהם כלומר דמן התורה אזלינן בתר רובא דרוב ע״ה מעשרין הם וכתירוצא דרבה אלא דרבנן חששו חששא זו ולכך לא בעי ברכה אבל ודאי היכא דהוי ספק של תורה בעי ברכה ומאי דקראו ספק של דבריהם משום דרוב ע״ה מעשרין הם ודוחק. וא״ת לדעת רבינו דסובר אביי דדבר שעיקר תקנתו על הספק אין מברכין עליו והא בדיקת חמץ בתחילתה נעשתה על הספק וכדכתב ה״ה ז״ל בהל׳ חמץ ומצה וא״כ איך מברכינן. וי״ל דמ״מ מצות הביטול הוא מן התורה ואביטול הוא דמברכינן ואע״ג דלא מברכינן אביטול חמץ כבר נתן טעם שם הר״ן ז״ל:</p>
               </div>
             </div>
@@ -625,8 +746,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:6:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-6-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-6">Mishneh Torah, Scroll of Esther and Hanukkah 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלֹא הַלֵּל שֶׁל חֲנֻכָּה בִּלְבַד הוּא שֶׁמִּדִּבְרֵי סוֹפְרִים אֶלָּא קְרִיאַת הַהַלֵּל לְעוֹלָם מִדִּבְרֵי סוֹפְרִים בְּכָל הַיָּמִים שֶׁגּוֹמְרִין בָּהֶן אֶת הַהַלֵּל. וּשְׁמוֹנָה עָשָׂר יוֹם בַּשָּׁנָה מִצְוָה לִגְמֹר בָּהֶן אֶת הַהַלֵּל. וְאִלּוּ הֵן. שְׁמוֹנַת יְמֵי הֶחָג. וּשְׁמוֹנַת יְמֵי חֲנֻכָּה. וְרִאשׁוֹן שֶׁל פֶּסַח וְיוֹם עֲצֶרֶת. אֲבָל רֹאשׁ הַשָּׁנָה וְיוֹם הַכִּפּוּרִים אֵין בָּהֶן הַלֵּל לְפִי שֶׁהֵן יְמֵי תְּשׁוּבָה וְיִרְאָה וָפַחַד לֹא יְמֵי שִׂמְחָה יְתֵרָה. וְלֹא תִּקְּנוּ הַלֵּל בְּפוּרִים שֶׁקְּרִיאַת הַמְּגִלָּה הִיא הַהַלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא הלל של חנוכה בלבד וכו׳.</strong> כתב הה&quot;מ ז&quot;ל ויש מפקפקים בזה ואומרים שיש ממנו מן התורה כלומר ההלל של חנוכה הוא ודאי מדרבנן מפני דלא מפקינן ליה מהשיר יהיה לכם וכו׳ כדאמר בערכין (דף י׳:) אבל השאר דמפקינן להו מהאי קרא הוא מן התורה וז&quot;א ממנו מן התורה ודעת רבינו ז&quot;ל דהכל מדרבנן. וא&quot;ת קשה לכולהו דאיך אמרו בפ&quot;ד דתעניות (דף כ&quot;ח:) אמר רבא זאת אומרת הלילא דריש ירחא לאו דאורייתא משמע דבחנוכה ובכל השאר הוי מן התורה כיון דדחי מעמד. ויש לומר דמאי דקאמר [לאו] דאורייתא ר&quot;ל אין לו סמך כלל בתורה אבל כל השאר מה&quot;ת לדעת רבינו ז&quot;ל משום דיש להם סמך מדברי קבלה בפסוק השיר יהיה לכם כליל התקדש חג, וחנוכה אף על גב דלית ליה סמך מכל מקום נביאים תקנו לומר הלל בכל צרה והוי קצת סמך וכדכתב שם רש&quot;י ז&quot;ל:</p>
               </div>
             </div>
@@ -641,8 +767,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:9:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-9-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-9">Mishneh Torah, Scroll of Esther and Hanukkah 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַיּוֹם כָּשֵׁר לִקְרִיאַת הַהַלֵּל. וְהַקּוֹרֵא אֶת הַהַלֵּל לְמַפְרֵעַ לֹא יָצָא. קָרָא וְשָׁהָה וְחָזַר וְקָרָא אַף עַל פִּי שֶׁשָּׁהָה כְּדֵי לִגְמֹר אֶת כֻּלּוֹ יָצָא. יָמִים שֶׁגּוֹמְרִין בָּהֶן אֶת הַהַלֵּל יֵשׁ לוֹ לְהַפְסִיק בֵּין פֶּרֶק לְפֶרֶק אֲבָל בְּאֶמְצַע הַפֶּרֶק לֹא יַפְסִיק. וְיָמִים שֶׁקּוֹרְאִין בָּהֶן בְּדִלּוּג אֲפִלּוּ בְּאֶמְצַע הַפֶּרֶק פּוֹסֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ימים שגומרים בהם ההלל וכו׳.</strong> כתב הה&quot;מ ז&quot;ל וכן הדין שהרי אין ברכה מתוקנת לאחריו וכו׳. קשה דמנין לו להה&quot;מ ז&quot;ל זה דהא בגמ׳ (דף י&quot;ד) משמע דלא למדו אלא מק&quot;ש מק&quot;ו שכן אמרו שם בהלל ובמגילה מהו שיפסיק אמרינן ק&quot;ו ק&quot;ש דאורייתא פוסק הלל דרבנן לא כ&quot;ש וא&quot;כ דיו לבא מן הדין להיות כנדון והכי אמרת דפסיק טפי מק&quot;ש. וי&quot;ל דזה סברת הבעיין אבל התרצן חידש לו סברא אחרת דאמרינן פוסק ואין בכך כלום והיה די לומר פוסק לבד למה ליה למימר ואין בכך כלום אלא הכי קאמר לא כמו שאתה סובר דפסקינן בק&quot;ש אלא אין בכך כלום ופוסק כמו שיראה מפני הסברא דאמר וכן בדין וכו׳, ומה שאמר בגמ׳ שאני רב בר שבא דלא חשיב וכו׳ אינו רוצה לומר לדעת רבינו ז&quot;ל שאין בזה שאלה מפני הכבוד דלא חשיב ליה ולכך לא שאל דאפילו שלא מפני הכבוד רשאי לשאול לדעת רבינו ז&quot;ל אלא הכוונה לומר דלא פסק מפני דלא חשבו כלל ולכך לא פסק לו מפני דהוי פסק שלא לצורך, ומה שאמר הה&quot;מ פוסק לכל ר&quot;ל לדבר שיש בו צורך קצת:</p>
               </div>
             </div>
@@ -657,8 +788,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:12:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-12-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-12">Mishneh Torah, Scroll of Esther and Hanukkah 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִנְהַג קְרִיאַת הַהַלֵּל בִּימֵי חֲכָמִים הָרִאשׁוֹנִים כָּךְ הָיָה. אַחַר שֶׁמְּבָרֵךְ הַגָּדוֹל שֶׁמַּקְרֵא אֶת הַהַלֵּל מַתְחִיל וְאוֹמֵר הַלְלוּיָהּ וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְחוֹזֵר וְאוֹמֵר הַלְלוּ עַבְדֵי ה׳ וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְחוֹזֵר וְאוֹמֵר הַלְלוּ אֶת שֵׁם ה׳ וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְחוֹזֵר וְאוֹמֵר יְהִי שֵׁם ה׳ מְבֹרָךְ מֵעַתָּה וְעַד עוֹלָם וְכָל הָעָם עוֹנִין הַלְלוּיָהּ וְכֵן עַל כָּל דָּבָר. עַד שֶׁנִּמְצְאוּ עוֹנִין בְּכָל הַהַלֵּל הַלְלוּיָהּ מֵאָה וְשָׁלֹשׁ וְעֶשְׂרִים פְּעָמִים סִימָן לָהֶם שְׁנוֹתָיו שֶׁל אַהֲרֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מנהג קריאת ההלל וכו׳.</strong> בפרק לולב הגזול (סוכה דף ל&quot;ח:) מבואר כל זה. ואמרו שם הוא אומר הודו לה׳ והם אומרים הודו לה׳ מכאן שמצוה לענות בראשי פרקים. וקשה דלמה לא הזכיר זה רבינו ז״ל שהוא אומר הודו והם אומרים הודו. וי״ל דסובר רבינו ז״ל דרבא כשאמר זה אינו אלא למנהג שהיה מנהג אחר אחר המנהג הראשון וכדמשמע התם ולכך הוצרכו לומר הודו והם יענו הודו כדי להודיענו שמצוה לענות וכו׳ כלומר מפני שבמנהג האחרון הזה לא היו עונין בראשי הפרקים כמו שהיו עושים במנהג הראשון לכך הוצרכו לעשות דוגמא לדבר כדי שלא תשתכח ועשו היכר זה אבל במנהג הראשון לא היינו צריכים להיכר זה שהרי היו עושים הפסקות בראשי הפרקים אבל כל שאר הדברים האמורים שם שהם ללמד לנו דינים סובר רבינו ז״ל דאפילו במנהג הראשון היה זה מפני שלמדנו דינים מהן שהם צריכים לזמן ההוא. זה נ״ל דעתו של רבינו ז״ל:</p>
               </div>
             </div>
@@ -673,8 +809,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:14:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-14-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 3:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-14">Mishneh Torah, Scroll of Esther and Hanukkah 3:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אוֹמֵר אָנָּא ה׳ הוֹשִׁיעָה נָּא וְהֵם עוֹנִין אַחֲרָיו אָנָּא ה׳ הוֹשִׁיעָה נָּא. אַף עַל פִּי שֶׁאֵינוֹ רֹאשׁ פֶּרֶק. הוּא אוֹמֵר אָנָּא ה׳ הַצְלִיחָה נָּא וְהֵם עוֹנִים אָנָּא ה׳ הַצְלִיחָה נָּא. הוּא אוֹמֵר בָּרוּךְ הַבָּא וְכָל הָעָם אוֹמְרִים בָּרוּךְ הַבָּא. וְאִם הָיָה הַמַּקְרֵא אֶת הַהַלֵּל קָטָן אוֹ עֶבֶד אוֹ אִשָּׁה עוֹנָה אַחֲרֵיהֶם מַה שֶּׁהֵן אוֹמְרִין מִלָּה מִלָּה בְּכָל הַהַלֵּל. זֶהוּ הַמִּנְהָג הָרִאשׁוֹן וּבוֹ רָאוּי לֵילֵךְ. אֲבָל בִּזְמַנִּים אֵלּוּ רָאִיתִי בְּכָל הַמְּקוֹמוֹת מִנְהָגוֹת מְשֻׁנּוֹת בִּקְרִיאָתוֹ וּבַעֲנִיַּת הָעָם וְאֵין אֶחָד מֵהֶם דּוֹמֶה לְאֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הוא אומר ברוך הבא והם אומרים ברוך הבא וכו׳.</strong> תימה דשם אמרו הוא אומר ברוך הבא והם אומרים בשם ה׳ מכאן לשומע כעונה ופירש&quot;י ובברוך הבא היו סומכים עליו ואין עונין לא בתיבות עצמן ולא הללויה מכאן נלמוד לשאינו יודע לא לקרות וכו׳ אם שמע וכיון לבו וכו׳. וכפי דעת רבינו ז&quot;ל שאומר והם אומרים ברוך הבא אין ללמוד דין זה כלל וא&quot;כ דבריו הם הפך הגמרא וצ&quot;ע:</p>
               </div>
             </div>
@@ -690,8 +831,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:3:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-3-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-3">Mishneh Torah, Scroll of Esther and Hanukkah 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִנְהָג פָּשׁוּט בְּכָל עָרֵינוּ בִּסְפָרַד שֶׁיִּהְיוּ כָּל אַנְשֵׁי הַבַּיִת מַדְלִיקִין נֵר אֶחָד בַּלַּיְלָה הָרִאשׁוֹן וּמוֹסִיפִין וְהוֹלְכִין נֵר בְּכָל לַיְלָה עַד שֶׁנִּמְצָא מַדְלִיק בְּלֵיל שְׁמִינִי שְׁמוֹנָה נֵרוֹת בֵּין שֶׁהָיוּ אַנְשֵׁי הַבַּיִת מְרֻבִּים בֵּין שֶׁהָיָה אָדָם אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מנהג פשוט בכל ערינו בספרד שיהיו כל אנשי הבית מדליקין נר אחד בכל לילה.</strong> וא&quot;ת לדעת רבינו ז&quot;ל שמפרש שמהדרין מן המהדרין עושין מה שמהדרין עושין א&quot;כ הך מנהג כמאן דמהדרין מדליקין נרות כמנין אנשי הבית בכל לילה ולילה בלי הוספה ואם כן אנן דמדליקין נר אחד בלילה הראשון ואנו הולכים ומוסיפין לא אתיא כוותייהו וכמהדרין מן המהדרין נמי לא אתיא ואי מדינא לא בעינן אלא אחד בלילה הראשון וכן בכל לילה ולילה בלי הוספה כלל ואם כן מנהג דידן לפי דעת רבינו ז&quot;ל לכאורה נראה מנהג בטעות בשלמא לפירוש המפרשים דמפרשין דמהדרין מן המהדרין אין מדליקין אלא נר אחד בלילה הראשונה והולכים ומוסיפין ניחא. וי&quot;ל דמכל מקום לא הוי מנהג בטעות כיון דעבדינן כדין ואף על גב דמדינא לא בעי הוספה אנן נראה לנו למיעבד האי פשרה ולעשות ההוספה בכהאי גוונא:</p>
               </div>
             </div>
@@ -706,8 +852,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:4:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-4-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-4">Mishneh Torah, Scroll of Esther and Hanukkah 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נֵר שֶׁיֵּשׁ לוֹ שְׁתֵּי פִּיּוֹת עוֹלֶה לִשְׁנֵי בְּנֵי אָדָם. מִלֵּא קְעָרָה שֶׁמֶן וְהִקִּיפָהּ פְּתִילוֹת. אִם כָּפָה עָלֶיהָ כְּלִי כָּל פְּתִילָה וּפְתִילָה נֶחְשֶׁבֶת כְּנֵר אֶחָד. לֹא כָּפָה עָלֶיהָ כְּלִי נַעֲשֵׂית כִּמְדוּרָה וַאֲפִלּוּ כְּנֵר אֶחָד אֵינָהּ נֶחְשֶׁבֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נר שיש לו שתי פיות עולה לשני בני אדם.</strong> כתב הה&quot;מ ז&quot;ל כגון שני פתחי בתי בני אדם וכו׳. ואע&quot;ג דבעינן מזוזה מימין וחנוכה משמאל וכי ה&quot;ג לא מצי למיהוי הכי וכדהקשו התוס׳ אפשר דסובר הה&quot;מ ז&quot;ל דלא בעינן הכי אלא לכתחלה אבל לעיכובא לא ובדיעבד עולה:</p>
               </div>
             </div>
@@ -722,8 +873,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:5:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-5-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-5">Mishneh Torah, Scroll of Esther and Hanukkah 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מַדְלִיקִין נֵרוֹת חֲנֻכָּה קֹדֶם שֶׁתִּשְׁקַע הַחַמָּה אֶלָּא עִם שְׁקִיעָתָהּ לֹא מְאַחֲרִין וְלֹא מַקְדִּימִין. שָׁכַח אוֹ הֵזִיד וְלֹא הִדְלִיק עִם שְׁקִיעַת הַחַמָּה מַדְלִיק וְהוֹלֵךְ עַד שֶׁתִּכְלֶה רֶגֶל מִן הַשּׁוּק. וְכַמָּה הוּא זְמַן זֶה כְּמוֹ חֲצִי שָׁעָה אוֹ יֶתֶר. עָבַר זְמַן זֶה אֵינוֹ מַדְלִיק. וְצָרִיךְ שֶׁיִּתֵּן שֶׁמֶן בַּנֵּר כְּדֵי שֶׁתִּהְיֶה דּוֹלֶקֶת וְהוֹלֶכֶת עַד שֶׁתִּכְלֶה רֶגֶל מִן הַשּׁוּק. הִדְלִיקָהּ וְכָבְתָה אֵינוֹ זָקוּק לְהַדְלִיקָהּ פַּעַם אַחֶרֶת. נִשְׁאֲרָה דּוֹלֶקֶת אַחַר שֶׁכָּלְתָה רֶגֶל מִן הַשּׁוּק אִם רָצָה לְכַבּוֹתָהּ אוֹ לְסַלְּקָהּ עוֹשֶׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשארה דולקת וכו׳.</strong> כתב הה&quot;מ ז&quot;ל ודעת רבינו ז&quot;ל וההלכות ז&quot;ל לדמותה וכו׳ וכמ&quot;ש כאן שאפילו באותו נר דולק וכו׳ אלא משום ביזוי מצוה. וא&quot;ת בעצי סוכה ונוייה נמי הוי טעמא משום בזוי מצוה וכמו שאמרו שם בפרק במה מדליקין (שבת דף כ&quot;ב) בעו מיניה מריב&quot;ל מהו להסתפק מנויי סוכה וכו׳ ואמרו שם במסקנא אבוהון דכולהו דם כלומר כסוי הדם דנפקא לן מקרא שלא יכסנו ברגל מפני שלא יהו מצות בזויות עליו. וי&quot;ל דמכל מקום איכא טעמא אחרינא בסוכה לימים טובים והא מיגו דאתקצאי לבין השמשות אתקצאי לכולי יומא וכמו שכתבו שם התוספות ז&quot;ל:</p>
               </div>
             </div>
@@ -738,8 +894,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:9:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-9-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-9">Mishneh Torah, Scroll of Esther and Hanukkah 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נֵר חֲנֻכָּה שֶׁהִדְלִיקוֹ חֵרֵשׁ שׁוֹטֶה וְקָטָן אוֹ עַכּוּ&quot;ם לֹא עָשָׂה כְּלוּם עַד שֶׁיַּדְלִיקֶנּוּ מִי שֶׁהוּא חַיָּב בַּהַדְלָקָה. הִדְלִיקוֹ מִבִּפְנִים וְהוֹצִיאוֹ דָּלוּק וְהִנִּיחוֹ עַל פֶּתַח בֵּיתוֹ לֹא עָשָׂה כְּלוּם עַד שֶׁיַּדְלִיקֶנּוּ בִּמְקוֹמוֹ. אָחַז הַנֵּר בְּיָדוֹ וְעָמַד לֹא עָשָׂה כְּלוּם שֶׁהָרוֹאֶה אוֹמֵר לְצָרְכּוֹ הוּא עוֹמֵד. עֲשָׁשִׁית שֶׁהָיְתָה דּוֹלֶקֶת כָּל הַיּוֹם כֻּלּוֹ לְמוֹצָאֵי שַׁבָּת מְכַבֶּה וּמְבָרֵךְ וּמַדְלִיקָהּ שֶׁהַהַדְלָקָה הִיא הַמִּצְוָה וְלֹא הַהַנָּחָה. וּמֻתָּר לְהַדְלִיק נֵר חֲנֻכָּה מִנֵּר חֲנֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומותר להדליק נר חנוכה מנר חנוכה וכו׳.</strong> שם רב אמר אין מדליקין מנר לנר ושמואל אמר מדליקין ואמרו שם יתיב ההוא דרבנן קמיה דרב אדא בר אהבה ויתיב וקאמר טעמא דרב משום ביזוי מצוה (הוא) אמר להו לא תציתו ליה טעמא דרב משום דקא מכחיש מצוה מאי בינייהו איכא בינייהו דקא מדליק משרגא לשרגא מאן דאמר משום בזוי מצוה משרגא לשרגא מדליק מאן דאמר משום אכחושי מצוה משרגא לשרגא נמי אסור. והקשו שם בגמרא למאן דאמר טעמא דרב משום אכחושי מצוה ואסיקו בקשיא. וסובר הראב&quot;ד ז&quot;ל דכיון דאסיק בקשיא אית לן למפסק כמאן דאמר טעמא דרב משום בזוי מצוה וכיון דכן פליגי רב ושמואל ואנן קיימא לן כשמואל דשרי משום דאמר אביי כל מילי דמר עביד כרב בר מהני תלת ואם כן על ידי קינסא שרי כשמואל ומפני כן כתב בהשגות ועל ידי קינסא. אבל רבינו ז&quot;ל סובר דאית לן למפסק כמאן דאמר טעמא דרב משום אכחושי מצוה משום דרב אדא אמר לא תציתו לההוא דרבנן דאמר משום בזוי מצוה ואית לן למפסק כרב אדא דההוא מריה דגמרא טפי מההוא דרבנן דקאמר משום בזוי מצוה ואף על גב דמאן דאמר אכחושי מצוה אסיק בקשיא אפשר דסובר רבינו ז&quot;ל דמאי דאמר שם בגמ׳ מאי הוי עלה פי׳ הוא דהוי תיובתא גמורה הך דאקשינן למאן דאמר אכחושי מצוה או לא הוי תיובתא ואסיק דלא הוי תיובתא גמורה וכדפי׳ הרא&quot;ש ז&quot;ל ולהכי פסקינן לחומרא כמאן דאמר טעמא דרב משום אכחושי מצוה ובהא פליג שמואל אבל בבזוי מצוה כמו קינסא מודה שמואל דאסור וכן פסק רבינו ז&quot;ל בפרק שלישי מהלכות תמידין ומוספין דעל ידי קינסא אסור משום בזוי מצוה שכתב שם נר מערבי שכבה אין מדליקין אותו אחר דישונו כו׳ כיצד מדליקו כו׳ ואינו יכול להדליקו בנר אחר משום בזיון ע&quot;כ. וכי תימא אמאי לא קאמר הרב המגיד ז&quot;ל דפסק כרב דהלכתא כותיה באיסורי וכמאן דאמר דטעמא משום בזוי מצוה משום דלא אסיק בקשיא. וי&quot;ל דודאי דכמאן דאמר משום אכחושי מצוה עיקר כדפרישית דאית לן למפסק כרב אדא ועוד דאית לן למפסק בהא כשמואל משום הא דאמר אביי כל מילי וכו׳. וא&quot;ת כיון שרבינו ז&quot;ל פסק כמאן דאמר אכחושי מצוה ובהא פליגי ומודה שמואל בבזוי מצוה דאסור א&quot;כ אמאי כתב בהלכות מעשר שני פרק ג׳ דטעמא דמעשר שני אין שוקלין כנגדו דינרי זהב לחלל עליהם מעשר הוא משום שמא יכוין ממנו משקלות וכו׳ היה לו לומר דהוי טעמא משום בזיון ואף על גב דהוי לחלל עליהם מעשר אחר מכל מקום דמי לקינסא וכמו שאמרו בגמרא פרק במה מדליקין מתיב רב אויא סלע של מעשר שני וכו׳ אי אמרת בשלמא כי פליגי רב ושמואל מנר לנר אבל בקינסא אסר שמואל כלומר והיינו כמאן דאמר משום אכחושי מצוה הא לא תהוי תיובתא אלא אי אמרת בקינסא נמי שרי הא תהוי תיובתא אמר רבה גזירה שמא לא יכוין משקלותיו וקא מפיק להו לחולין ע&quot;כ. משמע דלא נאמר טעם זה אלא למאן דאמר משום בזוי מצוה אבל למאן דאמר משום אכחושי מצוה לא אמרן טעם זה אלא משום דדמי לקינסא. ויש לומר דסובר רבינו ז&quot;ל דאפילו למ&quot;ד משום אכחושי צריך להאי טעמא מפני שיש לדקדק בלשון המקשה דאמר אי אמרת בשלמא כי פליגי רב ושמואל מנר לנר אבל בקינסא אסר שמואל הא לא תהוי תיובתא דהיל&quot;ל אי אמרת בשלמא כו׳ ניחא כי כן הדרך בכל המקומות ומאי האי לישנא דקאמר הא לא תהוי תיובתא, ונראה דכונתו היא דאע&quot;ג דהאי לא דמי לגמרי לקינסא דאע&quot;ג דבקינסא איכא בזוי הכא ליכא בזוי דבקינסא זה דאנו מדליקין אינה היא עצמה המצוה אלא שאנו מדליקין בו הנר מצוה וא&quot;כ ודאי דהתם איכא בזיון אבל הכא אלו המעות הם עצמם הם המצוה שהרי עליהם מחללין המעשר וזה נרמז בלשון רש&quot;י ז&quot;ל שכתב ואע&quot;ג דלמצוה קא בעי להו לקינסא דמי כלומר אע&quot;ג דהם עצמם המצוה מ&quot;מ דמי קצת לקינסא ומשום הכי אמרו בגמ׳ הא לא תהוי תיובתא כלומר ניחותא ודאי ליכא דמ&quot;מ לא שייך כאן בזיון אבל מ&quot;מ לא הוי תיובתא גמורה אלא בדרך קשיא שיש בה קושיא מעט אלא למ&quot;ד משום בזוי מצוה איכא תיובתא גמורה ובא רבה ותירץ אין זה טעם המשנה דלעולם לא למ&quot;ד משום בזוי איכא תיובתא ולא למ&quot;ד משום אכחושי איכא קשיא קצת דטעמא דמתני׳ לא משום הכי הוה אלא טעמא הוא שמא יכוין משקלותיו בין למ&quot;ד אכחושי בין למ&quot;ד משום בזוי מצוה ופירש רבינו ז&quot;ל גזירה שמא יכוין משקלותיו שלא כפירוש רש&quot;י ז&quot;ל דלרש&quot;י ז&quot;ל קשה היכי קאמר ומפיק להו לחולין הא אין כאן הוצאה לחולין אלא הרי הן כמו שהיו וכבר הוקשה לרש&quot;י ז&quot;ל זה ואמר כלומר יניחם בחוליהן כמו שהן. ורבינו ז&quot;ל מפרש כך דטעמא דאין שוקלין כנגד מעשר שני מעות מפני שהפירות דרכן לחסר ואע&quot;פ ששקל אתמול ליטרא של פירות אפשר שזו הליטרא של פירות היא חסרה מעט והוא חושב שהיא שלמה וישקול כנגדם כסף ויחשוב שהכסף הוא ליטרא ג&quot;כ ואינו כן אלא הוא פחות מעט מפני שפירות מעשר שני אשר שקל כנגדם חסרו מעט ונמצא שהמעשר שמחלל על ליטרא זו של כסף הוא מוציאן לחולין בפחות מדמיו. ובזה יובן כוונת רבינו ז&quot;ל במה שאמר שם גזירה שמא יכוין ממנו משקלות ונמצאו הפירות חסרים והוא שוקל בהן מעות לחלל עליהם מעשר נמצא מוציא מעשר שני לחולין בפחות מדמיו ע&quot;כ. ומ&quot;ש גזירה שמא יכוין וכו׳ אפשר שהוא גורס בגמ׳ אמר רבה גזירה שמא יכוין משקלותיו ופירושו כך אם כשהיה זה שוקל היה משער בדעתו החסרון שהיו יכולין לחסר אלו הפירות של מעשר מעת ששקלן ועד עתה ודאי דהיה יכול לשקול כנגדה אבל אין זה משעת החסרון שחסרו אלא הוא יכוין המשקל כמו שהיה בתחלה ויחשוב שיש כאן באלו הפירות ליטרא כמו שהיה בתחלה ואינו כן אלא נמצאו הפירות וכו׳. ואפילו שנאמר שגורס בגמרא כגרסתנו גזירה שמא לא יכוין משקלותיו אפשר ליישב בלשון פירוש רבינו ז&quot;ל ולומר דה&quot;ק שמא לא יכוין המשקל ששוקל הליטרא של כסף כנגדו של מעשר שני לא יהיה ליטרא אחת בכיון אלא הוא פחות מליטרא מפני שהפירות של מעשר שני חסרו וזה פירוש רבינו ז&quot;ל. וא&quot;ת א&quot;כ מה לי מעות של מעשר שני מה לי מעות אחרים שאינן של מעשר שני היל&quot;ל שאין לשקול כסף שמחללין מעשר שני כנגד פירות דעלמא משום דאפשר דהפירות חסרו. ויש לומר דאין הכי נמי אלא לא נקט מעשר שני אלא משום מה שאמר ראשונה אין שוקלין כנגדו, ופירוש דינר זהב בכאן לא הוי טעמא אלא משום בזיון ולא שייך דין זה אלא במעשר שני אבל מ&quot;ש ואפילו לחלל עליהם וכו׳ ודאי דדין זה בכל פירות איתיה דזיל בתר טעמא דגזירה כדפרישית. ונראה לפי פירוש זה שודאי סלע של מעשר שני יכול לשקול כנגדו סלע של מעשר אחר מפני דלא שייך כאן טעמא דהוא חסר דבפירות שייך האי טעמא שדרכן לחסר וא&quot;כ לפי זה ודאי לא גריס בברייתא סלע של מעשר שני אין שוקלין כנגדו דינרי זהב אלא מעשר שני אין שוקלין כנגדו דר&quot;ל הפירות של מעשר שני וכו׳. וכן מצאתי הגירסא בגמ׳ דכתיבת יד:</p>
               </div>
             </div>
@@ -754,8 +915,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:11:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-11-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-11">Mishneh Torah, Scroll of Esther and Hanukkah 4:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אוֹרֵחַ שֶׁמַּדְלִיקִין עָלָיו בְּתוֹךְ בֵּיתוֹ אֵינוֹ צָרִיךְ לְהַדְלִיק עָלָיו בְּמָקוֹם שֶׁנִּתְאָרֵחַ בּוֹ. אֵין לוֹ בַּיִת לְהַדְלִיק עָלָיו בּוֹ צָרִיךְ לְהַדְלִיק בַּמָּקוֹם שֶׁנִּתְאָרֵחַ בּוֹ. וּמִשְׁתַּתֵּף עִמָּהֶן בַּשֶּׁמֶן. וְאִם הָיָה לוֹ בַּיִת בִּפְנֵי עַצְמוֹ אַף עַל פִּי שֶׁמַּדְלִיקִין עָלָיו בְּתוֹךְ בֵּיתוֹ צָרִיךְ לְהַדְלִיק בַּבַּיִת שֶׁהוּא בּוֹ מִפְּנֵי הָעוֹבְרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם היה לו בית בפני עצמו וכו׳ צריך להדליק בבית שהוא בו מפני העוברין וכו׳.</strong> כתב הה&quot;מ ז&quot;ל ופירש רבינו אפילו מדליקין וכו׳. נראה שכתב כן מפני שיש לפרש פירוש אחר בהלכות דהכי קאמר אי פתח בבא לא מהני ליה בשיתוף דפריטי אלא שעל כל פנים צריך להדליק משום חשדא והיינו דוקא למי שאין מדליקין בתוך ביתו, לזה אמר שרבינו ז&quot;ל מפרש דאפילו מדליקין עליו וכו׳ דכיון דטעמא משום שלא יחשדוהו שאינו מדליק מה לי מדליקין עליו מה לי אין מדליקין:</p>
               </div>
             </div>
@@ -770,8 +936,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:12:1</h4></div>
               <a class="anchor" href="#lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-12-1" aria-label="Copy link to Lechem Mishneh on Mishneh Torah, Scroll of Esther and Hanukkah 4:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-12">Mishneh Torah, Scroll of Esther and Hanukkah 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת נֵר חֲנֻכָּה מִצְוָה חֲבִיבָה הִיא עַד מְאֹד וְצָרִיךְ אָדָם לְהִזָּהֵר בָּהּ כְּדֵי לְהוֹדִיעַ הַנֵּס וּלְהוֹסִיף בְּשֶׁבַח הָאֵל וְהוֹדָיָה לוֹ עַל הַנִּסִּים שֶׁעָשָׂה לָנוּ. אֲפִלּוּ אֵין לוֹ מַה יֹּאכַל אֶלָּא מִן הַצְּדָקָה שׁוֹאֵל אוֹ מוֹכֵר כְּסוּתוֹ וְלוֹקֵחַ שֶׁמֶן וְנֵרוֹת וּמַדְלִיק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות נר חנוכה וכו׳.</strong> כתב הרב המגיד וכל שכן בנר חנוכה דעדיף מקדוש היום. וקשה דמאי כל שכן הוא זה אי אמרינן חנוכה עדיף מקדוש היום היינו דחנוכה הוי פרסומי ניסא כדאמרינן בגמרא מה שאין כן בקדוש היום אבל ארבע כוסות דאיכא בהו פרסומי ניסא כדכתב הרב המגיד ז&quot;ל ודאי דהוי כמו חנוכה ואם כן לא היה לו להרב המגיד ללמוד הדין מכל שכן אלא מהוא הדין וצ&quot;ע: <strong>סליקו להו הלכות מגילה וחנוכה בס&quot;ד</strong>:</p>
               </div>
             </div>
@@ -781,6 +952,10 @@
               <a href="#chapter-lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -801,8 +976,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"../../data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/lechem-mishneh-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -828,7 +1003,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

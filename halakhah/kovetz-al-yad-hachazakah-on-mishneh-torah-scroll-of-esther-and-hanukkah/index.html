@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/">Open Mishneh Torah, Scroll of Esther and Hanukkah</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Scroll of Esther and Hanukkah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">11 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>365 matched</strong> / 1009 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -216,8 +217,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-1">Mishneh Torah, Scroll of Esther and Hanukkah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְרִיאַת הַמְּגִלָּה בִּזְמַנָּהּ מִצְוַת עֲשֵׂה מִדִּבְרֵי סוֹפְרִים. וְהַדְּבָרִים יְדוּעִים שֶׁהִיא תַּקָּנַת הַנְּבִיאִים. וְהַכּל חַיָּבִים בִּקְרִיאָתָהּ אֲנָשִׁים וְנָשִׁים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. וּמְחַנְּכִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ. וַאֲפִלּוּ כֹּהֲנִים בַּעֲבוֹדָתָן מְבַטְּלִין עֲבוֹדָתָן וּבָאִין לִשְׁמֹעַ מִקְרָא מְגִלָּה. וְכֵן מְבַטְּלִים תַּלְמוּד תּוֹרָה לִשְׁמֹעַ מִקְרָא מְגִלָּה קַל וָחֹמֶר לִשְׁאָר מִצְוֹת שֶׁל תּוֹרָה שֶׁכֻּלָּן נִדְחִין מִפְּנֵי מִקְרָא מְגִלָּה. וְאֵין לְךָ דָּבָר שֶׁנִּדְחֶה מִקְרָא מְגִלָּה מִפָּנָיו חוּץ מִמֵּת מִצְוָה שֶׁאֵין לוֹ קוֹבְרִין שֶׁהַפּוֹגֵעַ בּוֹ קוֹבְרוֹ תְּחִלָּה וְאַחַר כָּךְ קוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן מבטלין ת&quot;ת.</strong> יש מפרשים שאין ת&quot;ת נדחה אלא של יחיד פי׳ כל ישיבה שהיא מתייחדת לרב אחד הא של רבים ר&quot;ל כנופיא גדולה של ישראל אין נדחית מפני מקרא מגילה וי&quot;א שאף ת&quot;ת דרבים נדחית מפני מגילה והן קורין ישיבתו של רבי ת&quot;ת דרבים מצד שהיה נשיא. וכ׳ הרב המאירי דאין שיטת הסוגיא מוכחת כן אלא א&quot;כ היא ישיבה כללית לכל העם כענין האמור ביהושע ביריחו ע&quot;ש. ומעתה יפה סתם רבינו פה דס&quot;ל ג&quot;כ דגם ת&quot;ת של רבים נדחית והיינו דגם ישיבתו של רבי מקרי ת&quot;ת דיחיד ות&quot;ת של כל ישראל כענין שהיה ביהושע לא שכיח ולא הוצרך לרבינו להביאו עי׳ בלח&quot;מ:</p>
               </div>
             </div>
@@ -232,8 +238,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-3">Mishneh Torah, Scroll of Esther and Hanukkah 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוָה לִקְרוֹת אֶת כֻּלָּהּ. וּמִצְוָה לִקְרוֹתָהּ בַּלַּיְלָה וּבַיּוֹם. וְכָל הַלַּיְלָה כָּשֵׁר לִקְרִיאַת הַלַּיְלָה. וְכָל הַיּוֹם כָּשֵׁר לִקְרִיאַת הַיּוֹם. וּמְבָרֵךְ קֹדֶם קְרִיאָתָהּ בַּלַּיְלָה שָׁלֹשׁ בְּרָכוֹת וְאֵלּוּ הֵן. בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ עַל מִקְרָא מְגִלָּה. בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם שֶׁעָשָׂה נִסִּים לַאֲבוֹתֵינוּ בַּיָּמִים הָהֵם וּבַזְּמַן הַזֶּה. בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם שֶׁהֶחֱיָנוּ וְקִיְּמָנוּ וְהִגִּיעָנוּ לַזְּמַן הַזֶּה. וּבַיּוֹם אֵינוֹ חוֹזֵר וּמְבָרֵךְ שֶׁהֶחֱיָנוּ. וּמָקוֹם שֶׁנָּהֲגוּ לְבָרֵךְ אַחֲרֶיהָ מְבָרֵךְ בָּרוּךְ אַתָּה ה׳ אֱלֹקֵינוּ מֶלֶךְ הָעוֹלָם הָאֵל הָרָב אֶת רִיבֵנוּ וְהַדָּן אֶת דִּינֵנוּ וְהַנּוֹקֵם אֶת נִקְמָתֵנוּ וְהַנִּפְרָע לָנוּ מִצָּרֵינוּ וְהַמְשַׁלֵּם גְּמוּל לְכָל אֹיְבֵי נַפְשֵׁנוּ בָּרוּךְ אַתָּה ה׳ הַנִּפְרָע לְיִשְׂרָאֵל מִכָּל צָרֵיהֶם הָאֵל הַמּוֹשִׁיעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומצוה לקרותה בלילה וביום.</strong> ומי שלא קרא המגילה בלילה אם יש לו תשלומין ביום לקרותה ב׳ פעמים בברכה האריך בזה בספר ברכי יוסף א&quot;ח סי׳ תרפ&quot;ז דדמי לדין ק&quot;ש דאין לה תשלומין ומוכח כן ממה שכתב הר&quot;ן ריש מגילה דבני הכפרים לא קרו בלילה ולימא דהיו משלימין אלא דאין לה השלמה ועוד דהא עיקר קריאת המגילה ביום הוא ומה&quot;ט יש חלקו על רבינו לברך זמן גם ביום:</p>
               </div>
             </div>
@@ -248,8 +259,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:10:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-10">Mishneh Torah, Scroll of Esther and Hanukkah 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֶּן עִיר שֶׁהָלַךְ לַכְּרַךְ אוֹ בֶּן כְּרַךְ שֶׁהָלַךְ לָעִיר אִם הָיָה דַּעְתּוֹ לַחֲזֹר לִמְקוֹמוֹ בִּזְמַן קְרִיאָה וְנִתְעַכֵּב וְלֹא חָזַר קוֹרֵא כִּמְקוֹמוֹ. וְאִם לֹא הָיָה בְּדַעְתּוֹ לַחֲזֹר אֶלָּא לְאַחַר זְמַן הַקְּרִיאָה קוֹרֵא עִם אַנְשֵׁי הַמָּקוֹם שֶׁהוּא שָׁם. וּכְרַךְ וְכָל הַסָּמוּךְ לוֹ וְכָל הַנִּרְאֶה עִמּוֹ אִם אֵין בֵּינֵיהֶם יֶתֶר עַל אַלְפַּיִם אַמָּה הֲרֵי זֶה כִּכְרַךְ וְקוֹרְאִין בַּחֲמִשָּׁה עָשָׂר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן עיר שהלך לכרך.</strong> עי׳ בלח&quot;מ מה שהקשה על רבינו שהשמיט לדינא דרבא ועי׳ בשלום ירושלים מגילה דף י&quot;א:</p>
               </div>
             </div>
@@ -264,8 +280,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:13:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-13">Mishneh Torah, Scroll of Esther and Hanukkah 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין קוֹרְאִין אֶת הַמְּגִלָּה בְּשַׁבָּת גְּזֵרָה שֶׁמָּא יִטּל אוֹתָהּ בְּיָדוֹ וְיֵלֵךְ אֵצֶל מִי שֶׁהוּא בָּקִי לִקְרוֹתָהּ וְיַעֲבִירֶנָּה אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים. שֶׁהַכּל חַיָּבִים בִּקְרִיאָתָהּ וְאֵין הַכּל בְּקִיאִין בִּקְרִיאָתָהּ. לְפִיכָךְ אִם חָל זְמַן קְרִיאָתָהּ בְּשַׁבָּת מַקְדִּימִין וְקוֹרְאִין אוֹתָהּ קֹדֶם הַשַּׁבָּת. וְשׁוֹאֲלִין וְדוֹרְשִׁין בְּהִלְכוֹת פּוּרִים בְּאוֹתָהּ שַׁבָּת כְּדֵי לְהַזְכִּיר שֶׁהוּא פּוּרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין קוראין וכו׳ ויעבירנו ד&quot;א בר&quot;ה.</strong> הכי אמרינן בגמ׳ אמר רבה הכל חייבים בקריאת המגילה ואין הכל בקיאין בקריאת המגילה. ומ&quot;ש התיו&quot;ט במס׳ סוכה פ&quot;ד משנה ב׳ סד&quot;ה בשאר כל ימים בזה&quot;ל ומ&quot;ש וה&quot;ט דמגילה אגזירה שמא יטלנו קאי וכו׳ אבל משום דלא בקיאינן לא שייך לענין מגילה דכיון דמדבריהם אפילו היינו בקיאין לא היה דוחה שבת ע&quot;כ. ודברים אלו מחוסרים הבנה אף שיש לפרש דבריו עפמ&quot;ש בש&quot;י הא דנאיד ר&quot;י מטעמא דרבה כמו שהקשה התוס׳ שם ד&quot;ה ר&quot;י די&quot;ל דגם ר&quot;י ס&quot;ל גזירה שמא יעבירנה דהא גבי שופר ולולב צריכין לטעם זה אלא דס&quot;ל דגבי מצות של תורה כגון שופר ולולב אז מתוך בהילותו לקיים מצוה דאורייתא יעבירנו ד&quot;א ברה&quot;ר אבל במצוה דרבנן לא בהיל כ&quot;כ ולא שייך שמא יעבירנו ומש&quot;ה נתן טעם אחר. א&quot;כ י&quot;ל דט&quot;ס הוא בתיו&quot;ט וצ&quot;ל אפילו לא היינו בקיאין לא היה שייך שמא ילך אצל בקי ומלבד שהוא דוחק הוא נגד הגמ׳ וצ&quot;ע. ומה שמקשה באמת על רבינו למה לא הביא טעם דר&quot;י דשייך גם במקדש כמ&quot;ש התוס׳ שם. י&quot;ל דרבינו לא היה ניחא ליה בתירוץ התוס׳ אלא היה ס&quot;ל ליישב קושית התוס׳ על דרך זה דהנה בהא דאמרינן גזירה שמא יעבירנו כתבו התוס׳ בכמה דוכתין ובריש פ׳ לולב וערבה ברש&quot;י שם דה&quot;ה דהוה מ&quot;ל שמא יוציאנו ובתוס׳ שם כתב דדבר השכיח ביותר נקט וגם יש היכר בין רה&quot;י לרה&quot;ר. ורבינו נראה דס&quot;ל דודאי יש לחוש שמא יוציאו מרה&quot;י לרה&quot;ר אלא דמשום זה לחודא לא הוה גזרו חכמים כיון דע&quot;פ הרוב יש היכרא אלא משום דיש לחוש שמא יעבירנו דהוא שכיח ביותר מש&quot;ה גזרו חכמים, וכ&quot;מ מדברי רבינו פ&quot;ב מהל׳ שופר הל׳ י׳ כתב שאין תקיעת שופר דוחה שבת משום שמא יעבירנו ד&quot;א או יוציאנו וגבי לולב ומגילה לא נקיט אלא שמא יעבירנו משום דהוא עיקר הטעם ומשום שמא יוציאנו לחודא לא הוה גזרינן. והנה התוס׳ במס׳ שבת דף ה׳ ע&quot;ב ד&quot;ה בשלמא וכו׳ הביאו בשם הירושלמי דלבן עזאי דסבירא ליה מהלך כעומד דמי לא משכחת העברת ד׳ אמות כ&quot;א בקופץ והתוס׳ שם כתב דבגמרא דידן פליג בזה דכל ד׳ אמות הלכתא גמירי. והנה לפי שיטת הירושלמי אליבא דב&quot;ע לא שייך גזירה שמא יעבירנו דמהיכא תיתי לנו לחוש שיקפוץ ד׳ אמות בב&quot;א ואפשר דסבירא ליה לב&quot;ע באמת דתוקעין בשופר בשבת ואף אי ס&quot;ל אין תוקעין יש לומר דס&quot;ל כר&quot;ל בר לחמא ריש פ&quot;ד דר&quot;ה וכ&quot;ה שם מסקנת הירושלמי ובלולב אפשר דבאמת נוטלין בשבת ולא גזרינן שמא יעבירנו ומשום שמא יוציאו לחוד כבר כתבתי דלא גזרינן משום זה, ובזה יש לפרש לשון הגמ׳ במגילה וה&quot;ג שם דכ&quot;ע מגילה בשבת לא קרינן משמע דגבי מגילה אין כאן מחלוקת דאין קורין בשבת וגם ב&quot;ע ס&quot;ל כן ומ&quot;ט ומשני רבה משום גזירה שמא יעבירנו והיינו דרבה סבר דד&quot;א ברה&quot;ר הלכתא גמירי לה דגם לב&quot;ע שייך שמא יעבירנו ור&quot;י היה ס&quot;ל כמ&quot;ד בירושלמי דלא משכחת לב&quot;ע העברת ד&quot;א כ&quot;א בקופץ והכי מוכח דכ&quot;ע ס&quot;ל דאין קורין את המגילה בשבת והיה קשה ליה לב&quot;ע אכתי לא ידענא טעמא מש&quot;ה קאמר מפני שעיניהם של עניים וכו׳ ולפ&quot;ז לדידן דלא קיי&quot;ל כב&quot;ע וגם לפי סוגיא דתלמודא דידן דד&quot;א הלכתא גמירא לה א&quot;כ לא קיי&quot;ל הא דר&quot;י. כנ&quot;ל בדרך חידוד:</p>
               </div>
             </div>
@@ -281,8 +302,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 2:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-1">Mishneh Torah, Scroll of Esther and Hanukkah 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקוֹרֵא אֶת הַמְּגִלָּה לְמַפְרֵעַ לֹא יָצָא. קָרָא וְשָׁכַח פָּסוּק אֶחָד וְקָרָא פָּסוּק שֵׁנִי לוֹ וְחָזַר וְקָרָא פָּסוּק שֶׁשָּׁכַח וְחָזַר וְקָרָא פָּסוּק שְׁלִישִׁי לֹא יָצָא מִפְּנֵי שֶׁקָּרָא פָּסוּק אֶחָד לְמַפְרֵעַ. אֶלָּא כֵּיצַד עוֹשֶׂה. מַתְחִיל מִפָּסוּק שֵׁנִי שֶׁשָּׁכַח וְקוֹרֵא עַל הַסֵּדֶר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא את המגילה למפרע לא יצא.</strong> ובגמ׳ מנה&quot;מ אמר רבא דאמר קרא ככתבם וכזמנם מה זמנם למפרע לא אף כתבם למפרע לא מידי קריאה כתיבא הכא עשיה כתיבא וכו׳ אלא מהכא דכתיב והימים האלה נזכרים ונעשים אתקיש זכירה לעשיה מה עשיה למפרע לא אף זכירה למפרע לא. וז&quot;ל רבינו בפי׳ המשנה כתוב במגילה נזכרים ונעשים כמו שא&quot;א לו לאדם לעשות מלאכה בזמן שעבר אם לא עשאו כמו כן אין ראויה לקרות את המגילה אחר זמן קריאה ע&quot;כ. וזה דבר תמוה דזה נפקא לן מולא יעבור כדאמרינן בירושלמי. שוב ראיתי בס׳ ט&quot;א שכ׳ שיש ט&quot;ס בדברי רבינו בס&quot;ד וצ&quot;ל כמו כן אינו ראוי לקרות את המגילה למפרע ומה דקשיא ליה שם האיך דנין אפשר משא&quot;א י&quot;ל כיון דהיקש מיותר כ&quot;ע דרשינן אפשר מא&quot;א ועוד אפשר דכלל זה לא נאמר בדברי קבלה:</p>
               </div>
             </div>
@@ -297,8 +323,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 2:9:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-9">Mishneh Torah, Scroll of Esther and Hanukkah 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין כּוֹתְבִין הַמְּגִלָּה אֶלָּא בִּדְיוֹ עַל הַגְּוִיל אוֹ עַל הַקְּלָף כְּסֵפֶר תּוֹרָה. וְאִם כְּתָבָהּ בְּמֵי עַפְּצָא וְקַנְקַנְתּוֹם כְּשֵׁרָה. כְּתָבָהּ בִּשְׁאָר מִינֵי צִבְעוֹנִין פְּסוּלָה. וּצְרִיכָה שִׂרְטוּט כַּתּוֹרָה עַצְמָהּ. וְאֵין הָעוֹר שֶׁלָּהּ צָרִיךְ לְעַבֵּד לִשְׁמָהּ. הָיְתָה כְּתוּבָה עַל הַנְּיָר אוֹ עַל עוֹר שֶׁאֵינוֹ מְעֻבָּד אוֹ שֶׁכְּתָבָהּ עַכּוּ&quot;ם אוֹ אֶפִּיקוֹרוֹס פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אלא בדיו וכו׳.</strong> ובס׳ הרב המאירי כתב מגילה דף ט&quot;ז לענין עיבוד לשמה אינה נקראת ספר לדעתנו וכן לענין שתהא צריכה גידין אלא שלשה חוטין וכן שקריאתה אף מיושב וכן שא&quot;צ לכרוך כס&quot;ת. ומכאן נהגו שלא להפסיק בסוף פסוק אלא באמצעה כדין אגרת ויש מצריכין בה עיבוד לשמה ובעינן תפורה מקצתה בגידין ומקצתה בפשתן ע&quot;ש:</p>
               </div>
             </div>
@@ -313,8 +344,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 2:12:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-2-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-2-12">Mishneh Torah, Scroll of Esther and Hanukkah 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְצָרִיךְ הַקּוֹרֵא לִקְרוֹת עֲשֶׂרֶת בְּנֵי הָמָן וַעֲשֶׂרֶת בִּנְשִׁימָה אַחַת כְּדֵי לְהוֹדִיעַ לְכָל הָעָם שֶׁכֻּלָּם נִתְלוּ וְנֶהֶרְגוּ כְּאֶחָד. וּמִנְהַג כָּל יִשְׂרָאֵל שֶׁהַקּוֹרֵא הַמְּגִלָּה קוֹרֵא וּפוֹשֵׁט כְּאִגֶּרֶת לְהַרְאוֹת הַנֵּס וּכְשֶׁיִּגְמֹר חוֹזֵר וְכוֹרְכָהּ כֻּלָּהּ וּמְבָרֵךְ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בנשימה אחת.</strong> כתב בהגה&quot;מ מספקא ליה לראבי&quot;ה אי למצוה אי לעכב והתוס׳ כתבו נראה דהיינו לכתחילה אבל בדיעבד יצא וטעם מחלוקתן משום דגרסי׳ בירושלמי עשרת בני המן נכתבים אריח על גבי אריח ולבינה ע&quot;ג לבינה ושאל שם מה כדון למצוה או לעכב אמר רבי לר&quot;ח ב&quot;א דר&quot;ה נהיר את (פי׳ זכור את) כדי דהוינן קיימן קדם חנותיה דר&quot;ה חביבך עבר ר&quot;ב ב&quot;ז ושאלינן ליה ואמר בשם רב לעיכוב ושוב גרסי׳ שם ר&quot;י משם ר&quot;ז צריך לאומרן בנפיחה אחת ומשמע מדהביא בירושלמי דין זה דצריך לאומרו בנפיחה גבי מימרא דעשרת בני המן נכתבים אריח ע&quot;ג אריח וכו׳ וכי היכי דמעכב אריח ע&quot;ג אריח י&quot;ל גם דנפיחה אחת מעכב, והתוס׳ אפשר דס&quot;ל מדלא קאמר בתלמודא דידן דאריח ע&quot;ג אריח מעכב משמע דלית ליה דרב אלא דבכל ענין אינו מעכב וגם משמע הכי בברייתא בשבת פ׳ הבונה דקתני כתב את השירה כיוצא בה פסולה ולמה לא קתני רבותא יתירא אפילו שינה בצורת השירה א&quot;ו דאינו מעכב. ואפשר דזה טעם רבינו שהשמיט דין זה דאריח עג&quot;א משום דידוע אצל הסופרים שכותבין כן ואם שינה בה אינו מעכב. וגרסי׳ תו בירושלמי ריב&quot;ב צריך שיהיה איש בראש דפא ואת בסופה ועי׳ בהגה&quot;מ שהביא מס׳ סופרים איש בריש דפא ואת בסופה ועשרת בסוף דפא ואת צ&quot;ל בסוף שיטה ע&quot;ש. ומנהגנו לכתוב עשרת בני המן באותיות גדולות דף בפ&quot;ע בי&quot;א שיטין ואין כותבין שוב שום דבר בדף ההוא. והגאון מהר&quot;ז עמריך ז&quot;ל בס׳ ששה זרעוני ערוגה שחיבר כתב שאינו נכון לעשות כן לכתוב אותיות גדולות שלא נמצאים במסורה או בתלמוד ומ&quot;ש בסוף דפא אין הכונה בסוף העמוד רק בסוף השיטה כמ&quot;ש בהגה&quot;מ ולפמ&quot;ש אין עיכוב בדבר. וראיתי בס׳ הגהת מהרא&quot;וו ז&quot;ל סי׳ תרצ&quot;א שגם הוא הסכים שלא לכתוב עשרת בני המן עמוד בפ&quot;ע וגם לא באותיות גדולות אלא כאותיות המגילה רק אותן אותיות המסורים בידינו לכתוב גדולה או קטנה. ובפסקי תוס׳ מגילה אות ל׳ משמע קצת כמנהגנו וגם בלא&quot;ה דהא דאיש בראש דפא משמע קצת בירושלמי דאינו מעכב:</p>
               </div>
             </div>
@@ -330,8 +366,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 3:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-2">Mishneh Torah, Scroll of Esther and Hanukkah 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּכְשֶׁגָּבְרוּ יִשְׂרָאֵל עַל אוֹיְבֵיהֶם וְאִבְּדוּם בְּכ&quot;ה בְּחֹדֶשׁ כִּסְלֵו הָיָה וְנִכְנְסוּ לַהֵיכָל וְלֹא מָצְאוּ שֶׁמֶן טָהוֹר בַּמִּקְדָּשׁ אֶלָּא פַּךְ אֶחָד וְלֹא הָיָה בּוֹ לְהַדְלִיק אֶלָּא יוֹם אֶחָד בִּלְבַד וְהִדְלִיקוּ מִמֶּנּוּ נֵרוֹת הַמַּעֲרָכָה שְׁמוֹנָה יָמִים עַד שֶׁכָּתְשׁוּ זֵיתִים וְהוֹצִיאוּ שֶׁמֶן טָהוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא היה בו להדליק אלא יום אחד בלבד והדליקו ח׳ ימים.</strong> שמעתי מאמ&quot;ו בשם חכם אחד שהקשה למה היו צריכין לנס הלא היו יכולים להטיף ע&quot;י צרצור טיפין טיפין בשמן טמא לתוך השמן טהור וקמא קמא בטיל כדאמר ר&quot;י במס׳ ע&quot;ז דף ע&quot;ג ובמין במינו אפילו נתרבה האיסור מכשיעור ג&quot;כ בטל לדידן דקיי&quot;ל כרבנן דמין במינו בטיל והאריך בישובים. ולענ&quot;ד נראה דלק&quot;מ ע&quot;פ מ&quot;ש הר&quot;ן שם וז&quot;ל ולא ידעתי באיזה דבר נשער החילוק בין צרצור קטן לחבית דהיאך נתן הדברים לשעורין ונ&quot;ל שמפני שנהגו לערות יין לבור ע&quot;י חבית גדולה כיון שסוף היין שבחבית לירד ע&quot;י כלי זה ודרכו בכך א&quot;א לומר בו ראשון ראשון בטל שכל שעומד ליפול ולהתערב חשבינן ליה כמעורב כבר משא&quot;כ בצרצור קטן שמפני שאין דרך לערות בכלי כיוצא בו לבור אין אנו רואין כנפול וכמעורב אלא מה שירד כבר מש&quot;ה אמרינן בכל כלי כיוצא בו ראשון ראשון בטל ע&quot;כ נראה מזה דהכל תלוי בכוונת הנותן. ומעתה שם היה צריכין להרבות בו שמן טמא יותר משמן טהור חשבינן ליה כמעורב ואין חילוק שם בין צרצור קטן לגדול. ובלימוד התלמידים הבאתי סמוכים לזה ואין מקומו פה להאריך:</p>
               </div>
             </div>
@@ -346,8 +387,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 3:5:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-5">Mishneh Torah, Scroll of Esther and Hanukkah 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכָל יוֹם וָיוֹם מִשְּׁמוֹנַת הַיָּמִים אֵלּוּ גּוֹמְרִין אֶת הַהַלֵּל וּמְבָרֵךְ לְפָנָיו אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לִגְמֹר אֶת הַהַלֵּל בֵּין יָחִיד בֵּין צִבּוּר. אַף עַל פִּי שֶׁקְּרִיאַת הַהַלֵּל מִצְוָה מִדִּבְרֵי סוֹפְרִים מְבָרֵךְ עָלָיו אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ כְּדֶרֶךְ שֶׁמְּבָרֵךְ עַל הַמְּגִלָּה וְעַל הָעֵרוּב. שֶׁכָּל וַדַּאי שֶׁל דִּבְרֵיהֶם מְבָרְכִין עָלָיו. אֲבָל דָּבָר שֶׁהוּא מִדִּבְרֵיהֶם וְעִקַּר עֲשִׂיָּתָן לוֹ מִפְּנֵי הַסָּפֵק כְּגוֹן מַעֲשֵׂר דְּמַאי אֵין מְבָרְכִין עָלָיו. וְלָמָּה מְבָרְכִין עַל יוֹם טוֹב שֵׁנִי וְהֵם לֹא תִּקְּנוּהוּ אֶלָּא מִפְּנֵי הַסָּפֵק כְּדֵי שֶׁלֹּא יְזַלְזְלוּ בּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולמה מברכין על יו&quot;ט שני כדי שלא יזלזלו.</strong> והראב&quot;ד השיג דזה הטעם לאביי וכו׳. עי׳ לח&quot;מ שהאריך ורש&quot;י פי׳ שם בגמ׳ רבא אמר רוב ע&quot;ה מעשרין הן דס&quot;ל על הספק מברכין. ול&quot;נ פירושו דעל הס׳ היכא דאיכא מקום לחוש לזלזול קצת כגון ביו&quot;ט שני מברכין וס&quot;ל לרבא דגם בדמאי הו&quot;ל לתקוני ברכה שלא יבואו לזלזל בו דהא מה&quot;ט תקנו להפריש חומש באוכל תרומת דמאי כמ&quot;ש רבינו מש&quot;ה אמר רבא דהכא גבי ברכה לא חשו לזלזולא משום דאין כאן חשש זלזולא דיאמרו הבריות הא דאין מברכין היינו משום דרובא מעשרין ובזה נסתלק השגת הראב&quot;ד מעל רבינו. ועוד יש מקום לומר ע&quot;פ מ&quot;ש המל&quot;מ בפ&quot;ט מה׳ מעשר דין א׳ ע&quot;ש שחקר אם לא משכחת לפעמים שקראו חכמים דמאי ואעפ&quot;כ צריך להפריש תרומה גדולה ג&quot;כ והיינו די&quot;ל דוקא אם אומר לו ע&quot;ה מעושרין הן אלא דאין אנו מאמינים לו אז פטור מתרומה גדולה אבל לא בלוקח ממנו סתם ומצינו כיוצא בזה דמאי שהכונה שהוא ספק וכ&quot;כ רש&quot;י בבכורות דף י&quot;א ע&quot;ש שהאריך. והנה מתני׳ דדמאי דמפרישין אותו ערום סתמא קתני יהיה באיזה אופן שיהיה ולא אשתמיט תנא בשום דוכתא למתני ברכה בדמאי משמע דבכל ענין אין מברכין על הדמאי הגם שלא אמר לו ע&quot;ה מעושרין הן וה&quot;ט דאביי שם דלא משני רוב ע&quot;ה מעשרין הן אע&quot;ג דהוא ג&quot;כ אית ליה רוב ע&quot;ה מעשרין כמ&quot;ש התוס׳ בכתובות דף כ&quot;ד משום דרצה לאוקמי בכל דמאי במצא פירות בדרך וכדומה דלא שייך רוב ע&quot;ה מעשרין הן דלמא עדיין לא עישר. ואפשר דמש&quot;ה אמר רבינו רוב ע&quot;ה מעשרין הן לא לאפלוגי עליה דאביי דאתו לומר דעל הספק מברכין אלא משום דרבא ידע דגם אביי אית ליה רוב ע&quot;ה מעשרין ולא משני הכי על דמאי כן ע&quot;כ מוכח דסבר אביי דלא אמרינן בכל דמאי רוב ע&quot;ה מעשרין וע&quot;ז בא רבא לחלוק ולומר רוב ע&quot;ה מעשרין הן דגם בכה&quot;ג הוא בכלל רוב מעושרין משום דא&quot;א לגורן שתעקר וא&quot;כ נ&quot;מ דגם בכה&quot;ג פטור מתרומה גדולה וכמ&quot;ש המל&quot;מ שם בשם רבינו. ולכאורה קשה מנ&quot;ל דבאמת פטור מתרומה גדולה בכה&quot;ג ולפמ&quot;ש רבינו לטעמיה אזיל ודוק:</p>
               </div>
             </div>
@@ -363,8 +409,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 4:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-6">Mishneh Torah, Scroll of Esther and Hanukkah 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַשְּׁמָנִים וְכָל הַפְּתִילוֹת כְּשֵׁרוֹת לְנֵר חֲנֻכָּה וְאַף עַל פִּי שֶׁאֵין הַשְּׁמָנִים נִמְשָׁכִים אַחַר הַפְּתִילָה וְאֵין הָאוּר נִתְלֵית יָפֶה בְּאוֹתָן הַפְּתִילוֹת. וַאֲפִלּוּ בְּלֵילֵי שַׁבָּת שֶׁבְּתוֹךְ יְמֵי חֲנֻכָּה מֻתָּר לְהַדְלִיק הַשְּׁמָנִים וְהַפְּתִילוֹת שֶׁאָסוּר לְהַדְלִיק בָּהֶן נֵר שַׁבָּת. לְפִי שֶׁאָסוּר לְהִשְׁתַּמֵּשׁ לְנֵר חֲנֻכָּה בֵּין בְּשַׁבָּת בֵּין בְּחל וַאֲפִלּוּ לִבְדֹּק מָעוֹת אוֹ לִמְנוֹתָן לְאוֹרָהּ אָסוּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפי שאסור להשתמש לנ&quot;ח.</strong> ושיטת הרז&quot;ה דתשמיש קדושה מותר להשתמש לאורה ואעפ&quot;כ מדליקין בהן בשבת משום דלא שכיח תשמיש קדושה בחצר כמ&quot;ש הפ&quot;י ועי׳ בתוס׳ שבת דף כ&quot;א ד&quot;ה ומותר ובס׳ זרע יעקב ועי׳ במל&quot;מ פ&quot;ב דתרומות ומ&quot;ש בס&quot;ד:</p>
               </div>
             </div>
@@ -379,8 +430,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 4:9:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-4-9-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Scroll of Esther and Hanukkah 4:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-4-9">Mishneh Torah, Scroll of Esther and Hanukkah 4:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נֵר חֲנֻכָּה שֶׁהִדְלִיקוֹ חֵרֵשׁ שׁוֹטֶה וְקָטָן אוֹ עַכּוּ&quot;ם לֹא עָשָׂה כְּלוּם עַד שֶׁיַּדְלִיקֶנּוּ מִי שֶׁהוּא חַיָּב בַּהַדְלָקָה. הִדְלִיקוֹ מִבִּפְנִים וְהוֹצִיאוֹ דָּלוּק וְהִנִּיחוֹ עַל פֶּתַח בֵּיתוֹ לֹא עָשָׂה כְּלוּם עַד שֶׁיַּדְלִיקֶנּוּ בִּמְקוֹמוֹ. אָחַז הַנֵּר בְּיָדוֹ וְעָמַד לֹא עָשָׂה כְּלוּם שֶׁהָרוֹאֶה אוֹמֵר לְצָרְכּוֹ הוּא עוֹמֵד. עֲשָׁשִׁית שֶׁהָיְתָה דּוֹלֶקֶת כָּל הַיּוֹם כֻּלּוֹ לְמוֹצָאֵי שַׁבָּת מְכַבֶּה וּמְבָרֵךְ וּמַדְלִיקָהּ שֶׁהַהַדְלָקָה הִיא הַמִּצְוָה וְלֹא הַהַנָּחָה. וּמֻתָּר לְהַדְלִיק נֵר חֲנֻכָּה מִנֵּר חֲנֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומותר להדליק נ&quot;ח מנ&quot;ח.</strong> והראב&quot;ד השיג דאפילו בקינסא מותר. ועי׳ בלח&quot;מ שהאריך בזה. ומ&quot;ש דרבינו מפרש פ&quot;ג מה׳ מעשר פי׳ אחר דלא כרש&quot;י בהא דאין שוקלין כנגדה דינרי זהב שבת דף כ&quot;ב וגם למה כתב רבינו שם הטעם משום גזירה הא למ&quot;ד בקינסא אסור וכפסק רבינו אין צריכים לזה. נראה לי דבאמת יש סייעתא לפירש רבינו מהא דגרסינן בירושלמי פ&quot;א דמעשר שני הלכה א׳ דבעי שם אחין שחלקו והיתה לו סלע מסויימת מהו משמע דלא כפירש&quot;י וגם משמע דגם רבינו גורס סלע ובעיקר הבעיא שם פסק רבינו להחמיר והראב&quot;ד חולק בזה ופי׳ הא דגרסינן שם בירושלמי אשכח תניא מותר פי׳ דבא לפשוט להקל ורבינו דפסק לחומרא נראה משום דס&quot;ל דעיקר הטעם משום ביזוי מצוה וסובר דאיסור תורה הוא דהא אמרינן בשבת אבוהון דכולהון דם וה&quot;נ משמע שם בהא דאמר גזירה שמא לא יכוין משקלותיו ואי ביזוי מצוה דרבנן היא הוי גזירה לגזירה אלא ודאי דמה&quot;ת הוא ומש&quot;ה פסק רבינו להחמיר כנ&quot;ל ודלא כהה&quot;מ שם שנתקשה בדברי רבינו. שוב מצאתי און לי שכ&quot;כ המבי&quot;ט בקרית ספר וז&quot;ל אי טעמא משום ביזוי מצוה אפשר דהוי מה&quot;ת דהא אבוהון דכולהון דם וא&quot;כ הראב&quot;ד דפסק שם לקולא משום דס&quot;ל דביזוי מצוה איסור דרבנן בעלמא הוא והא דאמר אבוהון דכולהון דם בדרך אסמכתא היא ומש&quot;ה כתב שם רבינו הך טעמא להורות לנו דביזוי מצוה יש בו איסור תורה. ועפ&quot;ז יובן היטב דרבינו פסק הכא דבקינסא אסור משום ביזוי מצוה דרבינו אזיל לטעמא דביזוי מצוה הוא איסור תורה וא&quot;כ גבי נרות חנוכה מחמרינן והראב&quot;ד לטעמיה דהוא פסק שם דעיקר ביזוי מצוה אין כאן איסור תורה וגם בחנוכה מקילין אפילו בקינסא כנ&quot;ל:</p>
               </div>
             </div>
@@ -390,6 +446,10 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -410,8 +470,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -437,7 +497,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

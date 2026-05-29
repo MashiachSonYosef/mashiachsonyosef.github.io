@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/">Open Mishneh Torah, Rest on the Tenth of Tishrei</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Rest on the Tenth of Tishrei</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">23 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>77 matched</strong> / 230 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -223,8 +223,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-1">Mishneh Torah, Rest on the Tenth of Tishrei 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִשְׁבֹּת מִמְּלָאכָה בֶּעָשׂוֹר לַחֹדֶשׁ הַשְּׁבִיעִי שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג לב)</span> &quot;שַׁבַּת שַׁבָּתוֹן הוּא לָכֶם&quot;. וְכָל הָעוֹשֶׂה בּוֹ מְלָאכָה בִּטֵּל מִצְוַת עֲשֵׂה וְעָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט ז)</span> &quot;וּבֶעָשׂוֹר&quot; וְגוֹ׳ <span class="source-small">(במדבר כט ז)</span> &quot;כָּל מְלָאכָה לֹא תַעֲשׂוּ&quot;. וּמַה הוּא חַיָּב עַל עֲשִׂיַּת מְלָאכָה בְּיוֹם זֶה. אִם עָשָׂה בִּרְצוֹנוֹ בְּזָדוֹן חַיָּב כָּרֵת. וְאִם עָשָׂה בִּשְׁגָגָה חַיָּב קָרְבַּן חַטָּאת קְבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה וכו׳ עד ל&quot;ת.</strong> זה ממנין המצות הידועות ורמיזא פרק אלו קשרים במסכת שבת <span class="source-small"> (דף קי&quot;ד): </span></p>
               </div>
             </div>
@@ -239,8 +244,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-1">Mishneh Torah, Rest on the Tenth of Tishrei 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִשְׁבֹּת מִמְּלָאכָה בֶּעָשׂוֹר לַחֹדֶשׁ הַשְּׁבִיעִי שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג לב)</span> &quot;שַׁבַּת שַׁבָּתוֹן הוּא לָכֶם&quot;. וְכָל הָעוֹשֶׂה בּוֹ מְלָאכָה בִּטֵּל מִצְוַת עֲשֵׂה וְעָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט ז)</span> &quot;וּבֶעָשׂוֹר&quot; וְגוֹ׳ <span class="source-small">(במדבר כט ז)</span> &quot;כָּל מְלָאכָה לֹא תַעֲשׂוּ&quot;. וּמַה הוּא חַיָּב עַל עֲשִׂיַּת מְלָאכָה בְּיוֹם זֶה. אִם עָשָׂה בִּרְצוֹנוֹ בְּזָדוֹן חַיָּב כָּרֵת. וְאִם עָשָׂה בִּשְׁגָגָה חַיָּב קָרְבַּן חַטָּאת קְבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומה הוא חייב כו׳ עד ביום הכפורים.</strong> פרק בתרא דנדרים ובמס׳ שבת פרק אלו קשרים ובמס׳ סנהדרין ופ&quot;ק דמגלה <span class="source-small"> (דף ז׳) </span> ובכמה מקומות מפורש זה בפשיטות:</p>
               </div>
             </div>
@@ -255,8 +265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-1-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-1">Mishneh Torah, Rest on the Tenth of Tishrei 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִשְׁבֹּת מִמְּלָאכָה בֶּעָשׂוֹר לַחֹדֶשׁ הַשְּׁבִיעִי שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כג לב)</span> &quot;שַׁבַּת שַׁבָּתוֹן הוּא לָכֶם&quot;. וְכָל הָעוֹשֶׂה בּוֹ מְלָאכָה בִּטֵּל מִצְוַת עֲשֵׂה וְעָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט ז)</span> &quot;וּבֶעָשׂוֹר&quot; וְגוֹ׳ <span class="source-small">(במדבר כט ז)</span> &quot;כָּל מְלָאכָה לֹא תַעֲשׂוּ&quot;. וּמַה הוּא חַיָּב עַל עֲשִׂיַּת מְלָאכָה בְּיוֹם זֶה. אִם עָשָׂה בִּרְצוֹנוֹ בְּזָדוֹן חַיָּב כָּרֵת. וְאִם עָשָׂה בִּשְׁגָגָה חַיָּב קָרְבַּן חַטָּאת קְבוּעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכל דבר שאסור עד וביה&quot;כ בכרת.</strong> פ&quot;ק דמגלה:</p>
               </div>
             </div>
@@ -271,8 +286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-3">Mishneh Torah, Rest on the Tenth of Tishrei 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמֻתָּר לְקַנֵּב אֶת הָיָּרָק בְּיוֹם הַכִּפּוּרִים מִן הַמִּנְחָה וּלְמַעְלָה. וּמַהוּ הַקִּינוּב שֶׁיָּסִיר אֶת הֶעָלִים הַמְעֻפָּשׁוֹת וִיקַצֵּץ הַשְּׁאָר וִיתַקֵּן אוֹתוֹ לַאֲכִילָה. וְכֵן מְפַצְּעִין בֶּאֱגוֹזִין וּמְפָרְכִין בְּרִמּוֹנִים מִן הַמִּנְחָה וּלְמַעְלָה מִפְּנֵי עָגְמַת נֶפֶשׁ. וְיוֹם הַכִּפּוּרִים שֶׁחָל לִהְיוֹת בְּשַׁבָּת אָסוּר בִּקְנִיבַת יָרָק וּבִפְצִיעַת אֱגוֹזִים וּבִפְרִיכַת רִמּוֹנִים כָּל הַיּוֹם. וּכְבָר נָהֲגוּ הָעָם בְּשִׁנְעָר וּבַמַּעֲרָב שֶׁלֹּא יַעֲשׂוּ אַחַת מִכָּל אֵלּוּ בְּיוֹם הַצּוֹם אֶלָּא הֲרֵי הוּא כְּשַׁבָּת לְכָל דְּבָרָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומותר לקנב את הירק כו׳ עד כל דבר.</strong> פ׳ אלו קשרים <span class="source-small"> (דף קי&quot;ד): </span></p>
               </div>
             </div>
@@ -287,8 +307,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-3">Mishneh Torah, Rest on the Tenth of Tishrei 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמֻתָּר לְקַנֵּב אֶת הָיָּרָק בְּיוֹם הַכִּפּוּרִים מִן הַמִּנְחָה וּלְמַעְלָה. וּמַהוּ הַקִּינוּב שֶׁיָּסִיר אֶת הֶעָלִים הַמְעֻפָּשׁוֹת וִיקַצֵּץ הַשְּׁאָר וִיתַקֵּן אוֹתוֹ לַאֲכִילָה. וְכֵן מְפַצְּעִין בֶּאֱגוֹזִין וּמְפָרְכִין בְּרִמּוֹנִים מִן הַמִּנְחָה וּלְמַעְלָה מִפְּנֵי עָגְמַת נֶפֶשׁ. וְיוֹם הַכִּפּוּרִים שֶׁחָל לִהְיוֹת בְּשַׁבָּת אָסוּר בִּקְנִיבַת יָרָק וּבִפְצִיעַת אֱגוֹזִים וּבִפְרִיכַת רִמּוֹנִים כָּל הַיּוֹם. וּכְבָר נָהֲגוּ הָעָם בְּשִׁנְעָר וּבַמַּעֲרָב שֶׁלֹּא יַעֲשׂוּ אַחַת מִכָּל אֵלּוּ בְּיוֹם הַצּוֹם אֶלָּא הֲרֵי הוּא כְּשַׁבָּת לְכָל דְּבָרָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מצות עשה עד תשבתו שבתכם.</strong> פרק בתרא דמסכת יומא <span class="source-small"> (דף ע&quot;ו): </span></p>
               </div>
             </div>
@@ -303,8 +328,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-1-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-1-7">Mishneh Torah, Rest on the Tenth of Tishrei 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים שֶׁאוֹכְלוֹת וְשׁוֹתוֹת עַד שֶׁחֲשֵׁכָה וְהֵן אֵינָן יוֹדְעוֹת שֶׁמִּצְוָה לְהוֹסִיף מֵחֹל עַל הַקֹּדֶשׁ אֵין מְמַחִין בְּיָדָן שֶׁלֹּא יָבוֹאוּ לַעֲשׂוֹת בְּזָדוֹן. שֶׁהֲרֵי אִי אֶפְשָׁר שֶׁיִּהְיֶה שׁוֹטֵר בְּבֵית כָּל אֶחָד וְאֶחָד לְהַזְהִיר נָשָׁיו. וְהָנַח לָהֶן שֶׁיְּהוּ שׁוֹגְגִין וְאַל יְהוּ מְזִידִין. וְכֵן כָּל הַדּוֹמֶה לָזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים שאוכלות עד סוף הפרק.</strong> במסכת שבת פרק שואל <span class="source-small"> (דף קמ&quot;ח) </span> ובמסכת ביצה פרק המביא כדי יין <span class="source-small"> (דף ל׳): </span></p>
               </div>
             </div>
@@ -320,8 +350,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-1">Mishneh Torah, Rest on the Tenth of Tishrei 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹכֵל בְּיוֹם הַכִּפּוּרִים מַאֲכָלִין הָרְאוּיִין לֶאֱכל לָאָדָם כְּכוֹתֶבֶת הַגַּסָּה שֶׁהִיא פָּחוֹת מִכְּבֵיצָה כִּמְעַט הֲרֵי זֶה חַיָּב. וְכָל הָאֳכָלִים מִצְטָרְפִין לְשִׁעוּר זֶה. וְכֵן הַשּׁוֹתֶה מַשְׁקִין הָרְאוּיִין לִשְׁתִיַּת אָדָם כִּמְלוֹא לֻגְמָיו שֶׁל שׁוֹתֶה כָּל אֶחָד וְאֶחָד לְפִי לֻגְמָיו חַיָּב. וְכַמָּה מְלוֹא לֻגְמָיו כְּדֵי שֶׁיְּסַלְּקֵם לְצַד אֶחָד וְיֵרָאֶה מָלֵא לֻגְמָיו. וְשִׁעוּר זֶה בְּאָדָם בֵּינוֹנִי פָּחוֹת מֵרְבִיעִית. וְכָל הַמַּשְׁקִין מִצְטָרְפִין לְשִׁעוּר זֶה. וְהָאֲכִילָה וּשְׁתִיָּה אֵין מִצְטָרְפִין לְשִׁעוּר אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האוכל ביוה&quot;כ עד הרי זה חייב.</strong> פרק בתרא דיומא <span class="source-small"> (דף ע&quot;ו) </span> ובירושלמי ובספרי תענו את נפשותיכם עינוי הוא שהוא אבוד הנפש ואי זה הוא זה אכילה ושתיה:</p>
               </div>
             </div>
@@ -336,8 +371,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-1">Mishneh Torah, Rest on the Tenth of Tishrei 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹכֵל בְּיוֹם הַכִּפּוּרִים מַאֲכָלִין הָרְאוּיִין לֶאֱכל לָאָדָם כְּכוֹתֶבֶת הַגַּסָּה שֶׁהִיא פָּחוֹת מִכְּבֵיצָה כִּמְעַט הֲרֵי זֶה חַיָּב. וְכָל הָאֳכָלִים מִצְטָרְפִין לְשִׁעוּר זֶה. וְכֵן הַשּׁוֹתֶה מַשְׁקִין הָרְאוּיִין לִשְׁתִיַּת אָדָם כִּמְלוֹא לֻגְמָיו שֶׁל שׁוֹתֶה כָּל אֶחָד וְאֶחָד לְפִי לֻגְמָיו חַיָּב. וְכַמָּה מְלוֹא לֻגְמָיו כְּדֵי שֶׁיְּסַלְּקֵם לְצַד אֶחָד וְיֵרָאֶה מָלֵא לֻגְמָיו. וְשִׁעוּר זֶה בְּאָדָם בֵּינוֹנִי פָּחוֹת מֵרְבִיעִית. וְכָל הַמַּשְׁקִין מִצְטָרְפִין לְשִׁעוּר זֶה. וְהָאֲכִילָה וּשְׁתִיָּה אֵין מִצְטָרְפִין לְשִׁעוּר אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכל האוכלין מצטרפין לשיעור הזה.</strong> פרק בתרא דיומא <span class="source-small"> (דף פ׳) </span> וריש פ&quot;ד דמס׳ מעילה:</p>
               </div>
             </div>
@@ -352,8 +392,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-1-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-1">Mishneh Torah, Rest on the Tenth of Tishrei 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹכֵל בְּיוֹם הַכִּפּוּרִים מַאֲכָלִין הָרְאוּיִין לֶאֱכל לָאָדָם כְּכוֹתֶבֶת הַגַּסָּה שֶׁהִיא פָּחוֹת מִכְּבֵיצָה כִּמְעַט הֲרֵי זֶה חַיָּב. וְכָל הָאֳכָלִים מִצְטָרְפִין לְשִׁעוּר זֶה. וְכֵן הַשּׁוֹתֶה מַשְׁקִין הָרְאוּיִין לִשְׁתִיַּת אָדָם כִּמְלוֹא לֻגְמָיו שֶׁל שׁוֹתֶה כָּל אֶחָד וְאֶחָד לְפִי לֻגְמָיו חַיָּב. וְכַמָּה מְלוֹא לֻגְמָיו כְּדֵי שֶׁיְּסַלְּקֵם לְצַד אֶחָד וְיֵרָאֶה מָלֵא לֻגְמָיו. וְשִׁעוּר זֶה בְּאָדָם בֵּינוֹנִי פָּחוֹת מֵרְבִיעִית. וְכָל הַמַּשְׁקִין מִצְטָרְפִין לְשִׁעוּר זֶה. וְהָאֲכִילָה וּשְׁתִיָּה אֵין מִצְטָרְפִין לְשִׁעוּר אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן השותה משקין עד פחות מרביעית.</strong> פי&quot;ז דמסכת כלים:</p>
               </div>
             </div>
@@ -368,8 +413,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-1-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:1:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-1">Mishneh Torah, Rest on the Tenth of Tishrei 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹכֵל בְּיוֹם הַכִּפּוּרִים מַאֲכָלִין הָרְאוּיִין לֶאֱכל לָאָדָם כְּכוֹתֶבֶת הַגַּסָּה שֶׁהִיא פָּחוֹת מִכְּבֵיצָה כִּמְעַט הֲרֵי זֶה חַיָּב. וְכָל הָאֳכָלִים מִצְטָרְפִין לְשִׁעוּר זֶה. וְכֵן הַשּׁוֹתֶה מַשְׁקִין הָרְאוּיִין לִשְׁתִיַּת אָדָם כִּמְלוֹא לֻגְמָיו שֶׁל שׁוֹתֶה כָּל אֶחָד וְאֶחָד לְפִי לֻגְמָיו חַיָּב. וְכַמָּה מְלוֹא לֻגְמָיו כְּדֵי שֶׁיְּסַלְּקֵם לְצַד אֶחָד וְיֵרָאֶה מָלֵא לֻגְמָיו. וְשִׁעוּר זֶה בְּאָדָם בֵּינוֹנִי פָּחוֹת מֵרְבִיעִית. וְכָל הַמַּשְׁקִין מִצְטָרְפִין לְשִׁעוּר זֶה. וְהָאֲכִילָה וּשְׁתִיָּה אֵין מִצְטָרְפִין לְשִׁעוּר אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכל המשקין מצטרפין עד מכת מרדות.</strong> פ׳ בתרא דיומא <span class="source-small"> (דף ע&quot;ב) </span> ופ&quot;ד דמסכת מעילה:</p>
               </div>
             </div>
@@ -384,8 +434,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-4">Mishneh Torah, Rest on the Tenth of Tishrei 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָכַל מְעַט וְחָזַר וְאָכַל אִם יֵשׁ מִתְּחִלַּת אֲכִילָה רִאשׁוֹנָה עַד סוֹף אֲכִילָה אַחֲרוֹנָה כְּדֵי אֲכִילַת שָׁלֹשׁ בֵּיצִים הֲרֵי אֵלּוּ מִצְטָרְפוֹת לְכַשִּׁעוּר וְאִם לָאו אֵין מִצְטָרְפוֹת לְכַשִּׁעוּר. שָׁתָה מְעַט וְחָזַר וְשָׁתָה אִם יֵשׁ מִתְּחִלַּת שְׁתִיָּה רִאשׁוֹנָה עַד סוֹף שְׁתִיָּה אַחֲרוֹנָה כְּדֵי שְׁתִיַּת רְבִיעִית מִצְטָרְפִין לְשִׁעוּר וְאִם לָאו אֵין מִצְטָרְפִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אכל מעט ושהה עד במים חייב.</strong> פרק בתרא דיומא <span class="source-small"> (דף ע&quot;א): </span></p>
               </div>
             </div>
@@ -400,8 +455,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:4:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-4-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-4">Mishneh Torah, Rest on the Tenth of Tishrei 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָכַל מְעַט וְחָזַר וְאָכַל אִם יֵשׁ מִתְּחִלַּת אֲכִילָה רִאשׁוֹנָה עַד סוֹף אֲכִילָה אַחֲרוֹנָה כְּדֵי אֲכִילַת שָׁלֹשׁ בֵּיצִים הֲרֵי אֵלּוּ מִצְטָרְפוֹת לְכַשִּׁעוּר וְאִם לָאו אֵין מִצְטָרְפוֹת לְכַשִּׁעוּר. שָׁתָה מְעַט וְחָזַר וְשָׁתָה אִם יֵשׁ מִתְּחִלַּת שְׁתִיָּה רִאשׁוֹנָה עַד סוֹף שְׁתִיָּה אַחֲרוֹנָה כְּדֵי שְׁתִיַּת רְבִיעִית מִצְטָרְפִין לְשִׁעוּר וְאִם לָאו אֵין מִצְטָרְפִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הכוסס פלפלין עד הן חשובין.</strong> פרק כיצד מברכין <span class="source-small"> (דף ל&quot;ו): </span></p>
               </div>
             </div>
@@ -416,8 +476,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:4:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-4-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-4">Mishneh Torah, Rest on the Tenth of Tishrei 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָכַל מְעַט וְחָזַר וְאָכַל אִם יֵשׁ מִתְּחִלַּת אֲכִילָה רִאשׁוֹנָה עַד סוֹף אֲכִילָה אַחֲרוֹנָה כְּדֵי אֲכִילַת שָׁלֹשׁ בֵּיצִים הֲרֵי אֵלּוּ מִצְטָרְפוֹת לְכַשִּׁעוּר וְאִם לָאו אֵין מִצְטָרְפוֹת לְכַשִּׁעוּר. שָׁתָה מְעַט וְחָזַר וְשָׁתָה אִם יֵשׁ מִתְּחִלַּת שְׁתִיָּה רִאשׁוֹנָה עַד סוֹף שְׁתִיָּה אַחֲרוֹנָה כְּדֵי שְׁתִיַּת רְבִיעִית מִצְטָרְפִין לְשִׁעוּר וְאִם לָאו אֵין מִצְטָרְפִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היה שבע מאכילה גסה עד דברים המותרין.</strong> פרק בתרא דיומא <span class="source-small"> (דף פ׳): </span></p>
               </div>
             </div>
@@ -432,8 +497,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-10">Mishneh Torah, Rest on the Tenth of Tishrei 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָטָן בֶּן תֵּשַׁע שָׁנִים וּבֶן עֶשֶׂר שָׁנִים מְחַנְּכִין אוֹתוֹ לְשָׁעוֹת. כֵּיצַד. הָיָה רָגִיל לֶאֱכל בִּשְׁתֵּי שָׁעוֹת בַּיּוֹם מַאֲכִילִין אוֹתוֹ בְּשָׁלֹשׁ. הָיָה רָגִיל בְּשָׁלֹשׁ מַאֲכִילִין אוֹתוֹ בְּאַרְבַּע. לְפִי כֹּחַ הַבֵּן מוֹסִיפִין לְעַנּוֹת אוֹתוֹ בְּשָׁעוֹת. בֶּן אַחַת עֶשְׂרֵה שָׁנָה בֵּין זָכָר בֵּין נְקֵבָה מִתְעַנֶּה וּמַשְׁלִים מִדִּבְרֵי סוֹפְרִים כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן אחת עשרה עד לחנכו במצות:</strong> כתב הראב&quot;ד ז&quot;ל גירסא זו לא מצאנו בספרים וכו׳ ומר מיירי בתינוקת עכ&quot;ל: <strong> ואני </strong> אומר אנחנו גורסין פרק בתרא דיומא כגירסת ר&quot;מ ז&quot;ל וכן הוא בנוסחאות ספרדיות וכן גורס ופוסק ר&quot;י אלפס ז&quot;ל כר׳ יוחנן בהשלמה דאורייתא ובחנוך והשלמה דרבנן כרב הונא ור&quot;נ אליבא דגמרא דמסיק הא בבריא והא בחולה:</p>
               </div>
             </div>
@@ -448,8 +518,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:10:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-2-10-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 2:10:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-2-10">Mishneh Torah, Rest on the Tenth of Tishrei 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָטָן בֶּן תֵּשַׁע שָׁנִים וּבֶן עֶשֶׂר שָׁנִים מְחַנְּכִין אוֹתוֹ לְשָׁעוֹת. כֵּיצַד. הָיָה רָגִיל לֶאֱכל בִּשְׁתֵּי שָׁעוֹת בַּיּוֹם מַאֲכִילִין אוֹתוֹ בְּשָׁלֹשׁ. הָיָה רָגִיל בְּשָׁלֹשׁ מַאֲכִילִין אוֹתוֹ בְּאַרְבַּע. לְפִי כֹּחַ הַבֵּן מוֹסִיפִין לְעַנּוֹת אוֹתוֹ בְּשָׁעוֹת. בֶּן אַחַת עֶשְׂרֵה שָׁנָה בֵּין זָכָר בֵּין נְקֵבָה מִתְעַנֶּה וּמַשְׁלִים מִדִּבְרֵי סוֹפְרִים כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> בת י&quot;ב שנה עד סוף הפרק.</strong> פ׳ בתרא דיומא ובכתובות פרק נערה שנתפתתה:</p>
               </div>
             </div>
@@ -465,8 +540,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-1">Mishneh Torah, Rest on the Tenth of Tishrei 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לִרְחֹץ בְּיוֹם הַכִּפּוּרִים בֵּין בְּחַמִּין בֵּין בְּצוֹנֵן. בֵּין כָּל גּוּפוֹ בֵּין אֵיבָר אֶחָד אֲפִלּוּ אֶצְבַּע קְטַנָּה אָסוּר לְהוֹשִׁיטָהּ בַּמַּיִם. וְהַמֶּלֶךְ וְהַכַּלָּה רוֹחֲצִין אֶת פְּנֵיהֶן. כַּלָּה כְּדֵי שֶׁלֹּא תִּתְגַּנֶּה עַל בַּעְלָהּ. וְהַמֶּלֶךְ כְּדֵי שֶׁיֵּרָאֶה בְּיָפְיוֹ שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְעַד כַּמָּה נִקְרֵאת כַּלָּה עַד שְׁלֹשִׁים יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסור לרחוץ ביוה&quot;כ וכו׳ עד ואינו חושש.</strong> פ׳ בתרא דיומא <span class="source-small"> (דף ע&quot;ז) </span> ובספרא מנין שיוה&quot;כ אסור ברחיצה וסיכה ותשמיש המטה ת&quot;ל שבת שבתון:</p>
               </div>
             </div>
@@ -481,8 +561,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-1">Mishneh Torah, Rest on the Tenth of Tishrei 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לִרְחֹץ בְּיוֹם הַכִּפּוּרִים בֵּין בְּחַמִּין בֵּין בְּצוֹנֵן. בֵּין כָּל גּוּפוֹ בֵּין אֵיבָר אֶחָד אֲפִלּוּ אֶצְבַּע קְטַנָּה אָסוּר לְהוֹשִׁיטָהּ בַּמַּיִם. וְהַמֶּלֶךְ וְהַכַּלָּה רוֹחֲצִין אֶת פְּנֵיהֶן. כַּלָּה כְּדֵי שֶׁלֹּא תִּתְגַּנֶּה עַל בַּעְלָהּ. וְהַמֶּלֶךְ כְּדֵי שֶׁיֵּרָאֶה בְּיָפְיוֹ שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְעַד כַּמָּה נִקְרֵאת כַּלָּה עַד שְׁלֹשִׁים יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומדיחה אשה ידה אחת עד בין ביוה&quot;כ.</strong> במס׳ חולין פרק כל הבשר <span class="source-small"> (דף ק&quot;ז) </span> ופ׳ בתרא דיומא <span class="source-small"> (דף ע&quot;ז): </span></p>
               </div>
             </div>
@@ -497,8 +582,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-1-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-1">Mishneh Torah, Rest on the Tenth of Tishrei 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לִרְחֹץ בְּיוֹם הַכִּפּוּרִים בֵּין בְּחַמִּין בֵּין בְּצוֹנֵן. בֵּין כָּל גּוּפוֹ בֵּין אֵיבָר אֶחָד אֲפִלּוּ אֶצְבַּע קְטַנָּה אָסוּר לְהוֹשִׁיטָהּ בַּמַּיִם. וְהַמֶּלֶךְ וְהַכַּלָּה רוֹחֲצִין אֶת פְּנֵיהֶן. כַּלָּה כְּדֵי שֶׁלֹּא תִּתְגַּנֶּה עַל בַּעְלָהּ. וְהַמֶּלֶךְ כְּדֵי שֶׁיֵּרָאֶה בְּיָפְיוֹ שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְעַד כַּמָּה נִקְרֵאת כַּלָּה עַד שְׁלֹשִׁים יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכל חייבי טבילה עד ביום הכפורים.</strong> ברייתא היא פרק בתרא דיומא <span class="source-small"> (דף פ&quot;ח): </span></p>
               </div>
             </div>
@@ -513,8 +603,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-1-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:1:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-1">Mishneh Torah, Rest on the Tenth of Tishrei 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָסוּר לִרְחֹץ בְּיוֹם הַכִּפּוּרִים בֵּין בְּחַמִּין בֵּין בְּצוֹנֵן. בֵּין כָּל גּוּפוֹ בֵּין אֵיבָר אֶחָד אֲפִלּוּ אֶצְבַּע קְטַנָּה אָסוּר לְהוֹשִׁיטָהּ בַּמַּיִם. וְהַמֶּלֶךְ וְהַכַּלָּה רוֹחֲצִין אֶת פְּנֵיהֶן. כַּלָּה כְּדֵי שֶׁלֹּא תִּתְגַּנֶּה עַל בַּעְלָהּ. וְהַמֶּלֶךְ כְּדֵי שֶׁיֵּרָאֶה בְּיָפְיוֹ שֶׁנֶּאֱמַר <span class="source-small">(ישעיה לג יז)</span> &quot;מֶלֶךְ בְּיָפְיוֹ תֶּחֱזֶינָה עֵינֶיךָ&quot;. וְעַד כַּמָּה נִקְרֵאת כַּלָּה עַד שְׁלֹשִׁים יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מי שראה קרי עד בטלה תקנה זו.</strong> סוף מס׳ יומא ופרק מי שמתו <span class="source-small"> (דף כ&quot;ב) </span> וכ&quot;כ ר&quot;י אלפס ז&quot;ל בהלכות:</p>
               </div>
             </div>
@@ -529,8 +624,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-4">Mishneh Torah, Rest on the Tenth of Tishrei 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טִיט שֶׁהוּא לַח בְּיוֹתֵר כְּדֵי שֶׁיַּנִּיחַ אָדָם יָדוֹ עָלָיו וְתַעֲלֶה בָּהּ לַחְלוּחִית שֶׁאִם הִדְבִּיק אוֹתָהּ לְיָדוֹ הָאַחֶרֶת תִּדְבַּק בָּהּ לַחְלוּחִית אָסוּר לֵישֵׁב עָלָיו. לֹא יְמַלֵּא אָדָם כְּלִי חֶרֶשׂ מַיִם וְיִצְטַנֵּן בּוֹ שֶׁהַמַּיִם נִזְחָלִים מִדְּפָנָיו. אֲפִלּוּ כְּלֵי מַתָּכוֹת אָסוּר שֶׁמָּא יִנָּתְזוּ מַיִם עַל בְּשָׂרוֹ. וּמֻתָּר לְהִצְטַנֵּן בְּפֵרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טיט שהוא לח ביותר עד וכיוצא בהם.</strong> פ׳ בתרא דיומא <span class="source-small"> (דף ע&quot;ח): </span></p>
               </div>
             </div>
@@ -545,8 +645,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:4:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-4-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-4">Mishneh Torah, Rest on the Tenth of Tishrei 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טִיט שֶׁהוּא לַח בְּיוֹתֵר כְּדֵי שֶׁיַּנִּיחַ אָדָם יָדוֹ עָלָיו וְתַעֲלֶה בָּהּ לַחְלוּחִית שֶׁאִם הִדְבִּיק אוֹתָהּ לְיָדוֹ הָאַחֶרֶת תִּדְבַּק בָּהּ לַחְלוּחִית אָסוּר לֵישֵׁב עָלָיו. לֹא יְמַלֵּא אָדָם כְּלִי חֶרֶשׂ מַיִם וְיִצְטַנֵּן בּוֹ שֶׁהַמַּיִם נִזְחָלִים מִדְּפָנָיו. אֲפִלּוּ כְּלֵי מַתָּכוֹת אָסוּר שֶׁמָּא יִנָּתְזוּ מַיִם עַל בְּשָׂרוֹ. וּמֻתָּר לְהִצְטַנֵּן בְּפֵרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכורך אדם בגד עד שהוא יחף.</strong> פ׳ מצות חליצה <span class="source-small"> (דף מ&quot;ד) </span> ובירושלמי:</p>
               </div>
             </div>
@@ -561,8 +666,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:4:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-4-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-4">Mishneh Torah, Rest on the Tenth of Tishrei 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טִיט שֶׁהוּא לַח בְּיוֹתֵר כְּדֵי שֶׁיַּנִּיחַ אָדָם יָדוֹ עָלָיו וְתַעֲלֶה בָּהּ לַחְלוּחִית שֶׁאִם הִדְבִּיק אוֹתָהּ לְיָדוֹ הָאַחֶרֶת תִּדְבַּק בָּהּ לַחְלוּחִית אָסוּר לֵישֵׁב עָלָיו. לֹא יְמַלֵּא אָדָם כְּלִי חֶרֶשׂ מַיִם וְיִצְטַנֵּן בּוֹ שֶׁהַמַּיִם נִזְחָלִים מִדְּפָנָיו. אֲפִלּוּ כְּלֵי מַתָּכוֹת אָסוּר שֶׁמָּא יִנָּתְזוּ מַיִם עַל בְּשָׂרוֹ. וּמֻתָּר לְהִצְטַנֵּן בְּפֵרוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> התינוקות אע&quot;פ שהן מותרין באכילה עד ואינו חושש.</strong> פ׳ בתרא דיומא <span class="source-small"> (דף ע&quot;ח): </span></p>
               </div>
             </div>
@@ -577,8 +687,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-3-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Rest on the Tenth of Tishrei 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-rest-on-the-tenth-of-tishrei/#mishneh-torah-rest-on-the-tenth-of-tishrei-3-10">Mishneh Torah, Rest on the Tenth of Tishrei 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ מְקוֹמוֹת שֶׁנָּהֲגוּ לְהַדְלִיק אֶת הַנֵּר בְּלֵילֵי יוֹם הַכִּפּוּרִים כְּדֵי שֶׁיִּהְיֶה לוֹ בֹּשֶׁת פָּנִים מֵאִשְׁתּוֹ וְלֹא יָבוֹא לִידֵי תַּשְׁמִישׁ הַמִּטָּה. וְיֵשׁ מְקוֹמוֹת שֶׁנָּהֲגוּ שֶׁלֹּא לְהַדְלִיק שֶׁמָּא יִרְאֶה אִשְׁתּוֹ וְתִשָּׂא חֵן בְּעֵינָיו וְיָבוֹא לִידֵי תַּשְׁמִישׁ. וְאִם חָל יוֹם הַכִּפּוּרִים לִהְיוֹת בְּשַׁבָּת חַיָּבִין הַכּל לְהַדְלִיק בְּכָל מָקוֹם שֶׁהַדְלָקַת נֵר בְּשַׁבָּת חוֹבָה: סָלִיק הִלְכוֹת שְׁבִיתַת עשׂוֹר</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש מקומות עד סוף הפרק וההלכות.</strong> ריש פ׳ מקום שנהגו <span class="source-small"> (דף נ&quot;ג): </span></p>
               </div>
             </div>
@@ -588,6 +703,10 @@
               <a href="#chapter-migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -608,8 +727,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json","occurrence_url":"../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-rest-on-the-tenth-of-tishrei.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -635,7 +754,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

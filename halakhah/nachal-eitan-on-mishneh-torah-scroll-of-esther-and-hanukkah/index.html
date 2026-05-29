@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/">Open Mishneh Torah, Scroll of Esther and Hanukkah</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Scroll of Esther and Hanukkah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">2 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>209 matched</strong> / 566 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -195,8 +196,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah-1-1-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Scroll of Esther and Hanukkah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-1-1">Mishneh Torah, Scroll of Esther and Hanukkah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְרִיאַת הַמְּגִלָּה בִּזְמַנָּהּ מִצְוַת עֲשֵׂה מִדִּבְרֵי סוֹפְרִים. וְהַדְּבָרִים יְדוּעִים שֶׁהִיא תַּקָּנַת הַנְּבִיאִים. וְהַכּל חַיָּבִים בִּקְרִיאָתָהּ אֲנָשִׁים וְנָשִׁים וְגֵרִים וַעֲבָדִים מְשֻׁחְרָרִים. וּמְחַנְּכִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ. וַאֲפִלּוּ כֹּהֲנִים בַּעֲבוֹדָתָן מְבַטְּלִין עֲבוֹדָתָן וּבָאִין לִשְׁמֹעַ מִקְרָא מְגִלָּה. וְכֵן מְבַטְּלִים תַּלְמוּד תּוֹרָה לִשְׁמֹעַ מִקְרָא מְגִלָּה קַל וָחֹמֶר לִשְׁאָר מִצְוֹת שֶׁל תּוֹרָה שֶׁכֻּלָּן נִדְחִין מִפְּנֵי מִקְרָא מְגִלָּה. וְאֵין לְךָ דָּבָר שֶׁנִּדְחֶה מִקְרָא מְגִלָּה מִפָּנָיו חוּץ מִמֵּת מִצְוָה שֶׁאֵין לוֹ קוֹבְרִין שֶׁהַפּוֹגֵעַ בּוֹ קוֹבְרוֹ תְּחִלָּה וְאַחַר כָּךְ קוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והכל חייבים בקריאתה אנשים ונשים וכו׳ ועבדים משוחררים.</strong> כתב הלח&quot;מ דרבינו סובר כמ&quot;ש הבית יוסף בסי׳ תרפ&quot;ט דעבדים שמלו וטבלו לשם עבדות אינן חייבים רק המשוחררים. ואע&quot;ג דכל שהאשה חייבת גם עבדים אפילו שאינם משוחררים חייבים שאני הכא דלא דמו לנשים שעל ידם נעשה הנס. וראיתי שהקשה על זה בס׳ נחלת עזריאל בחידושיו ריש חולין מהא דאיתא בר&quot;ה (דף כ&quot;ו) דסבר ר׳ לוי דשופר של ראש השנה מצותו בכפופים משום דלתפלה כל כמה דכייף אינש נפשיה עדיף ויליף התם גזירה שוה ליום הכיפורים של יובל דמצותו ג&quot;כ בכפופין ואע&quot;ג דטעם זה דכייף לא שייך ביו&quot;כ כמו בר&quot;ה ושמע מינה דסבר אין גז&quot;ש למחצה וכיון דילפינן מראש השנה לשארי דברים יליף נמי מאי דלא מסתבר בטעמא להשוותם ופליג אדר׳ יהודה דלא יליף התם יו&quot;כ מר&quot;ה בכהאי גוונא. וקיי&quot;ל התם כר׳ לוי וכ&quot;כ רבינו בריש הלכות שופר דשופר שתוקעין בר&quot;ה וביובל הוא קרן הכבשים הכפוף וא&quot;כ הכא נמי היה לו לרבינו להשוות עבדים לנשים גבי מגילה מכח גז&quot;ש דיליף בה אף מילתא דלא שוו בטעמא. ועוד הקשה על דברי הב&quot;י והלח&quot;מ מסוגיא דב&quot;ק (דף מ&quot;ה) דמשמע התם דרבנן סברי דילפינן שור מאדם בהיקשא דכתיב וגם בעליו יומת דאין גומרין דינו של שור אלא בפני השור ואע&quot;ג דלא שייך גביה טעם דגבי אדם דהוא בר טענתא והניח בצ&quot;ע. ויש לי ליישב דההיא דר&quot;ה שאני מדהכא דהתם איכא ג&quot;כ היקשא דאקיש רחמנא להדדי דכתיב בחודש השביעי ודרשינן שיהא כל תרועות של חודש השביעי שוות זו כזו וכדאיתא בר&quot;ה (דף ל&quot;ד) לעניין תרועה שיהא בשופר ופשוטה לפניה ולאחריה והכי נמי מצינן למילף מיניה ששוות זו כזו לעניין כפוף:<br><strong> ועפ&quot;ז </strong> מיושב קושיית הטורי אבן שם שהקשה לפירוש רש&quot;י דכל מילי דיליף התם תנא דברייתא לבסוף בגזירה שוה איכא למילפינהו בהיקשא דא&quot;כ למה לי כלל הגז&quot;ש. ולפמ&quot;ש אתי שפיר דאיצטריך הגז&quot;ש כדי למילף גם מילתא דלא שוו בטעמא כגון לעניין כפופים אליבא דר׳ לוי או פשוטים אליבא דת&quot;ק (בדף כ&quot;ו) דסבר דלתפלה כמה דפשיט נפשיה עדיף וזה לא שייך גבי יו&quot;כ שאינו לתפלה ולא ילפינן לה בהיקשא ולהכי אתא ג&quot;כ הגז&quot;ש להשווינהו לכל דבר. וכהאי גוונא כתבו ג&quot;כ התוס׳ בריש פ&quot;ו דיומא (דף ס&quot;ב ע&quot;א):<br><strong> ומה </strong> שהקשה בס׳ הנזכר מסוגיא דב&quot;ק י&quot;ל על פי מה שיש לחלק בעניין זה דדוקא מילתא דליתא במפורש גם במלמד ורק מסברא ידעינן ביה הוא דאמרינן דלא משוינן הלמד למלמד אם לא שייך ביה הסברא אבל מילתא דמפורש במלמד שפיר משוינן הלמד למלמד אף בדבר שאין שייך הטעם והסברא בלמד כמו במלמד. [ומצאתי שירד לחילוק זה בס׳ גינת ורדים ועיין בתוס׳ קדושין (דף ס&quot;ו ריש ע&quot;ב) ומשמע שם דהיינו דוקא פירכא מסברא שאינה כתובה אבל מכתובה פרכינן. (ויש לי להביא ראיה לחילוק זה מדברי התוס׳ בריש פרק איזהו נשך (בבא מציעא דף ס&quot;א ע&quot;א) גבי היקישא דעבדים לקרקעות דלא ילפינן ליה לענין שאין נגזלות דהא דקרקע אין נגזלת אינו מן המקרא אלא משום דאי אפשר להזיזה ממקומה אבל עבדי דניידי אע&quot;ג דהוקשו לקרקע עובר בלא תגזול ע&quot;כ. ומשמע דדוקא משום שאינו מפורש במקרא הא אי הוה מפורש כן במקרא הוי ילפינן שפיר בהיקשא אע&quot;ג דלא שייך הטעם בעבדים כמו בקרקע). וכן משמע ממ&quot;ש תוס׳ בקידושין (דף ד׳ ע&quot;ב) בשם הרב ר׳ נתנאל וכ&quot;כ המל&quot;מ פ&quot;ד דעבדים לדעת רבינו שם] :<br><strong> ולפ&quot;ז </strong> אתי שפיר ולק&quot;מ מב&quot;ק למגילה דהתם הדבר מפורש גבי אדם דבעינן בפניו דוקא וכמ&quot;ש רש&quot;י שם דכתיב עד עמדו לפני העדה למשפט. ולכך ילפי ליה רבנן נמי לשור בהיקשא אע&quot;ג דלא שייך בו הטעם. ולא קשה אמ&quot;ש הב&quot;י דלא ילפינן לחייב עבדים במגילה מנשים דבהן אין מפורש שחייבים רק מסברא שאף הן היו באותו הנס וכיון דגבי עבדים לא שייך זה לא משוינן להו. [וכהאי גוונא כתב החינוך בסוף פרשת קדושים גבי מצות כיבוד אב ואם דנשים היו חייבים אבל עבדים פטורין משום שאין להם יחוס. ואע&quot;ג דכיבוד מפורש פרכינן מסברא הכתובה וייחס כתיב בקרא (ובעל פמ&quot;ג בפתיחתו לאו&quot;ח כתב כן מדנפשיה) אלמא דלא ילפינן עבדים מנשים לחייבן במאי דלא שייך בהו. וגדולה מזו כתב רבינו בהל׳ ע&quot;ז דלא ילפינן לפטור עבדים מנשים במידי דיש סברא לחלק כגון לעניין השחתת זקן וא&quot;כ כל שכן דלא ילפינן לחיוב וממילא פטורים דהילפותא דגז&quot;ש הוא דבאה לחייב עבדים במצוה שהאשה חייבת ואי לאו הגז&quot;ש היו פטורים כמו בן נח כמ&quot;ש הטורי אבן שלהי חגיגה:<br><strong> ומ&quot;ש </strong> בריש ס׳ כרתי ופלתי והובא בס׳ נר תמיד בכריתות (דף ז׳) דתוס׳ במגילה (דף ד׳) לא סברי כרבינו מדהקשו למה לי היקישא במצה דנשים חייבות דתיפוק שהיו באותו הנס. ולדידי י&quot;ל כוונת תוס׳ דלאו דוקא הקרא אלא דלמה ליה להגמ׳ לאפוקי נשים מהיקשא אלא הוה להו למימר קרא לעבדים. ועיין במל&quot;מ פ&quot;י דהלכות מלכים]:</p>
               </div>
             </div>
@@ -212,8 +218,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Scroll of Esther and Hanukkah 3:6:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah-3-6-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Scroll of Esther and Hanukkah 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-scroll-of-esther-and-hanukkah/#mishneh-torah-scroll-of-esther-and-hanukkah-3-6">Mishneh Torah, Scroll of Esther and Hanukkah 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלֹא הַלֵּל שֶׁל חֲנֻכָּה בִּלְבַד הוּא שֶׁמִּדִּבְרֵי סוֹפְרִים אֶלָּא קְרִיאַת הַהַלֵּל לְעוֹלָם מִדִּבְרֵי סוֹפְרִים בְּכָל הַיָּמִים שֶׁגּוֹמְרִין בָּהֶן אֶת הַהַלֵּל. וּשְׁמוֹנָה עָשָׂר יוֹם בַּשָּׁנָה מִצְוָה לִגְמֹר בָּהֶן אֶת הַהַלֵּל. וְאִלּוּ הֵן. שְׁמוֹנַת יְמֵי הֶחָג. וּשְׁמוֹנַת יְמֵי חֲנֻכָּה. וְרִאשׁוֹן שֶׁל פֶּסַח וְיוֹם עֲצֶרֶת. אֲבָל רֹאשׁ הַשָּׁנָה וְיוֹם הַכִּפּוּרִים אֵין בָּהֶן הַלֵּל לְפִי שֶׁהֵן יְמֵי תְּשׁוּבָה וְיִרְאָה וָפַחַד לֹא יְמֵי שִׂמְחָה יְתֵרָה. וְלֹא תִּקְּנוּ הַלֵּל בְּפוּרִים שֶׁקְּרִיאַת הַמְּגִלָּה הִיא הַהַלֵּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיין </strong> בכס&quot;מ שהקשה על מ&quot;ש הרב המגיד דדברי קבלה הוו דברי תורה אם הובא לראיה ממש ולא לסמך בעלמא והרי כתב רבינו דמצות קריאת מגילה היא מדברי סופרים והוא דברי קבלה מפורשים. ולי נראה להביא ראיה להרה&quot;מ מדמצינו בכמה דוכתי בש&quot;ס דקרי לדברי קבלה דברי תורה ודאורייתא וכדאיתא בשבת (דף קי&quot;ט ע&quot;א) אמרה תורה וקאי אקרא דדברי קבלה וע&quot;ש. וכן בערובין (דף נ&quot;ח) אמרה תורה ובידו חבל מדה והוא בזכריה וקרי ליה תורה. ובכתובות (דף נ&quot;ב) קאמר אקרא דירמיה דאורייתא דכתיב קחו לבניכם נשים. ובגיטין (דף ל&quot;ו) דאורייתא הוא שנאמר וכתוב בספר וחתום. וכן משמע בסנהדרין (דף נ&quot;ג ודף ס&quot;ג). וכן בב&quot;ב (דף קמ&quot;ז) ובחולין (דף י&quot;ז) מניין מן התורה ומייתי מדברי קבלה. והא דקרי רבינו לקריאת מגילה דברי סופרים י&quot;ל משום דאיתא במגילה (דף י&quot;ד) דנביאים גופייהו שתיקנוה ילפי לה בקל וחומר ומה מעבדות לחירות אמרו שירה פירוש בים ממיתה לחיים לא כל שכן וא&quot;כ לא עדיפא משאר מילתא דילפינן בק&quot;ו מדאורייתא ואפ&quot;ה מקרי דברי סופרים וכן כל דבר הנלמד בי&quot;ג מדות קרי להו דברי סופרים כמבואר בריש הלכות אישות ולא עדיפא קריאת מגילה דילפא בקל וחומר משאר י&quot;ג מדות:</p>
               </div>
             </div>
@@ -223,6 +234,10 @@
               <a href="#chapter-nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -243,8 +258,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-scroll-of-esther-and-hanukkah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -270,7 +285,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

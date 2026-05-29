@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-paschal-offering/">Open Mishneh Torah, Paschal Offering</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Paschal Offering</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>81 matched</strong> / 202 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/ben-aryeh-on-mishneh-torah-paschal-offering.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/ben-aryeh-on-mishneh-torah-paschal-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -226,8 +227,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 1:1:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-1-1-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-1-1">Mishneh Torah, Paschal Offering 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִשְׁחֹט אֶת הַפֶּסַח בְּאַרְבָּעָה עָשָׂר לְחֹדֶשׁ נִיסָן אַחַר חֲצוֹת. וְאֵין שׁוֹחֲטִין אֶלָּא מִן הַכְּבָשִׂים אוֹ מִן הָעִזִּים בִּלְבַד זָכָר בֶּן שָׁנָה. וְאֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה חַיָּבִין בְּמִצְוָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משנה </strong> למלך: במצות ראי׳ לא ראיתי שיפטרו למי שדר בח&quot;ל כו׳. נ&quot;ב ע׳ ירושלמי פסחים:</p>
               </div>
             </div>
@@ -242,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 1:14:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-1-14-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-1-14">Mishneh Torah, Paschal Offering 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁחַט הַשּׁוֹחֵט וְקִבֵּל הַכֹּהֵן. נוֹתְנוֹ לַחֲבֵרוֹ וַחֲבֵרוֹ לַחֲבֵרוֹ כְּדֵי שֶׁיִּתְעַסְּקוּ רַבִּים בַּמִּצְוָה עַד שֶׁיַּגִּיעַ הַדָּם אֵצֶל כֹּהֵן הַקָּרוֹב לַמִּזְבֵּחַ. שׁוֹפְכוֹ שְׁפִיכָה אַחַת כְּנֶגֶד הַיְסוֹד וּמְקַבֵּל מִזְרָק אֶחָד מָלֵא וְאַחַר כָּךְ מַחְזִיר אֶת הָרֵיקָן. וְתוֹלִין וּמַפְשִׁיטִין אֶת כֻּלּוֹ וְקוֹרְעוֹ וּמְמַחֶה אֶת קְרָבָיו עַד שֶׁמֵּסִיר מֵהֶן הַצּוֹאָה וְהַפֶּרֶשׁ. וּמוֹצִיא אֶת הָאֵימוּרִין וְנוֹתְנָן בִּכְלִי וּמוֹלְחָן וּמַקְטִירָן הַכֹּהֵן עַל גַּבֵּי הַמִּזְבֵּחַ. וְכֵיצַד תּוֹלִין וּמַפְשִׁיטִין. מַסְמְרוֹת שֶׁל בַּרְזֶל הָיוּ קְבוּעִין בַּכְּתָלִים וּבָעַמּוּדִים שֶׁבָּהֶן תּוֹלִין וּמַפְשִׁיטִין. וְכָל מִי שֶׁלֹּא מָצָא מָקוֹם לִתְלוֹת מַקְלוֹת דַּקִּים וַחֲלָקִים הָיוּ שָׁם מַנִּיחַ עַל כְּתֵפוֹ וְעַל כֶּתֶף חֲבֵרוֹ וְתוֹלֶה וּמַפְשִׁיט:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כ&quot;מ: </strong> ומ&quot;ש ותולין כו׳ לאפוקי מר׳ ישמעאל בנו של ר&quot;י בן ברוקא דאמר בתוספתא פ&quot;ד י&quot;ד כו׳. נ&quot;ב והובא בשבת דף קט&quot;ז ע&quot;ב:</p>
               </div>
             </div>
@@ -259,8 +270,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 5:9:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-5-9-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-5-9">Mishneh Torah, Paschal Offering 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיָה בֵּינוֹ וּבֵין יְרוּשָׁלַיִם יוֹם אַרְבָּעָה עָשָׂר עִם עֲלִיַּת הַשָּׁמֶשׁ חֲמִשָּׁה עָשָׂר מִיל אוֹ יֶתֶר הֲרֵי זֶה דֶּרֶךְ רְחוֹקָה. הָיָה בֵּינוֹ וּבֵינָהּ פָּחוֹת מִזֶּה אֵינוֹ בְּדֶרֶךְ רְחוֹקָה מִפְּנֵי שֶׁהוּא יָכוֹל לְהַגִּיעַ לִירוּשָׁלַיִם אַחַר חֲצוֹת כְּשֶׁיְּהַלֵּךְ בְּרַגְלָיו בְּנַחַת. הָלַךְ וְלֹא הִגִּיעַ מִפְּנֵי שֶׁעִכְּבוּהוּ הַבְּהֵמוֹת בְּדָחֳקָם. אוֹ שֶׁהָיָה בִּירוּשָׁלַיִם וְהָיָה חוֹלֶה בְּרַגְלָיו וְלֹא הִגִּיעַ לָעֲזָרָה עַד שֶׁעָבַר זְמַן הַקָּרְבָּן. הֲרֵי זֶה אָנוּס וְאֵינוֹ בְּדֶרֶךְ רְחוֹקָה. מִי שֶׁהָיָה חָבוּשׁ חוּץ לְחוֹמַת יְרוּשָׁלַיִם וְהִבְטִיחוּהוּ לָצֵאת לָעֶרֶב. שׁוֹחֲטִין עָלָיו וּכְשֶׁיֵּצֵא לָעֶרֶב יֹאכַל. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁהָיָה חָבוּשׁ בְּיַד יִשְׂרָאֵל. אֲבָל אִם הָיָה חָבוּשׁ בְּיַד עַכּוּ&quot;ם אֵין שׁוֹחֲטִין עָלָיו עַד שֶׁיֵּצֵא. וְאִם שָׁחֲטוּ עָלָיו וְיָצָא הֲרֵי זֶה אוֹכֵל. וְאִם לֹא יָצָא פָּטוּר מִלַּעֲשׂוֹת פֶּסַח שֵׁנִי שֶׁהֲרֵי נִשְׁחַט עָלָיו. וְכֵן הָאוֹנֵן וְהַחוֹלֶה וְהַזָּקֵן שֶׁהֵם יְכוֹלִין לֶאֱכל שֶׁשָּׁחֲטוּ עֲלֵיהֶן וְאַחַר שֶׁנִּזְרַק הַדָּם נִטְמְאוּ בְּמֵת וַהֲרֵי אֵינָן יְכוֹלִין לֶאֱכל. הֲרֵי אֵלּוּ פְּטוּרִין מִלַּעֲשׂוֹת פֶּסַח שֵׁנִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כ&quot;מ: </strong> שאינו יכול לכנוס בשעת אכילה ופסק כעולא. נ&quot;ב צ&quot;ל בשעת שחיטה ופסק כעולא:</p>
               </div>
             </div>
@@ -276,8 +292,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 6:2:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-6-2-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-6-2">Mishneh Torah, Paschal Offering 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טְמֵא מֵת שֶׁחָל שְׁבִיעִי שֶׁלּוֹ לִהְיוֹת בְּאַרְבָּעָה עָשָׂר אַף עַל פִּי שֶׁטָּבַל וְהֻזָּה עָלָיו וַהֲרֵי הוּא רָאוּי לֶאֱכל קָדָשִׁים לָעֶרֶב. אֵין שׁוֹחֲטִין עָלָיו אֶלָּא נִדְחֶה לְפֶסַח שֵׁנִי. שֶׁנֶּאֱמַר <span class="source-small">(במדבר ט ו)</span> &quot;וַיְהִי אֲנָשִׁים אֲשֶׁר הָיוּ טְמֵאִים לְנֶפֶשׁ אָדָם וְלֹא יָכְלוּ לַעֲשֹׂת הַפֶּסַח בַּיּוֹם הַהוּא&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁשְּׁבִיעִי שֶׁלָּהֶן הָיָה וְעַל זֶה שָׁאֲלוּ אִם יִשָּׁחֵט עֲלֵיהֶן וְהֵם יֹאכְלוּ לָעֶרֶב וּפֵרֵשׁ לָהֶן שֶׁאֵין שׁוֹחֲטִין עֲלֵיהֶן. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁנִּטְמָא בְּטֻמְאוֹת מִן הַמֵּת שֶׁהַנָּזִיר מְגַלֵּחַ עֲלֵיהֶן אֲבָל אִם הָיָה טָמֵא בִּשְׁאָר טֻמְאוֹת מִן הַמֵּת שֶׁאֵין הַנָּזִיר מְגַלֵּחַ עֲלֵיהֶן. שׁוֹחֲטִין עָלָיו בַּשְּׁבִיעִי שֶׁלּוֹ אַחַר שֶׁיִּטְבּל וְיַזֶּה עָלָיו וּכְשֶׁיַּעֲרִיב שִׁמְשׁוֹ אוֹכֵל פִּסְחוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהשגת </strong> הראב&quot;ד: לא מצאתי לזה שורש אף אם כו׳. נ&quot;ב ע׳ נזיר דף י&quot;א ע&quot;א וכרבי שם ע&quot;ש [ונ&quot;ל שצ&quot;ל דף י&quot;ח ע&quot;א]:</p>
               </div>
             </div>
@@ -292,8 +313,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 6:2:2</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-6-2-2" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 6:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-6-2">Mishneh Torah, Paschal Offering 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">טְמֵא מֵת שֶׁחָל שְׁבִיעִי שֶׁלּוֹ לִהְיוֹת בְּאַרְבָּעָה עָשָׂר אַף עַל פִּי שֶׁטָּבַל וְהֻזָּה עָלָיו וַהֲרֵי הוּא רָאוּי לֶאֱכל קָדָשִׁים לָעֶרֶב. אֵין שׁוֹחֲטִין עָלָיו אֶלָּא נִדְחֶה לְפֶסַח שֵׁנִי. שֶׁנֶּאֱמַר <span class="source-small">(במדבר ט ו)</span> &quot;וַיְהִי אֲנָשִׁים אֲשֶׁר הָיוּ טְמֵאִים לְנֶפֶשׁ אָדָם וְלֹא יָכְלוּ לַעֲשֹׂת הַפֶּסַח בַּיּוֹם הַהוּא&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁשְּׁבִיעִי שֶׁלָּהֶן הָיָה וְעַל זֶה שָׁאֲלוּ אִם יִשָּׁחֵט עֲלֵיהֶן וְהֵם יֹאכְלוּ לָעֶרֶב וּפֵרֵשׁ לָהֶן שֶׁאֵין שׁוֹחֲטִין עֲלֵיהֶן. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁנִּטְמָא בְּטֻמְאוֹת מִן הַמֵּת שֶׁהַנָּזִיר מְגַלֵּחַ עֲלֵיהֶן אֲבָל אִם הָיָה טָמֵא בִּשְׁאָר טֻמְאוֹת מִן הַמֵּת שֶׁאֵין הַנָּזִיר מְגַלֵּחַ עֲלֵיהֶן. שׁוֹחֲטִין עָלָיו בַּשְּׁבִיעִי שֶׁלּוֹ אַחַר שֶׁיִּטְבּל וְיַזֶּה עָלָיו וּכְשֶׁיַּעֲרִיב שִׁמְשׁוֹ אוֹכֵל פִּסְחוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כ&quot;מ: </strong> ועוד שהרי בספרי מפורש כדברי רבינו כו׳. נ&quot;ב מלשון הספרי אין ראי׳ דאיכא לפרושי הבשר יאכל לטהורים לשאר מנויים טהורים וע׳ זית רענן שם [על הילקוט בהעלותך על פסוק למה נגרע]:</p>
               </div>
             </div>
@@ -309,8 +335,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 7:1:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-7-1-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-7-1">Mishneh Torah, Paschal Offering 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רַבִים שֶׁהָיוּ טְמֵאֵי מֵת בְּפֶסַח רִאשׁוֹן אִם הָיוּ מִעוּט הַקָּהָל הֲרֵי אֵלּוּ נִדְחִין לְפֶסַח שֵׁנִי כִּשְׁאָר הַטְּמֵאִים. אֲבָל אִם הָיוּ רֹב הַקָּהָל טְמֵאֵי מֵת אוֹ שֶׁהָיוּ הַכֹּהֲנִים אוֹ כְּלֵי שָׁרֵת טְמֵאִים טֻמְאַת מֵת אֵינָן נִדְחִין. אֶלָּא יַקְרִיבוּ כֻּלָּן הַפֶּסַח בְּטֻמְאָה הַטְּמֵאִים עִם טְהוֹרִים. שֶׁנֶּאֱמַר <span class="source-small">(במדבר ט ו)</span> &quot;וַיְהִי אֲנָשִׁים אֲשֶׁר הָיוּ טְמֵאִים לְנֶפֶשׁ אָדָם&quot; יְחִידִים נִדְחִים וְאֵין הַצִּבּוּר נִדְחֶה. וְדָבָר זֶה בְּטֻמְאַת הַמֵּת בִּלְבַד כְּמוֹ שֶׁבֵּאַרְנוּ בְּבִיאַת הַמִּקְדָּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לחם </strong> משנה: בסוף הדיבור אלא טמאי מת בלבד וצ&quot;ע. נ&quot;ב וע׳ זבחים כ&quot;ב ע&quot;ב וסברת הרמב&quot;ם נראה לכאורה היפך מסברת ר&quot;ת בתו׳ שם בהג&quot;ה בשם ר&quot;ת ע&quot;ש וצ&quot;ע. וראי׳ לסברת הרמב&quot;ם דאכילה קיל מעסק וכניסה לעזרה דהא גבי זבים ומצורעים אינם חייבים באכילה כרת ובכניסה לעזרה חייבים כרת וכרבנן [פסחים צ&quot;ה ב׳ וכמ&quot;ש הרמב&quot;ם הל׳ ביאת מקדש פ&quot;ד ה׳ י&quot;ב לענין כניסה ולענין אכילה פ&quot;ז מה׳ קרבן פסח ה׳ ח׳]:</p>
               </div>
             </div>
@@ -325,8 +356,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 7:6:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-7-6-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 7:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-7-6">Mishneh Torah, Paschal Offering 7:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ שְׁלִישׁ הַקָּהָל טְהוֹרִים וּשְׁלִישׁ זָבִים וְכַיּוֹצֵא בָּהֶם וּשְׁלִישׁ טְמֵאֵי מֵת אוֹתָן טְמֵאֵי מֵת אֵין עוֹשִׂין אֶת הָרִאשׁוֹן וְלֹא אֶת הַשֵּׁנִי. אֵינָן עוֹשִׂין רִאשׁוֹן שֶׁהֲרֵי הֵן מֻעָטִים לְגַבֵּי טְהוֹרִים עִם הַזָּבִים. וּבַשֵּׁנִי לֹא יַעֲשׂוּ שֶׁהֲרֵי מִעוּט עָשׂוּ בָּרִאשׁוֹן כְּמוֹ שֶׁבֵּאַרְנוּ. כֵּיצַד מְשַׁעֲרִים הַפֶּסַח לֵידַע אִם רֹב הַקָּהָל טְמֵאִים אוֹ טְהוֹרִים. אֵין מְשַׁעֲרִין בְּכָל הָאוֹכְלִין שֶׁאֶפְשָׁר שֶׁיִּהְיוּ עֶשְׂרִים נִמְנִין עַל פֶּסַח אֶחָד וּמְשַׁלְּחִין אוֹתוֹ בְּיַד אֶחָד לִשְׁחֹט עֲלֵיהֶן אֶלָּא מְשַׁעֲרִין בְּכָל הַנִּכְנָסִים לָעֲזָרָה וְעַד שֶׁהֵן מִבַּחוּץ קֹדֶם שֶׁתִּכָּנֵס כַּת הָרִאשׁוֹנָה מְשַׁעֲרִין אוֹתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[בירושלמי] </strong> הוריות פ&quot;א ה&quot;ב אמר ריב&quot;ל לראייה הלכו מלבוא חמת עד נחל מצרים כו׳ ע&quot;ש ופי׳ לראייה למצות ראי׳. וכמ&quot;ש התוס׳ [פסחים שם ג׳ ע&quot;ב] ודלא כמו שהגיהו שם בעל שדה יהושע בהוריות. ובעל קרבן עדה בפסחים להוראה ע&quot;ש דליתא דלהוראה כבר איתא שם לעיל ע&quot;ש ואף שבתלמודא דידן בהוריות דף ג׳ ע&quot;א יליף רב אסי מהאי קרא להוראה ע&quot;ש מ&quot;מ הירושלמי יליף מהאי קרא כפשטא דלראייה אינו חייב אלא היושב בא&quot;י:</p>
               </div>
             </div>
@@ -342,8 +378,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 9:7:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-9-7-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 9:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-9-7">Mishneh Torah, Paschal Offering 9:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּאֲכִיל כְּזַיִת מִן הַפֶּסַח בֵּין מִפֶּסַח רִאשׁוֹן בֵּין מִפֶּסַח שֵׁנִי לְמוּמָר לַעֲבוֹדָה זָרָה אוֹ לְגֵר תּוֹשָׁב אוֹ לְשָׂכִיר. הֲרֵי זֶה עוֹבֵר בְּלֹא תַּעֲשֶׂה וְאֵינוֹ לוֹקֶה אֲבָל מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת. וּ <span class="source-small">(שמות יב מג)</span> &quot;בֶן נֵכָר&quot; הָאָמוּר בַּתּוֹרָה זֶה הָעוֹבֵד אֵל נֵכָר. וְאֵין מַאֲכִילִין מִמֶּנּוּ לְנָכְרִי אֲפִלּוּ גֵּר תּוֹשָׁב אוֹ שָׂכִיר שֶׁנֶּאֱמַר <span class="source-small">(שמות יב מה)</span> &quot;תּוֹשָׁב וְשָׂכִיר לֹא יֹאכַל בּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לחם </strong> משנה: פסק רבינו ז&quot;ל כר׳ יוסי דכתב שם. נ&quot;ב צ&quot;ל כר׳ אליעזר דכתב שם:</p>
               </div>
             </div>
@@ -359,8 +400,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Ben Aryeh on Mishneh Torah, Paschal Offering 10:6:1</h4></div>
               <a class="anchor" href="#ben-aryeh-on-mishneh-torah-paschal-offering-10-6-1" aria-label="Copy link to Ben Aryeh on Mishneh Torah, Paschal Offering 10:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-10-6">Mishneh Torah, Paschal Offering 10:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פֶּסַח שֶׁהוּא נָא אוֹ מְבֻשָּׁל וְשָׁבַר בּוֹ אֶת הָעֶצֶם לוֹקֶה. אֲפִלּוּ נִפְסַל בְּטֻמְאָה וִיצִיאָה וְכַיּוֹצֵא בָּהֶם יֵשׁ בּוֹ אִסּוּר שְׁבִירַת הָעֶצֶם. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁהָיְתָה לוֹ שְׁעַת הַכּשֶׁר וְנִפְסַל. אֲבָל אִם לֹא הָיְתָה לוֹ שְׁעַת הַכּשֶׁר כְּגוֹן שֶׁנִּתְפַּגֵּל אוֹ נַעֲשָׂה מַחֲשֶׁבֶת זְמַן אוֹ מַחֲשֶׁבֶת שִׁנּוּי הַשֵּׁם. אֵין בּוֹ מִשּׁוּם שְׁבִירַת הָעֶצֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>או נעשה מחשבת זמן. </strong> נ&quot;ב צ&quot;ל מקום [דמחשבת זמן היינו פיגול]:</p>
               </div>
             </div>
@@ -370,6 +416,10 @@
               <a href="#chapter-ben-aryeh-on-mishneh-torah-paschal-offering-text-10">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ben-aryeh-on-mishneh-torah-paschal-offering.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/ben-aryeh-on-mishneh-torah-paschal-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -390,8 +440,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/ben-aryeh-on-mishneh-torah-paschal-offering.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/ben-aryeh-on-mishneh-torah-paschal-offering.manifest.json","occurrence_url":"../../data/lexical/occurrences/ben-aryeh-on-mishneh-torah-paschal-offering.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ben-aryeh-on-mishneh-torah-paschal-offering.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/ben-aryeh-on-mishneh-torah-paschal-offering.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/ben-aryeh-on-mishneh-torah-paschal-offering.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -417,7 +467,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

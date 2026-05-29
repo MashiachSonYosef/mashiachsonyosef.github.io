@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-reading-the-shema/">Open Mishneh Torah, Reading the Shema</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Reading the Shema</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">15 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>464 matched</strong> / 1025 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -220,8 +221,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 1:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-1">Mishneh Torah, Reading the Shema 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פַּעֲמַיִם בְּכָל יוֹם קוֹרְאִין קְרִיאַת שְׁמַע, בָּעֶרֶב וּבַבֹּקֶר. שֶׁנֶּאֱמַר <span class="source-small">(דברים ו ז)</span> ״וּבְשָׁכְבְּךָ וּבְקוּמֶךָ״ בְּשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם שׁוֹכְבִין וְזֶה הוּא לַיְלָה. וּבְשָׁעָה שֶׁדֶּרֶךְ בְּנֵי אָדָם עוֹמְדִין וְזֶה הוּא יוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה יז </strong> לקרות קריאת שמע פעמים בכל יום בערב ובבוקר שנאמר בשכבך ובקומך וזהו בשעה שבני אדם שוכבים והוא לילה ובשעה שבני אדם עומדים והוא יום. ומהו קורא שלשה פרשיות אלו שמע והיה אם שמוע דכתיב בהו בשכבך ובקומך וויאמר. ומקדימין שמע שיש בה יחוד ה׳ ואהבתו ותלמודו שהוא העיקר הגדול ואחריה והיה אם שמוע שיש בה ציווי על זכירת שאר כל המצות ואח&quot;כ פרשת ציצית שגם היא יש בה ציווי על זכירת כל המצות. ומדאוריתא כיון שקרא פסוק ראשון שמע ישראל ה׳ אלהינו ה׳ אחד יצא ידי חובתו והוא שכיון בו דכתיב שמע וכתיב הסכת ושמע ישראל מה להלן בכוונה דכתיב הסכת הכא נמי בכוונה ונראה דאפילו הכי בקריאת כל הג׳ פרשיות מקיים מצוה מדאוריתא אף על גב דבפסוק ראשון נפטר מידי דהוה אקריאת התורה דנפטר בקביעת איזו שעה ביום ובלילה שנאמר והגית בו יומם ולילה ורבי יוחנן אמר אפילו לא קרא אלא קרית שמע שחרית וערבית קיים מצות לא ימוש וגו׳ ואפילו הכי אם לומד כל היום והלילה הוא מקיים מצות תלמוד תורה מדאוריתא הכי נמי הכא אף על גב דנפטר מידי חובת קרית שמע בפסוק ראשון כשקורא כל הג׳ פרשיות הוא מקיים מצוה דאוריתא ולהכי אמרינן בגמרא קרית שמע דאוריתא פוסק בין פרק לפרק הלל מיבעיא משמע דכל הג׳ פרקים הוו כדאוריתא כיון דמקיים מצוה דאוריתא בקריאתם דאי לאו הכי אלא דאינו מקיים בקריאתם כי אם מצות דרבנן היכי קאמר ק&quot;ש דאוריתא פוסק הלא כבר קרא פסוק ראשון שהוא מדאוריתא והשאר מדרבנן אלא ודאי כדכתיבנא.</p>
               </div>
             </div>
@@ -236,8 +242,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 1:3:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-1-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-3">Mishneh Torah, Reading the Shema 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁאֵין מִצְוַת צִיצִית נוֹהֶגֶת בַּלַּיְלָה קוֹרְאִין אוֹתָהּ בַּלַּיְלָה מִפְּנֵי שֶׁיֵּשׁ בָּהּ זִכְרוֹן יְצִיאַת מִצְרַיִם וּמִצְוָה לְהַזְכִּיר יְצִיאַת מִצְרַיִם בַּיּוֹם וּבַלַּיְלָה שֶׁנֶּאֱמַר <span class="source-small">(דברים טז ג)</span> ״לְמַעַן תִּזְכֹּר אֶת יוֹם צֵאתְךָ מֵאֶרֶץ מִצְרַיִם כּל יְמֵי חַיֶּיךָ״. וּקְרִיאַת שָׁלֹשׁ פָּרָשִׁיּוֹת אֵלּוּ עַל סֵדֶר זֶה הִיא הַנִּקְרֵאת קְרִיאַת שְׁמַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ </strong> שאין מצות ציצית נוהגת בלילה קוראין אותה בלילה מפני שיש בה זכרון יציאת מצרים ומצוה להזכיר יציאת מצרים ביום ובלילה שנאמר למען תזכור את יום צאתך מארץ מצרים כל ימי חייך ואם לא קרא פרשת ציצית אז אמת ויציב הוא מדאוריתא משום זכרון יציאת מצרים.</p>
               </div>
             </div>
@@ -252,8 +263,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 1:9:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-9">Mishneh Torah, Reading the Shema 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵיזֶה הוּא זְמַן קְרִיאַת שְׁמַע בַּלַּיְלָה. מִצְוָתָהּ מִשְּׁעַת יְצִיאַת הַכּוֹכָבִים עַד חֲצִי הַלַּיְלָה. וְאִם עָבַר וְאִחֵר וְקָרָא עַד שֶׁלֹּא עָלָה עַמּוּד הַשַּׁחַר יָצָא יְדֵי חוֹבָתוֹ שֶׁלֹּא אָמְרוּ עַד חֲצוֹת אֶלָּא כְּדֵי לְהַרְחִיק אָדָם מִן הַפְּשִׁיעָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זמן </strong> קרית שמע בלילה מצותה משעת יציאת הכוכבים דהיינו לילה דכתיב גבי תרומה ובא השמש וטהר והיינו ביאת אורו לגמרי כדדרשינן בגמרא טהר יומא והיינו תחילת צאת הכוכבים ואף על פי שאין ראיה לדבר שהיום כלה בצאת הכוכבים זכר לדבר דכתיב ואנחנו עושים במלאכה וגו׳ מעלות השחר ועד צאת הכוכבים וכתיב והיה לנו הלילה משמר והיום מלאכה משמע דביום בלחוד הוא דעבד מלאכה וקאמר עד צאת הכוכבים וזמנה כל הלילה דכתיב בשכבך והיינו כל זמן שבני אדם שוכבים וכדי להרחיק מן העבירה אמרו חכמים עד חצות.</p>
               </div>
             </div>
@@ -268,8 +284,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 1:11:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-1-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 1:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-1-11">Mishneh Torah, Reading the Shema 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זֶה הוּא זְמַנָּה בַּיּוֹם. מִצְוָתָהּ שֶׁיַּתְחִיל לִקְרוֹת קֹדֶם הָנֵץ הַחַמָּה כְּדֵי שֶׁיִּגְמֹר לִקְרוֹת וּלְבָרֵךְ בְּרָכָה אַחֲרוֹנָה עִם הָנֵץ הַחַמָּה. וְשִׁעוּר זֶה כְּמוֹ [עִשּׂוּר] שָׁעָה קֹדֶם שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ. וְאִם אִחֵר וְקָרָא קְרִיאַת שְׁמַע אַחַר שֶׁתַּעֲלֶה הַשֶּׁמֶשׁ יָצָא יְדֵי חוֹבָתוֹ שֶׁעוֹנָתָהּ עַד סוֹף שָׁלֹשׁ שָׁעוֹת בַּיּוֹם לְמִי שֶׁעָבַר וְאִחֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;span class=&quot;&quot;&gt;קרית שמע ביום מצותה עם הנץ החמה דאע&quot;ג דמשעלה עמוד השחר הוי יום כדכתיב מעלות השחר וגו׳ אפילו הכי דברים שמצותן ביום עיקר זמנם בהנץ החמה דקודם הנץ החמה אע&quot;ג דעלה עמוד השחר נראה לילה כיון דאכתי מיחזו כוכבים ואפילו הכי אם קרא משעלה עמוד השחר מיד קרית שמע של שחרית יצא ואם איחר וקרא קרית שמע אחר שתעלה השמש יצא ידי חובתו שעונתו עד סוף ג׳ שעות ביום למי שעבר ואיחר משום דבקומך דרשינן כל זמן שבני אדם קמים ממטותיהם ומלכים דרכם לעמוד בג׳ שעות ונראה דאע&quot;ג דבשכבך דרשי רבנן כל זמן שבני אדם שוכבים במטותיהם דהיינו כל הלילה היינו משום דלא מצו למידרש בשכבך כל זמן שהולכים לשכב כרבי אליעזר דאין זמן קבוע לזה שאין כלם שוכבים בשעה אחד דיש מאחרים עד חצות או יותר כדמשמע בגמרא אבל בזמן הקימה מן המטה כלם קמים בשעה אחד דהיינו עד הנץ החמה ולהכי דרשינן ובקומך זמן שעומדים ממטותיהם ולא בזמן שהם עומדים דהיינו כל היום דא&quot;כ לימא קרא בלילה וביום ומדלא קאמר הכי נראה דזמן שכיבה וקימה מן המטה קאמר ומשום דבשכיבה לא אית בה זמן קבוע כדפי׳ דרשי׳ כל זמן ששוכבים במטותיהם דהיינו כל הלילה אבל בבקר דזמן קימה הוא קבוע לכולי עלמא שמתחילים לקום באור הבקר עד הנץ החמה דרשינן בקומך כל זמן שבני אדם קמים מן המטה דהיינו הנץ החמה דזהו עיקר זמן קריאתה ואם איחר עד ג׳ שעות יצא דאכתי הויא זמן קימה למלכים ומשום דהוו מיעוטה דמיעוטה הוי עיקר מצותה בהנץ החמה דהוי קימה לכל העולם והוא עובר אם מאחרה מהנץ החמה מה שאין כן בזמן השכיבה דאף על גב דמצותה מצאת הכוכבים לא הוי עובר מי שלא קראה מיד אלא עד שעבר חצות הלילה:&lt;/span&gt;</p>
               </div>
             </div>
@@ -285,8 +306,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 2:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-1">Mishneh Torah, Reading the Shema 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא אֶת שְׁמַע וְלֹא כִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן שֶׁהוּא <span class="source-small">(דברים ו ד)</span> ״שְׁמַע יִשְׂרָאֵל״ לֹא יָצָא יְדֵי חוֹבָתוֹ וְהַשְּׁאָר אִם לֹא כִּוֵּן לִבּוֹ יָצָא. אֲפִלּוּ הָיָה קוֹרֵא בַּתּוֹרָה כְּדַרְכּוֹ אוֹ מַגִּיהַּ אֶת הַפָּרָשִׁיּוֹת הָאֵלּוּ בְּעוֹנַת קְרִיאָה יָצָא וְהוּא שֶׁכִּוֵּן לִבּוֹ בְּפָסוּק רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקורא </strong> את שמע ולא כיון בפסוק ראשון לא יצא דכתיב שמע וכתיב הסכת ושמע כדלעיל. כל אדם קוראים כדרכם בין עומדים בין מהלכין בין שוכבים בין רוכבים על גבי בהמה דכתיב בשבתך בביתך ובלכתך בדרך בשכבך ובקומך דמשמע כל אדם קורין כדרכם בין בקימה בין בשכיבה בין בישיבה בין בהליכה. ישן מצערין אותו בפסוק ראשון דצריך כוונה כדאמר.</p>
               </div>
             </div>
@@ -301,8 +327,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 2:4:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-2-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-4">Mishneh Torah, Reading the Shema 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיָה עוֹסֵק בִּמְלָאכָה מַפְסִיק עַד שֶׁיִּקְרָא פָּרָשָׁה רִאשׁוֹנָה כֻּלָּהּ. וְכֵן הָאֻמָּנִין בְּטֵלִין מִמְּלַאכְתָּן בְּפָרָשָׁה רִאשׁוֹנָה כְּדֵי שֶׁלֹּא תְּהֵא קְרִיאָתָן עַרְאַי, וְהַשְּׁאָר קוֹרֵא הוּא כְּדַרְכּוֹ וְעוֹסֵק בִּמְלַאכְתּוֹ. אֲפִלּוּ הָיָה עוֹמֵד בְּרֹאשׁ הָאִילָן אוֹ בְּרֹאשׁ הַכֹּתֶל קוֹרֵא בִּמְקוֹמוֹ וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה </strong> עוסק בתלמוד תורה והגיע זמן המקרא פוסק וקורא דזמנה דאוריתא דכתיב בשכבך ובקומך. היה עוסק בצרכי רבים לא יפסוק אלא יגמור עסקיהן ואח&quot;כ יקרא אם נשאר עת לקרות דבלכתך בדרך כתיב דהיינו לכת דידך דהוי רשות אבל דמצוה שהיא עוברת כגון צרכי רבים לא יפסוק לקרות וממילא משמע דרשה דלעיל דקורים כדרכם שנאמר בלכתך וכו׳ לבית הלל. היה עוסק באכילה או שהיה במרחץ או שהיה עוסק בתספורת או מהפך בעורות או שהיה עוסק בדין גומר ואח&quot;כ קורא דאע&quot;ג דבעוסק בתורה פוסק מיד כשהגיע זמן קרית שמע היינו משום דמיד אחר קריאתה יכול לחזור לתלמוד תורה אבל הכא דצריך לגמור המלאכה או מה שהתחיל לעשות ואולי שלא ימצא גומרה ואח&quot;כ קורא ואם בידוע שאינו גומר עד שיעבור זמן קרית שמע פוסק מיד משום דהוי זמנה מדאוריתא כדלעיל.</p>
               </div>
             </div>
@@ -317,8 +348,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 2:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-8">Mishneh Torah, Reading the Shema 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַקּוֹרֵא קְרִיאַת שְׁמַע לֹא יִרְמֹז בְּעֵינָיו וְלֹא יִקְרֹץ בִּשְׂפָתָיו וְלֹא יַרְאֶה בְּאֶצְבְּעוֹתָיו כְּדֵי שֶׁלֹּא תִּהְיֶה קְרִיאָתוֹ עַרְאַי. וְאִם עָשָׂה כֵּן אַף עַל פִּי שֶׁיָּצָא יְדֵי חוֹבָתוֹ הֲרֵי זֶה מְגֻנֶּה. וְצָרִיךְ לְהַשְׁמִיעַ לְאָזְנוֹ כְּשֶׁהוּא קוֹרֵא וְאִם לֹא הִשְׁמִיעַ לְאָזְנוֹ יָצָא. וְצָרִיךְ לְדַקְדֵּק בְּאוֹתִיּוֹתָיו וְאִם לֹא דִּקְדֵּק יָצָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם </strong> לא השמיע לאזנו יצא דכתיב אשר אנכי מצוך היום על לבבך ואחר כוונת הלב הן הן הדברים אפילו שלא השמיעם לאזנו וצריך שידקדק באותיותיה דכתיב ולמדתם שיהא לימודך תם שיתן ריוח בין הדבקים ונראה דהוי אסמכתא בעלמא ואם לא דקדק יצא.</p>
               </div>
             </div>
@@ -333,8 +369,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 2:10:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-2-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-10">Mishneh Torah, Reading the Shema 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קוֹרֵא אָדָם אֶת שְׁמַע בְּכָל לָשׁוֹן שֶׁיִּהְיֶה מְבִינָהּ. וְהַקּוֹרֵא בְּכָל לָשׁוֹן צָרִיךְ לְהִזָּהֵר מִדִּבְרֵי שִׁבּוּשׁ שֶׁבְּאוֹתוֹ הַלָּשׁוֹן וּמְדַקְדֵּק בְּאוֹתוֹ הַלָּשׁוֹן כְּמוֹ שֶׁמְּדַקְדֵּק בִּלְשׁוֹן הַקֹּדֶשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קורא </strong> אדם את שמע בכל לשון שהוא מבינה דאמר קרא שמע בכל לשון שאתה שומע. הקורא למפרע לא יצא דכתיב והיו הדברים וגו׳ ודרשי׳ בהויתן יהא. קרא פסוק ראשון והוא מתנמנם לא יצא דבעי כוונת הלב כדלעיל.</p>
               </div>
             </div>
@@ -349,8 +390,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 2:13:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-2-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-13">Mishneh Torah, Reading the Shema 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סָפֵק קָרָא קְרִיאַת שְׁמַע סָפֵק לֹא קָרָא חוֹזֵר וְקוֹרֵא וּמְבָרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ. אֲבָל אִם יָדַע שֶׁקָּרָא וְנִסְתַּפֵּק לוֹ אִם בֵּרֵךְ לְפָנֶיהָ וּלְאַחֲרֶיהָ אוֹ לֹא בֵּרֵךְ אֵינוֹ חוֹזֵר וּמְבָרֵךְ. קָרָא וְטָעָה יַחֲזֹר לַמָּקוֹם שֶׁטָּעָה. נֶעֱלַם מִמֶּנּוּ בֵּין פָּרָשָׁה לְפָרָשָׁה וְאֵינוֹ יוֹדֵעַ אֵי זוֹ פָּרָשָׁה הִשְׁלִים וְאֵי זוֹ צָרִיךְ לְהַתְחִיל חוֹזֵר לְפָרָשָׁה רִאשׁוֹנָה שֶׁהוּא <span class="source-small">(דברים ו ה)</span> ״וְאָהַבְתָּ אֵת יְיָ׳‎ אֱלֹהֶיךָ״ וְגוֹ׳‎:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ספק </strong> קרא קרית שמע ספק לא קרא צריך לחזור ולקרות משום דהוי דאוריתא וספקא דאוריתא לחומרא.</p>
               </div>
             </div>
@@ -365,8 +411,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 2:15:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-2-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 2:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-2-15">Mishneh Torah, Reading the Shema 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה קוֹרֵא וּפָגַע בַּאֲחֵרִים אוֹ פָּגְעוּ בּוֹ אֲחֵרִים. אִם הָיָה בֵּין פֶּרֶק לְפֶרֶק פּוֹסֵק וּמַתְחִיל וְשׁוֹאֵל שְׁלוֹם מִי שֶׁהוּא חַיָּב בִּכְבוֹדוֹ כְּגוֹן שֶׁפָּגַע בְּאָבִיו אוֹ רַבּוֹ אוֹ מִי שֶׁהוּא גָּדוֹל מִמֶּנּוּ בְּחָכְמָה. וּמֵשִׁיב שָׁלוֹם לְכָל אָדָם שֶׁנָּתַן לוֹ שָׁלוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בקרית </strong> שמע אפילו באמצע הפרק שואל מפני היראה ומשיב מפני הכבוד דכתיב ודברת בם ודרשי׳ בם אתה שואל מפני היראה ומשיב מפני הכבוד ולא בתפלה ונראה דבפסוק אחד אינו פוסק אפילו מפני היראה והכבוד דהאי דרשא דדברת בם גו׳ דהויא אסמכתא בעלמא וכדאמר בין אלהיכם לאמת לא יפסיק (אפילו) כדין אמצע הפרק ולא גרע פסוק ראשון דהוי מדאוריתא מאלהיכם אמת:</p>
               </div>
             </div>
@@ -382,8 +433,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 3:2:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-3-2-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-2">Mishneh Torah, Reading the Shema 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין קוֹרִין לֹא בְּבֵית הַמֶּרְחָץ וְלֹא בְּבֵית הַכִּסֵּא אַף עַל פִּי שֶׁאֵין בּוֹ צוֹאָה וְלֹא בְּבֵית הַקְּבָרוֹת וְלֹא בְּצַד הַמֵּת עַצְמוֹ וְאִם הִרְחִיק אַרְבַּע אַמּוֹת מִן הַקֶּבֶר אוֹ מִן הַמֵּת מֻתָּר לִקְרוֹת. וְכָל מִי שֶׁקָּרָא בְּמָקוֹם שֶׁאֵין קוֹרִין בּוֹ חוֹזֵר וְקוֹרֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> קורין בבית הכסא ולא בבית המרחץ וכל מקום שיש בו טנופת משום דכתיב והיה מחניך קדוש והיינו בזמן שעוסק בדברי תורה וק&quot;ש היינו דברי תורה וכל מי שקורא במקום שאין קורין בו חוזר וקורא כיון דהוא חיובא מדאוריתא ולא קרית שמע בלבד אלא כל ענין שהוא מדברי הקדש אסור לאומרו בבית המרחץ ובבית הכסא ואפילו אמרו בלשון חול דבמידי דקדושא בעינן מחניך קדוש ולא לאומרו בלבד אלא אפילו להרהר בלבו בדברי תורה בבית הכסא ובבית המרחץ ובמקום הטינופת והוא המקום שיש בו צואה ומי רגלים אסור דכתיב והיה מחניך קדוש ולא כתיב ביה דבר אלא מקום חניתך תהא בקדושה משום דישראל מהרהרין תמיד בדברי תורה ואף על גב דהלכתא דהרהור לאו כדיבור אפילו הכי בעינן קדושה להרהור נמי כדאמר. שמות המיוחדין והן השמות שאינם נמחקים אסור להזכירם במקום הטינופת דבעינן מחניך קדוש ואם נזדמן לו להפריש מן דבר האסור בבית הכסא ובבית המרחץ ובכל מקום מטונף מפריש ואפילו בלשון קדש ובעניני קדש דנראה דאין אסור אלא דבור בת&quot;ת במקום מטונף או הרהור כדאיתא אבל הפרשה מאיסור דלאו לימוד התורה הוא אלא מעשה יכול להפריש אפילו בלשון קדש כדאיתא ואע&quot;ג דהלכתא כר׳ יהודה דאין דברי תורה מקבלין טומאה היינו בטומאת גופו דהוי בעל קרי והוי כטומאת בית הסתרים משום דאינה נראית אבל בטומאה הנראים בעינן מחניך קדוש.</p>
               </div>
             </div>
@@ -398,8 +454,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 3:6:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-6">Mishneh Torah, Reading the Shema 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צוֹאַת הָאָדָם וְצוֹאַת כְּלָבִים וַחֲזִירִין בִּזְמַן שֶׁיֵּשׁ בְּתוֹכָן עוֹרוֹת וְכָל צוֹאָה שֶׁרֵיחָהּ רַע כְּגוֹן אֵלּוּ אָסוּר לִקְרוֹת קְרִיאַת שְׁמַע כְּנֶגְדָּן. וְכֵן כְּנֶגֶד מֵי רַגְלַיִם שֶׁל אָדָם. אֲבָל מֵי רַגְלַיִם שֶׁל בְּהֵמָה קוֹרִין כְּנֶגְדָּן. קָטָן שֶׁאֵינוֹ יָכוֹל לֶאֱכל כְּזַיִת דָּגָן בִּכְדֵי שֶׁיֹּאכַל הַגָּדוֹל כִּשְׁלֹשָׁה בֵּיצֵי דָּגָן אֵין מַרְחִיקִין לֹא מִצּוֹאָתוֹ וְלֹא מִמֵּי רַגְלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צואת </strong> האדם וצואת כלבים וחזירים בזמן שיש בתוכן עורות וכל צואה שריחה רע כגון אלו אסור לקרות קרית שמע כנגדן משום דבעינן מחניך קדוש. וכן כנגד עמוד מי רגלים של אדם דכתיב גבי צואה והיה בשבתך חוץ ושבת וכסית וגו׳ משום דלא לשתעו בדברי תורה כנגדה קאמר קרא וכסית ואלו גבי מי רגלים כתיב ויצאת שמה חוץ ולא קאמר כסוי נראה דלא אסרה תורה אלא כנגד העמוד דאח&quot;כ אפילו כנגדן לא הוה אסור מדאוריתא. קטן שאינו יכול לאכול כזית דגן בכדי אכילת ג׳ בצים לגדול אין מרחיקין מצואתו ולא ממימי רגליו שצואת מינין הללו מסרחת ובעינן מחניך קדוש מצואת מינין אלו אבל קטן שאינו יכול לאכול כזית כדי אכילת פרס אין מרחיקין ממנו. היתה צואה יבשה כחרס שאם זורקה אינה נפרכת אסור לקרות כנגדה ואם היתה יבשה יותר עד שאם זורקה תתפרך הרי היא כחרס ומותר לקרות כנגדה דהא מחנה קדוש הוי דאלו לא תתפרך לא הוי מחנה קדוש דאינה כעפר כלישנא בתרא ולחומרא בדאוריתא. כמה ירחיק אדם מצואה ומעמוד מי רגלים ד׳ אמות דהוי מחנה קדש לעצמו ואם היה כנגד פניו מרחיק עצמו עד שלא יראה אותן דכל כמה דהוו נגד עיניו לאו מחנה קדוש קרינן ביה ואם היה מקום גבוה או נמוך אפילו תוך ד׳ אמות קורא דהרי חלק רשות לעצמו ומחנה קדוש קרינן ביה וכן אם כפה כלי על הצואה אע&quot;פ שהיה עמו בבית מחנה קדוש קרינן ביה ואפילו אם היא אחר מחיצת זכוכית תוך ד׳ אמות והיא נראת מותר לקרות דהרי בכיסוי תלא רחמנא וכסית והוא מחנה קדוש כיון שיש מחיצה. היתה צואה בגומא עומד בסנדלו על הגומא דהרי היא מכוסה וקרינן ביה מחנה קדוש. היתה טיפת צואה כנגדו רוקק עליה רוק עבה כדי שתתכסה והרי היא מכוסה וקרא וכסית קאמר. גרף של רעי ועביט של מימי רגלים אסור לקרות כנגדן ואף על פי שאין בהם כלום דכיון שהם בלועים הרי הם כצואה ממש ובעינן מחנה קדוש וליכא ורבינו יונה ז&quot;ל כתב דאפילו בעביט של מימי רגלים דלא אסרה תורה אלא כנגד העמוד אסור מן התורה משום דמאיסי טפי ובעינן מחנה קדוש. צואה עוברת כגון שהיתה שטה על פני המים אסור לקרות כנגדה ופי חזיר כצואה עוברת דמי ואסור עד שיעברו מד׳ אמות דבעינן מחנה קדוש כיון דהוא הוי קבוע במקום אחד ואם היה הוא מהלך וקורא והגיע למקום הטנופת לא יניח ידו על פיו ויקרא אלא יפסיק עד שיעבור ואם לא פסק עליו הכתוב אומר כי דבר ה׳ בזה וגו׳ ונראה דהוא אסמכתא בעלמא דמדאוריתא אם הניח ידו על פיו לא היה צריך לפסוק והיינו טעמא משום דכיון דהוא אין לו מקום קבוע שהוא מהלך לא אמרינן שיהא מחנהו קדוש דאין לו מחנה מה שאין כן בצואה עוברת דבעינן מחנה קדוש וליכא. ספק צואה באשפה אסור לקרות עד שיבדוק דהוי ספקה דאוריתא.</p>
               </div>
             </div>
@@ -414,8 +475,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 3:16:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-3-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 3:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-3-16">Mishneh Torah, Reading the Shema 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁאָסוּר לִקְרוֹת כְּנֶגֶד צוֹאָה וּמֵי רַגְלַיִם עַד שֶׁיַּרְחִיק כָּךְ אָסוּר לִקְרוֹת כְּנֶגֶד הָעֶרְוָה עַד שֶׁיַּחֲזִיר פָּנָיו. אֲפִלּוּ כּוּתִי אוֹ קָטָן לֹא יִקְרָא כְּנֶגֶד עֶרְוָתָן אֲפִלּוּ מְחִצָּה שֶׁל זְכוּכִית מַפְסֶקֶת הוֹאִיל וְהוּא רוֹאֶה אוֹתָהּ אָסוּר לִקְרוֹת עַד שֶׁיַּחֲזִיר פָּנָיו. וְכָל גּוּף הָאִשָּׁה עֶרְוָה לְפִיכָךְ לֹא יִסְתַּכֵּל בְּגוּף הָאִשָּׁה כְּשֶׁהוּא קוֹרֵא וַאֲפִלּוּ אִשְׁתּוֹ. וְאִם הָיָה מְגֻלֶּה טֶפַח מִגּוּפָהּ לֹא יִקְרָא כְּנֶגְדָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשם </strong> שהוא אסור לקרות כנגד צואה כך אסור כנגד הערוה עד שיחזיר פניו דכתיב ולא יראה בך ערות דבר דהיינו בשעת תפלה ותורה ואפילו ערות גוי דגלי קרא דאע&quot;ג דבשר חמורים בשרם ערוה מיקרו דכתיב וערות אביהם לא ראו וערות קטן נמי אסור לקרות כנגדה ונראה דהיינו מדרבנן ואפילו מחיצה של זכוכית מפסקת בינו לבין הערוה אסור לקרות כנגדה דאכתי איכא ערות דבר עד שיחזיר פניו וכל גוף האשה ערוה שוק גלי קרא דהוא ערוה דכתיב גלי שוק עברי נהרות וכתיב גלה ערותך וגו׳ שער דכתיב שערך כעדר העזים ואם היה מגולה טפח מן גוף האשה שאין דרכה להיות מגולה לא יקרא כנגדה דאמר רב ששת למה מנה הכתוב תכשיטין שבחוץ דהיינו אצעדה עם תכשיטין שבפנים שהוא כומז לומר לך כל המסתכל באצבע קטנה של אשה כאלו מסתכל במקום תורפה. וכשם שאסור לקרות כנגד ערות אחרים כך הוא אסור לקרות כנגד ערות עצמו דקרא סתם קאמר ולא יראה בך ערות דבר בין ערות אחרים בין ערות עצמו ולפיכך לא יקרא ערום עד שיכסה ערותו דשאר הגוף אינו ערוה באיש. היתה חגורה של בגד או של עור או שק על מתניו עד מטה ושאר גופו ערום מותר לו לקרות ק&quot;ש דהרי אין בו ערות דבר וכל מילי דאסירי משום מחניך קדוש ומשום ערות דבר לאו דוקא בפסוק אחד דהוי דאוריתא אלא אסור בכל הפרשיות דלא גרע מתלמוד תורה:</p>
               </div>
             </div>
@@ -431,8 +497,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 4:1:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-4-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-1">Mishneh Torah, Reading the Shema 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִקְּרִיאַת שְׁמַע. וּמְלַמְּדִין אֶת הַקְּטַנִּים לִקְרוֹתָהּ בְּעוֹנָתָהּ וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ כְּדֵי לְחַנְּכָן בְּמִצְוֹת. מִי שֶׁהָיָה לִבּוֹ טָרוּד וְנֶחְפַּז לִדְבַר מִצְוָה פָּטוּר מִכָּל הַמִּצְוֹת וּמִקְּרִיאַת שְׁמַע. לְפִיכָךְ חָתָן שֶׁנָּשָׂא בְּתוּלָה פָּטוּר מִקְּרִיאַת שְׁמַע עַד שֶׁיָּבוֹא עָלֶיהָ. לְפִי שֶׁאֵין דַּעְתּוֹ פְּנוּיָה שֶׁמָּא לֹא יִמְצָא לָהּ בְּתוּלִים. וְאִם שָׁהָה עַד מוֹצָאֵי שַׁבָּת וְלֹא בָּעַל חַיָּב לִקְרוֹת מִמּוֹצָאֵי שַׁבָּת וְאֵילָךְ שֶׁהֲרֵי נִתְקָרְרָה דַּעְתּוֹ וְלִבּוֹ גַּס בָּהּ אַף עַל פִּי שֶׁלֹּא בָּעַל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים </strong> ועבדים וקטנים פטורים מקריאת שמע נשים דהוי מצות עשה שהזמן גרמא דגמרי ממצות תפילין דהוי מצות עשה שהזמן גרמא דכתיב מימים ימימה וגמר מת&quot;ת דאקשיה רחמנא דכתי׳ וקשרתם לאות וגו׳ ולמדתם מה תלמוד תורה נשים פטורות דכתיב ולמדתם אותם את בניכם ולא את בנותיכם אף תפילין נשים פטורות ומינה גמרינן כל מצות עשה שהזמן גרמא דכוות׳ ועבדים דאיתקשו לנשים וגמרי מינייהו בגזירה שוה דלה לה מאשה דבשפחה חרופה כתיב לא ניתן לה ובאשה כתיב וכתב לה וקטנים דלאו בני חיובי מצוה נינהו. מי שהיה לבו טרוד ונחפז לדבר מצוה פטור מכל המצות מקריאת שמע דתנו רבנן בשבתך בביתך פרט לעוסק במצוה ובלכתך בדרך פרט לחתן לפיכך חתן שנשא בתולה פטור מקריאת שמע עד מוצאי שבת לפי שאין דעתו פנויה אבל נושא בעולה אף על פי שהוא עוסק במצות כיון שאינו טרוד ודעתו היא פנויה חייב בקריאת שמע. מי שמת לו מת שהוא חייב להתאבל עליו פטור מקריאת שמע עד שיקברנו לפי שהוא טרוד במחשבת קבורתו והויא דומיא דחתן דפטור משום טרדה דמצוה ובירושלמי מפרש טעמא משום דכתיב למען תזכור וגו׳ כל ימי חייך ימים שאתה עוסק בחיים ולא ימים שאתה עוסק במתים ואם היה משמר את המת אף על פי שאינו מתו פטור מקריאת שמע משום דעוסק במצוה או משום קרא דמייתי בירושלמי ואם היו שנים אחד משמר ואחד קורא וחוזר האחר ונשמט וקורא וכן חופר קבר למת מהני תרי טעמי פטור. היו עסוקין בהספד נשמטין אחד אחד וקורין וחוזרין להספד ואם אין המת לפניהם כולם קורין קריאת שמע והאבל יושב ודומם שאינו חייב לקרות עד שיקבור את מתו שהוא טרוד טרדה דמצוה. קברו את המת וחזרו האבלים לקבל תנחומין אם יכולים העם להתחיל ולגמור פסוק אחד קודם שיגיעו לשורה לנחם את האבלים יתחילו ואם לאו לא יתחילו אלא ינחמו האבלים ואח&quot;כ יקראו משום דתנחומי אבלים דאוריתא דכתיב והודעת להם את הדרך וזו היא גמילת חסדים ונראה דאפילו הכי אם בשילכו לשורה לנחם לא ישאר זמן לקריאת שמע כשיפטרו מהאבלים חייבים לקרות ק&quot;ש קודם שיעבור זמנה דתנחומי אבלים היא מצוה שאינה עוברת ואם עתה לא ינחמו האבל אחר קריאת שמע ינחמנו אבל במשמר את המת וקוברו דצריך להשתדל בקבורתו מיד היא מצוה עוברת ולהכי פטור מקריאת שמע אפילו שיעבור זמנה מכל וכל והכי דייק לישנא דהרמב&quot;ם ז&quot;ל דקאמר ינחמו ואח&quot;כ יקראו מכלל דמיירי דאית זמן לנחם ולקרות דאי לאו הכי לא מדחיה ק&quot;ש מקמה ואחר שנעשו שורות לנחם הפנימיים שהם רואים פני האבל פטורים שהם המנחמים והחיצונים קורים במקומם הואיל ואינם רואים פני האבלים.</p>
               </div>
             </div>
@@ -447,8 +518,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Reading the Shema 4:8:1</h4></div>
               <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-reading-the-shema-4-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Reading the Shema 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-reading-the-shema/#mishneh-torah-reading-the-shema-4-8">Mishneh Torah, Reading the Shema 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַטְּמֵאִין חַיָּבִין בִּקְרִיאַת שְׁמַע וּמְבָרְכִין לְפָנֶיהָ וּלְאַחֲרֶיהָ וְהֵן בְּטֻמְאָתָן. אַף עַל פִּי שֶׁאֶפְשָׁר לָהֶן לַעֲלוֹת מִטֻּמְאָתָן בּוֹ בַּיּוֹם כְּגוֹן הַנּוֹגְעִין בְּשֶׁרֶץ אוֹ בְּנִדָּה וְזָבָה וּמִשְׁכָּבָהּ וְכַיּוֹצֵא בָּהֶן. וְעֶזְרָא וּבֵית דִּינוֹ תִּקְּנוּ שֶׁלֹּא יִקְרָא בְּדִבְרֵי תּוֹרָה בַּעַל קֶרִי לְבַדּוֹ וְהוֹצִיאוּהוּ מִכְּלַל שְׁאָר הַטְּמֵאִין עַד שֶׁיִּטְבּל. וְלֹא פָּשְׁטָה תַּקָּנָה זוֹ בְּכָל יִשְׂרָאֵל וְלֹא הָיָה כֹּחַ בְּרֹב הַצִּבּוּר לַעֲמֹד בָּהּ לְפִיכָךְ בָּטְלָה. וּכְבָר נָהֲגוּ כָּל יִשְׂרָאֵל לִקְרוֹת בַּתּוֹרָה וְלִקְרוֹת קְרִיאַת שְׁמַע וְהֵן בַּעֲלֵי קְרָיִין לְפִי שֶׁאֵין דִּבְרֵי תּוֹרָה מְקַבְּלִין טֻמְאָה אֶלָּא עוֹמְדִין בְּטָהֳרָתָן לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(ירמיה כג כט)</span> ״הֲלוֹא כֹה דְבָרִי כָּאֵשׁ נְאֻם יְיָ׳‎״ מָה אֵשׁ אֵינָהּ מְקַבֶּלֶת טֻמְאָה אַף דִּבְרֵי תּוֹרָה אֵינָם מְקַבְּלִין טֻמְאָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> הטמאים חייבים בקריאת שמע אף על פי שאיפשר להם לעלות מטומאתם בו ביום קורין ק&quot;ש ובתורה דלא קפיד קרא אלא אטומאה הנראית דכתיב והיה מחניך קדוש ולא יראה בך ערות דבר אבל על שאר טומאה אמרינן אין דברי תורה מקבלין טומאה כדכתיב הלא כה דברי כאש נאם ה׳ ויש במצוה זו דברים אחרים מדרבנן סמוכים אלאו דלא תסור ומהם אקרא דושמרתם את משמרתי עשו משמרת למשמרתי וקצת סמוכים אקרא:</p>
               </div>
             </div>
@@ -458,6 +534,10 @@
               <a href="#chapter-kiryat-sefer-on-mishneh-torah-reading-the-shema-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-reading-the-shema.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kiryat-sefer-on-mishneh-torah-reading-the-shema-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -478,8 +558,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-reading-the-shema.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-reading-the-shema.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-reading-the-shema.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kiryat-sefer-on-mishneh-torah-reading-the-shema.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-reading-the-shema.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -505,7 +585,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

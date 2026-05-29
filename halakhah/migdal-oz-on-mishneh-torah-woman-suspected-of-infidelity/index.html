@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/">Open Mishneh Torah, Woman Suspected of Infidelity</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Woman Suspected of Infidelity</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">53 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>230 matched</strong> / 518 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -259,8 +259,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-1">Mishneh Torah, Woman Suspected of Infidelity 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנּוּי הָאָמוּר בַּתּוֹרָה <span class="source-small">(במדבר ה יד)</span> &quot;וְקִנֵּא אֶת אִשְׁתּוֹ&quot; הוּא שֶׁיֹּאמַר לָהּ בִּפְנֵי עֵדִים אַל תִּסָּתְרִי עִם אִישׁ פְּלוֹנִי. אֲפִלּוּ הָיָה אָבִיהָ אוֹ אָחִיהָ אוֹ עַכּוּ&quot;ם אוֹ עֶבֶד אוֹ שָׁחוּף הוּא הָאִישׁ שֶׁאֵינוֹ מִתְקַשֶּׁה וְאֵינוֹ מוֹלִיד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קינוי האמור בתורה עד ואינו מוליד.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ד׳) </span> ופירוש שחוף סוף גמרא <span class="source-small"> (דף כ&quot;ו) </span> מתניתין דארוסה ושומרת יבם:</p>
               </div>
             </div>
@@ -275,8 +280,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-2">Mishneh Torah, Woman Suspected of Infidelity 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַסְּתִירָה הָאֲמוּרָה בַּתּוֹרָה <span class="source-small">(במדבר ה יג)</span> &quot;וְנִסְתְּרָה&quot; הוּא שֶׁתִּסָּתֵר עִם אוֹתוֹ הָאִישׁ שֶׁאָמַר לָהּ אַל תִּסָּתְרִי עִמּוֹ בִּפְנֵי שְׁנֵי עֵדִים. אִם שָׁהֲתָה עִמּוֹ כְּדֵי טֻמְאָה שֶׁהוּא כְּדֵי לִצְלוֹת בֵּיצָה וּלְגָמְעָהּ הֲרֵי זוֹ אֲסוּרָה עַל בַּעְלָהּ עַד שֶׁתִּשְׁתֶּה מֵי הַמָּרִים וְיִבָּדֵק הַדָּבָר. וּבִזְמַן שֶׁאֵין שָׁם מֵי סוֹטָה תֵּאָסֵר עָלָיו לְעוֹלָם וְתֵצֵא בְּלֹא כְּתֻבָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הסתירה האמורה בתורה עד ותצא בלא כתובה.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ו׳)</span> :</p>
               </div>
             </div>
@@ -291,8 +301,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-3">Mishneh Torah, Woman Suspected of Infidelity 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנֵּא לָהּ עַל שְׁנַיִם כְּאֶחָד וְאָמַר לָהּ אַל תִּסָּתְרִי עִם פְּלוֹנִי וּפְלוֹנִי. וְנִסְתְּרָה עִם שְׁנֵיהֶן כְּאֶחָד וְשָׁהֲתָה כְּדֵי טֻמְאָה. אֲפִלּוּ הֵם שְׁנֵי אַחֶיהָ אוֹ אָבִיהָ וְאָחִיהָ הֲרֵי זוֹ אֲסוּרָה עַד שֶׁתִּשְׁתֶּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קינא לה על שנים כו׳ עד שתשתה.</strong> פרק קמא דסוטה משנת מוסרין לה שני תלמידי חכמים גם בקידושין פרק עשרה יוחסין <span class="source-small"> (דף פ&quot;ב) </span> משמע כן ובברכות בכמה מקומות מעשה היה והוציאוה עשרה במטה ומפורש שילהי פרק היה מביא לרבנן <span class="source-small"> (דף י&quot;ח)</span> :</p>
               </div>
             </div>
@@ -307,8 +322,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-4">Mishneh Torah, Woman Suspected of Infidelity 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמַר לָהּ בִּפְנֵי שְׁנַיִם אַל תְּדַבְּרִי עִם פְּלוֹנִי אֵין זֶה קִנּוּי. וְאַף עַל פִּי שֶׁנִּסְתְּרָה עִמּוֹ בְּעֵדִים וְשָׁהֲתָה כְּדֵי טֻמְאָה לֹא נֶאֶסְרָה עָלָיו וְאֵינָהּ שׁוֹתָה בְּקִנּוּי זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר לה בפני שנים כו׳ עד ואינה שותה.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ה׳)</span> :</p>
               </div>
             </div>
@@ -323,8 +343,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-5">Mishneh Torah, Woman Suspected of Infidelity 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן אִם אָמַר לָהּ אַל תִּסָּתְרִי עִמּוֹ וְרָאוּהָ מְדַבֶּרֶת עִמּוֹ אֵין זוֹ סְתִירָה. וְלֹא נֶאֶסְרָה וְלֹא שׁוֹתָה. וְכֵן אִם לֹא קָדַם קִנּוּי וּבָאוּ שְׁנַיִם וְהֵעִידוּ שֶׁנִּסְתְּרָה עִם זֶה וְשָׁהֲתָה כְּדֵי טֻמְאָה לֹא נֶאֶסְרָה עַל בַּעְלָהּ וְאֵינָהּ שׁוֹתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר לה אל תסתרי עד קינוי אחר.</strong> פרק ארוסה ושומרת יבם וכו׳ <span class="source-small"> (דף כ&quot;ה כ&quot;ו:)</span> :</p>
               </div>
             </div>
@@ -339,8 +364,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-8">Mishneh Torah, Woman Suspected of Infidelity 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנֵּא לָהּ בִּפְנֵי שְׁנַיִם וְרָאָה אוֹתָהּ שֶׁנִּסְתְּרָה עִם זֶה שֶׁקִּנֵּא לָהּ עָלָיו וְשָׁהֲתָה כְּדֵי טֻמְאָה הֲרֵי זוֹ אֲסוּרָה עָלָיו וְיוֹצִיא וְיִתֵּן כְּתֻבָּה. שֶׁאֵינוֹ יָכוֹל לְהַשְׁקוֹתָהּ עַל פִּי עַצְמוֹ. וְכֵן אִם שָׁמַע הָעָם מְרַנְּנִין אַחֲרֶיהָ אַחַר הַקִּנּוּי וְהַסְּתִירָה עַד שֶׁשָּׁמַע מֵהַנָּשִׁים הַטּוֹוֹת לְאוֹר הַלְּבָנָה נוֹשְׂאוֹת וְנוֹתְנוֹת בָּהּ שֶׁזִּנְּתָה עִם הָאִישׁ שֶׁקִּנֵּא לָהּ עָלָיו הֲרֵי זֶה אָסוּר לְקַיְּמָהּ וְיוֹצִיא וְיִתֵּן כְּתֻבָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קינא לה בפני שנים וראה וכו׳ עד ויתן כתובה.</strong> ריש פרק מי שקינא:</p>
               </div>
             </div>
@@ -355,8 +385,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-9">Mishneh Torah, Woman Suspected of Infidelity 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּא עֵד אֶחָד וְהֵעִיד לוֹ שֶׁנִּסְתְּרָה עִמּוֹ אַחַר קִנּוּי וְשָׁהֲתָה כְּדֵי טֻמְאָה. אִם הוּא נֶאֱמָן לוֹ וְדַעְתּוֹ סוֹמֶכֶת עָלָיו יוֹצִיא וְיִתֵּן כְּתֻבָּה. וְאִם לָאו הֲרֵי אִשְׁתּוֹ מֻתֶּרֶת לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא עד אחד וכו׳ עד הרי אשתו מותרת.</strong> בקידושין פרק האומר <span class="source-small"> (דף ס&quot;ו:)</span> :</p>
               </div>
             </div>
@@ -371,8 +406,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-10">Mishneh Torah, Woman Suspected of Infidelity 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ שֶׁבֵּית דִּין מְקַנִּין לָהֶן. מִי שֶׁנִּתְחָרֵשׁ בַּעְלָהּ אוֹ שֶׁנִּשְׁתַּטָּה אוֹ שֶׁהָיָה בִּמְדִינָה אַחֶרֶת אוֹ שֶׁהָיָה חָבוּשׁ בְּבֵית הָאֲסוּרִין. לֹא לְהַשְׁקוֹתָהּ אֶלָּא לְפָסְלָהּ מִכְּתֻבָּתָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו שב&quot;ד מקנין עד מפני שלא קינא לה הוא.</strong> סוף פרק ארוסה ושומרת יבם:</p>
               </div>
             </div>
@@ -387,8 +427,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-12">Mishneh Torah, Woman Suspected of Infidelity 1:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁתָת מֵי הַמָּרִים וְנִקְּתָה מֵהֶן וְחָזַר וְקִנֵּא לָהּ עִם הָאִישׁ שֶׁהִשְׁקָה עַל יָדוֹ וְנִסְתְּרָה עִמּוֹ אֵינוֹ יָכוֹל לְהַשְׁקוֹתָהּ עַל יָדוֹ פַּעַם שְׁנִיָּה אֶלָּא תֵּאָסֵר עָלָיו לְעוֹלָם וְתֵצֵא בְּלֹא כְּתֻבָּה. אֲבָל אִם קִנֵּא לָהּ עִם אַחֵר וְנִסְתְּרָה עִם הָאַחֵר בְּעֵדִים מַשְׁקִין אוֹתָהּ פַּעַם שְׁנִיָּה וַאֲפִלּוּ כַּמָּה פְּעָמִים. וְהוּא שֶׁיַּשְׁקֶה אוֹתָהּ בְּכָל פַּעַם בִּגְלַל אִישׁ אַחֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שתת מי המרים וכו׳ עד שיהיה שם עד.</strong> פרק היה נוטל <span class="source-small"> (דף כ&quot;ד כ&quot;ה:)</span> :</p>
               </div>
             </div>
@@ -403,8 +448,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:14:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-14-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-14">Mishneh Torah, Woman Suspected of Infidelity 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁקִּנֵּא לָהּ בַּעְלָהּ וְנִסְתְּרָה אַחַר הַקִּנּוּי עִמּוֹ בְּעֵדִים וַהֲרֵי הִיא עוֹמֶדֶת לִשְׁתּוֹת וּבָא עֵד אֶחָד וְהֵעִיד עָלֶיהָ שֶׁנִּבְעֲלָה בְּפָנָיו עִם זֶה שֶׁקִּנֵּא לָהּ עִמּוֹ הֲרֵי זֶה אֲסוּרָה עַל בַּעְלָהּ לְעוֹלָם. וְאֵינָהּ שׁוֹתָה וְיוֹצֵאת בְּלֹא כְּתֻבָּה. וַאֲפִלּוּ הָיָה עֵד טֻמְאָה זֶה אֶחָד מֵעֵדֵי הַסְּתִירָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְעֵד אֵין בָּהּ&quot; וַהֲרֵי כָּאן עֵד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האשה שקינא לה וכו׳ עד והרי כאן עד.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ב׳:) </span> ופ&quot;ק דכתובות <span class="source-small"> (דף כ&quot;ג כ&quot;ו) </span> והביאה ר&quot;י אלפס בהלכות קידושין פרק האומר:</p>
               </div>
             </div>
@@ -419,8 +469,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:15:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-1-15-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-1-15">Mishneh Torah, Woman Suspected of Infidelity 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲפִלּוּ אִשָּׁה וְעֶבֶד וְשִׁפְחָה וּפָסוּל לְעֵדוּת בַּעֲבֵרָה מִדִּבְרֵי סוֹפְרִים וַאֲפִלּוּ קָרוֹב נֶאֱמָן לְעֵדוּת סוֹטָה לְהָעִיד עָלֶיהָ שֶׁזִּנְּתָה וְתֵאָסֵר עַל בַּעְלָהּ לְעוֹלָם. וְאֵינָהּ שׁוֹתָה וְתֵצֵא בְּלֹא כְּתֻבָּה. הוֹאִיל וְקָדַם הַקִּנּוּי וְהַסְּתִירָה בְּעֵדִים כְּשֵׁרִים וְהַתּוֹרָה הֶאֱמִינָה עֵד אֶחָד בְּטֻמְאָה הֲרֵי כֻּלָּן כְּשֵׁרִין לְעֵדוּת טֻמְאָה. אַף חָמֵשׁ נָשִׁים שֶׁשּׂוֹנְאוֹת זוֹ אֶת זוֹ מְעִידוֹת זוֹ עַל זוֹ לוֹמַר שֶׁנִּטְמֵאת. וְנֶאֱמֶנֶת עָלֶיהָ לְאָסְרָהּ עַל בַּעְלָהּ וְשֶׁלֹּא לְהַשְׁקוֹתָהּ. אֲבָל לֹא לְהַפְסִידָהּ מִכְּתֻבָּתָהּ. אֶלָּא נוֹטֶלֶת כְּתֻבָּתָהּ וְיוֹצְאָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפילו אשה ועבד וכו׳ עד הרי זו שותה וכו׳ עד סוף הפרק.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ט׳:)</span> :</p>
               </div>
             </div>
@@ -436,8 +491,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-1">Mishneh Torah, Woman Suspected of Infidelity 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָׁה שֶׁקִּנֵּא לָהּ וְנִסְתְּרָה אֵין כּוֹפִין אוֹתָהּ לִשְׁתּוֹת. אֶלָּא אִם רָצְתָה וְאָמְרָה הֵן נִטְמֵאתִי תֵּצֵא בְּלֹא כְּתֻבָּה וְנֶאֶסְרָה עַל בַּעְלָהּ לְעוֹלָם וְאֵינָהּ שׁוֹתָה. וְכֵן אִם אָמְרָה אֵינִי טְמֵאָה וְאֵינִי שׁוֹתָה אֵין כּוֹפִין אוֹתָהּ לִשְׁתּוֹת וְתֵצֵא בְּלֹא כְּתֻבָּה. וְכֵן אִם אָמַר בַּעְלָהּ אֵינִי רוֹצֶה לְהַשְׁקוֹתָהּ אוֹ שֶׁבְּעָלָהּ בַּעְלָהּ אַחַר שֶׁנִּסְתְּרָה הֲרֵי זוֹ אֵינָהּ שׁוֹתָה וְנוֹטֶלֶת כְּתֻבָּתָהּ וְיוֹצְאָה וְהִיא אֲסוּרָה [עָלָיו] לְעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אשה שקינא לה ונסתרה עד מעכב אותה מלשתות.</strong> פרק ארוסה ושומרת יבם <span class="source-small"> (דף כ&quot;ד)</span> :</p>
               </div>
             </div>
@@ -452,8 +512,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-4">Mishneh Torah, Woman Suspected of Infidelity 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְטַנָּה שֶׁהִשִּׂיאָהּ אָבִיהָ אִם זִנְּתָה בִּרְצוֹנָהּ נֶאֶסְרָה עַל בַּעְלָהּ. לְפִיכָךְ מְקַנִּין לָהּ לֹא לְהַשְׁקוֹתָהּ אֶלָּא לְפָסְלָהּ מִכְּתֻבָּתָהּ כְּמוֹ שֶׁאָמַרְנוּ. אֲבָל קְטַנָּה בַּת מֵאוּן אֵין מְקַנִּין לָהּ שֶׁאֵין לָהּ רָצוֹן לְהֵאָסֵר עַל בַּעְלָהּ. וַאֲפִלּוּ הָיָה כֹּהֵן לֹא נֶאֶסְרָה עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטנה שהשיאה אביה כו׳ אבל הקטנה בת מיאון עד לא נאסרה עליו.</strong> פרק ב&quot;ש <span class="source-small"> (דף ק&quot;ט) </span> ופרק חרש <span class="source-small"> (דף קי&quot;ג) </span> ופרק ארוסה ושומרת יבם <span class="source-small"> (דף כ&quot;ד) </span> ובירושלמי:<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל והלא אמרו פיתוי קטנה אונס וכו׳: <strong> ואני </strong> אומר כבר הוכחתי זה פרק שלישי דאישות ומשנתנו היא ג&quot;כ ביבמות פרק ב&quot;ש קטנה שהשיאה אביה ונתגרשה כיתומה בחיי האב והחזירה אסורה ליבם אלמא אם קדשה אביה הרי היא אשת איש גמורה וגם בירושלמי מצאתיה לדברי הכל כדברי רמז&quot;ל וטעמא דכיון שקיבל בה אביה קידושין הרי היא כאשת איש גמורה כדילפינן בכתובות <span class="source-small"> (דף כ&quot;ד) </span> ובכמה מקומות מדכתיב את בתי נתתי לאיש הזה לאיש אסרה הזה התירה ואם זינתה ברצונה נאסרה כדילפינן פ&quot;ק דסוטה ופרק מי שקינא ובכמה מקומות מדכתיב והיא לא נתפשה ומקנין לה כו׳ כדאיתא פרק ארוסה ושומרת יבם והקטנה בת מיאון אין לה רצון ופיתוי שלה אונס הוא ואפילו בעלה כהן מותרת ואין מעשיה כלום כדאיתא ביבמות פרק ב&quot;ש וכדמשמע פרק חרש. מעתה הבן דפיתוי קטנה אונס הוא שהקשה ראב&quot;ד ז&quot;ל אינה קושיא בענין זה כלל ומה שהקשה מענין התראה לא מצאנו כן אלא היכא דאיכא קינוי אסורה פרק מי שקינא ובזה עלו דברי רמז&quot;ל על נכון ועדיין אני מוכרח להאריך בזה פ&quot;ג דהלכות איסורי ביאה בג&quot;ה:</p>
               </div>
             </div>
@@ -468,8 +533,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-5">Mishneh Torah, Woman Suspected of Infidelity 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִנֵּא לַאֲרוּסָתוֹ אוֹ לִזְקוּקָתוֹ וְנִסְתְּרָה אַחַר שֶׁנִּשְּׂאָה הֲרֵי זוֹ שׁוֹתָה כִּשְׁאָר כָּל הַנָּשִׁים. נְשׂוּאָה שֶׁקִּנֵּא לָהּ וְנִסְתְּרָה קֹדֶם שֶׁיִּבְעל אוֹתָהּ בַּעְלָהּ אֵינָהּ שׁוֹתָה וְיוֹצְאָה בְּלֹא כְּתֻבָּה וַאֲסוּרָה עָלָיו לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה כ)</span> &quot;וַיִּתֵּן אִישׁ בָּךְ אֶת שְׁכָבְתּוֹ מִבַּלְעֲדֵי אִישֵׁךְ&quot; שֶׁקָּדְמָה שְׁכִיבַת בַּעַל לִשְׁכִיבַת בּוֹעֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קינא לארוסתו עד לשכיבת בועל.</strong> בסוטה פרק ארוסה ושומרת יבם <span class="source-small"> (דף כ&quot;ד) </span> ובכמה מקומות ופרק ראשון ופרק שני דכתובות:</p>
               </div>
             </div>
@@ -484,8 +554,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-6">Mishneh Torah, Woman Suspected of Infidelity 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַגִּיֹּרֶת וְהַמְשֻׁחְרֶרֶת וְאֵשֶׁת הַגֵּר וְאֵשֶׁת עֶבֶד מְשֻׁחְרָר וּמַמְזֶרֶת וְאֵשֶׁת מַמְזֵר וְאֵשֶׁת סְרִיס חַמָּה אוֹ סְרִיס אָדָם הַמֻּתָּרוֹת לְבַעְלֵיהֶן הֲרֵי הֵן כְּכָל הַנָּשִׁים וְשׁוֹתוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הגיורת והמשוחררת עד ככל הנשים ושותות.</strong> פרק ארוסה ושומרת יבם ופרק שני דעדיות:</p>
               </div>
             </div>
@@ -500,8 +575,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-8">Mishneh Torah, Woman Suspected of Infidelity 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אִישׁ שֶׁבָּא בִּיאָה אֲסוּרָה מִיָּמָיו אַחַר שֶׁהִגְדִּיל אֵין הַמַּיִם הַמְאָרְרִים בּוֹדְקִין אֶת אִשְׁתּוֹ. וַאֲפִלּוּ בָּא עַל אֲרוּסָתוֹ בְּבֵית חָמִיו שֶׁאָסוּר מִדִּבְרֵי סוֹפְרִים אֵין הַמַּיִם בּוֹדְקִין אֶת אִשְׁתּוֹ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה לא)</span> &quot;וְנִקָּה הָאִישׁ מֵעָוֹן וְהָאִשָּׁה הַהִיא תִּשָּׂא אֶת עֲוֹנָהּ&quot;. בִּזְמַן שֶׁהָאִישׁ מְנֻקֶּה מֵעָוֹן אִשָּׁה נוֹשְׂאָה אֶת עֲוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפילו בא על ארוסתו כו׳ עד אשה נושאה את עונה.</strong> פרק מי שקינא <span class="source-small"> (דף ל&quot;א) </span> ופרק ארוסה <span class="source-small"> (דף כ&quot;ד) </span> ובירושלמי:<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל הא דלא כהלכתא משמעתא דריש ארוסה ושומרת יבם עכ&quot;ל: <strong> ואני </strong> אומר דברי רמז&quot;ל מפורשים בברייתא ריש פרק מי שקינא ובכמה מקומות ובירושלמי וריש ארוסה ושומרת יבם נמי גבי קרא דויתן איש בך את שכבתו אמר רמי בר חמא משכחת לה כגון שבא עליה ארוס בבית אביה ושקיל וטרי עלה ומיהו מילתיה סלקא שפיר לפי המסקנא בפירוקי דסמכא והמשכיל יעיין כי אני לא ירדתי לסוף דעתו של הראב&quot;ד ז&quot;ל ויפה כיון רמז&quot;ל לפי דעתי:</p>
               </div>
             </div>
@@ -516,8 +596,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-9">Mishneh Torah, Woman Suspected of Infidelity 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לְפִיכָךְ אִם הָיְתָה אִשְׁתּוֹ אֲסוּרָה עָלָיו מֵחַיָּבֵי לָאוִין אוֹ מֵחַיָּבֵי עֲשֵׂה אֲפִלּוּ שְׁנִיָּה וְקִנֵּא לָהּ וְנִסְתְּרָה אֵינָהּ שׁוֹתָה אֶלָּא תֵּצֵא בְּלֹא כְּתֻבָּה וְתִהְיֶה אֲסוּרָה עָלָיו אַף מִשּׁוּם זֶה. עָבַר וְנָשָׂא מְעֻבֶּרֶת חֲבֵרוֹ וּמֵינֶקֶת חֲבֵרוֹ הֲרֵי זוֹ שׁוֹתָה שֶׁאֵין כָּאן עֲבֵרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפיכך אם היתה כו׳ עד שלא נאמר בתורה כו׳ עד תלד זכרים:</strong> כתב הראב&quot;ד ז&quot;ל פירוש לא הקפידה תורה שתהא האשה הזאת ראויה לילד עכ&quot;ל: <strong> ואני </strong> לא באתי לברר הפירושים רק להציל מן ההשגות אבל מן הפירושים לא יעדתי לי בזה (ע׳ במל&quot;מ שפירש דיש כאן השגה):</p>
               </div>
             </div>
@@ -532,8 +617,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-11">Mishneh Torah, Woman Suspected of Infidelity 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ לוֹ אִשָּׁה וּבָנִים וּמֵתוּ בֵּין קִנּוּי לִסְתִירָה כְּבָר נִרְאֵית לִשְׁתּוֹת וּמַשְׁקֶה אוֹתָהּ. לֹא הָיוּ לוֹ בָּנִים וְלֹא אִשָּׁה הָרְאוּיָה לֵילֵד אֶלָּא זוֹ הָאַיְלוֹנִית וְכַיּוֹצֵא בָּהּ וְנוֹלַד לוֹ בֵּן מִגְּרוּשָׁתוֹ בֵּין קִנּוּי לִסְתִירָה כְּבָר נִדְחֵית הָאַיְלוֹנִית מִלִּשְׁתּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו לו אשה ובנים עד מלשתות.</strong> פרק ארוסה ושומרת יבם <span class="source-small"> (דף כ&quot;ד) </span> ובירושלמי:</p>
               </div>
             </div>
@@ -548,8 +638,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-12">Mishneh Torah, Woman Suspected of Infidelity 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אִשָּׁה שֶׁהָיָה לָהּ קִנּוּי וּסְתִירָה וְלֹא שָׁתְתָה מֵי הַמָּרִים בֵּין שֶׁלֹּא רָצָה בַּעְלָהּ לְהַשְׁקוֹתָהּ בֵּין שֶׁלֹּא רָצְתָה הִיא וּבֵין שֶׁבָּא לָהּ עֵד טֻמְאָה אוֹ הוֹדֵית אוֹ הָיְתָה מֵאֵלּוּ הַנָּשִׁים שֶׁאֵינָן רְאוּיוֹת לִשְׁתּוֹת אוֹ שֶׁקִּנְּאוּ לָהּ בֵּית דִּין. הוֹאִיל וְנֶאֶסְרָה עַל בַּעְלָהּ מִכָּל מָקוֹם הֲרֵי הִיא אֲסוּרָה עַל זֶה שֶׁנִּתְיַחֲדָה עִמּוֹ לְעוֹלָם כְּדֶרֶךְ שֶׁהִיא אֲסוּרָה עַל בַּעְלָהּ. וְאִם עָבַר וּנְשָׂאָהּ מוֹצִיאִין אוֹתָהּ מִתַּחְתָּיו בְּגֵט אֲפִלּוּ הָיוּ לָהּ כַּמָּה בָּנִים מִמֶּנּוּ. מִפִּי הַשְּׁמוּעָה לָמְדוּ כְּשֵׁם שֶׁאֲסוּרָה לַבַּעַל כָּךְ אֲסוּרָה לַבּוֹעֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל אשה שהיה לה עד כך אסורה לבועל.</strong> פרק כשם במשנה <span class="source-small"> (דף כ&quot;ו) </span> ובכמה מקומות:</p>
               </div>
             </div>
@@ -564,8 +659,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-13">Mishneh Torah, Woman Suspected of Infidelity 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲבָל אִם לֹא קָדַם קִנּוּי וּבָאוּ עָלֶיהָ עֵדִים שֶׁנִּסְתְּרָה עִם אִישׁ זֶה וּבָאוּ וּמָצְאוּ דָּבָר מְכֹעָר כְּגוֹן שֶׁנִּכְנְסוּ אַחֲרָיו וּמְצָאוּהָ חוֹגֶרֶת חֲגוֹרָה. אוֹ מָצְאוּ רֹק לְמַעְלָה מִן הַכִּילָה וְכַיּוֹצֵא בָּזֶה. אִם הוֹצִיאָהּ בַּעְלָהּ בְּדָבָר מְכֹעָר כָּזֶה הֲרֵי זוֹ לֹא תִּנָּשֵׂא לַנִּטְעָן אֶלָּא אֲסוּרָה עָלָיו. וְאִם עָבַר וּנְשָׂאָהּ וְהָיוּ לָהּ בָּנִים מִמֶּנּוּ לֹא תֵּצֵא. וְאִם לֹא הָיוּ לָהּ בָּנִים מִמֶּנּוּ תֵּצֵא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבל אם לא קדם קינוי עד שאין לה בנים.</strong> פ&quot;ב דיבמות <span class="source-small"> (דף כ&quot;ד)</span> :</p>
               </div>
             </div>
@@ -580,8 +680,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:16:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-2-16-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-2-16">Mishneh Torah, Woman Suspected of Infidelity 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל אִשָּׁה שֶׁבָּאוּ שְׁנֵי עֵדִים וְהֵעִידוּ שֶׁזִּנְּתָה עִם זֶה כְּשֶׁהָיְתָה תַּחַת בַּעְלָהּ הָרִאשׁוֹן הֲרֵי זוֹ תֵּצֵא מִזֶּה. וְאַף עַל פִּי שֶׁיֵּשׁ לָהּ מִמֶּנּוּ כַּמָּה בָּנִים. וְכָל מָקוֹם שֶׁאָמַרְנוּ תֵּצֵא תֵּצֵא בְּלֹא כְּתֻבָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל אשה עד סוף הפרק.</strong> פ&quot;ק דסוטה וכמה מקומות שם וסוף גיטין <span class="source-small"> (דף צ׳) </span> וסוף נדרים <span class="source-small"> (דף צ&quot;א:)</span> :</p>
               </div>
             </div>
@@ -597,8 +702,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-1">Mishneh Torah, Woman Suspected of Infidelity 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד סֵדֶר הַשְׁקָאַת סוֹטָה. הַבַּעַל בָּא לְבֵית דִּין שֶׁבְּעִירוֹ וְאוֹמֵר לָהֶן אִשְׁתִּי זוֹ קִנֵּאתִי לָהּ עִם פְּלוֹנִי וְנִסְתְּרָה עִמּוֹ וְאֵלּוּ הֵן עֵדַי וַהֲרֵי הִיא אוֹמֶרֶת שֶׁהִיא טְהוֹרָה וַאֲנִי רוֹצֶה לְהַשְׁקוֹתָהּ לִבְדֹּק הַדָּבָר. וּבֵית דִּין שׁוֹמְעִין דִּבְרֵי הָעֵדִים. וּמוֹסְרִין לוֹ שְׁנֵי תַּלְמִידֵי חֲכָמִים לְשָׁמְרוֹ שֶׁמָּא יָבֹא עָלֶיהָ קֹדֶם שְׁתִיָּה. שֶׁהֲרֵי נֶאֶסְרָה עָלָיו עַד שֶׁתִּשְׁתֶּה. וּמְשַׁלְּחִין אוֹתוֹ לִירוּשָׁלַיִם שֶׁאֵין מַשְׁקִין אֶת הַסּוֹטָה אֶלָּא בְּבֵית דִּין הַגָּדוֹל שֶׁל שִׁבְעִים זְקֵנִים בַּמִּקְדָּשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד סדר עד מתיישבת בהן.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ז׳:)</span> :</p>
               </div>
             </div>
@@ -613,8 +723,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-7">Mishneh Torah, Woman Suspected of Infidelity 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מַשְׁבִּיעָהּ הַכֹּהֵן בְּלָשׁוֹן שֶׁהִיא מַכֶּרֶת וּמוֹדִיעָהּ בִּלְשׁוֹנָהּ שֶׁלֹּא גָּרַם לָהּ אֶלָּא קִנּוּי וּסְתִירָה שֶׁקִּנֵּא לָהּ בַּעְלָהּ וְנִסְתְּרָה. וְאוֹמֵר לָהּ בְּלָשׁוֹן שֶׁמַּכֶּרֶת <span class="source-small">(במדבר ה יט)</span> &quot;אִם לֹא שָׁכַב אִישׁ אֹתָךְ וְאִם לֹא שָׂטִית טֻמְאָה תַּחַת אִישֵׁךְ הִנָּקִי מִמֵּי הַמָּרִים הַמְאָרַרִים הָאֵלֶּה&quot; <span class="source-small">(במדבר ה כ)</span> &quot;וְאַתְּ כִּי שָׂטִית תַּחַת אִישֵׁךְ וְכִי נִטְמֵאת וַיִּתֵּן אִישׁ בָּךְ אֶת שְׁכָבְתּוֹ מִבַּלְעֲדֵי אִישֵׁךְ&quot; <span class="source-small">(במדבר ה כא)</span> &quot;יִתֵּן ה׳ אוֹתָךְ לְאָלָה וְלִשְׁבֻעָה בְּתוֹךְ עַמֵּךְ בְּתֵת ה׳ אֶת יְרֵכֵךְ נֹפֶלֶת וְאֶת בִּטְנֵךְ צָבָה&quot; <span class="source-small">(במדבר ה כב)</span> &quot;וּבָאוּ הַמַּיִם הַמְאָרְרִים הָאֵלֶּה בְּמֵעַיִךְ לַצְבּוֹת בֶּטֶן וְלַנְפִּל יָרֵךְ&quot;. וְהִיא אוֹמֶרֶת <span class="source-small">(במדבר ה כב)</span> &quot;אָמֵן אָמֵן&quot; בְּלָשׁוֹן שֶׁמַּכֶּרֶת. וּמוֹדִיעָהּ שֶׁהַבֶּטֶן הִיא תִּלְקֶה תְּחִלָּה וְהַיָּרֵךְ בַּסּוֹף כְּדֵי שֶׁלֹּא לְהוֹצִיא לַעַז עַל הַמַּיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ משביעה עד שהיא מכרת.</strong> פרק אלו נאמרין <span class="source-small"> (דף ל&quot;ב)</span> :</p>
               </div>
             </div>
@@ -629,8 +744,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:7:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-7-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-7">Mishneh Torah, Woman Suspected of Infidelity 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מַשְׁבִּיעָהּ הַכֹּהֵן בְּלָשׁוֹן שֶׁהִיא מַכֶּרֶת וּמוֹדִיעָהּ בִּלְשׁוֹנָהּ שֶׁלֹּא גָּרַם לָהּ אֶלָּא קִנּוּי וּסְתִירָה שֶׁקִּנֵּא לָהּ בַּעְלָהּ וְנִסְתְּרָה. וְאוֹמֵר לָהּ בְּלָשׁוֹן שֶׁמַּכֶּרֶת <span class="source-small">(במדבר ה יט)</span> &quot;אִם לֹא שָׁכַב אִישׁ אֹתָךְ וְאִם לֹא שָׂטִית טֻמְאָה תַּחַת אִישֵׁךְ הִנָּקִי מִמֵּי הַמָּרִים הַמְאָרַרִים הָאֵלֶּה&quot; <span class="source-small">(במדבר ה כ)</span> &quot;וְאַתְּ כִּי שָׂטִית תַּחַת אִישֵׁךְ וְכִי נִטְמֵאת וַיִּתֵּן אִישׁ בָּךְ אֶת שְׁכָבְתּוֹ מִבַּלְעֲדֵי אִישֵׁךְ&quot; <span class="source-small">(במדבר ה כא)</span> &quot;יִתֵּן ה׳ אוֹתָךְ לְאָלָה וְלִשְׁבֻעָה בְּתוֹךְ עַמֵּךְ בְּתֵת ה׳ אֶת יְרֵכֵךְ נֹפֶלֶת וְאֶת בִּטְנֵךְ צָבָה&quot; <span class="source-small">(במדבר ה כב)</span> &quot;וּבָאוּ הַמַּיִם הַמְאָרְרִים הָאֵלֶּה בְּמֵעַיִךְ לַצְבּוֹת בֶּטֶן וְלַנְפִּל יָרֵךְ&quot;. וְהִיא אוֹמֶרֶת <span class="source-small">(במדבר ה כב)</span> &quot;אָמֵן אָמֵן&quot; בְּלָשׁוֹן שֶׁמַּכֶּרֶת. וּמוֹדִיעָהּ שֶׁהַבֶּטֶן הִיא תִּלְקֶה תְּחִלָּה וְהַיָּרֵךְ בַּסּוֹף כְּדֵי שֶׁלֹּא לְהוֹצִיא לַעַז עַל הַמַּיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אם לא שכב וכו׳ עד שהיא מכרת.</strong> פרק היה מביא <span class="source-small"> (דף י&quot;ז י&quot;ח)</span> :</p>
               </div>
             </div>
@@ -645,8 +765,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:7:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-7-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:7:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-7">Mishneh Torah, Woman Suspected of Infidelity 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מַשְׁבִּיעָהּ הַכֹּהֵן בְּלָשׁוֹן שֶׁהִיא מַכֶּרֶת וּמוֹדִיעָהּ בִּלְשׁוֹנָהּ שֶׁלֹּא גָּרַם לָהּ אֶלָּא קִנּוּי וּסְתִירָה שֶׁקִּנֵּא לָהּ בַּעְלָהּ וְנִסְתְּרָה. וְאוֹמֵר לָהּ בְּלָשׁוֹן שֶׁמַּכֶּרֶת <span class="source-small">(במדבר ה יט)</span> &quot;אִם לֹא שָׁכַב אִישׁ אֹתָךְ וְאִם לֹא שָׂטִית טֻמְאָה תַּחַת אִישֵׁךְ הִנָּקִי מִמֵּי הַמָּרִים הַמְאָרַרִים הָאֵלֶּה&quot; <span class="source-small">(במדבר ה כ)</span> &quot;וְאַתְּ כִּי שָׂטִית תַּחַת אִישֵׁךְ וְכִי נִטְמֵאת וַיִּתֵּן אִישׁ בָּךְ אֶת שְׁכָבְתּוֹ מִבַּלְעֲדֵי אִישֵׁךְ&quot; <span class="source-small">(במדבר ה כא)</span> &quot;יִתֵּן ה׳ אוֹתָךְ לְאָלָה וְלִשְׁבֻעָה בְּתוֹךְ עַמֵּךְ בְּתֵת ה׳ אֶת יְרֵכֵךְ נֹפֶלֶת וְאֶת בִּטְנֵךְ צָבָה&quot; <span class="source-small">(במדבר ה כב)</span> &quot;וּבָאוּ הַמַּיִם הַמְאָרְרִים הָאֵלֶּה בְּמֵעַיִךְ לַצְבּוֹת בֶּטֶן וְלַנְפִּל יָרֵךְ&quot;. וְהִיא אוֹמֶרֶת <span class="source-small">(במדבר ה כב)</span> &quot;אָמֵן אָמֵן&quot; בְּלָשׁוֹן שֶׁמַּכֶּרֶת. וּמוֹדִיעָהּ שֶׁהַבֶּטֶן הִיא תִּלְקֶה תְּחִלָּה וְהַיָּרֵךְ בַּסּוֹף כְּדֵי שֶׁלֹּא לְהוֹצִיא לַעַז עַל הַמַּיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומודיעה שהבטן וכו׳ עד על המים.</strong> פרק כשם <span class="source-small"> (דף כ&quot;ח)</span> :</p>
               </div>
             </div>
@@ -661,8 +786,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-8">Mishneh Torah, Woman Suspected of Infidelity 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא מְגִלָּה שֶׁל עוֹר טָהוֹר כְּמוֹ סֵפֶר תּוֹרָה וְכוֹתֵב עָלֶיהָ בִּלְשׁוֹן הַקֹּדֶשׁ בִּדְיוֹ שֶׁאֵין בּוֹ קַנְקַנְתּוֹם לִשְׁמָהּ שֶׁל אִשָּׁה כְּמוֹ הַגֵּט. וְכוֹתֵב כָּל הַדְּבָרִים שֶׁהִשְׁבִּיעַ אוֹתָהּ בָּהֶם אוֹת בְּאוֹת מִלָּה בְּמִלָּה. וְכוֹתֵב אֶת הַשֵּׁם כִּכְתָבוֹ. וְאֵינוֹ כּוֹתֵב אָמֵן אָמֵן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ מביא עד ספר תורה.</strong> פרק היה מביא:</p>
               </div>
             </div>
@@ -677,8 +807,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:8:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-8-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-8">Mishneh Torah, Woman Suspected of Infidelity 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא מְגִלָּה שֶׁל עוֹר טָהוֹר כְּמוֹ סֵפֶר תּוֹרָה וְכוֹתֵב עָלֶיהָ בִּלְשׁוֹן הַקֹּדֶשׁ בִּדְיוֹ שֶׁאֵין בּוֹ קַנְקַנְתּוֹם לִשְׁמָהּ שֶׁל אִשָּׁה כְּמוֹ הַגֵּט. וְכוֹתֵב כָּל הַדְּבָרִים שֶׁהִשְׁבִּיעַ אוֹתָהּ בָּהֶם אוֹת בְּאוֹת מִלָּה בְּמִלָּה. וְכוֹתֵב אֶת הַשֵּׁם כִּכְתָבוֹ. וְאֵינוֹ כּוֹתֵב אָמֵן אָמֵן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכותב עליה וכו׳ עד אמן אמן.</strong> פרק היה נוטל <span class="source-small"> (דף י&quot;ט)</span> :</p>
               </div>
             </div>
@@ -693,8 +828,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-9">Mishneh Torah, Woman Suspected of Infidelity 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא כְּלִי חֶרֶשׂ שֶׁלֹּא נַעֲשָׂה בּוֹ מְלָאכָה מֵעוֹלָם וְלֹא יֵרָאֶה כִּכְלִי בָּלֶה מֵאֹרֶךְ הַזְּמַן. וְאִם הֶחְזִירוֹ לַכִּבְשָׁן עַד שֶׁנִּתְחַדֵּשׁ כָּשֵׁר. וְנוֹתֵן לְתוֹכוֹ חֲצִי לוֹג מַיִם מִן הַכִּיּוֹר. וּבַחֲצִי לוֹג שֶׁהָיָה בַּמִּקְדָּשׁ הָיָה מוֹדְדוֹ. וְנִכְנַס בּוֹ לַהֵיכָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר כך מביא וכו׳ עד שנאמר מי המרים.</strong> פרק היה מביא:</p>
               </div>
             </div>
@@ -709,8 +849,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:9:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-9-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:9:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-9">Mishneh Torah, Woman Suspected of Infidelity 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא כְּלִי חֶרֶשׂ שֶׁלֹּא נַעֲשָׂה בּוֹ מְלָאכָה מֵעוֹלָם וְלֹא יֵרָאֶה כִּכְלִי בָּלֶה מֵאֹרֶךְ הַזְּמַן. וְאִם הֶחְזִירוֹ לַכִּבְשָׁן עַד שֶׁנִּתְחַדֵּשׁ כָּשֵׁר. וְנוֹתֵן לְתוֹכוֹ חֲצִי לוֹג מַיִם מִן הַכִּיּוֹר. וּבַחֲצִי לוֹג שֶׁהָיָה בַּמִּקְדָּשׁ הָיָה מוֹדְדוֹ. וְנִכְנַס בּוֹ לַהֵיכָל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומוחק לתוכן וכו׳ עד רושם הניכר כלל.</strong> פרק היה נוטל <span class="source-small"> (דף כ׳)</span> :</p>
               </div>
             </div>
@@ -725,8 +870,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-11">Mishneh Torah, Woman Suspected of Infidelity 3:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ כֹּהֵן אֶחָד בָּא אֵלֶיהָ מִכֹּהֲנֵי הָעֲזָרָה וְאוֹחֵז בִּבְגָדֶיהָ מִכְּנֶגֶד פָּנֶיהָ וְקוֹרֵעַ עַד שֶׁהוּא מְגַלֶּה אֶת לִבָּהּ. וּמְגַלֶּה שְׂעָרָהּ וְסוֹתֵר מַחְלְפוֹת רֹאשָׁהּ כְּדֵי לְנַוְּלָהּ. וּמֵבִיא חֶבֶל מִצְרִי כְּדֵי לְהַזְכִּירָהּ מַעֲשֵׂה מִצְרַיִם שֶׁעָשְׂתָה. וְאִם לֹא מָצְאוּ מִצְרִי מֵבִיא חֶבֶל מִכָּל מָקוֹם. וְקוֹשְׁרוֹ לְמַעְלָה מִדָּדֶיהָ כְּדֵי שֶׁלֹּא יִפְּלוּ הַבְּגָדִים וְנִמְצֵאת עֲרֻמָּה שֶׁהֲרֵי נִקְרְעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר כך כהן אחד בא וכו׳ עד שהרי נקרעו.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ו׳)</span> :</p>
               </div>
             </div>
@@ -741,8 +891,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-12">Mishneh Torah, Woman Suspected of Infidelity 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מֵבִיא עִשָּׂרוֹן קֶמַח שְׂעוֹרִים מִשֶּׁל בַּעַל. וְנוֹתְנוֹ בִּכְפִיפָה מִצְרִית. וְהַחֶבֶל וְהַכְּפִיפָה בָּאִין מִשְּׁיָרֵי הַלִּשְׁכָּה. וְנוֹתְנוֹ לְיָדֶיהָ כְּדֵי לְיַגְּעָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר כך מביא עשרון וכו׳ עד כדי ליגעה.</strong> בסוטה פרק היה מביא <span class="source-small"> (דף י&quot;ח)</span> :</p>
               </div>
             </div>
@@ -757,8 +912,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-13">Mishneh Torah, Woman Suspected of Infidelity 3:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ לוֹקֵחַ הַמִּנְחָה מִן הַכְּפִיפָה וְנוֹתְנָהּ לִכְלִי שָׁרֵת. וְאֵינוֹ נוֹתֵן עָלֶיהָ שֶׁמֶן וְלֹא לְבוֹנָה. וְאִם נָתַן לוֹקֶה עַל הַשֶּׁמֶן בִּפְנֵי עַצְמוֹ וְעַל הַלְּבוֹנָה בִּפְנֵי עַצְמָהּ. שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה טו)</span> &quot;לֹא יִצֹק עָלֶיהָ שֶׁמֶן וְלֹא יִתֵּן עָלֶיהָ לְבֹנָה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר כך לוקח המנחה וכו׳ עד כלי שרת.</strong> פרק היה נוטל <span class="source-small"> (דף י&quot;ד)</span> :</p>
               </div>
             </div>
@@ -773,8 +933,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:13:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-13-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:13:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-13">Mishneh Torah, Woman Suspected of Infidelity 3:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ לוֹקֵחַ הַמִּנְחָה מִן הַכְּפִיפָה וְנוֹתְנָהּ לִכְלִי שָׁרֵת. וְאֵינוֹ נוֹתֵן עָלֶיהָ שֶׁמֶן וְלֹא לְבוֹנָה. וְאִם נָתַן לוֹקֶה עַל הַשֶּׁמֶן בִּפְנֵי עַצְמוֹ וְעַל הַלְּבוֹנָה בִּפְנֵי עַצְמָהּ. שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה טו)</span> &quot;לֹא יִצֹק עָלֶיהָ שֶׁמֶן וְלֹא יִתֵּן עָלֶיהָ לְבֹנָה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואינו נותן עליה שמן וכו׳ ואם נתן לוקה וכו׳ עד מי המרים המאררים.</strong> בספרי גרסי׳ לה מגיד שאם נתן שמן או לבונה עובר בלא תעשה כשם שעובר על שמנה כך עובר על לבונתה וכו׳ ובמכילתא לא יצוק עליה שמן ולא יתן עליה לבונה מגיד שהוא שתי אזהרות עכ&quot;ל:</p>
               </div>
             </div>
@@ -789,8 +954,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:15:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-15-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-15">Mishneh Torah, Woman Suspected of Infidelity 3:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַר כָּךְ מַשְׁקֶה אוֹתָהּ. וְאַחַר שֶׁתִּשְׁתֶּה לוֹקֵחַ כְּלִי שָׁרֵת שֶׁבּוֹ הַמִּנְחָה וְנוֹתְנוֹ עַל יָדֶיהָ. וְכֹהֵן מֵנִיחַ יָדוֹ תַּחְתֶּיהָ וּמְנִיפָהּ בַּמִּזְרָח כִּשְׁאָר כָּל הַתְּנוּפוֹת. מוֹלִיךְ וּמֵבִיא מַעֲלֶה וּמוֹרִיד. וְאַחַר כָּךְ מַגִּישׁ הַמִּנְחָה לְקֶרֶן דְּרוֹמִית מַעֲרָבִית שֶׁל מִזְבֵּחַ כִּשְׁאָר מְנָחוֹת שֶׁל יָחִיד. וְקוֹמֵץ וּמַקְטִיר הַקֹּמֶץ. וְהַשְּׁאָר נֶאֱכָל לַכֹּהֲנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר כך משקה וכו׳ עד נאכל לכהנים.</strong> פרק היה נוטל <span class="source-small"> (דף י&quot;ט)</span> :</p>
               </div>
             </div>
@@ -805,8 +975,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:16:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-16-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-16">Mishneh Torah, Woman Suspected of Infidelity 3:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִם טְהוֹרָה הִיא יוֹצֵאת וְהוֹלֶכֶת לָהּ וַהֲרֵי הִיא מֻתֶּרֶת לְבַעְלָהּ. וְאִם טְמֵאָה הִיא מִיָּד פָּנֶיהָ מוֹרִיקוֹת וְעֵינֶיהָ בּוֹלְטוֹת וְהִיא מִתְמַלֵּאת גִּידִין גִּידִין וְהֵן אוֹמְרִין הוֹצִיאוּהָ (הוֹצִיאוּהָ) כְּדֵי שֶׁלֹּא תִּפְרשֹׁ נִדָּה וְהַנִּדּוֹת מְטַמְּאוֹת עֶזְרַת נָשִׁים. וְהֵן מוֹצִיאִין אוֹתָהּ מֵעֶזְרַת נָשִׁים שֶׁהִיא עוֹמֶדֶת בָּהּ. וּבִטְנָהּ צָבָה בַּתְּחִלָּה וְאַחַר כָּךְ תִּפּל יְרֵכָהּ וְתָמוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם טהורה היא עד כמו שביארנו.</strong> פרק כשם <span class="source-small"> (דף כ&quot;ח) </span> ופרק היה נוטל:</p>
               </div>
             </div>
@@ -821,8 +996,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:18:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-18-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-18">Mishneh Torah, Woman Suspected of Infidelity 3:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאִם עָבַר וְהִשְׁקָה אֶת אִשְׁתּוֹ הֲרֵי זֶה מוֹסִיף עַל חַטָּאתוֹ פֶּשַׁע שֶׁגָּרַם לַשֵּׁם הַמְפֹרָשׁ שֶׁיִּמָּחֶה בַּמַּיִם לְבַטָּלָה וּמוֹצִיא לַעַז עַל מֵי סוֹטָה שֶׁאִשְׁתּוֹ אוֹמֶרֶת לַאֲחֵרוֹת שֶׁזִּנְּתָה וְלֹא בָּדְקוּ בָּהּ הַמַּיִם וְהִיא לֹא תֵּדַע שֶׁמַּעֲשֵׂי הַבַּעַל גָּרְמוּ שֶׁלֹּא בָּדְקוּ בָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם עבר והשקה את אשתו וכו׳ עד כי תזנינה.</strong> זה הלשון מובן מכמה מקומות בתלמוד ועיקרה פרק עגלה ערופה <span class="source-small"> (דף מ&quot;ז)</span> :</p>
               </div>
             </div>
@@ -837,8 +1017,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:20:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-20-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-20">Mishneh Torah, Woman Suspected of Infidelity 3:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סוֹטָה שֶׁיֵּשׁ לָהּ זְכוּת תַּלְמוּד תּוֹרָה אַף עַל פִּי שֶׁאֵינָהּ מְצֻוָּה עַל תַּלְמוּד תּוֹרָה הֲרֵי זֶה תּוֹלֶה לָהּ וְאֵינָהּ מֵתָה לִשְׁעָתָהּ אֶלָּא נִמֹּקֶת וְהוֹלֶכֶת וָחֳלָאִים כְּבֵדִים בָּאִין עָלֶיהָ עַד שֶׁתָּמוּת אַחַר שָׁנָה אוֹ שְׁתַּיִם אוֹ שָׁלֹשׁ לְפִי זְכוּתָהּ. וְהִיא מֵתָה בִּצְבִיַּת בֶּטֶן וּבִנְפִילַת אֵיבָרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוטה שיש לה וכו׳ עד ובנפילת איברים.</strong> פרק היה נוטל <span class="source-small"> (דף כ)</span> :</p>
               </div>
             </div>
@@ -853,8 +1038,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:21:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-21-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:21:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-21">Mishneh Torah, Woman Suspected of Infidelity 3:21</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סוֹטָה שֶׁשָּׁתָת מֵי הַמָּרִים וְלֹא מֵתָה מִיָּד הֲרֵי הִיא מֻתֶּרֶת לְבַעְלָהּ. וַאֲפִלּוּ הָיָה כֹּהֵן. וְאַף עַל פִּי שֶׁהִתְחִילוּ הֶחֳלָאִים לָבוֹא עָלֶיהָ וְחָלוּ שְׁאָר אֵיבָרֶיהָ הוֹאִיל וְלֹא צָבְתָה בִּטְנָהּ וְלֹא הִתְחִיל יְרֵכָהּ לִנְפּל הֲרֵי זוֹ מֻתֶּרֶת. אֲבָל מִשֶּׁהִתְחִיל בִּטְנָהּ לַצְבּוֹת וִירֵכָהּ לִנְפּל הֲרֵי זוֹ אֲסוּרָה וַדָּאִית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוטה ששתת עד תלד זכרים.</strong> פרק ארוסה ושומרת יבם <span class="source-small"> (דף כ&quot;ו)</span> :</p>
               </div>
             </div>
@@ -869,8 +1059,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:23:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-23-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:23:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-23">Mishneh Torah, Woman Suspected of Infidelity 3:23</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּאוּ עֵדֵי טֻמְאָה אַחַר שֶׁשָּׁתְתָה הֲרֵי זוֹ תֵּצֵא בְּלֹא כְּתֻבָּה וַאֲסוּרָה לְבַעְלָהּ. וַאֲפִלּוּ לֹא אֵרַע לָהּ דָּבָר מִדְּבָרִים אֵלּוּ מִפְּנֵי שֶׁאֵין הַמַּיִם בּוֹדְקִין אֶלָּא מִי שֶׁאֵין לָהּ עֵדִים שֶׁמּוֹדִיעִין זְנוּתָהּ. וְעוֹד שֶׁמָּא בַּעְלָהּ אֵינוֹ מְנֻקֶּה מֵעָוֹן לְפִיכָךְ לֹא בָּדְקוּ הַמַּיִם אֶת אִשְׁתּוֹ. אֲבָל אִם בָּא עֵד אֶחָד וְהֵעִיד שֶׁהָיְתָה טְמֵאָה אֵינָהּ אֲסוּרָה וְתֵשֵׁב תַּחַת בַּעְלָהּ שֶׁהֲרֵי שָׁתְתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>באו עידי טומאה עד שהרי שתתה.</strong> פ&quot;ק דסוטה <span class="source-small"> (דף ו׳) </span> ופרק מי שקינא <span class="source-small"> (דף ל&quot;א)</span> :</p>
               </div>
             </div>
@@ -885,8 +1080,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:24:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-3-24-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 3:24:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-3-24">Mishneh Torah, Woman Suspected of Infidelity 3:24</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אִשָּׁה שֶׁזִּנְּתָה בְּאֹנֶס אוֹ בִּשְׁגָגָה אוֹ שֶׁבָּא עָלֶיהָ זֶה שֶׁקִּנֵּא לָהּ עִמּוֹ דֶּרֶךְ אֵיבָרִים אֵין הַמַּיִם בּוֹדְקִין אוֹתָהּ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יג)</span> &quot;וְהִיא לֹא נִתְפָּשָׂה&quot; פְּרָט לַאֲנוּסָה שֶׁהֲרֵי נִתְפְּשָׂה בְּחָזְקָה. <span class="source-small">(במדבר ה כז)</span> &quot;וַתִּמְעל מַעַל בְּאִישָׁהּ&quot; פְּרָט לְשׁוֹגֶגֶת. <span class="source-small">(במדבר ה יג)</span> &quot;וְשָׁכַב אִישׁ אֹתָהּ שִׁכְבַת זֶרַע&quot; פְּרָט לְבָא עָלֶיהָ דֶּרֶךְ אֵיבָרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אשה שזינתה באונס עד סוף הפרק.</strong> [פ&quot;ק דסוטה] <span class="source-small"> (דף ז׳) </span> סוף פרק ארוסה ושומרת יבם <span class="source-small"> (דף כ&quot;ו) </span> ומקצתו בהרבה מקומות:</p>
               </div>
             </div>
@@ -902,8 +1102,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-1">Mishneh Torah, Woman Suspected of Infidelity 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּחֲמִשָׁה עָשָׂר בַּאֲדָר נִפְנִין בֵּית דִּין לְצָרְכֵי הָרַבִּים. וּבוֹדְקִין עַל הָרְאוּיָה לִשְׁתּוֹת לְהַשְׁקוֹתָהּ. וְעַל הָרְאוּיָה לְקַנֵּא לָהּ וּלְהוֹצִיאָהּ בְּלֹא כְּתֻבָּה. וּבְכָל זְמַן מַשְׁקִין אֶת הַסּוֹטוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בחמשה עשר באדר עד ומשקין את הסוטות.</strong> פ&quot;ק דשקלים ובירושלמי פ&quot;ק דמ&quot;ק:</p>
               </div>
             </div>
@@ -918,8 +1123,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-2">Mishneh Torah, Woman Suspected of Infidelity 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מַשְׁקִין אֶת הַסּוֹטָה אֶלָּא בַּיּוֹם. וְכָל הַיּוֹם כָּשֵׁר לְהַשְׁקוֹת סוֹטָה. וְאֵין מַשְׁקִין שְׁתֵּי סוֹטוֹת כְּאַחַת שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה טז)</span> &quot;וְהֶעֱמִיד אֹתָהּ הַכֹּהֵן&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין משקין את הסוטה אלא ביום עד והעמיד אותה הכהן.</strong> פרק היה מביא <span class="source-small"> (דף י&quot;ז)</span> :</p>
               </div>
             </div>
@@ -934,8 +1144,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-3">Mishneh Torah, Woman Suspected of Infidelity 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סוֹטָה שֶׁאָמְרָה אֵינִי שׁוֹתָה מֵחֲמַת יִרְאָה וָפַחַד שֶׁיֵּשׁ לָהּ יְכוֹלָה לַחֲזֹר וְלוֹמַר הֲרֵינִי שׁוֹתָה. אֲבָל אָמְרָה אֵינִי שׁוֹתָה וְהִיא בְּרִיאָה וְאֵינָהּ יְרֵאָה וְלֹא פּוֹחֶדֶת אֵינָהּ יְכוֹלָה לַחֲזֹר וְלוֹמַר הִנְנִי שׁוֹתָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוטה שאמרה עד הדשן.</strong> פרק היה נוטל <span class="source-small"> (דף כ׳)</span> :</p>
               </div>
             </div>
@@ -950,8 +1165,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-7">Mishneh Torah, Woman Suspected of Infidelity 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְגִלַּת סוֹטָה שֶׁכְּתָבָהּ בַּלַּיְלָה פְּסוּלָה שֶׁנֶּאֱמַר וְכָתַב וְגוֹ׳ <span class="source-small">(במדבר ה כד)</span> &quot;וְהִשְׁקָה&quot; וְגוֹ׳ <span class="source-small">(במדבר ה כה)</span> &quot;וְהִקְרִיב&quot; וְגוֹ׳ כְּשֵׁם שֶׁקָּרְבָּנָהּ בַּיּוֹם כָּךְ כְּתִיבַת הַמְּגִלָּה וְהַשְׁקָיָתָהּ בַּיּוֹם. כְּתָבָהּ לְמַפְרֵעַ פְּסוּלָה שֶׁנֶּאֱמַר הָאָלָה עַל הַסֵּדֶר. כְּתָבָהּ קֹדֶם שֶׁתְּקַבֵּל עָלֶיהָ הַשְּׁבוּעָה פְּסוּלָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה כא)</span> &quot;וְהִשְׁבִּיעַ&quot; וְכָתַב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מגלת סוטה עד או כהן קטן פסולה.</strong> פרק היה מביא <span class="source-small"> (דף י&quot;ז)</span> :</p>
               </div>
             </div>
@@ -966,8 +1186,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:7:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-7-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-7">Mishneh Torah, Woman Suspected of Infidelity 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְגִלַּת סוֹטָה שֶׁכְּתָבָהּ בַּלַּיְלָה פְּסוּלָה שֶׁנֶּאֱמַר וְכָתַב וְגוֹ׳ <span class="source-small">(במדבר ה כד)</span> &quot;וְהִשְׁקָה&quot; וְגוֹ׳ <span class="source-small">(במדבר ה כה)</span> &quot;וְהִקְרִיב&quot; וְגוֹ׳ כְּשֵׁם שֶׁקָּרְבָּנָהּ בַּיּוֹם כָּךְ כְּתִיבַת הַמְּגִלָּה וְהַשְׁקָיָתָהּ בַּיּוֹם. כְּתָבָהּ לְמַפְרֵעַ פְּסוּלָה שֶׁנֶּאֱמַר הָאָלָה עַל הַסֵּדֶר. כְּתָבָהּ קֹדֶם שֶׁתְּקַבֵּל עָלֶיהָ הַשְּׁבוּעָה פְּסוּלָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה כא)</span> &quot;וְהִשְׁבִּיעַ&quot; וְכָתַב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אינו כותב לא בקומוס וכו׳ עד ואם השקה כשר.</strong> פרק היה מביא <span class="source-small"> (דף י&quot;ז) </span> שם ופרק היה נוטל:</p>
               </div>
             </div>
@@ -982,8 +1207,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-12">Mishneh Torah, Woman Suspected of Infidelity 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵי סוֹטָה שֶׁלָּנוּ נִפְסָלִין בְּלִינָה. הִקְדִּים עָפָר לַמַּיִם פְּסוּלָה. לֹא הָיָה שָׁם עָפָר בַּהֵיכָל מֵבִיא עָפָר מִבַּחוּץ וּמַנִּיחוֹ בַּהֵיכָל וְלוֹקֵחַ מִמֶּנּוּ וְנוֹתֵן עַל פְּנֵי הַמַּיִם. וְאֵינוֹ מֵבִיא אֵפֶר אֲבָל מֵבִיא רַקְבּוּבִית שֶׁהִיא כְּעָפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי סוטה שלנו נפסלות בלינה.</strong> ירושלמי פ&quot;ב דסוטה:</p>
               </div>
             </div>
@@ -998,8 +1228,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:12:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-12-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:12:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-12">Mishneh Torah, Woman Suspected of Infidelity 4:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵי סוֹטָה שֶׁלָּנוּ נִפְסָלִין בְּלִינָה. הִקְדִּים עָפָר לַמַּיִם פְּסוּלָה. לֹא הָיָה שָׁם עָפָר בַּהֵיכָל מֵבִיא עָפָר מִבַּחוּץ וּמַנִּיחוֹ בַּהֵיכָל וְלוֹקֵחַ מִמֶּנּוּ וְנוֹתֵן עַל פְּנֵי הַמַּיִם. וְאֵינוֹ מֵבִיא אֵפֶר אֲבָל מֵבִיא רַקְבּוּבִית שֶׁהִיא כְּעָפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> הקדים עפר עד והוציא עפר כשר.</strong> פרק היה מביא <span class="source-small"> (דף י&quot;ו)</span> :</p>
               </div>
             </div>
@@ -1014,8 +1249,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:14:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-14-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-14">Mishneh Torah, Woman Suspected of Infidelity 4:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִקְרִיב אֶת מִנְחָתָהּ וְאַחַר כָּךְ הִשְׁקָהּ כְּשֵׁרָה. נִטְמֵאת מִנְחָתָהּ קֹדֶם שֶׁיַּנִּיחֶנָה בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּפָּדֶה כְּכָל הַמְּנָחוֹת שֶׁנִּטְמְאוּ קֹדֶם שֶׁיִּתְקַדְּשׁוּ בִּכְלִי שָׁרֵת וְיָבִיאוּ מִנְחָה אַחֶרֶת. נִטְמֵאת הַמִּנְחָה אַחַר שֶׁקִּדְּשָׁהּ בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּשָּׂרֵף. וְכֵן אִם אָמְרָה טְמֵאָה אֲנִי קֹדֶם שֶׁתִּקָּמֵץ הַמִּנְחָה. אוֹ שֶׁאָמְרָה אֵינִי שׁוֹתָה. אוֹ שֶׁלֹּא רָצָה בַּעְלָהּ לְהַשְׁקוֹתָהּ. אוֹ שֶׁבָּאוּ עֵדֵי טֻמְאָה. אוֹ שֶׁמֵּת הוּא. אוֹ שֶׁמֵּתָה הִיא. הֲרֵי הַמִּנְחָה כֻּלָּהּ נִשְׂרֶפֶת. וְאִם אֵרַע אֶחָד מֵאֵלּוּ אַחַר שֶׁקָּרַב הַקֹּמֶץ אֵין הַשְּׁיָרִים נֶאֱכָלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקריב את מנחתה עד בית הדשן.</strong> פרק היה נוטל <span class="source-small"> (דף י&quot;ט)</span> :</p>
               </div>
             </div>
@@ -1030,8 +1270,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:14:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-14-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:14:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-14">Mishneh Torah, Woman Suspected of Infidelity 4:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִקְרִיב אֶת מִנְחָתָהּ וְאַחַר כָּךְ הִשְׁקָהּ כְּשֵׁרָה. נִטְמֵאת מִנְחָתָהּ קֹדֶם שֶׁיַּנִּיחֶנָה בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּפָּדֶה כְּכָל הַמְּנָחוֹת שֶׁנִּטְמְאוּ קֹדֶם שֶׁיִּתְקַדְּשׁוּ בִּכְלִי שָׁרֵת וְיָבִיאוּ מִנְחָה אַחֶרֶת. נִטְמֵאת הַמִּנְחָה אַחַר שֶׁקִּדְּשָׁהּ בִּכְלִי שָׁרֵת הֲרֵי זוֹ תִּשָּׂרֵף. וְכֵן אִם אָמְרָה טְמֵאָה אֲנִי קֹדֶם שֶׁתִּקָּמֵץ הַמִּנְחָה. אוֹ שֶׁאָמְרָה אֵינִי שׁוֹתָה. אוֹ שֶׁלֹּא רָצָה בַּעְלָהּ לְהַשְׁקוֹתָהּ. אוֹ שֶׁבָּאוּ עֵדֵי טֻמְאָה. אוֹ שֶׁמֵּת הוּא. אוֹ שֶׁמֵּתָה הִיא. הֲרֵי הַמִּנְחָה כֻּלָּהּ נִשְׂרֶפֶת. וְאִם אֵרַע אֶחָד מֵאֵלּוּ אַחַר שֶׁקָּרַב הַקֹּמֶץ אֵין הַשְּׁיָרִים נֶאֱכָלִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> נמצאו עדיה זוממין מנחתה תצא לחולין.</strong> בכריתות פרק המביא אשם תלוי:</p>
               </div>
             </div>
@@ -1046,8 +1291,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:16:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-16-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-16">Mishneh Torah, Woman Suspected of Infidelity 4:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְקַנֵּא לְאִשְׁתּוֹ עַל יְדֵי אֲנָשִׁים הַרְבֵּה וְנִסְתְּרָה עִם כָּל אֶחָד וְאֶחָד מֵהֶם הֲרֵי זֶה מֵבִיא מִנְחָה אַחַת עַל יְדֵי כֻּלָּן כְּשֶׁמַּשְׁקֶה אוֹתָהּ שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה טו)</span> &quot;מִנְחַת קְנָאֹת הִיא&quot;. מִנְחָה אַחַת לְקִנּוּיִין הַרְבֵּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקנא לאשתו עד לקינויין הרבה.</strong> פרק ד׳ מחוסרי כפרה:</p>
               </div>
             </div>
@@ -1062,8 +1312,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:17:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-17-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-17">Mishneh Torah, Woman Suspected of Infidelity 4:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַבַּעַל לְגַלְגֵּל בִּשְׁבוּעָה עָלֶיהָ שֶׁלֹּא זִנְּתָה עִם אִישׁ זֶה שֶׁקִּנֵּא לָהּ בּוֹ וְלֹא עִם אִישׁ אַחֵר. וְשֶׁלֹּא זִנְּתָה תַּחְתָּיו מִשֶּׁנִּתְאָרְסָה קֹדֶם שֶׁתִּנָּשֵׂא וְלֹא אַחַר שֶׁנִּשֵּׂאת. אֲבָל אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה קֹדֶם הָאֵרוּסִין וְלֹא אַחַר שֶׁגֵּרְשָׁהּ אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ. שֶׁאִם זִנְּתָה בְּעֵת זֶה לֹא תֵּאָסֵר עָלָיו. וְכָל שֶׁתִּבָּעֵל וְלֹא תִּהְיֶה אֲסוּרָה לוֹ אֵינוֹ מַתְנֶה עִמָּהּ. לְפִיכָךְ אִם כָּנַס יְבִמְתּוֹ אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה כְּשֶׁהָיְתָה שׁוֹמֶרֶת יָבָם. אֲבָל מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחַת אָחִיו שֶׁאִם זִנְּתָה תַּחַת אָחִיו הֲרֵי זוֹ אֲסוּרָה עָלָיו. וְכֵן אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחְתָּיו בַּנִּשּׂוּאִין הָרִאשׁוֹנִים. וְיֵשׁ לוֹ לְגַלְגֵּל עָלֶיהָ בִּלְהַבָּא שֶׁלֹּא תִּזְנֶה תַּחְתָּיו וְשֶׁלֹּא תִּזְנֶה אַחַר שֶׁיַּחְזִירֶנָּה אִם יְגָרֵשׁ וְיַחֲזִיר. לְפִיכָךְ כְּשֶׁתִּזְנֶה לְהַבָּא מַיִם בּוֹדְקִין אוֹתָהּ וְיֶאֶרְעוּ לָהּ אוֹתָן הַמְאֹרָעוֹת. לְכָךְ נֶאֱמַר <span class="source-small">(במדבר ה כב)</span> &quot;אָמֵן אָמֵן&quot;. אָמֵן מֵאִישׁ זֶה אָמֵן מֵאִישׁ אַחֵר. אָמֵן נְשׂוּאָה אָמֵן אֲרוּסָה. אָמֵן לְשֶׁעָבַר אָמֵן לְהַבָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש לבעל לגלגל בשבועה וכו׳ וכן יש לו לגלגל וכו׳ עד אם יגרש ויחזיר.</strong> כתב הראב&quot;ד כל זה לדעת רבי מאיר ואפשר שהלכה כמותו דסוגיין כוותיה. <strong> ואני </strong> אומר למה באפשר אלא דוקא ודבר ברור הוא דהלכה כרבי מאיר בהא דהא בעיא דרב אשי דהוא בתרא כוותיה דרבי מאיר שייכא:</p>
               </div>
             </div>
@@ -1078,8 +1333,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:17:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-17-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:17:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-17">Mishneh Torah, Woman Suspected of Infidelity 4:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַבַּעַל לְגַלְגֵּל בִּשְׁבוּעָה עָלֶיהָ שֶׁלֹּא זִנְּתָה עִם אִישׁ זֶה שֶׁקִּנֵּא לָהּ בּוֹ וְלֹא עִם אִישׁ אַחֵר. וְשֶׁלֹּא זִנְּתָה תַּחְתָּיו מִשֶּׁנִּתְאָרְסָה קֹדֶם שֶׁתִּנָּשֵׂא וְלֹא אַחַר שֶׁנִּשֵּׂאת. אֲבָל אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה קֹדֶם הָאֵרוּסִין וְלֹא אַחַר שֶׁגֵּרְשָׁהּ אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ. שֶׁאִם זִנְּתָה בְּעֵת זֶה לֹא תֵּאָסֵר עָלָיו. וְכָל שֶׁתִּבָּעֵל וְלֹא תִּהְיֶה אֲסוּרָה לוֹ אֵינוֹ מַתְנֶה עִמָּהּ. לְפִיכָךְ אִם כָּנַס יְבִמְתּוֹ אֵינוֹ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה כְּשֶׁהָיְתָה שׁוֹמֶרֶת יָבָם. אֲבָל מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחַת אָחִיו שֶׁאִם זִנְּתָה תַּחַת אָחִיו הֲרֵי זוֹ אֲסוּרָה עָלָיו. וְכֵן אִם גֵּרְשָׁהּ וְהֶחֱזִירָהּ מְגַלְגֵּל עָלֶיהָ שֶׁלֹּא זִנְּתָה תַּחְתָּיו בַּנִּשּׂוּאִין הָרִאשׁוֹנִים. וְיֵשׁ לוֹ לְגַלְגֵּל עָלֶיהָ בִּלְהַבָּא שֶׁלֹּא תִּזְנֶה תַּחְתָּיו וְשֶׁלֹּא תִּזְנֶה אַחַר שֶׁיַּחְזִירֶנָּה אִם יְגָרֵשׁ וְיַחֲזִיר. לְפִיכָךְ כְּשֶׁתִּזְנֶה לְהַבָּא מַיִם בּוֹדְקִין אוֹתָהּ וְיֶאֶרְעוּ לָהּ אוֹתָן הַמְאֹרָעוֹת. לְכָךְ נֶאֱמַר <span class="source-small">(במדבר ה כב)</span> &quot;אָמֵן אָמֵן&quot;. אָמֵן מֵאִישׁ זֶה אָמֵן מֵאִישׁ אַחֵר. אָמֵן נְשׂוּאָה אָמֵן אֲרוּסָה. אָמֵן לְשֶׁעָבַר אָמֵן לְהַבָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> לפיכך כשתזנה כו׳ עד אמן להבא.</strong> פרק היה מביא:</p>
               </div>
             </div>
@@ -1094,8 +1354,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:18:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-4-18-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Woman Suspected of Infidelity 4:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-woman-suspected-of-infidelity/#mishneh-torah-woman-suspected-of-infidelity-4-18">Mishneh Torah, Woman Suspected of Infidelity 4:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת חֲכָמִים עַל בְּנֵי יִשְׂרָאֵל לְקַנְּאוֹת לִנְשֵׁיהֶן שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה יד)</span> &quot;וְקִנֵּא אֶת אִשְׁתּוֹ&quot;. וְכָל הַמְקַנֵּא אֶת אִשְׁתּוֹ נִכְנְסָה בּוֹ רוּחַ טָהֳרָה. וְלֹא יְקַנֵּא לָהּ לֹא מִתּוֹךְ שְׂחוֹק וְלֹא מִתּוֹךְ שִׂיחָה וְלֹא מִתּוֹךְ קַלּוּת רֹאשׁ וְלֹא מִתּוֹךְ מְרִיבָה וְלֹא לְהַטִּיל עָלֶיהָ אֵימָה. וְאִם עָבַר וְקִנֵּא לָהּ בִּפְנֵי עֵדִים מִתּוֹךְ אֶחָד מִכָּל הַדְּבָרִים הָאֵלּוּ הֲרֵי זֶה קִנּוּי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות חכמים כו׳ עד סוף הפרק.</strong> סוף גיטין ופ&quot;ק דסוטה קיימא לן כמ&quot;ד רוח טהרה:</p>
               </div>
             </div>
@@ -1105,6 +1370,10 @@
               <a href="#chapter-migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-text-4">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1125,8 +1394,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json","occurrence_url":"../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-woman-suspected-of-infidelity.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1152,7 +1421,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

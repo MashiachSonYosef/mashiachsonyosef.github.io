@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../midrash/tractate-derekh-eretz-rabbah/">Open Tractate Derekh Eretz Rabbah</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Tractate Derekh Eretz Rabbah</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">16 total source units | imported 2026-04-27</p>
         <p class="meta source-citation">Hebrew version: Talmud Bavli, Vilna 1883 ed. | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001300957">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>54 matched</strong> / 121 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/gras-nuschah-on-tractate-derekh-eretz-rabbah.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/gras-nuschah-on-tractate-derekh-eretz-rabbah-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -246,8 +246,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 1:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-1-1">Tractate Derekh Eretz Rabbah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl"><strong> &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt; פרק ראשון</strong> המקדש את האשה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ה״ז אוסר עליו שבע עריות אלו הן אמה ואם אמה ואם אביה בתה בת בנה ובת בתה ואחותה בזמן שהיא קיימת וכולן שנאסרו עליו אין להן היתר לאיסורן חוץ מאחות אשתו שאינה אסורה אלא בחייה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;ולעולם אינו פוסל את אשתו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;על אמה ועל בתה ועל אחותה.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">(רבינו הגאון חיבר ב׳ פרקים הראשונים ממס׳ זו למס׳ כלה והדבר למד מעניינו ומבואר בכמה ראשונים שמסכת ד״א מתחלת מפרק בן עזאי ועי׳ רש״י ברכות כ״ב א׳ ותוס׳ עירובין נ״ג ב׳):</p>
               </div>
             </div>
@@ -262,8 +267,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 1:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 1:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-1-1">Tractate Derekh Eretz Rabbah 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl"><strong> &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt; פרק ראשון</strong> המקדש את האשה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ה״ז אוסר עליו שבע עריות אלו הן אמה ואם אמה ואם אביה בתה בת בנה ובת בתה ואחותה בזמן שהיא קיימת וכולן שנאסרו עליו אין להן היתר לאיסורן חוץ מאחות אשתו שאינה אסורה אלא בחייה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;ולעולם אינו פוסל את אשתו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;על אמה ועל בתה ועל אחותה.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ע״י אמה וע״י בתה וע״י אחותה (וברי״ף ורא״ש פ״ב דיבמות איתא לעולם אין אדם פוסל את אשתו ואפילו בא על אחותה או על אמה או על בתה):</p>
               </div>
             </div>
@@ -279,8 +289,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 2:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-2-1">Tractate Derekh Eretz Rabbah 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הצדוקים והמסורות והרשעים &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;והחנפים והאפיקורסין &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;עליהן הכתוב אומר &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;(איוב י״ג:ט״ז) כי לא לפניו חנף יבא.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומחללים שם שמים והאפיקורסים:</p>
               </div>
             </div>
@@ -295,8 +310,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 2:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 2:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-2-1">Tractate Derekh Eretz Rabbah 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הצדוקים והמסורות והרשעים &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;והחנפים והאפיקורסין &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;עליהן הכתוב אומר &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;(איוב י״ג:ט״ז) כי לא לפניו חנף יבא.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ישובו רשעים לשאולה וגו׳ האמתנים והגותנין:</p>
               </div>
             </div>
@@ -312,8 +332,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 4:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-4-1">Tractate Derekh Eretz Rabbah 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;לעולם תהא נאה בכניסתך ונאה ביציאתך ותהא ממעט בעסק ועסוק בתורה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;מעשה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;ברשב״א שבא ממגדל עדר מבית רבו והיה רוכב על החמור ומטייל על שפת הים ומצאו אדם אחד שהיה מכוער ביותר &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;אמר לו ריקה כמה מכוערין בניו של אברהם אבינו. אמר לו ומה אעשה לך אמור לאומן שעשאני. מיד ירד &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;5&quot;&gt;&lt;/i&gt;ר״ש בן אלעזר מן החמור ומשתטח לפניו אמר לו נעניתי לך מחול לי אמר לו אין אני מוחל לך עד שתלך לאומן שעשאני ותאמר לו כמה מכוער כלי זה שעשית. הלך אחריו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;חצי מיל שמעו בני עירו ויצאו לקראתו אמרו לו שלום עליך רבי. אמר להם למי אתם קורין רבי. אמרו לו לזה שמטייל אחריך. אמר להם אם זה רבי אל ירבה כמותו בישראל. אמרו לו ח״ו ומה עשה לך. אמר להם כל הענין. הפצירו בו מאד שימחול לו. אמר הריני מוחל לו ובלבד שלא יהא רגיל &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;לומר כן. אותו היום ישב ר״ש ודרש בבית המדרש הגדול שלו לעולם הוי רך כקנה ואל תהיה קשה כארז. מה קנה יצאו ארבע רוחות העולם קנה הולך ובא עמהן עמדו הרוחות קנה עומד במקומו מה סופו של קנה זה זכה ליטול ממנו קולמוס לכתוב בו ס״ת אבל ארז זה אינו כן. יצתה רוח &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;צפונית מערבית עוקרתו. מצד דרומית מזרחית עוקרתו והופכתו על פניו. נמצא ארז זה שהיה עומד על שרשיו מושלך. מה סופו של ארז זה באין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;כותתין ומכתתין אותו &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;6&quot;&gt;&lt;/i&gt;ומסבבין בו בתים והשאר מניחין על האור. לכך אמרו חכמים לעולם הוי רך כקנה ואל תהי קשה כארז.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ג׳ מילין:</p>
               </div>
             </div>
@@ -328,8 +353,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 4:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 4:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-4-1">Tractate Derekh Eretz Rabbah 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;לעולם תהא נאה בכניסתך ונאה ביציאתך ותהא ממעט בעסק ועסוק בתורה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;מעשה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;ברשב״א שבא ממגדל עדר מבית רבו והיה רוכב על החמור ומטייל על שפת הים ומצאו אדם אחד שהיה מכוער ביותר &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;אמר לו ריקה כמה מכוערין בניו של אברהם אבינו. אמר לו ומה אעשה לך אמור לאומן שעשאני. מיד ירד &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;5&quot;&gt;&lt;/i&gt;ר״ש בן אלעזר מן החמור ומשתטח לפניו אמר לו נעניתי לך מחול לי אמר לו אין אני מוחל לך עד שתלך לאומן שעשאני ותאמר לו כמה מכוער כלי זה שעשית. הלך אחריו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;חצי מיל שמעו בני עירו ויצאו לקראתו אמרו לו שלום עליך רבי. אמר להם למי אתם קורין רבי. אמרו לו לזה שמטייל אחריך. אמר להם אם זה רבי אל ירבה כמותו בישראל. אמרו לו ח״ו ומה עשה לך. אמר להם כל הענין. הפצירו בו מאד שימחול לו. אמר הריני מוחל לו ובלבד שלא יהא רגיל &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;לומר כן. אותו היום ישב ר״ש ודרש בבית המדרש הגדול שלו לעולם הוי רך כקנה ואל תהיה קשה כארז. מה קנה יצאו ארבע רוחות העולם קנה הולך ובא עמהן עמדו הרוחות קנה עומד במקומו מה סופו של קנה זה זכה ליטול ממנו קולמוס לכתוב בו ס״ת אבל ארז זה אינו כן. יצתה רוח &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;צפונית מערבית עוקרתו. מצד דרומית מזרחית עוקרתו והופכתו על פניו. נמצא ארז זה שהיה עומד על שרשיו מושלך. מה סופו של ארז זה באין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;כותתין ומכתתין אותו &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;6&quot;&gt;&lt;/i&gt;ומסבבין בו בתים והשאר מניחין על האור. לכך אמרו חכמים לעולם הוי רך כקנה ואל תהי קשה כארז.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">לעשות כן:</p>
               </div>
             </div>
@@ -344,8 +374,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 4:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 4:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-4-1">Tractate Derekh Eretz Rabbah 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;לעולם תהא נאה בכניסתך ונאה ביציאתך ותהא ממעט בעסק ועסוק בתורה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;מעשה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;ברשב״א שבא ממגדל עדר מבית רבו והיה רוכב על החמור ומטייל על שפת הים ומצאו אדם אחד שהיה מכוער ביותר &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;אמר לו ריקה כמה מכוערין בניו של אברהם אבינו. אמר לו ומה אעשה לך אמור לאומן שעשאני. מיד ירד &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;5&quot;&gt;&lt;/i&gt;ר״ש בן אלעזר מן החמור ומשתטח לפניו אמר לו נעניתי לך מחול לי אמר לו אין אני מוחל לך עד שתלך לאומן שעשאני ותאמר לו כמה מכוער כלי זה שעשית. הלך אחריו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;חצי מיל שמעו בני עירו ויצאו לקראתו אמרו לו שלום עליך רבי. אמר להם למי אתם קורין רבי. אמרו לו לזה שמטייל אחריך. אמר להם אם זה רבי אל ירבה כמותו בישראל. אמרו לו ח״ו ומה עשה לך. אמר להם כל הענין. הפצירו בו מאד שימחול לו. אמר הריני מוחל לו ובלבד שלא יהא רגיל &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;לומר כן. אותו היום ישב ר״ש ודרש בבית המדרש הגדול שלו לעולם הוי רך כקנה ואל תהיה קשה כארז. מה קנה יצאו ארבע רוחות העולם קנה הולך ובא עמהן עמדו הרוחות קנה עומד במקומו מה סופו של קנה זה זכה ליטול ממנו קולמוס לכתוב בו ס״ת אבל ארז זה אינו כן. יצתה רוח &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;צפונית מערבית עוקרתו. מצד דרומית מזרחית עוקרתו והופכתו על פניו. נמצא ארז זה שהיה עומד על שרשיו מושלך. מה סופו של ארז זה באין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;כותתין ומכתתין אותו &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;6&quot;&gt;&lt;/i&gt;ומסבבין בו בתים והשאר מניחין על האור. לכך אמרו חכמים לעולם הוי רך כקנה ואל תהי קשה כארז.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">מזרחית צפונית מערבית אינה מזיזו ממקומו כיון שנשב רוח דרומית עוקרתו:</p>
               </div>
             </div>
@@ -360,8 +395,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 4:1:4</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-4" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 4:1:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-4-1">Tractate Derekh Eretz Rabbah 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;לעולם תהא נאה בכניסתך ונאה ביציאתך ותהא ממעט בעסק ועסוק בתורה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;מעשה &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;ברשב״א שבא ממגדל עדר מבית רבו והיה רוכב על החמור ומטייל על שפת הים ומצאו אדם אחד שהיה מכוער ביותר &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;אמר לו ריקה כמה מכוערין בניו של אברהם אבינו. אמר לו ומה אעשה לך אמור לאומן שעשאני. מיד ירד &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;5&quot;&gt;&lt;/i&gt;ר״ש בן אלעזר מן החמור ומשתטח לפניו אמר לו נעניתי לך מחול לי אמר לו אין אני מוחל לך עד שתלך לאומן שעשאני ותאמר לו כמה מכוער כלי זה שעשית. הלך אחריו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;חצי מיל שמעו בני עירו ויצאו לקראתו אמרו לו שלום עליך רבי. אמר להם למי אתם קורין רבי. אמרו לו לזה שמטייל אחריך. אמר להם אם זה רבי אל ירבה כמותו בישראל. אמרו לו ח״ו ומה עשה לך. אמר להם כל הענין. הפצירו בו מאד שימחול לו. אמר הריני מוחל לו ובלבד שלא יהא רגיל &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;לומר כן. אותו היום ישב ר״ש ודרש בבית המדרש הגדול שלו לעולם הוי רך כקנה ואל תהיה קשה כארז. מה קנה יצאו ארבע רוחות העולם קנה הולך ובא עמהן עמדו הרוחות קנה עומד במקומו מה סופו של קנה זה זכה ליטול ממנו קולמוס לכתוב בו ס״ת אבל ארז זה אינו כן. יצתה רוח &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;צפונית מערבית עוקרתו. מצד דרומית מזרחית עוקרתו והופכתו על פניו. נמצא ארז זה שהיה עומד על שרשיו מושלך. מה סופו של ארז זה באין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;כותתין ומכתתין אותו &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;6&quot;&gt;&lt;/i&gt;ומסבבין בו בתים והשאר מניחין על האור. לכך אמרו חכמים לעולם הוי רך כקנה ואל תהי קשה כארז.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כורתין ומסתתין אותו ובונים בו:</p>
               </div>
             </div>
@@ -377,8 +417,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 5:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-5-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-5-1">Tractate Derekh Eretz Rabbah 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לעולם אל יפטר אדם לא מאצל [רבו ולא מאצל] חבירו אא״כ נפטר ממנו ונוטל הימנו רשות. וילמדו כל אדם דרך ארץ מן המקום &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt; &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;שאמר לו לאברהם כלום אברהם אני צריך לו. אמר לפניו רבש״ע הן.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כביכול שאמר לאברהם הריני נפטר ממך שנאמר (בראשית י״ח:ל״ג) וילך ה׳ כאשר כלה לדבר אל אברהם ואברהם שב למקומו. לעולם:</p>
               </div>
             </div>
@@ -394,8 +439,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 6:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-6-1">Tractate Derekh Eretz Rabbah 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הנכנס לבית כל מה שיגזר עליו בעל הבית יעשה ([כשהוא דבר כשרות]) ומעשה בשמעון בן אנטיפטרס שהיו אורחין נכנסין אצלו וגזר עליהן שיאכלו וישתו. והיו נודרין [בתורה שלא יאכלו ושלא ישתו ואח״כ היו אוכלין ושותין]. בשעת פטירתן היה מלקה אותן נשמעו הדברים לפני רבן יוחנן בן זכאי וחכמים. וקנטרן בדבר. אמרו מי ילך ויודיענו. אמר להם רבי יהושע אני אלך ואראה מה מעשיו (אמרו לו לך לשלום). הלך ומצאו על פתח ביתו אמר לו שלום עליך רבי. אמר לו שלום עליך רבי ומורי. אמר לו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ביתא אני צריך אמר לו שב לשלום. ישבו ועסקו בתורה עד הערב. לשחרית א״ל רבי אלך למרחץ. א״ל &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;רצונך. היה רבי יהושע מתירא שמא יקפחנו על שוקיו. לאחר שיצא אכלו ושתו. אמר מי מלויני. אמר לו אני. היה רבי יהושע מחשב בדעתו ואמר מה אשיב לחכמים ששגרוני. נפנה רבי יהושע לאחוריו אמר לו רבי למה נפנית לאחריך. אמר לו דבר אני צריך לשאול ממך. מפני מה בני אדם הנכנסין אצלך אתה מלקה אותן. ולי לא הלקית. אמר לו רבי אתה חכם גדול ודרך ארץ יש בידך. בני אדם הנכנסין אצלי גזרתי עליהן שיהו אוכלין. והן נודרין בתורה ועוברין. וכך שמעתי מפי חכמים שכל מי שנודר בתורה ועוברה לוקה ארבעים. [א״ל ברוך אתה לשמים שעשית כך חייך וחיי ראשך מי שנוהג לעשות כך הלקה אותו] ארבעים שלך וארבעים של חכמים ששגרוני. הלך רבי יהושע וספר דברים לפני חכמים מה שראה בשמעון אנטיפטרס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">בית:</p>
               </div>
             </div>
@@ -410,8 +460,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 6:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 6:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-6-1">Tractate Derekh Eretz Rabbah 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הנכנס לבית כל מה שיגזר עליו בעל הבית יעשה ([כשהוא דבר כשרות]) ומעשה בשמעון בן אנטיפטרס שהיו אורחין נכנסין אצלו וגזר עליהן שיאכלו וישתו. והיו נודרין [בתורה שלא יאכלו ושלא ישתו ואח״כ היו אוכלין ושותין]. בשעת פטירתן היה מלקה אותן נשמעו הדברים לפני רבן יוחנן בן זכאי וחכמים. וקנטרן בדבר. אמרו מי ילך ויודיענו. אמר להם רבי יהושע אני אלך ואראה מה מעשיו (אמרו לו לך לשלום). הלך ומצאו על פתח ביתו אמר לו שלום עליך רבי. אמר לו שלום עליך רבי ומורי. אמר לו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ביתא אני צריך אמר לו שב לשלום. ישבו ועסקו בתורה עד הערב. לשחרית א״ל רבי אלך למרחץ. א״ל &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;רצונך. היה רבי יהושע מתירא שמא יקפחנו על שוקיו. לאחר שיצא אכלו ושתו. אמר מי מלויני. אמר לו אני. היה רבי יהושע מחשב בדעתו ואמר מה אשיב לחכמים ששגרוני. נפנה רבי יהושע לאחוריו אמר לו רבי למה נפנית לאחריך. אמר לו דבר אני צריך לשאול ממך. מפני מה בני אדם הנכנסין אצלך אתה מלקה אותן. ולי לא הלקית. אמר לו רבי אתה חכם גדול ודרך ארץ יש בידך. בני אדם הנכנסין אצלי גזרתי עליהן שיהו אוכלין. והן נודרין בתורה ועוברין. וכך שמעתי מפי חכמים שכל מי שנודר בתורה ועוברה לוקה ארבעים. [א״ל ברוך אתה לשמים שעשית כך חייך וחיי ראשך מי שנוהג לעשות כך הלקה אותו] ארבעים שלך וארבעים של חכמים ששגרוני. הלך רבי יהושע וספר דברים לפני חכמים מה שראה בשמעון אנטיפטרס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">כרצונך:</p>
               </div>
             </div>
@@ -427,8 +482,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 7:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-7-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-7-1">Tractate Derekh Eretz Rabbah 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שנים שהיו יושבין על שלחן אחד. &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הגדול שבהן שולח יד תחלה. ואחר כך הקטן. ואם שלח &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הרי זה גרגרן.</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">הקטן:</p>
               </div>
             </div>
@@ -444,8 +504,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 9:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-9-1">Tractate Derekh Eretz Rabbah 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לא יפרוס אדם פרוסה על גבי הקערה. [ולא יקנח אדם בפרוסה את הקערה ולא ילקט אדם פירורין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;אפילו על גבי השולחן מפני שהוא ממחה דעת הבריות ס״א] &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;אבל מקנח אדם קערה מפרוסה ולא יניח אדם פירורין ויניח על גבי שולחן מפני (כל) שהוא ממחה דעתו של חבירו. ולא ישוך אדם מפרוסה ויחזירנה לתוך הקערה. וכן לא ישוך אדם מפרוסה ויתננה לחבירו. לפי שאין דעות הבריות שוות. &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ולא ישתה מן הכוס ויתננה לחבירו מפני סכנת נפשות. ומעשה בר״ע שהיה לו אכסניא אצל אדם אחד נתן לו כוס וטעמו. אמר לו רבי עקיבא טול ושתהו. שוב נתן לו כוס אחר וטעמו אמר לו רבי עקיבא טול ושתהו אמר לו בן עזאי (עקיבא) עד מתי אתה משקה כוסות &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;מטעומין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ויניחם על:</p>
               </div>
             </div>
@@ -460,8 +525,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 9:1:2</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-2" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 9:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-9-1">Tractate Derekh Eretz Rabbah 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לא יפרוס אדם פרוסה על גבי הקערה. [ולא יקנח אדם בפרוסה את הקערה ולא ילקט אדם פירורין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;אפילו על גבי השולחן מפני שהוא ממחה דעת הבריות ס״א] &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;אבל מקנח אדם קערה מפרוסה ולא יניח אדם פירורין ויניח על גבי שולחן מפני (כל) שהוא ממחה דעתו של חבירו. ולא ישוך אדם מפרוסה ויחזירנה לתוך הקערה. וכן לא ישוך אדם מפרוסה ויתננה לחבירו. לפי שאין דעות הבריות שוות. &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ולא ישתה מן הכוס ויתננה לחבירו מפני סכנת נפשות. ומעשה בר״ע שהיה לו אכסניא אצל אדם אחד נתן לו כוס וטעמו. אמר לו רבי עקיבא טול ושתהו. שוב נתן לו כוס אחר וטעמו אמר לו רבי עקיבא טול ושתהו אמר לו בן עזאי (עקיבא) עד מתי אתה משקה כוסות &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;מטעומין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ולא יקנח אדם בפרוסה ויניח ע״ג השולחן:</p>
               </div>
             </div>
@@ -476,8 +546,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 9:1:3</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-3" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 9:1:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-9-1">Tractate Derekh Eretz Rabbah 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לא יפרוס אדם פרוסה על גבי הקערה. [ולא יקנח אדם בפרוסה את הקערה ולא ילקט אדם פירורין &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;אפילו על גבי השולחן מפני שהוא ממחה דעת הבריות ס״א] &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;אבל מקנח אדם קערה מפרוסה ולא יניח אדם פירורין ויניח על גבי שולחן מפני (כל) שהוא ממחה דעתו של חבירו. ולא ישוך אדם מפרוסה ויחזירנה לתוך הקערה. וכן לא ישוך אדם מפרוסה ויתננה לחבירו. לפי שאין דעות הבריות שוות. &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ולא ישתה מן הכוס ויתננה לחבירו מפני סכנת נפשות. ומעשה בר״ע שהיה לו אכסניא אצל אדם אחד נתן לו כוס וטעמו. אמר לו רבי עקיבא טול ושתהו. שוב נתן לו כוס אחר וטעמו אמר לו רבי עקיבא טול ושתהו אמר לו בן עזאי (עקיבא) עד מתי אתה משקה כוסות &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;מטעומין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">טעומין לר&quot;ע:</p>
               </div>
             </div>
@@ -493,8 +568,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Gra&#39;s Nuschah on Tractate Derekh Eretz Rabbah 10:1:1</h4></div>
               <a class="anchor" href="#gras-nuschah-on-tractate-derekh-eretz-rabbah-10-1-1" aria-label="Copy link to Gra's Nuschah on Tractate Derekh Eretz Rabbah 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../midrash/tractate-derekh-eretz-rabbah/#tractate-derekh-eretz-rabbah-10-1">Tractate Derekh Eretz Rabbah 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">&lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;הנכנס למרחץ אומר יהי רצון מלפניך ה׳ אלהי שתכניסני לשלום ותוציאני לשלום ותחזירני לשלום ותצילני מזו ומכיוצא בה לעתיד לבא: וקודם שיכנס כיצד יעשה. חולץ את מנעליו ומסלק את כובעו ומסלק את טליתו ומתיר את חגורו ופושט את חלוקו ואח״כ מתיר את פורקסו התחתונה: רחץ ויצא והביאו לו את המפה. מקנח את ראשו ואחר כך מקנח את כל האיברים. הביאו לו את השמן &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;2&quot;&gt;&lt;/i&gt;סך את הראש ואח״כ סך את כל האיברים. ואח״כ מניח פרקסו התחתונה ולובש את חלוקו וחוגר את חגורו ומתכסה בטליתו &lt;i data-commentator=&quot;Gra&#39;s Nuschah&quot; data-order=&quot;1&quot;&gt;&lt;/i&gt;ואח״כ מניח מנעליו. &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;3&quot;&gt;&lt;/i&gt;מניח של ימין ואחר כך מניח של שמאל. וכשהוא חולץ חולץ של שמאל תחלה ואח״כ של ימין. וכן לענין תפילין &lt;i data-commentator=&quot;Haggahot R&#39; Yeshaya Berlin&quot; data-order=&quot;4&quot;&gt;&lt;/i&gt;מניח של יד ואח״כ מניח של ראש. וכשהוא חולץ חולץ של ראש תחלה ואח״כ של יד. (אם יש לו בן או עבד מניחין לו):</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">ומניח את כובעו ואח״כ מניח מנעליו ואם יש לו בן או עבד מניחין לו:</p>
               </div>
             </div>
@@ -504,6 +584,10 @@
               <a href="#chapter-gras-nuschah-on-tractate-derekh-eretz-rabbah-text-10">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/gras-nuschah-on-tractate-derekh-eretz-rabbah.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/gras-nuschah-on-tractate-derekh-eretz-rabbah-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -524,10 +608,10 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences>{"schema_version":1,"work_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah","work_title":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah","work_slug":"gra/gras-nuschah-on-tractate-derekh-eretz-rabbah","scope_label":"All imported Hebrew works","generated_at":"2026-05-16T00:15:01.057Z","total_occurrences":137,"units":{"gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 1:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e8747eccb113","tok-18b32531a32a","tok-81b46fd1d20c","tok-0225eb440719","tok-3dbdd7cd4ea3","tok-a262e6040efb","tok-d075e96d7ff5","tok-c3d0905aa5e8","tok-2808e9ccc839","tok-cc8605ac585c","tok-dc5fffbb4985","tok-0998bafab5f8","tok-21289892a5df","tok-afea160b3424","tok-0a26ca17e6da","tok-f6fa7691a3d8","tok-00b6502624cc","tok-6f83576f3d4e","tok-69247e0db2f8","tok-4c88fd41d68e","tok-86d73ee88ac1","tok-31585d8b5f5c","tok-690cd1525601","tok-c1335b397bb6","tok-3bc5b16ccbc4","tok-06bf2930672c","tok-5dbc465eef3a","tok-253038e67853","tok-96ee5b9ca7cb","tok-7fed2029e6cd","tok-0225eb440719"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-1-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 1:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c052d13c1409","tok-4545dfefcd46","tok-71038042db36","tok-4d6c88fd91c8","tok-71038042db36","tok-e58f3a5b0841","tok-55badc766e8d","tok-850907aa2cdc","tok-b43fb1fbcb20","tok-fcb8f578c08e","tok-a63bca557725","tok-86de7c488d94","tok-ae38ddad5f54","tok-719946fd2242","tok-3aafcea400d2","tok-653c40b14c95","tok-2a8eff6b88df","tok-286af9a86e44","tok-7a76937848a9","tok-fec32c5eb399","tok-e58f3a5b0841","tok-afd80144ea83","tok-fec32c5eb399","tok-4545dfefcd46","tok-afd80144ea83","tok-fec32c5eb399","tok-4d6c88fd91c8"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 2:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af0921cdf7a9","tok-b0af3af340bf","tok-e881677edd85","tok-d7fee1856c57"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-2-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 2:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-1da69ea182da","tok-4b4b7b68318c","tok-ee3d540d5126","tok-3bd46a72615d","tok-3a35af289460","tok-1ad0224367da"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 4:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-8e9a9a5277c9","tok-42bfead71722"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 4:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-68aca67641c7","tok-22dbf4c81061"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-3":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-3","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 4:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fd9644509a18","tok-dfc54c5becb1","tok-1e3fc9142c8b","tok-526ae0030752","tok-5e9d0924025a","tok-948cda90613b","tok-fe718abd3461","tok-9c1015972f9d","tok-0eb01801ad16","tok-e9d9e1f413f2","tok-4a0550b83937"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-4":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-4","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-4-1-4","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 4:1:4","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d509c160de3e","tok-23e9ef743eb7","tok-13921c3f9e47","tok-6c2753573dbd","tok-6bbc700ab93c"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-5-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-5-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-5-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 5:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-c61b9ffa95f9","tok-c17add4fa79f","tok-89f4bb844b08","tok-0b9d3b360a33","tok-a503891ee119","tok-e4eaca74f3d2","tok-51ff0ed570b3","tok-b40935eee17d","tok-5622543b2879","tok-dd17508faf8f","tok-c03a7f228269","tok-8cfeb5f180a7","tok-a7cf67130ca5","tok-cc8605ac585c","tok-939346b4757c","tok-91f75a82d37d","tok-0dc016a264ee","tok-640672fbf349","tok-b13a7fd8f6cc","tok-9a1de6c8993e","tok-86de7c488d94"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 6:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-7e9c33dc3514"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-6-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 6:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d4162943cda4"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-7-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-7-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-7-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 7:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-d98f197b81fd"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 9:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-af036224ddae","tok-fec32c5eb399"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-2":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-2","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-2","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 9:1:2","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-e7c1c2463f8d","tok-82409fb24214","tok-719946fd2242","tok-8e7b49f2d07a","tok-c4b9293e0bdf","tok-6818c2926637","tok-63797f0a7aa6"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-3":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-3","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-9-1-3","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 9:1:3","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-fcd62631f3e6","tok-4d077327308d"]}]},"gras-nuschah-on-tractate-derekh-eretz-rabbah-10-1-1":{"unit_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-10-1-1","anchor_id":"gras-nuschah-on-tractate-derekh-eretz-rabbah-10-1-1","source_ref":"Gra\u0027s Nuschah on Tractate Derekh Eretz Rabbah 10:1:1","paragraphs":[{"paragraph_index":0,"token_index_ids":["tok-682aa4d62880","tok-653c40b14c95","tok-fc15ca16b984","tok-2e55d232c1bd","tok-1a7d0fb35528","tok-210322a532ad","tok-e416a1c166fc","tok-1404ac5abc41","tok-908d2f9303c3","tok-86d73ee88ac1","tok-afd80144ea83","tok-1af79d69f8db","tok-4db2cc25cdb0","tok-908d2f9303c3"]}]}}}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/gras-nuschah-on-tractate-derekh-eretz-rabbah.manifest.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/gras-nuschah-on-tractate-derekh-eretz-rabbah.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/gras-nuschah-on-tractate-derekh-eretz-rabbah.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/gras-nuschah-on-tractate-derekh-eretz-rabbah.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
-    (() => {
+    (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
       const lexiconNode = document.querySelector("[data-lexical-lexicon]");
       const configNode = document.querySelector("[data-lexical-config]");
@@ -535,7 +619,7 @@
       const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
       const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
       const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
-      const occurrences = occurrenceNode ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
       const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
       const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
       const chunkPromises = new Map();
@@ -551,7 +635,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
@@ -568,6 +651,12 @@
         const response = await fetch(toAbsoluteUrl(url, base));
         if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
         return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
       };
       const loadManifest = async () => {
         if (!lexicalConfig.manifest_url) return null;
@@ -650,8 +739,9 @@
         const state = { index: 0 };
         textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
       };
+      const loadedOccurrences = await loadOccurrences();
       document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
-        const unitData = occurrences.units ? occurrences.units[unit.id] : null;
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
         if (!unitData) return;
         unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
           const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);

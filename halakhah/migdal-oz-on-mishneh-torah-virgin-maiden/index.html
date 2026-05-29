@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-virgin-maiden/">Open Mishneh Torah, Virgin Maiden</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Virgin Maiden</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">27 total source units | imported 2026-05-22</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>391 matched</strong> / 1062 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/migdal-oz-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/migdal-oz-on-mishneh-torah-virgin-maiden-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -227,8 +227,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-1">Mishneh Torah, Virgin Maiden 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁפִּתָּה בְּתוּלָה קוֹנְסִין אוֹתוֹ מִשְׁקַל חֲמִשִּׁים סְלָעִים שֶׁל כֶּסֶף מְזֻקָּק וְהוּא הַנִּקְרָא קְנָס. וְכֵן אִם אָנַס אוֹתָהּ. וּקְנָס זֶה מִצְוַת עֲשֵׂה שֶׁל תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְנָתַן הָאִישׁ הַשּׁוֹכֵב עִמָּהּ לַאֲבִי הַנַּעֲרָה חֲמִשִּׁים כֶּסֶף&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שפיתה בתולה וכו׳ עד חמשים כסף.</strong> בכתובות פרק אלו נערות <span class="source-small"> (דף מ׳)</span> :</p>
               </div>
             </div>
@@ -243,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-2">Mishneh Torah, Virgin Maiden 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זֶה הוּא מְפַתֶּה וְאֵי זֶה הוּא אוֹנֵס. מְפַתֶּה לִרְצוֹנָהּ. אוֹנֵס שֶׁבָּא עָלֶיהָ בְּעַל כָּרְחָהּ. כָּל הַנִּבְעֶלֶת בַּשָּׂדֶה הֲרֵי זוֹ בְּחֶזְקַת אֲנוּסָה וְדָנִין אוֹתָהּ בְּדִין אֲנוּסָה עַד שֶׁיָּעִידוּ הָעֵדִים שֶׁבִּרְצוֹנָהּ נִבְעֲלָה. וְכָל הַנִּבְעֶלֶת בָּעִיר הֲרֵי זוֹ בְּחֶזְקַת מְפֻתָּה מִפְּנֵי שֶׁלֹּא זָעֲקָה עַד שֶׁיָּעִידוּ הָעֵדִים שֶׁהִיא אֲנוּסָה, כְּגוֹן שֶׁשָּׁלַף לָהּ חֶרֶב וְאָמַר לָהּ אִם תִּזְעֲקִי אֶהֱרֹג אוֹתָךְ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>איזהו מפתה וכו׳ עד בעל כרחה.</strong> פרק אלו נערות שם גמרא מתני׳ דהמפתה נותן ג׳ דברים וכו׳:</p>
               </div>
             </div>
@@ -259,8 +269,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-2">Mishneh Torah, Virgin Maiden 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זֶה הוּא מְפַתֶּה וְאֵי זֶה הוּא אוֹנֵס. מְפַתֶּה לִרְצוֹנָהּ. אוֹנֵס שֶׁבָּא עָלֶיהָ בְּעַל כָּרְחָהּ. כָּל הַנִּבְעֶלֶת בַּשָּׂדֶה הֲרֵי זוֹ בְּחֶזְקַת אֲנוּסָה וְדָנִין אוֹתָהּ בְּדִין אֲנוּסָה עַד שֶׁיָּעִידוּ הָעֵדִים שֶׁבִּרְצוֹנָהּ נִבְעֲלָה. וְכָל הַנִּבְעֶלֶת בָּעִיר הֲרֵי זוֹ בְּחֶזְקַת מְפֻתָּה מִפְּנֵי שֶׁלֹּא זָעֲקָה עַד שֶׁיָּעִידוּ הָעֵדִים שֶׁהִיא אֲנוּסָה, כְּגוֹן שֶׁשָּׁלַף לָהּ חֶרֶב וְאָמַר לָהּ אִם תִּזְעֲקִי אֶהֱרֹג אוֹתָךְ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> כל הנבעלת בשדה הרי זו בחזקת וכו׳ וכל הנבעלת בעיר וכו׳ עד אהרוג אותך.</strong> פרק אלו נערות <span class="source-small"> (דף ל&quot;ט)</span> :<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל חיי ראשי חזקה זו איני יודע מאי תועלת יש בה אם יש שם עדים יבאו ויעידו ואם אין שם עדים קנס אין שם וכו׳: <strong> ואני </strong> אומר ר&quot;מ מקוצי מדעת רבותינו בעלי התוס׳ ז&quot;ל כר&quot;מ ז&quot;ל ואי משום קושיית ראב&quot;ד ז&quot;ל אית לי לומר אם איתא גבי מתניתין שבועות <span class="source-small"> (דף ל&quot;ו:) </span> דאנסת ופיתית את בתי והוא אומר לא אנסתי ולא פתיתי משביעך אני ואמר אמן חייב ר&quot;ש פוטר שאינו משלם קנס ע&quot;פ עצמו אמרו לו אע&quot;פ שאינו משלם קנס ע&quot;פ עצמו משלם בשת ופגם ע&quot;פ עצמו השנויה פרק שבועת הפקדון ומייתי לה בכתובות פרק אלו נערות <span class="source-small"> (דף מ&quot;ב) </span> ומייתי לה בכמה מקומות מצינו נמי למיבעי הכי היכי דמי אם יש שם עדים יבאו ויעידו ואם אין שם עדים קנס אין שם ומה מקום לחיוב זה אלא ודאי איבעי לן לתרוצה בכמה תירוצי והא נמי מפריקנא לה דתיקום חזקה במקום עדים ושניהם מודים בבעילה או שיש עדים שראוה נבעלה ממקום רחוק אבל לא ידעו ולא ראו אם באונס אם ברצון היא אומרת אנוסה הייתי ויש לי צער והוא אומר מפותה היית ואין ליך צער כדאיתא פרק אלו נערות <span class="source-small"> (דף ל&quot;ט) </span> גמרא מתניתין דהמפתה נותן ג׳ דברים דאסיקנא פקחות שבהן אומרות מפותה אין לה צער אמרי׳ מסתמא דמלתא סמכינן אחזקה בשדה אנוסה וכפשטא דקרא צעקה ואין מושיע לה ובעיר מפותה ומעניינא דקרא על דבר אשר לא צעקה בעיר כדבריו כן הוא:</p>
               </div>
             </div>
@@ -275,8 +290,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-3">Mishneh Torah, Virgin Maiden 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְפֻתָּה שֶׁלֹּא רָצְתָה לְהִנָּשֵׂא לַמְפַתֶּה. אוֹ שֶׁלֹּא רָצָה אָבִיהָ לִתְּנָהּ לוֹ. אוֹ שֶׁלֹּא רָצָה הוּא לִכְנֹס. הֲרֵי זֶה נוֹתֵן קְנָס וְהוֹלֵךְ וְאֵין כּוֹפִין אוֹתוֹ לִכְנֹס. וְאִם רָצוּ וּכְנָסָהּ אֵינוֹ מְשַׁלֵּם קְנָס אֶלָּא כּוֹתֵב לָהּ כְּתֻבָּה כִּשְׁאָר הַבְּתוּלוֹת. אֲבָל הָאֲנוּסָה שֶׁלֹּא רָצְתָה הִיא אוֹ אָבִיהָ לְהִנָּשֵׂא לְאוֹנֵס הָרְשׁוּת בְּיָדָם וְנוֹתֵן קְנָס וְהוֹלֵךְ. רָצְתָה הִיא וְאָבִיהָ וְלֹא רָצָה הוּא כּוֹפִין אוֹתוֹ וְכוֹנֵס וְנוֹתֵן קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; הֲרֵי זוֹ מִצְוַת עֲשֵׂה. אֲפִלּוּ הִיא חִגֶּרֶת אוֹ סוּמָא אוֹ מְצֹרַעַת כּוֹפִין אוֹתוֹ לִכְנֹס וְאֵינוֹ מוֹצִיא לִרְצוֹנוֹ לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ כָּל יָמָיו&quot; הֲרֵי זוֹ מִצְוַת לֹא תַּעֲשֶׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפותה שלא רצתה להנשא עד אשה הראויה לו.</strong> בכתובות פרק אלו נערות <span class="source-small"> (דף ל&quot;ט)</span> :</p>
               </div>
             </div>
@@ -291,8 +311,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-6">Mishneh Torah, Virgin Maiden 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֹּהֵן גָּדוֹל שֶׁאָנַס בְּתוּלָה אוֹ שֶׁפִּתָּה אוֹתָהּ הֲרֵי זֶה לֹא יִכְנֹס מִפְּנֵי שֶׁהוּא מְצֻוֶּה לִקַּח אֶת הַבְּתוּלָה וּבְשָׁעָה שֶׁיִּשָּׂא זוֹ אֵינָהּ בְּתוּלָה. וְאִם כָּנַס יוֹצִיא בְּגֵט:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כ&quot;ג שאנס עד ואם כנס יוציא בגט.</strong> פרק אלו נערות <span class="source-small"> (דף ל&quot;ט) </span> ובמכות פרק אלו הן הלוקין <span class="source-small"> (דף ט&quot;ו) </span> בירושלמי ובסנהדרין פרק ארבע מיתות:</p>
               </div>
             </div>
@@ -307,8 +332,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-7">Mishneh Torah, Virgin Maiden 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁנֶּאֱמַר בְּאוֹנֵס <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ&quot; כֵּיוָן שֶׁקְּדָמוֹ עֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; הֲרֵי זֶה נִתְּקוֹ לַעֲשֵׂה וְנִמְצֵאת זוֹ מִצְוַת לֹא תַּעֲשֶׂה שֶׁנִּתְּקָהּ לַעֲשֵׂה שֶׁאֵין לוֹקִין עָלֶיהָ אֶלָּא אִם לֹא קִיֵּם עֲשֵׂה שֶׁבָּהּ כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. לְפִיכָךְ הָאוֹנֵס שֶׁעָבַר וְגֵרֵשׁ כּוֹפִין אוֹתוֹ לְהַחֲזִיר וְאֵינוֹ לוֹקֶה. מֵתָה גְּרוּשָׁתוֹ קֹדֶם שֶׁיַּחְזִירֶנָּה אוֹ נִתְקַדְּשָׁה לְאַחֵר אוֹ שֶׁהָיָה כֹּהֵן שֶׁאָסוּר בִּגְרוּשָׁה הֲרֵי זֶה לוֹקֶה שֶׁהֲרֵי עָבַר עַל לֹא תַּעֲשֶׂה וְאֵינוֹ יָכוֹל לְקַיֵּם עֲשֵׂה שֶׁבָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ שנאמר באונס כו׳ עד בהלכות סנהדרין.</strong> במסכת מכות פרק אלו הן הלוקין <span class="source-small"> (שם)</span> :</p>
               </div>
             </div>
@@ -323,8 +353,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:7:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-7-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-7">Mishneh Torah, Virgin Maiden 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁנֶּאֱמַר בְּאוֹנֵס <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ&quot; כֵּיוָן שֶׁקְּדָמוֹ עֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; הֲרֵי זֶה נִתְּקוֹ לַעֲשֵׂה וְנִמְצֵאת זוֹ מִצְוַת לֹא תַּעֲשֶׂה שֶׁנִּתְּקָהּ לַעֲשֵׂה שֶׁאֵין לוֹקִין עָלֶיהָ אֶלָּא אִם לֹא קִיֵּם עֲשֵׂה שֶׁבָּהּ כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. לְפִיכָךְ הָאוֹנֵס שֶׁעָבַר וְגֵרֵשׁ כּוֹפִין אוֹתוֹ לְהַחֲזִיר וְאֵינוֹ לוֹקֶה. מֵתָה גְּרוּשָׁתוֹ קֹדֶם שֶׁיַּחְזִירֶנָּה אוֹ נִתְקַדְּשָׁה לְאַחֵר אוֹ שֶׁהָיָה כֹּהֵן שֶׁאָסוּר בִּגְרוּשָׁה הֲרֵי זֶה לוֹקֶה שֶׁהֲרֵי עָבַר עַל לֹא תַּעֲשֶׂה וְאֵינוֹ יָכוֹל לְקַיֵּם עֲשֵׂה שֶׁבָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> לפיכך אונס שעבר וגירש עד לקיים עשה שבה.</strong> פ&quot;א דתמורה <span class="source-small"> (דף ה׳) </span> ובמכות פרק אלו הן הלוקין <span class="source-small"> (דף ט&quot;ו)</span> :</p>
               </div>
             </div>
@@ -339,8 +374,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-8">Mishneh Torah, Virgin Maiden 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאוֹנֵס אוֹ הַמְפַתֶּה חַיָּב בִּקְנָס עַד שֶׁיָּבוֹא עָלֶיהָ [כְּדַרְכָּהּ] וּבְעֵדִים וְאֵינוֹ צָרִיךְ הַתְרָאָה. וּמֵאֵימָתַי יִהְיֶה לַבַּת קְנָס. מֵאַחַר שָׁלשׁ שָׁנִים גְּמוּרוֹת עַד שֶׁתִּבְגֹּר. נִבְעֲלָה בְּתוֹךְ שָׁלֹשׁ שָׁנִים אֵין בִּיאָתָהּ בִּיאָה. בָּא עָלֶיהָ מִשֶּׁבָּגְרָה אֵין לָהּ קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כח)</span> &quot;נַעֲרָה בְתוּלָה&quot; לֹא הַבּוֹגֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין האונס עד התראה.</strong> פ׳ נערה <span class="source-small"> (דף מ&quot;ו)</span> :<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל טעות הוא ומפורש בגמרא דאפילו שלא כדרכה משלם קנס עכ&quot;ל: <strong> ואני </strong> אומר גמרא זו איני יודע אותה ומה שכתב רמז&quot;ל ידעתי כי מימרא היא פרק נערה שנתפתתה <span class="source-small"> (דף מ&quot;ו:) </span> גמרא מתניתין דהגיורת שנתגיירה דאסיקנא אלא כדשלח רב כהנא משמיה דרבי יוחנן עד שיבעול כדרכה ויוציא שם רע בכדרכה ע&quot;כ. וכ&quot;ת מוציא שם רע לחוד ואונס ומפתה לחוד הא ודאי ליתא אלא שוין הן תדע דבריש גמרא <span class="source-small"> (דף מ&quot;ד:) </span> דההיא משנה גרסינן אמר רבי יוסי ב&quot;ר חנינא המוציא שם רע על היתומה פטור שנאמר ונתנו לאבי הנערה פרט לזו שאין לה אב מתיב רבי יוסי בר אבין ואיתימא ר׳ יוסי בר זבידא ואם מאן ימאן אביה [לתתה לו כסף ישקול] לרבות יתומה לקנס דברי רבי יוסי הגלילי ע&quot;כ והאי קרא במפתה ואונס כתיב ומותיב מינה למוציא שם רע אלמא דינן שוה וכן תירצו והסכימו רבותינו בעלי התוספות ז&quot;ל בהא שמעתא מחמת קושיות אחרות וגם מפירש&quot;י ז&quot;ל כן משמע. שוב מצאתי לר&quot;מ מקוצי ז&quot;ל שכתב כך אות באות:</p>
               </div>
             </div>
@@ -355,8 +395,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-8-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-8">Mishneh Torah, Virgin Maiden 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאוֹנֵס אוֹ הַמְפַתֶּה חַיָּב בִּקְנָס עַד שֶׁיָּבוֹא עָלֶיהָ [כְּדַרְכָּהּ] וּבְעֵדִים וְאֵינוֹ צָרִיךְ הַתְרָאָה. וּמֵאֵימָתַי יִהְיֶה לַבַּת קְנָס. מֵאַחַר שָׁלשׁ שָׁנִים גְּמוּרוֹת עַד שֶׁתִּבְגֹּר. נִבְעֲלָה בְּתוֹךְ שָׁלֹשׁ שָׁנִים אֵין בִּיאָתָהּ בִּיאָה. בָּא עָלֶיהָ מִשֶּׁבָּגְרָה אֵין לָהּ קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כח)</span> &quot;נַעֲרָה בְתוּלָה&quot; לֹא הַבּוֹגֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומאימתי יהיה לבת קנס עד או שאין לה אב יש לה קנס.</strong> פרק אלו נערות <span class="source-small"> (דף מ&quot;ב) </span> ונערה שנתפתתה ופ&quot;ק דתמורה <span class="source-small"> (דף ה׳) </span> ופ&quot;ק דחולין <span class="source-small"> (דף כ&quot;ו)</span> :</p>
               </div>
             </div>
@@ -371,8 +416,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-8-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-8">Mishneh Torah, Virgin Maiden 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאוֹנֵס אוֹ הַמְפַתֶּה חַיָּב בִּקְנָס עַד שֶׁיָּבוֹא עָלֶיהָ [כְּדַרְכָּהּ] וּבְעֵדִים וְאֵינוֹ צָרִיךְ הַתְרָאָה. וּמֵאֵימָתַי יִהְיֶה לַבַּת קְנָס. מֵאַחַר שָׁלשׁ שָׁנִים גְּמוּרוֹת עַד שֶׁתִּבְגֹּר. נִבְעֲלָה בְּתוֹךְ שָׁלֹשׁ שָׁנִים אֵין בִּיאָתָהּ בִּיאָה. בָּא עָלֶיהָ מִשֶּׁבָּגְרָה אֵין לָהּ קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כח)</span> &quot;נַעֲרָה בְתוּלָה&quot; לֹא הַבּוֹגֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואלו שאין להן קנס הבוגרת והממנאת והאילונית.</strong> פרק אלו נערות <span class="source-small"> (דף ל&quot;ו)</span> :<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל גם זה טעות שהאילונית לדברי חכמים וכו׳: <strong> ואני </strong> אומר גם זו אינה טעות ומלתא דתליא באשלי רברבי כי הר&quot;מ מקוצי מדעת בעלי התוספות ור&quot;י אלפס מדעת גאונים הראשונים פסקו כן אות באות ואם הראב&quot;ד ז&quot;ל נטה דעתו מסברת ר&quot;י אלפס שכתב במסכת כתובות כל מקום שיש מכר והגיה כרצונו כבר הקדימנו רבינו הרמב&quot;ן ז&quot;ל בספר המלחמות בכתובות פרק אלו נערות ויש להביא ראיות רבות לפסוק הלכה כרבי מאיר סוף גמרא מתניתין קמייתא דת&quot;ר <span class="source-small"> (דף ל&quot;ה:) </span> עריות ושניות לעריות אין להן לא אונס ולא פיתוי הממאנת אין לה לא אונס ולא פתוי אילונית אין לה לא אונס ולא פתוי והיוצאת משום שם רע אין לה לא אונס ולא פתוי ויס&quot;ג קנס והיא היא ושקלינן וטרינן אכולהו עד דאמרינן בלישנא בתרא אימא סיפא אילונית אין לה לא אונס ולא פתוי אתאן לרבי מאיר דאמר קטנה אין לה קנס, ופירש&quot;י ז&quot;ל (אין זה לשון רש&quot;י אלא משמעות דבריו) לר&quot;מ דאמר בריש פירקין כ&quot;מ שיש קנס אין מכר וכל מקום שיש מכר אין קנס והא מקטנותה יצתה לבגרות שקלינן וטרינן עלה עד דרמינן אהא דאילונית אין לה לא אונס ולא פתוי מהא דתניא החרשת והשוטה והאילונית יש לה קנס ויש לה טענת בתולים ומהדרינן מאי קושיא הא רבי מאיר הא רבנן ומסקנא דשמעתין הכי סלקא וכיון דסתמא דברייתא כוותיה אסיקנא וסתמא דמתניתין דאלו נערות כוותיה דתנן סוף פירקין <span class="source-small"> (דף מ׳:) </span> כל מקום שיש מכר אין קנס וכל מקום שיש קנס אין מכר קטנה יש לה מכר ואין לה קנס נערה יש לה קנס ואין לה מכר הבוגרת אין לה לא מכר ולא קנס וגם פ&quot;ק דחולין סתם קאמר כלשון רישא דאלו נערות אות באות ובגמרא דפירקין אמרינן זו דברי רבי מאיר אבל חכמים אומרים יש קנס במקום מכר דתניא כו׳ ומתמהינן קנס אין מכר לא ואסיקנא ופריקנא למלתיה במסקנא [אלא] אימא אף קנס במקום מכר ובכל דוכתא אמר ר׳ יוחנן הלכה כסתם משנה אם כן יש לנו לומר גם בזאת ראה רבי דבריו וסתמן ועוד הביא רבינו הגדול הרמב&quot;ן ז&quot;ל ראיה לסברא זו ממה ששנינו בארבע מיתות <span class="source-small"> (דף כ&quot;ו:) </span> הבא על נערה המאורסה אינו חייב עד שתהא נערה בתולה מאורסת והיא בבית אביה ואוקימנא נמי סוגיין דהתם כרבי מאיר דבעא מיניה רבי יעקב בר אבא מרב בא על קטנה המאורסה לרבי מאיר מהו כו׳ ועוד דאוקימנא לסוגיין בדרשא דומת האיש כו׳ כתנאי ומתו גם שניהם עד שיהו שניהם שוין דברי רבי יאשיה רבי יונתן אומר ומת האיש אשר שכב עמה לבדו וכבר פירשו דהני תנאי בדרבי מאיר שייכי וכדרבי מאיר סבירא להו וכל הסוגיא מוכחת כן ולכך אין לדחות שלש סתמות ומשנת התנאים רבי יאשיה ורבי יונתן שדורשין כרבי מאיר דהא סוגיין פ&quot;ק דקידושין <span class="source-small"> (דף י׳) </span> כוותייהו שייכא דאמרי התם ורבנן האי לבדו מאי עבדי ליה בעי להו לכדתניא ומתו גם שניהם עד שיהו שוין כאחד דברי רבי יאשיה רבי יונתן אומר כו׳ ע&quot;כ קיצור דבריו נמצאו דברי רמז&quot;ל סלת נקייה ואף כי לדברי ר&quot;י אלפס והראב&quot;ד ז&quot;ל שפסקו כדברי חכמים שהם רבים ויש להם פנים בהלכה וגם רבינו הגדול הרמב&quot;ן ז&quot;ל חיזק דבריהם וגם אני יש לי ראיה להם מן הירושלמי דהבא על נערה כו׳ דגרסינן הבא על הקטנה בסקילה והיא פטורה רבי אבין בשם רבי שמואל ולמה לא פתר ליה מן הדא ומת האיש אשר שכב עמה לבדו וכי אין אנו יודעין שאין לנערה חטא מות ומה ת&quot;ל ולנערה לא תעשה דבר [אין לנערה חטא מות] אלא מכאן הבא על הקטנה בסקילה והיא פטורה ע&quot;כ והיינו כרבנן מ&quot;מ אלו ואלו דברי אלהים חיים הם:</p>
               </div>
             </div>
@@ -387,8 +437,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:4</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-8-4" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:4">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-8">Mishneh Torah, Virgin Maiden 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאוֹנֵס אוֹ הַמְפַתֶּה חַיָּב בִּקְנָס עַד שֶׁיָּבוֹא עָלֶיהָ [כְּדַרְכָּהּ] וּבְעֵדִים וְאֵינוֹ צָרִיךְ הַתְרָאָה. וּמֵאֵימָתַי יִהְיֶה לַבַּת קְנָס. מֵאַחַר שָׁלשׁ שָׁנִים גְּמוּרוֹת עַד שֶׁתִּבְגֹּר. נִבְעֲלָה בְּתוֹךְ שָׁלֹשׁ שָׁנִים אֵין בִּיאָתָהּ בִּיאָה. בָּא עָלֶיהָ מִשֶּׁבָּגְרָה אֵין לָהּ קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כח)</span> &quot;נַעֲרָה בְתוּלָה&quot; לֹא הַבּוֹגֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> והשוטה והחרשת.</strong> פרק אלו נערות <span class="source-small"> (דף ל&quot;ה ל&quot;ו)</span> :<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל אף זו טעות דלהדיא לרבנן יש לה קנס ופיתוי עכ&quot;ל: <strong> ואני </strong> אומר כבר כתבתי שפסק הלכה כרבי מאיר כדעת הגאון והמפרשים הראשונים הנזכרים שם והראב&quot;ד ז&quot;ל בשיטת ר&quot;י אלפס החזיק לפסוק כדברי חכמים וכאותה ברייתא שהבאתי דקא מוקימנא לה כוותייהו ורצה לנטות אחרי רבים:</p>
               </div>
             </div>
@@ -403,8 +458,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:5</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-1-8-5" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 1:8:5">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-8">Mishneh Torah, Virgin Maiden 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאוֹנֵס אוֹ הַמְפַתֶּה חַיָּב בִּקְנָס עַד שֶׁיָּבוֹא עָלֶיהָ [כְּדַרְכָּהּ] וּבְעֵדִים וְאֵינוֹ צָרִיךְ הַתְרָאָה. וּמֵאֵימָתַי יִהְיֶה לַבַּת קְנָס. מֵאַחַר שָׁלשׁ שָׁנִים גְּמוּרוֹת עַד שֶׁתִּבְגֹּר. נִבְעֲלָה בְּתוֹךְ שָׁלֹשׁ שָׁנִים אֵין בִּיאָתָהּ בִּיאָה. בָּא עָלֶיהָ מִשֶּׁבָּגְרָה אֵין לָהּ קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כח)</span> &quot;נַעֲרָה בְתוּלָה&quot; לֹא הַבּוֹגֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומי שיצא עליהם שם רע עד סוף הפרק.</strong> הכל פרק אלו נערות:</p>
               </div>
             </div>
@@ -420,8 +480,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-1">Mishneh Torah, Virgin Maiden 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲמִשִׁים כֶּסֶף שֶׁל קְנָס הֵם דְּמֵי הֲנָאַת שְׁכִיבָה בִּלְבַד. וְחַיָּב הַמְפַתֶּה לִתֵּן בּשֶׁת וּפְגָם יוֹתֵר עַל הַקְּנָס הַקָּצוּב בַּתּוֹרָה. יֶתֶר עָלָיו הָאוֹנֵס שֶׁהוּא נוֹתֵן אֶת הַצַּעַר. שֶׁהַנִּבְעֶלֶת בִּרְצוֹנָהּ אֵין לָהּ צַעַר וַאֲנוּסָה יֵשׁ לָהּ צַעַר. וְכֵן הוּא אוֹמֵר בַּאֲנוּסָה <span class="source-small">(דברים כב כט)</span> &quot;תַּחַת אֲשֶׁר עִנָּהּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חמשים כסף של קנס עד זו שנבעלה שלא כדרכה.</strong> הכל במסכת ערכין פרק יש בערכין ובמס׳ כתובות פרק אלו נערות:</p>
               </div>
             </div>
@@ -436,8 +501,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-9">Mishneh Torah, Virgin Maiden 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר הוֹדַעְנוּ הַבָּנוֹת שֶׁאֵין לָהֶן קְנָס וְעֶשֶׂר הֵן. הַבּוֹגֶרֶת. וְהַמְמָאֶנֶת. וְהַמְגֹרֶשֶׁת. וְהָאַיְלוֹנִית. וְהַשּׁוֹטָה. וְהַחֵרֶשֶׁת. וְהַגִּיֹּרֶת. וְהַשְּׁבוּיָה. וְהַמְשֻׁחְרֶרֶת. וְהַיּוֹצֵא עָלֶיהָ שֵׁם רַע. וּשְׁאָר הַבָּנוֹת יֵשׁ לָהֶן קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבר הודענו כו׳ עד פטור מכלום.</strong> הקדמה אמתית היא לפי ההלכות:</p>
               </div>
             </div>
@@ -452,8 +522,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-12">Mishneh Torah, Virgin Maiden 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם מְשַׁלֵּם קְנָס בְּכָל מָקוֹם בְּהוֹדָאַת פִּיו אֶלָּא עַל פִּי עֵדִים. לְפִיכָךְ הָאוֹמֵר אָנַסְתִּי אוֹ פִּתִּיתִי בִּתּוֹ שֶׁל פְּלוֹנִי אֵינוֹ מְשַׁלֵּם קְנָס אֲבָל מְשַׁלֵּם בּשֶׁת וּפְגָם בְּהוֹדָאַת פִּיו. וְכֵן בַּת שֶׁתָּבְעָה אִישׁ בַּדִּין וְאָמְרָה לוֹ אָנַסְתָּ אוֹ פִּתִּיתָ אוֹתִי וְהוּא אוֹמֵר לֹא הָיוּ דְּבָרִים מֵעוֹלָם הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הֶסֵּת שֶׁאִלּוּ הוֹדָה הָיָה מְשַׁלֵּם לָהּ בּשֶׁת וּפְגָם וְצַעַר עַל פִּי עַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין אדם משלם כו׳ על פי עצמו.</strong> פרק אלו נערות <span class="source-small"> (דף מ&quot;א)</span> :</p>
               </div>
             </div>
@@ -468,8 +543,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-13">Mishneh Torah, Virgin Maiden 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרָה לוֹ אָנַסְתָּ אוֹתִי וְהוּא אוֹמֵר לֹא כִּי אֶלָּא פִּתִּיתִי הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הַתּוֹרָה עַל דְּמֵי הַצַּעַר וּמְשַׁלֵּם בּשֶׁת וּפְגָם שֶׁהֲרֵי הוֹדָה בְּמִקְצָת הַטַּעֲנָה כְּמוֹ שֶׁיִּתְבָּאֵר בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרה לו אנסת אותי עד כמו שיתבאר במקומו:</strong> כתב הראב&quot;ד ז&quot;ל אין כאן שבועה וכו׳: <strong> ואני </strong> אומר הדין דין אמת ומאן לימא לן דלא איירי בנערה שמת אביה או שנתארסה ונתגרשה ואחר כך נאנסה או נתפתתה אפילו בחיי אביה ובאה לב&quot;ד שקנסה לעצמה כדאיתנהי פרק אלו נערות וריש פרק נערה שנתפתתה וכתבן רמז&quot;ל בזה הפרק ובפרק הראשון. ומ&quot;ש הראב&quot;ד שאם טען אביה אפשר שיהיה זה הדין. תמה אני במה נסתפק רבינו ז&quot;ל בו שהרי היא משנה שלימה במסכת שבועות פרק שבועת הפקדון <span class="source-small"> (דף ל&quot;ו:) </span> דתנן אנסת ופתית את בתי והוא אומר לא אנסתי ולא פתיתי משביעך אני ואמר אמן חייב רבי שמעון פוטר שאינו משלם קנס ע&quot;פ עצמו אמרו לו אע&quot;פ שאינו משלם קנס ע&quot;פ עצמו משלם בשת ופגם ע&quot;פ עצמו ע&quot;כ, וקי&quot;ל כרבנן ואסיק לטעמיה דאף בשת ופגם הוא תובע דלא שביק איניש מידי דכי מודה ביה לא מפטר ותבע מידי דכי קא מודה ביה מפטר וה&quot;נ מייתי לה ריש פרק נערה שנתפתתה אלמא אם היה מודה בפתוי מודה במקצת הוא ומה לי היא הואיל וקנסה לעצמה ומה לי אביה לפי מה שהעמדתיה. ומה שכתב עוד מאין תדע בדרישה אם היא באונס, תמה אני איך פה קדוש יאמר דבר זה והלא מעשה תמר ואמנון יוכיח שהרי לא היו שם עדים וקריעת בגדיה וצעקתה ובכייתה הם המוכיחים והרי אני מביא ראיה אחת מספקת לשתים דתנן במסכת שבועות ריש פרק כל הנשבעין <span class="source-small"> (דף מ&quot;ד:) </span> ואלו הנשבעין ונוטלים השכיר הנגזל והנחבל והדר מפרש לה במשנה שלישית הנחבל כיצד היו מעידין אותו שנכנס תחת ידו שלם ויצא חבול ואמר לו חבלת בי והוא אומר לא חבלתי הרי זה נשבע ונוטל רבי יהודה אומר עד שיהא שם מקצת הודאה כיצד אמר לו חבלת בי שתים והלה אומר לא חבלתי בך אלא אחת ואמרינן עלה בגמרא <span class="source-small"> (דף מ&quot;ו:) </span> אמר רב יהודה אמר שמואל לא שנו אלא במקום שיכול לחבל בעצמו אבל במקום שאינו יכול לחבל בעצמו נוטל שלא בשבועה ואקשינן ודילמא בכותל נתחכך ופרקינן תני רבי חייא [כגון] שעלתה לו נשיכה בגבו ובין אצילי ידיו והדר אקשינן ודילמא אחר אמר ליה דליכא אחר ע&quot;כ. השתא שמעינן מינה תרתי חדא דרישה מוכחת שנכנסה בתולה ויצאה בעולה וראשה פרוע ובגדיה קרועות ובוכה וכמעשה תמר וכי הנך פירוקי ובדליכא אחר ומן הדין שתטול אפילו בלא שבועה וכדשמואל אלא דחיישינן שמא מיעכה באצבעה ועוד תנינא לאוכוחי על עיקר הדין שהוא מודה במקצת וכדרבי יהודה דמתני׳ דשבועות וכדברי רמז&quot;ל שהרי האשה נחבלת היא והוא חובל הוא תדע דגרסינן פרק המניח <span class="source-small"> (ב&quot;ק דף ל&quot;ב) </span> גמרא מתניתין דזה בא בחביתו בעא מיניה רבה בר נתן מרב הונא המזיק אשתו בתשמיש המטה מהו אלמא חבלא מקריא בשעת בעילה ולבי נוקפי לומר מראיה זו שתשבע ותטול כנחבל עצמו אלא שכבר הורה זקן:</p>
               </div>
             </div>
@@ -484,8 +564,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:14:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-14-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-14">Mishneh Torah, Virgin Maiden 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה דְּבָרִים שֶׁל מְפַתֶּה וְאַרְבָּעָה שֶׁל אוֹנֵס הֲרֵי הֵן שֶׁל אָב שֶׁכָּל שֶׁבַח נְעוּרִים לוֹ. וְאִם אֵין לָהּ אָב הֲרֵי הֵן שֶׁל עַצְמָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה דברים עד הרי הן של עצמה.</strong> פרק אלו נערות <span class="source-small"> (דף מ׳) </span> ופרק נערה שנתפתתה:</p>
               </div>
             </div>
@@ -500,8 +585,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:15:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-15-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-15">Mishneh Torah, Virgin Maiden 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְפֻתָּה אוֹ אֲנוּסָה שֶׁלֹּא תָּבְעָה עַד שֶׁבָּגְרָה אוֹ עַד שֶׁנִּשֵּׂאת אוֹ עַד שֶׁמֵּת הָאָב הָאַרְבָּעָה דְּבָרִים אוֹ הַשְּׁלֹשָׁה שֶׁלָּהּ. עָמְדָה בַּדִּין וְתָבְעָה אוֹתוֹ וְאַחַר כָּךְ בָּגְרָה אוֹ שֶׁנִּשֵּׂאת הֲרֵי הֵן שֶׁל אָב. וְאִם מֵת הָאָב אַחַר עֲמִידָתָהּ בַּדִּין הֲרֵי הֵן שֶׁל אַחִין שֶׁהֵן יוֹרְשֵׁי הָאָב. שֶׁמֵּעֵת שֶׁעָמְדָה בְּדִין זָכָה בָּהֶן הָאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפותה או אנוסה עד או השלשה שלה.</strong> ריש פרק נערה שנתפתתה <span class="source-small"> (דף מ&quot;א מ&quot;ב)</span> :<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל השלשה במפותה וכו׳: <strong> ואני </strong> אומר דבר זה מעולם לא יצא מפי רבינו הראב&quot;ד ז&quot;ל כי זה הדין משנה שלימה בכתובות <span class="source-small"> (דף מ&quot;א:) </span> והתחלתה דפרקין תנן נערה שנתפתתה בשתה ופגמה וקנסה של אביה והצער בתפוסה עמדה בדין עד שלא מת האב הרי הן של אב מת האב הרי הן של אחין לא הספיקה לעמוד בדין עד שמת האב הרי הן של עצמה עמדה בדין עד שלא בגרה הרי הן של אב מת האב הרי הן של אחין לא הספיקה לעמוד בדין עד שבגרה הרי הן של עצמה רבי שמעון אומר אם לא הספיקה לגבות עד שמת האב הרי הן של עצמה ושיילינן עלה בגמרא מאי קמ&quot;ל תנינא כלומר פרק אלו נערות המפתה נותן שלשה דברים כו׳ ואסיקנא עמדה בדין אצטריכא ליה פלוגתא דרבי שמעון ורבנן וקי&quot;ל הלכתא כרבנן וכן הביא ר&quot;י אלפס ז&quot;ל המשנה כפשוטה והשמיט כל הסוגיא להשמיענו שכן הלכה כרבנן כהלכתא בלא טעמא וכן פי׳ רבותינו בעלי שיטתנו וז&quot;ל לקמן גבי בעי מיניה אביי מרבה שקבלה היתה בידו ונמצא דעתם שוה לפסוק כרבנן וכפי לשון רמז&quot;ל. ומה שתמה בשם הראב&quot;ד ז&quot;ל לומר וכי יורשת אביה היא אני אומר גם זה תלמוד ערוך שהוא שם דמדרבי שמעון נשמע לרבנן דגרסי׳ בעא מיניה אביי מרבה האומר לחבירו אנסת ופתית את בתי וכו׳ והוא אומר לא אנסתי ולא פתיתי ולא העמדתני בדין ולא נתחייבתי לך ממון ונשבע והודה לרבי שמעון מאי כיון דעמד בדין ממונא הואי ומיחייב עליה קרבן שבועה או דילמא אע&quot;ג דעמד בדין קנס הוי [ופטור] וספרים ישנים גורסים ומודה בקנס פטור אמר ליה ממונא הוא ושקלינן וטרינן עלה טובא עד דאמרינן איתיביה רבי שמעון אומר אם לא הספיקה לגבות עד שמת האב הרי הן של עצמה ואי אמרת ממונא הוא להורישו לבניו לעצמה אמאי דאחין בעי מיהוי ומהדרינן אמר רבא הא מלתא קשו בה רבה ורב יוסף עשרין ותרתין שנין ולא איפרקא עד דיתיב רב יוסף ברישא ופרקה שאני התם דאמר קרא ונתן האיש השוכב עמה לאבי הנערה חמשים כסף לא זיכתה תורה לאב אלא משעת נתינה וכי קאמר רבה ממון הוי להורישו לבניו בשאר קנסות ורבה נמי הכא ס&quot;ל בשמעתין <span class="source-small"> (דף מ&quot;ג) </span> אמר רב בת הניזונת מן האחין מעשה ידיה לעצמה וקי&quot;ל כוותיה ומוכח לה מדכתיב והתנחלתם אותם לבניכם אחריכם אותם לבניכם ולא בנותיכם לבניכם מגיד שאין אדם מוריש זכות בתו לבנו ומתקיף לה רבה ואומר בפתוי הבת קנסות וחבלות הכתוב מדבר וכן תני רב חנניא בפתוי הבת קנסות וחבלות הכתוב מדבר וה&quot;נ קיימא טעמא וכן פי׳ רש&quot;י ז&quot;ל טעמא דמתניתין דלא הספיקה לעמוד בדין עד שמת האב הרי הן של עצמה משום דאין אדם מוריש זכות בתו לבנו דכתיב והתנחלתם אותם לבניכם כו׳ וה&quot;נ מסיק בירושלמי בתר שקלא וטריא וטעמא דעד שבגרה משום דכתיב לאבי הנערה ולא לאבי הבוגרת ורבותינו בעלי התוספות ז&quot;ל פירשו דטעמא משום דאין אדם מוריש קנס לבניו דכיון דאי הוה מודה ביה מפטר לא חשיב ממון ושאר דברים נמי אתקוש לקנס ודין שוה להן ומילתא דפשיטא היא דליכא בין רבי שמעון ורבנן אלא דלרבי שמעון לא מיקרי ממון להורישו לבניו עד שגבתה ולרבנן העמדה בדין הוי כגוביינא ואיקרי ממון גמור. הנה עיניך רואות כי הדברים שנויים משנה שלימה ותלמוד ערוך מפורש לעיני הכל:</p>
               </div>
             </div>
@@ -516,8 +606,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:15:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-15-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:15:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-15">Mishneh Torah, Virgin Maiden 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְפֻתָּה אוֹ אֲנוּסָה שֶׁלֹּא תָּבְעָה עַד שֶׁבָּגְרָה אוֹ עַד שֶׁנִּשֵּׂאת אוֹ עַד שֶׁמֵּת הָאָב הָאַרְבָּעָה דְּבָרִים אוֹ הַשְּׁלֹשָׁה שֶׁלָּהּ. עָמְדָה בַּדִּין וְתָבְעָה אוֹתוֹ וְאַחַר כָּךְ בָּגְרָה אוֹ שֶׁנִּשֵּׂאת הֲרֵי הֵן שֶׁל אָב. וְאִם מֵת הָאָב אַחַר עֲמִידָתָהּ בַּדִּין הֲרֵי הֵן שֶׁל אַחִין שֶׁהֵן יוֹרְשֵׁי הָאָב. שֶׁמֵּעֵת שֶׁעָמְדָה בְּדִין זָכָה בָּהֶן הָאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> עמדה בדין ותבעה אותו עד זכה בהן האב.</strong> ריש פרק נערה שנתפתתה <span class="source-small"> (דף מ&quot;א)</span> :</p>
               </div>
             </div>
@@ -532,8 +627,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:16:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-16-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-16">Mishneh Torah, Virgin Maiden 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבַּת שֶׁנִּתְאָרְסָה וְנִתְגָּרְשָׁה קְנָסָהּ לְבַדּוֹ לְעַצְמָהּ. נֶאֶנְסָה אוֹ נִתְפַּתְּתָה וְאַחַר כָּךְ נִתְקַדְּשָׁה לְאַחֵר קְנָסָהּ וּשְׁאָר הַדְּבָרִים לְאָבִיהָ. שֶׁאֵין הָאֵרוּסִין מוֹצִיאִין מֵרְשׁוּת אָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבת שנתארסה כו׳ עד מוציאין מרשות אב.</strong> פרק אלו נערות <span class="source-small"> (דף ל&quot;ח)</span> :</p>
               </div>
             </div>
@@ -548,8 +648,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:17:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-17-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-17">Mishneh Torah, Virgin Maiden 2:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲנִי אוֹמֵר שֶׁזֶּה שֶׁנֶּאֱמַר בַּתּוֹרָה <span class="source-small">(ויקרא יט כט)</span> &quot;אַל תְּחַלֵּל אֶת בִּתְּךָ לְהַזְנוֹתָהּ&quot;. שֶׁלֹּא יֹאמַר הָאָב הוֹאִיל וְלֹא חִיְּבָה תּוֹרָה מְפַתֶּה וְאוֹנֵס אֶלָּא שֶׁיִּתֵּן מָמוֹן לָאָב הֲרֵינִי שׂוֹכֵר בִּתִּי הַבְּתוּלָה לָזֶה לָבוֹא עָלֶיהָ בְּכָל מָמוֹן שֶׁאֶרְצֶה אוֹ אָנִיחַ זֶה לָבוֹא עָלֶיהָ בְּחִנָּם שֶׁיֵּשׁ לוֹ לָאָדָם לִמְחל מָמוֹנוֹ לְכָל מִי שֶׁיִּרְצֶה לְכָךְ נֶאֱמַר אַל תְּחַלֵּל אֶת בִּתְּךָ. שֶׁזֶּה שֶׁחִיְּבָה תּוֹרָה לָאוֹנֵס וְלַמְפַתֶּה מָמוֹן וְלֹא מַלְקוֹת בְּשֶׁאֵרַע הַדָּבָר מִקְרֶה שֶׁלֹּא מִדַּעַת אָבִיהָ וְלֹא הֵכִינָה עַצְמָהּ לְכָךְ שֶׁדָּבָר זֶה אֵינוֹ הוֹוֶה תָּמִיד וְאֵינוֹ מָצוּי. אֲבָל אִם הֵנִיחַ בִּתּוֹ הַבְּתוּלָה מוּכֶנֶת לְכָל מִי שֶׁיָּבוֹא עָלֶיהָ גּוֹרֵם שֶׁתִּמָּלֵא הָאָרֶץ זִמָּה וְנִמְצָא הָאָב נוֹשֵׂא בִּתּוֹ וְהָאָח נוֹשֵׂא אֲחוֹתוֹ שֶׁאִם תִּתְעַבֵּר וְתֵלֵד לֹא יִוָּדַע בֶּן מִי הוּא. וְהַמֵּכִין בִּתּוֹ לְכָךְ הֲרֵי הִיא קְדֵשָׁה וְלוֹקֶה הַבּוֹעֵל וְהַנִּבְעֶלֶת מִשּׁוּם <span class="source-small">(דברים כג יח)</span> &quot;לֹא תִהְיֶה קְדֵשָׁה&quot;. וְאֵין קוֹנְסִין אוֹתוֹ שֶׁלֹּא חִיְּבָה תּוֹרָה קְנָס אֶלָּא לְאוֹנֵס וּמְפַתֶּה אֲבָל זוֹ שֶׁהֵכִינָה עַצְמָהּ לְכָךְ בֵּין מִדַּעְתָּהּ בֵּין מִדַּעַת אָבִיהָ הֲרֵי זוֹ קְדֵשָׁה. וְאִסּוּר קְדֵשָׁה אֶחָד הוּא בֵּין בִּבְתוּלָה בֵּין בִּבְעוּלָה לְפִיכָךְ אָמְרוּ חֲכָמִים שֶׁהַיּוֹצֵא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ אֵין לָהּ קְנָס כְּמוֹ שֶׁבֵּאַרְנוּ שֶׁהֲרֵי זוֹ בְּחֶזְקַת שֶׁהִפְקִירָה עַצְמָהּ לְדָבָר זֶה בִּרְצוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אני אומר שזה נאמר בתורה כו׳ עד לא תהיה קדשה.</strong> פרק אלו נערות <span class="source-small"> (דף מ&quot;א)</span> :<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל אין דעתי מסכמת לזה וכו׳: <strong> ואני </strong> אומר כבר כתבתי דעתי בתחילת הלכות אישות מה שיש ביניהם ובמה שהם שוים ושניהם כאחד טובים:</p>
               </div>
             </div>
@@ -564,8 +669,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 2:17:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-2-17-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 2:17:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-17">Mishneh Torah, Virgin Maiden 2:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲנִי אוֹמֵר שֶׁזֶּה שֶׁנֶּאֱמַר בַּתּוֹרָה <span class="source-small">(ויקרא יט כט)</span> &quot;אַל תְּחַלֵּל אֶת בִּתְּךָ לְהַזְנוֹתָהּ&quot;. שֶׁלֹּא יֹאמַר הָאָב הוֹאִיל וְלֹא חִיְּבָה תּוֹרָה מְפַתֶּה וְאוֹנֵס אֶלָּא שֶׁיִּתֵּן מָמוֹן לָאָב הֲרֵינִי שׂוֹכֵר בִּתִּי הַבְּתוּלָה לָזֶה לָבוֹא עָלֶיהָ בְּכָל מָמוֹן שֶׁאֶרְצֶה אוֹ אָנִיחַ זֶה לָבוֹא עָלֶיהָ בְּחִנָּם שֶׁיֵּשׁ לוֹ לָאָדָם לִמְחל מָמוֹנוֹ לְכָל מִי שֶׁיִּרְצֶה לְכָךְ נֶאֱמַר אַל תְּחַלֵּל אֶת בִּתְּךָ. שֶׁזֶּה שֶׁחִיְּבָה תּוֹרָה לָאוֹנֵס וְלַמְפַתֶּה מָמוֹן וְלֹא מַלְקוֹת בְּשֶׁאֵרַע הַדָּבָר מִקְרֶה שֶׁלֹּא מִדַּעַת אָבִיהָ וְלֹא הֵכִינָה עַצְמָהּ לְכָךְ שֶׁדָּבָר זֶה אֵינוֹ הוֹוֶה תָּמִיד וְאֵינוֹ מָצוּי. אֲבָל אִם הֵנִיחַ בִּתּוֹ הַבְּתוּלָה מוּכֶנֶת לְכָל מִי שֶׁיָּבוֹא עָלֶיהָ גּוֹרֵם שֶׁתִּמָּלֵא הָאָרֶץ זִמָּה וְנִמְצָא הָאָב נוֹשֵׂא בִּתּוֹ וְהָאָח נוֹשֵׂא אֲחוֹתוֹ שֶׁאִם תִּתְעַבֵּר וְתֵלֵד לֹא יִוָּדַע בֶּן מִי הוּא. וְהַמֵּכִין בִּתּוֹ לְכָךְ הֲרֵי הִיא קְדֵשָׁה וְלוֹקֶה הַבּוֹעֵל וְהַנִּבְעֶלֶת מִשּׁוּם <span class="source-small">(דברים כג יח)</span> &quot;לֹא תִהְיֶה קְדֵשָׁה&quot;. וְאֵין קוֹנְסִין אוֹתוֹ שֶׁלֹּא חִיְּבָה תּוֹרָה קְנָס אֶלָּא לְאוֹנֵס וּמְפַתֶּה אֲבָל זוֹ שֶׁהֵכִינָה עַצְמָהּ לְכָךְ בֵּין מִדַּעְתָּהּ בֵּין מִדַּעַת אָבִיהָ הֲרֵי זוֹ קְדֵשָׁה. וְאִסּוּר קְדֵשָׁה אֶחָד הוּא בֵּין בִּבְתוּלָה בֵּין בִּבְעוּלָה לְפִיכָךְ אָמְרוּ חֲכָמִים שֶׁהַיּוֹצֵא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ אֵין לָהּ קְנָס כְּמוֹ שֶׁבֵּאַרְנוּ שֶׁהֲרֵי זוֹ בְּחֶזְקַת שֶׁהִפְקִירָה עַצְמָהּ לְדָבָר זֶה בִּרְצוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואין קונסין אותו כו׳ עד סוף הפרק.</strong> פרק אלו נערות <span class="source-small"> (דף ל&quot;ו)</span> :<br><strong> כתב </strong> הראב&quot;ד ז&quot;ל ועוד שגם הוא מפותה ומדעתו עושה עכ&quot;ל: <strong> [ואני] </strong> אומר אם באנו לסברא הייתי קורא אותו אנוס וכלשון רבותינו ז&quot;ל לגבי תחלתה באונס וסופה ברצון ואפילו אמרה הניחו לו שאלמלא הוא רוצה היא שוכרתו הרי זו אנוסה מאי טעמא יצרה אנסה ואנוס רחמנא פטריה:</p>
               </div>
             </div>
@@ -581,8 +691,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 3:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-3-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-1">Mishneh Torah, Virgin Maiden 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹצִיא שֵׁם רַע עַל בַּת יִשְׂרָאֵל וְנִמְצָא הַדָּבָר שֶׁקֶר לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יח)</span> &quot;וְיִסְּרוּ אֹתוֹ&quot;. וְאַזְהָרָה שֶׁלּוֹ מִ<span class="source-small">(ויקרא יט טז)</span> &quot;לֹּא תֵלֵךְ רָכִיל בְּעַמֶּיךָ&quot;. וְנוֹתֵן לְאָבִיהָ מִשְׁקַל מֵאָה סְלָעִים כֶּסֶף מְזֻקָּק. וְאִם הָיְתָה יְתוֹמָה הֲרֵי הֵם שֶׁל עַצְמָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המוציא שם רע עד דיבר הכתוב.</strong> בכתובות פרק נערה שנתפתתה <span class="source-small"> (דף מ&quot;ה) </span> ופרק אלו נערות <span class="source-small"> (דף מ׳)</span> :</p>
               </div>
             </div>
@@ -597,8 +712,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 3:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-3-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-3">Mishneh Torah, Virgin Maiden 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין דָּנִין דִּין זֶה אֶלָּא בִּפְנֵי הַבַּיִת וּבֵית דִּין שֶׁל עֶשְׂרִים וּשְׁלֹשָׁה. מִפְּנֵי שֶׁיֵּשׁ בְּדִין מוֹצִיא שֵׁם רַע דִּינֵי נְפָשׁוֹת. שֶׁאִם נִמְצָא הַדָּבָר כְּמוֹ שֶׁנֶּאֱמַר הֲרֵי זוֹ נֶהֱרֶגֶת. אֲבָל הָאוֹנֵס וְהַמְפַתֶּה דָּנִין בָּהֶן בְּכָל זְמַן בִּשְׁלֹשָׁה כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין דנין זה וכו׳. עד שיתבאר בהלכות סנהדרין.</strong> עיקר הלכה זו במשנה ריש מסכת סנהדרין <span class="source-small"> (דף ב׳) </span> דקיימא לן הלכה כרבנן. וענין בפני הבית מפורש פ&quot;ק דמסכת ע&quot;ז שבטלו משחרב הבית וגלו מלשכת הגזית וביאור הלכות סנהדרין הוא פ&quot;ה:</p>
               </div>
             </div>
@@ -613,8 +733,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 3:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-3-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-4">Mishneh Torah, Virgin Maiden 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִצְוַת עֲשֵׂה שֶׁל תּוֹרָה שֶׁתֵּשֵׁב אֵשֶׁת מוֹצִיא שֵׁם רַע תַּחְתָּיו לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; אֲפִלּוּ עִוֶּרֶת אוֹ מֻכַּת שְׁחִין. וְאִם גֵּרְשָׁהּ עָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ כָּל יָמָיו&quot;. וְכוֹפִין אוֹתוֹ וּמַחֲזִיר וְאֵינוֹ לוֹקֶה כְּמוֹ שֶׁבֵּאַרְנוּ בְּאוֹנֵס. וְאִם קִדֵּם אֶחָד וְקִדְּשָׁהּ אוֹ שֶׁמֵּתָה אוֹ שֶׁהָיָה כֹּהֵן שֶׁאָסוּר בִּגְרוּשָׁה הֲרֵי זֶה לוֹקֶה עַל גֵּרוּשֶׁיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה של תורה שתשב אשת מוציא שם רע עד לוקה על גירושיה.</strong> במסכת מכות פרק אלו הן הלוקין <span class="source-small"> (דף ט&quot;ו:) </span> ובכתובות פרק אלו נערות <span class="source-small"> (דף מ׳:) </span> ופרק קמא דתמורה <span class="source-small"> (דף ה׳) </span> ובירושלמי:</p>
               </div>
             </div>
@@ -629,8 +754,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 3:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-3-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-5">Mishneh Torah, Virgin Maiden 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִמְצָא בָּהּ דְּבַר זִמָּה. אוֹ שֶׁנִּמְצֵאת אֲסוּרָה עָלָיו מֵחַיָּבֵי לָאוִין אוֹ מֵחַיָּבֵי עֲשֵׂה וַאֲפִלּוּ שְׁנִיָּה הֲרֵי זֶה יְגָרְשֶׁנָּה בְּגֵט שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; אִשָּׁה הָרְאוּיָה לוֹ. וְלָמָּה לֹא יָבֹא עֲשֵׂה וְיִדְחֶה אֶת לֹא תַּעֲשֶׂה בֵּין בְּמוֹצִיא שֵׁם רַע בֵּין בְּאוֹנֵס וְיִשָּׂא זוֹ הָאֲסוּרָה לוֹ. שֶׁהֲרֵי אֶפְשָׁר שֶׁלֹּא תִּרְצֶה הִיא לֵישֵׁב וְנִמְצָא עֲשֵׂה וְלֹא תַּעֲשֶׂה קַיָּמִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נמצא בה דבר זמה וכו׳ עד עשה ולא תעשה קיימין.</strong> פרק אלו נערות:</p>
               </div>
             </div>
@@ -645,8 +775,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Virgin Maiden 3:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-virgin-maiden-3-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Virgin Maiden 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-6">Mishneh Torah, Virgin Maiden 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד הוֹצָאַת שֵׁם רַע. הוּא שֶׁיָּבוֹא לְבֵית דִּין וְיֹאמַר נַעֲרָה זוֹ בָּעַלְתִּי וְלֹא מָצָאתִי לָהּ בְּתוּלִים וּכְשֶׁבִּקַּשְׁתִּי עַל הַדָּבָר נוֹדַע לִי שֶׁזִּנְּתָה תַּחְתַּי אַחַר שֶׁאֵרַסְתִּיהָ וְאֵלּוּ הֵם עֵדַי שֶׁזִּנְּתָה בִּפְנֵיהֶם. וּבֵית דִּין שׁוֹמְעִין דִּבְרֵי הָעֵדִים וְחוֹקְרִין עֵדוּתָן. אִם נִמְצָא הַדָּבָר אֱמֶת נִסְקֶלֶת. וְאִם הֵבִיא הָאָב עֵדִים וְהוּזְמוּ הָעֵדִים שֶׁהֵבִיא הַבַּעַל וְנִמְצָא שֶׁהֵעִידוּ שֶׁקֶר יִסָּקְלוּ וְיִלְקֶה הוּא וְנוֹתֵן מֵאָה סְלָעִים. וְעַל זֶה נֶאֱמַר <span class="source-small">(דברים כב יז)</span> &quot;וְאֵלֶּה בְּתוּלֵי בִתִּי&quot;, אֵלּוּ הָעֵדִים שֶׁיָּזִימוּ עֵדֵי הַבַּעַל. חָזַר הַבַּעַל וְהֵבִיא עֵדִים אֲחֵרִים וְהֵזִימוּ עֵדֵי הָאָב הֲרֵי הַנַּעֲרָה וְעֵדֵי אָבִיהָ נִסְקָלִין. עַל זֶה נֶאֱמַר <span class="source-small">(דברים כב כ)</span> &quot;וְאִם אֱמֶת הָיָה הַדָּבָר הַזֶּה&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁפָּרָשָׁה זוֹ יֵשׁ בָּהּ עֵדִים וְזוֹמְמִין וְזוֹמְמֵי זוֹמְמִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד הוצאת ש&quot;ר עד סוף הפרק.</strong> פרק נערה שנתפתתה <span class="source-small"> (דף מ&quot;ה מ&quot;ו)</span> :</p>
               </div>
             </div>
@@ -656,6 +791,10 @@
               <a href="#chapter-migdal-oz-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/migdal-oz-on-mishneh-torah-virgin-maiden-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -676,8 +815,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-virgin-maiden.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/migdal-oz-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-virgin-maiden.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-virgin-maiden.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-virgin-maiden.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -703,7 +842,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

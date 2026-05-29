@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-firstlings/">Open Mishneh Torah, Firstlings</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Firstlings</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">9 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>149 matched</strong> / 386 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/yad-eitan-on-mishneh-torah-firstlings.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/yad-eitan-on-mishneh-torah-firstlings-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -220,8 +221,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 1:1:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-1-1-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-1">Mishneh Torah, Firstlings 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְהַפְרִישׁ כָּל פֶּטֶר רֶחֶם הַזְּכָרִים בֵּין בָּאָדָם בֵּין בִּבְהֵמָה טְהוֹרָה בֵּין מִמִּין הַחֲמוֹר. בֵּין שֶׁהָיוּ שְׁלֵמִים בֵּין שֶׁהָיוּ טְרֵפוֹת. שֶׁנֶּאֱמַר <span class="source-small">(שמות יג ב)</span> &quot;קַדֵּשׁ לִי כָל בְּכוֹר פֶּטֶר כָּל רֶחֶם בִּבְנֵי יִשְׂרָאֵל בָּאָדָם וּבַבְּהֵמָה&quot;. וְכֻלָּן לַכֹּהֲנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה להפריש כל פטר רחם הזכרים כו׳ בין שהיו שלמים בין שהיו טריפות.</strong> משמע דאף שהיו טריפות כבר בשעת פטירת רחם נתקדשו בבכורה. הכ&quot;מ לא הראה מקור לזה. וראיתי להפר&quot;ח בספרו מים חיים שכתב מקור לדברי רבינו ממתני׳ דזבחים שהעתיק לקמן בפ&quot;ג בכור שנשחט ונמצא טרפה. ואיני רואה משם ראיה לדברי רבינו דכאן דהתם בשנטרף אחר שנולד איירי דכבר נתקדש ברחם ולא מפקע קדושת הגוף בכדי בלא מום אבל היכא דקדם טריפותו לקדושתו ברחם מנ&quot;ל שחלה עליו קדושת בכורה הרי אין ראוי ליקרב. ומש&quot;ה אין להביא ראיה ג&quot;כ מדאמר בר&quot;פ הזרוע (ריש דף קל&quot;ז) דבכור נוהג בטריפה דדילמא נמי דוקא כשנטרף אחר לידתו מיירי ולא קודם. ונראה שיצא זה לרבינו מהסוגיא דפ&quot;ק דמנחות (דף ו׳) גבי הא דבעי למילף דטריפה אסורה לגבוה מיוצא דופן שאסור לגבוה ופריך מה ליוצא דופן שכן אינו קדוש בבכורה. ופירש&quot;י משא&quot;כ בטריפה דקדוש בבכורה אם נולד אם טרפותו. והיינו משום דמשמע דדמיא דיוצא דופן שנולד בפיסול קאמר דטריפה קדוש בבכורה נמי בכה&quot;ג אף שנולד בכך. ועוד דאי משום איסור טריפה לחוד שנטרפה אחר שהקדישה בלא&quot;ה הל&quot;ל דמה ליוצא דופן שכן לא היתה לו שעת הכושר. אלא ש&quot;מ דהך פירכא דבכורה משום כל הטריפות שלא היתה להם שעת הכושר נקט לה ואיך פריך מקדושת בכור אי איתא דאינו בכל הטריפות שלא היתה להם שעת הכושר אלא ש&quot;מ כדכתיבנא:</p>
               </div>
             </div>
@@ -236,8 +242,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 1:5:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-1-5-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-5">Mishneh Torah, Firstlings 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת בְּכוֹר בְּהֵמָה טְהוֹרָה נוֹהֶגֶת בָּאָרֶץ וּבְחוּצָה לָאָרֶץ וְאֵין מְבִיאִין בְּכוֹרוֹת מִחוּצָה לָאָרֶץ לָאָרֶץ שֶׁנֶּאֱמַר <span class="source-small">(דברים יד כג)</span> &quot;וְאָכַלְתָּ לִפְנֵי ה׳ אֱלֹהֶיךָ&quot; <span class="source-small">(דברים יד כג)</span> &quot;מַעְשַׂר דְּגָנְךָ תִּירשְׁךָ וְיִצְהָרֶךָ וּבְכֹרֹת בְּקָרְךָ וְצֹאנֶךָ&quot;. מִמָּקוֹם שֶׁאַתָּה מֵבִיא מַעֲשַׂר דָּגָן אַתָּה מֵבִיא בְּכוֹר בָּקָר וָצֹאן וּמִמָּקוֹם שֶׁאֵין אַתָּה מֵבִיא מַעֲשַׂר דָּגָן אִי אַתָּה מֵבִיא בְּכוֹר בָּקָר וָצֹאן אֶלָּא הֲרֵי הוּא כְּחֻלִּין וְיֵאָכֵל בְּמוּמוֹ. וְאִם הֵבִיא אֵין מְקַבְּלִין מִמֶּנּוּ וְלֹא יִקָּרֵב אֶלָּא יֵאָכֵל בְּמוּמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ: </strong> והגירסא שכתבתי בדבריו היא הכתובה בספרינו והיא הנוסחא האמיתית. ועיין רדב&quot;ז סוף ח&quot;ב:</p>
               </div>
             </div>
@@ -252,8 +263,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 1:15:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-1-15-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-1-15">Mishneh Torah, Firstlings 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיָה הַבְּכוֹר בַּעַל מוּם וְאָמַר לוֹ בְּתוֹךְ זְמַן זֶה תְּנֵהוּ לִי שֶׁאֹכֲלֶנּוּ עַתָּה. אוֹ שֶׁהָיָה תָמִים וְאָמַר לוֹ תְּנֵהוּ לִי בְּתוֹךְ זְמַן זֶה שֶׁאַקְרִיבֶנּוּ עַתָּה הֲרֵי זֶה נוֹתְנוֹ לוֹ. וְיֵרָאֶה לִי שֶׁהַבְּכוֹר נוֹתֵן לְכָל כֹּהֵן שֶׁיִּרְצֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויראה לי שהבכור נותנו לכל כהן שירצה.</strong> וכתב הכ&quot;מ נראה דהיינו לומר שטובת הנאה לבעלים. וקשה דזה כבר כתבו רבינו בפי&quot;ב דתרומות אלא נראה כוונת רבינו שהבכור נותן לכל כהן שירצה היינו אף לכהן עם הארץ ולא כתרומה שאינה ניתנת אלא לכהן חבר כמ&quot;ש בפ&quot;ו דתרומות. ואזיל כאן רבינו לטעמיה שפסק לקמן בפ&quot;ב הלכה ט&quot;ז כלישנא קמא דגמרא דפ׳ כל פסולי המוקדשין (בכורות דף ל&quot;ה ע&quot;א) ולההוא לישנא מוכח הכי, וע&quot;ש בלח&quot;מ:</p>
               </div>
             </div>
@@ -269,8 +285,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 2:10:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-2-10-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-2-10">Mishneh Torah, Firstlings 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רְאִינוּהוּ שֶׁעָשָׂה מַעֲשֶׂה הַמַּרְגִּיל לְהַטִּיל בּוֹ מוּם וְנָפַל בּוֹ מוּם וְאֵין אָנוּ יוֹדְעִין אִם נִתְכַּוֵּן לְמוּם זֶה אוֹ לֹא נִתְכַּוֵּן. הֲרֵי זֶה לֹא יִשְׁחֹט עָלָיו. כֵּיצַד. כְּגוֹן שֶׁנָּתַן לוֹ שְׂעוֹרִים בְּמָקוֹם דָּחוּק מְסֹרָג בְּקוֹצִים וְכֵיוָן שֶׁאָכַל נֶחְלַק שְׂפָתוֹ אֲפִלּוּ הָיָה חָבֵר הֲרֵי זֶה לֹא יִשְׁחֹט עָלָיו. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ראינוהו שעשה מעשה המרגיל להטיל בו מום וא&quot;י אם נתכוון למום זה כגון שנתן לו שעורים כו׳ ה&quot;ז לא ישחוט.</strong> עיין בכ&quot;מ ולח&quot;מ שכתבו שיצא זה לרבינו מעובדא דר׳ צדוק בפ׳ כל פסולי המוקדשין. וקשה דשאני התם דהיה כהן שחשוד על זה אבל מנ&quot;ל לאסור בישראל. ונראה שיצא לו מהא דביצה (דף כ&quot;ז:) ורבינו אינו מפרש כפירש&quot;י שהיה כהן דזה דחוק בגמרא דמאי שאל ליה היכי הוה עובדא כיון דבכל ענין אינו נאמן אבל אי הוה ישראל שפיר:</p>
               </div>
             </div>
@@ -286,8 +307,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 6:2:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-6-2-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-2">Mishneh Torah, Firstlings 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַעֲשַׂר בְּהֵמָה נוֹהֵג בְּחֻלִּין אֲבָל לֹא בְּמֻקְדָּשִׁין. וְנוֹהֵג בָּאָרֶץ וּבְחוּצָה לָאָרֶץ בִּפְנֵי הַבַּיִת וְשֶׁלֹּא בִּפְנֵי הַבַּיִת. אֲבָל חֲכָמִים אָסְרוּ לְעַשֵּׂר בְּהֵמָה בַּזְּמַן הַזֶּה וְתִקְּנוּ שֶׁאֵין מְעַשְּׂרִין אֶלָּא בִּפְנֵי הַבַּיִת גְּזֵרָה שֶׁמָּא יֹאכְלֵהוּ תָּמִים וְנִמְצָא בָּא לִידֵי אִסּוּר כָּרֵת שֶׁהוּא שְׁחִיטַת קָדָשִׁים בַּחוּץ. וְאִם עָבַר וְעָשָׂה בַּזְּמַן הַזֶּה הֲרֵי זֶה מַעֲשֵׂר וְיֵאָכֵל בְּמוּמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חכמים אסרו לעשר בזה&quot;ז ואם עבר ועישר בזה&quot;ז ה&quot;ז מעשר.</strong> כן מוכח בירושלמי דשקלים ובש&quot;ס דידן שלהי בכורות וכמ&quot;ש שם התוס׳:</p>
               </div>
             </div>
@@ -302,8 +328,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 6:4:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-6-4-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-4">Mishneh Torah, Firstlings 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְדִין מַעֲשַׂר בְּהֵמָה שֶׁיִּהְיֶה נִשְׁחָט בָּעֲזָרָה וְזוֹרְקִין אֶת דָּמוֹ זְרִיקָה אַחַת כְּנֶגֶד הַיְסוֹד וּמַקְטִירִין אֵימוּרָיו. וּשְׁאָר הַבָּשָׂר נֶאֱכָל לַבְּעָלִים בִּירוּשָׁלַיִם כִּשְׁאָר קָדָשִׁים קַלִּים וְאֵין לַכֹּהֲנִים בּוֹ כְּלוּם אֶלָּא כֻּלּוֹ לַבְּעָלִים כַּפֶּסַח. וְאִם הָיָה בַּעַל מוּם בֵּין שֶׁנָּפַל בּוֹ מוּם בֵּין שֶׁהִפְרִישׁוֹ בַּתְּחִלָּה בְּמוּמוֹ הֲרֵי זֶה נֶאֱכָל בְּכָל מָקוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעשר בהמה כו׳ ואין לכהנים בו כלום אלא כולו לבעלים.</strong> דבר פשוט הוא בדוכתי טובא דמעשר בהמה אינו ממתנות כהונה כלל כדאיתא בזבחים (דף ל&quot;ז סע&quot;א) וכן מוכח בחולין (דף קל&quot;ו סע&quot;ב) וכן פירש&quot;י שם בהדיא ובזבחים (דף נ&quot;ו:) ועוד בכמה דוכתי. ובשלהי בכורות (דף ס&quot;א) כתב רש&quot;י מפורש דגם הרמת חזה ושוק א&quot;צ ליתן לכהן. ומכל זה העלים עין בעל ס׳ החיים וטעה בדבר משנה:</p>
               </div>
             </div>
@@ -318,8 +349,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 6:9:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-6-9-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 6:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-6-9">Mishneh Torah, Firstlings 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַכֹּל נֶאֱמָנִים עַל מוּמֵי מַעֲשֵׂר לוֹמַר מוּם זֶה מֵאֵלָיו בָּא וְלֹא נַעֲשָׂה לְדַעַת. וַאֲפִלּוּ אֵלּוּ שֶׁאֵינָן נֶאֱמָנִים עַל הַבְּכוֹר נֶאֱמָנִים עַל הַמַּעֲשֵׂר. וְרוֹאֶה אָדָם מוּמֵי מַעֲשֵׂר שֶׁלּוֹ וּמַתִּירוֹ אִם הָיָה מֻמְחֶה. שֶׁאִם יִרְצֶה יַטִּיל מוּם בְּכָל עֶדְרוֹ וְאַחַר כָּךְ יְעַשֵּׂר וְנִמְצָא הַמַּעֲשֵׂר בַּעַל מוּם מִתְּחִלָּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ורואה אדם מומי מעשר שלו ומתירו אם היה מומחה.</strong> הכ&quot;מ לא הראה מקורו. והוא מבואר בגמרא דבכורות ס&quot;פ עד כמה (בכורות דף ל&quot;א):</p>
               </div>
             </div>
@@ -335,8 +371,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 7:6:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-7-6-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 7:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-7-6">Mishneh Torah, Firstlings 7:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַנּוֹלָדִים בְּאֶחָד בְּתִשְׁרֵי עַד עֶשְׂרִים וְתִשְׁעָה בֶּאֱלוּל מִצְטָרְפִין וּמְעַשְּׂרִין מֵאֵלּוּ עַל אֵלּוּ. נוֹלְדוּ חֲמִשָּׁה טְלָאִים בְּעֶשְׂרִים וְתִשְׁעָה בֶּאֱלוּל וַחֲמִשָּׁה בְּאֶחָד בְּתִשְׁרֵי אֵין מִצְטָרְפִין. יָלְדוּ תּוֹלָדוֹת בְּתוֹךְ שְׁנָתָן הֲרֵי הִיא וּבִתָּהּ נִכְנָסִים לַדִּיר לְהִתְעַשֵּׂר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ילדו תולדות בתוך שנתן הרי היא ובתה נכנסין לדיר להתעשר.</strong> כתב הכ&quot;מ כן משמע בתוספתא כו׳. והוא מבואר בגמרא פ&quot;ב דבכורות (דף כ׳ ודף כ&quot;א ובפ&quot;ח דחולין (דף קי&quot;ד):</p>
               </div>
             </div>
@@ -352,8 +393,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, Firstlings 8:2:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-firstlings-8-2-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, Firstlings 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-firstlings/#mishneh-torah-firstlings-8-2">Mishneh Torah, Firstlings 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְהֵיאַךְ דִּינָם. הַתְּשִׁיעִי אֵינוֹ קָרֵב אֶלָּא נֶאֱכָל בְּמוּמוֹ. וְהָעֲשִׂירִי מַעֲשֵׂר. וְהָאַחַד עָשָׂר יִקָּרֵב שְׁלָמִים וְטָעוּן נְסָכִים כִּשְׁלָמִים וְאֵינוֹ עוֹשֶׂה תְּמוּרָה מִפְּנֵי שֶׁהוּא עַצְמוֹ כִּתְמוּרָה. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁהָיָה הַמּוֹנֶה הוּא בַּעַל הַבְּהֵמוֹת אֲבָל הָעוֹשֶׂה שָׁלִיחַ לְעַשֵּׂר לוֹ וְטָעָה בֵּין בַּתְּשִׁיעִי בֵּין בָּאַחַד עָשָׂר אֵין מְקַדֵּשׁ אֶלָּא הָעֲשִׂירִי הַוַּדַּאי בִּלְבַד. שֶׁלֹּא עֲשָׂאָהוּ שָׁלִיחַ לִטְעוֹת וּלְהַפְסִיד אֶלָּא לְקַדֵּשׁ כָּרָאוּי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והי&quot;א יקרב שלמים וטעון נסכים כשלמים.</strong> הכ&quot;מ ושארי מפרשיו לא הראו מקורו והוא במנחות (דף צ&quot;א:):</p>
               </div>
             </div>
@@ -363,6 +409,10 @@
               <a href="#chapter-yad-eitan-on-mishneh-torah-firstlings-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yad-eitan-on-mishneh-torah-firstlings.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/yad-eitan-on-mishneh-torah-firstlings-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -383,8 +433,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/yad-eitan-on-mishneh-torah-firstlings.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yad-eitan-on-mishneh-torah-firstlings.manifest.json","occurrence_url":"../../data/lexical/occurrences/yad-eitan-on-mishneh-torah-firstlings.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yad-eitan-on-mishneh-torah-firstlings.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yad-eitan-on-mishneh-torah-firstlings.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yad-eitan-on-mishneh-torah-firstlings.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -410,7 +460,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-fasts/">Open Mishneh Torah, Fasts</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Fasts</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">6 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>293 matched</strong> / 759 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/yitzchak-yeranen-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -205,8 +206,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Fasts 1:1:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-fasts-1-1-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Fasts 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-1-1">Mishneh Torah, Fasts 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה מִן הַתּוֹרָה לִזְעֹק וּלְהָרִיעַ בַּחֲצוֹצְרוֹת עַל כָּל צָרָה שֶׁתָּבוֹא עַל הַצִּבּוּר. שֶׁנֶּאֱמַר <span class="source-small">(במדבר י ט)</span> &quot;עַל הַצַּר הַצֹּרֵר אֶתְכֶם וַהֲרֵעֹתֶם בַּחֲצֹצְרוֹת&quot;. כְּלוֹמַר כָּל דָּבָר שֶׁיָּצֵר לָכֶם כְּגוֹן בַּצֹּרֶת וְדֶבֶר וְאַרְבֶּה וְכַיּוֹצֵא בָּהֶן זַעֲקוּ עֲלֵיהֶן וְהָרִיעוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות </strong>
 <strong> עשה מן התורה לזעוק ולהריע וכו׳ .</strong> וכתב רבינו בס׳ המצות מצות עשה נ&quot;ט וז&quot;ל היא שצונו לתקוע וכו׳ עם הקרבת קרבני המועדות וכו׳ הנה מה שלא הזכיר ר&quot;ח לא חשש כיון שאין כונתו כאן לבאר התורות אלא מנין המצות וסמך על מה שהביא הכתוב ובכלל הוא ר&quot;ח ובס׳ היד פ&quot;ג מכלי המקדש כתב בפי׳ דגם בר&quot;ח צונו לתקוע יעו&quot;ש בהרב המגיד אמנם הרב החינוך הפריז על המידה וכתב דמצוה זאת היא בכל יום בבוקר בהקריב כל קרבן וכו׳ ואף שהזהיר הכתוב ביום שמחה ומועד ור&quot;ח לאו דוקא וכן מבואר בר&quot;ה בפ׳ ראוהו בי&quot;ד דקאמר והני כהני הואיל ואיתנהו בתקיעה דכל השנה דכתיב ותקעתם בחצוצרות מדקאמר כל השנה שמע מינה דבכל יום איכא חצוצרות עכ&quot;ל ודבריו תמוהים דכיון דהכתוב פרט שמחה ומועד ור&quot;ח איך נאמר לאו דוקא דא&quot;כ למה האריך הכתוב כל כך ומה גם דיותר נראה לומר דמ&quot;ש בש&quot;ס כל השנה לאו דוקא אלא לגבי יום ר&quot;ה נקרא שמחה ומועד ור&quot;ח כל השנה ולעולם דבכל יום א&quot;צ תקיעה ויותר תימה דלפחות הו&quot;ל להזכיר לרבינו לחולק בזה ועיין מ&quot;ש בהל׳ מחוסרי כפרה.</p>
               </div>
@@ -223,8 +229,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Fasts 3:1:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-fasts-3-1-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Fasts 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-3-1">Mishneh Torah, Fasts 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲרֵי שֶׁלֹּא יָרְדוּ לָהֶם גְּשָׁמִים כָּל עִקָּר מִתְּחִלַּת יְמוֹת הַגְּשָׁמִים. אִם הִגִּיעַ שִׁבְעָה עָשָׂר בְּמַרְחֶשְׁוָן וְלֹא יָרְדוּ גְּשָׁמִים מַתְחִילִין תַּלְמִידֵי חֲכָמִים בִּלְבַד לְהִתְעַנּוֹת שֵׁנִי וַחֲמִישִׁי וְשֵׁנִי. וְכָל הַתַּלְמִידִים רְאוּיִין לְכָךְ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מתחילין </strong>
 <strong> תלמידי חכמים וכו׳.</strong> וכן הוא לשון מרן באו&quot;ח סי׳ תקע&quot;ה והקשה עליו המג&quot;א הל׳ ר&quot;ה סי׳ תקפ&quot;א סק&quot;ט ממ&quot;ש הרב ב&quot;י אע&quot;ג דאיתא במדרש דבערב ר&quot;ה הגדולים מתענים נהגו כולם להתענות משום דבדבר של צער הרוצה לעשות עצמו גדול עושה כדאיתא בפ&quot;ק ואיך הוא עצמו לא פסק כן ריש סימן תקע&quot;ה ונראה לחלק דבשלמא גבי עצירת גשמים שהוא סוג דת&quot;ח אז אמר לא כל הרוצה ליטול את השם יטול דמחזי כיוהרא משא&quot;כ גבי ערב ר&quot;ה דאמר במדרש הגדולים מתענים לא גדולים בתורה נינהו אלא חסידים ואנשי מעשה ג&quot;כ ועוד י&quot;ל דשאני עצירת גשמים דהתענית הוא מגזרת חכמים וכיון דלא עליה דידיה גזרו מחזי כיוהרא משא&quot;כ גבי תענית ערב ר&quot;ה שהם נוהגים מעצמם לא שייך לומר מחזי כיוהרא.</p>
               </div>
@@ -240,8 +251,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Fasts 3:4:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-fasts-3-4-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Fasts 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-3-4">Mishneh Torah, Fasts 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּשָׁלֹשׁ תַּעֲנִיּוֹת אֵלּוּ כָּל הָעָם אֲסוּרִין בַּעֲשִׂיַּת מְלָאכָה בַּיּוֹם וּמֻתָּרִין בַּלַּיְלָה. וַאֲסוּרִין בִּרְחִיצַת כָּל הַגּוּף בְּחַמִּין אֲבָל פָּנָיו יָדָיו וְרַגְלָיו מֻתָּר. לְפִיכָךְ נוֹעֲלִין אֶת הַמֶּרְחֲצָאוֹת. וַאֲסוּרִין בְּסִיכָה. וְאִם לְהַעֲבִיר אֶת הַזֻּהֲמָה מֻתָּר. וַאֲסוּרִין בְּתַשְׁמִישׁ הַמִּטָּה. וּבִנְעִילַת הַסַּנְדָּל בָּעִיר אֲבָל בַּדֶּרֶךְ מֻתָּר לִנְעל. וּמִתְפַּלְּלִין בְּבָתֵּי כְּנֵסִיּוֹת וְזוֹעֲקִין וּמִתְחַנְּנִין כִּשְׁאָר תַּעֲנִיּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אסורין </strong>
 <strong> במלאכה ביום ומותרין בלילה.</strong> הכי איתא בתענית דף י&quot;ג כשאמרו אסור במלאכה לא אמרו אלא ביום אבל בלילה מותר ע&quot;כ. ומזה הוליד רש&quot;י שם וז&quot;ל מהכא משמע דבליל תשעה באב מותר במלאכה ואין ביטול אלא ביום אבל אין מפרסמים הדבר עכ&quot;ל ועיין להמג&quot;א סי׳ תקנ&quot;ד ס&quot;ק כ&quot;ג שתמה על רש&quot;י ז&quot;ל שדבריו סתראי נינהו ממ&quot;ש הכא למ&quot;ש בפסחים דף נ&quot;ד וז&quot;ל בין השמשות שלו אסור באכילה ומלאכה דמחמירין על ספיקו כדאמרינן בתענית ציבור וכו׳ ותקע עצמו על דבריו שבפסחים לדבר הלכה שליל תשעה באב אסור בעשית מלאכה ואחר המחילה ליתא דמ&quot;ש בפסחים פי׳ דבריו או דמ&quot;ש בין השמשות ר&quot;ל של יום ט׳ וי׳ או דמ&quot;ש ובמלאכה קאי לעצמו של יום ולא לילה ודבריו עניים כאן ועשירים לעיל מיניה ד&quot;ה אין תענית ציבור בבבל וכו׳ שכתב לאכול מבעוד יום וליאסר במלאכה וכו׳ ונראה ברור דלמלאכה לא קאי כי אם ליום ונמצא דברי רש&quot;י אחדים ואדרבא הדין יוצא דבלילה שרי וכמ&quot;ש בפי׳ בתענית ומן התימה עליו שהניח המפורש מכח הסתום דיש לצדד בו וכמ&quot;ש ומ&quot;ש המג&quot;א דמסתימת כל הפוסקים משמע דאסור גם בלילה אינו הכרח דסתמו מטעם שכתב רש&quot;י וז&quot;ל אבל אין מפרסמים הדבר ואה&quot;נ דשרי.<br><strong> והטיב</strong> לראות החכם השלם רפאל אשכנזי הי&quot;ו דכונת רש&quot;י שבפסחים אינן כמשמען דאם כפשוטן יוצא דבתענית ציבור אסורין במלאכה בלילה והוי היפך ברייתא דתעניות שהבאנו בתחילת דברינו והו&quot;ל להמג&quot;א להרגיש בזה ומכוחו היה נכנס לכונת רש&quot;י ולא היה תוקע עצמו להלכה דגם בלילה אסיר ועוד זאת קשיא לי לפי פסקו מאי קשיא ליה לש&quot;ס שם בפסחים לר׳ יוחנן דאמר ט&quot;ב אינו כת&quot;צ למ&quot;ש ר&quot;י גופיה בין השמשות שלו אסור ותירצו לא למלאכה מלאכה תנינא מקום שנהגו וכו׳ ואימא דמ&quot;ש ר&quot;י פי׳ הוא למלאכה וה&quot;פ ט&quot;ב אינו כת&quot;צ דת&quot;צ אסור במלאכה דוקא ביום וט&quot;ב גם בלילה אסיר ולא קשיא כמו שהקשו הש&quot;ס מלאכה תנינא וכו׳ וכמו כן קשה למ&quot;ש מהרש&quot;ל לישב דברי רש&quot;י בפסחים שם ד&quot;ה לא למלאכה של יום עצמו משתחשך ואשמועינן דבת&quot;צ אסור וכו׳ ואינו דבת&quot;צ שרי בלילה יעו&quot;ש דלפי דבריו קשה כמו שהקשינו והאמת כמ&quot;ש עוד שם דט&quot;ס נפל בדברי רש&quot;י וק&quot;ל ומדברי מהרש&quot;ל אלו סיוע למ&quot;ש בסמוך בכונת רש&quot;י דלא תיקשה קושית המג&quot;א דאי דברי רש&quot;י כפשטן קשה קושית מהרש&quot;ל גם באותן דברי רש&quot;י וכמו שכתבנו דלמה לא הרגיש מהרש&quot;ל לעיל באותן דברי רש&quot;י כמו שהרגיש כאן אלא וודאי דהבין בדברי רש&quot;י כמ&quot;ש וק&quot;ל.</p>
               </div>
@@ -258,8 +274,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Fasts 5:5:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-fasts-5-5-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Fasts 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-5">Mishneh Torah, Fasts 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְנָהֲגוּ כָּל יִשְׂרָאֵל בִּזְמַנִּים אֵלּוּ לְהִתְעַנּוֹת. וּבְי&quot;ג בַּאֲדָר זֵכֶר לַתַּעֲנִית שֶׁהִתְעַנּוּ בִּימֵי הָמָן שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט לא)</span> &quot;דִּבְרֵי הַצֹּמוֹת וְזַעֲקָתָם&quot;. וְאִם חָל י&quot;ג בַּאֲדָר לִהְיוֹת בְּשַׁבָּת מַקְדִּימִין וּמִתְעַנִּין בַּחֲמִישִׁי שֶׁהוּא י&quot;א. אֲבָל אֶחָד מֵאַרְבָּעָה יְמֵי הַצּוֹמוֹת שֶׁחָל לִהְיוֹת בְּשַׁבָּת דּוֹחִין אוֹתוֹ לְאַחַר הַשַּׁבָּת. חָל לִהְיוֹת בְּעֶרֶב שַׁבָּת מִתְעַנִּין בְּעֶרֶב שַׁבָּת. וּבְכָל הַצּוֹמוֹת הָאֵלּוּ אֵין מַתְרִיעִין וְלֹא מִתְפַּלְּלִין בָּהֶן תְּפִלַּת נְעִילָה. אֲבָל קוֹרִין בַּתּוֹרָה שַׁחֲרִית וּמִנְחָה בְּ<span class="source-small">(שמות לב יא)</span> &quot;וַיְחַל משֶׁה&quot;. וּבְכֻלָּן אוֹכְלִים וְשׁוֹתִין בַּלַּיְלָה חוּץ מִתִּשְׁעָה בְּאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובי&quot;ג </strong>
 <strong> באדר וכו׳ וזעקתם.</strong> פי׳ מצינו שהתענו בימי המן שנאמר דברי הצומות וכו׳ ואף שמצינו בכתוב זכר הצום מ&quot;מ עדיין לא ידעינן באיזה יום ולזה כתב הרב המגיד דממ&quot;ש בש&quot;ס י&quot;ג זמן קהילה לכל היא דר&quot;ל תענית ידעינן שהיה יום י&quot;ג ובש&quot;ס מגילה דף ט&quot;ז דאמרו דברי הצומות לא בתמיה יעו&quot;ש עיין פי׳ בחידושי אגדות ודומה לו כתב רש&quot;י בתשובה הביאה מרן [בב&quot;י] הל׳ מגילה סי׳ תרפ&quot;ו יעו&quot;ש באופן דלכו&quot;ע פי׳ דברי הצומות היינו שעשו בימי מרדכי ולא שקבלו עליהם ואין מקום למ&quot;ש מהר&quot;ש הלוי חלק או&quot;ח סי׳ י&quot;א על תשובת רש&quot;י הלזו מדברי רבינו כאן ואף דבלא&quot;ה לא קשה מרבינו לרש&quot;י.</p>
               </div>
@@ -275,8 +296,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Fasts 5:5:2</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-fasts-5-5-2" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Fasts 5:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-5">Mishneh Torah, Fasts 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְנָהֲגוּ כָּל יִשְׂרָאֵל בִּזְמַנִּים אֵלּוּ לְהִתְעַנּוֹת. וּבְי&quot;ג בַּאֲדָר זֵכֶר לַתַּעֲנִית שֶׁהִתְעַנּוּ בִּימֵי הָמָן שֶׁנֶּאֱמַר <span class="source-small">(אסתר ט לא)</span> &quot;דִּבְרֵי הַצֹּמוֹת וְזַעֲקָתָם&quot;. וְאִם חָל י&quot;ג בַּאֲדָר לִהְיוֹת בְּשַׁבָּת מַקְדִּימִין וּמִתְעַנִּין בַּחֲמִישִׁי שֶׁהוּא י&quot;א. אֲבָל אֶחָד מֵאַרְבָּעָה יְמֵי הַצּוֹמוֹת שֶׁחָל לִהְיוֹת בְּשַׁבָּת דּוֹחִין אוֹתוֹ לְאַחַר הַשַּׁבָּת. חָל לִהְיוֹת בְּעֶרֶב שַׁבָּת מִתְעַנִּין בְּעֶרֶב שַׁבָּת. וּבְכָל הַצּוֹמוֹת הָאֵלּוּ אֵין מַתְרִיעִין וְלֹא מִתְפַּלְּלִין בָּהֶן תְּפִלַּת נְעִילָה. אֲבָל קוֹרִין בַּתּוֹרָה שַׁחֲרִית וּמִנְחָה בְּ<span class="source-small">(שמות לב יא)</span> &quot;וַיְחַל משֶׁה&quot;. וּבְכֻלָּן אוֹכְלִים וְשׁוֹתִין בַּלַּיְלָה חוּץ מִתִּשְׁעָה בְּאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל</strong>
 <strong> אחד מד׳ צומות וכו׳ חל להיות בע&quot;ש מתענין בע&quot;ש.</strong> ואף דבזמן הזה אין חלין ד׳ צומות אלו לא בשבת ולא בע&quot;ש ומדבריו נראה דיכול להיות כל הד׳ בין בע&quot;ש בין בשבת לא קאי לזמן זה אלא לזמן שמקדשין על פי הראיה וכן איתא בברייתא פ&quot;ד דתענית דף כ&quot;ט ע&quot;ב גבי ט&quot;ב חל להיות בע&quot;ש מותר לכבס בחמישי מפני כבוד השבת ומייתי לה הטור או&quot;ח סי׳ תקנ&quot;א ומפרש לה כגון למקדשין ע&quot;פ הראיה וכן איתא במס׳ ר&quot;ה במתני׳ שהשלוחין יוצאין על חדש אב מפני התענית ונמשך קידוש על פי הראיה עד ימי אביי ורבא וכמ&quot;ש רבינו פ&quot;ה מהל׳ קידוש החודש ה&quot;ג יעו&quot;ש.<br><strong> ולפי</strong> הכתוב אין מקום כלל למ&quot;ש הרב עטרת זקנים הל׳ ט&quot;ב סי׳ תק&quot;נ על מ&quot;ש מור&quot;ם ואם חלו בע&quot;ש וכו׳ וז&quot;ל (וצ&quot;ל) [ונ&quot;ל] המעתיק ד׳ צומות ר&quot;ל אחד מד׳ צומות והוא י׳ בטבת כי י&quot;ז בתמוז וט&quot;ב וצום גדליה אינם חלים לעולם בע&quot;ש ואם תרצה להשיב שדעת המחבר ר&quot;ל בזמן שבית המקדש קיים היו מקדשין ע&quot;פ הראיה ויכול להיות חלים בע&quot;ש זה אינו והלא בזמן בית שני היו עושין ימי שמחה כמ&quot;ש חז&quot;ל עכ&quot;ל וליתא שהרי הוכחנו דגם בזמן שאין בית המקדש קיים היו מקדשין על פי הראיה וק&quot;ל.<br><strong> וקושטא</strong> קאי דבין מור&quot;ם בין מרן קיימי בזמן הראיה דהא דינא דכתב מרן וז&quot;ל כל הד׳ צומות אלו אם חלו להיות בשבת נדחין לאחר השבת הוא דינא דמתני׳ פ&quot;ק דמגילה דף ה׳ ע&quot;א דתני אבל זמן עצי כהנים ט&quot;ב חגיגה והקהל מאחרין ולא מקדימין וכבר זכרנו דבזמן המשנה היו מקדשין ע&quot;פ הראיה ונמצא א&quot;כ כולן חלין בשבת ומאי דנקט ט&quot;ב כבר ישב רש&quot;י ז&quot;ל שם וז&quot;ל וכן ט&quot;ב שחל בשבת וה&quot;ה לי&quot;ז בתמוז ועשרה בטבת והאי דנקט ט&quot;ב משום דנכפלו בו צרות אבל שאר צומות רצו מתענין רצו אין מתענין וכו׳ עכ&quot;ל אלא דאיכא למתמה על רש&quot;י אמאי לא הזכיר לצום גדליה דלא מבעיא דבזמן הראיה היה חל בשבת אלא אף בזמן הזה חל בשבת ומאי שייר דהאי שייר וסתם הו&quot;ל למימר והוא הדין לשאר צומות ואיך שיהיה כיון דדינא דמתני׳ הוא דקאי לזמן הראיה נמצא כל הד׳ צומות מצי חיילי בשבת ואין מקום למ&quot;ש המג&quot;א ס&quot;ק ד׳ יעו&quot;ש ואחריו נמשך מור&quot;ם וכתב ואם חלו בע&quot;ש וכו׳ ואף דבזמן הזה אינו חל כי אם י׳ בטבת בע&quot;ש מה בכך נקט הדין בין לזמן הראיה בין לזמן הזה ואין מקום למה שהצריך עיון המג&quot;א ולדוחק שנדחק העטרת זקנים דלא כתב דינו לזמן הראיה דוקא ומה גם דנמשך אחרי מרן ופשוט.</p>
               </div>
@@ -292,8 +318,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yitzchak Yeranen on Mishneh Torah, Fasts 5:7:1</h4></div>
               <a class="anchor" href="#yitzchak-yeranen-on-mishneh-torah-fasts-5-7-1" aria-label="Copy link to Yitzchak Yeranen on Mishneh Torah, Fasts 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-fasts/#mishneh-torah-fasts-5-7">Mishneh Torah, Fasts 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">תִּשְׁעָה בְּאָב לֵילוֹ כְּיוֹמוֹ לְכָל דָּבָר. וְאֵין אוֹכְלִין אֶלָּא מִבְּעוֹד יוֹם. וּבֵין הַשְּׁמָשׁוֹת שֶׁלּוֹ אָסוּר כְּיוֹם הַכִּפּוּרִים. וְלֹא יֹאכַל בָּשָׂר וְלֹא יִשְׁתֶּה יַיִן בַּסְּעֻדָּה הַמַּפְסִיק בָּהּ. אֲבָל שׁוֹתֶה הוּא יַיִן מִגִּתּוֹ שֶׁיֵּשׁ לוֹ שְׁלֹשָׁה יָמִים אוֹ פָּחוֹת. וְאוֹכֵל בָּשָׂר מָלִיחַ שֶׁיֵּשׁ לוֹ שְׁלֹשָׁה יָמִים אוֹ יֶתֶר. וְלֹא יֹאכַל שְׁנֵי תַּבְשִׁילִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובין </strong>
 <strong> השמשות שלו אסור כיוה&quot;כ .</strong> ועיין מ&quot;ש הרב המגיד ועיין להרדב&quot;ז ח&quot;ג בלשון הרמב&quot;ם סי׳ ק&quot;ד מה שהיכה על קדקד מי שדרש דאיכא תוספת כיוה&quot;כ בט&quot;ב שדקדק כן מלשון רבינו יעו&quot;ש וחוץ ממה שתמה הרב ז&quot;ל יש לתמוה דאפי׳ בין השמשות איכא מאן דאמר שם בפרק מקום שנהגו דף נ&quot;ד דליכא עינוי אלא דאנן פסקינן כמאן דאמר דבבין השמשות חייב בעינוי ואיך נאמר דחייב גם בתוספת והוי מחלוקת מן הקצה אל הקצה ומה גם דאי מ&quot;ד דאיכא בביה&quot;ש חיוב עינוי עדיפא מינה הו&quot;ל למימר דחייב גם בתוספת וכל שכן ביה&quot;ש ומ&quot;ש הרב המגיד משם הרמב&quot;ן ועוד דעל הראשונים אנו מצטערים בביה&quot;ש דלא צריך עינוי דספיקא דרבנן לקולא ואיך נוסיף גם התוספת הס כי לא להזכיר.<br><strong> ובתוך</strong> דבריו כתב הרדב&quot;ז סוף דבר לא ראיתי בכל הספרים אשר לפני שכתבו תוספת בעינוי בט&quot;ב כיוה&quot;כ וראיתי כתוב לחד מרבנן יניק וחכים תמה עליו דאיך לא ראה כן בס׳ והא כתבו התוס׳ פרק תפילת השחר דף כ&quot;ז ד&quot;ה דרב צלי וז&quot;ל וכן לענין תוספת שבת וט&quot;ב ויוה&quot;כ וכו׳ יעו&quot;ש ואני אומר לו דאי היה מדקדק בדבריהם לא היה כותב כן חדא שסיימו שהוא מן התורה ובט&quot;ב לא שייך לומר כן ועוד דאינהו קיימי בענין מלאכה ובט&quot;ב הוי מקום שנהגו ולא נהגו באופן שט&quot;ס הוא שנפל בדבריהם וצ&quot;ל שבת ויו&quot;ט ויוה&quot;כ וכדאיתא ביומא דף פ&quot;א יעו&quot;ש ועוד דט&quot;ב אינו אסור במלאכה אלא ביום ולא בלילה וכדכתיב לעיל בפרקין הי&quot;ד וא&quot;כ מה שייך לומר בו תוספת וכן הרא&quot;ש שם בברכות כשהביא דברי התוס׳ אלו הזכיר שבת ויו&quot;ט יעו&quot;ש ועוד דהתוס׳ עצמם פרק מקום שנהגו דף נ&quot;ד ד&quot;ה לקבועא דירחא כתבו וז&quot;ל והא יוה&quot;כ תוספתו אסור וט&quot;ב תוספתו מותר וכו׳ יעו&quot;ש ומרוב חשקו לפלפל לא עיין היטב.</p>
               </div>
@@ -304,6 +335,10 @@
               <a href="#chapter-yitzchak-yeranen-on-mishneh-torah-fasts-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yitzchak-yeranen-on-mishneh-torah-fasts.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/yitzchak-yeranen-on-mishneh-torah-fasts-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -324,8 +359,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-fasts.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yitzchak-yeranen-on-mishneh-torah-fasts.manifest.json","occurrence_url":"../../data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-fasts.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-fasts.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yitzchak-yeranen-on-mishneh-torah-fasts.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yitzchak-yeranen-on-mishneh-torah-fasts.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -351,7 +386,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

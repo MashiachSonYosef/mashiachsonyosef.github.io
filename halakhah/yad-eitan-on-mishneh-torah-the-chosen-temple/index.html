@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-the-chosen-temple/">Open Mishneh Torah, The Chosen Temple</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, The Chosen Temple</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">15 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>249 matched</strong> / 592 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/yad-eitan-on-mishneh-torah-the-chosen-temple.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/yad-eitan-on-mishneh-torah-the-chosen-temple-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -232,8 +233,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:1:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-1-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-1">Mishneh Torah, The Chosen Temple 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לַעֲשׂוֹת בַּיִת לַה׳ מוּכָן לִהְיוֹת מַקְרִיבִים בּוֹ הַקָּרְבָּנוֹת. וְחוֹגְגִין אֵלָיו שָׁלֹשׁ פְּעָמִים בַּשָּׁנָה שֶׁנֶּאֱמַר <span class="source-small">(שמות כה ח)</span> &quot;וְעָשׂוּ לִי מִקְדָּשׁ&quot;. וּכְבָר נִתְפָּרֵשׁ בַּתּוֹרָה מִשְׁכָּן שֶׁעָשָׂה משֶׁה רַבֵּנוּ. וְהָיָה לְפִי שָׁעָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ט)</span> &quot;כִּי לֹא בָאתֶם עַד עָתָּה&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ: </strong> ולפיכך לא רצה להביא ראיה מפסוק זה והביא ראיה מועשו לי מקדש. עיין ריש ה׳ מלכים ולח&quot;מ שם:</p>
               </div>
             </div>
@@ -248,8 +254,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:2:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-2-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-2">Mishneh Torah, The Chosen Temple 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיוָן שֶׁנִּכְנְסוּ לָאָרֶץ הֶעֱמִידוּ הַמִּשְׁכָּן בַּגִּלְגָּל אַרְבַּע עֶשְׂרֵה שָׁנָה שֶׁכָּבְשׁוּ וְשֶׁחִלְּקוּ. וּמִשָּׁם בָּאוּ לְשִׁילֹה וּבָנוּ שָׁם בַּיִת שֶׁל אֲבָנִים וּפָרְשׂוּ יְרִיעוֹת הַמִּשְׁכָּן עָלָיו וְלֹא הָיְתָה שָׁם תִּקְרָה. וְשס&quot;ט שָׁנָה עָמַד מִשְׁכַּן שִׁילֹה וּכְשֶׁמֵּת עֵלִי חָרַב וּבָאוּ לְנֹב וּבָנוּ שָׁם מִקְדָּשׁ. וּכְשֶׁמֵּת שְׁמוּאֵל חָרַב וּבָאוּ לְגִבְעוֹן וּבָנוּ שָׁם מִקְדָּשׁ. וּמִגִּבְעוֹן בָּאוּ לְבֵית הָעוֹלָמִים. וִימֵי נֹב וְגִבְעוֹן שֶׁבַע וַחֲמִשִּׁים שָׁנָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכשמת שמואל חרב כו׳.</strong> וכ&quot;כ הסמ&quot;ג ובס׳ קול הרמ&quot;ז הקשה מילקוט שמואל רמז קל&quot;ט:</p>
               </div>
             </div>
@@ -264,8 +275,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:7:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-7-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-7">Mishneh Torah, The Chosen Temple 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְּנוֹרָה בַּדָּרוֹם מִשְּׂמֹאל הַנִּכְנָס וְשֻׁלְחָן מִיָּמִין שֶׁעָלָיו לֶחֶם הַפָּנִים. וּשְׁנֵיהֶם בְּצַד קֹדֶשׁ הַקָּדָשִׁים מִבַּחוּץ וּמִזְבַּח הַקְּטֹרֶת מָשׁוּךְ מִבֵּין שְׁנֵיהֶם לַחוּץ. וְעוֹשִׂין בְּתוֹךְ הָעֲזָרָה גְּבוּלִין עַד כָּאן לְיִשְׂרָאֵל עַד כָּאן לַכֹּהֲנִים. וּבוֹנִים בָּהּ בָּתִּים לִשְׁאָר צָרְכֵי הַמִּקְדָּשׁ כָּל בַּיִת מֵהֶם נִקְרָא לִשְׁכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ: </strong> יש לתמוה על רבינו למה הניח דברי ר׳ יהודה ופסק כר׳ נחמיה. ואפשר דסתם מכילתא כר׳ נחמיה:</p>
               </div>
             </div>
@@ -280,8 +296,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:9:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-9-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-9">Mishneh Torah, The Chosen Temple 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין בּוֹנִין בּוֹ עֵץ בּוֹלֵט כְּלָל אֶלָּא אוֹ בַּאֲבָנִים אוֹ בִּלְבֵנִים וְסִיד. וְאֵין עוֹשִׂין אַכְסַדְרוֹת שֶׁל עֵץ בְּכָל הָעֲזָרָה אֶלָּא שֶׁל אֲבָנִים אוֹ לְבֵנִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין בונין בו עץ בולט.</strong> עיין בהשגות ובכס&quot;מ בישוב לשכת כה&quot;ג שהיתה של עץ. ובחנם דחק דהוא מבואר מדברי התוס׳ ביומא (דף ח׳) שהיתה פתוחה לחול ותוכה חול וא&quot;כ ה&quot;ט שהיו רשאין לבנותה מעץ:<br><strong> בכ&quot;מ </strong> ד&quot;ה ותמיהא לי הא דתנן בפ&quot;ג דמדות וכלונסות של ארז היו קבועים כו׳. וכתב בהגה&quot;ה, בגירסתנו כתוב של אבן ולפ&quot;ז אין כאן תמיה. אך רבינו לקמן ספ&quot;ד העתיק ארז אלא שלא כתב קבועים והיינו כמ&quot;ש הכס&quot;מ:</p>
               </div>
             </div>
@@ -296,8 +317,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:15:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-15-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-15">Mishneh Torah, The Chosen Temple 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַבְנֵי הֵיכָל וַעֲזָרוֹת שֶׁנִּפְגְּמוּ אוֹ שֶׁנִּגְמְמוּ פְּסוּלִין וְאֵין לָהֶן פִּדְיוֹן אֶלָּא נִגְנָזִים. כָּל אֶבֶן שֶׁנָּגַע בָּהּ הַבַּרְזֶל אַף עַל פִּי שֶׁלֹּא נִפְגְּמָה פְּסוּלָה לְבִנְיַן הַמִּזְבֵּחַ וּבִנְיַן הַכֶּבֶשׁ שֶׁנֶּאֱמַר <span class="source-small">(שמות כ כב)</span> &quot;כִּי חַרְבְּךָ הֵנַפְתָּ עָלֶיהָ וַתְּחַלְלֶהָ&quot;. וְהַבּוֹנֶה אֶבֶן שֶׁנָּגַע בָּהּ בַּרְזֶל בַּמִּזְבֵּחַ אוֹ בַּכֶּבֶשׁ לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(שמות כ כב)</span> &quot;לֹא תִבְנֶה אֶתְהֶן גָּזִית&quot;. וְהַבּוֹנֶה אֶבֶן פָּגוּם עוֹבֵר בַּעֲשֵׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במל&quot;מ, </strong> בסוף הדבור: דהאיסור אינו בשעת הנפת הברזל כי אם בשעת הבנין כדכתיב לא תבנה אתהן גזית. עיין תוס׳ סוכה (דף מ&quot;ט ע&quot;א):</p>
               </div>
             </div>
@@ -312,8 +338,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:16:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-16-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-16">Mishneh Torah, The Chosen Temple 1:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶבֶן שֶׁנִּפְגְּמָה אוֹ שֶׁנָּגַע בָּהּ בַּרְזֶל אַחַר שֶׁנִּבְנֵית בַּמִּזְבֵּחַ אוֹ בַּכֶּבֶשׁ אוֹתָהּ הָאֶבֶן פְּסוּלָה וְהַשְּׁאָר כְּשֵׁרוֹת. וּמְלַבְּנִין אֶת הַמִּזְבֵּחַ פַּעֲמַיִם בְּשָׁנָה בַּפֶּסַח וּבֶחָג. וּכְשֶׁמְּלַבְּנִין אוֹתָן מְלַבְּנִין בְּמַפָּה. אֲבָל לֹא בְּכָפִיס שֶׁל בַּרְזֶל שֶׁמָּא יִגַּע בָּאֶבֶן וְיִפְסל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבן שנפגמה או שנגע בה ברזל כו׳ אותה האבן פסולה והשאר כשרות.</strong> וכתב הכס&quot;מ דמשמע ליה לרבינו דה&quot;ה לנגע בה ברזל כמו נפגמה. וא&quot;צ דברייתא ערוכה היא במכילתא ס&quot;פ יתרו לא תבנה אתהן גזית הן פסולות ולא המזבח כלו פסול:</p>
               </div>
             </div>
@@ -328,8 +359,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:17:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-17-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-17">Mishneh Torah, The Chosen Temple 1:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין עוֹשִׂין מַדְרֵגוֹת לַמִּזְבֵּחַ שֶׁנֶּאֱמַר <span class="source-small">(שמות כ כג)</span> &quot;לֹא תַעֲלֶה בְמַעֲלֹת עַל מִזְבְּחִי&quot;. אֶלָּא בּוֹנִין כְּמוֹ תֵּל בִּדְרוֹמוֹ שֶׁל מִזְבֵּחַ מִתְמַעֵט וְיוֹרֵד מֵרֹאשׁ הַמִּזְבֵּחַ עַד הָאָרֶץ וְהוּא הַנִּקְרָא כֶּבֶשׁ. וְהָעוֹלֶה בְּמַעֲלוֹת עַל הַמִּזְבֵּחַ לוֹקֶה. וְכֵן הַנּוֹתֵץ אֶבֶן אַחַת מִן הַמִּזְבֵּחַ אוֹ מִכָּל הַהֵיכָל אוֹ מִבֵּין הָאוּלָם וְלַמִּזְבֵּחַ דֶּרֶךְ הַשְׁחָתָה לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים יב ג)</span> &quot;וְנִתַּצְתֶּם אֶת מִזְבְּחֹתָם&quot; וְגוֹ׳ <span class="source-small">(דברים יב ד)</span> &quot;לֹא תַעֲשׂוּן כֵּן לַה׳ אֱלֹהֵיכֶם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והעולה במעלות על המזבח לוקה.</strong> כתב המשל&quot;מ שאינו יודע למה השמיט רבינו הא דאיתא במכילתא ובירושלמי דברכות דכהנים הולכין על המזבח עקב בצד גודל. ולכאורה י&quot;ל דקשה לרבינו ז&quot;ל קושיית התוס׳ ישנים ברפ&quot;ב דיומא אההיא דמכילתא והירושלמי מהא דתנן התם גבי תרומת הדשן שהיו רצין בכבש ותירוצם דחיק טובא. ע&quot;כ י&quot;ל דאתיא אליבא דמ&quot;ד דתרומת הדשן לאו עבודה היא וס&quot;ל שאינו אסור רק לצורך עבודה. וע&quot;כ דחה ההיא דמכילתא והירושלמי מהלכה למאי דקיי&quot;ל דהוי עבודה וההיא דמכילתא ר׳ ישמעאל קאמר ותנא דיומא לא ס&quot;ל כוותיה וכ&quot;מ קצת בתוספתא דיומא ע&quot;ש והובא בסוכה (דף נ&quot;א ע&quot;ב). מיהו בס׳ המצות הביא רבינו המכילתא ע&quot;ש. אלא נראה דטעמו של רבינו דס&quot;ל כמ&quot;ש בס׳ יראים דעקב בצד גודל לאו דוקא ולא אסר רק פסיעה גסה והוכיח כן מהא דיומא. ועיין עוד ה׳ דעות פ&quot;ה:<br><strong> בכ&quot;מ </strong> ד&quot;ה וכן כו׳. ומ&quot;ש דרך השחתה כלומר שאם נותץ כדי לתקן ודאי שרי. וכ&quot;כ בס׳ יראים דנותץ ע&quot;מ לבנות אין זו נתיצה אלא בנין וכ&quot;כ המרדכי. ועיין בתשב&quot;ץ סי׳ ב׳ ראיה לזה מבבא ב&quot;ב שהשיא עצה להורדוס לסתור ההיכל ולבנותו:</p>
               </div>
             </div>
@@ -344,8 +380,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 1:20:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-1-20-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 1:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-1-20">Mishneh Torah, The Chosen Temple 1:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין עוֹשִׂין כָּל הַכֵּלִים מִתְּחִלָּתָן אֶלָּא לְשֵׁם הַקֹּדֶשׁ. וְאִם נַעֲשׂוּ מִתְּחִלָּתָן לְהֶדְיוֹט אֵין עוֹשִׂין אוֹתָן לְגָבוֹהַּ. וּכְלִי גָּבוֹהַּ עַד שֶׁלֹּא נִשְׁתַּמֵּשׁ בָּהֶן גָּבוֹהַּ רַשַּׁאי לְהִשְׁתַּמֵּשׁ בָּהֶן הֶדְיוֹט. וּמִשֶּׁנִּשְׁתַּמֵּשׁ בָּהֶן גָּבוֹהַּ אֲסוּרִין לְהֶדְיוֹט. אֲבָנִים וְקוֹרוֹת שֶׁחֲצָבָן מִתְּחִלָּה לְבֵית הַכְּנֶסֶת אֵין בּוֹנִין אוֹתָן לְהַר הַבַּיִת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכלי גבוה עד שלא נשתמש בהן גבוה רשאי להשתמש בהן הדיוט.</strong> וכתב הכס&quot;מ שיצא זה לרבינו מדאיתא במגילה גבי העושה תיבה ומטפחת לספר דלא מתסרי להדיוט בהזמנה קודם שנשתמש בהן לספר. וקשה הא ההיא דהכא לא דמי לדהתם שאינו אלא תשמיש של קדושה ובזה קיי&quot;ל הזמנה לאו מילתא, אבל הא דהכא גבי כלי גבוה הוו קדושת הגוף וכמ&quot;ש רבינו בהל׳ מעילה ובכה&quot;ג היכא שהזמנה היא לגוף הקדושה אפשר דמילתא היא ונאסר להדיוט וכמ&quot;ש הר&quot;ן בסנהדרין והובא באו&quot;ח סימן מ&quot;ב. (ומ&quot;ש המגיה דכדברי רבינו איתא בתוספתא דמגילה ותמה על הכס&quot;מ שלא הביאה. ואני אומר שאין ראיה מהתוספתא שהרי לאו דכ&quot;ע היא דהא בירושלמי דיומא מייתי פלוגתא בזה. וא&quot;כ גם דברי הפר&quot;ח בספרו מים חיים אינם מחוורין שכתב ע&quot;ד רבינו דהכי איתא בירושלמי דיומא כאילו הוא מוסכם שם וזה אינו וכמו שכתבתי). אלא נראה שיצא זה לרבינו מדאמרינן בשבועות (דף ט&quot;ו) בכלי שרת עבודתן מחנכתן למקדש ויליף לה מדכתיב אשר ישרתו בם בקדש במה נתקדשו בשירות. וא&quot;כ ש&quot;מ דעד שלא נשתמש בהן גבוה לא נתקדשו ומש&quot;ה ראוי להשתמש בהן הדיוט. והכי איתא נמי בהדיא בתוספתא דמנחות ע&quot;ש:</p>
               </div>
             </div>
@@ -361,8 +402,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 3:5:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-3-5-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-3-5">Mishneh Torah, The Chosen Temple 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין עוֹשִׂין אוֹתָהּ לְעוֹלָם מִן הַגְּרוּטָאוֹת בֵּין שֶׁהָיְתָה שֶׁל זָהָב בֵּין שֶׁהָיְתָה שֶׁל שְׁאָר מִינֵי מַתָּכוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין עושין אותה לעולם מן הגרוטאות בין שהיתה של זהב בין משאר מיני מתכיות.</strong> וכתב המשנה למלך שאינו יודע מנ&quot;ל לרבינו זה שאף משאר מיני מתכיות אין עושין אותה לכתחילה מן הגרוטאות דמלישנא דברייתא דמייתי בפ׳ הקומץ באה זהב באה מקשה אינה באה זהב אינה באה מקשה, משמע דאף לכתחילה אינה באה וש&quot;ד מגרוטאות. ונראה שלמד כן רבינו מדאיתא בברייתא דספרי פ׳ בהעלותך וז&quot;ל אין מנורה של זהב עושין של כסף אבל אם אין להן מין מקשה אין עושין מין גרוטי משא&quot;כ בחצוצרות אין של כסף לא יעשו של זהב אבל אין להן מין מקשה עושין מין גרוטי נמצא הכשר במנורה פסול בחצוצרות כשר בחצוצרות פסול במנורה ע&quot;כ. ואי איתא דמנורה שאינה באה זהב ש&quot;ד ממין גרוטי נמי לכתחילה א&quot;כ היכי קאמר כשר בחצוצרות פסול במנורה דהיינו מין גרוטי הא בכה&quot;ג דכשר בחצוצרות דהיינו בשל כסף כשר ג&quot;כ במנורה מין גרוטי. אלא מוכח דלכתחילה אינה באה מין גרוטי במנורה אפי׳ אינה באה של זהב. וע&quot;כ ברייתא דפ׳ הקומץ דקתני אינה באה מקשה אינה אלא להכשיר דיעבד ואע&quot;ג דקתני בספרי לשון פסול לא הוי אלא לכתחילה וכהג&quot;מ בפ&quot;ז דפסחים ובכמה דוכתי:</p>
               </div>
             </div>
@@ -378,8 +424,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 4:1:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-4-1-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-4-1">Mishneh Torah, The Chosen Temple 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶבֶן הָיְתָה בְּקֹדֶשׁ הַקָּדָשִׁים בְּמַעֲרָבוֹ שֶׁעָלֶיהָ הָיָה הָאָרוֹן מֻנָּח. וּלְפָנָיו צִנְצֶנֶת הַמָּן וּמַטֵּה אַהֲרֹן. וּבְעֵת שֶׁבָּנָה שְׁלֹמֹה אֶת הַבַּיִת וְיָדַע שֶׁסּוֹפוֹ לֵחָרֵב בָּנָה בּוֹ מָקוֹם לִגְנֹז בּוֹ הָאָרוֹן לְמַטָּה בְּמַטְמוֹנִיּוֹת עֲמֻקוֹת וַעֲקַלְקַלּוֹת וְיֹאשִׁיָּהוּ הַמֶּלֶךְ צִוָּה וּגְנָזוֹ בַּמָּקוֹם שֶׁבָּנָה שְׁלֹמֹה שֶׁנֶּאֱמַר <span class="source-small">(דברי הימים ב לה ג)</span> &quot;וַיֹּאמֶר לַלְוִיִּם הַמְּבִינִים לְכָל יִשְׂרָאֵל הַקְּדוֹשִׁים לַה׳ תְּנוּ אֶת אֲרוֹן הַקֹּדֶשׁ בַּבַּיִת אֲשֶׁר בָּנָה שְׁלֹמֹה בֶן דָּוִיד מֶלֶךְ יִשְׂרָאֵל אֵין לָכֶם מַשָּׂא בַּכָּתֵף עַתָּה עִבְדוּ אֶת ה׳ אֱלֹהֵיכֶם&quot; וְגוֹ׳. וְנִגְנַז עִמּוֹ מַטֵּה אַהֲרֹן וְהַצִּנְצֶנֶת וְשֶׁמֶן הַמִּשְׁחָה וְכָל אֵלּוּ לֹא חָזְרוּ בְּבַיִת שֵׁנִי. וְאַף אוּרִים וְתֻמִּים שֶׁהָיוּ בְּבַיִת שֵׁנִי לֹא הָיוּ מְשִׁיבִין בְּרוּחַ הַקֹּדֶשׁ. וְלֹא הָיוּ נִשְׁאָלִין בָּהֶן שֶׁנֶּאֱמַר <span class="source-small">(עזרא ב סג)</span> <span class="source-small">(נחמיה ז סה)</span> &quot;עַד עֲמֹד כֹּהֵן לְאוּרִים וְתֻמִּים&quot;. וְלֹא הָיוּ עוֹשִׂין אוֹתָן אֶלָּא לְהַשְׁלִים שְׁמוֹנָה בְּגָדִים לְכֹהֵן גָּדוֹל כְּדֵי שֶׁלֹּא יְהֵא מְחֻסַּר בְּגָדִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אבן היתה בקדש הקדשים במערבו שעליה היה הארון מונח.</strong> עיין תוי&quot;ט פ&quot;ה דיומא ובס׳ בה&quot;ז פי&quot;א דמנחות:</p>
               </div>
             </div>
@@ -394,8 +445,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 4:2:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-4-2-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 4:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-4-2">Mishneh Torah, The Chosen Temple 4:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּבַיִת רִאשׁוֹן הָיָה כֹּתֶל מַבְדִּיל בֵּין הַקֹּדֶשׁ וּבֵין קֹדֶשׁ הַקָּדָשִׁים עָבְיוֹ אַמָּה. וְכֵיוָן שֶׁבָּנוּ הַבַּיִת שֵׁנִי נִסְתַּפֵּק לָהֶם אִם עֳבִי הַכֹּתֶל הָיָה מִמִּדַּת הַקֹּדֶשׁ אוֹ מִמִּדַּת קֹדֶשׁ הַקָּדָשִׁים לְפִיכָךְ עָשׂוּ קֹדֶשׁ הַקָּדָשִׁים עָבְיוֹ עֶשְׂרִים אַמָּה תְּמִימוֹת וְעָשׂוּ הַקֹּדֶשׁ אַרְבָּעִים אַמָּה תְּמִימוֹת וְהִנִּיחוּ אַמָּה יְתֵרָה בֵּין הַקֹּדֶשׁ וּבֵין קֹדֶשׁ הַקָּדָשִׁים וְלֹא בָּנוּ כֹּתֶל בְּבַיִת שֵׁנִי אֶלָּא עָשׂוּ שְׁתֵּי פָּרוֹכוֹת אַחַת מִצַּד קֹדֶשׁ הַקָּדָשִׁים וְאַחַת מִצַּד הַקֹּדֶשׁ וּבֵינֵיהֶן אַמָּה כְּנֶגֶד עֳבִי הַכֹּתֶל שֶׁהָיָה בָּרִאשׁוֹן. אֲבָל בְּמִקְדָּשׁ רִאשׁוֹן לֹא הָיְתָה שָׁם אֶלָּא פָרֹכֶת אַחַת בִּלְבַד שֶׁנֶּאֱמַר <span class="source-small">(שמות כו לג)</span> &quot;וְהִבְדִּילָה הַפָּרֹכֶת לָכֶם&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בבית ראשון היה כותל מבדיל בין הקדש ובין קדש הקדשים כו׳ ולא בנו כותל בבית שני אלא עשו שתי פרוכות כו׳. אבל במקדש ראשון לא היתה שם אלא פרוכת אחת בלבד שנאמר והבדילה הפרכת לכם.</strong> וכתב הכס&quot;מ דמ&quot;ש רבינו אבל במקדש ראשון לא היתה שם אלא פרכת אחת נראה דלמשכן קרי מקדש ראשון דאילו בבית ראשון לא היה פרכת אלא כותל. וראיתי שהשיג עליו בס׳ בה&quot;ז במנחות (דף צ&quot;ח) דמוכח מפירש&quot;י שם וביומא (דף נ&quot;ד) דגם במקדש ראשון היה פרוכת אצל הדביר דהרי מוקי קרא דויראו ראשי הבדים דכתב בבית ראשון דהיו דוחקים בפרוכת ובולטין. ומשמע שם דשתים היו. ואצלי דברי הכס&quot;מ נכונים דאיהו קאי בהבדלה שבין הקדש לקה&quot;ק וזה ודאי בכותל היה בבית ראשון וכמו שמבואר בתחלת דברי רבינו וכ&quot;מ בגמ׳ פ&quot;ק דב&quot;ב (דף ג׳) וגם מפירש&quot;י ביומא (דף נ&quot;א ע&quot;ב) מבואר כן. ולא דמי לההיא דיומא (דף נ&quot;ד) ופירש&quot;י דמנחות שהביא הבה&quot;ז שהיה פרוכת דהתם איירי בפתח הכותל דקה&quot;ק. וכ&quot;מ בילקוט תרומה רמז שס&quot;ז שהיה בבית ק&quot;ק שעשה שלמה כותל ופתח ודלתות ולא ננעלו מפני הבדים היוצאים בפתח והפרוכת היתה פרוסה בפני הפתח ע&quot;כ:</p>
               </div>
             </div>
@@ -411,8 +467,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 6:16:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-6-16-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 6:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-6-16">Mishneh Torah, The Chosen Temple 6:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלָמָּה אֲנִי אוֹמֵר בַּמִּקְדָּשׁ וִירוּשָׁלַיִם קְדֻשָּׁה רִאשׁוֹנָה קָדְשָׁה לֶעָתִיד לָבוֹא. וּבִקְדֻשַּׁת שְׁאָר אֶרֶץ יִשְׂרָאֵל לְעִנְיַן שְׁבִיעִית וּמַעַשְׂרוֹת וְכַיּוֹצֵא בָּהֶן לֹא קָדְשָׁה לֶעָתִיד לָבוֹא. לְפִי שֶׁקְּדֻשַּׁת הַמִּקְדָּשׁ וִירוּשָׁלַיִם מִפְּנֵי הַשְּׁכִינָה וּשְׁכִינָה אֵינָהּ בְּטֵלָה. וַהֲרֵי הוּא אוֹמֵר <span class="source-small">(ויקרא כו לא)</span> &quot;וַהֲשִׁמּוֹתִי אֶת מִקְדְּשֵׁיכֶם&quot; וְאָמְרוּ חֲכָמִים אַף עַל פִּי שֶׁשּׁוֹמְמִין בִּקְדֻשָּׁתָן הֵן עוֹמְדִים אֲבָל חִיּוּב הָאָרֶץ בִּשְׁבִיעִית וּבְמַעַשְׂרוֹת אֵינוֹ אֶלָּא מִפְּנֵי שֶׁהוּא כִּבּוּשׁ רַבִּים וְכֵיוָן שֶׁנִּלְקְחָה הָאָרֶץ מִידֵיהֶם בָּטַל הַכִּבּוּשׁ וְנִפְטְרָה מִן הַתּוֹרָה מִמַּעַשְׂרוֹת וּמִשְּׁבִיעִית שֶׁהֲרֵי אֵינָהּ מִן אֶרֶץ יִשְׂרָאֵל. וְכֵיוָן שֶׁעָלָה עֶזְרָא וְקִדְּשָׁהּ לֹא קִדְּשָׁהּ בְּכִבּוּשׁ אֶלָּא בַּחֲזָקָה שֶׁהֶחְזִיקוּ בָּהּ וּלְפִיכָךְ כָּל מָקוֹם שֶׁהֶחְזִיקוּ בָּהּ עוֹלֵי בָּבֶל וְנִתְקַדֵּשׁ בִּקְדֻשַּׁת עֶזְרָא הַשְּׁנִיָּה הוּא מְקֻדָּשׁ הַיּוֹם וְאַף עַל פִּי שֶׁנִּלְקַח הָאָרֶץ מִמֶּנּוּ וְחַיָּב בִּשְׁבִיעִית וּבְמַעַשְׂרוֹת עַל הַדֶּרֶךְ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת תְּרוּמָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ, </strong> בסופו: ותו בראשונה שנתקדשה בכיבוש וכי לא היה שם חזקה כו׳. עיין תוי&quot;ט סוף עדיות:</p>
               </div>
             </div>
@@ -428,8 +489,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 7:2:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-7-2-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 7:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-7-2">Mishneh Torah, The Chosen Temple 7:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זוֹ הִיא יִרְאָתוֹ לֹא יִכָּנֵס אָדָם לְהַר הַבַּיִת בְּמַקְלוֹ אוֹ בְּמִנְעָל שֶׁבְּרַגְלָיו אוֹ בַּאֲפֻנְדָּתוֹ אוֹ בָּאָבָק שֶׁעַל רַגְלָיו אוֹ בְּמָעוֹת הַצְּרוּרִין לוֹ בִּסְדִינוֹ וְאֵין צָרִיךְ לוֹמַר שֶׁאָסוּר לָרֹק בְּכָל הַר הַבַּיִת אֶלָּא אִם נִזְדַּמֵּן לוֹ רֹק מַבְלִיעוֹ בִּכְסוּתוֹ. וְלֹא יַעֲשֶׂה הַר הַבַּיִת דֶּרֶךְ שֶׁיִּכָּנֵס מִפֶּתַח זוֹ וְיֵצֵא מִפֶּתַח שֶׁכְּנֶגְדָהּ כְּדֵי לְקַצֵּר הַדֶּרֶךְ אֶלָּא יַקִּיפוֹ מִבַּחוּץ. וְלֹא יִכָּנֵס לוֹ אֶלָּא לִדְבַר מִצְוָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במל&quot;מ: </strong> ולא ידעתי אמאי השמיט רבינו חלוקי דינים אלו. וכן הקשה התוי&quot;ט וכבר תירץ בס׳ מים חיים:</p>
               </div>
             </div>
@@ -445,8 +511,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 8:6:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-8-6-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-8-6">Mishneh Torah, The Chosen Temple 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לֹא הָיוּ הַכֹּהֲנִים הַשּׁוֹמְרִים יְשֵׁנִים בְּבִגְדֵי כְּהֻנָּה אֶלָּא מְקַפְּלִין אוֹתָן וּמַנִּיחִין אוֹתָן כְּנֶגֶד רָאשֵׁיהֶן וְלוֹבְשִׁין בִּגְדֵי עַצְמָן וִישֵׁנִים עַל הָאָרֶץ. כְּדֶרֶךְ כָּל שׁוֹמְרֵי חַצְרוֹת הַמְּלָכִים שֶׁלֹּא יִישְׁנוּ עַל הַמִּטּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במל&quot;מ: </strong> נראה דזה הממונה היה מחזר אף על משמרות הכהנים. עיין פ&quot;ה דשקלים:</p>
               </div>
             </div>
@@ -461,8 +532,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yad Eitan on Mishneh Torah, The Chosen Temple 8:12:1</h4></div>
               <a class="anchor" href="#yad-eitan-on-mishneh-torah-the-chosen-temple-8-12-1" aria-label="Copy link to Yad Eitan on Mishneh Torah, The Chosen Temple 8:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-the-chosen-temple/#mishneh-torah-the-chosen-temple-8-12">Mishneh Torah, The Chosen Temple 8:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּסֵּדֶר הַזֶּה עוֹשִׂין בְּכָל לַיְלָה וְלַיְלָה חוּץ מִלֵּילֵי שַׁבָּת שֶׁאֵין בְּיָדָם אוּר אֶלָּא בּוֹדְקִין בַּנֵּרוֹת הַדְּלוּקִין שָׁם מֵעֶרֶב שַׁבָּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>במל&quot;מ: </strong> ואם כדברי מרן ע&quot;כ טעמא לאו משום דאין שבות במקדש כו׳. אך מרן עצמו כתב טעם זה פכ&quot;ג דשבת:</p>
               </div>
             </div>
@@ -472,6 +548,10 @@
               <a href="#chapter-yad-eitan-on-mishneh-torah-the-chosen-temple-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yad-eitan-on-mishneh-torah-the-chosen-temple.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/yad-eitan-on-mishneh-torah-the-chosen-temple-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -492,8 +572,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/yad-eitan-on-mishneh-torah-the-chosen-temple.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yad-eitan-on-mishneh-torah-the-chosen-temple.manifest.json","occurrence_url":"../../data/lexical/occurrences/yad-eitan-on-mishneh-torah-the-chosen-temple.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yad-eitan-on-mishneh-torah-the-chosen-temple.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yad-eitan-on-mishneh-torah-the-chosen-temple.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yad-eitan-on-mishneh-torah-the-chosen-temple.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -519,7 +599,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-virgin-maiden/">Open Mishneh Torah, Virgin Maiden</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Virgin Maiden</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">10 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>506 matched</strong> / 1553 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/nachal-eitan-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-virgin-maiden-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -209,8 +210,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 1:1:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-1-1-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-1">Mishneh Torah, Virgin Maiden 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁפִּתָּה בְּתוּלָה קוֹנְסִין אוֹתוֹ מִשְׁקַל חֲמִשִּׁים סְלָעִים שֶׁל כֶּסֶף מְזֻקָּק וְהוּא הַנִּקְרָא קְנָס. וְכֵן אִם אָנַס אוֹתָהּ. וּקְנָס זֶה מִצְוַת עֲשֵׂה שֶׁל תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְנָתַן הָאִישׁ הַשּׁוֹכֵב עִמָּהּ לַאֲבִי הַנַּעֲרָה חֲמִשִּׁים כֶּסֶף&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[מי שפיתה בתולה היה משלם (בזמן הבית ע&quot;פ סנהדרין) חמשים שקלים וזה מצות עשה של תורה וכו׳. </strong> ולא חשיב נמי למצות עשה חמשים שקלים הכתובה בתורה דאונס ומאה של מוציא שם רע. י&quot;ל על פי מה שהשריש בשרשיו לס׳ המצות שאין לחשוב בענין המצות דינין פרטים שיש בהמצוה. וא&quot;כ כיון דחשב גבי אונס וגבי [מוציא] שם רע מצות עשה דנשואין שנאמר ולו תהיה לאשה לא חשב תו למצות עשה מה שמשלמין דהוי מדיני מצותן. משא&quot;כ מפתה דליכא ביה עשה דנשואין חשיב לעשה דחמשים שקלים]:</p>
               </div>
             </div>
@@ -225,8 +231,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 1:2:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-1-2-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-2">Mishneh Torah, Virgin Maiden 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵי זֶה הוּא מְפַתֶּה וְאֵי זֶה הוּא אוֹנֵס. מְפַתֶּה לִרְצוֹנָהּ. אוֹנֵס שֶׁבָּא עָלֶיהָ בְּעַל כָּרְחָהּ. כָּל הַנִּבְעֶלֶת בַּשָּׂדֶה הֲרֵי זוֹ בְּחֶזְקַת אֲנוּסָה וְדָנִין אוֹתָהּ בְּדִין אֲנוּסָה עַד שֶׁיָּעִידוּ הָעֵדִים שֶׁבִּרְצוֹנָהּ נִבְעֲלָה. וְכָל הַנִּבְעֶלֶת בָּעִיר הֲרֵי זוֹ בְּחֶזְקַת מְפֻתָּה מִפְּנֵי שֶׁלֹּא זָעֲקָה עַד שֶׁיָּעִידוּ הָעֵדִים שֶׁהִיא אֲנוּסָה, כְּגוֹן שֶׁשָּׁלַף לָהּ חֶרֶב וְאָמַר לָהּ אִם תִּזְעֲקִי אֶהֱרֹג אוֹתָךְ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל כו׳ הרי זו בחזקת וכו׳.</strong> והקשה בשו&quot;ת חכם צבי סי׳ קמ&quot;ו דאמאי היא נאמנת לטעון אנסתני בשדה וכי לא יוכל להיות מפותה בשדה והרי מעשה דיהודה ותמר בשדה הוי וכן עובדא דאביי בסוכה. ולק&quot;מ דשאני הכא גבי בתולה דאמרינן דמסתמא לא מחלה נזק בתוליה דהא קיי&quot;ל בחו&quot;מ סי׳ שפ&quot;ב גבי מזיק הטוען אתה הרשיתני להזיקך אינו נאמן דמסתמא אין אדם מוחל על נזקיו. [ואע&quot;ג דבפ׳ אלו נערות (כתובות דף ל&quot;ט) כתבו התוס׳ גבי מפותה דמחמת הנאת בעילה הוי כאלו מחלה בפירוש היינו כשידוע שנתפתתה אבל בסתמא לא אמרינן שנתפתתה ומחלה]. ועוד דקל וחומר כאן דיש לה חזקה דכשרות והיא עדיפא מחזקת ממון כמו שמבואר מדברי התוס׳ והרא&quot;ש פ&quot;ב דכתובות (דף כ&quot;ב). ואמרינן דמסתמא לא נתפתתה דעבדה איסורא:<br><strong> וזה </strong> דלא כמ&quot;ש המפרש בתרגום יונתן פרשת תצא דגם בשדה הוי ספק והא דלא היו קטלינן לה היינו מספיקא דשמא היתה אנוסה אבל מכל מקום אפשר שנתפתתה מרצונה ולכך פירש תרגום יונתן דאסורה לבעלה. וזה אינו לדעת רבינו דהיא בחזקת אנוסה. אלא כוונת התרגום יונתן דחייש לשמא היתה סופה ברצון וסבר כמו אבוה דשמואל בכתובות (דף נ&quot;א ע&quot;ב). ונראה דגם למאן דאמר דחשיב רצון אינו רק לגבי איסור לבעלה אבל לא חשיב ליה רצון לפטור הבועל מצער פסוק רגלים דקדם לביאה:</p>
               </div>
             </div>
@@ -241,8 +252,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 1:5:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-1-5-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-5">Mishneh Torah, Virgin Maiden 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה אֲנוּסָה זוֹ אֲסוּרָה עָלָיו אֲפִלּוּ מֵחַיָּבֵי עֲשֵׂה וַאֲפִלּוּ שְׁנִיָּה הֲרֵי זֶה לֹא יִשָּׂאֶנָּה. וְכֵן אִם נִמְצָא בָּהּ דְּבַר זִמָּה אַחַר שֶׁכָּנַס הֲרֵי זֶה יְגָרְשֶׁנָהּ שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot;. אִשָּׁה הָרְאוּיָה לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עיין </strong> במל&quot;מ מ&quot;ש בפירוש התוספתא דכהן אינו מטמא לחלוצה ומטמא לשניה. וכבר כתב בזה הרשב&quot;א בחידושיו בפרק האשה רבה דחלוצה כיון דמרבינן לה מגרושה הוה לאינשי כמו גרושה דאסורה מן התורה ולא חשובה כמת מצוה משום דיורשה דאפילו הכי קריא וענו לה לקוברה. ורק בשניה דרבנן הוה כמו קידושי קטנה דרבנן דאמרינן דכיון דיורשה מתקנתן קריא ולא ענו לה לקוברה הוי כמת מצוה עכ&quot;ד:</p>
               </div>
             </div>
@@ -257,8 +273,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 1:9:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-1-9-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-9">Mishneh Torah, Virgin Maiden 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַת שֶׁיֵּשׁ לָהּ אָב וְאַחַת שֶׁאֵין לָהּ אָב יֵשׁ לָהּ קְנָס. וְאֵלּוּ שֶׁאֵין לָהֶן קְנָס. הַבּוֹגֶרֶת וְהַמְמָאֶנֶת וְהָאַיְלוֹנִית וְהַשּׁוֹטָה וְהַחֵרֶשֶׁת. וּמִי שֶׁיָּצָא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ וּבָאוּ שְׁנַיִם וְהֵעִידוּ שֶׁתָּבְעָה אוֹתָן לִזְנוֹת עִמָּהּ. וְהַמְגֹרֶשֶׁת מִן הַנִּשּׂוּאִין וַעֲדַיִן הִיא נַעֲרָה בְּתוּלָה. אֲבָל הַמְגֹרֶשֶׁת מִן הָאֵרוּסִין אִם נֶאֶנְסָה יֵשׁ לָהּ קְנָס וּקְנָסָהּ לְעַצְמָהּ. וְאִם נִתְפַּתְּתָה אֵין לָהּ קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והמגורשת מן הנשואין ועדיין היא נערה בתולה אין לה חמשים שקלים הכתוב בתורה.</strong> וכתב הכס&quot;מ דהיינו מדתנן פ&quot;ק דכתובות בתולה מן הנשואין כתובתה מנה ואין לה טענת בתולים וא&quot;כ היא בחזקת בעולה ואין לה חמשים שקלים. וכ&quot;כ התוס׳ יו&quot;ט. אמנם בס׳ אליה רבה הניח בצ&quot;ע דמדברי התוס׳ ריש פרק אלו נערות מוכח דבתולה מן הנשואין יש לה חמישים שקלים. ועדיפא מינה יש לי לתמוה על רבינו מהירושלמי דפ&quot;ק דכתובות דשם מבואר כדברי התוס׳. וז&quot;ל אמר ר׳ יודן וכי בחמישים שקלים הדבר תלוי פירוש כתובה והרי בתולה מן הנשואין יש לה חמישים שקלים וכתובתה מנה וזה אישתמיט לכולהו. וכן לבעל ספר הפלאה שתמה על התוספות דמנין להן שיש חמישים שקלים לבתולה מן הנשואין והרי בירושלמי מבואר כן. וקשיא על רבינו. ואח&quot;כ מצאתי לבעל קרבן העדה שהרגיש בזה והניח בצ&quot;ע על רבינו מהירושלמי הנזכר:<br><strong> ושוב </strong> ראיתי שיש ליישב דעת רבינו ז&quot;ל והוא די&quot;ל דלא קיי&quot;ל כההיא דר׳ יודן דירושלמי דפ&quot;ק דכתובות מכח הא דאיתא בירושלמי דיבמות פרק בית שמאי וז&quot;ל על דעתיה דר׳ יהושע דאמר דנשואי קטנה היא כאשתו לכל דבר מהו שתמאן בו ותטול חמישים שקלים מאחר. ועל כרחך איירי שהיא בודאי עדיין בתולה דאל&quot;כ לא שייך חמישים שקלים ואפילו הכי לא מבעיא ליה רק בקטנה שמיאנה שעוקרת נשואיה למפרע וכאילו לא נשאת ומשום הכי סלקא דעתיה שיש לה חמישים שקלים וא&quot;כ משמע דאילו בגדולה בכהאי גוונא שנתגרשה מן הנשואין והיא בתולה לא מבעיא דודאי אין לה חמישים שקלים. ושמע מינה דליתא לדר׳ יודן דפ&quot;ק דכתובות דלדידיה דיש חמישים שקלים לבתולה גדולה מן הנשואין ליכא למבעי בקטנה:<br><strong> ואפשר </strong> דגם התוס׳ מודים להלכה לרבינו ואין כוונתם בריש פרק אלו נערות רק ליישב מתניתין דהתם למאן דאמר דיש לה חמישים שקלים דהוי מצי למימר מחזיר גרושתו משניסת שיש לה חמישים שקלים אלא דתני ושייר אבל מודים דלא קיי&quot;ל כן. שהרי בעצמם כתבו (בדף מ&quot;ט) דנשואין משוו לה בעולה לכל דבר וא&quot;כ אין לה חמישים שקלים. ובהכי אתי שפיר דלא סתרי התוס׳ דבריהם כלל ונסתלק תמיהת בעל שער המלך בקונטרס חופת חתנים ובפ&quot;ג דהלכות אסורי ביאה:</p>
               </div>
             </div>
@@ -273,8 +294,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 1:11:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-1-11-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 1:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-11">Mishneh Torah, Virgin Maiden 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה בְּתוּלָה זוֹ אֲסוּרָה עַל הָאוֹנֵס אוֹ הַמְפַתֶּה אִם הָיְתָה אַחַת מֵחַיָּבֵי כְּרֵתוֹת כְּגוֹן אֲחוֹתוֹ אוֹ דּוֹדָתוֹ וְהַנִּדָּה וְכַיּוֹצֵא בָּהֶן אוֹ שֶׁהָיְתָה מֵחַיָּבֵי לָאוִין אִם הִתְרוּ בּוֹ הֲרֵי זֶה לוֹקֶה וְאֵינוֹ מְשַׁלֵּם קְנָס שֶׁאֵין אָדָם לוֹקֶה וּמְשַׁלֵּם. וְאִם לֹא הָיְתָה שָׁם הַתְרָאָה הוֹאִיל וְאֵינוֹ חַיָּב מַלְקוֹת הֲרֵי זֶה מְשַׁלֵּם קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[היתה בתולה זו אסורה על האונס או המפתה אם היתה מחייבי כריתות וכו׳ אם לא היתה שם התראה וכו׳ הרי זה משלם חמשים שקלים.</strong> בס׳ נודע ביהודה סוף חלק אה&quot;ע הקשה בשם חכם אחד דאמאי כתב רבינו סתם דמאנס חייבי כריתות בלא התראה היה משלם חמישים שקלים ולא חילק בין אם היה יכול להציל באחד מאיבריו או לא דאם לא היו יכולין להצילה מידו באחד מאיבריו של רודף ניתן להצילה בנפשו ומפטר מחמישים שקלים דקים ליה בדרבה מיניה וכמבואר בסנהדרין (דף ע&quot;ג). ותירץ דרבינו ס&quot;ל דלא קיי&quot;ל כההיא סוגיא דסנהדרין אלא כמ&quot;ש תוס׳ ביבמות (דף נ&quot;ט) דלרבנן לא היה אונס מתחייב בחמישים שקלים רק בגמר וכו׳ עיי&quot;ש. ומשום הכי לא היה מפטר מתשלומי חמישים שקלים כיון דקדים ליה בזמן הבית חיוב עונש אחר. וכבר הקדימו בס׳ שער המלך בה׳ שבת. ולכאורה יש לתמוה דא&quot;כ אמאי פטר רבינו מחמישים שקלים אם היתה שם התראה משום דהיה נענש ומש&quot;ה היה פטור מתשלומין הא אינן באין כאחד כנזכר לעיל דגם גבי חיוב מלקות בזמן הבית כתב בריש פ&quot;ג דגניבה דאם היה בא קודם חיוב דתשלומין לא היה מפטר וכן קשה הא דפטר גבי חייבי מיתות. וי&quot;ל דהיינו דוקא אם כבר נסתלק החיוב בשעה שהיה בא חיוב דתשלומין משא&quot;כ גבי חייבי לאוין וכן חייבי מיתות דנהי דאינהו קדמי ואתא עליה מ&quot;מ לא נסתלק חיוב זה גם אחר זמן בשעה שבא עליו חיוב דתשלומי חמישים שקלים ומשום הכי מפטר מתשלומין וחשוב כמו שבאו בבת אחת. וסברא זו כתב בשער המלך שם ובהלכות גניבה ובהקדמת פני יהושע וע&quot;ש שמיישב בזה דלא תקשי על דברי תוס׳ דיבמות מסוגיא דכתובות. ולפ&quot;ז אתי שפיר דעת רבינו כאן דלא פטר חייבי כריתות מחמישים שקלים מחמת שהיה עליו חיוב מדין רודף דחיוב זה נסתלק אחר שהערה בה ופגמה כמ&quot;ש רבינו בהל׳ רוצח פ&quot;א ובשעת גמר ביאה שבא עליו חיוב חמישים שקלים פקע מיניה חיוב מיתה ומשום הכי משלם. אך מ&quot;ש רבי עקיבא איגר בתשובה סי׳ קס&quot;ד בישוב דעת תוס׳ דיבמות הנ&quot;ל אינו עולה לדעת רבינו כלל. דלפי דבריו תקשי קושית בעל נוב&quot;י הנזכר ע&quot;ש אלא כמו שכתבנו:<br><strong> ומה </strong> שהקשה חתן בעל ספר פני יהושע שם לפי דברי התוס׳ דיבמות דלא מחייב חמישים שקלים בהעראה רק בגמר ביאה ולפ&quot;ז הא דפריך בפרק אלו נערות דאמאי מחייב חמישים שקלים הבא על אחותו הא קיי&quot;ל דלא היה לוקה ומשלם הוא משום דחשיב באין כאחד אע&quot;פ דחיוב מלקות קדים מכל מקום איכא נמי בשעת גמר ביאה. וא&quot;כ אכתי התמיהה קיימת על עולא דמשני מתניתין דאלו הן (היו) [ה]לוקין באחותו בוגרת דליכא חמישים שקלים ומשמע דבנערה דמשלם חמישים שקלים ליכא מלקות כיון דממונא היה משלם מילקא לא לקי והרי גם באחותו נערה איכא מלקות בזמן הבית משום דכבר נתחייב במלקות משעה שהערה בה וחמישים שקלים לא מחייב אלא בגמר ביאה. ולדידיה ליכא למימר דלפטר מחמישים שקלים על גמר ביאה משום דעדין איכא עליה חיוב מלקות דהא ס&quot;ל דחיוב מלקות לא פטר מממון. והניח קושיא זו בצע&quot;ג. ולי נראה דיש ליישב על פי מ&quot;ש בחידושי הריטב&quot;א בשלהי קדושין (דף ע&quot;ז) דכי אמרינן דהעראה שמה ביאה וחייב היינו כשפירש ולא גמר ביאתו אבל כשגמר דעתו על גמר ביאה וע&quot;ש. וא&quot;כ י&quot;ל דנהי דאנן לא קיי&quot;ל הכי מ&quot;מ עולא הכי ס&quot;ל כסברת הריטב&quot;א. והשתא אתי שפיר דלא משכחת לדידיה מלקות באחותו נערה כלל דנהי דחיוב חמישים שקלים לא בא עד שעת גמר ביאה מ&quot;מ אין לחייבו מלקות על העראה דכיון דגמר ביאתו לא מחייב על העראה כלל:<br><strong> ונראה </strong> דלענין חמישים שקלים מודה רבינו לחילוק של הריטב&quot;א הנ&quot;ל וא&quot;כ הא דלא מחייב רבינו חמישים שקלים רק בגמר ביאה היינו כשגמר ביאתו אבל כשלא גמר רק הערה בה ופירש חייב חמישים שקלים. ובהכי אתי שפיר דלא תקשי על דבריו מהא דאיתא בירושלמי הערו בה עשרה ועדיין היא בתולה כולן בחמישים שקלים והביאו תוס׳ בסנהדרין (סוף דף ע&quot;ג):<br><strong> ועל </strong> פי זה תתיישב קושיא גדולה שראיתי שעמד בה אחד מגדולי זמנינו בס׳ מעיין גנים דלסברת התוס׳ הנזכר דהעראה לא נתרבה לעניין חמישים שקלים א&quot;כ היאך מצינו שיתחייב כלל חמישים שקלים הא לא נתחייב רק בגמר ביאה ועל זה ליכא עדים שלא יוכלו לידע שגמר ביאתו כדמוכח ברפ&quot;ג דכריתות והאריך הרבה בישובה. ועל פי מה שכתבנו לק&quot;מ דממה נפשך חייב חמישים שקלים דאם לא גמר ביאתו חייב משום העראה לחודה]:</p>
               </div>
             </div>
@@ -289,8 +315,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 1:11:2</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-1-11-2" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 1:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-11">Mishneh Torah, Virgin Maiden 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה בְּתוּלָה זוֹ אֲסוּרָה עַל הָאוֹנֵס אוֹ הַמְפַתֶּה אִם הָיְתָה אַחַת מֵחַיָּבֵי כְּרֵתוֹת כְּגוֹן אֲחוֹתוֹ אוֹ דּוֹדָתוֹ וְהַנִּדָּה וְכַיּוֹצֵא בָּהֶן אוֹ שֶׁהָיְתָה מֵחַיָּבֵי לָאוִין אִם הִתְרוּ בּוֹ הֲרֵי זֶה לוֹקֶה וְאֵינוֹ מְשַׁלֵּם קְנָס שֶׁאֵין אָדָם לוֹקֶה וּמְשַׁלֵּם. וְאִם לֹא הָיְתָה שָׁם הַתְרָאָה הוֹאִיל וְאֵינוֹ חַיָּב מַלְקוֹת הֲרֵי זֶה מְשַׁלֵּם קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> היתה בתולה זו אסורה על האונס או המפתה אם היתה אחת מחייבי כריתות וכו׳ או שהיתה מחייבי לאוין אם התרו בו הרי זה לוקה ואינו משלם חמישים שקלים שאין אדם לוקה ומשלם.</strong> וכתב הכס&quot;מ דידוע דהלכה כר׳ יוחנן לגבי עולא דסבר דאפי׳ התרו בו היה משלם ולא היה לוקה. ותמה בס׳ פני יהושע דבכתובות (דף ל&quot;ג) משמע דרבא סבר נמי כעולא דהיה משלם משום דיליף גזירה שוה תחת אשר עינה דאונס מתחת דחובל בחבירו דמשלם דר׳ יוחנן קאמר התם דלא יליף גז&quot;ש משום דמבעיא ליה קרא דאונס לבושת ופגם כאביי ורבא יליף בושת ופגם מקרא אחרינא וא&quot;כ סבר כעולא דיליף גז&quot;ש וא&quot;כ הו&quot;ל לרבינו למפסק כעולא ורבא. וכן הקשה בס׳ מעיין החכמה. והנה כבר נתבאר אצלי בעז&quot;ה בחידושי דאין מהסוגיא ראיה כלל דרבא סבר כעולא. דנהי דר׳ יוחנן אי הוה סבר כרבא דלא מבעיא ליה תחת אשר עינה לבושת ופגם הוה יליף גז&quot;ש היינו משום דסבר בעלמא דמופנה מצד אחד למידין ואין משיבין וכדמוכח בכמה דוכתי וכמו שזכרתי מזה ג&quot;כ לעיל בהלכות יבום. אבל רבא סבר בריש פרק הנשרפין דמשיבין קושטא דלא יליף הגז&quot;ש דתחת אע&quot;ג דלא מבעיא ליה קרא דאונס לפגם מכל מקום אינו אלא מופנה מצד אחד דאילו הצד דחובל אינו מופנה כמו שהוכחתי שם וא&quot;כ משיבין כדאיתא שם. ואף לפי מה שכתבתי בהלכות יבום דרבינו סבר דמופנה מצד אחד למידין ואין משיבין מ&quot;מ אתי שפיר דפסק כאן כר׳ יוחנן ולא יליף הגז&quot;ש דאזיל לטעמיה שכתב דרשא אחרינא מקרא דתחת אשר עינה בריש הלכות חובל ע&quot;ש. וא&quot;כ לדידיה אין כאן שום הפנאה:<br><strong> [ולכאורה </strong> יש להביא סעד לפסק רבינו מהסוגיא דפרק מרובה (בבא קמא דף ע&quot;א) דפריך אהא דתנן טבח ביוה&quot;כ משלם ארבעה וחמשה נהי וכו׳ וקיי&quot;ל דלא היה לוקה ומשלם ודחיק לאוקמא מתני׳ כרבי מאיר דלית הילכתא כוותיה דאמר היה לוקה ומשלם ומחמת כן נדחק התם (בדר&quot;ש) [ברישא] דמתניתין ואי איתא דעולא עדיפא הוה לן לתרוצי דמשום הכי חייב בארבעה וחמשה דכל היכא דאיכא ממון ומלקות ממונא היה משלם מלקי לא היה לקי. אלא על כרחך מדלא מוקי הכי שמע מינה דס&quot;ל לתלמודא דליכא מאן דס&quot;ל כעולא. ומיהו לפמ&quot;ש התוס׳ דדוקא באונס ומפתה ס&quot;ל לעולא דממונא היה משלם אבל בעלמא מודה דמלקי היה לקי אינו ראיה:<br><strong> ומ&quot;ש </strong> בנו של המחבר בשו&quot;ת נודע ביהודה במהדורא תניינא חלק או&quot;ח סי׳ צ&quot;א ובחלק יו&quot;ד סי׳ ע&quot;ז דרבינו פסק כעולא דממונא משלם שגגה גדולה היה בידו ואפשר שנמשך אחר חות יאיר סי׳ קצ&quot;ג שכתב כן אך לא עיין בדברי רבינו כאן ובהל׳ חובל דמבואר בהיפך כנ&quot;ל. ושוב ראיתי שהרגיש בעצמו כן בנו של בעל נוב&quot;י בספרו שיבת ציון סי׳ ק׳]:<br><strong> ומ&quot;ש </strong> בשו&quot;ת שיבת ציון שם דרבינו סותר עצמו מדבריו דכאן לדבריו שכתב בהלכות סנהדרין דכל לאו שניתן לתשלומים לא היו לוקין עליו ומשמע דהיינו כעולא. ונראה מדברי ספר הנזכר דרבינו לא פסק דמשלם ואינו לוקה רק גבי לאו דגזל וגניבה משום דבהו רבי קרא בפירוש לתשלומין. וכבר קדמו בזה בעל פרי חדש בספרו מים חיים. אך אינו נכון. דודאי איכא כמה לאוין דסבר רבינו דמשלם ולא היה לקי כגון אונאה בפרק י&quot;ג דהלכות מכירה. וכן גבי מאחר שכר שכיר כתב רבינו בפי&quot;א דשכירות דאינו לוקה משום דחייב לשלם. והתם לא גלי קרא דלשלם היכא דאתרו ביה. וכן הוקשה לבעל שער המלך בהלכות חמץ:<br><strong> אמנם </strong> אתי שפיר על פי מ&quot;ש הפני יהושע בריש פרק אלו נערות לחלק בין אונס ומפתה חייבי לאוין היה לוקה ואינו משלם דהלאו אינו מחמת הפקעת הממון של חבירו משא&quot;כ היכא דהלאו בא מחמת שהוא מפקיע ממון חבירו דמי לגזל דמשלם ואינו לוקה לכו&quot;ע. ועל פי זה אתי שפיר ההיא דאונאה ומאחר שכר שכיר ואין סתירה כלל בדברי רבינו. וכן אתי שפיר לפ&quot;ז מ&quot;ש בשער המלך אדברי הראב&quot;ד בפ&quot;א דהלכות גזילה גבי חימוד וע&quot;ש:</p>
               </div>
             </div>
@@ -306,8 +337,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 2:11:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-2-11-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-11">Mishneh Torah, Virgin Maiden 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. הָאוֹנֵס אֶת הַבּוֹגֶרֶת וְאֶת הַמְמָאֶנֶת אַף עַל פִּי שֶׁאֵין לָהֶן קְנָס יֵשׁ לָהֶן בּשֶׁת וּפְגָם וְצַעַר. וְהָאוֹנֵס שׁוֹטָה אוֹ חֵרֶשֶׁת מְשַׁלֵּם צַעַר בִּלְבַד. אֲבָל הַמְפַתֶּה אֶת כֻּלָּן פָּטוּר מִכְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>[האונס שוטה או חרשת היה משלם צער בלבד.</strong> ודע דמדברי הטור באה&quot;ע נראה דמחייב בשוטה וחרשת בבושת ופגם ולא פטר רק מחמישים שקלים. ותמהני שכדברי רבינו מבואר להדיא בסוגיא דפרק אלו נערות (כתובות דף ל&quot;ב) גבי הא דמוקי מתניתין דאלו הן הלוקין הבא על אחותו דאיירי בבוגרת שאין לה חמישים שקלים ופריך הא איכא בושת ופגם ומשני בשוטה ופירש רש&quot;י שאין לה בושת ודמים למכור בשוק נמי אין לה ובפ׳ החובל (בבא קמא דף פ&quot;ו) תניא בהדיא דשוטה אין לה בושת ובפ׳ האומנין (בבא מציעא דף פ׳) גבי המוכר שפחה לחבירו ואמר לו שפחה זו שוטה היא וכו׳ משמע בהדיא דהוי מקח טעות שמע מינה שאין לשוטה דמים למכור. והוא הדין שאין דמים לחרש דהא אמרינן חרשו נותן לו דמי כולו. ומיהו [כתבו] תוס׳ בפ׳ החובל (בבא קמא דף פ&quot;ה ע&quot;ב) ובריש ערכין אהא דתנן חרש שוטה וקטן נדרין דמשמע שיש דמים לחרש איירי בשיכול להתרפאות אי נמי בידי שמים יש לו דמים ומשמע דהוא הדין לשוטה. וא&quot;כ אפשר דבכה&quot;ג איירי הטור אך לא הוה ליה לסתום כל כך]:</p>
               </div>
             </div>
@@ -322,8 +358,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 2:11:2</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-2-11-2" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 2:11:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-11">Mishneh Torah, Virgin Maiden 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. הָאוֹנֵס אֶת הַבּוֹגֶרֶת וְאֶת הַמְמָאֶנֶת אַף עַל פִּי שֶׁאֵין לָהֶן קְנָס יֵשׁ לָהֶן בּשֶׁת וּפְגָם וְצַעַר. וְהָאוֹנֵס שׁוֹטָה אוֹ חֵרֶשֶׁת מְשַׁלֵּם צַעַר בִּלְבַד. אֲבָל הַמְפַתֶּה אֶת כֻּלָּן פָּטוּר מִכְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> [והמפתה את כולן פטור מכלום.</strong> ומשמע דמפתה ממאנת נמי פטור מכלום משום דמחלה. ואע&quot;ג דממאנת היא קטנה מבת שש עד י&quot;ב כמ&quot;ש בפ&quot;ד מהל׳ אישות ופי&quot;א מהל׳ גרושין. ומינה דס&quot;ל לרבינו דמחילת קטן מחילה היא על כל פנים משהגיע לעונות הפעוטות. והא דכתב בפט&quot;ו מהל׳ אבידה גבי תמרים שהרוח משירן דאם הם של יתומים אסורין שאינן בני מחילה והוא מסוגיא דבבא מציעא היינו דמסתמא לא אמרינן שמחלו אבל כשמחלו בפירוש מהני וכמ&quot;ש הרשב&quot;א והר&quot;ן בפרק נערה. וכן כתבו הריב&quot;ש בתשובה סי׳ כ׳ וסי׳ ק&quot;ח ובתשובה להרמב&quot;ן הובא בבית יוסף בחו&quot;מ סי׳ רל&quot;ה. ואע&quot;פ שבמלחמות פ׳ נערה כתב הרמב&quot;ן דמחילת קטנה אינו כלום אפשר דבפחות מעונת פעוטות איירי אבל כשהגיע מחילתה מחילה. וכן משמע בתוס׳ כתובות (דף פ&quot;ו ודף ק&quot;ז). וכן כתבו המרדכי והגהות אשרי פ׳ מציאת האשה והובא באחרונים באה&quot;ע סי׳ קי&quot;ד. וכן כתב הש&quot;ך בחו&quot;מ סי׳ ס&quot;ו ס&quot;ק פ׳. ובהל׳ מכירה איתא דצריכה גם כן בדיקה אם היא נבונית וא&quot;כ נשמע דהוא הדין גבי פתוי קטנה במקום שהכסף שלה הוי מחילה. ואע&quot;ג שלא מחלה בפירוש הא מחמת הנאת בעילה הוי כאילו מחלה בפירוש וכדמוכח בגמ׳ פ׳ אלו נערות (כתובות דף ל&quot;ט) ובתוס׳ שם. וקטנה שהגיע לעונת פעוטות נמי אית לה תאוה כדמוכח ברא&quot;ש פ׳ הכונס. ומ&quot;ש התוס׳ בריש פ&quot;ב דקידושין (דף מ&quot;ג) דקטנה לית לה תאוה היינו בשלא הגיעה וכן כתבו בס׳ המקנה ובספר שער המלך וזה דלא כמ&quot;ש בס׳ מקום שמואל סוף סימן כ&quot;ה דכל קטנה לית לה תאוה. וגם זה דלא כמשמע בספר בני אהובה להיפך דכל קטנה אית לה תאוה ועל כן הוקשה לו הירושלמי דפרק א׳ דקידושין שהביא המל&quot;מ פ&quot;ו דאישות ולפי מ&quot;ש אתי שפיר. והא דמדברי התוס׳ דפרק אלו נערות (סוף כתובות דף ל&quot;ה) משמע דאף בקטנה שהגיע לעונת מיאון אין מחילתה מחילה כשנתפתתה אזלי לטעמייהו דסבירא להו דאיכא מיאון קודם עונת פעוטות וכדעת רש&quot;י בגיטין (דף ס&quot;ה). אך מטעם אחר יש לומר דאין מחילת קטנה בקנס מחילה אף כשמחלה בפירוש דאף דאי בעלמא הוי מחילה כמ&quot;ש מ&quot;מ גבי קנס י&quot;ל דלא מהני מטעם שכתב הר&quot;ן בתשובה הובא בחו&quot;מ סי׳ רל&quot;ה דבמקום שעשה שלא כהוגן אין מתנת קטן כלום וא&quot;כ הוא הדין למחילתן. והמל&quot;מ פ&quot;ט דזכיה כתב שכן דעת רבינו דבמקום איסור אמרינן דלא תקנו רבנן והארכתי בזה במקום אחר:<br><strong> (ומה </strong> שהקשה בס׳ הפלאה. דלמאי דקיי&quot;ל דפתוי קטנה אונס א&quot;כ מאי אריא דוקא אנוסה אפי׳ מפותה נמי אונס הוא. ולפי מה שכתבנו י&quot;ל דבהגיע לעונת הפעוטות שפיר יש לה דין מפותה דהוי כאלו מחלה בפירוש משום דיש לה הנאה וא&quot;כ אף אם נחשוב פיתויה כאונס מכל מקום הוי שפיר מחילה דכיון דאית לה הנאה מזה לא בטלה המחילה מחמת האונס אלא א&quot;כ מסרה מודעא וכהאי גוונא איתא בחו&quot;מ סי׳ ר&quot;ה גבי פשרה באונס דלא בטלה כיון דחבירו מוותר לו מטענתו גמר ומחיל גם הוא מטענתו לחבירו אלא דהקרא על כרחך אין ליישב בהכי דהא מן התורה אין מתנת קטן כלום והוא הדין למחילתו). והרדב&quot;ז בחלק א׳ סי׳ ס&quot;ג פסק דהמפתה יתומה קטנה חייב כדין מאנס דקיי&quot;ל פתוי קטנה אונס הוא. ועוד כתב דבזה גם רבינו מודה דדוקא לענין שתהא מותרת לבעלה בקידושי אביה שהן של תורה פסק דלא הוי אונס ואסורה אבל לענין קנס הוי אונס כמ&quot;ש גבי קטנה בת מיאון שאין לה רצון לאסור על בעלה והוא הדין שאין לה רצון להיות פתויה פתוי שהרי היא סכולה ואינה בעלת תאוה דנימא שאין לה צער מחמת תאותה ולפי מה שכתבנו אין דבריו מחוורין]:</p>
               </div>
             </div>
@@ -338,8 +379,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 2:13:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-2-13-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 2:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-13">Mishneh Torah, Virgin Maiden 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרָה לוֹ אָנַסְתָּ אוֹתִי וְהוּא אוֹמֵר לֹא כִּי אֶלָּא פִּתִּיתִי הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הַתּוֹרָה עַל דְּמֵי הַצַּעַר וּמְשַׁלֵּם בּשֶׁת וּפְגָם שֶׁהֲרֵי הוֹדָה בְּמִקְצָת הַטַּעֲנָה כְּמוֹ שֶׁיִּתְבָּאֵר בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרה לו אנסת אותי והוא אומר לא כי אלא פתיתי הרי זה נשבע שבועת התורה על דמי הצער ומשלם בושת ופגם שהרי הודה במקצת הטענה.</strong> ובהשגות א&quot;א אין כאן שבועה לפי שאין כאן תובע שהתשלומין אינם שלה וכמו מנה לאבא בידך הוא. ותירץ הכס&quot;מ דס&quot;ל לרבינו דהיא מיקריא תובע אע&quot;פ שאביה קיים משום שהיא העומדת בדין. ובעל ס׳ פני יהושע בקונטרס אחרון ריש פרק נערה הקשה דבמפותה איך יכולה להעמידו בדין הרי מחלה. ויש לי ליישב דכיון שהיה לה אב ולא היה אז ברשותה למחול דבר שאינו שלה ואין במחילתה כלום משום הכי אף היא עצמה יכולה לתובעו בדין בשביל האב. וגדולה מזו כתב הר&quot;ן לדעת רבינו בדין ט&quot;ו דאם מת האב יכולה לתובעו אף בשביל עצמה ופירש הטעם דסבירא ליה דלא אהני מחילה שלה שהיתה בחיי האב כיון דלא חזיא לה בההיא שעתה דמחלה:<br><strong> ויש </strong> לי להביא ראיה לסברא זו מהא דאיתא בפ&quot;ק דב&quot;מ (דף ט&quot;ו) גבי גזלן שמכר שדה שאינה שלו ואח&quot;כ נפלה לו בירושה דחוזר ותובעה מהלוקח ומבטל המכירה כמו יורש אחר אלא א&quot;כ דגלי דעתיה אח&quot;כ דניחא ליה שתשאר ביד הלוקח כי היכי דליקו בהמנותיה. אבל המכירה הראשונה הוא עצמו יכול לבטל אע&quot;פ שהיא עכשיו שלו כיון דבשעה שמכר לא היתה שלו. והכי נמי דכוותה דאף שמת אביה ועתה נעשה שלה יכולה לבטל מחילה הראשונה שהיה בעת שלא היה שלה. וכל שכן כשאביה קיים ושייך התשלומין לו שיכולה לתובעו ומתחייב שבועה על ידה ולא הוה מנה לאבא בידך כיון שהיא העומדת בדין ולא האב ומחילתה אינה מזקת אף לאחר מיתת האב וכל שכן בחייו:<br><strong> ועוד </strong> יש לי להביא ראיה לדעת רבינו דבדין ט&quot;ו מהסוגיא דפרק נערה (כתובות דף מ&quot;ד ע&quot;ב) דמוקי הא דתניא ואם מאן ימאן אביה לרבות יתומה לחמישים שקלים. דאיירי בבא עליה ואח&quot;כ נתיתמה. והרי האי קרא במפתה הוא דכתיב ואי איתא לדעת הראב&quot;ד בסמוך דכשמת האב אינה יכולה לתבעו משום דאיגלאי מילתא דשלה הואי והרי מחלה א&quot;כ תקשי דאמאי מרבינן לה לחמישים שקלים בבא על המפותה ואח&quot;כ נתיתמה. וכבר הרגישו בקושיא זו בס׳ המאור ותירץ דבאונס איירי בברייתא דכיון דאינו ענין למפתה תנהו ענין לאונס וגם בחידושי מהר&quot;ם שיף כתב כן. והוא תמוה דהרי גבי אונס איכא ברייתא אחריתא כדאיתא בספרי והובא בירושלמי דדריש תחת אשר עינה לרבות יתומה לחמישים שקלים (בזמן הבית). וגם מה שתירץ הרמב&quot;ן דברייתא דמאן ימאן דמרבה יתומה במפותה איירי בקטנה שמחילתה אינה כלום הוא דחוק. וגם אין זה מוסכם דלדעת כמה פוסקים הוי מחילה בשהגיעה לעונת פעוטות ואפילו נימא דבעינן שימחל בפירוש הכי נמי גבי מפותה הוי כאילו מחלה בפירוש וכדמוכח בפרק אלו נערות (כתובות דף ל&quot;ט ע&quot;ב). ואע&quot;ג שכתבו התוס׳ שם דהיינו מחמת הנאתה הא מוכח ברא&quot;ש פרק הכונס דגם קטנה אית לה בשהגיעה לעונת פעוטות. אך אין צורך לדחוק בזה רק לפי דעת הראב&quot;ד אך לפי דעת רבינו אתי שפיר בלא שום דוחק ומעיקרא לק&quot;מ דקושטא דאף בגדולה לא חשיבא המחילה שבחיי האב וגם בחידושי מהר&quot;ם הנזכר ובס׳ פני יהושע מסקו הכי אלא שלא זכרו שכן הוא דעת רבינו. וגם מדברי התוס׳ ומהרש&quot;א בקידושין (דף מ&quot;ו) משמע הכי:</p>
               </div>
             </div>
@@ -355,8 +401,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Virgin Maiden 3:9:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-virgin-maiden-3-9-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Virgin Maiden 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-9">Mishneh Torah, Virgin Maiden 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִדֵּשׁ נַעֲרָה וְגֵרְשָׁהּ וְחָזַר וְקִדְּשָׁהּ וְהוֹצִיא עָלֶיהָ שֵׁם רַע וְהֵבִיא עֵדִים שֶׁזִּנְּתָה תַּחְתָּיו בַּקִּדּוּשִׁין הָרִאשׁוֹנִים וְנִמְצְאוּ זוֹמְמִים הֲרֵי זֶה פָּטוּר. וְכֵן אִם הָיְתָה יְבִמְתּוֹ שֶׁכָּנְסָהּ וְהוֹצִיא עָלֶיהָ שֵׁם רַע וְהֵבִיא עֵדִים שֶׁזִּנְּתָה תַּחַת קִדּוּשֵׁי אָחִיו וְנִמְצְאוּ זוֹמְמִים הֲרֵי זֶה פָּטוּר מִן הַמַּלְקוֹת וּמִן הַתַּשְׁלוּמִין. וְכָל הַפָּטוּר אִם רָצָה לְגָרֵשׁ יְגָרֵשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קידש נערה וגירשה וחזר וקידשה והוציא עליה שם רע והביא עדים שזינתה תחתיו בקידושין הראשונים ונמצאו זוממין וכן אם היתה יבמתו שכנסה וכו׳ (היה) [הרי זה] פטור מן המלקות ומן התשלומין וכל הפטור אם רצה לגרש יגרש.</strong> ופירש המל&quot;מ דס&quot;ל לרבינו דלא הזהיר הכתוב שלא יוכל לשלחה אלא היכא דהיה חייב עונש (בזמן הבית) אך היכא דליכא עונש אם רצה לגרש יגרש. והנה לא כתבו מקור לזה דמנין יצא זה לו לרבינו לומר כן. ונראה דיש ללמוד כן מהסוגיא דפ&quot;ג דמכות (דף ט&quot;ו) דקאמר התם לא יאמר ולו תהיה לאשה גבי אונס דגמר ממוציא שם רע וכו׳ ומסיק דאונס ממוציא שם רע לא גמר דאיכא למפרך מה למוציא שם רע דקאי בולו תהיה לאשה שכן היה לוקה ומשלם. ואי איתא דאף הפטור במוציא שם רע ממלקות ותשלומין קאי בחיוב דולו תהיה לאשה א&quot;כ אכתי תקשי דלא יאמר ולו תהיה לאשה גבי אונס וגמרינן ליה ממוציא שם רע כי האי כגון שהוציא על נשואת אחיו דקיי&quot;ל שפטור ממלקות ותשלומין ואפילו הכי חייב לכונסה אלא שמע מינה דכל היכא דמיעט רחמנא גבי שם רע ופטרו ממלקות ותשלומין פטרו גם כן מלכונסה:<br><strong> ומה </strong> שהקשה המל&quot;מ דאמאי כתב רבינו דכל הפטור אם רצה לגרש יגרש דמשמע דקאי על מה שכתב ברישא קידש נערה וגירשה וחזר וקידשה והוציא עליה שם רע בקידושין הראשונים וכו׳. וזה הוא ספיקא דדינא ובעיא דלא איפשטא בגמ׳ הוציא עליה שם רע על נשואין הראשונים מהו. ונהי דמלקא לא היה לקי מספק וכן קנס לא היה משלם מספק אבל לגרש היאך יכול מספק והלא ספיקא דאורייתא הוא ופשיטא דאזלינן לחומרא. ובס׳ מעיין החכמה כתב דלית נגר דיפריקנה. ואני אומר דלאו נגר אנא ואפריקינה די&quot;ל דחיוב זה דלא יוכל לשלחה שאני משאר חיוב דאיסור דאזלינן בספיקו לחומרא אלא דמי לחיוב דממון דאזלינן בו לקולא. משום דקיי&quot;ל דבדעתה וברצונה הדבר תלוי ואם אמרה לא בעינא לא איתא לחיוב זה כלל וכיון דניתן למחילה משום הכי דמי לממונא דלא מחייב מספיקא והכי נמי מחייבינן ליה מספיקא בשאר כסות ועונה שחייב בעל לאשתו. [וכהאי גוונא גבי אוכל תרומה במזיד דקיי&quot;ל דיכול הכהן למחול הו&quot;ל כדבר של ממון ולא כאיסור. ויש להביא ראיה ממ&quot;ש המפרשים הובא בס׳ נתיבות המשפט סי׳ כ&quot;ה בריש דיני תפיסה דספק גזל שרי ועל כרחך היינו משום [דכיון] דניתן למחילה לא הוי כשאר איסורין. וכל שכן לפי דעת רבינו דכל הספיקות איסורין מדברי סופרים ולכך היקל בכהאי גוונא:<br><strong> ועיין </strong> בהרדב&quot;ז ח&quot;א סי׳ ס&quot;ח שנשאל במי שאנס אשה ואסר הנאתה עליו והרי אסורה עליו בלא יחל אם צריך לכונסה ולאו כל כמיניה לאוסרה עליו ולהפקיע המצוה המוטלת עליו. והשיב דכיון דחל עליו תחילה עשה דולו תהיה לאשה שוב אינו יכול להפקיע במה שאסרה עליו. וא&quot;ת מאי שנא מהא דאמרינן דנדרים חלין על דבר מצוה וכו׳ היינו דוקא במצות שבין אדם למקום כגון שאמר ישיבת סוכה עלי אסור אבל בדברים שבין אדם לחבירו לא חל והגע עצמך הרי שהיה חייב לחבירו מנה ואמר פלוני מודר מנכסי כלום חל הנדר על המנה שהוא חייב הכי נמי לא שנא שאין חל הנדר לדחות חיוב העשה. ויש לתמוה שהוא נגד סוגיא ערוכה דפ&quot;ג דמכות (דף ט&quot;ז) דפריך גבי אונס שגירש היכי משכחת שילקה הא הוי ניתק לעשה ולא היה לוקה אלא א&quot;כ ביטל העשה בידים ומוקי לה רב שימי מנהרדעא כגון שהדירה ברבים או על דעת רבים שאין לו הפרה ופירשו התוס׳ דאפי׳ בלא מצא עליה עון יכול לידור וחל הנדר כשאמר קונם תשמישך עלי כדאיתא בנדרים ע&quot;כ. אלמא דכהאי גוונא שאסר הנאתה עליו חל הנדר נמי גבי אונס ולא אמר[ינן] דלא חל הנדר לדחות חיוב עשה דולו תהיה לאשה והיינו טעמא דדוקא הנאתו עליה אינו יכול לאסור כיון דמשועבד לה אבל הנאתה עליו יכול לאסור וכדאמר גבי קונם שאיני משמשך. וגם מה שהביא ראיה מבעל חוב יש לדחות דשאני בעל חוב דאלמוה לשיעבודא דידיה וכמ&quot;ש תוס׳ בכתובות (דף נ&quot;ט ע&quot;ב) אבל בעלמא קונמות מפקיעין משעבוד חבירו. וכן משמע ביבמות (דף קי&quot;א) גבי יבמה שנדרה הנאה מיבמה]:</p>
               </div>
             </div>
@@ -366,6 +417,10 @@
               <a href="#chapter-nachal-eitan-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-virgin-maiden-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -386,8 +441,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-virgin-maiden.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/nachal-eitan-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-virgin-maiden.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-virgin-maiden.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-virgin-maiden.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -413,7 +468,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

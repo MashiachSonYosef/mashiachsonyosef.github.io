@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-borrowing-and-deposit/">Open Mishneh Torah, Borrowing and Deposit</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Borrowing and Deposit</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">18 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Warsaw, 1881 | Version source: <a href="https://www.nli.org.il/he/books/NNL_ALEPH001763900/NLI">www.nli.org.il</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>625 matched</strong> / 1890 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -235,8 +236,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-1-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-1">Mishneh Torah, Borrowing and Deposit 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כֵּלִים אוֹ בְּהֵמָה וְכַיּוֹצֵא בָּהֶן מִשְּׁאָר מִטַּלְטְלִין מֵחֲבֵרוֹ וְאָבַד אוֹ נִגְנַב אֲפִלּוּ נֶאֱנַס אֹנֶס גָּדוֹל כְּגוֹן שֶׁנִּשְׁבְּרָה הַבְּהֵמָה אוֹ נִשְׁבֵּית אוֹ מֵתָה חַיָּב לְשַׁלֵּם הַכּל שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יג)</span> &quot;וְכִי יִשְׁאַל אִישׁ מֵעִם רֵעֵהוּ&quot; וְגוֹ׳ <span class="source-small">(שמות כב יג)</span> &quot;וְנִשְׁבַּר אוֹ מֵת בְּעָלָיו אֵין עִמּוֹ שַׁלֵּם יְשַׁלֵּם&quot;. בַּמֶּה דְּבָרִים אֲמוּרִים כְּשֶׁנֶּאֱנַס שֶׁלֹּא בִּשְׁעַת מְלָאכָה. אֲבָל אִם שָׁאַל בְּהֵמָה מֵחֲבֵרוֹ לַחְרשׁ בָּהּ וּמֵתָה כְּשֶׁהִיא חוֹרֶשֶׁת הֲרֵי זֶה פָּטוּר. אֲבָל אִם מֵתָה קֹדֶם שֶׁיַּחֲרשׁ בָּהּ אוֹ אַחַר שֶׁחָרַשׁ בָּהּ אוֹ שֶׁרָכַב עָלֶיהָ אוֹ דָּשׁ בָּהּ וּמֵתָה כְּשֶׁהִיא דָּשָׁה אוֹ בִּשְׁעַת רְכִיבָה הֲרֵי זֶה חַיָּב לְשַׁלֵּם. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה. וְכֵן הַשּׁוֹאֵל בְּהֵמָה מֵחֲבֵרוֹ לֵילֵךְ בָּהּ לְמָקוֹם פְּלוֹנִי וּמֵתָה תַּחְתָּיו בְּאוֹתָהּ הַדֶּרֶךְ. אוֹ שֶׁשָּׁאַל דְּלִי לְמַלְּאוֹת בּוֹ וְנִקְרַע בַּבּוֹר בִּשְׁעַת מִלּוּי. אוֹ שֶׁשָּׁאַל קַרְדֹּם לְפַצֵּל בּוֹ עֵצִים וְנִשְׁבַּר בְּעֵת שֶׁפִּצֵּל בּוֹ מֵחֲמַת הַבִּקּוּעַ. וְכָל כַּיּוֹצֵא בָּזֶה. הֲרֵי זֶה פָּטוּר שֶׁלֹּא שָׁאַל אֶלָּא לַעֲשׂוֹת בּוֹ מְלָאכָה זוֹ וַהֲרֵי לֹא שִׁנָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א כשנאנס שלא בשעת מלאכה כו׳.</strong> כתב מרן בכ&quot;מ קשה לי בדברי רבינו וכו׳. ואילו היה רואה הרב ז&quot;ל דברי ה&quot;ה לא היה מקשה זה דהא מאי דנקט רבינו ז&quot;ל או שרכב עליה או דש בה ומתה בשעת רכיבה כו׳ היינו לומר דאם שאלה לחרישה ודש בה או רכב עליה אע&quot;פ ששינה בה למלאכה קלה ומתה בשעת מלאכה חייב אע&quot;פ שאם לא שינה היה פטור:</p>
               </div>
             </div>
@@ -251,8 +257,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:2:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-1-2-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-2">Mishneh Torah, Borrowing and Deposit 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל בְּהֵמָה מֵחֲבֵרוֹ וּמֵתָה וְטָעַן הַשּׁוֹאֵל שֶׁבִּשְׁעַת מְלָאכָה מֵתָה. אִם הָיָה הַמָּקוֹם שֶׁשָּׁאֲלָה לֵילֵךְ בּוֹ מָקוֹם שֶׁבְּנֵי אָדָם מְצוּיִין שָׁם יָבִיא רְאָיָה שֶׁמֵּתָה אוֹ נֶאֶנְסָה בִּשְׁעַת מְלָאכָה וְשֶׁלֹּא שִׁנָּה בָּהּ וְיִפָּטֵר. וְאִם לֹא הֵבִיא רְאָיָה מְשַׁלֵּם. שְאֲלָה מִמֶּנּוּ לְמַלְּאוֹת בָּהּ עָפָר שֶׁבְּחֻרְבָּתוֹ שֶׁאֵין הָעֵדִים מְצוּיִין שָׁם. אוֹ שֶׁשָּׁאַל מִמֶּנּוּ דְּלִי לְמַלְּאוֹת בּוֹ הַבּוֹר בְּתוֹךְ בֵּיתוֹ וְנִקְרַע בַּבּוֹר. אִם הֵבִיא רְאָיָה יִפָּטֵר אַף מִשְּׁבוּעָה וְאִם לָאו יִשָּׁבַע הַשּׁוֹאֵל שְׁבוּעַת הַשּׁוֹמְרִים שֶׁמֵּתָה בִּשְׁעַת מְלָאכָה וְיִפָּטֵר. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם היה המקום ששאלה לילך בו מקום שבני אדם מצויים כו׳.</strong> מהרימ&quot;ט ח&quot;מ סימן פ&quot;ט כתב וז&quot;ל ועי&quot;ל דאפילו חשבת ליה מקום האונס יש רואה ואומר איני יודעם ואיני יכול לחזר אחריהם אבל באמת באונס נלקחו ממני נאמן במגו דאי בעי הוה טעין בתוך מבואות העיר נאנסתי דלא שכיחי רבים כו׳. ודין זה צל&quot;ע ועיין במ&quot;ש הרז&quot;ה בפרק חזקת עלה דקריביה דרב אידי ודוק היטב בדבריו שנראה סותר דברי הרב וצ&quot;ע, (*א&quot;ה עיין לקמן פכ&quot;א מהלכות מלוה ולוה דין א׳ בסוף התשובה יע&quot;ש):</p>
               </div>
             </div>
@@ -267,8 +278,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:5:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-1-5-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-5">Mishneh Torah, Borrowing and Deposit 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹאֵל כְּלִי מֵחֲבֵרוֹ אוֹ בְּהֵמָה סְתָם הֲרֵי הַמַּשְׁאִיל מַחְזִירוֹ בְּכָל עֵת שֶׁיִּרְצֶה. שְׁאָלוֹ לִזְמַן קָצוּב כֵּיוָן שֶׁמָּשַׁךְ וְזָכָה אֵין הַבְּעָלִים יְכוֹלִין לְהַחְזִירוֹ מִתַּחַת יָדוֹ עַד סוֹף יְמֵי הַשְּׁאֵלָה. וַאֲפִלּוּ מֵת הַשּׁוֹאֵל הֲרֵי הַיּוֹרְשִׁין מִשְׁתַּמְּשִׁין בַּשְּׁאֵלָה עַד סוֹף הַזְּמַן. וְדִין הוּא. הַלּוֹקֵחַ קוֹנֶה הַגּוּף קִנְיַן עוֹלָם בַּדָּמִים שֶׁנָּתַן וּמְקַבֵּל מַתָּנָה קָנָה הַגּוּף קִנְיַן עוֹלָם וְלֹא נָתַן כְּלוּם וְהַשּׂוֹכֵר קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב בַּדָּמִים שֶׁנָּתַן וְהַשּׁוֹאֵל קָנָה הַגּוּף לְפֵרוֹתָיו עַד זְמַן קָצוּב וְלֹא נָתַן כְּלוּם. כְּשֵׁם שֶׁהַנּוֹתֵן כַּמּוֹכֵר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בּוֹ לְעוֹלָם כָּךְ הַמַּשְׁאִיל כַּמַּשְׂכִּיר שֶׁאֵינוֹ יָכוֹל לַחְזֹר בְּתוֹךְ הַזְּמַן. הִנִּיחַ לָהֶם אֲבִיהֶם פָּרָה שְׁאוּלָה וּמֵתָה אֵין חַיָּבִין בָּאֳנָסֶיהָ. חָשְׁבוּ שֶׁהִיא שֶׁל אֲבִיהֶם טְבָחוּהָ וַאֲכָלוּהָ מְשַׁלְּמִין דְּמֵי בָּשָׂר בְּזוֹל. וְאִם הִנִּיחַ לָהֶם אֲבִיהֶם נְכָסִים וּמֵתָה אוֹ שֶׁטְּבָחוּהָ מְשַׁלְּמִין אֶת דָּמֶיהָ מִנְּכָסָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השואל כלי מחבירו וכו׳.</strong> כתב ה&quot;ה אבל שאלה שהיא חוזרת בעין אין לה זמן ע&quot;כ. הרשב&quot;א ז&quot;ל כתב בסימן אלף דהאומר לחבירו דבר זה נתון לך במתנה ע&quot;מ שתחזירהו ולא אמר לי שמחזירו כ&quot;ז שירצה המקבל ע&quot;כ. ואע&quot;ג דהדרא בעיניה דומיא דהשואל לחבירו סתם נראה דיש לחלק בין היכא דהתחיל להתנות ופסיק דבוריה כגון דאמר ע&quot;מ שתחזירהו ולא גמר לומר באיזה זמן מסתמא כל זמן שירצה קאמר אבל בסתם שאלה שלא פירש כלום כל שעתא לחזרה קיימא ודו&quot;ק: <strong>ואם הניח להם אביהם נכסים ומתה.</strong> נראה דגירסת רבינו היא הגירסא הנכונה שלא היה גורס ופליגא דרב פפא דלאו הא בהא תליא דאפילו נימא דאיסור גניבה ושבת באין כאחד מ&quot;מ אם הניח להם אביהם אחריות נכסים דין הוא שיהיו חייבים לשלם אפילו שהחיוב הוא אחר מותו מידי דהוי אנתחייב שאם יהיה כך וכך יתחייב ליתן לו כך וכך ומת בינתים שנשתעבדו נכסיו לאחר מותו אע&quot;פ שהחיוב בא אחר מותו שנעשה אז אותו דבר שבעבורו בא החיוב וה&quot;נ הכי הוי שנתחייב שאם יאנס יפרע הוא ובא החיוב אחר מותו חייב וכבר ביאר מוהריק&quot;א ז&quot;ל דבר זה אלא דנקטה בסגנון אחר. ועוד יש להכריח דבר זה דע&quot;כ אכולה מילתא קאי מה שאמרו בגמרא דאם הניח אחריות נכסים חייבים ולפי מי שפירשו דקאי לטבחוה ואכלוה קשה דמאיזה טעם חייבים ומה שפירשו קצת מפרשים מטעמא דפשע אביהן בשלא הודיעם קשה דמאי פשיעותא איכא הגע עצמך שמת פתאום או בדרך וכי היה לו לומר לבנו בעודו בריא דבר זה של פלוני הוא ואי לא אמר הכי פושע מיקרי וגם מה שפירש&quot;י אינו ברור ולשיטת רבינו ניחא דקאי אכולה מילתא בין בהניח להם פרה שאולה ומתה בין טבחוה ואכלוה וטעמא דהיכא דהניח אחריות נכסים נשתעבדו נכסיו מחיים למיתה וטביחה והו&quot;ל כאילו בשעת שאלה התנה שאם יארע אונס בדבר ההוא שמחוייב לשלם ולפיכך אם מתה או אכלוה היורשים חל חיובו למפרע מכח תנאו כשאר חיובין דעלמא ע&quot;ת ומת קודם שיבא החיוב שנשתעבדו נכסיו וה&quot;נ דכוותה ודו&quot;ק. והרב שלטי הגבורים כתב בפרק השואל דרבינו ז&quot;ל סובר דאם מתה באונס אין חייבין באונסיה כרב פפא דאמר איסור גנבה ושבת באים כאחד והיינו דכתב רבינו הניח להם פרה שאולה ומתה אין חייבין וכו׳ ומאי דכתב גבי הניח נכסים מתה היינו דמתה מחמת פשיעה ומטעמא דחייב בטבחוה בהניח אחריות נכסים משום דפשע אביהן בשלא הודיען מהאי טעמא גופיה חייב במתה בפשיעה דאילו הוו ידעי שאינה שלהן היו נזהרין ממיתתה בפשיעה: ומ&quot;מ <strong>הניח להם אביהם פרה שאולה ומתה אין חייבים באונסיה</strong> ואף ע&quot;ג דאם מת השואל משתמשים היורשים כל ימי שאלתה בע&quot;כ של המשאיל וא&quot;כ הוה לן למימר דאם מתה דחייבין באונסיה דמצי למימר לא השאלתיה אלא כדי שיתחייב השואל באונסיה. הא פירש הרא&quot;ש דלא אמרינן דאין חייבין באונסיה אלא בסתמא אבל אם המשאיל אמר ליתומים או קבלו עלייכו אונס או החזירו לי הפרה הדין עם המשאיל ודו&quot;ק. כתב מהר&quot;ר בצלאל בפרק אלו נערות דאפילו אמרינן סתם שאלה ל׳ יום ה&quot;מ לגבי דידיה אבל מת לא אמרינן הכי לגבי יורשיו יע&quot;ש. ויש להסתפק בשואל בסתם למ&quot;ד דהוי ל׳ יום דומיא דהלואה לאחר ל׳ יום מה דינו ועיין במ&quot;ש בעל בני יעקב בתשובה סי׳ י&quot;ב:</p>
               </div>
             </div>
@@ -283,8 +299,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:9:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-1-9-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-1-9">Mishneh Torah, Borrowing and Deposit 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹמֵר לַחֲבֵרוֹ הַשְׁאִילֵנִי שֹׁקֶת זוֹ שֶׁל מַיִם וְנֶהֶרְסָה [אֵינוֹ יָכוֹל לִבְנוֹתָהּ. אָמַר לוֹ הַשְׁאִילֵנִי שֹׁקֶת סְתָם וְנֶהֶרְסָה] יֵשׁ לוֹ לִבְנוֹתָהּ. אָמַר לוֹ הַשְׁאִילֵנִי מְקוֹם שֹׁקֶת אִם קָנוֹ מִיַּד הַמַּשְׁאִיל הֲרֵי הַשּׁוֹאֵל בּוֹנֶה וְהוֹלֵךְ בְּקַרְקַע הַמַּשְׁאִיל עַד שֶׁתָּבוֹא לְיָדוֹ שֹׁקֶת שֶׁאֶפְשָׁר לְהַשְׁקוֹת מִמֶּנָּה בְּהֶמְתּוֹ אוֹ אַרְצוֹ כְּמוֹ שֶׁהִתְנָה עִם הַמַּשְׁאִיל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר לחבירו השאילני שוקת זו של מים כו׳.</strong> טעות מפורסם יש בדברי רבינו ז&quot;ל דבשוקת זו אם נהרסה אינו חוזר לבנותה דזו קאמר וכשנפל אזדא ליה וכן הוא מפורש בגמרא ומ&quot;מ קשיא דלמה השמיט חלוקת שוקת מים סתם דאי נפלה בני לה וכמו שמבואר בגמרא ואולי הסופר השמיטה והיתה כתובה בדברי רבינו וזה ברור:</p>
               </div>
             </div>
@@ -300,8 +321,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 2:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-2-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-1">Mishneh Torah, Borrowing and Deposit 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹאֵל בַּבְּעָלִים אֲפִלּוּ נִגְנַב אוֹ אָבַד בִּפְשִׁיעָה פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב יד)</span> &quot;אִם בְּעָלָיו עִמּוֹ לֹא יְשַׁלֵּם&quot;. וּבִלְבַד שֶׁשָּׁאַל הַבְּעָלִים תְּחִלָּה עִם הַחֵפֶץ כְּמוֹ שֶׁבֵּאַרְנוּ. וְאֶחָד הַשּׁוֹאֵל אֶת הַבְּעָלִים אוֹ שֶׁשְּׂכָרָן וְאֶחָד שֶׁשּׁוֹאֵל אֶת הַבְּעָלִים לְאוֹתָהּ הַמְּלָאכָה אוֹ שֶׁשְּׁאָלָן וּשְׂכָרָן לִמְלָאכָה אַחֶרֶת אוֹ לְשׁוּם דָּבָר בָּעוֹלָם. אֲפִלּוּ אָמַר לַחֲבֵרוֹ הַשְׁקֵנִי מַיִם וְשָׁאַל מִמֶּנּוּ בְּהֶמְתּוֹ וְהִשְׁקָהוּ וְנָתַן לוֹ אֶת הַבְּהֵמָה הֲרֵי זוֹ שְׁאֵלָה בִּבְעָלִים וּפָטוּר. מָשַׁךְ אֶת הַבְּהֵמָה בַּתְּחִלָּה וְאַחַר כָּךְ הִשְׁקָהוּ אֵינָהּ שְׁאֵלָה בִּבְעָלִים. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפילו אמר לחבירו השקני מים כו׳.</strong> כתב מהרי&quot;א בכתביו סי׳ ר׳ וז&quot;ל דכיון דהשאילה אשת ראובן לאשת שמעון העיגולים הטובים שוין ג׳ זקוקים אע&quot;פ שהיא היתה ג&quot;כ צריכה לעיגולים שהרי שאלה ממנה ג&quot;כ עיגולים פחותים נראין הדברים שהיתה כפופה לה ומשועבדת דלא גרע מאשקיין מיא וכה&quot;ג מיקרי שאלה בבעלים ע&quot;כ. ולא ידעתי כוונת הרב בזה ומה שייך לדמותו לההיא דאשקיין מיא דההיא הוי המשאיל עמו במלאכתו ממש וכן מ&quot;ש שהיתה כפופה ומשועבדת לעיגולים פחותים היינו ממש השאילני ואשאילך דלא קרי ליה רש&quot;י שאלה בבעלים ולכך פירש&quot;י דקאי אשמור לי ואשמור לך וצ&quot;ע:</p>
               </div>
             </div>
@@ -316,8 +342,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 2:3:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-2-3-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 2:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-3">Mishneh Torah, Borrowing and Deposit 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְלַמֵּד תִּינוֹקוֹת. וְהַנּוֹטֵעַ לִבְנֵי הַמְּדִינָה. וְהַמַּקִּיז לָהֶם אֶת הַדָּם. וְהַסּוֹפֵר שֶׁלָּהֶן. כָּל אֶחָד מֵאֵלּוּ וְכַיּוֹצֵא בָּהֶן בַּיּוֹם שֶׁהוּא יוֹשֵׁב בּוֹ לַעֲסֹק בִּמְלַאכְתָּן אִם הִשְׁאִיל אוֹ הִשְׂכִּיר לְאֶחָד מֵאֵלּוּ שֶׁהוּא עוֹסֵק בִּמְלַאכְתָּם הֲרֵי זוֹ שְׁמִירָה בַּבְּעָלִים וַאֲפִלּוּ פָּשַׁע בָּהּ הַשּׁוֹמֵר פָּטוּר. אֲבָל הוּא שֶׁשָּׁאַל אוֹ שֶׁשָּׂכַר מֵהֶן חַיָּב שֶׁאֵינָן שְׁאוּלִין לוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ביום שהוא יושב בו לעסוק במלאכתו. </strong> מדקדוק דברי רבינו ז&quot;ל משמע דביום שמחוייב לעשות המלאכה נקרא שמירה בבעלים אע&quot;פ שעדיין לא נתעסק במלאכתם והריב&quot;ש בסימן תל&quot;ו כתב אם בעת שעושים המלאכה שנשכרו בה כו׳ משמע דבעי שיהיו עסוקים ממש במלאכה בשעת שאלה ועיין בהלכות אישות פכ&quot;א גבי האשה ששברה כלים כו׳ מ&quot;ש הראב&quot;ד וה&quot;ה בזה וצ&quot;ע:</p>
               </div>
             </div>
@@ -332,8 +363,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 2:8:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-2-8-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-2-8">Mishneh Torah, Borrowing and Deposit 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁאַל מִן הַשֻּׁתָּפִין וְנִשְׁאַל לוֹ אֶחָד מֵהֶן וְכֵן הַשֻּׁתָּפִין שֶׁשָּׁאֲלוּ וְנִשְׁאַל לְאֶחָד מֵהֶן הֲרֵי זֶה סָפֵק אִם הִיא שְׁאֵלָה בַּבְּעָלִים אִם אֵינָהּ. לְפִיכָךְ אִם מֵתָה אֵינוֹ מְשַׁלֵּם. וְאִם תָּפְסוּ הַבְּעָלִים אֵין מוֹצִיאִין מִיָּדָם. פָּשַׁע בָּהּ הֲרֵי זֶה מְשַׁלֵּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן השותפים ששאלו וכו׳.</strong> דברי רבינו ז&quot;ל סתומים כי לא פירש בדבריו אי חשיב שאלה בבעלים ופטור מכל הפרה דאעפ&quot;י שלא נשאל השותף האחר מ&quot;מ שותפו במקומו עומד וקרינא ביה אם בעליו עמו ומאי דנסתפק בגמרא הוי לחלק שותפו דלחלק השותף שנשאל עמו פשיטא דקרי ביה בעליו עמו ונמוקי יוסף הכריח פי׳ זה בדברי רבינו מדכתב לפיכך אם מתה אינו משלם ומשמע דקאי נמי לשאל מן השותפים ונשאל לו אחד מהם ואי לענין חלק אותו שנשאל לו קיימינן אמאי פטור מחלק חבירו דכתב אינו משלם. ואולי דרבינו קאי למאי דסליק דהיינו שותפים ששאלו ואינו משלם קאי לשותף ששאל את בעליו ולפיכך פסיק ותני אינו משלם. והטור ז&quot;ל בסי׳ שמ&quot;ו פירש דדוקא בחלק אותו שנשאלו לו מספקינן אבל חבירו שלא נשאל פשיטא דמשלם דליכא אצלו שמירה בבעלים:</p>
               </div>
             </div>
@@ -349,8 +385,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-4-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-1">Mishneh Torah, Borrowing and Deposit 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ בְּחִנָּם וְנִגְנַב אוֹ אָבַד הֲרֵי זֶה נִשְׁבָּע וְנִפְטָר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;וְגֻנַּב מִבֵּית הָאִישׁ&quot; וְגוֹ׳ <span class="source-small">(שמות כב ז)</span> &quot;וְנִקְרַב בַּעַל הַבַּיִת אֶל הָאֱלֹהִים אִם לֹא שָׁלַח יָדוֹ בִּמְלֶאכֶת רֵעֵהוּ&quot;. וּמְגַלְגְּלִין עָלָיו בְּתוֹךְ הַשְּׁבוּעָה שֶׁלֹּא פָּשַׁע אֶלָּא שָׁמַר כְּדֶרֶךְ הַשּׁוֹמְרִין וְלֹא שָׁלַח בּוֹ יָד וְאַחַר נִגְנַב. שֶׁאִם נִגְנַב אַחַר שֶׁשָּׁלַח יָד בַּפִּקָּדוֹן חַיָּב בְּאַחֲרָיוּתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומגלגלין עליו בתוך השבועה כו׳.</strong> כתוב בתה&quot;ד סי׳ של&quot;ג וז&quot;ל ואם יטעון שמעון מאן לימא לן דבההיא שעתא שחיפש לוי בחדרו היה הפקדון תחת המטה דלמא כבר נגנב ע&quot;י אחר ובההיא לא מחייבנא כי שמרתי כדרך השומרים נראה דטענת שמעון אינה טענה והטעם דכיון דכל שומר צריך לישבע שלא פשע היאך יוכל לישבע כאן בודאי שלא פשע כו׳. ומהרש&quot;ך ח&quot;ג סי׳ פ&quot;ז תמה עליו דתיפוק ליה משום דשמעון הוי ברי בחיובא וספק בחזרה כו׳ יע&quot;ש. ונראה ברור שיש לחלק בין האומר הלויתני ואיני יודע אם פרעתיך לההיא דמהר&quot;ר ישראל בענין הפקדון דאע&quot;ג דהוא ברי בחיובא וספק בחזרה מ&quot;מ השמא אינו גרוע דלא הו&quot;ל למידע אבל גבי איני יודע אם פרעתיך השמא הוא גרוע דהו&quot;ל למידע אם פרע אם לאו ומדלא ידע בבירור ודאי דלא פרע. (*א&quot;ה עיין בס׳ בני שמואל סי׳ ט&quot;ז שכתב בשם הרב מהרשד&quot;ם דהיינו דוקא היכא דהמלוה טוען ברי שלא פרעו אבל אם גם הוא מסופק פטור אפילו בבא לצאת ידי שמים והשיג עליו מדברי הרשב&quot;א בחידושיו פרק הזורק ומתוך דברי הרב המחבר משמע דאזיל בשיטת מוהרשד&quot;ם. ובבית מותבא רבה של הרב הכולל שר וגדול בישראל כמהר&quot;ח קמחי שמעתי מפי הרב כמוהר&quot;ר אפרים נבון דעל המלוה רמיא טפי למידק אם נפרע מחובו אם לא טפי מהלוה וכן נראה מדברי הטור סי׳ ע&quot;ה סכ&quot;ד וכיון שכן יפה דן הרב מוהרשד&quot;ם דהיכא דשניהם מסופקים בפרעון דפטור הנתבע מלשלם משום דהו&quot;ל למלוה למידק וכיון דלא דק איהו דאפסיד אנפשיה משא&quot;כ בההיא דהרשב&quot;א ודו&quot;ק ולכאורה יראה דהו&quot;מ מהרש&quot;ח לדחות דינו של מהרשד&quot;ם מסוגיית הגמרא בעצמה דלפי אוקימתא דרבה ור&quot;י דאיירי בב׳ כיתי עדים אמאי יחלוקו כיון דשניהם מסופקים קם דינא דפטור. אלא דהוצרך לאתויי דברי הרשב&quot;א משום דיש לדחות דרבה ור&quot;י מוקמי למתני׳ בדא&quot;ל זרוק לי חובי בתורת גיטין וכיון שכן דינא הוא דיחלוקו כי היכי דבגט הויא ספק מגורשת דהא בזרקו לחוב קרוב למלוה נמי חייב הלוה כל שלא בא ליד המלוה אם לא משום דא&quot;ל בתורת גיטין כ&quot;ש שיועיל דבור זה לחייבו המחצית ואע&quot;ג דלא מוקמינן הכי אלא לר&quot;י דאמר לגיטין אמרו כו׳ כבר כתב הרשב&quot;א דכולהו אמוראי מפלגי בין גט לשאר דברים יע&quot;ש) ובהכי ניחא כל תיקו שבתלמוד דפסקינן קולא לנתבע אע&quot;פ שיש מהם טובא דהספק הוא אם נפטר מחיובו אם לאו משום דאין השמא גרוע וכ&quot;כ התוס׳ בפ&quot;ק דכתובות גבי מנה לי בידך והלה אומר איני יודע והראנ&quot;ח בח&quot;ב סי׳ א׳ ובח&quot;א חילק כה&quot;ג יע&quot;ש (*א&quot;ה וכ&quot;כ הר&quot;ב התרומות שער ל&quot;ח ח&quot;ד ועיין בתשובת הראנ&quot;ח ח&quot;ב סי׳ י&quot;ט ופרח מטה אהרן ח&quot;א סי׳ ל&quot;א). וע&quot;ק לי דשאני הלויתני ואיני יודע אם פרעתיך דהמלוה טוען ברי שעדיין חייב לו והלה אינו יודע אם פרעו אבל הכא מי טוען ברי המפקיד שחייב לו הא המפקיד נמי אינו יודע אם פשע וחייב או לא פשע ופטור ואין זה טוען ברי כההיא דהלויתיך ולא פרעתני. ותדע לך שיסוד זה שעשה הרב דכל מפקיד הוא כאומר הלויתיך דאינו כמו שחשב הרב דהרי בפרק השואל גבי מתני׳ דשאלה היום ושכרה למחר ומתה זה אומר ביום שהיתה שאולה מתה וזה אומר איני יודע מייתי תלמודא לימא תיהוי תיובתא דר&quot;נ דאמר מנה לי בידך והלה אומר איני יודע פטור ומוקי לה בשיש עסק שבועה ביניהם ולדברי הרב כיון שזה אינו יודע אם ביום שהיתה שאולה או שכורה מתה הו&quot;ל כאומר איני יודע אם פרעתיך ומאי קושיא ויש בזה הרבה להאריך ואין כאן מקומו להאריך ודברי הרב צ&quot;ע [ועי׳ בלח&quot;מ פ&quot;ג ה&quot;ג]:</p>
               </div>
             </div>
@@ -365,8 +406,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:3:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-4-3-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-3">Mishneh Torah, Borrowing and Deposit 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹמֵר שֶׁהִנִּיחַ הַפִּקָּדוֹן בְּמָקוֹם שֶׁאֵינוֹ רָאוּי לוֹ וְנִגְנַב מִשָּׁם אוֹ אָבַד אֲפִלּוּ נֶאֱנַס שָׁם כְּגוֹן שֶׁנָּפְלָה דְּלֵקָה וְשָׂרַף כָּל הַבַּיִת הֲרֵי זֶה פּוֹשֵׁעַ וְחַיָּב לְשַׁלֵּם. וְאַף עַל פִּי שֶׁהִנִּיחַ הַפִּקָּדוֹן עִם שֶׁלּוֹ אִם רָאוּי לִשְׁמִירָה פָּטוּר וְאִם אֵין הַמָּקוֹם רָאוּי לִשְׁמִירָה חַיָּב. בְּשֶׁלּוֹ הוּא רַשַּׁאי וְאֵינוֹ רַשַּׁאי בְּשֶׁל אֲחֵרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואע&quot;פ שהניח הפקדון וכו׳.</strong> עיין מוהרשד&quot;ם חה&quot;מ ר&quot;ס ע&quot;ו ודו&quot;ק:</p>
               </div>
             </div>
@@ -381,8 +427,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:5:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-4-5-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-5">Mishneh Torah, Borrowing and Deposit 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד אֵצֶל חֲבֵרוֹ כְּסָפִים עֶרֶב שַׁבָּת בֵּין הַשְּׁמָשׁוֹת אֵינוֹ חַיָּב לִטְרֹחַ וְלִקְבֹּר אוֹתָן עַד מוֹצָאֵי שַׁבָּת. וְאִם נִתְאַחֵר לְמוֹצָאֵי שַׁבָּת כְּדֵי לְקָבְרָן וְלֹא קְבָרָן וְנִגְנְבוּ אוֹ נֶאֶנְסוּ חַיָּב. וְאִם תַּלְמִיד חָכָם הוּא אֵינוֹ חַיָּב עַד שֶׁיִּשְׁהֵא אַחַר שֶׁיַּבְדִּיל כְּדֵי לְקָבְרָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם ת&quot;ח הוא כו׳.</strong> מרן הב&quot;י סי׳ רצ&quot;א תמה על רבינו דאפילו אם אין המפקיד ת&quot;ח למה לא ישהה הנפקד עד שיבדיל. ולדעתי נראה דרבינו קאי לגבי מפקיד דאם הוא ת&quot;ח וידע הנפקד שעדיין לא הבדיל אינו חייב לקברם עד שיבדיל ולגבי דידיה הנפקד מיד חייב להבדיל כדי לקברם משא&quot;כ אם יודע שלא הבדיל המפקיד ודו&quot;ק. כתב המבי&quot;ט ח&quot;א סי׳ שמ&quot;א על ראובן ששלח לשמעון בגדי משי וכתב לו שישלחם ללוי דפקדון כזה שהוא צריך להיות מזומן בידו לעת מצוא חמר נאמן להוליכו לא היה חייב לטרוח להניחו תוך תיבה וע&quot;מ כן קבלו שיהיה מזומן בקרן זוית והביא ראיה מדין זה היכא דהמפקיד ת&quot;ח יע&quot;ש. ואין דבריו נראין אצלי ועיין במהריק&quot;ו שורש ו׳ הביא דבריו מרן סי׳ רצ&quot;ח ס&quot;ך ודו&quot;ק:</p>
               </div>
             </div>
@@ -397,8 +448,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:6:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-4-6-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-6">Mishneh Torah, Borrowing and Deposit 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֵצֶל חֲבֵרוֹ כְּסָפִים בַּדֶּרֶךְ לְהוֹלִיכָם לְבֵיתוֹ אוֹ שֶׁשָּׁלַח עִמּוֹ מָעוֹת מִמָּקוֹם לְמָקוֹם צְרִיכִין שֶׁיִּהְיוּ צְרוּרִים וּמֻנָּחִים בְּיָדוֹ אוֹ קְשׁוּרִים כָּרָאוּי עַל בִּטְנוֹ מִכְּנֶגֶד פָּנָיו עַד שֶׁיַּגִּיעַ לְבֵיתוֹ וְיִקְבְּרֵם כָּרָאוּי. וְאִם לֹא קְשָׁרָן בַּדֶּרֶךְ הַזֹּאת אֲפִלּוּ נֶאֶנְסוּ חַיָּב לְשַׁלֵּם שֶׁהֲרֵי תְּחִלָּתוֹ בִּפְשִׁיעָה. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד מָעוֹת אֵצֶל חֲבֵרוֹ וְהִנִּיחָם בִּמְחִצָּה שֶׁל קָנִים וְהָיוּ טְמוּנִים בָּעֳבִי הַמְּחִצָּה וְנִגְנְבוּ מִשָּׁם וְאָמְרוּ חֲכָמִים אַף עַל פִּי שֶׁזּוֹ שְׁמִירָה מְעֻלָּה לְעִנְיַן גְּנֵבָה אֵינָהּ שְׁמִירָה כָּרָאוּי לְעִנְיַן הָאֵשׁ וּמֵאַחַר שֶׁלֹּא טְמָנוֹ בְּקַרְקַע אוֹ בְּכֹתֶל בִּנְיָן פּוֹשֵׁעַ הוּא וְכָל שֶׁתְּחִלָּתוֹ בִּפְשִׁיעָה וְסוֹפוֹ בְּאֹנֶס חַיָּב. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שהרי תחילתו בפשיעה וכו׳.</strong> דברי רבינו תמוהים הם דהא כיון שהאונס לא בא מחמת הפשיעה לא מיחייב משום דפשע בתחלה והכי כתב הוא ז&quot;ל בפ&quot;ג מהלכות שכירות דאם פשע בה ויצאה לאגם ומתה פטור שאין יציאתה גרמה לה שתבא לידי אונס וה&quot;נ כתב שם ברועה שהניח עדרו ובא לעיר אפילו בשעה שאין דרך הרועים ליכנס אם היה יכול להציל חייב ואם לאו פטור וטעמא דאפילו שפשע שנכנס לעיר כיון דס&quot;ס לא היה יכול להציל פטור ואולי דכוונת רבינו לומר דאם נאנסה בעניין שאם היו בידו או על בטנו לא היה רואה אותם האנס ועכשיו שהיו צרורים מלאחריו ראה האנס אותם דהו&quot;ל אונס הבא מחמת הפשיעה ודוחק וצ&quot;ע: <br><strong>כתב </strong>הרב מהרי&quot;ט צהלון בס&quot;ס א׳ וז&quot;ל ואין לומר שפשעה במה שהתירה הצרור ונתנה הגרוש בידה שמחמת כן אפשר שנפלו הגרושים מידה שאם היו צרורין לא היו נופלין הא ליתא דכפי לשון השאלה נראה שלא נתנתם רחל ללאה צרורין אלא שלאה צררתם וא&quot;כ ליכא פשיעה כלל ע&quot;כ. והנה דבר ברור הוא שמ&quot;ש הרב שמחמת כן אפשר שנפלו מידה אין הכוונה על רחל המפקדת אלא על לאה הנפקדת דאפשר דבאותה שעה שהתירה הצרור נפלה מידה ועכ&quot;ז לא ברירא לי מילתא משום דאף דנימא שרחל נתנה הצרור צרור ביד לאה ולאה בשעת חזרה התירה הצרור ונתנה המעות. ביד רחל למה תתחייב לאה בשביל מה שהתירה ואמאי לא תשבע שלא נפלו מידה וכ&quot;ת דלא תוכל להשבע מפני שנפלו מידה ולאו אדעתה הנה מלבד שהסברא היא זרה בעיני שלא תוכל להשבע משום דדלמא נפלו מידה ולא הרגישה זאת ועוד דאמאי לא נאמר חששא זו גבי רחל שהרי לא מצא החסרון עד בואה באמצע הדרך וא&quot;כ אפשר דבהיותה מהלכת נפלו מידה והיא חששא יותר קרובה ממה שנאמר שנפלו מיד לאה בשעת חזרה ולא ידעתי למה לא צדד הרב חששא זו דאימר נפלו מיד רחל ומה גם דרגלים לדבר שרחל נטלה הנר והלכה לחפש בר&quot;ה פעם ושתים והשכימה בבקר לבקש בר&quot;ה וכמו שנזכר בשאלה שכל זה מורה שהיא חוששת אולי נפלו מידה בהיותה מהלכת והדבר צריך אצלי תלמוד. עוד כתב הרב באותה תשובה שאם היתה אומרת שימי בלבד אולי היה מקום לומר הרי אמרה בפירוש שמתרצית במה שתשים אותה בארגז בלבד אבל השתא דאמרה שמרי כו׳ ע&quot;כ. ולדידי אין ספק שאפילו אמרה שימי בלבד כוונתה היא שתשמור כדרך השומרים ואם לא נטלה הארגז פשעה לאה ומה שאמרה שימי בארגז לא באה אלא לומר שרצונה היא שהשמירה תהיה בארגז ונראה שאף הרב יודה בזה אלא משום דבנדון שלו אמרה שמרי לא הוצרך למ&quot;ש. עוד כתב הרב בסימן ב׳ על ראובן שהיה לו ולאחותו דינה בית בשותפות והוציאה שטר שכתוב בו ואחיה ר׳ שואל נתחייב לתת לאחותו מחלקו כשימכרנו עשרה גרושים ע&quot;כ וראובן לא מכר אלא הקדיש ונשאל הרב אם חייב לתת העשרה כיון שלא מכר והשיב שאם היא היתה תובעת ממנו איזו תביעה ולהפטר מתביעותיה נתחייב בזה אז חייב אפילו אם הקדיש ואם לא לא יתחייב ע&quot;כ. והנה דין זה צריך אצלי תלמוד ועוד אעמוד עליו בע&quot;ה (*א&quot;ה חבל על דאבדין):</p>
               </div>
             </div>
@@ -413,8 +469,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:8:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-4-8-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-4-8">Mishneh Torah, Borrowing and Deposit 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמַּפְקִיד אֵצֶל בַּעַל הַבַּיִת בֵּין כֵּלִים בֵּין מָעוֹת עַל דַּעַת אִשְׁתּוֹ וּבָנָיו וּבְנֵי בֵּיתוֹ הַגְּדוֹלִים הוּא מַפְקִיד. אֲבָל אִם מְסָרָן לְבָנָיו וּבְנֵי בֵּיתוֹ הַקְּטַנִּים אוֹ לַעֲבָדָיו בֵּין גְּדוֹלִים בֵּין קְטַנִּים אוֹ לְאֶחָד מִקְּרוֹבָיו שֶׁאֵינָן שְׁרוּיִין עִמּוֹ בַּבַּיִת וְאֵין סוֹמְכִין עַל שֻׁלְחָנוֹ וְאֵין צָרִיךְ לוֹמַר אִם מְסָרָן לְאַחֵר הֲרֵי זֶה פּוֹשֵׁעַ וְחַיָּב לְשַׁלֵּם אֶלָּא אִם כֵּן הֵבִיא הַשּׁוֹמֵר הַשֵּׁנִי רְאָיָה שֶׁלֹּא פָּשַׁע כְּמוֹ שֶׁבֵּאַרְנוּ. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד מָעוֹת אֵצֶל חֲבֵרוֹ וּנְתָנָם הַשּׁוֹמֵר לְאִמּוֹ וְהֶחְבִּיאָה אוֹתָן וְלֹא טָמְנָה אוֹתָן וְנִגְנְבוּ וְאָמְרוּ חֲכָמִים אֵין הַשּׁוֹמֵר חַיָּב לְשַׁלֵּם מִפְּנֵי שֶׁנְּתָנָם לְאִמּוֹ שֶׁכָּל הַמַּפְקִיד עַל דַּעַת בָּנָיו וּבְנֵי בֵּיתוֹ הוּא מַפְקִיד וְאַף עַל פִּי שֶׁלֹּא אָמַר לָהּ פִּקָּדוֹן הֵם יֵשׁ לוֹ לִטְעֹן כָּל שֶׁכֵּן שֶׁהִיא נִזְהֶרֶת בָּהֶן אִם הָיְתָה סְבוּרָה שֶׁהֵן שֶׁלִּי. וְכֵן אֵין אִמּוֹ חַיֶּבֶת לְשַׁלֵּם שֶׁהֲרֵי לֹא אָמַר לָהּ שֶׁהֵן פִּקָּדוֹן. וְאָמְרוּ חֲכָמִים יִשָּׁבַע הַשּׁוֹמֵר שֶׁאוֹתָן הַמָּעוֹת עַצְמָן הֵן שֶׁנְּתָנָן לְאִמּוֹ וְתִשָּׁבַע הָאֵם שֶׁהֶחְבִּיאָה אוֹתָן וְנִגְנְבוּ וְיִפָּטְרוּ שְׁנֵיהֶם. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המפקיד אצל בע&quot;ה וכו׳.</strong> כתב הטור סי׳ ע&quot;ב סכ&quot;ד וז&quot;ל ואם פשע לוי בשמירת המשכון ואין לו ממון לשלם אע&quot;פ שראובן רגיל להפקיד אצל לוי שמעון חייב לשלם לראובן דינר וכו׳ שהרי שמעון הוא בעל דבר של ראובן ע&quot;כ וכתב על זה מרן דהרמב&quot;ם חלוק על זה בפ&quot;ד מהלכות שאלה ע&quot;כ. ולי נראה דשאני כל המפקיד על דעת אשתו ובניו הוא מפקיד דהו&quot;ל כאילו אמר המפקיד לנפקד שאם ירצה למוסרם לאשתו ובניו שימסרם שהרי אורחיה דנפקד הוא למימסריה לאשתו ובניו ומש&quot;ה אם פשעו אשתו ובניו ואין להם מה לשלם פטור הנפקד שהרי כשהפקיד בידו הו&quot;ל כאילו נתן לו רשות למוסרם ביד אשתו ובניו אבל היכא שמסר הפקדון ליד מי שרגיל המפקיד להפקיד פשיטא שדינו של מפקיד הוא עם הנפקד שהרי לא הפקידם אצלו אדעתא שימסרם ביד מי שרגיל להפקיד שאין סתמיות הדבר שהנפקד מוסר הפקדון ליד מי שרגיל המפקיד להפקיד כמו אשתו ובניו דמסתמא הנפקד מוסר הפקדון לאשתו ובניו ולא אהני האי מילתא דרגיל אלא לשבועה דלא מצי המפקיד למימר את מהימנת לי בשבועה האיך לא מהימן לי בשבועה כיון שזה המפקיד היה מאמינו אבל לעולם שדינו של מפקיד הוא עם הנפקד מפני ששמעון הוא בעל דבר של ראובן וכמ&quot;ש הטור. ובזה ניחא דברי מור&quot;ם בהג&quot;ה שבסי׳ רצ&quot;א גבי כל המפקיד על דעת אשתו ובניו הוא מפקיד הביא מחלוקת רבינו והרא&quot;ש ולא הכריע ואילו הכא כתב כדברי הטור ולא הביא מחלוקת משמע דס&quot;ל דבהאי דינא כ&quot;ע לא פליגי שדינו של מפקיד הוא עם הנפקד וכדכתיבנא. ומצינו כעין חילוק זה במרדכי פרק המפקיד דאפילו לר&quot;ת שפסק דהבעל חייב לשלם היכא שפשעו בו אשתו ובניו שאני ההיא דהכונס דמסרה לרועה נכנס הרועה תחתיו ומוקי לה בגמרא משום דאורחיה דרועה למימסר לברזיליה ומדקתני נכנס הרועה תחתיו מכלל דרועה ראשון פטור לגמרי וכדאמרינן התם ושומר קמא איפטר לגמרי משום דההיא דהכונס מיירי ברועה גדול שידוע לכל שאינו מרעה שום פעם בעצמו ואז אין המפקיד יכול לומר אין רצוני שיהא פקדוני ביד אחר אבל הכא נהי דהמפקיד על דעת אשתו ובניו הוא מפקיד מ&quot;מ סבור הוא שהוא בעצמו ישמור וכ&quot;כ בהגהת הרא&quot;ש דהיכא שידע שהנפקד אין רגיל לשמור פקדון בעצמו אלא בברור שכל פקדון שמפקידין בידו הוא מוסר לשל תחתיו ואין משמרו בעצמו כלל הו&quot;ל כאילו המפקיד בעצמו מסר פקדונו ביד מי שרגיל הנפקד למסור ונסתלק הנפקד לגמרי ואם פשע מי שהפקדון בידו פטור הנפקד לגמרי. והנה מאי דפליגי רבינו והרא&quot;ש היכא שפשעו אשתו ובניו הוא דרבינו מדמי לה לרועה דמסר לברזיליה דהו&quot;ל כאילו המפקיד בעצמו מסר פקדונו ביד מי שרגיל הנפקד למסור והרא&quot;ש ס&quot;ל דלא דמי דשאני רועה שידוע לכל שאינו מרעה שום פעם בעצמו אבל גבי אשתו ובניו אינו מוכרח שבשום פעם לא ישמרם בעצמו אלא ימסרם לאשתו ובניו וסבור היה המפקיד שהוא בעצמו ישמור וכמ&quot;ש המרדכי אבל לעולם שאם ידוע שזה הנפקד אינו שומר לעולם שום פקדון אלא מוסר לאשר תחתיו אפילו הרא&quot;ש יודה דפטור הנפקד וכמ&quot;ש בהגהת אשירי והיכא שמסר הפקדון ליד מי שרגיל המפקיד להפקיד אפילו הרמב&quot;ם יודה שהנפקד הוא בעל דברים של מפקיד ולא הוי פלוגתייהו אלא היכא שמסר לאשתו ובניו ומאי דדמו להו. ואע&quot;ג דהרא&quot;ש בפרק המפקיד מוקי לההיא דרועה בגוונא אחרינא היינו משום דס&quot;ל דמתני׳ בסתם רועה מיירי ולאו דוקא ברועה גדול שאינו שומר לעולם שום פקדון שזה דוחק אבל לעולם דלענין דינא לא פליג ועוד היה נראה לכאורה לומר דע&quot;כ לא קאמר הרא&quot;ש דהבעל חייב אלא משום טעמא דאלת&quot;ה כל פקדון המופקד ביד אדם יאכלוה אשתו ובניו ואין להם לשלם ויפטר גם הוא אבל היכא דלא שייך ה&quot;ט יודה הרא&quot;ש שנסתלק הנפקד ופטור לגמרי וכ&quot;כ רש&quot;ל בפ&quot;ק דבבא קמא סימן ל&quot;ב דשאני אשתו ובניו כשאין להם לשלם שצריך הראשון לשלם משום שלא ילך כל אחד וימסור פקדון לבני ביתו והם יאכלו אותו וכמו שכתבו ר&quot;ת והרא&quot;ש ע&quot;כ ומ&quot;ש הריב&quot;ה שאם פשע לוי בשמירת המשכון ואין לו ממון לשלם ששמעון חייב אע&quot;ג דליכא טעמא דאשתו ובניו שאני התם דהסברא היתה נותנת שיפטר הבעל משום דכיון דכל המפקיד על דעת אשתו ובניו הוא מפקיד הו&quot;ל כאילו נתן לו רשות שימסרם לאשתו ובניו מש&quot;ה איצטריך לחיוביה מטעמא אחרינא אבל הכא בלאו ההוא טעמא פשיטא דשמעון חייב שהרי ראובן הוא בעל דבר דשמעון דלא עלה בדעת ראובן שימסרם שמעון ללוי אע&quot;פ שהיה רגיל אצלו, ומיהו כד מעיינינן שפיר נראה דהאי טעמא אינו מעלה ומוריד לענין דינא אלא שהתוספות והרא&quot;ש הכריחו שעל פי הדין הוא שהבעל חייב מדינא דאלת&quot;ה כל פקדון המופקד ביד אדם יאכלוהו אשתו ובניו אבל לא משום ה&quot;ט מחייבינן לבעל וכן נראה מדברי בעה&quot;ת בשער מ&quot;ט ח&quot;ג סי׳ ג׳ שנסתפק בדין זה דהריב&quot;ה אם פשע לוי ואין לו מה לשלם והכריח הדין ממ&quot;ש ר&quot;ת דאע&quot;ג דכל המפקיד על דעת אשתו ובניו הוא מפקיד אם הבנים פשעו ואין להם לשלם לא יפטר הנפקד ע&quot;י טענה זו אלא דיינינן בה שומר שמסר לשומר חייב שאל&quot;כ כל פקדונות שיפקיד אדם לחבירו ימסרם לאשתו ובניו ותאכל אשתו וחדי והכא נמי דכוותה היא שאם אין לו לשלם ישלם שמעון תחתיו ע&quot;כ ואי איתא לדברי רש&quot;ל היכי יליף מהתם שאני התם דאיכא טעמא אחרינא א&quot;ו כדכתיבנא שטעם זה הוא להכריח הדין אבל לא שבסיבתו ישתנה הדין וכן נראה מדברי המרדכי שכתבנו לעיל שרצה ליישב דברי ר&quot;ת דלא תיקשי ליה מההיא דמסרה לרועה נכנס הרועה תחתיו ומדלא חילק חילוק זה דרש&quot;ל משמע דס&quot;ל דטעם זה אינו מעלה ומוריד לענין דינא. ומ&quot;מ דינו של רש&quot;ל אמת הוא שהרי איהו קאי היכא שידוע שהנפקד זה אינו רגיל לשמור בעצמו אלא מוסר כל הפקדונות והמשכונות ביד אחר ובאופן זה כבר כתבנו לעיל שאפי׳ הרא&quot;ש מודה שנפטר הנפקד ולא דמי להיכא שמסר הפקדון ביד אשתו ובניו וכמו שחילק המרדכי. ובעל ש&quot;ך דחה דברי רש&quot;ל ולי נראה דהלכתא כוותיה ולא מטעמיה וכדכתיבנא. ובמ&quot;ש מרן שרבינו חולק בדין זה דהריב&quot;ה הסכימו הב&quot;ח ובעל ש&quot;ך כוותיה אך סמ&quot;ע כתב דבהאי דינא אפילו רבינו יודה ולא ביאר טעמו היטב ואפשר להעמיס מה שכתבנו בדבריו. ומדברי בעת&quot;ה שהכריח דינו מסברת ר&quot;ת ולא הביא דברי רבינו שחולק עליו משמע דס&quot;ל דאפשר שיודה בדינו והוא הכריח הדין במכ&quot;ש דסברת ר&quot;ת אבל מדברי רבינו ליכא לא סייעתא ולא תיובתא לדינו וכיון שכן פשיטא דלא מפשינן פלוגתא ודין זה דהריב&quot;ה ז&quot;ל הוא מוסכם לדברי הכל. אך ראיתי לה&quot;ה בפ&quot;א מהלכות שכירות שכתב עלה דרגיל שאפילו הלך לו השני ולא נשבע או שאין לו כלום להשתלם ממנו פטור הראשון ע&quot;כ וכ&quot;כ הרב הנמוקי בפרק המפקיד דבין היכא שמסר הנפקד לאשתו ובניו או למי שהיה רגיל המפקיד להפקיד אצלו בכולהו מיפטר השומר הראשון לגמרי ואפילו שאין לב׳ לשלם באופן שדין זה דרגיל לא נפקא מפלוגתא. עוד ראיתי בדברי הרב הנמוקי שכתב בסוף דבריו שר&quot;ת חולק בענין אשתו ובניו שאלו אין משתמרין לעולם לדעת בעלים אלא לדעת אביהן ע&quot;כ משמע דס&quot;ל דר&quot;ת יודה ברגיל שמיפטר שומר ראשון לגמרי אלא דשאני אשתו ובניו מהטעם שכתב וחילוק זה לא נמצא לראשונים שהרי בעל התרומות הוכיח הדין גבי רגיל מסברת ר&quot;ת גבי אשתו ובניו:</p>
               </div>
             </div>
@@ -430,8 +491,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 5:1:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-5-1-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-1">Mishneh Torah, Borrowing and Deposit 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהִפְקִידוּ אֶצְלוֹ מָעוֹת שֶׁל עֲנִיִּים אוֹ שֶׁל פִּדְיוֹן שְׁבוּיִים וּפָשַׁע בָּהֶם וְנִגְנְבוּ פָּטוּר שֶׁנֶּאֱמַר <span class="source-small">(שמות כב ו)</span> &quot;לִשְׁמֹר&quot; וְלֹא לְחַלֵּק לָעֲנִיִּים וַהֲרֵי הוּא מָמוֹן שֶׁאֵין לוֹ תּוֹבְעִים. אֲפִלּוּ בָּאוּ עָלָיו גַּנָּבִים וְקָדַם וְהִצִּיל עַצְמוֹ בְּמָמוֹן שְׁבוּיִים פָּטוּר. אֵין לְךָ פִּדְיוֹן שְׁבוּיִים גָּדוֹל מִזֶּה. בַּמֶּה דְּבָרִים אֲמוּרִים בְּשֶׁאֵין זֶה הַמָּמוֹן מֻפְקָד לַעֲנִיֵּי מָקוֹם זֶה אוֹ לִשְׁבוּיִים [אֵלּוּ]. אֲבָל אִם הָיוּ לַעֲנִיִּים אֵלּוּ אוֹ לִשְׁבוּיִים אֵלּוּ וַהֲרֵי הוּא קָצוּץ לָהֶן הֲרֵי זֶה הַמָּמוֹן שֶׁיֵּשׁ לוֹ תּוֹבְעִין וִישַׁלֵּם אִם פָּשַׁע אוֹ יִשָּׁבַע שֶׁלֹּא פָּשַׁע כְּדֶרֶךְ כָּל הַשּׁוֹמְרִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהפקידו אצלו ממון של עניים.</strong> (*א&quot;ה עיין לקמן פ&quot;ד מהלכות מלוה ולוה דין י&quot;ד):</p>
               </div>
             </div>
@@ -446,8 +512,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 5:6:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-5-6-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-5-6">Mishneh Torah, Borrowing and Deposit 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֶצְלוֹ פֵּרוֹת שֶׁאֵינָן מְדוּדִין וְעֵרְבָן עִם פֵּרוֹתָיו וְלֹא מְדָדָן הֲרֵי זֶה פּוֹשֵׁעַ. בַּעַל הַפִּקָּדוֹן אוֹמֵר כָּךְ וְכָךְ הָיוּ וְהַשּׁוֹמֵר אוֹמֵר אֵינִי יוֹדֵעַ יְשַׁלֵּם בְּלֹא שְׁבוּעָה שֶׁהֲרֵי חִיֵּב עַצְמוֹ בְּתַשְׁלוּמִין וְאֵינוֹ יוֹדֵעַ כַּמָּה הוּא חַיָּב וְנִמְצָא חַיָּב שְׁבוּעָה שֶׁאֵינוֹ יָכוֹל לְהִשָּׁבַע. וְכָזֶה הוֹרוּ רַבּוֹתַי הָרַב רַבֵּנוּ יוֹסֵף הַלֵּוִי וְרַבּוֹ זַ&quot;ל. וְכֵן כָּל שׁוֹמֵר שֶׁנִּתְחַיֵּב לְשַׁלֵּם וְאָמַר אֵינִי יוֹדֵעַ כַּמָּה דָּמִים אֲנִי חַיָּב לְשַׁלֵּם וְהַבְּעָלִים אוֹמְרִים אָנוּ יוֹדְעִין וְכָךְ וְכָךְ הָיָה שָׁוֶה יִטְּלוּ בְּלֹא שְׁבוּעָה וְהוּא שֶׁיִּטְעֲנוּ דָּבָר שֶׁהֵן אֲמוּדִין בּוֹ. וְיֵשׁ לַשּׁוֹמֵר לְהַחֲרִים עַל מִי שֶׁלָּקַח מִמֶּנּוּ יֶתֶר מִן הָרָאוּי לוֹ. וּמִנַּיִן שֶׁהַדִּין כָּךְ הוּא הַגַּע עַצְמְךָ שֶׁהִפְקִיד אֶצְלוֹ כִּיס מָלֵא זְהוּבִים וּפָשַׁע בּוֹ הַבְּעָלִים אוֹמְרִים מָאתַיִם דִּינָר הָיוּ וְהַשּׁוֹמֵר אוֹמֵר וַדַּאי שֶׁהָיָה בּוֹ דִּינָרִים אֲבָל אֵינִי יוֹדֵעַ כַּמָּה הָיוּ נִמְצָא זֶה כְּטוֹעֵן מָאתַיִם וְהוֹדָה לוֹ בְּמִקְצָת וְאָמַר הַשְּׁאָר אֵינִי יוֹדֵעַ שֶׁהוּא מְחֻיָּב שְׁבוּעָה וְאֵינוֹ יָכוֹל לִשָּׁבַע וּמְשַׁלֵּם כְּמוֹ שֶׁיִּתְבָּאֵר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעל הפקדון אומר כך וכך היו כו׳.</strong> כתב הרשב&quot;א בתשובה הביאה מרן בטח&quot;מ סימן ע&quot;ב מחודשין כ&quot;ד (ובסימן ש&quot;מ) על השואל כלי מחבירו ונאבד המשאיל אומר סלע היה שוה והשואל אומר איני יודע ועד אחד מעידו שאינו שוה אלא שקל אילו לא היה כאן עד אחד היה המשאיל נוטל בלא שבועה משום דה&quot;ל מחוייב שבועה שאינו יכול לישבע אבל עכשיו שיש עד אחד המכחיש את המשאיל אם רצה השואל משביעו שבועת המשנה כענין עד אחד מעידה שהיא פרועה ואם רצה נותן לו סלע בפני עד זה ואח&quot;כ מביאו לידי שבועה דאורייתא וכההיא דפרק הכותב וזה לדברי הרי&quot;ף שכתב ששבועת עד אחד באה אפילו במקום שאינו תובע ברי אלא ע&quot;פ העד שאומר לו כן וכמו שכתב בפרק כל הנשבעין אבל יש מהגדולים שחלקו עליו ומ&quot;מ אינו נוטל אלא בשבועת המשנה כענין עד אחד מעידה שהיא פרועה עכ&quot;ד ויש לדקדק בדברי הרשב&quot;א הלזו במ&quot;ש דהיכא דהשואל אומר איני יודע דהוי מחוייב שבועה שאינו יכול לישבע ומשלם דמשמע דרצה לדמותו לההיא דחמשין ידענא וחמשין לא ידענא דהוי מחוייב שבועה שאינו יכול לישבע ומשלם והרי הרב המגיד ז&quot;ל בפרקין כתב וז&quot;ל ומ&quot;מ יש לטענה האחרת מקום בשלא עירבן ונאבדו בפשיעה שישבע הלה ויטול ואפשר שכן הוא הדין וגם הרשב&quot;א כתב כן בהכונס שלא יכול הלה ליטול בלא שבועה כלל שלא היה לו לנתבע לידע כלל אע&quot;פ שהוא מודה מקצת ואינו יכול לישבע על השאר ע&quot;כ משמע מדבריו דלא אמרינן בשטוען איני יודע מתוך שאינו יכול לישבע משלם אלא דוקא בחמשין ידענא וחמשין לא ידענא או כשעירבן עם פירותיו דאז ודאי הו&quot;ל למידע ואמרינן אערומי קא מערים אבל כשלא עירבן לא אמרינן מתוך שאינו יכול לישבע משלם כיון דלא הוה ליה למידע וא&quot;כ איך כתב הרשב&quot;א דהיכא דהשואל אומר איני יודע דהו&quot;ל מתוך שאינו יכול לישבע משלם הא לא הו&quot;ל למידע: <br><strong>ואפשר</strong> לומר דעד כאן לא קאמר הרשב&quot;א דבשלא עירבן דלא הו&quot;ל למידע אלא דוקא בשומר חנם והטעם דכיון דכל חיובו לא הוי אלא בפשיעה ומצי לאסתלוקי מהאי חיובא מש&quot;ה כשאמר איני יודע לא אמרינן הו&quot;ל למידע ואערומי קא מערים אלא אמרינן דהאמת הוא שאינו יודע מפני שסמך על שמירתו ומש&quot;ה לא איכפת ליה למידע ערכו כיון דמצי לאיסתלוקי מחיוביה אבל בשומר שכר דחייב בגניבה ואבידה וכ&quot;ש השואל דחיובם לא אתי מצד עצמם ולא מצו לאיסתלוקי מחיובם א&quot;כ כשטוענים איני יודע אמרינן דהוה להו למידע ואיערומי קא מערים ודמי לחמשין ידענא וחמשין לא ידענא ואמרינן מתוך שאינו יכול לישבע משלם ובזה אתי שפיר מה שהביא מרן בסימן ע&quot;ב מחודשין י&quot;ד בשם הרשב&quot;א על המלוה את חבירו על טבעת שיש בו אבן כו׳ וכתב בסוף דבריו דאם המלוה טוען איני יודע דאמרינן מתוך שאינו יכול לישבע משלם ואין אנו צריכים למה שכתב הרב ש&quot;ך בסימן ע&quot;ב ס&quot;ק מ&quot;ט בשם הרב המבי&quot;ט דשאני מלוה על המשכון דאמרינן הו&quot;ל למידע דסתם מלוה מדקדק כמה שוה בשביל הלואתו וכפי דבריו אלו בשואל דלא שייך האי טעמא לא הו&quot;ל להרשב&quot;א ז&quot;ל לומר מתוך שאינו יכול לישבע משלם אלא ודאי דטעמיה דהרשב&quot;א לא הוי אלא משום דמלוה על המשכון הוי שומר שכר וחייב בגניבה ואבידה וא&quot;כ הו&quot;ל למידע כמו שכתבנו לעיל ונראה דלזה כיון מרן ז&quot;ל במ&quot;ש לאחר שהביא דברי הרשב&quot;א וז&quot;ל אע&quot;פ שזה נאמר לענין שאלה כתבתיו פה כדי ללמוד ממנו לענין משכון ע&quot;כ והכוונה היא לומר דכיון דבשאלה אמרינן הו&quot;ל למידע והטעם מפני דלא מצי לאיסתלוקי חיוביה הוא הדין במשכון דכיון דחייב בגניבה דאמרינן הו&quot;ל למידע והיכא דטען המלוה איני יודע דאמרינן מתוך שאינו יכול לישבע משלם. עוד יש לדקדק בדברי הרשב&quot;א הללו במ&quot;ש אבל עכשיו שיש עד אחד המכחיש את המשאיל אם רצה השואל משביעו כו׳ דלפי סברת התוספות דס&quot;ל דעד המסייע לנתבע פוטרו משבועה דלא מיעט קרא לעד אחד בין לחיוב שבועה בין להפטר ממנה וכמו שהביא מרן ז&quot;ל דבריהם סימן ע&quot;ה ס&quot;ג יע&quot;ש הכי נמי בנדון הרשב&quot;א כיון שיש עד אחד שאינו שוה אלא שקל ליפטריה משבועה וכ&quot;ת עד כאן לא קא אמרי רבוואתא דעד אחד המסייעו פוטרו מן השבועה אלא דוקא כשטוען ברי אבל כשטוען איני יודע אינו פוטרו להא אמינא דהרי מצינו להרי&quot;ף בפרק כל הנשבעין דהיכא דאינו טוען ברי אלא על פי עד אחד דמחייבו שבועה וכמו שהובאו דבריו בטור ח&quot;מ סימן ע&quot;ה סל&quot;ג א&quot;כ ה&quot;נ בעד אחד המסייע לנתבע אפילו שלא יטעון ברי אלא ע&quot;פ העד ליפטריה משבועה דהא מחד קרא גמרינן לה וא&quot;כ הדרא קושיין לדוכתה בנדון דהרשב&quot;א ז&quot;ל למה יטול הלה בשבועה כיון שיש עד אחד המסייע לשואל. ומדי חפשי באמתחות הפוסקים מצאתי להרשב&quot;א סימן אלף קס&quot;א דס&quot;ל דעד אחד אינו פוטר אלא משבועה דרבנן אבל משבועה דאורייתא אינו פוטרו וא&quot;כ מש&quot;ה פסק הכא דישבע הלה ויטול כיון דהשואל מחוייב שבועה דאורייתא ואינו פוטרו העד ואה&quot;נ דלמאן דס&quot;ל דעד אחד פוטר אפילו משבועה דאורייתא דיודה דאפילו בשטוען הנתבע איני יודע שיפטרנו משבועה: <br><strong>עוד </strong>נ&quot;ל דאף למאן דסבר דעד אחד פוטר אפילו משבועה דאורייתא הכא בנדון דהרשב&quot;א יודה דיטול הלה בשבועה משום דכיון דאי לא הוה העד היה נוטל המשאיל בלא שבועה משום דהוי מתוך שאינו יכול לישבע ומשלם א&quot;כ היכא דאיכא עד אחד דיינו שנאמר שלא יטול הלה אלא בשבועה דאי אמרינן שלא יטול הלה אפילו בשבועה נמצא דעד אחד קם לממון דעד עכשיו היה נוטל שלא בשבועה ועכשיו אפילו בשבועה אינו נוטל והתורה אמרה דעד אחד לא יקום אלא לשבועה וכיוצא בזה כתב הרא&quot;ש בריש מציעא יע&quot;ש: <br><strong>ועוד </strong>נראה דע&quot;כ לא קאמר הרי&quot;ף דאפילו בטענת איני יודע משביעו אלא דוקא בעד אחד המכחיש את הנתבע דכיון דטעמא דעד אחד דמחייב שבועה לא הוי בשביל שמסייע את התובע אלא בשביל שמכחיש את הנתבע מש&quot;ה אף כשטוען התובע איני יודע כיון דאיכא הכחשת הנתבע משביעו אף שאינו מסייע ממש לתובע אבל בעד אחד המסייע לנתבע דטעמא לא הוי בשביל שהוא מכחיש את התובע אלא בשביל שהוא מסייע לנתבע מש&quot;ה אמינא דדוקא כשטוען ברי הנתבע דאז מסייעו ממש פוטרו מן השבועה אבל כשטוען איני יודע דאז אינו מסייע ממש אינו פוטר אותו מן השבועה אף שהוא מכחיש ממש לתובע: <br><strong>עוד </strong>יש לדקדק בדברי הרשב&quot;א ז&quot;ל הללו במ&quot;ש בסוף לשונו ומ&quot;מ אינו נוטל אלא בשבועת המשנה דהא למאן דאית ליה דבטענת ספק אינו משביעו שבועה דאורייתא הוא הדין בשבועת המשנה ויטול הלה בלא שבועה ונראה דהרשב&quot;א ספוקי מספקא ליה הלכתא כמאן (*א&quot;ה עיין מ&quot;ש ה&quot;ה פ&quot;ג מהלכות טוען ונטען דין ו׳ בשם הרשב&quot;א) ומש&quot;ה היכא דנתן לו הסלע ומביאו לידי שבועה דאורייתא דאז הוי השואל מוציא מחבירו יכול למימר המשאיל קים לי כמ&quot;ד דבטענת ספק אינו יכול להשביעו אבל כשלא נתן לו הסלע דאז משביעו שבועת המשנה וא&quot;כ הוי המשאיל מוציא מחבירו מצי למימר השואל קים לי כמ&quot;ד דאף בטענת איני יודע עד אחד מביאו לידי שבועה ולא תטול אלא בשבועה ומש&quot;ה אחר שכתב ואם רצה מביא אותו לידי שבועה דאורייתא כו׳ כתב וכל זה אינו אלא לדברי הרי&quot;ף אבל יש מהגדולים שחלקו עליו וכיון דאיכא פלוגתא מצי למימר המשאיל קים לי ומ&quot;מ אינו נוטל אלא בשבועת המשנה הכוונה לומר שאם זה לא נתן לו הסלע לא יטול אלא בשבועה דמצי למימר השואל קים לי כהרי&quot;ף ולא יטול אלא בשבועה וכ&quot;ת דאף דנתן לו הסלע לא מצי המשאיל לאיפטורי משבועה ולמימר קים לי וכמ&quot;ש מוהרש&quot;ך ז&quot;ל בתשובה דלא אמרינן קים לי לאפטורי משבועה להא אמינא דסברא הלזו דמוהרש&quot;ך חלקו עלה רובא דרבוותא וכמו שהביא דבריהם הרב כנה&quot;ג סימן כ&quot;ה בהגהת ב&quot;י אות ע&quot;ד ולפע&quot;ד יש סיוע לסברתם מתשובה הלזו של הרשב&quot;א ומ&quot;מ כפי סברת מהרש&quot;ך דס&quot;ל דלא אמרינן קים לי לאפטורי משבועה ע&quot;כ אית לן למימר דס&quot;ל להרשב&quot;א דעד כאן לא פליגי רבוותא אם בטענת איני יודע יכול להשביעו על פי העד אלא דוקא בשבועה דאורייתא אבל בשבועת המשנה דמצינו דבאה על הספק כגון שבועת השותפין הוא הדין כשטען אינו יודע דמשביעין ליה שבועת המשנה: <br><strong>וראיתי </strong>להרב הגדול בכ&quot;מ שכתב בפכ&quot;ה מהלכות אישות וז&quot;ל והא דתנן עד אחד מעידה שהיא פרועה לא תפרע אלא בשבועה התם כשהבעל טוען ברי עכ&quot;ד וזה היפך דברי הרשב&quot;א הללו ואי הוה ס&quot;ל לרבינו דבטענת איני יודע אינו יכול להשביעו וכסברת החולקים על הרי&quot;ף הוה מצינא לתרוצי דברי הרשב&quot;א הללו כמו שתירצנו מעיקרא ולא הוה קשיא ליה למהריק&quot;א מדברי הרשב&quot;א הללו אבל כבר כתב רבינו בפירוש בפ&quot;ד מהלכות גזילה ואבידה כסברת הרי&quot;ף דאף באיני יודע משביעו על פי העד וא&quot;כ לא מיבעיא לסברת מהרש&quot;ך דס&quot;ל דאף לחולקים על הרי&quot;ף בשבועת המשנה מודו דבאה אף על הספק דא&quot;כ דברי מהריק&quot;א הם מן הקצה אל הקצה האחר אלא אף שנאמר דאף שבועת המשנה במחלוקת הוא שנוי סוף סוף הא ס&quot;ל לרבינו כסברת הרי&quot;ף וא&quot;כ ה&quot;ה בשבועת המשנה כללו של דבר דברי מוהריק&quot;א הללו צריכים לי תלמוד:</p>
               </div>
             </div>
@@ -463,8 +534,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 6:2:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-6-2-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-2">Mishneh Torah, Borrowing and Deposit 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ לַשּׁוֹמֵר לְהַתְנוֹת שֶׁאֵינוֹ שׁוֹמֵר כְּדֶרֶךְ הַשּׁוֹמְרִין אֶלָּא מָעוֹת אֵלּוּ שֶׁהִפְקִיד אֶצְלִי בְּזָוִית בֵּיתִי אֲנִי מַנִּיחַ אוֹתָן וְכַיּוֹצֵא בָּזֶה. טָעַן הַשּׁוֹמֵר שֶׁתְּנַאי הָיָה בֵּינֵינוּ וּבַעַל הַפִּקָּדוֹן אוֹמֵר לֹא הָיָה שָׁם תְּנַאי אַף עַל פִּי שֶׁהִפְקִיד אֶצְלוֹ בְּעֵדִים מִתּוֹךְ שֶׁיָּכוֹל לוֹמַר שָׁמַרְתִּי כְּדֶרֶךְ הַשּׁוֹמְרִין וְנֶאֱנַסְתִּי נֶאֱמָן לוֹמַר שֶׁהָיָה בֵּינֵיהֶן תְּנַאי לְפִיכָךְ יִשָּׁבַע שֶׁלֹּא שָׁלַח יָד בּוֹ וְשֶׁאֵינוֹ בִּרְשׁוּתוֹ וְשֶׁהָיָה בֵּינֵיהֶן תְּנַאי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טען השומר שתנאי היה בינינו כו׳.</strong> מ&quot;ש מרן ואני אומר שלא דקדק ה&quot;ה בדבריו כו׳ לא ידעתי מה ראה לשווייה לה&quot;ה ז&quot;ל טועה בדבר פשוט שהרי הדבר ברור שלא הביא ה&quot;ה ההיא דהנח לפניך אלא לומר דיהא נאמן לומר תנאי היה בינינו במגו דאי בעי אמר הנח לפניך אמרתי לך וישבע היסת דאפילו טעין הכי היסת הוא דנשבע ואילו השתא למ&quot;ש רבינו דנאמן משום מגו דנאנסו צריך לישבע בנקיטת חפץ כשבועת נאנסו אם היה טוען וכל דברי ה&quot;ה סובבים על דרך זה וכבר חלק מהריק&quot;א על ה&quot;ה ז&quot;ל ופירש דרך זה בדברי רבינו בפ&quot;ב מהלכות שכירות יע&quot;ש. (*א&quot;ה עיין לעיל פ&quot;ו מהלכות מכירה דין י׳):</p>
               </div>
             </div>
@@ -479,8 +555,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 6:4:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-6-4-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 6:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-6-4">Mishneh Torah, Borrowing and Deposit 6:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִפְקִיד אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָאוּ עֵדִים שֶׁזֶּה הַחֵפֶץ בְּפָנֵינוּ הִפְקִידוֹ אֶצְלוֹ אֵין הַשּׁוֹמֵר יָכוֹל לִטְעֹן וְלוֹמַר חָזַרְתִּי וּלְקַחְתִּיו מִמֶּנּוּ אוֹ נְתָנוֹ לִי בְּמַתָּנָה. לְפִיכָךְ אִם מֵת הַשּׁוֹמֵר מוֹצִיאִין הַפִּקָּדוֹן עַצְמוֹ מִן הַיְתוֹמִים בְּלֹא שְׁבוּעָה. וְלֹא עוֹד אֶלָּא מִי שֶׁבָּא וְאָמַר כָּךְ וְכָךְ הִפְקַדְתִּי אֵצֶל אֲבִיכֶם וְנָתַן סִימָנִין מֻבְהָקִין וְנִמְצָא הַפִּקָּדוֹן כְּמוֹ שֶׁאָמַר וְהָיָה יוֹדֵעַ הַדַּיָּן שֶׁלֹּא הָיָה הַמֵּת אָמוּד שֶׁזֶּה הַפִּקָּדוֹן שֶׁלּוֹ. יֵשׁ לוֹ לַדַּיָּן הַזֶּה לָתֵת הַפִּקָּדוֹן לְזֶה שֶׁנָּתַן סִימָנָיו. וְהוּא שֶׁלֹּא יִהְיֶה הַמַּפְקִיד רָגִיל לְהִכָּנֵס אֵצֶל זֶה שֶׁמֵּת אֲבָל אִם הָיָה רָגִיל לִכָּנֵס אֶצְלוֹ שֶׁמָּא שֶׁל אַחֵר הוּא וְהִכִּיר הַסִּימָנִין שֶׁלּוֹ. בָּאוּ עֵדִים וְהֵעִידוּ לַדַּיָּן שֶׁאֵין זֶה אָמוּד אֵין מוֹצִיאִין מִיַּד הַיְתוֹמִים בְּעֵדוּתָן שֶׁאֵין זֶה רְאָיָה בְּרוּרָה וְאֻמְדַּן דַּעְתָּן אֵינוֹ אֹמֶד דַּעְתּוֹ וְאֵין לוֹ לַדַּיָּן אֶלָּא מַה שֶּׁדַּעְתּוֹ סוֹמֶכֶת עָלָיו כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. מַעֲשֶׂה בְּאֶחָד שֶׁהִפְקִיד שֻׁמְשְׁמִין אֵצֶל חֲבֵרוֹ בְּעֵדִים וּבָא לְתָבְעוֹ וְאָמַר לוֹ הֶחְזַרְתִּים. אָמַר לוֹ הַמַּפְקִיד וַהֲלֹא כָּךְ וְכָךְ הִיא מִדָּתָם וַהֲרֵי הֵם מֻנָּחִים אֶצְלְךָ בְּחָבִיתְךָ. אָמַר לוֹ שֶׁלְּךָ הֶחְזַרְתִּי לְךָ וְאֵלּוּ אֲחֵרִים הֵן. וְאָמְרוּ חֲכָמִים אֵין מוֹצִיאִין מִיָּדוֹ שֶׁמָּא אֵלּוּ הַשֻּׁמְשְׁמִין שֶׁל שׁוֹמֵר הֵן אֶלָּא יִשָּׁבַע הַשּׁוֹמֵר בִּנְקִיטַת חֵפֶץ שֶׁהֶחְזִיר כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעשה באחד שהפקיד שומשמין כו׳.</strong> (*א&quot;ה עיין פי&quot;ג מהלכות מלוה ולוה דין ג׳):</p>
               </div>
             </div>
@@ -496,8 +577,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 7:8:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-7-8-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-8">Mishneh Torah, Borrowing and Deposit 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּפְקִיד מָעוֹת אֵצֶל בַּעַל הַבַּיִת בֵּין צְרוּרִין בֵּין מֻתָּרִין הֲרֵי זֶה לֹא יִשְׁתַּמֵּשׁ בָּהֶן לְפִיכָךְ אִם אָבְדוּ אוֹ נִגְנְבוּ אֵינוֹ חַיָּב בְּאַחֲרָיוּתָן. וְהוּא שֶׁיִּטְמְנֵם בַּקַּרְקַע כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפקיד מעות אצל בע&quot;ה כו׳ ה&quot;ז לא ישתמש בהם כו׳.</strong> (*א&quot;ה כתב מור&quot;ם בספר המפה סימן רצ&quot;ב ס&quot;ז דאם הרויח במעות אפילו אין לו רשות להשתמש בהם זכה בשלו וא&quot;צ ליתן הריוח לבעל הפקדון מיהו אם בעל הפקדון א&quot;ל תן לי פקדוני ואני ארויח לעצמי כו׳ ועיין מ&quot;ש הרב המחבר לקמן פ&quot;ז מהלכות מלוה ולוה דין י&quot;א):</p>
               </div>
             </div>
@@ -512,8 +598,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 7:11:1</h4></div>
               <a class="anchor" href="#mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-7-11-1" aria-label="Copy link to Mishneh LaMelech on Mishneh Torah, Borrowing and Deposit 7:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-borrowing-and-deposit/#mishneh-torah-borrowing-and-deposit-7-11">Mishneh Torah, Borrowing and Deposit 7:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַפִּקָּדוֹן וְהָאֲבֵדָה לֹא נִתְּנוּ לִתָּבַע אֶלָּא בִּמְקוֹמָם. כֵּיצַד. הִפְקִיד אֶצְלוֹ בִּירוּשָׁלַיִם אֵינוֹ יָכוֹל לְתָבְעוֹ בְּנֹב וְאִם הֶחְזִיר לוֹ בְּנֹב מְקַבְּלוֹ מִמֶּנּוּ. הִפְקִיד אֶצְלוֹ בַּיִּשּׁוּב וְהֵבִיא פִּקְדוֹנוֹ בַּמִּדְבָּר אֵינוֹ מְקַבְּלוֹ מִמֶּנּוּ אֶלָּא יֹאמַר לוֹ הֲרֵי הוּא בְּאַחְרָיוּתְךָ עַד שֶׁתַּחֲזִירֶנּוּ לִי בַּיִּשּׁוּב כְּדֶרֶךְ שֶׁהִפְקַדְתִּי אֶצְלְךָ בַּיִּשּׁוּב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הפקדון והאבידה לא ניתנו ליתבע אלא במקומם כו׳.</strong> מ&quot;ש ה&quot;ה שאם הפקיד אצלו לזמן ידוע שאינו יכול להכריחו לקבלו ממנו תוך הזמן כו׳ כתב בשה&quot;ג בפרק הגוזל ומאכיל (דף מ&quot;ז) ובפרק המפקיד (דף פ&quot;ו) שדברי ה&quot;ה הם כשבא להחזיר במדבר כו׳ ודברים הללו לא ניתנו ליכתב דאי במדבר מאי איריא הפקיד לזמן אפילו בסתם נמי כל שהפקיד בישוב אינו מחזיר במדבר. אלא טעמא דה&quot;ה ז&quot;ל הוא משום דזמן דפקדון לתועלת המפקיד הוא ונתחייב הנפקד לשמור כל אותו זמן, שוב ראיתי להר&quot;ב התרומות שער נ׳ ח&quot;א סימן ד׳ שכתב כן בשם הראב&quot;ד ואוקמוה לההיא דפ&quot;ק דקידושין (דף י&quot;ב) דאמרינן סברה אי שדינא להו מתברי ומתחייבנא כשקבלה הפקדון לזמן ומש&quot;ה אינה יכולה לכופו שיקבל הפקדון. וראיתי למהרח&quot;ש בספר תורת חיים ח&quot;א סימן פ&quot;ב שכתב שדין זה של ה&quot;ה לא מצאו בשום פוסק ואנו בעניותינו מצאנו לו לה&quot;ה חבר רב גדול ומוסמך. שוב ראיתי להריטב&quot;א בחידושיו לקידושין באותה סוגיא עצמה שכתב כן בשם הראב&quot;ד ומ&quot;ש בעה&quot;ת בשם הרמב&quot;ן וז&quot;ל ויש מחכמי הדור שהעמידוה בפקדון לזמן וכו׳ והוא שבוש כו׳ לאו למימרא דחולק בדינו של הראב&quot;ד אלא שיש לו שיטה אחרת בסוגיא וכמו שנתבאר שם ולפי פירושו אותה סוגיא מיירי אפילו שלא קבלה הפקדון לזמן. שוב ראיתי להרשב&quot;א בחידושיו לקידושין שאחר שהביא דברי הראב&quot;ד כתב ואני מסופק בדינו שאפילו הפקיד לזמן ידוע על מה לא תוכל להחזיר תוך זמן דלא עדיף ש&quot;ח מפועל שיכול לחזור אפילו בחצי היום ע&quot;כ. והיא היא החקירה שעמד עליה מהרח&quot;ש יע&quot;ש:      נשלמו להו הלכות שאלה ופקדון</p>
               </div>
             </div>
@@ -523,6 +614,10 @@
               <a href="#chapter-mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-text-7">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -543,8 +638,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.manifest.json","occurrence_url":"../../data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mishneh-lamelech-on-mishneh-torah-borrowing-and-deposit.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -570,7 +665,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

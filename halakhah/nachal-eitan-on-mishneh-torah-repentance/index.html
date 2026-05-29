@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-repentance/">Open Mishneh Torah, Repentance</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Repentance</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">6 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org/">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>326 matched</strong> / 809 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/nachal-eitan-on-mishneh-torah-repentance.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-repentance-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -217,8 +218,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Repentance 1:1:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-repentance-1-1-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Repentance 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-1">Mishneh Torah, Repentance 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִצְוֹת שֶׁבַּתּוֹרָה בֵּין עֲשֵׂה בֵּין לֹא תַּעֲשֶׂה אִם עָבַר אָדָם עַל אַחַת מֵהֶן בֵּין בְּזָדוֹן בֵּין בִּשְׁגָגָה כְּשֶׁיַּעֲשֶׂה תְּשׁוּבָה וְיָשׁוּב מֵחֶטְאוֹ חַיָּב לְהִתְוַדּוֹת לִפְנֵי הָאֵל בָּרוּךְ הוּא שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;אִישׁ אוֹ אִשָּׁה כִּי יַעֲשׂוּ&quot; וְגוֹ׳ <span class="source-small">(במדבר ה ז)</span> &quot;וְהִתְוַדּוּ אֶת חַטָּאתָם אֲשֶׁר עָשׂוּ&quot; זֶה וִדּוּי דְּבָרִים. וִדּוּי זֶה מִצְוַת עֲשֵׂה. כֵּיצַד מִתְוַדִּין. אוֹמֵר אָנָּא הַשֵּׁם חָטָאתִי עָוִיתִי פָּשַׁעְתִּי לְפָנֶיךָ וְעָשִׂיתִי כָּךְ וְכָךְ וַהֲרֵי נִחַמְתִּי וּבֹשְׁתִּי בְּמַעֲשַׂי וּלְעוֹלָם אֵינִי חוֹזֵר לְדָבָר זֶה. וְזֶהוּ עִקָּרוֹ שֶׁל וִדּוּי. וְכָל הַמַּרְבֶּה לְהִתְוַדּוֹת וּמַאֲרִיךְ בְּעִנְיָן זֶה הֲרֵי זֶה מְשֻׁבָּח. וְכֵן בַּעֲלֵי חַטָּאוֹת וַאֲשָׁמוֹת בְּעֵת שֶׁמְּבִיאִין קָרְבְּנוֹתֵיהֶן עַל שִׁגְגָתָן אוֹ עַל זְדוֹנָן אֵין מִתְכַּפֵּר לָהֶן בְּקָרְבָּנָם עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ וִדּוּי דְּבָרִים שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ה ה)</span> &quot;וְהִתְוַדָּה אֲשֶׁר חָטָא עָלֶיהָ&quot;. וְכֵן כָּל מְחֻיְּבֵי מִיתוֹת בֵּית דִּין וּמְחֻיְּבֵי מַלְקוֹת אֵין מִתְכַּפֵּר לָהֶן בְּמִיתָתָן אוֹ בִּלְקִיָּתָן עַד שֶׁיַּעֲשׂוּ תְּשׁוּבָה וְיִתְוַדּוּ. וְכֵן הַחוֹבֵל בַּחֲבֵרוֹ וְהַמַּזִּיק מָמוֹנוֹ אַף עַל פִּי שֶׁשִּׁלֵּם לוֹ מַה שֶּׁהוּא חַיָּב לוֹ אֵינוֹ מִתְכַּפֵּר עַד שֶׁיִּתְוַדֶּה וְיָשׁוּב מִלַּעֲשׂוֹת כָּזֶה לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(במדבר ה ו)</span> &quot;מִכָּל חַטֹּאת הָאָדָם&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן החובל בחבירו והמזיק ממונו אע&quot;פ ששילם לו מה שחייב לו אינו מתכפר עד שיתודה וישוב מלעשות כזה לעולם שנאמר מכל חטאת האדם.</strong> וכתב הכ&quot;מ דצ&quot;ע היכא מייתי לה. וכבר מפורש כן בספרי פרשת נשא והביאה רבינו עצמו בס׳ המצות סי׳ ע&quot;ג וכן הובאה בס׳ החינוך:</p>
               </div>
             </div>
@@ -233,8 +239,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Repentance 1:2:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-repentance-1-2-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Repentance 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-1-2">Mishneh Torah, Repentance 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׂעִיר הַמִּשְׁתַּלֵּחַ לְפִי שֶׁהוּא כַּפָּרָה עַל כָּל יִשְׂרָאֵל כֹּהֵן גָּדוֹל מִתְוַדֶּה עָלָיו עַל לְשׁוֹן כָּל יִשְׂרָאֵל שֶׁנֶּאֱמַר <span class="source-small">(ויקרא טז כא)</span> &quot;וְהִתְוַדָּה עָלָיו אֶת כָּל עֲוֹנֹת בְּנֵי יִשְׂרָאֵל&quot;. שָׂעִיר הַמִּשְׁתַּלֵּחַ מְכַפֵּר עַל כָּל עֲבֵרוֹת שֶׁבַּתּוֹרָה, הַקַּלּוֹת וְהַחֲמוּרוֹת, בֵּין שֶׁעָבַר בְּזָדוֹן בֵּין שֶׁעָבַר בִּשְׁגָגָה, בֵּין שֶׁהוֹדַע לוֹ בֵּין שֶׁלֹּא הוֹדַע לוֹ, הַכּל מִתְכַּפֵּר בְּשָׂעִיר הַמִּשְׁתַּלֵּחַ. וְהוּא שֶׁעָשָׂה תְּשׁוּבָה. אֲבָל אִם לֹא עָשָׂה תְּשׁוּבָה אֵין הַשָּׂעִיר מְכַפֵּר לוֹ אֶלָּא עַל הַקַּלּוֹת. וּמַה הֵן הַקַּלּוֹת וּמַה הֵן הַחֲמוּרוֹת. הַחֲמוּרוֹת הֵן שֶׁחַיָּבִין עֲלֵיהֶם מִיתַת בֵּית דִּין אוֹ כָּרֵת. וּשְׁבוּעַת שָׁוְא וָשֶׁקֶר אַף עַל פִּי שֶׁאֵין בָּהֶן כָּרֵת הֲרֵי הֵן מִן הַחֲמוּרוֹת. וּשְׁאָר מִצְוֹת לֹא תַּעֲשֶׂה וּמִצְוֹת עֲשֵׂה שֶׁאֵין בָּהֶן כָּרֵת הֵם הַקַּלּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שעיר המשתלח מכפר על כל עבירות שבתורה וכו׳ שעשה תשובה אבל אם לא עשה תשובה אין השעיר מכפר לו אלא על הקלות ומה הן וכו׳ שאר מצות לא תעשה ומצוות עשה שאין בהן כרת.</strong> והקשה הכ&quot;מ דבגמרא פ&quot;ק דשבועות משמע דלרבנן דרבי אפילו עבר על עשה אם לא עשה תשובה אין השעיר מכפר והניח בצ&quot;ע. וכן תמה הלח&quot;מ דבגמרא קאמר האי עשה דקתני במתניתין דשעיר מכפר היכי דמי אי דלא עביד תשובה זבח רשעים תועבה ואי דעביד תשובה אפי׳ כל יומא נמי מכפר. ומוקי מתני׳ בעומד במרדו ורבי היא דסבר דיוה&quot;כמכפר בלא תשובה. משמע דלרבנן דקיי&quot;ל כוותייהו עשה נמי בעי תשובה. ועיי&quot;ש מ&quot;ש לפרש בדברי המקשה דלאו משום עשה בלחוד הוא דקאמר דבלא תשובה הוי זבח רשעים אלא משום כל הנך דאיירי במתני׳ בחמורות דכריתות עיי&quot;ש. ואי בלא תשובה איירו הוו זבח רשעים. וכ&quot;כ בספר מעשה רוקח. והנה מלבד שדחוק לפרש כן אלא דאכתי תקשי מדקאמר רבא ג&quot;כ כהאי לישנא בזבחים (דף ז׳) גבי עולה דבאה על ביטול עשה דדורון היא. דהיכי דמי שתבוא על חטא דעשה לכפר דאי לא עביד תשובה זבח רשעים תועבה ואי דעבד תשובה תניא דמוחלין ומייתי דתניא דר׳ שמעון נמי אמר דעולה דורון היא. הרי מבואר דהוי זבח רשעים אף משום עבירות עשה בלחוד. ושם אי אפשר כלל לתרץ כמ&quot;ש הלח&quot;מ אסוגיא דשבועות. ומצאתי בס׳ אגודות אזוב וקדמו בעל משנת חכמים ונדחק בזה והניח בצ&quot;ע.<br><strong> ונראה </strong> ליישב דעת רבינו דאזיל לשיטתיה שכתב בפ&quot;ג מהלכות מעשה הקרבנות. ישראל שמחלל שבת בפרהסיא אין מקבלין ממנו קרבן כלל. היה אדוק לאיזה עבירה והוא מפורסם ורגיל לעשותה בין לתיאבון ובין להכעיס אין מקבלין ממנו קרבן לאותה עבירה. והמשנה למלך בפ&quot;ג דהלכות שגגות דקדק מזה דס&quot;ל לרבינו דדוקא גבי מחלל שבת הוא דהוי זבח רשעים ואין מקבלין הימנו קרבן אע&quot;פ שאינו רגיל בכך. אבל בשאר עבירות לא הוי זבח רשעים רק כשמורגל בה והוא מפורסם לעשותה ולכך מקבלין ממנו קרבן אם אינו רגיל בה ועיי&quot;ש שהאריך בזה. אמנם לא ביאר מהיכן יצא זה לרבינו לומר כן. ויותר קשה דלכאורה לא משמע כן מהסוגיות דשבועות וזבחים הנזכר דאי בחד זימנא לא הוי זבח רשעים מאי קאמר האי עשה היכי דמי אי דלא עביד תשובה זבח רשעים תועבה. דלוקמא דאיירי בשלא הורגל לעבור על עשה.<br><strong> אך </strong> נראה שיצא לו כן לרבינו מדתניא ביומא (דף ל&quot;ו) דמתודה על עולה עון עשה ולא תעשה שניתק לעשה והעתיקה בהלכות מעשה הקרבנות. והוקשה לרבינו מאי דקשיא ליה לבעל פר&quot;ח בספרו מים חיים על הברייתא דיומא דאי כבר עשה תשובה אמאי מתודה על העולה עון עשה הא כבר נתכפר בתשובה ואי עושה עכשיו תשובה מאי צריך לעולה ומהאי טעמא אמר רבא בזבחים דעולה דורון הוא. ובסוף ספרו נדחק לומר דברייתא זו סברה דאין תשובה מכפרת אפי׳ על עשה גרידא ופליגא אברייתא דזבחים. ואין דוחק גדול מזה דא&quot;כ פליגא נמי אמתניתין דשלהי יומא (דף פ&quot;ו) דתנן דתשובה מכפרת על עשה. ועוד דבגמ׳ שם (דף פ&quot;ז) מסיק דתנאי פליגי אי תשובה מכפרת גם על לא תעשה גמורה. ומשמע דאילו על עשה גרידא או על לא תעשה שניתק לעשה אליבא דכו&quot;ע מכפרת ואיך נימא דברייתא דשם (דף ל&quot;ו) פליגא אכולהו. ועוד דלפי דבריבעל הפר&quot;ח תקשי אהדדי דברי התנא ר׳ ישמעאל דבסוף יומא ס&quot;ל דתשובה מכפרת על עשה ואיהו גופיה אמר במדרש ילמדנו פרשת לך לך דעולה באה על מצות עשה. והשתא אי דברי רבא בזבחים הוויין יסוד מונח תקשי על ר׳ ישמעאל קושיית רבא שם דהיכי דמי אי דלא עביד תשובה זבח רשעים תועבה ואי דעביד תשובה הא סבר דמוחלין לו. ולא שייך תירוץ בעל פר&quot;ח אברייתא הנזכר.<br><strong> אך </strong> לפי דברי רבינו דהלכות מעשה הקרבנות שזכרתי אתי שפיר דאיירי ברייתא ומילתא דרבי ישמעאל בשלא עשה תשובה בשעה שהפריש העולה והקדישה. ואפ&quot;ה לא הוי זבח רשעים כשלא הורגל לעבור ובכה&quot;ג קאמר דמביא עולה ומתודה עליה אותו עון דעשה. והא לא קשיא דליפטר מהעולה בהך תשובה שעושה עכשיו כשמתודה עליה די&quot;ל דשאני כשהמתין ומנע מלשוב עד שהקדישה והביאה לעזרה וסמך עליה בשעת שחיטה אינו דין שתכפר לו עתה בוידוי גרידא בלא העולה. ורבא דאמר עולה דורון הוא וכר׳ שמעון ע&quot;כ דס&quot;ל דמשום פעם אחת נמי הוי זבח רשעים. אבל הני תנאי דברייתא דיומא וכן ר׳ ישמעאל לא סברי כוותייהו ופסק רבינו כוותייהו דכן אזלא סוגיא דשמעתתא בכמה דוכתי דעולה באה לכפרה. כדאיתא בפסחים (דף ע&quot;ז ע&quot;א) ובכורות (דף כ&quot;ו ע&quot;ב) ועיי&quot;ש בפרש&quot;י. וכיון דלא משכחת שתבוא לכפרה אלא א&quot;כ נימא דאיירי בדלא עביד תשובה ולא הוי זבח רשעים משום פעם אחת לכך פסק כן רבינו.<br><strong> והא </strong> דפסק דמקבלין מכל חייבי קרבנות לבר ממחללי שבת י&quot;ל דס&quot;ל דכיון דשמעינן דלא קרי זבח רשעים רק במוחזק ברשע תו אין לנו לחלק בין רשע דעשה לשאר מחייבי קרבן. דהא זבח כל הקרבנות במשמע וכדמוכח בחולין (דף מ׳) ואין לנו למנוע משום פעם אחת רק גבי מחללי שבת דהוי ככופר בכל התורה ולכך בפעם אחת חשוב הוא כאילו מוחזק. וזה שאמר כאן דשעיר המשתלח מכפר על עשה ולא תעשה שאין בה כרת וכגון שלא הוחזק ולא הורגל לעבור דפסק בהל׳ מעשה הקרבנותדמקבלין ממנו קרבן וה&quot;ה דיכול השעיר לכפר עליו. ואע&quot;ג דסוגיא דשבועות לא סברה הכי וכן רבא בזבחים לא חש רבינו לזה ודחה אותן מכח ההיא דיומא ושאר סוגיות שזכרתי דמוכח דלא סברי כן. ואע&quot;ג דבהלכות מעשה הקרבנות משמע דאף על לא תעשה שיש בו כרת מקבלין ממנו חוץ ממחלל שבת. י&quot;ל דגבי שעיר המשתלח מיעט קרא שלא יכפר על לא תעשה שיש בו כרת כדאיתא בגמ׳ דשבועות. אבל בשאר עשה ולא תעשה גרידא דלא מעטיה מכפר בפעם אחת כנ&quot;ל.<br><strong> ובמ&quot;ש </strong> יש לדחות מ&quot;ש בס׳ אגודת אזוב דלמאי דמסיק בגמ׳ דשבועות דאיצטריך קרא למעט שלא יכפר השעיר על לא תעשה שיש בו כרת מזה מוכח דלא אמרינן גבי שעיר דיוה&quot;כ כלל זבח רשעים תועבה אפילו לרבנן דרבי דאל&quot;כ מהיכא תיתי דיכפר על לא תעשה שיש בו כרת דאיצטריך קרא למעוטי. ולפי מ&quot;ש לא מוכח מידי דאיכא למימר דבאמת גם בשעיר אמרינן זבח רשעים תועבה והיינו כשהורגל לעבור וכמו שהדין בכל קרבנות דשנה. והא דאיצטריך קרא למעט שלא יכפר השעיר על לא תעשה שיש בהן כרת היינו כשלא הורגל בהן דכה&quot;ג בכל הקרבנות לא הוי זבח רשעים ומקבלין ממנו ואיצטריך קרא בשעיר שאינו מכפר. וכי איכא לאוכוחי מיניה לשאר קרבנות הוא דאיכא לאוכחא דמדאיצטריך למעוטי בשעיר ש&quot;מ דבעלמא מקבלין קרבנות מרשעים שחייבין על לא תעשה שיש בהן כרת כל שלא הוחזק ולא הורגל לעבור:</p>
               </div>
             </div>
@@ -250,8 +261,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Repentance 2:2:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-repentance-2-2-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Repentance 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-2-2">Mishneh Torah, Repentance 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמַה הִיא הַתְּשׁוּבָה. הוּא שֶׁיַּעֲזֹב הַחוֹטֵא חֶטְאוֹ וִיסִירוֹ מִמַּחֲשַׁבְתּוֹ וְיִגְמֹר בְּלִבּוֹ שֶׁלֹּא יַעֲשֵׂהוּ עוֹד שֶׁנֶּאֱמַר <span class="source-small">(ישעיה נה ז)</span> &quot;יַעֲזֹב רָשָׁע דַּרְכּוֹ&quot; וְגוֹ׳. וְכֵן יִתְנַחֵם עַל שֶׁעָבַר שֶׁנֶּאֱמַר <span class="source-small">(ירמיה לא יט)</span> &quot;כִּי אַחֲרֵי שׁוּבִי נִחַמְתִּי&quot;. וְיָעִיד עָלָיו יוֹדֵעַ תַּעֲלוּמוֹת שֶׁלֹּא יָשׁוּב לְזֶה הַחֵטְא לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(הושע יד ד)</span> &quot;וְלֹא נֹאמַר עוֹד אֱלֹהֵינוּ לְמַעֲשֵׂה יָדֵינוּ&quot; וְגוֹ׳. וְצָרִיךְ לְהִתְוַדּוֹת בִּשְׂפָתָיו וְלוֹמַר עִנְיָנוֹת אֵלּוּ שֶׁגָּמַר בְּלִבּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומה היא התשובה הוא שיעזוב החוטא החטא וכו׳ ויעיד עליו יודע תעלומות שלא ישוב לזה החטא לעולם וכו׳.</strong> נראה דהיינו דאיתא בילקוט סוף הושע שאמרו ישראל לפני הקב&quot;ה רבש&quot;ע אם אנו עושין תשובה מי מעיד עלינו והשיב שהוא יעיד. ולפי דברי רבינו העדות הוא שלא ישובו לחטא וזה א&quot;א אלא הקב&quot;ה]:</p>
               </div>
             </div>
@@ -267,8 +283,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Repentance 3:6:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-repentance-3-6-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Repentance 3:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-3-6">Mishneh Torah, Repentance 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵלּוּ הֵן שֶׁאֵין לָהֶן חֵלֶק לָעוֹלָם הַבָּא אֶלָּא נִכְרָתִים וְאוֹבְדִין וְנִדּוֹנִין עַל גֹּדֶל רִשְׁעָם וְחַטָּאתָם לְעוֹלָם וּלְעוֹלְמֵי עוֹלָמִים. הַמִּינִים. וְהָאֶפִּיקוֹרוֹסִין. וְהַכּוֹפְרִים בַּתּוֹרָה. וְהַכּוֹפְרִים בִּתְחִיַּת הַמֵּתִים וּבְבִיאַת הַגּוֹאֵל. הַמּוֹרְדִים. וּמַחֲטִיאֵי הָרַבִּים. וְהַפּוֹרְשִׁין מִדַּרְכֵי צִבּוּר. וְהָעוֹשֶׂה עֲבֵרוֹת בְּיָד רָמָה בְּפַרְהֶסְיָא כִּיהוֹיָקִים. וְהַמּוֹסְרִים. וּמַטִּילֵי אֵימָה עַל הַצִּבּוּר שֶׁלֹּא לְשֵׁם שָׁמַיִם. וְשׁוֹפְכֵי דָּמִים. וּבַעֲלֵי לָשׁוֹן הָרַע. וְהַמּוֹשֵׁךְ עָרְלָתוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואלו שאין להם חלק לעוה&quot;ב וכו׳ שופכי דמים ובעלי לשון הרע וכו׳.</strong> וכתב הכ&quot;מ אהא דשופכי דמים ואינך דצ&quot;ע היכא מייתי להו וגם הלח&quot;מ כתב שלא מצאן בגמ׳. והנה כבר כתבתי בפ׳ ז׳ מהל׳ דעות שנעלם מהכ&quot;מ והלח&quot;מ התוספתא דאיתא במסכת פיאה ומייתי לה רבינו בפירוש המשנה דאבות דחשיב שפיכת דמים באותן שאין להם חלק לעוה&quot;ב ועוד הבאתי שם דאיתא במסכת דרך ארץ רבה המספר לשון הרע אין לו חלק לעוה&quot;ב:<br><strong> ומ&quot;ש </strong> רבינו ישראל שהפיר ברית והמושך את ערלתו בהנך שאין להן חלק לעוה&quot;ב אלא נכרתין ואובדין הקשה על זה בספר מרכבת המשנה לבעל יד אהרן דבהלכות תרומות כתב רבינו דמשוך מותר לאכול בתרומה מן התורה ואע&quot;פ שנראה כאינו מהול ואינו אסור רק מדברי סופרים ואיך כתב כאן דמשוך נכרת. וקושיא כזו הקשה ג&quot;כ בס׳ מעשה רוקח על מ&quot;ש רבינו בסוף הלכות מילה דישראל שלא מל או משך את ערלתו אין לו חלק לעוה&quot;ב. והנה דברי רבינו בזה הן מפורשין בירושלמי פ&quot;א דפיאה דמיפר ברית אין לו חלק לעוה&quot;ב זה שהוא מושך את ערלתו. וכן איתא בירושלמי ריש פ׳ חלק. וא&quot;כ לא על רבינו בלבד היא התלונה דהא קיי&quot;ל דמשוך דרבנן.<br><strong> אמנם </strong> אתי שפיר ולק&quot;מ לפי מה שהוכחתי בחידושי ליבמות (דף ע&quot;ב) מדברי התוס׳ שם ומדברי הטור ביו&quot;ד סי׳ רס&quot;ב וסי׳ רס&quot;ו דהא אמרינן דמשוך מדרבנן היינו דוקא כשנמול כבר ואח&quot;כ נמשך אבל אם לא נימול כלל כגון שנולד מהול ואח&quot;כ נעשה משוך הוי כאינו מהול מן התורה. והבאתי ראיה לזה מדברי המכילתא בפרשת באבפסוק ומלתה אותו אז יאכל בו להביא את שנתקיימה בו מצות מילה אפילו שעה אחת וחזר הבשר וחפה את העטרה אינו מעכבו לאכול בפסח ע&quot;כ. משמע דדוקא כשנתקיימה בו מצות מילה שכבר מל כהלכתו ואח&quot;כ נמשכה וחפה העטרה הוא דאין מעכבו מלאכול בפסח מן התורה. הא אם לא נתקיימה בו מעולם מצות מילה כלל כגון שנולד מהול ואח&quot;כ חזר הבשר וחפה את העטרה מעכבו מלאכול בפסח מן התורה. ואם כן בכה&quot;ג הוה משוך דעור דאורייתא. ובהכי איירי הירושלמי דפיאה ופרק חלק וכן רבינו כאן ובהלכות מילה איירי במשוך כזה. ומ&quot;ש בהלכות תרומות דמשוך אינו אלא מדרבנן היינו כשכבר נימול כהלכתו ואח&quot;כ נמשך. ועוד יתבאר בזה בהלכות מילה בע&quot;ה:</p>
               </div>
             </div>
@@ -284,8 +305,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Repentance 4:1:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-repentance-4-1-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Repentance 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-4-1">Mishneh Torah, Repentance 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבָעָה וְעֶשְׂרִים דְּבָרִים מְעַכְּבִין אֶת הַתְּשׁוּבָה. אַרְבָּעָה מֵהֶן עָוֹן גָּדוֹל וְהָעוֹשֶׂה אֶחָד מֵהֶן אֵין הַקָּדוֹשׁ בָּרוּךְ הוּא מַסְפִּיק בְּיָדוֹ לַעֲשׂוֹת תְּשׁוּבָה לְפִי גֹּדֶל חֶטְאוֹ. וְאֵלּוּ הֵן. א) הַמַּחְטִיא אֶת הָרַבִּים וּבִכְלַל עָוֹן זֶה הַמְעַכֵּב אֶת הָרַבִּים מִלַּעֲשׂוֹת מִצְוָה. ב) וְהַמַּטֶּה אֶת חֲבֵרוֹ מִדֶּרֶךְ טוֹבָה לְרָעָה כְּגוֹן מֵסִית וּמַדִּיחַ. ג) הָרוֹאֶה בְּנוֹ יוֹצֵא לְתַרְבּוּת רָעָה וְאֵינוֹ מְמַחֶה בְּיָדוֹ. הוֹאִיל וּבְנוֹ בִּרְשׁוּתוֹ אִלּוּ מִחָה בּוֹ הָיָה פּוֹרֵשׁ וְנִמְצָא כְּמַחְטִיאוֹ. וּבִכְלַל עָוֹן זֶה כָּל שֶׁאֶפְשָׁר בְּיָדוֹ לִמְחוֹת בַּאֲחֵרִים בֵּין יָחִיד בֵּין רַבִּים וְלֹא מִחָה אֶלָּא יַנִּיחֵם בְּכִשְׁלוֹנָם. ד) וְהָאוֹמֵר אֶחְטָא וְאָשׁוּב וּבִכְלַל זֶה הָאוֹמֵר אֶחְטָא וְיוֹם הַכִּפּוּרִים מְכַפֵּר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ארבעה ועשרים דברים מעכבין את התשובה וכו׳ המחטיא את הרבים וכו׳ והאומר אחטא ואשוב.</strong> במתניתין דשלהי יומא תנן האומר אחטא ואשוב אחטא ואשוב אין מספיקין בידו לעשות תשובה. ומשמע בגמ׳ דדוקא כשחטא ב׳ פעמים ועל כל פעם אמר כך הוא דאין מספיקין בידו כיון שמרגיל ונעשה כהיתר אבל משום פעם אחת שאמר מספיקין בידו לעשות תשובה. וצריך טעם לרבינו שהעתיק ברייתא זו דכ&quot;ד דברים דנקטה רק פעם. ומ&quot;ש הלח&quot;מ בזה אינו מספיק דכיון דפשטא דלישנא משמע דפליגא אמתניתין היה לו לדחות להברייתא שאין ידוע היכן היא שנויה ולמשכוניה לרבינו עלה למה ליה ולחלק מה שלא נמצא בגמרא. אך י&quot;ל דע&quot;כ אין לדחות לגמרי ברייתא זו דהרי כן שנויה ג&quot;כ באבות דרב נתן פרק מ׳ ובתנא דבי אליהו ח&quot;א פ&quot;ו. וכן יש ללמוד מדאיתא בחגיגה (דף ט&quot;ז ע&quot;א):</p>
               </div>
             </div>
@@ -301,8 +327,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Nachal Eitan on Mishneh Torah, Repentance 7:4:1</h4></div>
               <a class="anchor" href="#nachal-eitan-on-mishneh-torah-repentance-7-4-1" aria-label="Copy link to Nachal Eitan on Mishneh Torah, Repentance 7:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-repentance/#mishneh-torah-repentance-7-4">Mishneh Torah, Repentance 7:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַל יְדַמֶּה אָדָם בַּעַל תְּשׁוּבָה שֶׁהוּא מְרֻחָק מִמַּעֲלַת הַצַּדִּיקִים מִפְּנֵי הָעֲוֹנוֹת וְהַחֲטָאוֹת שֶׁעָשָׂה. אֵין הַדָּבָר כֵּן אֶלָּא אָהוּב וְנֶחְמָד הוּא לִפְנֵי הַבּוֹרֵא כְּאִלּוּ לֹא חָטָא מֵעוֹלָם. וְלֹא עוֹד אֶלָּא שֶׁשְּׂכָרוֹ הַרְבֵּה שֶׁהֲרֵי טָעַם טַעַם הַחֵטְא וּפֵרַשׁ מִמֶּנּוּ וְכָבַשׁ יִצְרוֹ. אָמְרוּ חֲכָמִים מָקוֹם שֶׁבַּעֲלֵי תְּשׁוּבָה עוֹמְדִין אֵין צַדִּיקִים גְּמוּרִין יְכוֹלִין לַעֲמֹד בּוֹ. כְּלוֹמַר מַעֲלָתָן גְּדוֹלָה מִמַּעֲלַת אֵלּוּ שֶׁלֹּא חָטְאוּ מֵעוֹלָם מִפְּנֵי שֶׁהֵן כּוֹבְשִׁים יִצְרָם יוֹתֵר מֵהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרו חכמים מקום שבעלי תשובה עומדים אין צדיקים גמורים יכולין לעמוד בו.</strong> וכתב הכ&quot;מ מימרא דרבי אבהו בפרק אין עומדין. וקשה אמאי העתיק רבינו לדרבי אבהו הא ר׳ יוחנן פליג התם וסבר דצדיקים גמורים עדיפי מבעלי תשובה והל&quot;ל כר׳ יוחנן נגד ר׳ אבהו תלמידו. הן אמת דכדעת ר׳ אבהו איתא ג&quot;כ בספר הזוהר פרשת חיי שרה (דף קכ&quot;ט ע&quot;ב) אמנם רבינו גופיה ודאי לא מטעם זה כתב לדרבי אבהו שהרי עדיין לא היה ספר הזוהר בימיו:</p>
               </div>
             </div>
@@ -312,6 +343,10 @@
               <a href="#chapter-nachal-eitan-on-mishneh-torah-repentance-text-7">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-repentance.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/nachal-eitan-on-mishneh-torah-repentance-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -332,8 +367,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-repentance.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/nachal-eitan-on-mishneh-torah-repentance.manifest.json","occurrence_url":"../../data/lexical/occurrences/nachal-eitan-on-mishneh-torah-repentance.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-repentance.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/nachal-eitan-on-mishneh-torah-repentance.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/nachal-eitan-on-mishneh-torah-repentance.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -359,7 +394,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

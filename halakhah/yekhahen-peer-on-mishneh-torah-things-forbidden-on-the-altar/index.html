@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/">Open Mishneh Torah, Things Forbidden on the Altar</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Things Forbidden on the Altar</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">26 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>437 matched</strong> / 1224 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -243,8 +244,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 1:1:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-1-1-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-1-1">Mishneh Torah, Things Forbidden on the Altar 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִהְיוֹת כָּל הַקָּרְבָּנוֹת תְּמִימִין וּמֻבְחָרִין שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב-כא)</span> &quot;תָּמִים יִהְיֶה לְרָצוֹן&quot; זוֹ מִצְוַת עֲשֵׂה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה להיות כל הקרבנות תמימין וכו׳. מפי השמועה למדו שזו אזהרה למקדיש בעלי מומין וכו׳.</strong> עי׳ תמורה ה׳ ע&quot;ב הלשון המקדיש בעל מום עובר משום חמשה וכו׳ ובגליון הש&quot;ס שם דמוחק הלשון משום בל תקריבו דבאמת אין לזה הבנה ובתורת כהנים אמור ליתא ולכאורה היה מקום לומר דבל תקריבו היינו על הולכה שלא להוליך קרבן בעל מום ע&quot;ג המזבח. אך נראה דבהולכה לכו&quot;ע ליכא חיוב דהרי בתמורה דף ה׳ פליגי בקבלת בעל מום אי חייב ומשמע דבהולכה לכו&quot;ע פטור יעו&quot;ש היטב בסוגיא. אך קשה לפי&quot;ז דמנה חמשה לא תעשה דבל תקטירו כולו ובל תקטירו מקצתו דהוי רק לאו אחד ועי׳ בסמ&quot;ג בל&quot;ת זו ובמנחת חינוך מצוה רפ&quot;ט. והא דלוקה על מקדיש בעל מום צ&quot;ל משום דבדיבורא איתעביד מעשה ויש לדקדק קצת בפ&quot;ק דתמורה דף ה׳ דלמה לא נקיט גם מקדיש בעל מום דלקי משום דבדיבוריה איתעביד מעשה והנה לענין בל תקטירו מקצתו לא נתפרש בגמ׳ כמה השיעור אבל פשוט דהשיעור כמו בשאור ודבש יעו&quot;ש בענין אי יש הקטרה פחותה מכזית. והנה לשון הר&quot;מ ז&quot;ל לקמן בהל׳ ד׳ וכן המקטיר אימורי בעלי מומין לוקה שנאמר ואשה לא תתנו וכו׳ אלו החלבים וגו׳. אבל פשוט דה&quot;ה במקטיר אברי עולה וכהא דתמורה (דף ז׳) המעלה אברי בעלי מומין ע&quot;ג המזבח וכו׳.</p>
               </div>
             </div>
@@ -259,8 +265,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 1:2:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-1-2-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-1-2">Mishneh Torah, Things Forbidden on the Altar 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכָל הַמַּקְדִּישׁ בְּהֵמָה שֶׁיֵּשׁ בָּהּ מוּם לְגַבֵּי הַמִּזְבֵּחַ עוֹבֵר בְּלֹא תַּעֲשֶׂה וְלוֹקֶה עַל הֶקְדֵּשׁוֹ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כב-כ)</span> &quot;כּל אֲשֶׁר בּוֹ מוּם לֹא תַקְרִיבוּ&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזּוֹ אַזְהָרָה לְמַקְדִּישׁ בַּעֲלֵי מוּמִין אֲפִלּוּ הִקְדִּישׁוֹ לִדְמֵי [נְסָכִים] לוֹקֶה שֶׁבִּזְיוֹן קָדָשִׁים הוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה להיות כל הקרבנות תמימין וכו׳. מפי השמועה למדו שזו אזהרה למקדיש בעלי מומין וכו׳.</strong> עי׳ תמורה ה׳ ע&quot;ב הלשון המקדיש בעל מום עובר משום חמשה וכו׳ ובגליון הש&quot;ס שם דמוחק הלשון משום בל תקריבו דבאמת אין לזה הבנה ובתורת כהנים אמור ליתא ולכאורה היה מקום לומר דבל תקריבו היינו על הולכה שלא להוליך קרבן בעל מום ע&quot;ג המזבח. אך נראה דבהולכה לכו&quot;ע ליכא חיוב דהרי בתמורה דף ה׳ פליגי בקבלת בעל מום אי חייב ומשמע דבהולכה לכו&quot;ע פטור יעו&quot;ש היטב בסוגיא. אך קשה לפי&quot;ז דמנה חמשה לא תעשה דבל תקטירו כולו ובל תקטירו מקצתו דהוי רק לאו אחד ועי׳ בסמ&quot;ג בל&quot;ת זו ובמנחת חינוך מצוה רפ&quot;ט. והא דלוקה על מקדיש בעל מום צ&quot;ל משום דבדיבורא איתעביד מעשה ויש לדקדק קצת בפ&quot;ק דתמורה דף ה׳ דלמה לא נקיט גם מקדיש בעל מום דלקי משום דבדיבוריה איתעביד מעשה והנה לענין בל תקטירו מקצתו לא נתפרש בגמ׳ כמה השיעור אבל פשוט דהשיעור כמו בשאור ודבש יעו&quot;ש בענין אי יש הקטרה פחותה מכזית. והנה לשון הר&quot;מ ז&quot;ל לקמן בהל׳ ד׳ וכן המקטיר אימורי בעלי מומין לוקה שנאמר ואשה לא תתנו וכו׳ אלו החלבים וגו׳. אבל פשוט דה&quot;ה במקטיר אברי עולה וכהא דתמורה (דף ז׳) המעלה אברי בעלי מומין ע&quot;ג המזבח וכו׳.</p>
               </div>
             </div>
@@ -275,8 +286,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 1:3:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-1-3-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-1-3">Mishneh Torah, Things Forbidden on the Altar 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּתְכַּוֵּן לוֹמַר שְׁלָמִים וְאָמַר עוֹלָה עוֹלָה וְאָמַר שְׁלָמִים לֹא אָמַר כְּלוּם עַד שֶׁיִּהְיוּ פִּיו וְלִבּוֹ שָׁוִים. לְפִיכָךְ הַמִּתְכַּוֵּן לוֹמַר עַל בַּעַל מוּם עוֹלָה וְהִקְדִּישׁוֹ שְׁלָמִים אוֹ שְׁלָמִים וְאָמַר עוֹלָה אַף עַל פִּי שֶׁנִּתְכַּוֵּן לְאִסּוּר אֵינוֹ לוֹקֶה. מִי שֶׁדִּמָּה שֶׁמֻּתָּר לְהַקְדִּישׁ בַּעַל מוּם לַמִּזְבֵּחַ וְהִקְדִּישׁ הֲרֵי זֶה קָדוֹשׁ וְאֵינוֹ לוֹקֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המתכוין </strong>
 <strong> לומר שלמים ואמר עולה עולה ואמר שלמים לא אמר כלום וכו׳ לפיכך המתכוין לומר על בעל מום עולה והקדישו שלמים אע&quot;פ שנתכוין לאיסור אינו לוקה.</strong> ועי׳ בכ&quot;מ דמקורו ממתני׳ בפ&quot;ג דתרומות מ&quot;ח ולכאורה יש לעיין קצת למ&quot;ד דכל מקום דאמר רחמנא לא תעביד אי עביד לא מהני והא דלקי משום דעבר אמימרא דרחמנא א&quot;כ גם בזה נהי דלא קדיש ולא מהני מ&quot;מ נימא דלוקה. והנה י&quot;ל דבאמת הוי לאו שאין בו מעשה והא דלוקה משום דבדיבוריה איתעביד מעשה והיינו משום שע&quot;י דיבורו נתקדש ונעשה מחולין קדשים וכמו שפירש רש&quot;י ז&quot;ל בפ&quot;ק דתמורה וא&quot;כ כאן כשאין חל ההקדש שוב לא לקי משום דהוי לאו שאין בו מעשה והבן.</p>
               </div>
@@ -292,8 +308,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 1:4:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-1-4-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-1-4">Mishneh Torah, Things Forbidden on the Altar 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹחֵט בַּעַל מוּם לְשֵׁם קָרְבָּן לוֹקֶה שֶׁהֲרֵי נֶאֱמַר בְּבַעֲלֵי מוּמִין <span class="source-small">(ויקרא כ״ב:כ״ב)</span> &quot;לֹא תַקְרִיבוּ אֵלֶּה לַה׳&quot;. וּמִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזֶּה אַזְהָרָה לַשּׁוֹחֵט. וְכֵן הַזּוֹרֵק דַּם בַּעֲלֵי מוּמִין עַל הַמִּזְבֵּחַ לוֹקֶה שֶׁהֲרֵי נֶאֱמַר בָּהֶן <span class="source-small">(ויקרא כב-כד)</span> &quot;לֹא תַקְרִיבוּ (אֵלֶּה) לַה׳&quot; מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁזֶּה אַזְהָרָה לַזּוֹרֵק. וְכֵן הַמַּקְטִיר אֵימוּרֵי בַּעֲלֵי מוּמִין עַל הַמִּזְבֵּחַ לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כ״ב:כ״ב)</span> &quot;וְאִשֶּׁה לֹא תִתְּנוּ מֵהֶם עַל הַמִּזְבֵּחַ&quot; אֵלּוּ הַחֲלָבִים. נִמְצֵאתָ לָמֵד שֶׁאִם הִקְדִּישׁ בַּעַל מוּם וּשְׁחָטוֹ וְזָרַק דָּמוֹ וְהִקְטִיר אֵימוּרָיו לוֹקֶה אַרְבַּע מַלְקִיּוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השוחט </strong>
 <strong> בעל מום לשם קרבן לוקה.</strong> וכתב ע&quot;ז מרן הכ&quot;מ ז&quot;ל דדקדק הר&quot;מ ז&quot;ל לומר לשם קרבן דאם שוחט לשם קדשי בדק הבית אינו לוקה וכמו בשוחט בחוץ ובמל&quot;מ מקשה דבתמורה (דף ו׳) מבואר המיעוט הזה רק גבי שחוטי חוץ ומנ&quot;ל דזה גם בשוחט בעל מום יעו&quot;ש דלכאורה גם קדשי בדק הבית נקראו קרבן וכהא דתמורה שם וביומא (ס&quot;ב ע&quot;ב) והיה קצת מקום לומר בדעת הר&quot;מ ז&quot;ל דס&quot;ל דהשוחט בעל מום שלא לשמה לא לקי ובזה היה מדויק לשון הר&quot;מ ז&quot;ל השוחט בעל מום לשם קרבן. היינו לשם אותו הקרבן אבל לשם קרבן אחר לא לקי. אך קשה לחדש כן.</p>
               </div>
@@ -309,8 +330,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 1:6:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-1-6-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-1-6">Mishneh Torah, Things Forbidden on the Altar 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְלֹא קָרְבְּנוֹת יִשְׂרָאֵל בִּלְבַד אֶלָּא אַף קָרְבְּנוֹת עַכּוּ&quot;ם אִם הִקְרִיבָן וְהֵן בַּעֲלֵי מוּמִין לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כ״ב:כ״ה)</span> &quot;וּמִיַּד בֶּן נֵכָר לֹא תַקְרִיבוּ אֶת לֶחֶם אֱלֹהֵיכֶם מִכָּל אֵלֶּה&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ולא </strong>
 <strong> קרבנות ישראל בלבד אלא אף קרבנות עכו&quot;ם אם הקריבן והם בעלי מומין לוקה.</strong> ויש לעיין אם בקרבנות עכו&quot;ם עובר ג&quot;כ במום עובר כמו בקרבנות ישראל או לא. וכן במטיל מום בקרבנות עכו&quot;ם אם לקי ועיין רש&quot;י גיטין נ&quot;ו ע&quot;א ד&quot;ה יאמרו דמשמע דגם בקדשי עכו&quot;ם איכא הלא תעשה שלא להטיל מום.</p>
               </div>
@@ -326,8 +352,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 1:10:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-1-10-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-1-10">Mishneh Torah, Things Forbidden on the Altar 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ בַּעֲלַת מוּם לַמִּזְבֵּחַ אַף עַל פִּי שֶׁלּוֹקֶה הֲרֵי זוֹ נִתְקַדְּשָׁה וְתִפָּדֶה בְּעֵרֶךְ הַכֹּהֵן וְתֵצֵא לְחֻלִּין וְיָבִיא בְּדָמֶיהָ קָרְבָּן. וְכֵן הַדִּין בְּבֶהֱמַת קָדָשִׁים שֶׁנָּפַל בָּהּ מוּם. וּמִצְוַת עֲשֵׂה הִיא לִפְדּוֹת קָדָשִׁים שֶׁנּוֹלַד בָּהֶן מוּם וְיֵצְאוּ לְחֻלִּין וְיֵאָכְלוּ שֶׁנֶּאֱמַר <span class="source-small">(דברים י״ב:ט״ו)</span> &quot;רַק בְּכָל אַוַּת נַפְשְׁךָ תִּזְבַּח וְאָכַלְתָּ בָשָׂר&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁהַכָּתוּב מְדַבֵּר בִּפְסוּלֵי הַמֻּקְדָּשִׁין שֶׁיִּפָּדוּ. וּכְבָר בֵּאַרְנוּ בַּעֲרָכִין שֶׁזֶּה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז-יא)</span> &quot;וְאִם כָּל בְּהֵמָה טְמֵאָה אֲשֶׁר לֹא יַקְרִיבוּ מִמֶּנּוּ קָרְבָּן לַה׳&quot; שֶׁהוּא מְדַבֵּר בְּבַעֲלֵי מוּמִין שֶׁנִּפְדּוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המקדיש </strong>
 <strong> בעלת מום למזבח אע&quot;פ שלוקה הרי זו נתקדשה ותפדה בערך הכהן וכו׳.</strong> ועי׳ בכ&quot;מ דשיטת הרמב&quot;ם ז&quot;ל לרבי יוחנן דבעל מום מעיקרו העמדה לא בעי אבל הערכה בעי יעו&quot;ש ובלח&quot;מ ואינו מובן כ&quot;כ, דכיון דבעל מום מעיקרו נתמעט מקרא דאותה. והרי קרא דאותה כתיב גבי הערכה והעריך אותה הכהן א&quot;כ מנ&quot;ל לומר דנהי דלא בעי העמדה ונפדה גם מת אבל מ&quot;מ הערכה בעי.</p>
               </div>
@@ -343,8 +374,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 1:10:2</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-1-10-2" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 1:10:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-1-10">Mishneh Torah, Things Forbidden on the Altar 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּקְדִּישׁ בַּעֲלַת מוּם לַמִּזְבֵּחַ אַף עַל פִּי שֶׁלּוֹקֶה הֲרֵי זוֹ נִתְקַדְּשָׁה וְתִפָּדֶה בְּעֵרֶךְ הַכֹּהֵן וְתֵצֵא לְחֻלִּין וְיָבִיא בְּדָמֶיהָ קָרְבָּן. וְכֵן הַדִּין בְּבֶהֱמַת קָדָשִׁים שֶׁנָּפַל בָּהּ מוּם. וּמִצְוַת עֲשֵׂה הִיא לִפְדּוֹת קָדָשִׁים שֶׁנּוֹלַד בָּהֶן מוּם וְיֵצְאוּ לְחֻלִּין וְיֵאָכְלוּ שֶׁנֶּאֱמַר <span class="source-small">(דברים י״ב:ט״ו)</span> &quot;רַק בְּכָל אַוַּת נַפְשְׁךָ תִּזְבַּח וְאָכַלְתָּ בָשָׂר&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁהַכָּתוּב מְדַבֵּר בִּפְסוּלֵי הַמֻּקְדָּשִׁין שֶׁיִּפָּדוּ. וּכְבָר בֵּאַרְנוּ בַּעֲרָכִין שֶׁזֶּה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כז-יא)</span> &quot;וְאִם כָּל בְּהֵמָה טְמֵאָה אֲשֶׁר לֹא יַקְרִיבוּ מִמֶּנּוּ קָרְבָּן לַה׳&quot; שֶׁהוּא מְדַבֵּר בְּבַעֲלֵי מוּמִין שֶׁנִּפְדּוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ומצות עשה הוא לפדות קדשים שנולד בהם מום ויצאו לחולין ויאכלו שנאמר תזבח ואכלת בשר. </strong> ויש לעיין אי המצוה רק הפדייה או דגם האכילה בכלל המצוה דהרי גם פסולי המוקדשין יש בהן צד קדושה דאין נשחטין באטליז ואין נמכרין בלטרא ועיין בבכורות (דף ל&quot;א) ובתוס׳ שם דמשמע דהיא מן התורה. גם יש לעיין אי מצוה זו רק בקדשים שנפל בהם מום או גם במקדיש בעל מום יש מצוה זו לפדותן ומלשון הרמב&quot;ם ז&quot;ל משמע קצת דזה רק בקדשים שנפל בהן מום. גם נסתפקתי אי כשנפדה צריך ליקח מהמעות ממש אותו הקרבן שהיה או דיכול ליקח גם קרבן אחר. וביותר יש להסתפק במקדיש בעל מום קבוע אי צריך ממש ליקח כאותו הקרבן שהקדיש או לא. ועיין לשון הגמ׳ בכורות (ט&quot;ו) מתפיסן לשם אותו זבח אבל עם כל זה צ&quot;ע בנידון דידן.</p>
               </div>
             </div>
@@ -360,8 +396,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 2:2:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-2-2-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-2-2">Mishneh Torah, Things Forbidden on the Altar 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵשׁ מוּמִין אֲחֵרִים מְיֻחָדִין בַּבְּהֵמָה וְאֵינָן רְאוּיִין לִהְיוֹת בְּאָדָם. וּשְׁלֹשָׁה וְעֶשְׂרִים הֵם וְאֵלּוּ הֵן. אִם הָיָה גַּלְגַּל עֵינָהּ עָגל כְּשֶׁל אָדָם. עֵינָהּ אַחַת גְּדוֹלָה כְּשֶׁל עֵגֶל וְהַשְּׁנִיָּה קְטַנָּה כְּשֶׁל אַוָּז. אֲבָל אִם הָיְתָה אֹזֶן גְּדוֹלָה וְאֹזֶן קְטַנָּה אֲפִלּוּ קְטַנָּה עַד כְּפוֹל כָּשֵׁר. אִם יֵשׁ בְּלֹבֶן עֵינָהּ יַבֶּלֶת שֶׁיֵּשׁ בָּהּ שֵׂעָר. אִם נִקַּב הָעוֹר שֶׁבֵּין שְׁנֵי חֳטָמֶיהָ בַּמָּקוֹם הַנִּרְאֶה. פִּיהָ דּוֹמֶה לְשֶׁל חֲזִיר פָּרוּס אַף עַל פִּי שֶׁאֵינוֹ מְחֻדָּד כְּשִׁפּוּד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויש </strong>
 <strong> מומין אחרים מיוחדים בבהמה וכו׳.</strong> עי׳ בכ&quot;מ שתמה על הרמב&quot;ם ז&quot;ל דלמה חטין החיצוניות והפנימיות שניקבו לא יפסלו גם באדם דהא תנינן מומין אילו פוסלין באדם ובלח&quot;מ תמה על הר&quot;מ מגמ׳ ערוכה ריש פ׳ מומין אילו דמבואר דחטין ליתנייהו באדם. ונראה דיש לחלק בין חטין החיצוניות לפנימיות דבחיצוניות גם באדם הוי מום לפי המבואר בגמ׳ בבכורות (מ&quot;ב) דחיטין ליתנייהו באדם משום שיש לו שינים ואין נראין החיטין וא&quot;כ זה רק בפנימיות אבל בחיצוניות הוי מום ושפיר הקשה הכ&quot;מ.</p>
               </div>
@@ -377,8 +418,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 2:6:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-2-6-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-2-6">Mishneh Torah, Things Forbidden on the Altar 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מוּם מִשְּׁלֹשָׁה וְשִׁבְעִים מוּם הַמְּנוּיִין בַּבְּהֵמָה פּוֹסְלִין אוֹתָהּ מִן הַקָּרְבָּן. וְאִם נָפַל אֶחָד מֵהֶם בִּתְמִימָה שֶׁהִיא קֹדֶשׁ תִּפָּדֶה וְתֵצֵא לְחֻלִּין. חוּץ מִזָּקֵן וְחוֹלֶה וּמְזֹהָם שֶׁאַף עַל פִּי שֶׁאֵינוֹ כָּשֵׁר לְקָרְבָּן אֵינוֹ נִפְדֶּה. אֶלָּא יִהְיֶה קַיָּם וְרוֹעֶה עַד שֶׁיִּוָּלֵד בּוֹ מוּם אַחֵר קָבוּעַ מִשְּׁאָר הַמּוּמִין וְיִפָּדֶה. וְכֵן בֶּהֱמַת קָדָשִׁים שֶׁנּוֹלַד בָּהּ מוּם עוֹבֵר אֵינָהּ קְרֵבָה וְלֹא נִפְדֵּית:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חוץ </strong>
 <strong> מזקן חולה ומזוהם שאע&quot;פ שאינו כשר לקרבן אינו נפדה.</strong> עי׳ מל&quot;מ שהאריך לומר דאם עבר והקריב זקן דפסול. והביא ראיה מהא דכתב הר&quot;מ ז&quot;ל בפ&quot;ז מביאת מקדש דאדם זקן שהקריב פסול וה&quot;ה בבהמה דזקן פסול גם בדיעבד. וקצת יש לדון בזה דטעם דזקן פסול באדם שאינו ראוי כ&quot;כ לשירות ולעבודה וכדכתיב בקרא גבי לוים דמבן חמשים שנה ישוב מצבא העבודה משא&quot;כ בבהמה דלא שייכא זאת מנ&quot;ל דפסול. אך מדכיילינהו הרמב&quot;ם ז&quot;ל זקן חולה ומזוהם בחדא. משמע דפסול. דחולה בודאי דפסול גם בדיעבד וכדכתיב בקרא והבאתם גזול וגו׳ ואת החולה הקריבהו נא לפחתך. וגם מזוהם נראה כן דפסול גם בדיעבד ועיין ברכות נ&quot;ג ע&quot;ב כשם שמזוהם פסול לעבודה.</p>
               </div>
@@ -394,8 +440,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 2:8:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-2-8-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-2-8">Mishneh Torah, Things Forbidden on the Altar 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ שָׁם אַרְבָּעָה חֳלָיִים אֲחֵרִים אִם נִמְצָא אֶחָד מֵהֶם בִּבְהֵמָה אֵין מַקְרִיבִין אוֹתָהּ. לְפִי שֶׁאֵינָהּ מִן הַמֻּבְחָר וְהַכָּתוּב אוֹמֵר <span class="source-small">(דברים יב-יא)</span> &quot;מִבְחַר נְדָרֶיךָ&quot;. וְאֵלּוּ הֵן. מִי שֶׁבְּלֹבֶן עֵינוֹ יַבֶּלֶת שֶׁאֵין בּוֹ שֵׂעָר. אִם נִגְמְמוּ קַרְנָיו אַף עַל פִּי שֶׁנִּשְׁאַר מִזִּכְרוּתָן מְעַט סָמוּךְ לַבָּשָׂר. אִם נִפְגְּמוּ חִטָּיו הַפְּנִימִיּוֹת. אִם הָיָה אֶחָד מֵאֵלּוּ בְּקָדָשִׁים לֹא קְרֵבִין וְלֹא נִפְדִּין. אֶלָּא יִרְעוּ עַד שֶׁיִּפּל בָּהֶן מוּם. וְאִם הִקְרִיבָן יֵרָאֶה לִי שֶׁהֻרְצוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש </strong>
 <strong> שם ארבעה חוליים אחרים וכו׳ לפי שאינה מן המובחר והכתוב אומר מבחר נדריך וכו׳ ואם הקריבן יראה לי שהורצה.</strong> פשוט דטעם הרמב&quot;ם ז&quot;ל דאינו מעכב משום דלא שינה עליו הכתוב לעכב. ועיין במנחות (ס&quot;ד) גבי שחט כחושה ואח&quot;כ שחט שמינה דפירש&quot;י ז&quot;ל דצריך להביא שמינה משום דכתיב הקריבהו נא לפחתך. ולכאורה למה לא יליף רש&quot;י ז&quot;ל מקרא דמבחר נדריך דקרא דהקריבהו הוי רק דברי קבלה אך פשוט דמבחר נדריך קאי רק אקודם השחיטה אבל כשכבר שחט ונמצא כחושה בבני מעיים לא שייכא זה. ולזה מייתי מקרא דדברי קבלה דהקריבהו וגו׳. והנה מלשון הרמב&quot;ם ז&quot;ל כאן משמע דלא הוי מום כלל רק דאינו ממבחר נדריך אבל רש&quot;י ז&quot;ל בבכורות (מ&quot;א) פירש דלא הוי מום גמור לשחוט עליו ומשמע דעכ&quot;פ עבר בעשה דתמים וגו׳. ועי׳ בחולין (דף פ׳) דכל הפסולין שבשור ושה בלא ירצה וא&quot;כ לדעת רש&quot;י ז&quot;ל היה נראה דפסול גם בדיעבד ועיין בבכורות שם גבי שרוע וקלוט ודו&quot;ק.</p>
               </div>
@@ -411,8 +462,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 2:10:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-2-10-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-2-10">Mishneh Torah, Things Forbidden on the Altar 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּהֵמָה שֶׁנּוֹלַד בָּהּ אַחַת מִן הַטְּרֵפִיּוֹת הָאוֹסְרוֹת אוֹתָהּ בַּאֲכִילָה אֲסוּרָה לְגַבֵּי הַמִּזְבֵּחַ הֲרֵי הוּא אוֹמֵר <span class="source-small">(מלאכי א-ח)</span> &quot;הַקְרִיבֵהוּ נָא לְפֶחָתֶךָ הֲיִרְצְךָ אוֹ הֲיִשָּׂא פָנֶיךָ&quot;. וְאַף עַל פִּי שֶׁאֵינָהּ רְאוּיָה לְקָרְבָּן אֵין פּוֹדִין אוֹתָהּ שֶׁאֵין פּוֹדִין אֶת הַקָּדָשִׁים לְהַאֲכִילָן לַכְּלָבִים. אֶלָּא יִרְעוּ עַד שֶׁיָּמוּתוּ וְיִקָּבְרוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בהמה </strong>
 <strong> שנולד בה אחת מן הטרפיות האוסרות אותה באכילה וכו׳ ואע&quot;פ שאינה ראויה לקרבן אין פודין אותה שאין פודין את הקדשים להאכילם לכלבים.</strong> והיא ממתני׳ בכורות (נ&quot;ז) ותמורה (דף ל׳). ולכאורה לפי המשמעות משיטת הרמב&quot;ם ז&quot;ל לעיל ה&quot;ו דס&quot;ל דכל זמן שאינו מום גמור נהי דלא קריבה מ&quot;מ אינו נפדה. ולפי&quot;ז למה ליה הטעם דאין פודין להאכילה לכלבים תיפוק ליה משום דלא הוי מום גמור ואינו נפדה ועיין בתוס׳ פ׳ התערובת דף ע&quot;א ועי׳ בכ&quot;מ שתמה על הרמב&quot;ם ז&quot;ל דהרי טריפה פסול מן התורה מקרא דמן הבקר. ויש לדחוק קצת דהנה בתמורה (כט) דיש ג׳ לימודים בנולד טריפה ובנטרפה ואח&quot;כ הקדישה ובהקדישה ואח&quot;כ נטרפה וקרא דכי יעבור על הקדישה ואח&quot;כ נטרפה יעו&quot;ש. ולפי&quot;ז יש ליישב קצת דלפי מה דמבואר בבכורות (נ&quot;ז) דילפינן מקרא דכי יעבור דמנין הראוי פוטר וכן פסק הרמב&quot;ם ז&quot;ל בפ&quot;ח מהל׳ בכורות יעו&quot;ש וא&quot;כ שוב אין ראיה מקרא זה על הקדישה ואח&quot;כ נטרפה ולזה שפיר צריך לזה הטעם דהקריבהו לפחתך.</p>
               </div>
@@ -428,8 +484,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 2:11:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-2-11-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-2-11">Mishneh Torah, Things Forbidden on the Altar 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נִשְׁחֲטָה וְנִמְצֵאת טְרֵפָה הֲרֵי זוֹ תֵּצֵא לְבֵית הַשְּׂרֵפָה. וְכֵן אִם נִמְצָא אֶחָד מֵאֵיבָרֶיהָ הַפְּנִימִיִּין חָסֵר אַף עַל פִּי שֶׁאֵינָהּ טְרֵפָה כְּגוֹן שֶׁנִּמְצֵאת בְּכֻלְיָא אַחַת אוֹ שֶׁנִּטַּל הַטְּחוֹל הֲרֵי זוֹ אֲסוּרָה לַמִּזְבֵּחַ וְתִשָּׂרֵף. לֹא מִפְּנֵי שֶׁהִיא בַּעֲלַת מוּם שֶׁאֵין חִסָּרוֹן שֶׁבִּפְנִים מוּם אֶלָּא מִפְּנֵי שֶׁאֵין מַקְרִיבִין חָסֵר כְּלָל שֶׁנֶּאֱמַר <span class="source-small">(במדבר כח-יט)</span> <span class="source-small">(במדבר כ״ח:ל״א)</span> <span class="source-small">(במדבר כט-ח)</span> &quot;תְּמִימִם יִהְיוּ לָכֶם&quot;. וְכָל הַיָּתֵר כְּחָסֵר לְפִיכָךְ אִם נִמְצָא שָׁם שָׁלֹשׁ כֻּלְיוֹת אוֹ שְׁנֵי טְחוֹלִים פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן </strong>
 <strong> אם נמצא אחד מאיבריה הפנימיים חסר וכו׳ מפני שאין מקריבים חסר כלל שנאמר תמימים יהיו לכם.</strong> והיא מסוגיא דבכורות (דף ל&quot;ט) יעו&quot;ש בסוגיא. והנה המרשים [עין משפט] שם מציין דס&quot;ל להרמב&quot;ם ז&quot;ל דיש בריה באחת וחסרון בפנים שמיה חסרון. אבל קשה לומר דהרמב&quot;ם ז&quot;ל יסבור כן דהרי מתבאר שם בסוגיא דרק כשנבראת בשתים הוי חסרון בנחסר אחר זה אבל בנברא באחד לא הוי חסרון והרמב&quot;ם ז&quot;ל לא חילק כלל בזה. ולזה נראה ברור דהר&quot;מ ז&quot;ל ס&quot;ל כרבי יוחנן שם דלכו&quot;ע אין בריה באחת וחסרון בפנים שמיה חסרון ולדידיה גם בנחסר מתחילת ברייתו הוי חסרון דנהי דלא הוי מום מ&quot;מ תמים לא הוי וכמ&quot;ש הרמב&quot;ם ודו&quot;ק.</p>
               </div>
@@ -445,8 +506,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 2:12:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-2-12-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-2-12">Mishneh Torah, Things Forbidden on the Altar 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵי זוֹ הִיא סַנְוִירִין קְבוּעִים כָּל שֶׁשָּׁהָה שְׁמוֹנִים יוֹם וְלֹא רָאָה. וּבוֹדְקִין אוֹתוֹ שָׁלֹשׁ פְּעָמִים בְּיוֹם שִׁבְעָה וְעֶשְׂרִים מֵעֵת שֶׁהִרְגִּישׁוּ בּוֹ וּבְיוֹם אַרְבָּעָה וַחֲמִשִּׁים וּבְיוֹם שְׁמוֹנִים. אִם רָאָה מוֹנִים לוֹ שְׁמוֹנִים מֵעֵת שֶׁפָּסְקָה הָרְאִיָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אי </strong>
 <strong> זו היא סנוירין קבועים כל ששהה וכו׳ ובודקין אותו שלש פעמים וכו׳.</strong> עיין בלח&quot;מ מה שדייק דלמה משנה הר&quot;מ ז&quot;ל מכפי מה שפירש בפ&quot;ב דמגילה בהא דמשולשין יעו&quot;ש. והנה שיטת רש&quot;י ז&quot;ל כהרמב&quot;ם ז&quot;ל ועיי&quot;ש בתוס׳ דפליגי על רש&quot;י ז&quot;ל רק בתחילה ובאמצע היינו בארבעים ואח&quot;כ לסוף שמונים יום. והנה לכאורה יקשה לפי׳ התוס׳ דמאי שייך בדיקה בתחילה הלא יודעים שאינה רואית ומה שייך בזה עוד בדיקה. ואם נפרש דחוורור אינה ודאי שאינה רואית ולזה שייך בדיקה והיה מיושב לשון הרמב&quot;ם ז&quot;ל דנקיט מונים לו שמונים מעת שפסקה הראייה ולא נקיט מעת שבא הלבנונית. אך מלשון פי׳ המשנה להר&quot;מ ז&quot;ל בבכורות שם משמע דבזה נפסק הראייה יעו&quot;ש.</p>
               </div>
@@ -462,8 +528,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 2:16:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-2-16-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-2-16">Mishneh Torah, Things Forbidden on the Altar 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יֵשׁ בַּדָּבָר סָפֵק אִם לְמַפְרֵעַ הִיא בַּעֲלַת מוּם קָבוּעַ מֵעֵת שֶׁבָּאוּ לָהּ הַמּוּמִים אוֹ מֵעֵת שֶׁנִּתְיָאֲשׁוּ מֵרְפוּאָתָהּ. לְפִיכָךְ הַפּוֹדֶה אוֹתָהּ קֹדֶם שֶׁנִּתְיָאֲשׁוּ מֵרְפוּאָתָהּ וְנֶהֱנֶה בְּאוֹתוֹ הַפִּדְיוֹן אַחַר שֶׁנִּתְיָאֲשׁוּ מֵרְפוּאָתָהּ הֲרֵי זֶה סָפֵק מוֹעֵל וְאֵינוֹ מֵבִיא קָרְבַּן מְעִילָה כְּמוֹ שֶׁיִּתְבָּאֵר בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יש </strong>
 <strong> בדבר ספק אם למפרע היא בעלת מום קבוע וכו׳ לפיכך הפודה אותה קודם שנתייאשו מרפואתה ונהנה באותו הפדיון אחר שנתייאשו מרפואתה הר&quot;ז ספק מועל ואינו מביא קרבן מעילה.</strong> והקשה בני הר&quot;ר יצחק מאיר שיחי׳ דלמה נקיט דוקא אחר שנתייאשו ולמה לא באם נהנה מקודם דהיא ג&quot;כ ספק מעילה. אולם י&quot;ל דהנה מעילה רק בשגגה. וא&quot;כ הוי כמו כל השוגגין דהשב מידיעתו מביא קרבן על שגגתו אבל בלא שב מידיעתו אינו מביא קרבן. וא&quot;כ הא תינח באם נהנה באותו הפדיון אחר שנתייאשו מרפואתה דידעינן השתא שהיא מום קבוע ואם נימא דהוי מום למפרע שפיר הוי שב מידיעתו וממילא כאשר יש ספק הוי ספק מועל אבל באם נהנה מקודם דלא ידעינן כלל אי היה מום קבוע לא הוי שב מידיעתו כלל דגם אם היה מזיד לא הוי ידע אם הוא מום קבוע או מום עובר שוב לא שייך לומר דהוי ספק מועל דלא הוי שב מידיעתו וכנ&quot;ל. ועי׳ בריש הוריות ובירושלמי פ&quot;ז דתרומות ה&quot;ג בענין לא שב מידיעתו מחמת ספק אבל רש&quot;י ז&quot;ל בכורות ל&quot;ט פירש האיבעיא זו דמיירי בנהנה קודם כלות הזמן יום יעו&quot;ש. ולכאורה הא לא הוי שב מידיעתו דגם אם היה מזיד הלא יש ספק שמא הוי רק מום עובר ולא חייל הפדיון. והנראה לענ&quot;ד בזה דהרמב&quot;ם ז&quot;ל לשיטתו ורש&quot;י ז&quot;ל לשיטתייהו אזלי. דהנה דעת הרמב&quot;ם ז&quot;ל דספיקא דאורייתא מן התורה לקולא. ושיטת רש&quot;י ז&quot;ל דספיקא דאורייתא מן התורה לחומרא וכמ&quot;ש הר&quot;ן ז&quot;ל ועיין במלא הרועים שכתב דכולם מסכימים כי שיטת רש&quot;י ז&quot;ל דמן התורה לחומרא. ולפי&quot;ז י&quot;ל דלהר&quot;מ ז&quot;ל מוכרח לומר דמיירי בנהנה אחר שנתייאשו מרפואתה דמקודם לא שייך כלל לחייבו קרבן מעילה דהרי לא הוי שב מידיעתו דגם במזיד היה מותר לו מן התורה להנות דהוי ספק שמא לא חל הפדיון וליכא איסור מעילה וא&quot;כ מן התורה לקולא ומותר להנות ולא הוי שב מידיעתו. אבל לרש&quot;י ז&quot;ל לשיטתו דספיקא דאורייתא מן התורה לחומרא שפיר גם מקודם מועל אי נימא דלמפרע הוי מומא משום דהוי שב מידיעתו דבמזיד היה אסור לו להנות מן התורה מחמת ספק שמא הוי מומא ושפיר גם בכה&quot;ג יש מקום לחייב קרבן מעילה בשוגג ואתי שפיר ונכון.</p>
               </div>
@@ -480,8 +551,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 3:1:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-3-1-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-3-1">Mishneh Torah, Things Forbidden on the Altar 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַמּוּמִין פּוֹסְלִין בָּעוֹף וְכֵן אֶחָד הַזָּכָר וְאֶחָד הַנְּקֵבָה בָּעוֹף שֶׁלֹּא נֶאֱמַר <span class="source-small">(ויקרא כב-יט)</span> &quot;תָמִים זָכָר&quot; אֶלָּא בִּבְהֵמָה בִּלְבַד. בַּמֶּה דְּבָרִים אֲמוּרִים בְּמוּמִין קְטַנִּים. אֲבָל עוֹף שֶׁיָּבַשׁ גַּפּוֹ אוֹ נִסְמֵית עֵינוֹ אוֹ נִקְטְעָה רַגְלוֹ אָסוּר לְגַבֵּי הַמִּזְבֵּחַ שֶׁאֵין מַקְרִיבִין חָסֵר כְּלָל. וְכֵן אִם נוֹלַד בּוֹ אַחַת מִן הַטְּרֵפוֹת שֶׁאוֹסְרִין אוֹתָהּ בַּאֲכִילָה הֲרֵי זֶה נִפְסָל לְקָרְבָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong>
 <strong> המומין פוסלין בעוף וכו׳ בד&quot;א במומין קטנים אבל עוף שיבש גפו או נסמית עינו [וכו׳] אסור לגבי המזבח שאין מקריבין חסר כלל.</strong> יש קצת לדקדק בלשון הרמב&quot;ם ז&quot;ל במה דנקיט בד&quot;א במומין קטנים וכו׳ ומשמע דהחילוק הוא בין מומין קטנים לגדולים ומנא ליה להר&quot;מ ז&quot;ל זה הלא בגמ׳ קידושין (כד) ובכמה דוכתי משמע דבעוף פוסל רק מחוסר אבר. ועיין ברש&quot;י תמורה (יד) דנסמת עינו היא משום דהוי מגונה וכתיב הקריבהו וגו׳ אבל בתוס׳ שם דמיירי בנחטטה והוי מחוסר אבר יעו&quot;ש ונראה דהר&quot;מ ז&quot;ל ס&quot;ל כשיטת רש&quot;י ז&quot;ל דנסמית עינו לא מיירי בנחטטה ומ&quot;מ פוסל בעוף ולזה הכריח הר&quot;מ ז&quot;ל דמומין גדולים פוסל גם בעוף משום דכתיב הקריבהו וגו׳ ורק מומין קטנים נתמעטו מקרא דמן העוף ועי׳ לקמן ברמב&quot;ם ז&quot;ל שכתב וכן אם נולד בו אחת מן הטרפיות שאוסרין אותה באכילה הר&quot;ז נפסל לקרבן ועי׳ בכ&quot;מ דטעמא משום דכתיב הקריבהו נא לפחתך וההוא טעמא שייך נמי בעוף יעו&quot;ש. ואינו מובן למה לי זאת דתיפוק ליה דכיון דאסור להדיוט אסור גם לגבוה משום דאינו ממשקה ישראל. ויש לעיין אם זקן חולה ומזוהם פסול גם בעוף דגם בזה שייך הטעם דהקריבהו וכו׳ ובאמת לא נתבאר שיעור זקן בעוף ולא מצינו כלל פסול זה בעוף גבי תורים.</p>
               </div>
@@ -497,8 +573,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 3:5:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-3-5-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 3:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-3-5">Mishneh Torah, Things Forbidden on the Altar 3:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַנִּדְמֶה אַף עַל פִּי שֶׁאֵינוֹ כִּלְאַיִם הֲרֵי הוּא פָּסוּל לַמִּזְבֵּחַ. כֵּיצַד. רָחֵל שֶׁיָּלְדָה כְּמִין עֵז וְעֵז שֶׁיָּלְדָה כְּמִין כֶּבֶשׂ. אַף עַל פִּי שֶׁיֵּשׁ בּוֹ מִקְצָת סִימָנִין הוֹאִיל וְהוּא דּוֹמֶה לְמִין אַחֵר פָּסוּל כְּבַעַל מוּם קָבוּעַ שֶׁאֵין לְךָ מוּם קָבוּעַ גָּדוֹל מִן הַשִּׁנּוּי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הנדמה </strong>
 <strong> וכו׳ הרי הוא פסול למזבח וכו׳ אע&quot;פ שיש בו מקצת סימנין הואיל והוא דומה למין אחר פסול.</strong> ויש לעיין אם רובו דומה לאמו אם כשר למזבח די&quot;ל דבכה&quot;ג במיעוטו נשתנה לא חשיב נדמה וכשר.</p>
               </div>
@@ -514,8 +595,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 3:7:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-3-7-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-3-7">Mishneh Torah, Things Forbidden on the Altar 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְיֵרָאֶה לִי שֶׁאַף עַל פִּי שֶׁאֵין כָּל הַפְּסוּלִין הָאֵלּוּ רְאוּיִין לַמִּזְבֵּחַ לְקָרְבָּן אִם עָבַר וְהִקְרִיבָן אֵינוֹ לוֹקֶה מִן הַתּוֹרָה לְפִי שֶׁלֹּא נִתְפָּרְשָׁה אַזְהָרָתָן. <span class="source-small">(דברים כג-יט)</span> &quot;אֲבָל אֶתְנַן זוֹנָה וּמְחִיר&quot; כֶּלֶב אֲסוּרִין לְגַבֵּי הַמִּזְבֵּחַ וְהַמַּקְרִיב אֶחָד מֵהֶן אוֹ שְׁנֵיהֶן כְּאֶחָד לוֹקֶה אַחַת שֶׁנֶּאֱמַר <span class="source-small">(דברים כג-יט)</span> &quot;לֹא תָבִיא אֶתְנַן זוֹנָה וּמְחִיר כֶּלֶב&quot;. וּמִפְּנֵי מָה לוֹקֶה אַחַת עַל שְׁנֵיהֶן מִפְּנֵי שֶׁנֶּאֶמְרוּ בְּלָאו אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויראה </strong>
 <strong> לי שאע&quot;פ שאין כל הפסולין הללו ראויין למזבח אם עבר והקריבן אינו לוקה מן התורה לפי שלא נתפרשה אזהרתן.</strong> ומרן הכ&quot;מ ז&quot;ל תמה על הרמב&quot;ם ז&quot;ל דלמה כתב יראה לי דהרי כן מפורש בחולין דף פ׳ דלא לקי על כל הנהו משום דהכתוב נתקן לעשה. גם הקשה למה כתב משום דלא נתפרשה אזהרתן דהרי שם בגמרא מבואר דנתפרשה אזהרתן והא דלא לקי משום דהוי לאו הניתק לעשה. גם מה הטעם בשאר פסולין חוץ ממחוסר זמן שהרי לא נתקן לעשה. וקצת נראה לומר דהר&quot;מ ז&quot;ל לא קאי כאן על מחוסר זמן דמזה מייתי בהלכה ח׳ לקמן ביחוד. וס&quot;ל להרמב&quot;ם ז&quot;ל כפי׳ התוס׳ דתמהו בחולין שם על פירוש רש&quot;י ז&quot;ל דמאי ניתק לעשה היא זו ורק הפירוש דהכתוב נתקו מלאו ורק הוי עשה בלחוד ולאו הבא מכלל עשה הוי עשה וכאן בהלכה זו קאי הרמב&quot;ם ז&quot;ל על מ&quot;ש לעיל מינה לענין רובע ונרבע ומוקצה ונעבד דלכאורה היה צריך ללקות על כל אלו הפסולין לא מבעיא לפי גירסת הגמרא בתמורה (כ&quot;ח) ובחולין (כ&quot;ד) כל שהמום פוסל בו דבר ערוה ועבודה זרה פוסלין בו א&quot;כ דמי לבעלת מום והיה צריך לכאורה ללקות עליהן. ואפי׳ לפי מה דנראה מדברי הרמב&quot;ם ז&quot;ל לעיל בהלכה ו׳ דלא גרס כן בגמ׳ אלא דיליף לה מקרא דמשחתם בהם דהיינו דכל שיש בו השחתה פסול ועי׳ בפי׳ המשנה להר&quot;מ ז&quot;ל בתמורה שם מ&quot;מ כיון דקרא נקטינהו בהדי בעל מום והיה הו&quot;א דבכל הני לקי ולזה קאמר הרמב&quot;ם ז&quot;ל דמ&quot;מ כיון דלא נתפרשה אזהרתן בהדיא לא לקי עלייהו.</p>
               </div>
@@ -531,8 +617,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 3:8:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-3-8-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-3-8">Mishneh Torah, Things Forbidden on the Altar 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לְהַקְרִיב כָּל הַקָּרְבָּנוֹת מִיּוֹם הַשְּׁמִינִי וָהָלְאָה שֶׁנֶּאֱמַר <span class="source-small">(ויקרא כ״ב:כ״ז)</span> &quot;וְהָיָה שִׁבְעַת יָמִים תַּחַת אִמּוֹ וּמִיּוֹם הַשְּׁמִינִי וָהָלְאָה יֵרָצֶה&quot;. וְכָל שִׁבְעַת הַיָּמִים נִקְרָא מְחֻסַּר זְמַן. וְאַף עַל פִּי שֶׁמְּחֻסַּר זְמַן פָּסוּל אִם עָבַר וְהִקְרִיבוֹ אֵינוֹ לוֹקֶה מִפְּנֵי שֶׁהוּא לָאו הַבָּא מִכְּלַל עֲשֵׂה וְלֹא נִרְצָה הַקָּרְבָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות </strong>
 <strong> עשה להקריב כל הקרבנות מיום השמיני והלאה.</strong> עי׳ במל&quot;מ שנסתפק דהיכא דידעינן דכלו לו חדשיו לולד אי שרי להקריבו קודם שמונה ימים דליכא חשש נפל וכמו דמותר לאכילת הדיוט יעו&quot;ש. ולכאורה הלא דעת הרמב&quot;ם ז&quot;ל דכל הספיקות אסור רק מדבריהן ומן התורה מותר. א&quot;כ אם נאמר דגם לגבוה עיקר האיסור דקודם שמונה משום חשש נפל למה אסרה התורה מספיקא. הלא הספיקות מותרין מן התורה. אך לשיטת החכם צבי ז&quot;ל דבספק עשה מודה הרמב&quot;ם ז&quot;ל דספיקו להחמיר דהתורה דיברה על הודאי א&quot;כ אין ראיה מזה.</p>
               </div>
@@ -549,8 +640,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 4:4:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-4-4-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-4-4">Mishneh Torah, Things Forbidden on the Altar 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵאֵימָתַי תִּפָּסֵל הַבְּהֵמָה אוֹ הָעוֹף מִשּׁוּם מֻקְצֶה מִשֶּׁיַּעֲשׂוּ בָּהֶן הַכְּמָרִים מַעֲשֶׂה. כְּגוֹן שֶׁיִּגְזְזוּ אוֹתָהּ אוֹ יַעַבְדוּ בָּהּ לְשֵׁם עֲבוֹדָה זָרָה. אֲבָל בִּדְבָרִים אֵינוֹ נַעֲשֶׂה מֻקְצֶה שֶׁאֵין הֶקְדֵּשׁ לַעֲבוֹדָה זָרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מאימתי </strong>
 <strong> תיפסל הבהמה או העוף משום מוקצה משיעשו בהן הכומרים מעשה.</strong> ובהשגת הראב&quot;ד ז&quot;ל יש נוסחא אחרינא אין מוקצה אסור אלא עד שעה שיגזזו או שיעבדו דמשעה שיגוזו אותו בטלה הקצאתו וחללוהו. ויש לעיין בשיטת הראב&quot;ד ז&quot;ל מהא דמבואר בתוספתא פ&quot;ד דתמורה אמר שור זה לעכו&quot;ם בית זה לעכו&quot;ם לא אמר כלום שאין הקדש לע&quot;ז יעו&quot;ש. הרי להדיא כשיטת הרמב&quot;ם ז&quot;ל דבלא מעשה אינו נאסר. ויקשה מכאן על שיטת הראב&quot;ד ורש&quot;י ז&quot;ל בתמורה שם והרמב&quot;ן ז&quot;ל ב&quot;ב בפ׳ יש נוחלין דא&quot;צ מעשה שיחול עליו שם ע&quot;ז. ועי׳ בתמורה (כ&quot;ח) אין מוקצה אלא לז׳ שנים ועי׳ בפירוש רש&quot;י שם שני פירושים ועי׳ בחי׳ הרמב&quot;ן ז&quot;ל לב&quot;ב דף קכ&quot;ח וחידוש על הרמב&quot;ם ז&quot;ל שהשמיט דין ולא הביאו כלל בהלכותיו.</p>
               </div>
@@ -567,8 +663,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 5:1:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-5-1-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-5-1">Mishneh Torah, Things Forbidden on the Altar 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׂאוֹר וּדְבַשׁ אֲסוּרִין לְגַבֵּי הַמִּזְבֵּחַ וְאִסּוּרָן בְּכָל שֶׁהֵן שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ב׳:י״א)</span> &quot;כִּי כָל שְׂאֹר וְכָל דְּבַשׁ לֹא תַקְטִירוּ&quot; וְגוֹ׳. וְאֵינוֹ חַיָּב אֶלָּא אִם הִקְטִירָן עִם הַקָּרְבָּן אוֹ לְשֵׁם קָרְבָּן. וְאֶחָד הַמַּקְטִיר עַצְמָן אוֹ הַמַּקְטִיר תַּעֲרוֹבוֹת שֶׁלָּהֶן לוֹקֶה עַל כָּל אֶחָד מֵהֶן בִּפְנֵי עַצְמוֹ. וְאִם הִקְטִיר שְׁנֵיהֶן כְּאֶחָד אֵינוֹ לוֹקֶה אֶלָּא אַחַת לְפִי שֶׁשְּׁנֵיהֶם נֶאֶמְרוּ בְּלָאו אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שאור </strong>
 <strong> ודבש אסורין לגבי מזבח ואיסורן בכל שהן.</strong> ועי׳ בכ&quot;מ שתמה על הרמב&quot;ם ז&quot;ל מהא דכתב הר&quot;מ ז&quot;ל לקמן ואין הקטרה פחותה מכזית יעו&quot;ש. ולכאורה הלא י&quot;ל בדעת הרמב&quot;ם ז&quot;ל דנהי דאינו חייב בפחות מכזית מ&quot;מ איסור תורה יש וכמו חצי שיעור דאסור מן התורה. אך יש לדחות דכאן הלא לא שייך חזי לאיצטרופי דהרי קיי&quot;ל דהקטיר קומצה פעמיים פסולה [ועי׳ בפמ&quot;ג סי׳ ס&quot;ב גבי איסור חצי שיעור באבר מן החי] ויתכן לומר בדעת הרמב&quot;ם ז&quot;ל דמ&quot;ש הרמב&quot;ם ז&quot;ל לקמן בהלכה ב׳ ואין הקטרה פחותה מכזית היינו באם נפל מעט משאור ודבש ונתערב דבזה מיירי שם הרמב&quot;ם ז&quot;ל. ובכה&quot;ג אינו חייב כי אם בכזית. וכמ&quot;ש התוס׳ שבועות כ&quot;ג בשם רבינו יקיר ז&quot;ל דבכל שהוא ע&quot;י תערובות גם ר׳ שמעון מודה דפטור דבכה&quot;ג לא שייך אחשביה. אבל במקטיר בעיניה ס&quot;ל להרמב&quot;ם ז&quot;ל דגם במקטיר כל שהוא חייב. וס&quot;ל להרמב&quot;ם ז&quot;ל דמחלוקת אביי ורבא במנחות (נ&quot;ח) לענין הקטרה פחותה מכזית קאי רק אמקטיר שאור ודבש ע&quot;י תערובת [וכ&quot;כ רבינו הרדב&quot;ז ז&quot;ל בלשונות הרמב&quot;ם סי׳ פ&quot;ו בדעת הרמב&quot;ם ז&quot;ל דבמקטיר בעיניה חייב בכל שהוא ובע&quot;י תערובות רק בכזית יעו&quot;ש].</p>
               </div>
@@ -584,8 +685,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 5:9:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-5-9-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-5-9">Mishneh Torah, Things Forbidden on the Altar 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין מְבִיאִין מְנָחוֹת וּנְסָכִים לֹא מִן הַטֶּבֶל וְלֹא מִן הֶחָדָשׁ קֹדֶם לָעֹמֶר וְלֹא מִן הַמְדֻמָּע וְאֵין צָרִיךְ לוֹמַר מֵעָרְלָה וְכִלְאֵי הַכָּרֶם מִפְּנֵי שֶׁהִיא מִצְוָה הַבָּאָה בַּעֲבֵרָה שֶׁהַקָּדוֹשׁ בָּרוּךְ הוּא שׂוֹנְאָהּ. וְאִם הֵבִיא לֹא נִתְקַדְּשׁוּ לִהְיוֹתָן רְאוּיִין לְקָרְבָּן אֲבָל נִתְקַדְּשׁוּ לְהִפָּסֵל וְיִהְיוּ כְּקָדָשִׁים שֶׁנִּפְסְלוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong>
 <strong> מביאין מנחות ונסכים לא מן הטבל.</strong> ועיין במל&quot;מ שהעיר מהא דכתבו התוס׳ חולין (ק&quot;מ) דבקרבנות לא שייך הנאה משום דמצות לאו ליהנות ניתנו. ולכאורה היה נראה דבקרבנות הבאים לכפרה לא שייך זה דמשתרשי ליה עיין נדרים (ל&quot;ה) במתני׳ מקריב עליו וכו׳ ובפי׳ המשנה להר&quot;מ ז&quot;ל פ&quot;ב דשקלים דכיון דממשכנים על השקלים חשוב הנאה ולא שייך בזה מצות לאו ליהנות ניתנו יעו&quot;ש ובירושלמי דשקלים שם.</p>
               </div>
@@ -601,8 +707,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 5:11:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-5-11-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 5:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-5-11">Mishneh Torah, Things Forbidden on the Altar 5:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִמְלֹחַ כָּל הַקָּרְבָּנוֹת קֹדֶם שֶׁיַּעֲלוּ לַמִּזְבֵּחַ שֶׁנֶּאֱמַר <span class="source-small">(ויקרא ב׳:י״ג)</span> &quot;עַל כָּל קָרְבָּנְךָ תַּקְרִיב מֶלַח&quot;. וְאֵין לְךָ דָּבָר שֶׁקָּרֵב לַמִּזְבֵּחַ בְּלֹא מֶלַח חוּץ מִיֵּין הַנְּסָכִים וְהַדָּם וְהָעֵצִים. וְדָבָר זֶה קַבָּלָה וְאֵין לוֹ מִקְרָא לִסְמֹךְ עָלָיו. וּמִצְוָה לִמְלֹחַ הַבָּשָׂר יָפֶה יָפֶה כְּמוֹלֵחַ בָּשָׂר לְצָלִי שֶׁמְּהַפֵּךְ אֶת הָאֵיבָר וּמוֹלֵחַ. וְאִם מָלַח כָּל שֶׁהוּא אֲפִלּוּ בְּגַרְגִּיר מֶלַח אֶחָד כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות </strong>
 <strong> עשה למלוח כל הקרבנות וכו׳ ואם מלח כל שהוא כשר.</strong> קצת קשה דהא הרמב&quot;ם ז&quot;ל ס&quot;ל לקמן הי&quot;ב דגם במקריב בלא מלח נהי דלוקה מ&quot;מ הקרבן כשר. ודוחק לפרש דאם מלח כל שהוא כשר היינו דאינו עובר בלא תעשה.</p>
               </div>
@@ -619,8 +730,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 6:2:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-6-2-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 6:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-6-2">Mishneh Torah, Things Forbidden on the Altar 6:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן עֲצֵי הַמַּעֲרָכָה לֹא יִהְיוּ אֶלָּא נִבְחָרִים וְלֹא יִהְיֶה בָּהֶם תּוֹלַעַת. וְכָל עֵץ שֶׁהִתְלִיעַ כְּשֶׁהוּא לַח פָּסוּל לַמִּזְבֵּחַ. הִתְלִיעַ יָבֵשׁ גּוֹרֵר אֶת הַמָּקוֹם שֶׁהִתְלִיעַ. וַעֲצֵי סְתִירָה פְּסוּלִין לְעוֹלָם לֹא יָבִיאוּ אֶלָּא חֲדָשִׁים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל </strong>
 <strong> עץ שהתליע כשהוא לח פסול למזבח התליע יבש גורר מקום שהתליע.</strong> מבואר מדברי הרמב&quot;ם ז&quot;ל דתליא עיקר בעת שהתליע. ונראה הטעם דאם התליע כשהוא לח ע&quot;י הלחות נבלל ונתפשט בכולה ולא מהני הגרירה אח&quot;כ אפי׳ אם כבר נתייבש. אולם מפרש&quot;י במנחות (פ&quot;ה) מבואר דעיקר תליא אם עתה היא לח קשה לגרור אבל אם עתה הוא יבש שפיר מהני גרירה.</p>
               </div>
@@ -636,8 +752,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 6:6:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-6-6-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 6:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-6-6">Mishneh Torah, Things Forbidden on the Altar 6:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מֵי הֶחָג שֶׁנִּטְמְאוּ וְהִשִּׁיקָן וְטִהֲרָן [כְּמוֹ שֶׁיִּתְבָּאֵר בְּטָהֳרוֹת]. אִם טִהֲרָן וְאַחַר כָּךְ הִקְדִּישָׁן הֲרֵי אֵלּוּ מִתְנַסְּכִין. וְאִם הִקְדִּישָׁן וְאַחַר כָּךְ נִטְמְאוּ הוֹאִיל וְנִדְחוּ יִדָּחוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי </strong>
 <strong> החג שנטמאו והשיקן וכו׳ ואם הקדישן ואח&quot;כ נטמאו הואיל ונדחו ידחו.</strong> יש לעיין קצת דנראה מדברי הרמב&quot;ם ז&quot;ל דהטעם דהקדישן ואח&quot;כ נטמאו פסולין ולא מהני להו השקה הוא משום פסול דיחוי הואיל וכבר נדחו. אבל הלא בפסחים (ל&quot;ד) במקור דין זה מבואר דהיא משום דמעלה עשו בקדשים גם לכאורה איך שייך בזה דיחוי הלא בידו לעשות השקה ויטהר וכל שבידו לא חשיב דיחוי ועי׳ בצל&quot;ח פסחים ל&quot;ד ובירושלמי תרומות פ&quot;ט ה&quot;ד.</p>
               </div>
@@ -653,8 +774,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 6:8:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-6-8-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 6:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-6-8">Mishneh Torah, Things Forbidden on the Altar 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַעֲלָה יְתֵרָה עָשׂוּ חֲכָמִים בְּקָדָשִׁים שֶׁזְּרָעִים שֶׁנִּטְמְאוּ אֲפִלּוּ זְרָעָן הַיּוֹצֵא מֵהֶן פְּסוּלִין לִנְסָכִים שֶׁאֵין זְרִיעָה מוֹעֶלֶת בְּקָדָשִׁים. וְכֵן הָעֵצִים וְהַלְּבוֹנָה אַף עַל פִּי שֶׁאֵינָן אֳכָלִין הֲרֵי הֵן מִתְטַמְּאִין כְּאֹכֶל לְעִנְיַן הַקָּרְבָּנוֹת וְיִפָּסְלוּ הָעֵצִים וְהַלְּבוֹנָה בְּטֻמְאָה זוֹ לַמִּזְבֵּחַ וְאֵין מַקְרִיבִין אוֹתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעלה </strong>
 <strong> עשו חכמים בקדשים שזרעים שנטמאו אפי׳ זרען היוצא מהן פסולים. וכן העצים והלבונה אע&quot;פ שאינן אוכלין הרי הן מתטמאין כאוכל.</strong> ויש לעיין בעצים ולבונה שנטמאו וזרען אם גם בזה אמרינן דזרען היוצא מהן פסולין די&quot;ל דרק הם טמאים משום חיבת הקודש. משא&quot;כ בזרען היוצא מהן דלא שייך זה ובפרט אם נאמר דחיבת הקודש דרבנן י&quot;ל דזרען טהור דהוי כמו גזירה לגזירה ודו&quot;ק.</p>
               </div>
@@ -670,8 +796,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Yekhahen Pe&#39;er on Mishneh Torah, Things Forbidden on the Altar 6:11:1</h4></div>
               <a class="anchor" href="#yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-6-11-1" aria-label="Copy link to Yekhahen Pe'er on Mishneh Torah, Things Forbidden on the Altar 6:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-things-forbidden-on-the-altar/#mishneh-torah-things-forbidden-on-the-altar-6-11">Mishneh Torah, Things Forbidden on the Altar 6:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סלֶת שֶׁהִתְלִיעָה רֻבָּהּ אוֹ הִתְלִיעוּ רֹב הַחִטִּים שֶׁנַּעֲשֵׂית מֵהֶן פְּסוּלָה. הִתְלִיעַ רֹב חִטָּה אַחַת הֲרֵי זֶה סָפֵק. וְכָל סלֶת שֶׁנִּשְׁאַר בָּהּ קֶמַח פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סולת </strong>
 <strong> שהתליע רובה וכו׳ התליע רוב חטה אחת הרי זה ספק.</strong> ועי׳ בכ&quot;מ דמפרש דעת הרמב&quot;ם ז&quot;ל דגם בהתליע חטה אחת אפי׳ היא מעורבת בסאה חטים שלא התליעו מ&quot;מ פסול דלא בטל יעו&quot;ש. אבל צ&quot;ע לכאורה מהא דבעי בגמ׳ שם סאה שהתליעה רובה למה דוקא רובה הלא גם במיעוטה פסולה לשיטת הרמב&quot;ם ז&quot;ל.</p>
               </div>
@@ -682,6 +813,10 @@
               <a href="#chapter-yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-text-6">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -702,8 +837,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.manifest.json","occurrence_url":"../../data/lexical/occurrences/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/yekhahen-peer-on-mishneh-torah-things-forbidden-on-the-altar.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -729,7 +864,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

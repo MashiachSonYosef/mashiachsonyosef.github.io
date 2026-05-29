@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-torah-study/">Open Mishneh Torah, Torah Study</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Torah Study</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">3 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>49 matched</strong> / 117 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/mekorei-harambam-lerashash-on-mishneh-torah-torah-study-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -196,8 +197,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 1:1:1</h4></div>
               <a class="anchor" href="#mekorei-harambam-lerashash-on-mishneh-torah-torah-study-1-1-1" aria-label="Copy link to Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-1-1">Mishneh Torah, Torah Study 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִתַּלְמוּד תּוֹרָה. אֲבָל קָטָן אָבִיו חַיָּב לְלַמְּדוֹ תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים יא יט)</span> &quot;וְלִמַּדְתֶּם אֹתָם אֶת בְּנֵיכֶם לְדַבֵּר בָּם&quot;. וְאֵין הָאִשָּׁה חַיֶּבֶת לְלַמֵּד אֶת בְּנָהּ. שֶׁכָּל הַחַיָּב לִלְמֹד חַיָּב לְלַמֵּד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ, </strong> וכתיב בדוכתא אחרינא ולמדתם אותם כו׳, וכ&quot;כ בב&quot;י יו&quot;ד סי׳ רמ&quot;ה. ותימא דע&quot;ש בגמ׳ ובפירש&quot;י דיליף הכל מולמדתם כו׳ את בניכם דקרי ביה ולמדתם בקל ע&quot;ש:</p>
               </div>
             </div>
@@ -213,8 +219,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 5:5:1</h4></div>
               <a class="anchor" href="#mekorei-harambam-lerashash-on-mishneh-torah-torah-study-5-5-1" aria-label="Copy link to Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-5-5">Mishneh Torah, Torah Study 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאָסוּר לוֹ לְתַלְמִיד לִקְרוֹת לְרַבּוֹ בִּשְׁמוֹ וַאֲפִלּוּ שֶׁלֹּא בְּפָנָיו. וְהוּא שֶׁיִּהְיֶה הַשֵּׁם פֶּלְאִי שֶׁכָּל הַשּׁוֹמֵעַ יֵדַע שֶׁהוּא פְּלוֹנִי. וְלֹא יַזְכִּיר שְׁמוֹ בְּפָנָיו וַאֲפִלּוּ לִקְרוֹת לַאֲחֵרִים שֶׁשְּׁמָם כְּשֵׁם רַבּוֹ כְּדֶרֶךְ שֶׁעוֹשֶׂה בְּשֵׁם אָבִיו. אֶלָּא יְשַׁנֶּה אֶת שְׁמָם אֲפִלּוּ לְאַחַר מוֹתָם. וְלֹא יִתֵּן שָׁלוֹם לְרַבּוֹ אוֹ יַחֲזִיר לוֹ שָׁלוֹם כְּדֶרֶךְ שֶׁנּוֹתְנִים לְרֵעִים וּמַחֲזִירִים זֶה לָזֶה. אֶלָּא שׁוֹחֶה לְפָנָיו וְאוֹמֵר לוֹ בְּיִרְאָה וְכָבוֹד שָׁלוֹם עָלֶיךָ רַבִּי. וְאִם נָתַן לוֹ רַבּוֹ שָׁלוֹם יַחֲזִיר לוֹ שָׁלוֹם עָלֶיךָ רַבִּי וּמוֹרִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם נתן לו רבו שלום יחזיר לו שלום עליך רבי ומורי.</strong> הלח&quot;מ נדחק למוצא ד&quot;ז. והט&quot;ז ביו&quot;ד סי׳ רמ&quot;ב סק&quot;ה ג&quot;כ נדחק (וט&quot;ס שם וצ&quot;ל כמ&quot;ש סי׳ קמ&quot;ח ס&quot;י) והגר&quot;א ז&quot;ל כתב שם כמ&quot;ש בחלק בריב&quot;ל. וכוונתו נראה לדף צ&quot;ח ע&quot;ש. ותמוה דהא משם יהא מוכח דאף בתחילה צ&quot;ל רבי ומורי דהא ריב&quot;ל שאל למשיח מקודם. ול&quot;נ דמקורו הוא מריש ברכות גבי מעשה דר&quot;י ואליהו אמר לי שלום עליך רבי ואמרתי לו שלום עליך רבי ומורי:<br><strong> שוב </strong> ראיתי דכבר העיר למקור הזה בהגהת הגרע&quot;א בגליון היו&quot;ד שם:</p>
               </div>
             </div>
@@ -229,8 +240,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 5:9:1</h4></div>
               <a class="anchor" href="#mekorei-harambam-lerashash-on-mishneh-torah-torah-study-5-9-1" aria-label="Copy link to Mekorei HaRambam LeRashash on Mishneh Torah, Torah Study 5:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-torah-study/#mishneh-torah-torah-study-5-9">Mishneh Torah, Torah Study 5:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">רָאָה רַבּוֹ עוֹבֵר עַל דִּבְרֵי תּוֹרָה אוֹמֵר לוֹ לִמַּדְתָּנוּ רַבֵּנוּ כָּךְ וְכָךְ. וְכָל זְמַן שֶׁמַּזְכִּיר שְׁמוּעָה בְּפָנָיו אוֹמֵר לוֹ כָּךְ לִמַּדְתָּנוּ רַבֵּנוּ. וְאַל יֹאמַר דָּבָר שֶׁלֹּא שָׁמַע מֵרַבּוֹ עַד שֶׁיַּזְכִּיר שֵׁם אוֹמְרוֹ. וּכְשֶׁיָּמוּת רַבּוֹ קוֹרֵעַ כָּל בְּגָדָיו עַד שֶׁהוּא מְגַלֶּה אֶת לִבּוֹ וְאֵינוֹ מְאַחֶה לְעוֹלָם. בַּמֶּה דְּבָרִים אֲמוּרִים בְּרַבּוֹ מֻבְהָק שֶׁלָּמַד מִמֶּנּוּ רֹב חָכְמָתוֹ. אֲבָל אִם לֹא לָמַד מִמֶּנּוּ רֹב חָכְמָתוֹ הֲרֵי זֶה תַּלְמִיד חָבֵר וְאֵינוֹ חַיָּב בִּכְבוֹדוֹ בְּכָל אֵלּוּ הַדְּבָרִים. אֲבָל עוֹמֵד מִלְּפָנָיו וְקוֹרֵעַ עָלָיו כְּשֵׁם שֶׁהוּא קוֹרֵעַ עַל כָּל הַמֵּתִים שֶׁהוּא מִתְאַבֵּל עֲלֵיהֶם. אֲפִלּוּ לֹא לָמַד מִמֶּנּוּ אֶלָּא דָּבָר אֶחָד בֵּין קָטָן בֵּין גָּדוֹל עוֹמֵד מִלְּפָנָיו וְקוֹרֵעַ עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ, </strong> מימרא דר&quot;א בברכות כו׳, וט&quot;ס וצ&quot;ל ברייתא דר&quot;א. ומ&quot;ש בה&quot;ט כדאיתא בפ׳ הישן. יותר היה לו להביא מיבמות (צ&quot;ו:) אף ר&quot;א תלמידך יושב ודורש סתם והכל יודעין כי שלך היא ע&quot;ש:</p>
               </div>
             </div>
@@ -240,6 +256,10 @@
               <a href="#chapter-mekorei-harambam-lerashash-on-mishneh-torah-torah-study-text-5">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/mekorei-harambam-lerashash-on-mishneh-torah-torah-study-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -260,8 +280,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.manifest.json","occurrence_url":"../../data/lexical/occurrences/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/mekorei-harambam-lerashash-on-mishneh-torah-torah-study.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -287,7 +307,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

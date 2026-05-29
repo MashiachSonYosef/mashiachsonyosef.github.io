@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/">Open Mishneh Torah, Shofar, Sukkah and Lulav</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Shofar, Sukkah and Lulav</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">43 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>620 matched</strong> / 1783 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -272,8 +273,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-1">Mishneh Torah, Shofar, Sukkah and Lulav 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה שֶׁל תּוֹרָה לִשְׁמֹעַ תְּרוּעַת הַשּׁוֹפָר בְּרֹאשׁ הַשָּׁנָה שֶׁנֶּאֱמַר <span class="source-small">(במדבר כט א)</span> &quot;יוֹם תְּרוּעָה יִהְיֶה לָכֶם&quot;. וְשׁוֹפָר שֶׁתּוֹקְעִין בּוֹ בֵּין בְּרֹאשׁ הַשָּׁנָה בֵּין בְּיוֹבֵל הוּא קֶרֶן הַכְּבָשִׂים הַכָּפוּף. וְכָל הַשּׁוֹפָרוֹת פְּסוּלִין חוּץ מִקֶּרֶן הַכֶּבֶשׂ. וְאַף עַל פִּי שֶׁלֹּא נִתְפָּרֵשׁ בַּתּוֹרָה תְּרוּעָה בְּשׁוֹפָר בְּרֹאשׁ הַשָּׁנָה הֲרֵי הוּא אוֹמֵר בְּיוֹבֵל <span class="source-small">(ויקרא כה ט)</span> &quot;וְהַעֲבַרְתָּ שׁוֹפַר&quot; וְכוּ׳ <span class="source-small">(ויקרא כה ט)</span> &quot;תַּעֲבִירוּ שׁוֹפָר&quot;. וּמִפִּי הַשְּׁמוּעָה לָמְדוּ מַה תְּרוּעַת יוֹבֵל בְּשׁוֹפָר אַף תְּרוּעַת רֹאשׁ הַשָּׁנָה בְּשׁוֹפָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכל השופרות פסולין כו׳.</strong> עי׳ השגת הראב&quot;ד. ומ&quot;ש אם תקע בשל יעל לרבותא משום דלא איקרי שופר ולא קרן כדאמרינן בירושלמי:</p>
               </div>
             </div>
@@ -288,8 +294,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-2">Mishneh Torah, Shofar, Sukkah and Lulav 1:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמִּקְדָּשׁ הָיוּ תּוֹקְעִין בְּרֹאשׁ הַשָּׁנָה בְּשׁוֹפָר אֶחָד וּשְׁתֵּי חֲצוֹצְרוֹת מִן הַצְּדָדִין. הַשּׁוֹפָר מַאֲרִיךְ וְהַחֲצוֹצְרוֹת מְקַצְּרוֹת שֶׁמִּצְוַת הַיּוֹם בְּשׁוֹפָר. וְלָמָּה תּוֹקְעִין עִמּוֹ בַּחֲצוֹצְרוֹת מִשּׁוּם שֶׁנֶּאֱמַר <span class="source-small">(תהילים צח ו)</span> &quot;בַּחֲצֹצְרוֹת וְקוֹל שׁוֹפָר הָרִיעוּ לִפְנֵי הַמֶּלֶךְ ה׳&quot;. אֲבָל בִּשְׁאָר מְקוֹמוֹת אֵין תּוֹקְעִין בְּרֹאשׁ הַשָּׁנָה אֶלָּא בְּשׁוֹפָר בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לפני המלך ה׳.</strong> ועי׳ ברמב&quot;ם פי&quot;א מהל׳ מעשר שני ובהשגת הראב&quot;ד שם ובספר יד דוד. ומה הוא החצוצרות כתב בס׳ ט&quot;א שהוא של כסף כמבואר בדברי רבינו פ&quot;ד מהל׳ כלי המקדש ע&quot;ש. וצע&quot;ק הא דאמרינן שבת ס&quot;פ ב&quot;מ שופר חצוצרות למאי נ&quot;מ לשופר של ר&quot;ה:</p>
               </div>
             </div>
@@ -304,8 +315,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-3">Mishneh Torah, Shofar, Sukkah and Lulav 1:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹפָר שֶׁל עַכּוּ&quot;ם אֵין תּוֹקְעִין בּוֹ לְכַתְּחִלָּה וְאִם תָּקַע יָצָא. וְשֶׁל עִיר הַנִּדַּחַת אִם תָּקַע בּוֹ לֹא יָצָא. שׁוֹפָר הַגָּזוּל שֶׁתָּקַע בּוֹ יָצָא שֶׁאֵין הַמִּצְוָה אֶלָּא בִּשְׁמִיעַת הַקּוֹל אַף עַל פִּי שֶׁלֹּא נָגַע בּוֹ וְלֹא הִגְבִּיהוֹ הַשּׁוֹמֵעַ יָצָא וְאֵין בַּקּוֹל דִּין גֵּזֶל. וְכֵן שׁוֹפָר שֶׁל עוֹלָה לֹא יִתְקַע בּוֹ וְאִם תָּקַע יָצָא שֶׁאֵין בַּקּוֹל דִּין מְעִילָה. וְאִם תֹּאמַר וַהֲלֹא נֶהֱנָה בִּשְׁמִיעַת הַקּוֹל. מִצְוֹת לֹא לֵהָנוֹת נִתְּנוּ. לְפִיכָךְ הַמֻּדָּר הֲנָיָה מִשּׁוֹפָר מֻתָּר לִתְקֹעַ בּוֹ תְּקִיעָה שֶׁל מִצְוָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן שופר של עולה.</strong> כ׳ הכ&quot;מ היינו בשתלשה קודם זריקה כו׳. עיין ברמב&quot;ם הל׳ מעילה פ&quot;ב הי&quot;ב ויש לחלק בין עצמות לקרנים ובס׳ יום תרועה הניח דברי הכ&quot;מ בצ&quot;ע:</p>
               </div>
             </div>
@@ -320,8 +336,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-4">Mishneh Torah, Shofar, Sukkah and Lulav 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹפָר שֶׁל רֹאשׁ הַשָּׁנָה אֵין מְחַלְּלִין עָלָיו אֶת יוֹם טוֹב וַאֲפִלּוּ בְּדָבָר שֶׁהוּא מִשּׁוּם שְׁבוּת. כֵּיצַד. הָיָה הַשּׁוֹפָר בְּרֹאשׁ הָאִילָן אוֹ מֵעֵבֶר הַנָּהָר וְאֵין לוֹ שׁוֹפָר אֶלָּא הוּא אֵינוֹ עוֹלֶה בָּאִילָן וְאֵינוֹ שָׁט עַל פְּנֵי הַמַּיִם כְּדֵי לַהֲבִיאוֹ. וְאֵין צָרִיךְ לוֹמַר שֶׁאֵין חוֹתְכִין אוֹתוֹ אוֹ עוֹשִׂין בּוֹ מְלָאכָה. מִפְּנֵי שֶׁתְּקִיעַת שׁוֹפָר מִצְוַת עֲשֵׂה וְיוֹם טוֹב עֲשֵׂה וְלֹא תַּעֲשֶׂה וְאֵין עֲשֵׂה דּוֹחֶה לֹא תַּעֲשֶׂה וַעֲשֵׂה. מֻתָּר לִתֵּן בְּתוֹכוֹ מַיִם אוֹ יַיִן אוֹ חֹמֶץ בְּיוֹם טוֹב כְּדֵי לְצַחְצְחוֹ. וְלֹא יִתֵּן לְתוֹכוֹ מֵי רַגְלַיִם לְעוֹלָם מִפְּנֵי הַכָּבוֹד שֶׁלֹּא יִהְיוּ מִצְוֹת בְּזוּיוֹת עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויו&quot;ט עשה ול&quot;ת וכו׳.</strong> ועמ&quot;ש בש&quot;י דבירושלמי סובר דיו&quot;ט אינו אלא ל&quot;ת ולחד תירוץ בתוס׳ מס׳ שבת גם בבבלי מצינו מחלוקת אמוראי בזה ולמ&quot;ד דלא הוי כ&quot;א ל&quot;ת אין קושיא ממשנתנו משום דלא הוי בעידנא ועי׳ בתוי&quot;ט אי בעינן בעידנא בעשה דרבים. ובזה כתבתי ליישב מפני מה לא אשמעינן הך דינא גם בסוכה ולולב דשופר לרבותא נקט משום דשופר מקרי עשה דרבים דיחיד מוציא רבים ע&quot;ש. אלא דצ&quot;ע גבי מצה אם מחלל את היו&quot;ט כדי לקיים המצוה דהא לחד תירוץ בתוס׳ קידושין דף ל&quot;ד ד&quot;ה מעקה נשים פטורות ממ&quot;ע דיו&quot;ט ועשה דמצה נשים חייבות וא&quot;כ הוי עשה דשוה בכל וידחה לעשה שאינו ש&quot;ב ועי׳ בתוס׳ ב&quot;מ דף ל׳ ע&quot;א ד&quot;ה והא אין עשה. ובאמת כתב הרב פ&quot;ח בא&quot;ח סי׳ תנ&quot;ד בשם ספר בית מועד יש מי שאומר שאם הוציא מצה מרה&quot;י לרה&quot;ר אין יוצא בה משום מהב&quot;ע וע&quot;כ צ&quot;ל כמו שהוכיחו התוס׳ בקידושין דהלאו אלים עכ&quot;פ הו&quot;ל לתנא דמשנתנו למיתני הך דינא דאין מחללין את היו&quot;ט גבי מצה והוי ידענא שופר מק&quot;ו וצ&quot;ע:</p>
               </div>
             </div>
@@ -336,8 +357,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-1-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-1-6">Mishneh Torah, Shofar, Sukkah and Lulav 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הוֹסִיף עָלָיו כָּל שֶׁהוּא בֵּין בְּמִינוֹ בֵּין שֶׁלֹּא בְּמִינוֹ פָּסוּל. צִפָּהוּ זָהָב מִבִּפְנִים אוֹ בִּמְקוֹם הַנָּחַת פֶּה פָּסוּל. צִפָּהוּ מִבַּחוּץ אִם נִשְׁתַּנָּה קוֹלוֹ מִכְּמוֹת שֶׁהָיָה פָּסוּל וְאִם לֹא נִשְׁתַּנָּה כָּשֵׁר. נָתַן שׁוֹפָר בְּתוֹךְ שׁוֹפָר אִם קוֹל פְּנִימִי שָׁמַע יָצָא וְאִם קוֹל חִיצוֹן שָׁמַע לֹא יָצָא. הִרְחִיב אֶת הַקָּצָר וְקִצֵּר אֶת הָרָחָב פָּסוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צפהו זהב כו׳.</strong> עמ&quot;ש בזה בש&quot;י ד&quot;ה ופיו מצופה זהב:</p>
               </div>
             </div>
@@ -353,8 +379,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-2">Mishneh Torah, Shofar, Sukkah and Lulav 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל מִי שֶׁאֵינוֹ חַיָּב בַּדָּבָר אֵינוֹ מוֹצִיא אֶת הַחַיָּב יְדֵי חוֹבָתוֹ. לְפִיכָךְ אִשָּׁה אוֹ קָטָן שֶׁתָּקְעוּ בַּשּׁוֹפָר הַשּׁוֹמֵעַ מֵהֶן לֹא יָצָא. אַנְדְּרוֹגִינוּס מוֹצִיא אֶת מִינוֹ וְאֵינוֹ מוֹצִיא אֶת שֶׁאֵינוֹ מִינוֹ. טֻמְטוּם אֵינוֹ מוֹצִיא לֹא אֶת מִינוֹ וְלֹא שֶׁאֵינוֹ מִינוֹ. שֶׁהַטֻּמְטוּם שֶׁנִּקְרַע אֶפְשָׁר שֶׁיִּמָּצֵא זָכָר וְאֶפְשָׁר שֶׁיִּמָּצֵא נְקֵבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אנדרוגינוס כו׳.</strong> עי׳ השגת הראב&quot;ד כ׳ הה&quot;מ המחלוקת הזה הוא מחלוקת תנאים. ובס׳ יום תרועה ר&quot;ה דף כ&quot;ט ע&quot;א כתב דיש לתמוה על הה&quot;מ שלא נמצא סברא זו דחציה זכר וחציה נקבה בגמרא דידן ורק בירושלמי הביאו מרן הכ&quot;מ פ&quot;ד מהלכות תרומות דין ט&quot;ז ודבר זה לא נמצא בביאור רק בירושלמי כפי פי׳ הראב&quot;ד שם והראב&quot;ד שהשיג כאן אזיל לשיטתו אבל לשיטת רבינו דס&quot;ל בכ&quot;ד שהוא ספק א&quot;ש דמוציא מינו. גם מה שחילק הה&quot;מ בין אנדרוגינוס שהוא בי&quot;ש קשה שהרי טעם הראב&quot;ד הוא לפי שיטתו דס&quot;ל דהירושלמי א&quot;ל דאנדרוגינוס שבעל אנדרוגינוס אחר פסלו לנבעל מן התרומה משום צד נקבות שיש בו הרי דאין לחלק בין בי&quot;ש בין בי&quot;א ע&quot;ש. ובאמת י&quot;ל לפי קושית הראב&quot;ד על רבינו דהוי דומיא לח&quot;ע אם כן גם לעצמו אינו מוציא והא דנקט הראב&quot;ד בלשונו אינו מוציא לא את מינו ולא את שא&quot;מ לאו דוקא וכן מוכח מדברי הב&quot;י בא&quot;ח סי׳ תקפ&quot;ט וע&quot;ז יפה כ׳ הה&quot;מ די&quot;ל דל&quot;ד לח&quot;ע דהתם בי&quot;א הוא משא&quot;כ באנדרוגינוס דבי&quot;ש נחשב כ&quot;א ח&quot;ז וממילא דנם לעצמו מוציא משא&quot;כ בדבר התלוי בי&quot;א א&quot;א לקרותו מין אחד דאולי חלק עבדות של זה אינו חזק כ&quot;כ כמו של חבירו אמנם קושיתו הראשונה צ&quot;ע. ועי׳ מה שאכתוב בזה בס&quot;ד בפ&quot;ב מהל׳ אישות:</p>
               </div>
             </div>
@@ -369,8 +400,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-6">Mishneh Torah, Shofar, Sukkah and Lulav 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יוֹם טוֹב שֶׁל רֹאשׁ הַשָּׁנָה שֶׁחָל לִהְיוֹת בְּשַׁבָּת אֵין תּוֹקְעִין בַּשּׁוֹפָר בְּכָל מָקוֹם. אַף עַל פִּי שֶׁהַתְּקִיעָה מִשּׁוּם שְׁבוּת וּמִן הַדִּין הָיָה שֶׁתּוֹקְעִין יָבוֹא עֲשֵׂה שֶׁל תּוֹרָה וְיִדְחֶה שְׁבוּת שֶׁל דִּבְרֵיהֶם. וְלָמָּה אֵין תּוֹקְעִין גְּזֵרָה שֶׁמָּא יִטְּלֶנּוּ בְּיָדוֹ וְיוֹלִיכֶנּוּ לְמִי שֶׁיִּתְקַע לוֹ וְיַעֲבִירֶנּוּ אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים. אוֹ יוֹצִיאוֹ מֵרְשׁוּת לִרְשׁוּת וְיָבוֹא לִידֵי אִסּוּר סְקִילָה. שֶׁהַכּל חַיָּבִים בִּתְקִיעָה וְאֵין הַכּל בְּקִיאִין לִתְקֹעַ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יו&quot;ט של ר&quot;ה שחל בשבת וכו׳.</strong> עי׳ מ&quot;ש בזה פ&quot;א מהל׳ מגילה וחנוכה הלכה י&quot;ג. ועי׳ מ&quot;ש בש&quot;י ר&quot;פ ד׳ דר&quot;ה:</p>
               </div>
             </div>
@@ -385,8 +421,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:7:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-2-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 2:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-2-7">Mishneh Torah, Shofar, Sukkah and Lulav 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַתִּינוֹקוֹת שֶׁלֹּא הִגִּיעוּ לְחִנּוּךְ אֵין מְעַכְּבִין אוֹתָן מִלִּתְקֹעַ בְּשַׁבָּת שֶׁאֵינָהּ יוֹם טוֹב שֶׁל רֹאשׁ הַשָּׁנָה כְּדֵי שֶׁיִּלְמְדוּ. וּמֻתָּר לְגָדוֹל שֶׁיִּתְעַסֵּק עִמָּהֶן כְּדֵי לְלַמְּדָן בְּיוֹם טוֹב. בֵּין קָטָן שֶׁהִגִּיעַ לְחִנּוּךְ בֵּין קָטָן שֶׁלֹּא הִגִּיעַ לְחִנּוּךְ. שֶׁהַתְּקִיעָה אֵינָהּ אֲסוּרָה אֶלָּא מִשּׁוּם שְׁבוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומותר לגדול וכו׳.</strong> פי׳ חוזר ללא הגיע ותימה שהרי כתב בפי׳ המתני׳ ובתנאי שיהיו קרובים להיותם גדולים כדי שיהיו יודעין לצאת וכו׳. ומה שכתב הה&quot;מ וכן נראה מן הירושלמי הוא מפני שסובר הירושלמי דבקטן שהגיע מותר בשבת דיש הנאה וכו׳ וכמו שהביא מגדל עוז אבל בלא הגיע לא דכי ליכא הנאה חיישינן לשנה הבאה שיתקעו בשבת במקום שאין ב&quot;ד וכו׳, ד&quot;ע ועי׳ מ&quot;ש בש&quot;י:</p>
               </div>
             </div>
@@ -402,8 +443,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-3-4">Mishneh Torah, Shofar, Sukkah and Lulav 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שִׁעוּר תְּרוּעָה כִּשְׁתֵּי תְּקִיעוֹת. שִׁעוּר שְׁלֹשָׁה שְׁבָרִים כִּתְרוּעָה. הֲרֵי שֶׁתָּקַע וְהֵרִיעַ וְתָקַע תְּקִיעָה אֲרֻכָּה וּמָשַׁךְ בָּהּ כִּשְׁתַּיִם בָּרִאשׁוֹנָה. אֵין אוֹמְרִין תֵּחָשֵׁב כִּשְׁתֵּי תְּקִיעוֹת וְיָרִיעַ אַחֲרֶיהָ וְיַחֲזֹר וְיִתְקַע. אֶלָּא אֲפִלּוּ מָשַׁךְ בָּהּ כָּל הַיּוֹם אֵינָהּ אֶלָּא תְּקִיעָה אַחַת וְחוֹזֵר וְתוֹקֵעַ וּמֵרִיעַ וְתוֹקֵעַ שָׁלֹשׁ פְּעָמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שיעור תרועה כשתי תקיעות וכו׳.</strong> הראב&quot;ד השיג על רבינו שהוא סובר בפי׳ דשלש יבבות שלשה טוטין הן וכן הביאו הר&quot;ן. ומ&quot;ש הה&quot;מ בזה צ&quot;ע, תירוץ הא׳ שנסתפק לו שיעור התקיעה לפיכך לא הביאה מה יענה לקושית הר&quot;ן כי איך יקרא פשוטה טו וחצי כי בפירוש אמרה המשנה שיעור תרועה כשלש יבבות ושיאמר שהיבבא שלשה טוטין לדעת רבינו אע&quot;פ שכבר אמר הוא להיפך בפירושו דברי הרב וכן הוא וכו׳ היה מודה זה אלא שאי אפשר כי היכן נזכר שהיבבות הן ט׳ שאמר הרב שיעור שלשה שברים כט׳ יבבות באמרו תרועה גם שנאמר שיעור כל אחד מג׳ שברים דוחק גדול וגם עיקר חסר שהיה לו לפרש שיעור תרועה ג׳ יבבות כדי שיתלה השבר בתרועה, סוף דבר שדברי רבינו צריכין פירוש, ולקושית הר&quot;ן אפשר לומר כיון שנסתפק לנו התרועה וכו׳ ואפשר שהוא שברים וכו׳ ואפשר שהוא שניהם ביחד וכו׳ הרי שתי פשוטות כתרועה א׳ אלא שהרב מיד אמר שיעור ג׳ שברים כתרועה הנה שידע התרועה ועם זה יוקשו ג&quot;כ דברי הה&quot;מ. עוד היה אפשר לומר שהרב תירץ קושית הר&quot;ן באומרו שנית שיעור ג׳ שברים כתרועה כי שיעור התקיעה יהיה שבר וחצי ודוק. מ&quot;מ לשון רבינו אינו נכון כי איך אמר שיעור ג׳ שברים כתרועה כי התרועה הידועה במשנה היא שלש יבבות שהם ג׳ טוטין ואם פסק כברייתא להיפך הל&quot;ל שיעור תרועה כשלשה שברים שהברייתא סוברת שהשברים הם התרועה וכמו שפי׳ אביי ודוק. סוף דבר שדברי רבינו מגומגמים הרבה למי שעיין בגמ׳ ואפילו עם תיקון הראב&quot;ד לא די כי מאחר שכתב רבינו שהתרועה נסתפק בה וכו׳ איך יאמר שיעור תרועה כשלשה שברים שהוא לשון הברייתא ופירושו שהתרועה ג׳ שברים עצמן הרב ד&quot;ע ועי׳ מ&quot;ש בש&quot;י בפ&quot;ד דר&quot;ה ד&quot;ה לא וכו׳:</p>
               </div>
             </div>
@@ -418,8 +464,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-3-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 3:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-3-10">Mishneh Torah, Shofar, Sukkah and Lulav 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמִּנְהָג הַפָּשׁוּט בְּסֵדֶר הַתְּקִיעוֹת שֶׁל רֹאשׁ הַשָּׁנָה בְּצִבּוּר כָּךְ הוּא. אַחַר שֶׁקּוֹרְאִין בַּתּוֹרָה וּמַחְזִירִין הַסֵּפֶר לִמְקוֹמוֹ יוֹשְׁבִין כָּל הָעָם וְאֶחָד עוֹמֵד וּמְבָרֵךְ בָּרוּךְ אַתָּה ה׳ אֱלֹהֵינוּ מֶלֶךְ הָעוֹלָם אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לִשְׁמֹעַ קוֹל שׁוֹפָר וְכָל הָעָם עוֹנִין אָמֵן. וְחוֹזֵר וּמְבָרֵךְ שֶׁהֶחֱיָנוּ וְכָל הָעָם עוֹנִין אַחֲרָיו אָמֵן. וְתוֹקֵעַ שְׁלֹשִׁים תְּקִיעוֹת שֶׁאָמַרְנוּ מִפְּנֵי הַסָּפֵק עַל הַסֵּדֶר. וְאוֹמְרִים קַדִּישׁ וְעוֹמְדִין וּמִתְפַּלְּלִין תְּפִלַּת מוּסָף. וְאַחַר שֶׁגּוֹמֵר שְׁלִיחַ צִבּוּר בְּרָכָה רְבִיעִית שֶׁהִיא מַלְכֻיּוֹת תּוֹקֵעַ תְּקִיעָה שְׁלֹשָׁה שְׁבָרִים תְּרוּעָה תְּקִיעָה פַּעַם אַחַת. וּמְבָרֵךְ בְּרָכָה חֲמִישִׁית שֶׁהִיא זִכְרוֹנוֹת. וְאַחַר שֶׁגּוֹמְרָהּ תּוֹקֵעַ תְּקִיעָה שְׁלֹשָׁה שְׁבָרִים וּתְקִיעָה. וּמְבָרֵךְ בְּרָכָה שִׁשִּׁית שֶׁהִיא שׁוֹפָרוֹת. וְאַחַר שֶׁגּוֹמְרָהּ תּוֹקֵעַ תְּקִיעָה תְּרוּעָה וּתְקִיעָה פַּעַם אַחַת וְגוֹמֵר הַתְּפִלָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחר שגומר הש&quot;ץ ברכה רביעית וכו׳.</strong> ודלא כריב&quot;נ דס&quot;ל במתני׳ דכולל מלכיות בר&quot;ה עם קדושת השם ואינו תוקע אלא כר׳ עקיבא דאמר ליה אם אינו תוקע למלכיות למה הוא מזכיר ובגמ׳ מקשה רחמנא אמר ליתקע אלא לימא תשע הואיל ואשתני וכו׳. ובאמת קשה מאד למה דוקא תשע, ואפשר לומר דהא אמרי׳ שם בגמ׳ לחד מ&quot;ד דהני עשרה כנגד עשרה מאמרות שבהם נברא העולם ומקשה תלמודא ט׳ הויין ומשני בראשית נמי מאמר הוא דכתיב בדבר ה׳ שמים נעשו, והקשה בס׳ י&quot;ת למה לא קשיא להמקשה על מתני׳ דאבות בעשרה מאמרות נברא העולם וכו׳ ע&quot;ש תירוצו. ונראה דהנה אמרי׳ במס׳ מכות דף י&quot;א אמירה רכה דבור קשה וא&quot;כ ט׳ מאמרות המה רכים ובראשית שנאמר בדבר ה׳ היינו קשה להפרע מה&quot;ד מן הרשעים ומעתה בר&quot;ה לא היה לנו להזכיר מה&quot;ד כלל ומש&quot;ה קשיא ליה להמקשה דבר&quot;ה לא היה לנו להזכיר מאמר דבראשית שלא להזכיר מה&quot;ד בר&quot;ה ומש&quot;ה על המתני׳ לא הוה קשיא ליה דידע לה להא דבראשית מאמר הוא רק על שנתן טעם זה לאמירת עשרה פסוקים בר&quot;ה ע&quot;ז קשיא ליה וע&quot;ז תירץ לו התרצן אעפ&quot;כ אמרי׳ בר&quot;ה י׳ פסוקים ע&quot;ש עשרה מאמרות ואע&quot;פ שאין להזכיר מה&quot;ד בר&quot;ה מ&quot;מ כיון שתוקעין נסתלק מה&quot;ד ובא מדה&quot;ר כדכתיב עלה אלהים בתרועה ה׳ בקול שופר. ומעתה כל זה אי תוקעין למלכיות אבל לריב&quot;נ דס&quot;ל דאין תוקעין למלכיות שפיר אקשי ליה ר&quot;ע כיון דאין תוקעין ואשתני בזה לא היה לנו לומר כ&quot;א תשע שלא להזכיר מה&quot;ד במלכיות והיה סבור ר&quot;ע דטעם דעשרה פסוקים כנגד עשרה מאמרות. והארכתי בזה בדרוש ר&quot;ה:</p>
               </div>
             </div>
@@ -435,8 +486,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-1">Mishneh Torah, Shofar, Sukkah and Lulav 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שִׁעוּר הַסֻּכָּה גָּבְהָהּ אֵין פָּחוֹת מֵעֲשָׂרָה טְפָחִים וְלֹא יָתֵר עַל עֶשְׂרִים אַמָּה. וְרָחְבָּהּ אֵין פָּחוֹת מִשִּׁבְעָה טְפָחִים עַל שִׁבְעָה טְפָחִים. וְיֵשׁ לוֹ לְהוֹסִיף בְּרָחְבָּהּ אֲפִלּוּ כַּמָּה מִילִין. הָיְתָה פְּחוּתָה מֵעֲשָׂרָה אוֹ מִשִּׁבְעָה עַל שִׁבְעָה אוֹ גְּבוֹהָה מֵעֶשְׂרִים אַמָּה כָּל שֶׁהוּא הֲרֵי זוֹ פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>רחבה אין פחות מז&quot;ט על ז&quot;ט.</strong> ולענין אם ארוך יותר מז׳ ומשלים לרוחב שהוא פחות מז׳ עמ&quot;ש בזה בש&quot;י ריש סוכה והוא מחלוקת בין בבלי וירושלמי:</p>
               </div>
             </div>
@@ -451,8 +507,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-3">Mishneh Torah, Shofar, Sukkah and Lulav 4:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ לָהּ שְׁתֵּי דְּפָנוֹת זוֹ כְּנֶגֶד זוֹ וּבֵינֵיהֶן מְפֻלָּשׁ. עוֹשֶׂה דֹּפֶן שֶׁיֵּשׁ בְּרָחְבּוֹ אַרְבָּעָה טְפָחִים וּמַשֶּׁהוּ וּמַעֲמִידוֹ בְּפָחוֹת מִשְּׁלֹשָׁה סָמוּךְ לְאַחַת מִשְּׁתֵּי הַדְּפָנוֹת וּכְשֵׁרָה. וְצָרִיךְ לַעֲשׂוֹת לָהּ צוּרַת פֶּתַח. קָנִים הַיּוֹצְאִים מִסְּכַךְ הַסֻּכָּה לִפְנֵי הַסֻּכָּה וְדֹפֶן אַחַת נִמְשֶׁכֶת עִמָּהֶן הֲרֵי הֵן כְּסֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו לה ב׳ דפנות זו כנגד זו.</strong> מלשון רבינו נראה דאפילו הוא בחצר שיש דופן רחוק נגד הפלוש אפ&quot;ה בעינן פס ד׳ ודלא כמ&quot;ש בש&quot;ע סי׳ תר&quot;ל ס&quot;ד בשם הר&quot;ן וע&quot;ש במג&quot;א וכ&quot;מ לישנא דגמ׳ הכא דליכא ב׳ דפנות כהלכתן. ועע&quot;ש במג&quot;א אות ג׳ ומ&quot;ש בש&quot;י ריש סוכה ד&quot;ה שנים של ד׳ ודו&quot;ק:</p>
               </div>
             </div>
@@ -467,8 +528,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-4">Mishneh Torah, Shofar, Sukkah and Lulav 4:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דְּפָנוֹת שֶׁהָיוּ דְּבוּקוֹת בְּגַג הַסֻּכָּה וְלֹא הָיוּ מַגִּיעוֹת לָאָרֶץ אִם הָיוּ גְּבוֹהוֹת מִן הָאָרֶץ שְׁלֹשָׁה טְפָחִים פְּסוּלָה. פָּחוֹת מִכֵּן כְּשֵׁרָה. הָיוּ הַדְּפָנוֹת דְּבוּקוֹת לָאָרֶץ וְלֹא הָיוּ מַגִּיעוֹת לַסְּכָךְ אִם גְּבוֹהוֹת עֲשָׂרָה טְפָחִים אַף עַל פִּי שֶׁהֵן רְחוֹקִין מִן הַגַּג כַּמָּה אַמּוֹת כְּשֵׁרָה וּבִלְבַד שֶׁיִּהְיוּ הַדְּפָנוֹת מְכֻוָּנוֹת תַּחַת שְׂפַת הַגַּג. הִרְחִיק אֶת הַגַּג מִן הַדֹּפֶן שְׁלֹשָׁה טְפָחִים פְּסוּלָה. פָּחוֹת מִכֵּן כְּשֵׁרָה. תָּלָה מְחִצָּה שֶׁגְּבוֹהָה אַרְבָּעָה וּמַשֶּׁהוּ בְּאֶמְצַע בְּפָחוֹת מִשְּׁלֹשָׁה סָמוּךְ לָאָרֶץ וּבְפָחוֹת מִשְּׁלֹשָׁה סָמוּךְ לַגַּג הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>תלה מחיצה כו׳.</strong> עיין הה&quot;מ ומהר&quot;י בן לב ח&quot;א דף קכ&quot;ו ע&quot;ג כנה&quot;ג סי׳ תר&quot;ל בהגהת הטור:</p>
               </div>
             </div>
@@ -483,8 +549,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-6">Mishneh Torah, Shofar, Sukkah and Lulav 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹשֶׂה סֻכָּתוֹ בְּרֹאשׁ הָעֲגָלָה אוֹ בְּרֹאשׁ הַסְּפִינָה כְּשֵׁרָה וְעוֹלִין לָהּ בְּיוֹם טוֹב. בְּרֹאשׁ הָאִילָן אוֹ עַל גַּבֵּי הַגָּמָל כְּשֵׁרָה וְאֵין עוֹלִין לָהּ בְּיוֹם טוֹב. לְפִי שֶׁאָסוּר לַעֲלוֹת בְּיוֹם טוֹב בָּאִילָן אוֹ עַל גַּבֵּי בְּהֵמָה. הָיוּ מִקְצָת הַדְּפָנוֹת עֲשׂוּיוֹת בִּידֵי אָדָם וּמִקְצָתָן אִילָנוֹת רוֹאִין כָּל שֶׁאִלּוּ נִטְּלוּ הָאִילָנוֹת הִיא יְכוֹלָה לַעֲמֹד בַּדְּפָנוֹת שֶׁבִּידֵי אָדָם עוֹלִין לָהּ בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין עולין לה ביו&quot;ט.</strong> עיין פמ&quot;ג בט&quot;ז סי׳ תרכ&quot;ח צ&quot;ע באין לו סוכה אחרת כ&quot;א באילן או ע&quot;ג בהמה אי עולין ביו&quot;ט דהוי כאו&quot;נ וכביתו שנשרף עיין א&quot;ח סי׳ תקי&quot;ד, וקצת ראיה מחי׳ רשב&quot;א מפ׳ הישן במ&quot;ש בדף כ&quot;ג ד&quot;ה מ&quot;ט דר&quot;י דאמר קרא חג הסכת תעשה לך שבעת ימים, וזו אינה ראיה לז׳ רצופים ששבת בא לעולם בתוך ז׳ ובהמה אינה ראויה לשבת ע&quot;ש ומה צריך לזה הא בלא&quot;ה הא ביו&quot;ט אין עולין אלא משמע דמשכחת לה דעולין ביו&quot;ט. ויש לדחות דמשכחת לה אם כבר עלה מעיו&quot;ט דאפשר דאין מחייבין אותו לירד:</p>
               </div>
             </div>
@@ -499,8 +570,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:10:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-10">Mishneh Torah, Shofar, Sukkah and Lulav 4:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכֵּךְ עַל גַּבֵּי מָבוֹי שֶׁיֵּשׁ לוֹ לֶחִי אוֹ עַל גַּבֵּי בְּאֵר שֶׁיֵּשׁ לָהּ פַּסִּין הֲרֵי זוֹ סֻכָּה כְּשֵׁרָה לְאוֹתָהּ שַׁבָּת שֶׁבְּתוֹךְ הֶחָג בִּלְבַד. מִתּוֹךְ שֶׁלֶּחִי זֶה וּפַסִּין אֵלּוּ מְחִצּוֹת לְעִנְיַן שַׁבָּת נַחְשֹׁב אוֹתָן כִּמְחִצּוֹת לְעִנְיַן סֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך ע&quot;ג מבוי כו׳.</strong> ובהלכות לא הביא דין זה ובחידושי הארכתי בדרך פלפול. ונראה ע&quot;פ מ&quot;ש הפ&quot;י במס׳ סוכה דף ד׳ ע&quot;ב סד&quot;ה סבר אביי למימר גוד אסיק דהלכתא דג&quot;א אפילו בעמוד שייך נמי לענין סוכה מה&quot;ת והא דאמר רבא בעינן מחיצה הניכרת היינו מדרבנן כיון דלאו להכי עבידן ע&quot;ש שהביא ראיה מדברי הרא&quot;ש ועפי&quot;ז משמע דמחיצת שבת וסוכה שוים להדדי מה&quot;ת וכל דהוי מחיצה לשבת ה&quot;ה לענין סוכה אלא דרבנן החמירו גבי סוכה שיהיה דומה לדירה ובעינן מחיצות מעלייתא, ובזה ארווח לנו להבין סברת רבינו מגו דהוי דופן לשבת הוי דופן לסוכה בשבת ולכאורה קשה מאי ענין זו לזו ומאי טעם יש בדבר אבל רבא לטעמיה דסובר דמחיצות שבת וסוכה כהדדי נינהו ומה&quot;ת כל מה דהוי דופן לשבת הוי דופן לסוכה ומה שהצריכו מחיצות עודפות אינו אלא מדרבנן ושפיר אמר רבא דלא שייך להחמיר כ&quot;א בשאר ימים אבל בשבת של סוכות לא החמירו רבנן משום דהוי כתרתי דסתרי. אמנם בסוגיא דגמ׳ שם דף ז׳ דמשמע סתמא דתלמודא ס&quot;ל דמחיצות סוכה מקרא נ&quot;ל ור&quot;ש ס&quot;ל דג׳ מחיצות שלימות בעינן ולא תליא סוכה בשבת וכמ&quot;ש הפ&quot;י בעצמו בסוגיא דשתים כהלכתן מהירושלמי ולפ&quot;ז אדחי סברת רבא מהלכה מסתמא דתלמודא ודוק כי קצרתי:</p>
               </div>
             </div>
@@ -515,8 +591,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:13:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-13">Mishneh Torah, Shofar, Sukkah and Lulav 4:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שֶׁאֲוִירָהּ גָּבוֹהַּ מֵעֶשְׂרִים אַמָּה וּמִעֲטָהּ בְּכָרִים וּכְסָתוֹת אֵינוֹ מִעוּט וַאֲפִלּוּ בִּטְּלָם. מִעֲטָהּ בְּתֶבֶן וּבִטְּלוֹ הֲרֵי זֶה מִעוּט. וְאֵין צָרִיךְ לוֹמַר עָפָר וּבִטְּלוֹ. אֲבָל בֶּעָפָר סְתָם אֵינוֹ מִעוּט. הָיְתָה גְּבוֹהָה מֵעֶשְׂרִים אַמָּה וְהוּצִין יוֹרְדִין לְתוֹךְ עֶשְׂרִים אִם הָיְתָה צִלָּתָן מְרֻבָּה מֵחֲמָתָן יֵחָשְׁבוּ כְּגַג עָבֶה וּכְשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואצ&quot;ל עפר ובטלו.</strong> עיין הה&quot;מ יש מי שכתב דעפר לא בעי ביטול אלא כל שאין עתיד לפנותו כו׳. ודעת רבינו כדעת ההלכות דבעינן ביטול גמור וסברת י&quot;א משום דקתני בהדיא בית שמלאוהו עפר ובטלו בטל משם אינו ראיה והא דקתני בטל אינו אלא לאפוקי עפר סתם ובחידושי ריטב&quot;א פ&quot;ק דסוכה כתב אף שמדברי הרי&quot;ף נ׳ דבעי ביטול ממש העיקר כי&quot;א, כ&quot;נ לענ&quot;ד שהוא דעת רבינו במ&quot;ש ואצ&quot;ל עפר ובטלו היינו שאין דעתו לפנותו לעולם וסתם עפר דאינו מיעוט היינו שלא נראה מדעתו שאין דעתו לפנותו וכ&quot;מ מדברי רבינו בה׳ טומאת מת פ&quot;ז ה&quot;ו שכתב שם בית שמלאוהו עפר או צרורות ה&quot;ז בטל להבית משמע דלא בעי ביטול בפירוש רק אם נראה מדעתו שאין עתיד לפנותו ה&quot;ז בטל ועי׳ בתויו&quot;ט פט&quot;ו מאהלות עלה דהך מתני׳ ובס׳ ש&quot;ל כנ&quot;ל:</p>
               </div>
             </div>
@@ -531,8 +612,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-4-16-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 4:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-4-16">Mishneh Torah, Shofar, Sukkah and Lulav 4:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">דָּפְנֵי סֻכָּה כְּשֵׁרִין מִן הַכּל שֶׁאֵין אָנוּ צְרִיכִין אֶלָּא מְחִצָּה מִכָּל מָקוֹם וַאֲפִלּוּ מִבַּעֲלֵי חַיִּים. וְעוֹשֶׂה אָדָם אֶת חֲבֵרוֹ דֹּפֶן בְּיוֹם טוֹב כְּדֵי שֶׁיֹּאכַל וְיִשְׁתֶּה וְיִישַׁן בְּסֻכָּה כְּשֵׁרָה שֶׁחֲבֵרוֹ דֹּפֶן לָהּ. וְהוּא שֶׁיַּעֲשֶׂה אוֹתוֹ שֶׁלֹּא לְדַעַת זֶה שֶׁנַּעֲשָׂה דֹּפֶן. אֲבָל אִם עֲשָׂהוּ לְדַעַת אָסוּר בְּיוֹם טוֹב וּמֻתָּר בִּשְׁאָר יְמֵי הֶחָג. וְכֵן עוֹשֶׂה בְּכֵלִים דֹּפֶן רְבִיעִית בְּיוֹם טוֹב. אֲבָל דֹּפֶן שְׁלִישִׁית לֹא יַעֲשֶׂה אוֹתָהּ בְּכֵלִים בְּיוֹם טוֹב לְפִי שֶׁהוּא מַכְשִׁיר הַסֻּכָּה וְאֵין עוֹשִׂין אֹהֶל עֲרַאי בְּיוֹם טוֹב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>דפני סוכה.</strong> עיין מ&quot;ש בס&quot;ד בש&quot;י סוכה דף ג׳ ע&quot;א ד&quot;ה וסכות:</p>
               </div>
             </div>
@@ -548,8 +634,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-3">Mishneh Torah, Shofar, Sukkah and Lulav 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכְּכָהּ בָּאֳכָלִין פְּסוּלָה מִפְּנֵי שֶׁהֵן מְקַבְּלִין טֻמְאָה. סוֹכֵי תְּאֵנִים וּבָהֶן תְּאֵנִים. פַּרְכִּילֵי עֲנָבִים וּבָהֶם עֲנָבִים. מִכְבָּדוֹת וּבָהֶם תְּמָרִים. וְכֵן כָּל כַּיּוֹצֵא בָּהֶן. רוֹאִין אִם פְּסלֶת מְרֻבָּה עַל הָאֳכָלִין מְסַכְּכִין בָּהֶן וְאִם לָאו אֵין מְסַכְּכִין בָּהֶן. סִכֵּךְ בִּירָקוֹת שֶׁאִם יִבשׁוּ יִבּלוּ וְלֹא יִשָּׁאֵר בָּהֶן מַמָּשׁ אַף עַל פִּי שֶׁהֵן עַתָּה לַחִים הֲרֵי מְקוֹמָן נֶחְשָׁב כְּאִלּוּ הוּא אֲוִיר וּכְאִלּוּ אֵינָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך בירקות.</strong> עיין כנה&quot;ג א&quot;ח סי׳ תרכ&quot;ט:</p>
               </div>
             </div>
@@ -564,8 +655,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:4:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-4-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-4">Mishneh Torah, Shofar, Sukkah and Lulav 5:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכְּכָהּ בְּפִשְׁתֵּי הָעֵץ שֶׁלֹּא דַּק אוֹתָן וְלֹא נִפְּצָן כְּשֵׁרָה שֶׁעֲדַיִן עֵץ הוּא. וְאִם דַּק וְנִפֵּץ אוֹתָן אֵין מְסַכְּכִין בּוֹ מִפְּנֵי שֶׁנִּשְׁתַּנֵּית צוּרָתוֹ וּכְאִלּוּ אֵינָן מִגִּדּוּלֵי קַרְקַע. מְסַכְּכִין בַּחֲבָלִים שֶׁל סִיב וְשֶׁל חֲלָף וְכַיּוֹצֵא בָּהֶן שֶׁהֲרֵי צוּרָתָן עוֹמֵד וְאֵין הַחֲבָלִים כֵּלִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואם דק ונפץ אותן מפני שנשתנה צורתו.</strong> פירוש כיון שנגמרה מלאכתן יצאו מכלל פסולת גורן ויקב וכ&quot;כ הריטב&quot;א ובזה ע&quot;כ מ&quot;ש רבינו בריש דבריו שלא דק אותן ולא נפצן כשירה לאו דוקא וסמך עצמו על טעם הדבר ועיין לח&quot;מ. וטעם הראב&quot;ד מבואר ג&quot;כ בריטב&quot;א וז&quot;ל מפני שהן קרובים לבוא לכלל טומאה פי׳ דלהכי עבידן. ובזה אפשר ליישב קושית הה&quot;מ. ואפשר נמי דראב&quot;ד ס&quot;ל דבנקבות אינה פסולה אלא מדרבנן:</p>
               </div>
             </div>
@@ -580,8 +676,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:5:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-5">Mishneh Torah, Shofar, Sukkah and Lulav 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכְּכָהּ בְּחִצִּים בִּזְכָרִים כְּשֵׁרָה בִּנְקֵבוֹת פְּסוּלָה אַף עַל פִּי שֶׁהוּא עָשׂוּי לְהִתְמַלְּאוֹת בְּבַרְזֶל בֵּית קִבּוּל הוּא וּמְקַבֵּל טֻמְאָה כְּכָל כְּלִי קִבּוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בנקבות פסולה.</strong> עיין בתוס׳ סוכה דף י&quot;ב ע&quot;ב ד&quot;ה מ&quot;ד יראה מדבריהם דפסולה מה&quot;ת והמבי&quot;ט בקרית ספר כתב דבנקבות אינה פסולה אלא מדרבנן ועיין מ&quot;ש בש&quot;י בסוכה דף ג׳ ד&quot;ה ר&quot;י:</p>
               </div>
             </div>
@@ -596,8 +697,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:12:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-12">Mishneh Torah, Shofar, Sukkah and Lulav 5:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹשֶׂה סֻכָּתוֹ תַּחַת הָאִילָן כְּאִלּוּ עֲשָׂאָהּ בְּתוֹךְ הַבַּיִת. הִדְלָה עָלֶיהָ עָלֵי הָאִילָנוֹת וּבַדֵּיהֶן וְסִכֵּךְ עַל גַּבָּן וְאַחַר כָּךְ קָצְצָן. אִם הָיָה הַסִּכּוּךְ הַרְבֵּה מֵהֶן כְּשֵׁרָה. וְאִם לֹא הָיָה הַסִּכּוּךְ שֶׁהָיָה מִתְּחִלָּתוֹ כָּשֵׁר הַרְבֵּה מֵהֶן צָרִיךְ לְנַעֲנֵעַ אוֹתָן אַחַר קְצִיצָתָן כְּדֵי שֶׁתִּהְיֶה עֲשׂוּיָה לְשֵׁם סֻכָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה סוכתו תחת האילן.</strong> אמרינן בגמ׳ אמר רבא ל&quot;ש אלא שצלתה מרובה וכו׳ והא קא מצטרף כו׳ אמר ר&quot;פ כשחבטן ופי׳ רש&quot;י כשחבטן שעירבן וכה&quot;ג כשירה לכתחילה כדין כל איסור המתבטל בהיתר באינו ניכר האיסור אבל בניכר האיסור לא שייך ביטול ובלבוש א&quot;ח סי׳ תרל&quot;ב כתב אפשר שגם זה הלמ&quot;מ דגם בניכר ועומד בפ&quot;ע אעפ&quot;כ בטל, א&quot;נ מה&quot;ת אפילו בניכר האיסור בטל ברוב דהא מסנהדרין ילפינן דבטל ברוב ע&quot;ש, ובאמת כבר תמה עליו הט&quot;ז שם ס&quot;ק ג׳, ולשיטת רש&quot;י גם אם לא חבטן שלא עירבן אם הסוכה צלתה מרובה מחמתה בלא האילן ג&quot;כ כשר. ולשיטת הריב&quot;א גם אם הסוכה צלתה מרובה מחמתה בלא האילן אעפ&quot;כ האילן שעל הסכך פוסל את מקום הסכך עיין ברא&quot;ש. והרז&quot;ה פי׳ חבטן שחבט ענפי האילן עד שנשרו כל עלין ממנה דגלי דעתיה שלא ניחא ליה בצלו של אילן כלל ונעשה האילן כעומד בפ&quot;ע ולא מצטרף לצל סוכה אפילו לכסות בהן לכתחילה מותר ובמתני׳ דפירש עליה סדין שהביא רבינו בה׳ י&quot;ז כתבו התוס׳ אבל אם יש צלתה מרובה מחמתה כשירה ואין הסדין פוסלתה וכתב הרש&quot;א דנראה מדבריהם דאף בשצל הפסול נמי מרובה מחמתה דומיא דסדין כשירה כיון דצל הכשר נמי מרובה מחמתה. ונ&quot;ל פירוש דבריהם דבדיעבד דוקא כשר בכה&quot;ג אבל לא לכתחילה ובזה מיושב קושית הרש&quot;א שם דרבא בא לאורויי לנו להכשיר לעשות סוכה כן לכתחילה והרש&quot;א שם מחלק בין קדים הפסול דאז לא נתכשר כ&quot;א בחמתה מרובה מצלתה והביא ראיה מדברי הר&quot;ן. ונראה דשיטת רבינו בפירוש חבטן הוא כשיטת הרז&quot;ה ומ&quot;ש ואח&quot;כ קצצן הכונה בזה על העלין ע&quot;י חיבוט ובזה אפשר לכוון דבריו במ&quot;ש בפי׳ המשנה ומיושב בזה הלשון או שקצצן עי׳ בהגה&quot;מ ובכ&quot;מ ועי׳ בסוגיא בריטב&quot;א באורך ודו&quot;ק:</p>
               </div>
             </div>
@@ -612,8 +718,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:16:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-16-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-16">Mishneh Torah, Shofar, Sukkah and Lulav 5:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סִכֵּךְ בְּדָבָר פָּסוּל וְדָבָר כָּשֵׁר זֶה בְּצַד זֶה וְאֵין בְּמָקוֹם אֶחָד מִסְּכָךְ הַפָּסוּל רֹחַב שְׁלֹשָׁה טְפָחִים אֶלָּא פָּחוֹת. אִם הָיָה כָּל הַסְּכָךְ הַכָּשֵׁר יוֹתֵר עַל כָּל הַסְּכָךְ הַפָּסוּל כָּשֵׁר. וְאִם הָיָה זֶה כְּמוֹ זֶה בְּצִמְצוּם אַף עַל פִּי שֶׁאֵין בְּמָקוֹם אֶחָד שְׁלֹשָׁה הֲרֵי זוֹ פְּסוּלָה מִפְּנֵי שֶׁסְּכָךְ פָּסוּל כְּפָרוּץ הוּא נֶחְשָׁב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סיכך בדבר פסול כו׳.</strong> עי׳ הה&quot;מ ובגמ׳ עירובין דף ה׳ ע&quot;ב דיש לחלק בין דבר שהוא מדרבנן לבין דבר שהוא מדאורייתא ע&quot;ש בתוס׳ ד&quot;ה וספק:</p>
               </div>
             </div>
@@ -628,8 +739,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:17:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-17-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:17:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-17">Mishneh Torah, Shofar, Sukkah and Lulav 5:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">פָּרַשׂ עָלֶיהָ בֶּגֶד מִלְּמַעְלָה אוֹ שֶׁפָּרַשׂ תַּחְתֶּיהָ מִפְּנֵי הַנֶּשֶׁר פְּסוּלָה. פְּרָשׂוֹ כְּדֵי לְנָאוֹתָהּ כְּשֵׁרָה. וְכֵן אִם סִכְּכָהּ כְּהִלְכָתָהּ וְעִטְּרָהּ בְּמִינֵי פֵּרוֹת וּבְמִינֵי מְגָדִים וְכֵלִים שֶׁתְּלוּיִין בֵּין בִּכְתָלֶיהָ בֵּין בַּסְּכָךְ כְּדֵי לְנָאוֹתָהּ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>פרש עליה בגד.</strong> ובמתני׳ פרש עליה סדין מפני החמה או תחתיה מפני הנשר ופירש&quot;י תחתיה מפני הנשר שלא יהיו עלין וקיסמין יורדין על השולחן ועיין בתוס׳ שם מה שמקשה על פירש&quot;י ועיין בט&quot;ז סי׳ תרכ&quot;ט. ובס׳ ש&quot;ל כתב מדברי רבינו פה יש להוכיח דס&quot;ל כרש&quot;י מדלא כתב בלמעלה מפני החמה וכמו שהוא במתני׳ אלא נראה דקמ&quot;ל רבינו כל שלמעלה אסור ע&quot;ש. ולא נתבאר בדברי רבינו אי הסוכה צלתה מרובה מחמתה מלבד הסדין ופשטא דלישנא משמע דהסוכה צלתה מרובה מחמתה אעפ&quot;כ הסדין שלמעלה מבטל אותה, ועיין לעיל הי&quot;ב במ&quot;ש ודוק:</p>
               </div>
             </div>
@@ -644,8 +760,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:22:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-22-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:22:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-22">Mishneh Torah, Shofar, Sukkah and Lulav 5:22</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעוֹשֶׂה סֻכָּה עַל גַּבֵּי סֻכָּה. הַתַּחְתּוֹנָה פְּסוּלָה כְּמִי שֶׁעָשָׂה סֻכָּה בְּתוֹךְ הַבַּיִת וְהָעֶלְיוֹנָה כְּשֵׁרָה בַּמֶּה דְּבָרִים אֲמוּרִים שֶׁהַתַּחְתּוֹנָה פְּסוּלָה בְּשֶׁהָיָה גֹּבַהּ חֲלַל הָעֶלְיוֹנָה עֲשָׂרָה טְפָחִים אוֹ יֶתֶר וְהָיָה גַּג הַתַּחְתּוֹנָה יָכוֹל לְקַבֵּל כָּרִים וּכְסָתוֹת שֶׁל עֶלְיוֹנָה אֲפִלּוּ עַל יְדֵי הַדְּחָק. אֲבָל אִם אֵין גָּבְהָהּ שֶׁל עֶלְיוֹנָה עֲשָׂרָה אוֹ שֶׁלֹּא הָיְתָה הַתַּחְתּוֹנָה יְכוֹלָה לְקַבֵּל כָּרִים וּכְסָתוֹת שֶׁל עֶלְיוֹנָה אֲפִלּוּ עַל יְדֵי הַדְּחָק (אַף) הַתַּחְתּוֹנָה כְּשֵׁרָה וְהוּא שֶׁלֹּא יִהְיֶה גֹּבַהּ שְׁתֵּיהֶן יֶתֶר עַל עֶשְׂרִים אַמָּה שֶׁהַתַּחְתּוֹנָה בַּסְּכָךְ הָעֶלְיוֹנָה הִיא נִתֶּרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העושה סוכה ע&quot;ג סוכה כו׳ כמי שעשה כו׳.</strong> הא דכתב רבינו כמו שעשה בתוך הבית בא להורות לנו לטעם אחד לכולם וכמ&quot;ש רש&quot;י דף ט׳ ע&quot;ב:</p>
               </div>
             </div>
@@ -660,8 +781,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-5-25-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 5:25:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-5-25">Mishneh Torah, Shofar, Sukkah and Lulav 5:25</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֻכָּה שְׁאוּלָה כְּשֵׁרָה וְכֵן הַגְּזוּלָה כְּשֵׁרָה. כֵּיצַד. אִם תָּקַף עַל חֲבֵרוֹ וְהוֹצִיאוֹ מִסֻּכָּתוֹ וּגְזָלָהּ וְיָשַׁב בָּהּ יָצָא שֶׁאֵין הַקַּרְקַע נִגְזֶלֶת. וְאִם גָּזַל עֵצִים וְעָשָׂה מֵהֶן סֻכָּה יָצָא. שֶׁתַּקָּנַת חֲכָמִים הִיא שֶׁאֵין לְבַעַל הָעֵצִים אֶלָּא דְּמֵי עֵצִים בִּלְבַד. וַאֲפִלּוּ גָּזַל נְסָרִים וְהִנִּיחָן וְלֹא חִבְּרָן וְלֹא שָׁנָה בָּהֶן כְּלוּם יָצָא. הָעוֹשֶׂה סֻכָּתוֹ בִּרְשׁוּת הָרַבִּים הֲרֵי זוֹ כְּשֵׁרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סוכה שאולה כו׳.</strong> לא נתבאר בפוסקים סוכה העשויה מעצי אשירה מה דינה. ועיין בס׳ קול יעקב מס׳ סוכה פ&quot;ק:</p>
               </div>
             </div>
@@ -677,8 +803,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-1">Mishneh Torah, Shofar, Sukkah and Lulav 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָּשִׁים וַעֲבָדִים וּקְטַנִּים פְּטוּרִים מִן הַסֻּכָּה. טֻמְטוּם וְאַנְדְּרוֹגִינוּס חַיָּבִים מִסָּפֵק. וְכֵן מִי שֶׁחֶצְיוֹ עֶבֶד וְחֶצְיוֹ בֶּן חוֹרִין חַיָּב. קָטָן שֶׁאֵינוֹ צָרִיךְ לְאִמּוֹ שֶׁהוּא [כְּבֶן חָמֵשׁ] כְּבֶן שֵׁשׁ חַיָּב בְּסֻכָּה מִדִּבְרֵי סוֹפְרִים כְּדֵי לְחַנְּכוֹ בְּמִצְוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נשים כו׳.</strong> אמרינן בגמרא כ&quot;ח סוכה הלכתא קרא ל&quot;ל לרבות את הגרים סד&quot;א האזרח בישראל ולא את הגרים קמ&quot;ל. ורבינו לא העתיק דגרים חייבים עיין בתוס׳ שם ד&quot;ה לרבות. ועי׳ בספר ברכי יוסף א&quot;ח סי׳ תר&quot;מ באריכות:</p>
               </div>
             </div>
@@ -693,8 +824,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:12:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-12-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-12">Mishneh Torah, Shofar, Sukkah and Lulav 6:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל זְמַן שֶׁיִּכָּנֵס לֵישֵׁב בַּסֻּכָּה כָּל שִׁבְעָה מְבָרֵךְ קֹדֶם שֶׁיֵּשֵׁב אֲשֶׁר קִדְּשָׁנוּ בְּמִצְוֹתָיו וְצִוָּנוּ לֵישֵׁב בַּסֻּכָּה. וּבְלֵילֵי יוֹם טוֹב הָרִאשׁוֹן מְבָרֵךְ עַל הַסֻּכָּה וְאַחַר כָּךְ עַל הַזְּמַן. וּמְסַדֵּר כָּל הַבְּרָכוֹת עַל הַכּוֹס. נִמְצָא מְקַדֵּשׁ מְעֻמָּד וּמְבָרֵךְ לֵישֵׁב בַּסֻּכָּה וְיוֹשֵׁב וְאַחַר כָּךְ מְבָרֵךְ עַל הַזְּמַן. וְכָזֶה הָיָה מִנְהַג רַבּוֹתַי וְרַבָּנֵי סְפָרַד לְקַדֵּשׁ מְעֵמָּד בְּלַיִל רִאשׁוֹן שֶׁל חַג הַסֻּכּוֹת כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואח&quot;כ על הזמן וכו׳.</strong> אע&quot;פ שכתב רבינו בה׳ ברכות פי&quot;א ה&quot;ט שמברך זמן על עשיית הסוכה א&quot;כ שוב לא הוה ליה לברך זמן בשעת הקידוש כמ&quot;ש התוס׳ סוכה דף מ&quot;ו רבינו לא ס&quot;ל כסברת התוס׳ וכ&quot;ה דעת הרמב&quot;ן והריטב&quot;א כשטית רבינו ועי׳ בשיורי כנה&quot;ג ובס׳ ברכי יוסף סי׳ תרמ&quot;ג וחילא דידהו מהירושלמי פ&quot;ק דסוכה דף ב׳ ע&quot;ב ועמ&quot;ש שם בש&quot;י:</p>
               </div>
             </div>
@@ -709,8 +845,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:13:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-13-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-13">Mishneh Torah, Shofar, Sukkah and Lulav 6:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּזְּמַן הַזֶּה שֶׁאָנוּ עוֹשִׂין שְׁנֵי יָמִים טוֹבִים. יוֹשְׁבִין בַּסֻּכָּה שְׁמוֹנָה יָמִים. וּבַיּוֹם הַשְּׁמִינִי שֶׁהוּא יוֹם טוֹב רִאשׁוֹן שֶׁל שְׁמִינִי עֲצֶרֶת יוֹשְׁבִין בָּהּ וְאֵין מְבָרְכִין לֵישֵׁב בַּסֻּכָּה. וְכֵן טֻמְטוּם וְאַנְדְּרוֹגִינוּס לְעוֹלָם אֵין מְבָרְכִין לֵישֵׁב בַּסֻּכָּה מִפְּנֵי שֶׁהֵן חַיָּבִים מִסָּפֵק וְאֵין מְבָרְכִין מִסָּפֵק:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>טומטום ואנדרוגינוס.</strong> עי׳ ראב&quot;ד. ויש מי שכתב אי אמרינן אנדרוגינוס בריה בפ&quot;ע אינו מברך גם אם נשים מברכות:</p>
               </div>
             </div>
@@ -725,8 +866,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:15:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-6-15-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 6:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-6-15">Mishneh Torah, Shofar, Sukkah and Lulav 6:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁלֹּא עָשָׂה סֻכָּה בֵּין בְּשׁוֹגֵג בֵּין בְּמֵזִיד עוֹשֶׂה סֻכָּה בְּחֻלּוֹ שֶׁל מוֹעֵד. אֲפִלּוּ בְּסוֹף יוֹם שְׁבִיעִי עוֹשֶׂה סֻכָּה, שֶׁמִּצְוָתָהּ כָּל שִׁבְעָה. עֲצֵי סֻכָּה אֲסוּרִין כָּל שְׁמוֹנַת יְמֵי הֶחָג בֵּין עֲצֵי דְּפָנוֹת בֵּין עֲצֵי סְכָךְ אֵין נֵאוֹתִין מֵהֶן לְדָבָר אַחֵר כָּל שְׁמוֹנַת הַיָּמִים מִפְּנֵי שֶׁיּוֹם הַשְּׁבִיעִי כֻּלּוֹ הַסֻּכָּה מֻקְצָה עַד בֵּין הַשְּׁמָשׁוֹת וְהוֹאִיל וְהֻקְצַת לְבֵין הַשְּׁמָשׁוֹת שֶׁל שְׁמִינִי הֻקְצַת לְכָל הַיּוֹם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בין עצי דפנות.</strong> ויש מי שסובר דבדפנות ליכא איסור כלל אפילו מדרבנן, עי׳ רבינו ירוחם נתיב ח׳ ועי׳ ברכי יוסף סי׳ תרל&quot;ח ובט&quot;ז שם:</p>
               </div>
             </div>
@@ -742,8 +888,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-2">Mishneh Torah, Shofar, Sukkah and Lulav 7:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl"><span class="source-small">(ויקרא כג מ)</span> &quot;פְּרִי עֵץ הָדָר&quot; הָאָמוּר בַּתּוֹרָה הוּא אֶתְרוֹג. <span class="source-small">(ויקרא כג מ)</span> &quot;וַעֲנַף עֵץ עָבוֹת&quot; הָאָמוּר בַּתּוֹרָה הוּא הַהֲדַס שֶׁעָלָיו חוֹפִין אֶת עֵצוֹ. כְּגוֹן שֶׁיִּהְיוּ שְׁלֹשָׁה עָלִין אוֹ יֶתֶר עַל כֵּן בְּגִבְעוֹל אֶחָד. אֲבָל אִם הָיוּ שְׁנֵי הֶעָלִין בְּשָׁוֶה זֶה כְּנֶגֶד זֶה וְהֶעָלֶה הַשְּׁלִישִׁי לְמַעְלָה מֵהֶן אֵין זֶה עָבוֹת אֲבָל נִקְרָא הֲדַס שׁוֹטֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והעלה השלישי למעלה מהן.</strong> עיין רש&quot;י סוכה דף ל&quot;ב ע&quot;ב ד&quot;ה תרי ועיין במהרי&quot;ק סי׳ שמ&quot;א ובהגהת מהרא&quot;ו סי׳ תרמ&quot;ו ס&quot;ק ח׳ וז&quot;ל הרא&quot;ש כתב ג׳ עלין של קן אחד יוצא מכאן ואחד יוצא מכאן והג׳ באמצע מורכב על שניהם ואפשר דרש&quot;י והרא&quot;ש בחדא שיטה קיימי ועיין שו&quot;ת תשב&quot;ץ חלק ב׳ סי׳ רנ&quot;ב. ומ&quot;ש הה&quot;מ ואני אומר כולה בדוקא נ׳ דאם יש עשר אצבעות בגודל גם לשיטת הה&quot;מ א&quot;צ להדר אחר אחרים אם לא ימצאם בנקל ועיין הלכה ח׳:</p>
               </div>
             </div>
@@ -758,8 +909,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-8-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-8">Mishneh Torah, Shofar, Sukkah and Lulav 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כַּמָּה שִׁעוּר אֹרֶךְ כָּל מִין מֵהֶם. לוּלָב אֵין פָּחוֹת מֵאַרְבָּעָה טְפָחִים וְאִם הָיָה אָרֹךְ כָּל שֶׁהוּא כָּשֵׁר. וּמְדִידָתוֹ מִשִּׁדְרָתוֹ בִּלְבַד לֹא מֵרֹאשׁ הֶעָלִים. וַהֲדַס וַעֲרָבָה אֵין פָּחוֹת מִשְּׁלֹשָׁה טְפָחִים. וְאִם הָיוּ אֲרֻכִּין כָּל שֶׁהֵן כְּשֵׁרִים. וַאֲפִלּוּ אֵין בְּכָל בַּד וּבַד אֶלָּא שְׁלֹשָׁה עָלִין לַחִין כְּשֵׁרִים וְהוּא שֶׁיִּהְיוּ בְּרֹאשׁ הַבַּד. וְאִם אָגַד הַלּוּלָב צָרִיךְ שֶׁיִּהְיֶה שְׁדֵרוֹ שֶׁל לוּלָב יוֹצֵא מִן הַהֲדַס וַעֲרָבָה טֶפַח אוֹ יוֹתֵר. וְשִׁעוּר אֶתְרוֹג אֵין פָּחוֹת מִכְּבֵיצָה וְאִם הָיָה גָּדוֹל כָּל שֶׁהוּא כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ושיעור אתרוג א&quot;פ מכביצה.</strong> עי׳ ברכי יוסף סי׳ תרמ&quot;ח שהביא מחכמי הדור אתרוג שיש בו ביצה בצמצום ביום ראשון ולימים אחרונים בציר ליה שעורא אי יוצא בו ועמ&quot;ש בזה בש&quot;י:</p>
               </div>
             </div>
@@ -774,8 +930,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:18:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-18-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:18:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-18">Mishneh Torah, Shofar, Sukkah and Lulav 7:18</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּבַזְּמַן הַזֶּה שֶׁהַכּל עוֹשִׂין עַל פִּי הַחֶשְׁבּוֹן נִשְׁאָר הַדָּבָר כְּמוֹת שֶׁהָיָה שֶׁלֹּא יִנָּטֵל לוּלָב בְּשַׁבָּת כְּלָל לֹא בִּגְבוּלִין וְלֹא בְּאֶרֶץ יִשְׂרָאֵל וַאֲפִלּוּ בְּיוֹם רִאשׁוֹן. וְאַף עַל פִּי שֶׁהַכּל יוֹדְעִים בִּקְבִיעַת הַחֹדֶשׁ. וּכְבָר בֵּאַרְנוּ שֶׁעִקַּר הָאִסּוּר בִּנְטִילַת הַלּוּלָב בְּשַׁבָּת גְּזֵרָה שֶׁמָּא יַעֲבִירֶנּוּ אַרְבַּע אַמּוֹת בִּרְשׁוּת הָרַבִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גזרה שמא יעבירנו.</strong> ובפ&quot;ב מה׳ שופר ה&quot;ו כתב רבינו או מוציאו מרשות לרשות ועמ&quot;ש בזה בס&quot;ד בפ&quot;א הי&quot;ג מה׳ מגילה:</p>
               </div>
             </div>
@@ -790,8 +951,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:20:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-7-20-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 7:20:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-7-20">Mishneh Torah, Shofar, Sukkah and Lulav 7:20</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲלָכָה לְמשֶׁה מִסִּינַי שֶּׁמְּבִיאִין בַּמִּקְדָּשׁ עֲרָבָה אַחֶרֶת חוּץ מֵעֲרָבָה שֶׁבַּלּוּלָב. וְאֵין אָדָם יוֹצֵא יְדֵי חוֹבָתוֹ בַּעֲרָבָה שֶׁבַּלּוּלָב. וְשִׁעוּרָהּ אֲפִלּוּ עָלֶה אֶחָד בְּבַד אֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אפילו עלה אחד בבד אחד.</strong> עי׳ הה&quot;מ הלכה כר&quot;נ בדיני וכר&quot;ש באיסורי והר&quot;ן כתב דהלכתא כר&quot;ש משום דמנהג נביאים הוא והב&quot;י נתקשה בדבריו וכבר כתבתי בש&quot;י ישוב לדברי הר&quot;ן ע&quot;ש:</p>
               </div>
             </div>
@@ -807,8 +973,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-1">Mishneh Torah, Shofar, Sukkah and Lulav 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבַעַת מִינִין הָאֵלּוּ שֶׁהֵן לוּלָב וַהֲדַס וַעֲרָבָה וְאֶתְרוֹג שֶׁהָיָה אֶחָד מֵהֶן יָבֵשׁ אוֹ גָּזוּל אוֹ גָּנוּב אֲפִלּוּ לְאַחַר יֵאוּשׁ אוֹ שֶׁיִּהְיֶה מֵאֲשֵׁרָה הַנֶּעֱבֶדֶת אַף עַל פִּי שֶׁבִּטְּלוּ הָאֲשֵׁרָה מִלְּעָבְדָהּ. אוֹ שֶׁהָיָה שֶׁל עִיר הַנִּדַּחַת. הֲרֵי זֶה פָּסוּל. הָיָה אֶחָד מֵהֶן שֶׁל עֲבוֹדַת כּוֹכָבִים לֹא יִטּל לְכַתְּחִלָּה וְאִם נָטַל יָצָא. הָיָה כָּמוּשׁ וְלֹא גָּמַר לִיבַשׁ כָּשֵׁר. וּבִשְׁעַת הַדְּחָק אוֹ בִּשְׁעַת הַסַּכָּנָה לוּלָב הַיָּבֵשׁ כָּשֵׁר אֲבָל לֹא שְׁאָר הַמִּינִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה אחד מהן של עכו&quot;ם לא יטול.</strong> עיין הה&quot;מ ועי׳ בתוס׳ סוכה דף ל&quot;א ע&quot;ב ד&quot;ה באשירה דמשה וא&quot;ת עכו&quot;ם דכותים מדאגבהיה קנייה כדאמרינן פ׳ כ&quot;ה דלמא מגבה לה והדר מבטל לה וי&quot;ל כגון שהגביהו ע&quot;מ שלא לקנות ובשמעתין המ&quot;ל דמתני׳ ביו&quot;ט ראשון ולא הוה צריך לאוקמי באשירה דמשה ע&quot;ש ועי׳ ב&quot;י יו&quot;ד סי׳ קמ&quot;ו שכתב בשם הסמ&quot;ג משבא לידו אינו אומר לעכו&quot;ם לבטלו דטעמא משום גזירה אטו אליל של ישראל עצמו יראה מדבריו דס&quot;ל דאינו אלא מדרבנן אבל מה&quot;ת יש לה ביטול אפילו מדאגבהה וכ&quot;מ מדברי הר&quot;ן פ׳ כ&quot;ה במ&quot;ש שם היאך יכול לזכות בו משום דא&quot;ל צד זכיה ע&quot;י ביטול. ולכאורה הדבר תמוה דהא עכשיו שהוא ביד ישראל שוב לא מהני ביטול אלא דס&quot;ל כהסמ&quot;ג וא&quot;כ כיון דמה&quot;ת יש לה ביטול שפיר א&quot;ל זכייה בגוה לקנותה והיינו שכתב הר&quot;ן שם וכן הדין בחמץ בפסח שאפשר ישראל לזכות בו הוא מהטעם מותר לאחר הפסח ואינו אסור אלא משום קנסא ולפי סברת הסמ&quot;ג והר&quot;ן א&quot;כ מה&quot;ת יוצא כיון שיכול לבטל ומדרבנן הוא דא&quot;י ומש&quot;ה מוקי לה בגמ׳ באשירה דמשה ומשמע קצת מדברי התוס׳ והריטב&quot;א דל&quot;ל סברת הסמ&quot;ג אלא כיון דזכי ביה דינו כדין עכו&quot;ם של ישראל שעובדה שאין לה ביטול מה&quot;ת ואין מקומו פה:</p>
               </div>
             </div>
@@ -823,8 +994,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:2</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-1-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-1">Mishneh Torah, Shofar, Sukkah and Lulav 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַרְבַעַת מִינִין הָאֵלּוּ שֶׁהֵן לוּלָב וַהֲדַס וַעֲרָבָה וְאֶתְרוֹג שֶׁהָיָה אֶחָד מֵהֶן יָבֵשׁ אוֹ גָּזוּל אוֹ גָּנוּב אֲפִלּוּ לְאַחַר יֵאוּשׁ אוֹ שֶׁיִּהְיֶה מֵאֲשֵׁרָה הַנֶּעֱבֶדֶת אַף עַל פִּי שֶׁבִּטְּלוּ הָאֲשֵׁרָה מִלְּעָבְדָהּ. אוֹ שֶׁהָיָה שֶׁל עִיר הַנִּדַּחַת. הֲרֵי זֶה פָּסוּל. הָיָה אֶחָד מֵהֶן שֶׁל עֲבוֹדַת כּוֹכָבִים לֹא יִטּל לְכַתְּחִלָּה וְאִם נָטַל יָצָא. הָיָה כָּמוּשׁ וְלֹא גָּמַר לִיבַשׁ כָּשֵׁר. וּבִשְׁעַת הַדְּחָק אוֹ בִּשְׁעַת הַסַּכָּנָה לוּלָב הַיָּבֵשׁ כָּשֵׁר אֲבָל לֹא שְׁאָר הַמִּינִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ובשעת הדחק כו׳ אבל לא שאר המינין.</strong> שיטת רבינו דעל לולב מברכין בשעת הדחק ודעת הראב&quot;ד דאין מברכין אבל ע&quot;ז לא פליג רבינו דלנקוט בידייהו כדי שלא תשתכח תורת אתרוג אלא דסברת רבינו דאס&quot;ד דלא יוצא בו בשעת הדחק לא היינו מתירין משום שלא תשתכח דלמא אתי לאכשורינהו ומה&quot;ט כתב אם אין כאן כ&quot;א אתרוג המורכב שלא יקחנו משום שלא תשתכח תורת אתרוג דלמא אתי לאכשורי בשאר השנים ושיטת הלבוש באתרוג המורכב שפסול מה&quot;ת משום שנעבדה בו עבירה עי׳ בשו&quot;ת פנים מאירות ח&quot;ש סי׳ קע&quot;ג:</p>
               </div>
             </div>
@@ -839,8 +1015,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:2:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-2-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-2">Mishneh Torah, Shofar, Sukkah and Lulav 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶתְרוֹג שֶׁל עָרְלָה וְשֶׁל תְּרוּמָה טְמֵאָה וְשֶׁל טֶבֶל פָּסוּל. שֶׁל דְּמַאי כָּשֵׁר שֶׁאֶפְשָׁר שֶׁיַּפְקִיר נְכָסָיו וְיִהְיֶה עָנִי שֶׁמֻּתָּר לוֹ לֶאֱכל דְּמַאי. אֶתְרוֹג שֶׁל תְּרוּמָה טְהוֹרָה וְשֶׁל מַעֲשֵׂר שֵׁנִי בִּירוּשָׁלַיִם לֹא יִטּל שֶׁמָּא יַכְשִׁירוֹ לְטֻמְאָה. וְאִם נָטַל כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אתרוג של ערלה.</strong> בש&quot;ג כתב גם בשל ערלה בח&quot;ל אין יוצאין. ועי׳ בכנה&quot;ג סי׳ תרמ&quot;ח חולק בזה דהא יש היתר לאכילה כעין מה דאמרינן ספק לי ואנא איכול במס׳ קידושין דף ל&quot;ט ובאמת הדין עם השה&quot;ג דהא רבינו והטור לא הביאו כלל הך דיכול לספוקי הדדי וכתב ב&quot;י יו&quot;ד סי׳ רצ&quot;ד דס&quot;ל דהנך רבנן דמספקי להדדי ס&quot;ל כמ&quot;ד הלכות מדינה אבל למ&quot;ד הלמ&quot;מ אסור לספוקי להדדי וא&quot;כ אינו יוצא בו ע&quot;ש ודוחק לומר משום דבספק גמור מותר יהיה נקרא היתר אכילה:</p>
               </div>
             </div>
@@ -855,8 +1036,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:3:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-3-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-3">Mishneh Torah, Shofar, Sukkah and Lulav 8:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לוּלָב שֶׁנִּקְטַם רֹאשׁוֹ פָּסוּל. נִסְדַּק אִם נִתְרַחֲקוּ שְׁנֵי סְדָקָיו זֶה מִזֶּה עַד שֶׁיֵּרָאוּ כִּשְׁנַיִם פָּסוּל. הָיָה עָקוּם לְפָנָיו שֶׁהֲרֵי שְׁדֵרוֹ כְּגַב בַּעַל חֲטוֹטֶרֶת פָּסוּל. הָיָה עָקוּם לַאֲחוֹרָיו כָּשֵׁר שֶׁזּוֹ הִיא בְּרִיָּתוֹ. נֶעֱקַם לְאֶחָד מִצְּדָדָיו פָּסוּל. נִפְרְדוּ עָלָיו זֶה מֵעַל זֶה וְלֹא נִדַּלְדְּלוּ כַּעֲלֵי הַחֲרָיוֹת כָּשֵׁר. נִפְרְצוּ עָלָיו וְהוּא שֶׁיִּדַּלְדְּלוּ מִשְּׁדֵרוֹ שֶׁל לוּלָב כַּעֲלֵי הַחֲרָיוֹת פָּסוּל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היה עקום לפניו פסול.</strong> בברייתא סוכה דף ל&quot;ב נזכר ג&quot;כ לולב כפוף ולא הזכירו רבינו עי׳ בס׳ כפות תמרים שהניח בצ&quot;ע. ואפשר מפני שבפירוש כפוף יש הרבה פירושים ולמאי דמסיק וצדדין כלפניו דמי י&quot;ל דהיינו כפוף ועקום דמחלקים בין מלאחריו ובין מלפניו עי׳ ב&quot;י סי׳ תרמ&quot;ה ובס׳ כפות תמרים מסיק דיש להחמיר בין עקום מלפניו ובין עקום מלאחריו וענין העיקום הוא כמ&quot;ש הכ&quot;מ דבעינן עקום ממש כמו מגל כגב בעל חטוטרת:</p>
               </div>
             </div>
@@ -871,8 +1057,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-5-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-5">Mishneh Torah, Shofar, Sukkah and Lulav 8:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֲדַס שֶׁנִּקְטַם רֹאשׁוֹ כָּשֵׁר. נָשְׁרוּ רֹב עָלָיו אִם נִשְׁתַּיְּרוּ שְׁלֹשָׁה עָלִין בְּקֵן אֶחָד כָּשֵׁר. הָיוּ עֲנָבָיו מְרֻבּוֹת מֵעָלָיו אִם יְרֻקּוֹת כָּשֵׁר וְאִם אֲדֻמּוֹת אוֹ שְׁחוֹרוֹת פָּסוּל. וְאִם מִעֲטָן כָּשֵׁר. וְאֵין מְמַעֲטִין אוֹתָן בְּיוֹם טוֹב לְפִי שֶׁהוּא כִּמְתַקֵּן. עָבַר וְלִקְּטָן אוֹ שֶׁלִּקְּטָן אֶחָד אֶחָד לַאֲכִילָה הֲרֵי זֶה כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הדס כו׳.</strong> עי׳ השגת הראב&quot;ד ועי׳ בס׳ מהר&quot;י בן לב ספר א׳ סי׳ ק&quot;ו כנה&quot;ג ובברייתא יבשו רוב עליו ונשתיירו ג׳ בדי עלין לחין ונחלקו רש&quot;י והרא&quot;ש בפירוש הדבר ולשיטת הרא&quot;ש בעי׳ שישתייר ג׳ קנים ודברי השו&quot;ע צ&quot;ע וכבר הארכתי בזה בש&quot;י ועי׳ ב&quot;י סי׳ תרמ&quot;ו שנתן טעם על מה שהקשה כאן בכ&quot;מ למה השמיט רבינו הך ברייתא:</p>
               </div>
             </div>
@@ -887,8 +1078,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:6:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-6-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-6">Mishneh Torah, Shofar, Sukkah and Lulav 8:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">עֲרָבָה שֶׁנִּקְטַם רֹאשָׁהּ כְּשֵׁרָה. נִפְרְצוּ עָלֶיהָ פְּסוּלָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ערבה כו׳.</strong> עי׳ הה&quot;מ ולישנא דמתניתין מסייע לשיטת רבינו כיון דקתני גבי הדס דפסולה למה לי למתני תו גבי ערבה דהא הוי זו ואצ&quot;ל זו:</p>
               </div>
             </div>
@@ -903,8 +1099,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-7">Mishneh Torah, Shofar, Sukkah and Lulav 8:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶתְרוֹג שֶׁנִּקַּב נֶקֶב מְפֻלָּשׁ כָּל שֶׁהוּא פָּסוּל. וְשֶׁאֵינוֹ מְפֻלָּשׁ אִם הָיָה כְּאִיסָר אוֹ יֶתֶר פָּסוּל. חָסֵר כָּל שֶׁהוּא פָּסוּל. נִטַּל דָּדוֹ וְהוּא הָרֹאשׁ הַקָּטָן שֶׁשּׁוֹשַׁנְתּוֹ בּוֹ פָּסוּל. נִטַּל הָעֵץ שֶׁהוּא תָּלוּי בּוֹ בָּאִילָן מֵעִקַּר הָאֶתְרוֹג וְנִשְׁאַר מְקוֹמוֹ גּוּמָא פָּסוּל. עָלְתָה חֲזָזִית עָלָיו אִם בִּשְׁנַיִם וּשְׁלֹשָׁה מְקוֹמוֹת פָּסוּל. וְאִם בְּמָקוֹם אֶחָד אִם עָלְתָה עַל רֻבּוֹ פָּסוּל. וְאִם עַל דָּדוֹ וַאֲפִלּוּ כָּל שֶׁהוּא פָּסוּל. נִקְלַף הַקְּרוּם הַחִיצוֹנָה שֶׁלּוֹ שֶׁאֵינוֹ מְחַסְּרוֹ אֶלָּא נִשְׁאָר יָרֹק כְּמוֹת שֶׁהִיא בְּרִיָּתוֹ אִם נִקְלַף כֻּלּוֹ פָּסוּל וְאִם נִשְׁאַר מִמֶּנּוּ כָּל שֶׁהוּא כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אם היה כאיסר או יותר פסול.</strong> אי קשיא השתא כאיסר פסול יתר מבעיא תריץ שבא לחדש לנו בין כגון שהיה מרובע או משולש צריך שיהיה יותר מכאיסר כדי שתוכל לעשות בו עיגול כאיסר כנה&quot;ג סי׳ תרמ&quot;ח בהגהת ב&quot;י בשם הרדב&quot;ז ח&quot;ש סי׳ קפ&quot;ד. אתרוג המורכב שהורכב יחור של לימונ&quot;א באילן אתרוגים פסול מהר&quot;ם אלשיך בתשובה סי׳ ק&quot;י ועמ&quot;ש לעיל בשם הלבוש:</p>
               </div>
             </div>
@@ -919,8 +1120,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:2</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-7-2" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-7">Mishneh Torah, Shofar, Sukkah and Lulav 8:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶתְרוֹג שֶׁנִּקַּב נֶקֶב מְפֻלָּשׁ כָּל שֶׁהוּא פָּסוּל. וְשֶׁאֵינוֹ מְפֻלָּשׁ אִם הָיָה כְּאִיסָר אוֹ יֶתֶר פָּסוּל. חָסֵר כָּל שֶׁהוּא פָּסוּל. נִטַּל דָּדוֹ וְהוּא הָרֹאשׁ הַקָּטָן שֶׁשּׁוֹשַׁנְתּוֹ בּוֹ פָּסוּל. נִטַּל הָעֵץ שֶׁהוּא תָּלוּי בּוֹ בָּאִילָן מֵעִקַּר הָאֶתְרוֹג וְנִשְׁאַר מְקוֹמוֹ גּוּמָא פָּסוּל. עָלְתָה חֲזָזִית עָלָיו אִם בִּשְׁנַיִם וּשְׁלֹשָׁה מְקוֹמוֹת פָּסוּל. וְאִם בְּמָקוֹם אֶחָד אִם עָלְתָה עַל רֻבּוֹ פָּסוּל. וְאִם עַל דָּדוֹ וַאֲפִלּוּ כָּל שֶׁהוּא פָּסוּל. נִקְלַף הַקְּרוּם הַחִיצוֹנָה שֶׁלּוֹ שֶׁאֵינוֹ מְחַסְּרוֹ אֶלָּא נִשְׁאָר יָרֹק כְּמוֹת שֶׁהִיא בְּרִיָּתוֹ אִם נִקְלַף כֻּלּוֹ פָּסוּל וְאִם נִשְׁאַר מִמֶּנּוּ כָּל שֶׁהוּא כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>עלתה חזזית בב׳ וג׳ מקומות.</strong> עי׳ כ&quot;מ ומל&quot;מ ובס׳ א&quot;ר בשם לח&quot;מ פ׳ לולב הגזול ב׳ משני צדדים וג׳ מצד א׳. ופי׳ חזזית כמו אבעבועות. וזה שקורין חזזית באתרוגין שלנו רוב אותן שיש להם חזזית כ&quot;ש אינו ניכר מקומם במשמוש ואינו גבוה משאר אתרוג וכשירים והא דעל חוטמו פסול חזזית וכל שינוי מראה בכ&quot;ש אינו נקרא כ&quot;ש אלא כשנראה לכל שאינו הדר אבל באתרוגים שלנו שרוב אלו שאנו קוראין חזזית אינם נראין לעין מחמת דקותן וצריך להסתכל בהן כדי שתהא נראה ונרגש בראייה שאדם רואה את האתרוג כולו הדר בלי שום רושם ואדם אחר שיש לו יותר ראייה טובה רואה ואינו נקרא כ&quot;ש והדר נקרא למי שהוא בידו וכ&quot;ש לאחרים הרואים אותו הר&quot;מ מטראני כנה&quot;ג. ומראה אתרוג עי׳ תוס׳ סוכה דף ל&quot;א כחלמון ביצה ושעוה ירוק כעשב השדה עי׳ מג&quot;א. ומראה אודם מראה פסולה היא ואהינא סומקא אינו אודם כ&quot;כ. ועי׳ במס׳ עירובין בהא דאמר אתריגו לפחמין ופירש&quot;י דרך אתרוג להיות אדום ובפמ&quot;ג כתב אשרי מי שיוכל לקנות אתרוג נאה והדר מכל סיג גם כתב בשם היש&quot;ש בחולין באתרוגים המורים מרובים והיודעים מועטים מפני שאין גדילין בארצותינו:</p>
               </div>
             </div>
@@ -935,8 +1141,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:10:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-10-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-10">Mishneh Torah, Shofar, Sukkah and Lulav 8:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם יוֹצֵא בְּיוֹם טוֹב רִאשׁוֹן שֶׁל חַג בְּלוּלָבוֹ שֶׁל חֲבֵרוֹ שֶׁיִּשְׁאָלֶנּוּ מִמֶּנּוּ עַד שֶׁיִּתְּנֶנּוּ לוֹ בְּמַתָּנָה. נְתָנוֹ לוֹ עַל מְנָת לְהַחֲזִירוֹ הֲרֵי זֶה יוֹצֵא בּוֹ יְדֵי חוֹבָתוֹ וּמַחֲזִירוֹ. שֶׁמַּתָּנָה עַל מְנָת לְהַחֲזִיר שְׁמָהּ מַתָּנָה. וְאִם לֹא הֶחְזִירוֹ לֹא יָצָא שֶׁנִּמְצָא כְּגָזוּל. וְאֵין נוֹתְנִין אוֹתוֹ לְקָטָן שֶׁהַקָּטָן קוֹנֶה וְאֵינוֹ מַקְנֶה לַאֲחֵרִים מִן הַתּוֹרָה וְנִמְצָא שֶׁאִם הֶחְזִירוֹ לוֹ אֵינוֹ חוֹזֵר. וְאֶחָד הַלּוּלָב וְאֶחָד כָּל מִין וָמִין מֵאַרְבַּע מִינִין שֶׁבּוֹ אִם הָיָה אֶחָד מֵהֶן שָׁאוּל אֵין יוֹצְאִין בּוֹ בְּיוֹם טוֹב רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואינו מקנה לאחרים מה&quot;ת.</strong> עמ&quot;ש בזה באריכות בש&quot;י ר&quot;פ לה&quot;ג ד&quot;ה רבנן:</p>
               </div>
             </div>
@@ -951,8 +1162,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:11:1</h4></div>
               <a class="anchor" href="#kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-8-11-1" aria-label="Copy link to Kovetz Al Yad HaChazakah on Mishneh Torah, Shofar, Sukkah and Lulav 8:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-shofar-sukkah-and-lulav/#mishneh-torah-shofar-sukkah-and-lulav-8-11">Mishneh Torah, Shofar, Sukkah and Lulav 8:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שֻׁתָּפִין שֶׁקָּנוּ לוּלָב אוֹ אֶתְרוֹג בְּשֻׁתָּפוּת אֵין אֶחָד מֵהֶן יוֹצֵא בּוֹ יְדֵי חוֹבָתוֹ בָּרִאשׁוֹן עַד שֶׁיִּתֵּן לוֹ חֶלְקוֹ בְּמַתָּנָה. הָאַחִין שֶׁקָּנוּ אֶתְרוֹגִין מִתְּפִיסַת הַבַּיִת וְנָטַל אֶחָד מֵהֶן אֶתְרוֹג וְיָצָא בּוֹ. אִם יָכוֹל לְאָכְלוֹ וְאֵין הָאַחִין מַקְפִּידִין בְּכָךְ יָצָא. וְאִם הָיוּ מַקְפִּידִין לֹא יָצָא עַד שֶׁיִּתְּנוּ לוֹ חֶלְקָם בְּמַתָּנָה. וְאִם קָנָה זֶה אֶתְרוֹג וְזֶה פָּרִישׁ אוֹ שֶׁקָּנוּ כְּאֶחָד אֶתְרוֹג וְרִמּוֹן וּפָרִישׁ מִתְּפִיסַת הַבַּיִת אֵינוֹ יוֹצֵא בָּאֶתְרוֹג עַד שֶׁיִּתֵּן לוֹ חֶלְקוֹ בְּמַתָּנָה וְאַף עַל פִּי שֶׁאִם אֲכָלוֹ אֵין מַקְפִּידִין עָלָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שותפין שקנו לולב וכו׳.</strong> כתב הה&quot;מ אבל הרשב&quot;א כתב ומסתברא לי דהא דאחין בשלא לקחוהו לצאת בו הוא אלא לאוכלו ולהריח בו אבל לקחוהו לצאת בו ודאי בכל גוונא יוצאין בו דאמרינן יש ברירה שהרי בשעה שלקחוהו היו יודעין שאינו ראוי ליחלק ועל דעת כן לקחוהו שיטלנו כל אחד מהן לצאת בו שיהא כולו שלו דומיא דשותפין שנדרו הנאה זה מזה שהם נכנסים לחצר של שניהם שאין בה דין חלוקה כמו שמבואר בפ&quot;ו מה׳ נדרים והטעם שיש ברירה וכו׳ ואפשר שעל דעת זה סמכו בהרבה מקומות שלוקחין לולב אחד וכל הקהל יוצאין בו ע&quot;כ. אמנם בחידושי ריטב&quot;א מס׳ סוכה דף ק&quot;ז ד&quot;ה תניא מבואר שלא כדברי הרשב&quot;א במ&quot;ש שם. ויותר נראה לומר דמודה ר&quot;א דסוכה של שותפין יוצאין בו דל&quot;ד ללולב דהתם כי נפק ביה חד מנייהו בכוליה נפק ולא סגי דלא נפק בחולקיה דחבריה והוי שאול דכיון שמסתמא בכולו ליכא למימר ברירה והא ודאי אין כולו חלקו ודכותה אם נשתמש בכולו אסור במודר הנאה אא&quot;כ התנו קודם הנדר וכו׳ אבל הכא בשותפין כל אחד ואחד לשלו הוא נכנס ויש ברירה וכדאמרינן בנדרים בשותפין שנדרו הנאה שניהם מותרים ליכנס לחצר שיכול לומר לתוך שלי אני נכנס וכו׳ ואפילו למאן דאסר התם נדרים שאני דויתר אסור במודר הנאה וכו׳ אבל במצות סוכה דלתוך שלו נכנס לכם קרינן ביה עכ&quot;ד. הרי להדיא דלא ס&quot;ל סברת הרשב&quot;א דלולב ל&quot;ד לנדרים רק סוכה דמי לנדרים ור&quot;א בסוכת שותפין מודה ועי׳ בשו&quot;ת ריב&quot;ש סי׳ שמ&quot;ז ובס׳ ברכי יוסף הביא שו&quot;ת רשב&quot;ש סי׳ ח׳ שחלק עם הריב&quot;ש וסובר דסוכת השותפין גרע מסוכה שאולה דשאול תוך ימי שאלה הוא כולו שלו ובמקפידין באמת פסול דל&quot;ד להך דנדרים ע&quot;ש שהאריך דלדידן דקיי&quot;ל בדאורייתא אין ברירה סוכת שותפין המקפידין אין יוצאין בו ועי׳ בש&quot;ע סי׳ תרל&quot;ג. והנה לכאורה יש להביא ראיה לשיטת הרשב&quot;ש דלפ&quot;ד א&quot;ש מה דיליף ר&quot;י סוכה דף ל&quot;ו דאינה נוהגת אלא בד׳ מינים ק&quot;ו מלולב דנוהג ביום ולא בלילה וכו׳ והרגיש בספר כ&quot;ת והלא מעיקרא דדינא פירכא מה ללולב שכן שותפין ושאול פסול משא&quot;כ גבי סוכה ואף אי כר&quot;א ס&quot;ל דשאול פסול בסוכה מ&quot;מ הרי כתבו התוס׳ סוכה כ&quot;ז בסוכת השותפין מודה ר&quot;א וכו׳ ע&quot;ש שהניח בקושיא לפי שיטת הרשב&quot;ש גם בסוכה אליבא דכ&quot;ע פסול שותפין המקפידין דגרע משאול ובשותפין שאין מקפידין ה&quot;ל שאולה. וי&quot;ל דס&quot;ל כר&quot;א ול&quot;ק קושית הכ&quot;ת. אמנם גם לשיטת הריטב&quot;א שהבאתי לק&quot;מ קושית הכ&quot;ת דבאמת י&quot;ל דר&quot;י כר&quot;א ס&quot;ל דשאולה פסולה בסוכה ואי קשיא עכ&quot;פ בשותפות מודה זה הוא משום דגבי סוכה שייך ברירה משא&quot;כ גבי לולב משום דאינו יוצא כי אם בכולו ולא שייך ברירה וא&quot;כ שפיר יליף ר&quot;י בק&quot;ו משא&quot;כ לשיטת הרשב&quot;א דגם בלולב שייך ברירה אם לקחו לצאת בו עדיין הקושיא נשארת ויש ראיה דלא כהרשב&quot;א. היוצא מדברינו יש כאן שלש שיטות שיטת הרשב&quot;א דיוצא באתרוג השותפין אם לקחו מתחלה לצאת בו משום ברירה ודמי לשותפין שנדרו הנאה זה מזה דמותרין ליכנס לחצר באין בו דין חלוקה, ולשיטת הריטב&quot;א דהיכא דמחוייב לצאת בכולו כמו באתרוג ל&quot;ד לנדרים ולא שייך ברירה ואינו יוצא באתרוג השותפין אף אם לקחו מתחלה לכך לצאת בו דרחמנא פסליה, ולשיטת הרשב&quot;ש ומבואר שם שהרבה מן החכמים הסכימו אפילו בסוכת השותפין אין יוצאין בו אם הם מקפידים דלא שייך ברירה כיון דהקרא אסר לנו וכל האזרח לא אתי כי אם לרבות שאול דבעת שאולה כולו שלו היא משא&quot;כ בשותפות. והנה לפמ&quot;ש לשיטת הריטב&quot;א ליישב קושית הכ&quot;ת ע&quot;כ צ&quot;ל דר&quot;י אית ליה כר&quot;א דשאול פסול ושותפין ליכא פירכא משום ברירה וצ&quot;ל דכ&quot;ע אית ליה ברירה כה&quot;ג וכמ&quot;ש הריטב&quot;א דאפילו מאן דאוסר בנדרים מודה בסוכה דאל&quot;כ קשיא הא ר&quot;י לית ליה ברירה כדאמרינן בכמה דוכתין. אמנם אין מזה הכרח דאיכא למימר דמאן דלית ליה ברירה בכ&quot;מ גם כאן אמרינן אין ברירה וכמ&quot;ש בשו&quot;ת הרשב&quot;ש הנ&quot;ל אלא מאן דאית ליה ברירה בכל דוכתי ניחא ובאמת גם אליבא דר&quot;י מצינו דיש מחלוקת אי ס&quot;ל ברירה ואדרבה עפ&quot;ז יש ליישב קושית התוס׳ סוכה דף ל&quot;ז ע&quot;א ד&quot;ה מאי ארז וכו׳ מה שמקשים אליבא דרב די&quot;ל רב ס&quot;ל דתנא דס&quot;ל אליבא דר&quot;י דסוכה אינה נוהגת כ&quot;א בד׳ מינים ס&quot;ל דר&quot;י אית ליה ברירה ולתנא דס&quot;ל אליבא דר&quot;י אין ברירה באמת סוכה נוהגת בכל דבר דוק ותשכח. וגם לפי סברת הריטב&quot;א מוכח לומר דס&quot;ל לר&quot;י כר&quot;א דסוכה שאולה פסולה ומש&quot;ה יליף ק&quot;ו מיושב שפיר דלא קיי&quot;ל בהא כר&quot;י אלא סוכה נוהגת בכל דבר וכ&quot;ע מודים בזה עי׳ בתוס׳ שם ד&quot;ה כל דין כו׳. כיון דביררנו דירד ר&quot;י לשיטת ר&quot;א א&quot;כ לית הלכתא כוותיה אלא דסוכה שאולה כשרה ומיפרך הק&quot;ו. ובדרוש אמרתי בזה הוא פירוש בעזרא דכתיב צאו ההר והביאו עלי זית וכו׳ וכתב ויעשו כל הקהל סוכות וכו׳ ותהי להם שמחה גדולה פי׳ משום דעזרא חידש להם דסוכה נוהגת בכ&quot;ד וכמו שהשיבו חכמים לר&quot;י ואמאי לא ילפינן ק&quot;ו וצ&quot;ל דעזרא חידש להם דין זה דסוכה שאולה כשירה וא&quot;כ מיפרך הק&quot;ו ועל ידי זה כל אחד מישראל היה יכול לקיים מצות סוכה דקודם שלמד להם עזרא היה ס&quot;ל דשאולה פסולה והיה מקצתם שאין להם חלק בסוכה לא היו יכולים לקיים מצות סוכה משא&quot;כ עתה יודעים מזה דסוכה שאולה כשירה ויעשו כל הקהל סוכות ותהי שמחה גדולה בקיום המצוה. וה׳ יזכנו לקיים מצותיו בנפש חפצה:</p>
               </div>
             </div>
@@ -962,6 +1178,10 @@
               <a href="#chapter-kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-text-8">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -982,8 +1202,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json","occurrence_url":"../../data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/kovetz-al-yad-hachazakah-on-mishneh-torah-shofar-sukkah-and-lulav.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1009,7 +1229,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

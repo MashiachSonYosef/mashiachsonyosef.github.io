@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -145,21 +149,17 @@
           <section class="paired-panel">
             <h2>Base Text</h2>
             <p><a href="../../halakhah/mishneh-torah-inheritances/">Open Mishneh Torah, Inheritances</a></p>
-            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Inheritances</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">87 total source units | imported 2026-05-23</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>459 matched</strong> / 1208 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/migdal-oz-on-mishneh-torah-inheritances.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/migdal-oz-on-mishneh-torah-inheritances-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -335,8 +335,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-1">Mishneh Torah, Inheritances 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">סֵדֶר נְחָלוֹת כָּךְ הִיא. מִי שֶׁמֵּת יִירָשׁוּהוּ בָּנָיו וְהֵם קוֹדְמִין לַכּל. וְהַזְּכָרִים קוֹדְמִין לִנְקֵבוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>סדר נחלות כך הוא כו׳ עד ראש הדורות.</strong> פ׳ יש נוחלין <span class="source-small"> (דף קט&quot;ו) </span> :</p>
               </div>
             </div>
@@ -351,8 +356,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-6">Mishneh Torah, Inheritances 1:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִשְׁפַּחַת הָאֵם אֵינָהּ קְרוּיָה מִשְׁפָּחָה וְאֵין יְרֻשָּׁה אֶלָּא לְמִשְׁפַּחַת הָאָב. לְפִיכָךְ הָאַחִים מִן הָאֵם אֵין יוֹרְשִׁין זֶה אֶת זֶה וְאַחִין מִן הָאָב יוֹרְשִׁין זֶה אֶת זֶה. וְאֶחָד אָחִיו שֶׁהוּא מֵאָבִיו בִּלְבַד אוֹ אָחִיו מֵאָבִיו וּמֵאִמּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>משפחת האם אינה קרויה משפחה עד אינו יורש כלל.</strong> פרק יש נוחלין <span class="source-small"> (דף ק&quot;ח ק&quot;י) </span> ומייתי לה ביבמות פרק הבא על יבמתו:</p>
               </div>
             </div>
@@ -367,8 +377,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-8">Mishneh Torah, Inheritances 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה אֵינָהּ יוֹרֶשֶׁת בַּעְלָהּ כְּלָל. וְהַבַּעַל יוֹרֵשׁ אֶת כָּל נִכְסֵי אִשְׁתּוֹ מִדִּבְרֵי סוֹפְרִים. וְהוּא קוֹדֵם לַכּל בִּירֻשָּׁתָהּ אַף עַל פִּי שֶׁהִיא אֲסוּרָה עָלָיו. כְּגוֹן אַלְמָנָה לְכֹהֵן גָּדוֹל גְּרוּשָׁה וַחֲלוּצָה לְכֹהֵן הֶדְיוֹט. וְאַף עַל פִּי שֶׁהִיא קְטַנָּה וְאַף עַל פִּי שֶׁהַבַּעַל חֵרֵשׁ הוּא יוֹרֵשׁ אֶת אִשְׁתּוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האשה אינה יורשת את בעלה כלל והבעל יורש וכו׳ עד ואע&quot;פ שהבעל חרש הוא יורש את אשתו:</strong> כתב הראב&quot;ד ז&quot;ל איני מודה בזה וכו׳: <strong> ואני </strong> אומר לא ירדתי לסוף דעתו בזה כי שמעתין דסוף פ׳ מי שמת <span class="source-small"> (דף קמ&quot;ב) </span> היינו דאין אדם יורש אשתו בקבר וכן הבן בנכסי האם דבהדדי איתנהו וכבר כתבו ר&quot;מ ז&quot;ל סוף זה הפרק ואדרבא מינה הא לאו בקבר ודאי ירית לה והכי אמרינן להדיא פ׳ יש נוחלין וביבמות פ׳ כיצד וירש אותה מלמד שהבעל יורש אותה וכן בכל דוכתא וכן ראינו כל הראשונים והאחרונים פוסקין והוא אינו מברר הדברים ודברים שבלב אינן דברים אלא שלבי אומר לי כי רצה לומר שהבעל יורש את אשתו דבר תורה ולא מדברי סופרים וקראי לאו אסמכתא בעלמא נינהו אלא ראיה גמורה ואם לזה כיון בדבריו אלא רואה אני להם מקום והראיות העומדות והמתקיימות בזה הדרך יכול להיות:</p>
               </div>
             </div>
@@ -383,8 +398,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-9">Mishneh Torah, Inheritances 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ בְּהִלְכוֹת אִישׁוּת שֶׁאֵין הַבַּעַל יוֹרֵשׁ אֶת אִשְׁתּוֹ עַד שֶׁתִּכָּנֵס בִּרְשׁוּתוֹ וְשֶׁאֵין הַפִּקֵּחַ יוֹרֵשׁ אֶת הַחֵרֶשֶׁת שֶׁנִּשֵּׂאת כְּשֶׁהִיא חֵרֶשֶׁת אֲפִלּוּ נִתְפַּקְּחָה. וְשָׁם בֵּאַרְנוּ שֶׁהוּא יוֹרֵשׁ אֶת נִכְסֵי אִשְׁתּוֹ שֶׁבָּאוּ לִירֻשָּׁתָהּ וְהֻחְזְקוּ בֵּין נְכָסִים שֶׁהִכְנִיסָה לוֹ בִּנְדֻנְיָתָהּ בֵּין נְכָסִים שֶׁלֹּא הִכְנִיסָה לוֹ. וּמִי שֶׁנִּתְגָּרְשָׁה סְפֵק גֵּרוּשִׁין וּמֵתָה אֵין הַבַּעַל יוֹרְשָׁהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבר ביארנו בהל׳ אישות שאין הבעל יורש אשתו עד אין הבעל יורשה:</strong> כתב הראב&quot;ד ז&quot;ל מה שאמרו בירושלמי נראה שהוא חולק עליו עכ&quot;ל: <strong> ואני </strong> אומר עיקר הלכה זו פ&quot;ק דקדושין ומייתי לה ביבמות פ׳ האשה רבה וזה הירושלמי שהראב&quot;ד ז&quot;ל סומך עליו לא ידעתיו ולא אשיב עליו אם הוא חולק אם לאו ואפילו חולק לא נחוש אליו הואיל והבבלי מסכים בזה כאשר הסכימו המפרשים ז&quot;ל בכל המקומות והביאור פ׳ כ&quot;ב וגם אני עיינתי שם המקומות שבגמרא. שוב מצאתי בהשגות המגרש את אשתו ולנה עמו בפונדקי צריכה הימנו גט שני כו׳ מי לא אמרינן לירושה ומה התם דודאי גירשה וספק החזירה יורשה הכא דודאי אשתו היא וספק גירשה לא כ&quot;ש עכ&quot;ל: וכמדומה לי שזה הוא לשון הירושלמי ואני חפשתי עליו פרק הזורק אשר שם נשנית משנה זו ולא מצאתי דברי רבי אלעזר אלו כלל ואפילו יהיה מאן לימא לן דהלכה כר&quot;א וכי תימא ר׳ אלעזר האמורא הוא מ&quot;מ יש לי לומר כי הטעם בפונדקי משום גט ישן כדאסיקנא התם וא&quot;כ הוה ליה הגט פסול והיא אשתו לכל דבר ומן הדין שהבעל יירשנה דהא נשאה כדמוקי להתם משום דלבו גס בה אבל היכא דספק אינה מגורשת מנלן:</p>
               </div>
             </div>
@@ -399,8 +419,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-10">Mishneh Torah, Inheritances 1:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּעַל שֶׁנָּשָׂא קְטַנָּה שֶׁאֵינָהּ צְרִיכָה מֵאוּן אֵינוֹ יוֹרְשָׁהּ שֶׁהֲרֵי אֵין כָּאן שׁוּם אִישׁוּת. וְכֵן שׁוֹטֶה שֶׁנָּשָׂא פִּקַּחַת אוֹ פִּקֵּחַ שֶׁנָּשָׂא שׁוֹטָה אֵינוֹ יוֹרְשָׁהּ שֶׁהֲרֵי לֹא תִּקְּנוּ חֲכָמִים לָהֶן נִשּׂוּאִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעל שנשא קטנה כו׳ עד לא תקנו להם חכמים נשואין.</strong> ביבמות פרק חרש <span class="source-small"> (דף קי&quot;ג) </span> :</p>
               </div>
             </div>
@@ -415,8 +440,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-11">Mishneh Torah, Inheritances 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּעַל שֶׁמֵּתָה אִשְׁתּוֹ וְאַחַר כָּךְ מֵת אָבִיהָ אוֹ אָחִיהָ אוֹ אֶחָד מִן הַמּוֹרִישִׁין אוֹתָהּ אֵין הַבַּעַל יוֹרֵשׁ אוֹתָן. אֶלָּא יוֹרֵשׁ אוֹתָן זַרְעָהּ אִם הָיָה לָהּ זֶרַע אוֹ תַּחְזֹר הַיְרֻשָּׁה לְמִשְׁפַּחַת בֵּית אָבִיהָ. שֶׁאֵין הַבַּעַל יוֹרֵשׁ נְכָסִים הָרְאוּיִין לָבֹא לְאַחַר מִכָּאן אֶלָּא לַנְּכָסִים שֶׁכְּבָר בָּאוּ לִירֻשָּׁה קֹדֶם שֶׁתָּמוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בעל שמתה אשתו כו׳ עד אם מתה אחר בעלה.</strong> בבא בתרא פ׳ יש נוחלין <span class="source-small"> (קי&quot;ד) </span> :</p>
               </div>
             </div>
@@ -431,8 +461,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-13">Mishneh Torah, Inheritances 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן אֵין הַבֵּן יוֹרֵשׁ אֶת אִמּוֹ בַּקֶּבֶר כְּדֵי לְהַנְחִיל לְאֶחָיו מֵאָבִיו. כֵּיצַד. מִי שֶׁמֵּת וְאַחַר כָּךְ מֵתָה אִמּוֹ אֵין אוֹמְרִין הוֹאִיל וְאִלּוּ הָיָה הַבֵּן קַיָּם הָיָה קוֹדֵם אַף יוֹרְשִׁין שֶׁל בֶּן קוֹדְמִין לְיוֹרְשֶׁיהָ שֶׁל אִשָּׁה זוֹ וְנִמְצְאוּ אֶחָיו מֵאָבִיו יוֹרְשִׁין אֶת אִמּוֹ שֶׁל זֶה אַחַר מוֹתוֹ שֶׁל זֶה. אֶלָּא זֶרַע בְּנָהּ הוּא שֶׁיִּירָשֶׁנָּה אִם הָיָה לוֹ זֶרַע וְאִם אֵין לוֹ זֶרַע תַּחְזֹר יְרֻשָּׁתָהּ לְמִשְׁפַּחַת בֵּית אָבִיהָ. אֲבָל אִם מֵתָה הָאֵם תְּחִלָּה וְאַחַר כָּךְ מֵת הַבֵּן אֲפִלּוּ הָיָה קָטָן בֶּן יוֹמוֹ וְלֹא כָּלוּ לוֹ חֳדָשָׁיו הוֹאִיל וְחָיָה אַחַר אִמּוֹ שָׁעָה אַחַת וּמֵת הֲרֵי זֶה נוֹחֵל אֶת אִמּוֹ וּמַנְחִיל הַנַּחֲלָה לְיוֹרְשָׁיו מִמִּשְׁפַּחַת אָבִיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אין הבן יורש את אמו כו׳ עד למשפחת בית אביה.</strong> בנדה פ׳ יוצא דופן <span class="source-small"> (דף מ&quot;ד) </span> :</p>
               </div>
             </div>
@@ -447,8 +482,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 1:13:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-1-13-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 1:13:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-1-13">Mishneh Torah, Inheritances 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן אֵין הַבֵּן יוֹרֵשׁ אֶת אִמּוֹ בַּקֶּבֶר כְּדֵי לְהַנְחִיל לְאֶחָיו מֵאָבִיו. כֵּיצַד. מִי שֶׁמֵּת וְאַחַר כָּךְ מֵתָה אִמּוֹ אֵין אוֹמְרִין הוֹאִיל וְאִלּוּ הָיָה הַבֵּן קַיָּם הָיָה קוֹדֵם אַף יוֹרְשִׁין שֶׁל בֶּן קוֹדְמִין לְיוֹרְשֶׁיהָ שֶׁל אִשָּׁה זוֹ וְנִמְצְאוּ אֶחָיו מֵאָבִיו יוֹרְשִׁין אֶת אִמּוֹ שֶׁל זֶה אַחַר מוֹתוֹ שֶׁל זֶה. אֶלָּא זֶרַע בְּנָהּ הוּא שֶׁיִּירָשֶׁנָּה אִם הָיָה לוֹ זֶרַע וְאִם אֵין לוֹ זֶרַע תַּחְזֹר יְרֻשָּׁתָהּ לְמִשְׁפַּחַת בֵּית אָבִיהָ. אֲבָל אִם מֵתָה הָאֵם תְּחִלָּה וְאַחַר כָּךְ מֵת הַבֵּן אֲפִלּוּ הָיָה קָטָן בֶּן יוֹמוֹ וְלֹא כָּלוּ לוֹ חֳדָשָׁיו הוֹאִיל וְחָיָה אַחַר אִמּוֹ שָׁעָה אַחַת וּמֵת הֲרֵי זֶה נוֹחֵל אֶת אִמּוֹ וּמַנְחִיל הַנַּחֲלָה לְיוֹרְשָׁיו מִמִּשְׁפַּחַת אָבִיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל אם מתה תחלה כו׳ עד סוף הפרק.</strong> פרק יש נוחלין <span class="source-small"> (דף קי&quot;ד):</span></p>
               </div>
             </div>
@@ -464,8 +504,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-1">Mishneh Torah, Inheritances 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבְּכוֹר נוֹטֵל פִּי שְׁנַיִם בְּנִכְסֵי אָבִיו שֶׁנֶּאֱמַר <span class="source-small">(דברים כא יז)</span> &quot;לָתֶת לוֹ פִּי שְׁנַיִם&quot;. כֵּיצַד. הִנִּיחַ חֲמִשָּׁה בָּנִים וְאֶחָד מֵהֶן בְּכוֹר הַבְּכוֹר נוֹטֵל שְׁלִישׁ הַמָּמוֹן וְכָל אֶחָד מֵהָאַרְבָּעָה פְּשׁוּטִים נוֹטֵל שְׁתוּת. הִנִּיחַ תִּשְׁעָה בָּנִים הֲרֵי (הָאֶחָד) הַבְּכוֹר נוֹטֵל חֲמִישִׁית וְכָל אֶחָד מִן הַשְּׁמוֹנָה פְּשׁוּטִים נוֹטֵל עֲשִׂירִית וְכֵן עַל הַחֲלוּקָה הַזֹּאת חוֹלְקִין לְעוֹלָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבכור נוטל פי שנים עד חולקין לעולם.</strong> בבא בתרא פ׳ יש נוחלין <span class="source-small"> (דף קכ&quot;ב) </span> ובבכורות פרק יש בכור <span class="source-small"> (דף ע&quot;ז) </span> :</p>
               </div>
             </div>
@@ -480,8 +525,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-2">Mishneh Torah, Inheritances 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכוֹר שֶׁנּוֹלַד אַחַר מִיתַת אָבִיו אֵינוֹ נוֹטֵל פִּי שְׁנַיִם. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא טז)</span> &quot;וְהָיָה בְּיוֹם הַנְחִילוֹ אֶת בָּנָיו&quot; וְגוֹ׳ <span class="source-small">(דברים כא יז)</span> &quot;כִּי אֶת הַבְּכֹר בֶּן הַשְּׂנוּאָה יַכִּיר&quot;. וְאִם יָצָאת פַּדַּחְתּוֹ בְּחַיֵּי אָבִיו אַף עַל פִּי שֶׁלֹּא יָצָא כָּל רֹאשׁוֹ לַאֲוִיר הָעוֹלָם אֶלָּא לְאַחַר מִיתַת אָבִיו הֲרֵי זֶה נוֹטֵל פִּי שְׁנַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכור שנולד וכו׳ עד השנואה יכיר כו׳.</strong> בבבא בתרא פ׳ יש נוחלין ובנדה פרק יוצא דופן:</p>
               </div>
             </div>
@@ -496,8 +546,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-2">Mishneh Torah, Inheritances 2:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בְּכוֹר שֶׁנּוֹלַד אַחַר מִיתַת אָבִיו אֵינוֹ נוֹטֵל פִּי שְׁנַיִם. שֶׁנֶּאֱמַר <span class="source-small">(דברים כא טז)</span> &quot;וְהָיָה בְּיוֹם הַנְחִילוֹ אֶת בָּנָיו&quot; וְגוֹ׳ <span class="source-small">(דברים כא יז)</span> &quot;כִּי אֶת הַבְּכֹר בֶּן הַשְּׂנוּאָה יַכִּיר&quot;. וְאִם יָצָאת פַּדַּחְתּוֹ בְּחַיֵּי אָבִיו אַף עַל פִּי שֶׁלֹּא יָצָא כָּל רֹאשׁוֹ לַאֲוִיר הָעוֹלָם אֶלָּא לְאַחַר מִיתַת אָבִיו הֲרֵי זֶה נוֹטֵל פִּי שְׁנַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואם יצאה פדחתו וכו׳ עד בן משעת לידה.</strong> בבכורות פרק יש בכור:</p>
               </div>
             </div>
@@ -512,8 +567,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-4">Mishneh Torah, Inheritances 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד אֵינוֹ מְמַעֵט בְּחֵלֶק בְּכוֹרָה. הֲרֵי שֶׁהָיָה לוֹ בֵּן בְּכוֹר וּשְׁנֵי פְּשׁוּטִים וְזֶה הַטֻּמְטוּם שֶׁנִּקְרַע וְנִמְצָא זָכָר. הַבְּכוֹר נוֹטֵל רְבִיעַ הַמָּמוֹן בְּחֵלֶק הַבְּכוֹרָה וּכְאִלּוּ אֵין עִמּוֹ אֶלָּא שְׁנֵי הַפְּשׁוּטִים בִּלְבַד. וַחֲצִי וּרְבִיעַ הַנִּשְׁאָר חוֹלְקִין אוֹתוֹ שְׁנֵי הַפְּשׁוּטִין עִם הַנִּקְרָע וְעִם הַבְּכוֹר בְּשָׁוֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד אינו ממעט כו׳ עד עם הבכור בשוה.</strong> בבא בתרא פרק יש נוחלין ובמסכת נדה פרק יוצא דופן:</p>
               </div>
             </div>
@@ -528,8 +588,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-5">Mishneh Torah, Inheritances 2:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קָטָן בֶּן יוֹם אֶחָד מְמַעֵט בְּחֵלֶק בְּכוֹרָה אֲבָל לֹא הָעֻבָּר. וּבֵן שֶׁנּוֹלַד אַחַר מִיתַת אָבִיו אֵינוֹ מְמַעֵט בְּחֵלֶק בְּכוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קטן בן יום אחד כו׳ עד אינו ממעט בחלק הבכורה.</strong> בבכורות פרק יש בכור ובבתרא פ׳ יש נוחלין ובנדה פרק יוצא דופן:</p>
               </div>
             </div>
@@ -544,8 +609,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-6">Mishneh Torah, Inheritances 2:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בֵּן שֶׁנִּסְתַּפֵּק לָנוּ אִם הוּא בְּכוֹר אוֹ פָּשׁוּט כְּגוֹן שֶׁנִּתְעָרֵב עִם אַחֵר אֵינוֹ נוֹטֵל פִּי שְׁנַיִם. וְכֵיצַד עוֹשִׂין. אִם הֻכְּרוּ וּלְבַסּוֹף נִתְעָרְבוּ כּוֹתְבִין הַרְשָׁאָה זֶה לָזֶה וְנוֹטְלִין חֵלֶק בְּכוֹרָה עִם אֲחֵיהֶם. וְאִם לֹא הֻכְּרוּ כְּגוֹן שֶׁיְּלָדוֹ בְּמַחֲבוֹאָה אַחַת אֵין כּוֹתְבִין הַרְשָׁאָה וְאֵין כָּאן חֵלֶק בְּכוֹרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בן שנסתפק לנו כו׳ עד היורש מחמתו.</strong> בתרא פ׳ יש נוחלין ובכורות פ׳ יש בכור:</p>
               </div>
             </div>
@@ -560,8 +630,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-8">Mishneh Torah, Inheritances 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַבְּכוֹר נוֹטֵל פִּי שְׁנַיִם בְּנִכְסֵי הָאֵם. כֵּיצַד. בְּכוֹר וּפָשׁוּט שֶׁיָּרְשׁוּ אִמָּן חוֹלְקִין בְּשָׁוֶה בֵּין שֶׁהָיָה בְּכוֹר לְנַחֲלָה בֵּין שֶׁהָיָה פֶּטֶר רֶחֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין הבכור נוטל כו׳ עד יורש פי שנים.</strong> פ׳ יש נוחלין ופרק יש בכור:</p>
               </div>
             </div>
@@ -576,8 +651,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-10">Mishneh Torah, Inheritances 2:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבָּא אַחַר נְפָלִים אַף עַל פִּי שֶׁיָּצָא רֹאשׁ הַנֵּפֶל כְּשֶׁהוּא חַי הַבָּא אַחֲרָיו בְּכוֹר לְנַחֲלָה. וְכֵן בֶּן תִּשְׁעָה שֶׁיָּצָא רֹאשׁוֹ מֵת הַבָּא אַחֲרָיו בְּכוֹר לְנַחֲלָה שֶׁזֶּה שֶׁנֶּאֱמַר <span class="source-small">(דברים כא יז)</span> &quot;רֵאשִׁית אֹנוֹ&quot; הוּא שֶׁלֹּא נוֹלַד לוֹ קֹדֶם לָזֶה וָלָד שֶׁיָּצָא חַי לַאֲוִיר הָעוֹלָם. לְפִיכָךְ בֶּן תִּשְׁעָה שֶׁהוֹצִיא רֹב רֹאשׁוֹ חַי הַבָּא אַחֲרָיו אֵינוֹ בְּכוֹר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבא אחר הנפלים עד שהרי קדמו אחר.</strong> בנדה פ׳ המפלת ובבכורות פרק יש בכור ובחולין פרק בהמה המקשה:</p>
               </div>
             </div>
@@ -592,8 +672,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-12">Mishneh Torah, Inheritances 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ לוֹ בָּנִים כְּשֶׁהָיָה עַכּוּ&quot;ם וְנִתְגַּיֵּר אֵין לוֹ בְּכוֹר לְנַחֲלָה. אֲבָל יִשְׂרָאֵל שֶׁהָיָה לוֹ בֵּן מִן הַשִּׁפְחָה וּמִן הָעַכּוּ&quot;ם הוֹאִיל וְאֵינוֹ קָרוּי בְּנוֹ הַבָּא לוֹ אַחֲרָיו מִן הַיִּשְׂרְאֵלִית בְּכוֹר לְנַחֲלָה וְנוֹטֵל פִּי שְׁנַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו לו בנים כו׳ עד בן גרושה או בן חלוצה.</strong> ביבמות פ׳ הבא על יבמתו ופרק ב׳ ובבכורות פ׳ יש בכור:</p>
               </div>
             </div>
@@ -608,8 +693,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:14:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-14-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-14">Mishneh Torah, Inheritances 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה נֶאֱמָנִין עַל הַבְּכוֹר. חַיָּה וְאִמּוֹ וְאָבִיו. חַיָּה מִיָּד שֶׁאִם אָמְרָה זֶה יָצָא רִאשׁוֹן נֶאֱמֶנֶת. אִמּוֹ כָּל שִׁבְעַת יְמֵי הַלֵּידָה נֶאֱמֶנֶת לוֹמַר זֶהוּ הַבְּכוֹר. אָבִיו לְעוֹלָם אֲפִלּוּ אָמַר הָאָב עַל מִי שֶׁלֹּא הֻחְזַק בְּנוֹ כְּלָל הוּא בְּנִי וּבְכוֹרִי הוּא נֶאֱמָן. וְכֵן אִם אָמַר עַל הַמֻּחְזָק לָנוּ שֶׁהוּא בְּכוֹרוֹ אֵינוֹ בְּכוֹר נֶאֱמָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה נאמנין על הבכור כו׳ עד אינו בכור.</strong> בקדושין פרק בתרא <span class="source-small"> (דף ע&quot;ד) </span> ובבתרא פ׳ יש נוחלין:</p>
               </div>
             </div>
@@ -624,8 +714,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:15:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-15-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-15">Mishneh Torah, Inheritances 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאָב שֶׁנִּשְׁתַּתֵּק בּוֹדְקִין אוֹתוֹ כְּדֶרֶךְ שֶׁבּוֹדְקִין לְגִטִּין. אִם רָמַז אוֹ כָּתַב שֶׁזֶּה בְּנוֹ בְּכוֹרוֹ הֲרֵי זֶה נוֹטֵל פִּי שְׁנַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האב שנשתתק כו׳ עד פי שנים.</strong> בגיטין פרק מי שאחזו קורדיקוס <span class="source-small"> (דף ע&quot;א) </span> :</p>
               </div>
             </div>
@@ -640,8 +735,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 2:16:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-2-16-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 2:16:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-2-16">Mishneh Torah, Inheritances 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הֵעִידוּ עֵדִים שֶׁהֵן שָׁמְעוּ אָבִיו שֶׁל זֶה אוֹמֵר דְּבָרִים כָּךְ וְכָךְ שֶׁהֲרֵי אוֹתָן הַדְּבָרִים יוֹדֵעַ מִכְּלָלָן שֶׁזֶּה בְּנוֹ בְּכוֹרוֹ. הֲרֵי זֶה נוֹטֵל פִּי שְׁנַיִם אַף עַל פִּי שֶׁלֹּא אָמַר הָאָב בְּפֵרוּשׁ זֶה בְּנִי בְּכוֹרִי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העידו עדים שהם שמעו עד סוף הפרק.</strong> פרק יש נוחלין <span class="source-small"> (דף קכ&quot;ו) </span></p>
               </div>
             </div>
@@ -657,8 +757,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-1">Mishneh Torah, Inheritances 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַבְּכוֹר נוֹטֵל פִּי שְׁנַיִם בִּנְכָסִים הָרְאוּיִין לָבוֹא לְאַחַר מִיתַת אָבִיו אֶלָּא בִּנְכָסִים הַמֻּחְזָקִין לְאָבִיו שֶׁבָּאוּ לִרְשׁוּתוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים כא יז)</span> &quot;בְּכל אֲשֶׁר יִמָּצֵא לוֹ&quot;. כֵּיצַד. אֶחָד מִמּוֹרִישֵׁי אָבִיו שֶׁמֵּת לְאַחַר מִיתַת אָבִיו הַבְּכוֹר וְהַפָּשׁוּט יוֹרְשִׁין כְּאֶחָד. וְכֵן אִם הָיְתָה לְאָבִיו מִלְוֶה אוֹ הָיְתָה לוֹ סְפִינָה בַּיָּם יוֹרְשִׁין כְּאֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין הבכור נוטל כו׳ עד והפשוט כאחד.</strong> בבכורות פ׳ יש בכור <span class="source-small"> (דף נ&quot;א)</span> :</p>
               </div>
             </div>
@@ -673,8 +778,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:1:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-1-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:1:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-1">Mishneh Torah, Inheritances 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַבְּכוֹר נוֹטֵל פִּי שְׁנַיִם בִּנְכָסִים הָרְאוּיִין לָבוֹא לְאַחַר מִיתַת אָבִיו אֶלָּא בִּנְכָסִים הַמֻּחְזָקִין לְאָבִיו שֶׁבָּאוּ לִרְשׁוּתוֹ שֶׁנֶּאֱמַר <span class="source-small">(דברים כא יז)</span> &quot;בְּכל אֲשֶׁר יִמָּצֵא לוֹ&quot;. כֵּיצַד. אֶחָד מִמּוֹרִישֵׁי אָבִיו שֶׁמֵּת לְאַחַר מִיתַת אָבִיו הַבְּכוֹר וְהַפָּשׁוּט יוֹרְשִׁין כְּאֶחָד. וְכֵן אִם הָיְתָה לְאָבִיו מִלְוֶה אוֹ הָיְתָה לוֹ סְפִינָה בַּיָּם יוֹרְשִׁין כְּאֶחָד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן אם היתה לאביו עד יורשין אותה כאחד:</strong> כתב הראב&quot;ד ז&quot;ל דבר זה למד ממשנת ערכין פרק השג יד <span class="source-small"> (דף י&quot;ח) </span> עכ&quot;ל: <strong> ואני </strong> אומר כי מעיינת בה לא משכחת בה משנה כלל ולא מיתניא התם אלא הכי תנן לה התם אפילו מת אביו והניח לו ריבוא וספינתו בים ובאה לו בריבואות אין להקדש בהן כלום ע&quot;כ ומתמהינן עלה בגמרא ספינתו בים ובאה לו בריבואות אמאי עשיר הוא ומשני אמר רב חסדא בשהיתה מוחכרת ומושכרת ביד אחרים ואי מההיא לחודה לא מצי יליף מיניה מידי אלא לא למדה מזאת לבדה אלא זה רמזא דמוחכרת ומושכרת ומצאה בתלמוד פ׳ יש נוחלין בשמעתין דבכור נוטל פי שנים כמו שאני כותב בסמוך בס&quot;ד:</p>
               </div>
             </div>
@@ -689,8 +799,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-2">Mishneh Torah, Inheritances 3:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִנִּיחַ לָהֶם פָּרָה מֻשְׂכֶּרֶת אוֹ מֻחְכֶּרֶת אוֹ שֶׁהָיְתָה רוֹעָה בָּאֲפָר וְיָלְדָה. הַבְּכוֹר נוֹטֵל בָּהּ וּבִוְלָדָהּ פִּי שְׁנַיִם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הניח להם אביהם בהמה מוחכרת כו׳ עד פי שנים:</strong> כתב הראב&quot;ד זה המחבר פסק כרבי ואין הלכה כרבי עכ&quot;ל: <strong> ואני </strong> אומר פרק יש נוחלין <span class="source-small"> (דף קכ&quot;ג) </span> היא דגרסינן תנו רבנן בכור נוטל פי שנים בזרוע ובלחיים ובקיבה ובמוקדשין הניח להם אביהם פרה מוחכרת ומושכרת ביד אחרים או שהיתה רועה באפר וילדה בכור נוטל פי שנים ומהדרינן עלה באמר מר כו׳ ואקשינן עלה השתא מוחכרת ומושכרת דלאו ברשותיה דאב קיימא אמרת שקיל רועה באפר מיבעי ומהדרינן הא קמ&quot;ל דמוחכרת ומושכרת דומיא דרועה באפר מה רועה באפר שבחא דאתי ממילא ולא חסרי בה מזוני אף מוחכרת ומושכרת שבחא דאתי ממילא ולא קא חסרי לה מזוני ומני רבי היא דתניא אין הבכור נוטל פי שנים בשבח ששבחו נכסים לאחר מיתת אביהן רבי אומר אומר אני הבכור נוטל פי שנים בשבח ששבחו נכסים לאחר מיתת אביהם ע&quot;כ. ופירש רבינו יהוסף הלוי בן מיג&quot;ש ז&quot;ל דטעמא לאו משום דס&quot;ל בכור נוטל בראוי כבמוחזק הוא אלא משום דס&quot;ל דשבח ששבחו נכסים הואיל ונכסים גופייהו ברשותיה הוו אע&quot;ג דשבח לא אתיא לידיה מחיים מוחזק הוי עכ&quot;ל וכן פירשו רבים וגדולים ועל זה סמך ר&quot;מ ז&quot;ל ועל דעת רבותיו נ&quot;ע והדין עמו וזה פשוט כי אפילו ר&quot;י אלפס ז&quot;ל שחלק על הפוסקים כרבי כתב להדיא דבמאי דאתי לידיה הלכתא כוותיה ובכך נמצאו דברי ר&quot;מ ז&quot;ל מוסכמים מפי החכמים:</p>
               </div>
             </div>
@@ -705,8 +820,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-3">Mishneh Torah, Inheritances 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁחַט אֶחָד מִמַּכִּירֵי אָבִיו בְּהֵמָה וְאַחַר כָּךְ מֵת אָבִיו נוֹטֵל פִּי שְׁנַיִם בַּמַּתָּנוֹת שֶׁל אוֹתָהּ בְּהֵמָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שחט אחד ממכירי אביו כו׳ עד של אותה הבהמה.</strong> פ׳ יש נוחלין:</p>
               </div>
             </div>
@@ -721,8 +841,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-4">Mishneh Torah, Inheritances 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַבְּכוֹר נוֹטֵל פִּי שְׁנַיִם בַּשֶּׁבַח שֶׁשָּׁבְחוּ נְכָסִים לְאַחַר מִיתַת אָבִיו אֶלָּא מַעֲלֶה אוֹתוֹ הַשֶּׁבַח בְּדָמִים וְנוֹתֵן הַיֶּתֶר לַפָּשׁוּט. וְהוּא שֶׁיִּשְׁתַּנּוּ הַנְּכָסִים כְּגוֹן כַּרְמֶל שֶׁנַּעֲשׂוּ שִׁבֳּלִים וְכִפְנִיּוֹת שֶׁנַּעֲשׂוּ תְּמָרִים. אֲבָל שָׁבְחוּ מֵחֲמַת עַצְמָן וְלֹא נִשְׁתַּנּוּ כְּגוֹן אִילָן קָטָן שֶׁגָּדַל וְעָבָה וְאֶרֶץ שֶׁהֶעֶלְתָה שִׂרְטוֹן הֲרֵי זֶה נוֹטֵל בַּשֶּׁבַח פִּי שְׁנַיִם. וְאִם מֵחֲמַת הוֹצָאָה הִשְׁבִּיחַ אֵינוֹ נוֹטֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין הבכור נוטל פי שנים עד שנעשו תמרים.</strong> בבכורות פרק יש בכור <span class="source-small"> (דף נ&quot;א) </span> :</p>
               </div>
             </div>
@@ -737,8 +862,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:4:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-4-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-4">Mishneh Torah, Inheritances 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַבְּכוֹר נוֹטֵל פִּי שְׁנַיִם בַּשֶּׁבַח שֶׁשָּׁבְחוּ נְכָסִים לְאַחַר מִיתַת אָבִיו אֶלָּא מַעֲלֶה אוֹתוֹ הַשֶּׁבַח בְּדָמִים וְנוֹתֵן הַיֶּתֶר לַפָּשׁוּט. וְהוּא שֶׁיִּשְׁתַּנּוּ הַנְּכָסִים כְּגוֹן כַּרְמֶל שֶׁנַּעֲשׂוּ שִׁבֳּלִים וְכִפְנִיּוֹת שֶׁנַּעֲשׂוּ תְּמָרִים. אֲבָל שָׁבְחוּ מֵחֲמַת עַצְמָן וְלֹא נִשְׁתַּנּוּ כְּגוֹן אִילָן קָטָן שֶׁגָּדַל וְעָבָה וְאֶרֶץ שֶׁהֶעֶלְתָה שִׂרְטוֹן הֲרֵי זֶה נוֹטֵל בַּשֶּׁבַח פִּי שְׁנַיִם. וְאִם מֵחֲמַת הוֹצָאָה הִשְׁבִּיחַ אֵינוֹ נוֹטֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל אם שבחו מחמת עצמן וכו׳ עד בשאר נכסים.</strong> פ׳ יש נוחלין <span class="source-small"> (דף קכ&quot;ד) </span> :</p>
               </div>
             </div>
@@ -753,8 +883,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:4:3</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-4-3" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:4:3">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-4">Mishneh Torah, Inheritances 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַבְּכוֹר נוֹטֵל פִּי שְׁנַיִם בַּשֶּׁבַח שֶׁשָּׁבְחוּ נְכָסִים לְאַחַר מִיתַת אָבִיו אֶלָּא מַעֲלֶה אוֹתוֹ הַשֶּׁבַח בְּדָמִים וְנוֹתֵן הַיֶּתֶר לַפָּשׁוּט. וְהוּא שֶׁיִּשְׁתַּנּוּ הַנְּכָסִים כְּגוֹן כַּרְמֶל שֶׁנַּעֲשׂוּ שִׁבֳּלִים וְכִפְנִיּוֹת שֶׁנַּעֲשׂוּ תְּמָרִים. אֲבָל שָׁבְחוּ מֵחֲמַת עַצְמָן וְלֹא נִשְׁתַּנּוּ כְּגוֹן אִילָן קָטָן שֶׁגָּדַל וְעָבָה וְאֶרֶץ שֶׁהֶעֶלְתָה שִׂרְטוֹן הֲרֵי זֶה נוֹטֵל בַּשֶּׁבַח פִּי שְׁנַיִם. וְאִם מֵחֲמַת הוֹצָאָה הִשְׁבִּיחַ אֵינוֹ נוֹטֵל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואפילו מיחה בענבים כשהם מחוברים וכו׳ עד וכן כל כיוצא בזה:</strong> כתב הראב&quot;ד ז&quot;ל יש לנו דרך אחרת בכל זה עכ&quot;ל: <strong> ואני </strong> אומר כי יבא דבריו וכבדנו מאמרו בפנים הנאמרים בגוף ההלכה פרק יש נוחלין כי הפירושים רבים והדעות מרובות וכולם דברי אלהים חיים:</p>
               </div>
             </div>
@@ -769,8 +904,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-7">Mishneh Torah, Inheritances 3:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁיִּבֵּם אֵשֶׁת אָחִיו הוּא יוֹרֵשׁ כָּל נִכְסֵי אֶחָיו הַמֻּחְזָקִים. וְכָל הָרְאוּיִין לָבוֹא לְאַחַר מִכָּאן הֲרֵי הוּא בָּהֶן כְּכָל הָאַחִים שֶׁהֲרֵי בְּכוֹר קָרָא אוֹתוֹ הַכָּתוּב שֶׁנֶּאֱמַר <span class="source-small">(דברים כה ו)</span> &quot;וְהָיָה הַבְּכוֹר אֲשֶׁר תֵּלֵד יָקוּם עַל שֵׁם אָחִיו הַמֵּת וְלֹא יִמָּחֶה שְׁמוֹ מִיִּשְׂרָאֵל&quot;. וּכְשֵׁם שֶׁאֵינוֹ נוֹטֵל מִמֶּנּוּ בְּרָאוּי כִּבְמֻחְזָק כָּךְ אֵינוֹ נוֹטֵל בַּשֶּׁבַח שֶׁשָּׁבְחוּ נְכָסִים אַחֲרֵי מוֹת אָבִיו מִשְּׁעַת מִיתָה עַד שְׁעַת חֲלוּקָתוֹ עִם אֶחָיו בְּנִכְסֵי אָבִיו. וַאֲפִלּוּ הִשְׁבִּיחוּ נְכָסִים אַחַר שֶׁיִּבֵּם וְקֹדֶם שֶׁיַּחְלְקוּ הֲרֵי הוּא בַּשֶּׁבַח כְּאֶחָד מִן הָאַחִין. אַף עַל פִּי שֶׁנּוֹטֵל מִן הַנְּכָסִים אֵלּוּ שְׁנֵי חֲלָקִים חֶלְקוֹ וְחֵלֶק אָחִיו שֶׁיִּבֵּם אִשְׁתּוֹ הוֹאִיל וּמֵת הָאָב בְּחַיֵּי כֻּלָּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שייבם אשת אחיו כו׳ עד ומת האב בחיי כולם.</strong> ביבמות פרק כיצד <span class="source-small"> (דף כ&quot;ד) </span> ופרק החולץ <span class="source-small"> (דף מ׳) </span> :</p>
               </div>
             </div>
@@ -785,8 +925,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-8">Mishneh Torah, Inheritances 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ בְּהִלְכוֹת שְׁכֵנִים שֶׁהַבְּכוֹר נוֹטֵל שְׁנֵי חֲלָקִים שֶׁלּוֹ כְּאֶחָד בְּמֵצַר אֶחָד. אֲבָל הַיָּבָם שֶׁחָלַק עִם אֶחָיו בְּנִכְסֵי אָבִיו נוֹטֵל חֶלְקוֹ וְחֵלֶק אָחִיו בְּגוֹרָל. וְאִם עָלָה גּוֹרָלוֹ בִּשְׁנֵי מְקוֹמוֹת נוֹטֵל בִּשְׁנֵי מְקוֹמוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבר ביארנו בהלכות שכנים שהבכור כו׳ עד נוטל בשני מקומות.</strong> ההלכה ביבמות פרק כיצד ופרק החולץ ופרק יש נוחלין והביאור פי&quot;ב:</p>
               </div>
             </div>
@@ -801,8 +946,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 3:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-3-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 3:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-3-9">Mishneh Torah, Inheritances 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שׁוֹמֶרֶת יָבָם שֶׁמֵּתָה אֲפִלּוּ עָשָׂה בָּהּ אֶחָד מִן הָאַחִים מַאֲמָר מִשְׁפַּחַת בֵּית אָבִיהָ יוֹרְשִׁין בְּנִכְסֵי מְלוֹג וַחֲצִי נִכְסֵי צֹאן בַּרְזֶל. וְיוֹרְשֵׁי הַבַּעַל יוֹרְשִׁין כְּתֻבָּתָהּ עִם חֲצִי נִכְסֵי צֹאן בַּרְזֶל. וְיוֹרְשֵׁי הַבַּעַל חַיָּבִין בִּקְבוּרָתָהּ הוֹאִיל וְהֵן יִירְשׁוּ כְּתֻבָּתָהּ כְּמוֹ שֶׁבֵּאַרְנוּ בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שומרת יבם שמתה וכו׳ עד סוף הפרק, כמו שביארנו במקומו.</strong> ההלכה פרק החולץ והביאור פכ&quot;ב דהלכות אישות:</p>
               </div>
             </div>
@@ -818,8 +968,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 4:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-4-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 4:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-4-1">Mishneh Torah, Inheritances 4:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאוֹמֵר זֶה בְּנִי אוֹ זֶה אָחִי אוֹ זֶה אֲחִי אָבִי אוֹ שְׁאָר הַיּוֹרְשִׁין אוֹתוֹ. אַף עַל פִּי שֶׁהוֹדָה בַּאֲנָשִׁים שֶׁאֵינָן מֻחְזָקִין שֶׁהֵן קְרוֹבָיו הֲרֵי זֶה נֶאֱמָן וְיִירָשֶׁנּוּ בֵּין שֶׁאָמַר כְּשֶׁהוּא בָּרִיא בֵּין שֶׁאָמַר כְּשֶׁהוּא שְׁכִיב מֵרַע. אֲפִלּוּ נִשְׁתַּתֵּק וְכָתַב בִּכְתַב יָדוֹ שֶׁזֶּה יוֹרְשׁוֹ בּוֹדְקִין אוֹתוֹ כְּדֶרֶךְ שֶׁבּוֹדְקִין לְגִטִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האומר זה בני כו׳ עד ואמר בני הוא אינו נאמן.</strong> פ׳ יש נוחלין <span class="source-small"> (דף קכ&quot;ז) </span> :</p>
               </div>
             </div>
@@ -834,8 +989,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 4:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-4-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 4:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-4-5">Mishneh Torah, Inheritances 4:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעֲבָדִים וְהַשְּׁפָחוֹת אֵין קוֹרִין לָהֶן אַבָּא פְּלוֹנִי וְאִמָּא פְּלוֹנִית שֶׁלֹּא יָבוֹא מִן הַדָּבָר תַּקָּלָה וְנִמְצָא זֶה הַבֵּן נִפְגָּם. לְפִיכָךְ אִם הָיוּ הָעֲבָדִים וְהַשְּׁפָחוֹת חֲשׁוּבִין בְּיוֹתֵר וְיֵשׁ לָהֶן קוֹל וְכָל הַקָּהָל מַכִּירִין אוֹתָן וְאֶת בְּנֵי וְעַבְדֵי אֲדוֹנֵיהֶם כְּגוֹן עַבְדֵי הַנָּשִׂיא הֲרֵי אֵלּוּ מֻתָּר לִקְרוֹת לָהֶן אַבָּא וְאִמָּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העבדים והשפחות אין קורין וכו׳ עד לקרות להן אבא ואמא.</strong> מפורש בברכות פ׳ היה קורא <span class="source-small"> (דף י&quot;ז) </span> :</p>
               </div>
             </div>
@@ -850,8 +1010,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 4:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-4-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-4-6">Mishneh Torah, Inheritances 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהָיְתָה לוֹ שִׁפְחָה וְהוֹלִיד מִמֶּנָּה בֵּן וְהָיָה נוֹהֵג בּוֹ מִנְהַג בָּנִים. אוֹ שֶׁאָמַר בְּנִי הוּא וּמְשֻׁחְרֶרֶת הִיא אִמּוֹ. אִם תַּלְמִיד חָכָם הוּא אוֹ אָדָם כָּשֵׁר שֶׁהוּא בָּדוּק בְּדִקְדוּקֵי מִצְוֹת הֲרֵי זֶה יִירָשֶׁנּוּ. וְאַף עַל פִּי כֵן אֵינוֹ נוֹשֵׂא בַּת יִשְׂרָאֵל עַד שֶׁיָּבִיא רְאָיָה שֶׁנִּשְׁתַּחְרְרָה אִמּוֹ וְאַחַר כָּךְ יָלְדָה שֶׁהֲרֵי הֻחְזְקָה שִׁפְחָה בְּפָנֵינוּ. וְאִם מִשְּׁאָר הֶדְיוֹטוֹת הוּא וְאֵין צָרִיךְ לוֹמַר אִם הָיָה מִן הַמַּפְקִירִין עַצְמָן לְכָךְ הֲרֵי זֶה בְּחֶזְקַת עֶבֶד לְכָל דָּבָר וְאֶחָיו מֵאָבִיו מוֹכְרִין אוֹתוֹ. וְאִם אֵין לְאָבִיו בֵּן חוּץ מִמֶּנּוּ אֵשֶׁת אָבִיו מִתְיַבֶּמֶת. וְזֶה הוּא הַדִּין שֶׁיֵּרָאֶה לִי שֶׁהוּא הוֹלֵךְ עַל עִקְּרֵי הַקַּבָּלָה. וְיֵשׁ מִי שֶׁלֹּא חִלֵּק בֵּין כְּשֵׁרִים לִשְׁאָר הָעָם אֶלָּא לְעִנְיָן שֶׁלֹּא יִמְכְּרוּהוּ אֶחָיו בִּלְבַד. וְיֵשׁ מִי שֶׁהוֹרָה שֶׁאֲפִלּוּ לְיָרְשׁוֹ לֹא נַחְלֹק בְּיִשְׂרָאֵל וְאֵין רָאוּי לִסְמֹךְ עַל דָּבָר זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהיתה לו שפחה והוליד ממנה בן וכו׳ עד על עיקרי הקבלה ויש מי שלא חלק וכו׳ ויש מי שהורה וכו׳ עד על דבר זה:</strong> כתב הראב&quot;ד ז&quot;ל בגמ׳ לא מצאנו בה עיקר דבר זה וכו׳: <strong> ואני </strong> אומר גם מלשון ר&quot;מ ז&quot;ל משמע שלא היתה לו מהגמ׳ אלא הוראת הגאונים ז&quot;ל והוא מזכיר מקצת מחלוקותם וסברתו ואין ספק שרבו בו המחלוקות והר&quot;ם ז&quot;ל מקוצי כתב מדעת רבותינו בעלי התוס׳ ז&quot;ל כר&quot;מ ז&quot;ל אות באות:</p>
               </div>
             </div>
@@ -866,8 +1031,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 4:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-4-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 4:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-4-7">Mishneh Torah, Inheritances 4:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַיּוֹרְשִׁין יוֹרְשִׁין בַּחֲזָקָה. כֵּיצַד. עֵדִים שֶׁהֵעִידוּ שֶׁזֶּה מֻחְזָק לָנוּ שֶׁהוּא בְּנוֹ שֶׁל פְּלוֹנִי אוֹ אָחִיו. אַף עַל פִּי שֶׁאֵינָן עֵדֵי יִחוּס וְלֹא יָדְעוּ אֲמִתַּת הַיּוּחֲסִין הֲרֵי אֵלּוּ יוֹרְשִׁין בְּעֵדוּת זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל היורשין יורשין וכו׳ עד בעדות זה.</strong> פ׳ בתרא דקידושין <span class="source-small"> (דף ע&quot;ח) </span> ופרק חזקת הבתים והרבה מקומות:</p>
               </div>
             </div>
@@ -882,8 +1052,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 4:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-4-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 4:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-4-8">Mishneh Torah, Inheritances 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יַעֲקֹב שֶׁמֵּת וְהִנִּיחַ רְאוּבֵן וְשִׁמְעוֹן וְלֹא הֻחְזַק לוֹ בֵּן אֶלָּא שְׁנֵיהֶם. תָּפַס רְאוּבֵן לֵוִי מִן הַשּׁוּק וְאָמַר גַּם זֶה אָחִינוּ הוּא וְשִׁמְעוֹן אוֹמֵר אֵינִי יוֹדֵעַ. הֲרֵי שִׁמְעוֹן נוֹטֵל חֲצִי הַמָּמוֹן וּרְאוּבֵן שְׁלִישׁ שֶׁהֲרֵי הוֹדָה שֶׁהֵם שְׁלֹשָׁה אַחִין וְלֵוִי נוֹטֵל שְׁתוּת. מֵת לֵוִי יַחְזֹר הַשְּׁתוּת לִרְאוּבֵן. נָפְלוּ לְלֵוִי נְכָסִים אֲחֵרִים יַחְלְקוּ אוֹתָן רְאוּבֵן וְשִׁמְעוֹן שֶׁהֲרֵי רְאוּבֵן מוֹדֶה לְשִׁמְעוֹן שֶׁלֵּוִי זֶה אֲחִיהֶן. הִשְׁבִּיחַ הַשְּׁתוּת מֵאֵלָיו וְאַחַר כָּךְ מֵת לֵוִי. אִם שֶׁבַח מַגִּיעַ לַכְּתֵפַיִם הוּא כְּגוֹן עֲנָבִים שֶׁהִגִּיעוּ לְהִבָּצֵר. הֲרֵי הַשֶּׁבַח הַזֶּה כִּנְכָסִים שֶׁנָּפְלוּ לוֹ מֵאֲחֵרִים וְיַחְלְקוּ בָּהֶן. וְאִם עֲדַיִן לֹא הִגִּיעוּ לְהִבָּצֵר הֲרֵי הֵן שֶׁל רְאוּבֵן לְבַדּוֹ. אָמַר שִׁמְעוֹן אֵין לֵוִי זֶה אָחִי וְנָטַל לֵוִי בְּחֵלֶק רְאוּבֵן כְּמוֹ שֶׁבֵּאַרְנוּ וְאַחַר כָּךְ מֵת לֵוִי לֹא יִירַשׁ שִׁמְעוֹן מִמֶּנּוּ כְּלוּם אֶלָּא רְאוּבֵן לְבַדּוֹ יִירַשׁ הַשְּׁתוּת עִם שְׁאָר נְכָסִים אֲחֵרִים שֶׁהִנִּיחַ לֵוִי. וְהוּא הַדִּין בְּכָל הַיּוֹרְשִׁין שֶׁיּוֹדוּ מִקְצָתָן בְּיוֹרְשִׁין אֲחֵרִים שֶׁלֹּא יוֹדוּ מִקְצָתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>יעקב שמת עד של ראובן לבדו.</strong> פרק יש נוחלין <span class="source-small"> (דף קל&quot;ד)</span> :</p>
               </div>
             </div>
@@ -898,8 +1073,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 4:8:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-4-8-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 4:8:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-4-8">Mishneh Torah, Inheritances 4:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יַעֲקֹב שֶׁמֵּת וְהִנִּיחַ רְאוּבֵן וְשִׁמְעוֹן וְלֹא הֻחְזַק לוֹ בֵּן אֶלָּא שְׁנֵיהֶם. תָּפַס רְאוּבֵן לֵוִי מִן הַשּׁוּק וְאָמַר גַּם זֶה אָחִינוּ הוּא וְשִׁמְעוֹן אוֹמֵר אֵינִי יוֹדֵעַ. הֲרֵי שִׁמְעוֹן נוֹטֵל חֲצִי הַמָּמוֹן וּרְאוּבֵן שְׁלִישׁ שֶׁהֲרֵי הוֹדָה שֶׁהֵם שְׁלֹשָׁה אַחִין וְלֵוִי נוֹטֵל שְׁתוּת. מֵת לֵוִי יַחְזֹר הַשְּׁתוּת לִרְאוּבֵן. נָפְלוּ לְלֵוִי נְכָסִים אֲחֵרִים יַחְלְקוּ אוֹתָן רְאוּבֵן וְשִׁמְעוֹן שֶׁהֲרֵי רְאוּבֵן מוֹדֶה לְשִׁמְעוֹן שֶׁלֵּוִי זֶה אֲחִיהֶן. הִשְׁבִּיחַ הַשְּׁתוּת מֵאֵלָיו וְאַחַר כָּךְ מֵת לֵוִי. אִם שֶׁבַח מַגִּיעַ לַכְּתֵפַיִם הוּא כְּגוֹן עֲנָבִים שֶׁהִגִּיעוּ לְהִבָּצֵר. הֲרֵי הַשֶּׁבַח הַזֶּה כִּנְכָסִים שֶׁנָּפְלוּ לוֹ מֵאֲחֵרִים וְיַחְלְקוּ בָּהֶן. וְאִם עֲדַיִן לֹא הִגִּיעוּ לְהִבָּצֵר הֲרֵי הֵן שֶׁל רְאוּבֵן לְבַדּוֹ. אָמַר שִׁמְעוֹן אֵין לֵוִי זֶה אָחִי וְנָטַל לֵוִי בְּחֵלֶק רְאוּבֵן כְּמוֹ שֶׁבֵּאַרְנוּ וְאַחַר כָּךְ מֵת לֵוִי לֹא יִירַשׁ שִׁמְעוֹן מִמֶּנּוּ כְּלוּם אֶלָּא רְאוּבֵן לְבַדּוֹ יִירַשׁ הַשְּׁתוּת עִם שְׁאָר נְכָסִים אֲחֵרִים שֶׁהִנִּיחַ לֵוִי. וְהוּא הַדִּין בְּכָל הַיּוֹרְשִׁין שֶׁיּוֹדוּ מִקְצָתָן בְּיוֹרְשִׁין אֲחֵרִים שֶׁלֹּא יוֹדוּ מִקְצָתָן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אמר שמעון אין לוי זה אחי וכו׳ עד סוף הפרק.</strong> פ׳ המפקיד <span class="source-small"> (דף ל&quot;ט) </span> ופ׳ חזקת הבתים והביאור בזה הפרק:</p>
               </div>
             </div>
@@ -915,8 +1095,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 5:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-5-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 5:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-5-1">Mishneh Torah, Inheritances 5:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זֶה הַכְּלָל בְּיוֹרְשִׁין. כָּל שְׁנֵי יוֹרְשִׁין שֶׁאֶחָד מֵהֶן יוֹרֵשׁ וַדַּאי וְהַשֵּׁנִי סָפֵק אֵין לַסָּפֵק כְּלוּם. וְאִם הָיוּ שְׁנֵיהֶם סָפֵק שֶׁמָּא זֶהוּ הַיּוֹרֵשׁ אוֹ שֶׁמָּא זֶה הַיּוֹרֵשׁ חוֹלְקִין בְּשָׁוֶה. לְפִיכָךְ מִי שֶׁמֵּת וְהִנִּיחַ בֵּן וְטֻמְטוּם אוֹ אַנְדְּרוֹגִינוּס הֲרֵי הַבֵּן יוֹרֵשׁ אֶת הַכּל שֶׁהַטֻּמְטוּם וְהָאַנְדְּרוֹגִינוּס סָפֵק. הִנִּיחַ בָּנוֹת וְטֻמְטוּם וְאַנְדְּרוֹגִינוּס יוֹרְשׁוֹת בְּשָׁוֶה וַהֲרֵי הוּא כְּאַחַת מִן הַבָּנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה הכלל ביורשין וכו׳ עד כאחת מן הבנות.</strong> זאת היא הקדמה לדרך הירושות בספק וודאי ועיקרה פ׳ מי שמת <span class="source-small"> (דף קע&quot;ה) </span> ומייתי מקצתה פרק החולץ <span class="source-small"> (דף ל&quot;ח) </span></p>
               </div>
             </div>
@@ -931,8 +1116,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 5:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-5-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-5-2">Mishneh Torah, Inheritances 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר בֵּאַרְנוּ בְּהִלְכוֹת אִישׁוּת דִּין הַבָּנוֹת עִם הַבָּנִים בִּמְזוֹנוֹתֵיהֶן וּבְפַרְנָסָתָן וְשָׁם בֵּאַרְנוּ שֶׁהַמְּזוֹנוֹת מִתְּנָאֵי כְּתֻבָּה. בִּזְמַן שֶׁהַנְּכָסִים מְרֻבִּין אֵין לַבָּנוֹת אֶלָּא מְזוֹנוֹתֵיהֶן וְהַבָּנִים יִירְשׁוּ הַכּל וְיִתְפַּרְנְסוּ הַבָּנוֹת בְּעִשּׂוּר נְכָסִים כְּדֵי שֶׁיִּנָּשְׂאוּ בּוֹ לְבַעְלֵיהֶן. וּבִזְמַן שֶׁהַנְּכָסִים מוּעָטִין אֵין לַבָּנִים כְּלוּם אֶלָּא הַכּל לִמְזוֹן הַבָּנוֹת. לְפִיכָךְ מִי שֶׁמֵּת וְהִנִּיחַ בָּנִים וּבָנוֹת וְטֻמְטוּם אוֹ אַנְדְּרוֹגִינוּס. בִּזְמַן שֶׁהַנְּכָסִים מְרֻבִּין הַבָּנִים יוֹרְשִׁין וְדוֹחִין הַטֻּמְטוּם אֵצֶל הַבָּנוֹת וְנִזּוֹן כְּמוֹתָן. וּבִזְמַן שֶׁהַנְּכָסִין מוּעָטִין הַבָּנוֹת דּוֹחוֹת אֶת הַטֻּמְטוּם אֵצֶל הַבָּנִים וְאוֹמְרוֹת לוֹ זָכָר אַתָּה וְאֵין לְךָ עִמָּנוּ מְזוֹנוֹת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כבר ביארנו בהל׳ אישות כו׳ עד מזונות.</strong> ההלכות פ׳ מי שמת והביאור הראשון פרק י&quot;ב ופ׳ ב׳ והביאור השני פרק י&quot;ג:</p>
               </div>
             </div>
@@ -947,8 +1137,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 5:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-5-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 5:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-5-3">Mishneh Torah, Inheritances 5:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁלֹּא שָׁהֲתָה אַחַר בַּעְלָהּ שְׁלֹשָׁה חֳדָשִׁים וְנִשֵּׂאת וְיָלְדָה בֵּן וְאֵין יָדוּעַ אִם בֶּן תִּשְׁעָה לְרִאשׁוֹן אוֹ בֶּן שִׁבְעָה לְאַחֲרוֹן אֵין זֶה הַבֵּן יוֹרֵשׁ אֶת אֶחָד מִשְּׁנֵיהֶם מִפְּנֵי שֶׁהוּא סָפֵק. וְאִם מֵת הַבֵּן שְׁנֵיהֶן יוֹרְשִׁין אוֹתוֹ וְחוֹלְקִין בְּשָׁוֶה מִפְּנֵי שֶׁשְּׁנֵיהֶם סָפֵק שֶׁמָּא זֶה אָבִיו אוֹ זֶה אָבִיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שלא שהתה אחר בעלה וכו׳ עד חולקין בשוה.</strong> בבא ראשונה פרק יש בכור <span class="source-small"> (דף נ&quot;א) </span> ומייתי לה עם שאר בבות ביבמות פרק החולץ <span class="source-small"> (דף מ׳) </span></p>
               </div>
             </div>
@@ -963,8 +1158,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 5:6:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-5-6-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 5:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-5-6">Mishneh Torah, Inheritances 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנָּפַל הַבַּיִת עָלָיו וְעַל אִשְׁתּוֹ וְאֵין יָדוּעַ אִם הָאִשָּׁה מֵתָה תְּחִלָּה וְנִמְצְאוּ יוֹרְשֵׁי הַבַּעַל יוֹרְשִׁין כָּל נְכָסֶיהָ אוֹ הַבַּעַל מֵת תְּחִלָּה וְנִמְצְאוּ יוֹרְשֵׁי הָאִשָּׁה יוֹרְשִׁין כָּל נְכָסֶיהָ כֵּיצַד דִּינָם. מַעֲמִידִין נִכְסֵי מְלוֹג בְּחֶזְקַת יוֹרְשֵׁי הָאִשָּׁה וְהַכְּתֻבָּה עִקָּר וְהַתּוֹסֶפֶת בְּחֶזְקַת יוֹרְשֵׁי הַבַּעַל וְחוֹלְקִין בְּנִכְסֵי צֹאן בַּרְזֶל יוֹרְשֵׁי הָאִשָּׁה נוֹטְלִין חֶצְיָן וְיוֹרְשֵׁי הַבַּעַל חֶצְיָן. אֲבָל אִם נָפַל הַבַּיִת עָלָיו וְעַל אִמּוֹ מַעֲמִידִין נִכְסֵי הָאֵם בְּחֶזְקַת יוֹרְשֵׁי הָאֵם שֶׁהֵם יוֹרְשִׁין וַדָּאִין אֲבָל יוֹרְשֵׁי הַבֵּן סָפֵק הֵם שֶׁאִם מֵת הַבֵּן תְּחִלָּה אֵין לְאֶחָיו מֵאָבִיו בְּנִכְסֵי אִמָּן כְּלוּם כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שנפל עליו הבית וכו׳ עד ויורשי הבעל חציין.</strong> פרק מי שמת <span class="source-small"> (דף קנ&quot;ח קנ&quot;ט)</span> :</p>
               </div>
             </div>
@@ -979,8 +1179,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 5:6:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-5-6-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 5:6:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-5-6">Mishneh Torah, Inheritances 5:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁנָּפַל הַבַּיִת עָלָיו וְעַל אִשְׁתּוֹ וְאֵין יָדוּעַ אִם הָאִשָּׁה מֵתָה תְּחִלָּה וְנִמְצְאוּ יוֹרְשֵׁי הַבַּעַל יוֹרְשִׁין כָּל נְכָסֶיהָ אוֹ הַבַּעַל מֵת תְּחִלָּה וְנִמְצְאוּ יוֹרְשֵׁי הָאִשָּׁה יוֹרְשִׁין כָּל נְכָסֶיהָ כֵּיצַד דִּינָם. מַעֲמִידִין נִכְסֵי מְלוֹג בְּחֶזְקַת יוֹרְשֵׁי הָאִשָּׁה וְהַכְּתֻבָּה עִקָּר וְהַתּוֹסֶפֶת בְּחֶזְקַת יוֹרְשֵׁי הַבַּעַל וְחוֹלְקִין בְּנִכְסֵי צֹאן בַּרְזֶל יוֹרְשֵׁי הָאִשָּׁה נוֹטְלִין חֶצְיָן וְיוֹרְשֵׁי הַבַּעַל חֶצְיָן. אֲבָל אִם נָפַל הַבַּיִת עָלָיו וְעַל אִמּוֹ מַעֲמִידִין נִכְסֵי הָאֵם בְּחֶזְקַת יוֹרְשֵׁי הָאֵם שֶׁהֵם יוֹרְשִׁין וַדָּאִין אֲבָל יוֹרְשֵׁי הַבֵּן סָפֵק הֵם שֶׁאִם מֵת הַבֵּן תְּחִלָּה אֵין לְאֶחָיו מֵאָבִיו בְּנִכְסֵי אִמָּן כְּלוּם כְּמוֹ שֶׁבֵּאַרְנוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל אם נפל וכו׳ עד כלום כמו שביארנו.</strong> ההלכה פרק מי שמת ומייתי בבא ראשונה במציעא פרק המפקיד <span class="source-small"> (דף ל&quot;ט) </span> והביאור הוא פ&quot;א:</p>
               </div>
             </div>
@@ -995,8 +1200,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 5:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-5-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 5:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-5-7">Mishneh Torah, Inheritances 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָפַל הַבַּיִת עָלָיו וְעַל בֶּן בִּתּוֹ אִם הָאָב מֵת תְּחִלָּה בֶּן בִּתּוֹ יִירָשֶׁנּוּ וְנִמְצְאוּ הַנְּכָסִים שֶׁל יוֹרְשֵׁי הַבֵּן. וְאִם בֶּן בִּתּוֹ מֵת תְּחִלָּה אֵין הַבֵּן יוֹרֵשׁ אֶת אִמּוֹ בַּקֶּבֶר כְּמוֹ שֶׁבֵּאַרְנוּ וְנִמְצְאוּ הַנְּכָסִים שֶׁל יוֹרְשֵׁי הָאָב. לְפִיכָךְ יַחְלְקוּ יוֹרְשֵׁי הָאָב עִם יוֹרְשֵׁי בֶּן הַבַּת. וְכֵן אִם [נִשְׁבָּה] הָאָב וּמֵת בֶּן בִּתּוֹ בַּמְּדִינָה אוֹ שֶׁנִּשְׁבָּה הַבֵּן וּמֵת אֲבִי אִמּוֹ בַּמְּדִינָה יַחְלְקוּ יוֹרְשֵׁי הָאָב עִם יוֹרְשֵׁי בֶּן הַבַּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נפל עליו ועל בן בתו עד עם יורשי בן הבת.</strong> ההלכה סוף פרק מי שמת והביאור פ&quot;א:</p>
               </div>
             </div>
@@ -1011,8 +1221,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 5:7:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-5-7-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 5:7:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-5-7">Mishneh Torah, Inheritances 5:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">נָפַל הַבַּיִת עָלָיו וְעַל בֶּן בִּתּוֹ אִם הָאָב מֵת תְּחִלָּה בֶּן בִּתּוֹ יִירָשֶׁנּוּ וְנִמְצְאוּ הַנְּכָסִים שֶׁל יוֹרְשֵׁי הַבֵּן. וְאִם בֶּן בִּתּוֹ מֵת תְּחִלָּה אֵין הַבֵּן יוֹרֵשׁ אֶת אִמּוֹ בַּקֶּבֶר כְּמוֹ שֶׁבֵּאַרְנוּ וְנִמְצְאוּ הַנְּכָסִים שֶׁל יוֹרְשֵׁי הָאָב. לְפִיכָךְ יַחְלְקוּ יוֹרְשֵׁי הָאָב עִם יוֹרְשֵׁי בֶּן הַבַּת. וְכֵן אִם [נִשְׁבָּה] הָאָב וּמֵת בֶּן בִּתּוֹ בַּמְּדִינָה אוֹ שֶׁנִּשְׁבָּה הַבֵּן וּמֵת אֲבִי אִמּוֹ בַּמְּדִינָה יַחְלְקוּ יוֹרְשֵׁי הָאָב עִם יוֹרְשֵׁי בֶּן הַבַּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן אם נשבה האב כו׳ עד סוף הפרק.</strong> ס&quot;פ מי שמת:</p>
               </div>
             </div>
@@ -1028,8 +1243,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 6:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-6-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 6:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-6-1">Mishneh Torah, Inheritances 6:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם יָכוֹל לְהוֹרִישׁ לְמִי שֶׁאֵינוֹ רָאוּי לְיָרְשׁוֹ וְלֹא לַעֲקֹר הַיְרֻשָּׁה מִן הַיּוֹרֵשׁ אַף עַל פִּי שֶׁזֶּה מָמוֹן הוּא. לְפִי שֶׁנֶּאֱמַר בְּפָרָשַׁת נְחָלוֹת <span class="source-small">(במדבר כז יא)</span> &quot;וְהָיְתָה לִבְנֵי יִשְׂרָאֵל לְחֻקַּת מִשְׁפָּט&quot; לוֹמַר שֶׁחֻקָּה זוֹ לֹא נִשְׁתַּנָּה וְאֵין הַתְּנַאי מוֹעִיל בָּהּ. בֵּין שֶׁצִּוָּה וְהוּא בָּרִיא בֵּין שֶׁהָיָה שְׁכִיב מֵרַע בֵּין עַל פֶּה בֵּין בִּכְתָב אֵינוֹ מוֹעִיל:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין אדם יכול להוריש כו׳ עד אלא אפוטרופוס כמו שביארנו.</strong> ההלכות פרק יש נוחלין <span class="source-small"> (דף קכ&quot;ו) </span> והביאור פ&quot;ו דהלכות זכייה ומתנה:</p>
               </div>
             </div>
@@ -1044,8 +1264,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 6:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-6-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 6:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-6-3">Mishneh Torah, Inheritances 6:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמַר פְּלוֹנִי בְּנִי יִירַשׁ חֲצִי נְכָסַי וּשְׁאָר בָּנַי הַחֵצִי דְּבָרָיו קַיָּמִין. אֲבָל אִם אָמַר הַבְּכוֹר יִירַשׁ כַּפָּשׁוּט אוֹ שֶׁאָמַר לֹא יִירַשׁ פִּי שְׁנַיִם עִם אֶחָיו לֹא אָמַר כְּלוּם שֶׁנֶּאֱמַר <span class="source-small">(דברים כא טז)</span> &quot;לֹא יוּכַל לְבַכֵּר אֶת בֶּן הָאֲהוּבָה עַל פְּנֵי בֶן הַשְּׂנוּאָה הַבְּכֹר&quot; <span class="source-small">(דברים כא יז)</span> &quot;כִּי אֶת הַבְּכֹר בֶּן הַשְּׂנוּאָה יַכִּיר&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמר פלוני בני יירש כו׳ עד כמו שביארנו בהלכות אישות.</strong> כל ההלכות פרק יש נוחלין והביאור ריש פרק י&quot;ג:</p>
               </div>
             </div>
@@ -1060,8 +1285,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 6:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-6-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 6:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-6-9">Mishneh Torah, Inheritances 6:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָעַכּוּ&quot;ם יוֹרֵשׁ אֶת אָבִיו דְּבַר תּוֹרָה. אֲבָל שְׁאָר יְרֻשּׁוֹתֵיהֶן מַנִּיחִין אוֹתוֹ לְפִי מִנְהָגָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>העכו&quot;ם יורש את אביו וכו׳ עד ולא מדבריהם.</strong> פ&quot;ק דקדושין <span class="source-small"> (דף י&quot;ז): </span></p>
               </div>
             </div>
@@ -1076,8 +1306,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 6:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-6-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 6:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-6-11">Mishneh Torah, Inheritances 6:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַנּוֹתֵן נְכָסָיו לַאֲחֵרִים וְהִנִּיחַ הַיּוֹרְשִׁין. אַף עַל פִּי שֶׁאֵין הַיּוֹרְשִׁין נוֹהֲגִין (בּוֹ) כַּשּׁוּרָה אֵין רוּחַ חֲכָמִים נוֹחָה הֵימֶנּוּ. וְזָכוּ הָאֲחֵרִים בְּכָל מַה שֶּׁנָּתַן לָהֶן. מִדַּת חֲסִידוּת הִיא שֶׁלֹּא יָעִיד אָדָם חָסִיד בְּצַוָּאָה שֶׁמַּעֲבִירִין בּוֹ הַיְרֻשָּׁה מִן הַיּוֹרֵשׁ אֲפִלּוּ מִבֵּן שֶׁאֵינוֹ נוֹהֵג כַּשּׁוּרָה לְאָחִיו חָכָם וְנוֹהֵג כַּשּׁוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל הנותן נכסיו לאחרים כו׳ עד ונוהג כשורה.</strong> פ׳ יש נוחלין <span class="source-small"> (דף קל&quot;ג): </span></p>
               </div>
             </div>
@@ -1092,8 +1327,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 6:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-6-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 6:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-6-12">Mishneh Torah, Inheritances 6:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">יִשְׂרָאֵל שֶׁהֵמִיר יוֹרֵשׁ אֶת קְרוֹבָיו הַיִּשְׂרְאֵלִים כְּשֶׁהָיָה. וְאִם רָאוּ בֵּית דִּין לְאַבֵּד אֶת מָמוֹנוֹ וּלְקָנְסוֹ שֶׁלֹּא יִירַשׁ כְּדֵי שֶׁלֹּא לְחַזֵּק אֶת יְדֵיהֶם הָרְשׁוּת בְּיָדָן. וְאִם יֵשׁ לוֹ בָּנִים בְּיִשְׂרָאֵל תִּנָּתֵן יְרֻשַּׁת אֲבִיהֶן הַמּוּמָר לָהֶן. וְכֵן הַמִּנְהָג תָּמִיד בַּמַּעֲרָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ישראל שהמיר כו׳ עד וכן המנהג תמיד במערב.</strong> ההלכה רווחת בכ&quot;מ בתלמוד ובבכורות בפרט אף על פי שחטא ישראל הוא והמנהג הוראת הגאונים ז&quot;ל:</p>
               </div>
             </div>
@@ -1108,8 +1348,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 6:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-6-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 6:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-6-13">Mishneh Torah, Inheritances 6:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">צִוּוּ חֲכָמִים שֶׁלֹּא יְשַׁנֶּה אָדָם בֵּין הַבָּנִים בְּחַיָּיו אֲפִלּוּ בְּדָבָר מוּעָט שֶׁלֹּא יָבוֹאוּ לִידֵי תַּחֲרוּת וְקִנְאָה כַּאֲחֵי יוֹסֵף עִם יוֹסֵף:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>צוו חכמים כו׳ עד סוף הפרק.</strong> פ&quot;ק דמסכת שבת:</p>
               </div>
             </div>
@@ -1125,8 +1370,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-1">Mishneh Torah, Inheritances 7:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הַיּוֹרְשִׁין נוֹחֲלִין עַד שֶׁיָּבִיאוּ רְאָיָה בְּרוּרָה שֶׁמֵּת מוֹרִישָׁן. אֲבָל אִם שָׁמְעוּ בּוֹ שֶׁמֵּת אוֹ שֶׁבָּאוּ עַכּוּ&quot;ם מְשִׂיחִין לְפִי תֻּמָּן. אַף עַל פִּי שֶׁמַּשִּׂיאִין אֶת אִשְׁתּוֹ עַל פִּיהֶם וְנוֹטֵל כְּתֻבָּתָהּ אֵין הַיּוֹרְשִׁין נוֹחֲלִין עַל פִּיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין היורשין נוחלין כו׳ עד על פיהן.</strong> במציעא פרק המפקיד <span class="source-small"> (דף ל&quot;ח ל&quot;ט) </span> :</p>
               </div>
             </div>
@@ -1141,8 +1391,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-2">Mishneh Torah, Inheritances 7:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁבָּאת וְאָמְרָה מֵת בַּעְלִי אַף עַל פִּי שֶׁהִיא נֶאֱמֶנֶת וְתִנָּשֵׂא וְתִטּל כְּתֻבָּתָהּ אֵין הַיּוֹרְשִׁין נִכְנָסִין לַנַּחֲלָה עַל פִּיהָ. אָמְרָה מֵת בַּעְלִי וְנִתְיַבְּמָה הֲרֵי יְבָמָהּ נִכְנַס לַנַּחֲלָה עַל פִּיהָ שֶׁנֶּאֱמַר <span class="source-small">(דברים כה ו)</span> &quot;יָקוּם עַל שֵׁם אָחִיו הַמֵּת&quot; וַהֲרֵי קָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האשה שבאה ואמרה מת בעלי כו׳ עד אחיו המת.</strong> במס׳ יבמות פרק האשה שהלכה היא ובעלה למדינת הים:</p>
               </div>
             </div>
@@ -1157,8 +1412,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-3">Mishneh Torah, Inheritances 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁטָּבַע בְּמַיִם שֶׁאֵין לָהֶם סוֹף וּבָאוּ עֵדִים שֶׁטָּבַע בִּפְנֵיהֶם וְאָבַד זִכְרוֹ. אַף עַל פִּי שֶׁאֵין מַשִּׂיאִין אֶת אִשְׁתּוֹ לְכַתְּחִלָּה הֲרֵי הַיּוֹרְשִׁין נוֹחֲלִין עַל פִּיהֶם. וְכֵן אִם בָּאוּ עֵדִים שֶׁרָאוּהוּ שֶׁנָּפַל לְגוֹב אֲרָיוֹת וּנְמֵרִים אוֹ שֶׁרָאוּהוּ צָלוּב וְהָעוֹף אוֹכֵל בּוֹ. אוֹ שֶׁנִּדְקַר בַּמִּלְחָמָה וּמֵת אוֹ שֶׁנֶּהֱרַג וְלֹא הִכִּירוּ פָּנָיו אֲבָל הָיוּ לוֹ סִימָנִים מֻבְהָקִין בְּגוּפוֹ וְהִכִּירוּ אוֹתָם. בְּכָל אֵלּוּ הַדְּבָרִים וְכַיּוֹצֵא בָּהֶן אִם אָבַד זִכְרוֹ אַחַר כָּךְ יוֹרְדִין לַנַּחֲלָה בְּעֵדוּת זוֹ אַף עַל פִּי שֶׁאֵין מַשִּׂיאִין אֶת אִשְׁתּוֹ. שֶׁאֲנִי אוֹמֵר שֶׁלֹּא הֶחְמִירוּ בִּדְבָרִים אֵלּוּ אֶלָּא מִפְּנֵי אִסּוּר כָּרֵת. אֲבָל לְעִנְיַן מָמוֹן אִם הֵעִידוּ הָעֵדִים בִּדְבָרִים שֶׁחֶזְקָתָן לְמִיתָה וְהֵעִידוּ שֶׁרָאוּ אוֹתָן הַדְּבָרִים וְאָבַד זִכְרוֹ וְאַחַר כָּךְ נִשְׁמַע שֶׁמֵּת הֲרֵי אֵלּוּ נוֹחֲלִין עַל פִּיהֶן. וְכָזֶה מַעֲשִׂים בְּכָל יוֹם בְּכָל בָּתֵּי דִּינִין וְלֹא שָׁמַעְנוּ מִי שֶׁחָלַק בְּדָבָר זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שטבע במים שאין להן סוף עד הרי היורשין נוחלין על פיהם:</strong> כתב הראב&quot;ד ז&quot;ל ויש מי שאומר וכו׳: <strong> ואני </strong> אומר סוף מס׳ יבמות הורו הגאונים ז&quot;ל כדברי ר&quot;מ והחולקים חולקים:</p>
               </div>
             </div>
@@ -1173,8 +1433,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:3:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-3-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:3:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-3">Mishneh Torah, Inheritances 7:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁטָּבַע בְּמַיִם שֶׁאֵין לָהֶם סוֹף וּבָאוּ עֵדִים שֶׁטָּבַע בִּפְנֵיהֶם וְאָבַד זִכְרוֹ. אַף עַל פִּי שֶׁאֵין מַשִּׂיאִין אֶת אִשְׁתּוֹ לְכַתְּחִלָּה הֲרֵי הַיּוֹרְשִׁין נוֹחֲלִין עַל פִּיהֶם. וְכֵן אִם בָּאוּ עֵדִים שֶׁרָאוּהוּ שֶׁנָּפַל לְגוֹב אֲרָיוֹת וּנְמֵרִים אוֹ שֶׁרָאוּהוּ צָלוּב וְהָעוֹף אוֹכֵל בּוֹ. אוֹ שֶׁנִּדְקַר בַּמִּלְחָמָה וּמֵת אוֹ שֶׁנֶּהֱרַג וְלֹא הִכִּירוּ פָּנָיו אֲבָל הָיוּ לוֹ סִימָנִים מֻבְהָקִין בְּגוּפוֹ וְהִכִּירוּ אוֹתָם. בְּכָל אֵלּוּ הַדְּבָרִים וְכַיּוֹצֵא בָּהֶן אִם אָבַד זִכְרוֹ אַחַר כָּךְ יוֹרְדִין לַנַּחֲלָה בְּעֵדוּת זוֹ אַף עַל פִּי שֶׁאֵין מַשִּׂיאִין אֶת אִשְׁתּוֹ. שֶׁאֲנִי אוֹמֵר שֶׁלֹּא הֶחְמִירוּ בִּדְבָרִים אֵלּוּ אֶלָּא מִפְּנֵי אִסּוּר כָּרֵת. אֲבָל לְעִנְיַן מָמוֹן אִם הֵעִידוּ הָעֵדִים בִּדְבָרִים שֶׁחֶזְקָתָן לְמִיתָה וְהֵעִידוּ שֶׁרָאוּ אוֹתָן הַדְּבָרִים וְאָבַד זִכְרוֹ וְאַחַר כָּךְ נִשְׁמַע שֶׁמֵּת הֲרֵי אֵלּוּ נוֹחֲלִין עַל פִּיהֶן. וְכָזֶה מַעֲשִׂים בְּכָל יוֹם בְּכָל בָּתֵּי דִּינִין וְלֹא שָׁמַעְנוּ מִי שֶׁחָלַק בְּדָבָר זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> וכן אם באו עדים עד בדבר זה.</strong> גם זו הוראת הגאונים ז&quot;ל:</p>
               </div>
             </div>
@@ -1189,8 +1454,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-4">Mishneh Torah, Inheritances 7:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁבוּי שֶׁנִּשְׁבָּה וְשָׁמְעוּ שֶׁמֵּת וְיָרְדוּ יוֹרְשָׁיו לַנַּחֲלָה וְחָלְקוּ אוֹתָהּ בֵּינֵיהֶם אֵין מוֹצִיאִין אוֹתָהּ מִיָּדָן. וְכֵן הַבּוֹרֵחַ מֵחֲמַת סַכָּנָה. אֲבָל הַיּוֹצֵא לְדַעַת שֶׁשָּׁמְעוּ בּוֹ שֶׁמֵּת וְיָרְדוּ יוֹרְשָׁיו לִנְכָסָיו וְחִלְּקוּם מוֹצִיאִין מִיָּדָן עַד שֶׁיָּבִיאוּ רְאָיָה שֶׁמֵּת מוֹרִישָׁן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שבוי שנשבה ושמעו בו שמת עד וכן הבורח מחמת סכנה:</strong> כתב הראב&quot;ד ז&quot;ל תמה אני על דבריו וכו׳: <strong> ואני </strong> אומר אדרבה אני תמה הפלא ופלא אם הלשון הזה יצא מפיו שהרי עיקר הלכה זו במציעא פ׳ המפקיד <span class="source-small"> (דף ל&quot;ח) </span> גמרא שמעתין דשבוי שנשבה כו׳ והן שלשה שמות מפורשים שם נכסי שבויין ונכסי נטושין ונכסי רטושין ומ&quot;ש הראב&quot;ד ז&quot;ל נקראין נכסי שבויין וז&quot;ש עתה ר&quot;מ ז&quot;ל אות באות הן נקראין נכסי נטושים והשנים פירשן לפנינו בזה הפרק כמו שאכתוב בסמוך בע&quot;ה דגרסינן התם ומורידין קרוב לנכסי שבוי תנאי היא דתניא היורד לנכסי שבוי אין מוציאין אותן מידו ולא עוד אלא אפילו שמע שממשמשין ובאין וקדם תלש ואכל הרי זה זריז ונשכר ואלו הן נכסי שבויין הרי שהיו אביו או אחיו או אחד ממורישיו והלכו להם למדינת הים ושמעו בו שמת היורד לנכסי נטושין מוציאין אותן מידו ואלו הן נכסי נטושין הרי שהיו אביו או אחיו או אחד מן מורישיו הלכו להן למדינת הים ולא שמעו בו שמת וקפץ וירד לתוך הנחלה אמר רשב&quot;ג שמעתי שהנטושין כשבויין היורד בנכסי רטושין מוציאין אותן מידו ואלו הן נכסי רטושין הרי שהיו אביו או אחיו או אחד ממורישיו כאן ואינו יודע להיכן הלכו עכ&quot;ל הברייתא ושקיל וטרי עלה תלמודא טובא מ&quot;ש הני דקרי להו נטושין ומאי שנא הני דקרו להו רטושין עתה ראה גם ראה מה אשיב שואלי דבר על התימה הזה להאמין שיצא מפי הקדוש ז&quot;ל לכן אמרתי אחד מן התלמידים אמר על שמו:</p>
               </div>
             </div>
@@ -1205,8 +1475,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:4:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-4-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-4">Mishneh Torah, Inheritances 7:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁבוּי שֶׁנִּשְׁבָּה וְשָׁמְעוּ שֶׁמֵּת וְיָרְדוּ יוֹרְשָׁיו לַנַּחֲלָה וְחָלְקוּ אוֹתָהּ בֵּינֵיהֶם אֵין מוֹצִיאִין אוֹתָהּ מִיָּדָן. וְכֵן הַבּוֹרֵחַ מֵחֲמַת סַכָּנָה. אֲבָל הַיּוֹצֵא לְדַעַת שֶׁשָּׁמְעוּ בּוֹ שֶׁמֵּת וְיָרְדוּ יוֹרְשָׁיו לִנְכָסָיו וְחִלְּקוּם מוֹצִיאִין מִיָּדָן עַד שֶׁיָּבִיאוּ רְאָיָה שֶׁמֵּת מוֹרִישָׁן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אבל היוצא לדעת וכו׳ עד ויטול את שלו.</strong> פ׳ המפקיד ומקצתה דברי גאון שכתבו שם ר&quot;י אלפס ז&quot;ל:</p>
               </div>
             </div>
@@ -1221,8 +1496,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:7:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-7-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-7">Mishneh Torah, Inheritances 7:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאֵין מוֹרִידִין הַקָּרוֹב לְעוֹלָם אֶלָּא לְשָׂדוֹת וּלְגַנּוֹת וּכְרָמִים וְכַיּוֹצֵא בָּהֶן שֶׁיִּהְיֶה בָּהֶן כְּאָרִיס כְּדֵי שֶׁלֹּא יֻפְסְדוּ וְנִמְצְאוּ בּוּרִים וּנְשַׁמִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואין מורידין הקרוב לעולם וכו׳ עד בורים וגשמים:</strong> כתב הראב&quot;ד ז&quot;ל אני איני אומר כן וכו׳: <strong> ואני </strong> אומר גם על זה שלא יצא מפיו דהא בההיא שמעתא דפרק המפקיד <span class="source-small"> (דף ל&quot;ח ל&quot;ט) </span> גופא בתר שקלא וטריא דמאי שנא נטושין ומאי שנא רטושין גרסינן וכולן שמין להו כאריס ושיילינן אהייא קאי אילימא אשבויין השתא זריז ונשכר הוי מאי דאשבח מיבעיא כו׳ עד דאוקימנא כרשב&quot;ג דאמר נטושין כשבויין והכי קאמר כשבויין ולא כשבויין כשבויין דאין מוציאין אותו מידו ולא כשבויין דאילו התם זריז ונשכר ואילו הכא שיימינן ליה כאריס ושקלי וטרו עלה טובא עד דאסיקנא כי היכי דלא נפסדינהו ושיילינן וכולן לאיתויי מאי לאיתויי הא דאמר רב נחמן בר יצחק אמר שמואל שבוי שנשבה מורידין קרוב לנכסיו יצא לדעת אין מורידין קרוב לנכסיו ע&quot;כ. הנה עיניך רואות דברי ר&quot;מ ז&quot;ל תלמוד ערוך הם:</p>
               </div>
             </div>
@@ -1237,8 +1517,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 7:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-7-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 7:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-7-8">Mishneh Torah, Inheritances 7:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁיָּצָא לְדַעַת וְהִנִּיחַ נְכָסָיו וְאֵין יָדוּעַ לְהֵיכָן הָלַךְ וְלֹא מָה אֵרַע לוֹ. אֵין מוֹרִידִין קָרוֹב לִנְכָסָיו. וְאִם יָרַד מְסַלְּקִין אוֹתוֹ. וְאֵין בֵּית דִּין צְרִיכִין לְהִטַּפֵּל בּוֹ וּלְהַעֲמִיד לוֹ אַפּוֹטְרוֹפּוֹס לֹא לַקַּרְקַע וְלֹא לַמִּטַּלְטְלִין שֶׁהֲרֵי לְדַעְתּוֹ יָצָא וְהִנִּיחַ נְכָסָיו. וְכֵיצַד יִהְיֶה דִּין נִכְסֵי זֶה. מִטַּלְטְלִין יַעַמְדוּ בְּיַד זֶה שֶׁהֵן תַּחַת יָדוֹ עַד שֶׁיָּבוֹא זֶה וְיִתְבַּע אוֹ עַד שֶׁיָּמוּת וְיִתְבְּעוּ הַיּוֹרְשִׁין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שיצא לדעת כו׳ עד סוף הפרק.</strong> פ׳ המפקיד <span class="source-small"> (דף ל&quot;ט): </span></p>
               </div>
             </div>
@@ -1254,8 +1539,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 8:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-8-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 8:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-8-1">Mishneh Torah, Inheritances 8:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁמּוֹרִידִין קָרוֹב לְנִכְסֵי הַשָּׁבוּי אוֹ בּוֹרֵחַ אוֹ לְנִכְסֵי הַיּוֹצֵא לְדַעַת שֶׁשָּׁמְעוּ בּוֹ שֶׁמֵּת. לֹא יוֹרִידוּ קָטָן שֶׁמָּא יַפְסִיד הַנְּכָסִים. וְאֵין מוֹרִידִין קָרוֹב לְנִכְסֵי קָטָן שֶׁמָּא יִטְעֹן וְיֹאמַר זֶה חֶלְקִי הַמַּגִּיעַ לִי בִּירֻשָּׁתִי. וַאֲפִלּוּ קָרוֹב מֵחֲמַת קָרוֹב אֵין מוֹרִידִין. כֵּיצַד. הָיוּ שְׁנֵי אַחִים אֶחָד גָּדוֹל וְאֶחָד קָטָן וְנִשְׁבָּה הַקָּטָן אוֹ בָּרַח. אֵין מוֹרִידִין הַגָּדוֹל לְתוֹךְ שָׂדֵהוּ מִפְּנֵי שֶׁהַקָּטָן אֵינוֹ יָכוֹל לִמְחוֹת. וְשֶׁמָּא יַחֲזִיק זֶה הָאָח וּלְאַחַר שָׁנִים יֹאמַר זֶה חֶלְקִי שֶׁהִגִּיעַ לִי בִּירֻשָּׁתִי וּמֵחֲמַת יְרוּשָׁה בָּאתִי. וַאֲפִלּוּ בֶּן אָחִיו שֶׁל זֶה הַקָּטָן הַנִּשְׁבָּה אֵין מוֹרִידִין אוֹתוֹ לִנְכָסָיו שֶׁמָּא יֹאמַר שֶׁמֵּחֲמַת אָבִי יָרַשְׁתִּי חֵלֶק זֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשמורידין קרוב כו׳ עד מחמת אבי ירשתי חלק זה.</strong> פרק המפקיד:</p>
               </div>
             </div>
@@ -1270,8 +1560,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 8:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-8-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 8:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-8-2">Mishneh Torah, Inheritances 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לְעוֹלָם אֵין מוֹרִידִין קָרוֹב לְנִכְסֵי קָטָן אֲפִלּוּ קָרוֹב מֵחֲמַת אֲחֵי הַאֵם שֶׁאֵינָן רְאוּיִין לִירַשׁ. הַרְחָקָה יְתֵרָה הִיא זוֹ וַאֲפִלּוּ יֵשׁ בֵּינֵיהֶן שְׁטַר חֲלוּקָה בֵּין בְּבָתִּים בֵּין בְּשָׂדוֹת לֹא יֵרֵד. וַאֲפִלּוּ אָמַר כִּתְבוּ עָלַי שְׁטַר אֲרִיסוּת לֹא יֵרֵד שֶׁמָּא יֹאבְדוּ הַשְּׁטָרוֹת וְיַאַרְכוּ הַיָּמִים וְיִטְעֹן וְיֹאמַר שֶׁזֶּה חֵלֶק יְרֻשָּׁה בָּא לוֹ (מֵחֲמָתוֹ אוֹ) מֵחֲמַת מוֹרִישָׁיו. מַעֲשֶׂה בְּאִשָּׁה אַחַת שֶׁהָיוּ לָהּ שָׁלֹשׁ בָּנוֹת וְנִשְׁבֵּית הַזְּקֵנָה הִיא וּבַת אַחַת וּמֵתָה בַּת שְׁנִיָּה וְהִנִּיחָה בֵּן קָטָן. וְאָמְרוּ חֲכָמִים אֵין מוֹרִידִין זוֹ הַבַּת הַנִּשְׁאָרָה לַנְּכָסִים שֶׁמָּא מֵתָה הַזְּקֵנָה וְנִמְצְאוּ שְׁלִישׁ נְכָסִים אֵלּוּ לַקָּטָן וְאֵין מוֹרִידִין קָרוֹב לְנִכְסֵי קָטָן. וְכֵן אֵין מוֹרִידִין לְזֶה הַקָּטָן בַּנְּכָסִים שֶׁמָּא עֲדַיִן הַזְּקֵנָה בַּחַיִּים וְאֵין מוֹרִידִין קָטָן לְנִכְסֵי שָׁבוּי. אֶלָּא כֵּיצַד עוֹשִׂין. מִתּוֹךְ שֶׁצָּרִיךְ לְהַעֲמִיד אַפּוֹטְרוֹפּוֹס לַחֲצִי שֶׁל קָטָן מַעֲמִידִין אַפּוֹטְרוֹפּוֹס עַל כָּל נִכְסֵי הַזְּקֵנָה. אַחַר זְמַן שָׁמְעוּ שֶׁמֵּתָה הַזְּקֵנָה אָמְרוּ חֲכָמִים תֵּרֵד הַבַּת הַנִּשְׁאָרָה לִשְׁלִישׁ הַנְּכָסִים שֶׁהוּא חֵלֶק יְרֻשָּׁתָהּ וְיֵרֵד הַקָּטָן לִשְׁלִישׁ שֶׁהוּא חֶלְקוֹ מִנִּכְסֵי הַזְּקֵנָה. וְהַשְּׁלִישׁ שֶׁל בַּת הַשְּׁבוּיָה מַעֲמִידִין לוֹ אַפּוֹטְרוֹפּוֹס מִפְּנֵי חֵלֶק הַקָּטָן שֶׁמָּא מֵתָה גַּם הַבַּת הַשְּׁבוּיָה וְיֵשׁ לְזֶה הַקָּטָן חֲצִי הַשְּׁלִישׁ שֶׁלָּהּ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>לעולם אין מורידין קרוב כו׳ עד מחמת מורישיו.</strong> במציעא פרק המפקיד ובכתובות פ׳ הנושא:</p>
               </div>
             </div>
@@ -1286,8 +1581,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 8:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-8-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 8:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-8-2">Mishneh Torah, Inheritances 8:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">לְעוֹלָם אֵין מוֹרִידִין קָרוֹב לְנִכְסֵי קָטָן אֲפִלּוּ קָרוֹב מֵחֲמַת אֲחֵי הַאֵם שֶׁאֵינָן רְאוּיִין לִירַשׁ. הַרְחָקָה יְתֵרָה הִיא זוֹ וַאֲפִלּוּ יֵשׁ בֵּינֵיהֶן שְׁטַר חֲלוּקָה בֵּין בְּבָתִּים בֵּין בְּשָׂדוֹת לֹא יֵרֵד. וַאֲפִלּוּ אָמַר כִּתְבוּ עָלַי שְׁטַר אֲרִיסוּת לֹא יֵרֵד שֶׁמָּא יֹאבְדוּ הַשְּׁטָרוֹת וְיַאַרְכוּ הַיָּמִים וְיִטְעֹן וְיֹאמַר שֶׁזֶּה חֵלֶק יְרֻשָּׁה בָּא לוֹ (מֵחֲמָתוֹ אוֹ) מֵחֲמַת מוֹרִישָׁיו. מַעֲשֶׂה בְּאִשָּׁה אַחַת שֶׁהָיוּ לָהּ שָׁלֹשׁ בָּנוֹת וְנִשְׁבֵּית הַזְּקֵנָה הִיא וּבַת אַחַת וּמֵתָה בַּת שְׁנִיָּה וְהִנִּיחָה בֵּן קָטָן. וְאָמְרוּ חֲכָמִים אֵין מוֹרִידִין זוֹ הַבַּת הַנִּשְׁאָרָה לַנְּכָסִים שֶׁמָּא מֵתָה הַזְּקֵנָה וְנִמְצְאוּ שְׁלִישׁ נְכָסִים אֵלּוּ לַקָּטָן וְאֵין מוֹרִידִין קָרוֹב לְנִכְסֵי קָטָן. וְכֵן אֵין מוֹרִידִין לְזֶה הַקָּטָן בַּנְּכָסִים שֶׁמָּא עֲדַיִן הַזְּקֵנָה בַּחַיִּים וְאֵין מוֹרִידִין קָטָן לְנִכְסֵי שָׁבוּי. אֶלָּא כֵּיצַד עוֹשִׂין. מִתּוֹךְ שֶׁצָּרִיךְ לְהַעֲמִיד אַפּוֹטְרוֹפּוֹס לַחֲצִי שֶׁל קָטָן מַעֲמִידִין אַפּוֹטְרוֹפּוֹס עַל כָּל נִכְסֵי הַזְּקֵנָה. אַחַר זְמַן שָׁמְעוּ שֶׁמֵּתָה הַזְּקֵנָה אָמְרוּ חֲכָמִים תֵּרֵד הַבַּת הַנִּשְׁאָרָה לִשְׁלִישׁ הַנְּכָסִים שֶׁהוּא חֵלֶק יְרֻשָּׁתָהּ וְיֵרֵד הַקָּטָן לִשְׁלִישׁ שֶׁהוּא חֶלְקוֹ מִנִּכְסֵי הַזְּקֵנָה. וְהַשְּׁלִישׁ שֶׁל בַּת הַשְּׁבוּיָה מַעֲמִידִין לוֹ אַפּוֹטְרוֹפּוֹס מִפְּנֵי חֵלֶק הַקָּטָן שֶׁמָּא מֵתָה גַּם הַבַּת הַשְּׁבוּיָה וְיֵשׁ לְזֶה הַקָּטָן חֲצִי הַשְּׁלִישׁ שֶׁלָּהּ. וְכֵן כָּל כַּיּוֹצֵא בָּזֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> מעשה באשה אחת כו׳ עד סוף הפרק.</strong> פרק המפקיד:</p>
               </div>
             </div>
@@ -1303,8 +1603,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-1">Mishneh Torah, Inheritances 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאַחִין שֶׁעֲדַיִן לֹא חָלְקוּ יְרֻשַּׁת אֲבִיהֶן אֶלָּא כֻּלָּן מִשְׁתַּמְּשִׁין בְּיַחַד בְּמַה שֶּׁהִנִּיחַ לָהֶן הֲרֵי הֵן כְּשֻׁתָּפִין לְכָל דָּבָר. וְכֵן בִּשְׁאָר הַיּוֹרְשִׁין הֲרֵי הֵן שֻׁתָּפִין בְּנִכְסֵי מוֹרִישָׁן. וְכָל שֶׁנָּשָׂא וְנָתַן כָּל אֶחָד מֵהֶן בְּמָמוֹן זֶה הַשָּׂכָר לָאֶמְצַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האחין שעדיין כו׳ עד השכר לאמצע.</strong> בבתרא פרק מי שמת <span class="source-small"> (דף קמ&quot;ג): </span></p>
               </div>
             </div>
@@ -1319,8 +1624,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-2">Mishneh Torah, Inheritances 9:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ הַיּוֹרְשִׁין גְּדוֹלִים וּקְטַנִּים וְהִשְׁבִּיחוּ הַגְּדוֹלִים אֶת הַנְּכָסִים הִשְׁבִּיחוּ לָאֶמְצַע. אָמְרוּ רְאוּ מַה שֶּׁהִנִּיחַ לָנוּ אַבָּא וַהֲרֵי אָנוּ עוֹשִׂין וְאוֹכְלִין. הַשֶּׁבַח שֶׁל מַשְׁבִּיחַ. וְהוּא שֶׁיִּהְיֶה הַשֶּׁבַח מֵחֲמַת הוֹצָאָה שֶׁהוֹצִיא הַמַּשְׁבִּיחַ. אֲבָל שָׁבְחוּ נְכָסִים מֵחֲמַת עַצְמָן הַשֶּׁבַח לָאֶמְצַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היו היורשין גדולים עד השביחו לאמצע.</strong> במציעא פרק המפקיד <span class="source-small"> (דף ל&quot;ט) </span> ובבתרא פרק מי שמת:</p>
               </div>
             </div>
@@ -1335,8 +1645,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:2:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-2-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:2:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-2">Mishneh Torah, Inheritances 9:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיוּ הַיּוֹרְשִׁין גְּדוֹלִים וּקְטַנִּים וְהִשְׁבִּיחוּ הַגְּדוֹלִים אֶת הַנְּכָסִים הִשְׁבִּיחוּ לָאֶמְצַע. אָמְרוּ רְאוּ מַה שֶּׁהִנִּיחַ לָנוּ אַבָּא וַהֲרֵי אָנוּ עוֹשִׂין וְאוֹכְלִין. הַשֶּׁבַח שֶׁל מַשְׁבִּיחַ. וְהוּא שֶׁיִּהְיֶה הַשֶּׁבַח מֵחֲמַת הוֹצָאָה שֶׁהוֹצִיא הַמַּשְׁבִּיחַ. אֲבָל שָׁבְחוּ נְכָסִים מֵחֲמַת עַצְמָן הַשֶּׁבַח לָאֶמְצַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> אמרו ראו מה שהניח לנו אבא וכו׳ עד השבח לאמצע:</strong> כתב הראב&quot;ד ז&quot;ל אין זו הגירסא שלנו ולא של הרב ז&quot;ל וזה שבוש הוא עכ&quot;ל: <strong> ואני </strong> אומר גם זה לא יצא מפי הראב&quot;ד ז&quot;ל לעולם כי המשנה שלימה ותלמוד ערוך הוא בבבא בתרא פ׳ מי שמת דתנן הניח בנים גדולים וקטנים השביחו גדולים את הנכסים השביחו לאמצע ואם אמרו ראו מה שהניח לנו אבא והרי אנו עושין ואוכלים השביחו לעצמן ע&quot;כ ואמרינן עלה בגמ׳ אמר רב חביבא בריה דרב יוסף בריה דרבא משמיה דרבא לא שנו אלא ששבחו נכסים מחמת נכסים אבל שבחו נכסים מחמת עצמן שבחו לעצמן ואקשינן עלה איני והא אמר רבי חנינא אפילו הניח להם אביהם אודייני השכר לאמצע והא אודייני דמחמת עצמו הוא ופרקינן שאני אודייני דלנטירותא הוא דעבידא ואפילו קטנים נמי מצו מנטרי בה ע&quot;כ. ור&quot;י אלפס גורס מימרא דרב חביבא והשמיט קושיא דר׳ חנינא ופירוקה משום דלא נפקא ליה מינה אלא מילתא דפשיטות ועוד דלישנא דמתני׳ משמע הכי דקתני והשביחו גדולים ולא קתני והשביחו סתמא דמשמע גדולים דוקא הוא דמצו משבחי אבל קטנים לא מצו משבחי וכן הוא בכל הספרים שראיתי אלא ודאי הכותב הזה מתחיל היה ולא עיין גמרא מתניתין קמייתא אלא גמר פסקא בתרייתא ואם אמרה כו׳ דגרסינן עלה עובדא דרב ספרא שביק אבוה כו׳ ולא ידע ללכת אל עיר:</p>
               </div>
             </div>
@@ -1351,8 +1666,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-3">Mishneh Torah, Inheritances 9:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְכֵן אִם הָיְתָה אִשְׁתּוֹ שֶׁל מֵת הִיא הַיּוֹרֶשֶׁת בִּכְלַל אַחְיוֹתֶיהָ אוֹ בִּכְלַל בְּנוֹת דּוֹדֶיהָ וְהִשְׁבִּיחָה הַנְּכָסִים הַשֶּׁבַח לָאֶמְצַע. וְאִם אָמְרָה רְאוּ מַה שֶּׁהִנִּיחַ לִי בַּעְלִי וַהֲרֵינִי עוֹשָׂה וְאוֹכֶלֶת הִשְׁבִּיחַ הַנְּכָסִים מֵחֲמַת הוֹצָאָה הֲרֵי הַשֶּׁבַח שֶׁלָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן אם היתה אשתו עד השבח שלה.</strong> פרק מי שמת:</p>
               </div>
             </div>
@@ -1367,8 +1687,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-4">Mishneh Torah, Inheritances 9:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁיָּרַשׁ אֶת אָבִיו וְהִשְׁבִּיחַ הַנְּכָסִים וְנָטַע וּבָנָה וְאַחַר כָּךְ נוֹדַע שֶׁיֵּשׁ לוֹ אַחִין בִּמְדִינָה אַחֶרֶת. אִם קְטַנִּים הֵן הַשֶּׁבַח לָאֶמְצַע וְאִם הָיוּ גְּדוֹלִים הוֹאִיל וְלֹא נוֹדַע שֶׁיֵּשׁ לוֹ אַחִין שָׁמִין לוֹ כְּאָרִיס. וְכֵן אָח שֶׁיָּרַד לְנִכְסֵי קָטָן וְהִשְׁבִּיחַ אֵין שָׁמִין לוֹ כְּאָרִיס. אֶלָּא הַשֶּׁבַח לָאֶמְצַע שֶׁהֲרֵי לֹא בִּרְשׁוּת יָרַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שירש את אביו וכו׳ עד שמין לו כאריס:</strong> כתב הראב&quot;ד ז&quot;ל ואם ידע מה בכך וכו׳: <strong> ואני </strong> אומר גם זה לא יצא מפיו דאטו שבוי מאן דכר שמיה הכא ועוד לאו היינו עובדא דפרק המפקיד דמרי בר איסק אתא ליה אחא מבי חוזאה אמר ליה אחוך אנא פלג לי אמר ליה לא ידענא לך כו׳ עד אייתי סהדי דאחוה הוא א&quot;ל רב חסדא זיל פלוג ליה אמר ליה נפלוג לי נמי בפרדיסא ובוסתני דשתל אמר ליה שפיר קאמר לך דתנן הניח בנים גדולים וקטנים כו׳ ושקלינן וטרינן עלה טובא עד דאסיקנא אהדרוה לרב חסדא אמר להו מי דמי התם ברשות ב&quot;ד נחית הכא לאו ברשות בית דין נחית ועוד קטן הוא ואין מורידין קרוב לנכסי קטן אהדרוה לקמיה דרב אמי אמר ליה לא סיימו קמאי דקטן הוה ע&quot;כ. וכתב ר&quot;י אלפס והלכתא כרב חסדא וקושיא אדאביי ליתא משום דקטן הוה ואין מורידין קרוב לנכסי קטן הלכך אף על גב דלא ידע דאיתיה דנחיל השביח לאמצע אבל גדול דלא ידע דאיתיה דנחיל גביה לא השביח לאמצע אלא שמין לו כאריס עכ&quot;ל. וזהו לשון ר&quot;מ ז&quot;ל אות באות ועיניך רואות מעתה אתה תבחר ולא אני אם יש להטות ימין ושמאל להאמין כי יצא דבר זה מפי קדוש זה חס ושלום וחס ליה ולגובריה תדע שאפילו אחד מבקיאי תלמידיו ירגיש שזה היה דעת ר&quot;מ ז&quot;ל שהרי סמך לו וכן אח שירד לנכסי קטן וכו׳ עד לא פחות ולא יתר:</p>
               </div>
             </div>
@@ -1383,8 +1708,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-5">Mishneh Torah, Inheritances 9:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד מִן הָאַחִין שֶׁלָּקַח מָעוֹת וְעָשָׂה בָּהֶן סְחוֹרָה אִם הָיָה תַּלְמִיד חָכָם גָּדוֹל שֶׁאֵינוֹ מַנִּיחַ תּוֹרָתוֹ שָׁעָה אַחַת. הֲרֵי הַשָּׂכָר שֶׁלּוֹ שֶׁאֵין זֶה מַנִּיחַ תּוֹרָתוֹ וּמִתְעַסֵּק לְצֹרֶךְ אֶחָיו:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד מן האחים וכו׳ עד בעיסתן.</strong> הכל בפרק חזקת הבתים <span class="source-small"> (דף נ&quot;ב) </span> והבבות הראשונות גם פרק מי שמת:</p>
               </div>
             </div>
@@ -1399,8 +1729,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-9">Mishneh Torah, Inheritances 9:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד מִן הָאַחִין שֶׁשְּׁטַר חוֹב יוֹצֵא מִתַּחַת יָדוֹ עָלָיו לְהָבִיא רְאָיָה שֶׁאָבִיו נְתָנוֹ לוֹ בִּכְתִיבָה וּמְסִירָה. אוֹ שֶׁצִּוָּה לוֹ בּוֹ כְּשֶׁהוּא שְׁכִיב מֵרַע. וְאִם לֹא הֵבִיא רְאָיָה הֲרֵי הוּא לָאֶמְצַע:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד מן האחים וכו׳ עד הרי הוא לאמצע.</strong> פרק גט פשוט <span class="source-small"> (דף קמ&quot;ג) </span> :</p>
               </div>
             </div>
@@ -1415,8 +1750,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-10">Mishneh Torah, Inheritances 9:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בַּמֶּה דְּבָרִים אֲמוּרִים בְּאַחִין מִפְּנֵי שֶׁחֶזְקָתָן שׁוֹמְטִין זֶה מִזֶּה. אֲבָל אַחֵר שֶׁטָּעַן שֶׁנָּתַן לוֹ אוֹ שֶׁקָּנָהוּ מִבְּעָלָיו גּוֹבֶה בּוֹ וְאֵינוֹ צָרִיךְ לְהָבִיא רְאָיָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בד&quot;א באחים מפני שחזקתן וכו׳ עד ואין צריך להביא ראיה:</strong> כתב הראב&quot;ד ז&quot;ל והיאך גובה בו וכו׳: <strong> ואני </strong> אומר מחלוקת ישנה היא גם בין רבותינו בעלי התוספות ז&quot;ל ולכולם יש פנים בהלכה וראיות רבות שונות לפי השיטות ומאחר שהוא לא פירש דבריו למה אפרשם אני די לי בשלי להוכיח כי דברי ר&quot;מ ז&quot;ל מפורשים בתלמוד פ׳ גט פשוט כפירוש רבו:</p>
               </div>
             </div>
@@ -1431,8 +1771,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-11">Mishneh Torah, Inheritances 9:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֶחָד מִן הָאַחִין שֶׁנָּטַל מָאתַיִם זוּז לִלְמֹד תּוֹרָה אוֹ לִלְמֹד אֻמָּנוּת יְכוֹלִין הָאַחִין לוֹמַר לוֹ אִם אֵין אַתָּה אֶצְלֵנוּ אֵין לְךָ מְזוֹנוֹת אֶלָּא לְפִי בִּרְכַּת הַבַּיִת. שֶׁאֵין הוֹצָאַת מְזוֹנוֹת הָאֶחָד לְבַדּוֹ כְּהוֹצָאַת מְזוֹנוֹתָיו בֵּין רַבִּים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אחד מן האחים שנטל כו׳ עד בין רבים.</strong> פרק מי שמת <span class="source-small"> (דף קמ&quot;ד): </span></p>
               </div>
             </div>
@@ -1447,8 +1792,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-12">Mishneh Torah, Inheritances 9:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמֵּת וְהִנִּיחַ בָּנִים גְּדוֹלִים וּקְטַנִּים אֵין הַגְּדוֹלִים מִתְפַּרְנְסִים פַּרְנָסַת הַקְּטַנִּים וְלֹא הַקְּטַנִּים נִזּוֹנִים מְזוֹנוֹת הַגְּדוֹלִים אֶלָּא חוֹלְקִים בְּשָׁוֶה. נִשְּׂאוּ גְּדוֹלִים לְאַחַר מִיתַת אֲבִיהֶן יִשְׂאוּ הַקְּטַנִּים כֵּן מִכְּלַל הַנְּכָסִים וְאַחַר כָּךְ יַחֲלֹקוּ. נִשְּׂאוּ הַגְּדוֹלִים בְּחַיֵּי אֲבִיהֶן וְאָמְרוּ הַקְּטַנִּים לְאַחַר מִיתַת אֲבִיהֶן הֲרֵי אָנוּ נוֹשְׂאִין כְּדֶרֶךְ שֶׁנְּשָׂאתֶם אַתֶּם. אֵין שׁוֹמְעִין לָהֶן אֶלָּא מַה שֶּׁנָּתַן לָהֶם אֲבִיהֶם נָתַן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שמת והניח כו׳ עד מה שנתן להם אביהם נתן.</strong> פרק יש נוחלין <span class="source-small"> (דף קל&quot;ט): </span></p>
               </div>
             </div>
@@ -1463,8 +1813,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:13:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-13-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:13:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-13">Mishneh Torah, Inheritances 9:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הִשִּׂיא הָאָב אֶת בְּנוֹ וְעָשָׂה לוֹ מִשְׁתֶּה וְהָיְתָה הַהוֹצָאָה מִשֶּׁל אָב וְנִשְׁתַּלְּחָה שׁוֹשְׁבִינוּת לְזֶה הַבֵּן בְּחַיֵּי הָאָב. כְּשֶׁהִיא חוֹזֶרֶת לְאַחַר מִיתַת הָאָב חוֹזֶרֶת לָאֶמְצַע. אֲבָל הוֹצִיא הַבֵּן בַּמִּשְׁתֶּה מִשֶּׁלּוֹ אֵינָהּ חוֹזֶרֶת אֶלָּא מֵחֵלֶק הַבֵּן שֶׁנִּשְׁתַּלְּחָה לוֹ בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השיא האב את בנו עד והרי הוא לאמצע:</strong> כתב הראב&quot;ד ז&quot;ל לא ידעתי מהו וכו׳: <strong> ואני </strong> אומר הלכה זו פרק מי שמת <span class="source-small"> (דף קמ&quot;ד) </span> והפירוש הזה נכון בהכי מתפיסת הבית יצא ולתפיסת הבית חזר והסברא שאומר הראב&quot;ד ז&quot;ל אדרבה אפכא מסתברא כי יכולין לומר ומי יודע מה ילד יום או שמא לא ישאו בתולות או לא יזדמן או יבא דבר אחד מכל הדברים המונעין חזרת השושבינות ונמצאו אלו מפסידים חלקם לפיכך נוחלין מיד:</p>
               </div>
             </div>
@@ -1479,8 +1834,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 9:15:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-9-15-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 9:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-9-15">Mishneh Torah, Inheritances 9:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">גְּדוֹל הָאַחִין שֶׁהָיָה לוֹבֵשׁ וּמִתְכַּסֶּה מַלְבּוּשִׁין נָאִים אִם יֵשׁ לָאַחִים הֲנָאָה מִמֶּנּוּ כְּדֵי שֶׁיִּהְיוּ דְּבָרָיו נִשְׁמָעִין הֲרֵי זֶה לוֹבֵשׁ מִתְּפִיסַת הַבַּיִת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>גדול האחין שהיה לובש כו׳ עד סוף הפרק.</strong> פרק יש נוחלין <span class="source-small"> (דף קל&quot;ט): </span></p>
               </div>
             </div>
@@ -1496,8 +1856,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 10:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-10-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-10-1">Mishneh Torah, Inheritances 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁנֵּי אַחִים שֶׁחָלְקוּ וּבָא לָהֶן אָח מִמְּדִינַת הַיָּם. וְכֵן שְׁלֹשָׁה אַחִין שֶׁחָלְקוּ וּבָא בַּעַל חוֹב וְנָטַל חֶלְקוֹ שֶׁל אֶחָד מֵהֶן. אֲפִלּוּ נָטַל זֶה קַרְקַע וְזֶה כְּסָפִים בָּטְלָה מַחְלֹקֶת וְחוֹזְרִין וְחוֹלְקִין הַשְּׁאָר בְּשָׁוֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שני אחים שחלקו וכו׳ עד וחולקים השאר בשוה.</strong> פרק קמא דניזקין <span class="source-small"> (דף ט׳) </span> ובבתרא פרק בית כור <span class="source-small"> (דף ק&quot;ו): </span></p>
               </div>
             </div>
@@ -1512,8 +1877,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 10:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-10-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 10:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-10-2">Mishneh Torah, Inheritances 10:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁצִּוָּה בִּשְׁעַת מִיתָתוֹ שֶׁיִּתְּנוּ לִפְלוֹנִי דֶּקֶל אוֹ שָׂדֶה מִנְּכָסָיו וְחָלְקוּ הָאַחִין וְלֹא נָתְנוּ לִפְלוֹנִי כְּלוּם. הֲרֵי הַמַּחֲלֹקֶת בְּטֵלָה. וְכֵיצַד עוֹשִׂין. נוֹתְנִין מַה שֶּׁצִּוָּה מוֹרִישָׁן וְאַחַר כָּךְ חוֹזְרִין וְחוֹלְקִין כַּתְּחִלָּה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שצוה בשעת מיתתו וכו׳ עד חוזרין וחולקין כתחלה.</strong> פרק בתרא דכתובות <span class="source-small"> (דף ק&quot;ט): </span></p>
               </div>
             </div>
@@ -1528,8 +1898,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 10:3:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-10-3-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 10:3:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-10-3">Mishneh Torah, Inheritances 10:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאַחִין שֶׁחָלְקוּ שָׁמִין לָהֶן מַה שֶּׁעֲלֵיהֶן. אֲבָל מַה שֶּׁעַל בְּנֵיהֶן וּבְנוֹתֵיהֶן שֶׁקָּנוּ לָהֶן מִתְּפִיסַת הַבַּיִת אֵין שָׁמִין. וְכֵן מַה שֶּׁעַל נְשׁוֹתֵיהֶן. שֶׁכְּבָר זָכוּ בָּהֶן לְעַצְמָן. בַּמֶּה דְּבָרִים אֲמוּרִים בְּבִגְדֵי חֹל. אֲבָל בְּבִגְדֵי שַׁבָּת וּמוֹעֵד שָׁמִין מַה שֶּׁעֲלֵיהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האחים שחלקו שמין כו׳ עד מועד ושבת שמין מה שעליהם.</strong> פרק קמא דניזקין <span class="source-small"> (דף י&quot;א): </span></p>
               </div>
             </div>
@@ -1544,8 +1919,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 10:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-10-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 10:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-10-4">Mishneh Torah, Inheritances 10:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁהִנִּיחַ יְתוֹמִים מִקְצָתָן גְּדוֹלִים וּמִקְצָתָן קְטַנִּים וְרָצוּ לַחְלֹק בְּנִכְסֵי אֲבִיהֶן כְּדֵי שֶׁיִּטְּלוּ הַגְּדוֹלִים חֶלְקָן. מַעֲמִידִין בֵּית דִּין אַפּוֹטְרוֹפּוֹס לַקְּטַנִּים וּבוֹרֵר לָהֶן הַחֵלֶק הַיָּפֶה. וְאִם הִגְדִּילוּ אֵינָן יְכוֹלִין לִמְחוֹת שֶׁהֲרֵי עַל פִּי בֵּית דִּין חָלְקוּ לָהֶם. וְאִם טָעוּ בֵּית דִּין בַּשּׁוּמָא וּפָחֲתוּ שְׁתוּת. יְכוֹלִין לִמְחוֹת וְחוֹלְקִין חֲלוּקָה אַחֶרֶת אַחַר שֶׁהִגְדִּילוּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שהניח יתומים עד אחר שהגדילו.</strong> בקדושין פרק האיש מקדש <span class="source-small"> (דף מ&quot;ג) </span> ובכתובות פרק אלמנה ניזונית <span class="source-small"> (דף ק׳) </span> ובגיטין פ׳ השולח <span class="source-small"> (דף ל&quot;ד): </span></p>
               </div>
             </div>
@@ -1560,8 +1940,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 10:5:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-10-5-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 10:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-10-5">Mishneh Torah, Inheritances 10:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמֵּת וְהִנִּיחַ יוֹרְשִׁין גְּדוֹלִים וּקְטַנִּים צָרִיךְ לְמַנּוֹת אַפּוֹטְרוֹפּוֹס שֶׁיִּהְיֶה מִתְעַסֵּק בְּחֵלֶק הַקָּטָן עַד שֶׁיַּגְדִּיל. וְאִם לֹא מִנָּה חַיָּבִין בֵּית דִּין לְהַעֲמִיד לָהֶן אַפּוֹטְרוֹפּוֹס עַד שֶׁיַּגְדִּילוּ. שֶׁבֵּית דִּין הוּא אֲבִיהֶן שֶׁל יְתוֹמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מי שמת והניח יורשים גדולים כו׳ עד שיגדיל:</strong> כתב הראב&quot;ד ז&quot;ל והוא שחלק להם בחייו וכו׳: <strong> ואני </strong> אומר כן הוא מדוקדק בגיטין פרק הניזקין <span class="source-small"> (דף נ&quot;ב) </span> וכן כתב ר&quot;י אלפס ז&quot;ל פרק המפקיד בשם גאון ז&quot;ל והחלוק שכתב הראב&quot;ד ז&quot;ל סברא היא:</p>
               </div>
             </div>
@@ -1576,8 +1961,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 10:5:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-10-5-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 10:5:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-10-5">Mishneh Torah, Inheritances 10:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁמֵּת וְהִנִּיחַ יוֹרְשִׁין גְּדוֹלִים וּקְטַנִּים צָרִיךְ לְמַנּוֹת אַפּוֹטְרוֹפּוֹס שֶׁיִּהְיֶה מִתְעַסֵּק בְּחֵלֶק הַקָּטָן עַד שֶׁיַּגְדִּיל. וְאִם לֹא מִנָּה חַיָּבִין בֵּית דִּין לְהַעֲמִיד לָהֶן אַפּוֹטְרוֹפּוֹס עַד שֶׁיַּגְדִּילוּ. שֶׁבֵּית דִּין הוּא אֲבִיהֶן שֶׁל יְתוֹמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואם לא מנה כו׳ עד סוף הפרק.</strong> פ׳ הניזקין:</p>
               </div>
             </div>
@@ -1593,8 +1983,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:1:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-1-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-1">Mishneh Torah, Inheritances 11:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מָעוֹת שֶׁל יְתוֹמִים שֶׁהִנִּיחַ לָהֶן אֲבִיהֶן אֵינָן צְרִיכִין אַפּוֹטְרוֹפּוֹס. אֶלָּא כֵּיצַד עוֹשִׂין בָּהֶן. בּוֹדְקִין עַל מִי שֶׁיֵּשׁ לוֹ נְכָסִים שֶׁיֵּשׁ לָהֶם אַחֲרָיוּת וְיִהְיוּ עִדִּית וְיִהְיֶה אִישׁ נֶאֱמָן וְשׁוֹמֵעַ דִּינֵי תּוֹרָה וּמֵעוֹלָם לֹא קִבֵּל עָלָיו נִדּוּי. וְנוֹתְנִין לוֹ הַמָּעוֹת בְּבֵית דִּין קָרוֹב לְשָׂכָר וְרָחוֹק לְהֶפְסֵד וְנִמְצְאוּ הַיְתוֹמִים נֶהֱנִין מִשְּׂכַר הַמָּעוֹת. וְכֵן אִם אֵין לוֹ קַרְקַע יִנָּתֵן לָהֶן מַשְׁכּוֹן זָהָב שָׁבוּר שֶׁאֵין בּוֹ סִימָן וְנוֹטְלִין בֵּית דִּין הַמַּשְׁכּוֹן וְנוֹתְנִין לוֹ הַמָּעוֹת קָרוֹב לְשָׂכָר וְרָחוֹק לְהֶפְסֵד. וְלָמָּה לֹא יִקְחוּ מַשְׁכּוֹן כֵּלִים שֶׁל זָהָב אוֹ חֲלִי שֶׁל זָהָב. שֶׁמָּא שֶׁל אֲחֵרִים הוּא וְיִתְּנוּ סִימָן וְיִטְּלוּהוּ אַחַר מוֹתוֹ אִם יֵדַע הַדַּיָּן שֶׁאֵין זֶה אָמוּד. וְכַמָּה יִפְסְקוּ בְּשָׂכָר. כְּפִי מַה שֶּׁיִּרְאוּ הַדַּיָּנִין. אוֹ שְׁלִישׁ הַשָּׂכָר אוֹ חֶצְיוֹ אֲפִלּוּ רְבִיעַ הַשָּׂכָר לַיְתוֹמִים אִם רָאוּ שֶׁזּוֹ תַּקָּנָה לָהֶם עוֹשִׂין. לֹא מָצְאוּ אָדָם שֶׁיִּתְּנוּ לוֹ הַמָּעוֹת רָחוֹק לְהֶפְסֵד וְקָרוֹב לְשָׂכָר הֲרֵי אֵלּוּ מוֹצִיאִין מֵהֶן מְזוֹנוֹת מְעַט. עַד שֶׁיִּקְנוּ לָהֶן בַּמָּעוֹת קַרְקַע וְיִמְסְרוּ אוֹתוֹ בְּיַד אַפּוֹטְרוֹפּוֹס שֶׁיַּעֲמִידוּ לָהֶן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מעות של יתומים כו׳ עד שיעמידו להם.</strong> במציעא פרק איזהו נשך <span class="source-small"> (דף ע׳): </span></p>
               </div>
             </div>
@@ -1609,8 +2004,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:2:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-2-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-2">Mishneh Torah, Inheritances 11:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הַמִּטַּלְטְלִין שֶׁל יְתוֹמִים שָׁמִין אוֹתָן וּמוֹכְרִין אוֹתָן בְּבֵית דִּין. וְאִם הָיָה הַשּׁוּק קָרוֹב לַמְּדִינָה. מוֹלִיכִין אוֹתָן לַשּׁוּק וּמוֹכְרִין אוֹתָן וְיִצְטָרְפוּ דְּמֵיהֶן עִם הַמָּעוֹת שֶׁל יְתוֹמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל המטלטלין של יתומים עד וכן כל כיוצא בזה.</strong> בכתובות פרק אלמנה ניזונית <span class="source-small"> (דף ק׳): </span></p>
               </div>
             </div>
@@ -1625,8 +2025,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:4:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-4-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-4">Mishneh Torah, Inheritances 11:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁמַּעֲמִידִין בֵּית דִּין לָהֶן אַפּוֹטְרוֹפּוֹס מוֹסְרִין לוֹ כָּל נִכְסֵי הַקָּטָן הַקַּרְקַע וְהַמִּטַּלְטְלִין שֶׁלֹּא נִמְכְּרוּ. וְהוּא מוֹצִיא וּמַכְנִיס וּבוֹנֶה וְסוֹתֵר וְשׁוֹבֵר וְנוֹטֵעַ וְזוֹרֵעַ וְעוֹשֶׂה כְּפִי מַה שֶּׁיִּרְאֶה שֶׁזֶּה טוֹב לַיְתוֹמִים וּמַאֲכִילָן וּמַשְׁקָן וְנוֹתֵן לָהֶן כָּל הַהוֹצָאָה כְּפִי הַמָּמוֹן וּכְפִי הָרָאוּי לָהֶן וְלֹא יַרְוִיחוּ לָהֶן יוֹתֵר מִדַּאי וְלֹא יְצַמְצֵם עֲלֵיהֶם יֶתֶר מִדַּאי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כשמעמידין ב&quot;ד להן אפטרופוס כו׳ עד שמא לא יצליח זה שקנו.</strong> בגיטין פרק הניזקין <span class="source-small"> (דף נ&quot;ב)</span> :</p>
               </div>
             </div>
@@ -1641,8 +2046,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:4:2</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-4-2" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:4:2">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-4">Mishneh Torah, Inheritances 11:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֶׁמַּעֲמִידִין בֵּית דִּין לָהֶן אַפּוֹטְרוֹפּוֹס מוֹסְרִין לוֹ כָּל נִכְסֵי הַקָּטָן הַקַּרְקַע וְהַמִּטַּלְטְלִין שֶׁלֹּא נִמְכְּרוּ. וְהוּא מוֹצִיא וּמַכְנִיס וּבוֹנֶה וְסוֹתֵר וְשׁוֹבֵר וְנוֹטֵעַ וְזוֹרֵעַ וְעוֹשֶׂה כְּפִי מַה שֶּׁיִּרְאֶה שֶׁזֶּה טוֹב לַיְתוֹמִים וּמַאֲכִילָן וּמַשְׁקָן וְנוֹתֵן לָהֶן כָּל הַהוֹצָאָה כְּפִי הַמָּמוֹן וּכְפִי הָרָאוּי לָהֶן וְלֹא יַרְוִיחוּ לָהֶן יוֹתֵר מִדַּאי וְלֹא יְצַמְצֵם עֲלֵיהֶם יֶתֶר מִדַּאי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong> ואין רשאין לדון ולחוב עד ונמצא חוב קיים:</strong> כתב הראב&quot;ד ז&quot;ל לא זו הדרך וכו׳: <strong> ואני </strong> אומר לשון הגמרא מסיק פרק שני דקדושין <span class="source-small"> (דף מ&quot;ב) </span> לדון על מנת לזכות גם בגיטין פרק הניזקין <span class="source-small"> (דף נ&quot;ב) </span> ובכמה מקומות בתלמוד ואנחנו כך קבלנו פירושה כדברי ר&quot;מ ז&quot;ל ומ&quot;מ פירוש הר&quot;א ז&quot;ל מסולסל:</p>
               </div>
             </div>
@@ -1657,8 +2067,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:8:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-8-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-8">Mishneh Torah, Inheritances 11:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאַפּוֹטְרוֹפִּין רַשָּׁאִין לְהוֹצִיא עֲבָדִים לְחֵרוּת אֲפִלּוּ לִקַּח מִן הָעֶבֶד דָּמִים שֶׁיֵּצֵא לְחֵרוּת. אֲבָל מוֹכְרִין אוֹתָן לַאֲחֵרִים וְלוֹקְחִין מֵהֶן הַדָּמִים עַל מְנָת שֶׁיּוֹצִיאוּהוּ לְחֵרוּת וְאוֹתָן הָאֲ [חֵ] רִים הֵן שֶׁמְּשַׁ [חְ] רְרִין אוֹתָם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין האפוטרופין רשאין להוציא וכו׳ עד שמשחררין:</strong> כתב הראב&quot;ד ז&quot;ל יש מי שאומר הלכה כרבי וכו׳: <strong> ואני </strong> אומר עיקר זאת ההלכה בגיטין פ׳ הניזקין והמחלוקת רבות וכולן דברי אלהים חיים:</p>
               </div>
             </div>
@@ -1673,8 +2088,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:9:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-9-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-9">Mishneh Torah, Inheritances 11:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאַפּוֹטְרוֹפִּין תּוֹרְמִין וּמְעַשְּׂרִין נִכְסֵי יְתוֹמִים כְּדֵי לְהַאֲכִילָן. שֶׁאֵין מַאֲכִילִין אֶת הַיְתוֹמִים דָּבָר הָאָסוּר. אֲבָל לֹא יְעַשְּׂרוּ וְלֹא יִתְרֹמוּ כְּדֵי לְהַנִּיחַ פֵּרוֹת מְתֻקָּנִין אֶלָּא יִמְכְּרוּ אוֹתָן טֶבֶל וְהָרוֹצֶה לְתַקֵּן יְתַקֵּן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האפוטרופין תורמין ומעשרין כו׳ עד והרוצה לתקן יתקן:</strong> כתב הראב&quot;ד ז&quot;ל אין הדעת נוחה הימנה כו׳: <strong> ואני </strong> אומר דברי ר&quot;מ ז&quot;ל הם בגיטין תלמוד ערוך פ׳ הניזקין ומה שפירש הראב&quot;ד ז&quot;ל עצה טובה קמ&quot;ל אמנם הדין דין הוא ותנוח דעתו שמוכרין החברים על ידי האחרים שהם עמי ארצות או סרסורים ואין כאן מכשולים:</p>
               </div>
             </div>
@@ -1689,8 +2109,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:10:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-10-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:10:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-10">Mishneh Torah, Inheritances 11:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאַפּוֹטְרוֹפִּין עוֹשִׂין לַקְּטַנִּים לוּלָב וְסֻכָּה וְצִיצִית וְשׁוֹפָר סֵפֶר תּוֹרָה וּתְפִלִּין וּמְזוּזוֹת וּמְגִלָּה. כְּלָלוֹ שֶׁל דָּבָר כָּל מִצְוֹת עֲשֵׂה שֶׁיֵּשׁ לָהֶם קִצְבָה בֵּין שֶׁהוּא מִדִּבְרֵי תּוֹרָה בֵּין שֶׁהוּא מִדִּבְרֵי סוֹפְרִים. עוֹשִׂין לָהֶם אַף עַל פִּי שֶׁאֵינָן חַיָּבִין בְּמִצְוָה מִכָּל אֵלּוּ הַמִּצְוֹת אֶלָּא כְּדֵי לְחַנְּכָן. אֲבָל אֵין פּוֹסְקִין עֲלֵיהֶן צְדָקָה וַאֲפִלּוּ לְפִדְיוֹן שְׁבוּיִים. מִפְּנֵי שֶׁמִּצְוֹת אֵלּוּ אֵין לָהֶן קִצְבָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>האפוטרופין עושין לקטנים כו׳ עד אין להם קצבה.</strong> פרק הנזקין:</p>
               </div>
             </div>
@@ -1705,8 +2130,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:11:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-11-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-11">Mishneh Torah, Inheritances 11:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִי שֶׁנִּשְׁתַּטָּה אוֹ שֶׁנִּתְחָרֵשׁ בֵּית דִּין פּוֹסְקִין עָלָיו צְדָקָה אִם הָיָה רָאוּי:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ומי שנשתטה וכו׳ עד אם היה ראוי.</strong> פרק נערה שנתפתתה:</p>
               </div>
             </div>
@@ -1721,8 +2151,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Migdal Oz on Mishneh Torah, Inheritances 11:12:1</h4></div>
               <a class="anchor" href="#migdal-oz-on-mishneh-torah-inheritances-11-12-1" aria-label="Copy link to Migdal Oz on Mishneh Torah, Inheritances 11:12:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-inheritances/#mishneh-torah-inheritances-11-12">Mishneh Torah, Inheritances 11:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁאֵין הָאַפּוֹטְרוֹפּוֹס צָרִיךְ לַעֲשׂוֹת חֶשְׁבּוֹן כְּמוֹ שֶׁבֵּאַרְנוּ. צָרִיךְ לַחְשֹׁב בֵּינוֹ לְבֵין עַצְמוֹ לְדַקְדֵּק וּלְהִזָּהֵר הַרְבֵּה מֵאֲבִיהֶן שֶׁל אֵלּוּ הַיְתוֹמִים שֶׁהוּא רוֹכֵב עֲרָבוֹת שֶׁנֶּאֱמַר <span class="source-small">(תהילים סח ה)</span> &quot;סלוּ לָרֹכֵב בָּעֲרָבוֹת&quot; וְגוֹ׳ <span class="source-small">(תהילים סח ו)</span> &quot;אֲבִי יְתוֹמִים&quot; וְגוֹ׳:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אע&quot;פ שאין האפוטרופוס צריך וכו׳ עד סוף הפרק.</strong> הביאור למעלה בזה הפרק עצמו והצורך הזה עצה טובה קמ&quot;ל להיות נקי מה׳ ומישראל וכן בכל כיוצא באלו:</p>
               </div>
             </div>
@@ -1732,6 +2167,10 @@
               <a href="#chapter-migdal-oz-on-mishneh-torah-inheritances-text-11">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-inheritances.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/migdal-oz-on-mishneh-torah-inheritances-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -1752,8 +2191,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-inheritances.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/migdal-oz-on-mishneh-torah-inheritances.manifest.json","occurrence_url":"../../data/lexical/occurrences/migdal-oz-on-mishneh-torah-inheritances.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-inheritances.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/migdal-oz-on-mishneh-torah-inheritances.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/migdal-oz-on-mishneh-torah-inheritances.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -1779,7 +2218,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };

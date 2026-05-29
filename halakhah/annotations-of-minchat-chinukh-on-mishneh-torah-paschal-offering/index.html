@@ -69,6 +69,10 @@
     .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
     .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
     .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
     .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
     .hebrew strong { color: #fff5df; font-weight: 700; }
     .source-small { font-size: 0.82em; color: var(--muted); }
@@ -131,7 +135,7 @@
     .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
     .paired-panel p { margin: 6px 0 0; }
     .paired-panel a { color: var(--accent); }
-    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
   </style>
 </head>
 <body>
@@ -144,21 +148,18 @@
         <div class="paired-shell" aria-label="Commentary paired-text status">
           <section class="paired-panel">
             <h2>Base Text</h2>
-            <p class="placeholder">[Base text not imported or not linked yet]</p>
+            <p><a href="../../halakhah/mishneh-torah-paschal-offering/">Open Mishneh Torah, Paschal Offering</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
           </section>
           <section class="paired-panel">
             <h2>Commentary</h2>
             <p>Commentary on Mishneh Torah, Paschal Offering</p>
-            <p class="placeholder">Commentary text appears below.</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
           </section>
         </div>
         <p class="meta">18 total source units | imported 2026-05-21</p>
         <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
         <p class="meta lexical-coverage">Lexical HUD coverage: <strong>157 matched</strong> / 390 unique forms.</p>
-        <div class="license-notice lexical-downloads">
-          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
-          <p class="export-actions"><a class="export-button" href="../../data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.manifest.json">Lexical manifest</a><a class="export-button" href="../../data/public-lexical/by-work/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
-        </div>
       </div>
       <div class="reader-shell">
         <nav class="toc" aria-label="Table of contents">
@@ -247,8 +248,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:1:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-1-1-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-1-1">Mishneh Torah, Paschal Offering 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִצְוַת עֲשֵׂה לִשְׁחֹט אֶת הַפֶּסַח בְּאַרְבָּעָה עָשָׂר לְחֹדֶשׁ נִיסָן אַחַר חֲצוֹת. וְאֵין שׁוֹחֲטִין אֶלָּא מִן הַכְּבָשִׂים אוֹ מִן הָעִזִּים בִּלְבַד זָכָר בֶּן שָׁנָה. וְאֶחָד הָאִישׁ וְאֶחָד הָאִשָּׁה חַיָּבִין בְּמִצְוָה זוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצות עשה לשחוט הפסח בי&quot;ד.</strong> נ&quot;ב דע דרבינו השמיט דין זה דפסח ראשון טעון ביקור ד׳ ימים קודם והוא מבואר בגמ׳ פסחים דף צ&quot;ו. ובתמידין ומוספין פ&quot;א פסק דתמיד צריך ביקור ודין דפסח אינו מביא בשום מקום וצ&quot;ע. עוד מבואר בגמ׳ פסח שני אין טעון ביקור וגם זה לא נזכר בדברי רבינו וצ&quot;ע:</p>
               </div>
             </div>
@@ -263,8 +269,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:4:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-1-4-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-1-4">Mishneh Torah, Paschal Offering 1:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁחִיטַת הַפֶּסַח אַחַר חֲצוֹת. וְאִם שְׁחָטוֹ קֹדֶם חֲצוֹת פָּסוּל. וְאֵין שׁוֹחֲטִין אוֹתוֹ אֶלָּא אַחַר תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם. אַחַר שֶׁמַּקְטִירִין קְטֹרֶת שֶׁל בֵּין הָעַרְבַּיִם וְאַחַר שֶׁמֵּיטִיבִין אֶת הַנֵּרוֹת מַתְחִילִין לִשְׁחֹט אֶת הַפְּסָחִים עַד סוֹף הַיּוֹם. וְאִם שְׁחָטוֹ אַחַר חֲצוֹת קֹדֶם תָּמִיד שֶׁל בֵּין הָעַרְבַּיִם כָּשֵׁר וְיִהְיֶה אֶחָד מְמָרֵס בְּדַם הַפֶּסַח עַד שֶׁיִּזָּרֵק דַּם הַתָּמִיד וְאַחַר כָּךְ יִזְרֹק דַּם הַפֶּסַח אַחֲרָיו. וְאִם נִזְרַק דַּם הַפֶּסַח קֹדֶם דַּם הַתָּמִיד כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ויהיה אחד ממרס.</strong> נ&quot;ב עיין לעיל פ&quot;ט מהל׳ תמידין ומוספין. ובזבחים דף צ&quot;א נראה דמיירי דשחטו אח&quot;ז התמיד ג&quot;כ ושני הדמים עומדים דם התמיד קודם ויהיה ממרס בדמו אבל אם עדיין לא נשחט התמיד וזרק דם הפסח א&quot;צ למרס בדמו עד שישחוט התמיד ורבינו לא ביאר זה בפירוש. אח&quot;ז ראיתי בתוס׳ חדשים בגליון המשניות פ׳ תמיד נשחט שהרגיש בזה:</p>
               </div>
             </div>
@@ -279,8 +290,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:5:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-1-5-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-1-5">Mishneh Torah, Paschal Offering 1:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשּׁוֹחֵט אֶת הַפֶּסַח בִּזְמַנּוֹ וְהָיָה לוֹ כְּזַיִת חָמֵץ בִּרְשׁוּתוֹ לוֹקֶה. שֶׁנֶּאֱמַר <span class="source-small">(שמות כג יח)</span> &quot;לֹא תִזְבַּח עַל חָמֵץ דַּם זִבְחִי&quot;. שֶׁלֹּא יִזְבַּח הַפֶּסַח וְהֶחָמֵץ קַיָּם. אֶחָד הַשּׁוֹחֵט וְאֶחָד הַזּוֹרֵק אֶת הַדָּם וְאֶחָד הַמַּקְטִיר אֶת הָאֵימוּרִין אִם הָיָה בִּרְשׁוּת אֶחָד מֵהֶם אוֹ בִּרְשׁוּת אֶחָד מִבְּנֵי חֲבוּרָה שֶׁאוֹכְלִין פֶּסַח זֶה כְּזַיִת חָמֵץ בִּשְׁעַת הַקְרָבָתוֹ הֲרֵי זֶה לוֹקֶה וְהַפֶּסַח כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בלח&quot;מ, </strong> וא&quot;ת והא פסק רבינו וכו׳ דהתראת ספק לא שמה התראה. נ&quot;ב תמוה דהא הרמב&quot;ם פסק להיפך דהתראת ספק שמה התראה ע&quot;ש בהלכות סנהדרין. ועיין בדבריו:</p>
               </div>
             </div>
@@ -295,8 +311,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:14:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-1-14-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 1:14:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-1-14">Mishneh Torah, Paschal Offering 1:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שָׁחַט הַשּׁוֹחֵט וְקִבֵּל הַכֹּהֵן. נוֹתְנוֹ לַחֲבֵרוֹ וַחֲבֵרוֹ לַחֲבֵרוֹ כְּדֵי שֶׁיִּתְעַסְּקוּ רַבִּים בַּמִּצְוָה עַד שֶׁיַּגִּיעַ הַדָּם אֵצֶל כֹּהֵן הַקָּרוֹב לַמִּזְבֵּחַ. שׁוֹפְכוֹ שְׁפִיכָה אַחַת כְּנֶגֶד הַיְסוֹד וּמְקַבֵּל מִזְרָק אֶחָד מָלֵא וְאַחַר כָּךְ מַחְזִיר אֶת הָרֵיקָן. וְתוֹלִין וּמַפְשִׁיטִין אֶת כֻּלּוֹ וְקוֹרְעוֹ וּמְמַחֶה אֶת קְרָבָיו עַד שֶׁמֵּסִיר מֵהֶן הַצּוֹאָה וְהַפֶּרֶשׁ. וּמוֹצִיא אֶת הָאֵימוּרִין וְנוֹתְנָן בִּכְלִי וּמוֹלְחָן וּמַקְטִירָן הַכֹּהֵן עַל גַּבֵּי הַמִּזְבֵּחַ. וְכֵיצַד תּוֹלִין וּמַפְשִׁיטִין. מַסְמְרוֹת שֶׁל בַּרְזֶל הָיוּ קְבוּעִין בַּכְּתָלִים וּבָעַמּוּדִים שֶׁבָּהֶן תּוֹלִין וּמַפְשִׁיטִין. וְכָל מִי שֶׁלֹּא מָצָא מָקוֹם לִתְלוֹת מַקְלוֹת דַּקִּים וַחֲלָקִים הָיוּ שָׁם מַנִּיחַ עַל כְּתֵפוֹ וְעַל כֶּתֶף חֲבֵרוֹ וְתוֹלֶה וּמַפְשִׁיט:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0">&lt;span class=&quot;&quot;&gt;ואין דעת התוס׳ ז&quot;ל כן. נ&quot;ב ובשבת דף קי&quot;ז ע&quot;א בתוס׳ ד&quot;ה דשקיל וכו׳ מבואר להדיא כדברי הלח&quot;מ ז&quot;ל וזה דעת רבינו:&lt;/span&gt;</p>
               </div>
             </div>
@@ -312,8 +333,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 2:4:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-2-4-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 2:4:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-2-4">Mishneh Torah, Paschal Offering 2:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין עוֹשִׂין חֲבוּרָה נָשִׁים וַעֲבָדִים אוֹ קְטַנִּים וַעֲבָדִים מִפְּנֵי שֶׁלֹּא תִּהְיֶה קַלּוּת רֹאשׁ בֵּינֵיהֶן. אֲבָל עוֹשִׂים חֲבוּרָה כֻּלָּם נָשִׁים אֲפִלּוּ בְּפֶסַח שֵׁנִי. אוֹ כֻּלָּהּ עֲבָדִים. וְשׁוֹחֲטִין עַל הַקְּטַנִּים שֶׁיִּהְיוּ מִכְּלַל בְּנֵי הַחֲבוּרָה. לֹא שֶׁתִּהְיֶה חֲבוּרָה כֻּלָּהּ קְטַנִּים שֶׁאֵינָן בְּנֵי דַּעַת. וְכֵן אֵין עוֹשִׂין חֲבוּרָה כֻּלָּהּ חוֹלִים אוֹ זְקֵנִים אוֹ אוֹנְנִים אַף עַל פִּי שֶׁהֵן יְכוֹלִין לֶאֱכל הוֹאִיל וַאֲכִילָתָם מְעוּטָה. שֶׁמָּא יַשְׁאִירוּ הַפֶּסַח וִיבִיאוּהוּ לִידֵי פְּסוּל. וְאִם עָבְרוּ וְשָׁחֲטוּ עַל חֲבוּרָה זוֹ כָּשֵׁר. וְכֵן אֵין עוֹשִׂין חֲבוּרָה כֻּלָּהּ גֵּרִים שֶׁמָּא יְדַקְדְּקוּ בּוֹ וִיבִיאוּהוּ לִידֵי פִּסּוּל. וְאִם שָׁחֲטוּ עֲלֵיהֶן כָּשֵׁר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ, </strong> אבל אם הם בני דעת. נ&quot;ב עיין לקמן בדברי רבינו פ&quot;ד ה&quot;ט מהלכות אלו מבואר להדיא דקודם שהביא שתי שערות אינו יכול להביא פסח ודברי הכ&quot;מ צע&quot;ג:</p>
               </div>
             </div>
@@ -328,8 +354,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 2:11:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-2-11-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 2:11:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-2-11">Mishneh Torah, Paschal Offering 2:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָאִשָּׁה שֶׁהִיא בְּבֵית בַּעְלָהּ שָׁחַט עָלֶיהָ אָבִיהָ וְשָׁחַט עָלֶיהָ בַּעְלָהּ תֹּאכַל מִשֶּׁל בַּעְלָהּ. הָיְתָה נֶחְפֶּזֶת לָלֶכֶת לְבֵית אָבִיהָ בָּרֶגֶל הָרִאשׁוֹן הַסָּמוּךְ לְנִשּׂוּאֶיהָ כְּדֶרֶךְ כָּל הַבָּנוֹת וְשָׁחַט עָלֶיהָ אָבִיהָ וְשָׁחַט עָלֶיהָ בַּעְלָהּ תֹּאכַל מִשֶּׁל אָבִיהָ. מִכָּאן וְאֵילָךְ תֹּאכַל מִמָּקוֹם שֶׁהִיא רוֹצָה. וְהוּא שֶׁתִּבְרֹר לָהּ מָקוֹם שֶׁתִּרְצֶה בִּשְׁעַת שְׁחִיטָה. וְכֵן יָתוֹם שֶׁשָּׁחֲטוּ עָלָיו אַפּוֹטְרוֹפְּסִין יֹאכַל מִמָּקוֹם שֶׁהוּא רוֹצֶה. בַּמֶּה דְּבָרִים אֲמוּרִים בְּיָתוֹם קָטָן. אֲבָל גָּדוֹל נַעֲשֶׂה כִּמְמַנֶּה עַצְמוֹ עַל שְׁנֵי פְּסָחִים וְהַמְמַנֶּה עַצְמוֹ עַל שְׁנֵי פְּסָחִים אֵינוֹ אוֹכֵל אֶלָּא מִן הַנִּשְׁחָט רִאשׁוֹן:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>והממנה עצמו על שני פסחים.</strong> נ&quot;ב דברי רבינו צע&quot;ג דכאן כתב הממנה עצמו על שני פסחים אוכל מן הנשחט ראשון ולקמן פ&quot;ג כתב דהממנה עצמו על ב׳ פסחים שניהן יוצאין לבית השריפה ודבריו סותרים זא&quot;ז. אח&quot;ז ראיתי בס׳ אור חדש על פסחים שהקשה זה:</p>
               </div>
             </div>
@@ -345,8 +376,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 4:6:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-4-6-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 4:6:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-4-6">Mishneh Torah, Paschal Offering 4:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁאָבַד פִּסְחוֹ וּמְצָאוֹ אַחַר שֶׁהִפְרִישׁ פֶּסַח אַחֵר וַהֲרֵי שְׁנֵיהֶן עוֹמְדִין יַקְרִיב אֵי זֶה מֵהֶן שֶׁיִּרְצֶה לְשֵׁם פֶּסַח וְהַשֵּׁנִי יִקְרַב שְׁלָמִים. מְצָאוֹ אַחַר שֶׁשָּׁחַט פִּסְחוֹ הֲרֵי זֶה יִקְרַב שְׁלָמִים. וְכֵן אִם הֵמִיר בָּזֶה הַנִּמְצָא אַחַר שְׁחִיטָה הֲרֵי תְּמוּרָה זוֹ תִּקְרַב שְׁלָמִים. אֲבָל אִם מְצָאוֹ קֹדֶם שְׁחִיטַת זֶה שֶׁהִפְרִישׁ. הוֹאִיל וְזֶה הַנִּמְצָא רָאוּי לְהַקְרִיבוֹ פֶּסַח וְרָאוּי לְהַקְרִיבוֹ שְׁלָמִים כְּמוֹ שֶׁבֵּאַרְנוּ. אִם הֵמִיר בָּזֶה הַנִּמְצָא בֵּין קֹדֶם שְׁחִיטַת הַמֻּפְרָשׁ תַּחְתָּיו בֵּין אַחַר שְׁחִיטָה. אֵין תְּמוּרָתוֹ קְרֵבָה אֶלָּא תִּרְעֶה עַד שֶׁיִּפּל בָּהּ מוּם וְיָבִיא בְּדָמֶיהָ שְׁלָמִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הר&quot;ז יקריב שלמים.</strong> נ&quot;ב נראה מדברי רבינו דמותר הפסח נאכל לשני ימים ולילה כשלמים. ועיין צל&quot;ח דף פ&quot;ט:</p>
               </div>
             </div>
@@ -362,8 +398,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 5:2:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-5-2-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 5:2:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-5-2">Mishneh Torah, Paschal Offering 5:2</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד. מִי שֶׁשָּׁגַג אוֹ נֶאֱנַס וְלֹא הִקְרִיב בָּרִאשׁוֹן אִם הֵזִיד וְלֹא הִקְרִיב בַּשֵּׁנִי חַיָּב כָּרֵת. וְאִם שָׁגַג אוֹ נֶאֱנַס אַף בַּשֵּׁנִי פָּטוּר. הֵזִיד וְלֹא הִקְרִיב בָּרִאשׁוֹן הֲרֵי זֶה מַקְרִיב בַּשֵּׁנִי. וְאִם לֹא הִקְרִיב בַּשֵּׁנִי אַף עַל פִּי שֶׁשָּׁגַג הֲרֵי זֶה חַיָּב כָּרֵת שֶׁהֲרֵי לֹא הִקְרִיב קָרְבַּן ה׳ בְּמוֹעֲדוֹ וְהָיָה מֵזִיד. אֲבָל מִי שֶׁהָיָה טָמֵא אוֹ בְּדֶרֶךְ רְחוֹקָה וְלֹא עָשָׂה אֶת הָרִאשׁוֹן. אַף עַל פִּי שֶׁהֵזִיד בַּשֵּׁנִי אֵינוֹ חַיָּב כָּרֵת. שֶׁכְּבָר נִפְטַר בְּפֶסַח רִאשׁוֹן מִן הַכָּרֵת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ, </strong> ובזה אין מקום להשגת הראב&quot;ד. נ&quot;ב אע&quot;פ שנסתלקה השגת הראב&quot;ד דברי רבינו תמוהים בפירוש למשנה דהגמ׳ שם מקשה אהיכא קאי ואלו חייבים ע&quot;ש. וכבר תמה בזה בס׳ בה&quot;ז ועיין בצל&quot;ח שם:</p>
               </div>
             </div>
@@ -378,8 +419,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 5:5:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-5-5-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 5:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-5-5">Mishneh Torah, Paschal Offering 5:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁמִּילַת עַצְמוֹ מְעַכַּבְתּוֹ מִלַּעֲשׂוֹת פֶּסַח כָּךְ מִילַת בָּנָיו הַקְּטַנִּים וּמִילַת כָּל עֲבָדָיו בֵּין גְּדוֹלִים בֵּין קְטַנִּים מְעַכֶּבֶת אוֹתוֹ. שֶׁנֶּאֱמַר <span class="source-small">(שמות יב מח)</span> &quot;הִמּוֹל לוֹ כָל זָכָר וְאָז יִקְרַב לַעֲשׂוֹתוֹ&quot;. וְאִם שָׁחַט קֹדֶם שֶׁיָּמוּל אוֹתָם הַפֶּסַח פָּסוּל. וְכֵן טְבִילַת אַמְהוֹתָיו לְשֵׁם עַבְדוּת מְעַכַּבְתּוֹ. וְדָבָר זֶה מִפִּי הַקַּבָּלָה. שֶׁהַטְּבִילָה לִשְׁפָחוֹת כְּמִילָה לַעֲבָדִים:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וכן טבילת אמהותיו.</strong> נ&quot;ב נלפע&quot;ד דגם טבילת עבדים אע&quot;פ שמלו ולא טבלו עדיין ג&quot;כ מעכבת, כי צ&quot;ל טבילת האמהות או טבילת העבדים וכ&quot;ז שלא טבל אינו נכנס לכלל ישראל כמבואר בר&quot;מ פי&quot;ד מהל׳ א&quot;ב:</p>
               </div>
             </div>
@@ -395,8 +441,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 6:5:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-6-5-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 6:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-6-5">Mishneh Torah, Paschal Offering 6:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְצֹרָע שֶׁחָל שְׁמִינִי שֶׁלּוֹ לִהְיוֹת בְּאַרְבָּעָה עָשָׂר וְרָאָה קֶרִי בּוֹ בַּיּוֹם הֲרֵי זֶה טוֹבֵל וְנִכְנָס לְעֶזְרַת נָשִׁים וּמֵבִיא קָרְבְּנוֹתָיו. וְאַף עַל פִּי שֶׁטְּבוּל יוֹם אָסוּר לְהִכָּנֵס לְעֶזְרַת נָשִׁים. הוֹאִיל וְאִסּוּרוֹ לְהִכָּנֵס שָׁם מִדִּבְרֵיהֶם כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת בִּיאַת מִקְדָּשׁ. וְיוֹם זֶה הוּא יוֹם הַקְרָבַת הַפֶּסַח בְּמוֹעֲדוֹ. יָבוֹא עֲשֵׂה שֶׁיֵּשׁ בּוֹ כָּרֵת וְיִדְחֶה אִסּוּר שֶׁל דִּבְרֵיהֶם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>וראה קרי בו ביום.</strong> נ&quot;ב לאו דוקא דה&quot;ה בלילה שלפניו ושיטת רבינו פ&quot;ד מביאת מקדש דביאה במקצת אינה רק מדרבנן והש&quot;ס בזבחים ל&quot;ב ויבמות מבואר שם דדוקא בו ביום היינו למ&quot;ד ביאה במקצת שמה ביאה ע&quot;ש ותבין:</p>
               </div>
             </div>
@@ -411,8 +462,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 6:8:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-6-8-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 6:8:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-6-8">Mishneh Torah, Paschal Offering 6:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁבָּא בְּבֵית הַפְּרָס הֲרֵי זֶה מְנַפֵּחַ וְהוֹלֵךְ וְאִם לֹא מָצָא עֶצֶם וְלֹא נִטְמָא שׁוֹחֵט וְאוֹכֵל פִּסְחוֹ וְאַף עַל פִּי שֶׁהָלַךְ בְּבֵית הַפְּרָס. שֶׁטֻּמְאַת בֵּית הַפְּרָס מִדִּבְרֵיהֶן כְּמוֹ שֶׁבֵּאַרְנוּ בְּהִלְכוֹת טְמֵא מֵת וְלֹא הֶעֱמִידוּ דִּבְרֵיהֶם בִּמְקוֹם כָּרֵת כְּמוֹ שֶׁבֵּאַרְנוּ. וְכֵן בֵּית הַפְּרָס שֶׁנִּדּוֹשׁ טָהוֹר לָעוֹשֶׂה פֶּסַח:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הר&quot;ז מנפח והולך.</strong> נ&quot;ב דין זה גבי פסח ואם בדק בנפיחה או שנדוש לפסחו אם הוא רשאי לאכול תרומה ג&quot;כ פלוגתא במס׳ חגיגה דרשאי לאכול תרומה ג&quot;כ. ורבינו השמיט ד&quot;ז לענין תרומה ואיני יודע למה וצ&quot;ע:</p>
               </div>
             </div>
@@ -428,8 +484,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 8:5:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-8-5-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 8:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-8-5">Mishneh Torah, Paschal Offering 8:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָכַל מִמֶּנּוּ כְּזַיִת צָלִי מִבְּעוֹד יוֹם עָבַר עַל מִצְוַת עֲשֵׂה. שֶׁנֶּאֱמַר <span class="source-small">(שמות יב ח)</span> &quot;וְאָכְלוּ אֶת הַבָּשָׂר בַּלַּיְלָה הַזֶּה&quot;. בַּלַּיְלָה וְלֹא בַּיּוֹם. וְלָאו הַבָּא מִכְּלַל עֲשֵׂה עֲשֵׂה הוּא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ, </strong> ודלא כר&quot;י. נ&quot;ב עיין פ&quot;ה מהל׳ ערכין ה&quot;ו בכ&quot;מ ובמשל&quot;מ שם:</p>
               </div>
             </div>
@@ -445,8 +506,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:1:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-9-1-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-9-1">Mishneh Torah, Paschal Offering 9:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל הָאוֹכֵל מִן הַפֶּסַח אֵינוֹ אוֹכֵל אֶלָּא בַּחֲבוּרָה אַחַת וְאֵין מוֹצִיאִין מִמֶּנּוּ מִן הַחֲבוּרָה שֶׁיֹּאכַל בָּהּ. וְהַמּוֹצִיא מִמֶּנּוּ כְּזַיִת בָּשָׂר מֵחֲבוּרָה לַחֲבוּרָה בְּלֵיל חֲמִשָּׁה עָשָׂר לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(שמות יב מו)</span> &quot;לֹא תוֹצִיא מִן הַבַּיִת מִן הַבָּשָׂר חוּצָה&quot;. וְהוּא שֶׁיַּנִּיחֵנוּ בַּחוּץ. שֶׁהוֹצָאָה כְּתוּבָה בּוֹ כְּשַׁבָּת לְפִיכָךְ צָרִיךְ עֲקִירָה וְהַנָּחָה כְּהוֹצָאַת שַׁבָּת. וְאֵין מוֹצִיא אַחַר מוֹצִיא בְּפֶסַח שֶׁכֵּיוָן שֶׁהוֹצִיאוֹ הָרִאשׁוֹן נִפְסַל. מִן הָאֲגַף וּלְפָנִים כִּלְפָנִים מִן הָאֲגַף וְלַחוּץ כְּלַחוּץ וְהָאֲגַף עַצְמוֹ שֶׁהוּא עֳבִי הַפֶּתַח כְּלַחוּץ. הַחַלּוֹנוֹת וָעֳבִי הַכְּתָלִים כִּלְפָנִים. הַגַּגִּים וְהָעֲלִיּוֹת אֵינָן בִּכְלַל הַבַּיִת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מן האגף ולפנים.</strong> נ&quot;ב ע&quot;ש ברש&quot;י שפירש הסוגיא לענין ק&quot;ק חוץ לירושלים ורבינו למד לכאן, ועיין לעיל בהל׳ בית הבחירה:<br><strong> בכ&quot;מ&#160;</strong> מימרא דרב שם. נ&quot;ב שם איתא דגגים לא נתקדשו בקידושי ירושלים אף לאכול שם שאר קדשים ואף לכתחילה לעשות חבורה לאכול הפסח אסור ומדברי רבינו כאן נראה דלענין דהוי מקום אחד ואסור לאכול הפסח בשני מקומות ועיין לעיל בהל׳ בית הבחירה:</p>
               </div>
             </div>
@@ -461,8 +527,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:5:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-9-5-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:5:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-9-5">Mishneh Torah, Paschal Offering 9:5</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁתֵּי חֲבוּרוֹת שֶׁנִּפְרְצָה מְחִצָּה מִבֵּינֵיהֶן אֵינָן אוֹכְלִין. וְכֵן אִם הָיְתָה חֲבוּרָה אַחַת וְנַעֲשֵׂית מְחִצָּה בֵּינֵיהֶן אֵינָן אוֹכְלִין עַד שֶׁתִּסְתַּלֵּק. שֶׁאֵין הַפֶּסַח נֶאֱכָל בִּשְׁתֵּי חֲבוּרוֹת וְאֵינָן נֶעֱקָרִין מֵחֲבוּרָה לַחֲבוּרָה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בכ&quot;מ </strong> היו יושבים ונפרצה. נ&quot;ב צ&quot;ל ונפרסה דהיינו שנעשה מחיצה: (נתקן)</p>
               </div>
             </div>
@@ -477,8 +548,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:7:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-9-7-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:7:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-9-7">Mishneh Torah, Paschal Offering 9:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמַּאֲכִיל כְּזַיִת מִן הַפֶּסַח בֵּין מִפֶּסַח רִאשׁוֹן בֵּין מִפֶּסַח שֵׁנִי לְמוּמָר לַעֲבוֹדָה זָרָה אוֹ לְגֵר תּוֹשָׁב אוֹ לְשָׂכִיר. הֲרֵי זֶה עוֹבֵר בְּלֹא תַּעֲשֶׂה וְאֵינוֹ לוֹקֶה אֲבָל מַכִּין אוֹתוֹ מַכַּת מַרְדּוּת. וּ <span class="source-small">(שמות יב מג)</span> &quot;בֶן נֵכָר&quot; הָאָמוּר בַּתּוֹרָה זֶה הָעוֹבֵד אֵל נֵכָר. וְאֵין מַאֲכִילִין מִמֶּנּוּ לְנָכְרִי אֲפִלּוּ גֵּר תּוֹשָׁב אוֹ שָׂכִיר שֶׁנֶּאֱמַר <span class="source-small">(שמות יב מה)</span> &quot;תּוֹשָׁב וְשָׂכִיר לֹא יֹאכַל בּוֹ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה העובד אל נכר.</strong> נ&quot;ב לא ביאר רבינו אם דוקא במומר לע&quot;ז אבל אם הוא מומר לחלל שבתות אם הוא בכלל לאו זה אף שהוא מומר לכה&quot;ת. ועיין בהל׳ ביאת מקדש. ועיין זבחים דף ק&quot;ב בתוס׳ שם:</p>
               </div>
             </div>
@@ -493,8 +569,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:9:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-9-9-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 9:9:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-9-9">Mishneh Torah, Paschal Offering 9:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּשֵׁם שֶׁמִּילַת בָּנָיו וַעֲבָדָיו מְעַכַּבְתּוֹ מִלִּשְׁחֹט הַפֶּסַח כָּךְ מְעַכַּבְתּוֹ מִלֶּאֱכל שֶׁנֶּאֱמַר <span class="source-small">(שמות יב מד)</span> &quot;וּמַלְתָּה אֹתוֹ אָז יֹאכַל בּוֹ&quot;. כֵּיצַד. קָנָה עֶבֶד אַחַר שֶׁנִּשְׁחַט הַפֶּסַח. אוֹ שֶׁהָיָה לוֹ בֵּן שֶׁלֹּא הִגִּיעַ זְמַנּוֹ לְהִמּוֹל אֶלָּא אַחַר שְׁחִיטַת הַפֶּסַח. הֲרֵי זֶה אָסוּר לֶאֱכל עַד שֶׁיָּמוּל אוֹתָן. וְכֵיצַד יִהְיֶה הַבֵּן רָאוּי לְמִילָה אַחַר שְׁחִיטַת הַפֶּסַח וְלֹא יִהְיֶה רָאוּי קֹדֶם שְׁחִיטָה. כְּגוֹן שֶׁחֲלַצְתּוֹ חַמָּה שֶׁצָּרִיךְ שִׁבְעַת יָמִים מֵעֵת לְעֵת מִיּוֹם הַבְרָאָתוֹ. וּכְגוֹן שֶׁכָּאֲבָה עֵינוֹ וְנִרְפֵּאת אַחַר שְׁחִיטָה. אוֹ שֶׁהָיָה טֻמְטוּם וְנִקְרַע אַחַר שְׁחִיטַת הַפֶּסַח וְנִמְצָא זָכָר:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כך מעכבתו מלאכול.</strong> נ&quot;ב ה&quot;ה טבילת אמהותיו. ועיין לעיל פ&quot;ה ה&quot;ה בהג&quot;ה שם:</p>
               </div>
             </div>
@@ -510,8 +591,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 10:1:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-10-1-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 10:1:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-10-1">Mishneh Torah, Paschal Offering 10:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַשׁוֹבֵר עֶצֶם בְּפֶסַח טָהוֹר הֲרֵי זֶה לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(שמות יב מו)</span> &quot;וְעֶצֶם לֹא תִשְׁבְּרוּ בוֹ&quot;. וְכֵן נֶאֱמַר בְּפֶסַח שֵׁנִי וְעֶצֶם לֹא תִשְׁבְּרוּ בוֹ. אֲבָל פֶּסַח שֶׁבָּא בְּטֻמְאָה אִם שָׁבַר בּוֹ עֶצֶם אֵינוֹ לוֹקֶה. מִפִּי הַשְּׁמוּעָה לָמְדוּ לֹא תִשְׁבְּרוּ בוֹ בְּטָהוֹר וְלֹא בְּטָמֵא. אֶחָד הַשּׁוֹבֵר אֶת הָעֶצֶם בְּלֵילֵי חֲמִשָּׁה עָשָׂר אוֹ שֶׁשָּׁבַר בּוֹ עֶצֶם מִבְּעוֹד יוֹם אוֹ שֶׁשָּׁבַר אַחַר כַּמָּה יָמִים הֲרֵי זֶה לוֹקֶה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>השובר עצם בפסח.</strong> נ&quot;ב לא נתבאר בדברי רבינו השיעור של שבירת עצם ובגמ׳ דחולין דר&quot;ל דחייבים על שבירת עצם כחגירת הצפורן. וכעת לא ראיתי שהביא רבינו דין זה וצ&quot;ע:<br><strong> בא&quot;ד&#160;</strong>
 <strong> ועצם לא תשברו בו.</strong>
 <strong> נ&quot;ב הוא ט&quot;ס דבפסח שני כתיב ועצם לא ישברו בו והיא נ&quot;מ גדולה לענין התראה. עיין בשבועות דף כ׳ ע&quot;ב ברש&quot;י ד&quot;ה ואזהרתו וכו׳ ובד&quot;ה אכלת וכו׳ ומצוה לתקן דבר זה בר&quot;מ:</strong></p>
@@ -528,8 +614,13 @@
               <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 10:15:1</h4></div>
               <a class="anchor" href="#annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-10-15-1" aria-label="Copy link to Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering 10:15:1">#</a>
             </div>
-            <div class="unit-grid">
-              <div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-paschal-offering/#mishneh-torah-paschal-offering-10-15">Mishneh Torah, Paschal Offering 10:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מַה בֵּין פֶּסַח רִאשׁוֹן לְפֶסַח שֵׁנִי. הָרִאשׁוֹן אָסוּר בְּחָמֵץ בְּבַל יֵרָאֶה וּבַל יִמָּצֵא. וְאֵינוֹ נִשְׁחָט עַל חָמֵץ. וְאֵין מוֹצִיאִין מִמֶּנּוּ חוּץ לַחֲבוּרָה. וְטָעוּן הַלֵּל בַּאֲכִילָתוֹ. וּמְבִיאִין עִמּוֹ חֲגִיגָה. וְאֶפְשָׁר שֶׁיָּבוֹא בְּטֻמְאָה אִם נִטְמָא רֹב הַקָּהָל טֻמְאַת מֵת כְּמוֹ שֶׁבֵּאַרְנוּ. אֲבָל פֶּסַח שֵׁנִי חָמֵץ וּמַצָּה עִמּוֹ בַּבַּיִת. וְאֵינוֹ טָעוּן הַלֵּל בַּאֲכִילָתוֹ. וּמוֹצִיאִין אוֹתוֹ חוּץ לַחֲבוּרָתוֹ. וְאֵין מְבִיאִין עִמּוֹ חֲגִיגָה וְאֵינוֹ בָּא בְּטֻמְאָה. וּשְׁנֵיהֶם דּוֹחִין אֶת הַשַּׁבָּת. וּטְעוּנִין הַלֵּל בַּעֲשִׂיָּתָן וְנֶאֱכָלִין צָלִי בְּבַיִת אֶחָד עַל מַצָּה וּמָרוֹר. וְאֵין מוֹתִירִין מֵהֶן. וְאֵין שׁוֹבְרִין בָּהֶן אֶת הָעֶצֶם. וְלָמָּה לֹא יִשְׁוֶה הַשֵּׁנִי לָרִאשׁוֹן לְכָל הַדְּבָרִים מֵאַחַר שֶׁנֶּאֱמַר <span class="source-small">(במדבר ט יב)</span> &quot;כְּכָל חֻקַּת הַפֶּסַח יַעֲשׂוּ&quot;. לְפִי שֶׁפֵּרֵשׁ בּוֹ מִקְצָת חֻקַּת הַפֶּסַח. לְלַמֵּד שֶׁאֵינָהּ שָׁוָה לָרִאשׁוֹן אֶלָּא בִּדְבָרִים שֶׁנִּתְפָּרְשׁוּ בּוֹ. וְהֵן הַמִּצְוֹת שֶׁבְּגוּפוֹ וְהֵם חֻקַּת הַפֶּסַח. שֶׁכְּלָל זֶה שֶׁנֶּאֱמַר בְּמִצְרַיִם שֶׁיִּלָּקַח הַפֶּסַח מִבֶּעָשׂוֹר. וְשֶׁהוּא טָעוּן הַגָּעַת דָּם בַּאֲגוּדַת אֵזוֹב לַמַּשְׁקוֹף וְלִשְׁתֵּי הַמְּזוּזוֹת. וְשֶׁיֵּאָכֵל בְּחִפָּזוֹן. אֵין אוֹתָן הַדְּבָרִים נוֹהֲגִים לְדוֹרוֹת וְלֹא נַעֲשׂוּ אֶלָּא בְּפֶסַח מִצְרַיִם בִּלְבַד:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
                 <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מה בין פסח ראשון לפסח שני.</strong> נ&quot;ב עיין בתוס׳ פסחים דף צ&quot;ח ע&quot;א שמביא בשם התוספתא דפ&quot;ש א&quot;צ ג׳ כתות וזה מנה שם בכלל החילוקים שבין פ&quot;ר ופ&quot;ש ונ&quot;מ אם יש רבים שיהיה מהם ג׳ כתות וכל כת וכת כמבואר בדברי רבינו פ&quot;א מהלכות אלו אעפ&quot;כ א&quot;צ לשוחטו בג׳ כתות ולא ידעתי למה השמיטו רבינו:</p>
               </div>
             </div>
@@ -539,6 +630,10 @@
               <a href="#chapter-annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-text-10">Back to chapter/section start</a>
             </nav>
           </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.manifest.json">Lexical manifest</a><a class="export-button" href="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/public-lexical/by-work/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering-token-claims-min60.csv" download>Token claims CSV</a></p>
+        </div>
         </article>
       </div>
     </div>
@@ -559,8 +654,8 @@
       <div data-hud-sources></div>
     </details>
   </section>
-  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.json">{}</script>
-  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.manifest.json","occurrence_url":"../../data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.json","root_href":"../../"}</script>
+  <script type="application/json" data-lexical-occurrences data-src="https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.manifest.json","occurrence_url":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/data/lexical/occurrences/annotations-of-minchat-chinukh-on-mishneh-torah-paschal-offering.json","root_href":"https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/"}</script>
   <script>
     (async () => {
       const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
@@ -586,7 +681,6 @@
         "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
         "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
         "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
-        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
         "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
         "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
       };
