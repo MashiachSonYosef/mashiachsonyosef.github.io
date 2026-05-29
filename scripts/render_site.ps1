@@ -162,6 +162,72 @@ function Get-RootHref {
   return ('../' * $depth)
 }
 
+function Get-RefKey {
+  param([AllowNull()][string]$Ref)
+  if (-not $Ref) { return '' }
+  return (($Ref -replace '\s+', ' ').Trim())
+}
+
+function New-BaseUnitLookup {
+  param([AllowNull()][object]$BaseSource)
+
+  $lookup = @{}
+  if ($null -eq $BaseSource -or $null -eq $BaseSource.units) { return $lookup }
+  foreach ($unit in @($BaseSource.units)) {
+    foreach ($ref in @($unit.source_ref, $unit.sefaria_ref)) {
+      $key = Get-RefKey $ref
+      if ($key -and -not $lookup.ContainsKey($key)) {
+        $lookup[$key] = $unit
+      }
+    }
+  }
+  return $lookup
+}
+
+function Get-CommentarySectionPaths {
+  param([object]$Unit)
+
+  $ref = if ($Unit.sefaria_ref) { [string]$Unit.sefaria_ref } else { [string]$Unit.source_ref }
+  $match = [regex]::Match($ref, '(\d+(?::\d+)*)\s*$')
+  if (-not $match.Success) { return @() }
+  $parts = @($match.Groups[1].Value -split ':')
+  $paths = New-Object System.Collections.Generic.List[string]
+  for ($i = $parts.Count; $i -ge 1; $i -= 1) {
+    $paths.Add(($parts[0..($i - 1)] -join ':'))
+  }
+  return @($paths)
+}
+
+function Get-PairedBaseUnit {
+  param(
+    [object]$Source,
+    [object]$Unit,
+    [hashtable]$BaseLookup
+  )
+
+  if ($null -eq $BaseLookup -or $BaseLookup.Count -eq 0) { return $null }
+
+  $baseTitle = [string]$Source.base_work_title
+  $baseRefPattern = [string]$Source.base_ref_pattern
+  $candidates = New-Object System.Collections.Generic.List[string]
+  foreach ($sectionPath in @(Get-CommentarySectionPaths -Unit $Unit)) {
+    if ($baseRefPattern -and $baseRefPattern.Contains('{sections}')) {
+      $candidates.Add($baseRefPattern.Replace('{sections}', $sectionPath))
+    }
+    if ($baseTitle) {
+      $candidates.Add("$baseTitle $sectionPath")
+    }
+  }
+
+  foreach ($candidate in @($candidates | Select-Object -Unique)) {
+    $key = Get-RefKey $candidate
+    if ($key -and $BaseLookup.ContainsKey($key)) {
+      return $BaseLookup[$key]
+    }
+  }
+  return $null
+}
+
 function Get-HomeGroup {
   param([object]$Source)
   $slugParts = @($Source.work_slug -split '[\\/]' | Where-Object { $_ })
@@ -645,6 +711,10 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }')
   [void]$Builder.AppendLine('    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }')
   [void]$Builder.AppendLine('    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }')
+  [void]$Builder.AppendLine('    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }')
+  [void]$Builder.AppendLine('    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }')
+  [void]$Builder.AppendLine('    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }')
+  [void]$Builder.AppendLine('    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }')
   [void]$Builder.AppendLine('    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }')
   [void]$Builder.AppendLine('    .hebrew strong { color: #fff5df; font-weight: 700; }')
   [void]$Builder.AppendLine('    .source-small { font-size: 0.82em; color: var(--muted); }')
@@ -710,9 +780,9 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .paired-panel p { margin: 6px 0 0; }')
   [void]$Builder.AppendLine('    .paired-panel a { color: var(--accent); }')
   if ($IncludeLexicalStyles) {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
+    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
   } else {
-    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
+    [void]$Builder.AppendLine('    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }')
   }
   [void]$Builder.AppendLine('  </style>')
   [void]$Builder.AppendLine('</head>')
@@ -2142,7 +2212,8 @@ if ($OnlySitePages -and (Ensure-SourceCatalog -SourceDirectory $SourceDir)) {
       $knownSourceIds[$baseId] = $true
     }
     if ($baseSources.Count -gt 0) {
-      $sources = @($sources + @($baseSources) | Sort-Object work_title)
+      $baseSourceItems = @($baseSources | ForEach-Object { $_ })
+      $sources = @(@($sources) + $baseSourceItems | Sort-Object work_title)
     }
   }
 }
@@ -2302,13 +2373,12 @@ function Append-LibrarySections {
     [void]$Builder.AppendLine('          <details class="library-shelf">')
     [void]$Builder.AppendLine('            <summary>')
     [void]$Builder.AppendLine('              <span class="library-shelf-title">')
-    [void]$Builder.AppendLine('                <strong>Internal archive / not public-featured yet</strong>')
+    [void]$Builder.AppendLine('                <strong>Additional archive</strong>')
     [void]$Builder.AppendLine("                <span>$(Encode-Html $internalCountText)</span>")
     [void]$Builder.AppendLine('              </span>')
-    [void]$Builder.AppendLine('              <span class="library-summary-meta">Direct links</span>')
+    [void]$Builder.AppendLine('              <span class="library-summary-meta">Browse</span>')
     [void]$Builder.AppendLine('            </summary>')
     [void]$Builder.AppendLine('            <div class="library-shelf-body">')
-    [void]$Builder.AppendLine('              <p class="placeholder">Talmud / Commentary material remains preserved and direct-linkable, but is hidden from the public-featured library categories until it is hardened.</p>')
     [void]$Builder.AppendLine('              <div class="library-grid direct">')
     foreach ($source in @($internalSources | Sort-Object work_title)) {
       Append-LibraryWorkCard -Builder $Builder -Source $source -HrefPrefix $HrefPrefix
@@ -2539,6 +2609,13 @@ foreach ($source in $renderSources) {
     Get-JsonHeaderCounts -Path (Join-Path 'data/lexical/token-indexes' "$($source.work_slug).json")
   } else { $null }
 
+  $pairedBaseSource = $null
+  $pairedBaseLookup = @{}
+  if ($source.work_type -eq 'commentary' -and $source.base_work_id -and $sourceById.ContainsKey([string]$source.base_work_id)) {
+    $pairedBaseSource = $sourceById[[string]$source.base_work_id]
+    $pairedBaseLookup = New-BaseUnitLookup -BaseSource $pairedBaseSource
+  }
+
   Append-SiteHead -Builder $page -Title $source.work_title -IncludeLexicalStyles:$workHasLexical
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
@@ -2552,10 +2629,9 @@ foreach ($source in $renderSources) {
     $baseImported = $false
     $baseHref = ''
     $baseTitle = if ($source.base_work_title) { [string]$source.base_work_title } else { 'Base Work' }
-    if ($source.base_work_id -and $sourceById.ContainsKey([string]$source.base_work_id)) {
-      $baseSource = $sourceById[[string]$source.base_work_id]
-      $baseHref = "$rootHref$($baseSource.work_slug)/"
-      $baseTitle = [string]$baseSource.work_title
+    if ($null -ne $pairedBaseSource) {
+      $baseHref = "$rootHref$($pairedBaseSource.work_slug)/"
+      $baseTitle = [string]$pairedBaseSource.work_title
       $baseImported = $true
     }
     $displayLabel = if ($source.display_label) { [string]$source.display_label } else { "Commentary on $baseTitle" }
@@ -2564,7 +2640,7 @@ foreach ($source in $renderSources) {
     [void]$page.AppendLine('            <h2>Base Text</h2>')
     if ($baseImported) {
       [void]$page.AppendLine("            <p><a href=""$baseHref"">Open $(Encode-Html $baseTitle)</a></p>")
-      [void]$page.AppendLine('            <p class="placeholder">Base text is imported. Exact paired ref linking is not implemented yet.</p>')
+      [void]$page.AppendLine('            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>')
     } else {
       [void]$page.AppendLine('            <p class="placeholder">[Base text not imported or not linked yet]</p>')
     }
@@ -2572,7 +2648,7 @@ foreach ($source in $renderSources) {
     [void]$page.AppendLine('          <section class="paired-panel">')
     [void]$page.AppendLine('            <h2>Commentary</h2>')
     [void]$page.AppendLine("            <p>$(Encode-Html $displayLabel)</p>")
-    [void]$page.AppendLine('            <p class="placeholder">Commentary text appears below.</p>')
+    [void]$page.AppendLine('            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>')
     [void]$page.AppendLine('          </section>')
     [void]$page.AppendLine('        </div>')
   }
@@ -2642,6 +2718,8 @@ foreach ($source in $renderSources) {
     if ($null -ne $lexicalUnit) {
       $lexicalAttrs = ' data-lexical-unit'
     }
+    $pairedBaseUnit = if ($pairedBaseLookup.Count -gt 0) { Get-PairedBaseUnit -Source $source -Unit $unit -BaseLookup $pairedBaseLookup } else { $null }
+    $unitGridClass = if ($null -ne $pairedBaseUnit) { 'unit-grid paired-text-grid' } else { 'unit-grid' }
 
     [void]$page.AppendLine("          <section class=""unit"" id=""$($unit.anchor_id)"" data-unit$lexicalAttrs>")
     [void]$page.AppendLine('            <div class="unit-head">')
@@ -2652,8 +2730,20 @@ foreach ($source in $renderSources) {
     [void]$page.AppendLine('</h4></div>')
     [void]$page.AppendLine("              <a class=""anchor"" href=""#$($unit.anchor_id)"" aria-label=""Copy link to $($unit.source_ref)"">#</a>")
     [void]$page.AppendLine('            </div>')
-    [void]$page.AppendLine('            <div class="unit-grid">')
-    [void]$page.AppendLine('              <div>')
+    [void]$page.AppendLine("            <div class=""$unitGridClass"">")
+    if ($null -ne $pairedBaseUnit) {
+      $pairedBaseRef = [string]$pairedBaseUnit.source_ref
+      [void]$page.AppendLine('              <div class="paired-text-column base-side">')
+      [void]$page.AppendLine("                <p class=""paired-label"">Base text &middot; <a href=""$rootHref$($pairedBaseSource.work_slug)/#$($pairedBaseUnit.anchor_id)"">$(Encode-Html $pairedBaseRef)</a></p>")
+      foreach ($paragraph in @($pairedBaseUnit.hebrew)) {
+        [void]$page.AppendLine("                <p class=""hebrew"" lang=""he"" dir=""rtl"">$(Convert-SourceHtml $paragraph)</p>")
+      }
+      [void]$page.AppendLine('              </div>')
+      [void]$page.AppendLine('              <div class="paired-text-column commentary-side">')
+      [void]$page.AppendLine('                <p class="paired-label">Commentary</p>')
+    } else {
+      [void]$page.AppendLine('              <div>')
+    }
     if ($null -ne $lexicalUnit) {
       $hebrewParagraphs = @($unit.hebrew)
       for ($paragraphIndex = 0; $paragraphIndex -lt $hebrewParagraphs.Count; $paragraphIndex += 1) {

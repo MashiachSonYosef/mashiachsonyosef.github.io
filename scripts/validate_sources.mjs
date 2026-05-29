@@ -272,7 +272,11 @@ for (const sourcePath of listJsonFiles(sourceDir)) {
           errors.push(`Generated commentary page missing paired panel text '${commentaryText}' for ${source.work_id}`);
         }
       }
-      if (!workPage.includes('[Base text not imported or not linked yet]') && !workPage.includes('Base text is imported. Exact paired ref linking is not implemented yet.')) {
+      const hasBasePairStatus = workPage.includes('[Base text not imported or not linked yet]')
+        || workPage.includes('Base text is imported. Exact paired ref linking is not implemented yet.')
+        || workPage.includes('Matched base passages appear beside commentary rows when refs align.')
+        || workPage.includes('paired-text-grid');
+      if (!hasBasePairStatus) {
         errors.push(`Generated commentary page missing base text paired status for ${source.work_id}`);
       }
     }
