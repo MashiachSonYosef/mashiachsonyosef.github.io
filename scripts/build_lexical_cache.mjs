@@ -2,17 +2,59 @@ import crypto from 'node:crypto';
 import fs from 'node:fs';
 import path from 'node:path';
 
-const sourceDir = process.argv[2] || 'data/sources';
-const lexicalDir = process.argv[3] || 'data/lexical';
+function parseArgs(argv) {
+  const args = {
+    positional: [],
+    workIds: [],
+    workIdsPath: '',
+    reportPath: process.env.LEXICAL_REPORT_PATH || '',
+  };
+
+  for (let i = 0; i < argv.length; i += 1) {
+    const arg = argv[i];
+    const next = argv[i + 1];
+    if (arg === '--work-id' && next) {
+      args.workIds.push(next);
+      i += 1;
+    } else if (arg === '--work-ids-path' && next) {
+      args.workIdsPath = next;
+      i += 1;
+    } else if (arg === '--report-path' && next) {
+      args.reportPath = next;
+      i += 1;
+    } else if (arg.startsWith('--')) {
+      throw new Error(`Unknown argument: ${arg}`);
+    } else {
+      args.positional.push(arg);
+    }
+  }
+
+  if (args.workIdsPath) {
+    args.workIds.push(...fs.readFileSync(args.workIdsPath, 'utf8')
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter(Boolean));
+  }
+
+  args.workIds = [...new Set(args.workIds.map((value) => String(value || '').trim()).filter(Boolean))];
+  return args;
+}
+
+const args = parseArgs(process.argv.slice(2));
+const sourceDir = args.positional[0] || 'data/sources';
+const lexicalDir = args.positional[1] || 'data/lexical';
 const occurrencesDir = path.join(lexicalDir, 'occurrences');
 const lexiconPath = path.join(lexicalDir, 'lexicon.json');
 const lexiconLayerDir = path.join(lexicalDir, 'source-layers');
 const tokenIndexPath = path.join(lexicalDir, 'token-index.json');
 const tokenIndexesDir = path.join(lexicalDir, 'token-indexes');
-const reportPath = process.env.LEXICAL_REPORT_PATH || 'reports/sitewide-lexical-build-report.md';
+const targetWorkIds = new Set(args.workIds);
+const isTargetedBuild = targetWorkIds.size > 0;
+const reportPath = args.reportPath || (isTargetedBuild ? 'reports/targeted-lexical-build-report.md' : 'reports/sitewide-lexical-build-report.md');
 const lexicalScope = {
   label: 'All imported Hebrew works',
 };
+const reportScopeLabel = isTargetedBuild ? `Targeted imported Hebrew works: ${args.workIds.join(', ')}` : lexicalScope.label;
 const lexicalLayerFiles = [
   {
     layer_id: 'project-overrides',
@@ -2525,7 +2567,9 @@ const aramaicGrammarEntriesChanged = ensureProjectAramaicGrammarEntries(lexicon)
 const zoharAriTermEntriesChanged = ensureProjectZoharAriTechnicalTermEntries(lexicon);
 const projectTechnicalEntriesChanged = ensureProjectTechnicalTermEntries(lexicon);
 const lexiconChanged = fixedExpressionEntriesChanged || abbreviationEntriesChanged || midrashFormulaEntriesChanged || aramaicGrammarEntriesChanged || zoharAriTermEntriesChanged || projectTechnicalEntriesChanged;
-writeLexicon(lexicon);
+if (!isTargetedBuild || lexiconChanged) {
+  writeLexicon(lexicon);
+}
 const lexiconByNormalized = new Map();
 const lexiconById = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
 function addLexiconNormalized(normalized, entryId) {
@@ -2551,11 +2595,22 @@ const expectedOccurrencePaths = new Set();
 const expectedTokenIndexPaths = new Set();
 
 const tokenRows = new Map();
-const sourceFiles = fs.readdirSync(sourceDir).filter((name) => name.endsWith('.json')).sort();
+const allSourceFiles = fs.readdirSync(sourceDir).filter((name) => name.endsWith('.json')).sort();
+const sourceFiles = isTargetedBuild
+  ? allSourceFiles.filter((name) => targetWorkIds.has(path.basename(name, '.json')))
+  : allSourceFiles;
+if (isTargetedBuild && sourceFiles.length !== targetWorkIds.size) {
+  const foundIds = new Set(sourceFiles.map((name) => path.basename(name, '.json')));
+  const missingIds = [...targetWorkIds].filter((workId) => !foundIds.has(workId));
+  if (missingIds.length) {
+    console.warn(`Warning: targeted lexical build skipped missing source files: ${missingIds.join(', ')}`);
+  }
+}
 const observedNormalizedCounts = new Map();
 const sourceMetaByWorkId = new Map();
 
-for (const fileName of sourceFiles) {
+const countSourceFiles = isTargetedBuild ? sourceFiles : allSourceFiles;
+for (const fileName of countSourceFiles) {
   const source = readJson(path.join(sourceDir, fileName));
   sourceMetaByWorkId.set(source.work_id, {
     work_id: source.work_id,
@@ -2752,10 +2807,12 @@ for (const [workId, workForms] of Array.from(formsByWork.entries()).sort((a, b) 
   });
 }
 
-removeStaleJsonFiles(occurrencesDir, expectedOccurrencePaths);
-removeStaleJsonFiles(tokenIndexesDir, expectedTokenIndexPaths);
+if (!isTargetedBuild) {
+  removeStaleJsonFiles(occurrencesDir, expectedOccurrencePaths);
+  removeStaleJsonFiles(tokenIndexesDir, expectedTokenIndexPaths);
+}
 
-writeCompactJson(tokenIndexPath, {
+const tokenIndexManifest = {
   schema_version: 1,
   generated_at: generatedAt,
   source_dir: sourceDir,
@@ -2783,7 +2840,32 @@ writeCompactJson(tokenIndexPath, {
   matched_wikidata_surface_forms: wikidataMatchedForms.length,
   enriched_openscriptures_surface_forms: openScripturesMatchedForms.length,
   unmatched_surface_forms: unmatchedForms.length,
-});
+};
+
+if (isTargetedBuild && fs.existsSync(tokenIndexPath)) {
+  const previousManifest = readJson(tokenIndexPath);
+  const nextWorkIndexesById = new Map();
+  for (const item of previousManifest.work_indexes || []) {
+    if (item?.work_id && !targetWorkIds.has(String(item.work_id))) {
+      nextWorkIndexesById.set(String(item.work_id), item);
+    }
+  }
+  for (const item of workIndexes) {
+    nextWorkIndexesById.set(String(item.work_id), item);
+  }
+  const mergedWorkIndexes = [...nextWorkIndexesById.values()].sort((a, b) => String(a.work_id).localeCompare(String(b.work_id)));
+  if (JSON.stringify(previousManifest.work_indexes || []) !== JSON.stringify(mergedWorkIndexes)) {
+    writeCompactJson(tokenIndexPath, {
+      ...previousManifest,
+      layout: previousManifest.layout || 'per-work-token-indexes',
+      index_dir: previousManifest.index_dir || 'token-indexes',
+      incremental_update_at: generatedAt,
+      work_indexes: mergedWorkIndexes,
+    });
+  }
+} else {
+  writeCompactJson(tokenIndexPath, tokenIndexManifest);
+}
 
 const matchedSamples = matchedForms.filter((row) => renderingsFor(row) !== 'N/A').slice(0, 20).map(formatMatchedSample);
 const affixSamples = affixResolvedForms
@@ -2813,7 +2895,7 @@ Generated: ${new Date().toISOString()}
 
 ## Scope
 
-- Work scope: all imported Hebrew works
+- Work scope: ${reportScopeLabel}
 - Hebrew source text changed: no
 - Translation overlays changed: no
 - Sources used: existing local lexical cache generated from Wikidata Lexemes first; OpenScriptures morphHB + HebrewLexicon as fallback/enrichment
