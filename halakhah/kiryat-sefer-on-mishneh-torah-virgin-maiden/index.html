@@ -1,0 +1,1493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiryat Sefer on Mishneh Torah, Virgin Maiden</title>
+  <style>
+    :root { color-scheme: dark; --bg: #0a0b0d; --bg-2: #141821; --panel: rgba(15,17,23,0.92); --panel-2: rgba(20,24,31,0.95); --text: #efe8da; --muted: #aaa18f; --line: rgba(214,190,138,0.16); --line-2: rgba(214,190,138,0.3); --accent: #d6be8a; --accent-2: #93a7d1; --hebrew: #f8f1e4; }
+    * { box-sizing: border-box; }
+    body { margin: 0; overflow-x: hidden; background: radial-gradient(circle at top, rgba(147,167,209,0.14), transparent 32%), linear-gradient(180deg, #0a0b0d 0%, #0f1117 100%); color: var(--text); font-family: Georgia, "Times New Roman", serif; }
+    a { color: var(--accent); }
+    main { width: min(1440px, calc(100% - 28px)); max-width: 100%; margin: 0 auto; padding: 28px 0 60px; }
+    h1, h2, h3, h4 { font-weight: 400; margin: 0; scroll-margin-top: 18px; overflow-wrap: anywhere; }
+    h1 { font-size: clamp(2.4rem, 6vw, 5.4rem); line-height: 0.9; letter-spacing: 0.02em; margin-bottom: 14px; }
+    h2 { color: var(--accent); font-size: 1.5rem; margin: 34px 0 14px; }
+    h3 { color: var(--text); font-size: 1.15rem; margin: 22px 0 10px; }
+    h4 { color: var(--accent-2); font-size: 0.95rem; margin: 16px 0 10px; text-transform: uppercase; letter-spacing: 0.08em; }
+    p { color: var(--muted); line-height: 1.6; margin: 0 0 8px; overflow-wrap: anywhere; }
+    .shell { min-width: 0; max-width: 100%; overflow-x: hidden; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(17,19,24,0.94), rgba(10,11,13,0.94)); box-shadow: 0 24px 80px rgba(0,0,0,0.35); }
+    .hero { min-width: 0; padding: 22px 22px 18px; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
+    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }
+    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }
+    .license-notice strong { color: var(--text); font-weight: 400; }
+    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }
+    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }
+    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }
+    .home-section { margin-top: 26px; }
+    .home-section:first-child { margin-top: 0; }
+    .work-card { display: block; border: 1px solid var(--line); background: var(--panel); padding: 18px; text-decoration: none; min-height: 140px; backdrop-filter: blur(3px); }
+    .work-card strong { display: block; color: var(--text); font-size: 1.2rem; margin-bottom: 8px; }
+    .work-card .meta { display: block; margin-top: 6px; }
+    .work-card .work-label, .work-label { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.04em; text-transform: uppercase; }
+    .work-card.placeholder-card { opacity: 0.72; }
+    .library-stack { display: grid; gap: 14px; }
+    .library-shelf, .library-subgroup { border: 1px solid var(--line); background: var(--panel); }
+    .library-shelf > summary, .library-subgroup > summary { cursor: pointer; list-style: none; display: flex; gap: 14px; align-items: center; justify-content: space-between; padding: 16px 18px; color: var(--text); }
+    .library-shelf > summary::-webkit-details-marker, .library-subgroup > summary::-webkit-details-marker { display: none; }
+    .library-shelf > summary::before, .library-subgroup > summary::before { content: "+"; color: var(--accent); font-size: 1.1rem; line-height: 1; }
+    .library-shelf[open] > summary::before, .library-subgroup[open] > summary::before { content: "-"; }
+    .library-shelf-title { display: flex; flex-direction: column; gap: 4px; min-width: 0; flex: 1; }
+    .library-shelf-title strong { font-size: 1.12rem; }
+    .library-shelf-title span, .library-summary-meta { color: var(--muted); font-size: 0.88rem; }
+    .library-summary-meta { overflow-wrap: anywhere; }
+    .library-shelf-body { display: grid; gap: 12px; padding: 0 18px 18px 18px; }
+    .library-subgroup { background: rgba(255,255,255,0.02); }
+    .library-subgroup > summary { padding: 12px 14px; }
+    .library-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 10px; padding: 0 14px 14px 14px; }
+    .library-grid.direct { padding: 0; }
+    .library-grid .work-card { min-height: 116px; padding: 14px; }
+    @media (max-width: 640px) { .library-shelf > summary, .library-subgroup > summary { align-items: flex-start; } .library-summary-meta { white-space: normal; } }
+    .home-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .home-actions a { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 8px 11px; text-decoration: none; letter-spacing: 0.04em; }
+    .reader-shell { display: grid; grid-template-columns: minmax(0, 300px) minmax(0, 1fr); gap: 22px; align-items: start; padding: 22px; min-width: 0; max-width: 100%; }
+    .toc { position: sticky; top: 12px; max-height: calc(100vh - 24px); min-width: 0; overflow: auto; overflow-wrap: anywhere; border: 1px solid var(--line); background: var(--panel); padding: 14px; }
+    .toc ul { list-style: none; padding: 0; margin: 0; }
+    .toc li { margin: 0 0 7px; }
+    .toc a { text-decoration: none; font-size: 0.94rem; }
+    .toc-start, .toc-unit { display: block; color: var(--muted); font-size: 0.86rem; margin: 5px 0 7px; overflow-wrap: anywhere; }
+    .toc-start:hover, .toc-unit:hover { color: var(--accent); }
+    .toc-units { display: grid; grid-template-columns: repeat(auto-fit, minmax(56px, 1fr)); gap: 2px 6px; margin-top: 5px; }
+    .section-block { margin-bottom: 10px; }
+    .unit { border-top: 1px solid var(--line); padding: 16px 0; min-width: 0; max-width: 100%; }
+    .unit[hidden] { display: none; }
+    .unit-head { display: flex; justify-content: space-between; gap: 12px; align-items: baseline; margin-bottom: 10px; min-width: 0; }
+    .unit-head > div { min-width: 0; max-width: 100%; overflow-wrap: anywhere; }
+    .unit-head h4 { overflow-wrap: anywhere; word-break: break-word; }
+    .unit-nav { display: flex; flex-wrap: wrap; gap: 8px 12px; margin-top: 12px; font-size: 0.84rem; }
+    .unit-nav a { color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); }
+    .unit-nav a:hover { color: var(--accent); border-color: var(--accent); }
+    .anchor { flex: 0 0 auto; text-decoration: none; color: var(--accent); font-size: 0.9rem; }
+    .unit-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: 18px; min-width: 0; max-width: 100%; }
+    .unit-grid.paired-text-grid { grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); align-items: start; }
+    .paired-text-column { min-width: 0; border: 1px solid var(--line); background: rgba(255,255,255,0.018); padding: 12px; overflow-wrap: anywhere; }
+    .paired-text-column.commentary-side { background: transparent; border-color: rgba(214,190,138,0.12); }
+    .paired-label { color: var(--accent); font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; margin: 0 0 10px; direction: ltr; text-align: left; }
+    .hebrew { color: var(--hebrew); direction: rtl; unicode-bidi: plaintext; text-align: right; font-size: 1.22rem; line-height: 1.82; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .hebrew strong { color: #fff5df; font-weight: 700; }
+    .source-small { font-size: 0.82em; color: var(--muted); }
+    .placeholder { color: #8c857c; }
+    .lexical-inline { direction: rtl; unicode-bidi: plaintext; text-align: right; min-width: 0; max-width: 100%; overflow-wrap: anywhere; word-break: normal; }
+    .lexical-coverage strong { color: var(--text); font-weight: 400; }
+    .lexical-word { display: inline; max-width: 100%; margin: 0 0.08em; padding: 0.04em 0.08em; border: 1px solid transparent; border-radius: 7px; color: var(--hebrew); background: transparent; font: inherit; cursor: pointer; direction: inherit; unicode-bidi: normal; overflow-wrap: anywhere; word-break: break-word; }
+    .lexical-word:hover, .lexical-word:focus-visible, .lexical-word[aria-pressed="true"] { border-color: var(--accent); background: rgba(214,190,138,0.1); outline: none; }
+    .hud-badge { display: inline-block; margin-left: 0.45rem; padding: 1px 6px; border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; vertical-align: middle; }
+    .lexical-slot { margin-top: 16px; }
+    .lexical-hud { position: fixed; z-index: 1000; max-width: min(560px, calc(100vw - 24px)); border: 1px solid var(--line); background: var(--panel-2); padding: 18px; box-shadow: 0 18px 60px rgba(0,0,0,0.42); overflow: auto; }
+    .lexical-hud[hidden] { display: none; }
+    .hud-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 14px; }
+    .hud-head h2 { margin: 0; font-size: 1.1rem; color: var(--text); }
+    .hud-close { border: 1px solid var(--line-2); background: transparent; color: var(--muted); padding: 4px 8px; font: inherit; cursor: pointer; }
+    .hud-close:hover { color: var(--text); border-color: var(--accent); }
+    .lexical-fields { display: grid; grid-template-columns: minmax(140px, 220px) 1fr; gap: 10px 18px; margin: 0; }
+    .lexical-field-row { display: contents; }
+    .lexical-field-row[hidden] { display: none; }
+    .lexical-fields dt { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.78rem; }
+    .lexical-fields dd { margin: 0; color: var(--text); }
+    .lexical-fields ul { margin: 0; padding-left: 18px; }
+    .breakdown-list { display: grid; gap: 8px; }
+    .breakdown-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 8px; }
+    .breakdown-row strong { color: var(--hebrew); font-weight: 400; }
+    .breakdown-row p { margin: 0 0 4px; }
+    .lexical-entry-list, .claim-row-list { display: grid; gap: 10px; }
+    .lexical-context-note { margin: 0 0 10px; color: var(--muted); font-size: 0.9rem; }
+    .lexical-entry { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; }
+    .lexical-entry h3 { margin: 0 0 6px; color: var(--text); font-size: 0.94rem; font-weight: 400; }
+    .lexical-entry .entry-hebrew { color: var(--hebrew); }
+    .lexical-entry .entry-meta { margin: 0 0 6px; color: var(--muted); font-size: 0.86rem; }
+    .lexical-entry .entry-label { color: var(--accent); text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.72rem; }
+    .claim-row { border: 1px solid var(--line); background: rgba(255,255,255,0.025); padding: 10px; display: grid; gap: 5px; min-width: 0; overflow-wrap: anywhere; }
+    .claim-row-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px; }
+    .claim-status { border: 1px solid var(--line-2); border-radius: 999px; color: var(--accent); padding: 1px 7px; font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .claim-hebrew { color: var(--hebrew); font-size: 1.1rem; }
+    .claim-transliteration, .claim-source, .claim-license { color: var(--muted); font-size: 0.86rem; margin: 0; }
+    .claim-renderings { color: var(--text); margin: 0; }
+    .other-entries { margin-top: 12px; }
+    .claim-row-list details { margin-top: 8px; }
+    .source-details { margin-top: 16px; }
+    .source-row { border-top: 1px solid var(--line); padding: 12px 0; }
+    .source-row:first-child { border-top: 0; }
+    .source-row strong { color: var(--text); font-weight: 400; }
+    .source-claim { color: var(--text); margin: 0 0 6px; }
+    .source-claim span { color: var(--hebrew); }
+    .source-citation { overflow-wrap: anywhere; word-break: break-word; }
+    .source-note-index { color: var(--accent); font-size: 0.82rem; margin-left: 6px; }
+    .source-table { width: 100%; table-layout: fixed; border-collapse: collapse; margin-top: 24px; color: var(--muted); font-size: 0.9rem; }
+    .source-table th, .source-table td { border-top: 1px solid var(--line); padding: 8px; text-align: left; vertical-align: top; overflow-wrap: anywhere; word-break: break-word; }
+    details { border: 1px solid var(--line); background: var(--panel); padding: 10px 12px; }
+    summary { cursor: pointer; color: var(--accent); }
+    .toc details { border: 0; background: transparent; padding: 0; margin: 0 0 8px; }
+    .toc details details { border-left: 1px solid var(--line); padding-left: 10px; margin-left: 4px; }
+    .toc summary { color: var(--accent); font-size: 0.94rem; overflow-wrap: anywhere; }
+    .fallback-note { margin-top: 12px; padding: 12px 14px; border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--text); }
+    .paired-shell { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; margin-top: 14px; }
+    .paired-panel { border: 1px solid var(--line-2); background: rgba(214,190,138,0.05); padding: 12px 14px; min-width: 0; overflow-wrap: anywhere; }
+    .paired-panel h2 { margin: 0 0 8px; color: var(--accent); font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase; }
+    .paired-panel p { margin: 6px 0 0; }
+    .paired-panel a { color: var(--accent); }
+    @media (max-width: 900px) { .reader-shell, .unit-grid, .unit-grid.paired-text-grid, .lexical-fields, .paired-shell { grid-template-columns: 1fr; } .toc { position: static; max-height: none; } }
+  </style>
+</head>
+<body>
+  <main>
+    <div class="shell">
+      <div class="hero" id="work-top">
+        <p class="crumbs"><a href="../../">Home</a> &middot; <a href="../../about/">About / License</a></p>
+        <h1>Kiryat Sefer on Mishneh Torah, Virgin Maiden</h1>
+        <p class="work-label">Commentary on Mishneh Torah, Virgin Maiden</p>
+        <div class="paired-shell" aria-label="Commentary paired-text status">
+          <section class="paired-panel">
+            <h2>Base Text</h2>
+            <p><a href="../../halakhah/mishneh-torah-virgin-maiden/">Open Mishneh Torah, Virgin Maiden</a></p>
+            <p class="placeholder">Matched base passages appear beside commentary rows when refs align.</p>
+          </section>
+          <section class="paired-panel">
+            <h2>Commentary</h2>
+            <p>Commentary on Mishneh Torah, Virgin Maiden</p>
+            <p class="placeholder">Rows without a matched base passage render as commentary-only.</p>
+          </section>
+        </div>
+        <p class="meta">26 total source units | imported 2026-05-28</p>
+        <p class="meta source-citation">Hebrew version: Friedberg Edition | Version source: <a href="https://fjms.genizah.org">fjms.genizah.org</a> | Digitization: Sefaria API | License: Public Domain</p>
+        <p class="meta lexical-coverage">Lexical HUD coverage: <strong>432 matched</strong> / 1130 unique forms.</p>
+      </div>
+      <div class="reader-shell">
+        <nav class="toc" aria-label="Table of contents">
+          <details class="toc-root" open>
+            <summary>Contents</summary>
+            <details class="toc-group">
+              <summary>Kiryat Sefer on Mishneh Torah, Virgin Maiden <span class="hud-badge">Lexical layer active</span></summary>
+              <a class="toc-start" href="#work-top">Start</a>
+              <details class="toc-section">
+                <summary>Kiryat Sefer on Mishneh Torah, Virgin Maiden <span class="hud-badge">Lexical layer active</span></summary>
+                <a class="toc-start" href="#work-top">Start section</a>
+                <details class="toc-chapter">
+                  <summary>Chapter 1</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-1-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:1:1">1:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-7-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:7:1">1:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-8-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:8:1">1:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-9-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:9:1">1:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-11-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:11:1">1:11:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-13-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:13:1">1:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-15-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:15:1">1:15:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 2</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-1-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:1:1">2:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-3-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:3:1">2:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-7-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:7:1">2:7:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-8-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:8:1">2:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-9-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:9:1">2:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-12-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:12:1">2:12:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-13-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:13:1">2:13:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-14-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:14:1">2:14:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-15-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:15:1">2:15:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-16-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:16:1">2:16:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-17-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:17:1">2:17:1</a></li>
+                  </ul>
+                </details>
+                <details class="toc-chapter">
+                  <summary>Chapter 3</summary>
+                  <a class="toc-start" href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Start chapter</a>
+                  <ul class="toc-units">
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-1-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:1:1">3:1:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-3-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:3:1">3:3:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-4-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:4:1">3:4:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-6-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:6:1">3:6:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-8-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:8:1">3:8:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-9-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:9:1">3:9:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-10-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:10:1">3:10:1</a></li>
+                    <li><a class="toc-unit" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-12-1" title="Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:12:1">3:12:1</a></li>
+                  </ul>
+                </details>
+              </details>
+            </details>
+          </details>
+        </nav>
+        <article>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Chapter 1</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-1-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:1:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-1">Mishneh Torah, Virgin Maiden 1:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מִי שֶׁפִּתָּה בְּתוּלָה קוֹנְסִין אוֹתוֹ מִשְׁקַל חֲמִשִּׁים סְלָעִים שֶׁל כֶּסֶף מְזֻקָּק וְהוּא הַנִּקְרָא קְנָס. וְכֵן אִם אָנַס אוֹתָהּ. וּקְנָס זֶה מִצְוַת עֲשֵׂה שֶׁל תּוֹרָה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְנָתַן הָאִישׁ הַשּׁוֹכֵב עִמָּהּ לַאֲבִי הַנַּעֲרָה חֲמִשִּׁים כֶּסֶף&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה נב </strong> לדון במפתה בחמשים שקל עם שאר דינים כמו שכתוב בתורה וכי יפתה איש בתולה וגו׳ וכתיב כסף ישקול כמוהר הבתולות שהוא קצוב חמשים כסף אצל אונס שנאמר ונתן וגו׳ האיש השוכב עמה וגו׳ ונתן לאבי הנערה חמשים כסף. מפתה לרצונה דלא כתיב בה עינוי אונס כתיב ביה תחת אשר ענה דהוי בעל כרחה נבעלת בשדה הויא בחזקת אנוסה כפשטי׳ דקרא צעקה ואין מושיע לה ואלו בעיר יש לה מושיע ונבעלת בעיר הרי זו בחזקת מפותה ומענינא דקרא דכתיב אשר לא צעקה בעיר. ומפותה שלא רצה היא או אביה שתנשא לו או הוא לא רצה לכנוס נותן קנס והולך לו דכתיב אם מאן ימאן אביה אין לי אלא אביה היא עצמה מנין ת&quot;ל ימאן מכל מקום והוא נמי מצי מעכב דכתיב מהר ימהרנה לו לאשה לו מדעתו. ואם רצו וכנסה אינו משלם קנס דלא כתיב קנס אלא במיאון אבל אונס נותן קנס קודם שיכנוס אותה כדכתיב ונתן נ׳ כסף והדר לו תהיה לאשה אלא כותב לה כתובה כדכתיב מהר ימהרנה לו לאשה:<br><strong> מצוה נג </strong> שישא האונס אנוסתו כדכתיב ולו תהיה לאשה על כרחו ואין סברא לומר מדעתו כיון דכתיב לא יוכל שלחה כל ימיו והיא או אביה שלא רצה שתנשא לאונס הרשות בידם ונותן קנס דכתיב ולא תהיה מדעתה דמשמע היא מהוה את עצמה לו ואביה שלא יהא חוטא נשכר א&quot;נ ילפי לה מק&quot;ו דמפתה ומה מפתה שלא עבר אלא על דעת אביה בלבד בין היא ובין אביה יכולין לעכב אונס שעבר על דעת אביה ועל דעת עצמה לא כ&quot;ש. ואפילו היא חגרת או סומא או מצורעת כופין אותו לכנוס אף שהוא אינו רוצה כדכתיב ולא תהיה לאשה על כרחו ולא הוצרך הכתוב אלא להיכא שיש בה דבר שהוא לא ירצה שאז יכנוס על כרחו. אבל אם היתה אסורה עליו מן התורה או נמצא בה דבר זמה אחר שכנסה יגרשנה שנא׳ ולו תהיה לאשה אשה ראויה לו מן התורה. ובמפותה נמי כתיב מהר ימהרנה לו לאשה הראויה לו ולא אמרי׳ דאת׳ עשה וידחי ל&quot;ת אלא היכא דא&quot;א לקיים העשה באופן אחר אבל הכא אי אמרה היא לא בעינא מי איתיה לעשה כלל כדפי׳ לעיל השתא נמי מלמדין לומר אותה איני רוצה ולכך כ&quot;ג שאנס בתולה או שפתה אותה לא יכנוס שהוא מצווה ליקח בתולה ועכשיו אין זאת הגונה לו ואם כנס יוציא בגט שאינה ראויה לו.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-1-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:7:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-7">Mishneh Torah, Virgin Maiden 1:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אַף עַל פִּי שֶׁנֶּאֱמַר בְּאוֹנֵס <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ&quot; כֵּיוָן שֶׁקְּדָמוֹ עֲשֵׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; הֲרֵי זֶה נִתְּקוֹ לַעֲשֵׂה וְנִמְצֵאת זוֹ מִצְוַת לֹא תַּעֲשֶׂה שֶׁנִּתְּקָהּ לַעֲשֵׂה שֶׁאֵין לוֹקִין עָלֶיהָ אֶלָּא אִם לֹא קִיֵּם עֲשֵׂה שֶׁבָּהּ כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין. לְפִיכָךְ הָאוֹנֵס שֶׁעָבַר וְגֵרֵשׁ כּוֹפִין אוֹתוֹ לְהַחֲזִיר וְאֵינוֹ לוֹקֶה. מֵתָה גְּרוּשָׁתוֹ קֹדֶם שֶׁיַּחְזִירֶנָּה אוֹ נִתְקַדְּשָׁה לְאַחֵר אוֹ שֶׁהָיָה כֹּהֵן שֶׁאָסוּר בִּגְרוּשָׁה הֲרֵי זֶה לוֹקֶה שֶׁהֲרֵי עָבַר עַל לֹא תַּעֲשֶׂה וְאֵינוֹ יָכוֹל לְקַיֵּם עֲשֵׂה שֶׁבָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">-העתקה מסוף פ&quot;ב-</span><br>[
+<strong> אזהרת פ </strong> שלא יגרש האונס את אנוסתו לרצונו לעולם שנאמר לא יוכל לשלחה כל ימיו ואפילו שהוא אזהרה עליו אין לוקה עליה כיון שקדמו עשה דכתיב ולו תהיה לאשה נמצא זה מצות ל&quot;ת שנתקה לעשה שאין לוקין עליה אלא אם לא קיים עשה שבה לפיכך אם גרש כופין אותו להחזיר ואינו לוקה. מתה קודם שיחזירנה או נתקדשה לאחר שהרי היא אסורה עליו או שהיה הוא כהן ונאסרה עליו מיד כשגרשה הרי זה לוקה שהרי עבר על לא תעשה של לא יוכל לשלחה ואינו יכול לקיים עשה שבה. ואין במצות אלו שום דבר מדרבנן:]</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-1-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:8:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-8">Mishneh Torah, Virgin Maiden 1:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין הָאוֹנֵס אוֹ הַמְפַתֶּה חַיָּב בִּקְנָס עַד שֶׁיָּבוֹא עָלֶיהָ [כְּדַרְכָּהּ] וּבְעֵדִים וְאֵינוֹ צָרִיךְ הַתְרָאָה. וּמֵאֵימָתַי יִהְיֶה לַבַּת קְנָס. מֵאַחַר שָׁלשׁ שָׁנִים גְּמוּרוֹת עַד שֶׁתִּבְגֹּר. נִבְעֲלָה בְּתוֹךְ שָׁלֹשׁ שָׁנִים אֵין בִּיאָתָהּ בִּיאָה. בָּא עָלֶיהָ מִשֶּׁבָּגְרָה אֵין לָהּ קְנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כח)</span> &quot;נַעֲרָה בְתוּלָה&quot; לֹא הַבּוֹגֶרֶת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> האונס או המפתה חייב קנס עד שיבא עליה כדרכה דקנסא לא מחייב אלא משום גמר ביאה שהוא מוציא בתוליה ובשלא כדרכה דליכא בתולים לא מחייב. ובעדים דמודה בקנס פטור כדכתיב אשר ירשיעון אלהים פרט למרשיע את עצמו ואינו צריך התראה. [דלא ילפינן התראה אלא בד׳ מיתות ב&quot;ד ובמלקות]. קטנה פחותה מבת ג׳ שנים אין לה קנס דאין ביאתה ביאה עד ג׳ שנים ויום א׳. ואפילו היא קטנה דמדכתיב במוציא שם רע הנערה מלא והתם נערה ממש היא דראויה לעונשין בעיא כדכתיב והוציאו משמע שכל מקום שנכתב חסר אף קטנה במשמע. בגרה אין לה קנס דכתיב נערה בתולה לא הבוגרת.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-1-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:9:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-9">Mishneh Torah, Virgin Maiden 1:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וְאַחַת שֶׁיֵּשׁ לָהּ אָב וְאַחַת שֶׁאֵין לָהּ אָב יֵשׁ לָהּ קְנָס. וְאֵלּוּ שֶׁאֵין לָהֶן קְנָס. הַבּוֹגֶרֶת וְהַמְמָאֶנֶת וְהָאַיְלוֹנִית וְהַשּׁוֹטָה וְהַחֵרֶשֶׁת. וּמִי שֶׁיָּצָא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ וּבָאוּ שְׁנַיִם וְהֵעִידוּ שֶׁתָּבְעָה אוֹתָן לִזְנוֹת עִמָּהּ. וְהַמְגֹרֶשֶׁת מִן הַנִּשּׂוּאִין וַעֲדַיִן הִיא נַעֲרָה בְּתוּלָה. אֲבָל הַמְגֹרֶשֶׁת מִן הָאֵרוּסִין אִם נֶאֶנְסָה יֵשׁ לָהּ קְנָס וּקְנָסָהּ לְעַצְמָהּ. וְאִם נִתְפַּתְּתָה אֵין לָהּ קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואחת </strong> שיש לה אב ואחת שאין לה אב יש לה קנס דאם מאן דאביה דרשי׳ כשאביה קיים וימאן דהיא עצמה כשאין אביה קיים והיא ממאנת דיש לה קנס כשנתיתמה אחר פיתוי. ממאנת אין לה קנס שאינה בחזקת בתולה הואיל וניסת. אילונית שאין לה סימני נערות לעולם דעד ל&quot;ו שנה היא בחזקת קטנה ומשם ואילך בוגרת אין לה קנס דאין קנס אלא לראויה להיות נערה כדכתיב נערה והשוטה והחרשת נמי ומי שהעידו עליה ב׳ שתבעה אותם לזנות עמה והמגורשת מן הנשואין ועדין היא נערה בתולה אין לה קנס אבל מן האירוסין אם נאנסה יש לה קנס לעצמה דכתיב אשר לא אורשה וכו׳ לאביה הא אורשה לעצמה ובפיתוי אין לה קנס דהא מחלה. גיורת שבויה ומשוחררת פחותות מג׳ שנים יש להם קנס דאין ביאתם ביאה ואם היו בת ג׳ שנים ויום א׳ בשעת גירות ופדות ושחרור אין להם קנס דהואיל וביאתן ביאה הן בחזקת בעולות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-1-11-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:11:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-11-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:11:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-11">Mishneh Torah, Virgin Maiden 1:11</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה בְּתוּלָה זוֹ אֲסוּרָה עַל הָאוֹנֵס אוֹ הַמְפַתֶּה אִם הָיְתָה אַחַת מֵחַיָּבֵי כְּרֵתוֹת כְּגוֹן אֲחוֹתוֹ אוֹ דּוֹדָתוֹ וְהַנִּדָּה וְכַיּוֹצֵא בָּהֶן אוֹ שֶׁהָיְתָה מֵחַיָּבֵי לָאוִין אִם הִתְרוּ בּוֹ הֲרֵי זֶה לוֹקֶה וְאֵינוֹ מְשַׁלֵּם קְנָס שֶׁאֵין אָדָם לוֹקֶה וּמְשַׁלֵּם. וְאִם לֹא הָיְתָה שָׁם הַתְרָאָה הוֹאִיל וְאֵינוֹ חַיָּב מַלְקוֹת הֲרֵי זֶה מְשַׁלֵּם קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה </strong> אסורה על האונס או על המפתה בכרת או מלקות והתרו בו לוקה ואינו משלם דכתיב כדי רשעתו משום רשעה אחת אתה מחייבו ואי אתה מחייבו משום ב׳ רשעיות וסמיך ליה ארבעים יכנו דהיכא דאיכא ב׳ רשעיות ניעביד ביה הכאה ואם לא התרו בו הרי אינו חייב אלא משום רשעה א׳ ומשלם. וכן אם היתה מחייבי עשה דאין כאן אלא חיוב רשעה אחד בין התרו בין לא התרו חייב קנס.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-1-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:13:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-13">Mishneh Torah, Virgin Maiden 1:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הָיְתָה מֵחַיָּבֵי מִיתַת בֵּית דִּין כְּגוֹן בִּתּוֹ וְאֵשֶׁת בְּנוֹ וְכַיּוֹצֵא בָּהֶן בֵּין הִתְרוּ בּוֹ בֵּין לֹא הִתְרוּ בּוֹ פָּטוּר מִן הַקְּנָס שֶׁנֶּאֱמַר <span class="source-small">(שמות כא כב)</span> &quot;וְלֹא יִהְיֶה אָסוֹן עָנוֹשׁ יֵעָנֵשׁ&quot; הָא אִם הָיָה שָׁם אָסוֹן אֵין שָׁם עֹנֶשׁ. וְאַף עַל פִּי שֶׁהֲרִיגַת הָאִשָּׁה בִּשְׁגָגָה שֶׁהֲרֵי לֹא נִתְכַּוְּנוּ לָהּ שֶׁנֶּאֱמַר <span class="source-small">(שמות כא כב)</span> &quot;כִּי יִנָּצוּ אֲנָשִׁים וְנָגְפוּ אִשָּׁה&quot; הָא לָמַדְתָּ שֶׁלֹּא חִלֵּק הַכָּתוּב בְּאָסוֹן בֵּין שׁוֹגֵג לְמֵזִיד לְפָטְרוֹ מִן הַתַּשְׁלוּמִין. וַהֲרֵי הוּא אוֹמֵר <span class="source-small">(ויקרא כד יח)</span> &quot;מַכֵּה נֶפֶשׁ בְּהֵמָה יְשַׁלְּמֶנָּה&quot; <span class="source-small">(ויקרא כד כא)</span> &quot;וּמַכֵּה אָדָם יוּמָת&quot; מָה מַכֵּה נֶפֶשׁ בְּהֵמָה לֹא חִלֵּק הַכָּתוּב בֵּין שׁוֹגֵג לְמֵזִיד לְחַיְּבוֹ בְּתַשְׁלוּמִין אַף מַכֵּה נֶפֶשׁ אָדָם לֹא חִלֵּק הַכָּתוּב בֵּין שׁוֹגֵג לְמֵזִיד לְפָטְרוֹ מִן הַתַּשְׁלוּמִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>היתה </strong> מחייבי מיתות ב&quot;ד אפילו לא התרו בו פטור מקנס שנא׳ ולא יהיה אסון ענוש יענש הא אם היה שם אסון אפילו בשגגה שלא נתכוונו לה כדכתיב כי ינצו אנשים וכו׳ אין שם עונש ממון והרי הוא אומר מכה נפש בהמה ישלמנה ומכה אדם וכו׳ מה מכה בהמה לא חלקת בו בין שוגג למזיד ולעולם ישלם אף מכה נפש אדם לא חלקת בו בין שוגג למזיד דלעולם לא ישלם וכן הדין לכל עבירה שיש בה מיתת ב&quot;ד דילפי מהאי שאין בה תשלומין.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-1-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:15:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-1-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 1:15:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-1-15">Mishneh Torah, Virgin Maiden 1:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּא עָלֶיהָ וּמֵתָה הֲרֵי זֶה פָּטוּר מִן הַקְּנָס שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כט)</span> &quot;וְנָתַן הָאִישׁ הַשֹּׁכֵב עִמָּהּ לַאֲבִי הַנַּעֲרָה&quot; לֹא לַאֲבִי הַמֵּתָה. וְהוּא שֶׁתָּמוּת קֹדֶם שֶׁתַּעֲמֹד בַּדִּין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>בא </strong> עליה ומתה פטור מן התשלומין דכתיב ונתן לאבי הנערה ולא לאבי המתה והוא שתמות קודם שתעמוד בדין דאי לאו הכי בשעת העמדה בדין הרי נתחייב:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-1">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Chapter 2</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:1:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-1">Mishneh Torah, Virgin Maiden 2:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">חֲמִשִׁים כֶּסֶף שֶׁל קְנָס הֵם דְּמֵי הֲנָאַת שְׁכִיבָה בִּלְבַד. וְחַיָּב הַמְפַתֶּה לִתֵּן בּשֶׁת וּפְגָם יוֹתֵר עַל הַקְּנָס הַקָּצוּב בַּתּוֹרָה. יֶתֶר עָלָיו הָאוֹנֵס שֶׁהוּא נוֹתֵן אֶת הַצַּעַר. שֶׁהַנִּבְעֶלֶת בִּרְצוֹנָהּ אֵין לָהּ צַעַר וַאֲנוּסָה יֵשׁ לָהּ צַעַר. וְכֵן הוּא אוֹמֵר בַּאֲנוּסָה <span class="source-small">(דברים כב כט)</span> &quot;תַּחַת אֲשֶׁר עִנָּהּ&quot;:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>חמשים </strong> כסף של קנס הם דמי הנאת שכיבה שנאמר ונתן האיש השוכב עמה הנאת שכיבה הוא שנותן דהשוכב עמה קרא יתירה הוא ומכלל דאיכא בושת ופגם דלאו מחמת הנאת שכיבה נינהו שהרי ישנו בשאר חובלים ולא כיילינהו בגויה הני. יתר עליו האונס שנותן צער שיש לה וכדכתיב ביה תחת אשר ענה.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:3:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-3">Mishneh Torah, Virgin Maiden 2:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קְנָס שָׁוֶה בַּכּל. אֶחָד הַבָּא עַל בַּת כֹּהֵן גָּדוֹל וְאֶחָד הַבָּא עַל בַּת גֵּר אוֹ מַמְזֵר קְנָסָהּ חֲמִשִּׁים כֶּסֶף. אֲבָל הַבּשֶׁת וְהַפְּגָם וְהַצַּעַר אֵינָן שָׁוִין לַכּל וּצְרִיכִין שׁוּמָא:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הקנס </strong> שוה בכל אדם כיון שיש לו קצבה מן התורה ובושת ופגם וצער אינם שוים וצריכין שומא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-7-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:7:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-7-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:7:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-7">Mishneh Torah, Virgin Maiden 2:7</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמְפַתֶּה נוֹתֵן בּשֶׁת וּפְגָם מִיָּד וְאֵינוֹ נוֹתֵן הַקְּנָס אֶלָּא אִם כֵּן לֹא נְשָׂאָהּ שֶׁנֶּאֱמַר <span class="source-small">(שמות כב טז)</span> &quot;וְאִם מָאֵן יְמָאֵן אָבִיהָ לְתִתָּהּ לוֹ כֶּסֶף יִשְׁקל&quot;. אֲבָל הָאוֹנֵס נוֹתֵן אַרְבָּעָה דְּבָרִים מִיָּד וְכוֹנֵס. לְפִיכָךְ כְּשֶׁתִּרְצֶה לְהִתְגָּרֵשׁ אוֹ תִּתְאַלְמֵן אֵין לָהּ כְּלוּם:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>המפתה </strong> נותן בושת ופגם מיד ואינו נותן הקנס אלא א&quot;כ לא נשאה שנאמר ואם מאן ימאן וגו׳ כסף ישקול ובקנס הוא דתלה במיאון הא בושת ופגם אינו תלוי בשום דבר אלא נותן מיד. והאונס נותן ד׳ דברים מיד דאפילו הקנס נותן מיד והדר כונס כדכתיב ונתן חמשים כסף ולו תהיה לאשה וכשתרצה להתגרש ולא תתאלמן אין לה כלום.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:8:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-8">Mishneh Torah, Virgin Maiden 2:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">בָּאוּ עָלֶיהָ שְׁנַיִם אֶחָד כְּדַרְכָּהּ וְאֶחָד שֶׁלֹּא כְּדַרְכָּהּ זֶה שֶׁבָּא עָלֶיהָ שֶׁלֹּא כְּדַרְכָּהּ אִם הוּא רִאשׁוֹן חַיָּב בְּבשֶׁת וּפְגָם וְאִם הוּא אַחֲרוֹן חַיָּב בְּבשֶׁת בִּלְבַד שֶׁכְּבָר נִפְגְּמָה. וְזֶה שֶׁבָּא עָלֶיהָ כְּדַרְכָּהּ בֵּין רִאשׁוֹן בֵּין אַחֲרוֹן חַיָּב בִּקְנָס וּבִשְׁאָר הַדְּבָרִים. אֲבָל אֵין בּשֶׁת וּפְגָם שֶׁל בַּת שֶׁלֹּא נִבְעֲלָה כְּלָל כְּבשֶׁת וּפְגָם זוֹ שֶׁנִּבְעֲלָה שֶׁלֹּא כְּדַרְכָּהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הבא </strong> עליה שלא כדרכה ראשון חייב בבושת ופגם ואם הוא אחרון חייב בבושת בלבד שכבר נפגמה. והבא עליה כדרכה בין ראשון בין אחרון (לשלא כדרכה) חייב קנס ושאר הדברים אבל אין בושת ופגם של בת שלא נבעלה כלל כבושת ופגם זו שנבעלה כבר שלא כדרכה ולכך צריך שומא ולא פירש הכתוב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:9:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-9">Mishneh Torah, Virgin Maiden 2:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כְּבָר הוֹדַעְנוּ הַבָּנוֹת שֶׁאֵין לָהֶן קְנָס וְעֶשֶׂר הֵן. הַבּוֹגֶרֶת. וְהַמְמָאֶנֶת. וְהַמְגֹרֶשֶׁת. וְהָאַיְלוֹנִית. וְהַשּׁוֹטָה. וְהַחֵרֶשֶׁת. וְהַגִּיֹּרֶת. וְהַשְּׁבוּיָה. וְהַמְשֻׁחְרֶרֶת. וְהַיּוֹצֵא עָלֶיהָ שֵׁם רַע. וּשְׁאָר הַבָּנוֹת יֵשׁ לָהֶן קְנָס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> בת שיש לה קנס יש לה בושת ופגם וצער כאנוסה כדילפינן מהשוכב עמה דהנאת שכיבה הן חמשים שקלים לבד בושת ופגם וצער וכל בת שאין לה קנס אין לה בושת ולא פגם ולא צער דהני מכלל קנס קאי ובדליכא קנס אינהו נמי ליתנהו חוץ מאונס בוגרת וממאנת ושוטה וחרשת דאף על פי שאין להם קנס יש לבוגרת וממאנת בושת ופגם ולחרשת ולשוטה צער והמפתה כולן פטור מכלום דמחלי.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:12:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-12">Mishneh Torah, Virgin Maiden 2:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין אָדָם מְשַׁלֵּם קְנָס בְּכָל מָקוֹם בְּהוֹדָאַת פִּיו אֶלָּא עַל פִּי עֵדִים. לְפִיכָךְ הָאוֹמֵר אָנַסְתִּי אוֹ פִּתִּיתִי בִּתּוֹ שֶׁל פְּלוֹנִי אֵינוֹ מְשַׁלֵּם קְנָס אֲבָל מְשַׁלֵּם בּשֶׁת וּפְגָם בְּהוֹדָאַת פִּיו. וְכֵן בַּת שֶׁתָּבְעָה אִישׁ בַּדִּין וְאָמְרָה לוֹ אָנַסְתָּ אוֹ פִּתִּיתָ אוֹתִי וְהוּא אוֹמֵר לֹא הָיוּ דְּבָרִים מֵעוֹלָם הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הֶסֵּת שֶׁאִלּוּ הוֹדָה הָיָה מְשַׁלֵּם לָהּ בּשֶׁת וּפְגָם וְצַעַר עַל פִּי עַצְמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>קנס </strong> אינו משלם על פי עצמו וממון שהוא בושת ופגם משלם ע&quot;פ עצמו דהא דאמרינן פרט למרשיע עצמו היינו בקנס כדכתיב ישלם שנים וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-13-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:13:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-13-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:13:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-13">Mishneh Torah, Virgin Maiden 2:13</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אָמְרָה לוֹ אָנַסְתָּ אוֹתִי וְהוּא אוֹמֵר לֹא כִּי אֶלָּא פִּתִּיתִי הֲרֵי זֶה נִשְׁבָּע שְׁבוּעַת הַתּוֹרָה עַל דְּמֵי הַצַּעַר וּמְשַׁלֵּם בּשֶׁת וּפְגָם שֶׁהֲרֵי הוֹדָה בְּמִקְצָת הַטַּעֲנָה כְּמוֹ שֶׁיִּתְבָּאֵר בִּמְקוֹמוֹ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אמרה </strong> לו אנסה אותי והוא אומר לא כי פיתיתי נשבע שבועת התורה על דמי הצער ומשלם בשת ופגם שהרי הודה במקצת הטענה וילפינן שבועה למודה מקצת הטענה מדכתיב אשר יאמר כי הוא זה כלומר את זה אני מודה וכתיב בתריה ונקרב בעל הבית וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-14-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:14:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-14-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:14:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-14">Mishneh Torah, Virgin Maiden 2:14</a></p>
+                <p class="hebrew" lang="he" dir="rtl">שְׁלֹשָׁה דְּבָרִים שֶׁל מְפַתֶּה וְאַרְבָּעָה שֶׁל אוֹנֵס הֲרֵי הֵן שֶׁל אָב שֶׁכָּל שֶׁבַח נְעוּרִים לוֹ. וְאִם אֵין לָהּ אָב הֲרֵי הֵן שֶׁל עַצְמָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>שלשה </strong> דברים של מפתה וארבעה של אונס הם של אב כדכתיב ונתן לאבי הנערה חמשים כסף ואונס ומפתה מהדדי כתיבי גמירי ובושת ופגם מסתברא דלאביה הוי שהרי בידו לבישה בבושת בעילה ולפוגמה בפגם בעילה דאי בעי מסר לה לקדשה בביאה למנוול ומוכה שחין. ואם אין לה אב הרי הן של עצמה כדאמרינן לעיל.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-15-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:15:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-15-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:15:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-15">Mishneh Torah, Virgin Maiden 2:15</a></p>
+                <p class="hebrew" lang="he" dir="rtl">מְפֻתָּה אוֹ אֲנוּסָה שֶׁלֹּא תָּבְעָה עַד שֶׁבָּגְרָה אוֹ עַד שֶׁנִּשֵּׂאת אוֹ עַד שֶׁמֵּת הָאָב הָאַרְבָּעָה דְּבָרִים אוֹ הַשְּׁלֹשָׁה שֶׁלָּהּ. עָמְדָה בַּדִּין וְתָבְעָה אוֹתוֹ וְאַחַר כָּךְ בָּגְרָה אוֹ שֶׁנִּשֵּׂאת הֲרֵי הֵן שֶׁל אָב. וְאִם מֵת הָאָב אַחַר עֲמִידָתָהּ בַּדִּין הֲרֵי הֵן שֶׁל אַחִין שֶׁהֵן יוֹרְשֵׁי הָאָב. שֶׁמֵּעֵת שֶׁעָמְדָה בְּדִין זָכָה בָּהֶן הָאָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מפותה </strong> או אנוסה שלא תבעה עד שבגרה או עד שנשאת שיצאה מרשותו או עד שמת האב הד׳ דברים או הג׳ הם שלה דכתיב ונתן לאבי הנערה וכו׳ לא זכתה לו תורה לאב אלא משעת נתינה ואם עמדה בדין קודם הרי הן של אב דמשעת העמדה בדין זכה בהם האב ואם מת הן של אחין שהן יורשי האב מעת שעמדה בדין זכה בהם האב.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-16-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:16:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-16-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:16:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-16">Mishneh Torah, Virgin Maiden 2:16</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַבַּת שֶׁנִּתְאָרְסָה וְנִתְגָּרְשָׁה קְנָסָהּ לְבַדּוֹ לְעַצְמָהּ. נֶאֶנְסָה אוֹ נִתְפַּתְּתָה וְאַחַר כָּךְ נִתְקַדְּשָׁה לְאַחֵר קְנָסָהּ וּשְׁאָר הַדְּבָרִים לְאָבִיהָ. שֶׁאֵין הָאֵרוּסִין מוֹצִיאִין מֵרְשׁוּת אָב:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>נתארסה </strong> ונתגרשה קנסה לעצמה כדילפינן לעיל מאשר לא אורשה נאנסה או נתפתתה ונתארסה לאחר קנסה ושאר הדברים לאביה שעדין לא יצאה מרשותו עד שתנשא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-2-17-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:17:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-2-17-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 2:17:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-2-17">Mishneh Torah, Virgin Maiden 2:17</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֲנִי אוֹמֵר שֶׁזֶּה שֶׁנֶּאֱמַר בַּתּוֹרָה <span class="source-small">(ויקרא יט כט)</span> &quot;אַל תְּחַלֵּל אֶת בִּתְּךָ לְהַזְנוֹתָהּ&quot;. שֶׁלֹּא יֹאמַר הָאָב הוֹאִיל וְלֹא חִיְּבָה תּוֹרָה מְפַתֶּה וְאוֹנֵס אֶלָּא שֶׁיִּתֵּן מָמוֹן לָאָב הֲרֵינִי שׂוֹכֵר בִּתִּי הַבְּתוּלָה לָזֶה לָבוֹא עָלֶיהָ בְּכָל מָמוֹן שֶׁאֶרְצֶה אוֹ אָנִיחַ זֶה לָבוֹא עָלֶיהָ בְּחִנָּם שֶׁיֵּשׁ לוֹ לָאָדָם לִמְחל מָמוֹנוֹ לְכָל מִי שֶׁיִּרְצֶה לְכָךְ נֶאֱמַר אַל תְּחַלֵּל אֶת בִּתְּךָ. שֶׁזֶּה שֶׁחִיְּבָה תּוֹרָה לָאוֹנֵס וְלַמְפַתֶּה מָמוֹן וְלֹא מַלְקוֹת בְּשֶׁאֵרַע הַדָּבָר מִקְרֶה שֶׁלֹּא מִדַּעַת אָבִיהָ וְלֹא הֵכִינָה עַצְמָהּ לְכָךְ שֶׁדָּבָר זֶה אֵינוֹ הוֹוֶה תָּמִיד וְאֵינוֹ מָצוּי. אֲבָל אִם הֵנִיחַ בִּתּוֹ הַבְּתוּלָה מוּכֶנֶת לְכָל מִי שֶׁיָּבוֹא עָלֶיהָ גּוֹרֵם שֶׁתִּמָּלֵא הָאָרֶץ זִמָּה וְנִמְצָא הָאָב נוֹשֵׂא בִּתּוֹ וְהָאָח נוֹשֵׂא אֲחוֹתוֹ שֶׁאִם תִּתְעַבֵּר וְתֵלֵד לֹא יִוָּדַע בֶּן מִי הוּא. וְהַמֵּכִין בִּתּוֹ לְכָךְ הֲרֵי הִיא קְדֵשָׁה וְלוֹקֶה הַבּוֹעֵל וְהַנִּבְעֶלֶת מִשּׁוּם <span class="source-small">(דברים כג יח)</span> &quot;לֹא תִהְיֶה קְדֵשָׁה&quot;. וְאֵין קוֹנְסִין אוֹתוֹ שֶׁלֹּא חִיְּבָה תּוֹרָה קְנָס אֶלָּא לְאוֹנֵס וּמְפַתֶּה אֲבָל זוֹ שֶׁהֵכִינָה עַצְמָהּ לְכָךְ בֵּין מִדַּעְתָּהּ בֵּין מִדַּעַת אָבִיהָ הֲרֵי זוֹ קְדֵשָׁה. וְאִסּוּר קְדֵשָׁה אֶחָד הוּא בֵּין בִּבְתוּלָה בֵּין בִּבְעוּלָה לְפִיכָךְ אָמְרוּ חֲכָמִים שֶׁהַיּוֹצֵא עָלֶיהָ שֵׁם רַע בְּיַלְדוּתָהּ אֵין לָהּ קְנָס כְּמוֹ שֶׁבֵּאַרְנוּ שֶׁהֲרֵי זוֹ בְּחֶזְקַת שֶׁהִפְקִירָה עַצְמָהּ לְדָבָר זֶה בִּרְצוֹנָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>ואף </strong> על פי שממון הפיתוי והאונס לאב אסור לו להניח בתו הבתולה מוכנת לכל מי שירצה וגורם שתמלא הארץ זמה וזהו שנאמר אל תחלל את בתך להזנותה וכו׳ והמכין בתו לכך הרי היא קדשה ולוקה הבועל והנבעלת משום לא תהיה קדשה ואין קונסין אותו שלא חייב התורה אלא לאונס ומפתה לא למי שהכינה עצמה לכך או הכינה אביה בין בתולה בין בעולה באיסור קדשה א׳ הוא:<br><strong> אזהרת פ </strong> שלא יגרש האונס את אנוסתו לרצונו לעולם שנאמר לא יוכל לשלחה כל ימיו ואפילו שהוא אזהרה עליו אין לוקה עליה כיון שקדמו עשה דכתיב ולו תהיה לאשה נמצא זה מצות ל&quot;ת שנתקה לעשה שאין לוקין עליה אלא אם לא קיים עשה שבה לפיכך אם גרש כופין אותו להחזיר ואינו לוקה. מתה קודם שיחזירנה או נתקדשה לאחר שהרי היא אסורה עליו או שהיה הוא כהן ונאסרה עליו מיד כשגרשה הרי זה לוקה שהרי עבר על לא תעשה של לא יוכל לשלחה ואינו יכול לקיים עשה שבה. ואין במצות אלו שום דבר מדרבנן:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-2">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <h4 id="chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Chapter 3</h4>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-1-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:1:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-1-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:1:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-1">Mishneh Torah, Virgin Maiden 3:1</a></p>
+                <p class="hebrew" lang="he" dir="rtl">הַמּוֹצִיא שֵׁם רַע עַל בַּת יִשְׂרָאֵל וְנִמְצָא הַדָּבָר שֶׁקֶר לוֹקֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יח)</span> &quot;וְיִסְּרוּ אֹתוֹ&quot;. וְאַזְהָרָה שֶׁלּוֹ מִ<span class="source-small">(ויקרא יט טז)</span> &quot;לֹּא תֵלֵךְ רָכִיל בְּעַמֶּיךָ&quot;. וְנוֹתֵן לְאָבִיהָ מִשְׁקַל מֵאָה סְלָעִים כֶּסֶף מְזֻקָּק. וְאִם הָיְתָה יְתוֹמָה הֲרֵי הֵם שֶׁל עַצְמָהּ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>מצוה נד </strong> שתשב אשת מוציא שם רע תחתיו לעולם שנאמר ולו תהיה לאשה על כרחו אפילו כעורה או מוכה שחין דלהכי איצטריך קרא למיכתב ולו תהיה לאשה וגו׳ להיכא דאית בה דבר שלא ירצה לקחתה שיקחנה על כרחו. המוציא שם רע על בת ישראל ונמצא הדבר שקר לוקה שנאמר ויסרו אותו וכתיב גבי סורר ומורה ויסרו מה להלן בן עמו אף כאן בן עמו והיינו ויסרו דהכא מויסרו דהתם וההוא ויסרו דהתם מבן שעמו דלגמריה לבן שעמו על ויסרו והדר יליף בן דאייתינן הכא מבן והיה אם בן הכות מה התם מלקות כדכתיב ארבעים יכנו אף הכא מלקות ואזהרה שלו מלא תלך רכיל בעמך. ונותן לאביה משקל מאה סלעים כסף מזוקק מדכתיב וענשו אותו מאה כסף ואם היתה יתומה הרי הן של עצמה כי הוציא שם רע על בתולת ישראל ולא בתולת גרים והא בתולת גרים יתומה היא דרחמנא אפקריה לזרעיה דאב ואיצטריך קרא למעוטה ממאה כסף אי אמר׳ בשלמא כי האי גונא יתומה בישראל מיחייב איצטריך קרא למעוטי בתולת גרים דהיינו יתומת גרי׳ אלא א&quot;א יתומה בישרא׳ פטו׳ השתא בישראל פטור בגרים מיבעיא. והמוציא שם רע על הקטנה או על הבוגרת פטור מן הקנס ומן המלקות ואינו חייב עד שיוציא על הנערה שנאמר והוציאו את בתולי הנערה נערה מלא בה&quot;א דבר הכתוב לאפוקי קטנה ובוגרת נמי לאו נערה היא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-3-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:3:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-3-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:3:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-3">Mishneh Torah, Virgin Maiden 3:3</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵין דָּנִין דִּין זֶה אֶלָּא בִּפְנֵי הַבַּיִת וּבֵית דִּין שֶׁל עֶשְׂרִים וּשְׁלֹשָׁה. מִפְּנֵי שֶׁיֵּשׁ בְּדִין מוֹצִיא שֵׁם רַע דִּינֵי נְפָשׁוֹת. שֶׁאִם נִמְצָא הַדָּבָר כְּמוֹ שֶׁנֶּאֱמַר הֲרֵי זוֹ נֶהֱרֶגֶת. אֲבָל הָאוֹנֵס וְהַמְפַתֶּה דָּנִין בָּהֶן בְּכָל זְמַן בִּשְׁלֹשָׁה כְּמוֹ שֶׁיִּתְבָּאֵר בְּהִלְכוֹת סַנְהֶדְרִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אין </strong> דנין דין זה אלא בפני הבית ובב&quot;ד של כ&quot;ג כשאמר שיביא עדים שזינתה מפני שיש בדין מוציא שם רע דיני נפשות שאם היה אמת נהרגת ואין דיני נפשות בפחות מכ&quot;ג דכתיב בדיני נפשות ושפטו העדה והצילו העדה עדה שופטת ועדה מצלת הרי כאן עשרים ומנין לעדה שהיא עשרה שנאמר עד מתי לעדה הרעה יצאו יהושע וכלב נשארו עשרה מרגלים ומנין להביא עוד שלשה ממשמע שנאמר לא תהיה אחרי רבים לרעות אם הרוב מחייבים לא תלך אחריהם להרוג שומע אני דלטובה לזכות הלך אחריהן שאפילו מיעוט המזכין ורבים המחייבים כתיב לא תהיה אחרי רבים לרעות ואם כן למה נאמר אחרי רבים להטו׳ משום זכות לא איצטריך דהא אפילו מיעוט מזכין אלא אפילו לחייב הלך אחריהם אבל אינו כהטייה לטובה הטייה לטובה אפילו אין יתרין מזכין על המחייבים אלא אחד זכה אבל לחובה עד שיהו מחייבין עודפים על המזכין שנים וה&quot;ק לא תהיה אחרי רבים לרעות על פי עד אחד אבל אחרי רבים בשנים אפילו לרעות הילכך על כרחיך כ&quot;ב בעינן דבציר מעשרה מזכין ליכא למימר דהא כתיב והצילו העדה ותו לא משכחת חובה בציר מי&quot;ב ואין ב&quot;ד שקול דאין עושין כ&quot;ב זוגות שאם יחלקו לחצאין הוי להו פלגא ופלגא ולא משכחת לה הטיתך לטובה על פי עד אחד הילכך מוסיפין עליהם עוד אחד הרי כאן כ&quot;ג. ובפני הבית דכתיב בדיני נפשות בזקן ממרא כי יפלא וגו׳ ועשית על פי הדבר אשר יגידו לך מן המקום ההוא מלמד שהמקום גורם לחייב הנידון ואם אינם שם לא ידונו ולכל שאר דיני נפשות דרשינן מדכתיב שופטי׳ ושוטרים וגו׳ וסמיך ליה לא תטע לך אשרה כל עץ אצל מזבח כל זמן שסנהדרי גדולה במקומה בלשכת הגזית שחציה בקדש וחציה בחול כדין אצל מזבח אז שופטים תתן לך בכל שעריך לשפוט דיני נפשות נסתלקו הם בטלו כל דיני נפשות ואונס ומפתה בכל זמן ובג׳ כדין כל קנסות.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-4-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:4:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-4-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:4:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-4">Mishneh Torah, Virgin Maiden 3:4</a></p>
+                <p class="hebrew" lang="he" dir="rtl">וּמִצְוַת עֲשֵׂה שֶׁל תּוֹרָה שֶׁתֵּשֵׁב אֵשֶׁת מוֹצִיא שֵׁם רַע תַּחְתָּיו לְעוֹלָם שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;וְלוֹ תִהְיֶה לְאִשָּׁה&quot; אֲפִלּוּ עִוֶּרֶת אוֹ מֻכַּת שְׁחִין. וְאִם גֵּרְשָׁהּ עָבַר עַל לֹא תַּעֲשֶׂה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;לֹא יוּכַל לְשַׁלְּחָהּ כָּל יָמָיו&quot;. וְכוֹפִין אוֹתוֹ וּמַחֲזִיר וְאֵינוֹ לוֹקֶה כְּמוֹ שֶׁבֵּאַרְנוּ בְּאוֹנֵס. וְאִם קִדֵּם אֶחָד וְקִדְּשָׁהּ אוֹ שֶׁמֵּתָה אוֹ שֶׁהָיָה כֹּהֵן שֶׁאָסוּר בִּגְרוּשָׁה הֲרֵי זֶה לוֹקֶה עַל גֵּרוּשֶׁיהָ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><span class="source-small">-העתקה מסוף הפרק-</span><br>[
+<strong> אזהרת פא </strong> שלא יגרש מוציא שם רע את אשתו כדכת׳ לא יוכל שלחה כל ימיו ושילח זה בגט כדכתיב ושלחה מביתו ואם גרשה עובר על ל&quot;ת וכופין אותו להחזיר ואינו לוקה דכל ימיו בעמוד והחזר קאי כמו שנתבאר באונס ואם קדם אחר וקדשה או שמתה או שהיה כהן שנאסרה עליו משעת גירושין הרי זה לוקה על גירושיה שהרי עבר על לאו ואין ספק בידו לקיים עשה שבו. נמצא בה דבר זמה או שנמצא עליו אסורה מן התורה הרי זה יגרשנה בגט שנאמר ולו תהיה לאשה אשה הראויה לו ולמה לא יבא עשה וידחי ל&quot;ת ככלאים בציצית משום שאיפשר הוא שלא תרצה היא לישב ונמצ׳ עשה ול&quot;ת קיימים השתא נמי כשהוא מגרשה מלמדין אותה שתתרצה היא בגירושין וכדאמרינן לעיל במצות אונס.]</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-6-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:6:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-6-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:6:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-6">Mishneh Torah, Virgin Maiden 3:6</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כֵּיצַד הוֹצָאַת שֵׁם רַע. הוּא שֶׁיָּבוֹא לְבֵית דִּין וְיֹאמַר נַעֲרָה זוֹ בָּעַלְתִּי וְלֹא מָצָאתִי לָהּ בְּתוּלִים וּכְשֶׁבִּקַּשְׁתִּי עַל הַדָּבָר נוֹדַע לִי שֶׁזִּנְּתָה תַּחְתַּי אַחַר שֶׁאֵרַסְתִּיהָ וְאֵלּוּ הֵם עֵדַי שֶׁזִּנְּתָה בִּפְנֵיהֶם. וּבֵית דִּין שׁוֹמְעִין דִּבְרֵי הָעֵדִים וְחוֹקְרִין עֵדוּתָן. אִם נִמְצָא הַדָּבָר אֱמֶת נִסְקֶלֶת. וְאִם הֵבִיא הָאָב עֵדִים וְהוּזְמוּ הָעֵדִים שֶׁהֵבִיא הַבַּעַל וְנִמְצָא שֶׁהֵעִידוּ שֶׁקֶר יִסָּקְלוּ וְיִלְקֶה הוּא וְנוֹתֵן מֵאָה סְלָעִים. וְעַל זֶה נֶאֱמַר <span class="source-small">(דברים כב יז)</span> &quot;וְאֵלֶּה בְּתוּלֵי בִתִּי&quot;, אֵלּוּ הָעֵדִים שֶׁיָּזִימוּ עֵדֵי הַבַּעַל. חָזַר הַבַּעַל וְהֵבִיא עֵדִים אֲחֵרִים וְהֵזִימוּ עֵדֵי הָאָב הֲרֵי הַנַּעֲרָה וְעֵדֵי אָבִיהָ נִסְקָלִין. עַל זֶה נֶאֱמַר <span class="source-small">(דברים כב כ)</span> &quot;וְאִם אֱמֶת הָיָה הַדָּבָר הַזֶּה&quot;. מִפִּי הַשְּׁמוּעָה לָמְדוּ שֶׁפָּרָשָׁה זוֹ יֵשׁ בָּהּ עֵדִים וְזוֹמְמִין וְזוֹמְמֵי זוֹמְמִין:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כיצד </strong> הוצאת שם רע שיבא לב&quot;ד ויאמר נערה זו בעלתי ולא מצאתי לה בתולים כמו שנאמר ואקרב אליה ולא מצאתי לה בתולים וכשחקרתי על הדבר נודע לי שזנתה תחתי אחר שארסתיה דקודם שארסה היא פטורה מכלום ובועלה חייב ממון וזה שנא׳ ואם אמת היה הדבר הזה בעדים שזנתה אחר אירוסין וב&quot;ד שומעין דברי העדים וחוקרים עדותם דדיני נפשות בחקירה ואם נמצאו אמת נסקלה ואם הביא האב עדים והזימו עדים שהביא הבעל ונמצאו עידי הבעל שהעידו שקר ילקה הוא ויתן מאה סלעים והם יסקלו במיתה שזממו לעשות לנערה שהיא סקילה דכתיב ועשיתם לו כאשר זמם וגו׳ ועל זה נאמר ואלה בתולי בתי אלו העדים שיזימו עידי הבעל. חזר הבעל והביא עדים אחרים והזימו עידי האב הרי הנערה ועדי אביה נסקלין על זה נאמר ואם אמת היה הדבר הזה מפי השמועה למדו שפרשה זו יש בה עדים וזוממים וזוממי זוממים. הוציא עליה שם רע והיא בוגרת אף על פי שהביא עדים שזנתה תחתיו כשהיתה נערה הרי זה פטור מן המלקות ומן הקנס דבשעה שהוציא שם רע עליה בוגרת היתה וקרא נערה קאמר אבל היא נסקלת אם נמצא הדבר אמתי אע&quot;פ שהיה בוגרת עתה הואיל ובשע׳ שזנתה נערה היתה דכתיב והוציאו את הנערה ולא כתיב והוצאוה משמע הנערה שהיתה כבר ואף על פי שאינה עכשיו דמעשיה גרמו לה וכשהיא זנאי נערה זנאי משא&quot;כ במלקות וקנס דידיה דאינו חייב דעקימת שפתיו דהשתא שהיא בוגרת גרמו לו והרי אינה עכשיו נערה כדאמרינן.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-8-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:8:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-8-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:8:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-8">Mishneh Torah, Virgin Maiden 3:8</a></p>
+                <p class="hebrew" lang="he" dir="rtl">כָּל נַעֲרָה שֶׁאֵין לָהּ קְנָס אִם נֶאֶנְסָה אוֹ נִתְפַּתְּתָה כָּךְ הַמּוֹצִיא עָלֶיהָ שֵׁם רַע פָּטוּר מִן הַמַּלְקוֹת וּמִן הַתַּשְׁלוּמִין. וְכֵן הַכּוּתִית שֶׁנִּתְגַּיְּרָה וְהַשִּׁפְחָה שֶׁנִּשְׁתַּחְרְרָה פְּחוּתָה מִבַּת שָׁלֹשׁ שָׁנִים אֲפִלּוּ הָיְתָה הוֹרָתָהּ שֶׁלֹּא בִּקְדֻשָּׁה וְלֵדָתָהּ בִּקְדֻשָּׁה הַמּוֹצִיא עָלֶיהָ שֵׁם רַע פָּטוּר מִן הַקְּנָס וּמִן הַמַּלְקוֹת שֶׁנֶּאֱמַר <span class="source-small">(דברים כב יט)</span> &quot;כִּי הוֹצִיא שֵׁם רָע עַל בְּתוּלַת יִשְׂרָאֵל&quot; עַד שֶׁתִּהְיֶה הוֹרָתָהּ וְלֵדָתָהּ בִּקְדֻשָּׁה:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>כל </strong> נערה שאין לה קנס אם נאנסה או נתפתתה כך המוציא עליה שם רע פטור מן המלקות ומן התשלומין. [והיינו משום דכתיב קרא (דברים כח, יט) נערה ולא בוגרת וכן הני דאימעיטו לעיל כ&quot;א מקנס היינו משום דהוו בחזקת דאינן בתולות כשוטה וחרשת וכו׳ והכא נמי כתיב (שם פס׳ יז) בתולים, וכן ממאנת ואילונית טעמא משום דלא אתיא לכלל נערה והכא נמי נערה כתיב, וקטנה דחייבין עליה קנס ואינה בדין מוציא שם רע לא קשיא להאי כללא, דהכא לא כילינן אלא כל נערה]. וכן הנכרית שנתגיירה פחותה מבת ג׳ ואפילו היתה הורתה שלא בקדושה ולידתה בקדושה פטור מן הקנס ומן המלקות שנאמר כי הוציא שם רע על בתולת ישראל בתולת ישראל ולא בתולת גרים ואם היתה הורתה בקדושה גם כן הויא בתולת ישראל מעליא.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-9-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:9:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-9-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:9:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-9">Mishneh Torah, Virgin Maiden 3:9</a></p>
+                <p class="hebrew" lang="he" dir="rtl">קִדֵּשׁ נַעֲרָה וְגֵרְשָׁהּ וְחָזַר וְקִדְּשָׁהּ וְהוֹצִיא עָלֶיהָ שֵׁם רַע וְהֵבִיא עֵדִים שֶׁזִּנְּתָה תַּחְתָּיו בַּקִּדּוּשִׁין הָרִאשׁוֹנִים וְנִמְצְאוּ זוֹמְמִים הֲרֵי זֶה פָּטוּר. וְכֵן אִם הָיְתָה יְבִמְתּוֹ שֶׁכָּנְסָהּ וְהוֹצִיא עָלֶיהָ שֵׁם רַע וְהֵבִיא עֵדִים שֶׁזִּנְּתָה תַּחַת קִדּוּשֵׁי אָחִיו וְנִמְצְאוּ זוֹמְמִים הֲרֵי זֶה פָּטוּר מִן הַמַּלְקוֹת וּמִן הַתַּשְׁלוּמִין. וְכָל הַפָּטוּר אִם רָצָה לְגָרֵשׁ יְגָרֵשׁ:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>הביא </strong> עליה עדים שזנתה בקידושין ראשונים שקדשה וגרשה וחזר וקדשה ונמצאו זוממין פטור דפשטיה דקרא בנישואין ראשונים מיירי. וכן אם היתה יבמתו שכנסה והוציא עליה שם רע והביא עליה עדים שזנתה תחת קדושי אחיו ונמצאו זוממין הרי זה פטור דכתיב את בתי נתתי לאיש הזה ולא ליבם אין יבם שהוציא שם רע על נישואי אחיו בכלל פרשה זו לטעון טענת בתולים. וכל הפטור אם רצה לגרש מגרש דלא מנעה תורה שלא יגרש אלא למי שנותן קנס כדכתיב וענשו אותו ולא תהיה לאשה לא יוכל וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-10-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:10:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-10-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:10:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-10">Mishneh Torah, Virgin Maiden 3:10</a></p>
+                <p class="hebrew" lang="he" dir="rtl">אֵינוֹ חַיָּב עַד שֶׁיִּבְעל אוֹתָהּ כְּדַרְכָּהּ וְיוֹצִיא שֵׁם רַע (עַל הַבְּעִילָה) כְּדַרְכָּהּ. בְּעָלָהּ שֶׁלֹּא כְּדַרְכָּהּ וְאָמַר לֹא מְצָאתִיהָ בְּתוּלָה פָּטוּר וּמַכִּין אוֹתוֹ מַכַּת מַרְדּוּת:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>אינו </strong> חייב עד שיבעול כדרכה ויוציא שם רע כדרכה דהיאך אתה קורא לא מצאתי לה בתולים אלא א&quot;כ אמר בעלתיה כדרכה ומצאתיה בעולה. בעל שלא כדרכה ואמר לא מצאתי לה בתולים פטור כדאמרינן. וכן אם אמר לא מצאתי בתולה ולא אמר שזנתה תחתי או שאמר זנתה תחתי ולא הביא עדים אלא באו מאיליהן הרי זה פטור דלא ענשתו תורה אלא על שהוציא הוא עליה שם רע והביא עדים שקרים כדכתיב ושם לה עלילות דברים לאמור לא מצאתי לבתך בתולים ואלה בתולי בתי וגו׳ ומדואלה בתולי בתי אמרינן דאלו העדים שיזימו העדים שהעידו ושזנתה תחתיו משמע דהוא הביאם דלא הזכיר התורה העדים אלא עלילות דברים ששם לה והם העדים שהביא ועל זה הוצרך לומר הוא ואלה בתולי בתי שהם העדים כדאמרינן. והעדים שהעידו מעצמם נהרגים אם הוזמו דהא אף על פי שלא הביאם הוא אם היתה מכוונת עדותם היתה נהרגת על פיהם ועכשיו שהוזמו נהרגין מדכתיב ועשיתם לו כאשר זמם וגו׳.</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+          <section class="unit" id="kiryat-sefer-on-mishneh-torah-virgin-maiden-3-12-1" data-unit data-lexical-unit>
+            <div class="unit-head">
+              <div><h4 style="margin:0;color:var(--text);text-transform:none;letter-spacing:0">Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:12:1</h4></div>
+              <a class="anchor" href="#kiryat-sefer-on-mishneh-torah-virgin-maiden-3-12-1" aria-label="Copy link to Kiryat Sefer on Mishneh Torah, Virgin Maiden 3:12:1">#</a>
+            </div>
+            <div class="unit-grid paired-text-grid">
+              <div class="paired-text-column base-side">
+                <p class="paired-label">Base text &middot; <a href="../../halakhah/mishneh-torah-virgin-maiden/#mishneh-torah-virgin-maiden-3-12">Mishneh Torah, Virgin Maiden 3:12</a></p>
+                <p class="hebrew" lang="he" dir="rtl">זֶה שֶׁנֶּאֱמַר בַּתּוֹרָה <span class="source-small">(דברים כב יז)</span> &quot;וּפָרְשׂוּ הַשִּׂמְלָה&quot; לְשׁוֹן כָּבוֹד שֶׁנּוֹשְׂאִין וְנוֹתְנִין בְּסִתְרֵי הַדָּבָר. וְכֵן זֶה שֶׁיֹּאמַר הָאָב <span class="source-small">(דברים כב יז)</span> &quot;אֵלֶּה בְּתוּלֵי בִתִּי&quot; הֵן זוֹמְמֵי עֵדֵי הַבַּעַל. וְזֶה שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כ)</span> &quot;וְאִם אֱמֶת הָיָה הַדָּבָר&quot; תֵּהָרֵג כְּשֶׁזִּנְּתָה אַחַר הָאֵרוּסִין בְּעֵדִים שֶׁנֶּאֱמַר <span class="source-small">(דברים כב כא)</span> &quot;לִזְנוֹת בֵּית אָבִיהָ&quot;. אֲבָל קדֶם הָאֵרוּסִין כְּבָר אָמְרָה תּוֹרָה בָּהּ שֶׁהִיא פְּטוּרָה מִכְּלוּם וּבוֹעֲלָהּ חַיָּב בְּתַשְׁלוּמֵי מָמוֹן בִּלְבַד בֵּין פִּתָּה בֵּין אָנַס:</p>
+              </div>
+              <div class="paired-text-column commentary-side">
+                <p class="paired-label">Commentary</p>
+                <p class="hebrew lexical-inline" lang="he" dir="rtl" data-lexical-paragraph="0"><strong>זה </strong> שנאמר בתורה ופרשו את השמלה לשון כבוד שנושאין ונותנין בסתרי הדבר וכן זה שיאמר האב ואלה בתולי בתי הם זוממי עידי הבעל וזה שנאמר ואם אמת היה הדבר הזה תהרג כשזנתה אחר האירוסין בעדים כדאמר דכתיב לזנות בית אביה דקודם האירוסין כבר אמרה תורה שהוא פטורה מכלום ובועלה חייב ממון בלבד בין פתה בין אנס:<br><strong> אזהרת פא </strong> שלא יגרש מוציא שם רע את אשתו כדכת׳ לא יוכל שלחה כל ימיו ושילח זה בגט כדכתיב ושלחה מביתו ואם גרשה עובר על ל&quot;ת וכופין אותו להחזיר ואינו לוקה דכל ימיו בעמוד והחזר קאי כמו שנתבאר באונס ואם קדם אחר וקדשה או שמתה או שהיה כהן שנאסרה עליו משעת גירושין הרי זה לוקה על גירושיה שהרי עבר על לאו ואין ספק בידו לקיים עשה שבו. נמצא בה דבר זמה או שנמצא עליו אסורה מן התורה הרי זה יגרשנה בגט שנאמר ולו תהיה לאשה אשה הראויה לו ולמה לא יבא עשה וידחי ל&quot;ת ככלאים בציצית משום שאיפשר הוא שלא תרצה היא לישב ונמצ׳ עשה ול&quot;ת קיימים השתא נמי כשהוא מגרשה מלמדין אותה שתתרצה היא בגירושין וכדאמרינן לעיל במצות אונס. ואין בכל מצות הלכות אלו כי אם שנים או שלשה דברים מדברי סופרים בכלל ושמרתם את משמרתי וגו׳:</p>
+              </div>
+            </div>
+            <div class="lexical-slot" data-lexical-slot></div>
+            <nav class="unit-nav" aria-label="Unit navigation">
+              <a href="#work-top">Back to top</a>
+              <a href="#chapter-kiryat-sefer-on-mishneh-torah-virgin-maiden-text-3">Back to chapter/section start</a>
+            </nav>
+          </section>
+        <div class="license-notice lexical-downloads">
+          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.
+          <p class="export-actions"><a class="export-button" href="../../data/lexical/kiryat-sefer-on-mishneh-torah-virgin-maiden.manifest.json">Lexical manifest</a></p>
+        </div>
+        </article>
+      </div>
+    </div>
+  </main>
+  <section class="lexical-hud" data-lexical-hud hidden aria-live="polite">
+    <div class="hud-head"><h2>Lexical HUD</h2><button class="hud-close" type="button" data-hud-close>Close</button></div>
+    <dl class="lexical-fields">
+      <div class="lexical-field-row"><dt>Clicked Hebrew form</dt><dd data-hud-word lang="he" dir="rtl">N/A</dd></div>
+      <div class="lexical-field-row" data-hud-hebrew-strict-row><dt>Strict Hebrew</dt><dd data-hud-hebrew-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-aramaic-strict-row hidden><dt>Strict Aramaic</dt><dd data-hud-aramaic-strict>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-breakdown-row><dt>Breakdown</dt><dd data-hud-breakdown>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-potential-row><dt>Potential options</dt><dd data-hud-potential>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-related-row hidden><dt>Related options</dt><dd data-hud-related>N/A</dd></div>
+      <div class="lexical-field-row" data-hud-caution-row hidden><dt>Caution</dt><dd data-hud-caution>N/A</dd></div>
+    </dl>
+    <details class="source-details">
+      <summary>Sources / licenses</summary>
+      <div data-hud-sources></div>
+    </details>
+  </section>
+  <script type="application/json" data-lexical-occurrences data-src="../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-virgin-maiden.json">{}</script>
+  <script type="application/json" data-lexical-config>{"manifest_url":"../../data/lexical/kiryat-sefer-on-mishneh-torah-virgin-maiden.manifest.json","occurrence_url":"../../data/lexical/occurrences/kiryat-sefer-on-mishneh-torah-virgin-maiden.json","root_href":"../../"}</script>
+  <script>
+    (async () => {
+      const tokenIndexNode = document.querySelector("[data-lexical-token-index]");
+      const lexiconNode = document.querySelector("[data-lexical-lexicon]");
+      const configNode = document.querySelector("[data-lexical-config]");
+      const tokenIndex = tokenIndexNode ? JSON.parse(tokenIndexNode.textContent) : { forms: [] };
+      const lexicon = lexiconNode ? JSON.parse(lexiconNode.textContent) : { entries: [] };
+      const lexicalConfig = configNode ? JSON.parse(configNode.textContent) : {};
+      const occurrenceNode = document.querySelector("[data-lexical-occurrences]");
+      let occurrences = occurrenceNode && occurrenceNode.textContent.trim() ? JSON.parse(occurrenceNode.textContent) : { units: {} };
+      const tokenRows = new Map((tokenIndex.forms || []).map((row) => [row.token_index_id, row]));
+      const lexiconEntries = new Map((lexicon.entries || []).map((entry) => [entry.entry_id, entry]));
+      const chunkPromises = new Map();
+      const sourceRows = new Map();
+      let manifestPromise = null;
+      const hud = document.querySelector("[data-lexical-hud]");
+      const toAbsoluteUrl = (url, base = document.baseURI) => new URL(url, base).toString();
+      const lexicalRootUrl = () => toAbsoluteUrl(lexicalConfig.root_href || "./");
+      const localSourceUrlMap = {
+        "local:project-technical-term-table": "data/lexical/source-layers/project-technical-terms.json",
+        "local:project-zohar-ari-technical-term-table": "data/lexical/source-layers/project-zohar-ari-technical-terms.json",
+        "local:project-abbreviation-table": "data/lexical/source-layers/project-abbreviations.json",
+        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",
+        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",
+        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",
+        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",
+        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"
+      };
+      const resolveSourceUrl = (url) => {
+        const raw = String(url || "").trim();
+        if (!raw) return "";
+        if (/^(https?:|mailto:)/i.test(raw)) return raw;
+        const mapped = localSourceUrlMap[raw];
+        if (mapped) return toAbsoluteUrl(mapped, lexicalRootUrl());
+        if (/^(?:\.{0,2}\/|data\/)/.test(raw)) return toAbsoluteUrl(raw, lexicalRootUrl());
+        return "";
+      };
+      const fetchJson = async (url, base = document.baseURI) => {
+        const response = await fetch(toAbsoluteUrl(url, base));
+        if (!response.ok) throw new Error(`Unable to load lexical payload: ${response.status} ${url}`);
+        return response.json();
+      };
+      const loadOccurrences = async () => {
+        if (occurrences.units && Object.keys(occurrences.units).length) return occurrences;
+        const occurrenceUrl = lexicalConfig.occurrence_url || (occurrenceNode && occurrenceNode.dataset ? occurrenceNode.dataset.src : "");
+        if (occurrenceUrl) occurrences = await fetchJson(occurrenceUrl);
+        return occurrences;
+      };
+      const loadManifest = async () => {
+        if (!lexicalConfig.manifest_url) return null;
+        if (!manifestPromise) manifestPromise = fetchJson(lexicalConfig.manifest_url);
+        return manifestPromise;
+      };
+      const resolveSourceRows = (ids, inlineRows) => {
+        if (Array.isArray(inlineRows) && inlineRows.length && typeof inlineRows[0] === "object") return inlineRows;
+        return (Array.isArray(ids) ? ids : []).map((id) => sourceRows.get(id)).filter(Boolean);
+      };
+      const cacheChunk = (chunk) => {
+        Object.entries(chunk.source_rows || {}).forEach(([id, row]) => sourceRows.set(id, row));
+        ((chunk.token_index && chunk.token_index.forms) || []).forEach((row) => tokenRows.set(row.token_index_id, row));
+        ((chunk.lexicon && chunk.lexicon.entries) || []).forEach((entry) => {
+          lexiconEntries.set(entry.entry_id, {
+            ...entry,
+            source_rows: resolveSourceRows(entry.source_row_ids, entry.source_rows),
+            secondary_source_rows: resolveSourceRows(entry.secondary_source_row_ids, entry.secondary_source_rows)
+          });
+        });
+        return chunk;
+      };
+      const loadChunk = async (chunkId) => {
+        if (!chunkId) return null;
+        if (!chunkPromises.has(chunkId)) {
+          chunkPromises.set(chunkId, (async () => {
+            const manifest = await loadManifest();
+            if (!manifest) return null;
+            const chunkInfo = (manifest.chunks || []).find((chunk) => chunk.chunk_id === chunkId);
+            if (!chunkInfo) throw new Error(`Lexical chunk not found in manifest: ${chunkId}`);
+            const manifestUrl = toAbsoluteUrl(lexicalConfig.manifest_url);
+            return cacheChunk(await fetchJson(chunkInfo.url, manifestUrl));
+          })());
+        }
+        return chunkPromises.get(chunkId);
+      };
+      const loadTokenRow = async (tokenIndexId) => {
+        if (!tokenIndexId) return {};
+        if (tokenRows.has(tokenIndexId)) return tokenRows.get(tokenIndexId);
+        const manifest = await loadManifest();
+        const chunkId = manifest && manifest.token_chunks ? manifest.token_chunks[tokenIndexId] : "";
+        if (chunkId) await loadChunk(chunkId);
+        return tokenRows.get(tokenIndexId) || {};
+      };
+      const normalizeHebrewDisplay = (value) => typeof value === "string" ? value.replace(/([\u0590-\u05FF])'/g, "$1׳").replace(/([\u0590-\u05FF])\"(?=[\u0590-\u05FF])/g, "$1״") : value;
+      const hebrewTokenPattern = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4\x27\x22]*/gu;
+      const makeWordSpan = (text, tokenIndexId, ordinal) => {
+        const span = document.createElement("span");
+        span.className = "lexical-word";
+        span.lang = "he";
+        span.role = "button";
+        span.tabIndex = 0;
+        span.dataset.lexicalToken = `${tokenIndexId}-${ordinal}`;
+        span.dataset.lexicalIndex = tokenIndexId || "";
+        span.dataset.lexicalEntry = "";
+        span.dataset.lexicalStatus = "pending";
+        span.setAttribute("aria-pressed", "false");
+        span.textContent = normalizeHebrewDisplay(text);
+        return span;
+      };
+      const wrapTextNode = (node, tokenIds, state) => {
+        const text = node.nodeValue;
+        const matches = Array.from(text.matchAll(hebrewTokenPattern));
+        if (!matches.length) return;
+        const fragment = document.createDocumentFragment();
+        let position = 0;
+        matches.forEach((match) => {
+          if (match.index > position) fragment.appendChild(document.createTextNode(text.slice(position, match.index)));
+          const tokenIndexId = tokenIds[state.index++];
+          fragment.appendChild(tokenIndexId ? makeWordSpan(match[0], tokenIndexId, state.index) : document.createTextNode(match[0]));
+          position = match.index + match[0].length;
+        });
+        if (position < text.length) fragment.appendChild(document.createTextNode(text.slice(position)));
+        node.parentNode.replaceChild(fragment, node);
+      };
+      const wrapParagraph = (paragraph, tokenIds) => {
+        const walker = document.createTreeWalker(paragraph, NodeFilter.SHOW_TEXT);
+        const textNodes = [];
+        while (walker.nextNode()) textNodes.push(walker.currentNode);
+        const state = { index: 0 };
+        textNodes.forEach((node) => wrapTextNode(node, tokenIds, state));
+      };
+      const loadedOccurrences = await loadOccurrences();
+      document.querySelectorAll("[data-lexical-unit]").forEach((unit) => {
+        const unitData = loadedOccurrences.units ? loadedOccurrences.units[unit.id] : null;
+        if (!unitData) return;
+        unit.querySelectorAll("[data-lexical-paragraph]").forEach((paragraph) => {
+          const paragraphIndex = Number(paragraph.dataset.lexicalParagraph);
+          const paragraphData = (unitData.paragraphs || []).find((item) => Number(item.paragraph_index) === paragraphIndex);
+          wrapParagraph(paragraph, paragraphData ? (paragraphData.token_index_ids || []) : []);
+        });
+      });
+      const buttons = Array.from(document.querySelectorAll("[data-lexical-token]"));
+      if (!buttons.length || !hud) return;
+      let activeHudButton = null;
+      if (hud.parentElement !== document.body) document.body.appendChild(hud);
+      const positionHudNearButton = (button) => {
+        if (!button || hud.hidden) return;
+        const rect = button.getBoundingClientRect();
+        const margin = 12;
+        const width = Math.min(560, Math.max(280, window.innerWidth - margin * 2));
+        hud.style.width = width + "px";
+        const preferredLeft = rect.right - width;
+        const left = Math.min(Math.max(margin, preferredLeft), window.innerWidth - width - margin);
+        const below = window.innerHeight - rect.bottom - margin;
+        const above = rect.top - margin;
+        const openAbove = below < 280 && above > below;
+        const available = Math.max(220, (openAbove ? above : below) - margin);
+        hud.style.maxHeight = Math.min(560, available) + "px";
+        const measuredHeight = Math.min(hud.offsetHeight || 320, Math.min(560, available));
+        const rawTop = openAbove ? rect.top - measuredHeight - margin : rect.bottom + margin;
+        const top = Math.min(Math.max(margin, rawTop), window.innerHeight - measuredHeight - margin);
+        hud.style.left = left + "px";
+        hud.style.top = top + "px";
+      };
+      const scheduleHudPosition = () => {
+        if (!activeHudButton || hud.hidden) return;
+        window.requestAnimationFrame(() => positionHudNearButton(activeHudButton));
+      };
+      const setText = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (node) node.textContent = normalizeHebrewDisplay(value) || "N/A";
+      };
+      const setList = (root, selector, value) => {
+        const node = root.querySelector(selector);
+        if (!node) return;
+        const values = Array.isArray(value) ? value.filter(Boolean) : (value ? [value] : []);
+        node.replaceChildren();
+        if (!values.length) { node.textContent = "N/A"; return; }
+        if (values.length === 1) { node.textContent = values[0]; return; }
+        const ul = document.createElement("ul");
+        values.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const setRowHidden = (root, selector, hidden) => {
+        const row = root.querySelector(selector);
+        if (row) row.hidden = Boolean(hidden);
+      };
+      const cleanValues = (values) => Array.isArray(values) ? values.filter(Boolean) : (values ? [values] : []);
+      const normalizeStrictRendering = (value) => String(value || "").trim().replace(/\s+/g, " ").replace(/\.$/, "");
+      const cleanStrictRenderings = (values) => {
+        const raw = cleanValues(values).map(normalizeStrictRendering).filter(Boolean);
+        const explanatorySet = raw.some((value) => /[()]|^usually\b|^specifically\b|i\.e\.|by implication|transitively|and hence/i.test(value));
+        return [...new Set(raw.filter((value) => {
+          if (value.length > 64) return false;
+          if (/[()]/.test(value)) return false;
+          if (/^(usually|specifically|i\.e\.|by implication|transitively|and hence|aloud)$/i.test(value)) return false;
+          if (explanatorySet && /^(priest|saint|king)$/i.test(value)) return false;
+          return true;
+        }))];
+      };
+      const uniqueValues = (values) => [...new Set(cleanValues(values))];
+      const getStrictRenderings = (view) => cleanStrictRenderings([...(view.surface_renderings || []), ...(view.strict_renderings || [])]);
+      const normalizeHebrewKey = (value) => normalizeHebrewDisplay(String(value || "")).normalize("NFC").replace(/[\u0591-\u05BD\u05BF\u05C1-\u05C2\u05C4-\u05C5\u05C7]/g, "").replace(/\u05DA/g, "\u05DB").replace(/\u05DD/g, "\u05DE").replace(/\u05DF/g, "\u05E0").replace(/\u05E3/g, "\u05E4").replace(/\u05E5/g, "\u05E6");
+      const entryHaystack = (entry) => [entry.source_name, entry.relation_label, entry.language, entry.language_code, entry.register].filter(Boolean).join(" ").toLowerCase();
+      const isAramaicEntry = (entry) => entryHaystack(entry).includes("aramaic") || entryHaystack(entry).includes("aram-") || entryHaystack(entry).includes("project_aramaic");
+      const isAramaicView = (view) => {
+        const haystack = [view.match_method, view.source_name, view.context_note, view.surface_context_note, view.lexical_language, view.language, view.language_code, view.register].filter(Boolean).join(" ").toLowerCase();
+        if (haystack.includes("aramaic") || haystack.includes("aram-") || haystack.includes("project_aramaic")) return true;
+        return cleanValues(view.possible_entries).some((entry) => entry.context_role === "likely_contextual" && isAramaicEntry(entry));
+      };
+      const strictEntriesForView = (view) => {
+        const likelyEntries = cleanValues(view.possible_entries).filter((entry) => entry.context_role === "likely_contextual");
+        const exactCleanEntries = cleanValues(view.possible_entries).filter((entry) => entry.source_family !== "kaikki" && entry.source_family !== "wiktionary" && (normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word));
+        return [...likelyEntries, ...exactCleanEntries].filter((entry, index, entries) => {
+          const key = entry.entry_key || `${entry.source_family || ""}|${entry.source_id || ""}|${entry.lemma || ""}|${entry.match_key || ""}`;
+          return entries.findIndex((candidate) => (candidate.entry_key || `${candidate.source_family || ""}|${candidate.source_id || ""}|${candidate.lemma || ""}|${candidate.match_key || ""}`) === key) === index;
+        });
+      };
+      const getStrictBuckets = (view) => {
+        const topLevel = getStrictRenderings(view);
+        const strictEntries = strictEntriesForView(view);
+        const hebrewLikely = cleanStrictRenderings(strictEntries.filter((entry) => !isAramaicEntry(entry)).flatMap((entry) => entry.strict_renderings || []));
+        const aramaicLikely = cleanStrictRenderings(strictEntries.filter(isAramaicEntry).flatMap((entry) => entry.strict_renderings || []));
+        if (isAramaicView(view)) return { hebrew: hebrewLikely.length && aramaicLikely.length ? hebrewLikely : [], aramaic: uniqueValues([...topLevel, ...aramaicLikely]) };
+        return { hebrew: uniqueValues([...topLevel, ...hebrewLikely]), aramaic: aramaicLikely };
+      };
+      const strictEntryKeys = (view) => {
+        return new Set(strictEntriesForView(view).map((entry) => entry.entry_key).filter(Boolean));
+      };
+      const appendRenderings = (node, values) => {
+        const filtered = Array.isArray(values) ? values.filter(Boolean) : [];
+        if (!filtered.length) { node.append("N/A"); return; }
+        if (filtered.length === 1) { node.append(filtered[0]); return; }
+        const ul = document.createElement("ul");
+        filtered.forEach((value) => { const li = document.createElement("li"); li.textContent = value; ul.appendChild(li); });
+        node.appendChild(ul);
+      };
+      const renderBreakdown = (root, view) => {
+        const node = root.querySelector("[data-hud-breakdown]");
+        if (!node) return;
+        node.replaceChildren();
+        const rows = Array.isArray(view.breakdown) ? view.breakdown : [];
+        setRowHidden(root, "[data-hud-breakdown-row]", !rows.length);
+        if (!rows.length) { node.textContent = ""; return; }
+        const list = document.createElement("div");
+        list.className = "breakdown-list";
+        rows.forEach((row) => {
+          const section = document.createElement("section");
+          section.className = "breakdown-row";
+          const head = document.createElement("p");
+          const hebrew = document.createElement("strong");
+          hebrew.lang = "he";
+          hebrew.dir = "rtl";
+          hebrew.textContent = normalizeHebrewDisplay(row.hebrew || "");
+          head.appendChild(hebrew);
+          section.appendChild(head);
+          const renderings = document.createElement("div");
+          appendRenderings(renderings, row.strict_renderings || []);
+          section.appendChild(renderings);
+          list.appendChild(section);
+        });
+        node.appendChild(list);
+      };
+      const isRelatedEntry = (entry) => {
+        const relation = String(entry.relation_label || "").toLowerCase();
+        return entry.context_role === "related" || relation.includes("related") || relation.includes("cognate") || relation.includes("root-field");
+      };
+      const entryMatchesClickedForm = (entry, view) => normalizeHebrewKey(entry.match_key) === view.normalized_word || normalizeHebrewKey(entry.lemma) === view.normalized_word;
+      const isNoisyAlternateEntry = (entry) => {
+        const text = cleanValues(entry.strict_renderings).join(" ").toLowerCase();
+        return /(maid|slave|bondmaid|cubit|forearm|middle finger|door-base|\bnut\b|llama|\blama\b|hill|shrub|bush|plant|shoot)/i.test(text);
+      };
+      const renderEntryList = (entries, roleLabel) => {
+        const list = document.createElement("div");
+        list.className = "lexical-entry-list";
+        const groupedEntries = new Map();
+        entries.forEach((entry) => {
+          const spelling = entry.lemma || entry.match_key || "N/A";
+          const key = `${entry.context_role || "entry"}|${spelling}`;
+          if (!groupedEntries.has(key)) groupedEntries.set(key, { spelling, context_role: entry.context_role || "other_possible", relation_label: entry.relation_label || "", source_refs: [], strict_renderings: [] });
+          const group = groupedEntries.get(key);
+          group.source_refs.push(`${entry.source_name || "source N/A"} ${entry.source_id || ""}`.trim());
+          cleanStrictRenderings(entry.strict_renderings || []).forEach((rendering) => { if (rendering && !group.strict_renderings.includes(rendering)) group.strict_renderings.push(rendering); });
+        });
+        const sorted = [...groupedEntries.values()].sort((a, b) => (a.context_role === "likely_contextual" ? -1 : 1) - (b.context_role === "likely_contextual" ? -1 : 1));
+        sorted.forEach((entry) => {
+          const card = document.createElement("section");
+          card.className = "lexical-entry";
+          const title = document.createElement("h3");
+          const role = roleLabel || (entry.context_role === "likely_contextual" ? "Contextual entry" : (isRelatedEntry(entry) ? "Related option" : "Potential option"));
+          title.append(role, ": ");
+          const spelling = document.createElement("span");
+          spelling.className = "entry-hebrew";
+          spelling.lang = "he";
+          spelling.dir = "rtl";
+          spelling.textContent = normalizeHebrewDisplay(entry.spelling);
+          title.appendChild(spelling);
+          const meta = document.createElement("p");
+          meta.className = "entry-meta";
+          const relation = entry.relation_label ? ` | ${entry.relation_label}` : "";
+          meta.textContent = `${[...new Set(entry.source_refs)].join(" | ") || "source N/A"}${relation}`;
+          const renderings = document.createElement("div");
+          const renderLabel = document.createElement("p");
+          renderLabel.className = "entry-label";
+          renderLabel.textContent = "Strict renderings";
+          renderings.appendChild(renderLabel);
+          appendRenderings(renderings, entry.strict_renderings || []);
+          card.append(title, meta, renderings);
+          list.appendChild(card);
+        });
+        return list;
+      };
+      const sourceRowKey = (row) => `${row.source_family || ""}|${row.source_id || ""}`;
+      const sourceRowsByKey = (view) => {
+        const map = new Map();
+        [...cleanValues(view.source_rows), ...cleanValues(view.secondary_source_rows)].forEach((row) => { const key = sourceRowKey(row); if (key !== "|") map.set(key, row); });
+        return map;
+      };
+      const sourceRowsForEntry = (view, entry) => {
+        const map = sourceRowsByKey(view);
+        const row = map.get(`${entry.source_family || ""}|${entry.source_id || ""}`);
+        return row ? [row] : [];
+      };
+      const cleanTransliteration = (value) => {
+        const text = String(value || "").trim();
+        return /^[A-Za-z0-9 .,\-Ê»Ê¿Ê¾Ê¼()]+$/.test(text) && text.length <= 80 ? text : "";
+      };
+      const clampScore = (value, min = 0, max = 99) => Math.max(min, Math.min(max, Math.round(value)));
+      const sourceQualityScore = (rows) => {
+        const families = cleanValues(rows).map((row) => String(row.source_family || "").toLowerCase());
+        const sourceIds = cleanValues(rows).map((row) => String(row.source_id || "").toLowerCase());
+        const licenses = cleanValues(rows).map((row) => String(row.license || "").toLowerCase());
+        if (families.includes("workspace")) return { delta: 10, reason: "project-approved lexical layer" };
+        if (families.includes("openscriptures")) return { delta: 8, reason: "OpenScriptures source row" };
+        if (families.includes("wikidata")) return { delta: 7, reason: "Wikidata lexeme source row" };
+        if (families.includes("kaikki") || families.includes("wiktionary")) return { delta: -6, reason: "Kaikki/Wiktionary enrichment source" };
+        if (licenses.some((license) => license.includes("incomplete"))) return { delta: -12, reason: "incomplete source metadata" };
+        if (sourceIds.some((sourceId) => sourceId)) return { delta: 2, reason: "source id present" };
+        return { delta: -10, reason: "missing source row" };
+      };
+      const parserScore = (view) => {
+        const status = String(view.surface_context_status || view.disambiguation_status || "").toLowerCase();
+        if (status.includes("fixed_expression")) return { delta: 8, reason: "fixed expression rule" };
+        if (status.includes("particle")) return { delta: 8, reason: "particle/grammar rule" };
+        if (status.includes("prefix_base")) return { delta: 6, reason: "prefix/base parser with resolved base" };
+        if (status.includes("abbreviation")) return { delta: 7, reason: "abbreviation table" };
+        return { delta: 0, reason: "" };
+      };
+      const applyDisplayBoost = (status, rawScore, view) => {
+        return { score: rawScore, reasons: [] };
+      };
+      const scoreClaim = (status, hebrew, renderings, rows, evidence = {}) => {
+        const reasons = [];
+        let score = 0;
+        if (status === "Unresolved") return { raw_score: 0, score: 0, display_score: 0, reasons: ["no resolved lexical row"], raw_reasons: ["no resolved lexical row"], display_reasons: [] };
+        if (status === "Caution") { score = 35; reasons.push("caution tier"); }
+        else if (status === "Related") { score = 42; reasons.push("related option, not contextual"); }
+        else if (status === "Potential") { score = 58; reasons.push("potential option, context unresolved"); }
+        else if (status === "Strict Aramaic") { score = 84; reasons.push("strict Aramaic row"); }
+        else { score = 84; reasons.push("strict Hebrew row"); }
+        const rendered = cleanStrictRenderings(renderings || []);
+        if (rendered.length) { score += 5; reasons.push("usable strict renderings"); } else { score -= 15; reasons.push("no usable renderings"); }
+        const sourceQuality = sourceQualityScore(rows);
+        score += sourceQuality.delta;
+        if (sourceQuality.reason) reasons.push(sourceQuality.reason);
+        const view = evidence.view || {};
+        const entry = evidence.entry || {};
+        const clicked = normalizeHebrewDisplay(view.hebrew_word || view.surface_word || "");
+        const entryMatch = normalizeHebrewDisplay(entry.match_key || "");
+        const entryLemma = normalizeHebrewDisplay(entry.lemma || hebrew || "");
+        if (evidence.surfaceClaim) { score += 5; reasons.push("clicked surface-form rendering"); }
+        if (clicked && (entryMatch === clicked || entryLemma === clicked || normalizeHebrewDisplay(hebrew || "") === clicked)) { score += 6; reasons.push("exact clicked surface match"); }
+        else if (view.normalized_word && (normalizeHebrewKey(entry.match_key || hebrew || "") === view.normalized_word || normalizeHebrewKey(entry.lemma || hebrew || "") === view.normalized_word)) { score += 4; reasons.push("exact normalized match"); }
+        if (entry.context_role === "likely_contextual" || evidence.surfaceClaim) { score += 5; reasons.push("contextual row selected"); }
+        if (entry.context_role === "other_possible") { score -= 8; reasons.push("other-possible candidate"); }
+        const parser = parserScore(view);
+        score += evidence.surfaceClaim ? parser.delta : 0;
+        if (evidence.surfaceClaim && parser.reason) reasons.push(parser.reason);
+        if (isNoisyAlternateEntry(entry)) { score -= 28; reasons.push("homograph/noise risk"); }
+        if (!cleanValues(rows).length && status !== "Caution" && status !== "Unresolved") { score -= 20; reasons.push("source/license row missing"); }
+        const caps = { "Strict Hebrew": 99, "Strict Aramaic": 99, Potential: 75, Related: 60, Caution: 49, Unresolved: 0 };
+        const floors = { "Strict Hebrew": 60, "Strict Aramaic": 60, Potential: 25, Related: 15, Caution: 1, Unresolved: 0 };
+        const rawScore = clampScore(score, floors[status] ?? 0, caps[status] ?? 99);
+        const display = applyDisplayBoost(status, rawScore, view);
+        return { raw_score: rawScore, score: display.score, display_score: display.score, reasons: uniqueValues([...reasons, ...display.reasons]), raw_reasons: uniqueValues(reasons), display_reasons: uniqueValues(display.reasons) };
+      };
+      const claimRowKey = (claim) => `${claim.status || ""}|${claim.hebrew || ""}|${claim.renderings.join(";")}|${claim.rows.map(sourceRowKey).join(";")}`;
+      const uniqueClaims = (claims) => {
+        const seen = new Set();
+        return cleanValues(claims).filter((claim) => {
+          const key = claimRowKey(claim);
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const makeClaim = (status, hebrew, renderings, rows, transliteration = "", evidence = {}) => {
+        const sourceRows = cleanValues(rows);
+        const rowStatus = (!sourceRows.length && status !== "Caution" && status !== "Unresolved") ? "Caution" : status;
+        const cleanRenderings = cleanStrictRenderings(renderings || []);
+        const scored = scoreClaim(rowStatus, hebrew, cleanRenderings, sourceRows, evidence);
+        return { status: rowStatus, raw_confidence: scored.raw_score, confidence: scored.score, display_confidence: scored.display_score, confidence_reasons: scored.reasons, raw_confidence_reasons: scored.raw_reasons, display_confidence_reasons: scored.display_reasons, hebrew: normalizeHebrewDisplay(hebrew || "N/A"), transliteration: cleanTransliteration(transliteration), renderings: cleanRenderings, rows: sourceRows };
+      };
+      const entryHebrewLabel = (entry, view) => entry.lemma || entry.match_key || view.hebrew_word || view.surface_word || "N/A";
+      const claimFromEntry = (view, entry, status, renderings = null) => makeClaim(status, entryHebrewLabel(entry, view), renderings || entry.strict_renderings || [], sourceRowsForEntry(view, entry), entry.transliteration || entry.surface_transliteration || "", { view, entry });
+      const displayLicense = (row) => {
+        const license = String(row && row.license || "").trim();
+        if (String(row && row.source_family || "").toLowerCase() === "workspace" && /^N\/A\s*-\s*project/i.test(license)) return "project-authored / CC0";
+        return license || "N/A";
+      };
+      const sourceSummary = (rows) => {
+        const cleanRows = cleanValues(rows);
+        if (!cleanRows.length) return null;
+        const sources = uniqueValues(cleanRows.map((row) => `${row.source_name || "Source"}${row.source_id ? ` ${row.source_id}` : ""}`));
+        const licenses = uniqueValues(cleanRows.map(displayLicense));
+        const sourceText = sources.length > 2 ? `${sources.slice(0, 2).join("; ")}; +${sources.length - 2} more` : sources.join("; ");
+        return { source: sourceText || "Source metadata incomplete", license: licenses.join(" / ") || "N/A" };
+      };
+      const DISPLAY_THRESHOLD = 50;
+      const MAX_VISIBLE_CLAIMS = 5;
+      const claimConfidence = (claim) => Number.isFinite(claim.display_confidence) ? claim.display_confidence : (Number.isFinite(claim.confidence) ? claim.confidence : 0);
+      const statusOrder = { "Strict Hebrew": 0, "Strict Aramaic": 1, Potential: 2, Related: 3, Caution: 4, Unresolved: 5 };
+      const sortClaimsForDisplay = (claims) => uniqueClaims(claims).sort((a, b) => (claimConfidence(b) - claimConfidence(a)) || ((statusOrder[a.status] ?? 9) - (statusOrder[b.status] ?? 9)) || String(a.hebrew || "").localeCompare(String(b.hebrew || "")));
+      const isDisplayableClaim = (claim) => claim.status === "Unresolved" || claimConfidence(claim) >= DISPLAY_THRESHOLD;
+      const hasDisplayableClaims = (claims) => sortClaimsForDisplay(claims).some(isDisplayableClaim);
+      const appendClaimCard = (list, claim) => {
+        const card = document.createElement("section");
+        card.className = "claim-row";
+        const head = document.createElement("div");
+        head.className = "claim-row-head";
+        const badge = document.createElement("span");
+        badge.className = "claim-status";
+        const confidence = claimConfidence(claim);
+        badge.textContent = `${claim.status || "Potential"} - ${confidence}%`;
+        if (Number.isFinite(claim.raw_confidence) && claim.raw_confidence !== confidence) badge.title = `Raw assurance ${claim.raw_confidence}%; display/order assurance ${confidence}%`;
+        const hebrew = document.createElement("strong");
+        hebrew.className = "claim-hebrew";
+        hebrew.lang = "he";
+        hebrew.dir = "rtl";
+        hebrew.textContent = normalizeHebrewDisplay(claim.hebrew || "N/A");
+        head.append(badge, hebrew);
+        card.appendChild(head);
+        if (claim.transliteration) { const transliteration = document.createElement("p"); transliteration.className = "claim-transliteration"; transliteration.textContent = claim.transliteration; card.appendChild(transliteration); }
+        const renderings = document.createElement("p");
+        renderings.className = "claim-renderings";
+        renderings.textContent = claim.renderings.length ? claim.renderings.join(" / ") : (claim.status === "Unresolved" ? "No lexical entry yet." : "N/A");
+        card.appendChild(renderings);
+        const source = sourceSummary(claim.rows);
+        if (source) {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = `Source: ${source.source}`;
+          const licenseLine = document.createElement("p");
+          licenseLine.className = "claim-license";
+          licenseLine.textContent = `License: ${source.license}`;
+          card.append(sourceLine, licenseLine);
+        } else if (claim.status === "Caution") {
+          const sourceLine = document.createElement("p");
+          sourceLine.className = "claim-source";
+          sourceLine.textContent = "Source: metadata incomplete";
+          card.appendChild(sourceLine);
+        }
+        list.appendChild(card);
+      };
+      const appendClaimsUnderDetails = (parent, label, claims) => {
+        if (!claims.length) return;
+        const details = document.createElement("details");
+        details.className = "other-entries";
+        const summary = document.createElement("summary");
+        summary.textContent = label;
+        const box = document.createElement("div");
+        box.className = "claim-row-list";
+        claims.forEach((claim) => appendClaimCard(box, claim));
+        details.append(summary, box);
+        parent.appendChild(details);
+      };
+      const appendClaimRows = (node, claims) => {
+        if (!node) return;
+        node.replaceChildren();
+        const rows = sortClaimsForDisplay(claims);
+        if (!rows.length) { node.textContent = "N/A"; return; }
+        const list = document.createElement("div");
+        list.className = "claim-row-list";
+        const displayRows = rows.filter(isDisplayableClaim);
+        const lowRows = rows.filter((claim) => !isDisplayableClaim(claim));
+        const visibleRows = displayRows.length ? displayRows : lowRows;
+        visibleRows.slice(0, MAX_VISIBLE_CLAIMS).forEach((claim) => appendClaimCard(list, claim));
+        appendClaimsUnderDetails(list, "Show more", visibleRows.slice(MAX_VISIBLE_CLAIMS));
+        if (!visibleRows.length) { node.textContent = "N/A"; return; }
+        node.appendChild(list);
+      };
+      const strictClaimsForView = (view, strictBuckets) => {
+        const claims = { hebrew: [], aramaic: [] };
+        const surfaceRenderings = cleanStrictRenderings(view.surface_renderings || []);
+        if (surfaceRenderings.length) {
+          const status = isAramaicView(view) ? "Strict Aramaic" : "Strict Hebrew";
+          const claim = makeClaim(status, view.hebrew_word || view.surface_word || "Clicked form", surfaceRenderings, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true });
+          claims[status === "Strict Aramaic" ? "aramaic" : "hebrew"].push(claim);
+        }
+        strictEntriesForView(view).forEach((entry) => {
+          const bucketName = isAramaicEntry(entry) ? "aramaic" : "hebrew";
+          const bucket = strictBuckets[bucketName] || [];
+          const renderings = cleanStrictRenderings(entry.strict_renderings || []).filter((rendering) => bucket.includes(rendering));
+          if (!renderings.length) return;
+          if (surfaceRenderings.length && renderings.every((rendering) => surfaceRenderings.includes(rendering))) return;
+          claims[bucketName].push(claimFromEntry(view, entry, bucketName === "aramaic" ? "Strict Aramaic" : "Strict Hebrew", renderings));
+        });
+        if (!claims.hebrew.length && !claims.aramaic.length && (strictBuckets.hebrew.length || strictBuckets.aramaic.length)) {
+          if (strictBuckets.hebrew.length) claims.hebrew.push(makeClaim("Strict Hebrew", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.hebrew, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+          if (strictBuckets.aramaic.length) claims.aramaic.push(makeClaim("Strict Aramaic", view.hebrew_word || view.surface_word || "Clicked form", strictBuckets.aramaic, view.source_rows, view.surface_transliteration || view.transliteration || "", { view, surfaceClaim: true }));
+        }
+        return { hebrew: uniqueClaims(claims.hebrew), aramaic: uniqueClaims(claims.aramaic) };
+      };
+      const makeSourceGroup = (label, renderings, rows, confidence = null, confidenceReasons = []) => ({ label: normalizeHebrewDisplay(label || "Lexical claim"), renderings: cleanStrictRenderings(renderings || []), rows: cleanValues(rows), confidence: Number.isFinite(confidence) ? confidence : null, confidence_reasons: uniqueValues(confidenceReasons) });
+      const uniqueSourceGroups = (groups) => {
+        const seen = new Set();
+        return cleanValues(groups).filter((group) => {
+          if (!group.rows.length) return false;
+          const key = `${group.label}|${group.renderings.join(";")}|${group.rows.map(sourceRowKey).join(";")}`;
+          if (seen.has(key)) return false;
+          seen.add(key);
+          return true;
+        });
+      };
+      const sourceGroupsForEntries = (view, entries) => uniqueSourceGroups(cleanValues(entries).map((entry) => makeSourceGroup(entry.lemma || entry.match_key || view.hebrew_word || view.surface_word, entry.strict_renderings || [], sourceRowsForEntry(view, entry))));
+      const sourceGroupsForClaims = (claims) => uniqueSourceGroups(cleanValues(claims).map((claim) => makeSourceGroup(claim.hebrew, claim.renderings, claim.rows, claim.confidence, claim.confidence_reasons)));
+      const sourceGroupsForStrict = (strictClaims) => sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || [])]);
+      const sourceGroupsForVisible = (view, strictClaims, secondaryClaims = {}) => {
+        return sourceGroupsForClaims([...(strictClaims.hebrew || []), ...(strictClaims.aramaic || []), ...(secondaryClaims.potential || []), ...(secondaryClaims.related || []), ...(secondaryClaims.caution || [])]);
+      };
+      const appendSecondarySources = (container, view, entries, label) => {
+        const groups = sourceGroupsForEntries(view, entries);
+        if (!groups.length) return;
+        const sourceDetails = document.createElement("details");
+        sourceDetails.className = "source-details";
+        const sourceSummary = document.createElement("summary");
+        sourceSummary.textContent = label;
+        const sourceBox = document.createElement("div");
+        sourceDetails.append(sourceSummary, sourceBox);
+        renderSourceGroups(sourceBox, groups);
+        container.appendChild(sourceDetails);
+      };
+      const renderPotentialAndRelatedEntries = (root, view, hasLexicalEntry, hasStrict) => {
+        const potentialNode = root.querySelector("[data-hud-potential]");
+        const relatedNode = root.querySelector("[data-hud-related]");
+        const cautionNode = root.querySelector("[data-hud-caution]");
+        const result = { potential: [], related: [], caution: [] };
+        if (!potentialNode || !relatedNode || !cautionNode) return result;
+        potentialNode.replaceChildren();
+        relatedNode.replaceChildren();
+        cautionNode.replaceChildren();
+        if (!hasLexicalEntry) {
+          result.potential = [makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], [])];
+          setRowHidden(root, "[data-hud-potential-row]", false);
+          setRowHidden(root, "[data-hud-related-row]", true);
+          setRowHidden(root, "[data-hud-caution-row]", true);
+          appendClaimRows(potentialNode, result.potential);
+          return result;
+        }
+        const entries = cleanValues(view.possible_entries);
+        const strictKeys = strictEntryKeys(view);
+        const noisyEntries = entries.filter((entry) => hasStrict && isNoisyAlternateEntry(entry) && !strictKeys.has(entry.entry_key));
+        const relatedEntries = entries.filter((entry) => isRelatedEntry(entry) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialEntries = entries.filter((entry) => !isRelatedEntry(entry) && !strictKeys.has(entry.entry_key) && (!hasStrict || entry.context_role !== "likely_contextual") && (!hasStrict || entryMatchesClickedForm(entry, view)) && !(hasStrict && isNoisyAlternateEntry(entry)));
+        const potentialClaims = uniqueClaims(potentialEntries.map((entry) => claimFromEntry(view, entry, "Potential")));
+        const relatedClaims = uniqueClaims(relatedEntries.map((entry) => claimFromEntry(view, entry, "Related")));
+        const cautionClaims = uniqueClaims([...potentialClaims, ...relatedClaims].filter((claim) => claim.status === "Caution").concat(noisyEntries.map((entry) => claimFromEntry(view, entry, "Caution"))));
+        const visiblePotentialClaims = potentialClaims.filter((claim) => claim.status !== "Caution");
+        const visibleRelatedClaims = relatedClaims.filter((claim) => claim.status !== "Caution");
+        const highClaims = [...visiblePotentialClaims, ...visibleRelatedClaims, ...cautionClaims].filter(isDisplayableClaim);
+        const allowLowConfidenceFallback = !hasStrict && !highClaims.length;
+        const keepForDisplay = (claims) => allowLowConfidenceFallback ? claims : claims.filter(isDisplayableClaim);
+        result.potential.push(...keepForDisplay(visiblePotentialClaims));
+        result.related.push(...keepForDisplay(visibleRelatedClaims));
+        result.caution.push(...keepForDisplay(cautionClaims));
+        if (!hasStrict && !highClaims.length && !result.potential.length && !result.related.length && !result.caution.length) result.potential.push(makeClaim("Unresolved", view.hebrew_word || view.surface_word || "Clicked form", ["No lexical entry yet."], []));
+        setRowHidden(root, "[data-hud-potential-row]", !result.potential.length);
+        setRowHidden(root, "[data-hud-related-row]", !result.related.length);
+        setRowHidden(root, "[data-hud-caution-row]", !result.caution.length);
+        if (result.potential.length) appendClaimRows(potentialNode, result.potential);
+        if (result.related.length) appendClaimRows(relatedNode, result.related);
+        if (result.caution.length) appendClaimRows(cautionNode, result.caution);
+        return result;
+      };
+      const renderSourceRow = (row) => {
+        const title = document.createElement("p");
+        const strong = document.createElement("strong");
+        const sourceHref = resolveSourceUrl(row.source_url);
+        if (sourceHref) {
+          const link = document.createElement("a");
+          link.href = sourceHref;
+          link.textContent = row.source_name || "Source";
+          strong.appendChild(link);
+        } else {
+          strong.textContent = row.source_name || "Source";
+        }
+        title.appendChild(strong);
+        title.append(` | ${row.source_id || "N/A"} | License: ${displayLicense(row)}`);
+        return title;
+      };
+      const renderSourceGroups = (sourceBox, groups) => {
+        if (!sourceBox) return;
+        sourceBox.replaceChildren();
+        const sourceGroups = cleanValues(groups);
+        if (!sourceGroups.length) { const note = document.createElement("p"); note.className = "placeholder"; note.textContent = "No cached lexical source row yet."; sourceBox.appendChild(note); return; }
+        sourceGroups.forEach((group) => {
+          const section = document.createElement("div");
+          section.className = "source-row";
+          const claim = document.createElement("p");
+          claim.className = "source-claim";
+          claim.append("For ");
+          const lemma = document.createElement("span");
+          lemma.lang = "he";
+          lemma.dir = "rtl";
+          lemma.textContent = group.label || "Lexical claim";
+          claim.appendChild(lemma);
+          if (group.renderings && group.renderings.length) claim.append(` - ${group.renderings.join(", ")}`);
+          if (Number.isFinite(group.confidence)) claim.append(` | Assurance: ${group.confidence}%`);
+          section.appendChild(claim);
+          if (group.confidence_reasons && group.confidence_reasons.length) { const reasons = document.createElement("p"); reasons.className = "source-claim"; reasons.textContent = `Score basis: ${group.confidence_reasons.join("; ")}`; section.appendChild(reasons); }
+          uniqueValues(group.rows.map(sourceRowKey)).map((key) => group.rows.find((row) => sourceRowKey(row) === key)).filter(Boolean).forEach((row) => section.appendChild(renderSourceRow(row)));
+          sourceBox.appendChild(section);
+        });
+      };
+      const buildWordView = async (button) => {
+        const tokenRow = await loadTokenRow(button.dataset.lexicalIndex);
+        const entryId = button.dataset.lexicalEntry || tokenRow.lexicon_entry_id || "";
+        const entry = entryId ? (lexiconEntries.get(entryId) || {}) : {};
+        return { ...entry, ...tokenRow, hebrew_word: button.textContent.trim() || tokenRow.surface_word, source_rows: entry.source_rows || [], secondary_source_rows: entry.secondary_source_rows || [] };
+      };
+      const renderWord = async (button) => {
+        const unit = button.closest("[data-lexical-unit]");
+        const slot = unit ? unit.querySelector("[data-lexical-slot]") : null;
+        if (!unit || !slot) return;
+        activeHudButton = button;
+        if (hud.parentElement !== document.body) document.body.appendChild(hud);
+        document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        button.setAttribute("aria-pressed", "true");
+        hud.hidden = false;
+        positionHudNearButton(button);
+        setText(hud, "[data-hud-word]", button.textContent.trim());
+        setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+        setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+        setRowHidden(hud, "[data-hud-caution-row]", true);
+        setList(hud, "[data-hud-hebrew-strict]", ["Loading lexical entry..."]);
+        renderBreakdown(hud, {});
+        renderPotentialAndRelatedEntries(hud, {}, false, false);
+        renderSourceGroups(hud.querySelector("[data-hud-sources]"), []);
+        try {
+          const view = await buildWordView(button);
+          if (button.getAttribute("aria-pressed") !== "true") return;
+          setText(hud, "[data-hud-word]", view.hebrew_word);
+          const hasLexicalEntry = Boolean(view.lexicon_entry_id || button.dataset.lexicalEntry);
+          const strictBuckets = hasLexicalEntry ? getStrictBuckets(view) : { hebrew: [], aramaic: [] };
+          const strictClaims = hasLexicalEntry ? strictClaimsForView(view, strictBuckets) : { hebrew: [], aramaic: [] };
+          const hasStrict = strictClaims.hebrew.length > 0 || strictClaims.aramaic.length > 0;
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", !strictClaims.hebrew.length);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", !strictClaims.aramaic.length);
+          appendClaimRows(hud.querySelector("[data-hud-hebrew-strict]"), strictClaims.hebrew);
+          appendClaimRows(hud.querySelector("[data-hud-aramaic-strict]"), strictClaims.aramaic);
+          renderBreakdown(hud, view);
+          const secondaryClaims = renderPotentialAndRelatedEntries(hud, view, hasLexicalEntry, hasStrict);
+          renderSourceGroups(hud.querySelector("[data-hud-sources]"), sourceGroupsForVisible(view, strictClaims, secondaryClaims));
+          const details = hud.querySelector("details");
+          if (details) details.open = false;
+          positionHudNearButton(button);
+        } catch (error) {
+          console.error(error);
+          setRowHidden(hud, "[data-hud-hebrew-strict-row]", false);
+          setRowHidden(hud, "[data-hud-aramaic-strict-row]", true);
+          setList(hud, "[data-hud-hebrew-strict]", ["No lexical entry yet."]);
+          positionHudNearButton(button);
+        }
+      };
+      buttons.forEach((button) => {
+        button.addEventListener("click", () => {
+          renderWord(button);
+        });
+        button.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") { event.preventDefault(); button.click(); }
+        });
+      });
+      document.querySelectorAll("[data-hud-close]").forEach((button) => {
+        button.addEventListener("click", () => {
+          const hud = button.closest("[data-lexical-hud]");
+          if (hud) hud.hidden = true;
+          activeHudButton = null;
+          document.querySelectorAll("[data-lexical-token]").forEach((wordButton) => wordButton.setAttribute("aria-pressed", "false"));
+        });
+      });
+      window.addEventListener("resize", scheduleHudPosition);
+      window.addEventListener("scroll", scheduleHudPosition, true);
+    })();
+  </script>
+</body>
+</html>
