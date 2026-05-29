@@ -343,7 +343,8 @@ function writeWorkPayload({ workId, lexicalRoot, chunkSize, entriesById }) {
   for (let start = 0; start < forms.length; start += chunkSize) {
     const chunkForms = forms.slice(start, start + chunkSize);
     const chunkNumber = Math.floor(start / chunkSize);
-    const chunkId = `${workId}-${String(chunkNumber).padStart(3, '0')}`;
+    // Keep filenames short; long work IDs already appear in the chunk directory.
+    const chunkId = `chunk-${String(chunkNumber).padStart(3, '0')}`;
     const chunkEntryIds = new Set();
 
     for (const form of chunkForms) {

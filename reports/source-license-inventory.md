@@ -38,6 +38,7 @@ Generated: 2026-05-29
 | Arukh HaShulchan HeAtid | 1602 | Arukh HaShulchan HeAtid, Zeraim, Tel Aviv 1938 (https://www.nli.org.il/he/books/NNL_ALEPH001832511/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Asarah Perakim LeRamchal | 85 | Assarah Perakim -- Torat Emet (http://www.ateret4u.com/online/f_01919.html#HtmpReportNum0001_L2) | Public Domain | yes | no | none required by license; source/version retained |
 | Avodat HaKodesh | 112 | Gerlitz edition, published by Oraita (https://www.sefaria.org) | CC0 | yes | no | none required by license; source/version retained |
+| Avodat HaMelekh on Mishneh Torah, Foundations of the Torah | 159 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Avodat HaMelekh on Mishneh Torah, Repentance | 139 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Avodat HaMelekh on Mishneh Torah, Transmission of the Oral Law | 30 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Avodat Yisrael | 739 | Avodat Yisrael; Konigsberg, c. 1860. (https://www.nli.org.il/he/books/NNL_ALEPH001945066) | Public Domain | yes | no | none required by license; source/version retained |
@@ -100,6 +101,7 @@ Generated: 2026-05-29
 | Chokhmat Adam | 7 | Vilna, 1815 (https://www.nli.org.il/he/books/NNL_ALEPH990018733440205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, Admission into the Sanctuary | 129 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, The Chosen Temple | 109 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Commentary of Mahari Kurkus and Radbaz on Mishneh Torah, Vessels of the Sanctuary and Those who Serve Therein | 174 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Crescas on Guide for the Perplexed | 70 | Warsaw, 1872 (https://www.nli.org.il/he/books/NNL_ALEPH990017717720205171/NLI) | PD | yes | no | none required by license; source/version retained |
 | Daniel | 357 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Darkhei Moshe | 1376 | Tur Choshen Mishpat: Vilna, 1923 (https://www.nli.org.il/he/books/NNL_ALEPH001935970) | Public Domain | yes | no | none required by license; source/version retained |
@@ -115,7 +117,9 @@ Generated: 2026-05-29
 | Divrei Emet | 561 | Divrei Emet, Zalkowa 1801 (https://www.nli.org.il/he/books/NNL_ALEPH001881071) | Public Domain | yes | no | none required by license; source/version retained |
 | Divrei Shaul Edut BeYosef on Mishneh Torah, Testimony | 123 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Divrei Yirmiyahu on Mishneh Torah, Blessings | 111 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
+| Divrei Yirmiyahu on Mishneh Torah, Circumcision | 27 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Divrei Yirmiyahu on Mishneh Torah, Fasts | 14 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
+| Divrei Yirmiyahu on Mishneh Torah, Foreign Worship and Customs of the Nations | 186 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Divrei Yirmiyahu on Mishneh Torah, Foundations of the Torah | 75 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Divrei Yirmiyahu on Mishneh Torah, Fringes | 38 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
 | Divrei Yirmiyahu on Mishneh Torah, Human Dispositions | 36 | Friedberg Edition (https://fjms.genizah.org/) | Public Domain | yes | no | none required by license; source/version retained |
@@ -196,6 +200,7 @@ Generated: 2026-05-29
 | Haggai | 38 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | HaGra on Sefer Yetzirah Gra Version | 35 | Sefer Yetzirah, Warsaw 1884 (https://www.nli.org.il/he/books/NNL_ALEPH001310968) | Public Domain | yes | no | none required by license; source/version retained |
 | Har HaMoriyah on Mishneh Torah, Festival Offering | 101 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Har HaMoriyah on Mishneh Torah, Offerings for Those with Incomplete Atonement | 153 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Har HaMoriyah on Mishneh Torah, Substitution | 123 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Hasagot HaRa'avad on Mishneh Torah, Admission into the Sanctuary | 24 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Hasagot HaRa'avad on Mishneh Torah, Festival Offering | 6 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
@@ -220,6 +225,7 @@ Generated: 2026-05-29
 | II Samuel | 695 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Imrei Binah | 1183 | Imrei Binah, Jerusalem 1908 (https://www.nli.org.il/he/books/NNL_ALEPH001933768/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Isaiah | 1291 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Issur VeHeter LeRashi | 174 | Isur ve-heter le-Rashi, Berlin 1936 (https://www.nli.org.il/he/books/NNL_ALEPH002015153) | Public Domain | yes | no | none required by license; source/version retained |
 | Jeremiah | 1364 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Jerusalem Talmud Taanit | 54 | The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015 (https://www.nli.org.il/he/books/NNL_ALEPH001901012/NLI) | CC-BY | yes | no | required |
 | Job | 1070 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
@@ -228,11 +234,15 @@ Generated: 2026-05-29
 | Joshua | 658 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Judges | 618 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Kad HaKemach | 396 | Kad HaKemach, Warsaw 1872 (https://www.nli.org.il/he/books/NNL_ALEPH001784725) | Public Domain | yes | no | none required by license; source/version retained |
+| Kaf Achat | 168 | Avodat HaKodesh, Pressburg, 1859 (https://www.nli.org.il/he/books/NNL01) | Public Domain | yes | no | none required by license; source/version retained |
 | Kalach Pitchei Chokhmah | 1948 | Kalach Pitchei Chokhmah -- grimoar (http://www.hebrew.grimoar.cz/luzzato/kalach_pitchej_chochma.htm) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Agents and Partners | 187 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Circumcision | 88 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Festival Offering | 61 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Firstlings | 212 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Foundations of the Torah | 63 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Fringes | 112 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Kessef Mishneh on Mishneh Torah, Kings and Wars | 200 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Offerings for Those with Incomplete Atonement | 94 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Rebels | 134 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
 | Kessef Mishneh on Mishneh Torah, Repentance | 78 | Torat Emet 363 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
