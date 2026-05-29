@@ -1532,8 +1532,18 @@ function Get-LexicalCache {
       $tokenIndexRows = @($tokenIndex.forms)
     }
     if ($tokenIndexRows.Count -eq 0 -and $tokenIndex.PSObject.Properties.Name -contains 'work_indexes') {
+      $targetWorkIdSet = @{}
+      if ($WorkIds.Count -gt 0) {
+        foreach ($workId in @($WorkIds | Where-Object { $_ })) {
+          $targetWorkIdSet[[string]$workId] = $true
+        }
+      }
       foreach ($indexFile in @($tokenIndex.work_indexes)) {
         if (-not $indexFile.path) { continue }
+        if ($targetWorkIdSet.Count -gt 0) {
+          $indexWorkId = [string]$indexFile.work_id
+          if (-not $indexWorkId -or -not $targetWorkIdSet.ContainsKey($indexWorkId)) { continue }
+        }
         $indexPath = Join-Path $LexicalDir ([string]$indexFile.path)
         if (-not (Test-Path -LiteralPath $indexPath)) { continue }
         $workTokenIndex = Read-Json -Path $indexPath
