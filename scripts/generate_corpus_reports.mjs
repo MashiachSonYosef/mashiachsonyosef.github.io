@@ -14,6 +14,9 @@ const searchRoot = 'data/search';
 const statsPath = 'corpus_stats.json';
 const statsPagePath = 'stats/index.html';
 const reportPath = 'data/reports/corpus-coverage-pipeline-report.md';
+const publicDataBaseUrl =
+  process.env.PUBLIC_DATA_BASE_URL ||
+  'https://raw.githubusercontent.com/MashiachSonYosef/mashiachsonyosef.github.io/main/';
 
 const tokenRe = /[\u05D0-\u05EA][\u0591-\u05C7\u05D0-\u05EA\u05F3\u05F4'"]*/gu;
 const htmlTagRe = /<[^>]*>/g;
@@ -28,6 +31,10 @@ const finalLetters = new Map([
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, 'utf8'));
+}
+
+function publicDataUrl(relativePath) {
+  return `${publicDataBaseUrl.replace(/\/+$/, '')}/${relativePath.replace(/^\/+/, '')}`;
 }
 
 function withoutGeneratedAt(value) {
@@ -453,7 +460,11 @@ function writeStatsPage(stats) {
   const workRows = stats.works
     .slice()
     .sort((a, b) => b.total_tokens - a.total_tokens)
-    .map((work) => `<tr><td><a href="../${html(work.page_path)}">${html(work.work_title)}</a></td><td>${html(work.category)}</td><td>${work.source_units}</td><td>${work.total_tokens}</td><td>${work.lexical_coverage_percent}%</td><td>${work.unresolved_tokens}</td><td><a href="../data/reports/coverage/${html(work.work_id)}.json">coverage</a></td><td><a href="../data/lexical/unresolved/${html(work.work_id)}.csv">unresolved CSV</a></td></tr>`)
+    .map((work) => {
+      const coverageUrl = publicDataUrl(`data/reports/coverage/${work.work_id}.json`);
+      const unresolvedUrl = publicDataUrl(`data/lexical/unresolved/${work.work_id}.csv`);
+      return `<tr><td><a href="../${html(work.page_path)}">${html(work.work_title)}</a></td><td>${html(work.category)}</td><td>${work.source_units}</td><td>${work.total_tokens}</td><td>${work.lexical_coverage_percent}%</td><td>${work.unresolved_tokens}</td><td><a href="${html(coverageUrl)}">coverage</a></td><td><a href="${html(unresolvedUrl)}">unresolved CSV</a></td></tr>`;
+    })
     .join('\n');
   const page = `<!doctype html>
 <html lang="en">
@@ -477,7 +488,7 @@ function writeStatsPage(stats) {
 </head>
 <body>
 <main>
-  <p><a href="../library/">← Full Library</a></p>
+  <p><a href="../library/">&larr; Full Library</a></p>
   <h1>Corpus Stats</h1>
   <p class="note">Generated ${html(stats.generated_at)}. Counts are source-workbench metrics, not translation progress. Hebrew source licenses and lexical row licenses remain separate.</p>
   <section class="summary">
@@ -489,7 +500,7 @@ function writeStatsPage(stats) {
     <div class="card">Unresolved Tokens <span class="value">${stats.unresolved_tokens}</span></div>
   </section>
   <h2>Downloads</h2>
-  <p class="note"><a href="../corpus_stats.json">corpus_stats.json</a> · <a href="../data/reports/audit/bad_matches.csv">bad-match audit CSV</a> · <a href="../data/search/manifest.json">search index manifest</a></p>
+  <p class="note"><a href="${html(publicDataUrl('corpus_stats.json'))}">corpus_stats.json</a> &middot; <a href="${html(publicDataUrl('data/reports/audit/bad_matches.csv'))}">bad-match audit CSV</a> &middot; <a href="${html(publicDataUrl('data/search/manifest.json'))}">search index manifest</a></p>
   <h2>Categories</h2>
   <div class="table-wrap">
     <table>
