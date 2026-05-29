@@ -586,6 +586,8 @@ function Append-SiteHead {
   [void]$Builder.AppendLine('    .crumbs, .meta { color: var(--muted); font-size: 0.92rem; }')
   [void]$Builder.AppendLine('    .license-notice { margin-top: 12px; border: 1px solid var(--line); background: rgba(147,167,209,0.07); padding: 10px 12px; color: var(--muted); font-size: 0.92rem; line-height: 1.55; }')
   [void]$Builder.AppendLine('    .license-notice strong { color: var(--text); font-weight: 400; }')
+  [void]$Builder.AppendLine('    .export-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 12px; color: var(--muted); font-size: 0.9rem; }')
+  [void]$Builder.AppendLine('    .export-button { border: 1px solid var(--line-2); background: rgba(214,190,138,0.06); color: var(--accent); padding: 5px 9px; text-decoration: none; letter-spacing: 0.04em; }')
   [void]$Builder.AppendLine('    .home-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 12px; margin-top: 20px; }')
   [void]$Builder.AppendLine('    .home-section { margin-top: 26px; }')
   [void]$Builder.AppendLine('    .home-section:first-child { margin-top: 0; }')
@@ -2308,6 +2310,50 @@ function Append-LibrarySections {
   [void]$Builder.AppendLine('        </div>')
 }
 
+function Append-WorkLexicalDownloadLinks {
+  param(
+    [System.Text.StringBuilder]$Builder,
+    [object]$Source,
+    [string]$RootHref,
+    [AllowNull()][object]$WorkLexicalExternal
+  )
+
+  $workId = [string]$Source.work_id
+  if (-not $workId) { return }
+
+  $links = New-Object System.Collections.Generic.List[string]
+  if ($null -ne $WorkLexicalExternal -and $WorkLexicalExternal.manifest_url) {
+    $links.Add("<a class=""export-button"" href=""$($WorkLexicalExternal.manifest_url)"">Lexical manifest</a>")
+  }
+
+  $workClaimCsv = "data/public-lexical/by-work/$workId.csv"
+  if (Test-Path -LiteralPath $workClaimCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$workClaimCsv"" download>Book claims CSV</a>")
+  }
+
+  $tokenStatusCsv = "data/public-lexical/by-work/$workId-token-status.csv"
+  if (Test-Path -LiteralPath $tokenStatusCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$tokenStatusCsv"" download>Token status CSV</a>")
+  }
+
+  $compactTokenClaimsCsv = "data/public-lexical/by-work/$workId-token-claims-min60.csv"
+  if (Test-Path -LiteralPath $compactTokenClaimsCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$compactTokenClaimsCsv"" download>Token claims CSV</a>")
+  }
+
+  $aiOptionsCsv = "data/public-lexical/by-work/$workId-ai-options-min60.csv"
+  if (Test-Path -LiteralPath $aiOptionsCsv) {
+    $links.Add("<a class=""export-button"" href=""$($RootHref)$aiOptionsCsv"" download>AI options CSV</a>")
+  }
+
+  if ($links.Count -gt 0) {
+    [void]$Builder.AppendLine('        <div class="license-notice lexical-downloads">')
+    [void]$Builder.AppendLine('          <strong>Downloads:</strong> Book-local lexical files. CSV rows are lexical options, not translations; preserve row-level source/license columns.')
+    [void]$Builder.AppendLine("          <p class=""export-actions"">$($links -join '')</p>")
+    [void]$Builder.AppendLine('        </div>')
+  }
+}
+
 function New-LibraryPageHtml {
   param(
     [object[]]$Sources,
@@ -2534,6 +2580,9 @@ foreach ($source in $renderSources) {
     if ($lexicalTotal -gt 0) {
       [void]$page.AppendLine("        <p class=""meta lexical-coverage"">Lexical HUD coverage: <strong>$lexicalMatched matched</strong> / $lexicalTotal unique forms.</p>")
     }
+  }
+  if ($workHasLexical) {
+    Append-WorkLexicalDownloadLinks -Builder $page -Source $source -RootHref $rootHref -WorkLexicalExternal $workLexicalExternal
   }
   if ($MaxUnits -gt 0) {
     [void]$page.AppendLine("        <p class=""fallback-note"">Fallback render active. Showing first $MaxUnits units only while route stability is verified.</p>")
