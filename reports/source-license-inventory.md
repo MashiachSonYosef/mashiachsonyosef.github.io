@@ -216,6 +216,7 @@ Generated: 2026-05-29
 | Har HaMoriyah on Mishneh Torah, Offerings for Unintentional Transgressions | 395 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Har HaMoriyah on Mishneh Torah, Paschal Offering | 341 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Har HaMoriyah on Mishneh Torah, Sacrifices Rendered Unfit | 786 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Har HaMoriyah on Mishneh Torah, Sacrificial Procedure | 909 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Har HaMoriyah on Mishneh Torah, Service on the Day of Atonement | 257 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Har HaMoriyah on Mishneh Torah, Substitution | 123 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Har HaMoriyah on Mishneh Torah, The Chosen Temple | 294 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -245,6 +246,7 @@ Generated: 2026-05-29
 | Imrei Binah | 1183 | Imrei Binah, Jerusalem 1908 (https://www.nli.org.il/he/books/NNL_ALEPH001933768/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Isaiah | 1291 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Issur V'Heter L'Rabbeinu Yerucham | 159 | Wikitext -- Issur V'Heter L'Rabbeinu Yerucham (https://he.wikisource.org/wiki/%D7%90%D7%99%D7%A1%D7%95%D7%A8_%D7%95%D7%94%D7%99%D7%AA%D7%A8_%D7%9C%D7%A8%D7%91%D7%A0%D7%95_%D7%99%D7%A8%D7%95%D7%97%D7%9D) | CC-BY-SA | yes | yes | required |
+| Issur VeHeter HaArokh | 977 | Vilna, 1891 (https://www.nli.org.il/he/books/NNL_ALEPH001930716/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Issur VeHeter LeRashi | 174 | Isur ve-heter le-Rashi, Berlin 1936 (https://www.nli.org.il/he/books/NNL_ALEPH002015153) | Public Domain | yes | no | none required by license; source/version retained |
 | Jeremiah | 1364 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
 | Jerusalem Talmud Taanit | 54 | The Jerusalem Talmud, edition by Heinrich W. Guggenheimer. Berlin, De Gruyter, 1999-2015 (https://www.nli.org.il/he/books/NNL_ALEPH001901012/NLI) | CC-BY | yes | no | required |
@@ -513,6 +515,7 @@ Generated: 2026-05-29
 | Maggid Mishneh on Mishneh Torah, Hiring | 372 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Inheritances | 186 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Leavened and Unleavened Bread | 194 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
+| Maggid Mishneh on Mishneh Torah, Marriage | 881 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, One Who Injures a Person or Property | 201 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Plaintiff and Defendant | 247 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
 | Maggid Mishneh on Mishneh Torah, Rest on a Holiday | 323 | ToratEmet (http://www.toratemetfreeware.com/online/d_root__035_mshnh_torh_lhrmbm.html) | Public Domain | yes | no | none required by license; source/version retained |
@@ -592,6 +595,7 @@ Generated: 2026-05-29
 | Migdal Oz on Mishneh Torah, Kings and Wars | 92 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Leavened and Unleavened Bread | 71 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Levirate Marriage and Release | 117 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Migdal Oz on Mishneh Torah, Marriage | 407 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Mourning | 113 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Murderer and the Preservation of Life | 126 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Migdal Oz on Mishneh Torah, Nazariteship | 118 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -978,6 +982,7 @@ Generated: 2026-05-29
 | Shorshei HaYam on Mishneh Torah, Sheqel Dues | 1 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Siddur Edot HaMizrach | 3352 |  Shaliehsaboo Edition (https://www.sefaria.org) | CC0 | yes | no | none required by license; source/version retained |
 | Siddur Edot HaMizrach | 27 | Torat Emet 357 (http://www.toratemetfreeware.com/index.html?downloads) | Public Domain | yes | no | none required by license; source/version retained |
+| Siddur Rashi | 914 | Buber Edition, Berlin, 1912 (https://www.nli.org.il/he/books/NNL_ALEPH990017640040205171/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sifrei Aggadah on Esther | 197 | Vilna, 1886 (https://www.nli.org.il/he/books/NNL_ALEPH001838260/NLI) | Public Domain | yes | no | none required by license; source/version retained |
 | Sifrei Bamidbar | 295 | Wikisource (https://he.wikisource.org/wiki/%D7%A1%D7%A4%D7%A8%D7%99) | CC-BY-SA | yes | yes | required |
 | Sifrei Devarim | 2340 | Sifre on Deuteronomy, ed. Dr. Louis Finkelstein. JTS, 1969 (https://www.nli.org.il/he/books/NNL_ALEPH990012428250205171/NLI) | CC-BY | yes | no | required |
