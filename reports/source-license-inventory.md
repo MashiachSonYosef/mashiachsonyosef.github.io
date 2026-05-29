@@ -14,8 +14,10 @@ Generated: 2026-05-29
 | Akeidat Yitzchak | 1728 | Akeidat Yitzchak, Pressburg 1849 (https://www.nli.org.il/he/books/NNL_ALEPH002034858) | Public Domain | yes | no | none required by license; source/version retained |
 | Alphabet of Ben Sira | 104 | Otzar Midrashim, New York, 1915 (https://www.nli.org.il/he/books/NNL_ALEPH001175329) | Public Domain | yes | no | none required by license; source/version retained |
 | Amos | 146 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |
+| Annotations of Maharatz Chajes on Mishneh Torah, Foreign Worship and Customs of the Nations | 4 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Annotations of Maharatz Chajes on Mishneh Torah, Mourning | 1 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Annotations of Maharatz Chajes on Mishneh Torah, Repentance | 5 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Annotations of Minchat Chinukh on Mishneh Torah, Daily Offerings and Additional Offerings | 8 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Annotations of Minchat Chinukh on Mishneh Torah, Diverse Species | 2 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Annotations of Minchat Chinukh on Mishneh Torah, Fasts | 5 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Annotations of Minchat Chinukh on Mishneh Torah, Paschal Offering | 18 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -258,6 +260,7 @@ Generated: 2026-05-29
 | Kiryat Sefer on Mishneh Torah, Divorce | 114 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Fasts | 2 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Festival Offering | 24 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Kiryat Sefer on Mishneh Torah, First Fruits and other Gifts to Priests Outside the Sanctuary | 124 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Firstlings | 75 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Forbidden Foods | 118 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Foundations of the Torah | 9 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -306,6 +309,7 @@ Generated: 2026-05-29
 | Kiryat Sefer on Mishneh Torah, Tefillin, Mezuzah and the Torah Scroll | 48 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Testimony | 58 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, The Chosen Temple | 58 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Kiryat Sefer on Mishneh Torah, The Sanhedrin and the Penalties within their Jurisdiction | 101 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Theft | 49 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Things Forbidden on the Altar | 69 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Kiryat Sefer on Mishneh Torah, Those Who Defile Bed or Seat | 52 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -945,6 +949,7 @@ Generated: 2026-05-29
 | Yitzchak Yeranen on Mishneh Torah, Creditor and Debtor | 7 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Fasts | 6 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Festival Offering | 13 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Yitzchak Yeranen on Mishneh Torah, First Fruits and other Gifts to Priests Outside the Sanctuary | 36 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Forbidden Foods | 54 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Foundations of the Torah | 5 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Fringes | 18 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
@@ -956,6 +961,7 @@ Generated: 2026-05-29
 | Yitzchak Yeranen on Mishneh Torah, Scroll of Esther and Hanukkah | 19 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Shofar, Sukkah and Lulav | 20 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Substitution | 2 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
+| Yitzchak Yeranen on Mishneh Torah, The Sanhedrin and the Penalties within their Jurisdiction | 14 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yitzchak Yeranen on Mishneh Torah, Torah Study | 10 | Friedberg Edition (https://fjms.genizah.org) | Public Domain | yes | no | none required by license; source/version retained |
 | Yosef BeSeder | 73 | Avodat HaKodesh, Pressburg, 1859 (https://www.nli.org.il/he/books/NNL01) | Public Domain | yes | no | none required by license; source/version retained |
 | Zechariah | 211 | Miqra according to the Masorah (https://he.wikisource.org/wiki/%D7%9E%D7%A9%D7%AA%D7%9E%D7%A9:Dovi/%D7%9E%D7%A7%D7%A8%D7%90_%D7%A2%D7%9C_%D7%A4%D7%99_%D7%94%D7%9E%D7%A1%D7%95%D7%A8%D7%94) | CC-BY-SA | yes | yes | required |

@@ -124,6 +124,12 @@ function Get-ImportCachePath {
     [string]$Ref
   )
 
+  $workCacheName = $WorkId
+  if ($workCacheName.Length -gt 72) {
+    $prefix = $workCacheName.Substring(0, 56).Trim('-')
+    $workCacheName = "$prefix-$(Get-ShortSha256 -Text $WorkId)"
+  }
+
   $slug = New-Slug $Ref
   if ($slug.Length -gt 96) {
     $slug = $slug.Substring(0, 96).Trim('-')
@@ -131,7 +137,7 @@ function Get-ImportCachePath {
   if (-not $slug) { $slug = 'ref' }
 
   $hash = Get-ShortSha256 -Text $Ref
-  $workCacheDir = Join-Path $ImportCacheDir $WorkId
+  $workCacheDir = Join-Path $ImportCacheDir $workCacheName
   return (Join-Path $workCacheDir "$slug-$hash.json")
 }
 
@@ -582,6 +588,11 @@ foreach ($work in $config.works) {
         Write-Warning "Skipping $fetchRef`: $($_.Exception.Message)"
       }
     }
+  }
+
+  if ($units.Count -eq 0) {
+    Write-Warning "Skipping $($work.sefaria_ref): no Hebrew units imported."
+    continue
   }
 
   $source = [ordered]@{
