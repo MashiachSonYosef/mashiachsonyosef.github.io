@@ -738,7 +738,6 @@ function Append-LexicalHudScript {
   [void]$Builder.AppendLine('        "local:project-aramaic-grammar-table": "data/lexical/source-layers/project-aramaic-grammar.json",')
   [void]$Builder.AppendLine('        "local:project-function-word-table": "data/lexical/source-layers/project-function-words.json",')
   [void]$Builder.AppendLine('        "local:project-midrash-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",')
-  [void]$Builder.AppendLine('        "local:project-aggadat-bereshit-formula-table": "data/lexical/source-layers/project-midrash-formulas.json",')
   [void]$Builder.AppendLine('        "local:grammar-rules": "data/lexical/source-layers/project-overrides.json",')
   [void]$Builder.AppendLine('        "local:fixed-expression-rules": "data/lexical/source-layers/project-overrides.json"')
   [void]$Builder.AppendLine('      };')
@@ -2212,7 +2211,7 @@ function Append-LibraryWorkCard {
   if ($Source.display_label) {
     [void]$Builder.AppendLine("                <span class=""work-label"">$(Encode-Html $Source.display_label)</span>")
   }
-  [void]$Builder.AppendLine("                <span class=""meta"">$(Get-SourceUnitCount -Source $Source) source units | $(Encode-Html $Source.source_system) | imported $(Encode-Html $Source.import_date)</span>")
+  [void]$Builder.AppendLine("                <span class=""meta"">$(Get-SourceUnitCount -Source $Source) source units</span>")
   [void]$Builder.AppendLine('              </a>')
 }
 
@@ -2363,13 +2362,20 @@ function New-LibraryPageHtml {
   )
 
   $page = New-Object System.Text.StringBuilder
-  Append-SiteHead -Builder $page -Title 'Full Library'
+  $workCount = @($Sources).Count
+  $unitCount = [int](($Sources | ForEach-Object { Get-SourceUnitCount -Source $_ } | Measure-Object -Sum).Sum)
+  $groupCount = @($Sources | Group-Object { Get-HomeGroup $_ }).Count
+  $corpusSummary = "$(Format-CountPhrase -Count $workCount -Singular 'work' -Plural 'works') | $(Format-CountPhrase -Count $unitCount -Singular 'source unit' -Plural 'source units') | $(Format-CountPhrase -Count $groupCount -Singular 'corpus group' -Plural 'corpus groups')"
+
+  Append-SiteHead -Builder $page -Title 'Hebrew Source Workbench'
   [void]$page.AppendLine('  <main>')
   [void]$page.AppendLine('    <div class="shell">')
   [void]$page.AppendLine('      <div class="hero">')
-  [void]$page.AppendLine("        <p class=""crumbs""><a href=""$HomeHref"">Home</a> &middot; <a href=""$AboutHref"">About / License</a></p>")
-  [void]$page.AppendLine('        <h1>Full Library</h1>')
-  [void]$page.AppendLine('        <p>Hebrew Source Workbench with lexical HUD support. All imported Hebrew source works remain available here in broad corpus groups.</p>')
+  [void]$page.AppendLine("        <p class=""crumbs""><a href=""$HomeHref"">Library</a> &middot; <a href=""$AboutHref"">About / License</a></p>")
+  [void]$page.AppendLine('        <h1>Hebrew Source Workbench</h1>')
+  [void]$page.AppendLine('        <p>Browse imported Hebrew source texts by corpus with lexical HUD support. Work pages preserve source/version/license metadata and expose book-local lexical HUD data when available.</p>')
+  [void]$page.AppendLine('        <p>No public English translation layer is displayed here; lexical rows are source-indexed study options.</p>')
+  [void]$page.AppendLine("        <p class=""meta"">$corpusSummary</p>")
   [void]$page.AppendLine('      </div>')
   [void]$page.AppendLine('      <div style="padding:22px">')
   Append-LibrarySections -Builder $page -Sources $Sources -HrefPrefix $HrefPrefix
@@ -2401,7 +2407,7 @@ if (-not $SkipSitePages) {
   [void]$aboutPage.AppendLine('        </section>')
   [void]$aboutPage.AppendLine('        <section class="home-section">')
   [void]$aboutPage.AppendLine('          <h2>Lexical HUD</h2>')
-  [void]$aboutPage.AppendLine('          <p>Lexical rows retain per-source licensing. Wikidata rows remain CC0, OpenScriptures rows remain CC BY 4.0, Wiktionary/Kaikki rows remain CC BY-SA 4.0 / GFDL, and project-authored grammar or technical rows are labeled separately.</p>')
+  [void]$aboutPage.AppendLine('          <p>Lexical rows retain per-source licensing. Wikidata rows remain CC0, OpenScriptures rows remain CC BY 4.0, Wiktionary/Kaikki rows remain CC BY-SA 4.0 / GFDL, and project-authored grammar, abbreviation, formula, and scoped lexical rows are labeled separately.</p>')
   [void]$aboutPage.AppendLine('          <p>Lexical HUD rows are study aids and source-indexed options. They are not polished English translations.</p>')
   [void]$aboutPage.AppendLine('        </section>')
   [void]$aboutPage.AppendLine('        <section class="home-section">')
